@@ -10,7 +10,103 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+
+// Variables
+@import "styles/variables";
+
+//Custom Mixin
+@import "styles/custom-mixin";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fonts
+@import "styles/fonts";
+
+// custom Variables
+@import "styles/custom-variables";
+
+// multi select
+@import "styles/multi-select.scss";
+
+// Common
+@import "styles/common";
+
+// Side bar
+@import "styles/sidebar";
+
+// Table
+@import "styles/table";
+
+// alert
+@import "styles/alert";
+
+// Button
+@import "styles/button";
+
+// Tabs
+@import "styles/tabs";
+
+// Search
+@import "styles/search";
+
+// List Group
+@import "styles/list-group";
+
+// Side bar
+@import "styles/auth";
+
+// Side bar
+@import "styles/form";
+
+// Navbar
+@import "styles/nav";
+
+// Main Panel
+@import "styles/main-panel";
+
+// Navbar
+@import "styles/chart";
+
+// Discussion
+@import "styles/discussion";
+
+// Main Panel
+//@import "styles/loader";
+
+// Graph Chart
+@import "styles/graph-chart";
+
+// Graph Chart
+@import "styles/grid-layout";
+
+// DatePicker
+@import "styles/datepicker";
+
+// Modal
+@import "styles/modal";
+
+// NoRecord Found
+@import "styles/no-records-found";
+
+// Query builder
+@import "styles/query-builder";
+
+//Responsive
+@import "styles/responsive";
+
+// theme
+@import "styles/theme";
+
+// page loader
+@import "styles/page-loader";
+
+// Vue Tree
+@import "styles/vue-tree";
+
+// Custom
+@import "styles/colorpicker";
+
+// Custom
+@import "styles/custom";
+

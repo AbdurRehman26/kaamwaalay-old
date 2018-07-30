@@ -1,0 +1,672 @@
+/*!
+ * jQuery QueryBuilder 2.4.5
+ * Copyright 2014-2017 Damien "Mistic" Sorel (http://www.strangeplanet.fr)
+ * Licensed under MIT (http://opensource.org/licenses/MIT)
+ */
+.query-builder .rule-container,.query-builder .rule-placeholder,.query-builder .rules-group-container{position:relative;margin:4px 0;border-radius:5px;padding:5px;border:1px solid #EEE;background:rgba(255,255,255,.9)}.query-builder .drag-handle,.query-builder .error-container,.query-builder .rule-container .rule-filter-container,.query-builder .rule-container .rule-operator-container,.query-builder .rule-container .rule-value-container{display:inline-block;margin:0 5px 0 0;vertical-align:middle}.query-builder .rules-group-container{padding:10px 10px 6px;border:1px solid #DCC896;background:rgba(250,240,210,.5)}.query-builder .rules-group-header{margin-bottom:10px}.query-builder .rules-group-header .group-conditions .btn.readonly:not(.active),.query-builder .rules-group-header .group-conditions input[name$='_cond']{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap}.query-builder .rules-group-header .group-conditions .btn.readonly{border-radius:3px}.query-builder .rules-list{list-style:none;padding:0 0 0 15px;margin:0}.query-builder .rule-value-container{border-left:1px solid #DDD;padding-left:5px}.query-builder .rule-value-container label{margin-bottom:0;font-weight:400}.query-builder .rule-value-container label.block{display:block}.query-builder .rule-value-container input[type=text],.query-builder .rule-value-container input[type=number],.query-builder .rule-value-container select{padding:1px}.query-builder .error-container{display:none;cursor:help;color:red}.query-builder .has-error{background-color:#FDD;border-color:#F99}.query-builder .has-error .error-container{display:inline-block!important}.query-builder .dragging::after,.query-builder .dragging::before,.query-builder .rules-list>:last-child::after{display:none}.query-builder .rules-list>::after,.query-builder .rules-list>::before{content:'';position:absolute;left:-10px;width:10px;height:calc(50% + 4px);border-color:$greyM;border-style:solid}.query-builder .rules-list>::before{top:-4px;border-width:0 0 2px 2px}.query-builder .rules-list>::after{top:50%;border-width:0 0 0 2px}.query-builder .rules-list>:first-child::before{top:-12px;height:calc(50% + 14px)}.query-builder .rules-list>:last-child::before{border-radius:0 0 0 4px}.query-builder.bt-checkbox-glyphicons .checkbox input[type=checkbox]:checked+label::after{font-family:'Glyphicons Halflings';content:'\e013'}.query-builder.bt-checkbox-glyphicons .checkbox label::after{padding-left:4px;padding-top:2px;font-size:9px}.query-builder .error-container+.tooltip .tooltip-inner{color:#F99!important}.query-builder p.filter-description{margin:5px 0 0;background:#D9EDF7;border:1px solid #BCE8F1;color:#31708F;border-radius:5px;padding:2.5px 5px;font-size:.8em}.query-builder .rules-group-header [data-invert]{margin-left:5px}.query-builder .drag-handle{cursor:move;vertical-align:middle;margin-left:5px}.query-builder .dragging{position:fixed;opacity:.5;z-index:100}.query-builder .rule-placeholder{border:1px dashed #BBB;opacity:.7}
+/*
+    Customize css
+*/
+
+
+body{
+    .query-builder{
+        .rule-operator-container, .rule-value-container, .rule-filter-container{
+                width: auto !important;
+                margin-left: 0px !important;
+                margin-right: 0px !important;
+                display: inline-flex !important;
+
+                @include mobileS{
+                    width: 192px!important;
+                }
+
+                select, input{
+                    margin-right: 5px;
+                    @include mobileS{
+                        margin-right: 0;
+                    }
+                }    
+        }
+        .rule-value-container{
+            max-width: 99px;
+
+            @include mobileS{
+                max-width: 188px;
+            }
+        }
+    }
+
+}
+
+.add-widget{
+    .query-builder{
+        .rule-operator-container, .rule-value-container, .rule-filter-container{
+                width: auto !important;
+                margin-left: 0px;
+                margin-right: 0px;
+                display: inline-flex !important;
+                select, input{
+                    margin-right: 5px;
+                    @include mobileS{
+                        margin-right: 0;
+                    }
+                }    
+        }
+        .rule-value-container{
+            max-width: 99px;
+        }
+    }
+}
+
+
+.query-builder{
+
+
+.btn-group, .btn-group-vertical
+{
+    display: inline-block;
+    height: 35px;
+}
+
+
+
+
+#create-rules_group_0{
+    .rules-group-body{
+        .rules-group-container{
+            &:before {
+                height: 97px;
+                top: -20px !important;
+
+                @include mobileS{
+                    height: 157px;
+                    top: -44px!important;
+                }
+            }
+        }
+    }
+}
+
+.btn-group{
+    &.pull-right{
+        &.rule-actions{
+          right: -10px;
+            position: absolute;      
+        }
+    }
+}
+
+    .rule-container{
+        border:none !important;
+        background:none !important;
+        padding-left: 15px;
+        display: table;
+
+        @include mobileS{
+            padding-left: 52px;
+            width: 280px;
+        }
+    }
+    .pull-right {
+        float: right !important;
+
+        @include mobileS{
+            margin-bottom: 10px;
+        }
+    }
+    .pull-left {
+        float: left !important;
+    }
+    .rules-group-container{
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width:100%;
+        max-width:100%;
+    }
+
+        .btn{
+            padding: 0 8px;
+            min-width: 80px;
+            height: 32px;
+            font-family:$font-regular;
+            font-weight:bold;
+            text-transform:uppercase;
+            background:none;
+
+            @include tablet{
+                min-width: 50px;
+            }
+
+
+            &.btn-primary{
+                background:none;
+                border-color:$secondary-color;
+                color:$secondary-color;
+
+                @include mobileS{
+                    padding: 4px 8px;
+                }
+
+                &:hover{
+                    background:#fff;
+                    color:$secondary-color;
+                }
+
+                &.active,&:hover{
+                    background:$secondary-color;
+                    color:#fff !important;
+                    border-color:transparent;
+                }
+            }
+        }
+
+    .rules-group-header{
+        .group-actions{
+            .btn{
+                background:none;
+                color:$secondary-color;
+                border-color: transparent;
+                text-transform: capitalize;
+                font-family:$font_medium;
+                font-weight:bold;
+                    &:hover,&:focus{
+                       color:$secondary-color !important;
+                    }
+                    i.glyphicon-plus{
+                        font-size: 11px;
+                        position: initial;
+                        top: 0px;
+                        left: -1px;
+                        &:before{
+                            content: '+';
+                            font-family:$font_medium;
+                            font-size: 17px;
+                            font-weight: 800;
+                            font-style: normal;
+                        }
+                    }
+                    i.glyphicon-remove{
+                        color:$secondary-color !important;
+                        font-weight: 100;
+                        font-style: normal;
+                        font-size: 17px;
+                        &:before{
+                            content: "\E927";
+                            font-size: 23px;
+                            color:$secondary-color !important;
+                        }
+                    }
+            }
+
+            .btn-success{
+                @include mobile{
+                    vertical-align: sub;
+                }
+
+                @include mobileS{
+                    vertical-align: baseline;
+                }
+            }
+        }
+    }
+
+    .rule-header{
+        i.glyphicon-remove{
+            color:$secondary-color !important;
+            font-weight: 100;
+            font-style: normal;
+            font-size: 17px;
+            &:before{
+                content: "\E927";
+                font-size: 23px;
+                color:$secondary-color !important;
+            }
+        }
+    }
+
+
+
+
+    .query-builder .rule-value-container input[type=text], .query-builder .rule-value-container input[type=number], .query-builder .rule-value-container select{
+        padding: $input-padding;
+    }
+
+    .rules-group-body{
+        padding-left: 66px;
+
+        @include tablet{
+            padding-left: 38px;
+        }
+
+        @include mobileS{
+            padding-left: 0;
+        }
+    }
+
+    [data-delete]{
+        width: 32px !important;
+        height: 38px !important;
+        top: 1px !important;
+
+        @include mobile{
+            top: 0px!important;
+        }
+
+        @include mobileS{
+            top: -2px!important;
+        }
+    }
+}
+
+body{
+    .query-builder{
+        .rules-list{
+            .rules-group-container{
+              &:before{
+                left: -28px !important;
+                top: -6px !important;
+                height: 77px;
+
+              }
+            }
+        }
+        .rules-group-body{
+            .rules-group-container{
+                &:after{
+                    left: -28px !important;
+                    top: 68px;
+                    height: 100%;
+                }
+            }
+            .rule-container{
+                &:before{
+                    left: -10px !important;
+                    height: 74px !important;
+                    top: -49px !important;
+
+                    @include mobileS{
+                        left: 27px!important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body .query-builder .rules-group-body .rules-group-container:after{
+
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus, .show > .btn-success.dropdown-toggle:focus{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.btn-success{
+    &:focus{
+        box-shadow: none;
+    }
+    .focus{
+        box-shadow: none;
+    }
+}
+
+.query-builder{
+    select.form-control:not([size]):not([multiple]){
+        height: 42px !important;
+        padding: 10px 10px !important;
+    }
+    .rules-list
+    {
+        background:transparent;
+        border-radius:0;
+        border:solid 1px transparent;
+        li{
+            background:none;
+            border:none;
+        }
+
+        .rules-group-container{
+            background:$greyL;
+            border-radius:0;
+            border:solid 1px $greyM;
+            padding: 25px 25px 5px;
+
+            @include mobileS{
+                left: 54px!important;
+                padding: 15px 15px 15px!important;
+                width: calc(100% - 54px)!important;
+            }
+
+            .rule-filter-container, .rule-operator-container, .rule-value-container{
+                @include tablet{
+                    width: 94px!important;
+                }
+
+                @include mobile{
+                    width: 100px!important;
+                }
+
+                .query-field{
+                    @include tablet{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    [data-delete]{
+        width: 25px;
+        height: 27px;
+        font-size: 0;
+        overflow: hidden;
+        min-width: 0;
+        background: transparent !important;
+        border: none;
+        box-shadow: none !important;
+        top: 11px;
+        .glyphicon{
+            &:before{
+                font-family: 'icomoon' !important;
+                content:"\e906";
+                font-size: 18px;
+                color:$primary-color;
+            }
+        }
+    }
+    .rule-filter-container,.rule-operator-container,.rule-value-container{
+        /* width: 185px; */
+        width: auto !important;
+        height: 48px;
+        padding-left: 0;
+        border: none;
+
+        @include tabletL{
+            width: 130px;
+        }
+
+        input,select{
+            width:100%;
+            height: 48px;
+            padding: 14px 24px;
+        }
+    }
+
+    .rule-value-container{
+        width:auto !important;
+
+        .butget-field{
+            width: 110px;
+            float: left;
+            padding: 0 14px !important;
+            margin-right:8px;
+        }
+        .query-field{
+            width: 110px;
+            float: left;
+            padding: 0 14px !important;
+            margin-right:8px;
+
+            @include mobile{
+                width: 100%;
+            }
+
+            @include mobileS{
+                margin-right: 0!important;
+            }
+
+        }
+        select{
+            float:left;
+            width:140px;
+        }
+    }
+
+    .rules-group-container{
+        .rule-value-container{
+            width: 142px;
+        }
+    }
+    .btn-group.group-conditions{
+        margin-left:1px;
+    }
+    select.form-control{
+        background-position: 92% 51%;
+    }
+
+
+
+     .rules-list > :last-child::before
+    {
+        left: -28px;
+    }
+    .rules-list > ::before{
+        top: -6px;
+    }
+}
+
+
+.query-builder .rules-list
+{
+    padding: 0 0 0 22px;
+}
+
+.query-builder .rules-list > :last-child::before{
+    border-radius: 0 0 0 0px;
+}
+
+.query-builder .rules-list > ::before {
+    top: -4px;
+    border-width: 0 0 1px 1px;
+}
+
+.query-builder .rules-list > :first-child::before {
+    top: -18px;
+    height: calc(50% + 14px);
+}
+
+.query-builder .rules-list > ::after {
+    top:42%;
+    border-width: 0 0 0 1px;
+
+    @include mobile{
+       top: 16%;
+       height: 120px;
+    }
+
+    @include mobileS{
+        left: 27px;
+    }
+
+}
+
+
+.query-builder .rules-list .rules-group-container
+{
+    margin-bottom: 15px;
+    width: 100%;
+    left: 17px;
+    padding: 25px 25px 15px;
+    width: calc(100% - 15px);
+    border-radius:$global-radius;
+
+    &:before{
+        left: -25px !important;
+    }
+     [data-add="group"]{
+        display:none;
+     }
+
+}
+
+.query-builder .rules-list > ::after, .query-builder .rules-list > ::before {
+    width:25px;
+}
+
+ .query-builder .rules-list{
+    > dl{
+        &:before,&:after{
+                left: -16px;
+        }
+
+        &:after{
+            height: calc(50% + 14px);
+        }
+    }
+ }
+
+.rules-group-header
+{
+    [data-delete]{
+        right: -6px;
+        margin: 0;
+        padding: 0;
+        top: 2px;
+    }
+}
+
+.query-builder .rules-list
+{
+    .rule-header{
+        [data-delete]{
+            right: -10px;
+
+            @include mobileS{
+                right: 0;
+            }
+        }
+    }
+}
+
+.rules-group-header
+{
+    .group-conditions{
+        .btn{
+            float:right !important;
+
+            &:first-child{
+                border-radius: 0;
+                border-top-right-radius: 4px !important;
+                border-bottom-right-radius: 4px !important;
+            }
+            &:last-child{
+                border-radius: 0;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+        }
+    }
+}
+
+.query-builder .rule-filter-container input, .query-builder .rule-filter-container select, .query-builder .rule-operator-container input, .query-builder .rule-operator-container select, .query-builder .rule-value-container input, .query-builder .rule-value-container select{
+    height: 42px;
+    padding: 8px 24px;
+}
+
+#create-rules > dl.rules-group-container > dt.rules-group-header .group-actions button:first-child {
+    padding-right: 19px;
+    margin-right: 9px;
+}
+
+#create-rules > dl.rules-group-container > dt.rules-group-header .group-actions button:first-child i:after{
+    border-right: 1.5px solid #C5C5C5 !important;
+    padding-bottom: 0;
+    padding-top: 0;
+    content: '';
+    right: 0;
+    position: absolute;
+    float: left;
+    width: 100%;
+    height: 14px;
+}
+
+
+//query builder css
+.query-builder{
+
+}
+
+
+.add-report{
+    .rule-filter-container, .rule-operator-container, .rule-value-container{
+        @include mobile{
+            width: 150px!important;
+        }
+    }
+
+    .query-builder {
+        .rules-list{
+            .rules-group-container{
+                .rule-filter-container, .rule-operator-container, .rule-value-container{
+                    @include mobile{
+                        width: 100px!important;
+                    }
+
+                    @include mobileS{
+                        width: 132px!important;
+                    }
+                }
+            }
+
+            .rule-container{
+                .rule-filter-container{
+                    /* width: 240px!important; */
+                    width: auto !important;
+                    .query-field{
+                        max-width: 150px !important;
+                        /* margin-right: 0; */
+
+                        @include tablet{
+                            max-width: 100%!important;
+                        }  
+                    }
+
+                    @include windowS{
+                        width: auto !important;
+                    }
+
+                    @include mobileS{
+                        width: 192px!important;
+                    }
+                }
+
+                .rule-operator-container{
+                    /* width: 180px; */
+                    width: auto;
+                }
+
+                .rule-value-container{
+                    @extend .rule-filter-container;
+                }
+            }
+
+        }
+    }
+
+    .query-builder .rules-list > ::after{
+        height: 63px;
+        @include mobileS{
+            height: 86px;
+        }
+    }
+
+}
+
+.query-builder .rules-list .rules-group-container,body .query-builder .rules-list .rules-group-container:before,.query-builder .rules-list > ::after, .query-builder .rules-list > ::before,.add-widget-container .card-header
+{
+    border-color:$greyM;
+}
+
+.rules-list {
+        > .rule-filter-container{
+            @include mobileS{
+                width: 132px!important;
+            }
+        }
+    
+}
+
+

@@ -1,0 +1,224 @@
+.main-listing {
+    width: $sidebar-width;
+    border: 1px $greyM solid;
+    border-top: none;
+    position: fixed;
+    background-color: $white;
+    height: $sidebar-height;
+
+    @include tabletL{
+        width: 220px;
+    }
+
+    @include tablet{
+        width: 260px;
+    }
+
+    @include mobileS{
+        width: 100%;
+        overflow: scroll;
+    }
+
+    @include tablet{
+        display: none;
+        box-shadow: $box-shadow;
+        &.activated{
+            display: block;
+            z-index: 10;
+        }
+    }
+    
+    .col-6{
+        @include mobileS{
+            flex: 0 0 34%;
+            max-width: 36%;
+        }
+    }
+
+    .listing-content {}
+
+    .listing-btn {
+        padding: $panel-padding;
+        border-bottom: 1px $border-color solid;
+        .btn {
+            &.b-dropdown {
+                padding: 0;
+            }
+            &:focus {
+                box-shadow: none!important;
+                outline: none!important;
+                background-color: transparent;
+                border-color: transparent;
+            }
+        }
+        .dropdown-toggle {
+            width: 100%;
+            background-color: transparent;
+            border-color: transparent;
+            box-shadow: none;
+            outline: none;
+            position: relative;
+
+            &:before {
+                content: "";
+                background-color: $dropdown-btn-color;
+                width: 35px;
+                position: absolute;
+                height: 104%;
+                top: -1px;
+                right: -1px;
+                border-radius: 0 4px 4px 0;
+            }
+
+            &:after {
+                position: absolute;
+                right: 10px;
+                top: 15px;
+                font-size: 18px;
+            }
+        }
+
+        .dropdown-menu {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            margin-top: 1px;
+            box-shadow: $box-shadow;
+
+            .dropdown-item {
+                padding: $sidebar-dropdown-padding;
+                outline: none;
+                border-bottom: 1px $border-color solid;
+
+                span {
+                    display: inline-block;
+                    margin-left: 9px;
+                    font-family: $font_medium;
+                    color: $text-primary-color;
+                    margin-top: 6px;
+                }
+                img {
+                    float: left;
+                    width: 20px;
+                    margin-left: 7px;
+                    margin-right: 7px;
+                    margin-top: 5px;
+                }
+
+                &.active,
+                &:focus,
+                &:active {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    .form-group {
+        margin-bottom: 24px;
+    }
+}
+
+.list-height {
+    .scrollbar {
+        height: auto;
+        min-height: auto;
+        max-height: calc(100vh - 346px);
+
+        @include tabletL{
+            height: calc(100vh - 480px);
+        }
+
+        @include mobile{
+            height: calc(100% - 260px);
+        }
+
+        @include mobileS{
+            height: calc(100% - 330px);  
+        }
+    }
+}
+
+.filters {
+    padding: 15px 12px;
+    h3 {
+        font-size: $font-size-xs;
+        color: $greyD;
+        font-family: $font_bold;
+        margin-bottom: 0px;
+        text-transform: uppercase;
+    }
+    h2 {
+        font-size: $font-size-sm;
+        font-family: $font_bold;
+
+        @include tabletL{
+            font-size: 13px;
+        }
+    }
+    .filter-date {
+        padding-top: 10px;
+        .mx-datepicker {
+            margin-bottom: 10px;
+            width: 100% !important;
+            .mx-input-icon__calendar {
+                background-size: 20px;
+            }
+        }
+    }
+    .min-max-selector {
+        padding-top: 6px;
+        input {
+            width: 48%;
+            display: inline-block;
+            margin-left: 6px;
+            margin-right: 6px;
+            padding: 0px 0px 0px 0px;
+            text-align: center;
+            -webkit-appearance: none;
+            margin: 0px 1px;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    }
+
+    .product-tags {
+        padding-top: 20px;
+    }
+}
+.datamodel-sidebar{
+    .filters{
+        h3{
+            margin-bottom: 10px;
+            color: $text-primary-color;
+        }
+    }
+    .table-row-detail {
+    .list-group-item {
+        padding: 0 0 7px 0;
+        border-bottom: 1px solid #d9d9d9;
+        margin-bottom: 17px;
+            h2{
+                font-size: 13px;
+                margin-bottom: 12px;
+
+                @include tabletL{
+                    font-size: 11px;
+                }
+            }
+            h4{
+                font-size: 27px;
+                font-family: $font-medium;
+            
+                @include tabletL{
+                    font-size: 20px;
+                }
+            }
+        }
+        .progress {
+            width: 70px;
+        }
+    }
+}
