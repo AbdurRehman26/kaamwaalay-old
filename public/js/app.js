@@ -70999,7 +70999,7 @@ module.exports = Component.exports
 var routes = [
 
 /* login page */
-{ path: '/', component: __webpack_require__("./resources/assets/js/components/auth/main.vue"), meta: { title: 'PSM | Login' } }, { path: '/admin', component: __webpack_require__("./resources/assets/js/components/admin/main.vue"), meta: { title: 'PSM | Login' } },
+{ path: '/admin/login', component: __webpack_require__("./resources/assets/js/components/auth/main.vue"), meta: { title: 'PSM | Login' } }, { path: '/admin/users', component: __webpack_require__("./resources/assets/js/components/admin/main.vue"), meta: { title: 'PSM | Login' } },
 
 /*404 Page*/
 
