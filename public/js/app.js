@@ -1866,7 +1866,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onSubmit: function onSubmit() {
       console.log(this.form);
-      /*this.$router.push('dashboard');*/
+      this.$router.push('dashboard');
     }
   }
 });
@@ -1963,7 +1963,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/auth/login.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/auth/main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2002,56 +2002,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {}
-    /*         activepanel:false,*/
-    /*          loginForm: {
-                email: '',
-                name: '',
-                checked: []
-              },*/
-    /*          show: true*/
-
-    /*        seen: true*/
-    ;
+    return {
+      showAlert: false,
+      tabVal: 'login',
+      message: 'Log in to access your account',
+      ContactIsExpire: false
+    };
   },
 
   methods: {
-    onSubmit: function onSubmit() {
-      console.log(this.form);
-      /*this.$router.push('dashboard');*/
+    ShowLogin: function ShowLogin() {
+      this.tabVal = 'login';
+      this.message = 'Log in to access your account';
+    },
+    ShowForgot: function ShowForgot() {
+      this.tabVal = 'forgot';
+      this.message = 'Forgot your password';
+    },
+    ShowChangepassword: function ShowChangepassword() {
+      this.$router.push('reset-password');
+    },
+    HideContactModal: function HideContactModal() {
+      this.ContactIsExpire = false;
+    },
+    ContactExpire: function ContactExpire() {
+      this.ContactIsExpire = true;
     }
   }
 });
@@ -2278,7 +2257,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-throw new Error("Cannot find module \"vue-clickaway\"");
 //
 //
 //
@@ -2331,7 +2309,6 @@ throw new Error("Cannot find module \"vue-clickaway\"");
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2343,9 +2320,7 @@ throw new Error("Cannot find module \"vue-clickaway\"");
         };
     },
 
-    directives: {
-        onClickaway: __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__["directive"]
-    },
+
     methods: {
         ShowModal: function ShowModal() {
             this.showModalValue = true;
@@ -54907,110 +54882,6 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-47dcf768\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/auth/login.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "login-form auth-forms active" }, [
-    _c("form", [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "span",
-              {
-                staticClass: "forgot-password-text",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.$emit("show-login")
-                  }
-                }
-              },
-              [_vm._v("Forgot Password?")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary apply-primary-color",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.onSubmit($event)
-                }
-              }
-            },
-            [_c("span", [_vm._v("Log In")]), _vm._v(" "), _c("loader")],
-            1
-          )
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Email Address")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "email",
-            name: "email",
-            placeholder: "Enter your email address"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Password")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "password",
-            name: "password",
-            placeholder: "Enter your account password"
-          }
-        })
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-47dcf768", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5084e4de\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/Alert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55147,6 +55018,80 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5383a42c", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5428efa6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/auth/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "verticle-align auth-main-wrapper" }, [
+    _c("div", { staticClass: "inner" }, [
+      _c("div", { staticClass: "auth-logo-wrapper" }, [
+        _c("div", { staticClass: "container-fluid" }, [_c("logo")], 1)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center" }, [
+        _c("h2", { staticClass: "auth-title" }, [
+          _vm._v("Welcome to PSI, Pakistan\n          "),
+          _c("span", { staticClass: "auth-title-desc" }, [
+            _vm._v(_vm._s(_vm.message))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "auth-panel" },
+        [
+          _vm.showAlert ? _c("alert") : _vm._e(),
+          _vm._v(" "),
+          _vm.tabVal == "login"
+            ? _c("login", { on: { "show-login": _vm.ShowForgot } })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.tabVal == "forgot"
+            ? _c("forgot", {
+                on: {
+                  "show-login": _vm.ShowLogin,
+                  "show-new-password": _vm.ShowChangepassword
+                }
+              })
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "contact-us" }, [
+        _c("p", [
+          _vm._v("Can't log in or need help? "),
+          _c(
+            "a",
+            {
+              attrs: { href: "javascript:void" },
+              on: { click: _vm.ContactExpire }
+            },
+            [_vm._v("Contact Us")]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5428efa6", module.exports)
   }
 }
 
@@ -70014,15 +69959,15 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/auth/login.vue":
+/***/ "./resources/assets/js/components/auth/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/auth/login.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/auth/main.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-47dcf768\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/auth/login.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5428efa6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/auth/main.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -70039,7 +69984,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\auth\\login.vue"
+Component.options.__file = "resources\\assets\\js\\components\\auth\\main.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -70048,9 +69993,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-47dcf768", Component.options)
+    hotAPI.createRecord("data-v-5428efa6", Component.options)
   } else {
-    hotAPI.reload("data-v-47dcf768", Component.options)
+    hotAPI.reload("data-v-5428efa6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -70740,7 +70685,7 @@ module.exports = Component.exports
 "use strict";
 // Route components
 
-var routes = [{ path: '/', component: __webpack_require__("./resources/assets/js/components/auth/login.vue"), meta: { title: 'PSM | Login' } }];
+var routes = [{ path: '/', component: __webpack_require__("./resources/assets/js/components/auth/main.vue"), meta: { title: 'PSM | Login' } }];
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),

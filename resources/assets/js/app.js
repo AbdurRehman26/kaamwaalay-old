@@ -11,15 +11,17 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 import routes from './routes';
-import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue';
 
 
 
-Vue.use(VueRouter)
+
+Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+
 
 
 //require components tags
