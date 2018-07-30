@@ -24,3 +24,7 @@ Vue.component('pageLoader', require('./components/common-components/PageLoader.v
 Vue.component('MidLoader', require('./components/common-components/MediumLoader.vue'));
 Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
 
+
+
+// 404 Component
+Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
