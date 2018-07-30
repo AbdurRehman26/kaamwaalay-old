@@ -9,6 +9,23 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import BootstrapVue from 'bootstrap-vue'
+
+
+
+Vue.use(VueRouter)
+Vue.use(BootstrapVue);
+
+// Route components
+const navigation = { template: '<div>navigation</div>' }
+
+
+// Define some routes
+const routes = [
+    { path: '/navigation', component: navigation }
+]
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -17,6 +34,15 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+
+// Create the router instance
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+})
+
+// Create and mount the root instance.
 const app = new Vue({
-    el: '#app'
-});
+    router
+}).$mount('#app')
+
