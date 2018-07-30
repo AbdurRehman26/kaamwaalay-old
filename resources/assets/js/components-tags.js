@@ -24,3 +24,6 @@ Vue.component('pageLoader', require('./components/common-components/PageLoader.v
 Vue.component('MidLoader', require('./components/common-components/MediumLoader.vue'));
 Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
 
+
+//admin
+Vue.component('Admin', require('./components/admin/main.vue'));
