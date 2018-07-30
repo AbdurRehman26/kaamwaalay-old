@@ -55688,7 +55688,7 @@ var render = function() {
               _c("div", { staticClass: "form-statement" }, [
                 _c("p", [
                   _vm._v(
-                    "Don't worry. Resetting your password is easy, just tell us the email address you registered with PSI"
+                    "Don't worry. Resetting your password is easy, just tell us the email address you registered with PSM"
                   )
                 ])
               ]),
