@@ -1,0 +1,187 @@
+.discussion-panel{
+    width: $discussion-panel-width;
+    height:$discussion-panel-height;
+    border: 1px $border-color solid;
+    border-top: none;
+    position: fixed;
+    background-color: $discussion-panel-bg;
+    z-index: 99;
+    right: 0;
+    margin-top: 1px;
+    box-shadow: $box-shadow;
+    top:53px;
+
+    @include mobileS{
+        width: 100%;
+        top: 0;
+        height: 100%;
+    }
+
+    h5{
+        font-family: $font_bold;
+        color: $text-primary-color;
+        font-size: $font-size-sm;
+        margin-bottom: 8px;
+
+        span{
+            color: $greyD;
+            font-family: $font_regular;
+            font-size: $font-size-xs;
+            margin-left: 16px;
+        }
+    }
+    .list-group-item{
+        &:hover, &:focus{
+            z-index: 0;
+        }
+    }
+    h6{
+        color: $greyD;
+        font-size: $font-size-xs;
+        text-align: center;
+        font-family: $font_bold;
+        position: relative;
+        text-transform: uppercase;
+        background-color: $white;
+        z-index: 999;
+
+        &:after, &:before{
+            position: absolute;
+            content: "";
+            background-color: $greyM;
+            width: 40%;
+            height: 1px;
+            right: 0;
+            top: 6px;
+        }
+
+       &:before{
+            left: 0;
+        }
+    }
+
+    .today-message{
+        .time-date{
+            i{
+                font-style: normal;
+                display: none;
+            }
+        }
+    }
+
+   .time-date{
+        i{
+            font-style: normal;
+        }
+    }
+
+    .panel-heading{
+        border-bottom: 1px $border-color solid;
+        padding: $sidebar-padding;
+        margin-bottom:0px;
+        position:relative;
+        h3{
+            font-family: $font_bold;
+            color: $text-primary-color;
+            font-size: $other-font-size;
+            margin: 0;
+            display:inline-block;
+        }
+        .close-icon{
+            position: absolute;
+            top: 14px;
+            right: 24px;
+            font-size: 26px;
+            color:$greyD;
+            cursor: pointer;
+        }
+    }
+
+    .discussion-content{
+        padding: $sidebar-padding;
+        position: absolute;
+        height: calc(100% - 121px);
+        overflow-y: auto;
+        padding: 20px 30px 20px 41px;
+
+        .list-group{
+             .list-group-item{
+                padding: 0 0 32px 0;
+                border:none;
+
+                &:after{
+                    display: none;
+                }
+             }
+        }
+        &.scrollbar{
+            max-height: 100%;
+            height: calc(100% - 140px);
+            position: relative;
+            right: 8px;
+        }
+    }
+    .section-separator{
+        margin: 10px 0 40px 0;
+        text-align:center;
+        span{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            padding: 4px 0;
+            background-color: #fff;
+            text-transform: uppercase;
+            display: inline-block;
+            width: 100px;
+            top: -13px;
+            font-family:$font-bold;
+            color:$greyD;
+        }
+    }
+    .panel-footer{
+        position:absolute;
+        width:100%;
+        height:80px;
+        background-color:$greyL;
+        bottom:0;
+        left:0;
+        box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+        padding: 20px 63px 20px 37px;
+        textarea{
+            background: none;
+            border: none;
+            background: none;
+            border: none;
+            resize:none;
+            height: 54px !important;
+        }
+        .icon-circle{
+            position: absolute;
+            right: 34px;
+            top: 17px;
+            text-align:center;
+            cursor:pointer;
+            i{
+                position: relative;
+                top: 12px;
+                font-size: 20px;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.profile-message{
+    width: calc(100% - 60px);
+    float: left;
+
+    p{
+        font-size:$discussion-chat-size;
+        font-family: $font_regular;
+        color: $text-primary-color;
+        margin-bottom: 0;
+        line-height: 19px;
+    }
+}
+

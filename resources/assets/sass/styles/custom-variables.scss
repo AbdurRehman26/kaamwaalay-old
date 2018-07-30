@@ -1,0 +1,180 @@
+$max-wrapper:1328px;
+$container-fluid-padding:0px 32px;
+//color variables
+$primary-color:#46930F;
+$secondary-color:#FF8500;
+$text-primary-color:#1A1A1A;
+$greyL: #F5F5F5;
+$greyM: #d9d9d9;
+$greyD: #838383;
+$body-color:$text-primary-color;
+$body-bg:#F5F5F5;
+$label-border-color:$text-primary-color;
+$page-loader-bg:$greyL;
+
+$border-color:#ddd;
+$border-color2:#e9e9e9;
+$panel-padding:8px 10px;
+$list-group-padding:13px 16px;
+
+$btn-primary-bg:$primary-color;
+$btn-primary-color:#fff;
+$btn-secondary-bg:$secondary-color;
+$btn-secondary-color:#fff;
+$anchor-color:$primary-color;
+$anchor-color-hover:$primary-color;
+$section-border-color:$greyM;
+
+//font sizes variables
+$font-size-xs:0.75rem;   		//12px
+$font-size-sm:0.875rem;  		    //14px
+$font-size-md:1rem; 			//16px
+$other-font-size:1.125rem;		//18px
+$font-size-xmd:1.5rem; 			//24px
+$font-size-lg:1.75rem;  		//28px
+$font-size-xlg:2.25rem;  		//36px
+$list-desc-size:0.8rem;
+
+$hd-size-xlg:$font-size-xlg; //36px
+$hd-size-lg:$font-size-lg;   //28px
+$hd-size-md:$font-size-xmd;  //24px
+$hd-size-sm:$font-size-md;   //16px
+$hd-size-xsm:$font-size-sm;   //14px
+$hd-size-other:$other-font-size; //18px
+
+//global radius
+$global-radius:4px;
+$upload-panel-radius:8px;
+
+//global column padding
+$global-padding:42px;
+
+//Labels
+$label-font-size:$font-size-sm;
+$label-color:$text-primary-color;
+$label-margin:0 0 8px 0;
+
+//input
+$input-font-size: $font-size-sm;
+$input-height:38px;
+$input-padding:7px 16px;
+$input-padding-mac:17px 24px 13px; //mac
+$input-border:$greyM;
+$input-margin-bottom:16px;
+$input-radius:$global-radius;
+$input-focus-border-color:#66AFE9;
+$searchbox-padding:1px 15px 1px 45px;
+
+//buttons
+$button-height:38px;
+$button-primary-color:$btn-primary-bg;
+$button-primary-color-hover: darken($btn-primary-bg, 5%) !default;
+$button-secondary-color-hover: darken($btn-secondary-bg, 5%) !default;
+$button-secondary-color:$btn-secondary-bg;
+$dropdown-btn-color:#407500;
+
+
+$button-font-size:$font-size-md;
+$button-padding:6px 20px 10px 20px;
+$button-padding-mac:14px 24px 13px;
+$button-margin-bottom:20px;
+$button-radius:24px;
+
+//checkbox
+$checkbox-width-height: 14px;
+$checkbox-radius:1px;
+$checkbox-border-color: $input-border;
+$border-radius:20px;
+
+//table
+$table-padding:15px 32px;
+$table-bg:#fff;
+$table-bg-th:$greyD;
+$table-text-color: $secondary-color;
+$table-font-size: $font-size-sm;
+$table-border:$label-border-color;
+$table-padding-1380:14px 15px 12px;
+$table-padding-1440:14px 18px 12px;
+$table-padding-mac:18px 24px 12px;
+$table-padding-mac-1380:18px 15px 12px;
+$table-padding-mac-1440:18px 18px 12px;
+$table-padding-mac-tablet: 18px 27px 12px;
+$table-margin-bottom:17px;
+
+// modal sizes
+$custom-modal-header-border-color:$label-border-color;
+$custom-modal-header-padding: 12px 32px !default;
+$custom-modal-footer-padding: $custom-modal-header-padding;
+$custom-modal-body-padding: 32px !default;
+$custom-modal-lg: 1100px !default;
+$custom-modal-md: 800px !default;
+$custom-modal-sm: 420px !default;
+
+//header
+$header-bg:#fff;
+$header-height:auto;
+$header-width:100%;
+$header-padding:20px 0px;
+$header-border-color:$label-border-color;
+
+//side bar
+$sidebar-width:260px;
+$sidebar-height:100vh;
+$sidebar-bg: #fff;
+$sidebar-padding:24px 0;
+$sidebar-nav-hover:#1F2633;
+$sidebar-dropdown-padding:7px 8px 10px 10px;
+
+//main panel settings
+$main-panel-width:$sidebar-width;
+$main-panel-padding:10px 32px 17px 32px;
+$main-panel-padding-1440:79px 18px 21px 18px;
+
+//section padding
+$section-padding:60px 0;
+
+$mobile-section-padding:30px 0;
+
+//header-setting
+$header-content-height: 20px 4px;
+
+//alert
+$alert-height:43px;
+$alert-padding:13px 47px;
+$alert-width:100%;
+$alert-radius:$global-radius;
+$alert-padding:9px 20px 9px 47px;
+
+$success-bg:#FAFFFA;
+$success-color:#5CB85C;
+$success-border:#D6F3D6;
+
+$danger-bg:#FFF3F3;
+$danger-color:#D9534F;
+$danger-border:#F5D9D9;
+
+//pie charts
+$pie-chart-width:100%;
+$pie-chart-height: auto;
+
+//tabs
+$tab-link:8px 5px 9px 4px;
+$tab-radius:4px 0 0 4px;
+
+//auth panel
+$auth-panel-width:536px;
+$auth-panel-bg:#fff;
+$auth-panel-radius:$global-radius;
+$auth-panel-shadow:0 0 10px 0 rgba(0,0,0,0.2);
+$auth-panel-padding:30px 42px 39px;
+
+// Box Shadow
+$box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
+// Discussion Panel
+$discussion-panel-width:390px;
+$discussion-panel-height:calc(100% - 54px);
+$discussion-panel-bg:$sidebar-bg;
+$discussion-chat-size:13.5px;
+
+$sidebar-padding:16px 32px;

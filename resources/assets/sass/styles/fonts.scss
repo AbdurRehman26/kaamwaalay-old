@@ -1,0 +1,424 @@
+/*Font family mixin*/
+
+/* $font_regular:'Lato-Regular';
+$font_bold:'Lato-Bold';
+$font_light:'Lato-Light';
+$font_thin:'Lato-Thin';
+$font_medium:'Lato-Medium';
+$font_ebold:'Lato-Black';
+$font_black:'Lato-Black';
+ */
+$font_regular:'OpenSans-Regular';
+$font_bold:'OpenSans-Bold';
+$font_light:'OpenSans-Light';
+$font_thin:'OpenSans-Light';
+$font_medium:'OpenSans-SemiBold';
+$font_ebold:'OpenSans-ExtraBold';
+$font_black:'OpenSans-ExtraBold';
+
+@mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style :normal, $font-stretch: normal) {
+    @font-face {
+        font-family: '#{$font-family}';
+        src: url(('fonts/#{$font-filename}.eot'));
+        src: url(('fonts/#{$font-filename}.eot?#iefix')) format('embedded-opentype'),
+        url(('fonts/#{$font-filename}.woff')) format('woff'),
+        url(('fonts/#{$font-filename}.ttf')) format('truetype'),
+        url(('fonts/#{$font-filename}.svg##{$font-family}')) format('svg');
+        font-style:normal;
+        font-weight:400;
+        font-stretch:none;
+    }
+}
+
+/*include files*/
+
+/* @include declare-font-face($font_regular,'Lato-Regular');
+@include declare-font-face($font_bold,'Lato-Bold');
+@include declare-font-face($font_light,'Lato-Light');
+@include declare-font-face($font_thin,'Lato-Thin');
+@include declare-font-face($font_medium,'Lato-Medium');
+@include declare-font-face($font_ebold,'Lato-Black'); */
+
+@include declare-font-face($font_regular,'OpenSans-Regular');
+@include declare-font-face($font_bold,'OpenSans-Bold');
+@include declare-font-face($font_light,'OpenSans-Light');
+@include declare-font-face($font_thin,'OpenSans-Light');
+@include declare-font-face($font_medium,'OpenSans-SemiBold');
+@include declare-font-face($font_ebold,'OpenSans-ExtraBold');
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?3toe5f');
+    src: url('fonts/icomoon.eot?3toe5f#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?3toe5f') format('truetype'),
+    url('fonts/icomoon.woff?3toe5f') format('woff'),
+    url('fonts/icomoon.svg?3toe5f#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+/* .icon-hook:before {
+  content: "\e904";
+}
+.icon-pie-chart:before {
+  content: "\e900";
+}
+.icon-graph:before {
+  content: "\e901";
+}
+.icon-bargraph:before {
+  content: "\e902";
+}
+.icon-123:before {
+  content: "\e903";
+}
+.icon-schema-viewer-icon:before {
+  content: "\e90b";
+}
+.icon-config:before {
+  content: "\e90c";
+}
+.icon-workspace:before {
+  content: "\e90d";
+}
+.icon-user-icon-2:before {
+  content: "\e90e";
+  font-size: 23px;
+}
+.icon-user-icon-resue:before {
+  content: "\e90f";
+}
+.icon-roles:before {
+  content: "\e910";
+}
+.icon-alert:before {
+  content: "\e91a";
+  color: #d9534f;
+}
+.icon-explorer-icon:before {
+  content: "\e911";
+}
+.icon-importer-icon:before {
+  content: "\e912";
+}
+.icon-list-icon:before {
+  content: "\e913";
+}
+.icon-reporticon:before {
+  content: "\e919";
+}
+.icon-settings:before {
+  content: "\e91b";
+}
+.icon-calendar:before {
+  content: "\e914";
+}
+.icon-signout:before {
+  content: "\e915";
+}
+.icon-cog:before {
+  content: "\e922";
+}
+.icon-power-off:before {
+  content: "\e93e";
+}
+.icon-check:before {
+  content: "\e953";
+}
+.icon-envelope2:before {
+  content: "\e916";
+}
+.icon-star:before {
+  content: "\f005";
+}
+.icon-image:before {
+  content: "\f03e";
+}
+.icon-photo:before {
+  content: "\f03e";
+}
+.icon-picture-o:before {
+  content: "\f03e";
+}
+.icon-bar-chart:before {
+  content: "\f080";
+}
+.icon-bar-chart-o:before {
+  content: "\f080";
+}
+.icon-dots-three-vertical:before {
+  content: "\e917";
+}
+.icon-notifications-outline:before {
+  content: "\e918";
+}
+.icon-exclamation-solid:before {
+  content: "\e91c";
+}
+.icon-edit-pencil:before {
+  content: "\e91d";
+}
+.icon-add-solid:before {
+  content: "\e91e";
+}
+.icon-add-outline:before {
+  content: "\e91f";
+}
+.icon-minus-solid:before {
+  content: "\e920";
+}
+.icon-minus-outline:before {
+  content: "\e921";
+}
+.icon-cancel:before {
+  content: "\e923";
+}
+.icon-warning:before {
+  content: "\e924";
+}
+.icon-search:before {
+  content: "\e925";
+}
+.icon-checkmark2:before {
+  content: "\e926";
+}
+.icon-delete:before {
+  content: "\e927";
+}
+.icon-menu2:before {
+  content: "\e928";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e936";
+}
+.icon-list:before {
+  content: "\e90b";
+}
+.icon-check2:before {
+  content: "\e92a";
+}
+.icon-analyze-icon:before {
+  content: "\e92b";
+}
+.icon-comment-icon:before {
+  content: "\e92c";
+}
+.icon-duplicate-icon:before {
+  content: "\e92d";
+}
+.icon-exit:before {
+  content: "\e92e";
+}
+.icon-sort:before {
+  content: "\e92f";
+}
+.icon-download:before {
+  content: "\e940";
+}
+
+ */
+
+.icon-maximize:before {
+  content: "\e900";
+  font-weight: 600;
+}
+
+.icon-drag:before {
+  content: "\e906";
+}
+.icon-move:before {
+  content: "\e902";
+}
+.icon-hook:before {
+  content: "\e904";
+}
+.icon-pie-chart:before {
+  content: "\e903";
+}
+.icon-graph:before {
+  content: "\e905";
+}
+.icon-bargraph:before {
+  content: "\e906";
+}
+.icon-123:before {
+  content: "\e907";
+}
+.icon-schema-viewer-icon:before {
+  content: "\e90b";
+}
+.icon-config:before {
+  content: "\e90c";
+}
+.icon-workspace:before {
+  content: "\e90d";
+}
+.icon-user-icon-2:before {
+  content: "\e90e";
+}
+.icon-user-icon-resue:before {
+  content: "\e90f";
+}
+.icon-roles:before {
+  content: "\e910";
+}
+.icon-alert:before {
+  content: "\e91a";
+  color: #d9534f;
+}
+.icon-explorer-icon:before {
+  content: "\e911";
+}
+.icon-importer-icon:before {
+  content: "\e912";
+}
+.icon-list-icon:before {
+  content: "\e913";
+}
+.icon-reporticon:before {
+  content: "\e919";
+}
+.icon-settings:before {
+  content: "\e91b";
+}
+.icon-calendar:before {
+  content: "\e914";
+}
+.icon-signout:before {
+  content: "\e915";
+}
+.icon-cog:before {
+  content: "\e922";
+}
+.icon-power-off:before {
+  content: "\e93e";
+}
+.icon-check:before {
+  content: "\e953";
+}
+.icon-envelope2:before {
+  content: "\e916";
+}
+.icon-star:before {
+  content: "\f005";
+}
+.icon-image:before {
+  content: "\f03e";
+}
+.icon-photo:before {
+  content: "\f03e";
+}
+.icon-picture-o:before {
+  content: "\f03e";
+}
+.icon-bar-chart:before {
+  content: "\f080";
+}
+.icon-bar-chart-o:before {
+  content: "\f080";
+}
+.icon-dots-three-vertical:before {
+  content: "\e917";
+}
+.icon-notifications-outline:before {
+  content: "\e918";
+}
+.icon-exclamation-solid:before {
+  content: "\e91c";
+}
+.icon-edit-pencil:before {
+  content: "\e91d";
+}
+.icon-add-solid:before {
+  content: "\e91e";
+}
+.icon-add-outline:before {
+  content: "\e91f";
+}
+.icon-minus-solid:before {
+  content: "\e920";
+}
+.icon-minus-outline:before {
+  content: "\e921";
+}
+.icon-cancel:before {
+  content: "\e923";
+}
+.icon-warning:before {
+  content: "\e924";
+}
+.icon-search:before {
+  content: "\e925";
+}
+.icon-checkmark2:before {
+  content: "\e926";
+}
+.icon-delete:before {
+  content: "\e927";
+  font-size: 24px;
+}
+.icon-menu2:before {
+  content: "\e928";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e936";
+}
+.icon-list:before {
+  content: "\e929";
+  color: #00699e;
+}
+.icon-check2:before {
+  content: "\e92a";
+}
+.icon-analyze-icon:before {
+  content: "\e92b";
+}
+.icon-comment-icon:before {
+  content: "\e92c";
+}
+.icon-duplicate-icon:before {
+  content: "\e92d";
+}
+.icon-exit:before {
+  content: "\e92e";
+}
+.icon-sort:before {
+  content: "\e92f";
+}
+.icon-download:before {
+  content: "\e940";
+}
+
+
+/*===
+  extented class
+==*/

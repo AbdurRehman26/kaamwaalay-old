@@ -1,0 +1,191 @@
+.card-header{
+    padding: 0 11px;
+    background-color: transparent;
+    border: none;
+    ul{
+        border:$border-color 1px solid;
+        border-radius: $input-radius;
+
+        li{
+            width: 1%;
+            display: table-cell;
+            border-right: $border-color 1px solid;
+            height: $button-height;
+            // background-color: $greyL;
+
+            &:last-child{
+                border-right:none;
+                border-radius: $input-radius;
+            }
+
+            &:first-child{
+                border-radius: $tab-radius;
+            }
+
+            a{
+                padding: $tab-link;
+                color: $text-primary-color;
+                font-size: $font-size-xs;
+                font-family: $font_medium;
+
+                &:hover, &:focus{
+                    color: $secondary-color!important;
+                }
+            }
+
+            .nav-link.active{
+                background-color: $white;
+                color: $secondary-color;
+            }
+        }
+    }
+
+}
+
+.card-body{
+    padding:17px 0;
+
+    h3{
+        font-size: $font-size-xs;
+        color: $greyD;
+        font-family: $font_bold;
+        margin-bottom: 10px;
+    }
+
+}
+.tabs-section{
+    h3{
+        font-size: $font-size-xs;
+    }
+
+    .tab-content{
+        > .tab-pane{
+            @include tablet{
+                float: left;
+                padding-top: 0;
+            }
+        }
+    } 
+}
+
+.tabs-footerLink{
+    font-size: $font-size-sm;
+    color: $greyD;
+    font-family: $font_medium;
+    margin-top: 10px;
+    padding-left: 17px;
+    display: block;
+    text-decoration: underline;
+
+    &:hover, &:focus{
+        color: $greyD !important;
+    }
+}
+
+.tabs-btn{
+    .card{
+        border:none!important;
+    }
+
+    .card-body{
+        padding: 24px 0 0 0;
+    }
+
+    ul{
+        display: table;
+        border:none!important;
+        li{
+            border:none!important;
+
+            a{
+                text-align: center;
+                color: $text-primary-color;
+                background-color: $greyL;
+                border: 1px solid $greyM;
+                font-size: $font-size-sm;
+                font-family: $font_bold;
+                height: $input-height;
+                padding: 6px 5px 7px 4px;
+                white-space: nowrap;
+
+                &.active, &:hover{
+                    background-color: $secondary-color!important;
+                    color: #fff!important;
+                    border-color: $secondary-color!important;
+                }
+            }
+
+            &:last-child{
+                padding-left: 24px;
+            }
+        }
+    }
+
+    .form-control{
+        max-width: 100%!important;
+        margin-bottom: 0!important;
+    }
+}
+
+.tabs{
+    .w-30{
+        @include mobileS{
+            width: 100%;
+        }
+
+        ul{
+            @include mobileS{
+                padding: 40px 17px 0px 17px;
+            }
+
+            li{
+
+                a{
+                    @include mobileS{
+                        padding: 9px;
+                        border-radius: 6px;
+                        border-right: 1px solid $greyM;
+                    }
+                }
+            }
+        }
+    }
+
+    .tab-content{
+        @include mobileS{
+            width: 100%!important;
+        }
+    }
+}
+
+.importer-tabs{
+    .card-header{
+         ul{
+            li{
+                @include mobileS{
+                    width: 100%;
+                    display: inline-block;
+                }
+
+                &:last-child{
+                    @include mobileS{
+                        padding-left: 0;
+                        padding-top: 15px;
+                    }
+                }
+            }
+         }
+    }
+}
+
+.tabs-with-icon
+{
+    .nav{
+        position: relative;
+        li{
+            width:calc(100% - 25px) !important;
+            float:right !important;
+            position:relative;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+/* $primary-color:#000;
+$primary-color-darken:#ccc;
+
+$secondary-color:#FF8500; */
+
+
+/*
+    Primary classes
+*//*
+
+a:hover, a:focus {
+    background:$primary-color !important;
+    border-color:$primary-color !important;
+}
+
+.apply-primary-color{
+    background:$primary-color !important;
+    border-color:$primary-color !important;
+}
+
+.btn.apply-primary-color, //general primary button
+.btn.apply-primary-color:focus,
+.btn.apply-primary-color:hover,
+.btn.apply-primary-color:active,
+.btn.apply-primary-color:visited,
+.apply-primary-color.dropdown.btn, //dropdown primary button
+.apply-primary-color.dropdown.btn:focus,
+.apply-primary-color.dropdown.btn:hover,
+.apply-primary-color.dropdown.btn:active,
+.apply-primary-color.dropdown.btn:visited,
+.apply-primary-color .btn, //button into the button
+.apply-primary-color .btn:focus,
+.apply-primary-color .btn:hover,
+.apply-primary-color .btn:active,
+.apply-primary-color .btn:visited,
+{
+    background:$primary-color !important;
+    border-color:$primary-color !important;
+}
+
+.apply-primary-color.dropdown .btn:before{
+    background:$primary-color-darken !important;
+}
+
+.table-graphs .table tr td .progress.success .progress-bar
+{
+    background:$primary-color !important;
+}
+ */
