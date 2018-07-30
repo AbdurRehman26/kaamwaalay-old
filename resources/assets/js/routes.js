@@ -9,14 +9,12 @@ const routes = [
         component: require('./components/auth/main.vue'),
         meta: {title: 'PSM | Login'}
     },
-
     {
         name: 'admin-users',
-        path: '/admin/users',
-        component: require('./components/admin/main.vue'),
+        path: '/admin/user',
+        component: require('./components/admin/User.vue'),
         meta: {title: 'PSM | Login'}
     },
-
     /*404 Page*/
 
     {

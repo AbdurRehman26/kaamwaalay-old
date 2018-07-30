@@ -1,10 +1,3 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 /*Main vue js*/
 
 require('./bootstrap');
@@ -22,7 +15,7 @@ Vue.use(BootstrapVue);
 
 
 
-//require components tags
+// Require components tags
 require('./components-tags');
 
 
@@ -32,12 +25,13 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 })
 
-// Create and mount the root instance.
 
+// Create and mount the root instance.
 const app = new Vue({
     el: '#app',
     router: router,
-    });
+});
+
 /*const app = new Vue({
     router
 }).$mount('#app')*/
