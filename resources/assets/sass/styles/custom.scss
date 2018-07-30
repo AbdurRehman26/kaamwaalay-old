@@ -426,10 +426,10 @@ i[active="true"]{
 }
 
 .panel {
-    float: left;
-    width: 100%;
+    width: calc(100% - 249px);
     min-height: 100%;
     background-color: #fff;
+    float: right;
     .main-panel {
         height: calc(100% - 54px);
     }
@@ -1082,7 +1082,7 @@ i[active="true"]{
             input {
                 left: 22px;
             }
-        }    
+        }
     }
 }
 
