@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { directive as onClickaway } from 'vue-clickaway';
     export default{
         data () {
           return {
@@ -61,9 +60,7 @@ import { directive as onClickaway } from 'vue-clickaway';
             tabmenu: false,
           }
         },
-        directives: {
-            onClickaway: onClickaway,
-        },         
+
         methods: {
             ShowModal(){
                 this.showModalValue = true;

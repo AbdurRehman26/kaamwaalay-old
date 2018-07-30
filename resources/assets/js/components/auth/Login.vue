@@ -79,7 +79,7 @@
       methods: {
         onSubmit() {
           console.log(this.form);
-          /*this.$router.push('dashboard');*/
+          this.$router.push('dashboard');
         },
       },
     }
