@@ -25,6 +25,7 @@ Vue.component('MidLoader', require('./components/common-components/MediumLoader.
 Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
 
 
-
+//admin
+Vue.component('Admin', require('./components/admin/main.vue'));
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
