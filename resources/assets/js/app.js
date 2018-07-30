@@ -17,8 +17,6 @@ import routes from './routes';
 import BootstrapVue from 'bootstrap-vue';
 
 
-
-
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
