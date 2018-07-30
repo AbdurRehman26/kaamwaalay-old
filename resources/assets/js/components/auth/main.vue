@@ -8,7 +8,7 @@
       </div>
       <div class="container"></div>
       <div class="text-center">
-          <h2 class="auth-title">Welcome to PSI, Pakistan
+          <h2 class="auth-title">Welcome to PSM
             <span class="auth-title-desc" >{{message}}</span>
           </h2>
       </div>
@@ -20,13 +20,13 @@
           <forgot @show-login="ShowLogin" @show-new-password="ShowChangepassword" v-if="tabVal == 'forgot'"></forgot>
 
           <!--New Password-->
-          <new-password @show-login="ShowLogin" v-if="tabVal == 'changepassword'"></new-password>
+          <!-- <new-password @show-login="ShowLogin" v-if="tabVal == 'changepassword'"></new-password> -->
       </div>
       <div class="contact-us">
          <p>Can't log in or need help? <a href="javascript:void" @click="ContactExpire">Contact Us</a></p>
       </div>
     </div>
-    <contactarea :showContactProp="ContactIsExpire" @HideModalValue="HideContactModal"></contactarea>
+    <!-- <contactarea :showContactProp="ContactIsExpire" @HideModalValue="HideContactModal"></contactarea> -->
   </div>
 </template>
 
