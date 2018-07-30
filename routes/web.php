@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('layout');
 });
+
+Route::get('/{any}', function(){
+    return view('layout');
+})->where('any', '.*');

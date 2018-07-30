@@ -2,7 +2,7 @@
   <div class="forgot-form auth-forms">
     <b-form v-if="show">
       <div class="form-statement">
-      <p>Don't worry. Resetting your password is easy, just tell us the email address you registered with PSI</p>
+      <p>Don't worry. Resetting your password is easy, just tell us the email address you registered with PSM</p>
       </div>
       <b-form-group id="exampleInputGroup1"
                     label="Email Address:"
