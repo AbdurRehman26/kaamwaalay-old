@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <b-alert variant="danger" show>
+    <b-alert variant="danger" hide>
         <i class="icon-success icon-check2"></i>
         <i class="icon-danger icon-alert"></i>
         <p><strong>Error:</strong> Invalid email address or password</p>
