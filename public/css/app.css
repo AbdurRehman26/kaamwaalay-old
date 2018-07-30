@@ -30824,7 +30824,7 @@ $font_black:'Lato-Black';
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?0aaa873e78303dc2823ce4954621a037);
-  src: url(/fonts/icomoon.eot?0aaa873e78303dc2823ce4954621a037#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?c1b7983f6d45edacdb45994cb8350e21) format("truetype"), url(/fonts/icomoon.woff?20e37d093948ad34684892f8c99364f8) format("woff"), url(/fonts/icomoon.svg?e561e70cbc4e6197c5673bda994f962a#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?0aaa873e78303dc2823ce4954621a037#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?c1b7983f6d45edacdb45994cb8350e21) format("truetype"), url(/fonts/icomoon.woff?20e37d093948ad34684892f8c99364f8) format("woff"), url(/fonts/icomoon.svg?1c78dcdeff7a860968bea075085b59bc#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
