@@ -1,0 +1,131 @@
+.btn{
+    height: $button-height;
+    color: $body-bg;
+    font-family: $font_bold;
+    font-size: $font-size-sm;
+    padding:$button-padding;
+    min-width: 100px;
+
+    &:hover, &:focus{
+        color: $body-bg!important;
+        outline: none;
+    }
+
+    &.btn-primary{
+        background:$primary-color;
+        border-color:$primary-color;
+
+        &:focus,&:visited,&:active{
+            background:$primary-color !important;
+            border-color:$primary-color !important;
+            box-shadow:none !important;
+        }
+    }
+    &.btn-secondary-color{
+        color: $secondary-color;
+        font-family: $font_regular;
+        text-decoration: underline;
+        background: transparent;
+        &:focus,&:visited,&:active,&:hover{
+            box-shadow:none !important;
+            color: #848484 !important;
+            text-decoration: underline;
+        }
+    }
+    &.btn-secondary{
+        background:$secondary-color;
+        border-color:$secondary-color;
+
+        &:focus,&:visited,&:active{
+            background:$secondary-color !important;
+            border-color:$secondary-color !important;
+            box-shadow:none !important;
+        }
+    }
+    &.btn-link{
+        color: $greyD;
+        font-family: $font_regular;
+        text-decoration: underline;
+        &:focus,&:visited,&:active,&:hover{
+            box-shadow:none !important;
+            color: #848484 !important;
+            text-decoration: underline;
+        }
+    }
+}
+
+.sort_btn {
+    margin-bottom: 9px;
+    display: table;
+    margin-left: auto;
+    text-align: right;
+    margin-right: 0;
+    &.active{
+        i{
+            background-color: #d9d9d9;
+        }
+    }
+
+    i{
+        width: 100%;
+        margin-left: auto;
+        text-align: center;
+        padding: 8px 8px;
+        color: #fff !important;
+        background-color: $primary-color;
+        border-radius: 50px;
+    }
+}
+
+.btn{
+    &.widget-btn {
+        width: 100%;
+        background-color: transparent !important;
+        border: 1px solid $greyM !important;
+        color: $secondary-color;
+        padding: 24px 0px;
+        border-style: dashed !important;
+        display: block;
+        height: auto;
+
+        @include mobileS{
+            padding: 20px 0 15px 0px!important
+        }
+
+        &:hover, &:focus{
+        color: $secondary-color !important;
+        background-color: transparent !important;
+        }
+        i{
+            font-size: 29px;
+        }
+        p{
+            margin-bottom: 0px;
+            font-size: 17px;
+            margin-top: 5px;
+        }
+    }
+}
+
+.add_workspace_btn{
+    margin-top: 30px;
+    padding-left:0;
+
+    @include mobileS{
+        padding-left: 15px;
+    }
+}
+
+.btn{
+  &.show-spinner{
+    pointer-events:none;
+    position: relative;
+    color: transparent !important;
+    background:#bdbdbd;
+    border-color:#bdbdbd;
+
+    .button-loader{
+      display: block;
+    }
+  }
+}
