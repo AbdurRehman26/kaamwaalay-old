@@ -30806,7 +30806,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?c865730594f2337d46ff89bf33de4236);
-  src: url(/fonts/icomoon.eot?c865730594f2337d46ff89bf33de4236#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?ed426e173060cef9991fce03ccb37bb3) format("truetype"), url(/fonts/icomoon.woff?80f84cd28cf1348589e1ac38f0b6e2b3) format("woff"), url(/fonts/icomoon.svg?722861487e8e0f4ff67ce8c374ed5b8e#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?c865730594f2337d46ff89bf33de4236#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?ed426e173060cef9991fce03ccb37bb3) format("truetype"), url(/fonts/icomoon.woff?80f84cd28cf1348589e1ac38f0b6e2b3) format("woff"), url(/fonts/icomoon.svg?1cd10c27a6880c7cdf4af6b62d5dcbba#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }

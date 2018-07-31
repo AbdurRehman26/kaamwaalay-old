@@ -1,12 +1,12 @@
 <template>
 	<div class="panel">
 		<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-10">
 					<div class="table-area">
 		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields"></b-table>
 		    		</div>
 		  		</div>
-		  		<div class="col-md-3">
+		  		<div class="col-md-2">
 		  			<a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add Service</a>
 		  		</div>
 		    </div>
@@ -20,13 +20,14 @@ export default {
     return {
     	showModalValue: false,
 
-      	fields: [ 'first_name', 'last_name', 'email_address', 'access_Level' , 'join_date' ],
+      	fields: [ 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description', 
+      	'photo', 'URL' ],
 
       	items: [
-		        { isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018'},
-		        { isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018' },
-		        { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018' },
-		        { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018' }
+		        { isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com'},
+		        { isActive: false, parent_service: 'Electronics', service_name: 'Computer', is_featured: 'No', hero_navigation: 'Yes', description: 'Repair', photo: '', URL: 'www.psm.com' },
+		        { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com' },
+		        { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com' }
 	        ]
     	}
   	},
