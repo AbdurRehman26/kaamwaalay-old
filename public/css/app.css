@@ -33647,6 +33647,10 @@ body .ag-theme-balham .ag-header {
   color: #FA001F;
 }
 
+.table-area .error {
+  color: #f1152c;
+}
+
 /* == Custom table scss end ==*/
 
 .alert {
