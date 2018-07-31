@@ -1,5 +1,5 @@
 <template>
-		<div class="data-import panel">
+		<div>
 				<not-found-panel></not-found-panel>
 <!--         <button class="custin" @click="showModal = true">asdasdasd</button> -->
 				<data-approval :showModalProp="showModalValue" @HideModalValue="HideModal"></data-approval>

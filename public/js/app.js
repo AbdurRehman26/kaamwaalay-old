@@ -55811,7 +55811,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "data-import panel" },
     [
       _c("not-found-panel"),
       _vm._v(" "),

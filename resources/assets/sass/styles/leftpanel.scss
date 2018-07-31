@@ -1,5 +1,6 @@
 //side bar
 $left-panel-bg:#262E3C;
+$left-panel-bg-lighten:lighten(#262E3C,6.5%);
 $left-panel-bg-hover:$primary-color;
 $left-panel-width:250px;
 $left-panel-height:100vh;
@@ -98,6 +99,7 @@ $left-panel-nav-size:$font-size-sm;
     	li{
     		padding:0;
             position:relative;
+            border-bottom: solid 1px $left-panel-bg-lighten;
     		a{
                 line-height:normal;
     			text-decoration: none;

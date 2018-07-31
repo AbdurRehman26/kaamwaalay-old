@@ -33237,6 +33237,7 @@ body .hide {
 .left-menu-panel ul li {
   padding: 0;
   position: relative;
+  border-bottom: solid 1px #333e50;
 }
 
 .left-menu-panel ul li a {

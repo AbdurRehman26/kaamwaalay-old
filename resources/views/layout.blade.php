@@ -19,7 +19,7 @@
             <navigation v-show="$route.name==='login' === false"></navigation>
             <left-panel v-show="$route.name==='login' === false"></left-panel>
             <div class="panel">
-               <breadcrumb></breadcrumb>
+               <breadcrumb v-show="$route.name==='404' === false"></breadcrumb>
                <router-view></router-view>
             </div>
         </div>
