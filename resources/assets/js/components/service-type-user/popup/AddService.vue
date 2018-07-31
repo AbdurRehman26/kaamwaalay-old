@@ -43,14 +43,24 @@
                     </div> 
 
                     <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                         <b-form-file @change="onFileChange" v-model="file" accept=".jpg, .png" placeholder="Click here to upload image"></b-form-file>
+                        <div class="uploded-picture">
+                            <img :src="image" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>URL</label>
                         <input type="text" class="form-control" placeholder="Enter url" name="">
                     </div>
 
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" rows="5"></textarea>
-                    </div>                
+                                   
 		    	</div>
 	    </b-modal>
 	</div>
@@ -58,6 +68,15 @@
 
 <script>
 export default {
+    data () {
+        return {
+            emailaddress: 'arsalan@cygnismedia.com',
+            fullname: 'Arsalan Akhtar',
+            image: 'images/dummy/user-pic.jpg',
+            file: null,
+        }
+    },
+
     props: ['showModalProp'],
     
     methods: {
@@ -69,6 +88,22 @@ export default {
         },
         onHidden() {
             this.$emit('HideModalValue');
+        },
+        onFileChange(e) {
+          var files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+            return;
+          this.createImage(files[0]);
+        },
+        createImage(file) {
+          var image = new Image();
+          var reader = new FileReader();
+          var vm = this;
+
+          reader.onload = (e) => {
+            vm.image = e.target.result;
+          };
+          reader.readAsDataURL(file);
         },
 
     },

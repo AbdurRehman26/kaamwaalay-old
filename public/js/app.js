@@ -2948,8 +2948,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            emailaddress: 'arsalan@cygnismedia.com',
+            fullname: 'Arsalan Akhtar',
+            image: 'images/dummy/user-pic.jpg',
+            file: null
+        };
+    },
+
+
     props: ['showModalProp'],
 
     methods: {
@@ -2961,6 +2981,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
+        },
+        onFileChange: function onFileChange(e) {
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+            this.createImage(files[0]);
+        },
+        createImage: function createImage(file) {
+            var image = new Image();
+            var reader = new FileReader();
+            var vm = this;
+
+            reader.onload = function (e) {
+                vm.image = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
     },
 
@@ -57181,20 +57216,48 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("URL")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Enter url", name: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Description")]),
               _vm._v(" "),
               _c("textarea", {
                 staticClass: "form-control",
                 attrs: { rows: "5" }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", [_vm._v("Upload Image")]),
+                _vm._v(" "),
+                _c("b-form-file", {
+                  attrs: {
+                    accept: ".jpg, .png",
+                    placeholder: "Click here to upload image"
+                  },
+                  on: { change: _vm.onFileChange },
+                  model: {
+                    value: _vm.file,
+                    callback: function($$v) {
+                      _vm.file = $$v
+                    },
+                    expression: "file"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "uploded-picture" }, [
+                  _c("img", { attrs: { src: _vm.image } })
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("URL")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Enter url", name: "" }
               })
             ])
           ])
