@@ -1683,7 +1683,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55455,8 +55454,6 @@ var render = function() {
     "div",
     { staticClass: "data-import panel" },
     [
-      _c("navigation", { on: { "show-left-panel": _vm.showleftpanel } }),
-      _vm._v(" "),
       _c("not-found-panel"),
       _vm._v(" "),
       _c("data-approval", {

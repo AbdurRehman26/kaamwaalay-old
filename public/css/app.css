@@ -32893,7 +32893,7 @@ body .hide {
   background: #262E3C;
   width: 250px;
   height: 100vh;
-  padding: 24px 0;
+  padding: 0px 0;
   float: left;
   z-index: 9999;
   position: fixed;
@@ -32927,12 +32927,20 @@ body .hide {
   max-width: 100%;
   border-bottom: solid 1px #3d4656;
   display: block;
-  margin: -19px 17px 6px;
-  padding: 0 0;
+  margin: 4px 18px;
+  padding: 0 0 3px 0;
+  height: 52px;
+}
+
+.left-menu-panel .logo-area a {
+  display: block;
+  width: auto;
+  height: 100%;
 }
 
 .left-menu-panel .logo-area svg {
-  max-width: 45px;
+  width: auto;
+  height: 100%;
 }
 
 @media (max-width: 1140px) {
@@ -34731,7 +34739,7 @@ textarea {
 
 .main-nav {
   position: relative;
-  height: 54px;
+  height: 56px;
 }
 
 .main-nav .nav-item a {
@@ -34803,7 +34811,7 @@ textarea {
   left: 0px;
   right: 0px;
   z-index: 9;
-  height: 54px;
+  height: 56px;
 }
 
 @media (max-width: 768px) {
@@ -38388,9 +38396,10 @@ i[active="true"] {
 
 .panel {
   width: calc(100% - 249px);
-  min-height: 100%;
+  min-height: calc(100% - 59px);
   background-color: #fff;
   float: right;
+  padding: 25px;
 }
 
 .panel .main-panel {

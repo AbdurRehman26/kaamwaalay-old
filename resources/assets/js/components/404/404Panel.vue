@@ -6,7 +6,7 @@
                 <h3>{{ description2 }}</h3>
                 <router-link to="dashboard" class="btn btn-primary">{{ buttontext }}</router-link>
             </div>
-    
+
          </div>
 </template>
 
@@ -18,7 +18,7 @@
             description: "Oops, sorry we can't find that page! ",
             description2: "Either something went wrong or the page doesn't exist anymore",
             buttontext: 'Back To Home',
-            
+
           }
         },
         methods: {
