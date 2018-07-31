@@ -29,5 +29,8 @@ Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLo
 Vue.component('user', require('./components/admin/User.vue'));
 Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 
+// Service-Type
+// Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
+
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));

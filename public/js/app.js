@@ -2641,6 +2641,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-type-user/ServiceType.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            showModalValue: false,
+
+            fields: ['first_name', 'last_name', 'email_address', 'access_Level', 'join_date'],
+
+            items: [{ isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018' }, { isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018' }, { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018' }, { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018' }]
+        };
+    },
+
+    methods: {
+        ShowModal: function ShowModal() {
+            this.showModalValue = true;
+        },
+        HideModal: function HideModal() {
+            this.showModalValue = false;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/es/components/alert/alert.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56076,6 +56122,65 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-885ac49c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-type-user/ServiceType.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c(
+              "div",
+              { staticClass: "table-area" },
+              [
+                _c("b-table", {
+                  attrs: {
+                    bordered: _vm.bordered,
+                    hover: "",
+                    items: _vm.items,
+                    fields: _vm.fields
+                  }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "javascript:;" },
+                on: { click: _vm.ShowModal }
+              },
+              [_vm._v("Add Service")]
+            )
+          ])
+        ])
+      ]
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-885ac49c", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-8cec3630\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/popup/AddUser.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70087,6 +70192,9 @@ Vue.component('SpinnerLoader', __webpack_require__("./resources/assets/js/compon
 Vue.component('user', __webpack_require__("./resources/assets/js/components/admin/User.vue"));
 Vue.component('add-new-user', __webpack_require__("./resources/assets/js/components/admin/popup/AddUser.vue"));
 
+// Service-Type
+// Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
+
 // 404 Component
 Vue.component('not-found-panel', __webpack_require__("./resources/assets/js/components/404/404Panel.vue"));
 
@@ -71148,6 +71256,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/service-type-user/ServiceType.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-type-user/ServiceType.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-885ac49c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-type-user/ServiceType.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\service-type-user\\ServiceType.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-885ac49c", Component.options)
+  } else {
+    hotAPI.reload("data-v-885ac49c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/routes.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -71157,8 +71313,18 @@ module.exports = Component.exports
 var routes = [
 
 /* login page */
-{ path: '/admin/user', component: __webpack_require__("./resources/assets/js/components/admin/User.vue"), meta: { title: 'PSM | Login' } },
-// { path: '/admin/users', component: require('./components/admin/main.vue'), meta: {title: 'PSM | Login'} },
+{
+    path: '/admin/user',
+    component: __webpack_require__("./resources/assets/js/components/admin/User.vue"),
+    meta: { title: 'PSM | Login' }
+},
+
+/* Service Type */
+{
+    path: '/service-type-user/ServiceType',
+    component: __webpack_require__("./resources/assets/js/components/service-type-user/ServiceType.vue"),
+    meta: { title: 'PSM | Service Type' }
+},
 
 /*404 Page*/
 

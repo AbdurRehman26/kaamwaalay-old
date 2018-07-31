@@ -3,8 +3,20 @@
 const routes = [
 
     /* login page */
-    { path: '/admin/user', component: require('./components/admin/User.vue'), meta: {title: 'PSM | Login'} },
-    // { path: '/admin/users', component: require('./components/admin/main.vue'), meta: {title: 'PSM | Login'} },
+    { 
+        path: '/admin/user', 
+        component: require('./components/admin/User.vue'), 
+        meta: {title: 'PSM | Login'} 
+    },
+   
+
+    /* Service Type */
+    { 
+        path: '/service-type-user/ServiceType', 
+        component: require('./components/service-type-user/ServiceType.vue'), 
+        meta: {title: 'PSM | Service Type'} 
+    },
+
 
     /*404 Page*/
 
