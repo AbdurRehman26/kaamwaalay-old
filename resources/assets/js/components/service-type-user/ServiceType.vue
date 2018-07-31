@@ -29,7 +29,7 @@ export default {
     return {
     	showModalValue: false,
 
-      	fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description', 
+      	fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description',
       	 'URL' ],
 
       	items: [
