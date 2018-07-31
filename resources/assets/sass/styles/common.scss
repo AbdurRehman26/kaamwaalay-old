@@ -48,8 +48,6 @@ td {
 a {
     color: $anchor-color;
     cursor: pointer;
-    font-size: $font-size-sm;
-    font-family: $font_regular;
     text-decoration: none;
     &:hover, &:focus {
         color: $anchor-color-hover !important;
