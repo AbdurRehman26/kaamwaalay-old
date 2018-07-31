@@ -2857,6 +2857,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56845,8 +56855,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "panel" }, [
+  return _c("div", { staticClass: "panel-inner" }, [
     _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "page-title-strip" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "float-right" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "javascript:;" },
+                on: { click: _vm.ShowModal }
+              },
+              [_vm._v("Add Service")]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "col-md-12" }, [
         _c(
           "div",
@@ -56875,9 +56903,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n\t\t\t\t\t        \t" +
+                            "\n\t\t\t\t\t\t        \t" +
                               _vm._s(data.value) +
-                              "\n\t\t\t\t\t        "
+                              "\n\t\t\t\t\t\t        "
                           )
                         ]
                       )
@@ -56904,23 +56932,20 @@ var render = function() {
           ],
           1
         )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { href: "javascript:;" },
-            on: { click: _vm.ShowModal }
-          },
-          [_vm._v("Add Service")]
-        )
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-left" }, [
+      _c("h2", { staticClass: "page-title" }, [_vm._v("Service Type")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

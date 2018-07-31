@@ -1,6 +1,16 @@
 <template>
-	<div class="panel">
+	<div class="panel-inner">
 		<div class="row">
+            <div class="col-md-12">
+                <div class="page-title-strip">
+                    <div class="float-left">
+                       <h2 class="page-title">Service Type</h2>
+                    </div>
+                    <div class="float-right">
+                        <a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add Service</a>
+                    </div>
+                </div>
+            </div>
 				<div class="col-md-12">
 					<div class="table-area">
 		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields">
@@ -14,12 +24,12 @@
 						    </template>
 		    			</b-table>
 		    		</div>
-		  		</div>
-		  		<div class="col-md-2">
-		  			<a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add Service</a>
-		  		</div>
+		  		</div><!--
+                <div class="col-md-2">
+                    <a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add Service</a>
+                </div> -->
 		    </div>
-		
+
 		 <!-- <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user> -->
 	</div>
 </template>

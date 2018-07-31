@@ -14,9 +14,11 @@ $left-panel-nav-size:$font-size-sm;
     height:$left-panel-height;
     padding:$left-panel-padding;
     float:left;
-    z-index:9999;
+    z-index:99;
     position:fixed;
     border-right: solid 1px $left-panel-bg-lighten;
+    left:0;
+    top:0;
 
     @include tabletL{
         width: 251px;

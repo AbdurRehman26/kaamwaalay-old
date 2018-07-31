@@ -17,8 +17,8 @@
     <body>
         <div id="app">
             <navigation v-show="$route.name==='login' === false"></navigation>
-            <left-panel v-show="$route.name==='login' === false"></left-panel>
             <div class="panel">
+                <left-panel v-show="$route.name==='login' === false"></left-panel>
                <breadcrumb v-show="$route.name==='login' === false" ></breadcrumb>
                <router-view></router-view>
             </div>

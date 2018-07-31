@@ -33126,9 +33126,11 @@ body .hide {
   height: 100vh;
   padding: 0px 0;
   float: left;
-  z-index: 9999;
+  z-index: 99;
   position: fixed;
   border-right: solid 1px #f3e6ff;
+  left: 0;
+  top: 0;
 }
 
 @media (max-width: 1140px) {
@@ -33226,7 +33228,7 @@ body .hide {
 
 .left-menu-panel .main-nav {
   height: auto;
-  margin-top: 20px;
+  margin-top: -4px;
   width: 100%;
   float: none;
 }
