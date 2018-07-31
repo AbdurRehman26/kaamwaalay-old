@@ -30,6 +30,7 @@ Vue.component('left-panel', require('./components/common-components/LeftPanel.vu
 //admin
 Vue.component('user', require('./components/admin/User.vue'));
 Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
+Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
 
 // Service-Type
 // Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
