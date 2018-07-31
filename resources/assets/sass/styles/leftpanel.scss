@@ -5,6 +5,7 @@ $left-panel-width:250px;
 $left-panel-height:100vh;
 $left-panel-padding:0px 0;
 $left-panel-nav-color:#fff;
+$left-panel-nav-size:$font-size-md;
 
 .left-menu-panel{
     background:$left-panel-bg;
@@ -36,8 +37,8 @@ $left-panel-nav-color:#fff;
         max-width: 100%;
         border-bottom: solid 1px $left-panel-bg-hover;
         display: block;
-        margin:4px 18px;
-        padding:0 0 3px 0;
+        margin:4px 0px;
+        padding:0 17px 3px;
         height:52px;
         a{
             display: block;
@@ -85,7 +86,10 @@ $left-panel-nav-color:#fff;
             }
         }
     }
-
+    .main-nav{
+        height:auto;
+        margin-top: 20px;
+    }
     ul{
     	padding-left: 0;
 
@@ -97,12 +101,13 @@ $left-panel-nav-color:#fff;
     			text-decoration: none;
                 display: block;
     			font-family: $font_regular;
+                font-size:$left-panel-nav-size;
                 color:$left-panel-nav-color !important;
                 padding:12px 24px 12px 50px;
     			i{
                     position: absolute;
                     left: 17px;
-                    top: 13px;
+                    top: 14px;
                     font-size: 17px;
     			}
     		}
