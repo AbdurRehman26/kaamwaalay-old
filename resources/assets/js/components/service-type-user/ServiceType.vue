@@ -1,9 +1,18 @@
 <template>
 	<div class="panel">
 		<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-12">
 					<div class="table-area">
-		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields"></b-table>
+		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields">
+		    				<template slot="URL" slot-scope="data">
+						        <a class="action-link" :href="`javascript:void(0);`" target="_blank">
+						        	{{data.value}}
+						        </a>
+						    </template>
+						    <template slot="photo" slot-scope="data">
+						         <b-img src="images/dummy/user-pic.jpg" class="user-img" fluid alt="Responsive image" />
+						    </template>
+		    			</b-table>
 		    		</div>
 		  		</div>
 		  		<div class="col-md-2">
@@ -20,8 +29,8 @@ export default {
     return {
     	showModalValue: false,
 
-      	fields: [ 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description', 
-      	'photo', 'URL' ],
+      	fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description',
+      	 'URL' ],
 
       	items: [
 		        { isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com'},
