@@ -1,24 +1,22 @@
 <template>
-    <div>
         <div class="left-menu-panel">
             <div class="logo-area logo white">
                 <logo></logo>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li class=""><a href=""><i class="icon-pie-chart" aria-hidden="true"></i><span>Dashboard</span></a></li>
-                    <li class=""><a href=""><i class="icon-user-icon-resue" aria-hidden="true"></i><span>Admin</span></a></li>
-                    <li class=""><a href=""><i class="icon-workspace" aria-hidden="true"></i><span>Service Type</span></a></li>
-                    <li class=""><a href=""><i class="icon-handshake-o" aria-hidden="true"></i><span>Service Provider</span></a></li>
-                    <li class=""><a href=""><i class="icon-search" aria-hidden="true"></i><span>Service Provider Review</span></a></li>
-                    <li class=""><a href=""><i class="icon-users" aria-hidden="true"></i><span>Customer</span></a></li>
-                    <li class=""><a href=""><i class="icon-briefcase" aria-hidden="true"></i><span>Jobs</span></a></li>
-                    <li class=""><a href=""><i class="icon-credit-card" aria-hidden="true"></i><span>Payment Activites</span></a></li>
-                    <li class=""><a href=""><i class="icon-settings" aria-hidden="true"></i><span>General Settings</span></a></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-pie-chart" aria-hidden="true"></i><span>Dashboard</span></router-link></li>
+                    <li class=""><router-link to="/admin/user"><i class="icon-user-icon-resue" aria-hidden="true"></i><span>Admin</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-workspace" aria-hidden="true"></i><span>Service Type</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-handshake-o" aria-hidden="true"></i><span>Service Provider</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-search" aria-hidden="true"></i><span>Service Provider Review</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-users" aria-hidden="true"></i><span>Customer</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-briefcase" aria-hidden="true"></i><span>Jobs</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-credit-card" aria-hidden="true"></i><span>Payment Activites</span></router-link></li>
+                    <li class=""><router-link to="/dashboard"><i class="icon-settings" aria-hidden="true"></i><span>General Settings</span></router-link></li>
                 </ul>
             </nav>
         </div>
-    </div>
 </template>
 
 <script>

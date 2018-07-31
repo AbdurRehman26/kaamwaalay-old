@@ -78,6 +78,9 @@ h2{
 h4{
     font-size: $font-size-md;
 }
+.display-block{
+    display:block !important;
+}
 .ellipsis {
     width: 160px;
     text-overflow: ellipsis;

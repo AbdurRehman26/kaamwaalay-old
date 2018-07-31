@@ -57,7 +57,7 @@ body {
         .ag-bl-full-height {
             max-width: 100%;
             float: left;
-            
+
             @include tablet{
                 z-index: 0;
             }
@@ -190,22 +190,22 @@ body {
             font-size: 14px !important;
             .ag-header-row{
                 .ag-header-cell{
-                    &:first-child{                        
+                    &:first-child{
                         .ag-filter-icon{
-                            border-left: 0px solid !important;    
+                            border-left: 0px solid !important;
                         }
                         .ag-header-cell-sorted-none{
-                            border-left: 0px solid !important;       
+                            border-left: 0px solid !important;
                         }
                     }
-                    &:last-child{                        
+                    &:last-child{
                         .ag-filter-icon{
-                            border-right: 0px solid !important;    
+                            border-right: 0px solid !important;
                         }
                         .ag-header-cell-sorted-none{
-                            border-right: 0px solid !important;       
+                            border-right: 0px solid !important;
                         }
-                    }                    
+                    }
                 }
             }
         }
@@ -337,7 +337,7 @@ body {
                     font-size: 13px;
                 }
                 &:first-child{
-                    border-left: 0px solid $greyM;                    
+                    border-left: 0px solid $greyM;
                 }
             }
             &:last-child{
@@ -421,39 +421,39 @@ body{
     tr{
         th {
             background-color: #EEEEEE;
-            color: #55575A;
+            color: #1a1a1a;
             border: 1px solid #D4D4D4;
             padding: 10px 25px;
             border-bottom: 0px solid;
-            font-family: $font_thin;
+            font-family: $font_bold;
             border-top: 0px solid;
             &:first-child{
                 border-left: 0px solid;
             }
             &:last-child{
-             border-right: 0px solid;   
-            }            
+             border-right: 0px solid;
+            }
         }
         td{
             border: 1px solid #D4D4D4;
             font-size: 14px;
             padding-left: 25px;
-            padding-right: 25px;            
+            padding-right: 25px;
             line-height: 16px;
             color: #1A1A1A;
-            font-family: $font_medium;            
+            font-family: $font_medium;
             &:first-child{
-             border-left: 0px solid;   
+             border-left: 0px solid;
             }
             &:last-child{
-             border-right: 0px solid;   
+             border-right: 0px solid;
             }
             .blocked{
                 color: #f1152c;
             }
             &.table-error{
                 color: #FA001F;
-            }                        
+            }
         }
     }
     .error {

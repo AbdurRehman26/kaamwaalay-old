@@ -16,10 +16,12 @@
     </head>
     <body>
         <div id="app">
-            <left-panel v-show="$route.name==='login' === false"></left-panel>
             <navigation v-show="$route.name==='login' === false"></navigation>
-            <router-view></router-view>
-            <!-- <vue-progress-bar></vue-progress-bar> -->
+            <left-panel v-show="$route.name==='login' === false"></left-panel>
+            <div class="panel">
+               <breadcrumb></breadcrumb>
+               <router-view></router-view>
+            </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>

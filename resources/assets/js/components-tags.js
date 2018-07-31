@@ -13,6 +13,7 @@ Vue.component('search', require('./components/common-components/Search.vue'));
 Vue.component('loader', require('./components/common-components/Loader.vue'));
 Vue.component('alert', require('./components/common-components/Alert.vue'));
 Vue.component('title-area', require('./components/common-components/TitleArea.vue'));
+Vue.component('breadcrumb', require('./components/common-components/BreadCrumb.vue'));
 
 Vue.component('discussion', require('./components/common-components/Discussion.vue'));
 Vue.component('navigation', require('./components/common-components/Navigation.vue'));
