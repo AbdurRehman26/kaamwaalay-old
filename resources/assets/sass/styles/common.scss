@@ -201,7 +201,7 @@ h4{
             margin-bottom: 20px !important;
             max-width: 650px;
             margin: auto;
-            line-height: 27px;            
+            line-height: 27px;
         }
     }
 }
@@ -313,7 +313,7 @@ strong {
     .custom-checkbox{
         input[type="checkbox"] + label:before{
             border-radius: 0px !important;
-            top: 2px;            
+            top: 2px;
         }
         i.icon-check{
             top: 4px;
@@ -369,7 +369,7 @@ strong {
 .filters{
     .scrollbar{
         min-height: inherit;
-        max-height: 298px;        
+        max-height: 298px;
     }
 }
 
@@ -710,4 +710,14 @@ body{
     color:$secondary-color;
     cursor: pointer;
     position: absolute;
+}
+
+.logo{
+    &.white{
+        svg{
+            path{
+                fill:#fff;
+            }
+        }
+    }
 }

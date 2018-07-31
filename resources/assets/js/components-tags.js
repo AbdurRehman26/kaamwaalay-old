@@ -23,7 +23,8 @@ Vue.component('loadmore', require('./components/common-components/LoadMore.vue')
 Vue.component('pageLoader', require('./components/common-components/PageLoader.vue'));
 Vue.component('MidLoader', require('./components/common-components/MediumLoader.vue'));
 Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
-
+//left navigation
+Vue.component('left-panel', require('./components/common-components/LeftPanel.vue'));
 
 //admin
 Vue.component('user', require('./components/admin/User.vue'));

@@ -16,6 +16,7 @@
     </head>
     <body>
         <div id="app">
+            <left-panel v-show="$route.name==='login' === false"></left-panel>
             <router-view></router-view>
             <!-- <vue-progress-bar></vue-progress-bar> -->
         </div>
