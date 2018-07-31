@@ -2852,13 +2852,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             showModalValue: false,
 
-            fields: ['parent_service', 'service_name', 'is_featured', 'hero_navigation', 'description', 'photo', 'URL'],
+            fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation', 'description', 'URL'],
 
             items: [{ isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com' }, { isActive: false, parent_service: 'Electronics', service_name: 'Computer', is_featured: 'No', hero_navigation: 'Yes', description: 'Repair', photo: '', URL: 'www.psm.com' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com' }]
         };
@@ -56693,7 +56702,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "panel" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-10" }, [
+      _c("div", { staticClass: "col-md-12" }, [
         _c(
           "div",
           { staticClass: "table-area" },
@@ -56704,7 +56713,48 @@ var render = function() {
                 hover: "",
                 items: _vm.items,
                 fields: _vm.fields
-              }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "URL",
+                  fn: function(data) {
+                    return [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "action-link",
+                          attrs: {
+                            href: "javascript:void(0);",
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t        \t" +
+                              _vm._s(data.value) +
+                              "\n\t\t\t\t\t        "
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "photo",
+                  fn: function(data) {
+                    return [
+                      _c("b-img", {
+                        staticClass: "user-img",
+                        attrs: {
+                          src: "images/dummy/user-pic.jpg",
+                          fluid: "",
+                          alt: "Responsive image"
+                        }
+                      })
+                    ]
+                  }
+                }
+              ])
             })
           ],
           1

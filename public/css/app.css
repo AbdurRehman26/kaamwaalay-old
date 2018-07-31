@@ -33844,6 +33844,7 @@ body .ag-theme-balham .ag-header {
 
 .table-area tr th:first-child {
   border-left: 0px solid;
+  width: 20px !important;
 }
 
 .table-area tr th:last-child {
@@ -33878,6 +33879,10 @@ body .ag-theme-balham .ag-header {
 
 .table-area .error {
   color: #f1152c;
+}
+
+.width-30 {
+  width: 20px !important;
 }
 
 /* == Custom table scss end ==*/
