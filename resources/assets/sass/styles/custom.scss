@@ -427,9 +427,10 @@ i[active="true"]{
 
 .panel {
     width: calc(100% - 249px);
-    min-height: 100%;
+    min-height:calc(100% - 59px);
     background-color: #fff;
     float: right;
+    padding: 25px;
     .main-panel {
         height: calc(100% - 54px);
     }

@@ -1,11 +1,10 @@
 <template>
 		<div class="data-import panel">
-				<navigation @show-left-panel="showleftpanel"></navigation>
-				<not-found-panel></not-found-panel>				
+				<not-found-panel></not-found-panel>
 <!--         <button class="custin" @click="showModal = true">asdasdasd</button> -->
 				<data-approval :showModalProp="showModalValue" @HideModalValue="HideModal"></data-approval>
                 <discussion v-show="isShowing" @CloseDiscussion="isShowing = false"></discussion>
-                <warning :showModalProp="showWarningValue" @HideModalValue="HideModal"></warning>                 
+                <warning :showModalProp="showWarningValue" @HideModalValue="HideModal"></warning>
 
 		</div>
 </template>
@@ -22,7 +21,7 @@
           }
       },
       methods: {
-        ShowModal(){           
+        ShowModal(){
             this.showModalValue = true;
         },
         HideModal(){
@@ -35,7 +34,7 @@
         showleftpanel(){
             this.show = true;
             this.listingResponsive ^= true;
-        },  
+        },
     },
 }
 </script>
