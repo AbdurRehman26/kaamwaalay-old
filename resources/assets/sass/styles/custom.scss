@@ -428,11 +428,17 @@ i[active="true"]{
 .panel {
     width: calc(100% - 250px);
     min-height:calc(100% - 59px);
-    background-color: #fff;
+/*     background-color: #fff; */
     float: right;
-    padding: 30px;
+    padding:25px;
     .main-panel {
         height: calc(100% - 54px);
+    }
+
+    .panel-inner{
+        background-color:#fff;
+        padding:25px;
+        min-height: calc(100vh - 138px);
     }
 }
 
@@ -2267,4 +2273,27 @@ i[active="true"]{
 .colorpicker-right:after {
     left: auto;
     right: 11px;
+}
+
+
+.breadcrumb
+{
+    background: none;
+    padding: 0;
+    margin: -4px 0 9px;
+    ol{
+
+    }
+}
+
+.page-title{
+    display:inline-block;
+    position:relative;
+    top:6px;
+}
+.page-title-strip{
+    margin-bottom: 30px;
+    clear: both;
+    display: block;
+    overflow: hidden;
 }

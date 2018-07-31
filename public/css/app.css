@@ -32222,6 +32222,10 @@ h4 {
   font-size: 1rem;
 }
 
+.display-block {
+  display: block !important;
+}
+
 .ellipsis {
   width: 160px;
   text-overflow: ellipsis;
@@ -33222,6 +33226,8 @@ body .hide {
 .left-menu-panel .main-nav {
   height: auto;
   margin-top: 20px;
+  width: 100%;
+  float: none;
 }
 
 .left-menu-panel ul {
@@ -33238,9 +33244,13 @@ body .hide {
   text-decoration: none;
   display: block;
   font-family: "OpenSans-Regular";
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #fff !important;
   padding: 12px 24px 12px 50px;
+}
+
+.left-menu-panel ul li a.router-link-active {
+  background: #46930F;
 }
 
 .left-menu-panel ul li a i {
@@ -33252,7 +33262,7 @@ body .hide {
 
 .left-menu-panel ul li.active,
 .left-menu-panel ul li:hover {
-  background-color: #3d4656;
+  background-color: #46930F;
 }
 
 .left-menu-panel ul li.active a,
@@ -33834,11 +33844,11 @@ body .ag-theme-balham .ag-header {
 
 .table-area tr th {
   background-color: #EEEEEE;
-  color: #55575A;
+  color: #1a1a1a;
   border: 1px solid #D4D4D4;
   padding: 10px 25px;
   border-bottom: 0px solid;
-  font-family: "OpenSans-Light";
+  font-family: "OpenSans-Bold";
   border-top: 0px solid;
 }
 
@@ -34973,6 +34983,8 @@ textarea {
 .main-nav {
   position: relative;
   height: 56px;
+  width: calc(100% - 250px);
+  float: right;
 }
 
 .main-nav .nav-item a {
@@ -35038,13 +35050,12 @@ textarea {
 .nav-head {
   background: #fff;
   border: solid 1px #d9d9d9;
-  /* padding: 12px 32px; */
-  padding: 12px 12px;
+  padding: 12px 30px;
   position: fixed;
-  left: 0px;
   right: 0px;
   z-index: 9;
   height: 56px;
+  width: calc(100% - 250px);
 }
 
 @media (max-width: 768px) {
@@ -35412,6 +35423,10 @@ textarea {
   .navbar-collapse .col-2 {
     max-width: 100%;
   }
+}
+
+.navbar-collapse.d-block {
+  display: block !important;
 }
 
 @media (max-width: 768px) {
@@ -38630,13 +38645,19 @@ i[active="true"] {
 .panel {
   width: calc(100% - 250px);
   min-height: calc(100% - 59px);
-  background-color: #fff;
+  /*     background-color: #fff; */
   float: right;
-  padding: 30px;
+  padding: 25px;
 }
 
 .panel .main-panel {
   height: calc(100% - 54px);
+}
+
+.panel .panel-inner {
+  background-color: #fff;
+  padding: 25px;
+  min-height: calc(100vh - 138px);
 }
 
 @media (max-width: 414px) {
@@ -40528,5 +40549,24 @@ i[active="true"] {
 .colorpicker-right:after {
   left: auto;
   right: 11px;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin: -4px 0 9px;
+}
+
+.page-title {
+  display: inline-block;
+  position: relative;
+  top: 6px;
+}
+
+.page-title-strip {
+  margin-bottom: 30px;
+  clear: both;
+  display: block;
+  overflow: hidden;
 }
 

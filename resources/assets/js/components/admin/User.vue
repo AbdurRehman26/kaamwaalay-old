@@ -1,17 +1,25 @@
 <template>
-	<div class="panel">
-		
+	<div class="panel-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-strip">
+                    <div class="float-left">
+                       <h2 class="page-title">Admin Users</h2>
+                    </div>
+                    <div class="float-right">
+                        <a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add User</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-12">
 					<div class="table-area">
 		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields"></b-table>
 		    		</div>
 		  		</div>
-		  		<div class="col-md-2">
-		  			<a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add User</a>
-		  		</div>
 		    </div>
-		
+
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
 	</div>
 </template>

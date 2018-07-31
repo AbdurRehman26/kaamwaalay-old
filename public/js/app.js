@@ -1737,6 +1737,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2346,8 +2354,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /***/ }),
 
@@ -2517,11 +2523,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -54861,6 +54862,53 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-10f5b904\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/BreadCrumb.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "nav",
+      { staticClass: "breadcrumb", attrs: { "aria-label": "breadcrumb" } },
+      [
+        _c("ol", { staticClass: "breadcrumb" }, [
+          _c("li", { staticClass: "breadcrumb-item" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Admin")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "breadcrumb-item active",
+              attrs: { "aria-current": "page" }
+            },
+            [_vm._v("User")]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-10f5b904", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-199dfb72\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/LeftPanel.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54868,114 +54916,150 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "left-menu-panel" }, [
-      _c("div", { staticClass: "logo-area logo white" }, [_c("logo")], 1),
-      _vm._v(" "),
-      _vm._m(0)
+  return _c("div", { staticClass: "left-menu-panel" }, [
+    _c("div", { staticClass: "logo-area logo white" }, [_c("logo")], 1),
+    _vm._v(" "),
+    _c("nav", { staticClass: "main-nav" }, [
+      _c("ul", [
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-pie-chart",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Dashboard")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/admin/user" } }, [
+              _c("i", {
+                staticClass: "icon-user-icon-resue",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Admin")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-workspace",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Service Type")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-handshake-o",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Service Provider")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-search",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Service Provider Review")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-users",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Customer")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-briefcase",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Jobs")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-credit-card",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Payment Activites")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
+            _c("router-link", { attrs: { to: "/dashboard" } }, [
+              _c("i", {
+                staticClass: "icon-settings",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("General Settings")])
+            ])
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "main-nav" }, [
-      _c("ul", [
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-pie-chart",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Dashboard")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-user-icon-resue",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Admin")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-workspace",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Service Type")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-handshake-o",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Service Provider")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-search",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Service Provider Review")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-users",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Customer")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-briefcase",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Jobs")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-credit-card",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("Payment Activites")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [
-          _c("a", { attrs: { href: "" } }, [
-            _c("i", {
-              staticClass: "icon-settings",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _c("span", [_vm._v("General Settings")])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -55309,10 +55393,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "panel" },
+    { staticClass: "panel-inner" },
     [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-10" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "page-title-strip" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "float-right" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { href: "javascript:;" },
+                  on: { click: _vm.ShowModal }
+                },
+                [_vm._v("Add User")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
             { staticClass: "table-area" },
@@ -55328,18 +55432,6 @@ var render = function() {
             ],
             1
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-2" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { href: "javascript:;" },
-              on: { click: _vm.ShowModal }
-            },
-            [_vm._v("Add User")]
-          )
         ])
       ]),
       _vm._v(" "),
@@ -55351,7 +55443,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-left" }, [
+      _c("h2", { staticClass: "page-title" }, [_vm._v("Admin Users")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -56343,90 +56444,12 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-collapse",
-            { attrs: { "is-nav": "", id: "nav_collapse" } },
+            {
+              staticClass: "d-block",
+              attrs: { "is-nav": "", id: "nav_collapse" }
+            },
             [
-              _c(
-                "b-col",
-                {
-                  staticClass: "nav-icons",
-                  attrs: { cols: "10", active: _vm.tabmenu == true }
-                },
-                [
-                  _c(
-                    "b-navbar-nav",
-                    [
-                      _c(
-                        "b-nav-item",
-                        { attrs: { href: "#" } },
-                        [
-                          _c("router-link", { attrs: { to: "/dashboard" } }, [
-                            _c("i", { staticClass: "icon-reporticon" }),
-                            _vm._v("Dashboards & Reports")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-nav-item",
-                        { attrs: { href: "#" } },
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: "/data-explorer" } },
-                            [
-                              _c("i", { staticClass: "icon-explorer-icon" }),
-                              _vm._v("Data Explorer")
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-nav-item",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: "/data-importer" } },
-                            [
-                              _c("i", { staticClass: "icon-importer-icon" }),
-                              _vm._v("Data Importer")
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-nav-item",
-                        [
-                          _c("router-link", { attrs: { to: "/settings" } }, [
-                            _c("i", { staticClass: "icon-cog" }),
-                            _vm._v("Settings")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-nav-item",
-                        [
-                          _c("router-link", { attrs: { to: "/system-log" } }, [
-                            _c("i", { staticClass: "icon-list-icon" }),
-                            _vm._v("System Log")
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("b-col", { attrs: { cols: "2" } }, [
+              _c("div", { staticClass: "float-right" }, [
                 _c(
                   "div",
                   { staticClass: "left-cog" },
@@ -56448,8 +56471,7 @@ var render = function() {
                   1
                 )
               ])
-            ],
-            1
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -70569,6 +70591,7 @@ Vue.component('search', __webpack_require__("./resources/assets/js/components/co
 Vue.component('loader', __webpack_require__("./resources/assets/js/components/common-components/Loader.vue"));
 Vue.component('alert', __webpack_require__("./resources/assets/js/components/common-components/Alert.vue"));
 Vue.component('title-area', __webpack_require__("./resources/assets/js/components/common-components/TitleArea.vue"));
+Vue.component('breadcrumb', __webpack_require__("./resources/assets/js/components/common-components/BreadCrumb.vue"));
 
 Vue.component('discussion', __webpack_require__("./resources/assets/js/components/common-components/Discussion.vue"));
 Vue.component('navigation', __webpack_require__("./resources/assets/js/components/common-components/Navigation.vue"));
@@ -71063,6 +71086,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5084e4de", Component.options)
   } else {
     hotAPI.reload("data-v-5084e4de", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/common-components/BreadCrumb.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-10f5b904\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/BreadCrumb.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\common-components\\BreadCrumb.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-10f5b904", Component.options)
+  } else {
+    hotAPI.reload("data-v-10f5b904", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

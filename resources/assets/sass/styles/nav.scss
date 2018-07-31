@@ -1,6 +1,8 @@
 .main-nav {
     position: relative;
-    height:56px;
+    height: 56px;
+    width: calc(100% - 250px);
+    float: right;
     .nav-item {
         a {
             color: #1A1A1A;
@@ -63,13 +65,12 @@
 .nav-head {
     background: #fff;
     border:solid 1px $greyM;
-    /* padding: 12px 32px; */
-    padding: 12px 12px;
+    padding: 12px 30px;
     position: fixed;
-    left: 0px;
     right: 0px;
     z-index: 9;
     height: 56px;
+    width: calc(100% - 250px);
     @include tablet{
          z-index: 99;
     }
@@ -371,6 +372,9 @@
         }
     }
 
+    &.d-block{
+        display:block !important;
+    }
 }
 
 .navbar-expand-md{

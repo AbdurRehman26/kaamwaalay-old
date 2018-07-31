@@ -1,11 +1,11 @@
 //side bar
 $left-panel-bg:#262E3C;
-$left-panel-bg-hover:#3d4656;
+$left-panel-bg-hover:$primary-color;
 $left-panel-width:250px;
 $left-panel-height:100vh;
 $left-panel-padding:0px 0;
 $left-panel-nav-color:#fff;
-$left-panel-nav-size:$font-size-md;
+$left-panel-nav-size:$font-size-sm;
 
 .left-menu-panel{
     background:$left-panel-bg;
@@ -35,7 +35,7 @@ $left-panel-nav-size:$font-size-md;
 
     .logo-area{
         max-width: 100%;
-        border-bottom: solid 1px $left-panel-bg-hover;
+        border-bottom: solid 1px #3d4656;
         display: block;
         margin:4px 0px;
         padding:0 17px 3px;
@@ -89,6 +89,8 @@ $left-panel-nav-size:$font-size-md;
     .main-nav{
         height:auto;
         margin-top: 20px;
+        width:100%;
+        float:none;
     }
     ul{
     	padding-left: 0;
@@ -104,6 +106,9 @@ $left-panel-nav-size:$font-size-md;
                 font-size:$left-panel-nav-size;
                 color:$left-panel-nav-color !important;
                 padding:12px 24px 12px 50px;
+                &.router-link-active{
+                    background:$primary-color;
+                }
     			i{
                     position: absolute;
                     left: 17px;
