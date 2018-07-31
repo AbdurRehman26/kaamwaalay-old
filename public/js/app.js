@@ -2780,7 +2780,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55217,47 +55216,46 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "panel" },
     [
-      [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c(
-              "div",
-              { staticClass: "table-area" },
-              [
-                _c("b-table", {
-                  attrs: {
-                    bordered: _vm.bordered,
-                    hover: "",
-                    items: _vm.items,
-                    fields: _vm.fields
-                  }
-                })
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { href: "javascript:;" },
-                on: { click: _vm.ShowModal }
-              },
-              [_vm._v("Add User")]
-            )
-          ])
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c(
+            "div",
+            { staticClass: "table-area" },
+            [
+              _c("b-table", {
+                attrs: {
+                  bordered: _vm.bordered,
+                  hover: "",
+                  items: _vm.items,
+                  fields: _vm.fields
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "javascript:;" },
+              on: { click: _vm.ShowModal }
+            },
+            [_vm._v("Add User")]
+          )
         ])
-      ],
+      ]),
       _vm._v(" "),
       _c("add-new-user", {
         attrs: { showModalProp: _vm.showModalValue },
         on: { HideModalValue: _vm.HideModal }
       })
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -56489,45 +56487,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c(
-              "div",
-              { staticClass: "table-area" },
-              [
-                _c("b-table", {
-                  attrs: {
-                    bordered: _vm.bordered,
-                    hover: "",
-                    items: _vm.items,
-                    fields: _vm.fields
-                  }
-                })
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { href: "javascript:;" },
-                on: { click: _vm.ShowModal }
-              },
-              [_vm._v("Add Service")]
-            )
-          ])
-        ])
-      ]
-    ],
-    2
-  )
+  return _c("div", { staticClass: "panel" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "div",
+          { staticClass: "table-area" },
+          [
+            _c("b-table", {
+              attrs: {
+                bordered: _vm.bordered,
+                hover: "",
+                items: _vm.items,
+                fields: _vm.fields
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { href: "javascript:;" },
+            on: { click: _vm.ShowModal }
+          },
+          [_vm._v("Add Service")]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

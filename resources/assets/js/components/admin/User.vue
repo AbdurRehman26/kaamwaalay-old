@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<template>
+	<div class="panel">
+		
 			<div class="row">
 				<div class="col-md-8">
 					<div class="table-area">
@@ -11,7 +11,7 @@
 		  			<a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add User</a>
 		  		</div>
 		    </div>
-		</template>
+		
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
 	</div>
 </template>

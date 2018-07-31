@@ -1,7 +1,6 @@
 <template>
-	<div>
-		<template>
-			<div class="row">
+	<div class="panel">
+		<div class="row">
 				<div class="col-md-8">
 					<div class="table-area">
 		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields"></b-table>
@@ -11,7 +10,7 @@
 		  			<a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add Service</a>
 		  		</div>
 		    </div>
-		</template>
+		
 		 <!-- <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user> -->
 	</div>
 </template>
