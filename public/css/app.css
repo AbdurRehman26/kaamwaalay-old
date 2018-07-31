@@ -32063,11 +32063,11 @@ fieldset[disabled] .multiselect {
 }
 
 .multiselect__option--highlight {
-  background: #46930F !important;
+  background: #8200ff !important;
 }
 
 .multiselect__option--highlight:after {
-  background: #46930F !important;
+  background: #8200ff !important;
   line-height: 26px;
   min-height: 24px;
 }
@@ -32187,14 +32187,14 @@ td a:focus {
 }
 
 a {
-  color: #46930F;
+  color: #8200ff;
   cursor: pointer;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #46930F !important;
+  color: #8200ff !important;
 }
 
 p {
@@ -32367,7 +32367,7 @@ h4 {
 }
 
 .primary-color-bg {
-  background-color: #46930F;
+  background-color: #8200ff;
 }
 
 .secondary-color-bg {
@@ -32375,7 +32375,7 @@ h4 {
 }
 
 .primary-color {
-  color: #46930F;
+  color: #8200ff;
 }
 
 .secondary-color {
@@ -32426,7 +32426,7 @@ strong {
 }
 
 .section.secondary-bg {
-  background: #46930F;
+  background: #8200ff;
 }
 
 .section.section-padding {
@@ -32810,7 +32810,7 @@ body .hide {
 }
 
 .icon-circle.primary-color {
-  background: #46930F;
+  background: #8200ff;
 }
 
 .color-greyD {
@@ -32834,7 +32834,7 @@ body .hide {
 .status-box.active,
 .tags.approved,
 .tags.active {
-  background-color: #46930F;
+  background-color: #8200ff;
 }
 
 .status-box.review,
@@ -33121,13 +33121,14 @@ body .hide {
 }
 
 .left-menu-panel {
-  background: #262E3C;
+  background: #fff;
   width: 250px;
   height: 100vh;
   padding: 0px 0;
   float: left;
   z-index: 9999;
   position: fixed;
+  border-right: solid 1px #f3e6ff;
 }
 
 @media (max-width: 1140px) {
@@ -33156,7 +33157,7 @@ body .hide {
 
 .left-menu-panel .logo-area {
   max-width: 100%;
-  border-bottom: solid 1px #3d4656;
+  border-bottom: solid 1px #f3e6ff;
   display: block;
   margin: 4px 0px;
   padding: 0 17px 3px;
@@ -33220,7 +33221,7 @@ body .hide {
   top: 2px;
   padding: 3px 5px;
   font-size: 0.75rem;
-  background-color: #46930F;
+  background-color: #8200ff;
 }
 
 .left-menu-panel .main-nav {
@@ -33237,7 +33238,7 @@ body .hide {
 .left-menu-panel ul li {
   padding: 0;
   position: relative;
-  border-bottom: solid 1px #333e50;
+  border-bottom: solid 1px #f3e6ff;
 }
 
 .left-menu-panel ul li a {
@@ -33246,12 +33247,13 @@ body .hide {
   display: block;
   font-family: "OpenSans-Regular";
   font-size: 0.875rem;
-  color: #fff !important;
+  color: #1a1a1a !important;
   padding: 12px 24px 12px 50px;
 }
 
 .left-menu-panel ul li a.router-link-active {
-  background: #46930F;
+  background: #8200ff;
+  color: #fff !important;
 }
 
 .left-menu-panel ul li a i {
@@ -33263,12 +33265,12 @@ body .hide {
 
 .left-menu-panel ul li.active,
 .left-menu-panel ul li:hover {
-  background-color: #46930F;
+  background-color: #8200ff;
 }
 
 .left-menu-panel ul li.active a,
 .left-menu-panel ul li:hover a {
-  color: #fff;
+  color: #fff !important;
 }
 
 .profile-info {
@@ -33964,15 +33966,15 @@ body .ag-theme-balham .ag-header {
 }
 
 .btn.btn-primary {
-  background: #46930F;
-  border-color: #46930F;
+  background: #8200ff;
+  border-color: #8200ff;
 }
 
 .btn.btn-primary:focus,
 .btn.btn-primary:visited,
 .btn.btn-primary:active {
-  background: #46930F !important;
-  border-color: #46930F !important;
+  background: #8200ff !important;
+  border-color: #8200ff !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
@@ -34042,7 +34044,7 @@ body .ag-theme-balham .ag-header {
   text-align: center;
   padding: 8px 8px;
   color: #fff !important;
-  background-color: #46930F;
+  background-color: #8200ff;
   border-radius: 50px;
 }
 
@@ -34364,7 +34366,7 @@ body .ag-theme-balham .ag-header {
 }
 
 .listing-btn .btn-success {
-  background-color: #46930F !important;
+  background-color: #8200ff !important;
 }
 
 /*
@@ -35016,7 +35018,7 @@ textarea {
 }
 
 .navbar-dark .navbar-toggler-icon {
-  background-color: #46930F;
+  background-color: #8200ff;
 }
 
 @media (max-width: 767px) {
@@ -35058,13 +35060,13 @@ textarea {
 
 .nav-head {
   background: #fff;
-  border: solid 1px #d9d9d9;
+  border: solid 1px #f3e6ff;
   padding: 12px 30px;
   position: fixed;
   right: 0px;
   z-index: 9;
   height: 56px;
-  width: calc(100% - 250px);
+  width: calc(100% - 248px);
 }
 
 @media (max-width: 768px) {
@@ -36096,7 +36098,7 @@ body .vue-grid-item .list-action i:focus {
 .mx-calendar-month > a.current,
 .mx-calendar-table td.current,
 .mx-calendar-year > a.current {
-  background-color: #46930F !important;
+  background-color: #8200ff !important;
   color: #fff !important;
   border-radius: 3px;
 }
@@ -36289,7 +36291,7 @@ body .vue-grid-item .list-action i:focus {
 
 .performance-charts span.number-chart-counts {
   font-size: 1.5rem;
-  color: #46930F;
+  color: #8200ff;
   font-family: "OpenSans-Bold";
 }
 
@@ -36659,7 +36661,7 @@ body .vue-grid-item .list-action i:focus {
 }
 
 .modal-body ul.nav-pills li.completed a {
-  color: #46930F !important;
+  color: #8200ff !important;
 }
 
 .modal-body ul.nav-pills li.completed:after {
@@ -36668,7 +36670,7 @@ body .vue-grid-item .list-action i:focus {
   position: absolute;
   right: 16px;
   top: 10px;
-  color: #46930F;
+  color: #8200ff;
   font-size: 15px;
 }
 
@@ -37352,7 +37354,7 @@ body .query-builder .rules-group-body .rule-container:before {
   font-family: 'icomoon' !important;
   content: "\E906";
   font-size: 18px;
-  color: #46930F;
+  color: #8200ff;
 }
 
 .query-builder .rule-filter-container,
@@ -37724,13 +37726,13 @@ body .query-builder .rules-list .rules-group-container:before,
 
 @media (max-width: 767px) {
   .nav-item:hover a {
-    color: #46930F !important;
+    color: #8200ff !important;
   }
 }
 
 @media (max-width: 768px) {
   .nav-item:hover a {
-    color: #46930F !important;
+    color: #8200ff !important;
   }
 }
 
@@ -37752,7 +37754,7 @@ body .query-builder .rules-list .rules-group-container:before,
   }
 
   .tablet-menu .responsive-btn:before {
-    color: #46930F;
+    color: #8200ff;
   }
 }
 
@@ -38036,7 +38038,7 @@ a:hover, a:focus {
 .page-loader .inner {
   position: absolute;
   height: 100%;
-  background: #46930F;
+  background: #8200ff;
 }
 
 .page-loader p {
@@ -38157,7 +38159,7 @@ a:hover, a:focus {
   left: 0;
   width: 9px;
   height: 9px;
-  color: #46930F;
+  color: #8200ff;
 }
 
 .vue-treeselect .vue-treeselect__checkbox--indeterminate span.vue-treeselect__minus-mark {
@@ -38174,7 +38176,7 @@ a:hover, a:focus {
   width: 8px;
   height: 9px;
   font-weight: bolder;
-  color: #46930F;
+  color: #8200ff;
 }
 
 .vue-treeselect--open-below .vue-treeselect__menu {
@@ -38429,7 +38431,7 @@ select.form-control {
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
   content: "\E953";
   font-family: icomoon;
-  color: #46930F;
+  color: #8200ff;
   font-weight: lighter;
 }
 
@@ -38669,6 +38671,10 @@ i[active="true"] {
   min-height: calc(100vh - 138px);
 }
 
+.login-page .panel {
+  width: 100%;
+}
+
 @media (max-width: 414px) {
   .custom-file-label {
     overflow: hidden;
@@ -38756,7 +38762,7 @@ i[active="true"] {
 }
 
 .config-area .primary-color {
-  background-color: #46930F;
+  background-color: #8200ff;
 }
 
 .config-area .secondary-color {
@@ -38781,7 +38787,7 @@ i[active="true"] {
 .mx-calendar-month > a.current,
 .mx-calendar-table td.current,
 .mx-calendar-year > a.current {
-  background-color: #46930F !important;
+  background-color: #8200ff !important;
 }
 
 .chat-message .list-group-item {
@@ -38879,7 +38885,7 @@ i[active="true"] {
 }
 
 .navbar-nav .nav-item.completed .nav-link a {
-  color: #46930F !important;
+  color: #8200ff !important;
 }
 
 .navbar-nav .nav-item.completed:after {
@@ -39296,7 +39302,7 @@ i[active="true"] {
 }
 
 .custom-checkbox i.icon-check {
-  color: #46930F;
+  color: #8200ff;
   top: 4px;
 }
 
@@ -39397,7 +39403,7 @@ i[active="true"] {
   left: -20px;
   font-weight: 100;
   font-family: icomoon;
-  background-color: #46930F;
+  background-color: #8200ff;
   font-size: 10px;
   margin: auto;
   width: 8px;
@@ -40194,7 +40200,7 @@ i[active="true"] {
 }
 
 .table-graphs .table tr td .progress.success .progress-bar {
-  background-color: #46930F !important;
+  background-color: #8200ff !important;
 }
 
 .table-graphs .table tr td:nth-child(3) {

@@ -442,6 +442,12 @@ i[active="true"]{
     }
 }
 
+.login-page{
+    .panel {
+        width:100%;
+    }
+}
+
 .custom-file-label {
 
     @include mobileS{

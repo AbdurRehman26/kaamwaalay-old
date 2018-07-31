@@ -19,9 +19,13 @@
             <navigation v-show="$route.name==='login' === false"></navigation>
             <left-panel v-show="$route.name==='login' === false"></left-panel>
             <div class="panel">
-               <breadcrumb v-show="$route.name==='404' === false"></breadcrumb>
+               <breadcrumb v-show="$route.name==='login' === false" ></breadcrumb>
                <router-view></router-view>
             </div>
+            <script>
+                export default {
+                }
+            </script>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>

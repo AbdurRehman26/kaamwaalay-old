@@ -1,7 +1,8 @@
 $max-wrapper:1328px;
 $container-fluid-padding:0px 32px;
 //color variables
-$primary-color:#46930F;
+$primary-color:#8200ff;
+$primary-color-lighten:lighten($primary-color,45%);
 $secondary-color:#FF8500;
 $text-primary-color:#1A1A1A;
 $greyL: #F5F5F5;

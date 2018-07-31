@@ -66,13 +66,8 @@
     export default {
       data () {
         return {
-/*         activepanel:false,*/
-/*          loginForm: {
-            email: '',
-            name: '',
-            checked: []
-          },*/
-/*          show: true*/
+          titleproperties : 'dashboard-title',
+          titleproperties : 'bodyclass',
         }
 /*        seen: true*/
       },

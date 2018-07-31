@@ -1,6 +1,6 @@
 <template>
         <div class="left-menu-panel">
-            <div class="logo-area logo white">
+            <div class="logo-area logo">
                 <logo></logo>
             </div>
             <nav class="main-nav">

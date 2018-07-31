@@ -1,4 +1,5 @@
 // Route components
+import VueRouter from 'vue-router'
 
 const routes = [
 
@@ -7,8 +8,11 @@ const routes = [
     {
         name: 'login',
         path: '/',
+        meta: {
+            title: 'PSM | Login',
+            bodyClass: 'login-page',
+        },
         component: require('./components/auth/main.vue'),
-        meta: { title: 'PSM | Login' }
     },
 
     /* Admin Users */
@@ -38,4 +42,12 @@ const routes = [
     },
 
 ]
-export default routes
+
+
+// Create the router instance
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+})
+
+export default router

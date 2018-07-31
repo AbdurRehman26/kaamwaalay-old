@@ -2066,6 +2066,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2133,17 +2135,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {}
-    /*         activepanel:false,*/
-    /*          loginForm: {
-                email: '',
-                name: '',
-                checked: []
-              },*/
-    /*          show: true*/
-
+    return _defineProperty({
+      titleproperties: 'dashboard-title'
+    }, 'titleproperties', 'bodyclass');
     /*        seen: true*/
-    ;
   },
 
   methods: {
@@ -54575,6 +54570,135 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-body-class/dist/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var VueBodyClassController = function () {
+    function VueBodyClassController() {
+        _classCallCheck(this, VueBodyClassController);
+    }
+
+    _createClass(VueBodyClassController, [{
+        key: 'init',
+        value: function init(router) {
+            this.bodyClass = document.body.className;
+            this.router = router;
+        }
+    }, {
+        key: 'parseMatched',
+        value: function parseMatched(matchedArray) {
+
+            var matched = [];
+
+            for (var index in matchedArray) {
+
+                var prev = matched.join('/');
+
+                matched.push(matchedArray[index].path.replace(/^\/|\/$/g, '').replace(prev, '').replace(/^\/|\/$/g, ''));
+            }
+
+            return matched;
+        }
+    }, {
+        key: 'findMatchInRoutesByPath',
+        value: function findMatchInRoutesByPath(routes, matchedItem) {
+
+            return routes.find(function (o) {
+
+                return o.path.replace(/^\/|\/$/g, '') == matchedItem;
+            });
+        }
+    }, {
+        key: 'getClassForRoute',
+        value: function getClassForRoute(route) {
+
+            return route.meta ? route.meta.bodyClass : null;
+        }
+    }, {
+        key: 'updateClassFromRoute',
+        value: function updateClassFromRoute(className, route) {
+
+            var routeClass = this.getClassForRoute(route);
+
+            if (routeClass) {
+
+                var routeBodyClass = routeClass.replace(/^!/, '');
+
+                if (routeClass.indexOf('!') === 0) {
+
+                    className = " " + routeBodyClass;
+                } else {
+
+                    className += " " + routeBodyClass;
+                }
+            }
+
+            return className;
+        }
+    }, {
+        key: 'router',
+        set: function set(router) {
+            var _this = this;
+
+            router.beforeEach(function (to, from, next) {
+
+                var parent = router.options.routes;
+                var matched = _this.parseMatched(to.matched);
+                var additionalClassName = "";
+
+                //is a home page?
+                if (to.path == '/') {
+
+                    additionalClassName = _this.updateClassFromRoute(additionalClassName, to);
+                }
+                //not homepage
+                else if (matched.length > 0) {
+
+                        for (var index in matched) {
+
+                            var routes = parent.children ? parent.children : parent;
+                            var found = _this.findMatchInRoutesByPath(routes, matched[index]);
+
+                            if (found) {
+
+                                parent = found;
+                                additionalClassName = _this.updateClassFromRoute(additionalClassName, found);
+                            }
+                        }
+                    }
+
+                document.body.className = (_this.bodyClass + additionalClassName).trim();
+
+                next();
+            });
+        }
+    }]);
+
+    return VueBodyClassController;
+}();
+
+var VueBodyClass = new VueBodyClassController();
+
+VueBodyClass.install = function (Vue, router) {
+
+    VueBodyClass.init(router);
+};
+
+exports.default = VueBodyClass;
+
+/***/ }),
+
 /***/ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54995,7 +55119,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "left-menu-panel" }, [
-    _c("div", { staticClass: "logo-area logo white" }, [_c("logo")], 1),
+    _c("div", { staticClass: "logo-area logo" }, [_c("logo")], 1),
     _vm._v(" "),
     _c("nav", { staticClass: "main-nav" }, [
       _c("ul", [
@@ -70689,8 +70813,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes__ = __webpack_require__("./resources/assets/js/routes.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue__ = __webpack_require__("./node_modules/bootstrap-vue/es/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_body_class__ = __webpack_require__("./node_modules/vue-body-class/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_body_class___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_body_class__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__("./resources/assets/js/routes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue__ = __webpack_require__("./node_modules/bootstrap-vue/es/index.js");
 /*Main vue js*/
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
@@ -70702,22 +70828,18 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_bootstrap_vue__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_bootstrap_vue__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_body_class___default.a, __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */]);
 
 // Require components tags
 __webpack_require__("./resources/assets/js/components-tags.js");
 
-// Create the router instance
-var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    mode: 'history',
-    routes: __WEBPACK_IMPORTED_MODULE_2__routes__["a" /* default */] // short for `routes: routes`
-});
-
 // Create and mount the root instance.
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
-    router: router
+    router: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* default */]
 });
 
 /*const app = new Vue({
@@ -72131,7 +72253,9 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
 // Route components
+
 
 var routes = [
 
@@ -72140,8 +72264,11 @@ var routes = [
 {
     name: 'login',
     path: '/',
-    component: __webpack_require__("./resources/assets/js/components/auth/main.vue"),
-    meta: { title: 'PSM | Login' }
+    meta: {
+        title: 'PSM | Login',
+        bodyClass: 'login-page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/auth/main.vue")
 },
 
 /* Admin Users */
@@ -72169,7 +72296,14 @@ var routes = [
     component: __webpack_require__("./resources/assets/js/components/404/Main.vue"),
     meta: { title: '404 Not Found' }
 }];
-/* harmony default export */ __webpack_exports__["a"] = (routes);
+
+// Create the router instance
+var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
+    mode: 'history',
+    routes: routes // short for `routes: routes`
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
 

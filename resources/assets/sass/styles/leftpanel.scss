@@ -1,11 +1,11 @@
 //side bar
-$left-panel-bg:#262E3C;
-$left-panel-bg-lighten:lighten(#262E3C,6.5%);
+$left-panel-bg:#fff;
+$left-panel-bg-lighten:$primary-color-lighten;
 $left-panel-bg-hover:$primary-color;
 $left-panel-width:250px;
 $left-panel-height:100vh;
 $left-panel-padding:0px 0;
-$left-panel-nav-color:#fff;
+$left-panel-nav-color:#1a1a1a;
 $left-panel-nav-size:$font-size-sm;
 
 .left-menu-panel{
@@ -16,6 +16,7 @@ $left-panel-nav-size:$font-size-sm;
     float:left;
     z-index:9999;
     position:fixed;
+    border-right: solid 1px $left-panel-bg-lighten;
 
     @include tabletL{
         width: 251px;
@@ -36,7 +37,7 @@ $left-panel-nav-size:$font-size-sm;
 
     .logo-area{
         max-width: 100%;
-        border-bottom: solid 1px #3d4656;
+        border-bottom: solid 1px $left-panel-bg-lighten;
         display: block;
         margin:4px 0px;
         padding:0 17px 3px;
@@ -89,7 +90,7 @@ $left-panel-nav-size:$font-size-sm;
     }
     .main-nav{
         height:auto;
-        margin-top: 20px;
+        margin-top: -4px;
         width:100%;
         float:none;
     }
@@ -110,6 +111,7 @@ $left-panel-nav-size:$font-size-sm;
                 padding:12px 24px 12px 50px;
                 &.router-link-active{
                     background:$primary-color;
+                    color:#fff !important;
                 }
     			i{
                     position: absolute;
@@ -121,7 +123,7 @@ $left-panel-nav-size:$font-size-sm;
     		&.active,&:hover{
     			background-color: $left-panel-bg-hover;
                 a{
-                    color:#fff;
+                    color:#fff !important;
                 }
     		}
     	}
