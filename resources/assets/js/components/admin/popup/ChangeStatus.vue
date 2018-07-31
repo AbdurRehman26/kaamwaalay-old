@@ -24,17 +24,18 @@ export default {
   	},
 	props : ['showModalProp'],
 	    methods: {
-        showModal() {
-            this.$refs.myModalRef.show()
+            showModal() {
+                this.$refs.myModalRef.show()
+            },
+            hideModal() {
+                this.$refs.myModalRef.hide()
+            },
+            onHidden(){
+                this.$emit('HideModalValue');
+            },        
         },
-        hideModal() {
-            this.$refs.myModalRef.hide()
-        },
-        onHidden(){
-            this.$emit('HideModalValue');
-        },        
-    },
-   watch:{
+
+    watch:{
         showModalProp(value){
 
             if(value){

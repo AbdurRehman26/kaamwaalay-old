@@ -23,7 +23,7 @@ const routes = [
     /* Service Type */
 
     {
-        path: '/service-type-user/ServiceType',
+        path: '/service-type-user/service-type',
         component: require('./components/service-type-user/ServiceType.vue'),
         meta: { title: 'PSM | Service Type' }
     },

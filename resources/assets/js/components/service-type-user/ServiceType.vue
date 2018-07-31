@@ -16,18 +16,17 @@
 		    		</div>
 		  		</div>
 		  		<div class="col-md-2">
-		  			<a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add Service</a>
+		  			<a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
 		  		</div>
 		    </div>
-		
-		 <!-- <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user> -->
+		    <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
 	</div>
 </template>
 <script>
 export default {
   data () {
     return {
-    	showModalValue: false,
+    	service: false,
 
       	fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description',
       	 'URL' ],
@@ -41,11 +40,11 @@ export default {
     	}
   	},
     methods: {
-        ShowModal(){
-            this.showModalValue = true;
+        AddService(){
+            this.service = true;
         },
         HideModal(){
-            this.showModalValue = false;
+            this.service = false;
         }
     }
 }

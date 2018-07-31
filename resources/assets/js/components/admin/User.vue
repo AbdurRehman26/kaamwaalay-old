@@ -7,7 +7,7 @@
                        <h2 class="page-title">Admin Users</h2>
                     </div>
                     <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="ShowModal">Add User</a>
+                        <a href="javascript:;" class="btn btn-primary" @click="ShowModalUser">Add User</a>
                     </div>
                 </div>
             </div>
@@ -51,17 +51,15 @@ export default {
     	}
   	},
     methods: {
-        ShowModal(){
+        ShowModalUser(){
             this.showModalValue = true;
+        },
+        statuschange(){
+            this.changestatus = true;
         },
         HideModal(){
             this.showModalValue = false;
             this.changestatus = false;
-
-        },
-        statuschange(){
-            this.changestatus = true;
-            // this.changestatus = true;
         }
     }
 }
