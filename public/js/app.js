@@ -2584,6 +2584,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
 //
 //
 //
@@ -2627,7 +2629,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2639,7 +2641,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-
+    directives: {
+        onClickaway: __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__["directive"]
+    },
     methods: {
         ShowModal: function ShowModal() {
             this.showModalValue = true;
@@ -54561,6 +54565,96 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+Vue = 'default' in Vue ? Vue['default'] : Vue;
+
+var version = '2.2.2';
+
+var compatible = (/^2\./).test(Vue.version);
+if (!compatible) {
+  Vue.util.warn('VueClickaway ' + version + ' only supports Vue 2.x, and does not support Vue ' + Vue.version);
+}
+
+
+
+// @SECTION: implementation
+
+var HANDLER = '_vue_clickaway_handler';
+
+function bind(el, binding, vnode) {
+  unbind(el);
+
+  var vm = vnode.context;
+
+  var callback = binding.value;
+  if (typeof callback !== 'function') {
+    if (true) {
+      Vue.util.warn(
+        'v-' + binding.name + '="' +
+        binding.expression + '" expects a function value, ' +
+        'got ' + callback
+      );
+    }
+    return;
+  }
+
+  // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+  var initialMacrotaskEnded = false;
+  setTimeout(function() {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function(ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener('click', el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener('click', el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  bind: bind,
+  update: function(el, binding) {
+    if (binding.value === binding.oldValue) return;
+    bind(el, binding);
+  },
+  unbind: unbind,
+};
+
+var mixin = {
+  directives: { onClickaway: directive },
+};
+
+exports.version = version;
+exports.directive = directive;
+exports.mixin = mixin;
+
+/***/ }),
+
 /***/ "./node_modules/vue-functional-data-merge/dist/lib.esm.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -54891,7 +54985,7 @@ var staticRenderFns = [
         _c("li", {}, [
           _c("a", { attrs: { href: "" } }, [
             _c("i", {
-              staticClass: "icon-workspace",
+              staticClass: "icon-handshake-o",
               attrs: { "aria-hidden": "true" }
             }),
             _c("span", [_vm._v("Service Provider")])
@@ -54901,7 +54995,7 @@ var staticRenderFns = [
         _c("li", {}, [
           _c("a", { attrs: { href: "" } }, [
             _c("i", {
-              staticClass: "icon-workspace",
+              staticClass: "icon-search",
               attrs: { "aria-hidden": "true" }
             }),
             _c("span", [_vm._v("Service Provider Review")])
@@ -54921,7 +55015,7 @@ var staticRenderFns = [
         _c("li", {}, [
           _c("a", { attrs: { href: "" } }, [
             _c("i", {
-              staticClass: "icon-user-tie",
+              staticClass: "icon-briefcase",
               attrs: { "aria-hidden": "true" }
             }),
             _c("span", [_vm._v("Jobs")])
@@ -56403,17 +56497,13 @@ var render = function() {
     "div",
     { staticClass: "main-nav" },
     [
+      _c("pageLoader"),
+      _vm._v(" "),
       _c(
         "b-navbar",
         { staticClass: "nav-head", attrs: { toggleable: "md", type: "dark" } },
         [
           _c("b-navbar-toggle", { attrs: { target: "nav_collapse" } }),
-          _vm._v(" "),
-          _c("b-col", {
-            staticClass: "nav-logo",
-            staticStyle: { position: "relative" },
-            attrs: { cols: "2" }
-          }),
           _vm._v(" "),
           _c(
             "b-collapse",
@@ -56507,64 +56597,12 @@ var render = function() {
                   [
                     _c(
                       "span",
-                      {
-                        directives: [
-                          {
-                            name: "on-clickaway",
-                            rawName: "v-on-clickaway",
-                            value: _vm.away,
-                            expression: "away"
-                          }
-                        ],
-                        staticClass: "notify-block",
-                        on: {
-                          click: [
-                            function($event) {
-                              _vm.isShowing ^= true
-                            },
-                            _vm.Showactive
-                          ]
-                        }
-                      },
-                      [
-                        _c(
-                          "i",
-                          {
-                            staticClass: "icon-notifications-outline",
-                            attrs: { active: _vm.tab == true }
-                          },
-                          [
-                            _c("span", { staticClass: "badge-count" }, [
-                              _vm._v("5")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("notification", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.isShowing,
-                              expression: "isShowing"
-                            }
-                          ]
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
                       { staticClass: "user-img", on: { click: _vm.ShowModal } },
                       [
                         _c("img", {
                           attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                        }),
-                        _vm._v(" "),
-                        _c("SpinnerLoader")
-                      ],
-                      1
+                        })
+                      ]
                     ),
                     _vm._v(" "),
                     _c("router-link", { attrs: { to: "/" } }, [
@@ -56592,7 +56630,12 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("update-profile", {
+        attrs: { showModalProp: _vm.showModalValue },
+        on: { HideModalValue: _vm.HideModal }
+      })
     ],
     1
   )
