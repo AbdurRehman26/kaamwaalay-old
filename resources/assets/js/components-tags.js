@@ -34,6 +34,8 @@ Vue.component('change-status-user',require('./components/admin/popup/ChangeStatu
 
 // Service-Type
 // Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
+Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
+
 
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
