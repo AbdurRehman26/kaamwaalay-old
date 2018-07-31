@@ -1743,9 +1743,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             showModalValue: false,
 
-            fields: ['first_name', 'last_name', 'email_address', 'access_Level', 'join_date'],
+            fields: ['first_name', 'last_name', 'email_address', 'access_Level', 'join_date', 'status', 'actions'],
 
-            items: [{ isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018' }, { isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018' }, { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018' }, { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018' }]
+            items: [{ isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018', status: 'Active', actions: 'Change status' }, { isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018', status: 'Active', actions: 'Change status' }, { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018', status: 'Active', actions: 'Change status' }, { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018', status: 'Active', actions: 'Change status' }]
         };
     },
 
@@ -55312,7 +55312,7 @@ var render = function() {
     { staticClass: "panel" },
     [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "col-md-10" }, [
           _c(
             "div",
             { staticClass: "table-area" },
@@ -55330,7 +55330,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "col-md-2" }, [
           _c(
             "a",
             {
