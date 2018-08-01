@@ -33855,6 +33855,7 @@ body .ag-theme-balham .ag-header {
   border-bottom: 0px solid;
   font-family: "OpenSans-Bold";
   border-top: 0px solid;
+  vertical-align: middle;
 }
 
 .table-area tr th:first-child {
@@ -33873,6 +33874,7 @@ body .ag-theme-balham .ag-header {
   line-height: 16px;
   color: #1A1A1A;
   font-family: "OpenSans-SemiBold";
+  vertical-align: middle;
 }
 
 .table-area tr td:first-child {
