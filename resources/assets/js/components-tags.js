@@ -35,8 +35,7 @@ Vue.component('change-status-user',require('./components/admin/popup/ChangeStatu
 // Service-Type
 Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
 Vue.component('view-details',require('./components/service-type-user/popup/ViewDetails.vue'));
-Vue.component('delete-popup',require('./components/admin/popup/DeletePopup'));
-
+Vue.component('delete-popup',require('./components/admin/popup/DeletePopup.vue'));
 
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
