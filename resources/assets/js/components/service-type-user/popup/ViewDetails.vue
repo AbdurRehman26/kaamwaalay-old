@@ -4,7 +4,7 @@
             <alert></alert>
 		    	<div>
                     <div class="form-group">
-                    	<label>Featured Service</label>
+                    	<label>Parent Service</label>
                         <select class="form-control">
                             <option value="" selected="" disabled="">Select Parent Service</option>
                             <option value="">None</option>
@@ -46,6 +46,11 @@
                         <label>Description</label>
                         <textarea class="form-control" rows="5"></textarea>
                     </div>
+
+                     <div class="form-group">
+                        <label>URL</label>
+                        <input type="text" class="form-control" name="">
+                    </div> 
 
                                             
 		    	</div>

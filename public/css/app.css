@@ -33893,8 +33893,8 @@ body .ag-theme-balham .ag-header {
   color: #FA001F;
 }
 
-.table-area .error {
-  color: #f1152c;
+.table-area tr td.table-success-color {
+  color: #28a745;
 }
 
 .width-30 {

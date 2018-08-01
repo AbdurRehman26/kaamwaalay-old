@@ -1720,6 +1720,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -1758,11 +1762,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             showModalValue: false,
             changestatus: false,
+            actiondelete: false,
 
             fields: ['first_name', 'last_name', 'email_address', 'access_Level', 'join_date', 'status', 'actions'],
 
             items: [{ isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018', status: 'Active',
-                actions: 'Change Status' }, { isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }, { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018', status: 'Active', actions: 'Change Status' }, { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }]
+                actions: 'Change Status', _cellVariants: { status: 'success-color' } }, _defineProperty({ isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }, '_cellVariants', { actions: 'text-center' }), { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018', status: 'Active', actions: 'Change Status', _cellVariants: { status: 'success-color' } }, { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }]
 
         };
     },
@@ -1771,12 +1776,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ShowModalUser: function ShowModalUser() {
             this.showModalValue = true;
         },
-        statuschange: function statuschange() {
+        StatusChange: function StatusChange() {
             this.changestatus = true;
+        },
+        ActionDelete: function ActionDelete() {
+            this.actiondelete = true;
         },
         HideModal: function HideModal() {
             this.showModalValue = false;
             this.changestatus = false;
+            this.actiondelete = false;
         }
     }
 });
@@ -1887,6 +1896,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             options: [{ value: null, text: 'Active' }, { value: 'b', text: 'Deactive' }]
         };
     },
+
+    props: ['showModalProp'],
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        }
+    },
+
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     props: ['showModalProp'],
     methods: {
@@ -3030,7 +3087,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation', 'description', 'URL', 'actions'],
 
-            items: [{ isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Electronics', service_name: 'Computer', is_featured: 'No', hero_navigation: 'Yes', description: 'Repair', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }]
+            items: [{ isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Electronics', service_name: 'Computer', is_featured: 'No', hero_navigation: 'Yes', description: 'Repair', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }]
         };
     },
 
@@ -3185,6 +3242,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -56152,21 +56214,17 @@ var render = function() {
                     key: "actions",
                     fn: function(data) {
                       return [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "action-link",
-                            attrs: { href: "javascript:void(0);" },
-                            on: { click: _vm.statuschange }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t        \t" +
-                                _vm._s(data.value) +
-                                "\n\t\t\t\t\t\t        "
-                            )
-                          ]
-                        )
+                        _c("div", { staticClass: "action-status" }, [
+                          _c("span", {
+                            staticClass: "icon-cog",
+                            on: { click: _vm.StatusChange }
+                          }),
+                          _vm._v(" "),
+                          _c("span", {
+                            staticClass: "icon-delete",
+                            on: { click: _vm.ActionDelete }
+                          })
+                        ])
                       ]
                     }
                   }
@@ -56185,6 +56243,11 @@ var render = function() {
       _vm._v(" "),
       _c("change-status-user", {
         attrs: { showModalProp: _vm.changestatus },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("delete-popup", {
+        attrs: { showModalProp: _vm.actiondelete },
         on: { HideModalValue: _vm.HideModal }
       })
     ],
@@ -56410,6 +56473,55 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-41845f96", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4ca66e1d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "delete-popup",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "secondary",
+            size: "sm",
+            title: "Delete",
+            "ok-only": "",
+            "ok-title": "Submit"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c("div", [_c("p", [_vm._v("Your account has been deleted")])])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4ca66e1d", module.exports)
   }
 }
 
@@ -57790,7 +57902,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Featured Service")]),
+              _c("label", [_vm._v("Parent Service")]),
               _vm._v(" "),
               _c("select", { staticClass: "form-control" }, [
                 _c(
@@ -57867,6 +57979,15 @@ var render = function() {
               _c("textarea", {
                 staticClass: "form-control",
                 attrs: { rows: "5" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("URL")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", name: "" }
               })
             ])
           ])
@@ -71909,6 +72030,7 @@ Vue.component('change-status-user', __webpack_require__("./resources/assets/js/c
 // Service-Type
 Vue.component('add-service', __webpack_require__("./resources/assets/js/components/service-type-user/popup/AddService.vue"));
 Vue.component('view-details', __webpack_require__("./resources/assets/js/components/service-type-user/popup/ViewDetails.vue"));
+Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/admin/popup/DeletePopup.vue"));
 
 // Customer
 Vue.component('customer-detail', __webpack_require__("./resources/assets/js/components/customer/popup/AddCustomer.vue"));
@@ -72147,6 +72269,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-41845f96", Component.options)
   } else {
     hotAPI.reload("data-v-41845f96", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/admin/popup/DeletePopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4ca66e1d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\admin\\popup\\DeletePopup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4ca66e1d", Component.options)
+  } else {
+    hotAPI.reload("data-v-4ca66e1d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
