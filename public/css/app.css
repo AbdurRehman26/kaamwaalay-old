@@ -32383,7 +32383,7 @@ h4 {
 }
 
 .danger-color {
-  color: #D9534F;
+  color: #fff;
 }
 
 .warning-color {
@@ -33936,14 +33936,14 @@ body .ag-theme-balham .ag-header {
 }
 
 .alert-success {
-  background: #FAFFFA;
-  color: #5CB85C;
-  border-color: #D6F3D6;
+  background: #28a745;
+  color: #fff;
+  border-color: #28a745;
 }
 
 .alert-success .icon-success {
   display: block;
-  color: #5CB85C;
+  color: #fff;
   font-size: 0.9rem;
   left: 14px;
   top: 15px;
@@ -33954,9 +33954,9 @@ body .ag-theme-balham .ag-header {
 }
 
 .alert-danger {
-  background: #FFF3F3;
-  color: #D9534F;
-  border-color: #F5D9D9;
+  background: #d9534f;
+  color: #fff;
+  border-color: #d9534f;
 }
 
 .alert-danger .icon-success {
@@ -33965,7 +33965,7 @@ body .ag-theme-balham .ag-header {
 
 .alert-danger .icon-danger {
   display: block;
-  color: #D9534F;
+  color: #fff;
 }
 
 .btn {
@@ -34868,7 +34868,7 @@ body .form-group.is-invalid {
 }
 
 body .form-group.is-invalid .form-control {
-  border-color: #D9534F;
+  border-color: #fff;
   -webkit-box-shadow: none;
           box-shadow: none;
   background-image: url(/images/alert-icon.svg?09b6055c6e034afa1fc5b2d995574a77);
@@ -34893,7 +34893,7 @@ body .form-group.is-valid {
 }
 
 body .form-group.is-valid .form-control {
-  border-color: #5CB85C;
+  border-color: #fff;
   -webkit-box-shadow: none;
           box-shadow: none;
   background-image: url(/images/check-symbol.svg?06f82467afa6fc29b9d4f136c2e75c39);
@@ -35374,6 +35374,9 @@ textarea {
   overflow: hidden;
   background-color: #d9d9d9;
   position: relative;
+  background-image: url("/../../images/dummy/image-placeholder.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .user-img.radius-0 {
@@ -39899,7 +39902,7 @@ i[active="true"] {
 }
 
 .steps-details .chart-legends .divider .progress.success .progress-bar {
-  background-color: #5CB85C !important;
+  background-color: #fff !important;
 }
 
 .steps-details .chart-legends .divider .progress.warning .progress-bar {
@@ -40631,5 +40634,13 @@ i[active="true"] {
   display: inline-block;
   cursor: pointer;
   font-size: 16px;
+}
+
+.statustext .active {
+  color: #28a745 !important;
+}
+
+.statustext .deactive {
+  color: #d9534f !important;
 }
 

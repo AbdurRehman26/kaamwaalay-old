@@ -1720,8 +1720,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1764,10 +1783,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             changestatus: false,
             actiondelete: false,
 
-            fields: ['first_name', 'last_name', 'email_address', 'access_Level', 'join_date', 'status', 'actions'],
-
-            items: [{ isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018', status: 'Active',
-                actions: 'Change Status', _cellVariants: { status: 'success-color' } }, _defineProperty({ isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }, '_cellVariants', { actions: 'text-center' }), { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018', status: 'Active', actions: 'Change Status', _cellVariants: { status: 'success-color' } }, { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }]
+            listing: [{
+                fname: 'Dickerson',
+                lname: 'Macdonald',
+                email: 'dmacdonald@gmail.com',
+                acesslevel: 'Full',
+                jdate: '22-01-2018',
+                status: 'Active'
+            }, {
+                fname: 'Larsen',
+                lname: 'Shaw',
+                email: 'shawlarsen@gmail.com',
+                acesslevel: 'Review',
+                jdate: 'July 1, 2018',
+                status: 'Active'
+            }, {
+                fname: 'Geneva',
+                lname: 'Wilson',
+                email: 'genevawilson@gmail.com',
+                acesslevel: 'Full',
+                jdate: 'July 2, 2018',
+                status: 'Deactive'
+            }]
 
         };
     },
@@ -1786,6 +1823,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.showModalValue = false;
             this.changestatus = false;
             this.actiondelete = false;
+        },
+        statusLink: function statusLink(event) {
+            if (event.target.className == "active") {
+                event.target.className = "deactive";
+                event.target.text = "Deactive";
+            } else {
+                event.target.className = "active";
+                event.target.text = "Active";
+            }
         }
     }
 });
@@ -1797,6 +1843,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3114,7 +3168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: 'www.psm.com'
             }, {
                 id: 2,
-                imagepath: 'images/dummy/user-pic.jpg',
+                imagepath: '',
                 service: 'Carpenters',
                 subservice: '',
                 featured: 'Yes',
@@ -3123,7 +3177,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: 'www.psm.com'
             }, {
                 id: 3,
-                imagepath: 'images/dummy/user-pic.jpg',
+                imagepath: '',
                 service: 'Cleaning Services',
                 subservice: '',
                 featured: 'No',
@@ -56259,41 +56313,48 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "table-area" },
-            [
-              _c("b-table", {
-                attrs: {
-                  bordered: _vm.bordered,
-                  hover: "",
-                  items: _vm.items,
-                  fields: _vm.fields
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "actions",
-                    fn: function(data) {
-                      return [
-                        _c("div", { staticClass: "action-status" }, [
-                          _c("span", {
-                            staticClass: "icon-cog",
-                            on: { click: _vm.StatusChange }
-                          }),
-                          _vm._v(" "),
-                          _c("span", {
-                            staticClass: "icon-delete",
-                            on: { click: _vm.ActionDelete }
-                          })
+          _c("div", { staticClass: "table-area" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.listing, function(list) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(list.fname))]),
+                      _c("td", [_vm._v(_vm._s(list.lname))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("a", { attrs: { href: "" } }, [
+                          _vm._v(_vm._s(list.email))
                         ])
-                      ]
-                    }
-                  }
-                ])
-              })
-            ],
-            1
-          )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(list.acesslevel))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.jdate))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center statustext" }, [
+                        _c("div", {}, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "active",
+                              on: { click: _vm.statusLink }
+                            },
+                            [_vm._v("Active")]
+                          )
+                        ])
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -56322,6 +56383,26 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "float-left" }, [
       _c("h2", { staticClass: "page-title" }, [_vm._v("Admins")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("First Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Last Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email Address")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Access Level")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Join Date")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Status")])
+      ])
     ])
   }
 ]
@@ -57679,9 +57760,13 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(list.subservice))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(list.featured))]),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(list.featured))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(list.heronavigation))]),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(list.heronavigation))
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(list.description))]),
                       _vm._v(" "),
@@ -57733,9 +57818,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Sub Service")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Is Featured")]),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Is Featured")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Hero Navigation")]),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Hero Navigation")]),
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),
@@ -57855,6 +57940,22 @@ var render = function() {
                 _c("option", { attrs: { value: "" } }, [
                   _vm._v("Review Process Only")
                 ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Status")]),
+              _vm._v(" "),
+              _c("select", { staticClass: "form-control" }, [
+                _c(
+                  "option",
+                  { attrs: { value: "", selected: "", disabled: "" } },
+                  [_vm._v("Select Status")]
+                ),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "" } }, [_vm._v("Active")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "" } }, [_vm._v("Deactive")])
               ])
             ])
           ])

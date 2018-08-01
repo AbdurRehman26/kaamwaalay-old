@@ -2313,3 +2313,11 @@ i[active="true"]{
         font-size: 16px;
     }
 }
+.statustext{
+    .active{
+        color:$success-bg !important;
+    }
+    .deactive{
+        color:$danger-bg !important;
+    }
+}

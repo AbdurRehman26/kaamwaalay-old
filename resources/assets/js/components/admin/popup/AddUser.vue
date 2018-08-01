@@ -1,4 +1,4 @@
- <template>	
+ <template>
 	<div>
 		<b-modal id="add-new-user" centered @hidden="onHidden" title-tag="h4" ok-variant="secondary" ref="myModalRef" size="sm" title="Add new User" ok-only ok-title="Submit">
             <alert></alert>
@@ -7,7 +7,7 @@
                     	<label>First Name</label>
                         <input type="text" class="form-control" placeholder="Enter first name" name="">
                     </div>
-                    
+
                     <div class="form-group">
                 		<label>Last Name</label>
                         <input type="text" class="form-control" placeholder="Enter last name" name="">
@@ -25,7 +25,15 @@
                 			<option value="">Full Access</option>
                 			<option value="">Review Process Only</option>
                 		</select>
-                    </div>                
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control">
+                            <option value="" selected="" disabled="">Select Status</option>
+                            <option value="">Active</option>
+                            <option value="">Deactive</option>
+                        </select>
+                    </div>
 		    	</div>
 	    </b-modal>
 	</div>
@@ -51,7 +59,7 @@ export default {
         },
         onHidden(){
             this.$emit('HideModalValue');
-        },        
+        },
     },
 
     watch: {

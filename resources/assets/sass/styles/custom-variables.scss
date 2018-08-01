@@ -13,6 +13,15 @@ $body-bg:#F5F5F5;
 $label-border-color:$text-primary-color;
 $page-loader-bg:$greyL;
 
+$success-bg:#28a745;
+$success-color:#fff;
+$success-border:#28a745;
+
+$danger-bg:#d9534f;
+$danger-color:#fff;
+$danger-border:#d9534f;
+
+
 $border-color:#ddd;
 $border-color2:#e9e9e9;
 $panel-padding:8px 10px;
@@ -146,13 +155,6 @@ $alert-width:100%;
 $alert-radius:$global-radius;
 $alert-padding:9px 20px 9px 47px;
 
-$success-bg:#FAFFFA;
-$success-color:#5CB85C;
-$success-border:#D6F3D6;
-
-$danger-bg:#FFF3F3;
-$danger-color:#D9534F;
-$danger-border:#F5D9D9;
 
 //pie charts
 $pie-chart-width:100%;

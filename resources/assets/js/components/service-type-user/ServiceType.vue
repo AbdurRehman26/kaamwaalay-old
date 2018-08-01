@@ -21,8 +21,8 @@
                                   <th>Image</th>
                                   <th>Service</th>
                                   <th>Sub Service</th>
-                                  <th>Is Featured</th>
-                                  <th>Hero Navigation</th>
+                                  <th class="text-center">Is Featured</th>
+                                  <th class="text-center">Hero Navigation</th>
                                   <th>Description</th>
                                   <th>URL</th>
                                   <th class="text-center">Actions</th>
@@ -34,8 +34,8 @@
                                   <td><span class="user-img radius-0"><img  :src="list.imagepath" ></span></td>
                                   <td>{{list.service}}</td>
                                   <td>{{list.subservice}}</td>
-                                  <td>{{list.featured}}</td>
-                                  <td>{{list.heronavigation}}</td>
+                                  <td class="text-center">{{list.featured}}</td>
+                                  <td class="text-center">{{list.heronavigation}}</td>
                                   <td>{{list.description}}</td>
                                   <td>{{list.url}}</td>
                                   <td class="text-center">
@@ -79,7 +79,7 @@ export default {
                 },
                 {
                     id : 2,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    imagepath:'',
                     service:'Carpenters',
                     subservice:'',
                     featured:'Yes',
@@ -89,7 +89,7 @@ export default {
                 },
                 {
                     id : 3,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    imagepath:'',
                     service:'Cleaning Services',
                     subservice:'',
                     featured:'No',

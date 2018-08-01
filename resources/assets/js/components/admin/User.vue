@@ -15,14 +15,35 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-area">
-		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields">
-		    				<template slot="actions" slot-scope="data">
-						        <div class="action-status">
-                                    <span @click="StatusChange" class="icon-cog"></span>
-						        	<span @click="ActionDelete" class="icon-delete"></span>
-                                </div>     
-						    </template>
-		    			</b-table>
+                        <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                  <th>Email Address</th>
+                                  <th>Access Level</th>
+                                  <th>Join Date</th>
+                                  <th class="text-center">Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="list in listing">
+                                  <td>{{list.fname}}</th>
+                                  <td>{{list.lname}}</td>
+                                  <td><a href="">{{list.email}}</a></td>
+                                  <td >{{list.acesslevel}}</td>
+                                  <td>{{list.jdate}}</td>
+                                  <td class="text-center statustext">
+                                    <div class=""><a class="active" @click="statusLink">Active</a></div>
+<!--                                     <div class="action-icons">
+    <i class="icon-pencil"  @click="changestatus"></i>
+</div> -->
+                                </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
 		    		</div>
 		  		</div>
 		    </div>
@@ -40,16 +61,33 @@ export default {
         changestatus: false,
         actiondelete: false,
 
-      	fields: [ 'first_name', 'last_name', 'email_address', 'access_Level' , 'join_date', 'status',
-      	'actions' ],
 
-      	items: [
-		        { isActive: true, first_name: 'Dickerson', last_name: 'Macdonald', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '22-01-2018', status: 'Active',
-		        actions: 'Change Status',_cellVariants: { status: 'success-color' } },
-		        { isActive: false, first_name: 'Larsen', last_name: 'Shaw', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '24-02-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' }, _cellVariants: { actions: 'text-center' } },
-		        { isActive: false, first_name: 'Geneva', last_name: 'Wilson', email_address: 'psm@admin.com', access_Level: 'Full', join_date: '29-04-2018', status: 'Active', actions: 'Change Status',_cellVariants: { status: 'success-color' } },
-		        { isActive: true, first_name: 'Jami', last_name: 'Carney', email_address: 'psm@admin.com', access_Level: 'Review', join_date: '25-08-2018', status: 'Deactive', actions: 'Change Status', _cellVariants: { status: 'error' } }
-	        ]
+            listing: [
+                {
+                    fname:'Dickerson',
+                    lname:'Macdonald',
+                    email:'dmacdonald@gmail.com',
+                    acesslevel:'Full',
+                    jdate: '22-01-2018',
+                    status: 'Active',
+                },
+                {
+                    fname:'Larsen',
+                    lname:'Shaw',
+                    email:'shawlarsen@gmail.com',
+                    acesslevel:'Review',
+                    jdate: 'July 1, 2018',
+                    status: 'Active',
+                },
+                {
+                    fname:'Geneva',
+                    lname:'Wilson',
+                    email:'genevawilson@gmail.com',
+                    acesslevel:'Full',
+                    jdate: 'July 2, 2018',
+                    status: 'Deactive',
+                },
+            ],
 
     	}
   	},
@@ -67,7 +105,19 @@ export default {
             this.showModalValue = false;
             this.changestatus = false;
             this.actiondelete = false;
-        }
+        },
+          statusLink(event) {
+            if(event.target.className == "active")
+            {
+                event.target.className = "deactive";
+                event.target.text = "Deactive";
+            }
+            else
+            {
+                event.target.className = "active";
+                event.target.text = "Active";
+            }
+          }
     }
 }
 </script>
