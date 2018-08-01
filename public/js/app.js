@@ -3277,6 +3277,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3356,6 +3358,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58073,11 +58083,18 @@ var render = function() {
                         _vm._v(_vm._s(list.heronavigation))
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(list.description))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(list.url))]),
-                      _vm._v(" "),
-                      _vm._m(2, true)
+                      _c("td", [
+                        _c("div", { staticClass: "action-icons" }, [
+                          _c("i", { staticClass: "icon-eye" }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "icon-pencil",
+                            on: { click: _vm.AddService }
+                          }),
+                          _vm._v(" "),
+                          _c("i", { staticClass: "icon-delete" })
+                        ])
+                      ])
                     ])
                   })
                 )
@@ -58127,22 +58144,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Hero Navigation")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("URL")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", { staticClass: "icon-eye" }),
-      _c("i", { staticClass: "icon-pencil" }),
-      _c("i", { staticClass: "icon-delete" })
     ])
   }
 ]
@@ -58493,7 +58496,7 @@ var render = function() {
             id: "add-new-service",
             centered: "",
             "title-tag": "h4",
-            "ok-variant": "secondary",
+            "ok-variant": "success",
             size: "md",
             title: "Add new Service",
             "ok-only": "",
@@ -58505,122 +58508,189 @@ var render = function() {
           _c("alert"),
           _vm._v(" "),
           _c("div", [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Parent Service")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Parent Service")]
-                ),
+            _c("form", { attrs: { action: "", method: "" } }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Parent Service")]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("None")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Electrician")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Carpenter")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Plumber")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Painter")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Service Name")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Service Name")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Full Access")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Review Process Only")
+                _c("select", { staticClass: "form-control" }, [
+                  _c(
+                    "option",
+                    { attrs: { value: "", selected: "", disabled: "" } },
+                    [_vm._v("Select Parent Service")]
+                  ),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "" } }, [_vm._v("None")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Electrician")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Carpenter")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Plumber")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Painter")])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Is Featured")]),
+              ]),
               _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Is Featured?")]
-                ),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Service Name")]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Yes")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("No")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Hero Navigation")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Hero Navigation")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Yes")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("No")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Description")]),
-              _vm._v(" "),
-              _c("textarea", {
-                staticClass: "form-control",
-                attrs: { rows: "5" }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v("Upload Image")]),
-                _vm._v(" "),
-                _c("b-form-file", {
+                _c("input", {
+                  staticClass: "form-control",
                   attrs: {
-                    accept: ".jpg, .png",
-                    placeholder: "Click here to upload image"
-                  },
-                  on: { change: _vm.onFileChange },
-                  model: {
-                    value: _vm.file,
-                    callback: function($$v) {
-                      _vm.file = $$v
-                    },
-                    expression: "file"
+                    type: "text",
+                    name: "",
+                    placeholder: "Enter service name"
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "uploded-picture" }, [
-                  _c("img", { attrs: { src: _vm.image } })
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("URL")]),
+                })
+              ]),
               _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Enter url", name: "" }
-              })
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                  _c("div", { staticClass: "form-group radio-group-row" }, [
+                    _c("label", [_vm._v("Is Featured?")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "inlineRadioOptions",
+                          id: "inlineRadio1",
+                          value: "option1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio1" }
+                        },
+                        [_vm._v("Yes")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          checked: "",
+                          type: "radio",
+                          name: "inlineRadioOptions",
+                          id: "inlineRadio1",
+                          value: "option1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio1" }
+                        },
+                        [_vm._v("No")]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                  _c("div", { staticClass: "form-group radio-group-row" }, [
+                    _c("label", [_vm._v("Hero Navigation?")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "inlineRadioOptions2",
+                          id: "inlineRadio2",
+                          value: "option1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio2" }
+                        },
+                        [_vm._v("Yes")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          checked: "",
+                          type: "radio",
+                          name: "inlineRadioOptions2",
+                          id: "inlineRadio2",
+                          value: "option1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio2" }
+                        },
+                        [_vm._v("No")]
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Description")]),
+                _vm._v(" "),
+                _c("textarea", {
+                  staticClass: "form-control",
+                  attrs: { rows: "5", placeholder: "Enter description" }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v("Upload Image")]),
+                  _vm._v(" "),
+                  _c("b-form-file", {
+                    attrs: {
+                      accept: ".jpg, .png",
+                      placeholder: "Click here to upload image"
+                    },
+                    on: { change: _vm.onFileChange },
+                    model: {
+                      value: _vm.file,
+                      callback: function($$v) {
+                        _vm.file = $$v
+                      },
+                      expression: "file"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "uploded-picture" }, [
+                    _c("img", { attrs: { src: _vm.image } })
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("URL")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Enter url", name: "" }
+                })
+              ])
             ])
           ])
         ],

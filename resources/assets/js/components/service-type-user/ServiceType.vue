@@ -23,8 +23,6 @@
                                   <th>Sub Service</th>
                                   <th class="text-center">Is Featured</th>
                                   <th class="text-center">Hero Navigation</th>
-                                  <th>Description</th>
-                                  <th>URL</th>
                                   <th>Actions</th>
                                 </tr>
                               </thead>
@@ -36,9 +34,13 @@
                                   <td>{{list.subservice}}</td>
                                   <td class="text-center">{{list.featured}}</td>
                                   <td class="text-center">{{list.heronavigation}}</td>
-                                  <td>{{list.description}}</td>
-                                  <td>{{list.url}}</td>
-                                  <td><i class="icon-eye"></i><i class="icon-pencil"></i><i class="icon-delete"></i></td>
+                                  <td>
+                                    <div class="action-icons">
+                                      <i class="icon-eye"></i>
+                                      <i class="icon-pencil" @click="AddService"></i>
+                                      <i class="icon-delete"></i>
+                                    </div>
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>

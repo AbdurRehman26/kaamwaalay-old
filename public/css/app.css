@@ -35028,6 +35028,19 @@ textarea {
   border: 1px solid #d9d9d9;
 }
 
+.radio-group-row {
+  margin-top: 7px;
+}
+
+.radio-group-row label {
+  margin: 0 15px 0 0;
+}
+
+.radio-group-row .form-check {
+  position: relative;
+  top: 3px;
+}
+
 .main-nav {
   position: relative;
   height: 56px;

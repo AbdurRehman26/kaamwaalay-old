@@ -1,8 +1,9 @@
- <template>	
+ <template>
 	<div>
-		<b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="secondary" ref="myModalRef" size="md" title="Add new Service" ok-only ok-title="Submit">
+		<b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="success" ref="myModalRef" size="md" title="Add new Service" ok-only ok-title="Submit">
             <alert></alert>
 		    	<div>
+                    <form action="" method="">
                     <div class="form-group">
                     	<label>Parent Service</label>
                         <select class="form-control">
@@ -14,37 +15,44 @@
                             <option value="">Painter</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                 		<label>Service Name</label>
-                        <select class="form-control">
-                            <option value="" selected="" disabled="">Select Service Name</option>
-                            <option value="">Full Access</option>
-                            <option value="">Review Process Only</option>
-                        </select>
+                        <input type="text" name="" class="form-control" placeholder="Enter service name">
                     </div>
 
-                    <div class="form-group">
-                		<label>Is Featured</label>
-                        <select class="form-control">
-                            <option value="" selected="" disabled="">Is Featured?</option>
-                            <option value="">Yes</option>
-                            <option value="">No</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group radio-group-row">
+                                <label>Is Featured?</label>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                      <label class="form-check-label" for="inlineRadio1">No</label>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group radio-group-row">
+                                <label>Hero Navigation?</label>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="option1">
+                                      <label class="form-check-label" for="inlineRadio2">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="option1">
+                                      <label class="form-check-label" for="inlineRadio2">No</label>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                		<label>Hero Navigation</label>
-                		<select class="form-control">
-                			<option value="" selected="" disabled="">Select Hero Navigation</option>
-                			<option value="">Yes</option>
-                			<option value="">No</option>
-                		</select>
-                    </div> 
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea class="form-control" rows="5" placeholder="Enter description"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -59,8 +67,8 @@
                         <label>URL</label>
                         <input type="text" class="form-control" placeholder="Enter url" name="">
                     </div>
+                    </form>
 
-                                   
 		    	</div>
 	    </b-modal>
 	</div>
@@ -78,7 +86,7 @@ export default {
     },
 
     props: ['showModalProp'],
-    
+
     methods: {
         showModal () {
             this.$refs.myModalRef.show()
