@@ -32,6 +32,14 @@ const routes = [
         meta: { title: 'PSM | Service Type' }
     },
 
+    /* Customer Panel */
+
+    {
+        path: '/customer/customer-panel',
+        component: require('./components/customer/CustomerPanel.vue'),
+        meta: { title: 'PSM | Customer Panel' }
+    },
+
     /*404 Page*/
 
     {
