@@ -69,7 +69,7 @@ export default {
 	        ]
     	}
   	},
-    
+
     methods: {
         AddService(){
             this.service = true;

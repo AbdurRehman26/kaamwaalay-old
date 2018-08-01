@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="page-title-strip">
                     <div class="float-left">
-                       <h2 class="page-title">Admin Users</h2>
+                       <h2 class="page-title">Admins</h2>
                     </div>
                     <div class="float-right">
                         <a href="javascript:;" class="btn btn-primary" @click="ShowModalUser">Add User</a>

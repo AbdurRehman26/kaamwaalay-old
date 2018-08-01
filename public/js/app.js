@@ -55647,7 +55647,7 @@ var render = function() {
                 staticClass: "icon-user-icon-resue",
                 attrs: { "aria-hidden": "true" }
               }),
-              _c("span", [_vm._v("Admin")])
+              _c("span", [_vm._v("Admins")])
             ])
           ],
           1
@@ -56314,7 +56314,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "float-left" }, [
-      _c("h2", { staticClass: "page-title" }, [_vm._v("Admin Users")])
+      _c("h2", { staticClass: "page-title" }, [_vm._v("Admins")])
     ])
   }
 ]
