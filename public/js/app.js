@@ -3021,6 +3021,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -3028,9 +3040,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service: false,
             viewdetails: false,
 
-            fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation', 'description', 'URL', 'actions'],
-
-            items: [{ isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Electronics', service_name: 'Computer', is_featured: 'No', hero_navigation: 'Yes', description: 'Repair', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }, { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }]
+            listing: [{
+                id: 1,
+                imagepath: 'images/dummy/user-pic.jpg',
+                service: 'Electricians',
+                subservice: '',
+                featured: 'No',
+                heronavigation: 'Yes',
+                description: 'Testing',
+                url: 'www.psm.com'
+            }, {
+                id: 2,
+                imagepath: 'images/dummy/user-pic.jpg',
+                service: 'Carpenters',
+                subservice: '',
+                featured: 'Yes',
+                heronavigation: 'Yes',
+                description: 'Testing',
+                url: 'www.psm.com'
+            }, {
+                id: 3,
+                imagepath: 'images/dummy/user-pic.jpg',
+                service: 'Cleaning Services',
+                subservice: '',
+                featured: 'No',
+                heronavigation: 'No',
+                description: 'Testing',
+                url: 'www.psm.com'
+            }, {
+                id: 4,
+                imagepath: 'images/dummy/user-pic.jpg',
+                service: 'Electricians',
+                subservice: 'Electrical and wiring repair',
+                featured: 'No',
+                heronavigation: 'No',
+                description: 'Testing',
+                url: 'www.psm.com'
+            }, {
+                id: 5,
+                imagepath: 'images/dummy/user-pic.jpg',
+                service: 'Electricians',
+                subservice: 'Air conditioning repair',
+                featured: 'No',
+                heronavigation: 'No',
+                description: 'Testing',
+                url: 'www.psm.com'
+            }]
         };
     },
 
@@ -55556,7 +55611,7 @@ var render = function() {
                   staticClass: "icon-workspace",
                   attrs: { "aria-hidden": "true" }
                 }),
-                _c("span", [_vm._v("Service Type")])
+                _c("span", [_vm._v("Service / Sub Service")])
               ]
             )
           ],
@@ -57486,79 +57541,41 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "table-area" },
-            [
-              _c("b-table", {
-                attrs: {
-                  bordered: _vm.bordered,
-                  hover: "",
-                  items: _vm.items,
-                  fields: _vm.fields
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "URL",
-                    fn: function(data) {
-                      return [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "action-link",
-                            attrs: {
-                              href: "javascript:void(0);",
-                              target: "_blank"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t        \t" +
-                                _vm._s(data.value) +
-                                "\n\t\t\t\t\t\t        "
-                            )
-                          ]
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "photo",
-                    fn: function(data) {
-                      return [
-                        _c(
-                          "span",
-                          { staticClass: "user-img" },
-                          [
-                            _c("b-img", {
-                              attrs: {
-                                src: "images/dummy/user-pic.jpg",
-                                fluid: "",
-                                alt: "Responsive image"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "actions",
-                    fn: function(data) {
-                      return [
-                        _c("span", {
-                          staticClass: "icon-eye",
-                          on: { click: _vm.ViewDetails }
-                        })
-                      ]
-                    }
-                  }
-                ])
-              })
-            ],
-            1
-          )
+          _c("div", { staticClass: "table-area" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.listing, function(list) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(list.id))]),
+                      _c("td", [
+                        _c("span", { staticClass: "user-img" }, [
+                          _c("img", { attrs: { src: list.imagepath } })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.service))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.subservice))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.featured))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.heronavigation))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.description))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(list.url))]),
+                      _vm._v(" "),
+                      _vm._m(2, true)
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -57581,7 +57598,43 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "float-left" }, [
-      _c("h2", { staticClass: "page-title" }, [_vm._v("Service Type")])
+      _c("h2", { staticClass: "page-title" }, [_vm._v("Service / Sub service")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Service")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sub Service")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Is Featured")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hero Navigation")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("URL")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "icon-eye" }),
+      _c("i", { staticClass: "icon-pencil" }),
+      _c("i", { staticClass: "icon-delete" })
     ])
   }
 ]
