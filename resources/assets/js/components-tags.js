@@ -35,6 +35,9 @@ Vue.component('change-status-user',require('./components/admin/popup/ChangeStatu
 // Service-Type
 // Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
+Vue.component('parent-service',require('./components/service-type-user/popup/ParentServiceDetail.vue'));
+Vue.component('service-detail',require('./components/service-type-user/popup/ServiceDetail.vue'));
+Vue.component('featured-service',require('./components/service-type-user/popup/FeaturedDetail.vue'));
 
 
 // 404 Component
