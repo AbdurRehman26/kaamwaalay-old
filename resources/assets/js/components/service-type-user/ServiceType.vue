@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="page-title-strip">
                     <div class="float-left">
-                       <h2 class="page-title">Service Type</h2>
+                       <h2 class="page-title">Service / Sub service</h2>
                     </div>
                     <div class="float-right">
                         <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
@@ -13,25 +13,36 @@
             </div>
 				<div class="col-md-12">
 					<div class="table-area">
-		    			<b-table :bordered="bordered"  hover :items="items" :fields="fields">
-
-                            <template slot="URL" slot-scope="data">
-						        <a class="action-link" :href="`javascript:void(0);`" target="_blank">
-						        	{{data.value}}
-						        </a>
-						    </template>
-
-						    <template slot="photo" slot-scope="data">
-                                <span class="user-img">
-						            <b-img src="images/dummy/user-pic.jpg"  fluid alt="Responsive image" />
-                                </span>
-						    </template>
-
-                            <template slot="actions" slot-scope="data">
-                                <span class="icon-eye" @click="ViewDetails"></span>
-                            </template>
-
-		    			</b-table>
+                        <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Image</th>
+                                  <th>Service</th>
+                                  <th>Sub Service</th>
+                                  <th>Is Featured</th>
+                                  <th>Hero Navigation</th>
+                                  <th>Description</th>
+                                  <th>URL</th>
+                                  <th>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="list in listing">
+                                  <td>{{list.id}}</th>
+                                  <td><span class="user-img"><img  :src="list.imagepath" ></span></td>
+                                  <td>{{list.service}}</td>
+                                  <td>{{list.subservice}}</td>
+                                  <td>{{list.featured}}</td>
+                                  <td>{{list.heronavigation}}</td>
+                                  <td>{{list.description}}</td>
+                                  <td>{{list.url}}</td>
+                                  <td><i class="icon-eye"></i><i class="icon-pencil"></i><i class="icon-delete"></i></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
 		    		</div>
 		  		</div>
 		    </div>
@@ -42,21 +53,65 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
     	service: false,
         viewdetails: false,
 
-      	fields: ['photo', 'parent_service', 'service_name', 'is_featured', 'hero_navigation' , 'description',
-      	 'URL', 'actions' ],
-
-      	items: [
-		        { isActive: true, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', URL: 'www.psm.com', actions: 'View Details'},
-		        { isActive: false, parent_service: 'Electronics', service_name: 'Computer', is_featured: 'No', hero_navigation: 'Yes', description: 'Repair', photo: '', URL: 'www.psm.com', actions: 'View Details' },
-		        { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' },
-		        { isActive: false, parent_service: 'Vehicles', service_name: 'Car', is_featured: 'yes', hero_navigation: 'No', description: 'On Sale', photo: '', URL: 'www.psm.com', actions: 'View Details' }
-	        ]
+            listing: [
+                {
+                    id : 1,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    service:'Electricians',
+                    subservice:'',
+                    featured:'No',
+                    heronavigation:'Yes',
+                    description: 'Testing',
+                    url: 'www.psm.com',
+                },
+                {
+                    id : 2,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    service:'Carpenters',
+                    subservice:'',
+                    featured:'Yes',
+                    heronavigation:'Yes',
+                    description: 'Testing',
+                    url: 'www.psm.com',
+                },
+                {
+                    id : 3,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    service:'Cleaning Services',
+                    subservice:'',
+                    featured:'No',
+                    heronavigation:'No',
+                    description: 'Testing',
+                    url: 'www.psm.com',
+                },
+                {
+                    id : 4,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    service:'Electricians',
+                    subservice:'Electrical and wiring repair',
+                    featured:'No',
+                    heronavigation:'No',
+                    description: 'Testing',
+                    url: 'www.psm.com',
+                },
+                {
+                    id : 5,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    service:'Electricians',
+                    subservice:'Air conditioning repair',
+                    featured:'No',
+                    heronavigation:'No',
+                    description: 'Testing',
+                    url: 'www.psm.com',
+                },
+            ],
     	}
   	},
 
