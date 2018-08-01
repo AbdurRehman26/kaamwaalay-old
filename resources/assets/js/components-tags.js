@@ -33,12 +33,11 @@ Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
 
 // Service-Type
-// Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
-Vue.component('parent-service',require('./components/service-type-user/popup/ParentServiceDetail.vue'));
-Vue.component('service-detail',require('./components/service-type-user/popup/ServiceDetail.vue'));
-Vue.component('featured-service',require('./components/service-type-user/popup/FeaturedDetail.vue'));
+Vue.component('view-details',require('./components/service-type-user/popup/ViewDetails.vue'));
 
+// Customer
+Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
 
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));

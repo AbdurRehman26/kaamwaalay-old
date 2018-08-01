@@ -15,12 +15,16 @@
 					<div class="table-area customer-table">
 		    			<b-table :bordered="bordered" responsive  hover :items="items" :fields="fields">
 						    <template slot="photo" slot-scope="data">
-						         <b-img src="images/dummy/user-pic.jpg" class="user-img" fluid alt="Responsive image" />
+						    	<span class="user-img">
+						            <b-img src="images/dummy/user-pic.jpg" fluid alt="Responsive image" />
+						        </span>
 						    </template>
 		    			</b-table>
 		    		</div>
 		  		</div>
 		    </div>
+        <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
+
 	</div>
 </template>
 
@@ -29,6 +33,7 @@ export default {
   data () {
     return {
     	service: false,
+    	customer: false,
 
       	fields: ['photo', 'first_name', 'last_name', 'email_address', 'contact_number' , 'avg_rating',
       	 'status', 'join_date', 'address', 'country', 'city', 'state', 'zipcode'  ],
@@ -41,12 +46,14 @@ export default {
     
     methods: {
 
+    	AddCustomer() {
+    		this.customer = true;
+    	},
+
         HideModal(){
-            this.service = false;
-            this.parentservice = false;
-            this.servicedetail = false;
-            this.featuredservice = false;
+            this.customer = false;
         },
+
     }
 }
 </script>
