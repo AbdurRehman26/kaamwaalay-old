@@ -35376,6 +35376,10 @@ textarea {
   position: relative;
 }
 
+.user-img.radius-0 {
+  border-radius: 0;
+}
+
 @media (max-width: 1400px) {
   .user-img {
     width: 30px;
@@ -40620,5 +40624,12 @@ i[active="true"] {
   clear: both;
   display: block;
   overflow: hidden;
+}
+
+.action-icons i {
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
 }
 

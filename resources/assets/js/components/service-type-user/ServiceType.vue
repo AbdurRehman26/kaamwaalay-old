@@ -25,20 +25,26 @@
                                   <th>Hero Navigation</th>
                                   <th>Description</th>
                                   <th>URL</th>
-                                  <th>Actions</th>
+                                  <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
                                   <td>{{list.id}}</th>
-                                  <td><span class="user-img"><img  :src="list.imagepath" ></span></td>
+                                  <td><span class="user-img radius-0"><img  :src="list.imagepath" ></span></td>
                                   <td>{{list.service}}</td>
                                   <td>{{list.subservice}}</td>
                                   <td>{{list.featured}}</td>
                                   <td>{{list.heronavigation}}</td>
                                   <td>{{list.description}}</td>
                                   <td>{{list.url}}</td>
-                                  <td><i class="icon-eye"></i><i class="icon-pencil"></i><i class="icon-delete"></i></td>
+                                  <td class="text-center">
+                                    <div class="action-icons">
+                                        <i class="icon-eye"></i>
+                                        <i class="icon-pencil"></i>
+                                        <i class="icon-delete"></i>
+                                    </div>
+                                </td>
                                 </tr>
                               </tbody>
                             </table>

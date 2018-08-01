@@ -2303,3 +2303,13 @@ i[active="true"]{
     display: block;
     overflow: hidden;
 }
+
+.action-icons
+{
+    i{
+        margin:0 5px;
+        display:inline-block;
+        cursor:pointer;
+        font-size: 16px;
+    }
+}
