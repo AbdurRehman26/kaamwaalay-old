@@ -25,7 +25,7 @@
                                   <th class="text-center">Hero Navigation</th>
                                   <th>Description</th>
                                   <th>URL</th>
-                                  <th class="text-center">Actions</th>
+                                  <th>Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -38,13 +38,7 @@
                                   <td class="text-center">{{list.heronavigation}}</td>
                                   <td>{{list.description}}</td>
                                   <td>{{list.url}}</td>
-                                  <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="icon-eye"></i>
-                                        <i class="icon-pencil"></i>
-                                        <i class="icon-delete"></i>
-                                    </div>
-                                </td>
+                                  <td><i class="icon-eye"></i><i class="icon-pencil"></i><i class="icon-delete"></i></td>
                                 </tr>
                               </tbody>
                             </table>
