@@ -228,6 +228,29 @@ h4{
     color: #F0AD4E;
 }
 
+//status colors
+.status-color{
+    &.active{
+        color:$status-active;
+    }
+    &.pending{
+        color:$status-pending;
+    }
+    &.review{
+        color:$status-review;
+    }
+    &.rejected{
+        color:$status-rejected;
+    }
+    &.approved{
+        color:$status-approved;
+    }
+    &.banned{
+        color:$status-banned;
+    }
+}
+
+
 .resize-none {
     resize: none;
 }

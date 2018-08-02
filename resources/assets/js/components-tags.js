@@ -40,6 +40,9 @@ Vue.component('change-status-user',require('./components/admin/popup/ChangeStatu
 Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
 Vue.component('view-details',require('./components/service-type-user/popup/ViewDetails.vue'));
 
+//service provider
+Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
+
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
 

@@ -32390,6 +32390,30 @@ h4 {
   color: #F0AD4E;
 }
 
+.status-color.active {
+  color: #28a745;
+}
+
+.status-color.pending {
+  color: #ffc107;
+}
+
+.status-color.review {
+  color: #17a2b8;
+}
+
+.status-color.rejected {
+  color: #d9534f;
+}
+
+.status-color.approved {
+  color: #28a745;
+}
+
+.status-color.banned {
+  color: #d9534f;
+}
+
 .resize-none {
   resize: none;
 }
@@ -33925,7 +33949,7 @@ body .ag-theme-balham .ag-header {
   width: 175px;
 }
 
-.table.last-col-fix tbody tr th:last-child {
+.table.last-col-fix thead tr th:last-child {
   width: 175px;
 }
 

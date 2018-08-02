@@ -21,6 +21,19 @@ $danger-bg:#d9534f;
 $danger-color:#fff;
 $danger-border:#d9534f;
 
+$warning-bg:#ffc107;
+$warning-color:#fff;
+$warning-border:#ffc107;
+
+//status colors
+$status-active:$success-bg;
+$status-success:$success-bg;
+$status-danger:$danger-bg;
+$status-pending:$warning-bg;
+$status-review:#17a2b8;
+$status-approved:$success-bg;
+$status-rejected:$danger-bg;
+$status-banned:$danger-bg;
 
 $border-color:#ddd;
 $border-color2:#e9e9e9;
