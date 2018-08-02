@@ -15,7 +15,7 @@
 				<div class="col-md-12">	
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table first-last-col-fix" style="width:2090px;">
+                            <table class="table first-last-col-fix" style="width:1500px;">
                               <thead>
                                 <tr>
                                   <th>Id</th>

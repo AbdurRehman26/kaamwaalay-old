@@ -55968,7 +55968,7 @@ var render = function() {
                 "table",
                 {
                   staticClass: "table first-last-col-fix",
-                  staticStyle: { width: "2090px" }
+                  staticStyle: { width: "1500px" }
                 },
                 [
                   _vm._m(1),
