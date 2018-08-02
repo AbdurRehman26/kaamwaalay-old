@@ -56281,6 +56281,21 @@ var render = function() {
           "li",
           {},
           [
+            _c("router-link", { attrs: { to: "/customer/customer-panel" } }, [
+              _c("i", {
+                staticClass: "icon-users",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Customer")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
             _c(
               "router-link",
               { attrs: { to: "/service-provide/service-provider" } },
@@ -56292,21 +56307,6 @@ var render = function() {
                 _c("span", [_vm._v("Service Provider")])
               ]
             )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {},
-          [
-            _c("router-link", { attrs: { to: "/customer/customer-panel" } }, [
-              _c("i", {
-                staticClass: "icon-users",
-                attrs: { "aria-hidden": "true" }
-              }),
-              _c("span", [_vm._v("Customer")])
-            ])
           ],
           1
         ),
