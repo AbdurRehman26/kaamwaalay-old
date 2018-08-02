@@ -50,8 +50,8 @@
                                     <td> {{ list.job_status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i class="icon-eye" @click="ViewDetails"></i>
-                                        <i class="icon-pencil" @click="AddService"></i>
+                                        <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
+                                        <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i>
                                       </div>
                                     </td>
                                 </tr>

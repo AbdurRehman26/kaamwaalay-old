@@ -18,41 +18,41 @@ const routes = [
     /* Admin Users */
 
     {
-        name: 'admin-users',
-        path: '/admin/user',
-        component: require('./components/admin/User.vue'),
+        name: 'user',
+        path: '/admin',
+        component: require('./components/admin/Main.vue'),
         meta: { title: 'PSM | User' }
     },
 
     /* Service Type */
 
     {
-        path: '/service-type-user/service-type',
-        component: require('./components/service-type-user/ServiceType.vue'),
+        path: '/service-type',
+        component: require('./components/service-type-user/Main.vue'),
         meta: { title: 'PSM | Service Type' }
     },
 
     /* Customer Panel */
 
     {
-        path: '/customer/customer-panel',
-        component: require('./components/customer/CustomerPanel.vue'),
+        path: '/customer',
+        component: require('./components/customer/Main.vue'),
         meta: { title: 'PSM | Customer Panel' }
     },
 
     /* Service Provider */
 
     {
-        path: '/service-provide/service-provider',
-        component: require('./components/service-provide/ServiceProvider.vue'),
+        path: '/service-provider',
+        component: require('./components/service-provide/Main.vue'),
         meta: { title: 'PSM | Service Provider' }
     },
 
     /* Job */
 
     {
-        path: '/job/create-job',
-        component: require('./components/job/CreateJob.vue'),
+        path: '/jobs',
+        component: require('./components/job/Main.vue'),
         meta: { title: 'PSM | Create Job' }
     },
 

@@ -66,7 +66,7 @@
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i class="icon-eye"></i>
+                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>

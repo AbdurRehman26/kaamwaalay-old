@@ -47,7 +47,6 @@
 
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
      <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
-		 <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
 	</div>
 </template>
 <script>
@@ -95,13 +94,9 @@ export default {
         StatusChange(){
             this.changestatus = true;
         },
-        ActionDelete() {
-            this.actiondelete = true;
-        },
         HideModal(){
             this.showModalValue = false;
             this.changestatus = false;
-            this.actiondelete = false;
         },
           statusLink(event) {
             if(event.target.className == "active")

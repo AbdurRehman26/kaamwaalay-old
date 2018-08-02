@@ -32,7 +32,7 @@ Vue.component('delete-popup',require('./components/common-components/DeletePopup
 Vue.component('left-panel', require('./components/common-components/LeftPanel.vue'));
 
 //admin
-Vue.component('user', require('./components/admin/User.vue'));
+Vue.component('user', require('./components/admin/Main.vue'));
 Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
 

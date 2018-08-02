@@ -36,9 +36,9 @@
                                   <td class="text-center">{{list.heronavigation}}</td>
                                   <td class="text-center">
                                     <div class="action-icons">
-                                      <i class="icon-eye"></i>
-                                      <i class="icon-pencil" @click="AddService"></i>
-                                      <i class="icon-delete"></i>
+                                      <i v-b-tooltip.hover title="View Details" @click="ViewDetails" class="icon-eye"></i>
+                                      <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="AddService"></i>
+                                      <i v-b-tooltip.hover title="Delete" @click="ActionDelete" class="icon-delete"></i>
                                     </div>
                                   </td>
                                 </tr>
@@ -50,7 +50,7 @@
 		    </div>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-
+        <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
 	</div>
 </template>
 
@@ -60,7 +60,8 @@ export default {
   data () {
     return {
     	service: false,
-        viewdetails: false,
+      viewdetails: false,
+      actiondelete: false,
 
             listing: [
                 {
@@ -124,9 +125,13 @@ export default {
         ViewDetails() {
             this.viewdetails = true;
         },
+        ActionDelete() {
+            this.actiondelete = true;
+        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
+            this.actiondelete = false;
         },
     }
 }
