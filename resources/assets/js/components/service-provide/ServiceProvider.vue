@@ -14,9 +14,9 @@
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table service-provider-table first-last-col-fix" style="width:2850px;">
                               <thead>
-                            <tr>
+                                <tr>
                                   <th>Id</th>
                                   <th>Image</th>
                                   <th>Business or Individual?</th>
@@ -36,11 +36,12 @@
                                   <th>Status</th>
                                   <th>Join Date</th>
                                   <th>Approval Date</th>
+                                  <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                          <tr v-for="list in listing">
-                                    <td> {{list.id}} </th>
+                                  <tr v-for="list in listing">
+                                    <td> {{list.id}} </td>
                                     <td>
                                         <span class="user-img radius-0">
                                             <img  :src="list.imagepath" >
@@ -63,7 +64,12 @@
                                     <td> {{ list.status }} </td>
                                     <td> {{ list.join_date }} </td>
                                     <td> {{ list.approval_date }} </td>
-                                     
+                                    <td class="text-center">
+                                      <div class="action-icons">
+                                        <i class="icon-eye"></i>
+                                        <i class="icon-pencil" @click="AddService"></i>
+                                      </div>
+                                    </td>
                                 </tr>
                               </tbody>
                             </table>

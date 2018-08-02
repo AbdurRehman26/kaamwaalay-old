@@ -3168,6 +3168,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56408,7 +56414,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "table-area" }, [
             _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table" }, [
+              _c("table", { staticClass: "table " }, [
                 _vm._m(1),
                 _vm._v(" "),
                 _c(
@@ -57556,63 +57562,87 @@ var render = function() {
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "table-area" }, [
             _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.listing, function(list) {
-                    return _c("tr", [
-                      _c("td", [_vm._v(" " + _vm._s(list.id) + " ")]),
-                      _c("td", [
-                        _c("span", { staticClass: "user-img radius-0" }, [
-                          _c("img", { attrs: { src: list.imagepath } })
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table service-provider-table first-last-col-fix",
+                  staticStyle: { width: "2850px" }
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.listing, function(list) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(" " + _vm._s(list.id) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "user-img radius-0" }, [
+                            _c("img", { attrs: { src: list.imagepath } })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.business) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.businessName) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.DUNSnum) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.first_name) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.last_name) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.email_address) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.services_offered) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.address) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.city) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.state) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.zip_code) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.country) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.contact_number) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.status) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.join_date) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.approval_date) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c("div", { staticClass: "action-icons" }, [
+                            _c("i", { staticClass: "icon-eye" }),
+                            _vm._v(" "),
+                            _c("i", {
+                              staticClass: "icon-pencil",
+                              on: { click: _vm.AddService }
+                            })
+                          ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.business) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.businessName) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.DUNSnum) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.first_name) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.last_name) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(list.email_address) + " ")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(list.services_offered) + " ")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.address) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.city) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.state) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.zip_code) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.country) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(" " + _vm._s(list.contact_number) + " ")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.status) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.join_date) + " ")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(list.approval_date) + " ")])
-                    ])
-                  })
-                )
-              ])
+                      ])
+                    })
+                  )
+                ]
+              )
             ])
           ])
         ])
@@ -57682,7 +57712,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Join Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Approval Date")])
+        _c("th", [_vm._v("Approval Date")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
       ])
     ])
   }
@@ -58008,7 +58040,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "table-area" }, [
             _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table" }, [
+              _c("table", { staticClass: "table first-last-col-fix" }, [
                 _vm._m(1),
                 _vm._v(" "),
                 _c(
@@ -58034,7 +58066,7 @@ var render = function() {
                         _vm._v(_vm._s(list.heronavigation))
                       ]),
                       _vm._v(" "),
-                      _c("td", [
+                      _c("td", { staticClass: "text-center" }, [
                         _c("div", { staticClass: "action-icons" }, [
                           _c("i", { staticClass: "icon-eye" }),
                           _vm._v(" "),
@@ -58095,7 +58127,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Hero Navigation")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
       ])
     ])
   }

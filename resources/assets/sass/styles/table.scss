@@ -475,7 +475,38 @@ body{
     }
 }
 
-    .width-30 {
-        width: 20px !important;
-    }
+.width-30 {
+    width: 20px !important;
+}
+
 /* == Custom table scss end ==*/
+.table{
+        &.first-last-col-fix{
+            thead{
+                tr{
+                    th:first-child{
+                        width:100px;
+
+                    }
+                    th:last-child{
+                        width:175px;
+                    }
+                }
+            }
+        }
+    &.last-col-fix{
+        tbody{
+            tr{
+                th:last-child{
+                    width:175px;
+                }
+            }
+        }
+    }
+
+    &.service-provider-table{
+        min-width:2700px;
+    }
+}
+
+
