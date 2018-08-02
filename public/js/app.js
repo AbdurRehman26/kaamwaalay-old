@@ -3731,6 +3731,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -58725,9 +58813,9 @@ var render = function() {
             id: "add-new-user",
             centered: "",
             "title-tag": "h4",
-            "ok-variant": "secondary",
+            "ok-variant": "primary",
             size: "sm",
-            title: "Add new User",
+            title: "Add New User",
             "ok-only": "",
             "ok-title": "Submit"
           },
@@ -58904,15 +58992,210 @@ var render = function() {
             id: "view-service-detail",
             centered: "",
             "title-tag": "h4",
-            "ok-variant": "secondary",
-            size: "sm",
+            "ok-variant": "primary",
+            size: "md",
             title: "View Service Detail",
             "ok-only": "",
             "ok-title": "Submit"
           },
           on: { hidden: _vm.onHidden }
         },
-        [_c("alert"), _vm._v(" "), _c("row", [_c("p", [_vm._v("hjhd")])])],
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "view-details-list" },
+            [
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("ID")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("1")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Service")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("Electrician")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Sub-Service")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("Wiring")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Is Featured?")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("No")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Hero Navigation")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("Yes")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("URL Prefix")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("www.psm.com")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Total Service Providers")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("12")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Total Jobs Initiated")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("12")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Total Jobs Finished")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("12")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Description")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "12" } }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                      ])
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
         1
       )
     ],
@@ -58949,7 +59232,7 @@ var render = function() {
             id: "add-new-service",
             centered: "",
             "title-tag": "h4",
-            "ok-variant": "success",
+            "ok-variant": "primary",
             size: "md",
             title: "Add new Service",
             "ok-only": "",
