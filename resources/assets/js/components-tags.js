@@ -37,6 +37,9 @@ Vue.component('add-service',require('./components/service-type-user/popup/AddSer
 Vue.component('view-details',require('./components/service-type-user/popup/ViewDetails.vue'));
 Vue.component('delete-popup',require('./components/admin/popup/DeletePopup.vue'));
 
+//service provider
+Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
+
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
 

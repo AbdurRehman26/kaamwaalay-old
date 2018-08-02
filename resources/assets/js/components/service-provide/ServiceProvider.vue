@@ -33,9 +33,9 @@
                                   <th>Country</th>
                                   <th>Contact Number</th>
                                   <th>Avg. Rating</th>
-                                  <th>Status</th>
                                   <th>Join Date</th>
                                   <th>Approval Date</th>
+                                  <th>Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -61,13 +61,13 @@
                                     <td> {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
                                     <td> {{ list.avg_rating }} </td>
-                                    <td> {{ list.status }} </td>
                                     <td> {{ list.join_date }} </td>
                                     <td> {{ list.approval_date }} </td>
+                                    <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i class="icon-eye"></i>
-                                        <i class="icon-pencil" @click="AddService"></i>
+<!--                                         <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
                                 </tr>
@@ -77,9 +77,9 @@
 		    		</div>
 		  		</div>
 		    </div>
+        <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-
 	</div>
 </template>
 
@@ -90,6 +90,7 @@ export default {
     return {
     	service: false,
         viewdetails: false,
+        changeProviderStatus: false,
 
             listing: [
                 {
@@ -119,6 +120,9 @@ export default {
   	},
 
     methods: {
+        ShowModalUser(){
+            this.changeProviderStatus = true;
+        },
         AddService(){
             this.service = true;
         },

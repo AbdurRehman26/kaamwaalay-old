@@ -49,7 +49,7 @@
 		    </div>
 
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
-         <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
+     <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
 		 <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
 	</div>
 </template>

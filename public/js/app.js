@@ -2528,7 +2528,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /***/ }),
 
@@ -3174,7 +3173,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3182,6 +3180,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             service: false,
             viewdetails: false,
+            changeProviderStatus: false,
 
             listing: [{
                 id: 1,
@@ -3210,6 +3209,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        ShowModalUser: function ShowModalUser() {
+            this.changeProviderStatus = true;
+        },
         AddService: function AddService() {
             this.service = true;
         },
@@ -3219,6 +3221,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         HideModal: function HideModal() {
             this.service = false;
             this.viewdetails = false;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-provide/popup/ChangeStatus.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            selected: null,
+            options: [{ value: null, text: 'Active' }, { value: 'b', text: 'Deactive' }]
+        };
+    },
+
+    props: ['showModalProp'],
+    methods: {
+        StatusChange: function StatusChange() {
+            this.changestatus = true;
+        },
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+            this.changestatus = false;
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        }
+    },
+
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
         }
     }
 });
@@ -55777,6 +55838,72 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ce02948\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provide/popup/ChangeStatus.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "status-user-change",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "secondary",
+            size: "sm",
+            title: "Change User Status",
+            "ok-only": "",
+            "ok-title": "Submit"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c("label", [_vm._v("Account Status")]),
+              _vm._v(" "),
+              _c("b-form-select", {
+                attrs: { options: _vm.options },
+                model: {
+                  value: _vm.selected,
+                  callback: function($$v) {
+                    _vm.selected = $$v
+                  },
+                  expression: "selected"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0ce02948", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-10f5b904\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/BreadCrumb.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55900,21 +56027,6 @@ var render = function() {
                 _c("span", [_vm._v("Service Provider")])
               ]
             )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {},
-          [
-            _c("router-link", { attrs: { to: "/dashboard" } }, [
-              _c("i", {
-                staticClass: "icon-search",
-                attrs: { "aria-hidden": "true" }
-              }),
-              _c("span", [_vm._v("Service Provider Review")])
-            ])
           ],
           1
         ),
@@ -57670,26 +57782,17 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(" " + _vm._s(list.status) + " ")]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(" " + _vm._s(list.join_date) + " ")]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(" " + _vm._s(list.approval_date) + " ")
                         ]),
                         _vm._v(" "),
-                        _c("td", { staticClass: "text-center" }, [
-                          _c("div", { staticClass: "action-icons" }, [
-                            _c("i", { staticClass: "icon-eye" }),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass: "icon-pencil",
-                              on: { click: _vm.AddService }
-                            }),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "icon-delete" })
-                          ])
-                        ])
+                        _c("td", { staticClass: "status-color approved" }, [
+                          _vm._v(" " + _vm._s(list.status) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(2, true)
                       ])
                     })
                   )
@@ -57699,6 +57802,11 @@ var render = function() {
           ])
         ])
       ]),
+      _vm._v(" "),
+      _c("change-status-user", {
+        attrs: { showModalProp: _vm.changeProviderStatus },
+        on: { HideModalValue: _vm.HideModal }
+      }),
       _vm._v(" "),
       _c("add-service", {
         attrs: { showModalProp: _vm.service },
@@ -57760,13 +57868,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Avg. Rating")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Join Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("Approval Date")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center" }, [
+      _c("div", { staticClass: "action-icons" }, [
+        _c("i", { staticClass: "icon-eye" })
       ])
     ])
   }
@@ -72602,6 +72720,9 @@ Vue.component('add-service', __webpack_require__("./resources/assets/js/componen
 Vue.component('view-details', __webpack_require__("./resources/assets/js/components/service-type-user/popup/ViewDetails.vue"));
 Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/admin/popup/DeletePopup.vue"));
 
+//service provider
+Vue.component('change-status-provider', __webpack_require__("./resources/assets/js/components/service-provide/popup/ChangeStatus.vue"));
+
 // Customer
 Vue.component('customer-detail', __webpack_require__("./resources/assets/js/components/customer/popup/AddCustomer.vue"));
 
@@ -74039,6 +74160,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-67624bcc", Component.options)
   } else {
     hotAPI.reload("data-v-67624bcc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/service-provide/popup/ChangeStatus.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-provide/popup/ChangeStatus.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ce02948\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provide/popup/ChangeStatus.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\service-provide\\popup\\ChangeStatus.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0ce02948", Component.options)
+  } else {
+    hotAPI.reload("data-v-0ce02948", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
