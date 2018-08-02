@@ -12,15 +12,61 @@
                 </div>
             </div>
 				<div class="col-md-12">
-					<div class="table-area customer-table">
-		    			<b-table :bordered="bordered" responsive  hover :items="items" :fields="fields">
-						    <template slot="photo" slot-scope="data">
-						    	<span class="user-img">
-						            <b-img src="images/dummy/user-pic.jpg" fluid alt="Responsive image" />
-						        </span>
-						    </template>
-		    			</b-table>
-		    		</div>
+	
+                    <div class="table-area">
+                        <div class="table-responsive">
+                            <table class="table first-last-col-fix" style="width:2090px;">
+                              <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Image</th>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                  <th>Email Address</th>
+                                  <th>Address</th>
+                                  <th>City</th>
+                                  <th>State</th>
+                                  <th>Zipcode</th>
+                                  <th>Country</th>
+                                  <th>Contact Number</th>
+                                  <th>Avg. Rating</th>
+                                  <th>Status</th>
+                                  <th>Join Date</th>
+                                  <th class="text-center">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr v-for="list in listing">
+                                    <td> {{list.id}} </td>
+                                    <td>
+                                        <span class="user-img radius-0">
+                                            <img  :src="list.imagepath" >
+                                        </span>
+                                    </td>
+                                    <td> {{ list.first_name }} </td>
+                                    <td> {{ list.last_name }} </td>
+                                    <td> {{ list.email_address }} </td>
+                                    <td> {{ list.address }} </td>
+                                    <td> {{ list.city }} </td>
+                                    <td> {{ list.state }} </td>
+                                    <td> {{ list.zip_code }} </td>
+                                    <td> {{ list.country }} </td>
+                                    <td> {{ list.contact_number }} </td>
+                                    <td> {{ list.avg_rating }} </td>
+                                    <td> {{ list.status }} </td>
+                                    <td> {{ list.join_date }} </td>
+                                    <td class="text-center">
+                                      <div class="action-icons">
+                                        <i class="icon-eye" @click="ViewDetails"></i>
+                                        <i class="icon-pencil" @click="AddService"></i>
+                                      </div>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+            </div>
+
 		  		</div>
 		    </div>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
@@ -35,12 +81,25 @@ export default {
     	service: false,
     	customer: false,
 
-      	fields: ['photo', 'first_name', 'last_name', 'email_address', 'contact_number' , 'avg_rating',
-      	 'status', 'join_date', 'address', 'country', 'city', 'state', 'zipcode'  ],
-
-      	items: [
-		        { isActive: true, first_name: 'ELif', last_name: 'Methew', email_address: 'www.psm.com', contact_number: '000 252 5524 2521', avg_rating: '4', photo: '', status: 'Pending', join_date: '2-2-2015', address: 'Los Angles 25 Street' ,country: 'America', city: 'Los Angles', state: 'USA', zipcode: '54125', _cellVariants: { status: 'error' } }
-	        ]
+            listing: [
+                {
+                    id : 1,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    first_name: 'James',
+                    last_name: 'Methew',
+                    email_address: 'psm@test.com',
+                    address: 'Amsterdam Street 25',
+                    city: 'Amsterdam',
+                    state: 'Netherlands',
+                    zip_code: '543351',
+                    country: 'Netherlands',
+                    contact_number: '126421315',
+                    avg_rating: '5',
+                    status: 'Active',
+                    join_date: 'May 25 2018',
+                    approval_date: 'May 30 2018',
+                },
+            ],
     	}
   	},
     

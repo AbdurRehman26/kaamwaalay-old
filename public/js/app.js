@@ -2967,6 +2967,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2974,9 +3020,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service: false,
             customer: false,
 
-            fields: ['photo', 'first_name', 'last_name', 'email_address', 'contact_number', 'avg_rating', 'status', 'join_date', 'address', 'country', 'city', 'state', 'zipcode'],
-
-            items: [{ isActive: true, first_name: 'ELif', last_name: 'Methew', email_address: 'www.psm.com', contact_number: '000 252 5524 2521', avg_rating: '4', photo: '', status: 'Pending', join_date: '2-2-2015', address: 'Los Angles 25 Street', country: 'America', city: 'Los Angles', state: 'USA', zipcode: '54125', _cellVariants: { status: 'error' } }]
+            listing: [{
+                id: 1,
+                imagepath: 'images/dummy/user-pic.jpg',
+                first_name: 'James',
+                last_name: 'Methew',
+                email_address: 'psm@test.com',
+                address: 'Amsterdam Street 25',
+                city: 'Amsterdam',
+                state: 'Netherlands',
+                zip_code: '543351',
+                country: 'Netherlands',
+                contact_number: '126421315',
+                avg_rating: '5',
+                status: 'Active',
+                join_date: 'May 25 2018',
+                approval_date: 'May 30 2018'
+            }]
         };
     },
 
@@ -3076,6 +3136,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         }
     }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/job/CreateJob.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            service: false,
+            customer: false,
+
+            listing: [{
+                id: 1,
+                customer_name: 'Michel',
+                service_type: 'Electrician',
+                service_subtype: 'AC',
+                zip_code: '15235',
+                address: 'California Street 251',
+                title: 'Job',
+                details: 'Job Details',
+                job_status: 'Active'
+            }]
+        };
+    },
+
+
+    methods: {}
 });
 
 /***/ }),
@@ -55786,6 +55947,162 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0c039cdb\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/job/CreateJob.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "panel-inner" },
+    [
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "table-area" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table first-last-col-fix",
+                  staticStyle: { width: "1500px" }
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.listing, function(list) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(" " + _vm._s(list.id) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "user-img radius-0" }, [
+                            _c("img", { attrs: { src: list.imagepath } })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("a", { attrs: { href: "javascript:;" } }, [
+                            _vm._v(_vm._s(list.customer_name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.service_type) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.service_subtype) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.zip_code) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.address) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.title) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.details) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.job_status) + " ")]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c("div", { staticClass: "action-icons" }, [
+                            _c("i", {
+                              staticClass: "icon-eye",
+                              on: { click: _vm.ViewDetails }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              staticClass: "icon-pencil",
+                              on: { click: _vm.AddService }
+                            })
+                          ])
+                        ])
+                      ])
+                    })
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("customer-detail", {
+        attrs: { showModalProp: _vm.customer },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "page-title-strip" }, [
+        _c("div", { staticClass: "float-left" }, [
+          _c("h2", { staticClass: "page-title" }, [_vm._v("Job")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "float-right" }, [
+          _c(
+            "a",
+            { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
+            [_vm._v("Add Job")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Customer Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Service Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Service Sub-type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Zip Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Address")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Details")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Job Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0c039cdb", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ce02948\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provide/popup/ChangeStatus.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55998,7 +56315,7 @@ var render = function() {
           "li",
           {},
           [
-            _c("router-link", { attrs: { to: "/dashboard" } }, [
+            _c("router-link", { attrs: { to: "/job/create-job" } }, [
               _c("i", {
                 staticClass: "icon-briefcase",
                 attrs: { "aria-hidden": "true" }
@@ -56997,45 +57314,77 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "table-area customer-table" },
-            [
-              _c("b-table", {
-                attrs: {
-                  bordered: _vm.bordered,
-                  responsive: "",
-                  hover: "",
-                  items: _vm.items,
-                  fields: _vm.fields
+          _c("div", { staticClass: "table-area" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table first-last-col-fix",
+                  staticStyle: { width: "2090px" }
                 },
-                scopedSlots: _vm._u([
-                  {
-                    key: "photo",
-                    fn: function(data) {
-                      return [
-                        _c(
-                          "span",
-                          { staticClass: "user-img" },
-                          [
-                            _c("b-img", {
-                              attrs: {
-                                src: "images/dummy/user-pic.jpg",
-                                fluid: "",
-                                alt: "Responsive image"
-                              }
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.listing, function(list) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(" " + _vm._s(list.id) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "user-img radius-0" }, [
+                            _c("img", { attrs: { src: list.imagepath } })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.first_name) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.last_name) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.email_address) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.address) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.city) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.state) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.zip_code) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.country) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.contact_number) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.status) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.join_date) + " ")]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c("div", { staticClass: "action-icons" }, [
+                            _c("i", {
+                              staticClass: "icon-eye",
+                              on: { click: _vm.ViewDetails }
+                            }),
+                            _vm._v(" "),
+                            _c("i", {
+                              staticClass: "icon-pencil",
+                              on: { click: _vm.AddService }
                             })
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  }
-                ])
-              })
-            ],
-            1
-          )
+                          ])
+                        ])
+                      ])
+                    })
+                  )
+                ]
+              )
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -57054,6 +57403,44 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "float-left" }, [
       _c("h2", { staticClass: "page-title" }, [_vm._v("Customer")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("First Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Last Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email Address")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Address")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("City")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("State")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Zipcode")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Country")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Contact Number")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Avg. Rating")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Join Date")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
     ])
   }
 ]
@@ -73980,6 +74367,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/job/CreateJob.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/job/CreateJob.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0c039cdb\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/job/CreateJob.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\job\\CreateJob.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c039cdb", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c039cdb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/service-provide/ServiceProvider.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -74273,6 +74708,14 @@ var routes = [
     path: '/service-provide/service-provider',
     component: __webpack_require__("./resources/assets/js/components/service-provide/ServiceProvider.vue"),
     meta: { title: 'PSM | Service Provider' }
+},
+
+/* Job */
+
+{
+    path: '/job/create-job',
+    component: __webpack_require__("./resources/assets/js/components/job/CreateJob.vue"),
+    meta: { title: 'PSM | Create Job' }
 },
 
 /*404 Page*/

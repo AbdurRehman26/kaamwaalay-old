@@ -67,7 +67,7 @@
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i class="icon-eye"></i>
-<!--                                         <i class="icon-pencil"></i> -->
+                                          <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
                                 </tr>
