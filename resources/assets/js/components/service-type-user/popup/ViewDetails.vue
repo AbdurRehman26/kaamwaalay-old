@@ -27,6 +27,16 @@
                         <p>Wiring</p>
                     </b-col>
                 </b-row>
+
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">URL Prefix</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>www.psm.com</p>
+                    </b-col>
+                </b-row>
+
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Is Featured?</strong></p>
@@ -43,15 +53,7 @@
                         <p>Yes</p>
                     </b-col>
                 </b-row>
-                <b-row>
-                    <b-col cols="5" class="">
-                        <p><strong class="title-head">URL Prefix</strong></p>
-                    </b-col>
-                    <b-col cols="7">
-                        <p>www.psm.com</p>
-                    </b-col>
-                </b-row>
-          
+                       
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Service Providers</strong></p>

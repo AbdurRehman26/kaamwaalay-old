@@ -3819,6 +3819,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -59067,6 +59069,24 @@ var render = function() {
                   _c("b-col", { attrs: { cols: "5" } }, [
                     _c("p", [
                       _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("URL Prefix")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("www.psm.com")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
                         _vm._v("Is Featured?")
                       ])
                     ])
@@ -59092,24 +59112,6 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
                     _c("p", [_vm._v("Yes")])
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-row",
-                [
-                  _c("b-col", { attrs: { cols: "5" } }, [
-                    _c("p", [
-                      _c("strong", { staticClass: "title-head" }, [
-                        _vm._v("URL Prefix")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("www.psm.com")])
                   ])
                 ],
                 1
