@@ -16,7 +16,7 @@
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table ">
                               <thead>
                                 <tr>
                                   <th>First Name</th>

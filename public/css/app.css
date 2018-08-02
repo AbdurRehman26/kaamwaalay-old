@@ -33917,6 +33917,22 @@ body .ag-theme-balham .ag-header {
 
 /* == Custom table scss end ==*/
 
+.table.first-last-col-fix thead tr th:first-child {
+  width: 100px;
+}
+
+.table.first-last-col-fix thead tr th:last-child {
+  width: 175px;
+}
+
+.table.last-col-fix tbody tr th:last-child {
+  width: 175px;
+}
+
+.table.service-provider-table {
+  min-width: 2700px;
+}
+
 .alert {
   /* height:$alert-height; */
   height: auto;
