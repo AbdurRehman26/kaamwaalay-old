@@ -11,7 +11,7 @@
                     <li class=""><router-link to="/service-provide/service-provider"><i class="icon-handshake-o" aria-hidden="true"></i><span>Service Provider</span></router-link></li>
                     <li class=""><router-link to="/dashboard"><i class="icon-search" aria-hidden="true"></i><span>Service Provider Review</span></router-link></li>
                     <li class=""><router-link to="/customer/customer-panel"><i class="icon-users" aria-hidden="true"></i><span>Customer</span></router-link></li>
-                    <li class=""><router-link to="/dashboard"><i class="icon-briefcase" aria-hidden="true"></i><span>Jobs</span></router-link></li>
+                    <li class=""><router-link to="/job/create-job"><i class="icon-briefcase" aria-hidden="true"></i><span>Jobs</span></router-link></li>
                     <li class=""><router-link to="/dashboard"><i class="icon-credit-card" aria-hidden="true"></i><span>Payment Activites</span></router-link></li>
                     <li class=""><router-link to="/dashboard"><i class="icon-settings" aria-hidden="true"></i><span>General Settings</span></router-link></li>
                 </ul>

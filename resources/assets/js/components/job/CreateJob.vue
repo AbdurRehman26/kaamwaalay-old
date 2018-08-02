@@ -4,15 +4,15 @@
             <div class="col-md-12">
                 <div class="page-title-strip">
                     <div class="float-left">
-                       <h2 class="page-title">Customer</h2>
+                       <h2 class="page-title">Job</h2>
                     </div>
                     <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="AddCustomer">Add Customer</a>
+                        <a href="javascript:;" class="btn btn-primary">Add Job</a>
                     </div>
                 </div>
             </div>
-				<div class="col-md-12">
-	
+
+				<div class="col-md-12">	
                     <div class="table-area">
                         <div class="table-responsive">
                             <table class="table first-last-col-fix" style="width:2090px;">
@@ -20,18 +20,14 @@
                                 <tr>
                                   <th>Id</th>
                                   <th>Image</th>
-                                  <th>First Name</th>
-                                  <th>Last Name</th>
-                                  <th>Email Address</th>
+                                  <th>Customer Name</th>
+                                  <th>Service Type</th>
+                                  <th>Service Sub-type</th>
+                                  <th>Zip Code</th>
                                   <th>Address</th>
-                                  <th>City</th>
-                                  <th>State</th>
-                                  <th>Zipcode</th>
-                                  <th>Country</th>
-                                  <th>Contact Number</th>
-                                  <th>Avg. Rating</th>
-                                  <th>Status</th>
-                                  <th>Join Date</th>
+                                  <th>Title</th>
+                                  <th>Details</th>
+                                  <th>Job Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -43,18 +39,15 @@
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> {{ list.first_name }} </td>
-                                    <td> {{ list.last_name }} </td>
-                                    <td> {{ list.email_address }} </td>
-                                    <td> {{ list.address }} </td>
-                                    <td> {{ list.city }} </td>
-                                    <td> {{ list.state }} </td>
+                                    <td> {{ list.customer_name }} </td>
+                                    <td> {{ list.service_type }} </td>
+                                    <td> {{ list.service_subtype }} </td>
                                     <td> {{ list.zip_code }} </td>
-                                    <td> {{ list.country }} </td>
-                                    <td> {{ list.contact_number }} </td>
-                                    <td> {{ list.avg_rating }} </td>
-                                    <td> {{ list.status }} </td>
-                                    <td> {{ list.join_date }} </td>
+                                    <td> {{ list.address }} </td>
+                                    <td> {{ list.title }} </td>
+                                    <td> {{ list.details }} </td>
+                                  
+                                    <td> {{ list.job_status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i class="icon-eye" @click="ViewDetails"></i>
@@ -84,34 +77,20 @@ export default {
             listing: [
                 {
                     id : 1,
-                    imagepath:'images/dummy/user-pic.jpg',
-                    first_name: 'James',
-                    last_name: 'Methew',
-                    email_address: 'psm@test.com',
-                    address: 'Amsterdam Street 25',
-                    city: 'Amsterdam',
-                    state: 'Netherlands',
-                    zip_code: '543351',
-                    country: 'Netherlands',
-                    contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
-                    join_date: 'May 25 2018',
-                    approval_date: 'May 30 2018',
+                    customer_name: 'Michel',
+                    service_type: 'Electrician',
+                    service_subtype: 'AC',
+                    zip_code: '15235',
+                    address: 'California Street 251',
+                    title: 'Job',
+                    details: 'Job Details',
+                    job_status: 'Active'
                 },
             ],
     	}
   	},
     
     methods: {
-
-    	AddCustomer() {
-    		this.customer = true;
-    	},
-
-        HideModal(){
-            this.customer = false;
-        },
 
     }
 }

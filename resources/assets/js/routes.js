@@ -48,6 +48,14 @@ const routes = [
         meta: { title: 'PSM | Service Provider' }
     },
 
+    /* Job */
+
+    {
+        path: '/job/create-job',
+        component: require('./components/job/CreateJob.vue'),
+        meta: { title: 'PSM | Create Job' }
+    },
+
     /*404 Page*/
 
     {

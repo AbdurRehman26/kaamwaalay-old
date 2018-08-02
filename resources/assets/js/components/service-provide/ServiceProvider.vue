@@ -66,7 +66,7 @@
                                     <td> {{ list.approval_date }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i class="icon-eye"></i>
+                                        <i class="icon-eye" @click="ViewDetails"></i>
                                         <i class="icon-pencil" @click="AddService"></i>
                                       </div>
                                     </td>
