@@ -39,7 +39,7 @@
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> {{ list.customer_name }} </td>
+                                    <td> <a href="javascript:;">{{ list.customer_name }}</a> </td>
                                     <td> {{ list.service_type }} </td>
                                     <td> {{ list.service_subtype }} </td>
                                     <td> {{ list.zip_code }} </td>
