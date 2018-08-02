@@ -1772,9 +1772,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1950,54 +1947,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             options: [{ value: null, text: 'Active' }, { value: 'b', text: 'Deactive' }]
         };
     },
-
-    props: ['showModalProp'],
-    methods: {
-        showModal: function showModal() {
-            this.$refs.myModalRef.show();
-        },
-        hideModal: function hideModal() {
-            this.$refs.myModalRef.hide();
-        },
-        onHidden: function onHidden() {
-            this.$emit('HideModalValue');
-        }
-    },
-
-    watch: {
-        showModalProp: function showModalProp(value) {
-
-            if (value) {
-                this.showModal();
-            }
-            if (!value) {
-                this.hideModal();
-            }
-        }
-    }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
 
     props: ['showModalProp'],
     methods: {
@@ -2422,6 +2371,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.ContactIsExpire = true;
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/common-components/DeletePopup.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp'],
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        }
+    },
+
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
 });
 
 /***/ }),
@@ -3563,55 +3560,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -56576,7 +56524,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "table-area" }, [
             _c("div", { staticClass: "table-responsive" }, [
-              _c("table", { staticClass: "table " }, [
+              _c("table", { staticClass: "table last-col-fix" }, [
                 _vm._m(1),
                 _vm._v(" "),
                 _c(
@@ -56813,6 +56761,55 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3b3d2db6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/DeletePopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "delete-popup",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "secondary",
+            size: "sm",
+            title: "Delete",
+            "ok-only": "",
+            "ok-title": "Submit"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c("div", [_c("p", [_vm._v("Your account has been deleted")])])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3b3d2db6", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-41845f96\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/popup/ChangeStatus.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56874,55 +56871,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-41845f96", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4ca66e1d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-modal",
-        {
-          ref: "myModalRef",
-          attrs: {
-            id: "delete-popup",
-            centered: "",
-            "title-tag": "h4",
-            "ok-variant": "secondary",
-            size: "sm",
-            title: "Delete",
-            "ok-only": "",
-            "ok-title": "Submit"
-          },
-          on: { hidden: _vm.onHidden }
-        },
-        [
-          _c("alert"),
-          _vm._v(" "),
-          _c("div", [_c("p", [_vm._v("Your account has been deleted")])])
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4ca66e1d", module.exports)
   }
 }
 
@@ -58518,101 +58466,7 @@ var render = function() {
           },
           on: { hidden: _vm.onHidden }
         },
-        [
-          _c("alert"),
-          _vm._v(" "),
-          _c("div", [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Parent Service")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Parent Service")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("None")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Electrician")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Carpenter")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Plumber")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Painter")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Service Name")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Service Name")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Full Access")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Review Process Only")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Is Featured")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Is Featured?")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Yes")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("No")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Hero Navigation")]),
-              _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Hero Navigation")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Yes")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("No")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Description")]),
-              _vm._v(" "),
-              _c("textarea", {
-                staticClass: "form-control",
-                attrs: { rows: "5" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("URL")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", name: "" }
-              })
-            ])
-          ])
-        ],
+        [_c("alert"), _vm._v(" "), _c("row", [_c("p", [_vm._v("hjhd")])])],
         1
       )
     ],
@@ -72707,6 +72561,10 @@ Vue.component('loadmore', __webpack_require__("./resources/assets/js/components/
 Vue.component('pageLoader', __webpack_require__("./resources/assets/js/components/common-components/PageLoader.vue"));
 Vue.component('MidLoader', __webpack_require__("./resources/assets/js/components/common-components/MediumLoader.vue"));
 Vue.component('SpinnerLoader', __webpack_require__("./resources/assets/js/components/common-components/SpinnerLoader.vue"));
+
+// Common Popup
+Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/common-components/DeletePopup.vue"));
+
 //left navigation
 Vue.component('left-panel', __webpack_require__("./resources/assets/js/components/common-components/LeftPanel.vue"));
 
@@ -72718,7 +72576,6 @@ Vue.component('change-status-user', __webpack_require__("./resources/assets/js/c
 // Service-Type
 Vue.component('add-service', __webpack_require__("./resources/assets/js/components/service-type-user/popup/AddService.vue"));
 Vue.component('view-details', __webpack_require__("./resources/assets/js/components/service-type-user/popup/ViewDetails.vue"));
-Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/admin/popup/DeletePopup.vue"));
 
 //service provider
 Vue.component('change-status-provider', __webpack_require__("./resources/assets/js/components/service-provide/popup/ChangeStatus.vue"));
@@ -72960,54 +72817,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-41845f96", Component.options)
   } else {
     hotAPI.reload("data-v-41845f96", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/admin/popup/DeletePopup.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4ca66e1d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/popup/DeletePopup.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\admin\\popup\\DeletePopup.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4ca66e1d", Component.options)
-  } else {
-    hotAPI.reload("data-v-4ca66e1d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -73344,6 +73153,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-10f5b904", Component.options)
   } else {
     hotAPI.reload("data-v-10f5b904", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/common-components/DeletePopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/common-components/DeletePopup.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3b3d2db6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/DeletePopup.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\common-components\\DeletePopup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3b3d2db6", Component.options)
+  } else {
+    hotAPI.reload("data-v-3b3d2db6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

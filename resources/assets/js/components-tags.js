@@ -24,6 +24,10 @@ Vue.component('loadmore', require('./components/common-components/LoadMore.vue')
 Vue.component('pageLoader', require('./components/common-components/PageLoader.vue'));
 Vue.component('MidLoader', require('./components/common-components/MediumLoader.vue'));
 Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
+
+// Common Popup
+Vue.component('delete-popup',require('./components/common-components/DeletePopup.vue'));
+
 //left navigation
 Vue.component('left-panel', require('./components/common-components/LeftPanel.vue'));
 
@@ -35,7 +39,6 @@ Vue.component('change-status-user',require('./components/admin/popup/ChangeStatu
 // Service-Type
 Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
 Vue.component('view-details',require('./components/service-type-user/popup/ViewDetails.vue'));
-Vue.component('delete-popup',require('./components/admin/popup/DeletePopup.vue'));
 
 //service provider
 Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));

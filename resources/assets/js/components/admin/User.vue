@@ -16,7 +16,7 @@
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
-                            <table class="table ">
+                            <table class="table last-col-fix">
                               <thead>
                                 <tr>
                                   <th>First Name</th>
@@ -36,9 +36,6 @@
                                   <td>{{list.jdate}}</td>
                                   <td class="text-center statustext">
                                     <div class=""><a class="active" @click="statusLink">Active</a></div>
-<!--                                     <div class="action-icons">
-    <i class="icon-pencil"  @click="changestatus"></i>
-</div> -->
                                 </td>
                                 </tr>
                               </tbody>

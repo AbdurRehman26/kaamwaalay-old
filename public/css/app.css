@@ -33949,7 +33949,7 @@ body .ag-theme-balham .ag-header {
   width: 175px;
 }
 
-.table.last-col-fix tbody tr th:last-child {
+.table.last-col-fix thead tr th:last-child {
   width: 175px;
 }
 
