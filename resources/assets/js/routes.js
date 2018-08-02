@@ -37,8 +37,13 @@ const routes = [
     {
         path: '/customer',
         component: require('./components/customer/Main.vue'),
-        meta: { title: 'PSM | Customer Panel' }
+        meta: { title: 'PSM | Customer Panel' },
+                    
     },
+       {
+                    path: '/customer/viewjobdetail',
+                    component: require('./components/customer/ViewJobDetail.vue'), meta: {title: 'View Job Detail'},
+        },
 
     /* Service Provider */
 

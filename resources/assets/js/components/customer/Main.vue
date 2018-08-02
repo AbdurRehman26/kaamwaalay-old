@@ -57,8 +57,7 @@
                                     <td> {{ list.join_date }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" class="icon-eye" @click="ViewDetails"></i>
-                                        <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="AddService"></i>
+                                        <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                       </div>
                                     </td>
                                 </tr>
@@ -69,6 +68,7 @@
 		  		</div>
 		    </div>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
+        <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
 
 	</div>
 </template>
@@ -79,6 +79,7 @@ export default {
     return {
     	service: false,
     	customer: false,
+        viewcustomer: false,
 
             listing: [
                 {
@@ -107,9 +108,12 @@ export default {
     	AddCustomer() {
     		this.customer = true;
     	},
-
+        ViewCustomerDetail() {
+            this.viewcustomer = true;
+        },
         HideModal(){
             this.customer = false;
+            this.viewcustomer = false;
         },
 
     }
