@@ -1,40 +1,12 @@
 <template>
-	<div class="panel-inner">
-		<div class="row">
-            <div class=" col-xs-12 col-md-12">
-                    <div class="datepicker-row">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <SearchField></SearchField>
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <label>By Type</label>
-                                   <select class="form-control">
-                                     <option>Select Type</option>
-                                     <option>Electrician</option>
-                                     <option>Electrician >> Ac</option>
-                                   </select>
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <SearchField></SearchField>
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-md-2">
-                                <button class="btn btn-primary filter-btn-top-space">
-                                    <span>Apply</span>
-                                    <loader></loader>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+    <div class="panel-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-strip">
+                </div>
             </div>
-				<div class="col-md-12">
-					<div class="table-area">
+                <div class="col-md-12">
+                    <div class="table-area">
                         <div class="table-responsive">
                             <table class="table service-provider-table first-last-col-fix" style="width:2850px;">
                               <thead>
@@ -80,13 +52,13 @@
                                     <td> {{ list.zip_code }} </td>
                                     <td> {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
+                                    <td> {{ list.avg_rating }} </td>
                                     <td> {{ list.join_date }} </td>
                                     <td> {{ list.approval_date }} </td>
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" @click="ServiceProviderDetail" class="icon-eye"></i>
+                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -94,26 +66,23 @@
                               </tbody>
                             </table>
                         </div>
-		    		</div>
-		  		</div>
-		    </div>
+                    </div>
+                </div>
+            </div>
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-        <service-provider-detail @HideModalValue="HideModal" :showModalProp="serviceproviderdetail"></service-provider-detail>
-	</div>
+    </div>
 </template>
 
 <script>
-import StarRating from 'vue-star-rating';
 
 export default {
   data () {
     return {
-    	service: false,
-      viewdetails: false,
-      changeProviderStatus: false,
-      serviceproviderdetail: false,
+        service: false,
+        viewdetails: false,
+        changeProviderStatus: false,
 
             listing: [
                 {
@@ -131,6 +100,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '45668756',
+                    avg_rating: '5',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -151,14 +121,15 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
+                    avg_rating: '5',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
                 },
             ],
-    	}
-  	},
+        }
+    },
 
     methods: {
         ShowModalUser(){
@@ -170,18 +141,10 @@ export default {
         ViewDetails() {
             this.viewdetails = true;
         },
-        ServiceProviderDetail() {
-          this.serviceproviderdetail = true;
-        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
-            this.serviceproviderdetail = false;
         },
-    },
-    components: {
-        StarRating
-    },
-
+    }
 }
 </script>

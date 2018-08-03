@@ -7,13 +7,13 @@
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>Start Date</label>
-                                  <datepicker placeholder="Start Date"/>
+                                  <DatePicker></DatePicker>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>End Date</label>
-                                  <datepicker placeholder="End Date"/>
+                                   <DatePicker></DatePicker>
                                </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
@@ -222,6 +222,7 @@
 </template>
 
 <script>
+
 import Datepicker from 'vuejs-datepicker';
 import StarRating from 'vue-star-rating';
 
@@ -279,10 +280,12 @@ export default{
             ],
         }
     },
+
     components: {
         Datepicker,
         StarRating
     },
+
     methods: {
         showleftpanel(){
             this.show = true;

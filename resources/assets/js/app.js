@@ -50,12 +50,10 @@ Vue.mixin({
    }
  }
 })
-
 // Create and mount the root instance.
 const app = new Vue({
     el: '#app',
     router,
-
     mounted () {
         this.$Progress.finish();
         this.checkscroll();
