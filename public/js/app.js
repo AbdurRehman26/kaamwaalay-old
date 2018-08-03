@@ -6845,7 +6845,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -6855,7 +6854,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service: false,
             viewdetails: false,
             changeProviderStatus: false,
-            serviceproviderdetail: false,
 
             listing: [{
                 id: 1,
@@ -6910,13 +6908,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ViewDetails: function ViewDetails() {
             this.viewdetails = true;
         },
-        ServiceProviderDetail: function ServiceProviderDetail() {
-            this.serviceproviderdetail = true;
-        },
         HideModal: function HideModal() {
             this.service = false;
             this.viewdetails = false;
-            this.serviceproviderdetail = false;
         }
     },
     components: {
@@ -62950,8 +62944,7 @@ var render = function() {
                                 }
                               ],
                               staticClass: "icon-eye",
-                              attrs: { title: "View Details" },
-                              on: { click: _vm.ServiceProviderDetail }
+                              attrs: { title: "View Details" }
                             })
                           ])
                         ])
@@ -62977,11 +62970,6 @@ var render = function() {
       _vm._v(" "),
       _c("view-details", {
         attrs: { showModalProp: _vm.viewdetails },
-        on: { HideModalValue: _vm.HideModal }
-      }),
-      _vm._v(" "),
-      _c("service-provider-detail", {
-        attrs: { showModalProp: _vm.serviceproviderdetail },
         on: { HideModalValue: _vm.HideModal }
       })
     ],
