@@ -6788,6 +6788,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -62617,6 +62631,21 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-xs-12 col-md-3 datepicker-field" },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [_c("SearchField")],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-md-2" }, [
                 _c(
                   "button",
@@ -62640,7 +62669,7 @@ var render = function() {
                   staticStyle: { width: "2850px" }
                 },
                 [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -62754,6 +62783,22 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-3 datepicker-field" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("By Type")]),
+        _vm._v(" "),
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", [_vm._v("Electrician")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Electrician >> Ac")])
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

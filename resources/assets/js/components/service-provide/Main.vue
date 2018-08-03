@@ -9,6 +9,20 @@
                                    <SearchField></SearchField>
                               </div>
                             </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
                             <div class="col-xs-12 col-md-2">
                                 <button class="btn btn-primary filter-btn-top-space">
                                     <span>Apply</span>
