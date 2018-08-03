@@ -238,6 +238,7 @@ export default {
             this.viewdetails = false;
         },
     },
+
     components: {
         StarRating
     },
