@@ -36,11 +36,13 @@ Vue.mixin({
    }
  }
 })
-
 // Create and mount the root instance.
 const app = new Vue({
     el: '#app',
     router,
+    components: {
+        Datepicker
+    },
 });
 
 /*const app = new Vue({

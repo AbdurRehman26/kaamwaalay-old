@@ -4,11 +4,26 @@
       <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
   </div>
 	<div class="panel-inner">
-		<div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                </div>
+        <div class="row">
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
+        </div>
+		<div class="row">
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
@@ -54,7 +69,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -116,7 +130,6 @@ export default {
             ],
     	}
   	},
-
     methods: {
         AddService(){
             this.service = true;
@@ -132,6 +145,9 @@ export default {
             this.viewdetails = false;
             this.actiondelete = false;
         },
+        getResponse: function (response) {
+          return response.data.items
+        }
     }
 }
 </script>
