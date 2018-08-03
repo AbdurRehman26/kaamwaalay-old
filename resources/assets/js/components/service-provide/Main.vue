@@ -45,7 +45,7 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Full Name</th>                                  
+                                  <th>Full Name</th>
                                   <th>Image</th>
                                   <th>Business or Individual?</th>
                                   <th>Business Name</th>
@@ -83,7 +83,8 @@
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -94,9 +95,11 @@
 		    		</div>
 		  		</div>
 		    </div>
+        <service-provider-detail @HideModalValue="HideModal" :showModalProp="providerdetailpopup"></service-provider-detail>
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
+        <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
 	</div>
 </template>
 
@@ -109,6 +112,8 @@ export default {
     	service: false,
         viewdetails: false,
         changeProviderStatus: false,
+         changestatus:false,
+         providerdetailpopup:false,
             listing: [],
     	}
   	},
@@ -123,9 +128,17 @@ export default {
         ViewDetails() {
             this.viewdetails = true;
         },
+        changestatuspopup() {
+            this.changestatus = true;
+        },
+        providerdetailclick() {
+            this.providerdetailpopup = true;
+        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
+            this.changestatus = false;
+            this.providerdetailpopup = false;
         },
     },
 
@@ -155,7 +168,7 @@ export default {
             };
             this.listing.push(loopperson);
         };
-    }    
+    }
 
 }
 </script>

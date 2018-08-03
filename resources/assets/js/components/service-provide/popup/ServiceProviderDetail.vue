@@ -1,4 +1,4 @@
- <template>	
+ <template>
 	<div>
 		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Provider Detail" ok-only ok-title="Cancel">
             <alert></alert>
@@ -13,27 +13,27 @@
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Service</strong></p>
+                        <p><strong class="title-head">First Name</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Electrician</p>
+                        <p>Bruce </p>
                     </b-col>
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Sub-Service</strong></p>
+                        <p><strong class="title-head">Last Name</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Wiring</p>
+                        <p>Fahey</p>
                     </b-col>
                 </b-row>
 
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">URL Prefix</strong></p>
+                        <p><strong class="title-head">Business or Individual?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>www.psm.com</p>
+                        <p>Business</p>
                     </b-col>
                 </b-row>
 
@@ -53,7 +53,7 @@
                         <p>Yes</p>
                     </b-col>
                 </b-row>
-                       
+
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Service Providers</strong></p>
@@ -93,7 +93,7 @@
                         </div>
                     </b-col>
                 </b-row>
-                
+
             </div>
 	   </b-modal>
 	</div>
@@ -103,7 +103,7 @@
 export default {
 
     props: ['showModalProp'],
-    
+
     methods: {
         showModal () {
             this.$refs.myModalRef.show()

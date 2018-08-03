@@ -1,6 +1,6 @@
- <template>	
+ <template>
 	<div>
-		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Job Finish" @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
+		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Completed Jobs " @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
             <alert></alert>
             <div class="view-details-list">
 
@@ -65,7 +65,7 @@
                         <p>US</p>
                     </b-col>
                 </b-row>
-                       
+
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Zipcode</strong></p>
@@ -149,7 +149,7 @@
                             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
                     </b-col>
-                </b-row>                
+                </b-row>
             </div>
 	   </b-modal>
 	</div>
@@ -161,7 +161,7 @@ import StarRating from 'vue-star-rating';
 export default {
 
     props: ['showModalProp'],
-    
+
     methods: {
         showModal () {
             this.$refs.myModalRef.show()

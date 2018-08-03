@@ -112,6 +112,17 @@ const routes = [
         }
     },
 
+    //service provider detail
+    {
+        path: '/service-provider-detail',
+        component: require('./components/service-provide/providerdetails.vue'),
+        meta: {
+            title: 'PSM | Service provider details',
+            pagetitle:'Service Provider Details',
+            icon:'icon-briefcase'
+        }
+    },
+
     /*404 Page*/
 
     {

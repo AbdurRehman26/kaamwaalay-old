@@ -30,7 +30,7 @@ Vue.component('SearchField', require('./components/common-components/Search.vue'
 // Common Popup
 Vue.component('delete-popup',require('./components/common-components/DeletePopup.vue'));
 Vue.component('change-pass-popup',require('./components/common-components/ChangePassPopup.vue'));
-
+Vue.component('changestatuspopup',require('./components/common-components/Status.vue'));
 
 
 //left navigation

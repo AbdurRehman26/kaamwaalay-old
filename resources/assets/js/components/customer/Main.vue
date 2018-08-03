@@ -65,6 +65,7 @@
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                                       </div>
                                     </td>
                                 </tr>
@@ -80,6 +81,7 @@
             </div>
           </div>
 		    </div>
+        <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
         <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
 
@@ -94,6 +96,7 @@ export default {
     return {
     	service: false,
     	customer: false,
+      changestatus:false,
         viewcustomer: false,
             listing: [],
     	}
@@ -107,9 +110,13 @@ export default {
         ViewCustomerDetail() {
             this.viewcustomer = true;
         },
+        changestatuspopup() {
+            this.changestatus = true;
+        },
         HideModal(){
             this.customer = false;
             this.viewcustomer = false;
+            this.changestatus = false;
         },
 
     },
