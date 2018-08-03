@@ -1,9 +1,36 @@
  <template>	
 	<div>
-		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Customer Record Detail" ok-only ok-title="Submit">
+		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Customer Detail" ok-only ok-title="Cancel">
             <alert></alert>
             <div class="view-details-list">
-                
+
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Job Title</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>Electrician</p>
+                    </b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Service Provider</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>James</p>
+                    </b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Rating</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p><star-rating :star-size="20" read-only :rating="4"></star-rating></p>
+                    </b-col>
+                </b-row>
+
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Description</strong></p>
@@ -23,6 +50,8 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
+
 export default {
 
     props: ['showModalProp'],
@@ -37,6 +66,9 @@ export default {
         onHidden() {
             this.$emit('HideModalValue');
         }
+    },
+    components: {
+        StarRating
     },
 
     watch: {

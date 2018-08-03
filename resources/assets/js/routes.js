@@ -49,7 +49,7 @@ const routes = [
 
     {
         path: '/service-type',
-        component: require('./components/service-type-user/Main.vue'),
+        component: require('./components/service-type-user/main.vue'),
         meta: {
             title: 'PSM | Service Type',
             pagetitle:'Service Types',
@@ -99,6 +99,16 @@ const routes = [
             title: 'PSM | Create Job',
             pagetitle:'Jobs',
             icon:'icon-briefcase'
+        }
+    },
+    //service provider review
+    {
+        path: '/service-provider-review',
+        component: require('./components/service-provider-review/main.vue'),
+        meta: {
+            title: 'PSM | Service provider review',
+            pagetitle:'Service Provider Review',
+            icon:'icon-search'
         }
     },
 

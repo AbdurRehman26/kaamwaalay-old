@@ -1,6 +1,6 @@
  <template>	
 	<div>
-		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Customer Detail" @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="secondary" @hidden="onHidden">
+		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Customer Detail" @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
             <alert></alert>
             <div class="view-details-list">
 
@@ -98,7 +98,7 @@
                         <p><strong class="title-head">Avg. Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>4</p>
+                        <p><star-rating :star-size="20" read-only :rating="4"></star-rating></p>
                     </b-col>
                 </b-row>
 
@@ -107,7 +107,7 @@
                         <p><strong class="title-head">Total jobs initiated</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>4</p>
+                        <p>44</p>
                     </b-col>
                 </b-row>
 
@@ -116,7 +116,7 @@
                         <p><strong class="title-head">Total jobs finished</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>4</p>
+                        <p>94</p>
                     </b-col>
                 </b-row>
 
@@ -156,6 +156,8 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
+
 export default {
 
     props: ['showModalProp'],
@@ -173,6 +175,10 @@ export default {
         ViewCustomerRecord() {
             this.$router.push('/customer/viewjobdetail');
         }
+    },
+
+    components: {
+        StarRating
     },
 
     watch: {

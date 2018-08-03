@@ -21,6 +21,7 @@
                <left-panel v-show="$route.name==='login' === false"></left-panel>
                <breadcrumb v-show="$route.name==='login' === false" ></breadcrumb>
                <router-view></router-view>
+               <vue-progress-bar></vue-progress-bar>
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>

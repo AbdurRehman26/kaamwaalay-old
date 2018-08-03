@@ -7,13 +7,13 @@
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>Start Date</label>
-                                  <datepicker placeholder="Start Date"/>
+                                  <DatePicker></DatePicker>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>End Date</label>
-                                  <datepicker placeholder="End Date"/>
+                                   <DatePicker></DatePicker>
                                </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
@@ -168,7 +168,7 @@
                                   <td>{{list.duns}}</td>
                                   <td>{{list.stype}}</td>
                                   <td>{{list.sstype}}</td>
-                                  <td >4</td>
+                                  <td ><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -204,7 +204,7 @@
                                   <td><a href="">{{list.email}}</a></td>
                                   <td>{{list.stype}}</td>
                                   <td>{{list.sstype}}</td>
-                                  <td >4</td>
+                                  <td ><star-rating :star-size="20" read-only :rating="4"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -222,7 +222,10 @@
 </template>
 
 <script>
+
 import Datepicker from 'vuejs-datepicker';
+import StarRating from 'vue-star-rating';
+
 export default{
         data () {
           return {
@@ -277,17 +280,22 @@ export default{
             ],
         }
     },
+
     components: {
-        Datepicker
+        Datepicker,
+        StarRating
     },
+
     methods: {
         showleftpanel(){
             this.show = true;
             this.listingResponsive ^= true;
         },
 
-        //line charts
+    //line charts
+    
     initializeCharts(){
+    
     //custom signups
     AmCharts.makeChart("customerSignups",
         {

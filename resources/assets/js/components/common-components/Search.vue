@@ -1,44 +1,16 @@
 <template>
-  <div class="search">
-  <form>
-  <b-form-group
-      id="fieldset1"
-      label-for="input1"      
-      :valid-feedback="validFeedback"
-  >
-    <b-form-input id="input1" v-model.trim="name" placeholder="Search"></b-form-input>
-      <span class="icon-search"></span>
-      <span>
-        <MidLoader></MidLoader>
-      </span>
-  </b-form-group>
-  </form>
-</div>
+  <div class="search-field">
+    <label>Search</label>
+    <TypeAhead src="/static/data.json?keyword=:keyword" :getResponse="getResponse" placeholder="Typing"></TypeAhead>
+  </div>
 </template>
 
  <script>
+//https://www.npmjs.com/package/vue2-typeahead
+import TypeAhead  from 'vue2-typeahead';
 export default {
-  computed: {
-    state () {
-      return this.name.length >= 4 ? true : false
-    },
-    invalidFeedback () {
-      if (this.name.length > 4) {
-        return ''
-      } else if (this.name.length > 0) {
-        return 'Enter at least 4 characters'
-      } else {
-        return ''
-      }
-    },
-    validFeedback () {
-      return this.state === true ? 'Thank you' : ''
-    }
+  components: {
+      TypeAhead
   },
-  data () {
-    return {
-      name: ''
-    }
-  }
 }
-</script> 
+</script>

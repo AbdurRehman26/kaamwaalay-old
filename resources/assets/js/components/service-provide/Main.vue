@@ -1,9 +1,42 @@
 <template>
 	<div class="panel-inner">
 		<div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                </div>
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Business/Individual</label>
+                                   <select class="form-control">
+                                     <option>Select</option>
+                                     <option>Business</option>
+                                     <option>Individual</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
 				<div class="col-md-12">
 					<div class="table-area">
@@ -88,9 +121,9 @@ export default {
             listing: [
                 {
                     id : 1,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    imagepath:'',
                     business: 'Individual',
-                    businessName: '',
+                    businessName: 'ABC',
                     DUNSnum: '543351',
                     full_name: 'James Methew',
                     email_address: 'psm@test.com',
@@ -107,9 +140,69 @@ export default {
 
                 },
                 {
-                    id : 1,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    id : 2,
+                    imagepath:'',
                     business: 'Business',
+                    businessName: 'Abc Business',
+                    DUNSnum: '452634',
+                    full_name: 'John Enderson',
+                    email_address: 'psm@test.com',
+                    services_offered: '67',
+                    address: 'Amsterdam Street 25',
+                    city: 'Amsterdam',
+                    state: 'Netherlands',
+                    zip_code: '543351',
+                    country: 'Netherlands',
+                    contact_number: '126421315',
+                    status: 'Active',
+                    join_date: 'May 25 2018',
+                    approval_date: 'May 30 2018',
+
+                },
+                {
+                    id : 3,
+                    imagepath:'',
+                    business: 'Individual',
+                    businessName: 'Abc Business',
+                    DUNSnum: '452634',
+                    full_name: 'John Enderson',
+                    email_address: 'psm@test.com',
+                    services_offered: '67',
+                    address: 'Amsterdam Street 25',
+                    city: 'Amsterdam',
+                    state: 'Netherlands',
+                    zip_code: '543351',
+                    country: 'Netherlands',
+                    contact_number: '126421315',
+                    status: 'Active',
+                    join_date: 'May 25 2018',
+                    approval_date: 'May 30 2018',
+
+                },
+                {
+                    id : 4,
+                    imagepath:'',
+                    business: 'Business',
+                    businessName: 'Abc Business',
+                    DUNSnum: '452634',
+                    full_name: 'John Enderson',
+                    email_address: 'psm@test.com',
+                    services_offered: '67',
+                    address: 'Amsterdam Street 25',
+                    city: 'Amsterdam',
+                    state: 'Netherlands',
+                    zip_code: '543351',
+                    country: 'Netherlands',
+                    contact_number: '126421315',
+                    status: 'Active',
+                    join_date: 'May 25 2018',
+                    approval_date: 'May 30 2018',
+
+                },
+                {
+                    id : 5,
+                    imagepath:'',
+                    business: 'Individual',
                     businessName: 'Abc Business',
                     DUNSnum: '452634',
                     full_name: 'John Enderson',
