@@ -25,6 +25,7 @@ Vue.component('pageLoader', require('./components/common-components/PageLoader.v
 Vue.component('MidLoader', require('./components/common-components/MediumLoader.vue'));
 Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
 
+
 // Common Popup
 Vue.component('delete-popup',require('./components/common-components/DeletePopup.vue'));
 
@@ -46,6 +47,7 @@ Vue.component('change-status-provider',require('./components/service-provide/pop
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
 Vue.component('view-customer-details',require('./components/customer/popup/ViewCustomerDetails.vue'));
+Vue.component('view-customer-record',require('./components/customer/popup/ViewCustomerRecord.vue'));
 
 
 // 404 Component
