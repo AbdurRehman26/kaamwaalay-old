@@ -45,18 +45,14 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
+                                  <th>Full Name</th>                                  
                                   <th>Image</th>
                                   <th>Business or Individual?</th>
                                   <th>Business Name</th>
                                   <th>DUNS Number</th>
-                                  <th>Full Name</th>
                                   <th>Email Address</th>
                                   <th class="text-center">Services Offered</th>
                                   <th>Address</th>
-                                  <th>City</th>
-                                  <th>State</th>
-                                  <th>Zip Code</th>
-                                  <th>Country</th>
                                   <th>Contact Number</th>
                                   <th>Avg. Rating</th>
                                   <th>Join Date</th>
@@ -68,6 +64,7 @@
                               <tbody>
                                   <tr v-for="list in listing">
                                     <td> {{list.id}} </td>
+                                    <td> {{ list.fullname }} </td>
                                     <td>
                                         <span class="user-img radius-0">
                                             <img  :src="list.imagepath" >
@@ -76,14 +73,9 @@
                                     <td> {{ list.business }} </td>
                                     <td> {{ list.businessName }} </td>
                                     <td> {{ list.DUNSnum }} </td>
-                                    <td> {{ list.full_name }} </td>
                                     <td> {{ list.email_address }} </td>
                                     <td class="text-center"> {{ list.services_offered }} </td>
-                                    <td> {{ list.address }} </td>
-                                    <td> {{ list.city }} </td>
-                                    <td> {{ list.state }} </td>
-                                    <td> {{ list.zip_code }} </td>
-                                    <td> {{ list.country }} </td>
+                                    <td> {{ list.address }}, {{ list.city }}, {{ list.state }}, {{ list.zip_code }}, {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
                                     <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
                                     <td> {{ list.join_date }} </td>
@@ -117,109 +109,7 @@ export default {
     	service: false,
         viewdetails: false,
         changeProviderStatus: false,
-
-            listing: [
-                {
-                    id : 1,
-                    imagepath:'',
-                    business: 'Individual',
-                    businessName: 'ABC',
-                    DUNSnum: '543351',
-                    full_name: 'James Methew',
-                    email_address: 'psm@test.com',
-                    services_offered: '45',
-                    address: 'Amsterdam Street 25',
-                    city: 'Amsterdam',
-                    state: 'Netherlands',
-                    zip_code: '543351',
-                    country: 'Netherlands',
-                    contact_number: '45668756',
-                    status: 'Active',
-                    join_date: 'May 25 2018',
-                    approval_date: 'May 30 2018',
-
-                },
-                {
-                    id : 2,
-                    imagepath:'',
-                    business: 'Business',
-                    businessName: 'Abc Business',
-                    DUNSnum: '452634',
-                    full_name: 'John Enderson',
-                    email_address: 'psm@test.com',
-                    services_offered: '67',
-                    address: 'Amsterdam Street 25',
-                    city: 'Amsterdam',
-                    state: 'Netherlands',
-                    zip_code: '543351',
-                    country: 'Netherlands',
-                    contact_number: '126421315',
-                    status: 'Active',
-                    join_date: 'May 25 2018',
-                    approval_date: 'May 30 2018',
-
-                },
-                {
-                    id : 3,
-                    imagepath:'',
-                    business: 'Individual',
-                    businessName: 'Abc Business',
-                    DUNSnum: '452634',
-                    full_name: 'John Enderson',
-                    email_address: 'psm@test.com',
-                    services_offered: '67',
-                    address: 'Amsterdam Street 25',
-                    city: 'Amsterdam',
-                    state: 'Netherlands',
-                    zip_code: '543351',
-                    country: 'Netherlands',
-                    contact_number: '126421315',
-                    status: 'Active',
-                    join_date: 'May 25 2018',
-                    approval_date: 'May 30 2018',
-
-                },
-                {
-                    id : 4,
-                    imagepath:'',
-                    business: 'Business',
-                    businessName: 'Abc Business',
-                    DUNSnum: '452634',
-                    full_name: 'John Enderson',
-                    email_address: 'psm@test.com',
-                    services_offered: '67',
-                    address: 'Amsterdam Street 25',
-                    city: 'Amsterdam',
-                    state: 'Netherlands',
-                    zip_code: '543351',
-                    country: 'Netherlands',
-                    contact_number: '126421315',
-                    status: 'Active',
-                    join_date: 'May 25 2018',
-                    approval_date: 'May 30 2018',
-
-                },
-                {
-                    id : 5,
-                    imagepath:'',
-                    business: 'Individual',
-                    businessName: 'Abc Business',
-                    DUNSnum: '452634',
-                    full_name: 'John Enderson',
-                    email_address: 'psm@test.com',
-                    services_offered: '67',
-                    address: 'Amsterdam Street 25',
-                    city: 'Amsterdam',
-                    state: 'Netherlands',
-                    zip_code: '543351',
-                    country: 'Netherlands',
-                    contact_number: '126421315',
-                    status: 'Active',
-                    join_date: 'May 25 2018',
-                    approval_date: 'May 30 2018',
-
-                },
-            ],
+            listing: [],
     	}
   	},
 
@@ -241,6 +131,30 @@ export default {
     components: {
         StarRating
     },
+    mounted(){
+        for (var i = 1; i <= 50; i++) {
+            var loopperson =  {
+                        id : i,
+                        imagepath:'',
+                        business: 'Individual',
+                        businessName: 'ABC',
+                        DUNSnum: '543351',
+                        fullname: this.$faker().name.findName(),
+                        email_address: this.$faker().internet.email(),
+                        services_offered: '45',
+                        address: this.$faker().address.streetAddress(),
+                        city: this.$faker().address.city(),
+                        state: this.$faker().address.state(),
+                        zip_code: this.$faker().address.zipCode(),
+                        country: this.$faker().address.country(),
+                        contact_number: this.$faker().phone.phoneNumber(),
+                        status: 'Active',
+                        join_date: 'May 25 2018',
+                        approval_date: 'May 31 2018',
+            };
+            this.listing.push(loopperson);
+        };
+    }    
 
 }
 </script>

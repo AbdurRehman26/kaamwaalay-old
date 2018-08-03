@@ -1,6 +1,6 @@
  <template>	
 	<div>
-		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Customer Detail" ok-only ok-title="Cancel">
+		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Job Detail" ok-only ok-title="Cancel">
             <alert></alert>
             <div class="view-details-list">
 
@@ -24,12 +24,39 @@
 
                 <b-row>
                     <b-col cols="5" class="">
+                        <p><strong class="title-head">Urgent Job</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>Yes</p>
+                    </b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col cols="5" class="">
                         <p><strong class="title-head">Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p><star-rating :star-size="20" read-only :rating="4"></star-rating></p>
                     </b-col>
                 </b-row>
+
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Service</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>Electrician > AC</p>
+                    </b-col>
+                </b-row>  
+
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Project Amount</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>400$</p>
+                    </b-col>
+                </b-row>                                
 
                 <b-row>
                     <b-col cols="5" class="">
