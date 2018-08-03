@@ -13,6 +13,7 @@
                               <div class="form-group">
                                    <label>By Type</label>
                                    <select class="form-control">
+                                     <option>Select Type</option>
                                      <option>Electrician</option>
                                      <option>Electrician >> Ac</option>
                                    </select>

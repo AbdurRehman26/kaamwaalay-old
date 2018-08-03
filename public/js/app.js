@@ -6802,6 +6802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -62792,6 +62793,8 @@ var staticRenderFns = [
         _c("label", [_vm._v("By Type")]),
         _vm._v(" "),
         _c("select", { staticClass: "form-control" }, [
+          _c("option", [_vm._v("Select Type")]),
+          _vm._v(" "),
           _c("option", [_vm._v("Electrician")]),
           _vm._v(" "),
           _c("option", [_vm._v("Electrician >> Ac")])
