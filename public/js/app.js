@@ -3777,8 +3777,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -3788,17 +3786,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             customerrecord: false,
 
             listing: [{
-                id: '1',
                 jobtitle: 'Electrician',
                 serviceprovider: 'Elif',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, deserunt accusamus at veniam culpa quia illum tempore consectetur dolor voluptates tempora quis natus libero modi, nesciunt magnam ipsum quod!'
             }, {
-                id: '2',
                 jobtitle: 'Plumber',
                 serviceprovider: 'Anthony',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!'
             }, {
-                id: '3',
                 jobtitle: 'Carpenter',
                 serviceprovider: 'Anthony',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!'
@@ -4121,14 +4116,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -62095,7 +62082,7 @@ var render = function() {
             size: "sm",
             title: "Customer Detail",
             "ok-only": "",
-            "ok-title": "Submit"
+            "ok-title": "Cancel"
           },
           on: { hidden: _vm.onHidden }
         },
@@ -62106,24 +62093,6 @@ var render = function() {
             "div",
             { staticClass: "view-details-list" },
             [
-              _c(
-                "b-row",
-                [
-                  _c("b-col", { attrs: { cols: "5" } }, [
-                    _c("p", [
-                      _c("strong", { staticClass: "title-head" }, [
-                        _vm._v("ID")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("1")])
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "b-row",
                 [
@@ -63062,7 +63031,7 @@ var render = function() {
             size: "md",
             title: "View Service Detail",
             "ok-only": "",
-            "ok-title": "Submit"
+            "ok-title": "Cancel"
           },
           on: { hidden: _vm.onHidden }
         },
@@ -63304,8 +63273,6 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.listing, function(list) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(list.id))]),
-                      _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(list.jobtitle))]),
                       _c("td", [_vm._v(_vm._s(list.serviceprovider))]),
                       _c(
@@ -63374,13 +63341,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Job Title")]),
         _vm._v(" "),
         _c("th", [_vm._v("Service Provider")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Rating")]),
+        _c("th", [_vm._v("Service Provider Rating")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Action")])
       ])
@@ -79264,9 +79229,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_11_vue_progressbar___default.a, options);
 
 var options = {
-    color: '#CE007F',
-    failedColor: '#FA001F',
-    thickness: '2px',
+    color: '#8200ff',
+    failedColor: '#8200ff',
+    thickness: '3px',
     transition: {
         speed: '2s',
         opacity: '0.6s',

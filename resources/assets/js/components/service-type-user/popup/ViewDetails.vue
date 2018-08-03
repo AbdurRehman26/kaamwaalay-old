@@ -1,6 +1,6 @@
  <template>	
 	<div>
-		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="View Service Detail" ok-only ok-title="Submit">
+		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="View Service Detail" ok-only ok-title="Cancel">
             <alert></alert>
             <div class="view-details-list">
                 <b-row>

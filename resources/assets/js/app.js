@@ -25,9 +25,9 @@ Vue.use( vbclass, router );
 Vue.use(VueProgressBar, options);
 
 const options = {
-    color: '#CE007F',
-    failedColor: '#FA001F',
-    thickness: '2px',
+    color: '#8200ff',
+    failedColor: '#8200ff',
+    thickness: '3px',
     transition: {
         speed: '2s',
         opacity: '0.6s',

@@ -15,16 +15,14 @@
                     <table class="table">
                       <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Job Title</th>
                             <th>Service Provider</th>
-                            <th>Rating</th>
+                            <th>Service Provider Rating</th>
                             <th class="text-center">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-for="list in listing">
-                            <td>{{ list.id }}</td>
                             <td>{{ list.jobtitle }}</th>
                             <td>{{ list.serviceprovider }}</th>
                             <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
@@ -53,19 +51,16 @@ export default {
         
         listing: [
             {
-                id:'1',
                 jobtitle:'Electrician',
                 serviceprovider: 'Elif',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, deserunt accusamus at veniam culpa quia illum tempore consectetur dolor voluptates tempora quis natus libero modi, nesciunt magnam ipsum quod!',
             },
             {
-                id:'2',
                 jobtitle:'Plumber',
                 serviceprovider: 'Anthony',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
             },
             {
-                id:'3',
                 jobtitle:'Carpenter',
                 serviceprovider: 'Anthony',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',

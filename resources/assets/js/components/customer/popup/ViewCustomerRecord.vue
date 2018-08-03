@@ -1,16 +1,8 @@
  <template>	
 	<div>
-		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Customer Detail" ok-only ok-title="Submit">
+		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Customer Detail" ok-only ok-title="Cancel">
             <alert></alert>
             <div class="view-details-list">
-                <b-row>
-                    <b-col cols="5" class="">
-                        <p><strong class="title-head">ID</strong></p>
-                    </b-col>
-                    <b-col cols="7">
-                        <p>1</p>
-                    </b-col>
-                </b-row>
 
                 <b-row>
                     <b-col cols="5" class="">
