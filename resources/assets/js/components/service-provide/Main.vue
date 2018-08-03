@@ -16,10 +16,9 @@
                                   <th>Business or Individual?</th>
                                   <th>Business Name</th>
                                   <th>DUNS Number</th>
-                                  <th>First Name</th>
-                                  <th>Last Name</th>
+                                  <th>Full Name</th>
                                   <th>Email Address</th>
-                                  <th>Services Offered</th>
+                                  <th class="text-center">Services Offered</th>
                                   <th>Address</th>
                                   <th>City</th>
                                   <th>State</th>
@@ -44,10 +43,9 @@
                                     <td> {{ list.business }} </td>
                                     <td> {{ list.businessName }} </td>
                                     <td> {{ list.DUNSnum }} </td>
-                                    <td> {{ list.first_name }} </td>
-                                    <td> {{ list.last_name }} </td>
+                                    <td> {{ list.full_name }} </td>
                                     <td> {{ list.email_address }} </td>
-                                    <td> {{ list.services_offered }} </td>
+                                    <td class="text-center"> {{ list.services_offered }} </td>
                                     <td> {{ list.address }} </td>
                                     <td> {{ list.city }} </td>
                                     <td> {{ list.state }} </td>
@@ -90,13 +88,33 @@ export default {
                 {
                     id : 1,
                     imagepath:'images/dummy/user-pic.jpg',
-                    business: 'Electrician',
-                    businessName: 'ABC',
-                    DUNSnum: '123456789',
-                    first_name: 'James',
-                    last_name: 'Methew',
+                    business: 'Individual',
+                    businessName: '',
+                    DUNSnum: '543351',
+                    full_name: 'James Methew',
                     email_address: 'psm@test.com',
-                    services_offered: '12',
+                    services_offered: '45',
+                    address: 'Amsterdam Street 25',
+                    city: 'Amsterdam',
+                    state: 'Netherlands',
+                    zip_code: '543351',
+                    country: 'Netherlands',
+                    contact_number: '45668756',
+                    avg_rating: '5',
+                    status: 'Active',
+                    join_date: 'May 25 2018',
+                    approval_date: 'May 30 2018',
+
+                },
+                {
+                    id : 1,
+                    imagepath:'images/dummy/user-pic.jpg',
+                    business: 'Business',
+                    businessName: 'Abc Business',
+                    DUNSnum: '452634',
+                    full_name: 'John Enderson',
+                    email_address: 'psm@test.com',
+                    services_offered: '67',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
