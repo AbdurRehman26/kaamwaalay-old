@@ -4284,6 +4284,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4296,26 +4298,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       listingResponsive: false,
 
       listing: [{
-        fname: 'Dickerson',
-        lname: 'Macdonald',
+        fname: 'Dickerson Macdonald',
         email: 'dmacdonald@gmail.com',
-        acesslevel: 'Full',
-        jdate: '22-01-2018',
-        status: 'Active'
+        duns: '245689',
+        stype: 'Electricians',
+        sstype: 'Car',
+        jobscompleted: '20'
       }, {
-        fname: 'Larsen',
-        lname: 'Shaw',
+        fname: 'Larsen Shaw',
         email: 'shawlarsen@gmail.com',
-        acesslevel: 'Review',
-        jdate: 'July 1, 2018',
-        status: 'Active'
+        duns: '245689',
+        stype: 'Carpenters',
+        sstype: '',
+        jobscompleted: '20'
       }, {
-        fname: 'Geneva',
-        lname: 'Wilson',
+        fname: 'Geneva Wilson',
         email: 'genevawilson@gmail.com',
-        acesslevel: 'Full',
-        jdate: 'July 2, 2018',
-        status: 'Deactive'
+        duns: '245689',
+        stype: 'Cleaning Services',
+        sstype: '',
+        jobscompleted: '20'
+      }, {
+        fname: 'Dickerson Macdonald',
+        email: 'dmacdonald@gmail.com',
+        duns: '245689',
+        stype: 'Electricians',
+        sstype: 'Electrical and wiring repair',
+        jobscompleted: '20'
+      }, {
+        fname: 'Larsen Shaw',
+        email: 'shawlarsen@gmail.com',
+        duns: '245689',
+        stype: 'Electricians',
+        sstype: 'Air conditioning repair',
+        jobscompleted: '20'
       }]
     };
   },
@@ -6127,22 +6143,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         "titles": [],
         "dataProvider": [{
-          "category": "Category",
+          "category": "Service 1",
           "column-1": 3
         }, {
-          "category": "Category",
+          "category": "Service 2",
           "column-1": 4
         }, {
-          "category": "Category",
+          "category": "Service 3",
           "column-1": 2
         }, {
-          "category": "Category",
+          "category": "Service 4",
           "column-1": 3
         }, {
-          "category": "Category",
+          "category": "Service 5",
           "column-1": 4
         }, {
-          "category": "Category",
+          "category": "Service 6",
           "column-1": 3
         }]
       });
@@ -60802,13 +60818,17 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(list.lname))]),
+                          _c("td", [_vm._v(_vm._s(list.duns))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(list.lname))]),
+                          _c("td", [_vm._v(_vm._s(list.stype))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(list.sstype))]),
                           _vm._v(" "),
                           _c("td", [_vm._v("4")]),
                           _vm._v(" "),
-                          _c("td", [_vm._v("20")])
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(list.jobscompleted))
+                          ])
                         ])
                       })
                     )
@@ -60848,13 +60868,15 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(list.lname))]),
+                          _c("td", [_vm._v(_vm._s(list.stype))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(list.lname))]),
+                          _c("td", [_vm._v(_vm._s(list.sstype))]),
                           _vm._v(" "),
                           _c("td", [_vm._v("4")]),
                           _vm._v(" "),
-                          _c("td", [_vm._v("20")])
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(list.jobscompleted))
+                          ])
                         ])
                       })
                     )
@@ -60923,7 +60945,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "chart-header grid-head" }, [
       _c("h2", { staticClass: "float-left chart-heading" }, [
-        _vm._v("Top 10 Serivce Provider")
+        _vm._v("Top 5 Serivce Provider")
       ])
     ])
   },
@@ -60941,9 +60963,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Service Type")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Sub Service Type")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Rating")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Jobs Completed")])
+        _c("th", { staticClass: "text-center" }, [_vm._v("Jobs Completed")])
       ])
     ])
   },
@@ -60953,7 +60977,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "chart-header grid-head" }, [
       _c("h2", { staticClass: "float-left chart-heading" }, [
-        _vm._v("Top 10 Serivce Provider")
+        _vm._v("Top 5 Customers")
       ])
     ])
   },
@@ -60967,13 +60991,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
-        _c("th", [_vm._v("DUNS Number")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Service Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sub Service Type")]),
         _vm._v(" "),
         _c("th", [_vm._v("Rating")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Jobs Completed")])
+        _c("th", { staticClass: "text-center" }, [_vm._v("Jobs Completed")])
       ])
     ])
   }

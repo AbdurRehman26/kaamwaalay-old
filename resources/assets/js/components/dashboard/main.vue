@@ -138,7 +138,7 @@
         <div class="col-xs-12 col-md-12 margin-bottom-20px vue-grid-list">
           <div class="graphs vue-grid-item">
               <div class="chart-header grid-head">
-                <h2 class="float-left chart-heading">Top 10 Serivce Provider</h2>
+                <h2 class="float-left chart-heading">Top 5 Serivce Provider</h2>
               </div>
               <div>
                     <div class="table-area">
@@ -150,18 +150,20 @@
                                   <th>Email</th>
                                   <th>DUNS Number</th>
                                   <th>Service Type</th>
+                                  <th>Sub Service Type</th>
                                   <th>Rating</th>
-                                  <th>Jobs Completed</th>
+                                  <th class="text-center">Jobs Completed</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
                                   <td><a href="">{{list.fname}}</a></th>
                                   <td><a href="">{{list.email}}</a></td>
-                                  <td>{{list.lname}}</td>
-                                  <td>{{list.lname}}</td>
+                                  <td>{{list.duns}}</td>
+                                  <td>{{list.stype}}</td>
+                                  <td>{{list.sstype}}</td>
                                   <td >4</td>
-                                  <td >20</td>
+                                  <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -174,7 +176,7 @@
         <div class="col-xs-12 col-md-12 margin-bottom-20px vue-grid-list">
           <div class="graphs vue-grid-item">
               <div class="chart-header grid-head">
-                <h2 class="float-left chart-heading">Top 10 Serivce Provider</h2>
+                <h2 class="float-left chart-heading">Top 5 Customers</h2>
               </div>
               <div>
                     <div class="table-area">
@@ -184,20 +186,20 @@
                                 <tr>
                                   <th>Full Name</th>
                                   <th>Email</th>
-                                  <th>DUNS Number</th>
                                   <th>Service Type</th>
+                                  <th>Sub Service Type</th>
                                   <th>Rating</th>
-                                  <th>Jobs Completed</th>
+                                  <th class="text-center">Jobs Completed</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
                                   <td><a href="">{{list.fname}}</a></th>
                                   <td><a href="">{{list.email}}</a></td>
-                                  <td>{{list.lname}}</td>
-                                  <td>{{list.lname}}</td>
+                                  <td>{{list.stype}}</td>
+                                  <td>{{list.sstype}}</td>
                                   <td >4</td>
-                                  <td >20</td>
+                                  <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -227,29 +229,45 @@ export default{
 
             listing: [
                 {
-                    fname:'Dickerson',
-                    lname:'Macdonald',
+                    fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
-                    acesslevel:'Full',
-                    jdate: '22-01-2018',
-                    status: 'Active',
+                    duns:'245689',
+                    stype: 'Electricians',
+                    sstype: 'Car',
+                    jobscompleted:'20'
                 },
                 {
-                    fname:'Larsen',
-                    lname:'Shaw',
+                    fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
-                    acesslevel:'Review',
-                    jdate: 'July 1, 2018',
-                    status: 'Active',
+                    duns:'245689',
+                    stype: 'Carpenters',
+                    sstype: '',
+                    jobscompleted:'20'
                 },
                 {
-                    fname:'Geneva',
-                    lname:'Wilson',
+                    fname:'Geneva Wilson',
                     email:'genevawilson@gmail.com',
-                    acesslevel:'Full',
-                    jdate: 'July 2, 2018',
-                    status: 'Deactive',
+                    duns:'245689',
+                    stype: 'Cleaning Services',
+                    sstype: '',
+                    jobscompleted:'20'
                 },
+                {
+                    fname:'Dickerson Macdonald',
+                    email:'dmacdonald@gmail.com',
+                    duns:'245689',
+                    stype: 'Electricians',
+                    sstype: 'Electrical and wiring repair',
+                    jobscompleted:'20'
+                },
+                {
+                    fname:'Larsen Shaw',
+                    email:'shawlarsen@gmail.com',
+                    duns:'245689',
+                    stype: 'Electricians',
+                    sstype: 'Air conditioning repair',
+                    jobscompleted:'20'
+                }
             ],
         }
     },
@@ -2666,27 +2684,27 @@ export default{
           "titles": [],
           "dataProvider": [
             {
-              "category": "Category",
+              "category": "Service 1",
               "column-1": 3
             },
             {
-              "category": "Category",
+              "category": "Service 2",
               "column-1": 4
             },
             {
-              "category": "Category",
+              "category": "Service 3",
               "column-1": 2
             },
             {
-              "category": "Category",
+              "category": "Service 4",
               "column-1": 3
             },
             {
-              "category": "Category",
+              "category": "Service 5",
               "column-1": 4
             },
             {
-              "category": "Category",
+              "category": "Service 6",
               "column-1": 3
             }
           ]
