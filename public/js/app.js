@@ -3542,6 +3542,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
 //
 //
 //
@@ -3611,6 +3613,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -3651,6 +3655,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.customer = false;
             this.viewcustomer = false;
         }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
     }
 });
 
@@ -3720,19 +3727,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: '1',
                 jobtitle: 'Electrician',
                 serviceprovider: 'Elif',
-                rating: 'Macdonald',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, deserunt accusamus at veniam culpa quia illum tempore consectetur dolor voluptates tempora quis natus libero modi, nesciunt magnam ipsum quod!'
             }, {
                 id: '2',
                 jobtitle: 'Plumber',
                 serviceprovider: 'Anthony',
-                rating: 'Macdonald',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!'
             }, {
                 id: '3',
                 jobtitle: 'Carpenter',
                 serviceprovider: 'Anthony',
-                rating: 'Macdonald',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!'
             }]
 
@@ -6308,6 +6312,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
 //
 //
 //
@@ -6385,6 +6391,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6409,7 +6416,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 zip_code: '543351',
                 country: 'Netherlands',
                 contact_number: '45668756',
-                avg_rating: '5',
                 status: 'Active',
                 join_date: 'May 25 2018',
                 approval_date: 'May 30 2018'
@@ -6429,7 +6435,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 zip_code: '543351',
                 country: 'Netherlands',
                 contact_number: '126421315',
-                avg_rating: '5',
                 status: 'Active',
                 join_date: 'May 25 2018',
                 approval_date: 'May 30 2018'
@@ -6453,7 +6458,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.service = false;
             this.viewdetails = false;
         }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
     }
+
 });
 
 /***/ }),
@@ -61710,7 +61719,19 @@ var render = function() {
                           _vm._v(" " + _vm._s(list.contact_number) + " ")
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
+                        _c(
+                          "td",
+                          [
+                            _c("star-rating", {
+                              attrs: {
+                                "star-size": 20,
+                                "read-only": "",
+                                rating: 3
+                              }
+                            })
+                          ],
+                          1
+                        ),
                         _vm._v(" "),
                         _c("td", [_vm._v(" " + _vm._s(list.join_date) + " ")]),
                         _vm._v(" "),
@@ -61970,7 +61991,19 @@ var render = function() {
                           _vm._v(" " + _vm._s(list.contact_number) + " ")
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
+                        _c(
+                          "td",
+                          [
+                            _c("star-rating", {
+                              attrs: {
+                                "star-size": 20,
+                                "read-only": "",
+                                rating: 2
+                              }
+                            })
+                          ],
+                          1
+                        ),
                         _vm._v(" "),
                         _c("td", { staticClass: "status-color approved" }, [
                           _vm._v(" " + _vm._s(list.status) + " ")
