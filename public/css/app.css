@@ -36308,6 +36308,13 @@ body .vue-grid-item .list-action i:focus {
   min-width: 72px;
 }
 
+#view-customer-detail button.btn.btn-link {
+  float: right;
+  text-align: right;
+  position: absolute;
+  right: 25px;
+}
+
 .modal-footer {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -38438,6 +38445,10 @@ body .list-height .scrollbar .list-group-item {
   body .list-height .scrollbar .list-group-item {
     padding: 13px 0;
   }
+}
+
+.customer-detail-title {
+  margin-bottom: 20px;
 }
 
 .sidewrapper {

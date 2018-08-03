@@ -56,6 +56,15 @@
     }
 }
 
+#view-customer-detail{
+    button.btn.btn-link {
+        float: right;
+        text-align: right;
+        position: absolute;
+        right: 25px;
+    }
+}
+
 .modal-footer{
     justify-content: flex-start;
     .btn-link{
