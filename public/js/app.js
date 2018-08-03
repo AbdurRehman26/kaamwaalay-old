@@ -3708,7 +3708,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62930,7 +62930,15 @@ var render = function() {
                       _c("td", [_vm._v(_vm._s(list.serviceprovider))]),
                       _c(
                         "td",
-                        [_c("star-rating", { attrs: { "star-size": 20 } })],
+                        [
+                          _c("star-rating", {
+                            attrs: {
+                              "star-size": 20,
+                              "read-only": "",
+                              rating: 2
+                            }
+                          })
+                        ],
                         1
                       ),
                       _vm._v(" "),
@@ -62975,11 +62983,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "page-title-strip" }, [
-          _c("div", { staticClass: "float-left" }, [
-            _c("h2", { staticClass: "page-title" }, [
-              _vm._v("Customer Job detail Section")
-            ])
-          ])
+          _c("div", { staticClass: "float-left" })
         ])
       ])
     ])
@@ -80952,7 +80956,11 @@ var routes = [
 
 }, {
     path: '/customer/viewjobdetail',
-    component: __webpack_require__("./resources/assets/js/components/customer/ViewJobDetail.vue"), meta: { title: 'View Job Detail' }
+    component: __webpack_require__("./resources/assets/js/components/customer/ViewJobDetail.vue"),
+    meta: {
+        title: 'View Job Detail',
+        pagetitle: 'Customer Job detail Section'
+    }
 },
 
 /* Service Provider */

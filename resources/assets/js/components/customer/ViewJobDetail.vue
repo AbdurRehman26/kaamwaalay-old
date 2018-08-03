@@ -4,7 +4,6 @@
             <div class="col-md-12">
                 <div class="page-title-strip">
                     <div class="float-left">
-                       <h2 class="page-title">Customer Job detail Section</h2>
                     </div>
                 </div>
             </div>
@@ -28,7 +27,7 @@
                             <td>{{ list.id }}</td>
                             <td>{{ list.jobtitle }}</th>
                             <td>{{ list.serviceprovider }}</th>
-                            <td><star-rating :star-size="20"></star-rating></td>
+                            <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
                             <td class="text-center">
                                 <div class="action-icons">
                                     <i @click="ViewCustomerRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -46,6 +45,7 @@
 </template>
 <script>
 import StarRating from 'vue-star-rating';
+
 export default {
   data () {
     return {
