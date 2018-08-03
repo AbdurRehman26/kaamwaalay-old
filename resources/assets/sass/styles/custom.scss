@@ -2187,8 +2187,7 @@ i[active="true"]{
 
 // Progress bar custom sass
 .__cov-progress{
-    height: 5px !important;
-    background-color: #407500 !important;
+    background: linear-gradient(to right, rgba(121,24,201,1) 0%,rgba(181,128,221,1) 43%,rgba(183,130,224,1) 55%,rgba(200,166,226,1) 65%,rgba(170,111,219,1) 77%,rgba(169,98,224,1) 100%);
 }
 
 .data-importer-relationship .emailChild-panel {

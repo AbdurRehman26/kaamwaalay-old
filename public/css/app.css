@@ -40572,8 +40572,8 @@ i[active="true"] {
 }
 
 .__cov-progress {
-  height: 5px !important;
-  background-color: #407500 !important;
+  background: -webkit-gradient(linear, left top, right top, from(#7918c9), color-stop(43%, #b580dd), color-stop(55%, #b782e0), color-stop(65%, #c8a6e2), color-stop(77%, #aa6fdb), to(#a962e0));
+  background: linear-gradient(to right, #7918c9 0%, #b580dd 43%, #b782e0 55%, #c8a6e2 65%, #aa6fdb 77%, #a962e0 100%);
 }
 
 .data-importer-relationship .emailChild-panel {
