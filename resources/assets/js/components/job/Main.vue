@@ -3,16 +3,10 @@
 		<div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Job</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary">Add Job</a>
-                    </div>
                 </div>
             </div>
 
-				<div class="col-md-12">	
+				<div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
                             <table class="table first-last-col-fix" style="width:1500px;">
@@ -46,7 +40,7 @@
                                     <td> {{ list.address }} </td>
                                     <td> {{ list.title }} </td>
                                     <td> {{ list.details }} </td>
-                                  
+
                                     <td> {{ list.job_status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
@@ -89,7 +83,7 @@ export default {
             ],
     	}
   	},
-    
+
     methods: {
 
     }

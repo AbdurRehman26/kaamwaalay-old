@@ -1,14 +1,12 @@
 <template>
+<div>
+   <div class="float-right add-btn-pos">
+      <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
+  </div>
 	<div class="panel-inner">
 		<div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Service / Sub service</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
-                    </div>
                 </div>
             </div>
 				<div class="col-md-12">
@@ -52,6 +50,7 @@
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
         <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
 	</div>
+</div>
 </template>
 
 <script>

@@ -3,16 +3,10 @@
 		<div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Customer</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="AddCustomer">Add Customer</a>
-                    </div>
                 </div>
             </div>
 				<div class="col-md-12">
-	
+
                     <div class="table-area">
                         <div class="table-responsive">
                             <table class="table first-last-col-fix" style="width:2090px;">
@@ -102,7 +96,7 @@ export default {
             ],
     	}
   	},
-    
+
     methods: {
 
     	AddCustomer() {

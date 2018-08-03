@@ -52,3 +52,6 @@ Vue.component('view-customer-record',require('./components/customer/popup/ViewCu
 
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
+
+// dashboard
+

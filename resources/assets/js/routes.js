@@ -3,6 +3,21 @@ import VueRouter from 'vue-router'
 
 const routes = [
 
+    /* Dashboard */
+
+    {
+        name: 'dashboard',
+        path: '/dashboard',
+        meta: {
+            title: 'PSM | Dashboard',
+            bodyClass: 'dashboard-page',
+            pagetitle:'Dashboard',
+            icon:'icon-pie-chart'
+        },
+        component: require('./components/dashboard/main.vue'),
+    },
+
+
     /* Login page */
 
     {
@@ -11,6 +26,7 @@ const routes = [
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
+
         },
         component: require('./components/auth/main.vue'),
     },
@@ -20,8 +36,13 @@ const routes = [
     {
         name: 'user',
         path: '/admin',
+        title:'Admin',
         component: require('./components/admin/Main.vue'),
-        meta: { title: 'PSM | User' }
+        meta: {
+            title: 'PSM | User',
+            pagetitle:'Admin',
+            icon:'icon-user-icon-resue'
+        }
     },
 
     /* Service Type */
@@ -29,7 +50,11 @@ const routes = [
     {
         path: '/service-type',
         component: require('./components/service-type-user/Main.vue'),
-        meta: { title: 'PSM | Service Type' }
+        meta: {
+            title: 'PSM | Service Type',
+            pagetitle:'Service Types',
+            icon:'icon-workspace'
+        }
     },
 
     /* Customer Panel */
@@ -37,20 +62,28 @@ const routes = [
     {
         path: '/customer',
         component: require('./components/customer/Main.vue'),
-        meta: { title: 'PSM | Customer Panel' },
-                    
+        meta: {
+            title: 'PSM | Customer Panel' ,
+            pagetitle:'Customers',
+            icon:'icon-users'
+        }
+
     },
-       {
-                    path: '/customer/viewjobdetail',
-                    component: require('./components/customer/ViewJobDetail.vue'), meta: {title: 'View Job Detail'},
-        },
+    {
+        path: '/customer/viewjobdetail',
+        component: require('./components/customer/ViewJobDetail.vue'), meta: {title: 'View Job Detail'},
+    },
 
     /* Service Provider */
 
     {
         path: '/service-provider',
         component: require('./components/service-provide/Main.vue'),
-        meta: { title: 'PSM | Service Provider' }
+        meta: {
+            title: 'PSM | Service Provider',
+            pagetitle:'Service Providers',
+            icon:'icon-handshake-o'
+        }
     },
 
     /* Job */
@@ -58,7 +91,11 @@ const routes = [
     {
         path: '/jobs',
         component: require('./components/job/Main.vue'),
-        meta: { title: 'PSM | Create Job' }
+        meta: {
+            title: 'PSM | Create Job',
+            pagetitle:'Jobs',
+            icon:'icon-briefcase'
+        }
     },
 
     /*404 Page*/
@@ -67,7 +104,9 @@ const routes = [
         name: '404',
         path: '*',
         component: require('./components/404/Main.vue'),
-        meta: { title: '404 Not Found' },
+        meta: {
+            title: '404 Not Found'
+        },
     },
 
 ]

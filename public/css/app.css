@@ -36010,8 +36010,10 @@ body .ag-header .ag-filter-icon p span {
 }
 
 .widget-box {
-  border-bottom: dashed 1px #d9d9d9;
-  margin-bottom: 15px;
+  border: dashed 1px #d9d9d9;
+  margin-bottom: 25px;
+  background: #f7f7f7;
+  padding: 20px 20px 0px;
   /*     .colmn {
         padding-bottom: 8px;
         padding-top: 6px;
@@ -36086,7 +36088,6 @@ body .ag-header .ag-filter-icon p span {
 .vue-grid-item {
   border: dashed 1px #ddd;
   padding: 18px;
-  margin: 0 -9px;
   /*    .list-action{
      // display: none;
      // color: #efefef;
@@ -38759,9 +38760,9 @@ i[active="true"] {
 .panel {
   width: calc(100% - 250px);
   min-height: calc(100% - 59px);
-  /*     background-color: #fff; */
   float: right;
   padding: 25px;
+  position: relative;
 }
 
 .panel .main-panel {
@@ -40678,11 +40679,10 @@ i[active="true"] {
 .page-title {
   display: inline-block;
   position: relative;
-  top: 6px;
+  top: 2px;
 }
 
 .page-title-strip {
-  margin-bottom: 30px;
   clear: both;
   display: block;
   overflow: hidden;
@@ -40703,6 +40703,12 @@ i[active="true"] {
   color: #d9534f !important;
 }
 
+.add-btn-pos {
+  position: absolute;
+  right: 23px;
+  top: 9px;
+}
+
 /* Vue Star Rating css start */
 
 .vue-star-rating-rating-text[data-v-34cbeed1] {
@@ -40710,4 +40716,8 @@ i[active="true"] {
 }
 
 /* Vue Star Rating css end */
+
+.datepicker-field .mx-datepicker {
+  width: 100%;
+}
 
