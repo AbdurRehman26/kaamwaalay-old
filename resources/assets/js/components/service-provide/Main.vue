@@ -132,7 +132,8 @@ export default {
             this.changestatus = true;
         },
         providerdetailclick() {
-            this.providerdetailpopup = true;
+            /*this.providerdetailpopup = true;*/
+            this.$router.push('/service-provider/service-provider-detail');
         },
         HideModal(){
             this.service = false;
