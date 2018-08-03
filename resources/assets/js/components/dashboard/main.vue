@@ -5,13 +5,19 @@
                     <div class="datepicker-row">
                         <div class="row">
                             <div class="col-xs-12 col-md-3 datepicker-field">
-                              <datepicker placeholder="Start Date"/>
+                              <div class="form-group">
+                                  <label>Start Date</label>
+                                  <datepicker placeholder="Start Date"/>
+                              </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
-                              <datepicker placeholder="End Date"/>
+                              <div class="form-group">
+                                  <label>End Date</label>
+                                  <datepicker placeholder="End Date"/>
+                               </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary filter-btn-top-space">
                                     <span>Apply</span>
                                     <loader></loader>
                                 </button>

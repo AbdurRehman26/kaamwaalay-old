@@ -35087,7 +35087,7 @@ textarea {
 }
 
 .datepicker-field {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .datepicker-field input {
@@ -40750,5 +40750,9 @@ i[active="true"] {
 
 .datepicker-field .mx-datepicker {
   width: 100%;
+}
+
+.filter-btn-top-space {
+  margin-top: 27px;
 }
 
