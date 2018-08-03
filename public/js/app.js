@@ -3958,6 +3958,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6698,6 +6721,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59911,6 +59939,21 @@ var render = function() {
           "li",
           {},
           [
+            _c("router-link", { attrs: { to: "/customer" } }, [
+              _c("i", {
+                staticClass: "icon-users",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Customer")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
             _c("router-link", { attrs: { to: "/service-provider" } }, [
               _c("i", {
                 staticClass: "icon-handshake-o",
@@ -59932,21 +59975,6 @@ var render = function() {
                 attrs: { "aria-hidden": "true" }
               }),
               _c("span", [_vm._v("Service Provider Review")])
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {},
-          [
-            _c("router-link", { attrs: { to: "/customer" } }, [
-              _c("i", {
-                staticClass: "icon-users",
-                attrs: { "aria-hidden": "true" }
-              }),
-              _c("span", [_vm._v("Customer")])
             ])
           ],
           1
@@ -62634,18 +62662,7 @@ var render = function() {
               _vm._v(" "),
               _vm._m(0),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-xs-12 col-md-3 datepicker-field" },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [_c("SearchField")],
-                    1
-                  )
-                ]
-              ),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-md-2" }, [
                 _c(
@@ -62670,7 +62687,7 @@ var render = function() {
                   staticStyle: { width: "2850px" }
                 },
                 [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -62790,10 +62807,28 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-xs-12 col-md-3 datepicker-field" }, [
       _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("By Business/Individual")]),
+        _vm._v(" "),
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", [_vm._v("Select")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Business")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Individual")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-3 datepicker-field" }, [
+      _c("div", { staticClass: "form-group" }, [
         _c("label", [_vm._v("By Type")]),
         _vm._v(" "),
         _c("select", { staticClass: "form-control" }, [
-          _c("option", [_vm._v("Select Type")]),
+          _c("option", [_vm._v("Select")]),
           _vm._v(" "),
           _c("option", [_vm._v("Electrician")]),
           _vm._v(" "),
@@ -63012,7 +63047,35 @@ var render = function() {
     { staticClass: "panel-inner" },
     [
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _c("div", { staticClass: " col-xs-12 col-md-12" }, [
+          _c("div", { staticClass: "datepicker-row" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-xs-12 col-md-3 datepicker-field" },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [_c("SearchField")],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-12 col-md-2" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary filter-btn-top-space" },
+                  [_c("span", [_vm._v("Apply")]), _vm._v(" "), _c("loader")],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "table-area" }, [
@@ -63124,8 +63187,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "page-title-strip" })
+    return _c("div", { staticClass: "col-xs-12 col-md-3 datepicker-field" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("By Type")]),
+        _vm._v(" "),
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", [_vm._v("Select Type")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Electrician")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Electrician >> Ac")])
+        ])
+      ])
     ])
   },
   function() {
