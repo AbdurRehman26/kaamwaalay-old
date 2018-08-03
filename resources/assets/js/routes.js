@@ -1,4 +1,4 @@
-// Route components
+    // Route components
 import VueRouter from 'vue-router'
 
 const routes = [
@@ -114,7 +114,7 @@ const routes = [
 
     //service provider detail
     {
-        path: '/service-provider-detail',
+        path: '/service-provider/service-provider-detail',
         component: require('./components/service-provide/providerdetails.vue'),
         meta: {
             title: 'PSM | Service provider details',

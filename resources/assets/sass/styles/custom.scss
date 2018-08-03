@@ -69,12 +69,53 @@ body{
 
 .customer-detail-title {
     margin-bottom: 20px;
+    border-bottom: solid 1px #f3e6ff;
+    padding-bottom: 10px;
 }
 
 .sidewrapper {
     width: calc(100% - 260px);
     margin-left: auto;
 }
+
+h4.page-title {
+    font-size: 21px;
+}
+
+.block-area {
+    margin-top: 24px;
+    width: 60%;
+}
+
+span.tags {
+    background-color: $primary-color !important;
+    margin-left: 0px;
+    &:first-child{
+        margin-left: 0px;
+    }
+}
+
+.provider-image.user-img {
+    width: 360px;
+    height: 360px;
+    border-radius: 0;
+    vertical-align: top;
+    float: right;
+}
+
+.divider {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-bottom-style: dashed;
+}
+
+.provider-detail {
+    /* width: calc(100% - 370px); */
+    max-width: 1000px;
+    width: 100%;
+    display: inline-block;
+}
+
 
 .col-1,
 .col-2,

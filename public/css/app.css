@@ -30806,7 +30806,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032);
-  src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?6c1f936827e7ba2714667691a3272f46) format("truetype"), url(/fonts/icomoon.woff?3368ffeb4d96dce4d6c9fbaec698fb4a) format("woff"), url(/fonts/icomoon.svg?0a9b92d1c4b68f41259e298e64b0da74#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?6c1f936827e7ba2714667691a3272f46) format("truetype"), url(/fonts/icomoon.woff?3368ffeb4d96dce4d6c9fbaec698fb4a) format("woff"), url(/fonts/icomoon.svg?4484ea82eb63623791dbde320dcd15cf#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -38449,11 +38449,52 @@ body .list-height .scrollbar .list-group-item {
 
 .customer-detail-title {
   margin-bottom: 20px;
+  border-bottom: solid 1px #f3e6ff;
+  padding-bottom: 10px;
 }
 
 .sidewrapper {
   width: calc(100% - 260px);
   margin-left: auto;
+}
+
+h4.page-title {
+  font-size: 21px;
+}
+
+.block-area {
+  margin-top: 24px;
+  width: 60%;
+}
+
+span.tags {
+  background-color: #8200ff !important;
+  margin-left: 0px;
+}
+
+span.tags:first-child {
+  margin-left: 0px;
+}
+
+.provider-image.user-img {
+  width: 360px;
+  height: 360px;
+  border-radius: 0;
+  vertical-align: top;
+  float: right;
+}
+
+.divider {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-bottom-style: dashed;
+}
+
+.provider-detail {
+  /* width: calc(100% - 370px); */
+  max-width: 1000px;
+  width: 100%;
+  display: inline-block;
 }
 
 .col-1,
