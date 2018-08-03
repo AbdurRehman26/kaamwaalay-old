@@ -50,6 +50,9 @@ Vue.component('view-customer-details',require('./components/customer/popup/ViewC
 Vue.component('view-customer-record',require('./components/customer/popup/ViewCustomerRecord.vue'));
 
 
+//Jobs
+Vue.component('view-job-details',require('./components/job/popup/ViewJobsDetails.vue'));
+
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
 

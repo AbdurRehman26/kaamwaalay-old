@@ -33858,6 +33858,10 @@ body .ag-theme-balham .ag-header {
 
 /* == Custom table scss start ==*/
 
+.inactive {
+  color: #f1152c !important;
+}
+
 .table-area table {
   margin-bottom: 0;
   border: 1px solid #f3e6ff;

@@ -9,11 +9,10 @@
 				<div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table first-last-col-fix" style="width:1500px;">
+                            <table class="table first-last-col-fix">
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Image</th>
                                   <th>Customer Name</th>
                                   <th>Service Type</th>
                                   <th>Service Sub-type</th>
@@ -28,20 +27,14 @@
                               <tbody>
                                   <tr v-for="list in listing">
                                     <td> {{list.id}} </td>
-                                    <td>
-                                        <span class="user-img radius-0">
-                                            <img  :src="list.imagepath" >
-                                        </span>
-                                    </td>
                                     <td> <a href="javascript:;">{{ list.customer_name }}</a> </td>
                                     <td> {{ list.service_type }} </td>
                                     <td> {{ list.service_subtype }} </td>
                                     <td> {{ list.zip_code }} </td>
                                     <td> {{ list.address }} </td>
                                     <td> {{ list.title }} </td>
-                                    <td> {{ list.details }} </td>
-
-                                    <td> {{ list.job_status }} </td>
+                                    <td> {{ list.details }} </td>                                    
+                                    <td :class="[list.job_status]"> {{ list.job_status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
@@ -78,8 +71,52 @@ export default {
                     address: 'California Street 251',
                     title: 'Job',
                     details: 'Job Details',
-                    job_status: 'Active'
+                    job_status: 'In Bidding'
                 },
+                {
+                    id : 2,
+                    customer_name: 'Shawn',
+                    service_type: 'Carpenter',
+                    service_subtype: 'Window',
+                    zip_code: '25647',
+                    address: 'Plexwood Street 251',
+                    title: 'Job',
+                    details: 'Job Details',
+                    job_status: 'Awarded'
+                },
+                {
+                    id : 3,
+                    customer_name: 'Racheal',
+                    service_type: 'Cleaning',
+                    service_subtype: 'House Cleaning',
+                    zip_code: '12312',
+                    address: 'California Street 251',
+                    title: 'Job',
+                    details: 'Job Details',
+                    job_status: 'Completed'
+                },
+                {
+                    id : 4,
+                    customer_name: 'Jimmy',
+                    service_type: 'Painter',
+                    service_subtype: 'House',
+                    zip_code: '23411',
+                    address: 'California Street 251',
+                    title: 'Job',
+                    details: 'Job Details',
+                    job_status: 'Archived'
+                },
+                {
+                    id : 5,
+                    customer_name: 'Harman',
+                    service_type: 'Plumber',
+                    service_subtype: 'House',
+                    zip_code: '23311',
+                    address: 'California Street 251',
+                    title: 'Job',
+                    details: 'Job Details',
+                    job_status: 'Initiated'
+                },                                                                 
             ],
     	}
   	},

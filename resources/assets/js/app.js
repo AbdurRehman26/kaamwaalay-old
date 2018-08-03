@@ -22,6 +22,7 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Datepicker);
 Vue.use( vbclass, router );
+Vue.use(require('vue-faker'));
 
 
 // Require components tags

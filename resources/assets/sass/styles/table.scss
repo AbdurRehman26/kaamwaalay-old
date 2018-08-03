@@ -395,6 +395,10 @@ body{
 
 /* == Custom table scss start ==*/
 
+.inactive{
+    color: #f1152c !important;
+}
+
 .table-area{
     table{
         margin-bottom: 0;
