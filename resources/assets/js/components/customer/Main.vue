@@ -41,7 +41,7 @@
                                   <th>Email</th>
                                   <th>Address</th>
                                   <th>Contact Number</th>
-                                  <th>Avg. Rating</th>                                  
+                                  <th>Avg. Rating</th>
                                   <th>Join Date</th>
                                   <th>Status</th>
                                   <th class="text-center">Actions</th>
@@ -60,7 +60,7 @@
                                     <td> {{ list.address }}, {{ list.city }}, {{ list.state }}, {{ list.zip_code }}, {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
                                     <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
-                                    <td> {{ list.join_date }} </td>                                    
+                                    <td> {{ list.join_date }} </td>
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
@@ -73,6 +73,12 @@
                         </div>
                     </div>
 		  		</div>
+          <div class="cleafix"></div>
+          <div class="col-xs-12 col-md-12">
+            <div class="pagination-wrapper float-right">
+                <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+            </div>
+          </div>
 		    </div>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
         <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
@@ -127,11 +133,11 @@ export default {
                         avg_rating: '5',
                         status: 'Active',
                         join_date: 'May 25 2018',
-                        approval_date: this.$faker().date.past(),            
+                        approval_date: this.$faker().date.past(),
             };
             this.listing.push(loopperson);
         };
     }
-  
+
 }
 </script>
