@@ -101,6 +101,16 @@ const routes = [
             icon:'icon-briefcase'
         }
     },
+    //service provider review
+    {
+        path: '/service-provider-review',
+        component: require('./components/service-provider-review/main.vue'),
+        meta: {
+            title: 'PSM | Service provider review',
+            pagetitle:'Service Provider Review',
+            icon:'icon-search'
+        }
+    },
 
     /*404 Page*/
 

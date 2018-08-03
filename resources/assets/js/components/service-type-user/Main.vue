@@ -65,7 +65,7 @@ export default {
             listing: [
                 {
                     id : 1,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    imagepath:'',
                     service:'Electricians',
                     subservice:'',
                     featured:'No',
@@ -95,7 +95,7 @@ export default {
                 },
                 {
                     id : 4,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    imagepath:'',
                     service:'Electricians',
                     subservice:'Electrical and wiring repair',
                     featured:'No',
@@ -105,7 +105,7 @@ export default {
                 },
                 {
                     id : 5,
-                    imagepath:'images/dummy/user-pic.jpg',
+                    imagepath:'',
                     service:'Electricians',
                     subservice:'Air conditioning repair',
                     featured:'No',

@@ -3142,6 +3142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /***/ }),
 
@@ -6523,6 +6524,161 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-provider-review/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            service: false,
+            viewdetails: false,
+            changeProviderStatus: false,
+
+            listing: [{
+                id: 1,
+                imagepath: 'images/dummy/user-pic.jpg',
+                business: 'Individual',
+                businessName: '',
+                DUNSnum: '543351',
+                full_name: 'James Methew',
+                email_address: 'psm@test.com',
+                services_offered: '45',
+                address: 'Amsterdam Street 25',
+                city: 'Amsterdam',
+                state: 'Netherlands',
+                zip_code: '543351',
+                country: 'Netherlands',
+                contact_number: '45668756',
+                avg_rating: '5',
+                status: 'Active',
+                join_date: 'May 25 2018',
+                approval_date: 'May 30 2018'
+
+            }, {
+                id: 1,
+                imagepath: 'images/dummy/user-pic.jpg',
+                business: 'Business',
+                businessName: 'Abc Business',
+                DUNSnum: '452634',
+                full_name: 'John Enderson',
+                email_address: 'psm@test.com',
+                services_offered: '67',
+                address: 'Amsterdam Street 25',
+                city: 'Amsterdam',
+                state: 'Netherlands',
+                zip_code: '543351',
+                country: 'Netherlands',
+                contact_number: '126421315',
+                avg_rating: '5',
+                status: 'Active',
+                join_date: 'May 25 2018',
+                approval_date: 'May 30 2018'
+
+            }]
+        };
+    },
+
+
+    methods: {
+        ShowModalUser: function ShowModalUser() {
+            this.changeProviderStatus = true;
+        },
+        AddService: function AddService() {
+            this.service = true;
+        },
+        ViewDetails: function ViewDetails() {
+            this.viewdetails = true;
+        },
+        HideModal: function HideModal() {
+            this.service = false;
+            this.viewdetails = false;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-type-user/Main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6594,7 +6750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             listing: [{
                 id: 1,
-                imagepath: 'images/dummy/user-pic.jpg',
+                imagepath: '',
                 service: 'Electricians',
                 subservice: '',
                 featured: 'No',
@@ -6621,7 +6777,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: 'www.psm.com'
             }, {
                 id: 4,
-                imagepath: 'images/dummy/user-pic.jpg',
+                imagepath: '',
                 service: 'Electricians',
                 subservice: 'Electrical and wiring repair',
                 featured: 'No',
@@ -6630,7 +6786,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url: 'www.psm.com'
             }, {
                 id: 5,
-                imagepath: 'images/dummy/user-pic.jpg',
+                imagepath: '',
                 service: 'Electricians',
                 subservice: 'Air conditioning repair',
                 featured: 'No',
@@ -59309,6 +59465,21 @@ var render = function() {
           "li",
           {},
           [
+            _c("router-link", { attrs: { to: "/service-provider-review" } }, [
+              _c("i", {
+                staticClass: "icon-search",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _c("span", [_vm._v("Service Provider Review")])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {},
+          [
             _c("router-link", { attrs: { to: "/customer" } }, [
               _c("i", {
                 staticClass: "icon-users",
@@ -62147,6 +62318,199 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-700c4894", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7237fa50\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provider-review/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "panel-inner" },
+    [
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "table-area" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table service-provider-table first-last-col-fix",
+                  staticStyle: { width: "2850px" }
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.listing, function(list) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(" " + _vm._s(list.id) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "user-img radius-0" }, [
+                            _c("img", { attrs: { src: list.imagepath } })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.business) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.businessName) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.DUNSnum) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.full_name) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.email_address) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(" " + _vm._s(list.services_offered) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.address) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.city) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.state) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.zip_code) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.country) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.contact_number) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.avg_rating) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(" " + _vm._s(list.join_date) + " ")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(" " + _vm._s(list.approval_date) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "status-color approved" }, [
+                          _vm._v(" " + _vm._s(list.status) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c("div", { staticClass: "action-icons" }, [
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "b-tooltip",
+                                  rawName: "v-b-tooltip.hover",
+                                  modifiers: { hover: true }
+                                }
+                              ],
+                              staticClass: "icon-eye",
+                              attrs: { title: "View Details" }
+                            })
+                          ])
+                        ])
+                      ])
+                    })
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("change-status-user", {
+        attrs: { showModalProp: _vm.changeProviderStatus },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("add-service", {
+        attrs: { showModalProp: _vm.service },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("view-details", {
+        attrs: { showModalProp: _vm.viewdetails },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "page-title-strip" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Business or Individual?")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Business Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("DUNS Number")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Full Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email Address")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Services Offered")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Address")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("City")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("State")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Zip Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Country")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Contact Number")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Avg. Rating")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Join Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Approval Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7237fa50", module.exports)
   }
 }
 
@@ -80793,6 +81157,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/service-provider-review/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-provider-review/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7237fa50\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provider-review/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\service-provider-review\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7237fa50", Component.options)
+  } else {
+    hotAPI.reload("data-v-7237fa50", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/service-type-user/Main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81041,6 +81453,16 @@ var routes = [
         title: 'PSM | Create Job',
         pagetitle: 'Jobs',
         icon: 'icon-briefcase'
+    }
+},
+//service provider review
+{
+    path: '/service-provider-review',
+    component: __webpack_require__("./resources/assets/js/components/service-provider-review/main.vue"),
+    meta: {
+        title: 'PSM | Service provider review',
+        pagetitle: 'Service Provider Review',
+        icon: 'icon-search'
     }
 },
 
