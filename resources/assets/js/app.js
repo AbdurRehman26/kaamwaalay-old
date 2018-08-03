@@ -15,14 +15,13 @@ import AmSerial from 'amcharts3/amcharts/serial';
 import AmPie from 'amcharts3/amcharts/pie';
 import AmFunnelChart  from 'amcharts3/amcharts/funnel';
 import AmGauge from 'amcharts3/amcharts/gauge';
-import DatePicker from 'vue2-datepicker'
+import Datepicker from 'vuejs-datepicker';
 
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-Vue.use(DatePicker);
+Vue.use(Datepicker);
 Vue.use( vbclass, router );
-
 
 
 // Require components tags

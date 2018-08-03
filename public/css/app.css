@@ -35081,6 +35081,37 @@ textarea {
   top: 3px;
 }
 
+.datepicker-row {
+  margin-bottom: 30px;
+  border-bottom: solid 1px #f3e6ff;
+}
+
+.datepicker-field {
+  margin-bottom: 30px;
+}
+
+.datepicker-field input {
+  height: 38px;
+  font-family: "OpenSans-Regular";
+  font-size: 0.875rem;
+  padding: 7px 16px;
+  border-radius: 4px;
+  color: #1a1a1a;
+  max-width: 100% !important;
+  width: 100% !important;
+  outline: none;
+  border: none;
+  border: solid 1px #d9d9d9;
+}
+
+.datepicker-field input:focus {
+  width: 100%;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #1a1a1a;
+  border-color: #66AFE9;
+}
+
 .main-nav {
   position: relative;
   height: 56px;

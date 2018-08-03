@@ -1,11 +1,23 @@
 <template>
 <div class="panel-inner">
         <div class="row">
-            <div class="col-xs-12 col-md-3 datepicker-field">
-               <date-picker v-model="value3" lang="en" type="datetime" format="YYYY-MM-DD HH:mm:ss"></date-picker>
-            </div>
-            <div class="col-xs-12 col-md-3 datepicker-field">
-                <date-picker v-model="value3" lang="en" type="datetime" format="YYYY-MM-DD HH:mm:ss"></date-picker>
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <datepicker placeholder="Start Date"/>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <datepicker placeholder="End Date"/>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="chart-legends row">
@@ -202,6 +214,7 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker';
 export default{
         data () {
           return {
@@ -238,23 +251,10 @@ export default{
                     status: 'Deactive',
                 },
             ],
-             time1: '',
-              time2: '',
-              time3: '',
-              shortcuts: [
-                {
-                  text: 'Today',
-                  onClick: () => {
-                    this.time1 = [ new Date(), new Date() ]
-                  }
-                }
-              ],
-              timePickerOptions:{
-                start: '00:00',
-                step: '00:30',
-                end: '23:30'
-              }
         }
+    },
+    components: {
+        Datepicker
     },
     methods: {
         showleftpanel(){
