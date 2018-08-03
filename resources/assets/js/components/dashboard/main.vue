@@ -168,7 +168,7 @@
                                   <td>{{list.duns}}</td>
                                   <td>{{list.stype}}</td>
                                   <td>{{list.sstype}}</td>
-                                  <td >4</td>
+                                  <td ><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -204,7 +204,7 @@
                                   <td><a href="">{{list.email}}</a></td>
                                   <td>{{list.stype}}</td>
                                   <td>{{list.sstype}}</td>
-                                  <td >4</td>
+                                  <td ><star-rating :star-size="20" read-only :rating="4"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -222,6 +222,10 @@
 </template>
 
 <script>
+
+import Datepicker from 'vuejs-datepicker';
+import StarRating from 'vue-star-rating';
+
 export default{
         data () {
           return {
@@ -277,14 +281,21 @@ export default{
         }
     },
 
+    components: {
+        Datepicker,
+        StarRating
+    },
+
     methods: {
         showleftpanel(){
             this.show = true;
             this.listingResponsive ^= true;
         },
 
-        //line charts
+    //line charts
+    
     initializeCharts(){
+    
     //custom signups
     AmCharts.makeChart("customerSignups",
         {

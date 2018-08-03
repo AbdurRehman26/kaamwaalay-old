@@ -91,7 +91,7 @@
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i v-b-tooltip.hover title="View Details" @click="ServiceProviderDetail" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -105,6 +105,7 @@
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
+        <service-provider-detail @HideModalValue="HideModal" :showModalProp="serviceproviderdetail"></service-provider-detail>
 	</div>
 </template>
 
@@ -115,8 +116,9 @@ export default {
   data () {
     return {
     	service: false,
-        viewdetails: false,
-        changeProviderStatus: false,
+      viewdetails: false,
+      changeProviderStatus: false,
+      serviceproviderdetail: false,
 
             listing: [
                 {
@@ -173,9 +175,13 @@ export default {
         ViewDetails() {
             this.viewdetails = true;
         },
+        ServiceProviderDetail() {
+          this.serviceproviderdetail = true;
+        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
+            this.serviceproviderdetail = false;
         },
     },
     components: {
