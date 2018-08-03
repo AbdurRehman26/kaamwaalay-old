@@ -98,7 +98,7 @@
                         <p><strong class="title-head">Avg. Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>4</p>
+                        <p><star-rating :star-size="20" read-only :rating="4"></star-rating></p>
                     </b-col>
                 </b-row>
 
@@ -156,6 +156,8 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
+
 export default {
 
     props: ['showModalProp'],
@@ -173,6 +175,10 @@ export default {
         ViewCustomerRecord() {
             this.$router.push('/customer/viewjobdetail');
         }
+    },
+
+    components: {
+        StarRating
     },
 
     watch: {

@@ -2992,6 +2992,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/common-components/ChangePassPopup.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp'],
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        }
+    },
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/common-components/DeletePopup.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3335,6 +3393,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3343,7 +3402,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isShowing: false,
             showModalValue: false,
             tab: false,
-            tabmenu: false
+            tabmenu: false,
+            changepass: false
         };
     },
 
@@ -3354,8 +3414,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ShowModal: function ShowModal() {
             this.showModalValue = true;
         },
+        ChangePass: function ChangePass() {
+            this.changepass = true;
+        },
         HideModal: function HideModal() {
             this.showModalValue = false;
+            this.changepass = false;
         },
         Showactive: function Showactive() {
             this.tab ^= true;
@@ -3850,6 +3914,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
 //
 //
 //
@@ -4007,6 +4073,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -4025,6 +4093,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ViewCustomerRecord: function ViewCustomerRecord() {
             this.$router.push('/customer/viewjobdetail');
         }
+    },
+
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
     },
 
     watch: {
@@ -60375,6 +60447,94 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-44ed85c0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/ChangePassPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "change-pass",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "primary",
+            size: "sm",
+            title: "Change Password",
+            "ok-only": "",
+            "ok-title": "Submit"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c("div", [
+            _c("label", [_vm._v("Old Password")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "password",
+                  placeholder: "Enter old password",
+                  name: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", [_vm._v("New Password")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "password",
+                  placeholder: "Create new password",
+                  name: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("label", [_vm._v("Confirm Password")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group mb-0" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "password",
+                  placeholder: "Re-type new password",
+                  name: ""
+                }
+              })
+            ])
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-44ed85c0", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5084e4de\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/Alert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62325,7 +62485,10 @@ var render = function() {
                   [
                     _c(
                       "span",
-                      { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                      {
+                        staticClass: "user-img",
+                        on: { click: _vm.ChangePass }
+                      },
                       [
                         _c("img", {
                           attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
@@ -62361,6 +62524,11 @@ var render = function() {
       _vm._v(" "),
       _c("update-profile", {
         attrs: { showModalProp: _vm.showModalValue },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("change-pass-popup", {
+        attrs: { showModalProp: _vm.changepass },
         on: { HideModalValue: _vm.HideModal }
       })
     ],
@@ -63567,7 +63735,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("4")])
+                    _c(
+                      "p",
+                      [
+                        _c("star-rating", {
+                          attrs: { "star-size": 20, "read-only": "", rating: 4 }
+                        })
+                      ],
+                      1
+                    )
                   ])
                 ],
                 1
@@ -79070,6 +79246,7 @@ Vue.component('SpinnerLoader', __webpack_require__("./resources/assets/js/compon
 
 // Common Popup
 Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/common-components/DeletePopup.vue"));
+Vue.component('change-pass-popup', __webpack_require__("./resources/assets/js/components/common-components/ChangePassPopup.vue"));
 
 //left navigation
 Vue.component('left-panel', __webpack_require__("./resources/assets/js/components/common-components/LeftPanel.vue"));
@@ -79663,6 +79840,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-10f5b904", Component.options)
   } else {
     hotAPI.reload("data-v-10f5b904", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/common-components/ChangePassPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/common-components/ChangePassPopup.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-44ed85c0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/common-components/ChangePassPopup.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\common-components\\ChangePassPopup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-44ed85c0", Component.options)
+  } else {
+    hotAPI.reload("data-v-44ed85c0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
