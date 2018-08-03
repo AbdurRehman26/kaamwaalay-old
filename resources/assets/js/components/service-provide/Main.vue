@@ -3,12 +3,6 @@
 		<div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Service Provider</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service Provider</a>
-                    </div>
                 </div>
             </div>
 				<div class="col-md-12">
@@ -66,7 +60,7 @@
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i class="icon-eye"></i>
+                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>

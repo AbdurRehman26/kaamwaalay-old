@@ -3,16 +3,10 @@
 		<div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Job</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary">Add Job</a>
-                    </div>
                 </div>
             </div>
 
-				<div class="col-md-12">	
+				<div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
                             <table class="table first-last-col-fix" style="width:1500px;">
@@ -46,12 +40,12 @@
                                     <td> {{ list.address }} </td>
                                     <td> {{ list.title }} </td>
                                     <td> {{ list.details }} </td>
-                                  
+
                                     <td> {{ list.job_status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i class="icon-eye" @click="ViewDetails"></i>
-                                        <i class="icon-pencil" @click="AddService"></i>
+                                        <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
+                                        <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i>
                                       </div>
                                     </td>
                                 </tr>
@@ -89,7 +83,7 @@ export default {
             ],
     	}
   	},
-    
+
     methods: {
 
     }

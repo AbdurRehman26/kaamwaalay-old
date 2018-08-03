@@ -3,16 +3,10 @@
 		<div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Customer</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="AddCustomer">Add Customer</a>
-                    </div>
                 </div>
             </div>
 				<div class="col-md-12">
-	
+
                     <div class="table-area">
                         <div class="table-responsive">
                             <table class="table first-last-col-fix" style="width:2090px;">
@@ -53,20 +47,19 @@
                                     <td> {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
                                     <td> {{ list.avg_rating }} </td>
-                                    <td> {{ list.status }} </td>
+                                    <td class="status-color approved"> {{ list.status }} </td>
                                     <td> {{ list.join_date }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i class="icon-eye" @click="ViewDetails"></i>
-                                        <i class="icon-pencil" @click="AddService"></i>
+                                        <i v-b-tooltip.hover title="View Details" class="icon-eye" @click="ViewDetails"></i>
+                                        <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="AddService"></i>
                                       </div>
                                     </td>
                                 </tr>
                               </tbody>
                             </table>
                         </div>
-            </div>
-
+                    </div>
 		  		</div>
 		    </div>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
@@ -102,7 +95,7 @@ export default {
             ],
     	}
   	},
-    
+
     methods: {
 
     	AddCustomer() {

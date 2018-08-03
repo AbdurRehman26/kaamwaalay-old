@@ -1,14 +1,13 @@
 <template>
+  <div>
+  <div class="float-right add-btn-pos">
+      <a href="javascript:;" class="btn btn-primary" @click="ShowModalUser">Add User</a>
+  </div>
 	<div class="panel-inner">
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-strip">
-                    <div class="float-left">
-                       <h2 class="page-title">Admins</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="ShowModalUser">Add User</a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -47,8 +46,8 @@
 
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
      <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
-		 <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
 	</div>
+  </div>
 </template>
 <script>
 export default {
@@ -57,7 +56,7 @@ export default {
     	showModalValue: false,
         changestatus: false,
         actiondelete: false,
-
+        pageTitle:'Admin',
 
             listing: [
                 {
@@ -95,13 +94,9 @@ export default {
         StatusChange(){
             this.changestatus = true;
         },
-        ActionDelete() {
-            this.actiondelete = true;
-        },
         HideModal(){
             this.showModalValue = false;
             this.changestatus = false;
-            this.actiondelete = false;
         },
           statusLink(event) {
             if(event.target.className == "active")

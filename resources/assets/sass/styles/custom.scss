@@ -428,9 +428,9 @@ i[active="true"]{
 .panel {
     width: calc(100% - 250px);
     min-height:calc(100% - 59px);
-/*     background-color: #fff; */
     float: right;
     padding:25px;
+    position:relative;
     .main-panel {
         height: calc(100% - 54px);
     }
@@ -2295,10 +2295,9 @@ i[active="true"]{
 .page-title{
     display:inline-block;
     position:relative;
-    top:6px;
+    top:2px;
 }
 .page-title-strip{
-    margin-bottom: 30px;
     clear: both;
     display: block;
     overflow: hidden;
@@ -2321,4 +2320,14 @@ i[active="true"]{
         color:$danger-bg !important;
     }
 }
+.add-btn-pos{
+    position: absolute;
+    right: 23px;
+    top: 9px;
+}
 
+.datepicker-field{
+    .mx-datepicker{
+        width:100%;
+    }
+}
