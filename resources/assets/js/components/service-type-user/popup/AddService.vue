@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="success" ref="myModalRef" size="md" title="Add new Service" ok-only ok-title="Submit">
+		<b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" ok-only ok-title="Submit">
             <alert></alert>
 		    	<div>
                     <form action="" method="">

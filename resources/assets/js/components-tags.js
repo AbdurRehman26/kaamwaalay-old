@@ -45,6 +45,8 @@ Vue.component('change-status-provider',require('./components/service-provide/pop
 
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
+Vue.component('view-customer-details',require('./components/customer/popup/ViewCustomerDetails.vue'));
+
 
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
