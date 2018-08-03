@@ -30806,7 +30806,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032);
-  src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?6c1f936827e7ba2714667691a3272f46) format("truetype"), url(/fonts/icomoon.woff?3368ffeb4d96dce4d6c9fbaec698fb4a) format("woff"), url(/fonts/icomoon.svg?4484ea82eb63623791dbde320dcd15cf#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?6c1f936827e7ba2714667691a3272f46) format("truetype"), url(/fonts/icomoon.woff?3368ffeb4d96dce4d6c9fbaec698fb4a) format("woff"), url(/fonts/icomoon.svg?0a9b92d1c4b68f41259e298e64b0da74#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -40757,5 +40757,9 @@ i[active="true"] {
 
 .filter-btn-top-space {
   margin-top: 27px;
+}
+
+.pagination-wrapper {
+  margin-top: 25px;
 }
 

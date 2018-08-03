@@ -42,11 +42,11 @@
                               <tbody>
                                 <tr v-for="list in listing">
                                   <td>{{list.id}}</th>
-                                  <td><span class="user-img radius-0"><img  :src="list.imagepath" ></span></td>
+                                  <td><span class="user-img radius-0"></span></td>
                                   <td>{{list.service}}</td>
                                   <td>{{list.subservice}}</td>
-                                  <td class="text-center">{{list.featured}}</td>
-                                  <td class="text-center">{{list.heronavigation}}</td>
+                                  <td class="text-center">No</td>
+                                  <td class="text-center">NO</td>
                                   <td class="text-center">
                                     <div class="action-icons">
                                       <i v-b-tooltip.hover title="View Details" @click="ViewDetails" class="icon-eye"></i>
@@ -61,10 +61,15 @@
 		    		</div>
 		  		</div>
 		    </div>
-        <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
-        <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-        <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
+          <div class="col-xs-12 col-md-12">
+            <div class="pagination-wrapper float-right">
+                <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+            </div>
+          </div>
 	</div>
+<add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
+<view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
+<delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
 </div>
 </template>
 
@@ -75,8 +80,11 @@ export default {
     	service: false,
       viewdetails: false,
       actiondelete: false,
-
-            listing: [
+        viewcustomer: false,
+            listing: [],
+      }
+  },
+/*            listing: [
                 {
                     id : 1,
                     imagepath:'',
@@ -128,8 +136,8 @@ export default {
                     url: 'www.psm.com',
                 },
             ],
-    	}
-  	},
+   	}
+  	*/
     methods: {
         AddService(){
             this.service = true;
@@ -148,6 +156,18 @@ export default {
         getResponse: function (response) {
           return response.data.items
         }
+    },
+
+    mounted(){
+        for (var i = 1; i <= 50; i++) {
+            var loopperson =  {
+                        id : i,
+                        imagepath:'',
+                        service: this.$faker().commerce.department(),
+                        subservice: this.$faker().commerce.productName(),
+            };
+            this.listing.push(loopperson);
+        };
     }
 }
 </script>
