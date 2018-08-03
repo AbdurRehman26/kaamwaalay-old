@@ -4322,6 +4322,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -60462,24 +60468,36 @@ var render = function() {
       _c("div", { staticClass: " col-xs-12 col-md-12" }, [
         _c("div", { staticClass: "datepicker-row" }, [
           _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              { staticClass: "col-xs-12 col-md-3 datepicker-field" },
-              [_c("datepicker", { attrs: { placeholder: "Start Date" } })],
-              1
-            ),
+            _c("div", { staticClass: "col-xs-12 col-md-3 datepicker-field" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v("Start Date")]),
+                  _vm._v(" "),
+                  _c("datepicker", { attrs: { placeholder: "Start Date" } })
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-xs-12 col-md-3 datepicker-field" },
-              [_c("datepicker", { attrs: { placeholder: "End Date" } })],
-              1
-            ),
+            _c("div", { staticClass: "col-xs-12 col-md-3 datepicker-field" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v("End Date")]),
+                  _vm._v(" "),
+                  _c("datepicker", { attrs: { placeholder: "End Date" } })
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-xs-12 col-md-2" }, [
               _c(
                 "button",
-                { staticClass: "btn btn-primary" },
+                { staticClass: "btn btn-primary filter-btn-top-space" },
                 [_c("span", [_vm._v("Apply")]), _vm._v(" "), _c("loader")],
                 1
               )
