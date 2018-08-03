@@ -4210,6 +4210,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__("./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_star_rating__);
 //
 //
 //
@@ -4433,6 +4435,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4484,7 +4488,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   components: {
-    Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */]
+    Datepicker: __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__["a" /* default */],
+    StarRating: __WEBPACK_IMPORTED_MODULE_1_vue_star_rating___default.a
   },
   methods: {
     showleftpanel: function showleftpanel() {
@@ -4494,7 +4499,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     //line charts
+
     initializeCharts: function initializeCharts() {
+
       //custom signups
       AmCharts.makeChart("customerSignups", {
         "type": "serial",
@@ -6498,6 +6505,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -6507,6 +6515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             service: false,
             viewdetails: false,
             changeProviderStatus: false,
+            serviceproviderdetail: false,
 
             listing: [{
                 id: 1,
@@ -6561,9 +6570,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ViewDetails: function ViewDetails() {
             this.viewdetails = true;
         },
+        ServiceProviderDetail: function ServiceProviderDetail() {
+            this.serviceproviderdetail = true;
+        },
         HideModal: function HideModal() {
             this.service = false;
             this.viewdetails = false;
+            this.serviceproviderdetail = false;
         }
     },
     components: {
@@ -6612,6 +6625,144 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hideModal: function hideModal() {
             this.$refs.myModalRef.hide();
             this.changestatus = false;
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        }
+    },
+
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-provide/popup/ServiceProviderDetail.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp'],
+
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
@@ -61095,7 +61246,19 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(list.sstype))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v("4")]),
+                          _c(
+                            "td",
+                            [
+                              _c("star-rating", {
+                                attrs: {
+                                  "star-size": 20,
+                                  "read-only": "",
+                                  rating: 2
+                                }
+                              })
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
                             _vm._v(_vm._s(list.jobscompleted))
@@ -61143,7 +61306,19 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(list.sstype))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v("4")]),
+                          _c(
+                            "td",
+                            [
+                              _c("star-rating", {
+                                attrs: {
+                                  "star-size": 20,
+                                  "read-only": "",
+                                  rating: 4
+                                }
+                              })
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
                             _vm._v(_vm._s(list.jobscompleted))
@@ -61961,7 +62136,8 @@ var render = function() {
                                 }
                               ],
                               staticClass: "icon-eye",
-                              attrs: { title: "View Details" }
+                              attrs: { title: "View Details" },
+                              on: { click: _vm.ServiceProviderDetail }
                             })
                           ])
                         ])
@@ -61987,6 +62163,11 @@ var render = function() {
       _vm._v(" "),
       _c("view-details", {
         attrs: { showModalProp: _vm.viewdetails },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("service-provider-detail", {
+        attrs: { showModalProp: _vm.serviceproviderdetail },
         on: { HideModalValue: _vm.HideModal }
       })
     ],
@@ -62633,6 +62814,246 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-77146d2f", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7937470d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provide/popup/ServiceProviderDetail.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "view-service-detail",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "primary",
+            size: "md",
+            title: "Service Provider Detail",
+            "ok-only": "",
+            "ok-title": "Cancel"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "view-details-list" },
+            [
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("ID")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("1")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Service")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("Electrician")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Sub-Service")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("Wiring")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("URL Prefix")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("www.psm.com")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Is Featured?")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("No")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Hero Navigation")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("Yes")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Total Service Providers")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("12")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Total Jobs Initiated")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("12")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Total Jobs Finished")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [_vm._v("12")])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Description")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "12" } }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                      ])
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7937470d", module.exports)
   }
 }
 
@@ -79402,6 +79823,7 @@ Vue.component('view-details', __webpack_require__("./resources/assets/js/compone
 
 //service provider
 Vue.component('change-status-provider', __webpack_require__("./resources/assets/js/components/service-provide/popup/ChangeStatus.vue"));
+Vue.component('service-provider-detail', __webpack_require__("./resources/assets/js/components/service-provide/popup/ServiceProviderDetail.vue"));
 
 // Customer
 Vue.component('customer-detail', __webpack_require__("./resources/assets/js/components/customer/popup/AddCustomer.vue"));
@@ -81180,6 +81602,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-0ce02948", Component.options)
   } else {
     hotAPI.reload("data-v-0ce02948", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/service-provide/popup/ServiceProviderDetail.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/service-provide/popup/ServiceProviderDetail.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7937470d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/service-provide/popup/ServiceProviderDetail.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\service-provide\\popup\\ServiceProviderDetail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7937470d", Component.options)
+  } else {
+    hotAPI.reload("data-v-7937470d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

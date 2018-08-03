@@ -46,6 +46,7 @@ Vue.component('view-details',require('./components/service-type-user/popup/ViewD
 
 //service provider
 Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
+Vue.component('service-provider-detail',require('./components/service-provide/popup/ServiceProviderDetail.vue'));
 
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
