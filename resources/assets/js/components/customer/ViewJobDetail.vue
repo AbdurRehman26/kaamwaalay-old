@@ -4,10 +4,7 @@
             <div class="col-md-12">
                 <div class="page-title-strip">
                     <div class="float-left">
-                       <h2 class="page-title">Job detail</h2>
-                    </div>
-                    <div class="float-right">
-                        <a href="javascript:;" class="btn btn-primary" @click="ShowModalUser">Add User</a>
+                       <h2 class="page-title">Customer Job detail Section</h2>
                     </div>
                 </div>
             </div>
@@ -15,101 +12,81 @@
       <div class="row">
         <div class="col-md-12">
           <div class="table-area">
-                        <div class="table-responsive">
-                            <table class="table last-col-fix">
-                              <thead>
-                                <tr>
-                                  <th>First Name</th>
-                                  <th>Last Name</th>
-                                  <th>Email Address</th>
-                                  <th>Access Level</th>
-                                  <th>Join Date</th>
-                                  <th class="text-center">Status</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr v-for="list in listing">
-                                  <td>{{list.fname}}</th>
-                                  <td>{{list.lname}}</td>
-                                  <td><a href="">{{list.email}}</a></td>
-                                  <td >{{list.acesslevel}}</td>
-                                  <td>{{list.jdate}}</td>
-                                  <td class="text-center statustext">
-                                    <div class=""><a class="active" @click="statusLink">Active</a></div>
-                                </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                        </div>
+                <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Job Title</th>
+                            <th>Service Provider</th>
+                            <th>Rating</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="list in listing">
+                            <td>{{ list.id }}</td>
+                            <td>{{ list.jobtitle }}</th>
+                            <td>{{ list.serviceprovider }}</th>
+                            <td><star-rating :star-size="20"></star-rating></td>
+                            <td class="text-center">
+                                <div class="action-icons">
+                                    <i @click="ViewCustomerRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
             </div>
           </div>
         </div>
-
-     <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
-     <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
-  </div>
+        <view-customer-record :showModalProp="customerrecord" @HideModalValue="HideModal"></view-customer-record>
+  </div> 
 </template>
 <script>
+import StarRating from 'vue-star-rating';
 export default {
   data () {
     return {
-      showModalValue: false,
-        changestatus: false,
-        actiondelete: false,
+        customerrecord: false,
+        
+        listing: [
+            {
+                id:'1',
+                jobtitle:'Electrician',
+                serviceprovider: 'Elif',
+                rating:'Macdonald',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, deserunt accusamus at veniam culpa quia illum tempore consectetur dolor voluptates tempora quis natus libero modi, nesciunt magnam ipsum quod!',
+            },
+            {
+                id:'2',
+                jobtitle:'Plumber',
+                serviceprovider: 'Anthony',
+                rating:'Macdonald',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
+            },
+            {
+                id:'3',
+                jobtitle:'Carpenter',
+                serviceprovider: 'Anthony',
+                rating:'Macdonald',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
+            },
+        ],
 
-
-            listing: [
-                {
-                    fname:'Dickerson',
-                    lname:'Macdonald',
-                    email:'dmacdonald@gmail.com',
-                    acesslevel:'Full',
-                    jdate: '22-01-2018',
-                    status: 'Active',
-                },
-                {
-                    fname:'Larsen',
-                    lname:'Shaw',
-                    email:'shawlarsen@gmail.com',
-                    acesslevel:'Review',
-                    jdate: 'July 1, 2018',
-                    status: 'Active',
-                },
-                {
-                    fname:'Geneva',
-                    lname:'Wilson',
-                    email:'genevawilson@gmail.com',
-                    acesslevel:'Full',
-                    jdate: 'July 2, 2018',
-                    status: 'Deactive',
-                },
-            ],
-
-      }
+        }
+    },
+    components: {
+        StarRating
     },
     methods: {
-        ShowModalUser(){
-            this.showModalValue = true;
-        },
-        StatusChange(){
-            this.changestatus = true;
+        ViewCustomerRecord() {
+            this.customerrecord = true;
         },
         HideModal(){
-            this.showModalValue = false;
-            this.changestatus = false;
+            this.customerrecord = false;
         },
-          statusLink(event) {
-            if(event.target.className == "active")
-            {
-                event.target.className = "deactive";
-                event.target.text = "Deactive";
-            }
-            else
-            {
-                event.target.className = "active";
-                event.target.text = "Active";
-            }
-          }
     }
 }
 </script>

@@ -1,6 +1,6 @@
  <template>	
 	<div>
-		<b-modal id="view-customer-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="View Customer Detail" ok-only ok-title="Submit">
+		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Customer Detail" @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="secondary" @hidden="onHidden">
             <alert></alert>
             <div class="view-details-list">
 
@@ -140,17 +140,6 @@
 
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Detail View</strong></p>
-                    </b-col>
-                    <b-col cols="7">
-                        <div class="form-group">
-                            <a href="/customer/viewjobdetail"><strong>View Job Detail</strong></a>
-                        </div>
-                    </b-col>
-                </b-row>
-
-                <b-row>
-                    <b-col cols="5" class="">
                         <p><strong class="title-head">Description</strong></p>
                     </b-col>
                     <b-col cols="12">
@@ -180,6 +169,9 @@ export default {
         },
         onHidden() {
             this.$emit('HideModalValue');
+        },
+        ViewCustomerRecord() {
+            this.$router.push('/customer/viewjobdetail');
         }
     },
 

@@ -2326,8 +2326,17 @@ i[active="true"]{
     top: 9px;
 }
 
+/* Vue Star Rating css start */
+
+.vue-star-rating-rating-text[data-v-34cbeed1] {
+    display: none;
+}
+
+/* Vue Star Rating css end */
+
 .datepicker-field{
     .mx-datepicker{
         width:100%;
     }
 }
+

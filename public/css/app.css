@@ -34069,8 +34069,8 @@ body .ag-theme-balham .ag-header {
 }
 
 .btn.btn-link {
-  color: #838383;
-  font-family: "OpenSans-Regular";
+  color: #8200ff;
+  font-family: "OpenSans-Bold";
   text-decoration: underline;
 }
 
@@ -34080,7 +34080,7 @@ body .ag-theme-balham .ag-header {
 .btn.btn-link:hover {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  color: #848484 !important;
+  color: #8200ff !important;
   text-decoration: underline;
 }
 
@@ -36302,6 +36302,12 @@ body .vue-grid-item .list-action i:focus {
 .data-approval footer .btn-link {
   padding: 0px 0px;
   min-width: 72px;
+}
+
+.modal-footer {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .modal-footer .btn-link {
@@ -40733,6 +40739,14 @@ i[active="true"] {
   right: 23px;
   top: 9px;
 }
+
+/* Vue Star Rating css start */
+
+.vue-star-rating-rating-text[data-v-34cbeed1] {
+  display: none;
+}
+
+/* Vue Star Rating css end */
 
 .datepicker-field .mx-datepicker {
   width: 100%;
