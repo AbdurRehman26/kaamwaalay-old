@@ -6,8 +6,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
-                                  <label>Search</label>
-                                   <TypeAhead src="/static/data.json?keyword=:keyword" :getResponse="getResponse"></TypeAhead>
+                                   <SearchField></SearchField>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
@@ -66,7 +65,7 @@
                                     <td> {{ list.zip_code }} </td>
                                     <td> {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td> {{ list.avg_rating }} </td>
+                                    <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
                                     <td> {{ list.join_date }} </td>
                                     <td> {{ list.approval_date }} </td>
                                     <td class="status-color approved"> {{ list.status }} </td>
@@ -90,6 +89,7 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
 
 export default {
   data () {
@@ -114,7 +114,6 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '45668756',
-                    avg_rating: '5',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -135,7 +134,6 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -159,6 +157,10 @@ export default {
             this.service = false;
             this.viewdetails = false;
         },
-    }
+    },
+    components: {
+        StarRating
+    },
+
 }
 </script>

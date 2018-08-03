@@ -46,7 +46,7 @@
                                     <td> {{ list.zip_code }} </td>
                                     <td> {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td> {{ list.avg_rating }} </td>
+                                    <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td> {{ list.join_date }} </td>
                                     <td class="text-center">
@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating';
+
 export default {
   data () {
     return {
@@ -110,6 +112,9 @@ export default {
             this.viewcustomer = false;
         },
 
-    }
+    },
+    components: {
+        StarRating
+    },
 }
 </script>

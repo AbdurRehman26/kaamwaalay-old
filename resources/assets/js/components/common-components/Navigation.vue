@@ -9,7 +9,7 @@
                     </div>
                     <div class="float-right">
                         <div class="left-cog">
-                            <span class="user-img" @click="ShowModal">
+                            <span class="user-img" @click="ChangePass">
                                 <img src="/images/dummy/user-pic.jpg" alt="">
                             </span>
                             <router-link to="/"><span><i class="icon-exit"></i></span></router-link>
@@ -21,6 +21,7 @@
                 </div>
             </b-navbar>
         <update-profile @HideModalValue="HideModal" :showModalProp="showModalValue"></update-profile>
+        <change-pass-popup @HideModalValue="HideModal" :showModalProp="changepass"></change-pass-popup>
 </div>
 </template>
 
@@ -33,6 +34,7 @@ import { directive as onClickaway } from 'vue-clickaway';
             showModalValue : false,
             tab: false,
             tabmenu: false,
+            changepass: false,
           }
         },
         directives: {
@@ -42,8 +44,12 @@ import { directive as onClickaway } from 'vue-clickaway';
             ShowModal(){
                 this.showModalValue = true;
             },
+            ChangePass() {
+                this.changepass = true;
+            },
             HideModal(){
                 this.showModalValue = false;
+                this.changepass = false;
             },
             Showactive(){
                 this.tab ^= true;

@@ -16,13 +16,27 @@ import AmPie from 'amcharts3/amcharts/pie';
 import AmFunnelChart  from 'amcharts3/amcharts/funnel';
 import AmGauge from 'amcharts3/amcharts/gauge';
 import Datepicker from 'vuejs-datepicker';
-
+import VueProgressBar from 'vue-progressbar';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Datepicker);
 Vue.use( vbclass, router );
+Vue.use(VueProgressBar, options);
 
+const options = {
+    color: '#8200ff',
+    failedColor: '#8200ff',
+    thickness: '3px',
+    transition: {
+        speed: '2s',
+        opacity: '0.6s',
+        termination: 600
+    },
+    autoRevert: true,
+    location: 'top',
+    inverse: false
+}
 
 // Require components tags
 require('./components-tags');
@@ -40,9 +54,30 @@ Vue.mixin({
 const app = new Vue({
     el: '#app',
     router,
-    components: {
-        Datepicker
+    mounted () {
+        this.$Progress.finish();
+        this.checkscroll();
+        this.browserfunction();
     },
+    created () {
+        this.$Progress.start()
+        this.$router.beforeEach((to, from, next) => {
+        if (to.meta.progress !== undefined) {
+            let meta = to.meta.progress
+            this.$Progress.parseMeta(meta)
+        }
+            this.$Progress.start()
+            next()
+        })
+        this.$router.afterEach((to, from) => {
+        this.$Progress.finish()
+        })
+    },
+    watch:{
+        '$route': function(from, to) {
+            this.checkscroll();
+        }
+    }
 });
 
 /*const app = new Vue({

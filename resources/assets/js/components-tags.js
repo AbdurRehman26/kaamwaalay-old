@@ -29,6 +29,9 @@ Vue.component('SearchField', require('./components/common-components/Search.vue'
 
 // Common Popup
 Vue.component('delete-popup',require('./components/common-components/DeletePopup.vue'));
+Vue.component('change-pass-popup',require('./components/common-components/ChangePassPopup.vue'));
+
+
 
 //left navigation
 Vue.component('left-panel', require('./components/common-components/LeftPanel.vue'));

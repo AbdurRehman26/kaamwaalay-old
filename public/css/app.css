@@ -40572,8 +40572,7 @@ i[active="true"] {
 }
 
 .__cov-progress {
-  height: 5px !important;
-  background-color: #407500 !important;
+  background: #8200ff !important;
 }
 
 .data-importer-relationship .emailChild-panel {
