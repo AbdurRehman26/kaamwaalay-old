@@ -34799,7 +34799,7 @@ body .ag-theme-balham .ag-header {
 
 .forgot-password-text {
   float: right;
-  color: #FF8500;
+  color: #8200ff;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -38806,7 +38806,7 @@ i[active="true"] {
 }
 
 .contact-us a {
-  color: #FF8500;
+  color: #8200ff !important;
   text-decoration: underline;
 }
 
@@ -39830,7 +39830,7 @@ i[active="true"] {
 
 .forgot-form .back-to-login {
   float: right;
-  color: #FF8500;
+  color: #8200ff;
   cursor: pointer;
   text-decoration: underline;
   padding-top: 6px;

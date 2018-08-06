@@ -433,7 +433,7 @@ i[active="true"]{
         color: $greyD;
     }
     a {
-        color: $secondary-color;
+        color: $primary-color !important;
         text-decoration: underline;
     }
 }
@@ -1475,7 +1475,7 @@ i[active="true"]{
 .forgot-form{
     .back-to-login{
         float: right;
-        color: #FF8500;
+        color: $primary-color;
         cursor: pointer;
         text-decoration: underline;
         padding-top: 6px;
