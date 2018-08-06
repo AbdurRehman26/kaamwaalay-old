@@ -34913,7 +34913,7 @@ body .form-group.is-invalid {
 }
 
 body .form-group.is-invalid .form-control {
-  border-color: #fff;
+  border-color: #d9534f;
   -webkit-box-shadow: none;
           box-shadow: none;
   background-image: url(/images/alert-icon.svg?09b6055c6e034afa1fc5b2d995574a77);
@@ -40769,9 +40769,11 @@ i[active="true"] {
 }
 
 .breadcrumb {
-  background: none;
-  padding: 0;
-  margin: -4px 0 9px;
+  background: #fff;
+  margin: 0;
+  padding: 8px 25px 0;
+  border-radius: 0;
+  border: none;
 }
 
 .page-title {
