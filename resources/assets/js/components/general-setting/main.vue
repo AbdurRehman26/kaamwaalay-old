@@ -79,7 +79,7 @@
 
     					<!-- Location Row -->
 
-						<div class="row">
+<!-- 						<div class="row">
 							<div class="col-md-12">
 								<div class="urgent-detail-title">
 									<h2 class="page-title">Location Management</h2>
@@ -103,7 +103,6 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>City</label>
-									<!-- <input class="form-control" placeholder="Enter city"> -->
 									<multiselect 
 									      v-model="value" 
 									      :options="options" 
@@ -137,7 +136,7 @@
                                     <loader></loader>
                                 </button>
                             </div>
-						</div>
+						</div> -->
 
     					<!-- Location Row End -->
 
