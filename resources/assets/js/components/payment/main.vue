@@ -1,102 +1,67 @@
 <template>
-	<div class="panel-inner">
-		<div class="row">
+  <div>
+    <div class="panel-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-strip">
 
-			<div class="col-md-12">
-				<div class="payment-setting">
-
-	        	
-
-					</div>
-
-		  		</div>
-		    </div>
-        <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
-
-	</div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-area">
+                        <div class="table-responsive">
+                            <table class="table last-col-fix">
+                              <thead>
+                                <tr>
+                                  <th>Pay By</th>
+                                  <th>Date</th>
+                                  <th>Amount</th>
+                                  <th>Activity Type</th>
+                                  <th>Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="list in listing">
+                                  <td>{{list.payby}}</th>
+                                  <td>{{list.date}}</td>
+                                  <td>{{list.amount}}</td>
+                                  <td >{{list.activitytype}}</td>
+                                  <td><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+  </div>
 </template>
-
 <script>
-import Multiselect from 'vue-multiselect';
 export default {
   data () {
     return {
-    	service: false,
-    	customer: false,
-		value: [],
-		options: [
-		    { name: 'New York', language: 'New York' },
-		    { name: 'Los Angeles', language: 'Los Angeles' },
-		    { name: 'Chicago', language: 'Chicago' },
-		    { name: 'Houston', language: 'Houston' },
-		    { name: 'Phoenix', language: 'Phoenix' },
-		    { name: 'San Antonio', language: 'San Antonio' }
-	    ],
+        listing: [
+            {
+                payby:'Customer',
+                date:'May, 20 2017',
+                amount:'2000',
+                activitytype:'Urgent',
+                status: 'Active',
+            },
+            {
+                payby:'Service Provider',
+                date:'May, 20 2017',
+                amount:'2000',
+                activitytype:'Featured',
+                status: 'Pending',
+            },
+        ],
 
-            listing: [
-                {
-                    id : 1,
-                    customer_name: 'Michel',
-                    service_type: 'Electrician',
-                    service_subtype: 'AC',
-                    zip_code: '15235',
-                    address: 'California Street 251',
-                    title: 'Job',
-                    details: 'Job Details',
-                    job_status: 'In Bidding'
-                },
-                {
-                    id : 2,
-                    customer_name: 'Shawn',
-                    service_type: 'Carpenter',
-                    service_subtype: 'Window',
-                    zip_code: '25647',
-                    address: 'Plexwood Street 251',
-                    title: 'Job',
-                    details: 'Job Details',
-                    job_status: 'Awarded'
-                },
-                {
-                    id : 3,
-                    customer_name: 'Racheal',
-                    service_type: 'Cleaning',
-                    service_subtype: 'House Cleaning',
-                    zip_code: '12312',
-                    address: 'California Street 251',
-                    title: 'Job',
-                    details: 'Job Details',
-                    job_status: 'Completed'
-                },
-                {
-                    id : 4,
-                    customer_name: 'Jimmy',
-                    service_type: 'Painter',
-                    service_subtype: 'House',
-                    zip_code: '23411',
-                    address: 'California Street 251',
-                    title: 'Job',
-                    details: 'Job Details',
-                    job_status: 'Archived'
-                },
-                {
-                    id : 5,
-                    customer_name: 'Harman',
-                    service_type: 'Plumber',
-                    service_subtype: 'House',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Job',
-                    details: 'Job Details',
-                    job_status: 'Initiated'
-                },                                                                 
-            ],
-    	}
-  	},
-  	
-  	components: { 
-  	 	Multiselect 
-  	},
-
+        }
+    },
     methods: {
 
     }
