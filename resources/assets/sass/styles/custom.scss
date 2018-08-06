@@ -2309,6 +2309,29 @@ i[active="true"]{
 }
 
 
+.gallery-pic{
+    .gallery-item {
+        display: inline-block;
+        width: 90px;
+    }
+    .lightbox{
+        /* padding: 0px 500px; */
+        z-index: 99;
+    }
+    .lightbox__element{
+        width: auto;
+    }
+}
+
+.fancy-box-mask{
+    z-index: 99 !important;
+    .fancy-box-image-wrapper{
+        div{
+            padding: 9% 0px 0px 0px;
+        }
+    }
+}
+
 .drag-grid{
     .dashboard-grid{
         padding: 0;

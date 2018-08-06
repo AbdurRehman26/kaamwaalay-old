@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Completed Jobs " @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
+		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Jobs " @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
             <alert></alert>
             <div class="view-details-list">
 

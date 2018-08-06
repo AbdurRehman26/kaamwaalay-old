@@ -24,6 +24,7 @@
                                 </tr>
                               </thead>
                               <tbody>
+
                                   <tr v-for="list in listing">
                                     <td> {{list.id}} </td>
                                     <td> {{ list.title }} </td>                                    
@@ -182,6 +183,7 @@ export default {
         },
         ViewDetails(){
             /*this.customer = true;*/   
+            this.$router.push('/jobs/viewjobdetail');
         },
 
         AddService(){
