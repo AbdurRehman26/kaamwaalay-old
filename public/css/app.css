@@ -40821,6 +40821,11 @@ i[active="true"] {
   font-size: 12px;
 }
 
+a.underline {
+  text-decoration: underline;
+  display: inline-block;
+}
+
 .page-title {
   display: inline-block;
   position: relative;

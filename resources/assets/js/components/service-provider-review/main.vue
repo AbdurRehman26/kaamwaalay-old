@@ -8,57 +8,39 @@
                 <div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix" style="width:2850px;">
+                            <table class="table service-provider-table first-last-col-fix">
                               <thead>
                                 <tr>
-                                  <th>Id</th>
-                                  <th>Image</th>
-                                  <th>Business or Individual?</th>
-                                  <th>Business Name</th>
-                                  <th>DUNS Number</th>
+                                  <th width="40">Image</th>
                                   <th>Full Name</th>
                                   <th>Email Address</th>
-                                  <th class="text-center">Services Offered</th>
-                                  <th>Address</th>
-                                  <th>City</th>
-                                  <th>State</th>
-                                  <th>Zip Code</th>
-                                  <th>Country</th>
                                   <th>Contact Number</th>
-                                  <th>Avg. Rating</th>
-                                  <th>Join Date</th>
-                                  <th>Approval Date</th>
-                                  <th>Status</th>
+                                  <th>Review Status</th>
+                                  <th>Submited Date</th>
+                                  <th>Updated Date</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
                                   <tr v-for="list in listing">
-                                    <td> {{list.id}} </td>
                                     <td>
                                         <span class="user-img radius-0">
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> {{ list.business }} </td>
-                                    <td> {{ list.businessName }} </td>
-                                    <td> {{ list.DUNSnum }} </td>
                                     <td> {{ list.full_name }} </td>
                                     <td> {{ list.email_address }} </td>
-                                    <td class="text-center"> {{ list.services_offered }} </td>
-                                    <td> {{ list.address }} </td>
-                                    <td> {{ list.city }} </td>
-                                    <td> {{ list.state }} </td>
-                                    <td> {{ list.zip_code }} </td>
-                                    <td> {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td> {{ list.avg_rating }} </td>
+                                    <td> 
+                                        <span class="tags" :class="[list.rating]">
+                                            {{ list.rating }}
+                                        </span> 
+                                    </td>
                                     <td> {{ list.join_date }} </td>
                                     <td> {{ list.approval_date }} </td>
-                                    <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -76,7 +58,7 @@
 </template>
 
 <script>
-
+import StarRating from 'vue-star-rating';
 export default {
   data () {
     return {
@@ -100,7 +82,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '45668756',
-                    avg_rating: '5',
+                    rating: 'pending',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -121,7 +103,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
+                    rating: 'pending',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -142,7 +124,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
+                    rating: 'approved',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -163,7 +145,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
+                    rating: 'pending',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -184,7 +166,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
+                    rating: 'approved',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -205,8 +187,8 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
+                    avg_rating: '2',
+                    rating: 'rejected',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -229,6 +211,12 @@ export default {
             this.service = false;
             this.viewdetails = false;
         },
-    }
+        detailreview(){
+            this.$router.push('/service-provider-review/detail-review');
+        }
+    },
+    components: {
+        StarRating
+    },    
 }
 </script>
