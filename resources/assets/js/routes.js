@@ -156,6 +156,7 @@ const routes = [
     },
 
     {
+        name: 'Service_Detail_Review',
         path: '/service-provider-review/detail-review',
         component: require('./components/service-provider-review/DetailReview.vue'),
         meta: {

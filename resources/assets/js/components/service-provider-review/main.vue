@@ -40,7 +40,7 @@
                                     <td> {{ list.approval_date }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -211,6 +211,9 @@ export default {
             this.service = false;
             this.viewdetails = false;
         },
+        detailreview(){
+            this.$router.push('/service-provider-review/detail-review');
+        }
     },
     components: {
         StarRating
