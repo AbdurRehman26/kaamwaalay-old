@@ -67,9 +67,7 @@
               <h2 class="float-left">Customer signups over time</h2>
               <div class="float-right actions">
                   <div class="list-action">
-                    <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                     <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                    <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                   </div>
             </div>
             <div id="customerSignups" class="charts-height"></div>
@@ -83,9 +81,7 @@
               <h2 class="float-left">Service Provider signups over time</h2>
               <div class="float-right actions">
                   <div class="list-action">
-                    <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                     <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                    <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                   </div>
             </div>
             <div id="providerssigns" class="charts-height"></div>
@@ -100,9 +96,7 @@
                 <h2 class="float-left chart-heading">Job count by service type </h2>
                   <div class="float-right actions">
                       <div class="list-action">
-                      <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                       <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                      <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                       </div>
                 </div>
               </div>
@@ -116,9 +110,7 @@
               <h2 class="float-left">Payment received over time </h2>
               <div class="float-right actions">
                   <div class="list-action">
-                    <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                     <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                    <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                   </div>
             </div>
             <div id="paymentRecievedByTime" class="charts-height"></div>
@@ -132,9 +124,7 @@
                 <h2 class="float-left chart-heading">Payment received by type</h2>
                 <div class="float-right actions">
                     <div class="list-action">
-                      <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                       <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                      <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                     </div>
               </div>
               </div>
@@ -154,9 +144,8 @@
                                 <tr>
                                   <th>Full Name</th>
                                   <th>Email</th>
-                                  <th>DUNS Number</th>
+                                  <th>DUNS</th>
                                   <th>Service Type</th>
-                                  <th>Sub Service Type</th>
                                   <th>Rating</th>
                                   <th class="text-center">Jobs Completed</th>
                                 </tr>
@@ -167,7 +156,6 @@
                                   <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
                                   <td>{{list.stype}}</td>
-                                  <td>{{list.sstype}}</td>
                                   <td ><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
@@ -192,8 +180,6 @@
                                 <tr>
                                   <th>Full Name</th>
                                   <th>Email</th>
-                                  <th>Service Type</th>
-                                  <th>Sub Service Type</th>
                                   <th>Rating</th>
                                   <th class="text-center">Jobs Completed</th>
                                 </tr>
@@ -202,8 +188,6 @@
                                 <tr v-for="list in listing">
                                   <td><a >{{list.fname}}</a></th>
                                   <td><a >{{list.email}}</a></td>
-                                  <td>{{list.stype}}</td>
-                                  <td>{{list.sstype}}</td>
                                   <td ><star-rating :star-size="20" read-only :rating="4"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
@@ -241,8 +225,7 @@ export default{
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians',
-                    sstype: 'Car',
+                    stype: 'Electricians >> Cars',
                     jobscompleted:'20'
                 },
                 {
@@ -250,7 +233,6 @@ export default{
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
                     stype: 'Carpenters',
-                    sstype: '',
                     jobscompleted:'20'
                 },
                 {
@@ -258,23 +240,20 @@ export default{
                     email:'genevawilson@gmail.com',
                     duns:'245689',
                     stype: 'Cleaning Services',
-                    sstype: '',
                     jobscompleted:'20'
                 },
                 {
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians',
-                    sstype: 'Electrical and wiring repair',
+                    stype: 'Electricians >> Wiring repair',
                     jobscompleted:'20'
                 },
                 {
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians',
-                    sstype: 'Air conditioning repair',
+                    stype: 'Electricians >> Air conditioning',
                     jobscompleted:'20'
                 }
             ],
@@ -2577,29 +2556,13 @@ export default{
               "title": "Type Label",
               "type": "column",
               "valueField": "column-1"
-            },
-            {
-              "balloonText": "[[title]] of [[category]]:[[value]]",
-              "fillAlphas": 1,
-              "id": "AmGraph-2",
-              "title": "Type Label",
-              "type": "column",
-              "valueField": "column-2"
-            },
-            {
-              "balloonText": "[[title]] of [[category]]:[[value]]",
-              "fillAlphas": 1,
-              "id": "AmGraph-3",
-              "title": "Type Label",
-              "type": "column",
-              "valueField": "column-3"
             }
           ],
           "guides": [],
           "valueAxes": [
             {
               "id": "ValueAxis-1",
-              "title": "Data Title"
+              "title": ""
             }
           ],
           "allLabels": [],
@@ -2618,39 +2581,36 @@ export default{
           ],
           "dataProvider": [
             {
-              "category": "Category",
+              "category": "Service 1",
               "column-1": 8,
-              "column-2": 5,
-              "column-3": 3,
-              "column-4": 4
             },
             {
-              "category": "Category",
+              "category": "Service 2",
               "column-1": 6,
-              "column-2": 7,
-              "column-3": 6,
-              "column-4": 7
             },
             {
-              "category": "Category",
+              "category": "Service 3",
               "column-1": 2,
-              "column-2": 3,
-              "column-3": 4,
-              "column-4": 1
             },
             {
-              "category": "Category",
+              "category": "Service 4",
               "column-1": 6,
-              "column-2": 7,
-              "column-3": 6,
-              "column-4": 7
             },
             {
-              "category": "Category",
+              "category": "Service 5",
               "column-1": 2,
-              "column-2": 3,
-              "column-3": 4,
-              "column-4": 1
+            },
+            {
+              "category": "Service 6",
+              "column-1": 7,
+            },
+            {
+              "category": "Service 7",
+              "column-1": 9,
+            },
+            {
+              "category": "Service 8",
+              "column-1": 5,
             }
           ]
         }
@@ -2664,14 +2624,8 @@ export default{
           "type": "pie",
           "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
           "colors": [
-            "#56d0d6",
-            "#176cb7",
-            "#feed5a",
-            "#ff7217",
-            "#ff557b",
-            "#dc0065",
-            "#00e2ff",
-            "#00a7e8"
+            "#173753",
+            "#6DAEDB",
           ],
           "gradientRatio": [],
           "labelColorField": "#1A1A1A",
@@ -2704,22 +2658,6 @@ export default{
             {
               "category": "Service 2",
               "column-1": 4
-            },
-            {
-              "category": "Service 3",
-              "column-1": 2
-            },
-            {
-              "category": "Service 4",
-              "column-1": 3
-            },
-            {
-              "category": "Service 5",
-              "column-1": 4
-            },
-            {
-              "category": "Service 6",
-              "column-1": 3
             }
           ]
         }
