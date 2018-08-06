@@ -1,0 +1,284 @@
+.nav-logo{
+    @include tablet{
+        flex: 0 0 41.66666667%;
+        .logo{
+            display: inline-block; 
+            left: 18px;
+            top: 2px;
+        }
+    }
+}
+
+.modal-dialog-centered{
+    @include mobile{
+        display: block;
+        height: 100%;
+    }
+}
+.modal-header{
+    @include mobile{
+        display: block;
+        button{
+            &.close{
+                position: absolute;
+                right: 15px;
+                top: 13px;
+            }
+        }
+    }    
+}
+/* .modal-content{
+    @include mobile{
+        display: block;
+    }
+} */
+
+
+.responsive-btn{
+    display: none;
+    cursor: pointer;
+    @include tablet{
+        display: inline-block;
+        padding: 0;
+        line-height: 1;
+
+        &:before{
+            content: '\2261';
+            font-size: 38px;
+            color: #000;
+        }
+    }
+}
+.nav-item:hover a {
+    @include mobile {
+        color: $primary-color !important;
+    }
+    @include tablet {
+        color: $primary-color !important;
+    }
+}
+
+.tablet-menu {
+    display: none;
+    @include tablet{
+        display: block;
+        float: right;
+        position: absolute;
+        right: 20px;
+        bottom: 7px;
+            .responsive-btn{
+                padding: 0px 0px 0px 0px;
+                &:before{
+                    color: $primary-color;
+                }
+            }
+    }
+
+    @include mobileS{
+        top: 5px;
+    }
+}
+
+#nav_collapse{
+    .nav-icons.col-10{
+        @include tablet{
+            display: none !important;
+            flex: 0 0 100%;
+        }
+        &[active="true"]{
+            display: block !important;
+        }
+    }
+}
+
+
+ .sorting-label{
+        @include mobile{
+            margin-top: 20px!important;
+        }
+    }
+
+    .column-chart{
+       
+    .col-12{
+        @include mobile{
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        @include mobileS{
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .performance-charts{
+            @include mobile{
+                height: 150px;
+            }
+
+            @include mobileS{
+                height: auto;
+            }
+        }
+    }
+}
+
+.individual-dashboard-modify-page{
+    .vue-grid-item{
+        @include tabletL {
+            padding: 18px 0;
+        }
+    }
+}
+
+.individual-dashboard-page{
+    .vue-grid-list{
+        .actions{
+            @include tabletL{
+                float: left!important;
+                margin-bottom: 12px;
+            }
+
+            @include mobile{
+                float: right!important;
+            }
+
+            @include mobileS{
+                float: left!important;
+            }
+
+            .list-action{
+                @include mobileS{
+                    margin-bottom:0px;
+                }
+                i{
+                    @include tabletL{
+                        margin: 0 8px 0 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .actions{
+        @include mobileS{
+            float: left!important;
+        }
+
+        .list-action{
+
+            @include mobileS{
+                margin-bottom:15px;
+            }
+
+            i{
+                @include mobileS{
+                    margin: 0 8px 0 0;
+                }
+            }
+        }
+    }
+
+    .vue-grid-item{
+        @include mobileS{
+            padding: 18px 10px;
+        } 
+    }
+
+    .dashboard-grid {
+        .col-8, .col-4{
+            @include mobileS{
+                flex: 100%;
+                max-width: 100%;
+            }
+
+            .data-header{
+                @include mobileS{
+                    margin-bottom: 12px;
+                }
+            }
+        }
+    }
+}
+
+.data-modal-create{
+    .col-4{
+        @include mobileS{
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+.main-listing{
+    .nav-item{
+        .nav-link{
+            a{
+                @include tabletL{
+                    font-size: 13px!important;
+                    padding: 9px 13px!important;
+                }
+
+                @include tablet{
+                    font-size: 12px!important;
+                    padding: 9px 10px!important;
+                }
+            }
+        }       
+    }
+}
+
+
+
+.relationshipstable{
+    p{
+        @include tabletL{
+            font-size: 13px;
+        }
+    }
+}
+
+body{
+    label{
+        @include tabletL{
+            font-size: 13px;
+        }
+    }
+}
+
+.main-listing{
+    .nav-icons{
+        i{
+            @include tabletL{
+                display: inline-block;
+                font-size: 17px;
+                vertical-align: sub;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.step-detail{
+    .col-6{
+        @include tablet{
+            flex: 0 0 80%;
+            max-width: 80%;
+        }
+
+        .nextstep {
+            @include tablet{
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+.modal-data{
+    .modal-content{
+        @include mobile{
+            height: 100%;
+            display: block;
+        }
+    }
+}

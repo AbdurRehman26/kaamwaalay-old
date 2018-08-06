@@ -1,0 +1,96 @@
+.vue-grid-item {
+    border: dashed 1px $border-color;
+    padding: 18px;
+
+    &:hover {
+        border-color: #66afe9;
+    }
+
+    /*    .list-action{
+     // display: none;
+     // color: #efefef;
+ }
+
+ &:hover{
+     .list-action{
+         display: block;
+     }
+ } */
+}
+
+
+
+
+
+/* .vue-grid-item{
+    i{
+        color: #efefef !important;
+        &:hover,&:focus{
+            color: $secondary-color !important;
+        }
+    }
+    &:hover,&:focus{
+        i{
+            color: #838383;
+        }
+    }
+} */
+
+body {
+    .vue-grid-item {
+        .list-action {
+            i {
+                font-size: 1rem;
+                &:hover,
+                &:focus {
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+}
+
+.vue-grid-item {
+    .list-action {
+        i {
+            color: #efefef;
+        }
+    }
+    &:hover,
+    &:focus {
+        .list-action {
+            i {
+                color: #838383;
+            }
+        }
+    }
+}
+
+.individual-dashboard-page-preview
+{
+    .chart-legends.row{
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    .chart-legends{
+        h2{
+
+        }
+    }
+}
+
+.simple-text-widget
+{
+    padding-left:0px;
+    padding-right:0px;
+
+    &.dragselector{
+
+        .actions{
+            top: -6px;
+            right: -14px;
+        }
+
+    }
+}

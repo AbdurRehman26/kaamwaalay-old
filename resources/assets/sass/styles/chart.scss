@@ -1,0 +1,66 @@
+.smallchart{
+    height: 60px !important;
+    &.smallbarchart{
+        height: 99px !important;
+        top: -34px;
+        position: relative;
+    }
+    &.smalldonutchart {
+        height: 109px !important;
+        top: -26px;
+        position: relative;
+        left: 2px;
+    }
+    &#shortlinechart{
+        top: -21px;
+        height: 77px !important;
+    }
+    &#reviewshortlinechart{
+        top: -20px;
+        height: 66px !important;
+    }
+}
+.smallchart{
+    svg {
+        border: 1px solid whitesmoke !important;
+        border-left: 2px solid whitesmoke !important;
+        margin: auto;
+    }
+}
+
+.graph-label span {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    display: block;
+    color: #1a1a1a;
+    font-size: 12px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: $font_bold;
+    margin: 0 auto;
+    text-transform: uppercase !important;
+    width: 100%;
+    max-width: none;
+}
+span.ag-header-icon.ag-filter-icon.ag-hidden p {
+    color: #46930F;
+    margin-top: 13px;
+}
+body .ag-header .ag-filter-icon p span {
+    font-family: $font_bold;
+    margin-top: 11px;
+}
+.graph-label span.total-percentage {
+    position: absolute;
+    font-size: 9px !important;
+    top: 25px;
+    margin: 3px 2px;
+    text-align: center;
+    line-height: 11px;
+/*     left: 2px; */
+/*     max-width: 500px; */
+    left: 2px;
+    right: 0;
+    width: 100%;
+}

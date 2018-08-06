@@ -1,0 +1,119 @@
+
+// checkbox css start
+
+.custom-checkbox,.custom-radio,.project-tags-checkmark{
+    width:auto;
+    height:auto;
+    position:relative;
+    display:block;
+    cursor: pointer;
+
+    .icon-border{
+        position:absolute;
+        width:$checkbox-width-height;
+        height:$checkbox-width-height;
+        left:0;
+        top:4px;
+        background-color: $body-bg;
+        border:solid 1px $checkbox-border-color;
+        display:block;
+        border-radius:$checkbox-radius;
+
+       
+
+        &.circle{
+            border-radius:100%;
+        }
+
+        .icon{
+            position: absolute;
+            left: 3px;
+            margin: 0 auto;
+            top: 3px;
+            border-radius: 4px;
+            font-size: 16px;
+            color:#fff;
+            display:none;
+        }
+    }
+
+    &.custom-radio{
+         .icon-border{
+            border-radius:100%;
+
+            .icon{
+                position:absolute;
+                width:10px;
+                height:10px;
+                border-radius:100%;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                top: 3px;
+                display:none;
+            }
+        }
+    }
+
+
+    &.with-absolute{
+        position:absolute;
+        left:0px;
+        top:0px;
+    }
+
+    &.with-relative{
+        position:relative;
+        height:34px;
+    }
+
+    label{
+        padding-left:33px;
+        position:relative;
+        top:0;
+        vertical-align: middle;
+        margin-bottom:0px;
+        color:$secondary-color;
+        font-size: $font-size-md;
+        font-weight: 300;
+        font-family:$font_regular;
+        text-transform: inherit;
+
+        a{
+            color: $anchor-color;
+        }
+    }
+
+    input{
+        position:absolute;
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+        cursor: pointer;
+        opacity:0;
+        padding:0;
+        margin:0;
+        z-index:99;
+    }
+
+    input[type="checkbox"]:checked + .icon-border,input[type="radio"]:checked + .icon-border{
+        background:transparent;
+    }
+
+    input[type="checkbox"]:checked + .icon-border i,input[type="radio"]:checked + .icon-border i,{
+        color:$anchor-color;
+        display:block;
+        background-color: transparent;
+        width: 16px;
+        height: 16px;
+        margin-top: -4px;
+        margin-left: -4px;
+        border-radius: 0;
+    }
+
+}
+
+
+
+// checkbox css end

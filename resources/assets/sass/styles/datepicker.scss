@@ -1,0 +1,48 @@
+.mx-datepicker-popup {
+    width: 234px !important;
+}
+.mx-calendar {
+    width: 116% !important;
+    padding: 6px 26px !important;
+    margin-left: -24px !important;
+}
+.mx-calendar-content {
+    overflow: visible !important;
+}
+.mx-calendar-header {
+    margin-left: 10px !important;
+}
+.mx-input-icon__calendar {
+    background-image: url('../images/calendar.svg') !important;
+}
+.filters .filter-date .mx-datepicker .mx-input-icon__calendar {
+    background-size: 16px;
+}
+.mx-datepicker{
+    color: $text-primary-color !important;
+}
+.mx-input{
+    padding: 6px 30px 6px 15px !important;
+    border:1px $greyM solid!important;
+    box-shadow: none !important;
+}
+
+.mx-calendar-month>a:hover, .mx-calendar-table td.inrange, .mx-calendar-table td:hover, .mx-calendar-year>a:hover,.mx-calendar-table .today,.mx-calendar-month>a.current, .mx-calendar-table td.current, .mx-calendar-year>a.current
+{
+    background-color:$primary-color !important;
+    color:#fff !important;
+    border-radius:3px;
+}
+.mx-calendar-table .today
+{
+    background-color:$secondary-color !important;
+}
+
+.mx-calendar-table td, .mx-calendar-table th
+{
+    font-family:$font-medium;
+}
+.mx-calendar-table {
+    width: 105% !important;
+}
+

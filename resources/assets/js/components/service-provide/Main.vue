@@ -1,0 +1,175 @@
+<template>
+	<div class="panel-inner">
+		<div class="row">
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Business/Individual</label>
+                                   <select class="form-control">
+                                     <option>Select</option>
+                                     <option>Business</option>
+                                     <option>Individual</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+				<div class="col-md-12">
+					<div class="table-area">
+                        <div class="table-responsive">
+                            <table class="table service-provider-table first-last-col-fix" style="width:3000px;">
+                              <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Full Name</th>
+                                  <th>Image</th>
+                                  <th>Business or Individual?</th>
+                                  <th>Business Name</th>
+                                  <th>DUNS Number</th>
+                                  <th>Email Address</th>
+                                  <th class="text-center">Services Offered</th>
+                                  <th>Address</th>
+                                  <th>Contact Number</th>
+                                  <th>Avg. Rating</th>
+                                  <th>Join Date</th>
+                                  <th>Approval Date</th>
+                                  <th>Status</th>
+                                  <th class="text-center">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr v-for="list in listing">
+                                    <td> {{list.id}} </td>
+                                    <td> {{ list.fullname }} </td>
+                                    <td>
+                                        <span class="user-img radius-0">
+                                            <img  :src="list.imagepath" >
+                                        </span>
+                                    </td>
+                                    <td> {{ list.business }} </td>
+                                    <td> {{ list.businessName }} </td>
+                                    <td> {{ list.DUNSnum }} </td>
+                                    <td> {{ list.email_address }} </td>
+                                    <td class="text-center"> {{ list.services_offered }} </td>
+                                    <td> {{ list.address }}, {{ list.city }}, {{ list.state }}, {{ list.zip_code }}, {{ list.country }} </td>
+                                    <td> {{ list.contact_number }} </td>
+                                    <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
+                                    <td> {{ list.join_date }} </td>
+                                    <td> {{ list.approval_date }} </td>
+                                    <td class="status-color approved"> {{ list.status }} </td>
+                                    <td class="text-center">
+                                      <div class="action-icons">
+                                        <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                                          <!--  <i class="icon-pencil"></i> -->
+                                      </div>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+		    		</div>
+		  		</div>
+		    </div>
+        <service-provider-detail @HideModalValue="HideModal" :showModalProp="providerdetailpopup"></service-provider-detail>
+        <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
+        <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
+        <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
+        <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
+	</div>
+</template>
+
+<script>
+import StarRating from 'vue-star-rating';
+
+export default {
+  data () {
+    return {
+    	service: false,
+        viewdetails: false,
+        changeProviderStatus: false,
+         changestatus:false,
+         providerdetailpopup:false,
+            listing: [],
+    	}
+  	},
+
+    methods: {
+        ShowModalUser(){
+            this.changeProviderStatus = true;
+        },
+        AddService(){
+            this.service = true;
+        },
+        ViewDetails() {
+            this.viewdetails = true;
+        },
+        changestatuspopup() {
+            this.changestatus = true;
+        },
+        providerdetailclick() {
+            /*this.providerdetailpopup = true;*/
+            this.$router.push('/service-provider/service-provider-detail');
+        },
+        HideModal(){
+            this.service = false;
+            this.viewdetails = false;
+            this.changestatus = false;
+            this.providerdetailpopup = false;
+        },
+    },
+
+    components: {
+        StarRating
+    },
+    mounted(){
+        for (var i = 1; i <= 50; i++) {
+            var loopperson =  {
+                        id : i,
+                        imagepath:'',
+                        business: 'Individual',
+                        businessName: 'ABC',
+                        DUNSnum: '543351',
+                        fullname: this.$faker().name.findName(),
+                        email_address: this.$faker().internet.email(),
+                        services_offered: '45',
+                        address: this.$faker().address.streetAddress(),
+                        city: this.$faker().address.city(),
+                        state: this.$faker().address.state(),
+                        zip_code: this.$faker().address.zipCode(),
+                        country: this.$faker().address.country(),
+                        contact_number: this.$faker().phone.phoneNumber(),
+                        status: 'Active',
+                        join_date: 'May 25 2018',
+                        approval_date: 'May 31 2018',
+            };
+            this.listing.push(loopperson);
+        };
+    }
+
+}
+</script>

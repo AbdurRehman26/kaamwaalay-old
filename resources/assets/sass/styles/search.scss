@@ -1,0 +1,38 @@
+.search{
+     position: relative;
+    .form-control{
+        height: $input-height;
+        border-radius: $global-radius;
+        border: 1px solid $greyM;
+        padding: $searchbox-padding;
+        font-family: $font_regular;
+        color: $greyD;
+
+        &:focus{
+            border: 1px solid $greyM;
+            box-shadow: none;
+        }
+    }
+
+    .icon-search{
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        color: $greyD;
+        font-size: 23px;
+    }
+
+    .button-loader{
+        margin: 8px 11px;
+        width: 23px;
+        height: 23px;
+        background-color: #fff;
+
+        .loader{
+            background-image:url("/images/spinner.svg");
+            border:none;
+            width: 23px;
+            height: 23px;
+        }
+    }
+}
