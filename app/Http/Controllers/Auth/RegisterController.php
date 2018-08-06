@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
             'role_id' => 'required|exists:roles,id',
             'social_acount_id' => 'nullable',
             'social_account_type' => 'nullable|in:facebook',
@@ -74,8 +75,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role_id' => $data['role_id'],
-            'social_acount_id' => $data['social_acount_id'],
-            'social_account_type' => $data['social_account_type'],
+            'social_acount_id' => (!empty($data['social_acount_id']))?$data['social_acount_id']:null,
+            'social_account_type' => (!empty($data['social_account_type']))?$data['social_account_type']:null,
+            'activation_key' => Hash::make(Carbon::now()),
         ]);
     }
 
