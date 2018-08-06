@@ -15,7 +15,7 @@
                       placeholder="Enter your email address">
         </b-form-input>
       </b-form-group>
-      <b-button @click.prevent="$emit('show-new-password')" type="submit" variant="primary" class="btn btn-primary apply-primary-color">Send</b-button>
+      <b-button @click.prevent="ShowNewPassword" type="submit" variant="primary" class="btn btn-primary apply-primary-color">Send</b-button>
       <span @click.prevent="$emit('show-login','valuechange')" class="back-to-login">Back to login</span>
     </b-form>
   </div>
@@ -36,6 +36,10 @@ export default {
   methods: {
     onSubmit (evt) {
     },
+    ShowNewPassword (){
+      this.$router.push('create-password');
+    }
+    
 
   }
 }

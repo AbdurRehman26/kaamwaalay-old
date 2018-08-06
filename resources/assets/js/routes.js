@@ -26,6 +26,7 @@ const routes = [
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
+            noHeader: true,
 
         },
         component: require('./components/auth/main.vue'),
@@ -44,6 +45,21 @@ const routes = [
             icon:'icon-user-icon-resue'
         }
     },
+
+    /* Login page */
+
+    {
+        name: 'login',
+        path: '/create-password',
+        meta: {
+            title: 'PSM | Create Password',
+            bodyClass: 'login-page',
+            noHeader: true,
+
+        },
+        component: require('./components/auth/CreatePassword.vue'),
+    },
+
 
     /* Service Type */
 
