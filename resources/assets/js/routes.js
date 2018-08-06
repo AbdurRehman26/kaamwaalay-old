@@ -101,7 +101,9 @@ const routes = [
             icon:'icon-briefcase'
         }
     },
-    //service provider review
+
+    // service provider review
+
     {
         path: '/service-provider-review',
         component: require('./components/service-provider-review/main.vue'),
@@ -112,7 +114,8 @@ const routes = [
         }
     },
 
-    //service provider detail
+    // service provider detail
+
     {
         path: '/service-provider/service-provider-detail',
         component: require('./components/service-provide/providerdetails.vue'),
@@ -120,6 +123,30 @@ const routes = [
             title: 'PSM | Service provider details',
             pagetitle:'Service Provider Details',
             icon:'icon-briefcase'
+        }
+    },
+
+    // General Setting
+    
+    {
+        path: '/general-setting',
+        component: require('./components/general-setting/main.vue'),
+        meta: {
+            title: 'PSM | General Setting',
+            pagetitle:'General Setting',
+            icon:'icon-settings'
+        }
+    },
+
+    // Payment
+    
+    {
+        path: '/payment',
+        component: require('./components/payment/main.vue'),
+        meta: {
+            title: 'PSM | Payment',
+            pagetitle:'Payment',
+            icon:'icon-credit-card'
         }
     },
 

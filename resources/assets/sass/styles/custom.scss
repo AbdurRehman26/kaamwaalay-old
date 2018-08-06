@@ -2388,6 +2388,23 @@ i[active="true"]{
     margin-top: 27px;
 }
 
+.add-more-featured {
+    margin-top: 34px;
+    a {
+        text-decoration: underline;
+    }
+}
+.urgent-detail-title {
+        margin-bottom: 20px;
+    border-bottom: solid 1px #f3e6ff;
+    padding-bottom: 10px;
+    h2 {
+        &.page-title {
+            margin-top: 40px;
+        }      
+    }
+}
+
 .pagination-wrapper
 {
     margin-top:25px;

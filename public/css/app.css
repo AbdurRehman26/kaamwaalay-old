@@ -31105,7 +31105,6 @@ a.text-dark:focus {
 
 .icon-alert:before {
   content: "\E91A";
-  color: #d9534f;
 }
 
 .icon-explorer-icon:before {
@@ -32026,12 +32025,11 @@ fieldset[disabled] .multiselect {
 }
 
 .multiselect__tags .custom__tag {
-  padding: 0px 18px 8px 4px;
   position: relative;
   display: inline-block;
-  background-color: #46930F;
+  background-color: #8200ff;
   border-radius: 5px;
-  padding: 3px 22px 3px 6px;
+  padding: 3px 24px 3px 6px;
   color: #fff;
   margin-right: 9px;
   font-size: 11px;
@@ -32041,8 +32039,10 @@ fieldset[disabled] .multiselect {
 .multiselect__tags .custom__tag .custom__remove {
   font-size: 8px;
   position: absolute;
-  background-color: transparent;
-  visibility: hidden;
+  right: 0;
+  width: 18px;
+  top: 0;
+  height: 23px;
 }
 
 .multiselect__tags .custom__tag .custom__remove:after {
@@ -32050,10 +32050,10 @@ fieldset[disabled] .multiselect {
   visibility: visible;
   font-size: 10px;
   position: absolute;
-  top: 1px;
+  top: 4px;
   font-family: icomoon;
-  left: 6px;
-  cursor: pointer;
+  left: 0;
+  right: 0;
 }
 
 .multiselect__option {
@@ -40809,6 +40809,24 @@ i[active="true"] {
 
 .filter-btn-top-space {
   margin-top: 27px;
+}
+
+.add-more-featured {
+  margin-top: 34px;
+}
+
+.add-more-featured a {
+  text-decoration: underline;
+}
+
+.urgent-detail-title {
+  margin-bottom: 20px;
+  border-bottom: solid 1px #f3e6ff;
+  padding-bottom: 10px;
+}
+
+.urgent-detail-title h2.page-title {
+  margin-top: 40px;
 }
 
 .pagination-wrapper {
