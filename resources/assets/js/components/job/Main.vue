@@ -9,7 +9,7 @@
 				<div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table first-last-col-fix">
+                            <table class="table first-last-col-fix" style="width: 1490px;">
                               <thead>
                                 <tr>
                                   <th>Id</th>

@@ -163,8 +163,8 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
-                                  <td><a href="">{{list.fname}}</a></th>
-                                  <td><a href="">{{list.email}}</a></td>
+                                  <td><a >{{list.fname}}</a></th>
+                                  <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
                                   <td>{{list.stype}}</td>
                                   <td>{{list.sstype}}</td>
@@ -200,8 +200,8 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
-                                  <td><a href="">{{list.fname}}</a></th>
-                                  <td><a href="">{{list.email}}</a></td>
+                                  <td><a >{{list.fname}}</a></th>
+                                  <td><a >{{list.email}}</a></td>
                                   <td>{{list.stype}}</td>
                                   <td>{{list.sstype}}</td>
                                   <td ><star-rating :star-size="20" read-only :rating="4"></star-rating></td>
@@ -293,9 +293,9 @@ export default{
         },
 
     //line charts
-    
+
     initializeCharts(){
-    
+
     //custom signups
     AmCharts.makeChart("customerSignups",
         {

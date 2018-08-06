@@ -41,7 +41,7 @@
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix" style="width:2850px;">
+                            <table class="table service-provider-table first-last-col-fix" style="width:3000px;">
                               <thead>
                                 <tr>
                                   <th>Id</th>

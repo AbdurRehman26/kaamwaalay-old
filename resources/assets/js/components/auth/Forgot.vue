@@ -44,5 +44,3 @@ export default {
   }
 }
 </script>
-
-<!-- b-form-1.vue -->
