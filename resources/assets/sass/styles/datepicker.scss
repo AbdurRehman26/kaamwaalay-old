@@ -27,6 +27,8 @@
     box-shadow: none !important;
 }
 
+
+
 .mx-calendar-month>a:hover, .mx-calendar-table td.inrange, .mx-calendar-table td:hover, .mx-calendar-year>a:hover,.mx-calendar-table .today,.mx-calendar-month>a.current, .mx-calendar-table td.current, .mx-calendar-year>a.current
 {
     background-color:$primary-color !important;
@@ -45,4 +47,14 @@
 .mx-calendar-table {
     width: 105% !important;
 }
-
+.vdp-datepicker__calendar{
+    .cell.selected{
+        background-color: $primary-color !important;
+        color: #fff !important;
+    }
+    .day, .month, .year{
+        &:hover{
+            border: 1px solid $primary-color !important;
+        }
+    }
+}

@@ -32301,7 +32301,8 @@ h4 {
   position: relative;
   height: calc(100% - 54px);
   width: 100%;
-  min-height: calc(100vh - 62px);
+  /* min-height: calc(100vh - 62px); */
+  min-height: calc(100vh - 138px);
 }
 
 .not-found .not-found-panel {
@@ -36247,6 +36248,17 @@ body .vue-grid-item .list-action i:focus {
 
 .mx-calendar-table {
   width: 105% !important;
+}
+
+.vdp-datepicker__calendar .cell.selected {
+  background-color: #8200ff !important;
+  color: #fff !important;
+}
+
+.vdp-datepicker__calendar .day:hover,
+.vdp-datepicker__calendar .month:hover,
+.vdp-datepicker__calendar .year:hover {
+  border: 1px solid #8200ff !important;
 }
 
 .modal-sm {
