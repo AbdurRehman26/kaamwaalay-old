@@ -40796,6 +40796,11 @@ i[active="true"] {
   margin: -4px 0 9px;
 }
 
+a.underline {
+  text-decoration: underline;
+  display: inline-block;
+}
+
 .page-title {
   display: inline-block;
   position: relative;

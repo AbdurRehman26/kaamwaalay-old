@@ -129,7 +129,7 @@ const routes = [
         },
 
     },  
-      
+
     {
         name: 'BiddingDetails',
         path: '/jobs/biddingdetails',
@@ -154,6 +154,16 @@ const routes = [
             icon:'icon-search'
         }
     },
+
+    {
+        path: '/service-provider-review/detail-review',
+        component: require('./components/service-provider-review/DetailReview.vue'),
+        meta: {
+            title: 'PSM | Service provider review',
+            pagetitle:'Service Provider Detail Review',
+            icon:'icon-search'
+        }
+    },    
 
     // Service provider detail
 
