@@ -32523,6 +32523,10 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 20px;
 }
 
+.margin-bottom-30px {
+  margin-bottom: 30px;
+}
+
 /*
  *  STYLE 2 scrollbar
  */
@@ -33955,6 +33959,12 @@ body .ag-theme-balham .ag-header {
 
 /* == Custom table scss end ==*/
 
+.table {
+  /*     &.service-provider-table{
+    min-width:2700px;
+} */
+}
+
 .table.first-last-col-fix thead tr th:first-child {
   width: 100px;
 }
@@ -33965,10 +33975,6 @@ body .ag-theme-balham .ag-header {
 
 .table.last-col-fix thead tr th:last-child {
   width: 175px;
-}
-
-.table.service-provider-table {
-  min-width: 2700px;
 }
 
 .alert {

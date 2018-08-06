@@ -1,14 +1,16 @@
 <template>
   <div>
-  <div class="float-right add-btn-pos">
-      <a href="javascript:;" class="btn btn-primary" @click="ShowModalUser">Add User</a>
-  </div>
 	<div class="panel-inner">
         <div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                          <div class="col-xs-12 col-md-12 ">
+                              <a href="javascript:;" class="btn btn-primary float-right margin-bottom-30px" @click="ShowModalUser">Add User</a>
+                          </div>
 
-                </div>
+                        </div>
+                    </div>
             </div>
         </div>
 			<div class="row">

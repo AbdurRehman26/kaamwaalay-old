@@ -13,12 +13,10 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Title</th>                                  
+                                  <th>Title</th>
                                   <th>Customer Name</th>
                                   <th>Service Type</th>
                                   <th>Service Sub-type</th>
-                                  <th>Zip Code</th>
-                                  <th>Address</th>
                                   <th>Job Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
@@ -27,21 +25,19 @@
 
                                   <tr v-for="list in listing">
                                     <td> {{list.id}} </td>
-                                    <td> {{ list.title }} </td>                                    
+                                    <td> {{ list.title }} </td>
                                     <td> <a href="javascript:;">{{ list.customer_name }}</a> </td>
                                     <td> {{ list.service_type }} </td>
                                     <td> {{ list.service_subtype }} </td>
-                                    <td> {{ list.zip_code }} </td>
-                                    <td> {{ list.address }} </td>                                  
                                     <td>
                                         <span class="tags" :class="[list.job_status.replace(/\s/g, '').toLowerCase().trim()]">
                                             {{ list.job_status }}
-                                        </span> 
+                                        </span>
                                     </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
-                                        <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i>
+                                       <!-- <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i> -->
                                       </div>
                                     </td>
                                 </tr>
@@ -126,7 +122,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Part Time Doctor',
                     job_status: 'Completed'
-                },  
+                },
 
                 {
                     id : 7,
@@ -137,7 +133,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Canvas Painter Required',
                     job_status: 'Archived'
-                },  
+                },
 
                 {
                     id : 8,
@@ -148,7 +144,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Floor Electric',
                     job_status: 'Awarded'
-                },  
+                },
 
                 {
                     id : 9,
@@ -159,7 +155,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Door Repairing',
                     job_status: 'In Bidding'
-                },  
+                },
 
                 {
                     id : 10,
@@ -170,7 +166,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Carpet & House Cleaning',
                     job_status: 'Archived'
-                },                                                                                                                                                   
+                },
             ],
     	}
   	},
@@ -182,13 +178,13 @@ export default {
             this.customer = false;
         },
         ViewDetails(){
-            /*this.customer = true;*/   
+            /*this.customer = true;*/
             this.$router.push('/jobs/viewjobdetail');
         },
 
         AddService(){
-            this.changeProviderStatus = true;   
-        },        
+            this.changeProviderStatus = true;
+        },
 
     },
 }

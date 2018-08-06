@@ -8,16 +8,16 @@
                 <div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix">
+                            <table class="table service-provider-table first-last-col-fix" style="min-width: 1270px;">
                               <thead>
                                 <tr>
                                   <th width="40">Image</th>
                                   <th>Full Name</th>
                                   <th>Email Address</th>
                                   <th>Contact Number</th>
-                                  <th>Review Status</th>
                                   <th>Submited Date</th>
                                   <th>Updated Date</th>
+                                  <th>Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -31,13 +31,13 @@
                                     <td> {{ list.full_name }} </td>
                                     <td> {{ list.email_address }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td> 
-                                        <span class="tags" :class="[list.rating]">
-                                            {{ list.rating }}
-                                        </span> 
-                                    </td>
                                     <td> {{ list.join_date }} </td>
                                     <td> {{ list.approval_date }} </td>
+                                    <td>
+                                        <span class="tags" :class="[list.rating]">
+                                            {{ list.status }}
+                                        </span>
+                                    </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -82,7 +82,7 @@ export default {
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '45668756',
-                    rating: 'pending',
+                    status: 'pending',
                     status: 'Active',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
@@ -217,6 +217,6 @@ export default {
     },
     components: {
         StarRating
-    },    
+    },
 }
 </script>

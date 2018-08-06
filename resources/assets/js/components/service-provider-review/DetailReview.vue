@@ -14,9 +14,9 @@
                                 <h2 class="page-title">Harry John</h2>
                             </div>
                         </div>
-  
+
                     <!-- Basic Detail -->
- 
+
                         <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
                                 <h4 class="page-title">Basic Detail</h4>
@@ -37,7 +37,7 @@
                                     <b-col cols="7">
                                         <p>John</p>
                                     </b-col>
-                                </b-row>                                                                
+                                </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">Email Address</strong></p>
@@ -53,7 +53,7 @@
                                     <b-col cols="7">
                                         <p>4657 Kirk Highway, Geovannyfurt, Missouri, 39185-5150, Pitcairn Islands  </p>
                                     </b-col>
-                                </b-row>    
+                                </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">Years of Experience</strong></p>
@@ -61,8 +61,8 @@
                                     <b-col cols="7">
                                         <p>5 Year</p>
                                     </b-col>
-                                </b-row>                                    
-                                                            
+                                </b-row>
+
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">Contact</strong></p>
@@ -70,10 +70,10 @@
                                     <b-col cols="7">
                                         <a href="tel:+923214325323">+923214325323</a>
                                     </b-col>
-                                </b-row>                                                                   
+                                </b-row>
                             </div>
                         </div>
-    
+
 
                     <!-- Profile Detail -->
 
@@ -97,7 +97,7 @@
                                     <b-col cols="7">
                                         <p>Rodes Company</p>
                                     </b-col>
-                                </b-row>                                                                
+                                </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">DUNS Number</strong></p>
@@ -108,12 +108,12 @@
                                 </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
-                                        <p><strong class="title-head">Rating</strong></p>
+                                        <p><strong class="title-head">Review</strong></p>
                                     </b-col>
                                     <b-col cols="7">
                                         <span class="tags pending">Pending</span>
                                     </b-col>
-                                </b-row>                                                                                                    
+                                </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">Submited Date</strong></p>
@@ -121,7 +121,7 @@
                                     <b-col cols="7">
                                         <p>May 25 2018</p>
                                     </b-col>
-                                </b-row>                                 
+                                </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">Updated Date</strong></p>
@@ -129,14 +129,11 @@
                                     <b-col cols="7">
                                         <p>May 31 2018</p>
                                     </b-col>
-                                </b-row>                                                                                                 
+                                </b-row>
                             </div>
                         </div>
 
-
-
                     <!-- Service Detail -->
-
                         <div class="col-xs-12 block-area">
  <!--                            <div class="customer-detail-title">
                                 <h4 class="page-title">Service Detail</h4>
@@ -153,7 +150,7 @@
                                         <span>,</span>
                                         <a class="underline" href="javascript:void(0);">
                                             Certificates2.docx
-                                        </a>                                        
+                                        </a>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -163,13 +160,13 @@
                                     <b-col cols="7">
                                         <a class="underline" href="javascript:void(0);">
                                             Registrations.docx
-                                        </a> 
+                                        </a>
                                         <span>,</span>
                                         <a class="underline" href="javascript:void(0);">
                                             Registrations2.docx
-                                        </a>                                                                                   
+                                        </a>
                                     </b-col>
-                                </b-row>                                                                
+                                </b-row>
                                 <b-row>
                                     <b-col cols="5" class="text-right">
                                         <p><strong class="title-head">Proof of business</strong></p>
@@ -181,7 +178,7 @@
                                         <span>,</span>
                                         <a class="underline" href="javascript:void(0);">
                                             BusinessProof2.docx
-                                        </a>                                          
+                                        </a>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -193,13 +190,13 @@
                                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </b-col>
-                                </b-row>                                                                   
-                                 
-                                                                                                                          
+                                </b-row>
+
+
                             </div>
                         </div>
 
-                    
+
 
                 </div>
             </div>
@@ -215,7 +212,7 @@ export default{
     },
     components: {
         StarRating
-    },    
+    },
 }
 
 </script>
