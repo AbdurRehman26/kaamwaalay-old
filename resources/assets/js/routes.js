@@ -85,14 +85,7 @@ const routes = [
         }
 
     },
-    {
-        path: '/customer/viewjobdetail',
-        component: require('./components/customer/ViewJobDetail.vue'),
-        meta: {
-            title: 'View Job Detail',
-            pagetitle:'Customer Job detail Section',
-        },
-    },
+
 
     /* Service Provider */
 
@@ -117,6 +110,17 @@ const routes = [
             icon:'icon-briefcase'
         }
     },
+
+    {
+        path: '/jobs/viewjobdetail',
+        component: require('./components/job/JobDetails.vue'),
+        meta: {
+            title: 'Job Details',
+            pagetitle:'Customer Job detail Section',
+        },
+    },
+
+
     //service provider review
     {
         path: '/service-provider-review',

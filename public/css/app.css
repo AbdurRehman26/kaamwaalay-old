@@ -40827,3 +40827,23 @@ i[active="true"] {
   margin-top: 25px;
 }
 
+.tags.inbidding {
+  background-color: #484848 !important;
+}
+
+.tags.awarded {
+  background-color: #4b9dc0 !important;
+}
+
+.tags.completed {
+  background-color: #7bc04b !important;
+}
+
+.tags.archived {
+  background-color: #c14b4b !important;
+}
+
+.tags.initiated {
+  background-color: #ffb300 !important;
+}
+
