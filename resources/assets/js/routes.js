@@ -26,6 +26,7 @@ const routes = [
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
+            noHeader: true,
 
         },
         component: require('./components/auth/main.vue'),
@@ -45,11 +46,26 @@ const routes = [
         }
     },
 
+    /* Login page */
+
+    {
+        name: 'login',
+        path: '/create-password',
+        meta: {
+            title: 'PSM | Create Password',
+            bodyClass: 'login-page',
+            noHeader: true,
+
+        },
+        component: require('./components/auth/CreatePassword.vue'),
+    },
+
+
     /* Service Type */
 
     {
         path: '/service-type',
-        component: require('./components/service-type-user/main.vue'),
+        component: require('./components/service-type/main.vue'),
         meta: {
             title: 'PSM | Service Type',
             pagetitle:'Service Types',
@@ -61,7 +77,7 @@ const routes = [
 
     {
         path: '/customer',
-        component: require('./components/customer/Main.vue'),
+        component: require('./components/customer/main.vue'),
         meta: {
             title: 'PSM | Customer Panel' ,
             pagetitle:'Customers',
@@ -69,20 +85,13 @@ const routes = [
         }
 
     },
-    {
-        path: '/customer/viewjobdetail',
-        component: require('./components/customer/ViewJobDetail.vue'),
-        meta: {
-            title: 'View Job Detail',
-            pagetitle:'Customer Job detail Section',
-        },
-    },
+
 
     /* Service Provider */
 
     {
         path: '/service-provider',
-        component: require('./components/service-provide/Main.vue'),
+        component: require('./components/service-provide/main.vue'),
         meta: {
             title: 'PSM | Service Provider',
             pagetitle:'Service Providers',
@@ -102,7 +111,19 @@ const routes = [
         }
     },
 
-    // service provider review
+    // Job detail Section
+
+    {
+        path: '/jobs/viewjobdetail',
+        component: require('./components/job/JobDetails.vue'),
+        meta: {
+            title: 'Job Details',
+            pagetitle:'Customer Job detail Section',
+        },
+    },
+
+
+    // Service provider review
 
     {
         path: '/service-provider-review',
@@ -114,7 +135,7 @@ const routes = [
         }
     },
 
-    // service provider detail
+    // Service provider detail
 
     {
         path: '/service-provider/service-provider-detail',

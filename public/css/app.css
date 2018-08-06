@@ -32301,7 +32301,8 @@ h4 {
   position: relative;
   height: calc(100% - 54px);
   width: 100%;
-  min-height: calc(100vh - 62px);
+  /* min-height: calc(100vh - 62px); */
+  min-height: calc(100vh - 138px);
 }
 
 .not-found .not-found-panel {
@@ -36249,6 +36250,17 @@ body .vue-grid-item .list-action i:focus {
   width: 105% !important;
 }
 
+.vdp-datepicker__calendar .cell.selected {
+  background-color: #8200ff !important;
+  color: #fff !important;
+}
+
+.vdp-datepicker__calendar .day:hover,
+.vdp-datepicker__calendar .month:hover,
+.vdp-datepicker__calendar .year:hover {
+  border: 1px solid #8200ff !important;
+}
+
 .modal-sm {
   max-width: 420px;
 }
@@ -38848,7 +38860,7 @@ i[active="true"] {
   width: calc(100% - 250px);
   min-height: calc(100% - 59px);
   float: right;
-  padding: 25px;
+  padding: 0px;
   position: relative;
 }
 
@@ -40831,5 +40843,43 @@ i[active="true"] {
 
 .pagination-wrapper {
   margin-top: 25px;
+}
+
+.page-item.active .page-link {
+  color: #fff !important;
+  background-color: #8200ff;
+  border-color: #8200ff;
+}
+
+.tags.inbidding {
+  background-color: #484848 !important;
+}
+
+.tags.awarded {
+  background-color: #4b9dc0 !important;
+}
+
+.tags.completed {
+  background-color: #28a745 !important;
+}
+
+.tags.archived {
+  background-color: #c14b4b !important;
+}
+
+.tags.initiated {
+  background-color: #ffb300 !important;
+}
+
+.tags.active {
+  background-color: #28a745 !important;
+}
+
+.tags.pending {
+  background-color: #ffc107 !important;
+}
+
+.tags.banned {
+  background-color: #d9534f !important;
 }
 
