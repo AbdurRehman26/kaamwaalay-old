@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/{any}', function(){
     return view('layout');
 })->where('any', '.*');
+Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
+     /*
     |--------------------------------------------------------------------------
     | Login Controller
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
+    protected $_userRepository;
     /**
      * Create a new controller instance.
      *
@@ -34,6 +34,130 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+      $this->_userRepository  = app('UserRepository');
+       // $this->middleware('guest')->except('logout');
+    }
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+        if ($this->guard()->validate($this->credentials($request))) {
+            $user = $this->guard()->getLastAttempted();
+
+            // Make sure the user is active
+            if ($user->status == User::ACTIVE && $this->attemptLogin($request)) {
+                // Send the normal successful login response
+                return $this->sendLoginResponse($request);
+            }else if($user->status == User::PENDING){
+                // Increment the failed login attempts and redirect back to the
+                // login form with an error message.
+                $this->incrementLoginAttempts($request);
+                return $this->sendPendingLoginResponse($request);
+            } else {
+                // Increment the failed login attempts and redirect back to the
+                // login form with an error message.
+                $this->incrementLoginAttempts($request);
+
+                return $this->sendBlockedLoginResponse($request);
+            }
+        }
+        return $this->sendFailedLoginResponse($request);
+    }
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $user->access_token = $token = $user->createToken('Token Name')->accessToken;
+        return $user;
+    }
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        dd($this);
+        $this->guard()->logout();
+        return redirect('/');
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendBlockedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.blocked')],
+        ]);
+    }
+    protected function sendPendingLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.pending')],
+        ]);
+    }
+
+    public function activateUser(Request $request) {
+        $input=$request->only('token');
+        if(!empty($input['token'])) {
+            $user = new User();
+            $validated = $user->where('activation_key', $input['token'])->first();
+            if ($validated) {
+                $data =[
+                  "id" => $validated->id ,
+                  "activation_key" => '' ,
+                  "status" => User::ACTIVE ,
+                ];
+                if($this->_userRepository->update($data)){
+                    return view('layout',['success'=>Lang::get('auth.activateSuccess'),'token'=>$input['token']]);
+                }
+                return view('layout',['error'=>Lang::get('auth.activateError')]);
+            } else {
+                return view('layout',['error'=>Lang::get('auth.activateError')]);
+            }
+
+        }
     }
 }
