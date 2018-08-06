@@ -2392,3 +2392,22 @@ i[active="true"]{
 {
     margin-top:25px;
 }
+
+
+.tags{
+    &.inbidding{
+        background-color: #484848 !important;
+    }
+    &.awarded{
+        background-color: #4b9dc0 !important;
+    }
+    &.completed{
+        background-color: #7bc04b !important;
+    }
+    &.archived{
+        background-color: #c14b4b !important;
+    }
+    &.initiated{
+        background-color: #ffb300 !important;
+    }                
+}

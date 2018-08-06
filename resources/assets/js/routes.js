@@ -26,6 +26,7 @@ const routes = [
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
+            noHeader: true,
 
         },
         component: require('./components/auth/main.vue'),
@@ -44,6 +45,21 @@ const routes = [
             icon:'icon-user-icon-resue'
         }
     },
+
+    /* Login page */
+
+    {
+        name: 'login',
+        path: '/create-password',
+        meta: {
+            title: 'PSM | Create Password',
+            bodyClass: 'login-page',
+            noHeader: true,
+
+        },
+        component: require('./components/auth/CreatePassword.vue'),
+    },
+
 
     /* Service Type */
 
@@ -69,14 +85,7 @@ const routes = [
         }
 
     },
-    {
-        path: '/customer/viewjobdetail',
-        component: require('./components/customer/ViewJobDetail.vue'),
-        meta: {
-            title: 'View Job Detail',
-            pagetitle:'Customer Job detail Section',
-        },
-    },
+
 
     /* Service Provider */
 
@@ -101,6 +110,17 @@ const routes = [
             icon:'icon-briefcase'
         }
     },
+
+    {
+        path: '/jobs/viewjobdetail',
+        component: require('./components/job/JobDetails.vue'),
+        meta: {
+            title: 'Job Details',
+            pagetitle:'Customer Job detail Section',
+        },
+    },
+
+
     //service provider review
     {
         path: '/service-provider-review',

@@ -149,7 +149,8 @@ h4{
     position: relative;
     height: calc(100% - 54px);
     width: 100%;
-    min-height: calc(100vh - 62px);
+    /* min-height: calc(100vh - 62px); */
+    min-height: calc(100vh - 138px);
     .not-found-panel{
         position: absolute;
         top: 0;
