@@ -27,6 +27,7 @@
         "vue-body-class": "^2.0.0-beta.2",
         "vue-clickaway": "^2.2.2",
         "vue-faker": "^1.0.1",
+        "vue-fancybox": "^1.0.3",
         "vue-grid-layout": "^2.1.13",
         "vue-gridster": "^1.0.7",
         "vue-progressbar": "^0.7.5",
