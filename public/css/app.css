@@ -40753,6 +40753,28 @@ i[active="true"] {
   margin-bottom: 17px;
 }
 
+.gallery-pic .gallery-item {
+  display: inline-block;
+  width: 90px;
+}
+
+.gallery-pic .lightbox {
+  /* padding: 0px 500px; */
+  z-index: 99;
+}
+
+.gallery-pic .lightbox__element {
+  width: auto;
+}
+
+.fancy-box-mask {
+  z-index: 99 !important;
+}
+
+.fancy-box-mask .fancy-box-image-wrapper div {
+  padding: 9% 0px 0px 0px;
+}
+
 .drag-grid .dashboard-grid {
   padding: 0;
   border: none;

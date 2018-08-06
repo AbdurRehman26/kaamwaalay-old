@@ -85,7 +85,14 @@ const routes = [
         }
 
     },
-
+    {
+        path: '/customer/viewjobdetail',
+        component: require('./components/customer/ViewJobDetail.vue'),
+        meta: {
+            title: 'View Job Detail',
+            pagetitle:'Customer Job detail Section',
+        },
+    },
 
     /* Service Provider */
 
@@ -118,12 +125,25 @@ const routes = [
         component: require('./components/job/JobDetails.vue'),
         meta: {
             title: 'Job Details',
-            pagetitle:'Customer Job detail Section',
+            pagetitle:'Job Details',
         },
-    },
+
+    },  
+      
+    {
+        name: 'BiddingDetails',
+        path: '/jobs/biddingdetails',
+        component: require('./components/job/BiddingDetails.vue'),
+        meta: {
+            title: 'Bidding Details',
+            pagetitle:'Bidding Details',
+        },
+    },        
+
 
 
     // Service provider review
+
 
     {
         path: '/service-provider-review',

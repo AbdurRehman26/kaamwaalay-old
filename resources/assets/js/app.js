@@ -17,8 +17,8 @@ import AmFunnelChart  from 'amcharts3/amcharts/funnel';
 import AmGauge from 'amcharts3/amcharts/gauge';
 import Datepicker from 'vuejs-datepicker';
 import VueProgressBar from 'vue-progressbar';
+import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
-
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
