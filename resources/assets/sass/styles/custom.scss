@@ -474,7 +474,7 @@ i[active="true"]{
     width: calc(100% - 250px);
     min-height:calc(100% - 59px);
     float: right;
-    padding:25px;
+    padding:0px;
     position:relative;
     .main-panel {
         height: calc(100% - 54px);
@@ -2391,4 +2391,10 @@ i[active="true"]{
 .pagination-wrapper
 {
     margin-top:25px;
+}
+
+.page-item.active .page-link{
+    color: #fff !important;
+    background-color: $primary-color;
+    border-color: $primary-color;
 }

@@ -31,7 +31,7 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Image</th>
+<!--                                   <th>Image</th> -->
                                   <th>Service</th>
                                   <th>Sub Service</th>
                                   <th class="text-center">Is Featured</th>
@@ -42,7 +42,7 @@
                               <tbody>
                                 <tr v-for="list in listing">
                                   <td>{{list.id}}</th>
-                                  <td><span class="user-img radius-0"></span></td>
+<!--                                   <td><span class="user-img radius-0"></span></td> -->
                                   <td>{{list.service}}</td>
                                   <td>{{list.subservice}}</td>
                                   <td class="text-center">No</td>
@@ -61,11 +61,14 @@
 		    		</div>
 		  		</div>
 		    </div>
+        <div class="row">
           <div class="col-xs-12 col-md-12">
             <div class="pagination-wrapper float-right">
                 <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
             </div>
           </div>
+        </div>
+
 	</div>
 <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
 <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
@@ -159,7 +162,7 @@ export default {
     },
 
     mounted(){
-        for (var i = 1; i <= 50; i++) {
+        for (var i = 1; i <= 10; i++) {
             var loopperson =  {
                         id : i,
                         imagepath:'',

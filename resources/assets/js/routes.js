@@ -77,7 +77,7 @@ const routes = [
 
     {
         path: '/customer',
-        component: require('./components/customer/Main.vue'),
+        component: require('./components/customer/main.vue'),
         meta: {
             title: 'PSM | Customer Panel' ,
             pagetitle:'Customers',
@@ -98,7 +98,7 @@ const routes = [
 
     {
         path: '/service-provider',
-        component: require('./components/service-provide/Main.vue'),
+        component: require('./components/service-provide/main.vue'),
         meta: {
             title: 'PSM | Service Provider',
             pagetitle:'Service Providers',

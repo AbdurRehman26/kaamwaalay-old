@@ -41,45 +41,35 @@
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix" style="width:3000px;">
+                            <table class="table service-provider-table first-last-col-fix" style="min-width: 1685px;">
                               <thead>
                                 <tr>
-                                  <th>Id</th>
-                                  <th>Full Name</th>
                                   <th>Image</th>
-                                  <th>Business or Individual?</th>
+                                  <th>Full Name</th>
+                                  <th>Type</th>
                                   <th>Business Name</th>
-                                  <th>DUNS Number</th>
+                                  <th>DUNS</th>
                                   <th>Email Address</th>
-                                  <th class="text-center">Services Offered</th>
-                                  <th>Address</th>
                                   <th>Contact Number</th>
                                   <th>Avg. Rating</th>
-                                  <th>Join Date</th>
-                                  <th>Approval Date</th>
                                   <th>Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
                                   <tr v-for="list in listing">
-                                    <td> {{list.id}} </td>
-                                    <td> {{ list.fullname }} </td>
                                     <td>
                                         <span class="user-img radius-0">
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
+                                    <td> {{ list.fullname }} </td>
                                     <td> {{ list.business }} </td>
                                     <td> {{ list.businessName }} </td>
                                     <td> {{ list.DUNSnum }} </td>
                                     <td> {{ list.email_address }} </td>
-                                    <td class="text-center"> {{ list.services_offered }} </td>
-                                    <td> {{ list.address }}, {{ list.city }}, {{ list.state }}, {{ list.zip_code }}, {{ list.country }} </td>
                                     <td> {{ list.contact_number }} </td>
                                     <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
-                                    <td> {{ list.join_date }} </td>
-                                    <td> {{ list.approval_date }} </td>
                                     <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
