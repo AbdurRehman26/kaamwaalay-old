@@ -484,6 +484,7 @@ i[active="true"]{
         background-color:#fff;
         padding:25px;
         min-height: calc(100vh - 138px);
+        padding-top: 10px;
     }
 }
 
@@ -2315,7 +2316,7 @@ i[active="true"]{
     }
 }
 
-// Color picker
+// Color pickers
 .colorpicker-right:before {
     left: auto;
     right: 9px;
@@ -2324,8 +2325,6 @@ i[active="true"]{
     left: auto;
     right: 11px;
 }
-
-
 .breadcrumb
 {
     background: #fff;
@@ -2333,8 +2332,18 @@ i[active="true"]{
     padding: 8px 25px 0;
     border-radius: 0;
     border: none;
+    .breadcrumb{
+        position: absolute;
+        top: -12px;
+        z-index: 99;
+        background: #fff;
+        padding: 0 28px;
+        left: 0;
+        li{
+          font-size: 12px;
+        }
+    }
 }
-
 .page-title{
     display:inline-block;
     position:relative;
@@ -2366,7 +2375,7 @@ i[active="true"]{
 .add-btn-pos{
     position: absolute;
     right: 23px;
-    top: 9px;
+    top: 26px;
 }
 
 /* Vue Star Rating css start */
@@ -2400,7 +2409,7 @@ i[active="true"]{
     h2 {
         &.page-title {
             margin-top: 40px;
-        }      
+        }
     }
 }
 

@@ -38872,6 +38872,7 @@ i[active="true"] {
   background-color: #fff;
   padding: 25px;
   min-height: calc(100vh - 138px);
+  padding-top: 10px;
 }
 
 .login-page .panel {
@@ -40776,6 +40777,19 @@ i[active="true"] {
   border: none;
 }
 
+.breadcrumb .breadcrumb {
+  position: absolute;
+  top: -12px;
+  z-index: 99;
+  background: #fff;
+  padding: 0 28px;
+  left: 0;
+}
+
+.breadcrumb .breadcrumb li {
+  font-size: 12px;
+}
+
 .page-title {
   display: inline-block;
   position: relative;
@@ -40806,7 +40820,7 @@ i[active="true"] {
 .add-btn-pos {
   position: absolute;
   right: 23px;
-  top: 9px;
+  top: 26px;
 }
 
 /* Vue Star Rating css start */

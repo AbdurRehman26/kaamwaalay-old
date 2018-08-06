@@ -1,8 +1,5 @@
 <template>
 <div>
-   <div class="float-right add-btn-pos">
-      <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
-  </div>
 	<div class="panel-inner">
         <div class="row">
             <div class=" col-xs-12 col-md-12">
@@ -19,6 +16,9 @@
                                     <loader></loader>
                                 </button>
                             </div>
+                         <div class="float-right add-btn-pos">
+                            <a href="javascript:;" class="btn btn-primary" @click="AddService">Add Service</a>
+                        </div>
                         </div>
                     </div>
             </div>
