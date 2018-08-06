@@ -18,6 +18,7 @@ import AmGauge from 'amcharts3/amcharts/gauge';
 import Datepicker from 'vuejs-datepicker';
 import VueProgressBar from 'vue-progressbar';
 import fancyBox from 'vue-fancybox';
+import Multiselect from 'vue-multiselect';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -25,6 +26,7 @@ Vue.use(Datepicker);
 Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
+Vue.component('multiselect', Multiselect);
 
 
 const options = {

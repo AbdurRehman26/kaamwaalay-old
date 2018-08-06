@@ -30,6 +30,7 @@
         "vue-fancybox": "^1.0.3",
         "vue-grid-layout": "^2.1.13",
         "vue-gridster": "^1.0.7",
+        "vue-multiselect": "^2.1.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.1",
         "vue-star-rating": "^1.6.0",

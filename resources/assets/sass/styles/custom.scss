@@ -474,7 +474,7 @@ i[active="true"]{
     width: calc(100% - 250px);
     min-height:calc(100% - 59px);
     float: right;
-    padding:25px;
+    padding:0px;
     position:relative;
     .main-panel {
         height: calc(100% - 54px);
@@ -2411,11 +2411,33 @@ i[active="true"]{
     margin-top: 27px;
 }
 
+.add-more-featured {
+    margin-top: 34px;
+    a {
+        text-decoration: underline;
+    }
+}
+.urgent-detail-title {
+        margin-bottom: 20px;
+    border-bottom: solid 1px #f3e6ff;
+    padding-bottom: 10px;
+    h2 {
+        &.page-title {
+            margin-top: 40px;
+        }      
+    }
+}
+
 .pagination-wrapper
 {
     margin-top:25px;
 }
 
+.page-item.active .page-link{
+    color: #fff !important;
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
 
 .tags{
     &.inbidding{
@@ -2425,12 +2447,21 @@ i[active="true"]{
         background-color: #4b9dc0 !important;
     }
     &.completed{
-        background-color: #7bc04b !important;
+        background-color:$status-active  !important;
     }
     &.archived{
         background-color: #c14b4b !important;
     }
     &.initiated{
         background-color: #ffb300 !important;
-    }                
+    }
+    &.active{
+        background-color:$status-active                                                                                                          !important;
+    }
+    &.pending{
+        background-color:$status-pending !important;
+    }
+    &.banned{
+        background-color:$status-danger !important;
+    }
 }

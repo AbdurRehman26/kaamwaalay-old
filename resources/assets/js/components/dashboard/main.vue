@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="row">
-      <div class="col-xs-12 col-md-12 margin-bottom-20px">
+      <div class="col-xs-6 col-md-6 margin-bottom-20px">
         <div class="graphs vue-grid-item">
             <div class="chart-header grid-head">
               <h2 class="float-left">Customer signups over time</h2>
@@ -77,7 +77,7 @@
       </div>
       </div>
 
-      <div class="col-xs-12 col-md-12 margin-bottom-20px">
+      <div class="col-xs-6 col-md-6 margin-bottom-20px">
         <div class="graphs vue-grid-item">
             <div class="chart-header grid-head">
               <h2 class="float-left">Service Provider signups over time</h2>
