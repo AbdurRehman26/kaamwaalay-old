@@ -10,7 +10,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="customer-detail-title">
-								<h2 class="page-title">Featured</h2>
+								<h2 class="page-title">Featured Profile</h2>
 							</div>
 						</div>
 					</div>
@@ -60,21 +60,10 @@
 						<div class="row urgent-setting">	
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>Featured Amount</label>
-									<input class="form-control" placeholder="Enter featured amount">
+									<label>Urgent Amount</label>
+									<input class="form-control" placeholder="Enter urgent amount">
 								</div>
 							</div>
-
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Featured Quantity</label>
-									<input class="form-control" placeholder="Enter featured quantity">
-								</div>
-							</div>
-
-                            <div class="col-xs-12 col-md-2 filter-btn-top-space add-more-featured">
-                                <a href="javascript:;">+ Add more</a>
-                            </div>
 
 						</div>
 
