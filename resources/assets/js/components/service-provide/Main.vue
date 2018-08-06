@@ -51,8 +51,8 @@
                                   <th>DUNS</th>
                                   <th>Email Address</th>
                                   <th>Contact Number</th>
-                                  <th>Avg. Rating</th>
                                   <th>Status</th>
+                                  <th>Avg. Rating</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -69,13 +69,12 @@
                                     <td> {{ list.DUNSnum }} </td>
                                     <td> {{ list.email_address }} </td>
                                     <td> {{ list.contact_number }} </td>
+                                    <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
                                     <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
-                                    <td class="status-color approved"> {{ list.status }} </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                         <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
-                                          <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
                                 </tr>
@@ -86,10 +85,9 @@
 		  		</div>
 		    </div>
         <service-provider-detail @HideModalValue="HideModal" :showModalProp="providerdetailpopup"></service-provider-detail>
-        <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
+        <change-status-provider @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-provider>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-        <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
 	</div>
 </template>
 
@@ -99,12 +97,103 @@ import StarRating from 'vue-star-rating';
 export default {
   data () {
     return {
-    	service: false,
+    	  service: false,
         viewdetails: false,
         changeProviderStatus: false,
-         changestatus:false,
-         providerdetailpopup:false,
-            listing: [],
+        changestatus:false,
+        providerdetailpopup:false,
+            listing: [
+                {
+                    imagepath:'',
+                    business: 'Individual',
+                    businessName: '',
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Business',
+                    businessName:this.$faker().company.companyName(),
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Business',
+                    businessName:this.$faker().company.companyName(),
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Individual',
+                    businessName: '',
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Individual',
+                    businessName: '',
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Business',
+                    businessName:this.$faker().company.companyName(),
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Business',
+                    businessName:this.$faker().company.companyName(),
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Business',
+                    businessName: this.$faker().company.companyName(),
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+                {
+                    imagepath:'',
+                    business: 'Individual',
+                    businessName: '',
+                    DUNSnum: '543351',
+                    fullname: this.$faker().name.findName(),
+                    email_address: this.$faker().internet.email(),
+                    contact_number: this.$faker().phone.phoneNumber(),
+                    status: 'Active',
+                },
+        ],
     	}
   	},
 
@@ -137,7 +226,7 @@ export default {
         StarRating
     },
     mounted(){
-        for (var i = 1; i <= 50; i++) {
+/*        for (var i = 1; i <= 50; i++) {
             var loopperson =  {
                         id : i,
                         imagepath:'',
@@ -158,7 +247,7 @@ export default {
                         approval_date: 'May 31 2018',
             };
             this.listing.push(loopperson);
-        };
+        };*/
     }
 
 }
