@@ -2398,3 +2398,30 @@ i[active="true"]{
     background-color: $primary-color;
     border-color: $primary-color;
 }
+
+.tags{
+    &.inbidding{
+        background-color: #484848 !important;
+    }
+    &.awarded{
+        background-color: #4b9dc0 !important;
+    }
+    &.completed{
+        background-color:$status-active  !important;
+    }
+    &.archived{
+        background-color: #c14b4b !important;
+    }
+    &.initiated{
+        background-color: #ffb300 !important;
+    }
+    &.active{
+        background-color:$status-active                                                                                                          !important;
+    }
+    &.pending{
+        background-color:$status-pending !important;
+    }
+    &.banned{
+        background-color:$status-danger !important;
+    }
+}

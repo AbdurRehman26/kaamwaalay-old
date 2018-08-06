@@ -32,15 +32,15 @@
 
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table first-last-col-fix" style="min-width:1385px;">
+                            <table class="table first-last-col-fix" style="min-width:1290px;">
                               <thead>
                                 <tr>
                                   <th></th>
                                   <th>Full Name</th>
                                   <th>Email</th>
                                   <th>Contact Number</th>
-                                  <th>Avg. Rating</th>
                                   <th>Status</th>
+                                  <th>Avg. Rating</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -54,8 +54,8 @@
                                     <td>{{list.fullname}}</td>
                                     <td>{{list.email}} </td>
                                     <td>{{list.contact_number}} </td>
+                                    <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
                                     <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
-                                    <td class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -78,7 +78,6 @@
         <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
         <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
-
 	</div>
 </template>
 
