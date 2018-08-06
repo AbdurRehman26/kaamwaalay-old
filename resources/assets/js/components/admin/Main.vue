@@ -30,7 +30,7 @@
                                 <tr v-for="list in listing">
                                   <td>{{list.fname}}</th>
                                   <td>{{list.lname}}</td>
-                                  <td><a href="">{{list.email}}</a></td>
+                                  <td><a href="javascript:;">{{list.email}}</a></td>
                                   <td >{{list.acesslevel}}</td>
                                   <td>{{list.jdate}}</td>
                                   <td class="text-center statustext">
