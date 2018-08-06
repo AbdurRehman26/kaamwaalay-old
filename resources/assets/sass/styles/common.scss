@@ -716,13 +716,16 @@ body{
     text-transform:uppercase;
 
     &.approved,&.active{
-        background-color: $primary-color;
+        background-color: $success-bg;
     }
-    &.review{
-        background-color: $secondary-color;
+    &.review,&.in-review{
+        background-color: $status-review;
     }
-    &.inactive{
-        background-color: rgb(131, 131, 131);
+    &.inactive,&.deactivate{
+        background-color:$greyD;
+    }
+    &.rejected{
+        background-color:$status-rejected;
     }
 }
 

@@ -483,7 +483,7 @@ i[active="true"]{
     .panel-inner{
         background-color:#fff;
         padding:25px;
-        min-height: calc(100vh - 138px);
+        min-height: calc(100vh - 68px);
         padding-top: 10px;
     }
 }
@@ -2387,14 +2387,7 @@ i[active="true"]{
         font-size: 16px;
     }
 }
-.statustext{
-    .active{
-        color:$success-bg !important;
-    }
-    .deactive{
-        color:$danger-bg !important;
-    }
-}
+
 .add-btn-pos{
     position: absolute;
     right: 23px;
@@ -2439,6 +2432,9 @@ i[active="true"]{
 .pagination-wrapper
 {
     margin-top:25px;
+    .page-link{
+        color:$primary-color;
+    }
 }
 
 .page-item.active .page-link{
@@ -2448,20 +2444,21 @@ i[active="true"]{
 }
 
 .tags{
+    min-width: 90px;
     &.inbidding{
-        background-color: #484848 !important;
+        background-color: $status-inbidding !important;
     }
     &.awarded{
-        background-color: #4b9dc0 !important;
+        background-color: $status-awarded !important;
     }
     &.completed{
         background-color:$status-active  !important;
     }
     &.archived{
-        background-color: #c14b4b !important;
+        background-color: $greyD !important;
     }
     &.initiated{
-        background-color: #ffb300 !important;
+        background-color:$status-initiated !important;
     }
     &.active{
         background-color:$status-active                                                                                                          !important;
@@ -2469,7 +2466,10 @@ i[active="true"]{
     &.pending{
         background-color:$status-pending !important;
     }
-    &.banned{
+    &.review,&.in-review{
+        background-color:$status-review !important;
+    }
+    &.banned,&.rejected{
         background-color:$status-danger !important;
     }
 }

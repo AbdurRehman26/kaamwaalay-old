@@ -32859,17 +32859,26 @@ body .hide {
 .status-box.active,
 .tags.approved,
 .tags.active {
-  background-color: #8200ff;
+  background-color: #28a745;
 }
 
 .status-box.review,
-.tags.review {
-  background-color: #FF8500;
+.status-box.in-review,
+.tags.review,
+.tags.in-review {
+  background-color: #17a2b8;
 }
 
 .status-box.inactive,
-.tags.inactive {
+.status-box.deactivate,
+.tags.inactive,
+.tags.deactivate {
   background-color: #838383;
+}
+
+.status-box.rejected,
+.tags.rejected {
+  background-color: #d9534f;
 }
 
 .icon-remove-field {
@@ -38871,7 +38880,7 @@ i[active="true"] {
 .panel .panel-inner {
   background-color: #fff;
   padding: 25px;
-  min-height: calc(100vh - 138px);
+  min-height: calc(100vh - 68px);
   padding-top: 10px;
 }
 
@@ -40831,14 +40840,6 @@ i[active="true"] {
   font-size: 16px;
 }
 
-.statustext .active {
-  color: #28a745 !important;
-}
-
-.statustext .deactive {
-  color: #d9534f !important;
-}
-
 .add-btn-pos {
   position: absolute;
   right: 23px;
@@ -40883,10 +40884,18 @@ i[active="true"] {
   margin-top: 25px;
 }
 
+.pagination-wrapper .page-link {
+  color: #8200ff;
+}
+
 .page-item.active .page-link {
   color: #fff !important;
   background-color: #8200ff;
   border-color: #8200ff;
+}
+
+.tags {
+  min-width: 90px;
 }
 
 .tags.inbidding {
@@ -40902,7 +40911,7 @@ i[active="true"] {
 }
 
 .tags.archived {
-  background-color: #c14b4b !important;
+  background-color: #838383 !important;
 }
 
 .tags.initiated {
@@ -40917,7 +40926,13 @@ i[active="true"] {
   background-color: #ffc107 !important;
 }
 
-.tags.banned {
+.tags.review,
+.tags.in-review {
+  background-color: #17a2b8 !important;
+}
+
+.tags.banned,
+.tags.rejected {
   background-color: #d9534f !important;
 }
 
