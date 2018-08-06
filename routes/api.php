@@ -33,11 +33,11 @@ use Illuminate\Http\Request;
     'index', 'edit'
     ]);
 
-    Route::resource('jobbid', 'Api\V1\JobBidController')->except([
+    Route::resource('job-bid', 'Api\V1\JobBidController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('jobmessage', 'Api\V1\JobMessageController')->except([
+    Route::resource('job-message', 'Api\V1\JobMessageController')->except([
     'index', 'edit'
     ]);
 
@@ -69,11 +69,11 @@ use Illuminate\Http\Request;
     'index', 'edit'
     ]);
 
-    Route::resource('supportquestiontype', 'Api\V1\SupportQuestionTypeController')->except([
+    Route::resource('support-question-type', 'Api\V1\SupportQuestionTypeController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('supportquestion', 'Api\V1\SupportQuestionController')->except([
+    Route::resource('support-question', 'Api\V1\SupportQuestionController')->except([
     'index', 'edit'
     ]);
 
@@ -81,27 +81,27 @@ use Illuminate\Http\Request;
     'index', 'edit'
     ]);
 
-    Route::resource('useragent', 'Api\V1\UserAgentController')->except([
+    Route::resource('user-agent', 'Api\V1\UserAgentController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('userprofile', 'Api\V1\UserProfileController')->except([
+    Route::resource('user-profile', 'Api\V1\UserProfileController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('userrating', 'Api\V1\UserRatingController')->except([
+    Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('userservicereject', 'Api\V1\UserServiceRejectController')->except([
+    Route::resource('user-service-reject', 'Api\V1\UserServiceRejectController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('userservice', 'Api\V1\UserServiceController')->except([
+    Route::resource('user-service', 'Api\V1\UserServiceController')->except([
     'index', 'edit'
     ]);
 
-    Route::resource('zipcode', 'Api\V1\ZipCodeController')->except([
+    Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
     'index', 'edit'
     ]);
 

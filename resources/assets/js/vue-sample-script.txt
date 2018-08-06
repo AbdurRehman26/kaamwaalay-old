@@ -1,0 +1,155 @@
+<script>
+    export default{
+        data(){
+            return{
+            records : [],
+            url : 'api/dashboard_reports',
+            showNoRecordFound : false,
+            search : '',
+          }
+        },
+        mounted(){
+            this.getList();
+        },
+        methods: {
+        validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.onSubmit();
+                        this.$emit('error-message', '');
+                        return;
+                    }
+                    this.$emit('error-message', this.errorBag.all()[0]);
+                });
+            },
+            onSubmit() {
+                let self = this;
+                let data = self.loginForm;
+                self.loading = true;
+                let url = self.url;
+                self.$http.post(url, data).then(response => {
+                    response = response.body;
+                    self.$auth.setToken(response.access_token, response.expires_in + Date.now());
+
+                    self.$emit('success-message', "You are successfully logged in. Please wait");
+                    setTimeout(function () {
+                        self.$emit('success-message', "");
+                        self.$store.commit('setIsAuthenticated', true);
+                        self.loading = false;
+                        self.$router.push('/dashboard');
+
+                    }, 2000);
+
+                }).catch(error => {
+                    var message = error.body.message;
+                    var error = error.body.error;
+
+                    if (error == 'invalid_credentials') {
+                        message = 'Invalid email address or password';
+                    }
+
+                    setTimeout(function () {
+                        self.$emit('error-message', "");
+                    }, 2000);
+
+
+                    this.$emit('error-message', message);
+                    this.loading = false;
+                });
+
+            },
+            getList(data , page , successCallback){
+                    let self = this;
+                    self.showNoRecordFound = false;
+                    let url = self.url;
+
+                    if(typeof(page) == 'undefined' || !page){                        
+                        self.records = [];
+                    }
+
+                    if((typeof(data) !== 'undefined' && data) || this.search){
+                        
+                        if(data.workspace_id)
+                        {
+                            this.search = {
+                                name :  data.name,
+                                workspace_id : data.workspace_id,
+                                status : data.status
+                            };
+
+                        }
+
+                        var query  = '?pagination=true&keyword='+this.search.name+'&workspace_id='+this.search.workspace_id+'&status='+this.search.status;
+                        url = 'user/search'+query;
+                    
+                    }else{
+                        var query  = '?pagination=true';
+                        url = url+query;
+                    }
+
+                    if(typeof(page) !== 'undefined' && page){
+                        url += '&page='+page;   
+                    }
+
+                    self.$http.get(url).then(response=>{
+                    response = response.body.response;
+                    
+                    if(typeof(page) !== 'undefined' && page){
+                    for(var i = 0 ; i < response.data.length ; i++){
+                         self.records.push(response.data[i]);
+                    }
+
+                    }else{
+                        self.records = response.data;
+                    }
+                    
+
+                    self.pagination = response.pagination;
+                    
+                    if (!self.records.length) {
+                        self.showNoRecordFound = true;
+                    }
+
+                    successCallback(true);
+
+                    }).catch(error=>{
+
+                    });
+                },
+                infiniteHandler($state) {
+                    let self = this;
+
+                    if(!self.pagination){
+                        
+                    self.getList(false , false ,  function (response) {
+                            setTimeout(function () {
+                                $state.loaded();
+                            } , 2000);
+                    });
+                    
+                    }else{
+
+                    if(self.pagination && self.pagination.current != self.pagination.next){
+
+                    self.getList(false , self.pagination.next , function (response) {
+                    
+                    setTimeout(function () {
+                    $state.loaded();
+                    } , 2000);
+
+                    });
+                    
+                    }else{
+                            $state.complete();
+                            setTimeout(function () {
+                            $state.reset();
+                            }, 3000);
+                    }
+
+                    }
+
+                },
+            
+        }
+    }
+</script>
