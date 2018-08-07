@@ -95,17 +95,57 @@ span.tags {
     }
 }
 
-.provider-image.user-img {
-/*     width: 370px;
-    height: 370px;
-    border-radius: 100%; */
-    width: 200px;
-    height: 200px;
-    border-radius: 0;    
+.basic-details{
+    width: 380px;
+    display: inline-block;
     vertical-align: top;
-    float: right;
-    border: 10px solid #dedcdc;
+    text-align: center;
+    padding: 30px 20px;
+    border: 1px solid #e2dfdf;
+    .provider-image.user-img {
+    /*     width: 370px;
+        height: 370px;
+        border-radius: 100%; */
+        width: 200px;
+        height: 200px;
+        border-radius: 0;    
+        vertical-align: top;
+        border: 10px solid #dedcdc;
+    }
+    .page-title{
+        display: block;
+        margin-bottom: 0;
+        padding: 10px 0px;        
+    } 
+    .addition-info{
+        ul{
+            padding: 0;
+            margin: 0;
+            li {
+                display: inline-block;
+                width: 49%;
+                position: relative;
+                overflow: hidden;
+                text-overflow: ellipsis;  
+                padding-left: 23px;
+                padding-right: 20px;                                
+                i{
+                    color: #d4d4d4;
+                    padding: 0px 10px 0px 0px;
+                    position: absolute;
+                    top: 2px;
+                    left: 0;
+                }
+                &:nth-child(3n){
+                    display: table;
+                    width: auto;
+                    margin: 4px auto 6px auto;
+                }
+            }
+        }
+    }   
 }
+
 
 .divider {
     margin-bottom: 30px;
@@ -125,7 +165,7 @@ span.tags {
     /* width: calc(100% - 370px); */
     /* max-width: 1000px; */
     /* width: calc(100% - 410px); */
-    width: calc(100% - 290px);
+    width: calc(100% - 400px);
     display: inline-block;
 }
 
@@ -496,7 +536,8 @@ i[active="true"]{
     .panel-inner{
         background-color:#fff;
         padding:25px;
-        min-height: calc(100vh - 68px);
+        /* min-height: calc(100vh - 68px); */
+        min-height: calc(100vh - 95px);
         padding-top: 0;
     }
 }

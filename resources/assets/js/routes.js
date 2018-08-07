@@ -86,6 +86,16 @@ const routes = [
 
     },
     {
+        path: '/customer/customer_detail',
+        component: require('./components/customer/CustomerDetails.vue'),
+        meta: {
+            title: 'PSM | Customer Detail' ,
+            pagetitle:'Customers Detail',
+            icon:'icon-users'
+        }
+
+    },    
+    {
         path: '/customer/viewjobdetail',
         component: require('./components/customer/ViewJobDetail.vue'),
         meta: {

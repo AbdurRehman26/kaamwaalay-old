@@ -2,9 +2,9 @@
 <div class="panel-inner">
             <div class="main-detail-content">
 
-                <div class="provider-image user-img" style="background-image: url(/images/dummy/profile-image.jpg)">
+<!--                 <div class="provider-image user-img" style="background-image: url(/images/dummy/profile-image.jpg)">
                     
-                </div>
+                </div> -->
 
 
                 <div class="provider-detail">

@@ -179,7 +179,8 @@ export default {
     		this.customer = true;
     	},
         ViewCustomerDetail() {
-            this.viewcustomer = true;
+            /*this.viewcustomer = true;*/
+            this.$router.push('/customer/customer_detail');
         },
         changestatuspopup() {
             this.changestatus = true;
