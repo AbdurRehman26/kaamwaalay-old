@@ -26,7 +26,7 @@
                                 <tr v-for="list in listing">
                                   <td>{{list.payby}}</th>
                                   <td>{{list.date}}</td>
-                                  <td>{{list.amount}}</td>
+                                  <td>${{list.amount}}</td>
                                   <td >{{list.activitytype}}</td>
                                   <td><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
                                 </tr>
@@ -47,14 +47,14 @@ export default {
             {
                 payby:'Customer',
                 date:'May, 20 2017',
-                amount:'2000',
+                amount:'59',
                 activitytype:'Urgent',
                 status: 'Active',
             },
             {
                 payby:'Service Provider',
                 date:'May, 20 2017',
-                amount:'2000',
+                amount:'100',
                 activitytype:'Featured',
                 status: 'Pending',
             },
