@@ -48,6 +48,8 @@ Vue.component('view-details',require('./components/service-type/popup/ViewDetail
 //service provider
 Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
 Vue.component('service-provider-detail',require('./components/service-provide/popup/ServiceProviderDetail.vue'));
+Vue.component('view-service-record',require('./components/service-provide/popup/ViewServiceRecord.vue'));
+
 
 // service-provide-review-popup
 Vue.component('service-provider-review',require('./components/service-provider-review/popup/ChangeStatus.vue'));

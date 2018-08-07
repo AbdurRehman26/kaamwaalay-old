@@ -195,8 +195,9 @@
                                     <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Job Details</strong></p>
                                     </b-col>
+
                                     <b-col class="calculated-value">
-                                        <a href="javascript:void(0);">See All</a>
+                                        <a href="javascript:void(0);" @click="ServiceJobDetail">See All</a>
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>
@@ -219,6 +220,11 @@ export default{
     components: {
         StarRating
     },    
+    methods: {
+        ServiceJobDetail() {
+            this.$router.push('/service-provider/viewjobdetail');
+        }
+    }
 }
 
 </script>
