@@ -273,6 +273,11 @@ h4{
 strong {
     font-family: $font_bold;
     font-weight: normal;
+
+    &.title-head{
+        font-family: $font_regular;
+       font-weight:bold;
+    }
 }
 
 .col-width-auto

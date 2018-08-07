@@ -32527,6 +32527,11 @@ strong {
   font-weight: normal;
 }
 
+strong.title-head {
+  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-weight: bold;
+}
+
 .col-width-auto {
   width: auto;
 }
@@ -34048,7 +34053,7 @@ body .ag-theme-balham .ag-header {
   /*             border: 1px solid #D4D4D4; */
   padding: 10px 25px;
   /*             border-bottom: 0px solid; */
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "berthold_akzidenz_grotesk_be_regular";
   /*             border-top: 0px solid; */
   vertical-align: middle;
 }
@@ -41229,6 +41234,14 @@ a.underline {
 .tags.banned,
 .tags.rejected {
   background-color: #d9534f !important;
+}
+
+.statustext .active {
+  color: #28a745 !important;
+}
+
+.statustext .deactive {
+  color: #838383 !important;
 }
 
 .general-setting .customer-detail-title h2.page-title {
