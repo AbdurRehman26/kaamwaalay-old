@@ -55,7 +55,7 @@
                                     <td>{{list.email}} </td>
                                     <td>{{list.contact_number}} </td>
                                     <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
-                                    <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
+                                    <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>

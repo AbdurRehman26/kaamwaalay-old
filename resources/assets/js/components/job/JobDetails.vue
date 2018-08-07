@@ -150,10 +150,10 @@ import StarRating from 'vue-star-rating';
 export default{
         data () {
           return {
-      imageList: [
-        { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
-        { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
-      ]            
+              imageList: [
+                { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
+                { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
+              ]            
         }
     },
     components: {

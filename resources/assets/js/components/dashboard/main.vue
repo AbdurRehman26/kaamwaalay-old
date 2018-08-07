@@ -156,7 +156,7 @@
                                   <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
                                   <td>{{list.stype}}</td>
-                                  <td ><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
+                                  <td ><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -188,7 +188,7 @@
                                 <tr v-for="list in listing">
                                   <td><a >{{list.fname}}</a></th>
                                   <td><a >{{list.email}}</a></td>
-                                  <td ><star-rating :star-size="20" read-only :rating="4"></star-rating></td>
+                                  <td ><star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>

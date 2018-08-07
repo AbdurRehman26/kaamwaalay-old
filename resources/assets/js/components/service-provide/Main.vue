@@ -70,7 +70,7 @@
                                     <td> {{ list.email_address }} </td>
                                     <td> {{ list.contact_number }} </td>
                                     <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
-                                    <td><star-rating :star-size="20" read-only :rating="3"></star-rating></td>
+                                    <td><star-rating :star-size="20" read-only :rating="3" active-color="#8200ff"></star-rating></td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>

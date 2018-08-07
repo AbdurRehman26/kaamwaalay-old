@@ -33,7 +33,7 @@
                                 <td>{{ list.serviceprovider }}</td>
                                 <td class="text-center">{{ list.urgentjob }}</td>
                                 <td class="text-center">${{ list.amount }}</td>                           
-                                <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
+                                <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
 
                                 <td class="text-center">
                                     <div class="action-icons">
