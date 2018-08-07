@@ -23,51 +23,51 @@
                             </div> -->
                             <div class="view-details-list">
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">First Name</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>Harry</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Last Name</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>John</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Email Address</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <a href="mailto:bobbyrodes@gmail.com">bobbyrodes@gmail.com</a>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Address</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>4657 Kirk Highway, Geovannyfurt, Missouri, 39185-5150, Pitcairn Islands  </p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Years of Experience</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>5 Year</p>
                                     </b-col>
                                 </b-row>
 
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Contact</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <a href="tel:+923214325323">+923214325323</a>
                                     </b-col>
                                 </b-row>
@@ -83,58 +83,58 @@
                             </div> -->
                             <div class="view-details-list">
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Business or Individual?</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>Business</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Business Name</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>Rodes Company</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">DUNS Number</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>543351</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Review</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <span class="tags pending">Pending</span>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Submited Date</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>May 25 2018</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Updated Date</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>May 31 2018</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Reviewed by</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col class="calculated-value">
                                         <p>Admin</p>
                                     </b-col>
                                 </b-row>
@@ -148,10 +148,10 @@
                             </div> -->
                             <div class="view-details-list">
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Certificates</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <a class="underline" href="javascript:void(0);">
                                             Certificates.docx
                                         </a>
@@ -162,10 +162,10 @@
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Registrations</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <a class="underline" href="javascript:void(0);">
                                             Registrations.docx
                                         </a>
@@ -176,10 +176,10 @@
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Proof of business</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <a class="underline" href="javascript:void(0);">
                                             BusinessProof.docx
                                         </a>
@@ -190,10 +190,10 @@
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Profile/business details</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -201,10 +201,10 @@
                                 </b-row>
 
                                 <b-row>
-                                    <b-col cols="4" class="text-right">
+                                    <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Status</strong></p>
                                     </b-col>
-                                    <b-col cols="8">
+                                    <b-col class="calculated-value">
                                         <b-form-select v-model="selected" :options="options" class="max-field"/>
                                     </b-col>
                                 </b-row>
