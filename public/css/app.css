@@ -32527,6 +32527,11 @@ strong {
   font-weight: normal;
 }
 
+strong.title-head {
+  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-weight: bold;
+}
+
 .col-width-auto {
   width: auto;
 }
