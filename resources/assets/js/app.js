@@ -19,6 +19,7 @@ import Datepicker from 'vuejs-datepicker';
 import VueProgressBar from 'vue-progressbar';
 import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
+import MaterialIcons  from 'material-icons';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -27,7 +28,7 @@ Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
 Vue.component('multiselect', Multiselect);
-
+Vue.component('MaterialIcons', MaterialIcons);
 
 const options = {
     color: '#8200ff',
