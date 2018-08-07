@@ -2352,12 +2352,12 @@ i[active="true"]{
 {
     background: #fff;
     margin: 0;
-    padding: 8px 25px 0;
+    padding:38px 25px 0;
     border-radius: 0;
     border: none;
     .breadcrumb{
         position: absolute;
-        top: -12px;
+        top: 2px;
         z-index: 99;
         background: #fff;
         padding: 0 20px;
@@ -2383,38 +2383,29 @@ a.underline {
         padding-right: 20px;
         width: 45px;
         display: inline-block;
+        vertical-align:middle;
+        position:relative;
+           &.icon-speedometer{
+                top: -6px;
+           }
            &.icon-tools-2{
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            top: 0;
+            top: -5px;
            }
            &.icon-users{
             font-weight: bold;
+                top: -7px;
            }
            &.icon-star_border{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
+            font-size: 29px;
+            top: -7px;
            }
-           &.icon-tools-2{
-            font-size:20px;
-            font-weight: bold;
-            top: 0;
+           &.icon-handshake-o{
+                top: -6px;
            }
-           &.icon-tools-2{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
-           }
-           &.icon-tools-2{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
-           }
-           &.icon-tools-2{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
+           &.icon-briefcase{
+                top: -6px;
            }
     }
 }
@@ -2543,7 +2534,7 @@ a.underline {
     h2 {
         &.page-title {
             font-size: 18px;
-        } 
+        }
     }
 }
 .total-record {

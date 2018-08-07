@@ -33286,7 +33286,7 @@ body .hide {
   display: block;
   margin: 4px 0px;
   padding: 0 17px 3px;
-  height: 52px;
+  height: 65px;
 }
 
 .left-menu-panel .logo-area a {
@@ -35336,7 +35336,7 @@ textarea {
   position: fixed;
   right: 0px;
   z-index: 9;
-  height: 56px;
+  height: 69px;
   width: calc(100% - 248px);
 }
 
@@ -40939,14 +40939,14 @@ i[active="true"] {
 .breadcrumb {
   background: #fff;
   margin: 0;
-  padding: 8px 25px 0;
+  padding: 38px 25px 0;
   border-radius: 0;
   border: none;
 }
 
 .breadcrumb .breadcrumb {
   position: absolute;
-  top: -12px;
+  top: 2px;
   z-index: 99;
   background: #fff;
   padding: 0 20px;
@@ -40972,46 +40972,36 @@ a.underline {
   padding-right: 20px;
   width: 45px;
   display: inline-block;
+  vertical-align: middle;
+  position: relative;
 }
 
-.page-title i.icon-tools-2 {
-  font-size: 18px;
-  font-weight: bold;
-  top: 0;
-}
-
-.page-title i.icon-users {
-  font-weight: bold;
-}
-
-.page-title i.icon-star_border {
-  font-size: 18px;
-  font-weight: bold;
-  top: 0;
+.page-title i.icon-speedometer {
+  top: -6px;
 }
 
 .page-title i.icon-tools-2 {
   font-size: 20px;
   font-weight: bold;
-  top: 0;
+  top: -5px;
 }
 
-.page-title i.icon-tools-2 {
-  font-size: 18px;
+.page-title i.icon-users {
   font-weight: bold;
-  top: 0;
+  top: -7px;
 }
 
-.page-title i.icon-tools-2 {
-  font-size: 18px;
-  font-weight: bold;
-  top: 0;
+.page-title i.icon-star_border {
+  font-size: 29px;
+  top: -7px;
 }
 
-.page-title i.icon-tools-2 {
-  font-size: 18px;
-  font-weight: bold;
-  top: 0;
+.page-title i.icon-handshake-o {
+  top: -6px;
+}
+
+.page-title i.icon-briefcase {
+  top: -6px;
 }
 
 .page-title-strip {
