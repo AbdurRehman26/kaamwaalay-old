@@ -60,14 +60,14 @@ export default {
             {
                 payby:'Customer',
                 date:'May, 20 2017',
-                amount:'$2',
+                amount:20,
                 activitytype:'Urgent',
                 status: 'Active',
             },
             {
                 payby:'Service Provider',
                 date:'May, 20 2017',
-                amount:'$2',
+                amount:52,
                 activitytype:'Featured',
                 status: 'Pending',
             },

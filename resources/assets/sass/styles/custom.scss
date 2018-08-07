@@ -84,7 +84,7 @@ h4.page-title {
 
 .block-area {
     margin-top: 24px;
-    width: 60%;
+    /* width: 60%; */
 }
 
 span.tags {
@@ -96,11 +96,15 @@ span.tags {
 }
 
 .provider-image.user-img {
-    width: 360px;
-    height: 360px;
-    border-radius: 0;
+/*     width: 370px;
+    height: 370px;
+    border-radius: 100%; */
+    width: 200px;
+    height: 200px;
+    border-radius: 0;    
     vertical-align: top;
     float: right;
+    border: 10px solid #dedcdc;
 }
 
 .divider {
@@ -109,10 +113,15 @@ span.tags {
     border-bottom-style: dashed;
 }
 
+.main-detail-content{
+    padding: 0px 100px 0px 0px;
+}
+
 .provider-detail {
     /* width: calc(100% - 370px); */
-    max-width: 1000px;
-    width: 100%;
+    /* max-width: 1000px; */
+    /* width: calc(100% - 410px); */
+    width: calc(100% - 290px);
     display: inline-block;
 }
 
@@ -484,7 +493,7 @@ i[active="true"]{
         background-color:#fff;
         padding:25px;
         min-height: calc(100vh - 68px);
-        padding-top: 10px;
+        padding-top: 0;
     }
 }
 
@@ -2352,16 +2361,16 @@ i[active="true"]{
 {
     background: #fff;
     margin: 0;
-    padding: 8px 25px 0;
+    padding:38px 25px 0;
     border-radius: 0;
     border: none;
     .breadcrumb{
-        position: absolute;
-        top: -12px;
+        position: fixed;
+        top: 56px;
         z-index: 99;
         background: #fff;
         padding: 0 20px;
-        left: 54px;
+        left: 303px;
         li{
           font-size: 12px;
         }
@@ -2383,38 +2392,32 @@ a.underline {
         padding-right: 20px;
         width: 45px;
         display: inline-block;
+        vertical-align:middle;
+        position:relative;
+           &.icon-speedometer{
+                top: -6px;
+           }
            &.icon-tools-2{
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            top: 0;
+            top: -5px;
            }
            &.icon-users{
             font-weight: bold;
+                top: -7px;
            }
            &.icon-star_border{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
+            font-size: 29px;
+            top: -7px;
            }
-           &.icon-tools-2{
-            font-size:20px;
-            font-weight: bold;
-            top: 0;
+           &.icon-handshake-o{
+                top: -6px;
            }
-           &.icon-tools-2{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
+           &.icon-briefcase{
+                top: -6px;
            }
-           &.icon-tools-2{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
-           }
-           &.icon-tools-2{
-            font-size: 18px;
-            font-weight: bold;
-            top: 0;
+           &.icon-credit-card{
+                top: -5px;
            }
     }
 }
@@ -2543,7 +2546,7 @@ a.underline {
     h2 {
         &.page-title {
             font-size: 18px;
-        } 
+        }
     }
 }
 .total-record {
