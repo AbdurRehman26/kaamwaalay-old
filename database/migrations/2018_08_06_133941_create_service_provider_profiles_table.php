@@ -16,7 +16,7 @@ class CreateServiceProviderProfilesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
-			$table->text('attachments', 65535)->nullable();
+			$table->json('attachments', 65535)->nullable();
 			$table->string('business_name', 50)->nullable();
 			$table->text('business_details', 65535)->nullable();
 			$table->string('duns_number', 50)->nullable();
