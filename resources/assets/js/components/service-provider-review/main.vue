@@ -44,7 +44,7 @@
                             <table class="table service-provider-table first-last-col-fix" style="min-width: 1270px;">
                               <thead>
                                 <tr>
-                                  <th width="40">Image</th>
+                                  <th width="40"></th>
                                   <th>Full Name</th>
                                   <th>Email Address</th>
                                   <th>Services</th>                                  
@@ -73,7 +73,7 @@
                                     </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -100,6 +100,7 @@
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
+        <service-provider-review @HideModalValue="HideModal" :showModalProp="changeservicestatus"></service-provider-review>
     </div>
 </template>
 
@@ -111,6 +112,7 @@ export default {
         service: false,
         viewdetails: false,
         changeProviderStatus: false,
+        changeservicestatus: false,
 
             listing: [
                 {
@@ -255,9 +257,13 @@ export default {
         ViewDetails() {
             this.viewdetails = true;
         },
+        ChangeProviderStatus() {
+            this.changeservicestatus = true;
+        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
+            this.changeservicestatus = false;   
         },
         detailreview(){
             this.$router.push('/service-provider-review/detail-review');
