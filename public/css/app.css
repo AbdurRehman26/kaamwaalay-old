@@ -33322,8 +33322,10 @@ body .hide {
 }
 
 .left-menu-panel .logo-area img {
-  max-width: 99px;
+  max-width: 180px;
   display: inline-block;
+  position: relative;
+  top: 11px;
 }
 
 @media (max-width: 1140px) {
@@ -34907,7 +34909,7 @@ body .ag-theme-balham .ag-header {
 .auth-logo-wrapper .logo {
   margin-top: 32px;
   display: inline-block;
-  width: 70px;
+  width: 200px;
 }
 
 @media (max-width: 414px) {
