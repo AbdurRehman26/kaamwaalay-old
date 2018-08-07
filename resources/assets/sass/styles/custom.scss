@@ -493,7 +493,7 @@ i[active="true"]{
         background-color:#fff;
         padding:25px;
         min-height: calc(100vh - 68px);
-        padding-top: 27px;
+        padding-top: 0;
     }
 }
 
@@ -2365,12 +2365,12 @@ i[active="true"]{
     border-radius: 0;
     border: none;
     .breadcrumb{
-        position: absolute;
-        top: 27px;
+        position: fixed;
+        top: 56px;
         z-index: 99;
         background: #fff;
         padding: 0 20px;
-        left: 54px;
+        left: 303px;
         li{
           font-size: 12px;
         }
