@@ -58,6 +58,11 @@ Vue.component('view-customer-record',require('./components/customer/popup/ViewCu
 //Jobs
 Vue.component('view-bidding-details',require('./components/job/popup/ViewBuiddingDetails.vue'));
 
+// Support Popup
+Vue.component('support-detail',require('./components/support/popup/SupportDetail.vue'));
+
+
+
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
 
