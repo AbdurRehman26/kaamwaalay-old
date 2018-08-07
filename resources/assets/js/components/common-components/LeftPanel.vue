@@ -14,7 +14,7 @@
                     <li class=""><router-link to="/payment"><i class="icon-credit-card" aria-hidden="true"></i><span>Payment Activites</span></router-link></li>
                     <li class=""><router-link to="/general-setting"><i class="icon-settings" aria-hidden="true"></i><span>General Settings</span></router-link></li>
                     <li class=""><router-link to="/admin"><i class="icon-lock_outline" aria-hidden="true"></i><span>Admins</span></router-link></li>
-                    <li class=""><router-link to="/support"><i class="icon-lock_outline" aria-hidden="true"></i><span>Support</span></router-link></li>
+                    <li class=""><router-link to="/support"><i class="icon-help_outline" aria-hidden="true"></i><span>Support</span></router-link></li>
                 </ul>
             </nav>
         </div>

@@ -223,7 +223,7 @@ const routes = [
         meta: {
             title: 'PSM | Support',
             pagetitle:'Support',
-            icon:'icon-credit-card'
+            icon:'icon-help_outline'
         }
     },
 

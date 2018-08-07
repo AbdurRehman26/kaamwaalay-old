@@ -1,7 +1,7 @@
 <template>
   <div class="search-field">
     <label>Search</label>
-    <TypeAhead src="/static/data.json?keyword=:keyword" :getResponse="getResponse" placeholder="Typing"></TypeAhead>
+    <TypeAhead src="/static/data.json?keyword=:keyword" :getResponse="getResponse" placeholder="Search"></TypeAhead>
   </div>
 </template>
 

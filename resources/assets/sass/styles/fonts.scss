@@ -55,6 +55,45 @@ $font_black:'OpenSans-ExtraBold';
 }
 
 
+.icon-help_outline:before {
+  content: "\e8fd";
+}
+.icon-briefcase:before {
+  content: "\e93a";
+}
+.icon-av_timer:before {
+  content: "\e01b";
+}
+.icon-payment:before {
+  content: "\e8a1";
+}
+.icon-lock_outline:before {
+  content: "\e899";
+}
+.icon-pie_chart_outlined:before {
+  content: "\e6c5";
+}
+.icon-show_chart:before {
+  content: "\e6e1";
+}
+.icon-star_border:before {
+  content: "\e83a";
+}
+.icon-delete:before {
+  content: "\e927";
+}
+.icon-menu2:before {
+  content: "\e928";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e936";
+}
 .icon-tools-2:before {
   content: "\e943";
 }
@@ -359,42 +398,6 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-bar-chart-o2:before {
   content: "\f080";
-}
-.icon-briefcase:before {
-  content: "\e93a";
-}
-.icon-av_timer:before {
-  content: "\e01b";
-}
-.icon-payment:before {
-  content: "\e8a1";
-}
-.icon-lock_outline:before {
-  content: "\e899";
-}
-.icon-pie_chart_outlined:before {
-  content: "\e6c5";
-}
-.icon-show_chart:before {
-  content: "\e6e1";
-}
-.icon-star_border:before {
-  content: "\e83a";
-}
-.icon-delete:before {
-  content: "\e927";
-}
-.icon-menu2:before {
-  content: "\e928";
-}
-.icon-close2:before {
-  content: "\e5ce";
-}
-.icon-keyboard_arrow_right:before {
-  content: "\e935";
-}
-.icon-keyboard_arrow_left:before {
-  content: "\e936";
 }
 .icon-dots-three-vertical:before {
   content: "\e917";

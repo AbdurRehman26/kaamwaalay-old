@@ -72,7 +72,7 @@
           <div class="clearfix"></div>
 
           <div class="col-xs-12 col-md-12">
-            
+
             <div class="total-record float-left">
                 <p><strong>Total records: <span>9</span></strong></p>
             </div>
