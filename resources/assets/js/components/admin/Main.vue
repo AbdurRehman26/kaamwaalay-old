@@ -2,7 +2,7 @@
   <div>
 	<div class="panel-inner">
         <div class="row">
-            <div class=" col-xs-12 col-md-12">    
+            <div class=" col-xs-12 col-md-12">
                 <div class="row">
                   <div class="col-xs-12 col-md-12 ">
                       <a href="javascript:;" class="btn btn-primary float-right margin-bottom-30px" @click="ShowModalUser">Add Admin</a>
@@ -44,7 +44,7 @@
             <div class="clearfix"></div>
 
                 <div class="col-xs-12 col-md-12">
-            
+
                     <div class="total-record float-left">
                         <p><strong>Total records: <span>3</span></strong></p>
                     </div>

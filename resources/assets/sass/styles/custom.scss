@@ -101,7 +101,7 @@ span.tags {
     border-radius: 100%; */
     width: 200px;
     height: 200px;
-    border-radius: 0;    
+    border-radius: 0;
     vertical-align: top;
     float: right;
     border: 10px solid #dedcdc;
@@ -2558,3 +2558,17 @@ a.underline {
         color: $primary-color;
     }
 }
+
+.services-arrow
+    {
+        &:after{
+            content: '>>';
+            display: inline-block;
+            font-size: 8px;
+            vertical-align: middle;
+            padding: 0 6px;
+            line-height: 0;
+            position: relative;
+            top: -1px;
+        }
+    }

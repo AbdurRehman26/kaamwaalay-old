@@ -155,7 +155,7 @@
                                   <td><a >{{list.fname}}</a></th>
                                   <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
-                                  <td>{{list.stype}}</td>
+                                  <td>{{list.stype}}<span :class="[list.sarrows]"></span> {{list.sstype}}</td>
                                   <td ><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
@@ -218,42 +218,49 @@ export default{
             leftpanel: false,
             show: false,
             listingResponsive: false,
-        
             listing: [
                 {
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians >> Cars',
-                    jobscompleted:'20'
+                    stype: 'Electricians',
+                    sstype: 'Cars',
+                    sarrows:'services-arrow',
+                    jobscompleted:'10'
                 },
                 {
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
                     stype: 'Carpenters',
-                    jobscompleted:'20'
+                    jobscompleted:'40',
+                    sarrows:'',
                 },
                 {
                     fname:'Geneva Wilson',
                     email:'genevawilson@gmail.com',
                     duns:'245689',
                     stype: 'Cleaning Services',
-                    jobscompleted:'20'
+                    jobscompleted:'5',
+                    sarrows:'',
                 },
                 {
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians >> Wiring repair',
-                    jobscompleted:'20'
+                    stype: 'Electricians',
+                    sstype: 'Wiring repair',
+                    sarrows:'services-arrow',
+                    jobscompleted:'30'
                 },
                 {
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians >> Air conditioning',
-                    jobscompleted:'20'
+                    stype: 'Electricians',
+                    sstype: 'Air conditioning',
+                    jobscompleted:'50',
+                    sarrows:'services-arrow',
                 }
             ],
         }
