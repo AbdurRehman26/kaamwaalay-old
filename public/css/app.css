@@ -40838,6 +40838,10 @@ a.underline {
   top: 2px;
 }
 
+.page-title i {
+  padding-right: 9px;
+}
+
 .page-title-strip {
   clear: both;
   display: block;
