@@ -5,7 +5,7 @@
                 <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
                 <b-collapse is-nav id="nav_collapse" class="d-block">
                     <div class="float-left">
-                        <h2 class="page-title"><i :class="[$route.meta.pagetitle]"></i>{{$route.meta.pagetitle}}</h2>
+                        <h2 class="page-title"><i :class="[$route.meta.icon]"></i>{{$route.meta.pagetitle}}</h2>
                     </div>
                     <div class="float-right">
                         <div class="left-cog">
