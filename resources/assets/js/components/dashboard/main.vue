@@ -7,13 +7,13 @@
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>Start Date</label>
-                                  <DatePicker></DatePicker>
+                                  <datepicker placeholder="Start date" calendar-button-icon="fa fa-calendar"></datepicker>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>End Date</label>
-                                   <DatePicker></DatePicker>
+                                   <datepicker placeholder="End date" calendar-button-icon="fa fa-calendar"></datepicker>
                                </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
@@ -61,15 +61,13 @@
             </div>
         </div>
         <div class="row">
-      <div class="col-xs-12 col-md-12 margin-bottom-20px">
+      <div class="col-xs-6 col-md-6 margin-bottom-20px">
         <div class="graphs vue-grid-item">
             <div class="chart-header grid-head">
               <h2 class="float-left">Customer signups over time</h2>
               <div class="float-right actions">
                   <div class="list-action">
-                    <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                     <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                    <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                   </div>
             </div>
             <div id="customerSignups" class="charts-height"></div>
@@ -77,15 +75,13 @@
       </div>
       </div>
 
-      <div class="col-xs-12 col-md-12 margin-bottom-20px">
+      <div class="col-xs-6 col-md-6 margin-bottom-20px">
         <div class="graphs vue-grid-item">
             <div class="chart-header grid-head">
               <h2 class="float-left">Service Provider signups over time</h2>
               <div class="float-right actions">
                   <div class="list-action">
-                    <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                     <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                    <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                   </div>
             </div>
             <div id="providerssigns" class="charts-height"></div>
@@ -100,9 +96,7 @@
                 <h2 class="float-left chart-heading">Job count by service type </h2>
                   <div class="float-right actions">
                       <div class="list-action">
-                      <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                       <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                      <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                       </div>
                 </div>
               </div>
@@ -116,9 +110,7 @@
               <h2 class="float-left">Payment received over time </h2>
               <div class="float-right actions">
                   <div class="list-action">
-                    <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                     <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                    <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                   </div>
             </div>
             <div id="paymentRecievedByTime" class="charts-height"></div>
@@ -132,9 +124,7 @@
                 <h2 class="float-left chart-heading">Payment received by type</h2>
                 <div class="float-right actions">
                     <div class="list-action">
-                      <i v-b-tooltip.hover title="Analyze Data" class="icon-analyze-icon" data-original-title="Analyze Data"></i>
                       <i v-b-tooltip.hover title="Download" class="icon-download" data-original-title="Download"></i>
-                      <i v-b-tooltip.hover title="Discussion" class="icon-comment-icon" @click="isShowing ^= true" data-original-title="Discussion"></i>
                     </div>
               </div>
               </div>
@@ -154,9 +144,8 @@
                                 <tr>
                                   <th>Full Name</th>
                                   <th>Email</th>
-                                  <th>DUNS Number</th>
+                                  <th>DUNS</th>
                                   <th>Service Type</th>
-                                  <th>Sub Service Type</th>
                                   <th>Rating</th>
                                   <th class="text-center">Jobs Completed</th>
                                 </tr>
@@ -166,9 +155,8 @@
                                   <td><a >{{list.fname}}</a></th>
                                   <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
-                                  <td>{{list.stype}}</td>
-                                  <td>{{list.sstype}}</td>
-                                  <td ><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
+                                  <td>{{list.stype}}<span :class="[list.sarrows]"></span> {{list.sstype}}</td>
+                                  <td ><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -192,8 +180,6 @@
                                 <tr>
                                   <th>Full Name</th>
                                   <th>Email</th>
-                                  <th>Service Type</th>
-                                  <th>Sub Service Type</th>
                                   <th>Rating</th>
                                   <th class="text-center">Jobs Completed</th>
                                 </tr>
@@ -202,9 +188,7 @@
                                 <tr v-for="list in listing">
                                   <td><a >{{list.fname}}</a></th>
                                   <td><a >{{list.email}}</a></td>
-                                  <td>{{list.stype}}</td>
-                                  <td>{{list.sstype}}</td>
-                                  <td ><star-rating :star-size="20" read-only :rating="4"></star-rating></td>
+                                  <td ><star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
                               </tbody>
@@ -234,48 +218,49 @@ export default{
             leftpanel: false,
             show: false,
             listingResponsive: false,
-
-
             listing: [
                 {
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
                     stype: 'Electricians',
-                    sstype: 'Car',
-                    jobscompleted:'20'
+                    sstype: 'Cars',
+                    sarrows:'services-arrow',
+                    jobscompleted:'10'
                 },
                 {
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
                     stype: 'Carpenters',
-                    sstype: '',
-                    jobscompleted:'20'
+                    jobscompleted:'40',
+                    sarrows:'',
                 },
                 {
                     fname:'Geneva Wilson',
                     email:'genevawilson@gmail.com',
                     duns:'245689',
                     stype: 'Cleaning Services',
-                    sstype: '',
-                    jobscompleted:'20'
+                    jobscompleted:'5',
+                    sarrows:'',
                 },
                 {
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
                     stype: 'Electricians',
-                    sstype: 'Electrical and wiring repair',
-                    jobscompleted:'20'
+                    sstype: 'Wiring repair',
+                    sarrows:'services-arrow',
+                    jobscompleted:'30'
                 },
                 {
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
                     stype: 'Electricians',
-                    sstype: 'Air conditioning repair',
-                    jobscompleted:'20'
+                    sstype: 'Air conditioning',
+                    jobscompleted:'50',
+                    sarrows:'services-arrow',
                 }
             ],
         }
@@ -319,7 +304,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -359,7 +344,7 @@ export default{
               "id": "ValueAxis-1",
               "gridAlpha": 1,
               "gridColor": "#F5F5F5",
-              "title": "Data Title"
+              "title": ""
             }
           ],
           "allLabels": [],
@@ -1154,7 +1139,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -1180,7 +1165,7 @@ export default{
           "trendLines": [],
           "graphs": [
             {
-              "balloonText": "[[title]]: [[value]]",
+              "balloonText": "[[title]]: $[[value]]",
               "bullet": "round",
               "fillAlphas": 0.13,
               "id": "AmGraph-1",
@@ -1194,7 +1179,7 @@ export default{
               "id": "ValueAxis-1",
               "gridAlpha": 1,
               "gridColor": "#F5F5F5",
-              "title": "Data Title"
+              "title": ""
             }
           ],
           "allLabels": [],
@@ -1721,7 +1706,7 @@ export default{
                 "#990000"
               ],
               "color": "#1A1A1A",
-              "fontFamily": "OpenSans-Regular",
+              "fontFamily": "berthold_akzidenz_grotesk_be_regular",
               "theme": "default",
               "autoMargins": false,
               "marginBottom": 25,
@@ -1761,7 +1746,7 @@ export default{
                   "id": "ValueAxis-1",
                   "gridAlpha": 1,
                   "gridColor": "#F5F5F5",
-                  "title": "Data Title"
+                  "title": ""
                 }
               ],
               "allLabels": [],
@@ -2536,123 +2521,89 @@ export default{
     //job count by service
 
       AmCharts.makeChart("jobCountService",
+       {
+    "type": "serial",
+    "categoryField": "category",
+    "rotate": true,
+    "startDuration": 1,
+    "pathToImages": "https://www.amcharts.com/lib/3/images/",
+    "categoryAxis": {
+        "gridPosition": "start"
+    },
+    "chartCursor": {
+        "enabled": true
+    },
+    "chartScrollbar": {
+        "enabled": true
+    },
+    "trendLines": [],
+    "graphs": [
         {
-          "type": "serial",
-          "categoryField": "category",
-          "pathToImages": "https://www.amcharts.com/lib/3/images/",
-          "rotate": true,
-          "startDuration": 1,
-          "categoryAxis": {
-            "gridPosition": "start"
-          },
-          "colors": [
-            "#176cb7",
-            "#ff7217",
-            "#dc0066",
-            "#00caff",
-            "#2A0CD0",
-            "#CD0D74",
-            "#CC0000",
-            "#00CC00",
-            "#0000CC",
-            "#DDDDDD",
-            "#999999",
-            "#333333",
-            "#990000"
-          ],
-          "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
-          "theme": "default",
-          "autoMargins": false,
-          "marginBottom": 55,
-          "marginTop": 2,
-          "marginLeft": 65,
-          "marginRight": 6,
-          "trendLines": [],
-          "graphs": [
-            {
-              "balloonText": "[[title]] of [[category]]:[[value]]",
-              "fillAlphas": 1,
-              "id": "AmGraph-1",
-              "title": "Type Label",
-              "type": "column",
-              "valueField": "column-1"
-            },
-            {
-              "balloonText": "[[title]] of [[category]]:[[value]]",
-              "fillAlphas": 1,
-              "id": "AmGraph-2",
-              "title": "Type Label",
-              "type": "column",
-              "valueField": "column-2"
-            },
-            {
-              "balloonText": "[[title]] of [[category]]:[[value]]",
-              "fillAlphas": 1,
-              "id": "AmGraph-3",
-              "title": "Type Label",
-              "type": "column",
-              "valueField": "column-3"
-            }
-          ],
-          "guides": [],
-          "valueAxes": [
-            {
-              "id": "ValueAxis-1",
-              "title": "Data Title"
-            }
-          ],
-          "allLabels": [],
-          "balloon": {
-            "horizontalPadding": 6,
-            "offsetX": 5,
-            "verticalPadding": 6,
-            "fillAlpha": 1
-          },
-          "titles": [
-            {
-              "id": "Title-1",
-              "size": 15,
-              "text": ""
-            }
-          ],
-          "dataProvider": [
-            {
-              "category": "Category",
-              "column-1": 8,
-              "column-2": 5,
-              "column-3": 3,
-              "column-4": 4
-            },
-            {
-              "category": "Category",
-              "column-1": 6,
-              "column-2": 7,
-              "column-3": 6,
-              "column-4": 7
-            },
-            {
-              "category": "Category",
-              "column-1": 2,
-              "column-2": 3,
-              "column-3": 4,
-              "column-4": 1
-            },
-            {
-              "category": "Category",
-              "column-1": 6,
-              "column-2": 7,
-              "column-3": 6,
-              "column-4": 7
-            },
-            {
-              "category": "Category",
-              "column-1": 2,
-              "column-2": 3,
-              "column-3": 4,
-              "column-4": 1
-            }
-          ]
+            "fillAlphas": 1,
+            "id": "AmGraph-1",
+            "title": "graph 1",
+            "type": "column",
+            "valueField": "column-1"
+        }
+    ],
+    "guides": [],
+    "valueAxes": [
+        {
+            "id": "ValueAxis-1",
+            "title": ""
+        }
+    ],
+    "allLabels": [],
+    "balloon": {},
+    "titles": [
+        {
+            "id": "Title-1",
+            "size": 15,
+            "text": ""
+        }
+    ],
+    "dataProvider": [
+        {
+            "category": "Service 1",
+            "column-1": 8
+        },
+        {
+            "category": "Service 2",
+            "column-1": 16
+        },
+        {
+            "category": "Service 3",
+            "column-1": 2
+        },
+        {
+            "category": "Service 4",
+            "column-1": 7
+        },
+        {
+            "category": "Service 5",
+            "column-1": 5
+        },
+        {
+            "category": "Service 6",
+            "column-1": 9
+        },
+        {
+            "category": "Service 7",
+            "column-1": 4
+        },
+        {
+            "category": "Service 8",
+            "column-1": 15
+        },
+        {
+            "category": "Service 9",
+            "column-1": 12
+        },
+        {
+            "category": "Service 10",
+            "column-1": 17
+        }
+        ]
         }
       );
       /*
@@ -2662,16 +2613,10 @@ export default{
       AmCharts.makeChart("pieChart",
         {
           "type": "pie",
-          "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+          "balloonText": "[[title]]<br><span style='font-size:14px'><b>$[[value]]</b> ([[percents]]%)</span>",
           "colors": [
-            "#56d0d6",
-            "#176cb7",
-            "#feed5a",
-            "#ff7217",
-            "#ff557b",
-            "#dc0065",
-            "#00e2ff",
-            "#00a7e8"
+            "#173753",
+            "#6DAEDB",
           ],
           "gradientRatio": [],
           "labelColorField": "#1A1A1A",
@@ -2687,7 +2632,7 @@ export default{
           "titleField": "category",
           "valueField": "column-1",
           "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
           "fontSize": 12,
           "allLabels": [],
           "balloon": {
@@ -2698,28 +2643,12 @@ export default{
           "titles": [],
           "dataProvider": [
             {
-              "category": "Service 1",
-              "column-1": 3
+              "category": "Featured",
+              "column-1": 10000
             },
             {
-              "category": "Service 2",
-              "column-1": 4
-            },
-            {
-              "category": "Service 3",
-              "column-1": 2
-            },
-            {
-              "category": "Service 4",
-              "column-1": 3
-            },
-            {
-              "category": "Service 5",
-              "column-1": 4
-            },
-            {
-              "category": "Service 6",
-              "column-1": 3
+              "category": "Urgent",
+              "column-1": 25000
             }
           ]
         }

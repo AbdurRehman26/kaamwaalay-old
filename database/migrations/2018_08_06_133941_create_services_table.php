@@ -22,7 +22,7 @@ class CreateServicesTable extends Migration {
 			$table->boolean('is_display_footer_nav')->nullable()->default(0);
 			$table->string('url_prefix', 50)->nullable();
 			$table->integer('parent_id')->nullable()->default(0);
-			$table->text('images', 65535)->nullable();
+			$table->json('images', 65535)->nullable();
 			$table->boolean('status')->nullable()->default(1);
 			$table->timestamps();
 			$table->softDeletes();

@@ -25,7 +25,7 @@ class CreateJobsTable extends Migration {
 			$table->string('address')->nullable();
 			$table->string('apartment')->nullable();
 			$table->string('zip_code');
-			$table->text('images', 65535)->nullable();
+			$table->json('images', 65535)->nullable();
 			$table->dateTime('schedule_at');
 			$table->enum('preference', array('with_in_a_week','few_weeks','choose_date','any_time'))->default('choose_date');
 			$table->enum('status', array('awarded','initiated','in_bidding','completed','cancelled'))->default('in_bidding');

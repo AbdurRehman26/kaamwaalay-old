@@ -42,8 +42,8 @@ Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
 
 // Service-Type
-Vue.component('add-service',require('./components/service-type-user/popup/AddService.vue'));
-Vue.component('view-details',require('./components/service-type-user/popup/ViewDetails.vue'));
+Vue.component('add-service',require('./components/service-type/popup/AddService.vue'));
+Vue.component('view-details',require('./components/service-type/popup/ViewDetails.vue'));
 
 //service provider
 Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
@@ -56,7 +56,12 @@ Vue.component('view-customer-record',require('./components/customer/popup/ViewCu
 
 
 //Jobs
-Vue.component('view-job-details',require('./components/job/popup/ViewJobsDetails.vue'));
+Vue.component('view-bidding-details',require('./components/job/popup/ViewBuiddingDetails.vue'));
+
+// Support Popup
+Vue.component('support-detail',require('./components/support/popup/SupportDetail.vue'));
+
+
 
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
