@@ -39017,7 +39017,7 @@ i[active="true"] {
   background-color: #fff;
   padding: 25px;
   min-height: calc(100vh - 68px);
-  padding-top: 27px;
+  padding-top: 0;
 }
 
 .login-page .panel {
@@ -40945,12 +40945,12 @@ i[active="true"] {
 }
 
 .breadcrumb .breadcrumb {
-  position: absolute;
-  top: 27px;
+  position: fixed;
+  top: 56px;
   z-index: 99;
   background: #fff;
   padding: 0 20px;
-  left: 54px;
+  left: 303px;
 }
 
 .breadcrumb .breadcrumb li {
