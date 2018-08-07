@@ -38664,6 +38664,10 @@ span.tags:first-child {
   padding: 0px 100px 0px 0px;
 }
 
+.max-field {
+  max-width: 220px;
+}
+
 .provider-detail {
   /* width: calc(100% - 370px); */
   /* max-width: 1000px; */

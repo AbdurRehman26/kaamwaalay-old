@@ -62,7 +62,7 @@
                                   <tr v-for="list in listing">
                                     <td> {{list.id}} </td>
                                     <td> {{ list.title }} </td>
-                                    <td> <a href="javascript:;">{{ list.customer_name }}</a> </td>
+                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.customer_name }}</a> </td>
                                     <td> {{ list.service_type }} </td>
                                     <td> {{ list.service_subtype }} </td>
                                     <td>
@@ -235,6 +235,9 @@ export default {
         AddService(){
             this.changeProviderStatus = true;
         },
+        profileimage(){
+          this.$router.push('/service-provider/service-provider-detail');  
+        },        
 
     },
 }

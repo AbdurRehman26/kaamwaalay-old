@@ -1,6 +1,6 @@
 <template>
 <div class="panel-inner">
-            <div class="view-details-list">
+            <div class="view-details-list main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">
@@ -201,11 +201,11 @@
                                 </b-row>
 
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4" class="text-right">
                                         <p><strong class="title-head">Status</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
-                                        <b-form-select v-model="selected" :options="options"/>
+                                    <b-col cols="8">
+                                        <b-form-select v-model="selected" :options="options" class="max-field"/>
                                     </b-col>
                                 </b-row>
                             </div>
