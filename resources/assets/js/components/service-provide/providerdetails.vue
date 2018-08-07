@@ -102,7 +102,7 @@
                                         <p><strong class="title-head">Rating</strong></p>
                                     </b-col>
                                     <b-col cols="7">
-                                        <star-rating :star-size="20" read-only :rating="2"></star-rating>
+                                        <star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating>
                                     </b-col>
                                 </b-row>                                                                   
                                 <b-row>

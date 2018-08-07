@@ -32,7 +32,7 @@
                             <td><span class="user-img radius-0"><img src=""></span></td>
                             <td class="text-center"><a href="javascript:void(0);">{{ list.name }}</a></td>
                             <td class="text-center">${{ list.amount }}</td>                           
-                            <td><star-rating :star-size="20" read-only :rating="[list.rating]"></star-rating></td>
+                            <td><star-rating :star-size="20" read-only :rating="[list.rating]" active-color="#8200ff"></star-rating></td>
                             <td class="text-right">
                                 <div class="action-icons">
                                     <i @click="ViewCustomerRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>

@@ -41015,14 +41015,20 @@ a.underline {
   text-decoration: underline;
 }
 
-.urgent-detail-title {
-  margin-bottom: 20px;
-  border-bottom: solid 1px #f3e6ff;
+.urgent-detail-title,
+.featured-detail-title {
   padding-bottom: 10px;
 }
 
-.urgent-detail-title h2.page-title {
-  margin-top: 40px;
+.urgent-detail-title h2.page-title,
+.featured-detail-title h2.page-title {
+  font-size: 18px;
+}
+
+.featured-row {
+  margin-bottom: 23px;
+  padding-bottom: 30px;
+  border-bottom: solid 1px #f3e6ff;
 }
 
 .pagination-wrapper {
@@ -41079,5 +41085,35 @@ a.underline {
 .tags.banned,
 .tags.rejected {
   background-color: #d9534f !important;
+}
+
+.general-setting .customer-detail-title h2.page-title {
+  font-size: 18px;
+}
+
+.border-bottom {
+  margin: 30px 0px 20px 0;
+  border-bottom: solid 1px #f3e6ff;
+}
+
+.customer-detail-title {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.customer-detail-title h2.page-title {
+  font-size: 18px;
+}
+
+.total-record {
+  margin-top: 25px;
+}
+
+.total-record p {
+  font-size: 15px;
+}
+
+.total-record span {
+  color: #8200ff;
 }
 

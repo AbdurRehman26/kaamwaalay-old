@@ -2,15 +2,12 @@
   <div>
 	<div class="panel-inner">
         <div class="row">
-            <div class=" col-xs-12 col-md-12">
-                    <div class="datepicker-row">
-                        <div class="row">
-                          <div class="col-xs-12 col-md-12 ">
-                              <a href="javascript:;" class="btn btn-primary float-right margin-bottom-30px" @click="ShowModalUser">Add User</a>
-                          </div>
-
-                        </div>
-                    </div>
+            <div class=" col-xs-12 col-md-12">    
+                <div class="row">
+                  <div class="col-xs-12 col-md-12 ">
+                      <a href="javascript:;" class="btn btn-primary float-right margin-bottom-30px" @click="ShowModalUser">Add Admin</a>
+                  </div>
+                </div>
             </div>
         </div>
 			<div class="row">
@@ -30,7 +27,7 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
-                                  <td>{{list.fname}}</th>
+                                  <td>{{list.fname}}</td>
                                   <td>{{list.lname}}</td>
                                   <td><a href="javascript:;">{{list.email}}</a></td>
                                   <td >{{list.acesslevel}}</td>
@@ -44,6 +41,19 @@
                         </div>
 		    		</div>
 		  		</div>
+            <div class="clearfix"></div>
+
+                <div class="col-xs-12 col-md-12">
+            
+                    <div class="total-record float-left">
+                        <p><strong>Total records: <span>3</span></strong></p>
+                    </div>
+
+                    <div class="pagination-wrapper float-right">
+                        <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+                    </div>
+                </div>
+
 		    </div>
 
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
