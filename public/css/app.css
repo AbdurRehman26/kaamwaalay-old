@@ -38621,7 +38621,7 @@ h4.page-title {
 
 .block-area {
   margin-top: 24px;
-  width: 60%;
+  /* width: 60%; */
 }
 
 span.tags {
@@ -38634,11 +38634,15 @@ span.tags:first-child {
 }
 
 .provider-image.user-img {
-  width: 360px;
-  height: 360px;
+  /*     width: 370px;
+    height: 370px;
+    border-radius: 100%; */
+  width: 200px;
+  height: 200px;
   border-radius: 0;
   vertical-align: top;
   float: right;
+  border: 10px solid #dedcdc;
 }
 
 .divider {
@@ -38647,10 +38651,15 @@ span.tags:first-child {
   border-bottom-style: dashed;
 }
 
+.main-detail-content {
+  padding: 0px 100px 0px 0px;
+}
+
 .provider-detail {
   /* width: calc(100% - 370px); */
-  max-width: 1000px;
-  width: 100%;
+  /* max-width: 1000px; */
+  /* width: calc(100% - 410px); */
+  width: calc(100% - 290px);
   display: inline-block;
 }
 
