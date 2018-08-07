@@ -36,7 +36,7 @@
                                         <p><strong class="title-head">Service</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Plumber > General Carpentry</p>
+                                        <p>Plumber <span class="services-arrow"></span> General Carpentry</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
