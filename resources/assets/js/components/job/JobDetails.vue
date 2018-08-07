@@ -1,6 +1,6 @@
 <template>
 <div class="panel-inner">
-            <div class="view-job-details">
+            <div class="view-job-details main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">

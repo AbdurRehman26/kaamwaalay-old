@@ -63,7 +63,7 @@
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> {{ list.fullname }} </td>
+                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.fullname }}</a> </td>
                                     <td> {{ list.business }} </td>
                                     <td> {{ list.businessName }} </td>
                                     <td> {{ list.DUNSnum }} </td>
@@ -233,6 +233,10 @@ export default {
             this.changestatus = false;
             this.providerdetailpopup = false;
         },
+        profileimage(){
+          this.$router.push('/service-provider/service-provider-detail');  
+        },
+        
     },
 
     components: {

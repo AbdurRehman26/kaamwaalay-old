@@ -61,7 +61,7 @@
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> {{ list.full_name }} </td>
+                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.full_name }}</a> </td>
                                     <td> {{ list.email_address }} </td>
                                     <td> {{ list.services }} </td>
                                     <td> {{ list.contact_number }} </td>
@@ -261,7 +261,11 @@ export default {
         },
         detailreview(){
             this.$router.push('/service-provider-review/detail-review');
-        }
+        },
+        profileimage(){
+          this.$router.push('/service-provider/service-provider-detail');  
+        },
+
     },
     components: {
         StarRating
