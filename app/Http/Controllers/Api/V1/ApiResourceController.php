@@ -23,10 +23,7 @@ abstract class ApiResourceController extends Controller
     public function index(Request $request)
     {
 
-        $rules = $this->rules(__FUNCTION__);
-        $input = $this->input(__FUNCTION__);
-
-        $this->validate($request, $rules);
+        $input = $request->validated();
         
         $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
         $pagination = !empty($input['pagination']) && $input['pagination'] == 'true' ? true : false; 
@@ -42,15 +39,11 @@ abstract class ApiResourceController extends Controller
 
 
     //Get single record
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
-        $request->request->add(['id' => $id]);
+        $input = $request->validated();
 
-        $rules = $this->rules(__FUNCTION__);
-        $input = $this->input(__FUNCTION__);
-        //dd($input, 89899999);
-
-        $this->validate($request, $rules);
+        $input['id'] = $id;
 
         $data = $this->_repository->findById($input['id'], $refresh = false, $input, $encode = true);
 
@@ -67,10 +60,8 @@ abstract class ApiResourceController extends Controller
     public function store(Request $request)
     {
 
-        $rules = $this->rules(__FUNCTION__);
-        $input = $this->input(__FUNCTION__);
+        $input = $request->validated();
 
-        $this->validate($request, $rules);
         $data = $this->_repository->create($input);
 
         $output = ['response' => ['data' => $data, 'message' => 'Record added successfully']];
@@ -85,11 +76,9 @@ abstract class ApiResourceController extends Controller
     public function update(Request $request, $id)
     {   
 
-        $request->request->add(['id' => $id]);
-        $input = $this->input(__FUNCTION__);
-        $rules = $this->rules(__FUNCTION__);
+        $input = $request->validated();
+        $input['id'] = $id;
 
-        $this->validate($request, $rules);
         $data = $this->_repository->update($input);
         
         $output = ['response' => ['data' => $data, 'message' => 'Record updated successfully']];
@@ -104,11 +93,8 @@ abstract class ApiResourceController extends Controller
     //Delete single record
     public function destroy(Request $request, $id)
     {
-        $request->request->add(['id' => $id]);
-        $rules = $this->rules(__FUNCTION__);
-        $input = $this->input(__FUNCTION__);
-
-        $this->validate($request, $rules);
+        $input = $request->validated();
+        $input['id'] = $id;
 
         $data = $this->_repository->deleteById($input['id']);
 
