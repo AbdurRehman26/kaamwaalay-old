@@ -41,16 +41,16 @@
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix" style="min-width: 1685px;">
+                            <table class="table service-provider-table first-last-col-fix">
                               <thead>
                                 <tr>
                                   <th></th>
                                   <th>Full Name</th>
                                   <th>Type</th>
-                                  <th>Business Name</th>
-                                  <th>DUNS</th>
-                                  <th>Email Address</th>
-                                  <th>Contact Number</th>
+                                  <th>Business</th>
+                                  <!-- <th>DUNS</th>
+                                  <th>Email Address</th> -->
+                                  <th>Contact</th>
                                   <th>Status</th>
                                   <th>Avg. Rating</th>
                                   <th class="text-center">Actions</th>
@@ -66,8 +66,8 @@
                                     <td> <a href="javascript:void(0);" @click="profileimage">{{ list.fullname }}</a> </td>
                                     <td> {{ list.business }} </td>
                                     <td> {{ list.businessName }} </td>
-                                    <td> {{ list.DUNSnum }} </td>
-                                    <td> {{ list.email_address }} </td>
+                                    <!-- <td> {{ list.DUNSnum }} </td>
+                                    <td> {{ list.email_address }} </td> -->
                                     <td> {{ list.contact_number }} </td>
                                     <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
                                     <td><star-rating :star-size="20" read-only :rating="3" active-color="#8200ff"></star-rating></td>
@@ -118,7 +118,7 @@ export default {
             listing: [
                 {
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: '',
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -128,7 +128,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName:this.$faker().company.companyName(),
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -138,7 +138,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName:this.$faker().company.companyName(),
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -148,7 +148,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: '',
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -158,7 +158,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: '',
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -168,7 +168,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName:this.$faker().company.companyName(),
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -178,7 +178,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName:this.$faker().company.companyName(),
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -188,7 +188,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName: this.$faker().company.companyName(),
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),
@@ -198,7 +198,7 @@ export default {
                 },
                 {
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: '',
                     DUNSnum: '543351',
                     fullname: this.$faker().name.findName(),

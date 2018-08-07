@@ -50,7 +50,7 @@
                                 <tr>
                                   <th>Id</th>
                                   <th>Title</th>
-                                  <th>Customer Name</th>
+                                  <th>Customer</th>
                                   <th>Service Type</th>
                                   <th>Service Sub-type</th>
                                   <th>Job Status</th>

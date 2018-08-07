@@ -41,14 +41,14 @@
                 <div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix" style="min-width: 1270px;">
+                            <table class="table service-provider-table first-last-col-fix">
                               <thead>
                                 <tr>
                                   <th width="40"></th>
                                   <th>Full Name</th>
-                                  <th>Email Address</th>
+                                  <!-- <th>Email Address</th> -->
                                   <th>Services</th>                                  
-                                  <th>Contact Number</th>
+                                  <!-- <th>Contact Number</th> -->
                                   <th>Type</th>
                                   <th>Status</th>
                                   <th class="text-center">Actions</th>
@@ -61,10 +61,10 @@
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.full_name }}</a> </td>
-                                    <td> {{ list.email_address }} </td>
+                                    <td> <a href="javascript:void(0);" @click="detailreview">{{ list.full_name }}</a> </td>
+                                    <!-- <td> {{ list.email_address }} </td> -->
                                     <td> {{ list.services }} <span :class="[list.sarrows]"></span> {{ list.sub_services}}</td>
-                                    <td> {{ list.contact_number }} </td>
+                                    <!-- <td> {{ list.contact_number }} </td> -->
                                     <td> {{ list.business }} </td>
                                     <td>
                                         <span class="tags" :class="[list.status]">
@@ -118,7 +118,7 @@ export default {
                 {
                     id : 1,
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: 'Abc',
                     DUNSnum: '543351',
                     full_name: 'James Methew',
@@ -140,7 +140,7 @@ export default {
                 {
                     id : 2,
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName: 'Abc Business',
                     DUNSnum: '452634',
                     full_name: 'John Enderson',
@@ -163,7 +163,7 @@ export default {
                 {
                     id : 3,
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: 'Abc Business',
                     DUNSnum: '452445',
                     full_name: 'Harry John',
@@ -186,7 +186,7 @@ export default {
                 {
                     id : 4,
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName: 'Abc Business',
                     DUNSnum: '445533',
                     full_name: 'Petter Mick',
@@ -207,7 +207,7 @@ export default {
                 {
                     id : 5,
                     imagepath:'',
-                    business: 'Individual',
+                    business: 'I',
                     businessName: 'Abc Business',
                     DUNSnum: '875441',
                     full_name: 'John Petter',
@@ -228,7 +228,7 @@ export default {
                 {
                     id : 6,
                     imagepath:'',
-                    business: 'Business',
+                    business: 'B',
                     businessName: 'Abc Business',
                     DUNSnum: '954354',
                     full_name: 'Danial John',

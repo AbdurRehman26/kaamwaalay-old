@@ -409,6 +409,8 @@ body{
             tr{
                 th{
                     border-bottom:solid 1px $primary-color-lighten;
+                    padding-left: 15px !important;
+                    padding-right: 15px !important;
                 }
             }
         }
@@ -421,6 +423,8 @@ body{
                 }
                 td{
                     border-bottom:solid 1px $primary-color-lighten;
+                    padding-left: 15px !important;
+                    padding-right: 15px !important;                    
                 }
             }
         }

@@ -34034,6 +34034,8 @@ body .ag-theme-balham .ag-header {
 
 .table-area table thead tr th {
   border-bottom: solid 1px #f3e6ff;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 .table-area table tbody tr:last-child td {
@@ -34042,6 +34044,8 @@ body .ag-theme-balham .ag-header {
 
 .table-area table tbody tr td {
   border-bottom: solid 1px #f3e6ff;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 .table-area .table-hover tbody tr:hover {
