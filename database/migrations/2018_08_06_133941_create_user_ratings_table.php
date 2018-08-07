@@ -14,7 +14,7 @@ class CreateUserRatingsTable extends Migration {
 	{
 		Schema::create('user_ratings', function(Blueprint $table)
 		{
-			$table->integer('id')->primary();
+			$table->increments('id');
 			$table->boolean('rating');
 			$table->text('message', 65535)->nullable();
 			$table->integer('job_id')->unsigned()->nullable()->index();

@@ -14,7 +14,7 @@ class CreateUserAgentsTable extends Migration {
 	{
 		Schema::create('user_agents', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true)->unsigned();
+			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
 			$table->string('package_name')->nullable()->default('');
 			$table->string('version')->nullable()->default('');

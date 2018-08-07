@@ -14,7 +14,7 @@ class CreateJobMessagesTable extends Migration {
 	{
 		Schema::create('job_messages', function(Blueprint $table)
 		{
-			$table->integer('id')->primary();
+			$table->increments('id');
 			$table->text('text', 65535);
 			$table->integer('sender_id')->unsigned()->index();
 			$table->integer('job_id')->unsigned()->index();

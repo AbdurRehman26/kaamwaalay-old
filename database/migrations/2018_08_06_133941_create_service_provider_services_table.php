@@ -14,7 +14,7 @@ class CreateServiceProviderServicesTable extends Migration {
 	{
 		Schema::create('service_provider_services', function(Blueprint $table)
 		{
-			$table->integer('id')->unsigned()->primary();
+			$table->increments('id');
 			$table->integer('service_provider_profile_request_id')->unsigned()->index('sppri');
 			$table->integer('service_id')->unsigned()->nullable()->index();
 			$table->timestamps();

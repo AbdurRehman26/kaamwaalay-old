@@ -14,7 +14,7 @@ class CreateSupportInquiriesTable extends Migration {
 	{
 		Schema::create('support_inquiries', function(Blueprint $table)
 		{
-			$table->integer('id')->unsigned()->index();
+			$table->increments('id');
 			$table->integer('support_question_id')->unsigned()->index();
 			$table->text('message', 65535);
 			$table->integer('user_id')->unsigned()->nullable()->index();
