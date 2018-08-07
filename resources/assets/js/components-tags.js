@@ -49,6 +49,10 @@ Vue.component('view-details',require('./components/service-type/popup/ViewDetail
 Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
 Vue.component('service-provider-detail',require('./components/service-provide/popup/ServiceProviderDetail.vue'));
 
+// service-provide-review-popup
+Vue.component('service-provider-review',require('./components/service-provider-review/popup/ChangeStatus.vue'));
+
+
 // Customer
 Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
 Vue.component('view-customer-details',require('./components/customer/popup/ViewCustomerDetails.vue'));

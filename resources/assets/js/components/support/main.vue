@@ -1,6 +1,33 @@
 <template>
     <div class="panel-inner">
         <div class="row">
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select All</option>
+                                     <option>Service Provider</option>
+                                     <option>Customer</option>
+                                   </select>
+                              </div>
+                            </div>                           
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
                 <div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
