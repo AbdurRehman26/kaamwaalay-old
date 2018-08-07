@@ -14,7 +14,7 @@ class CreateSupportQuestionsTable extends Migration {
 	{
 		Schema::create('support_questions', function(Blueprint $table)
 		{
-			$table->integer('id')->unsigned()->primary();
+			$table->increments('id');
 			$table->integer('role_id')->unsigned()->index();
 			$table->string('question');
 			$table->timestamps();

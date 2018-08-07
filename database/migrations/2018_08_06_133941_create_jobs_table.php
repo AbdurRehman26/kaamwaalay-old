@@ -14,7 +14,7 @@ class CreateJobsTable extends Migration {
 	{
 		Schema::create('jobs', function(Blueprint $table)
 		{
-			$table->integer('id')->unsigned()->primary();
+			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
 			$table->integer('service_id')->unsigned()->index();
 			$table->integer('country_id')->unsigned()->nullable()->index();

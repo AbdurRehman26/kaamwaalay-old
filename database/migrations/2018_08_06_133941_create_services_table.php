@@ -14,7 +14,7 @@ class CreateServicesTable extends Migration {
 	{
 		Schema::create('services', function(Blueprint $table)
 		{
-			$table->integer('id')->unsigned()->primary();
+			$table->increments('id');
 			$table->string('title', 50);
 			$table->text('derscription', 65535)->nullable();
 			$table->boolean('is_display_banner')->nullable()->default(0);
