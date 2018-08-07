@@ -116,15 +116,15 @@ span.tags {
             border-radius: 100%; */
             width: 200px;
             height: 200px;
-            border-radius: 0;    
+            border-radius: 0;
             vertical-align: top;
             border: 10px solid #dedcdc;
         }
         .page-title{
             display: block;
             margin-bottom: 0;
-            padding: 10px 0px;        
-        } 
+            padding: 10px 0px;
+        }
         .addition-info{
             ul{
                 padding: 0;
@@ -134,9 +134,9 @@ span.tags {
                     width: 49%;
                     position: relative;
                     overflow: hidden;
-                    text-overflow: ellipsis;  
+                    text-overflow: ellipsis;
                     padding-left: 23px;
-                    padding-right: 20px;                                
+                    padding-right: 20px;
                     i{
                         color: #d4d4d4;
                         padding: 0px 10px 0px 0px;
@@ -151,7 +151,7 @@ span.tags {
                     }
                 }
             }
-        }   
+        }
     }
 }
 
@@ -2594,6 +2594,15 @@ a.underline {
         background-color:$status-danger !important;
     }
 }
+.statustext{
+    .active{
+        color:$status-active  !important;
+    }
+    .deactive{
+        color: $greyD !important;
+    }
+}
+
 .general-setting {
     .customer-detail-title {
         h2 {
