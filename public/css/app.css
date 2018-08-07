@@ -30805,8 +30805,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032);
-  src: url(/fonts/icomoon.eot?c974e780e1599d6963229922e35c0032#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?6c1f936827e7ba2714667691a3272f46) format("truetype"), url(/fonts/icomoon.woff?3368ffeb4d96dce4d6c9fbaec698fb4a) format("woff"), url(/fonts/icomoon.svg?4484ea82eb63623791dbde320dcd15cf#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?770c6ca9ae286f6287784f874fde1af3);
+  src: url(/fonts/icomoon.eot?770c6ca9ae286f6287784f874fde1af3#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?b9d5171a52b372e0af17f4e458907d60) format("truetype"), url(/fonts/icomoon.woff?ed6a894bae7abc9b325dba3154352ad7) format("woff"), url(/fonts/icomoon.svg?bba8c8ddb3a371bfdd67043c029c6311#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -30822,6 +30822,58 @@ a.text-dark:focus {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tools-2:before {
+  content: "\E943";
+}
+
+.icon-settings:before {
+  content: "\E93B";
+}
+
+.icon-cog:before {
+  content: "\E93B";
+}
+
+.icon-preferences:before {
+  content: "\E93B";
+}
+
+.icon-tools2:before {
+  content: "\E93C";
+}
+
+.icon-tools3:before {
+  content: "\E90A";
+}
+
+.icon-cancel:before {
+  content: "\E923";
+}
+
+.icon-warning2:before {
+  content: "\E924";
+}
+
+.icon-search2:before {
+  content: "\E925";
+}
+
+.icon-checkmark2:before {
+  content: "\E926";
+}
+
+.icon-speedometer:before {
+  content: "\E93D";
+}
+
+.icon-tools:before {
+  content: "\E941";
+}
+
+.icon-users:before {
+  content: "\E942";
 }
 
 .icon-search:before {
@@ -30980,7 +31032,7 @@ a.text-dark:focus {
   content: "\F0A2";
 }
 
-.icon-briefcase:before {
+.icon-briefcase2:before {
   content: "\F0B1";
 }
 
@@ -30988,7 +31040,7 @@ a.text-dark:focus {
   content: "\F0C0";
 }
 
-.icon-users:before {
+.icon-users2:before {
   content: "\F0C0";
 }
 
@@ -31105,6 +31157,7 @@ a.text-dark:focus {
 
 .icon-alert:before {
   content: "\E91A";
+  color: #d9534f;
 }
 
 .icon-explorer-icon:before {
@@ -31124,7 +31177,7 @@ a.text-dark:focus {
   color: #f6851f;
 }
 
-.icon-settings:before {
+.icon-settings2:before {
   content: "\E91B";
 }
 
@@ -31136,7 +31189,7 @@ a.text-dark:focus {
   content: "\E915";
 }
 
-.icon-cog:before {
+.icon-cog2:before {
   content: "\E922";
 }
 
@@ -31176,24 +31229,52 @@ a.text-dark:focus {
   content: "\F080";
 }
 
-.icon-tools:before {
-  content: "\E90A";
+.icon-briefcase:before {
+  content: "\E93A";
 }
 
-.icon-cancel:before {
-  content: "\E923";
+.icon-av_timer:before {
+  content: "\E01B";
 }
 
-.icon-warning2:before {
-  content: "\E924";
+.icon-payment:before {
+  content: "\E8A1";
 }
 
-.icon-search2:before {
-  content: "\E925";
+.icon-lock_outline:before {
+  content: "\E899";
 }
 
-.icon-checkmark2:before {
-  content: "\E926";
+.icon-pie_chart_outlined:before {
+  content: "\E6C5";
+}
+
+.icon-show_chart:before {
+  content: "\E6E1";
+}
+
+.icon-star_border:before {
+  content: "\E83A";
+}
+
+.icon-delete:before {
+  content: "\E927";
+}
+
+.icon-menu2:before {
+  content: "\E928";
+}
+
+.icon-close2:before {
+  content: "\E5CE";
+}
+
+.icon-keyboard_arrow_right:before {
+  content: "\E935";
+}
+
+.icon-keyboard_arrow_left:before {
+  content: "\E936";
 }
 
 .icon-dots-three-vertical:before {
@@ -31226,26 +31307,6 @@ a.text-dark:focus {
 
 .icon-minus-outline:before {
   content: "\E921";
-}
-
-.icon-delete:before {
-  content: "\E927";
-}
-
-.icon-menu2:before {
-  content: "\E928";
-}
-
-.icon-close2:before {
-  content: "\E5CE";
-}
-
-.icon-keyboard_arrow_right:before {
-  content: "\E935";
-}
-
-.icon-keyboard_arrow_left:before {
-  content: "\E936";
 }
 
 .icon-list2:before {
@@ -31379,7 +31440,7 @@ a.text-dark:focus {
   content: "\E971";
 }
 
-.icon-users2:before {
+.icon-users22:before {
   content: "\E972";
 }
 
@@ -31451,7 +31512,7 @@ a.text-dark:focus {
   content: "\E991";
 }
 
-.icon-cog2:before {
+.icon-cog22:before {
   content: "\E994";
 }
 
@@ -33438,6 +33499,51 @@ body .hide {
   vertical-align: middle;
   margin-left: 0;
   display: inline-block;
+}
+
+.main-nav ul li i.icon-star_border {
+  font-size: 24px;
+  left: 15px;
+  top: 8px;
+}
+
+.main-nav ul li i.icon-star_border {
+  font-size: 26px;
+  left: 13px;
+  top: 7px;
+}
+
+.main-nav ul li i.icon-briefcase {
+  font-size: 20px;
+  left: 15px;
+  top: 10px;
+}
+
+.main-nav ul li i.icon-settings {
+  font-size: 20px;
+  left: 15px;
+  top: 10px;
+}
+
+.main-nav ul li i.icon-lock_outline {
+  font-size: 22px;
+  left: 15px;
+  top: 9px;
+}
+
+.main-nav ul li i.icon-speedometer {
+  font-size: 22px;
+  left: 15px;
+  top: 9px;
+}
+
+.main-nav ul li i.icon-users {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main-nav ul li i.icon-tools-2 {
+  font-weight: bold;
 }
 
 body .cust-table {
@@ -40836,6 +40942,10 @@ a.underline {
   display: inline-block;
   position: relative;
   top: 2px;
+}
+
+.page-title i {
+  padding-right: 9px;
 }
 
 .page-title-strip {

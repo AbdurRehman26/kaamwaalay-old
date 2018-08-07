@@ -54,6 +54,45 @@ $font_black:'OpenSans-ExtraBold';
 }
 
 
+.icon-tools-2:before {
+  content: "\e943";
+}
+.icon-settings:before {
+  content: "\e93b";
+}
+.icon-cog:before {
+  content: "\e93b";
+}
+.icon-preferences:before {
+  content: "\e93b";
+}
+.icon-tools2:before {
+  content: "\e93c";
+}
+.icon-tools3:before {
+  content: "\e90a";
+}
+.icon-cancel:before {
+  content: "\e923";
+}
+.icon-warning2:before {
+  content: "\e924";
+}
+.icon-search2:before {
+  content: "\e925";
+}
+.icon-checkmark2:before {
+  content: "\e926";
+}
+.icon-speedometer:before {
+  content: "\e93d";
+}
+.icon-tools:before {
+  content: "\e941";
+}
+.icon-users:before {
+  content: "\e942";
+}
 .icon-search:before {
   content: "\f002";
 }
@@ -171,13 +210,13 @@ $font_black:'OpenSans-ExtraBold';
 .icon-bell-o:before {
   content: "\f0a2";
 }
-.icon-briefcase:before {
+.icon-briefcase2:before {
   content: "\f0b1";
 }
 .icon-group:before {
   content: "\f0c0";
 }
-.icon-users:before {
+.icon-users2:before {
   content: "\f0c0";
 }
 .icon-suitcase:before {
@@ -266,7 +305,7 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-alert:before {
   content: "\e91a";
-  // color: #d9534f
+  color: #d9534f;
 }
 .icon-explorer-icon:before {
   content: "\e911";
@@ -281,7 +320,7 @@ $font_black:'OpenSans-ExtraBold';
   content: "\e919";
   color: #f6851f;
 }
-.icon-settings:before {
+.icon-settings2:before {
   content: "\e91b";
 }
 .icon-calendar2:before {
@@ -290,7 +329,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-signout:before {
   content: "\e915";
 }
-.icon-cog:before {
+.icon-cog2:before {
   content: "\e922";
 }
 .icon-power-off:before {
@@ -320,20 +359,41 @@ $font_black:'OpenSans-ExtraBold';
 .icon-bar-chart-o2:before {
   content: "\f080";
 }
-.icon-tools:before {
-  content: "\e90a";
+.icon-briefcase:before {
+  content: "\e93a";
 }
-.icon-cancel:before {
-  content: "\e923";
+.icon-av_timer:before {
+  content: "\e01b";
 }
-.icon-warning2:before {
-  content: "\e924";
+.icon-payment:before {
+  content: "\e8a1";
 }
-.icon-search2:before {
-  content: "\e925";
+.icon-lock_outline:before {
+  content: "\e899";
 }
-.icon-checkmark2:before {
-  content: "\e926";
+.icon-pie_chart_outlined:before {
+  content: "\e6c5";
+}
+.icon-show_chart:before {
+  content: "\e6e1";
+}
+.icon-star_border:before {
+  content: "\e83a";
+}
+.icon-delete:before {
+  content: "\e927";
+}
+.icon-menu2:before {
+  content: "\e928";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e936";
 }
 .icon-dots-three-vertical:before {
   content: "\e917";
@@ -358,21 +418,6 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-minus-outline:before {
   content: "\e921";
-}
-.icon-delete:before {
-  content: "\e927";
-}
-.icon-menu2:before {
-  content: "\e928";
-}
-.icon-close2:before {
-  content: "\e5ce";
-}
-.icon-keyboard_arrow_right:before {
-  content: "\e935";
-}
-.icon-keyboard_arrow_left:before {
-  content: "\e936";
 }
 .icon-list2:before {
   content: "\e929";
@@ -473,7 +518,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-user2:before {
   content: "\e971";
 }
-.icon-users2:before {
+.icon-users22:before {
   content: "\e972";
 }
 .icon-user-plus2:before {
@@ -527,7 +572,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-wrench:before {
   content: "\e991";
 }
-.icon-cog2:before {
+.icon-cog22:before {
   content: "\e994";
 }
 .icon-cogs2:before {
