@@ -78,7 +78,7 @@
                                     <b-col class="text-right fixed-label">
                                         <p><strong class="title-head">Project Details</strong></p>
                                     </b-col>
-                                    <b-col class="calculated-value">
+                                    <b-col class="calculated-value max-text">
                                         <p>Responsible for disassembling, relocating and reassembling furniture. Will assist carpenters by transporting materials to various job sites, removing construction debris, and various carpentry duties. Must maintain a neat and professional demeanor. Must works effectively with team members and all departments.</p>
                                     </b-col>
                                 </b-row>                                                                
