@@ -63,7 +63,7 @@
                                     </td>
                                     <td> <a href="javascript:void(0);" @click="profileimage">{{ list.full_name }}</a> </td>
                                     <td> {{ list.email_address }} </td>
-                                    <td> {{ list.services }} </td>
+                                    <td> {{ list.services }} <span :class="[list.sarrows]"></span> {{ list.sub_services}}</td>
                                     <td> {{ list.contact_number }} </td>
                                     <td> {{ list.business }} </td>
                                     <td>
@@ -127,7 +127,7 @@ export default {
                     services_offered: '45',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
-                    status: 'rejected',
+                    status: 'rejected',                    
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
@@ -146,7 +146,9 @@ export default {
                     full_name: 'John Enderson',
                     email_address: 'psm@test.com',
                     services_offered: '67',
-                    services: 'Electrician > AC',
+                    services: 'Electrician',
+                    sub_services: 'AC',
+                    sarrows: 'services-arrow',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
@@ -168,6 +170,8 @@ export default {
                     email_address: 'psm@test.com',
                     services_offered: '74',
                     services: 'Carpenter',
+                    sub_services: 'Cabnit',
+                    sarrows: 'services-arrow',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
