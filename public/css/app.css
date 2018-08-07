@@ -38745,6 +38745,10 @@ span.tags:first-child {
   width: calc(100% - 320px);
 }
 
+.provider-detail .calculated-value.max-text {
+  max-width: 400px;
+}
+
 .provider-detail .row {
   display: block;
   margin: 0;
