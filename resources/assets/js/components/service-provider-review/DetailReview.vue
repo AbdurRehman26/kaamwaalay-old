@@ -130,6 +130,14 @@
                                         <p>May 31 2018</p>
                                     </b-col>
                                 </b-row>
+                                <b-row>
+                                    <b-col cols="5" class="text-right">
+                                        <p><strong class="title-head">Reviewed by</strong></p>
+                                    </b-col>
+                                    <b-col cols="7">
+                                        <p>Admin</p>
+                                    </b-col>
+                                </b-row>
                             </div>
                         </div>
 
@@ -191,6 +199,15 @@
                                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </b-col>
                                 </b-row>
+
+                                <b-row>
+                                    <b-col cols="5" class="text-right">
+                                        <p><strong class="title-head">Status</strong></p>
+                                    </b-col>
+                                    <b-col cols="7">
+                                        <b-form-select v-model="selected" :options="options"/>
+                                    </b-col>
+                                </b-row>
                             </div>
                         </div>
                 </div>
@@ -203,6 +220,14 @@ import StarRating from 'vue-star-rating';
 export default{
         data () {
           return {
+            selected: null,
+              options: [
+                { value: null, text: 'Please select Status' },
+                { value: 'a', text: 'Pending' },
+                { value: 'b', text: 'In-Review' },
+                { value: 'c', text: 'Rejected' },
+                { value: 'd', text: 'Approved' }
+              ]
         }
     },
     components: {

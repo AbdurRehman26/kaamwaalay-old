@@ -32948,7 +32948,7 @@ body .hide {
 .status-box.active,
 .tags.approved,
 .tags.active {
-  background-color: #28a745;
+  background-color: #28a745 !important;
 }
 
 .status-box.review,
@@ -39017,7 +39017,7 @@ i[active="true"] {
   background-color: #fff;
   padding: 25px;
   min-height: calc(100vh - 68px);
-  padding-top: 10px;
+  padding-top: 27px;
 }
 
 .login-page .panel {
@@ -40946,7 +40946,7 @@ i[active="true"] {
 
 .breadcrumb .breadcrumb {
   position: absolute;
-  top: 2px;
+  top: 27px;
   z-index: 99;
   background: #fff;
   padding: 0 20px;
@@ -41002,6 +41002,10 @@ a.underline {
 
 .page-title i.icon-briefcase {
   top: -6px;
+}
+
+.page-title i.icon-credit-card {
+  top: -5px;
 }
 
 .page-title-strip {
