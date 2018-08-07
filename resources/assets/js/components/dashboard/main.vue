@@ -1691,7 +1691,7 @@ export default{
               "categoryField": "date",
               "dataDateFormat": "YYYY-MM-DD",
               "colors": [
-                "#CD0D74",
+                "#0c5087",
                 "#ff7217",
                 "#B0DE09",
                 "#0D8ECF",
@@ -2530,6 +2530,21 @@ export default{
     "categoryAxis": {
         "gridPosition": "start"
     },
+ "colors": [
+                "#0D8ECF",
+                "#CD0D74",
+                "#ff7217",
+                "#B0DE09",
+                "#2A0CD0",
+                "#CD0D74",
+                "#CC0000",
+                "#00CC00",
+                "#0000CC",
+                "#DDDDDD",
+                "#999999",
+                "#333333",
+                "#990000"
+              ],
     "chartCursor": {
         "enabled": true
     },
