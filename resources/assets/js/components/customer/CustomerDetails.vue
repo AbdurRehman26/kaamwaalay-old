@@ -82,38 +82,22 @@
                         <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
                                 <h4 class="page-title">Profile Detail</h4>
-                            </div> -->
-                            <div class="view-details-list">
+                            </div> -->                            
+                            <div class="view-details-list">                                                            
                                 <b-row>
                                     <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">City</strong></p>
+                                        <p><strong class="title-head">Address</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>New Hampshire</p>
+                                        <p>4657 Kirk Highway, Geovannyfurt, Missouri, 39185-5150, Pitcairn Islands  </p>
                                     </b-col>
-                                </b-row>
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">State</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <p>US</p>
-                                    </b-col>
-                                </b-row>                                                                
+                                </b-row>                                
                                 <b-row>
                                     <b-col class="text-right fixed-label">
                                         <p><strong class="title-head">Zipcode</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
                                         <p>125964</p>
-                                    </b-col>
-                                </b-row>
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">Country</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <p>USA</p>
                                     </b-col>
                                 </b-row>                                
                                 <b-row>
