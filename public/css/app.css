@@ -32948,7 +32948,7 @@ body .hide {
 .status-box.active,
 .tags.approved,
 .tags.active {
-  background-color: #28a745;
+  background-color: #28a745 !important;
 }
 
 .status-box.review,
