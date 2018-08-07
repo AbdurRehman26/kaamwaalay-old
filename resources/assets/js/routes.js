@@ -107,6 +107,16 @@ const routes = [
         }
     },
 
+    {
+        path: '/service-provider/viewjobdetail',
+        component: require('./components/service-provide/ViewJobDetail.vue'),
+        meta: {
+            title: 'PSM | View Jobs',
+            pagetitle:'Service Jobs Detail',
+            icon:'icon-handshake-o'
+        }
+    },
+
     /* Job */
 
     {
