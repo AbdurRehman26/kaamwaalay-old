@@ -55,7 +55,7 @@
                                     <td>{{list.email}} </td>
                                     <td>{{list.contact_number}} </td>
                                     <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
-                                    <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
+                                    <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -68,8 +68,15 @@
                         </div>
                     </div>
 		  		</div>
-          <div class="cleafix"></div>
+
+          <div class="clearfix"></div>
+
           <div class="col-xs-12 col-md-12">
+            
+            <div class="total-record float-left">
+                <p><strong>Total records: <span>9</span></strong></p>
+            </div>
+
             <div class="pagination-wrapper float-right">
                 <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
             </div>

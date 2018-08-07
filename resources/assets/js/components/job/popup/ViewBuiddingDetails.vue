@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="view-bidding-detail" title-tag="h4" centered ref="myModalRef" size="md" title="View Bidding Detail" ok-only ok-title="Cancel" cancel-variant="primary" @hidden="onHidden">
+		<b-modal id="view-bidding-detail" title-tag="h4" centered ref="myModalRef" size="md" title=" Bidding Detail" ok-only ok-title="Cancel" cancel-variant="primary" @hidden="onHidden">
             <alert></alert>
 
             <div class="view-details-list">
@@ -37,7 +37,7 @@
                         <p><strong class="title-head">Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p><star-rating :star-size="20" read-only :rating="4"></star-rating></p>
+                        <p><star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating></p>
                     </b-col>
                 </b-row>
 

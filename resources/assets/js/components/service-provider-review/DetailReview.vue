@@ -191,16 +191,11 @@
                                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </b-col>
                                 </b-row>
-
-
                             </div>
                         </div>
-
-
-
                 </div>
             </div>
-</div>
+    </div>
 </template>
 
 <script>

@@ -83,7 +83,20 @@
                         </div>
                     </div>
                 </div>
+
+            <div class="clearfix"></div>
+
+                <div class="col-xs-12 col-md-12">
+                
+                    <div class="total-record float-left">
+                        <p><strong>Total records: <span>6</span></strong></p>
+                    </div>
+
+                    <div class="pagination-wrapper float-right">
+                        <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+                    </div>
             </div>
+        </div>
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>

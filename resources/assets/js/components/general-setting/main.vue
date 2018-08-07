@@ -6,10 +6,11 @@
 				<div class="general-setting">
 
 	        	<!-- Featured Row -->
-
+					
+				<div class="featured-row">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="customer-detail-title">
+							<div class="featured-detail-title">
 								<h2 class="page-title">Featured Profile</h2>
 							</div>
 						</div>
@@ -45,10 +46,11 @@
                                 </button>
                             </div>
 					</div>
+				</div>
 				<!-- Featured Row End -->
-
+				
 	        	<!-- Urgent Row -->
-
+					<div class="urgent-section-row">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="urgent-detail-title">
@@ -75,6 +77,7 @@
                                 </button>
                             </div>
 						</div>
+					</div>
     					<!-- Urgent Row End -->
 
     					<!-- Location Row -->
