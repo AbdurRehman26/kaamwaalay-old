@@ -51,7 +51,7 @@
                                         <img  :src="list.imagepath" >
                                     </span>
                                     </td>
-                                    <td>{{list.fullname}}</td>
+                                    <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{list.fullname}}</a></td>
                                     <td>{{list.email}} </td>
                                     <td>{{list.contact_number}} </td>
                                     <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
