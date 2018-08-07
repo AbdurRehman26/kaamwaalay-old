@@ -24,7 +24,7 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
-                                  <td>{{list.payby}}</th>
+                                  <td>{{list.payby}}</td>
                                   <td>{{list.date}}</td>
                                   <td>{{list.amount}}</td>
                                   <td >{{list.activitytype}}</td>
@@ -35,9 +35,22 @@
                         </div>
                     </div>
                 </div>
+            <div class="clearfix"></div>
+
+                <div class="col-xs-12 col-md-12">
+            
+                    <div class="total-record float-left">
+                        <p><strong>Total records: <span>2</span></strong></p>
+                    </div>
+
+                    <div class="pagination-wrapper float-right">
+                        <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+                    </div>
+                </div>
+
             </div>
+        </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
@@ -47,14 +60,14 @@ export default {
             {
                 payby:'Customer',
                 date:'May, 20 2017',
-                amount:'2000',
+                amount:'$2',
                 activitytype:'Urgent',
                 status: 'Active',
             },
             {
                 payby:'Service Provider',
                 date:'May, 20 2017',
-                amount:'2000',
+                amount:'$2',
                 activitytype:'Featured',
                 status: 'Pending',
             },

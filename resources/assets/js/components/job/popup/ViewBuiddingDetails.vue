@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="view-bidding-detail" title-tag="h4" centered ref="myModalRef" size="md" title="View Bidding Detail" ok-only ok-title="Cancel" cancel-variant="primary" @hidden="onHidden">
+		<b-modal id="view-bidding-detail" title-tag="h4" centered ref="myModalRef" size="md" title=" Bidding Detail" ok-only ok-title="Cancel" cancel-variant="primary" @hidden="onHidden">
             <alert></alert>
 
             <div class="view-details-list">

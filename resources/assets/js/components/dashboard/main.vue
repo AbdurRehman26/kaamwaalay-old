@@ -7,13 +7,13 @@
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>Start Date</label>
-                                  <DatePicker></DatePicker>
+                                  <DatePicker placeholder="Start Date"></DatePicker>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>End Date</label>
-                                   <DatePicker></DatePicker>
+                                   <DatePicker placeholder="End Date"></DatePicker>
                                </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
@@ -218,8 +218,7 @@ export default{
             leftpanel: false,
             show: false,
             listingResponsive: false,
-
-
+        
             listing: [
                 {
                     fname:'Dickerson Macdonald',

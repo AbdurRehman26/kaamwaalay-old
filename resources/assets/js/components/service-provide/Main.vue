@@ -44,7 +44,7 @@
                             <table class="table service-provider-table first-last-col-fix" style="min-width: 1685px;">
                               <thead>
                                 <tr>
-                                  <th>Image</th>
+                                  <th></th>
                                   <th>Full Name</th>
                                   <th>Type</th>
                                   <th>Business Name</th>
@@ -83,6 +83,19 @@
                         </div>
 		    		</div>
 		  		</div>
+                
+          <div class="clearfix"></div>
+
+          <div class="col-xs-12 col-md-12">
+            
+            <div class="total-record float-left">
+                <p><strong>Total records: <span>9</span></strong></p>
+            </div>
+
+            <div class="pagination-wrapper float-right">
+                <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+            </div>
+          </div>
 		    </div>
         <service-provider-detail @HideModalValue="HideModal" :showModalProp="providerdetailpopup"></service-provider-detail>
         <change-status-provider @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-provider>
