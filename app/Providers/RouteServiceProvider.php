@@ -38,6 +38,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+        $this->mapAuthApiRoutes();
 
         //
     }
@@ -69,5 +70,33 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+      /**
+     * Define the "passport" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapPasswordRoutes()
+    {
+        Route::prefix('password')
+             ->middleware('api')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/api.php'));
+    }
+      /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapAuthApiRoutes()
+    {
+        Route::prefix('api')
+             ->middleware(['api', 'auth:api'])
+             ->namespace($this->namespace)
+             ->group(base_path('routes/auth.php'));
     }
 }

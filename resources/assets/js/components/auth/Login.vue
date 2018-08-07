@@ -27,39 +27,7 @@
          </div>
        </div>
     </form>
-  </div><!--
-  <div class="login-form auth-forms active">
-    <b-form novalidate @submit.prevent="onSubmit" v-if="show">
-      <b-form-group id="exampleInputGroup1"
-                    label="Email Address:"
-                    label-for="exampleInput1"
-                    description="">
-        <b-form-input id="login_email"
-                      type="email"
-                      v-model="loginForm.email"
-                      placeholder="Enter email">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleInputGroup2"
-                    label="Password:"
-                    label-for="exampleInput2">
-        <b-form-input id="login_password"
-                      type="password"
-                      v-model="loginForm.name"
-                      placeholder="Enter password">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="loginForm.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Remember me</b-form-checkbox>
-          <span class="forgot-password-text" @click.prevent="$emit('show-login')">Forgot Password?</span>
-        </b-form-checkbox-group>
-      </b-form-group>
-      <b-button type="submit" variant="primary" >Log In
-      <loader></loader>
-      </b-button>
-    </b-form>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -69,11 +37,9 @@
           titleproperties : 'dashboard-title',
           titleproperties : 'bodyclass',
         }
-/*        seen: true*/
       },
       methods: {
         onSubmit() {
-          console.log(this.form);
           this.$router.push('dashboard');
         },
       },

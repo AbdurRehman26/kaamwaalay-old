@@ -4,7 +4,7 @@ namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SupportQuestionType extends Model
+class ServiceProviderService extends Model
 {
     //
 }

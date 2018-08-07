@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Providers\Data\Models\City;

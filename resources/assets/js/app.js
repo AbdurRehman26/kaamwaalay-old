@@ -7,8 +7,15 @@ window.Vue = require('vue');
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
-import router from './routes';
 import BootstrapVue from 'bootstrap-vue';
+import VueAxios from 'vue-axios'
+import VueAuthenticate from 'vue-authenticate'
+import axios from 'axios'
+import router from './routes';
+import VeeValidate from 'vee-validate'
+import InfiniteLoading from 'vue-infinite-loading'
+import Vuex from 'vuex';
+import store from './store.js'
 
 import AmCharts from 'amcharts3';
 import AmSerial from 'amcharts3/amcharts/serial';
@@ -27,8 +34,16 @@ Vue.use(Datepicker);
 Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
+Vue.use(VueAxios);
+Vue.use(VueAuthenticate);
+Vue.use(VeeValidate);
+Vue.use(InfiniteLoading);
+Vue.use(Vuex);
+
+
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
+
 
 const options = {
     color: '#8200ff',
@@ -60,6 +75,7 @@ Vue.mixin({
 const app = new Vue({
     el: '#app',
     router,
+    store,
     mounted () {
         this.$Progress.finish();
         this.checkscroll();

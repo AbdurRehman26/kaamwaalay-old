@@ -1,9 +1,9 @@
 <?php
 
-namespace Psm\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1;
 
 
-use Psm\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,7 +33,7 @@ abstract class ApiResourceController extends Controller
 
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
 
-        $output = ['response' => ['data' => $data['data'], 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false   , 'message' => 'Success']];
+        $output = ['response' => ['data' => $data['data'], 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false   , 'message' => $this->messages(__FUNCTION__)]];
         // HTTP_OK = 200;
 
         return response()->json($output, Response::HTTP_OK);
@@ -48,13 +48,12 @@ abstract class ApiResourceController extends Controller
 
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
-        //dd($input, 89899999);
-
+        
         $this->validate($request, $rules);
 
         $data = $this->_repository->findById($input['id'], $refresh = false, $input, $encode = true);
 
-        $output = ['response' => ['data' => $data, 'message' => 'Success']];
+        $output = ['response' => ['data' => $data]];
 
         // HTTP_OK = 200;
 
@@ -73,7 +72,7 @@ abstract class ApiResourceController extends Controller
         $this->validate($request, $rules);
         $data = $this->_repository->create($input);
 
-        $output = ['response' => ['data' => $data, 'message' => 'Record added successfully']];
+        $output = ['response' => ['data' => $data, 'message' => $this->messages(__FUNCTION__)]];
         
         // HTTP_OK = 200;
 
@@ -92,7 +91,7 @@ abstract class ApiResourceController extends Controller
         $this->validate($request, $rules);
         $data = $this->_repository->update($input);
         
-        $output = ['response' => ['data' => $data, 'message' => 'Record updated successfully']];
+        $output = ['response' => ['data' => $data, 'message' => $this->messages(__FUNCTION__)]];
 
         // HTTP_OK = 200;
 
@@ -112,7 +111,7 @@ abstract class ApiResourceController extends Controller
 
         $data = $this->_repository->deleteById($input['id']);
 
-        $output = ['response' => ['data' => $data, 'message' => 'Success']];
+        $output = ['response' => ['data' => $data, 'message' => $this->messages(__FUNCTION__)]];
 
         // HTTP_OK = 200;
 
@@ -130,6 +129,17 @@ abstract class ApiResourceController extends Controller
     public function input($value = '')
     {
         return [];
+    }
+
+    public function messages($value = '')
+    {
+        $messages = [
+            'store' => 'Record created successfully.',
+            'update' => 'Record updated successfully.',
+            'destroy' => 'Record deleted successfully.',
+        ];
+        
+        return !empty($messages[$value]) ? $messages[$value] : 'Success.';
     }
 
 }

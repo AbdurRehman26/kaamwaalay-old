@@ -4,7 +4,7 @@ namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserServiceReject extends Model
+class ServiceProviderProfileRequest extends Model
 {
     //
 }

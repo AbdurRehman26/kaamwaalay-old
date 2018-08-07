@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Laravel\Passport\HasApiTokens;
+use App\Notifications\ActivationNotification;
 class User extends Authenticatable
 {
-    use Notifiable;
+     use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name','email', 'password', 'address','apartment','zip_code','phone_number','role_id','state_id','city_id','status','profile_image','activation_key','activated_at'
     ];
 
     /**
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    /**
+     * Send the activation notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendActivationEmail()
+    {
+        $this->notify(new ActivationNotification());
+    }
 }
