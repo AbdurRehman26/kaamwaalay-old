@@ -15,7 +15,7 @@
 
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Customer Provider</strong></p>
+                        <p><strong class="title-head">Customer</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p>Elif</p>

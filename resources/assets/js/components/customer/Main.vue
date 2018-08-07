@@ -32,12 +32,12 @@
 
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table first-last-col-fix" style="min-width:1290px;">
+                            <table class="table first-last-col-fix">
                               <thead>
                                 <tr>
                                   <th></th>
                                   <th>Full Name</th>
-                                  <th>Email</th>
+                                  <!-- <th>Email</th> -->
                                   <th>Contact Number</th>
                                   <th>Status</th>
                                   <th>Avg. Rating</th>
@@ -52,7 +52,7 @@
                                     </span>
                                     </td>
                                     <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{list.fullname}}</a></td>
-                                    <td>{{list.email}} </td>
+                                    <!-- <td>{{list.email}} </td> -->
                                     <td>{{list.contact_number}} </td>
                                     <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
                                     <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>

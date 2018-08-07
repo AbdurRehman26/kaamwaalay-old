@@ -33322,8 +33322,10 @@ body .hide {
 }
 
 .left-menu-panel .logo-area img {
-  max-width: 99px;
+  max-width: 180px;
   display: inline-block;
+  position: relative;
+  top: 14px;
 }
 
 @media (max-width: 1140px) {
@@ -34032,6 +34034,8 @@ body .ag-theme-balham .ag-header {
 
 .table-area table thead tr th {
   border-bottom: solid 1px #f3e6ff;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 .table-area table tbody tr:last-child td {
@@ -34040,6 +34044,8 @@ body .ag-theme-balham .ag-header {
 
 .table-area table tbody tr td {
   border-bottom: solid 1px #f3e6ff;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 .table-area .table-hover tbody tr:hover {
@@ -34907,7 +34913,7 @@ body .ag-theme-balham .ag-header {
 .auth-logo-wrapper .logo {
   margin-top: 32px;
   display: inline-block;
-  width: 70px;
+  width: 200px;
 }
 
 @media (max-width: 414px) {
@@ -38741,6 +38747,10 @@ span.tags:first-child {
 
 .provider-detail .calculated-value {
   width: calc(100% - 320px);
+}
+
+.provider-detail .calculated-value.max-text {
+  max-width: 400px;
 }
 
 .provider-detail .row {
