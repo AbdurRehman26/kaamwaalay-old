@@ -27,92 +27,87 @@ Route::group([
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
-
-Route::resource('user', 'Api\V1\UserController')->except([
-    'index', 'edit'
-]);
-
 Route::resource('campaign', 'Api\V1\CampaignController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('city', 'Api\V1\CityController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('country', 'Api\V1\CountryController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('job-bid', 'Api\V1\JobBidController')->except([
-    'index', 'edit'
-]);
-
-Route::resource('job-message', 'Api\V1\JobMessageController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('job', 'Api\V1\JobController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
-Route::resource('notification', 'Api\V1\NotificationController')->except([
-    'index', 'edit'
+Route::resource('job-message', 'Api\V1\JobMessageController')->except([
+    'edit',
 ]);
 
 Route::resource('payment', 'Api\V1\PaymentController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('plan', 'Api\V1\PlanController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('role', 'Api\V1\RoleController')->except([
-    'index', 'edit'
+    'edit',
+]);
+
+Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
+    'edit',
+]);
+
+Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+    'edit',
+]);
+
+Route::resource('service-provider-service', 'Api\V1\ServiceProviderServiceController')->except([
+    'edit',
 ]);
 
 Route::resource('service', 'Api\V1\ServiceController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('state', 'Api\V1\StateController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
-Route::resource('support-question-type', 'Api\V1\SupportQuestionTypeController')->except([
-    'index', 'edit'
+Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->except([
+    'edit',
 ]);
 
 Route::resource('support-question', 'Api\V1\SupportQuestionController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('testimonial', 'Api\V1\TestimonialController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('user-agent', 'Api\V1\UserAgentController')->except([
-    'index', 'edit'
-]);
-
-Route::resource('user-profile', 'Api\V1\UserProfileController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
 Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 
-Route::resource('user-service-reject', 'Api\V1\UserServiceRejectController')->except([
-    'index', 'edit'
-]);
-
-Route::resource('user-service', 'Api\V1\UserServiceController')->except([
-    'index', 'edit'
+Route::resource('user', 'Api\V1\UserController')->except([
+    'edit',
 ]);
 
 Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
-    'index', 'edit'
+    'edit',
 ]);
 

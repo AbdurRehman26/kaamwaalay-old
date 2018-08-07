@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\JobMessage;
-use App\Providers\Data\Repositories\JobMessageRepository;
+use App\Providers\Data\Models\SupportInquiry;
+use App\Providers\Data\Repositories\SupportInquiryRepository;
 
-class JobMessageRepositoryServiceProvider extends ServiceProvider
+class SupportInquiryRepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -25,8 +25,8 @@ class JobMessageRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('JobMessageRepository', function () {
-            return new JobMessageRepository(new JobMessage);
+        $this->app->bind('SupportInquiryRepository', function () {
+            return new SupportInquiryRepository(new SupportInquiry);
         });
     }
 }

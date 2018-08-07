@@ -8,22 +8,43 @@ class UserRatingController extends ApiResourceController
 {
     public $_repository;
 
-   public function __construct(UserRatingRepository $repository){
+    public function __construct(UserRatingRepository $repository){
        $this->_repository = $repository;
    }
 
-   public function rules($value='')
-   {
-       return [
-           'id' => [
-               'required',
-               'exists',
-           ],
-       ];
-   }
+   public function rules($value=''){
+    $rules = [];
 
-   public function input($value='')
-   {
-       return request()->only('id', 'title');
-   }
+    if($value == 'store'){
+
+    }
+
+    if($value == 'update'){
+
+    }
+
+
+    if($value == 'destroy'){
+
+    }
+
+    if($value == 'show'){
+
+    }
+
+    if($value == 'index'){
+
+    }
+
+    return $rules;
+
+}
+
+
+public function input($value='')
+{
+    $input = request()->only('id', 'title');
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    return $input;
+}
 }

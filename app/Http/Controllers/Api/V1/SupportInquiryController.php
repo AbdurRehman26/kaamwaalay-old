@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\CityRepository;
+use App\Data\Repositories\SupportInquiryRepository;
 
-class CityController extends ApiResourceController
+class SupportInquiryController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(CityRepository $repository){
+    public function __construct(SupportInquiryRepository $repository){
        $this->_repository = $repository;
    }
 

@@ -4,13 +4,13 @@ namespace App\Data\Repositories;
 
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
-use App\Data\Models\UserService;
+use App\Data\Models\ServiceProviderProfile;
 
-class UserServiceRepository extends AbstractRepository implements RepositoryContract
+class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
 /**
      *
-     * These will hold the instance of UserService Class.
+     * These will hold the instance of ServiceProviderProfile Class.
      *
      * @var object
      * @access public
@@ -24,17 +24,17 @@ class UserServiceRepository extends AbstractRepository implements RepositoryCont
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
-     * Example: UserService-1
+     * Example: ServiceProviderProfile-1
      *
      * @var string
      * @access protected
      *
      **/
 
-    protected $_cacheKey = 'UserService';
-    protected $_cacheTotalKey = 'total-UserService';
+    protected $_cacheKey = 'ServiceProviderProfile';
+    protected $_cacheTotalKey = 'total-ServiceProviderProfile';
 
-    public function __construct(UserService $model)
+    public function __construct(ServiceProviderProfile $model)
     {
         $this->model = $model;
         $this->builder = $model;

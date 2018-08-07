@@ -39,7 +39,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Kazmi\\Resource\\": "packages/resource-commands/src"
         }
     },
     "extra": {

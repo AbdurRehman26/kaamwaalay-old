@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\CityRepository;
+use App\Data\Repositories\ServiceProviderProfileRepository;
 
-class CityController extends ApiResourceController
+class ServiceProviderProfileController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(CityRepository $repository){
+    public function __construct(ServiceProviderProfileRepository $repository){
        $this->_repository = $repository;
    }
 

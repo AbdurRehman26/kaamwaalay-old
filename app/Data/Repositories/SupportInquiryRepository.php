@@ -4,13 +4,13 @@ namespace App\Data\Repositories;
 
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
-use App\Data\Models\Notification;
+use App\Data\Models\SupportInquiry;
 
-class NotificationRepository extends AbstractRepository implements RepositoryContract
+class SupportInquiryRepository extends AbstractRepository implements RepositoryContract
 {
 /**
      *
-     * These will hold the instance of Notification Class.
+     * These will hold the instance of SupportInquiry Class.
      *
      * @var object
      * @access public
@@ -24,17 +24,17 @@ class NotificationRepository extends AbstractRepository implements RepositoryCon
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
-     * Example: Notification-1
+     * Example: SupportInquiry-1
      *
      * @var string
      * @access protected
      *
      **/
 
-    protected $_cacheKey = 'Notification';
-    protected $_cacheTotalKey = 'total-Notification';
+    protected $_cacheKey = 'SupportInquiry';
+    protected $_cacheTotalKey = 'total-SupportInquiry';
 
-    public function __construct(Notification $model)
+    public function __construct(SupportInquiry $model)
     {
         $this->model = $model;
         $this->builder = $model;
