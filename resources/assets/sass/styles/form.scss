@@ -61,7 +61,7 @@ body{
         }
         &.is-invalid{
             .form-control{
-                border-color:$danger-color;
+                border-color:$danger-bg;
                 box-shadow:none;
                 background-image:url('../images/alert-icon.svg');
                 background-repeat: no-repeat;

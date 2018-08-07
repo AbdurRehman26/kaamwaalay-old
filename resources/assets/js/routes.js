@@ -12,7 +12,7 @@ const routes = [
             title: 'PSM | Dashboard',
             bodyClass: 'dashboard-page',
             pagetitle:'Dashboard',
-            icon:'icon-pie-chart'
+            icon:'icon-speedometer'
         },
         component: require('./components/dashboard/main.vue'),
     },
@@ -42,7 +42,7 @@ const routes = [
         meta: {
             title: 'PSM | User',
             pagetitle:'Admin',
-            icon:'icon-user-icon-resue'
+            icon:'icon-lock_outline'
         }
     },
 
@@ -65,11 +65,11 @@ const routes = [
 
     {
         path: '/service-type',
-        component: require('./components/service-type-user/main.vue'),
+        component: require('./components/service-type/main.vue'),
         meta: {
             title: 'PSM | Service Type',
             pagetitle:'Service Types',
-            icon:'icon-workspace'
+            icon:'icon-tools-2'
         }
     },
 
@@ -77,7 +77,7 @@ const routes = [
 
     {
         path: '/customer',
-        component: require('./components/customer/Main.vue'),
+        component: require('./components/customer/main.vue'),
         meta: {
             title: 'PSM | Customer Panel' ,
             pagetitle:'Customers',
@@ -85,13 +85,21 @@ const routes = [
         }
 
     },
-
+    {
+        path: '/customer/viewjobdetail',
+        component: require('./components/customer/ViewJobDetail.vue'),
+        meta: {
+            title: 'View Job Detail',
+            pagetitle:'Customer Job detail Section',
+            icon:'icon-users'
+        },
+    },
 
     /* Service Provider */
 
     {
         path: '/service-provider',
-        component: require('./components/service-provide/Main.vue'),
+        component: require('./components/service-provide/main.vue'),
         meta: {
             title: 'PSM | Service Provider',
             pagetitle:'Service Providers',
@@ -111,28 +119,58 @@ const routes = [
         }
     },
 
+    // Job detail Section
+
     {
         path: '/jobs/viewjobdetail',
         component: require('./components/job/JobDetails.vue'),
         meta: {
             title: 'Job Details',
-            pagetitle:'Customer Job detail Section',
+            pagetitle:'Job Details',
+            icon:'icon-briefcase'
+        },
+
+    },
+
+    {
+        name: 'BiddingDetails',
+        path: '/jobs/biddingdetails',
+        component: require('./components/job/BiddingDetails.vue'),
+        meta: {
+            title: 'Bidding Details',
+            pagetitle:'Bidding Details',
+            icon:'icon-briefcase'
         },
     },
 
 
-    //service provider review
+
+    // Service provider review
+
+
     {
         path: '/service-provider-review',
         component: require('./components/service-provider-review/main.vue'),
         meta: {
             title: 'PSM | Service provider review',
             pagetitle:'Service Provider Review',
+            icon:'icon-star_border'
+        }
+    },
+
+    {
+        name: 'Service_Detail_Review',
+        path: '/service-provider-review/detail-review',
+        component: require('./components/service-provider-review/DetailReview.vue'),
+        meta: {
+            title: 'PSM | Service provider review',
+            pagetitle:'Service Provider Detail Review',
             icon:'icon-search'
         }
     },
 
-    //service provider detail
+    // Service provider detail
+
     {
         path: '/service-provider/service-provider-detail',
         component: require('./components/service-provide/providerdetails.vue'),
@@ -140,6 +178,42 @@ const routes = [
             title: 'PSM | Service provider details',
             pagetitle:'Service Provider Details',
             icon:'icon-briefcase'
+        }
+    },
+
+    // General Setting
+
+    {
+        path: '/general-setting',
+        component: require('./components/general-setting/main.vue'),
+        meta: {
+            title: 'PSM | General Setting',
+            pagetitle:'General Setting',
+            icon:'icon-settings'
+        }
+    },
+
+    // Payment
+
+    {
+        path: '/payment',
+        component: require('./components/payment/main.vue'),
+        meta: {
+            title: 'PSM | Payment',
+            pagetitle:'Payment',
+            icon:'icon-credit-card'
+        }
+    },
+
+    // Support
+
+    {
+        path: '/support',
+        component: require('./components/support/main.vue'),
+        meta: {
+            title: 'PSM | Support',
+            pagetitle:'Support',
+            icon:'icon-credit-card'
         }
     },
 

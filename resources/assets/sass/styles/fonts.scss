@@ -1,31 +1,32 @@
 /*Font family mixin*/
-$font_regular:'OpenSans-Regular';
-$font_bold:'OpenSans-Bold';
+$font_regular:'berthold_akzidenz_grotesk_be_regular';
+$font_bold:'berthold_akzidenz_grotesk_be_bold';
 $font_light:'OpenSans-Light';
 $font_thin:'OpenSans-Light';
-$font_medium:'OpenSans-SemiBold';
+$font_medium:'berthold_akzidenz_grotesk_be_medium';
 $font_ebold:'OpenSans-ExtraBold';
 $font_black:'OpenSans-ExtraBold';
 
 @mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style :normal, $font-stretch: normal) {
     @font-face {
         font-family: '#{$font-family}';
-        src: url(('fonts/#{$font-filename}.eot'));
+/*         src: url(('fonts/#{$font-filename}.eot'));
         src: url(('fonts/#{$font-filename}.eot?#iefix')) format('embedded-opentype'),
         url(('fonts/#{$font-filename}.woff')) format('woff'),
         url(('fonts/#{$font-filename}.ttf')) format('truetype'),
-        url(('fonts/#{$font-filename}.svg##{$font-family}')) format('svg');
+        url(('fonts/#{$font-filename}.svg##{$font-family}')) format('svg'); */
+        src: url(('fonts/#{$font-filename}.woff')) format('woff');
         font-style:normal;
         font-weight:400;
         font-stretch:none;
     }
 }
 
-@include declare-font-face($font_regular,'OpenSans-Regular');
-@include declare-font-face($font_bold,'OpenSans-Bold');
+@include declare-font-face($font_regular,'berthold_akzidenz_grotesk_be_regular');
+@include declare-font-face($font_bold,'berthold_akzidenz_grotesk_be_bold');
 @include declare-font-face($font_light,'OpenSans-Light');
 @include declare-font-face($font_thin,'OpenSans-Light');
-@include declare-font-face($font_medium,'OpenSans-SemiBold');
+@include declare-font-face($font_medium,'berthold_akzidenz_grotesk_be_medium');
 @include declare-font-face($font_ebold,'OpenSans-ExtraBold');
 
 @font-face {
@@ -54,6 +55,84 @@ $font_black:'OpenSans-ExtraBold';
 }
 
 
+.icon-help_outline:before {
+  content: "\e8fd";
+}
+.icon-briefcase:before {
+  content: "\e93a";
+}
+.icon-av_timer:before {
+  content: "\e01b";
+}
+.icon-payment:before {
+  content: "\e8a1";
+}
+.icon-lock_outline:before {
+  content: "\e899";
+}
+.icon-pie_chart_outlined:before {
+  content: "\e6c5";
+}
+.icon-show_chart:before {
+  content: "\e6e1";
+}
+.icon-star_border:before {
+  content: "\e83a";
+}
+.icon-delete:before {
+  content: "\e927";
+}
+.icon-menu2:before {
+  content: "\e928";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e936";
+}
+.icon-tools-2:before {
+  content: "\e943";
+}
+.icon-settings:before {
+  content: "\e93b";
+}
+.icon-cog:before {
+  content: "\e93b";
+}
+.icon-preferences:before {
+  content: "\e93b";
+}
+.icon-tools2:before {
+  content: "\e93c";
+}
+.icon-tools3:before {
+  content: "\e90a";
+}
+.icon-cancel:before {
+  content: "\e923";
+}
+.icon-warning2:before {
+  content: "\e924";
+}
+.icon-search2:before {
+  content: "\e925";
+}
+.icon-checkmark2:before {
+  content: "\e926";
+}
+.icon-speedometer:before {
+  content: "\e93d";
+}
+.icon-tools:before {
+  content: "\e941";
+}
+.icon-users:before {
+  content: "\e942";
+}
 .icon-search:before {
   content: "\f002";
 }
@@ -171,13 +250,13 @@ $font_black:'OpenSans-ExtraBold';
 .icon-bell-o:before {
   content: "\f0a2";
 }
-.icon-briefcase:before {
+.icon-briefcase2:before {
   content: "\f0b1";
 }
 .icon-group:before {
   content: "\f0c0";
 }
-.icon-users:before {
+.icon-users2:before {
   content: "\f0c0";
 }
 .icon-suitcase:before {
@@ -281,7 +360,7 @@ $font_black:'OpenSans-ExtraBold';
   content: "\e919";
   color: #f6851f;
 }
-.icon-settings:before {
+.icon-settings2:before {
   content: "\e91b";
 }
 .icon-calendar2:before {
@@ -290,7 +369,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-signout:before {
   content: "\e915";
 }
-.icon-cog:before {
+.icon-cog2:before {
   content: "\e922";
 }
 .icon-power-off:before {
@@ -320,21 +399,6 @@ $font_black:'OpenSans-ExtraBold';
 .icon-bar-chart-o2:before {
   content: "\f080";
 }
-.icon-tools:before {
-  content: "\e90a";
-}
-.icon-cancel:before {
-  content: "\e923";
-}
-.icon-warning2:before {
-  content: "\e924";
-}
-.icon-search2:before {
-  content: "\e925";
-}
-.icon-checkmark2:before {
-  content: "\e926";
-}
 .icon-dots-three-vertical:before {
   content: "\e917";
 }
@@ -358,21 +422,6 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-minus-outline:before {
   content: "\e921";
-}
-.icon-delete:before {
-  content: "\e927";
-}
-.icon-menu2:before {
-  content: "\e928";
-}
-.icon-close2:before {
-  content: "\e5ce";
-}
-.icon-keyboard_arrow_right:before {
-  content: "\e935";
-}
-.icon-keyboard_arrow_left:before {
-  content: "\e936";
 }
 .icon-list2:before {
   content: "\e929";
@@ -473,7 +522,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-user2:before {
   content: "\e971";
 }
-.icon-users2:before {
+.icon-users22:before {
   content: "\e972";
 }
 .icon-user-plus2:before {
@@ -527,7 +576,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-wrench:before {
   content: "\e991";
 }
-.icon-cog2:before {
+.icon-cog22:before {
   content: "\e994";
 }
 .icon-cogs2:before {

@@ -43,7 +43,7 @@ $left-panel-nav-size:$font-size-sm;
         display: block;
         margin:4px 0px;
         padding:0 17px 3px;
-        height:52px;
+        height:65px;
         a{
             display: block;
             width: auto;
@@ -244,3 +244,55 @@ $left-panel-nav-size:$font-size-sm;
         }
     }
 }
+
+
+.main-nav {
+    ul{
+        li{
+            i{
+                &.icon-star_border{
+                    font-size: 24px;
+                    left: 15px;
+                    top: 8px;
+                }
+                &.icon-star_border{
+                    font-size: 26px;
+                    left: 13px;
+                    top: 7px;
+                }
+                &.icon-briefcase{
+                    font-size: 20px;
+                    left: 15px;
+                    top: 10px;
+                }
+                &.icon-settings{
+                    font-size: 20px;
+                    left: 15px;
+                    top: 10px;
+                }
+                &.icon-lock_outline{
+                    font-size: 22px;
+                    left: 15px;
+                    top: 9px;
+                }
+                &.icon-speedometer{
+                    font-size: 22px;
+                    left: 15px;
+                    top: 9px;
+                }
+                &.icon-users{
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                &.icon-tools-2{
+                    font-weight: bold;
+                }
+                &.icon-help_outline{
+                    font-size: 21px;
+                    top: 8px;
+                }
+            }
+        }
+    }
+}
+
