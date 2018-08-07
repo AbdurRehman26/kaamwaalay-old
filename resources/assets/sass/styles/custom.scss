@@ -2368,6 +2368,20 @@ i[active="true"]{
     padding:38px 25px 0;
     border-radius: 0;
     border: none;
+    &:after{
+        content: '';
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 100%;
+        background:#fff;
+        height: 8px;
+        top: 69px;
+        z-index: 9;
+        width: calc(100% - 250px);
+        left: auto;
+    }
     .breadcrumb{
         position: fixed;
         top: 56px;
