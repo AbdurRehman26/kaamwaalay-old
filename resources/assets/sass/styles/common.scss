@@ -720,7 +720,7 @@ body{
     text-transform:uppercase;
 
     &.approved,&.active{
-        background-color: $success-bg;
+        background-color: $success-bg !important;
     }
     &.review,&.in-review{
         background-color: $status-review;

@@ -32948,7 +32948,7 @@ body .hide {
 .status-box.active,
 .tags.approved,
 .tags.active {
-  background-color: #28a745;
+  background-color: #28a745 !important;
 }
 
 .status-box.review,
@@ -33286,7 +33286,7 @@ body .hide {
   display: block;
   margin: 4px 0px;
   padding: 0 17px 3px;
-  height: 52px;
+  height: 65px;
 }
 
 .left-menu-panel .logo-area a {
@@ -35336,7 +35336,7 @@ textarea {
   position: fixed;
   right: 0px;
   z-index: 9;
-  height: 56px;
+  height: 69px;
   width: calc(100% - 248px);
 }
 
@@ -39026,7 +39026,7 @@ i[active="true"] {
   background-color: #fff;
   padding: 25px;
   min-height: calc(100vh - 68px);
-  padding-top: 10px;
+  padding-top: 27px;
 }
 
 .login-page .panel {
@@ -40948,18 +40948,18 @@ i[active="true"] {
 .breadcrumb {
   background: #fff;
   margin: 0;
-  padding: 8px 25px 0;
+  padding: 38px 25px 0;
   border-radius: 0;
   border: none;
 }
 
 .breadcrumb .breadcrumb {
   position: absolute;
-  top: -12px;
+  top: 27px;
   z-index: 99;
   background: #fff;
-  padding: 0 28px;
-  left: 0;
+  padding: 0 20px;
+  left: 54px;
 }
 
 .breadcrumb .breadcrumb li {
@@ -40978,7 +40978,43 @@ a.underline {
 }
 
 .page-title i {
-  padding-right: 9px;
+  padding-right: 20px;
+  width: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+
+.page-title i.icon-speedometer {
+  top: -6px;
+}
+
+.page-title i.icon-tools-2 {
+  font-size: 20px;
+  font-weight: bold;
+  top: -5px;
+}
+
+.page-title i.icon-users {
+  font-weight: bold;
+  top: -7px;
+}
+
+.page-title i.icon-star_border {
+  font-size: 29px;
+  top: -7px;
+}
+
+.page-title i.icon-handshake-o {
+  top: -6px;
+}
+
+.page-title i.icon-briefcase {
+  top: -6px;
+}
+
+.page-title i.icon-credit-card {
+  top: -5px;
 }
 
 .page-title-strip {
