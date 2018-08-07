@@ -12,7 +12,7 @@ const routes = [
             title: 'PSM | Dashboard',
             bodyClass: 'dashboard-page',
             pagetitle:'Dashboard',
-            icon:'icon-pie-chart'
+            icon:'icon-speedometer'
         },
         component: require('./components/dashboard/main.vue'),
     },
@@ -42,7 +42,7 @@ const routes = [
         meta: {
             title: 'PSM | User',
             pagetitle:'Admin',
-            icon:'icon-user-icon-resue'
+            icon:'icon-lock_outline'
         }
     },
 
@@ -69,7 +69,7 @@ const routes = [
         meta: {
             title: 'PSM | Service Type',
             pagetitle:'Service Types',
-            icon:'icon-workspace'
+            icon:'icon-tools-2'
         }
     },
 
@@ -91,6 +91,7 @@ const routes = [
         meta: {
             title: 'View Job Detail',
             pagetitle:'Customer Job detail Section',
+            icon:'icon-users'
         },
     },
 
@@ -126,9 +127,10 @@ const routes = [
         meta: {
             title: 'Job Details',
             pagetitle:'Job Details',
+            icon:'icon-briefcase'
         },
 
-    },  
+    },
 
     {
         name: 'BiddingDetails',
@@ -137,8 +139,9 @@ const routes = [
         meta: {
             title: 'Bidding Details',
             pagetitle:'Bidding Details',
+            icon:'icon-briefcase'
         },
-    },        
+    },
 
 
 
@@ -151,7 +154,7 @@ const routes = [
         meta: {
             title: 'PSM | Service provider review',
             pagetitle:'Service Provider Review',
-            icon:'icon-search'
+            icon:'icon-star_border'
         }
     },
 
@@ -164,7 +167,7 @@ const routes = [
             pagetitle:'Service Provider Detail Review',
             icon:'icon-search'
         }
-    },    
+    },
 
     // Service provider detail
 
@@ -179,7 +182,7 @@ const routes = [
     },
 
     // General Setting
-    
+
     {
         path: '/general-setting',
         component: require('./components/general-setting/main.vue'),
@@ -191,7 +194,7 @@ const routes = [
     },
 
     // Payment
-    
+
     {
         path: '/payment',
         component: require('./components/payment/main.vue'),
