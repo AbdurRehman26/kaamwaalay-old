@@ -38724,8 +38724,25 @@ span.tags:first-child {
   /* width: calc(100% - 370px); */
   /* max-width: 1000px; */
   /* width: calc(100% - 410px); */
-  width: calc(100% - 400px);
+  /* width: calc(100% - 400px); */
+  width: 100%;
   display: inline-block;
+}
+
+.provider-detail .fixed-label {
+  display: inline-block;
+  width: 300px;
+}
+
+.provider-detail .calculated-value {
+  width: calc(100% - 320px);
+}
+
+.provider-detail .row {
+  display: block;
+  margin: 0;
+  float: left;
+  width: 100%;
 }
 
 .col-1,
@@ -40990,6 +41007,7 @@ i[active="true"] {
 
 .fancy-box-mask {
   z-index: 99 !important;
+  background-color: rgba(51, 51, 51, 0.85098) !important;
 }
 
 .fancy-box-mask .fancy-box-image-wrapper div {

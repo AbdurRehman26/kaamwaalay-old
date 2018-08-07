@@ -174,8 +174,22 @@ span.tags {
     /* width: calc(100% - 370px); */
     /* max-width: 1000px; */
     /* width: calc(100% - 410px); */
-    width: calc(100% - 400px);
+    /* width: calc(100% - 400px); */
+    width: 100%;
     display: inline-block;
+    .fixed-label {
+        display: inline-block;
+        width: 300px;
+    }   
+    .calculated-value{
+        width: calc(100% - 320px);
+    } 
+    .row{
+        display: block;
+        margin: 0;
+        float: left;
+        width: 100%;
+    }
 }
 
 
@@ -2388,6 +2402,7 @@ i[active="true"]{
 
 .fancy-box-mask{
     z-index: 99 !important;
+    background-color: rgba(51, 51, 51, 0.8509803921568627) !important;
     .fancy-box-image-wrapper{
         div{
             padding: 9% 0px 0px 0px;
