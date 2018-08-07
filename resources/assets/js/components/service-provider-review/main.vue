@@ -1,64 +1,79 @@
 <template>
     <div class="panel-inner">
         <div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                </div>
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Business/Individual</label>
+                                   <select class="form-control">
+                                     <option>Both</option>
+                                     <option>Business</option>
+                                     <option>Individual</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select All</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
                 <div class="col-md-12">
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table service-provider-table first-last-col-fix" style="width:2850px;">
+                            <table class="table service-provider-table first-last-col-fix" style="min-width: 1270px;">
                               <thead>
                                 <tr>
-                                  <th>Id</th>
-                                  <th>Image</th>
-                                  <th>Business or Individual?</th>
-                                  <th>Business Name</th>
-                                  <th>DUNS Number</th>
+                                  <th width="40">Image</th>
                                   <th>Full Name</th>
                                   <th>Email Address</th>
-                                  <th class="text-center">Services Offered</th>
-                                  <th>Address</th>
-                                  <th>City</th>
-                                  <th>State</th>
-                                  <th>Zip Code</th>
-                                  <th>Country</th>
+                                  <th>Services</th>                                  
                                   <th>Contact Number</th>
-                                  <th>Avg. Rating</th>
-                                  <th>Join Date</th>
-                                  <th>Approval Date</th>
+                                  <th>Type</th>
                                   <th>Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
                                   <tr v-for="list in listing">
-                                    <td> {{list.id}} </td>
                                     <td>
                                         <span class="user-img radius-0">
                                             <img  :src="list.imagepath" >
                                         </span>
                                     </td>
-                                    <td> {{ list.business }} </td>
-                                    <td> {{ list.businessName }} </td>
-                                    <td> {{ list.DUNSnum }} </td>
-                                    <td> {{ list.full_name }} </td>
+                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.full_name }}</a> </td>
                                     <td> {{ list.email_address }} </td>
-                                    <td class="text-center"> {{ list.services_offered }} </td>
-                                    <td> {{ list.address }} </td>
-                                    <td> {{ list.city }} </td>
-                                    <td> {{ list.state }} </td>
-                                    <td> {{ list.zip_code }} </td>
-                                    <td> {{ list.country }} </td>
+                                    <td> {{ list.services }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td> {{ list.avg_rating }} </td>
-                                    <td> {{ list.join_date }} </td>
-                                    <td> {{ list.approval_date }} </td>
-                                    <td class="status-color approved"> {{ list.status }} </td>
+                                    <td> {{ list.business }} </td>
+                                    <td>
+                                        <span class="tags" :class="[list.status]">
+                                            {{ list.status }}
+                                        </span>
+                                    </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>
@@ -68,7 +83,20 @@
                         </div>
                     </div>
                 </div>
+
+            <div class="clearfix"></div>
+
+                <div class="col-xs-12 col-md-12">
+                
+                    <div class="total-record float-left">
+                        <p><strong>Total records: <span>6</span></strong></p>
+                    </div>
+
+                    <div class="pagination-wrapper float-right">
+                        <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+                    </div>
             </div>
+        </div>
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
@@ -76,7 +104,7 @@
 </template>
 
 <script>
-
+import StarRating from 'vue-star-rating';
 export default {
   data () {
     return {
@@ -93,15 +121,16 @@ export default {
                     DUNSnum: '543351',
                     full_name: 'James Methew',
                     email_address: 'psm@test.com',
+                    services: 'Electrician',
                     services_offered: '45',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
+                    status: 'rejected',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '45668756',
-                    avg_rating: '5',
-                    status: 'Active',
+                    status: 'rejected',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -115,14 +144,14 @@ export default {
                     full_name: 'John Enderson',
                     email_address: 'psm@test.com',
                     services_offered: '67',
+                    services: 'Electrician > AC',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
+                    status: 'pending',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -136,14 +165,14 @@ export default {
                     full_name: 'Harry John',
                     email_address: 'psm@test.com',
                     services_offered: '74',
+                    services: 'Carpenter',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
+                    status: 'approved',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -157,14 +186,14 @@ export default {
                     full_name: 'Petter Mick',
                     email_address: 'psm@test.com',
                     services_offered: '52',
+                    services: 'Carpenter',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
+                    status: 'pending',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -178,14 +207,14 @@ export default {
                     full_name: 'John Petter',
                     email_address: 'psm@test.com',
                     services_offered: '25',
+                    services: 'Plumber',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
+                    status: 'approved',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -200,13 +229,14 @@ export default {
                     email_address: 'psm@test.com',
                     services_offered: '14',
                     address: 'Amsterdam Street 25',
+                    services: 'Painter',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    avg_rating: '5',
-                    status: 'Active',
+                    avg_rating: '2',
+                    status: 'rejected',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -229,6 +259,16 @@ export default {
             this.service = false;
             this.viewdetails = false;
         },
-    }
+        detailreview(){
+            this.$router.push('/service-provider-review/detail-review');
+        },
+        profileimage(){
+          this.$router.push('/service-provider/service-provider-detail');  
+        },
+
+    },
+    components: {
+        StarRating
+    },
 }
 </script>

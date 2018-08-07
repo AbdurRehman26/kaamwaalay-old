@@ -1,9 +1,45 @@
 <template>
 	<div class="panel-inner">
 		<div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                </div>
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select All</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Job Status</label>
+                                   <select class="form-control">
+                                     <option >Select All</option>
+                                     <option>In Bidding</option>
+                                     <option>Awarded</option>
+                                     <option>Completed</option>
+                                     <option>Archived</option>
+                                     <option>Initiated</option>
+                                   </select>
+                              </div>
+                            </div>                            
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
 				<div class="col-md-12">
@@ -13,34 +49,31 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Title</th>                                  
+                                  <th>Title</th>
                                   <th>Customer Name</th>
                                   <th>Service Type</th>
                                   <th>Service Sub-type</th>
-                                  <th>Zip Code</th>
-                                  <th>Address</th>
                                   <th>Job Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
+
                                   <tr v-for="list in listing">
                                     <td> {{list.id}} </td>
-                                    <td> {{ list.title }} </td>                                    
-                                    <td> <a href="javascript:;">{{ list.customer_name }}</a> </td>
+                                    <td> {{ list.title }} </td>
+                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.customer_name }}</a> </td>
                                     <td> {{ list.service_type }} </td>
                                     <td> {{ list.service_subtype }} </td>
-                                    <td> {{ list.zip_code }} </td>
-                                    <td> {{ list.address }} </td>                                  
                                     <td>
                                         <span class="tags" :class="[list.job_status.replace(/\s/g, '').toLowerCase().trim()]">
                                             {{ list.job_status }}
-                                        </span> 
+                                        </span>
                                     </td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
-                                        <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i>
+                                       <!-- <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i> -->
                                       </div>
                                     </td>
                                 </tr>
@@ -50,6 +83,20 @@
             </div>
 
 		  		</div>
+
+
+          <div class="clearfix"></div>
+
+          <div class="col-xs-12 col-md-12">
+            
+            <div class="total-record float-left">
+                <p><strong>Total records: <span>10</span></strong></p>
+            </div>
+
+            <div class="pagination-wrapper float-right">
+                <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+            </div>
+          </div>
 		    </div>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
         <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
@@ -125,7 +172,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Part Time Doctor',
                     job_status: 'Completed'
-                },  
+                },
 
                 {
                     id : 7,
@@ -136,7 +183,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Canvas Painter Required',
                     job_status: 'Archived'
-                },  
+                },
 
                 {
                     id : 8,
@@ -147,7 +194,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Floor Electric',
                     job_status: 'Awarded'
-                },  
+                },
 
                 {
                     id : 9,
@@ -158,7 +205,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Door Repairing',
                     job_status: 'In Bidding'
-                },  
+                },
 
                 {
                     id : 10,
@@ -169,7 +216,7 @@ export default {
                     address: 'California Street 251',
                     title: 'Carpet & House Cleaning',
                     job_status: 'Archived'
-                },                                                                                                                                                   
+                },
             ],
     	}
   	},
@@ -181,11 +228,15 @@ export default {
             this.customer = false;
         },
         ViewDetails(){
-            /*this.customer = true;*/   
+            /*this.customer = true;*/
+            this.$router.push('/jobs/viewjobdetail');
         },
 
         AddService(){
-            this.changeProviderStatus = true;   
+            this.changeProviderStatus = true;
+        },
+        profileimage(){
+          this.$router.push('/service-provider/service-provider-detail');  
         },        
 
     },

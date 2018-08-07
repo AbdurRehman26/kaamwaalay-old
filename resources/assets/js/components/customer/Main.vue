@@ -32,36 +32,30 @@
 
                     <div class="table-area">
                         <div class="table-responsive">
-                            <table class="table first-last-col-fix" style="width:2090px;">
+                            <table class="table first-last-col-fix" style="min-width:1290px;">
                               <thead>
                                 <tr>
-                                  <th width="10">Id</th>
-                                  <th>Image</th>
+                                  <th></th>
                                   <th>Full Name</th>
                                   <th>Email</th>
-                                  <th>Address</th>
                                   <th>Contact Number</th>
-                                  <th>Avg. Rating</th>
-                                  <th>Join Date</th>
                                   <th>Status</th>
+                                  <th>Avg. Rating</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
                               <tbody>
                                   <tr v-for="list in listing">
-                                    <td> {{list.id}} </td>
                                     <td>
                                     <span class="user-img radius-0">
                                         <img  :src="list.imagepath" >
                                     </span>
                                     </td>
-                                    <td> {{ list.fullname }}</td>
-                                    <td> {{ list.email_address }} </td>
-                                    <td> {{ list.address }}, {{ list.city }}, {{ list.state }}, {{ list.zip_code }}, {{ list.country }} </td>
-                                    <td> {{ list.contact_number }} </td>
-                                    <td><star-rating :star-size="20" read-only :rating="2"></star-rating></td>
-                                    <td> {{ list.join_date }} </td>
-                                    <td class="status-color approved"> {{ list.status }} </td>
+                                    <td>{{list.fullname}}</td>
+                                    <td>{{list.email}} </td>
+                                    <td>{{list.contact_number}} </td>
+                                    <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
+                                    <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -74,8 +68,15 @@
                         </div>
                     </div>
 		  		</div>
-          <div class="cleafix"></div>
+
+          <div class="clearfix"></div>
+
           <div class="col-xs-12 col-md-12">
+
+            <div class="total-record float-left">
+                <p><strong>Total records: <span>9</span></strong></p>
+            </div>
+
             <div class="pagination-wrapper float-right">
                 <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
             </div>
@@ -84,7 +85,6 @@
         <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
         <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
-
 	</div>
 </template>
 
@@ -98,7 +98,78 @@ export default {
     	customer: false,
       changestatus:false,
         viewcustomer: false,
-            listing: [],
+            listing: [
+                {
+                    imagepath:'',
+                    fullname:'Levi Boyer',
+                    email:'Chester_Kris15@gmail.com',
+                    contact_number:'894-807-8690',
+                    status:'Active',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Miss Godfrey Lemke',
+                    email:'Guadalupe_Hauck@gmail.com',
+                    contact_number:'136-452-8690',
+                    status:'Banned',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Anais Crist',
+                    email:'Burley.Mueller23@hotmail.com',
+                    contact_number:'306-452-8690',
+                    status:'Pending',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Mrs. Orlando Kris',
+                    email:'Virgie_Douglas@gmail.com',
+                    contact_number:'306-452-8690',
+                    status:'Active',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Levi Boyer',
+                    email:'Chester_Kris15@gmail.com',
+                    contact_number:'894-807-8690',
+                    status:'Active',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Miss Godfrey Lemke',
+                    email:'Guadalupe_Hauck@gmail.com',
+                    contact_number:'136-452-8690',
+                    status:'Banned',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Anais Crist',
+                    email:'Burley.Mueller23@hotmail.com',
+                    contact_number:'306-452-8690',
+                    status:'Pending',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Mrs. Orlando Kris',
+                    email:'Virgie_Douglas@gmail.com',
+                    contact_number:'306-452-8690',
+                    status:'Active',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Anais Crist',
+                    email:'Burley.Mueller23@hotmail.com',
+                    contact_number:'306-452-8690',
+                    status:'Pending',
+                },
+                {
+                    imagepath:'',
+                    fullname:'Mrs. Orlando Kris',
+                    email:'Virgie_Douglas@gmail.com',
+                    contact_number:'306-452-8690',
+                    status:'Active',
+                },
+        ],
     	}
   	},
 
@@ -125,7 +196,7 @@ export default {
     },
 
     mounted(){
-        for (var i = 1; i <= 50; i++) {
+/*        for (var i = 1; i <= 50; i++) {
             var loopperson =  {
                         id : i,
                         imagepath:'',
@@ -143,7 +214,7 @@ export default {
                         approval_date: this.$faker().date.past(),
             };
             this.listing.push(loopperson);
-        };
+        };*/
     }
 
 }

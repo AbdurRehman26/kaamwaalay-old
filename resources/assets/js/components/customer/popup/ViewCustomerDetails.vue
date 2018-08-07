@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="View Customer Detail" ok-variant="link" ok-title="View Completed Jobs " @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
+		<b-modal id="view-customer-detail" title-tag="h4" ref="myModalRef" size="md" title="Customer Detail" ok-variant="link" ok-title="View Jobs " @ok="ViewCustomerRecord" cancel-title="Cancel" cancel-variant="primary" @hidden="onHidden">
             <alert></alert>
             <div class="view-details-list">
 
@@ -98,7 +98,7 @@
                         <p><strong class="title-head">Avg. Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p><star-rating :star-size="20" read-only :rating="4"></star-rating></p>
+                        <p><star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating></p>
                     </b-col>
                 </b-row>
 

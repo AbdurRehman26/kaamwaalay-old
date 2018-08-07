@@ -24,6 +24,9 @@ import AmFunnelChart  from 'amcharts3/amcharts/funnel';
 import AmGauge from 'amcharts3/amcharts/gauge';
 import Datepicker from 'vuejs-datepicker';
 import VueProgressBar from 'vue-progressbar';
+import fancyBox from 'vue-fancybox';
+import Multiselect from 'vue-multiselect';
+import MaterialIcons  from 'material-icons';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -36,6 +39,10 @@ Vue.use(VueAuthenticate);
 Vue.use(VeeValidate);
 Vue.use(InfiniteLoading);
 Vue.use(Vuex);
+
+
+Vue.component('multiselect', Multiselect);
+Vue.component('MaterialIcons', MaterialIcons);
 
 
 const options = {
