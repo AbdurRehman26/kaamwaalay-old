@@ -205,6 +205,18 @@ const routes = [
         }
     },
 
+    // Support
+
+    {
+        path: '/support',
+        component: require('./components/support/main.vue'),
+        meta: {
+            title: 'PSM | Support',
+            pagetitle:'Support',
+            icon:'icon-credit-card'
+        }
+    },
+
     /*404 Page*/
 
     {

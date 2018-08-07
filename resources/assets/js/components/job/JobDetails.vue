@@ -24,34 +24,34 @@
                             </div> -->
                             <div class="view-details-list">
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Customer</strong></p>
                                     </b-col>
-                                    <b-col cols="7">                                        
+                                    <b-col cols="8">                                        
                                         <a href="javascript:void(0);">Shawn</a>
                                     </b-col>
                                 </b-row>                                                              
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Service</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <p>Plumber > General Carpentry</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Address</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <p>4657 Kirk Highway, Geovannyfurt, Missouri, 39185-5150, Pitcairn Islands  </p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Zip Code</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <p>23411</p>
                                     </b-col>
                                 </b-row>                                                                                                                                   
@@ -67,36 +67,36 @@
                             </div> -->
                             <div class="view-details-list">
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Project Title</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <p>Door Repairing</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Project Details</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <p>Responsible for disassembling, relocating and reassembling furniture. Will assist carpenters by transporting materials to various job sites, removing construction debris, and various carpentry duties. Must maintain a neat and professional demeanor. Must works effectively with team members and all departments.</p>
                                     </b-col>
                                 </b-row>                                                                
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Job Status</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <span class="tags inbidding">
                                             In Bidding
                                         </span>
                                     </b-col>
                                 </b-row>
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Photos</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <div class="gallery-pic">
                                             <div class="gallery-item" v-for="(n, index) in imageList" :data-index="index">
                                                 <img @click="open($event)" :src="n.url">
@@ -118,19 +118,19 @@
                             </div> -->
                             <div class="view-details-list">
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Total Bidding Initiated</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <p>50</p>
                                     </b-col>
                                 </b-row>
                                                                                                                                                                                   
                                 <b-row>
-                                    <b-col cols="5" class="text-right">
+                                    <b-col cols="4"" class="text-right">
                                         <p><strong class="title-head">Bidding Details</strong></p>
                                     </b-col>
-                                    <b-col cols="7">
+                                    <b-col cols="8">
                                         <a @click="biddingdetails" href="javascript:void(0);">See All</a>
                                     </b-col>
                                 </b-row>                                                                                                 

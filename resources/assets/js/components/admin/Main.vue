@@ -41,19 +41,11 @@
                         </div>
 		    		</div>
 		  		</div>
-            <div class="clearfix"></div>
-
-                <div class="col-xs-12 col-md-12">
-
+            <div class="col-xs-12 col-md-12">
                     <div class="total-record float-left">
                         <p><strong>Total records: <span>3</span></strong></p>
                     </div>
-
-                    <div class="pagination-wrapper float-right">
-                        <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
-                    </div>
                 </div>
-
 		    </div>
 
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>

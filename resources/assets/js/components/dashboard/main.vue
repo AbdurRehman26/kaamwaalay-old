@@ -304,7 +304,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -344,7 +344,7 @@ export default{
               "id": "ValueAxis-1",
               "gridAlpha": 1,
               "gridColor": "#F5F5F5",
-              "title": "Data Title"
+              "title": ""
             }
           ],
           "allLabels": [],
@@ -1139,7 +1139,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -1165,7 +1165,7 @@ export default{
           "trendLines": [],
           "graphs": [
             {
-              "balloonText": "[[title]]: [[value]]",
+              "balloonText": "[[title]]: $[[value]]",
               "bullet": "round",
               "fillAlphas": 0.13,
               "id": "AmGraph-1",
@@ -1179,7 +1179,7 @@ export default{
               "id": "ValueAxis-1",
               "gridAlpha": 1,
               "gridColor": "#F5F5F5",
-              "title": "Data Title"
+              "title": ""
             }
           ],
           "allLabels": [],
@@ -1706,7 +1706,7 @@ export default{
                 "#990000"
               ],
               "color": "#1A1A1A",
-              "fontFamily": "OpenSans-Regular",
+              "fontFamily": "berthold_akzidenz_grotesk_be_regular",
               "theme": "default",
               "autoMargins": false,
               "marginBottom": 25,
@@ -1746,7 +1746,7 @@ export default{
                   "id": "ValueAxis-1",
                   "gridAlpha": 1,
                   "gridColor": "#F5F5F5",
-                  "title": "Data Title"
+                  "title": ""
                 }
               ],
               "allLabels": [],
@@ -2521,104 +2521,89 @@ export default{
     //job count by service
 
       AmCharts.makeChart("jobCountService",
+       {
+    "type": "serial",
+    "categoryField": "category",
+    "rotate": true,
+    "startDuration": 1,
+    "pathToImages": "https://www.amcharts.com/lib/3/images/",
+    "categoryAxis": {
+        "gridPosition": "start"
+    },
+    "chartCursor": {
+        "enabled": true
+    },
+    "chartScrollbar": {
+        "enabled": true
+    },
+    "trendLines": [],
+    "graphs": [
         {
-          "type": "serial",
-          "categoryField": "category",
-          "pathToImages": "https://www.amcharts.com/lib/3/images/",
-          "rotate": true,
-          "startDuration": 1,
-          "categoryAxis": {
-            "gridPosition": "start"
-          },
-          "colors": [
-            "#176cb7",
-            "#ff7217",
-            "#dc0066",
-            "#00caff",
-            "#2A0CD0",
-            "#CD0D74",
-            "#CC0000",
-            "#00CC00",
-            "#0000CC",
-            "#DDDDDD",
-            "#999999",
-            "#333333",
-            "#990000"
-          ],
-          "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
-          "theme": "default",
-          "autoMargins": false,
-          "marginBottom": 55,
-          "marginTop": 2,
-          "marginLeft": 65,
-          "marginRight": 6,
-          "trendLines": [],
-          "graphs": [
-            {
-              "balloonText": "[[title]] of [[category]]:[[value]]",
-              "fillAlphas": 1,
-              "id": "AmGraph-1",
-              "title": "Type Label",
-              "type": "column",
-              "valueField": "column-1"
-            }
-          ],
-          "guides": [],
-          "valueAxes": [
-            {
-              "id": "ValueAxis-1",
-              "title": ""
-            }
-          ],
-          "allLabels": [],
-          "balloon": {
-            "horizontalPadding": 6,
-            "offsetX": 5,
-            "verticalPadding": 6,
-            "fillAlpha": 1
-          },
-          "titles": [
-            {
-              "id": "Title-1",
-              "size": 15,
-              "text": ""
-            }
-          ],
-          "dataProvider": [
-            {
-              "category": "Service 1",
-              "column-1": 8,
-            },
-            {
-              "category": "Service 2",
-              "column-1": 6,
-            },
-            {
-              "category": "Service 3",
-              "column-1": 2,
-            },
-            {
-              "category": "Service 4",
-              "column-1": 6,
-            },
-            {
-              "category": "Service 5",
-              "column-1": 2,
-            },
-            {
-              "category": "Service 6",
-              "column-1": 7,
-            },
-            {
-              "category": "Service 7",
-              "column-1": 9,
-            },
-            {
-              "category": "Service 8",
-              "column-1": 5,
-            }
-          ]
+            "fillAlphas": 1,
+            "id": "AmGraph-1",
+            "title": "graph 1",
+            "type": "column",
+            "valueField": "column-1"
+        }
+    ],
+    "guides": [],
+    "valueAxes": [
+        {
+            "id": "ValueAxis-1",
+            "title": ""
+        }
+    ],
+    "allLabels": [],
+    "balloon": {},
+    "titles": [
+        {
+            "id": "Title-1",
+            "size": 15,
+            "text": ""
+        }
+    ],
+    "dataProvider": [
+        {
+            "category": "Service 1",
+            "column-1": 8
+        },
+        {
+            "category": "Service 2",
+            "column-1": 16
+        },
+        {
+            "category": "Service 3",
+            "column-1": 2
+        },
+        {
+            "category": "Service 4",
+            "column-1": 7
+        },
+        {
+            "category": "Service 5",
+            "column-1": 5
+        },
+        {
+            "category": "Service 6",
+            "column-1": 9
+        },
+        {
+            "category": "Service 7",
+            "column-1": 4
+        },
+        {
+            "category": "Service 8",
+            "column-1": 15
+        },
+        {
+            "category": "Service 9",
+            "column-1": 12
+        },
+        {
+            "category": "Service 10",
+            "column-1": 17
+        }
+        ]
         }
       );
       /*
@@ -2628,7 +2613,7 @@ export default{
       AmCharts.makeChart("pieChart",
         {
           "type": "pie",
-          "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+          "balloonText": "[[title]]<br><span style='font-size:14px'><b>$[[value]]</b> ([[percents]]%)</span>",
           "colors": [
             "#173753",
             "#6DAEDB",
@@ -2647,7 +2632,7 @@ export default{
           "titleField": "category",
           "valueField": "column-1",
           "color": "#1A1A1A",
-          "fontFamily": "OpenSans-Regular",
+          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
           "fontSize": 12,
           "allLabels": [],
           "balloon": {
@@ -2658,12 +2643,12 @@ export default{
           "titles": [],
           "dataProvider": [
             {
-              "category": "Service 1",
-              "column-1": 3
+              "category": "Featured",
+              "column-1": 10000
             },
             {
-              "category": "Service 2",
-              "column-1": 4
+              "category": "Urgent",
+              "column-1": 25000
             }
           ]
         }
