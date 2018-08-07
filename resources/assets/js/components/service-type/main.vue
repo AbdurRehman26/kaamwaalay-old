@@ -10,6 +10,16 @@
                                 <SearchField></SearchField>
                               </div>
                             </div>
+                           <div class="col-xs-12 col-md-2 datepicker-field">
+                              <div class="form-group">
+                                   <label>Is Featured</label>
+                                   <select class="form-control">
+                                     <option>Both</option>
+                                     <option>Yes</option>
+                                     <option>No</option>
+                                   </select>
+                              </div>
+                            </div>                            
                             <div class="col-xs-12 col-md-2">
                                 <button class="btn btn-primary filter-btn-top-space">
                                     <span>Apply</span>

@@ -7,13 +7,13 @@
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>Start Date</label>
-                                  <DatePicker placeholder="Start Date"></DatePicker>
+                                  <datepicker placeholder="Start date"></datepicker>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                   <label>End Date</label>
-                                   <DatePicker placeholder="End Date"></DatePicker>
+                                   <datepicker placeholder="End date"></datepicker>
                                </div>
                             </div>
                             <div class="col-xs-12 col-md-2">

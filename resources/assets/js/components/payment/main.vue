@@ -26,7 +26,7 @@
                                 <tr v-for="list in listing">
                                   <td>{{list.payby}}</td>
                                   <td>{{list.date}}</td>
-                                  <td>{{list.amount}}</td>
+                                  <td>${{list.amount}}</td>
                                   <td >{{list.activitytype}}</td>
                                   <td><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
                                 </tr>

@@ -1,9 +1,42 @@
 <template>
     <div class="panel-inner">
         <div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                </div>
+            <div class=" col-xs-12 col-md-12">
+                    <div class="datepicker-row">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <SearchField></SearchField>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Business/Individual</label>
+                                   <select class="form-control">
+                                     <option>Both</option>
+                                     <option>Business</option>
+                                     <option>Individual</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select All</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                                   </select>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <button class="btn btn-primary filter-btn-top-space">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
                 <div class="col-md-12">
                     <div class="table-area">
@@ -14,9 +47,9 @@
                                   <th width="40">Image</th>
                                   <th>Full Name</th>
                                   <th>Email Address</th>
+                                  <th>Services</th>                                  
                                   <th>Contact Number</th>
-                                  <th>Submited Date</th>
-                                  <th>Updated Date</th>
+                                  <th>Type</th>
                                   <th>Status</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
@@ -30,11 +63,11 @@
                                     </td>
                                     <td> {{ list.full_name }} </td>
                                     <td> {{ list.email_address }} </td>
+                                    <td> {{ list.services }} </td>
                                     <td> {{ list.contact_number }} </td>
-                                    <td> {{ list.join_date }} </td>
-                                    <td> {{ list.approval_date }} </td>
+                                    <td> {{ list.business }} </td>
                                     <td>
-                                        <span class="tags" :class="[list.rating]">
+                                        <span class="tags" :class="[list.status]">
                                             {{ list.status }}
                                         </span>
                                     </td>
@@ -88,14 +121,16 @@ export default {
                     DUNSnum: '543351',
                     full_name: 'James Methew',
                     email_address: 'psm@test.com',
+                    services: 'Electrician',
                     services_offered: '45',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
+                    status: 'rejected',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '45668756',
-                    status: 'pending',
+                    status: 'rejected',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -109,14 +144,14 @@ export default {
                     full_name: 'John Enderson',
                     email_address: 'psm@test.com',
                     services_offered: '67',
+                    services: 'Electrician > AC',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    rating: 'pending',
-                    status: 'Active',
+                    status: 'pending',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -130,14 +165,14 @@ export default {
                     full_name: 'Harry John',
                     email_address: 'psm@test.com',
                     services_offered: '74',
+                    services: 'Carpenter',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    rating: 'approved',
-                    status: 'Active',
+                    status: 'approved',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -151,14 +186,14 @@ export default {
                     full_name: 'Petter Mick',
                     email_address: 'psm@test.com',
                     services_offered: '52',
+                    services: 'Carpenter',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    rating: 'pending',
-                    status: 'Active',
+                    status: 'pending',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -172,14 +207,14 @@ export default {
                     full_name: 'John Petter',
                     email_address: 'psm@test.com',
                     services_offered: '25',
+                    services: 'Plumber',
                     address: 'Amsterdam Street 25',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
-                    rating: 'approved',
-                    status: 'Active',
+                    status: 'approved',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 
@@ -194,14 +229,14 @@ export default {
                     email_address: 'psm@test.com',
                     services_offered: '14',
                     address: 'Amsterdam Street 25',
+                    services: 'Painter',
                     city: 'Amsterdam',
                     state: 'Netherlands',
                     zip_code: '543351',
                     country: 'Netherlands',
                     contact_number: '126421315',
                     avg_rating: '2',
-                    rating: 'rejected',
-                    status: 'Active',
+                    status: 'rejected',
                     join_date: 'May 25 2018',
                     approval_date: 'May 30 2018',
 

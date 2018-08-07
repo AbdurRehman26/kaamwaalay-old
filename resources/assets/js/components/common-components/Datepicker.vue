@@ -1,5 +1,5 @@
-<template>
-    <datepicker/>
+<!-- <template>
+    <datepicker placeholder="Start Date"/>
 </template>
 
 <script>
@@ -16,3 +16,4 @@
         },
     }
 </script>
+ -->
