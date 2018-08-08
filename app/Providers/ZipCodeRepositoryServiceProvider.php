@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\ZipCode;
-use App\Providers\Data\Repositories\ZipCodeRepository;
+use App\Data\Models\ZipCode;
+use App\Data\Repositories\ZipCodeRepository;
 
 class ZipCodeRepositoryServiceProvider extends ServiceProvider
 {

@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\UserRating;
-use App\Providers\Data\Repositories\UserRatingRepository;
+use App\Data\Models\UserRating;
+use App\Data\Repositories\UserRatingRepository;
 
 class UserRatingRepositoryServiceProvider extends ServiceProvider
 {

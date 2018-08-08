@@ -33,7 +33,7 @@ abstract class ApiResourceController extends Controller
 
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
 
-        $output = ['response' => ['data' => $data['data'], 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false   , 'message' => $this->messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data['data'], 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false   , 'message' => $this->responseMessages   (__FUNCTION__)]];
         // HTTP_OK = 200;
 
         return response()->json($output, Response::HTTP_OK);
@@ -68,11 +68,13 @@ abstract class ApiResourceController extends Controller
 
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
+        $messages = $this->messages(__FUNCTION__);
 
-        $this->validate($request, $rules);
+        $this->validate($request, $rules, $messages);
+
         $data = $this->_repository->create($input);
 
-        $output = ['response' => ['data' => $data, 'message' => $this->messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages   (__FUNCTION__)]];
         
         // HTTP_OK = 200;
 
@@ -87,11 +89,13 @@ abstract class ApiResourceController extends Controller
         $request->request->add(['id' => $id]);
         $input = $this->input(__FUNCTION__);
         $rules = $this->rules(__FUNCTION__);
+        $messages = $this->messages(__FUNCTION__);
 
-        $this->validate($request, $rules);
+        $this->validate($request, $rules, $messages);
+
         $data = $this->_repository->update($input);
         
-        $output = ['response' => ['data' => $data, 'message' => $this->messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages   (__FUNCTION__)]];
 
         // HTTP_OK = 200;
 
@@ -107,11 +111,13 @@ abstract class ApiResourceController extends Controller
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
 
-        $this->validate($request, $rules);
+        $messages = $this->messages(__FUNCTION__);
+
+        $this->validate($request, $rules, $messages);
 
         $data = $this->_repository->deleteById($input['id']);
 
-        $output = ['response' => ['data' => $data, 'message' => $this->messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages   (__FUNCTION__)]];
 
         // HTTP_OK = 200;
 
@@ -132,6 +138,15 @@ abstract class ApiResourceController extends Controller
     }
 
     public function messages($value = '')
+    {
+        $messages = [
+
+        ];
+        
+        return !empty($messages) ? $messages : [];
+    }
+
+    public function responseMessages($value = '')
     {
         $messages = [
             'store' => 'Record created successfully.',
