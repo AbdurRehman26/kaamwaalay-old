@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Symfony\Component\HttpFoundation\Response;
 class RegisterController extends Controller
 {
     /*
@@ -90,8 +90,10 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        return response()->json([
-            'message' => trans('auth.registered'),
-        ]);
+   
+        $output = ['response' => ['data' => [],'message'=>trans('auth.registered')]];
+
+        // HTTP_OK = 200;
+        return response()->json($output, Response::HTTP_OK);
     }
 }
