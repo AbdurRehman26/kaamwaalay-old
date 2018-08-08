@@ -1,7 +1,7 @@
 <template>
-    <div class="loader-sm">
-        <div class="button-loader">
-            <div class="loader">Loading...</div>
+    <div>
+            <div class="button-loader">
+                <div class="loader">Loading...</div>
+            </div>
         </div>
-    </div>
 </template>
