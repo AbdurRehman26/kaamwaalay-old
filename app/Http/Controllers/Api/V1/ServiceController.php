@@ -20,7 +20,7 @@ class ServiceController extends ApiResourceController
 
         $rules['parent_id']               = 'nullable|exists:services,id';           
         $rules['title']                   = 'required';       
-        $rules['derscription']            = 'required';               
+        $rules['description']            = 'required';               
         $rules['is_display_banner']       = 'required|in:0,1';                   
         $rules['is_display_service_nav']  = 'required|in:0,1';                       
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
@@ -69,11 +69,12 @@ class ServiceController extends ApiResourceController
                             'images',
                             'parent_id',
                             'pagination',
-                            'derscription',
+                            'description',
                             'is_display_banner',
                             'is_display_service_nav',
                             'keyword',
-                            'filter_by_featured'
+                            'filter_by_featured',
+                            'zip_code'
                             );
         $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
