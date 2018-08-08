@@ -1,9 +1,9 @@
 /*Font family mixin*/
-$font_regular:'berthold_akzidenz_grotesk_be_regular';
-$font_bold:'berthold_akzidenz_grotesk_be_bold';
+$font_regular:'AkzidenzGroteskBE-Regular';
+$font_bold:'AkzidenzGroteskBE-Bold';
 $font_light:'OpenSans-Light';
 $font_thin:'OpenSans-Light';
-$font_medium:'berthold_akzidenz_grotesk_be_medium';
+$font_medium:'AkzidenzGroteskBE-Md';
 $font_ebold:'OpenSans-ExtraBold';
 $font_black:'OpenSans-ExtraBold';
 
@@ -22,11 +22,11 @@ $font_black:'OpenSans-ExtraBold';
     }
 }
 
-@include declare-font-face($font_regular,'berthold_akzidenz_grotesk_be_regular');
-@include declare-font-face($font_bold,'berthold_akzidenz_grotesk_be_bold');
+@include declare-font-face($font_regular,'AkzidenzGroteskBE-Regular');
+@include declare-font-face($font_bold,'AkzidenzGroteskBE-Bold');
 @include declare-font-face($font_light,'OpenSans-Light');
 @include declare-font-face($font_thin,'OpenSans-Light');
-@include declare-font-face($font_medium,'berthold_akzidenz_grotesk_be_medium');
+@include declare-font-face($font_medium,'AkzidenzGroteskBE-Md');
 @include declare-font-face($font_ebold,'OpenSans-ExtraBold');
 
 @font-face {

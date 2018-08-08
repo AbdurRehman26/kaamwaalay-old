@@ -289,7 +289,7 @@ export default{
           "categoryField": "date",
           "dataDateFormat": "YYYY-MM-DD",
           "colors": [
-            "#176cb7",
+            "#8200ff",
             "#ff7217",
             "#B0DE09",
             "#0D8ECF",
@@ -304,7 +304,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+          "fontFamily": "AkzidenzGroteskBE-Regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -1124,7 +1124,7 @@ export default{
           "categoryField": "date",
           "dataDateFormat": "YYYY-MM-DD",
           "colors": [
-            "#176cb7",
+            "#8200ff",
             "#ff7217",
             "#B0DE09",
             "#0D8ECF",
@@ -1139,7 +1139,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+          "fontFamily": "AkzidenzGroteskBE-Regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -1691,7 +1691,7 @@ export default{
               "categoryField": "date",
               "dataDateFormat": "YYYY-MM-DD",
               "colors": [
-                "#0c5087",
+                "#8200ff",
                 "#ff7217",
                 "#B0DE09",
                 "#0D8ECF",
@@ -1706,7 +1706,7 @@ export default{
                 "#990000"
               ],
               "color": "#1A1A1A",
-              "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+              "fontFamily": "AkzidenzGroteskBE-Regular",
               "theme": "default",
               "autoMargins": false,
               "marginBottom": 25,
@@ -2531,7 +2531,7 @@ export default{
         "gridPosition": "start"
     },
  "colors": [
-                "#0D8ECF",
+                "#8200ff",
                 "#CD0D74",
                 "#ff7217",
                 "#B0DE09",
@@ -2630,8 +2630,8 @@ export default{
           "type": "pie",
           "balloonText": "[[title]]<br><span style='font-size:14px'><b>$[[value]]</b> ([[percents]]%)</span>",
           "colors": [
-            "#173753",
-            "#6DAEDB",
+            "#cf9dff",
+            "#8200ff",
           ],
           "gradientRatio": [],
           "labelColorField": "#1A1A1A",
@@ -2647,7 +2647,7 @@ export default{
           "titleField": "category",
           "valueField": "column-1",
           "color": "#1A1A1A",
-          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+          "fontFamily": "AkzidenzGroteskBE-Regular",
           "fontSize": 12,
           "allLabels": [],
           "balloon": {

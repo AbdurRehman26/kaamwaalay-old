@@ -30750,39 +30750,26 @@ a.text-dark:focus {
 /*Font family mixin*/
 
 @font-face {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
-  /*         src: url(('fonts/berthold_akzidenz_grotesk_be_regular.eot'));
-        src: url(('fonts/berthold_akzidenz_grotesk_be_regular.eot?#iefix')) format('embedded-opentype'),
-        url(('fonts/berthold_akzidenz_grotesk_be_regular.woff')) format('woff'),
-        url(('fonts/berthold_akzidenz_grotesk_be_regular.ttf')) format('truetype'),
-        url(('fonts/berthold_akzidenz_grotesk_be_regular.svg#berthold_akzidenz_grotesk_be_regular')) format('svg'); */
-  src: url(/fonts/berthold_akzidenz_grotesk_be_regular.woff?6e8cddd60cd3c11ae707d44d8fd48546) format("woff");
+  font-family: "AkzidenzGroteskBE-Regular";
+  /*         src: url(('fonts/AkzidenzGroteskBE-Regular.eot'));
+        src: url(('fonts/AkzidenzGroteskBE-Regular.eot?#iefix')) format('embedded-opentype'),
+        url(('fonts/AkzidenzGroteskBE-Regular.woff')) format('woff'),
+        url(('fonts/AkzidenzGroteskBE-Regular.ttf')) format('truetype'),
+        url(('fonts/AkzidenzGroteskBE-Regular.svg#AkzidenzGroteskBE-Regular')) format('svg'); */
+  src: url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
 }
 
 @font-face {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
-  /*         src: url(('fonts/berthold_akzidenz_grotesk_be_bold.eot'));
-        src: url(('fonts/berthold_akzidenz_grotesk_be_bold.eot?#iefix')) format('embedded-opentype'),
-        url(('fonts/berthold_akzidenz_grotesk_be_bold.woff')) format('woff'),
-        url(('fonts/berthold_akzidenz_grotesk_be_bold.ttf')) format('truetype'),
-        url(('fonts/berthold_akzidenz_grotesk_be_bold.svg#berthold_akzidenz_grotesk_be_bold')) format('svg'); */
-  src: url(/fonts/berthold_akzidenz_grotesk_be_bold.woff?d33bac56acc1b2b3c2cf0285d6548714) format("woff");
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: none;
-}
-
-@font-face {
-  font-family: "OpenSans-Light";
-  /*         src: url(('fonts/OpenSans-Light.eot'));
-        src: url(('fonts/OpenSans-Light.eot?#iefix')) format('embedded-opentype'),
-        url(('fonts/OpenSans-Light.woff')) format('woff'),
-        url(('fonts/OpenSans-Light.ttf')) format('truetype'),
-        url(('fonts/OpenSans-Light.svg#OpenSans-Light')) format('svg'); */
-  src: url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  font-family: "AkzidenzGroteskBE-Bold";
+  /*         src: url(('fonts/AkzidenzGroteskBE-Bold.eot'));
+        src: url(('fonts/AkzidenzGroteskBE-Bold.eot?#iefix')) format('embedded-opentype'),
+        url(('fonts/AkzidenzGroteskBE-Bold.woff')) format('woff'),
+        url(('fonts/AkzidenzGroteskBE-Bold.ttf')) format('truetype'),
+        url(('fonts/AkzidenzGroteskBE-Bold.svg#AkzidenzGroteskBE-Bold')) format('svg'); */
+  src: url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30802,13 +30789,26 @@ a.text-dark:focus {
 }
 
 @font-face {
-  font-family: "berthold_akzidenz_grotesk_be_medium";
-  /*         src: url(('fonts/berthold_akzidenz_grotesk_be_medium.eot'));
-        src: url(('fonts/berthold_akzidenz_grotesk_be_medium.eot?#iefix')) format('embedded-opentype'),
-        url(('fonts/berthold_akzidenz_grotesk_be_medium.woff')) format('woff'),
-        url(('fonts/berthold_akzidenz_grotesk_be_medium.ttf')) format('truetype'),
-        url(('fonts/berthold_akzidenz_grotesk_be_medium.svg#berthold_akzidenz_grotesk_be_medium')) format('svg'); */
-  src: url(/fonts/berthold_akzidenz_grotesk_be_medium.woff?be03674fa0bc7c1c9334dd512e26b145) format("woff");
+  font-family: "OpenSans-Light";
+  /*         src: url(('fonts/OpenSans-Light.eot'));
+        src: url(('fonts/OpenSans-Light.eot?#iefix')) format('embedded-opentype'),
+        url(('fonts/OpenSans-Light.woff')) format('woff'),
+        url(('fonts/OpenSans-Light.ttf')) format('truetype'),
+        url(('fonts/OpenSans-Light.svg#OpenSans-Light')) format('svg'); */
+  src: url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: none;
+}
+
+@font-face {
+  font-family: "AkzidenzGroteskBE-Md";
+  /*         src: url(('fonts/AkzidenzGroteskBE-Md.eot'));
+        src: url(('fonts/AkzidenzGroteskBE-Md.eot?#iefix')) format('embedded-opentype'),
+        url(('fonts/AkzidenzGroteskBE-Md.woff')) format('woff'),
+        url(('fonts/AkzidenzGroteskBE-Md.ttf')) format('truetype'),
+        url(('fonts/AkzidenzGroteskBE-Md.svg#AkzidenzGroteskBE-Md')) format('svg'); */
+  src: url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -32245,7 +32245,7 @@ html {
 }
 
 body {
-  font-family: "berthold_akzidenz_grotesk_be_regular", arial, verdana;
+  font-family: "AkzidenzGroteskBE-Regular", arial, verdana;
   color: #1A1A1A;
   background: #F5F5F5;
   overflow-x: hidden;
@@ -32300,7 +32300,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 h2 {
@@ -32415,7 +32415,7 @@ h4 {
   padding-bottom: 12px;
   font-size: 1.4rem;
   padding-top: 9px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .link-expire {
@@ -32449,7 +32449,7 @@ h4 {
 
 .link-expire .link-expire-panel h2 {
   font-size: 1.1rem;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   margin-bottom: 20px !important;
   max-width: 650px;
   margin: auto;
@@ -32523,12 +32523,12 @@ h4 {
 }
 
 strong {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   font-weight: normal;
 }
 
 strong.title-head {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-weight: bold;
 }
 
@@ -32853,11 +32853,11 @@ body .hide {
 ===*/
 
 .font-regular {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .font-bold {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .font-light {
@@ -33107,7 +33107,7 @@ body .hide {
 .main-listing .listing-btn .dropdown-menu .dropdown-item span {
   display: inline-block;
   margin-left: 9px;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   color: #1A1A1A;
   margin-top: 6px;
 }
@@ -33161,14 +33161,14 @@ body .hide {
 .filters h3 {
   font-size: 0.75rem;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin-bottom: 0px;
   text-transform: uppercase;
 }
 
 .filters h2 {
   font-size: 0.875rem;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 @media (max-width: 1140px) {
@@ -33239,7 +33239,7 @@ body .hide {
 
 .datamodel-sidebar .table-row-detail .list-group-item h4 {
   font-size: 27px;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 @media (max-width: 1140px) {
@@ -33381,7 +33381,7 @@ body .hide {
   line-height: normal;
   text-decoration: none;
   display: block;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.875rem;
   color: #1a1a1a !important;
   padding: 12px 24px 12px 50px;
@@ -33607,7 +33607,7 @@ body .relationshipstable span.ag-header-cell-text {
 body .ag-theme-balham {
   background-color: transparent;
   height: auto !important;
-  font-family: "berthold_akzidenz_grotesk_be_regular" !important;
+  font-family: "AkzidenzGroteskBE-Regular" !important;
 }
 
 body .ag-theme-balham.withoutheading .ag-header {
@@ -33950,7 +33950,7 @@ body .ag-body .ag-row .ag-cell {
   font-size: 14px;
   line-height: 35px;
   cursor: pointer;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   /* background-color: #F5F5F5; */
   background-color: #fff;
   border-left: 1px solid #d9d9d9;
@@ -34059,7 +34059,7 @@ body .ag-theme-balham .ag-header {
   /*             border: 1px solid #D4D4D4; */
   padding: 10px 25px;
   /*             border-bottom: 0px solid; */
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   /*             border-top: 0px solid; */
   vertical-align: middle;
 }
@@ -34079,7 +34079,7 @@ body .ag-theme-balham .ag-header {
   padding-right: 25px;
   line-height: 16px;
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   vertical-align: middle;
 }
 
@@ -34181,7 +34181,7 @@ body .ag-theme-balham .ag-header {
 .btn {
   height: 38px;
   color: #F5F5F5;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   font-size: 0.875rem;
   padding: 6px 20px 10px 20px;
   min-width: 100px;
@@ -34209,7 +34209,7 @@ body .ag-theme-balham .ag-header {
 
 .btn.btn-secondary-color {
   color: #FF8500;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   text-decoration: underline;
   background: transparent;
 }
@@ -34240,7 +34240,7 @@ body .ag-theme-balham .ag-header {
 
 .btn.btn-link {
   color: #8200ff;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   text-decoration: underline;
 }
 
@@ -34363,7 +34363,7 @@ body .ag-theme-balham .ag-header {
   padding: 8px 5px 9px 4px;
   color: #1A1A1A;
   font-size: 0.75rem;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .card-header ul li a:hover,
@@ -34383,7 +34383,7 @@ body .ag-theme-balham .ag-header {
 .card-body h3 {
   font-size: 0.75rem;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin-bottom: 10px;
 }
 
@@ -34401,7 +34401,7 @@ body .ag-theme-balham .ag-header {
 .tabs-footerLink {
   font-size: 0.875rem;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   margin-top: 10px;
   padding-left: 17px;
   display: block;
@@ -34436,7 +34436,7 @@ body .ag-theme-balham .ag-header {
   background-color: #F5F5F5;
   border: 1px solid #d9d9d9;
   font-size: 0.875rem;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   height: 38px;
   padding: 6px 5px 7px 4px;
   white-space: nowrap;
@@ -34517,7 +34517,7 @@ body .ag-theme-balham .ag-header {
   border-radius: 4px;
   border: 1px solid #d9d9d9;
   padding: 1px 15px 1px 45px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   color: #838383;
 }
 
@@ -34552,7 +34552,7 @@ body .ag-theme-balham .ag-header {
 .list-group .list-group-item {
   border-left: none;
   border-right: none;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.875rem;
   color: #1A1A1A !important;
   border-radius: 0;
@@ -34587,7 +34587,7 @@ body .ag-theme-balham .ag-header {
 
 .list-group .list-group-item h5 {
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   font-size: 0.875rem;
   position: relative;
   margin-bottom: 5px;
@@ -34666,7 +34666,7 @@ body .ag-theme-balham .ag-header {
 
 .list-style-2 .list-row .list-group-item .list-content h5 {
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   font-size: 0.875rem;
   position: relative;
 }
@@ -34686,7 +34686,7 @@ body .ag-theme-balham .ag-header {
 
 .list-style-2 .list-row .list-group-item .list-content p {
   display: block;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   color: #838383;
   font-size: 0.875rem;
   margin-top: 0;
@@ -34953,7 +34953,7 @@ body .ag-theme-balham .ag-header {
   font-size: 1rem;
   color: #838383;
   display: block;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   margin: 10px auto 20px;
 }
 
@@ -34982,7 +34982,7 @@ body .ag-theme-balham .ag-header {
   right: 0;
   color: #FF8500;
   cursor: pointer;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .forgot-form .back-to-login {
@@ -35007,7 +35007,7 @@ body label {
   font-size: 0.875rem;
   color: #1A1A1A;
   margin: 0 0 8px 0;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   padding: 0;
   line-height: normal;
 }
@@ -35016,7 +35016,7 @@ body label.col-form-label {
   font-size: 0.875rem;
   color: #1A1A1A;
   margin: 0 0 8px 0;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   padding: 0;
   line-height: normal;
 }
@@ -35028,12 +35028,12 @@ body label.col-form-label {
 }
 
 body label.with-regular-font {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 body .form-control {
   height: 38px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.875rem;
   padding: 7px 16px;
   border-color: #d9d9d9;
@@ -35117,7 +35117,7 @@ body .custom-file input {
 }
 
 body .custom-file .custom-file-label {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   color: #838383;
   overflow: hidden;
 }
@@ -35147,7 +35147,7 @@ body .custom-file-input:focus ~ .custom-file-label {
 .custom-checkbox label {
   position: relative;
   padding-left: 22px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .custom-checkbox label:before {
@@ -35262,7 +35262,7 @@ textarea {
 
 .datepicker-field input {
   height: 38px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.875rem;
   padding: 7px 16px;
   border-radius: 4px;
@@ -35291,7 +35291,7 @@ textarea {
 
 .main-nav .nav-item a {
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   text-decoration: none;
 }
 
@@ -35377,7 +35377,7 @@ textarea {
 
 .navbar-dark .navbar-nav .nav-link {
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .left-cog {
@@ -35821,7 +35821,7 @@ textarea {
 .main-panel .heading-panel h3 {
   color: #1A1A1A;
   font-size: 1.125rem;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   line-height: 16px;
   margin-top: 8px;
 }
@@ -35834,7 +35834,7 @@ textarea {
 
 .main-panel .heading-panel p {
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.8rem;
   margin-bottom: 16px;
 }
@@ -35858,7 +35858,7 @@ textarea {
   margin: 0;
   padding: 0px 11px 0px 0px;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .smallchart {
@@ -35903,7 +35903,7 @@ textarea {
   font-size: 12px !important;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin: 0 auto;
   text-transform: uppercase !important;
   width: 100%;
@@ -35916,7 +35916,7 @@ span.ag-header-icon.ag-filter-icon.ag-hidden p {
 }
 
 body .ag-header .ag-filter-icon p span {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin-top: 11px;
 }
 
@@ -35958,7 +35958,7 @@ body .ag-header .ag-filter-icon p span {
 }
 
 .discussion-panel h5 {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   color: #1A1A1A;
   font-size: 0.875rem;
   margin-bottom: 8px;
@@ -35966,7 +35966,7 @@ body .ag-header .ag-filter-icon p span {
 
 .discussion-panel h5 span {
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.75rem;
   margin-left: 16px;
 }
@@ -35980,7 +35980,7 @@ body .ag-header .ag-filter-icon p span {
   color: #838383;
   font-size: 0.75rem;
   text-align: center;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   position: relative;
   text-transform: uppercase;
   background-color: #fff;
@@ -36019,7 +36019,7 @@ body .ag-header .ag-filter-icon p span {
 }
 
 .discussion-panel .panel-heading h3 {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   color: #1A1A1A;
   font-size: 1.125rem;
   margin: 0;
@@ -36075,7 +36075,7 @@ body .ag-header .ag-filter-icon p span {
   display: inline-block;
   width: 100px;
   top: -13px;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   color: #838383;
 }
 
@@ -36122,7 +36122,7 @@ body .ag-header .ag-filter-icon p span {
 
 .profile-message p {
   font-size: 13.5px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   color: #1A1A1A;
   margin-bottom: 0;
   line-height: 19px;
@@ -36158,7 +36158,7 @@ body .ag-header .ag-filter-icon p span {
 
 .chart-legends h2 {
   font-size: 25px;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   margin-top: 0;
 }
 
@@ -36224,7 +36224,7 @@ body .ag-header .ag-filter-icon p span {
 .widget-box h3 {
   font-size: 0.75rem;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   text-transform: uppercase;
   margin-bottom: 15px;
 }
@@ -36241,7 +36241,7 @@ body .ag-header .ag-filter-icon p span {
 
 .widget-box h2 {
   font-size: 25px;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   margin-top: -3px;
   margin-bottom: 15px;
 }
@@ -36408,7 +36408,7 @@ body .vue-grid-item .list-action i:focus {
 
 .mx-calendar-table td,
 .mx-calendar-table th {
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .mx-calendar-table {
@@ -36615,7 +36615,7 @@ body .vue-grid-item .list-action i:focus {
 .performance-charts span.number-chart-counts {
   font-size: 1.5rem;
   color: #8200ff;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 @media (max-width: 767px) {
@@ -36770,7 +36770,7 @@ body .vue-grid-item .list-action i:focus {
   border-right: 0px;
   position: relative;
   float: left;
-  font-family: "berthold_akzidenz_grotesk_be_regular" !important;
+  font-family: "AkzidenzGroteskBE-Regular" !important;
 }
 
 @media (max-width: 768px) {
@@ -36818,7 +36818,7 @@ body .vue-grid-item .list-action i:focus {
 
 .add-widget-container .tab-heading h3 {
   font-size: 14px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   line-height: 21px;
 }
 
@@ -37041,12 +37041,12 @@ body .vue-grid-item .list-action i:focus {
 
 .no-records-found p {
   font-size: 1.125rem;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   margin-bottom: 10px;
 }
 
 .no-records-found p.sub-text {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .report-relationship .no-records-found {
@@ -37415,7 +37415,7 @@ body .query-builder .rule-value-container {
   padding: 0 8px;
   min-width: 80px;
   height: 32px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-weight: bold;
   text-transform: uppercase;
   background: none;
@@ -37456,7 +37456,7 @@ body .query-builder .rule-value-container {
   color: #FF8500;
   border-color: transparent;
   text-transform: capitalize;
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   font-weight: bold;
 }
 
@@ -37474,7 +37474,7 @@ body .query-builder .rule-value-container {
 
 .query-builder .rules-group-header .group-actions .btn i.glyphicon-plus:before {
   content: '+';
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
   font-size: 17px;
   font-weight: 800;
   font-style: normal;
@@ -38426,7 +38426,7 @@ a:hover, a:focus {
 
 .vue-treeselect .vue-treeselect__list-item .vue-treeselect__label {
   font-size: 14px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .vue-treeselect .vue-treeselect__option--highlight {
@@ -38917,7 +38917,7 @@ i[active="true"] {
 
 .breadcrum ul li a {
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 0.75rem;
 }
 
@@ -38960,7 +38960,7 @@ i[active="true"] {
 
 .title-area .description-area h2 {
   font-size: 1.125rem;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   color: #1A1A1A;
   margin-bottom: 12px;
 }
@@ -38980,7 +38980,7 @@ i[active="true"] {
 .title-area .description-area h4 {
   font-size: 13px;
   line-height: 11px;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   color: #838383;
   margin-bottom: 15px;
 }
@@ -39269,7 +39269,7 @@ i[active="true"] {
   width: 100%;
   position: relative;
   float: left;
-  font-family: "berthold_akzidenz_grotesk_be_regular" !important;
+  font-family: "AkzidenzGroteskBE-Regular" !important;
 }
 
 .setting-nav .nav-icons.col .navbar-nav li.nav-item .nav-link a:after {
@@ -39311,7 +39311,7 @@ i[active="true"] {
   font-size: 0.875rem;
   padding: 4px 22px 13px 16px;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 1140px) {
@@ -39324,7 +39324,7 @@ i[active="true"] {
 .add-panel p {
   font-size: 0.875rem;
   color: #838383;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   padding: 0 16px 22px 16px;
   margin-bottom: 0;
 }
@@ -39809,14 +39809,14 @@ i[active="true"] {
   font-size: 0.875rem;
   color: #FF8500;
   padding-left: 40px;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .add-relations span {
   text-decoration: underline;
   font-size: 0.875rem;
   color: #FF8500;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .custom-radio {
@@ -39837,7 +39837,7 @@ i[active="true"] {
 }
 
 .custom-radio .custom-control-label {
-  font-family: "berthold_akzidenz_grotesk_be_medium";
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .custom-radio .custom-control-label::before {
@@ -39902,7 +39902,7 @@ i[active="true"] {
   .data-field .content:before {
     content: attr(data-label);
     float: left;
-    font-family: "berthold_akzidenz_grotesk_be_bold";
+    font-family: "AkzidenzGroteskBE-Bold";
     position: relative;
     top: 8px;
     padding-bottom: 13px;
@@ -39975,7 +39975,7 @@ i[active="true"] {
   .data-field .content:before {
     content: attr(data-label);
     float: left;
-    font-family: "berthold_akzidenz_grotesk_be_bold";
+    font-family: "AkzidenzGroteskBE-Bold";
     position: relative;
     top: 8px;
     padding-bottom: 13px;
@@ -40078,7 +40078,7 @@ i[active="true"] {
 }
 
 .widget-type.light-heading .custom-control label {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .widget-review {
@@ -40137,7 +40137,7 @@ i[active="true"] {
 }
 
 .table-row-detail .list-group-item h4 {
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   font-size: 23px;
 }
 
@@ -40289,7 +40289,7 @@ i[active="true"] {
 .steps-details .col-6 h6 {
   color: #1A1A1A;
   font-size: 0.875rem;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin-bottom: 9px;
 }
 
@@ -40324,7 +40324,7 @@ i[active="true"] {
 .steps-details .chart-legends .divider h3 {
   font-size: 0.75rem;
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin-bottom: 14px;
 }
 
@@ -40395,7 +40395,7 @@ i[active="true"] {
 
 .steps-details .import-legend .divider h2 {
   margin-top: 0;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 768px) {
@@ -40454,7 +40454,7 @@ i[active="true"] {
 
 .upload-panel h5 {
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   font-size: 0.875rem;
   margin-bottom: 12px;
 }
@@ -40469,7 +40469,7 @@ i[active="true"] {
   font-size: 0.875rem;
   margin-bottom: 0;
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
   line-height: 1.2;
 }
 
@@ -40533,7 +40533,7 @@ i[active="true"] {
   margin-bottom: 22px;
   color: #1A1A1A;
   font-size: 0.875rem;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 1140px) {
@@ -40556,7 +40556,7 @@ i[active="true"] {
 .progress-file p .pull-right {
   float: right;
   line-height: 1;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .progress-file .progress {
@@ -40593,7 +40593,7 @@ i[active="true"] {
   margin-bottom: 21px;
   color: #838383;
   font-size: 0.75rem;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   text-transform: uppercase;
   display: block;
   padding-left: 15px;
@@ -40632,7 +40632,7 @@ i[active="true"] {
   border-top: none;
   font-size: 0.875rem;
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 1140px) {
@@ -40664,7 +40664,7 @@ i[active="true"] {
 }
 
 .table-graphs .table tr td:nth-child(4) {
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .graph-autosize {
@@ -40691,7 +40691,7 @@ i[active="true"] {
 .relationshipsquery h4 {
   font-size: 0.875rem;
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_bold";
+  font-family: "AkzidenzGroteskBE-Bold";
   margin-bottom: 0;
 }
 
@@ -40764,7 +40764,7 @@ i[active="true"] {
   position: relative;
   margin-bottom: 0px;
   font-size: 0.875rem;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 1140px) {
@@ -40820,7 +40820,7 @@ i[active="true"] {
   right: 37px;
   font-size: 0.75rem;
   color: #1A1A1A;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 1140px) {
@@ -40848,7 +40848,7 @@ i[active="true"] {
   float: right;
   color: #FF8500;
   font-size: 0.875rem;
-  font-family: "berthold_akzidenz_grotesk_be_regular";
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 @media (max-width: 1140px) {
