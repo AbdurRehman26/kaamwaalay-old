@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
+use App\Data\Models\Role;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {

@@ -11,11 +11,9 @@ class User extends Model
     
     public function getProfileImageAttribute($value){
 
-        return $data->profile_image ? Storage::url(config('uploads.user.folder_name').'/'.$data->profile_image) : null;
+        return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
 
     }
-
-
 
 
 }
