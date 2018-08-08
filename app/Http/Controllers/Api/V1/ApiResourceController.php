@@ -30,6 +30,8 @@ abstract class ApiResourceController extends Controller
         
         $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
 
+        $input['pagination'] = empty($input['pagination']) ? false: true; 
+
         $data = $this->_repository->findByAll($input['pagination'], $per_page, $input);
 
         $output = [

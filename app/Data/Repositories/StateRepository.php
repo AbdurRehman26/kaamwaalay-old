@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\State;
+use App\Data\Models\Country;
 
 class StateRepository extends AbstractRepository implements RepositoryContract
 {
@@ -39,5 +40,21 @@ class StateRepository extends AbstractRepository implements RepositoryContract
         $this->model = $model;
         $this->builder = $model;
 
+    }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+
+        $countryId = Country::USA;
+        if(!empty($data['country_id'])){
+            $countryId = $data['country_id'];
+        }
+
+        $this->builder = $this->model
+                            ->where('country_id', '=' , $countryId)
+                            ->orderBy('name', 'ASC')
+                            ;
+   
+        return  parent::findByAll($pagination, $perPage);
+    
     }
 }
