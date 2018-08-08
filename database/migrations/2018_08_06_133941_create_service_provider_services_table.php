@@ -19,6 +19,9 @@ class CreateServiceProviderServicesTable extends Migration {
 			$table->integer('service_id')->unsigned()->nullable()->index();
 			$table->timestamps();
 			$table->softDeletes();
+
+            $table->unique(['service_provider_profile_request_id' , 'service_id'])->index('sppui');
+
 		});
 	}
 

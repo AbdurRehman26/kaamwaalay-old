@@ -16,7 +16,7 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -40,4 +40,15 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
         $this->builder = $model;
 
     }
+
+    public function findCollectionByCriteria($criteria , $whereInModelIds = false)
+    {
+        $this->builder = $this->model->where($criteria);
+        if(is_array($whereInModelIds)){
+            $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
+        }
+
+        return $this->findByAll();
+    }
+
 }

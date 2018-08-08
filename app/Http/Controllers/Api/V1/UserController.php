@@ -28,7 +28,7 @@ class UserController extends ApiResourceController
             $rules['id'] =  'required|exists:users,id';
             $rules['user_details.first_name']    = 'required';
             $rules['user_details.last_name']     = 'required';
-            $rules['user_details.email']         = 'required|email|unique:users,email';
+            // $rules['user_details.email']         = 'required|email|unique:users,email';
     
     }
 
@@ -52,7 +52,7 @@ class UserController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'user_details');
+    $input = request()->only('id', 'user_details', 'business_details', 'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role');
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
 }

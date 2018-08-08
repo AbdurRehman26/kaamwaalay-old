@@ -35,7 +35,6 @@ Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
 Vue.use(VueAxios);
-Vue.use(VueAuthenticate);
 Vue.use(VeeValidate);
 Vue.use(InfiniteLoading);
 Vue.use(Vuex);

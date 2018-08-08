@@ -17,7 +17,7 @@ class CreateServiceProviderProfileRequestsTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
 			$table->text('reason', 65535)->nullable();
-			$table->integer('approved_by')->unsigned();
+			$table->integer('approved_by')->nullable()->unsigned();
 			$table->dateTime('approved_at')->nullable();
 			$table->enum('status', array('approved','pending','rejected'))->default('pending');
 			$table->timestamps();

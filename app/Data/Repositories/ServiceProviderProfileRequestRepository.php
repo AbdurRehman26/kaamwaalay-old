@@ -40,4 +40,30 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         $this->builder = $model;
 
     }
+
+    public function findCollectionByCriteria($criteria , $whereInModelIds = false)
+    {
+        $this->builder = $this->model->where($criteria);
+        if(is_array($whereInModelIds)){
+            $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
+        }
+
+        return $this->findByAll();
+    }
+
+
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        
+        if($data){
+            $criteria = ['service_provider_profile_request_id' => $data->id];
+            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
+            $data->services = $services['data']; 
+        }
+
+        return $data;
+    }
+
+
 }

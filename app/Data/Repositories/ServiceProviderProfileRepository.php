@@ -16,7 +16,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -40,4 +40,29 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $model;
 
     }
-}
+
+
+        /**
+     *
+     * This method will fetch single model by attribute
+     * and will return output back to client as json
+     *
+     * @access public
+     * @return mixed
+     *
+     * @author Usaama Effendi <usaamaeffendi@gmail.com>
+     *
+     **/
+        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+            $model = $this->model->newInstance()
+            ->where($crtieria);
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+            }
+
+            if ($model != NULL) {
+                $model = $this->findById($model->id, $refresh, $details, $encode);
+            }
+            return $model;
+        }
+    }
