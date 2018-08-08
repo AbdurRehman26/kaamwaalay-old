@@ -10536,7 +10536,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda);
-  src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?34da3020831334e7676999a87ef31cb6) format("truetype"), url(/fonts/icomoon.woff?20cbad071de733d0497f5f9fa19e1101) format("woff"), url(/fonts/icomoon.svg?8b09d3e83ef7333539949daca3b0c9de#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?34da3020831334e7676999a87ef31cb6) format("truetype"), url(/fonts/icomoon.woff?20cbad071de733d0497f5f9fa19e1101) format("woff"), url(/fonts/icomoon.svg?375390387c305872577bcb142c3475e1#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11195,6 +11195,230 @@ textarea::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
+body .form-group {
+  position: relative;
+}
+
+body label {
+  font-size: 14px;
+  color: #1A1A1A;
+  margin: 0 0 9px 0;
+  font-family: "AkzidenzGroteskBE-Bold";
+  padding: 0;
+  line-height: normal;
+}
+
+body label.col-form-label {
+  font-size: 14px;
+  color: #1A1A1A;
+  margin: 0 0 9px 0;
+  font-family: "AkzidenzGroteskBE-Bold";
+  padding: 0;
+  line-height: normal;
+}
+
+@media (max-width: 1140px) {
+  body label.col-form-label {
+    font-size: 13px;
+  }
+}
+
+body label.with-regular-font {
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+body .form-control {
+  height: 38px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  padding: 11px 16px;
+  border-color: #B2B2B2;
+  border-radius: 4px;
+  /* color:$text-primary-color; */
+  color: #000000;
+}
+
+body .form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #000000;
+  border-color: #80bdff;
+}
+
+body .form-group .input-icon {
+  position: absolute;
+  right: 14px;
+  top: 37px;
+  font-size: 18px;
+  display: none;
+}
+
+body .form-group.is-valid:after,
+body .form-group.is-invalid:after,
+body .form-group.has-error:after {
+  position: absolute;
+  right: 14px;
+  top: 33px;
+  font-size: 18px;
+  font-family: 'icomoon' !important;
+}
+
+body .form-group.is-invalid {
+  /*  &:after{
+                content:"";
+                position:absolute;
+                right:0;
+                top:0;
+                color:$danger-color;
+            } */
+}
+
+body .form-group.is-invalid .form-control {
+  border-color: #d9534f;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-repeat: no-repeat;
+  background-size: 21px auto;
+  background-position: 98% 53%;
+}
+
+body .form-group.is-valid .form-control {
+  border-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-repeat: no-repeat;
+  background-size: 24px auto;
+  background-position: 98% 53%;
+}
+
+body .custom-file input {
+  cursor: pointer;
+}
+
+body .custom-file .custom-file-label {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #B2B2B2;
+  overflow: hidden;
+}
+
+body .custom-file-input:focus ~ .custom-file-label {
+  border-color: #ced4da;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.custom-checkbox {
+  position: relative;
+  padding-left: 0;
+}
+
+.custom-checkbox label {
+  position: relative;
+  padding-left: 22px;
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.custom-checkbox label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border: solid 1px #B2B2B2;
+  border-radius: 4px;
+}
+
+.custom-checkbox label i {
+  position: absolute;
+  left: 2px;
+  top: 4.5px;
+  color: #fff;
+  font-weight: lighter;
+  font-size: 10px;
+  width: 15px;
+  display: none;
+}
+
+.custom-checkbox label strong {
+  padding-left: 0px;
+  font-size: 13px;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 99;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+  background-color: #1A1A1A;
+  border-color: #1A1A1A;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label i {
+  display: block;
+}
+
+textarea {
+  height: 100px !important;
+  resize: none;
+}
+
+.sorting-checkbox .custom-control-label:before {
+  background-color: transparent !important;
+  border: 1px solid #dddddd !important;
+}
+
+.sorting-checkbox .custom-control-label:after {
+  left: 1px !important;
+  top: 0 !important;
+}
+
+.sorting-checkbox .custom-checkbox {
+  margin-left: -18px;
+  top: 5px;
+}
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  width: 93%;
+  height: calc(2.19rem + 2px);
+  margin-bottom: 0;
+}
+
+.uploded-picture {
+  width: 37px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  background-size: 100%;
+  margin-top: 1px;
+  border: 1px solid #d9d9d9;
+}
+
+.radio-group-row {
+  margin-top: 7px;
+}
+
+.radio-group-row label {
+  margin: 0 15px 0 0;
+}
+
+.radio-group-row .form-check {
+  position: relative;
+  top: 3px;
+}
+
 .btn {
   height: 44px;
   color: #F5F5F5;
@@ -11348,6 +11572,25 @@ textarea::-webkit-scrollbar-thumb {
 
 .btn.show-spinner .button-loader {
   display: block;
+}
+
+.fb-btn {
+  position: relative;
+}
+
+.fb-btn a.btn {
+  width: 100%;
+  font-size: 16px;
+  background-color: #3B579D;
+  border-color: #3B579D;
+  margin-bottom: 20px;
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.fb-btn a span {
+  position: absolute;
+  font-size: 21px;
+  margin-left: -30px;
 }
 
 .header {
@@ -11588,5 +11831,27 @@ textarea::-webkit-scrollbar-thumb {
 
 .avability-app a:last-child {
   margin-right: 0px;
+}
+
+.sign-up {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.sign-up h1 {
+  margin: 60px 0 40px 0;
+}
+
+.sign-up-form {
+  border: 1px solid #E0E0E0;
+  padding: 33px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.form-detail p {
+  font-size: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin-top: 30px;
 }
 

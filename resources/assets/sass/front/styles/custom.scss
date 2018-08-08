@@ -189,3 +189,31 @@
         }
     }
 }
+
+
+
+
+// Sign Up Sass Start
+
+.sign-up {
+    max-width: 850px;
+    margin: 0 auto;
+    h1 {
+        margin:60px 0 40px 0;
+    }
+}
+
+.sign-up-form {
+    border: 1px solid $grey-lite; 
+    padding: 33px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+.form-detail {
+    p {
+        font-size: $font-size-xxs;
+        font-family:$font_regular;
+        margin-top: 30px;
+    }
+}
+// Sign Up Sass End

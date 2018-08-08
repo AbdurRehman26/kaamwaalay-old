@@ -64821,6 +64821,240 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e0cfbb98\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/sign-up/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sign-up-info" }, [
+      _c("h1", [_vm._v("Sign Up")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        {
+          staticClass: "nav nav-tabs",
+          attrs: { id: "myTab", role: "tablist" }
+        },
+        [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link active",
+                attrs: {
+                  id: "home-tab",
+                  "data-toggle": "tab",
+                  href: "#home",
+                  role: "tab",
+                  "aria-controls": "home",
+                  "aria-selected": "true"
+                }
+              },
+              [_vm._v("I want to hire a service provider")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  id: "profile-tab",
+                  "data-toggle": "tab",
+                  href: "#profile",
+                  role: "tab",
+                  "aria-controls": "profile",
+                  "aria-selected": "false"
+                }
+              },
+              [_vm._v("I want to grow my business")]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane active",
+            attrs: {
+              id: "home",
+              role: "tabpanel",
+              "aria-labelledby": "home-tab"
+            }
+          },
+          [_vm._v("...")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: {
+              id: "profile",
+              role: "tabpanel",
+              "aria-labelledby": "profile-tab"
+            }
+          },
+          [_vm._v("...")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: {
+              id: "messages",
+              role: "tabpanel",
+              "aria-labelledby": "messages-tab"
+            }
+          },
+          [_vm._v("...")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: {
+              id: "settings",
+              role: "tabpanel",
+              "aria-labelledby": "settings-tab"
+            }
+          },
+          [_vm._v("...")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sign-up-form" }, [
+        _c("div", { staticClass: "fb-btn" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { href: "javascript:;" }
+                },
+                [
+                  _c("span", { staticClass: "icon-facebook-official" }),
+                  _vm._v("Sign up with Facebook")
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-signup" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Enter your first name"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Enter your last name" }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Email Address")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Enter your first email address"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Enter your account password"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "btn btn-primary", attrs: { href: "javascript" } },
+              [_vm._v("Create Account")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-detail" }, [
+              _c("p", [
+                _vm._v(
+                  "By clicking Create Account or Sign Up with Facebook you agree to the "
+                ),
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _vm._v("Terms of Use")
+                ]),
+                _vm._v(" and "),
+                _c("a", { attrs: { href: "javascript" } }, [
+                  _vm._v("Privacy Policy")
+                ]),
+                _vm._v(".")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e0cfbb98", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f237a478\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Alert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82958,6 +83192,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/sign-up/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e0cfbb98\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/sign-up/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\sign-up\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e0cfbb98", Component.options)
+  } else {
+    hotAPI.reload("data-v-e0cfbb98", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/front-app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -82972,7 +83254,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue__ = __webpack_require__("./node_modules/bootstrap-vue/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_fancybox__ = __webpack_require__("./node_modules/vue-fancybox/src/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_fancybox___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_fancybox__);
-/*Main vue js*/
+/*Front Main vue js*/
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
@@ -83028,6 +83310,18 @@ var routes = [{
         bodyClass: 'Join_pro'
     },
     component: __webpack_require__("./resources/assets/js/components/front/join-as-pro/main.vue")
+},
+
+// Sign Up
+
+{
+    name: 'Sign Up',
+    path: '/sign-up',
+    meta: {
+        title: 'Professional Service Marketplace | Sign Up',
+        bodyClass: 'sign-up'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/sign-up/main.vue")
 }];
 
 // Create the router instance

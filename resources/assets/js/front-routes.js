@@ -21,6 +21,21 @@ const routes = [
         component: require('./components/front/join-as-pro/main.vue'),
     },
 
+
+
+    // Sign Up
+
+    {
+        name: 'Sign Up',
+        path: '/sign-up',
+        meta: {
+            title: 'Professional Service Marketplace | Sign Up',
+            bodyClass: 'sign-up',
+        },
+        component: require('./components/front/sign-up/main.vue'),
+    },
+
+
 ]
 
 

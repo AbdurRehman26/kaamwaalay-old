@@ -130,3 +130,21 @@
     }
   }
 }
+.fb-btn {
+    position: relative;
+    a {
+        &.btn {
+                width: 100%;
+                font-size: 16px;
+                background-color: #3B579D;
+                border-color: #3B579D;
+                margin-bottom: 20px;
+                font-family: $font_medium;
+        }
+        span {
+            position: absolute;
+            font-size: 21px;
+            margin-left: -30px;
+        }
+    }
+}
