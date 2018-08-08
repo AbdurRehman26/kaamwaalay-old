@@ -11,6 +11,16 @@
 			</div>
 		</div>
 		<!-- banner section end -->
+
+		<!-- Local Work section start-->
+
+		<div class="">
+			
+		</div>
+
+		<!-- Local Work section start-->
+
+
 	</div>
 </template>
 
@@ -18,7 +28,7 @@
 export default {
   data () {
     return {
-    	bannerimage: '/images',
+    	bannerimage: '/images/',
     	}
   	},
     methods: {

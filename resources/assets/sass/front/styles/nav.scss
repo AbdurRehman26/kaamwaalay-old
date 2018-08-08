@@ -1,0 +1,432 @@
+.main-nav {
+    position: relative;
+    height: 56px;
+    width: calc(100% - 250px);
+    float: right;
+    .nav-item {
+        a {
+            color: #1A1A1A;
+            font-family: $font_bold;
+            text-decoration: none;
+
+            @include tabletL{
+                font-size: 13px;
+                vertical-align: bottom;
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+                outline: none;
+            }
+        }
+    }
+}
+
+.navbar-dark {
+    .navbar-toggler-icon {
+        background-color: $primary-color;
+
+        @include mobile{
+            display: none;
+        }
+    }
+}
+
+.navbar-collapse{
+    .navbar-nav{
+        position: relative;
+        left: 8px;
+
+        @include tablet{
+            left: -9px;
+        }
+
+        @include mobile{
+            left: 0;
+        }
+
+        .col-10{
+           @include mobile{
+                padding-left: 8px;
+           }
+        }
+    }
+}
+
+.navbar-nav .active>.nav-link {
+    color: $secondary-color !important;
+}
+
+.navbar-nav .router-link-active {
+    color: $secondary-color !important;
+}
+
+.nav-head {
+    background: #fff;
+    border:solid 1px $primary-color-lighten;
+    padding: 12px 30px;
+    position: fixed;
+    right: 0px;
+    z-index: 9;
+    height: 69px;
+    width: calc(100% - 248px);
+    @include tablet{
+         z-index: 99;
+    }
+    @include mobile{
+        flex-direction: row-reverse;
+    }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: $text-primary-color;
+    font-family: $font_bold;
+}
+
+.left-cog {
+    text-align: right;
+    position: relative;
+
+    @include tablet{
+        position: fixed;
+        top: 12px;
+        right: 56px;
+    }
+
+    i {
+        font-size: 24px;
+        top: 2px;
+
+        @include tabletL{
+            font-size: 21px;
+        }
+
+        &.icon-notifications-outline {
+            position: relative;
+            font-size: 26px;
+        }
+    }
+    span {
+        margin-left: 21px;
+        vertical-align: middle;
+        display: inline-block;
+        cursor: pointer;
+
+        @include Desktop1380{
+            margin-left: 11px;
+        }
+
+        @include tabletL{
+            margin-left: 5px;
+        }
+    }
+    .notify-dropdown {
+        position: absolute;
+        right: -19px;
+        top: 12px;
+        width: 335px;
+        max-height: 277px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        border: 1px solid $greyM;
+        padding: 25px;
+        text-align: left;
+        background-color: #fff;
+
+        @include mobile{
+            right: -129px;
+        }
+
+        &.scrollbar {
+            min-height: 338px;
+        }
+        .notify-block {
+            position: relative;
+        }
+        .notify-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .right-notification {
+            width: calc(100% - 42px);
+            display: inline-block;
+            border-bottom: 1px solid $greyM;
+            margin-left: 6px;
+            margin-bottom: 14px;
+            padding-bottom: 17px;
+
+            p {
+                font-size: 12px;
+                margin-bottom: 0px;
+                &:first-child {
+                    margin-bottom: 0;
+                    color: $greyD;
+                    strong {
+                        color: #1a1a1a;
+                    }
+                    span{
+                        margin-top: -9px;
+                    }
+                }
+                &:nth-child(2) {
+                    margin: 4px 0px;
+                    line-height: 14px;
+                }
+                &:nth-child(3) {
+                    color: $greyD;
+                }
+            }
+            span {
+                color: $secondary-color;
+                margin-left: 0;
+            }
+        }
+    }
+    a {
+        position: relative;
+        top: 2px;
+        i{
+            color: #1A1A1A;
+        }
+    }
+}
+.notification-block{
+    position: relative;
+    &:after{
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: -6px;
+        width: 22px;
+        height: 25px;
+        background-image: url('../images/caret-top.png');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+    .notify-list{
+        &:last-child{
+            .right-notification{
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: 0;
+            }
+        }
+    }
+}
+.nav-icons {
+    i {
+        margin-right: 13px;
+        font-size: 24px;
+        vertical-align: middle;
+
+        @include tabletL{
+            font-size: 22px;
+            display: none;
+        }
+
+        @include tablet{
+            font-size: 22px;
+            display: inline-block;
+        }
+    }
+}
+
+.navbar {
+    .nav-logo {
+        width: 260px;
+        max-width: 256px;
+        padding: 0;
+        margin: 0;
+        .logo{
+            position:relative;
+            left:20px;
+
+            @include tabletL{
+                left: 0;
+            }
+        }
+        img {
+            height: 35px;
+            display: inline;
+
+            @include tablet{
+                display: block;
+            }
+        }
+        &.col-2{
+            @include Desktop1440{
+                flex: 0 0 18.666667%;
+            }
+            @include Desktop1380{
+                flex: 1 0 18.666667%;
+            }
+
+            @include tabletL{
+                flex:1 0 10.666667%;
+            }
+        }
+    }
+    a:hover,
+    a:focus {
+        color: $secondary-color !important;
+    }
+}
+
+.user-img {
+    width: 37px;
+    height: 37px;
+    display: inline-block;
+    border-radius: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+    background-color: $greyM;
+    position: relative;
+    background-image:url('/../../images/dummy/image-placeholder.jpg');
+    background-size: cover;
+    background-position: center;
+
+    &.radius-0{
+        border-radius:0;
+    }
+    @include Desktop1380{
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.spinnerloader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    background-color: #ffffff;
+    img{
+        margin: auto;
+        animation: load8 1.1s infinite linear;
+        top: auto;
+        bottom: auto;
+    }
+}
+
+
+.nav-link {
+    padding: 0px;
+}
+
+.badge-count {
+    position: absolute;
+    border-radius: 100%;
+    width: 13px;
+    height: 13px;
+    background-color: #D9534F;
+    font-size: 9px;
+    right: -2px;
+    margin-left: 0 !important;
+    top: 2px;
+    color: #fff;
+    text-align: center;
+    line-height: 13px;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0;
+    margin-right: 31px;
+
+    @include windowS{
+        margin-right: 15px;
+    }
+
+    @include tabletL{
+        margin-right: 19px;
+    }
+
+    @include tablet{
+        margin-right: 16px;
+    }
+}
+
+.navbar-collapse {
+    @include tablet{
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        top: 53px;
+        padding-left: 6px;
+        right: 0;
+        display: block!important;
+        box-shadow: 0px 0 4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    @include mobile{
+        padding-left: 0;
+    }
+
+    .col-10, .col-2{
+        @include tablet{
+            max-width: 100%;
+        }
+    }
+
+    &.d-block{
+        display:block !important;
+    }
+}
+
+.navbar-expand-md{
+    .navbar-nav{
+        @include tablet{
+            // flex-direction:column;
+        }
+
+        .nav-item{
+            @include tablet{
+                padding-bottom: 13px;
+                padding-top: 13px;
+            }
+
+            @include mobile{
+                padding-bottom: 10px;
+                padding-top: 11px;
+                border-bottom: dashed 1px $greyM;
+            }
+
+            &:last-child{
+                @include mobile{
+                    border-bottom: none;
+                     padding-bottom: 18px;
+                }
+            }
+
+            i{
+                @include mobile{
+                    vertical-align: sub;
+                }
+            }
+        }
+    }
+}
+
+.left-menu-icon{
+    display: none!important;
+    float: left;
+    width: 23px!important;
+    margin-top: 7px;
+    margin-left: 10px;
+
+    @include tablet{
+        display: block!important;
+        margin-left: 0;
+        margin-right: 17px;
+    }
+}

@@ -1,0 +1,49 @@
+.page-loader{
+  position:fixed;
+  width:100%;
+  left:0;
+  top:0px;
+  z-index: 999999;
+  height:4px;
+  overflow:hidden;
+  background:$page-loader-bg;
+  text-align:center;
+  display:none;
+    @include tabletL{
+      left: 0;
+      top:60px;
+      width: 100%;
+    }
+    @include mobile{
+      top: 44px;
+    }
+  .inner{
+    position:absolute;
+    height:100%;
+    background:$primary-color;
+  }
+  p{
+    position: relative;
+    top: 12px;
+    font-size:$font-size-sm;
+  }
+}
+/*
+
+@keyframes infinitePosAni{
+  0% {
+     width:1%;
+  }
+  100% {
+    width:100%;
+  }
+}
+
+@-webkit-keyframes infinitePosAni{
+  0% {
+     width:1%;
+  }
+  100% {
+    width:100%;
+  }
+} */
