@@ -111,3 +111,6 @@ Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
     'edit',
 ]);
 
+//Uploading File
+Route::post('file/upload', 'Api\V1\FileController@upload');
+Route::post('file/remove', 'Api\V1\FileController@remove');

@@ -40,4 +40,53 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         $this->builder = $model;
 
     }
+    public function findById($id, $refresh = false, $details = false, $encode = true, $input =  []) {
+        $data = parent::findById($id, $refresh, $details, $input);
+
+        if ($data) {
+            if($data->parent_id != 0){
+                $data->parent = $this->findById($data->parent_id);
+                
+            }else{
+
+            $data->parent = '';
+            }
+        }
+        
+        return $data;
+    }
+
+    public function create(array $data = []) {
+        unset($data['user_id']);
+
+        return parent::create($data);
+    }
+    public function update(array $data = []) {
+        unset($data['user_id']);
+
+        return parent::update($data);
+    }
+
+
+    public function findByAll($pagination = false,$perPage = 10, $data = []){       
+
+        $this->builder = $this->model->orderBy('created_at','desc');
+
+
+        if (!empty($data['keyword'])) {
+            
+            $this->builder = $this->builder->where(function($query)use($data){
+                $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
+                $query->orWhere('services.derscription', 'like', "%{$data['keyword']}%");
+            
+            });
+        }
+        if(!empty($data['filter_by_featured'])){
+            $this->builder = $this->builder->where('is_featured','=',$data['filter_by_featured']);
+        }
+        
+        return parent::findByAll($pagination, $perPage, $data);
+
+    }
+
 }

@@ -43,7 +43,7 @@ class JobController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'title');
+    $input = request()->only('id', 'title', 'user_id', 'service_id', 'country_id', 'state_id', 'city_id', 'title', 'description', 'address', 'apartment', 'zip_code', 'images', 'schedule_at', 'preference', 'status', 'job_type' , 'filter_by');
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
 }

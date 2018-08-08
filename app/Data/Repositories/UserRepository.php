@@ -41,6 +41,22 @@ public $model;
 
     }
 
+
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+
+        if($data->role_id == Role::SERVICE_PROVIDER){
+            // Todo
+        }
+
+        if($data->role_id == Role::CUSTOMER){
+            // Todo
+        }
+
+        return $data;
+    }
+
     public function update(array $data = []) {
 
         $input = $data;
@@ -71,7 +87,8 @@ public $model;
             if(!empty($data['services'])){
                 foreach ($data['services'] as $key => $service) {
                     if($service->id){
-                        $existingServices[] = $service->id;
+                        $existingServiceIds[$service->service_provider_profile_request_id][] = $service->id;
+                        $existingServices[] = $service;
                     }else{
                         $newServices[] = $service;
                     }
@@ -83,8 +100,19 @@ public $model;
                     }
                     app('ServiceProviderServices')->model->insert($newServices);
                 }
+
+                if(!empty($existingServiceIds)){
+                    foreach ($existingServiceIds as $key => $existingService) {
+                        app('ServiceProviderServices')->where('service_provider_profile_request_id' , $key)->whereNotIn($existingService)->delete();
+                    }
+                }
+                app('ServiceProviderServices')->model->insertOnDuplicateKey($existingServices);
+
+                $user = self::findById($user->id , true);
             }            
+            return $user;
         }
+
 
         return false;
     }
