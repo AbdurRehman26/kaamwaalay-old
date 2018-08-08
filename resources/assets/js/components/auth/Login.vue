@@ -40,7 +40,8 @@
       },
       methods: {
         onSubmit() {
-          this.$router.push('dashboard');
+          console.log(this.form);
+          this.$router.push({ name: 'dashboard'});
         },
       },
     }

@@ -1,0 +1,49 @@
+.alert{
+    /* height:$alert-height; */
+    height:auto;
+    border-radius: $global-radius;
+    padding:$alert-padding;
+
+    i{
+        position: absolute;
+        left: 14px;
+        top: 10px;
+        font-size: 19px;
+    }
+    p{
+        margin-bottom: 0px;
+    }
+}
+
+.alert-success
+{
+    background:$success-bg;
+    color:$success-color;
+    border-color: $success-border;
+
+    .icon-success{
+        display: block;
+        color:$success-color;
+        font-size: 0.9rem;
+        left: 14px;
+        top: 15px;
+    }
+    .icon-danger{
+        display: none;
+    }
+}
+
+.alert-danger
+{
+    background:$danger-bg;
+    color:$danger-color;
+    border-color: $danger-border;
+
+    .icon-success{
+        display: none;
+    }
+    .icon-danger{
+        display: block;
+        color:$danger-color;
+    }
+}

@@ -7,14 +7,14 @@ const routes = [
 
     {
         name: 'dashboard',
-        path: '/dashboard',
+        path: '/admin/dashboard',
         meta: {
             title: 'PSM | Dashboard',
             bodyClass: 'dashboard-page',
             pagetitle:'Dashboard',
             icon:'icon-speedometer'
         },
-        component: require('./components/dashboard/main.vue'),
+        component: require('./components/admin/dashboard/main.vue'),
     },
 
 
@@ -22,7 +22,7 @@ const routes = [
 
     {
         name: 'login',
-        path: '/',
+        path: '/admin',
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
@@ -32,25 +32,13 @@ const routes = [
         component: require('./components/auth/main.vue'),
     },
 
-    /* Admin Users */
 
-    {
-        name: 'user',
-        path: '/admin',
-        title:'Admin',
-        component: require('./components/admin/Main.vue'),
-        meta: {
-            title: 'PSM | User',
-            pagetitle:'Admin',
-            icon:'icon-lock_outline'
-        }
-    },
 
     /* Login page */
 
     {
-        name: 'login',
-        path: '/create-password',
+        name: 'createpassword',
+        path: '/admin/create-password',
         meta: {
             title: 'PSM | Create Password',
             bodyClass: 'login-page',
@@ -64,8 +52,9 @@ const routes = [
     /* Service Type */
 
     {
-        path: '/service-type',
-        component: require('./components/service-type/main.vue'),
+        name: 'servicetype',
+        path: '/admin/service-type',
+        component: require('./components/admin/service-type/main.vue'),
         meta: {
             title: 'PSM | Service Type',
             pagetitle:'Service Types',
@@ -76,8 +65,9 @@ const routes = [
     /* Customer Panel */
 
     {
-        path: '/customer',
-        component: require('./components/customer/main.vue'),
+        name: 'customer',
+        path: '/admin/customer',
+        component: require('./components/admin/customer/main.vue'),
         meta: {
             title: 'PSM | Customer Panel' ,
             pagetitle:'Customers',
@@ -86,8 +76,20 @@ const routes = [
 
     },
     {
-        path: '/customer/viewjobdetail',
-        component: require('./components/customer/ViewJobDetail.vue'),
+        name: 'customerdetail',
+        path: '/admin/customer/customer_detail',
+        component: require('./components/admin/customer/CustomerDetails.vue'),
+        meta: {
+            title: 'PSM | Customer Detail' ,
+            pagetitle:'Customers Detail',
+            icon:'icon-users'
+        }
+
+    },
+    {
+        name: 'customerjobdetail',
+        path: '/admin/customer/viewjobdetail',
+        component: require('./components/admin/customer/ViewJobDetail.vue'),
         meta: {
             title: 'View Job Detail',
             pagetitle:'Customer Job detail Section',
@@ -98,8 +100,9 @@ const routes = [
     /* Service Provider */
 
     {
-        path: '/service-provider',
-        component: require('./components/service-provide/main.vue'),
+        name: 'serviceprovider',
+        path: '/admin/service-provider',
+        component: require('./components/admin/service-provide/main.vue'),
         meta: {
             title: 'PSM | Service Provider',
             pagetitle:'Service Providers',
@@ -107,11 +110,23 @@ const routes = [
         }
     },
 
+    {
+        name: 'viewservicejobdetail',
+        path: '/admin/service-provider/viewjobdetail',
+        component: require('./components/admin/service-provide/ViewJobDetail.vue'),
+        meta: {
+            title: 'PSM | View Jobs',
+            pagetitle:'Service Jobs Detail',
+            icon:'icon-handshake-o'
+        }
+    },
+
     /* Job */
 
     {
-        path: '/jobs',
-        component: require('./components/job/Main.vue'),
+        name: 'jobdetail',
+        path: '/admin/jobs',
+        component: require('./components/admin/job/Main.vue'),
         meta: {
             title: 'PSM | Create Job',
             pagetitle:'Jobs',
@@ -122,8 +137,9 @@ const routes = [
     // Job detail Section
 
     {
-        path: '/jobs/viewjobdetail',
-        component: require('./components/job/JobDetails.vue'),
+        name: 'mainjobdetail',
+        path: '/admin/jobs/viewjobdetail',
+        component: require('./components/admin/job/JobDetails.vue'),
         meta: {
             title: 'Job Details',
             pagetitle:'Job Details',
@@ -134,8 +150,8 @@ const routes = [
 
     {
         name: 'BiddingDetails',
-        path: '/jobs/biddingdetails',
-        component: require('./components/job/BiddingDetails.vue'),
+        path: '/admin/jobs/biddingdetails',
+        component: require('./components/admin/job/BiddingDetails.vue'),
         meta: {
             title: 'Bidding Details',
             pagetitle:'Bidding Details',
@@ -149,8 +165,9 @@ const routes = [
 
 
     {
-        path: '/service-provider-review',
-        component: require('./components/service-provider-review/main.vue'),
+        name: 'Service_Provider_Review',
+        path: '/admin/service-provider-review',
+        component: require('./components/admin/service-provider-review/main.vue'),
         meta: {
             title: 'PSM | Service provider review',
             pagetitle:'Service Provider Review',
@@ -160,8 +177,8 @@ const routes = [
 
     {
         name: 'Service_Detail_Review',
-        path: '/service-provider-review/detail-review',
-        component: require('./components/service-provider-review/DetailReview.vue'),
+        path: '/admin/service-provider-review/detail-review',
+        component: require('./components/admin/service-provider-review/DetailReview.vue'),
         meta: {
             title: 'PSM | Service provider review',
             pagetitle:'Service Provider Detail Review',
@@ -172,8 +189,9 @@ const routes = [
     // Service provider detail
 
     {
-        path: '/service-provider/service-provider-detail',
-        component: require('./components/service-provide/providerdetails.vue'),
+        name: 'Service_Provider_Detail',
+        path: '/admin/service-provider/service-provider-detail',
+        component: require('./components/admin/service-provide/providerdetails.vue'),
         meta: {
             title: 'PSM | Service provider details',
             pagetitle:'Service Provider Details',
@@ -184,8 +202,9 @@ const routes = [
     // General Setting
 
     {
-        path: '/general-setting',
-        component: require('./components/general-setting/main.vue'),
+        name: 'General_Setting',
+        path: '/admin/general-setting',
+        component: require('./components/admin/general-setting/main.vue'),
         meta: {
             title: 'PSM | General Setting',
             pagetitle:'General Setting',
@@ -196,8 +215,9 @@ const routes = [
     // Payment
 
     {
-        path: '/payment',
-        component: require('./components/payment/main.vue'),
+        name: 'Payment',
+        path: '/admin/payment',
+        component: require('./components/admin/payment/main.vue'),
         meta: {
             title: 'PSM | Payment',
             pagetitle:'Payment',
@@ -208,12 +228,13 @@ const routes = [
     // Support
 
     {
-        path: '/support',
-        component: require('./components/support/main.vue'),
+        name: 'Support',
+        path: '/admin/support',
+        component: require('./components/admin/support/main.vue'),
         meta: {
             title: 'PSM | Support',
             pagetitle:'Support',
-            icon:'icon-credit-card'
+            icon:'icon-help_outline'
         }
     },
 
@@ -224,10 +245,26 @@ const routes = [
         path: '*',
         component: require('./components/404/Main.vue'),
         meta: {
-            title: '404 Not Found'
+            title: '404 Not Found',
+            noHeader: true,
+            bodyClass: 'not-found-page',
         },
     },
 
+    /* Admin Panel */
+
+    {
+        name: 'User Listed',
+        path: '/admin/admin-listing',
+        meta: {
+            title: 'PSM | Admin Listed',
+            bodyClass: 'Admin-listed',
+            pagetitle:'Admins',
+            icon:'icon-lock_outline'
+
+        },
+        component: require('./components/admin/Main.vue'),
+    },
 ]
 
 

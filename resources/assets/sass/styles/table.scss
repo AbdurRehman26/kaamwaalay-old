@@ -409,6 +409,8 @@ body{
             tr{
                 th{
                     border-bottom:solid 1px $primary-color-lighten;
+                    padding-left: 15px !important;
+                    padding-right: 15px !important;
                 }
             }
         }
@@ -421,6 +423,8 @@ body{
                 }
                 td{
                     border-bottom:solid 1px $primary-color-lighten;
+                    padding-left: 15px !important;
+                    padding-right: 15px !important;                    
                 }
             }
         }
@@ -441,7 +445,7 @@ body{
 /*             border: 1px solid #D4D4D4; */
             padding: 10px 25px;
 /*             border-bottom: 0px solid; */
-            font-family: $font_bold;
+            font-family: $font_regular;
 /*             border-top: 0px solid; */
             vertical-align: middle;
             &:first-child{

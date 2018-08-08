@@ -23,7 +23,7 @@
           <!-- <new-password @show-login="ShowLogin" v-if="tabVal == 'changepassword'"></new-password> -->
       </div>
       <div class="contact-us">
-         <p>Can't log in or need help? <a href="javascript:void" @click="ContactExpire">Contact Us</a></p>
+         <!-- <p>Can't log in or need help? <a href="javascript:void" @click="ContactExpire">Contact Us</a></p> -->
       </div>
     </div>
     <!-- <contactarea :showContactProp="ContactIsExpire" @HideModalValue="HideContactModal"></contactarea> -->
