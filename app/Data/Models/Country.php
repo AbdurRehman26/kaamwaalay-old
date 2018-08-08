@@ -8,4 +8,5 @@ use Yadakhov\InsertOnDuplicateKey;
 class Country extends Model
 {
     use InsertOnDuplicateKey;
+    const USA = 231;
 }
