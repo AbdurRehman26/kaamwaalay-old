@@ -245,7 +245,9 @@ const routes = [
         path: '*',
         component: require('./components/404/Main.vue'),
         meta: {
-            title: '404 Not Found'
+            title: '404 Not Found',
+            noHeader: true,
+            bodyClass: 'not-found-page',
         },
     },
 

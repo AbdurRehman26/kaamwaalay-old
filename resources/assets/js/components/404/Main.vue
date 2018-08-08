@@ -1,5 +1,5 @@
 <template>
-		<div>
+		<div class="not-found-container">
 				<not-found-panel></not-found-panel>
 <!--         <button class="custin" @click="showModal = true">asdasdasd</button> -->
 				<data-approval :showModalProp="showModalValue" @HideModalValue="HideModal"></data-approval>

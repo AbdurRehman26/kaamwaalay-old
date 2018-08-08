@@ -66,6 +66,34 @@ body{
         }
     }
 }
+.not-found-page{
+    .panel {
+        width: 100%;
+        min-height: 100%;
+    }
+    .not-found{
+        height: 100% !important;
+    }
+    .not-found-container {
+        height: 100vh;
+        display: block;
+    }
+    .not-found-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 100vh;
+        text-align: center;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }    
+}
 
 .customer-detail-title {
     margin-bottom: 20px;
