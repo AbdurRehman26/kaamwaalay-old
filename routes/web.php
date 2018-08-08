@@ -19,4 +19,4 @@ Route::get('/', function () {
     return view('layout');
 })->where('any', '.*');*/
 Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');
-Route::get('password/reset/{token}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::get('password/reset/{token}/{email}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
