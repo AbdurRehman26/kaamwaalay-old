@@ -52,12 +52,12 @@ class ActivationNotification extends Notification
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable,  $notifiable->activation_key);
         }
+        $url = url(route('activate', [
+                'token' => $notifiable->activation_key,
+            ]));
         return (new MailMessage)
             ->subject(Lang::getFromJson('Activation Notification'))
-            ->line(Lang::getFromJson('Your account has been successfully created. To activate your account, please click on the button provided below:'))
-            ->action(Lang::getFromJson('ACTIVATE '), url(config('app.url').route('activate', [
-                'token' => $notifiable->activation_key,
-            ], false)));
+             ->markdown('email.user-invite', ['url' => $url]);
     }
 
     /**

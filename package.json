@@ -20,13 +20,14 @@
         "vue": "^2.5.16"
     },
     "dependencies": {
+        "ajv-keywords": "^3.2.0",
         "amcharts3": "github:amcharts/amcharts3",
         "babel-loader": "^7.1.5",
         "bootstrap-sass": "^3.3.7",
         "bootstrap-vue": "^2.0.0-rc.11",
+        "material-icons": "^0.2.3",
         "vee-validate": "^2.0.9",
         "vue-authenticate": "^1.3.4",
-        "material-icons": "^0.2.3",
         "vue-body-class": "^2.0.0-beta.2",
         "vue-clickaway": "^2.2.2",
         "vue-faker": "^1.0.1",
@@ -39,6 +40,7 @@
         "vue-resource": "^1.5.1",
         "vue-router": "^3.0.1",
         "vue-star-rating": "^1.6.0",
+        "vue-touch": "^1.1.0",
         "vue2-datepicker": "^2.1.0",
         "vue2-typeahead": "^1.0.32",
         "vuejs-datepicker": "^1.5.2",

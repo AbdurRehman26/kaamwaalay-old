@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Data\Repositories\UserRepository;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Lang;
+use Carbon\carbon;
 class LoginController extends Controller
 {
      /*
@@ -32,9 +37,9 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $repository)
     {
-      $this->_userRepository  = app('UserRepository');
+      $this->_userRepository  = $repository;
        // $this->middleware('guest')->except('logout');
     }
     /**
@@ -113,7 +118,6 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        dd($this);
         $this->guard()->logout();
         return redirect('/');
     }
@@ -149,6 +153,7 @@ class LoginController extends Controller
                   "id" => $validated->id ,
                   "activation_key" => '' ,
                   "status" => User::ACTIVE ,
+                  "activated_at" => Carbon::now() ,
                 ];
                 if($this->_userRepository->update($data)){
                     return view('layout',['success'=>Lang::get('auth.activateSuccess'),'token'=>$input['token']]);

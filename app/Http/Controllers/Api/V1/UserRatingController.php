@@ -47,4 +47,5 @@ public function input($value='')
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
 }
+
 }

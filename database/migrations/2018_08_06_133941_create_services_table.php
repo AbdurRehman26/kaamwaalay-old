@@ -16,10 +16,11 @@ class CreateServicesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('title', 50);
-			$table->text('derscription', 65535)->nullable();
+			$table->text('description', 65535)->nullable();
 			$table->boolean('is_display_banner')->nullable()->default(0);
 			$table->boolean('is_display_service_nav')->nullable()->default(0);
 			$table->boolean('is_display_footer_nav')->nullable()->default(0);
+			$table->boolean('is_featured')->nullable()->default(0);
 			$table->string('url_prefix', 50)->nullable();
 			$table->integer('parent_id')->nullable()->default(0);
 			$table->json('images', 65535)->nullable();
