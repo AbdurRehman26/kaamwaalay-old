@@ -11189,13 +11189,238 @@ textarea::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
+body .form-group {
+  position: relative;
+}
+
+body label {
+  font-size: 14px;
+  color: #1A1A1A;
+  margin: 0 0 9px 0;
+  font-family: "AkzidenzGroteskBE-Bold";
+  padding: 0;
+  line-height: normal;
+}
+
+body label.col-form-label {
+  font-size: 14px;
+  color: #1A1A1A;
+  margin: 0 0 9px 0;
+  font-family: "AkzidenzGroteskBE-Bold";
+  padding: 0;
+  line-height: normal;
+}
+
+@media (max-width: 1140px) {
+  body label.col-form-label {
+    font-size: 13px;
+  }
+}
+
+body label.with-regular-font {
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+body .form-control {
+  height: 38px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  padding: 11px 16px;
+  border-color: #B2B2B2;
+  border-radius: 4px;
+  /* color:$text-primary-color; */
+  color: #000000;
+}
+
+body .form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #000000;
+  border-color: #80bdff;
+}
+
+body .form-group .input-icon {
+  position: absolute;
+  right: 14px;
+  top: 37px;
+  font-size: 18px;
+  display: none;
+}
+
+body .form-group.is-valid:after,
+body .form-group.is-invalid:after,
+body .form-group.has-error:after {
+  position: absolute;
+  right: 14px;
+  top: 33px;
+  font-size: 18px;
+  font-family: 'icomoon' !important;
+}
+
+body .form-group.is-invalid {
+  /*  &:after{
+                content:"";
+                position:absolute;
+                right:0;
+                top:0;
+                color:$danger-color;
+            } */
+}
+
+body .form-group.is-invalid .form-control {
+  border-color: #d9534f;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-repeat: no-repeat;
+  background-size: 21px auto;
+  background-position: 98% 53%;
+}
+
+body .form-group.is-valid .form-control {
+  border-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-repeat: no-repeat;
+  background-size: 24px auto;
+  background-position: 98% 53%;
+}
+
+body .custom-file input {
+  cursor: pointer;
+}
+
+body .custom-file .custom-file-label {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #B2B2B2;
+  overflow: hidden;
+}
+
+body .custom-file-input:focus ~ .custom-file-label {
+  border-color: #ced4da;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.custom-checkbox {
+  position: relative;
+  padding-left: 0;
+}
+
+.custom-checkbox label {
+  position: relative;
+  padding-left: 22px;
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.custom-checkbox label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border: solid 1px #B2B2B2;
+  border-radius: 4px;
+}
+
+.custom-checkbox label i {
+  position: absolute;
+  left: 2px;
+  top: 4.5px;
+  color: #fff;
+  font-weight: lighter;
+  font-size: 10px;
+  width: 15px;
+  display: none;
+}
+
+.custom-checkbox label strong {
+  padding-left: 0px;
+  font-size: 13px;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 99;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+  background-color: #1A1A1A;
+  border-color: #1A1A1A;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label i {
+  display: block;
+}
+
+textarea {
+  height: 100px !important;
+  resize: none;
+}
+
+.sorting-checkbox .custom-control-label:before {
+  background-color: transparent !important;
+  border: 1px solid #dddddd !important;
+}
+
+.sorting-checkbox .custom-control-label:after {
+  left: 1px !important;
+  top: 0 !important;
+}
+
+.sorting-checkbox .custom-checkbox {
+  margin-left: -18px;
+  top: 5px;
+}
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  width: 93%;
+  height: calc(2.19rem + 2px);
+  margin-bottom: 0;
+}
+
+.uploded-picture {
+  width: 37px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  background-size: 100%;
+  margin-top: 1px;
+  border: 1px solid #d9d9d9;
+}
+
+.radio-group-row {
+  margin-top: 7px;
+}
+
+.radio-group-row label {
+  margin: 0 15px 0 0;
+}
+
+.radio-group-row .form-check {
+  position: relative;
+  top: 3px;
+}
+
 .btn {
   height: 44px;
   color: #fff;
-  font-family: "AkzidenzGroteskBE-Bold";
-  font-size: 20px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 16px;
   padding: 10px 40px;
   min-width: 100px;
+  line-height: 22px;
 }
 
 .btn:hover,
@@ -11205,15 +11430,15 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .btn.btn-primary {
-  background: #6004BA;
-  border-color: #6004BA;
+  background: #8200FF;
+  border-color: #8200FF;
 }
 
 .btn.btn-primary:focus,
 .btn.btn-primary:visited,
 .btn.btn-primary:active {
-  background: #6004BA !important;
-  border-color: #6004BA !important;
+  background: #8200FF !important;
+  border-color: #8200FF !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
@@ -11343,6 +11568,25 @@ textarea::-webkit-scrollbar-thumb {
   display: block;
 }
 
+.fb-btn {
+  position: relative;
+}
+
+.fb-btn a.btn {
+  width: 100%;
+  font-size: 16px;
+  background-color: #3B579D;
+  border-color: #3B579D;
+  margin-bottom: 20px;
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.fb-btn a span {
+  position: absolute;
+  font-size: 21px;
+  margin-left: -30px;
+}
+
 .header {
   position: relative;
   height: 70px;
@@ -11403,17 +11647,22 @@ textarea::-webkit-scrollbar-thumb {
   text-decoration: none !important;
 }
 
-.banner {
+.main-banner {
   width: 100%;
   height: auto;
   position: relative;
+  background-size: cover;
 }
 
-.banner img {
+.main-banner .main-img {
   width: 100%;
 }
 
-.banner .content {
+.main-banner .main-img img {
+  width: 100%;
+}
+
+.main-banner .content {
   left: 0;
   right: 0;
   width: 100%;
@@ -11422,16 +11671,8 @@ textarea::-webkit-scrollbar-thumb {
   position: absolute;
 }
 
-.banner.home-banner .content-inner {
+.main-banner.home-banner .content-inner {
   max-width: 430px;
-}
-
-.main-banner {
-  background-size: cover;
-}
-
-.main-banner .container {
-  height: 100%;
 }
 
 .main-banner .banner-slogan {
@@ -11467,26 +11708,29 @@ textarea::-webkit-scrollbar-thumb {
   font-family: "AkzidenzGroteskBE-Regular";
 }
 
-.services {
-  padding: 110px 0px;
-}
-
-.services .services-head-section {
+.section-title {
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 80px;
 }
 
-.services .services-head-section h2 {
+.section-title h2 {
   font-size: 36px;
 }
 
-.services .services-head-section p {
+.section-title p {
   color: #7D7D7D;
+  margin-bottom: 0;
   font-size: 20px;
+}
+
+.white-bg {
+  background-color: #fff;
 }
 
 .services .list-image {
   display: inline-block;
+  width: 110px;
+  vertical-align: top;
 }
 
 .services .list-image .list-icon {
@@ -11508,6 +11752,168 @@ textarea::-webkit-scrollbar-thumb {
 
 .services .list-description {
   display: inline-block;
+  width: calc(100% - 116px);
+}
+
+.services .list-description h4 {
+  margin-bottom: 0;
+  padding-bottom: 16px;
+}
+
+.services .list-description p {
+  font-size: 16px;
+  line-height: 19px;
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.services .services-list ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.services.two-column .services-list ul {
+  display: block;
+}
+
+.services.two-column .services-list ul li {
+  display: inline-block;
+  width: 49%;
+  padding-bottom: 40px;
+}
+
+.services.two-column .services-list ul li:nth-last-child(2),
+.services.two-column .services-list ul li:last-child(1) {
+  padding-bottom: 0px;
+}
+
+.section-padd {
+  padding: 100px 0px;
+}
+
+.how-it-work .section-title {
+  padding-bottom: 20px;
+  margin-bottom: 0;
+}
+
+.how-it-work .list-icon {
+  min-height: 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.how-it-work .list-icon img {
+  margin: auto;
+}
+
+.elementary-banner {
+  position: relative;
+  background-color: #fff;
+}
+
+.elementary-banner .elements {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.elementary-banner .elements .bottom-left {
+  position: absolute;
+  bottom: 0;
+  max-width: 312px;
+  left: 0;
+}
+
+.elementary-banner .elements .bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 241px;
+}
+
+.elementary-banner .elements .top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 577px;
+}
+
+.elementary-banner .elements .top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 577px;
+}
+
+.elementary-banner .element-index {
+  position: relative;
+  z-index: 9;
+}
+
+.two-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.two-column .content-sec {
+  margin-right: 90px;
+  -ms-flex-negative: 1.4;
+      flex-shrink: 1.4;
+}
+
+.content-sec h2 {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.content-sec h1 {
+  font-size: 36px;
+}
+
+.content-sec p {
+  font-size: 16px;
+  color: #7D7D7D;
+  margin-bottom: 32px;
+}
+
+.avability-app a {
+  display: inline-block;
+  margin-right: 24px;
+}
+
+.avability-app a:last-child {
+  margin-right: 0px;
+}
+
+.sign-up {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.sign-up h1 {
+  margin: 60px 0 40px 0;
+}
+
+.sign-up-form {
+  border: 1px solid #E0E0E0;
+  padding: 33px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.form-detail p {
+  font-size: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin-top: 30px;
 }
 
 .featured-categories {

@@ -1,10 +1,11 @@
 .btn{
     height: $button-height;
     color: $body-bg;
-    font-family: $font_bold;
-    font-size: $font-size-sm;
+    font-family: $font_regular;
+    font-size: $font-size-xs;
     padding:$button-padding;
     min-width: 100px;
+    line-height: 22px;
 
     &:hover, &:focus{
         color: $body-bg!important;
@@ -12,12 +13,12 @@
     }
 
     &.btn-primary{
-        background:$primary-color;
-        border-color:$primary-color;
+        background:$primary-color-md;
+        border-color:$primary-color-md;
 
         &:focus,&:visited,&:active{
-            background:$primary-color !important;
-            border-color:$primary-color !important;
+            background:$primary-color-md !important;
+            border-color:$primary-color-md !important;
             box-shadow:none !important;
         }
     }
@@ -128,4 +129,22 @@
       display: block;
     }
   }
+}
+.fb-btn {
+    position: relative;
+    a {
+        &.btn {
+                width: 100%;
+                font-size: 16px;
+                background-color: #3B579D;
+                border-color: #3B579D;
+                margin-bottom: 20px;
+                font-family: $font_medium;
+        }
+        span {
+            position: absolute;
+            font-size: 21px;
+            margin-left: -30px;
+        }
+    }
 }

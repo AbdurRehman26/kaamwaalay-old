@@ -3,14 +3,14 @@ body{
         position:relative;
     }
     label{
-            font-size:$label-font-size;
-            color:$label-color;
+            font-size: $label-size;
+            color: $label-color;
             margin:$label-margin;
             font-family:$font_bold;
             padding:0;
             line-height:normal;
         &.col-form-label{
-            font-size:$label-font-size;
+            font-size:$label-size;
             color:$label-color;
             margin:$label-margin;
             font-family:$font_bold;
@@ -63,7 +63,7 @@ body{
             .form-control{
                 border-color:$danger-bg;
                 box-shadow:none;
-                background-image:url('../images/alert-icon.svg');
+                // background-image:url('../images/alert-icon.svg');
                 background-repeat: no-repeat;
                 background-size: 21px auto;
                 background-position: 98% 53%;
@@ -81,22 +81,11 @@ body{
             .form-control{
                 border-color:$success-color;
                 box-shadow:none;
-                background-image:url('../images/check-symbol.svg');
+                // background-image:url('../images/check-symbol.svg');
                 background-repeat: no-repeat;
                 background-size:24px auto;
                 background-position:98% 53%;
-            }/*
-            &:after{
-                content:"";
-                position:absolute;
-                right:0;
-                top:0;
-                background-image:url('../images/check-symbol.svg');
-                background-repeat: no-repeat;
-                background-size: 19px auto;
-                background-position: right center;
-                color:$success-color;
-            } */
+            }
         }
     }
 }
@@ -107,7 +96,7 @@ body{
         }
         .custom-file-label{
             font-family: $font_regular;
-            color: $greyD;
+            color: $grey-medium;
             overflow: hidden;
         }
     }
@@ -134,8 +123,8 @@ body{
             top: 6px;
             width: $checkbox-width-height;
             height: $checkbox-width-height;
-            border: solid 1px $section-border-color;
-            border-radius: $global-radius;
+            border: solid 1px $grey-medium;
+            border-radius: $input-radius;
         }
         i{
             position: absolute;
@@ -173,17 +162,6 @@ body{
     input[type="checkbox"]:checked + label i{
         display:block;
     }
-/*
-    input[type="checkbox"]:checked + .icon-border i,input[type="radio"]:checked + .icon-border i,{
-        color:$anchor-color;
-        display:block;
-        background-color: $primary-color;
-        width: 16px;
-        height: 16px;
-        margin-top: 3px;
-        margin-left: 3px;
-        border-radius: 4px;
-    } */
 }
 
 textarea{
@@ -239,33 +217,3 @@ textarea{
     }
 }
 
-.datepicker-row{
-    margin-bottom:30px;
-    border-bottom:solid 1px $primary-color-lighten;
-}
-
-.datepicker-field
-{
-    margin-bottom:10px;
-
-    input{
-        height:$input-height;
-        font-family:$font-regular;
-        font-size:$input-font-size;
-        padding:$input-padding;
-        border-radius:$input-radius;
-        color: #1a1a1a;
-        max-width: 100% !important;
-        width: 100% !important;
-        outline: none;
-        border: none;
-        border: solid 1px $input-border;
-
-        &:focus{
-            width:100%;
-            box-shadow:none;
-            color: #1a1a1a;
-            border-color:$input-focus-border-color;
-        }
-    }
-}

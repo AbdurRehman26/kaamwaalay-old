@@ -4973,6 +4973,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4991,6 +5091,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -62773,16 +62875,110 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content-area" }, [
-    _c(
-      "div",
-      {
-        staticClass: "main-banner",
-        style: { "background-image": "url(" + _vm.bannerimage + ")" }
-      },
-      [_vm._m(0)]
-    ),
+    _c("div", { staticClass: "main-banner" }, [
+      _c("div", { staticClass: "main-img" }, [
+        _c("img", { attrs: { src: _vm.bannerimage } })
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "how-it-work elementary-banner section-padd" }, [
+      _c("div", { staticClass: "container element-index" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "how-it-work-list" },
+          [
+            _c(
+              "b-row",
+              [
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  [
+                    _c("div", { staticClass: "list-image" }, [
+                      _c("div", { staticClass: "list-icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/find.svg" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Pick Leads")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Pick those which are of interest to you. Signal your interest through the site."
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  [
+                    _c("div", { staticClass: "list-image" }, [
+                      _c("div", { staticClass: "list-icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/list.svg" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Get Shortlisted")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Customers review your profiles online & shortlist you to bid on the job."
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  [
+                    _c("div", { staticClass: "list-image" }, [
+                      _c("div", { staticClass: "list-icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/communicate.svg" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Chat with customer to discuss the job or arrange a visit as your normally would."
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4)
   ])
 }
 var staticRenderFns = [
@@ -62790,24 +62986,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "banner-slogan" }, [
-        _c("h2", [_vm._v("Your next job is just around the corner")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work."
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { href: "javascript:void(0);" }
-          },
-          [_vm._v("Sign up today")]
-        )
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "verticle-align" }, [
+        _c("div", { staticClass: "inner" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "banner-slogan" }, [
+              _c("h2", [_vm._v("Your next job is just around the corner")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work."
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Sign up today")]
+              )
+            ])
+          ])
+        ])
       ])
     ])
   },
@@ -62815,9 +63017,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "services two-column" }, [
+    return _c("div", { staticClass: "services two-column section-padd" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "services-head-section" }, [
+        _c("div", { staticClass: "section-title" }, [
           _c("h2", [_vm._v("Win more local work")]),
           _vm._v(" "),
           _c("p", [
@@ -62837,7 +63039,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "list-description" }, [
-                _c("h3", [_vm._v("Business Profile")]),
+                _c("h4", [_vm._v("Business Profile")]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -62857,7 +63059,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "list-description" }, [
-                _c("h3", [_vm._v("No Commissions")]),
+                _c("h4", [_vm._v("No Commissions")]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -62877,7 +63079,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "list-description" }, [
-                _c("h3", [_vm._v("Pick the jobs you want")]),
+                _c("h4", [_vm._v("Pick the jobs you want")]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -62895,7 +63097,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "list-description" }, [
-                _c("h3", [_vm._v("Chat with customers")]),
+                _c("h4", [_vm._v("Chat with customers")]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -62913,7 +63115,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "list-description" }, [
-                _c("h3", [_vm._v("No credit/debit card required")]),
+                _c("h4", [_vm._v("No credit/debit card required")]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -62931,7 +63133,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "list-description" }, [
-                _c("h3", [_vm._v("No fake service providers")]),
+                _c("h4", [_vm._v("No fake service providers")]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -62944,6 +63146,101 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("How it works")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ready-to-meet white-bg section-padd" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h2", [
+              _vm._v(
+                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "avability-app" }, [
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _c("img", {
+                  attrs: { src: "/images/front/common-images/app-store.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _c("img", {
+                  attrs: { src: "/images/front/common-images/google-play.jpg" }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "image-sec" }, [
+            _c("img", {
+              attrs: { src: "/images/front/join-as-pro/customer.jpg" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "next-project white-bg elementary-banner section-padd" },
+      [
+        _c("div", { staticClass: "container element-index text-center" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h1", [_vm._v("The better way to find your next project.")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "A proven source of genuine enquiries for quality service providers."
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [_vm._v("Get Started")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "elements" }, [
+          _c("img", {
+            staticClass: "bottom-right",
+            attrs: { src: "/images/front/banner-bg/bg-4.jpg" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "top-left",
+            attrs: { src: "/images/front/banner-bg/bg-3-top.jpg" }
+          })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -64612,8 +64909,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "banner home-banner" }, [
-      _c("img", { attrs: { src: _vm.headerBanner } }),
+    _c("div", { staticClass: "main-banner home-banner" }, [
+      _c("div", { staticClass: "main-img" }, [
+        _c("img", { attrs: { src: _vm.headerBanner } })
+      ]),
       _vm._v(" "),
       _vm._m(0)
     ]),
@@ -64661,6 +64960,240 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-d3023370", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e0cfbb98\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/sign-up/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sign-up-info" }, [
+      _c("h1", [_vm._v("Sign Up")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        {
+          staticClass: "nav nav-tabs",
+          attrs: { id: "myTab", role: "tablist" }
+        },
+        [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link active",
+                attrs: {
+                  id: "home-tab",
+                  "data-toggle": "tab",
+                  href: "#home",
+                  role: "tab",
+                  "aria-controls": "home",
+                  "aria-selected": "true"
+                }
+              },
+              [_vm._v("I want to hire a service provider")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  id: "profile-tab",
+                  "data-toggle": "tab",
+                  href: "#profile",
+                  role: "tab",
+                  "aria-controls": "profile",
+                  "aria-selected": "false"
+                }
+              },
+              [_vm._v("I want to grow my business")]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane active",
+            attrs: {
+              id: "home",
+              role: "tabpanel",
+              "aria-labelledby": "home-tab"
+            }
+          },
+          [_vm._v("...")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: {
+              id: "profile",
+              role: "tabpanel",
+              "aria-labelledby": "profile-tab"
+            }
+          },
+          [_vm._v("...")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: {
+              id: "messages",
+              role: "tabpanel",
+              "aria-labelledby": "messages-tab"
+            }
+          },
+          [_vm._v("...")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: {
+              id: "settings",
+              role: "tabpanel",
+              "aria-labelledby": "settings-tab"
+            }
+          },
+          [_vm._v("...")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sign-up-form" }, [
+        _c("div", { staticClass: "fb-btn" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { href: "javascript:;" }
+                },
+                [
+                  _c("span", { staticClass: "icon-facebook-official" }),
+                  _vm._v("Sign up with Facebook")
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-signup" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Enter your first name"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Enter your last name" }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Email Address")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Enter your first email address"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Enter your account password"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "btn btn-primary", attrs: { href: "javascript" } },
+              [_vm._v("Create Account")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-detail" }, [
+              _c("p", [
+                _vm._v(
+                  "By clicking Create Account or Sign Up with Facebook you agree to the "
+                ),
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _vm._v("Terms of Use")
+                ]),
+                _vm._v(" and "),
+                _c("a", { attrs: { href: "javascript" } }, [
+                  _vm._v("Privacy Policy")
+                ]),
+                _vm._v(".")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e0cfbb98", module.exports)
   }
 }
 
@@ -82803,6 +83336,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/sign-up/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e0cfbb98\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/sign-up/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\sign-up\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e0cfbb98", Component.options)
+  } else {
+    hotAPI.reload("data-v-e0cfbb98", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/front-app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -82817,7 +83398,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue__ = __webpack_require__("./node_modules/bootstrap-vue/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_fancybox__ = __webpack_require__("./node_modules/vue-fancybox/src/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_fancybox___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_fancybox__);
-/*Main vue js*/
+/*Front Main vue js*/
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
@@ -82873,6 +83454,18 @@ var routes = [{
         bodyClass: 'Join_pro'
     },
     component: __webpack_require__("./resources/assets/js/components/front/join-as-pro/main.vue")
+},
+
+// Sign Up
+
+{
+    name: 'Sign Up',
+    path: '/sign-up',
+    meta: {
+        title: 'Professional Service Marketplace | Sign Up',
+        bodyClass: 'sign-up'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/sign-up/main.vue")
 }];
 
 // Create the router instance

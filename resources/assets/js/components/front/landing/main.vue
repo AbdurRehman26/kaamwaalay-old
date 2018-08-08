@@ -1,7 +1,9 @@
 <template>
     <div>
-        <div class="banner home-banner">
-            <img :src="headerBanner">
+        <div class="main-banner home-banner">
+            <div class="main-img">
+                <img  :src="headerBanner">
+            </div>
             <div class="content">
                 <div class="verticle-align">
                     <div class="inner">
