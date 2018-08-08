@@ -154,6 +154,23 @@
 		<!-- Ready To Meet section end-->		
 
 
+		<!-- Sucess Stories section start-->
+
+		<div class="next-project section-padd">
+			<div class="container">
+					<div class="content-sec text-center">
+						<h1>Success Stories</h1>
+						<p>Professional service marketplace has helped thousands of service providers around US.</p>
+					</div>
+
+			</div>	
+		</div>
+
+
+		<!-- Sucess Stories section end-->	
+
+
+
 
 
 		<!-- Next Project section start-->
