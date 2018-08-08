@@ -40,11 +40,14 @@ $font-size-xxs:14px;
 $label-size:$font-size-xxs;
 $label-color:$secondary-color;
 $placeholder-color:$grey-dark;
+$input-font-size: $font-size-xxs;
 $input-height:38px;
+$label-margin:0 0 9px 0;
 $input-padding:11px 16px;
 $input-color:$secondary-color;
 $input-border:$grey-medium;
 $input-radius:4px;
+$input-border: $grey-medium;
 
 
 //buttons
@@ -59,3 +62,10 @@ $btn-secondary-bg:$secondary-color;
 $btn-secondary-color:#fff;
 $anchor-color:$primary-color;
 $anchor-color-hover:$primary-color;
+
+
+//checkbox
+$checkbox-width-height: 14px;
+$checkbox-radius:1px;
+$checkbox-border-color: $input-border;
+$border-radius:20px;

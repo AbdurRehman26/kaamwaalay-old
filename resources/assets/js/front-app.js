@@ -1,4 +1,4 @@
-/*Main vue js*/
+/*Front Main vue js*/
 
 require('./bootstrap');
 
