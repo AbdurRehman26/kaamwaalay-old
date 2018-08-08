@@ -30830,7 +30830,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?5afa942908391f7efed056d6bd3c5d24);
-  src: url(/fonts/icomoon.eot?5afa942908391f7efed056d6bd3c5d24#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?d1db9380a8f199331d07719e1b0d55c5) format("truetype"), url(/fonts/icomoon.woff?d65c89b3b1bedcd0f5ca5fb381b89775) format("woff"), url(/fonts/icomoon.svg?d82dc4494dff4a049fd4dd4fb24749c9#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?5afa942908391f7efed056d6bd3c5d24#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?d1db9380a8f199331d07719e1b0d55c5) format("truetype"), url(/fonts/icomoon.woff?d65c89b3b1bedcd0f5ca5fb381b89775) format("woff"), url(/fonts/icomoon.svg?767e0e316af35d20c27ae0b9a94df2d5#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -36126,6 +36126,281 @@ body .ag-header .ag-filter-icon p span {
   color: #1A1A1A;
   margin-bottom: 0;
   line-height: 19px;
+}
+
+.button-loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 4px auto;
+  width: 35px;
+  height: 35px;
+  display: none;
+  overflow: hidden;
+  margin: 1px auto;
+}
+
+.button-loader .spinner {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  margin: 0;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+  opacity: 0.8;
+  position: absolute;
+  top: 11px;
+  left: 0;
+  right: -1px;
+  margin: 0 auto;
+}
+
+.button-loader .loader,
+.button-loader .loader:after {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.button-loader .loader {
+  display: block;
+  margin: 0px auto;
+  background-image: url("/images/spinner-white.svg");
+  font-size: 3px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  text-indent: -9999em;
+  /*       border-top: 1.1em solid #fff;
+      border-right: 1.1em solid #fff;
+      border-bottom: 1.1em solid #fff;
+      border-left: 1.1em solid #fff; */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+  border-style: dashed;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.loader-sm .button-loader {
+  width: 22px;
+  height: 22px;
+  margin: 7px auto;
+}
+
+.loader-sm .button-loader .loader {
+  width: 22px;
+  height: 22px;
+  font-size: 2px;
+}
+
+.loader-sm .button-loader .spinner {
+  width: 8px;
+  height: 8px;
+  top: 7px;
+}
+
+/*
+    Page Loader
+*/
+
+.page-loader {
+  position: fixed;
+  /* background:$grey; */
+  width: 100%;
+  height: 3px;
+  display: none;
+  top: 59px;
+  display: none;
+  z-index: 99999;
+}
+
+.page-loader .inner {
+  background: #8200ff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-animation: infinitePosAni 2s infinite;
+          animation: infinitePosAni 2s infinite;
+  height: 100%;
+}
+
+/*==
+  loadmore records
+==*/
+
+.loadmore-records {
+  padding: 20px 0;
+  display: none;
+}
+
+.loadmore-records .spinner-image {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.loadmore-records span {
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: "AkzidenzGroteskBE-Md";
+  color: #838383;
+}
+
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-spinner div {
+  -webkit-transform-origin: 32px 32px;
+          transform-origin: 32px 32px;
+  -webkit-animation: lds-spinner 1.2s linear infinite;
+          animation: lds-spinner 1.2s linear infinite;
+}
+
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 29px;
+  width: 5px;
+  height: 14px;
+  border-radius: 20%;
+  background: #fff;
+}
+
+.lds-spinner div:nth-child(1) {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+}
+
+.lds-spinner div:nth-child(2) {
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+.lds-spinner div:nth-child(3) {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+
+.lds-spinner div:nth-child(4) {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+
+.lds-spinner div:nth-child(5) {
+  -webkit-transform: rotate(120deg);
+          transform: rotate(120deg);
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
+}
+
+.lds-spinner div:nth-child(6) {
+  -webkit-transform: rotate(150deg);
+          transform: rotate(150deg);
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+
+.lds-spinner div:nth-child(7) {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+.lds-spinner div:nth-child(8) {
+  -webkit-transform: rotate(210deg);
+          transform: rotate(210deg);
+  -webkit-animation-delay: -0.4s;
+          animation-delay: -0.4s;
+}
+
+.lds-spinner div:nth-child(9) {
+  -webkit-transform: rotate(240deg);
+          transform: rotate(240deg);
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-spinner div:nth-child(10) {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  -webkit-animation-delay: -0.2s;
+          animation-delay: -0.2s;
+}
+
+.lds-spinner div:nth-child(11) {
+  -webkit-transform: rotate(300deg);
+          transform: rotate(300deg);
+  -webkit-animation-delay: -0.1s;
+          animation-delay: -0.1s;
+}
+
+.lds-spinner div:nth-child(12) {
+  -webkit-transform: rotate(330deg);
+          transform: rotate(330deg);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+@-webkit-keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .chart-legends {

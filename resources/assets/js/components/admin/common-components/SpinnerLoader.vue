@@ -1,5 +1,3 @@
 <template>
-	<div class="spinnerloader">
-		<img src="/images/spinner.svg">
-	</div>
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </template>
