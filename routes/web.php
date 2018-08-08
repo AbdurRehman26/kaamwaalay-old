@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('layout');
 });
 
-Route::get('/{any}', function(){
+/*Route::get('/{any}', function(){
     return view('layout');
-})->where('any', '.*');
+})->where('any', '.*');*/
 Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');
+Route::get('password/reset/{token}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');

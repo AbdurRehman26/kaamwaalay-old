@@ -6,9 +6,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\ActivationNotification;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 class User extends Authenticatable
 {
      use HasApiTokens, Notifiable;
+    const ACTIVE = 'active';
+    const PENDING = 'pending';
+    const IN_ACTIVE = 'deactived';
+    protected $perPage = 10;
+
 
     /**
      * The attributes that are mass assignable.
@@ -36,5 +42,10 @@ class User extends Authenticatable
     public function sendActivationEmail()
     {
         $this->notify(new ActivationNotification());
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\UserRepository;
+use App\Data\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Validator;
 
 class UserController extends ApiResourceController
 {
@@ -43,8 +47,34 @@ class UserController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'title');
+    $input = request()->only('id', 'user_details');
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
 }
+
+public function changePassword(Request $request)
+    {
+        $new_password = $request->get('new_password');
+        $old_password = $request->get('old_password');
+        if (\Hash::check($old_password, $request->user()->password)) {
+            if (strlen($new_password) >= 8) {
+                //change password of logged in user
+                $request->user()->password = bcrypt($new_password);
+                $request->user()->save();
+
+                return response()->json([
+                     'message' => 'Password has been updated successfully.',
+                ], 200);
+                //Send email to user here
+            } else {
+                return response()->json([
+                    'message' => 'Password must be minimum 8 character long.',
+                ], 406);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Old password is not valid.',
+            ], 406);
+        }
+    }
 }
