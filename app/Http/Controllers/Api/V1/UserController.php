@@ -86,11 +86,7 @@ public function changePassword(Request $request)
  public function messages($value = '')
     {
         $messages = [
-            'user_details.last_name.required' => 'The last name field is required.'
-            'user_details.last_name.required' => 'The last name field is required.'
-            'user_details.last_name.required' => 'The last name field is required.'
-            'user_details.last_name.required' => 'The last name field is required.'
-            'user_details.last_name.required' => 'The last name field is required.'
+            'user_details.last_name.required' => 'The last name field is required.',
         ];
         
         return !empty($messages) ? $messages : [];
