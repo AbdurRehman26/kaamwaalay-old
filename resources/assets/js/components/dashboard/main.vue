@@ -304,7 +304,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+          "fontFamily": "AkzidenzGroteskBE-Regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -1139,7 +1139,7 @@ export default{
             "#990000"
           ],
           "color": "#1A1A1A",
-          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+          "fontFamily": "AkzidenzGroteskBE-Regular",
           "theme": "default",
           "autoMargins": false,
           "marginBottom": 25,
@@ -1706,7 +1706,7 @@ export default{
                 "#990000"
               ],
               "color": "#1A1A1A",
-              "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+              "fontFamily": "AkzidenzGroteskBE-Regular",
               "theme": "default",
               "autoMargins": false,
               "marginBottom": 25,
@@ -2647,7 +2647,7 @@ export default{
           "titleField": "category",
           "valueField": "column-1",
           "color": "#1A1A1A",
-          "fontFamily": "berthold_akzidenz_grotesk_be_regular",
+          "fontFamily": "AkzidenzGroteskBE-Regular",
           "fontSize": 12,
           "allLabels": [],
           "balloon": {
