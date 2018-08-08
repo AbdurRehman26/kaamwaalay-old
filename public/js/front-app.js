@@ -5073,6 +5073,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -62978,7 +62995,9 @@ var render = function() {
     _vm._v(" "),
     _vm._m(3),
     _vm._v(" "),
-    _vm._m(4)
+    _vm._m(4),
+    _vm._v(" "),
+    _vm._m(5)
   ])
 }
 var staticRenderFns = [
@@ -63194,6 +63213,24 @@ var staticRenderFns = [
             _c("img", {
               attrs: { src: "/images/front/join-as-pro/customer.jpg" }
             })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "next-project section-padd" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "content-sec text-center" }, [
+          _c("h1", [_vm._v("Success Stories")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Professional service marketplace has helped thousands of service providers around US."
+            )
           ])
         ])
       ])
