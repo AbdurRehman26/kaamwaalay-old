@@ -33,7 +33,8 @@ class SupportQuestionController extends ApiResourceController
     }
 
     if($value == 'index'){
-
+        $rules['pagination']    =  'nullable|boolean';
+        $rules['role_id']      =  'required|numeric';
     }
 
     return $rules;
@@ -43,7 +44,7 @@ class SupportQuestionController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'title');
+    $input = request()->only('id', 'pagination', 'role_id');
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
 }

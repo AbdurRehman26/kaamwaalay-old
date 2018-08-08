@@ -20,6 +20,7 @@ class CreateSupportInquiriesTable extends Migration {
 			$table->integer('user_id')->unsigned()->nullable()->index();
 			$table->string('name', 50)->nullable();
 			$table->string('email', 100)->nullable();
+			$table->boolean('is_replied')->nullable()->default(0);
 			$table->timestamps();
 		});
 	}
