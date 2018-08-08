@@ -74,3 +74,12 @@ Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
 
 // dashboard
 
+
+
+//****************front components******************//
+
+//header
+Vue.component('front-header',require('./components/front/common-components/header.vue'));
+
+
+

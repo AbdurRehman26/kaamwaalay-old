@@ -2,8 +2,15 @@
 import VueRouter from 'vue-router'
 
 const routes = [
-
-
+    {
+        name: 'home',
+        path: '/',
+        meta: {
+            title: 'Professional Service Marketplace | Landing',
+            bodyClass: 'home_body',
+        },
+        component: require('./components/front/landing/main.vue'),
+    },
     {
         name: 'Join As Pro',
         path: '/join-as-pro',
@@ -13,6 +20,7 @@ const routes = [
         },
         component: require('./components/front/join-as-pro/main.vue'),
     },
+
 
 
     // Sign Up
@@ -28,8 +36,6 @@ const routes = [
     },
 
 
-
-
 ]
 
 
@@ -40,4 +46,4 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 })
 
-export default router    
+export default router
