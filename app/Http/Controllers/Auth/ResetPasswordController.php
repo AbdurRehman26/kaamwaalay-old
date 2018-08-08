@@ -48,7 +48,7 @@ class ResetPasswordController extends Controller
 
     protected function sendResetResponse($response)
     {
-        $output = ['response' => trans($response)];
+       $output = ['response' => ['data' => [],'message'=> trans($response)]];
         return response()->json($output, Response::HTTP_OK);
     }
 
@@ -61,7 +61,7 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        $output = ['response' => trans($response)];
+        $output = ['response' => ['data' => [],'message'=> trans($response)]];
         return response()->json($output, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
     /**
