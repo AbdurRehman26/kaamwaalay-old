@@ -4871,11 +4871,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      bannerimage: '/images/'
+      bannerimage: '/images/front/join-as-pro/banner.jpg'
     };
   },
 
@@ -62631,7 +62694,7 @@ var render = function() {
       [_vm._m(0)]
     ),
     _vm._v(" "),
-    _c("div", {})
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -62657,6 +62720,140 @@ var staticRenderFns = [
           },
           [_vm._v("Sign up today")]
         )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "services two-column" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "services-head-section" }, [
+          _c("h2", [_vm._v("Win more local work")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "If you join as a member, here are a selection of the ways we help to give your business a boost:"
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "services-list" }, [
+          _c("ul", [
+            _c("li", [
+              _c("div", { staticClass: "list-image" }, [
+                _c("div", { staticClass: "list-icon" }, [
+                  _c("img", { attrs: { src: "/images/front/svg/user.svg" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-description" }, [
+                _c("h3", [_vm._v("Business Profile")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Show comprehensive company details including consumer recommendations."
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("div", { staticClass: "list-image" }, [
+                _c("div", { staticClass: "list-icon" }, [
+                  _c("img", {
+                    attrs: { src: "/images/front/svg/discount.svg" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-description" }, [
+                _c("h3", [_vm._v("No Commissions")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "We won't charge any fee or payment from service providers for successful leads."
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("div", { staticClass: "list-image" }, [
+                _c("div", { staticClass: "list-icon" }, [
+                  _c("img", {
+                    attrs: { src: "/images/front/svg/smartphone.svg" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-description" }, [
+                _c("h3", [_vm._v("Pick the jobs you want")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "We’ll send you new leads and jobs right on your mobile phones via push notifications or email."
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("div", { staticClass: "list-image" }, [
+                _c("div", { staticClass: "list-icon" }, [
+                  _c("img", { attrs: { src: "/images/front/svg/chat.svg" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-description" }, [
+                _c("h3", [_vm._v("Chat with customers")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Once customer respond to your bid, you can discuss details with customers via one-on-one chat."
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("div", { staticClass: "list-image" }, [
+                _c("div", { staticClass: "list-icon" }, [
+                  _c("img", { attrs: { src: "/images/front/svg/card.svg" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-description" }, [
+                _c("h3", [_vm._v("No credit/debit card required")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "You don’t have to enter your credit/debit card. You can charge customer in any of your existing payment method."
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("div", { staticClass: "list-image" }, [
+                _c("div", { staticClass: "list-icon" }, [
+                  _c("img", { attrs: { src: "/images/front/svg/like.svg" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-description" }, [
+                _c("h3", [_vm._v("No fake service providers")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "You don’t have to compete with any fake service provider. We approve service providers on platform after review."
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   }
