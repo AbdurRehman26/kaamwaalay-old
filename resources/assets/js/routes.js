@@ -85,7 +85,7 @@ const routes = [
             icon:'icon-users'
         }
 
-    },    
+    },
     {
         name: 'customerjobdetail',
         path: '/admin/customer/viewjobdetail',
@@ -260,7 +260,7 @@ const routes = [
             title: 'PSM | Admin Listed',
             bodyClass: 'Admin-listed',
             pagetitle:'Admins',
-            icon:'icon-lock_outline'            
+            icon:'icon-lock_outline'
 
         },
         component: require('./components/admin/Main.vue'),
@@ -269,8 +269,15 @@ const routes = [
 
 
     /*Front Routes*/
-
-
+    {
+        name: 'home',
+        path: '/',
+        meta: {
+            title: 'Professional Service Marketplace | Home',
+            bodyClass: 'home-body',
+        },
+        component: require('./components/front/landing/main.vue'),
+    },
 
     {
         name: 'Join As Pro',
@@ -281,13 +288,6 @@ const routes = [
         },
         component: require('./components/front/join-as-pro/main.vue'),
     },
-
-
-
-
-
-
-
 
 
 ]
