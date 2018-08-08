@@ -85,7 +85,7 @@ const routes = [
             icon:'icon-users'
         }
 
-    },    
+    },
     {
         name: 'customerjobdetail',
         path: '/admin/customer/viewjobdetail',
@@ -260,17 +260,11 @@ const routes = [
             title: 'PSM | Admin Listed',
             bodyClass: 'Admin-listed',
             pagetitle:'Admins',
-            icon:'icon-lock_outline'            
+            icon:'icon-lock_outline'
 
         },
         component: require('./components/admin/Main.vue'),
     },
-
-
-
-
-
-
 ]
 
 

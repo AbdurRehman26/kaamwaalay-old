@@ -1,0 +1,46 @@
+.no-records-found
+{
+        height: calc(100vh - 200px);
+    .no-records-found-icon{
+        width: 170px;
+        height: 110px;
+        margin:0 auto;
+        background-image:url('../images/no-record.svg');
+        background-repeat:no-repeat;
+        background-size:100% auto;
+        display:block;
+        position: relative;
+        left: 2%;
+        margin-bottom:20px;
+    }
+    p{
+        font-size: $other-font-size;
+        font-family: $font_medium;
+        margin-bottom: 10px;
+        &.sub-text{
+            font-family:$font-regular;
+        }
+    }
+}
+
+// No record found custom css start
+
+.report-relationship {
+    .no-records-found {
+        height: 100%;
+        padding: 50px 0;
+        .no-records-found-icon {
+            width: 144px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Systemlog page custom div
+.system-log-graph {
+    .no-records-found {
+        height: 340px;
+    }
+}
+
+// No record found custom css end
