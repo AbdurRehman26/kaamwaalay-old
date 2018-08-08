@@ -14,7 +14,7 @@ $grey-dark:#7D7D7D;
 $grey-medium:#B2B2B2;
 $grey-lite:#E0E0E0;
 $grey-Elite:#F9F9F9;
-$body-bg:#F5F5F5;
+$body-bg:#fff;
 $body-color:$text-primary-color;
 $success-bg:#28a745;
 $success-color:#fff;
@@ -46,7 +46,6 @@ $input-color:$secondary-color;
 $input-border:$grey-medium;
 $input-radius:4px;
 
-
 //buttons
 $button-radius:8px;
 $button-padding:10px 40px;
@@ -60,7 +59,3 @@ $btn-secondary-color:#fff;
 $anchor-color:$primary-color;
 $anchor-color-hover:$primary-color;
 
-
-//header
-
-$header-height:70px;
