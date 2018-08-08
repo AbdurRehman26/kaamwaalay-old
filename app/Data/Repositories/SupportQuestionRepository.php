@@ -40,4 +40,13 @@ class SupportQuestionRepository extends AbstractRepository implements Repository
         $this->builder = $model;
 
     }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+        $this->builder = $this->model
+                            ->where('role_id', '=' , $data['role_id'])
+                            ->orderBy('question', 'ASC')
+                            ;   
+        return  parent::findByAll($pagination, $perPage);
+    
+    }
 }
