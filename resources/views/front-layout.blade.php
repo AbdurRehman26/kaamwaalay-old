@@ -18,6 +18,6 @@
         <div id="app" class="frontlayout">
             <router-view></router-view>
         </div>
-       <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/front-app.js') }}"></script>
     </body>
 </html>

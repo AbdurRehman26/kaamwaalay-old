@@ -265,31 +265,6 @@ const routes = [
         },
         component: require('./components/admin/Main.vue'),
     },
-
-
-
-    /*Front Routes*/
-    {
-        name: 'home',
-        path: '/',
-        meta: {
-            title: 'Professional Service Marketplace | Home',
-            bodyClass: 'home-body',
-        },
-        component: require('./components/front/landing/main.vue'),
-    },
-
-    {
-        name: 'Join As Pro',
-        path: '/join-as-pro',
-        meta: {
-            title: 'Professional Service Marketplace | Join As Pro',
-            bodyClass: 'Join_pro',
-        },
-        component: require('./components/front/join-as-pro/main.vue'),
-    },
-
-
 ]
 
 
