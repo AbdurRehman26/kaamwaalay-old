@@ -1,4 +1,4 @@
-    // Route components
+// Front Route components
 import VueRouter from 'vue-router'
 
 const routes = [
