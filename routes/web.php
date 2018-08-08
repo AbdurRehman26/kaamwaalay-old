@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('layout');
 });
 
-Route::get('/{any}', function(){
-    return view('layout');
-})->where('any', '.*');
+
+
+
+/*Admin Route*/
+Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
+
+
+/*Front Route*/
+Route::get('/{any}', 'FrontController@index')->where('any', '.*');
+Route::get('/', 'FrontController@index')->where('any', '.*');
+

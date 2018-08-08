@@ -57,6 +57,8 @@ Vue.mixin({
  }
 })
 // Create and mount the root instance.
+
+
 const app = new Vue({
     el: '#app',
     router,
@@ -85,6 +87,9 @@ const app = new Vue({
         }
     }
 });
+
+
+
 
 /*const app = new Vue({
     router
