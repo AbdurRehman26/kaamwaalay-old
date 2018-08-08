@@ -16,6 +16,7 @@
     </head>
     <body>
         <div id="app" class="frontlayout">
+            <front-header></front-header>
             <router-view></router-view>
         </div>
         <script src="{{ asset('js/front-app.js') }}"></script>
