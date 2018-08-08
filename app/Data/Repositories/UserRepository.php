@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
+use App\Data\Models\Role;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -45,13 +46,15 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-
-        if($data->role_id == Role::SERVICE_PROVIDER){
+        
+        if($data){
+            if($data->role_id == Role::SERVICE_PROVIDER){
             // Todo
-        }
+            }
 
-        if($data->role_id == Role::CUSTOMER){
+            if($data->role_id == Role::CUSTOMER){
             // Todo
+            }
         }
 
         return $data;

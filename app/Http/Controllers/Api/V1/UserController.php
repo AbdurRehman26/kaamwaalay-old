@@ -25,6 +25,11 @@ class UserController extends ApiResourceController
 
     if($value == 'update'){
 
+            $rules['id'] =  'required|exists:users,id';
+            $rules['user_details.first_name']    = 'required';
+            $rules['user_details.last_name']     = 'required';
+            $rules['user_details.email']         = 'required|email|unique:users,email';
+    
     }
 
 
@@ -77,4 +82,14 @@ public function changePassword(Request $request)
             ], 406);
         }
     }
+
+ public function messages($value = '')
+    {
+        $messages = [
+            'user_details.last_name.required' => 'The last name field is required.',
+        ];
+        
+        return !empty($messages) ? $messages : [];
+    }
+
 }

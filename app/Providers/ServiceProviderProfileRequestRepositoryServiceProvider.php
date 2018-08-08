@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\ServiceProviderProfileRequest;
-use App\Providers\Data\Repositories\ServiceProviderProfileRequestRepository;
+use App\Data\Models\ServiceProviderProfileRequest;
+use App\Data\Repositories\ServiceProviderProfileRequestRepository;
 
 class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProvider
 {

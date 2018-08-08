@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\Payment;
-use App\Providers\Data\Repositories\PaymentRepository;
+use App\Data\Models\Payment;
+use App\Data\Repositories\PaymentRepository;
 
 class PaymentRepositoryServiceProvider extends ServiceProvider
 {

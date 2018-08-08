@@ -48,4 +48,11 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function getProfileImageAttribute($value){
+
+        return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
+
+    }
+
 }
