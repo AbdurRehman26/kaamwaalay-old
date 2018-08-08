@@ -16,4 +16,8 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'registered' => 'You have registered successfully, please check your email to activate your account.',
+    'activateSuccess' => 'Your account has been activated successfully. You can now login.',
+    'activateError' => 'You have already activate your account. Please contact us if you have any queries.',
+    'pending' => 'Your account verification is pending, please check your email for the activation link we sent and follow the instructions to enable your account.',
+
 ];
