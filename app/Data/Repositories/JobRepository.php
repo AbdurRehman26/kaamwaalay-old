@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
+use Carbon\Carbon;
 
 class JobRepository extends AbstractRepository implements RepositoryContract
 {
@@ -16,7 +17,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
      * @access public
      *
      **/
-public $model;
+    public $model;
 
     /**
      *
@@ -41,6 +42,10 @@ public $model;
 
     }
 
+    public function create(array $data = []) {
+        $data = parent::create($data);
+        return $data;
+    }
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
@@ -56,7 +61,7 @@ public $model;
             $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
 
             $bidsCriteria['is_awarded'] = 1;
-            $awardedBid = app('JobBidRepository')->findByCriteria($data->service_id, false, false);
+            $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
             if($awardedBid){
                 $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
@@ -71,13 +76,20 @@ public $model;
 
         $this->builder = $this->model->orderBy('id' , 'desc');
         
-        if(!empty($input['filter_by'])){
-            $this->builder = $this->builder->where('status', '=', $input['filter_by']);            
+        if(!empty($input['filter_by_status'])){
+            $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
         }
+
+        if(!empty($input['filter_by_user'])){
+            if($input['filter_by_user'])
+            $this->builder = $this->builder->where('status', '=', $input['filter_by_user']);            
+        }
+
 
         $data = parent::findByAll($pagination, $perPage, $input);
 
-        return $data;
-        
+        return $data;   
     }
+
+
 }

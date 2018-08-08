@@ -53,11 +53,15 @@ public $model;
      *
      **/
         public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+        
             $model = $this->model->newInstance()
             ->where($crtieria);
+
             if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
             }
+
+            $model = $model->first(['id']);
 
             if ($model != NULL) {
                 $model = $this->findById($model->id, $refresh, $details, $encode);
