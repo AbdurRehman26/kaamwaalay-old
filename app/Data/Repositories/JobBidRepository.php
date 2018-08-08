@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobBid;
+use App\Data\Models\Job;
 
 class JobBidRepository extends AbstractRepository implements RepositoryContract
 {
@@ -94,6 +95,34 @@ public $model;
 
             return $data;
         }
+
+        public function getCountByCriteria($crtieria, $whereIn = false) {
+            
+            $model = $this->model->where($crtieria);
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->count();
+            }
+
+            if ($model != NULL) {
+                $model = $model->count();
+                return $model;
+            }
+            return false;
+        }
+
+        public function getUrgentJobsCompleted($crtieria) {
+            
+            $model = $this->model->where($crtieria);
+            if ($model != NULL) {
+                
+                $model = $model->pluck('job_id')->toArray();
+                $model = Job::whereIn('id',$model)->where('job_type','=','urgent')->count();
+                
+                return $model;
+            }
+            return false;
+        }
+        
 
 
     }
