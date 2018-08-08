@@ -16,7 +16,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -52,16 +52,48 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-    public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
-        $model = $this->model->newInstance()
-                        ->where($crtieria);
-        if($whereIn){
-            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+            $model = $this->model->newInstance()
+            ->where($crtieria);
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+            }
+
+            if ($model != NULL) {
+                $model = $this->findById($model->id, $refresh, $details, $encode);
+            }
+            return $model;
         }
 
-        if ($model != NULL) {
-            $model = $this->findById($model->id, $refresh, $details, $encode);
+
+        public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
+
+            $this->builder = $this->model->orderBy('id' , 'desc');
+
+            if(!empty($input['filter_by'])){
+                $this->builder = $this->builder->where('status', '=', $input['filter_by']);            
+            }
+
+            $data = parent::findByAll($pagination, $perPage, $input);
+
+            return $data;
+
         }
-        return $model;
+
+
+        public function findById($id, $refresh = false, $details = false, $encode = true)
+        {
+            $data = parent::findById($id, $refresh, $details, $encode);
+            
+            if($data){
+                $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+                $data->job = app('JobRepository')->findById($data->job_id);
+                $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
+                $data->job_rating = app('UserRatingRepository')->findByCrtieria($ratingCriteria);
+            }
+
+            return $data;
+        }
+
+
     }
-}

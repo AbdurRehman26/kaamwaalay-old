@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\User;
-use App\Providers\Data\Repositories\UserRepository;
+use App\Data\Models\User;
+use App\Data\Repositories\UserRepository;
 
 class UserRepositoryServiceProvider extends ServiceProvider
 {

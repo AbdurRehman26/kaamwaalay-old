@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\Plan;
-use App\Providers\Data\Repositories\PlanRepository;
+use App\Data\Models\Plan;
+use App\Data\Repositories\PlanRepository;
 
 class PlanRepositoryServiceProvider extends ServiceProvider
 {

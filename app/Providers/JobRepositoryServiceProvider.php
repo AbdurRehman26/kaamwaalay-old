@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\Job;
-use App\Providers\Data\Repositories\JobRepository;
+use App\Data\Models\Job;
+use App\Data\Repositories\JobRepository;
 
 class JobRepositoryServiceProvider extends ServiceProvider
 {

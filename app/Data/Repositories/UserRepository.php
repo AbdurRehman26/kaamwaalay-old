@@ -45,13 +45,15 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-
-        if($data->role_id == Role::SERVICE_PROVIDER){
+        
+        if($data){
+            if($data->role_id == Role::SERVICE_PROVIDER){
             // Todo
-        }
+            }
 
-        if($data->role_id == Role::CUSTOMER){
+            if($data->role_id == Role::CUSTOMER){
             // Todo
+            }
         }
 
         return $data;

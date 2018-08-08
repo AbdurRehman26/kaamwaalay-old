@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\Role;
-use App\Providers\Data\Repositories\RoleRepository;
+use App\Data\Models\Role;
+use App\Data\Repositories\RoleRepository;
 
 class RoleRepositoryServiceProvider extends ServiceProvider
 {

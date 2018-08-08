@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\Testimonial;
-use App\Providers\Data\Repositories\TestimonialRepository;
+use App\Data\Models\Testimonial;
+use App\Data\Repositories\TestimonialRepository;
 
 class TestimonialRepositoryServiceProvider extends ServiceProvider
 {

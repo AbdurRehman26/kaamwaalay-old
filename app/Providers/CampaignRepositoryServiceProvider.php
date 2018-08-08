@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Providers\Data\Models\Campaign;
-use App\Providers\Data\Repositories\CampaignRepository;
+use App\Data\Models\Campaign;
+use App\Data\Repositories\CampaignRepository;
 
 class CampaignRepositoryServiceProvider extends ServiceProvider
 {
