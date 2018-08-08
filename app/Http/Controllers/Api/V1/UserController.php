@@ -66,11 +66,9 @@ public function changePassword(Request $request)
                 //change password of logged in user
                 $request->user()->password = bcrypt($new_password);
                 $request->user()->save();
-
-                return response()->json([
-                     'message' => 'Password has been updated successfully.',
-                ], 200);
-                //Send email to user here
+                $output = ['response' => ['data' => [],'message'=>'Password has been updated successfully.']];
+                // HTTP_OK = 200;
+                return response()->json($output, 200);
             } else {
                 return response()->json([
                     'message' => 'Password must be minimum 8 character long.',
