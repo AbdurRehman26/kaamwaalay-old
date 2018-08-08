@@ -29,11 +29,16 @@ abstract class ApiResourceController extends Controller
         $this->validate($request, $rules);
         
         $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
-        $pagination = !empty($input['pagination']) && $input['pagination'] == 'true' ? true : false; 
 
-        $data = $this->_repository->findByAll($pagination, $per_page, $input);
+        $data = $this->_repository->findByAll($input['pagination'], $per_page, $input);
 
-        $output = ['response' => ['data' => $data['data'], 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false   , 'message' => $this->messages(__FUNCTION__)]];
+        $output = [
+            'response' => [
+                'data' => $data['data'],
+                'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
+                'message' => $this->messages(__FUNCTION__),
+            ]
+        ];
         // HTTP_OK = 200;
 
         return response()->json($output, Response::HTTP_OK);
