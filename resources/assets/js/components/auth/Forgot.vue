@@ -37,7 +37,7 @@ export default {
     onSubmit (evt) {
     },
     ShowNewPassword (){
-      this.$router.push('create-password');
+      this.$router.push({ name: 'createpassword'});
     }
     
 
