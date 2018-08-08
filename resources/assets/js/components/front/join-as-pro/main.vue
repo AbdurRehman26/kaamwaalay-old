@@ -11,6 +11,16 @@
 			</div>
 		</div>
 		<!-- banner section end -->
+
+		<!-- Local Work section start-->
+
+		<div class="">
+			
+		</div>
+
+		<!-- Local Work section start-->
+
+
 	</div>
 </template>
 
