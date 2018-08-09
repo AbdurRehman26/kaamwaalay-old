@@ -11,6 +11,8 @@ const routes = [
         },
         component: require('./components/front/landing/main.vue'),
     },
+
+    // Join As Pro
     {
         name: 'Join As Pro',
         path: '/join-as-pro',
@@ -19,6 +21,18 @@ const routes = [
             bodyClass: 'Join_pro',
         },
         component: require('./components/front/join-as-pro/main.vue'),
+    },
+
+
+    // Explore
+    {
+        name: 'Explore',
+        path: '/explore',
+        meta: {
+            title: 'Professional Service Marketplace | Explore',
+            bodyClass: 'explore_page',
+        },
+        component: require('./components/front/explore/main.vue'),
     },
 
 

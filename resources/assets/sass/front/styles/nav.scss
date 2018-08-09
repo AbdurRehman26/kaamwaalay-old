@@ -37,7 +37,11 @@ $nav-font:$font-bold;
                     }
                 }
             }
+            &:first-child{
+                margin-left: 0px;
+            }
             &:last-child{
+                margin-right: 0px;
                 a{
                     color:#fff !important;
                     text-decoration:none !important;

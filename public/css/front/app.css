@@ -11654,6 +11654,14 @@ textarea {
   bottom: -23px;
 }
 
+.navigation ul li:first-child {
+  margin-left: 0px;
+}
+
+.navigation ul li:last-child {
+  margin-right: 0px;
+}
+
 .navigation ul li:last-child a {
   color: #fff !important;
   text-decoration: none !important;
@@ -11681,6 +11689,10 @@ textarea {
   height: 100%;
   top: 0;
   position: absolute;
+}
+
+.main-banner .content-inner.md {
+  max-width: 930px;
 }
 
 .main-banner.home-banner .content-inner {
@@ -11965,6 +11977,48 @@ textarea {
 
 .testmonial-section .item-list .testmonial-name h3 {
   font-size: 16px;
+}
+
+.search-filter {
+  margin-bottom: 24px;
+}
+
+.search-filter input {
+  display: inline-block;
+}
+
+.search-filter input.search-service {
+  width: calc(100% - 20%);
+  border-right: 0px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.search-filter input.zip-code {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 5px;
+  border-radius: 0px 4px 4px 0px;
+  margin-left: -4px;
+}
+
+.search-filter .container-zip-code {
+  width: 19%;
+  display: inline-block;
+  position: relative;
+}
+
+.search-filter .container-zip-code i {
+  position: absolute;
+  color: #B2B2B2;
+  font-size: 24px;
+  height: 100%;
+  left: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .testmonial-block {
