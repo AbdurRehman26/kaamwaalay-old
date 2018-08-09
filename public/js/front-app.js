@@ -3172,6 +3172,175 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/sign-up/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      tabval: 'firstsec'
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/es/components/alert/alert.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59678,24 +59847,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sign-up-info" }, [
-      _c("h1", [_vm._v("Sign Up")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        {
-          staticClass: "nav nav-tabs",
-          attrs: { id: "myTab", role: "tablist" }
-        },
-        [
-          _c("li", { staticClass: "nav-item" }, [
+  return _c("div", { staticClass: "sign-up-info" }, [
+    _c("h1", [_vm._v("Sign Up")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
+      [
+        _c(
+          "li",
+          {
+            staticClass: "nav-item",
+            class: { active: _vm.tabval === "firstsec" }
+          },
+          [
             _c(
               "a",
               {
@@ -59707,13 +59872,36 @@ var staticRenderFns = [
                   role: "tab",
                   "aria-controls": "home",
                   "aria-selected": "true"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.tabval = "firstsec"
+                  }
                 }
               },
-              [_vm._v("I want to hire a service provider")]
+              [
+                _vm._v("I want to hire a service provider\n\t\t\t\t"),
+                _c("p", [
+                  _vm._v(
+                    "Get introduced to the right professional for your jobs"
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.tabval == "firstsec"
+                  ? _c("i", { staticClass: "icon-checkmark2" })
+                  : _vm._e()
+              ]
             )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "nav-item",
+            class: { active: _vm.tabval === "secondsec" }
+          },
+          [
             _c(
               "a",
               {
@@ -59725,171 +59913,322 @@ var staticRenderFns = [
                   role: "tab",
                   "aria-controls": "profile",
                   "aria-selected": "false"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.tabval = "secondsec"
+                  }
                 }
               },
-              [_vm._v("I want to grow my business")]
+              [
+                _vm._v("I want to grow my business\n\t\t\t\t"),
+                _c("p", [_vm._v("Respond to customer requests and get hired")]),
+                _vm._v(" "),
+                _vm.tabval == "secondsec"
+                  ? _c("i", { staticClass: "icon-checkmark2" })
+                  : _vm._e()
+              ]
             )
-          ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "tab-content" }, [
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane active",
+          attrs: { id: "home", role: "tabpanel", "aria-labelledby": "home-tab" }
+        },
+        [
+          _c("div", { staticClass: "sign-up-form service-provider-form" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-signup" }, [
+              _c("form", [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "create-account-btn" }, [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-primary" },
+                    [_vm._v("Create Account\n\t\t\t\t\t\t"), _c("loader")],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(4)
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "tab-content" }, [
-        _c(
-          "div",
-          {
-            staticClass: "tab-pane active",
-            attrs: {
-              id: "home",
-              role: "tabpanel",
-              "aria-labelledby": "home-tab"
-            }
-          },
-          [_vm._v("...")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "tab-pane",
-            attrs: {
-              id: "profile",
-              role: "tabpanel",
-              "aria-labelledby": "profile-tab"
-            }
-          },
-          [_vm._v("...")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "tab-pane",
-            attrs: {
-              id: "messages",
-              role: "tabpanel",
-              "aria-labelledby": "messages-tab"
-            }
-          },
-          [_vm._v("...")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "tab-pane",
-            attrs: {
-              id: "settings",
-              role: "tabpanel",
-              "aria-labelledby": "settings-tab"
-            }
-          },
-          [_vm._v("...")]
-        )
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane",
+          attrs: {
+            id: "profile",
+            role: "tabpanel",
+            "aria-labelledby": "profile-tab"
+          }
+        },
+        [
+          _c("div", { staticClass: "sign-up-form business-form" }, [
+            _vm._m(5),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-signup" }, [
+              _c("form", [
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "create-account-btn" }, [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-primary" },
+                    [_vm._v("Create Account\n\t\t\t\t\t\t"), _c("loader")],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(8)
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(9)
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fb-btn" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-facebook",
+              attrs: { href: "javascript:;" }
+            },
+            [
+              _c("span", { staticClass: "icon-facebook-official" }),
+              _vm._v("Sign up with Facebook")
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter your first name" }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "sign-up-form" }, [
-        _c("div", { staticClass: "fb-btn" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { href: "javascript:;" }
-                },
-                [
-                  _c("span", { staticClass: "icon-facebook-official" }),
-                  _vm._v("Sign up with Facebook")
-                ]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-signup" }, [
-          _c("form", [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Enter your first name"
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Enter your last name" }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [
-                    _vm._v("Email Address")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Enter your first email address"
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "password",
-                      placeholder: "Enter your account password"
-                    }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "btn btn-primary", attrs: { href: "javascript" } },
-              [_vm._v("Create Account")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-detail" }, [
-              _c("p", [
-                _vm._v(
-                  "By clicking Create Account or Sign Up with Facebook you agree to the "
-                ),
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _vm._v("Terms of Use")
-                ]),
-                _vm._v(" and "),
-                _c("a", { attrs: { href: "javascript" } }, [
-                  _vm._v("Privacy Policy")
-                ]),
-                _vm._v(".")
-              ])
-            ])
-          ])
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter your last name" }
+          })
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "Enter your first email address"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              placeholder: "Enter your account password"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-detail" }, [
+      _c("p", [
+        _vm._v(
+          "By clicking Create Account or Sign Up with Facebook you agree to the "
+        ),
+        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Terms of Use")]),
+        _vm._v(" and "),
+        _c("a", { attrs: { href: "javascript" } }, [_vm._v("Privacy Policy")]),
+        _vm._v(".")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "already-signup" }, [
+      _c("p", [
+        _vm._v("Already a member? "),
+        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Log in")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fb-btn" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-facebook",
+              attrs: { href: "javascript:;" }
+            },
+            [
+              _c("span", { staticClass: "icon-facebook-official" }),
+              _vm._v("Sign up with Facebook")
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter your first name" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter your last name" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "Enter your first email address"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              placeholder: "Enter your account password"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-detail" }, [
+      _c("p", [
+        _vm._v(
+          "By clicking Create Account or Sign Up with Facebook you agree to the "
+        ),
+        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Terms of Use")]),
+        _vm._v(" and "),
+        _c("a", { attrs: { href: "javascript" } }, [_vm._v("Privacy Policy")]),
+        _vm._v(".")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "already-signup" }, [
+      _c("p", [
+        _vm._v("Already a member? "),
+        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Log in")])
       ])
     ])
   }
@@ -76730,7 +77069,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/sign-up/main.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e0cfbb98\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/sign-up/main.vue")
 /* template functional */
@@ -76896,7 +77235,7 @@ var routes = [{
     path: '/sign-up',
     meta: {
         title: 'Professional Service Marketplace | Sign Up',
-        bodyClass: 'sign-up'
+        bodyClass: 'signup-page'
     },
     component: __webpack_require__("./resources/assets/js/components/front/sign-up/main.vue")
 }];
