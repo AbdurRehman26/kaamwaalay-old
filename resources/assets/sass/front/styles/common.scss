@@ -17,6 +17,7 @@ body {
     background: $body-bg;
     overflow-x: hidden;
     font-size:$font-size-base;
+    line-height:22px;
 }
 
 .container{
@@ -57,6 +58,7 @@ a {
 
 p {
     margin: 0 0 15px;
+    line-height:22px;
 }
 
 input {

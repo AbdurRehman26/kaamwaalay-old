@@ -53,6 +53,17 @@
             text-decoration: underline;
         }
     }
+    &.btn-facebook {
+        background: #3B579D!important;
+        border-color:#3B579D!important;
+        color: #fff;
+
+        &:focus,&:visited,&:active{
+            background:#3B579D!important;
+            border-color:#3B579D!important;
+            box-shadow:none !important;
+        }
+    }
 }
 
 .sort_btn {
@@ -132,19 +143,33 @@
 }
 .fb-btn {
     position: relative;
+    border-bottom: 1px solid $grey-lite;
+    padding-bottom: 13px;
+    margin-bottom: 25px;
+
     a {
         &.btn {
-                width: 100%;
-                font-size: 16px;
-                background-color: #3B579D;
-                border-color: #3B579D;
-                margin-bottom: 20px;
-                font-family: $font_medium;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-family: $font_medium;
         }
         span {
             position: absolute;
-            font-size: 21px;
-            margin-left: -30px;
+            font-size: 24px;
+            margin-left: -37px;
         }
+    }
+    &:after {
+        content: 'OR';
+        color: $grey-Edark;
+        position: absolute;
+        font-size: 14px;
+        background: #fff;
+        left: 46%;
+        font-family: $font_medium;
+        top: 66px;
+        width: 46px;
+        text-align: center;
     }
 }
