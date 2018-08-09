@@ -137,9 +137,15 @@ public $model;
             
             $model = $this->model->where($crtieria);
             if ($model != NULL) {
+
+                $model = $model->
+                    leftJoin('jobs', function ($join) {
+                        $join->on('jobs.id', '=', 'job_bids.job_id');
+                    })
+                    ->where('jobs.job_type','=','urgent')
+                    ->where('jobs.status','=','completed')
+                    ->count();
                 
-                $model = $model->pluck('job_id')->toArray();
-                $model = Job::whereIn('id',$model)->where('job_type','=','urgent')->count();
                 
                 return $model;
             }
@@ -162,4 +168,20 @@ public $model;
             return false;
         }
 
-    }
+        public function getCompletedJobs($crtieria) {
+            
+            $model = $this->model->where($crtieria);
+            if ($model != NULL) {
+                $model = $model->
+                    leftJoin('jobs', function ($join) {
+                        $join->on('jobs.id', '=', 'job_bids.job_id');
+                    })
+                    ->where('jobs.status','=','completed')
+                    ->count();
+                
+                return $model;
+            }
+            return false;
+        }
+
+}
