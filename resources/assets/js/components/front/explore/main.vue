@@ -59,8 +59,8 @@
 
 <!-- 	        	<div class="category-section" v-for="maincategory in category">
 	        		<div class="category-title">
-	        			<h2>{{ maincategory }}</h2>
-	        		</div>
+	        			<h2>{{ maincategory[i] }}</h2>
+	        		</div>	        		
 	        		<div class="category-items">
 	        			<div class="items" v-for="categoryabc in maincategory">
 	        				<a href="javascript:void(0);">
@@ -70,7 +70,7 @@
 		        		</div>
 		        		<div class="showmore"><a href="javascript:void(0);">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
 	        				
-	        		</div>        		
+	        		</div>  	        	      		
 	        	</div> -->
 
 
@@ -88,7 +88,7 @@ export default {
     return {
 		bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 		contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-
+		i: 0,
 		electricancategoryitems:[
 		{
 			itemimage: '/images/front/explore/electrician1.jpg',
@@ -107,7 +107,9 @@ export default {
 
 
 		category:[
-				 ['Electricians',
+				 [
+
+				'Electricians',
 		{
 			itemimage: '/images/front/explore/electrician1.jpg',
 			itemtitle: 'Electrical and Wiring Repair',
@@ -122,7 +124,9 @@ export default {
 		},				
 				],
 
-			 ['Carpenters',
+			 [
+
+			 'Carpenters',
 		{
 			itemimage: '/images/front/explore/carpenter1.jpg',
 			itemtitle: 'Electrical and Wiring Repair',

@@ -2936,7 +2936,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-
+			i: 0,
 			electricancategoryitems: [{
 				itemimage: '/images/front/explore/electrician1.jpg',
 				itemtitle: 'Electrical and Wiring Repair'
