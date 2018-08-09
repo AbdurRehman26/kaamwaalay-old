@@ -66,6 +66,34 @@ body{
         }
     }
 }
+.not-found-page{
+    .panel {
+        width: 100%;
+        min-height: 100%;
+    }
+    .not-found{
+        height: 100% !important;
+    }
+    .not-found-container {
+        height: 100vh;
+        display: block;
+    }
+    .not-found-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 100vh;
+        text-align: center;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }    
+}
 
 .customer-detail-title {
     margin-bottom: 20px;
@@ -95,17 +123,66 @@ span.tags {
     }
 }
 
-.provider-image.user-img {
-/*     width: 370px;
-    height: 370px;
-    border-radius: 100%; */
-    width: 200px;
-    height: 200px;
-    border-radius: 0;
-    vertical-align: top;
-    float: right;
-    border: 10px solid #dedcdc;
+
+.basic-details{
+    width: 380px;
+    display: inline-block;
+    .provider-image.user-img {
+    /*     width: 370px;
+        height: 370px;
+        border-radius: 100%; */
+        width: 200px;
+        height: 200px;
+        border-radius: 0;
+        vertical-align: top;
+        text-align: center;
+        padding: 30px 20px;
+        border: 1px solid #e2dfdf;
+        .provider-image.user-img {
+        /*     width: 370px;
+            height: 370px;
+            border-radius: 100%; */
+            width: 200px;
+            height: 200px;
+            border-radius: 0;
+            vertical-align: top;
+            border: 10px solid #dedcdc;
+        }
+        .page-title{
+            display: block;
+            margin-bottom: 0;
+            padding: 10px 0px;
+        }
+        .addition-info{
+            ul{
+                padding: 0;
+                margin: 0;
+                li {
+                    display: inline-block;
+                    width: 49%;
+                    position: relative;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding-left: 23px;
+                    padding-right: 20px;
+                    i{
+                        color: #d4d4d4;
+                        padding: 0px 10px 0px 0px;
+                        position: absolute;
+                        top: 2px;
+                        left: 0;
+                    }
+                    &:nth-child(3n){
+                        display: table;
+                        width: auto;
+                        margin: 4px auto 6px auto;
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 .divider {
     margin-bottom: 30px;
@@ -125,8 +202,25 @@ span.tags {
     /* width: calc(100% - 370px); */
     /* max-width: 1000px; */
     /* width: calc(100% - 410px); */
-    width: calc(100% - 290px);
+    /* width: calc(100% - 400px); */
+    width: 100%;
     display: inline-block;
+    .fixed-label {
+        display: inline-block;
+        width: 300px;
+    }   
+    .calculated-value{
+        width: calc(100% - 320px);
+        &.max-text{
+            max-width: 400px;
+        }
+    } 
+    .row{
+        display: block;
+        margin: 0;
+        float: left;
+        width: 100%;
+    }
 }
 
 
@@ -496,7 +590,8 @@ i[active="true"]{
     .panel-inner{
         background-color:#fff;
         padding:25px;
-        min-height: calc(100vh - 68px);
+        /* min-height: calc(100vh - 68px); */
+        min-height: calc(100vh - 95px);
         padding-top: 0;
     }
 }
@@ -2338,6 +2433,7 @@ i[active="true"]{
 
 .fancy-box-mask{
     z-index: 99 !important;
+    background-color: rgba(51, 51, 51, 0.8509803921568627) !important;
     .fancy-box-image-wrapper{
         div{
             padding: 9% 0px 0px 0px;
@@ -2368,6 +2464,20 @@ i[active="true"]{
     padding:38px 25px 0;
     border-radius: 0;
     border: none;
+    &:after{
+        content: '';
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 100%;
+        background:#fff;
+        height: 8px;
+        top: 69px;
+        z-index: 9;
+        width: calc(100% - 250px);
+        left: auto;
+    }
     .breadcrumb{
         position: fixed;
         top: 56px;
@@ -2530,6 +2640,15 @@ a.underline {
         background-color:$status-danger !important;
     }
 }
+.statustext{
+    .active{
+        color:$status-active  !important;
+    }
+    .deactive{
+        color: $greyD !important;
+    }
+}
+
 .general-setting {
     .customer-detail-title {
         h2 {
@@ -2576,3 +2695,6 @@ a.underline {
             top: -1px;
         }
     }
+
+
+

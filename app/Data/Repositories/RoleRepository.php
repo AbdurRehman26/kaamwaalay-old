@@ -40,4 +40,15 @@ class RoleRepository extends AbstractRepository implements RepositoryContract
         $this->builder = $model;
 
     }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+
+        $this->builder = $this->model
+                            ->where('id', '<>' , Role::ADMIN)
+                            ->orderBy('id', 'ASC')
+                            ;
+   
+        return  parent::findByAll($pagination, $perPage);
+    
+    }
 }

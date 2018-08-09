@@ -1,0 +1,579 @@
+.modal-sm {
+    max-width: 420px;
+    @include mobile{
+        max-width: 100%;
+    }
+}
+
+.modal-md {
+    max-width: 640px;
+}
+
+.modal-lg {
+    max-width: 890px;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-header {
+    padding: 15px 24px;
+}
+
+.modal-footer {
+    padding: 10px 24px;
+}
+
+/* Data Approval scss start */
+.data-block {
+    padding-bottom: 20px;
+    margin-top: 15px;
+    &:last-child {
+        padding-bottom: 0px;
+    }
+    a {
+        color: $secondary-color !important;
+        text-decoration: underline !important;
+    }
+    label {
+        font-size: 12px;
+    }
+}
+
+.modal-header {
+    button{
+        outline: 0;
+    }
+}
+
+.data-approval{
+    footer{
+        .btn-link{
+            padding: 0px 0px;
+            min-width: 72px;
+        }
+    }
+}
+
+#view-customer-detail{
+    button.btn.btn-link {
+        float: right;
+        text-align: right;
+        position: absolute;
+        right: 25px;
+    }
+}
+
+.modal-footer{
+    justify-content: flex-start;
+    .btn-link{
+        padding: 0px;
+        min-width: 77px;
+    }
+}
+
+/* Data Approval scss end */
+
+/* Data Model scss start */
+.data-model .cust-table {
+    margin: 7px 0px 20px 0px;
+    @include mobileS{
+        overflow: hidden;
+    }
+}
+
+/*  Data Model scss end */
+
+
+/* Add Roles scss start */
+.roles-selection {
+    border-bottom: 1px solid $greyM;
+    padding-bottom: 9px;
+}
+.add-role {
+    .add-widget-container {
+        .card-header {
+            padding: 35px 1px 36px 15px;
+            width: 100%;
+
+            @include mobileS{
+                padding: 25px 25px 0 45px;
+                border-right: none;
+            }
+        }
+    }
+
+    .col-9{
+        @include mobileS{
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    .col-3{
+        @include mobileS{
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+    }
+
+    .w-40 {
+        @include mobileS{
+            width: 100%;
+        }
+    }
+}
+.add-role{
+    .tabs {
+        border: 1px solid #e8e8e8;
+        border-radius: 5px;
+        padding-top: 0px;
+    }
+}
+.add-role {
+    .nav-pills {
+        display: block;
+        height: 400px !important;
+        overflow-y: auto;
+        float: left;
+        overflow-x: hidden;
+
+        @include mobileS{
+            height: auto!important;
+        }
+
+        li.nav-item {
+            display: block !important;
+            width: 100%;
+            float: left;
+            a {
+                // &:after {
+                //     content: '\E5CE';
+                //     font-family: icomoon;
+                //     position: absolute;
+                //     right: 0;
+                //     top: 5px;
+                //     width: 23px;
+                //     left: -31px;
+                //     font-size: 19px;
+                // }
+            }
+        }
+    }
+    .card{
+        border: 0px;
+    }
+}
+.add-role{
+    .tab-content {
+        display: block;
+        height: 400px !important;
+        overflow-y: auto;
+        float: left;
+        overflow-x: hidden;
+    }
+}
+/* Add Roles scss end */
+
+/* Column Chart Type start */
+.performance-charts {
+    border: 1px solid $greyM;
+    padding: 15px;
+    background-color: #F9F9F9;
+    height: 100px;
+    margin-bottom: 12px;
+    position: relative;
+    text-align: center;
+    span {
+        &.number-chart-counts {
+            font-size: $font-size-xmd;
+            color: $primary-color;
+            font-family: $font_bold;
+
+            @include mobile{
+                font-size: 40px;
+            }
+        }
+    }
+    img {
+        margin: 0 auto;
+    }
+    .graph-type {
+        display: block;
+        min-height: 47px;
+        margin-top: 7px;
+    }
+    .line-chart{
+        margin-top: 9px;
+    }
+    label {
+        min-width: 139px;
+        font-size: 12px;
+        position: absolute;
+        bottom: -3px;
+        text-align: center;
+        display: block;
+
+        @include mobile{
+            min-width: 100%;
+            bottom: 17px;
+            left: 0;
+        }
+
+        @include mobileS{
+            position: static;
+            margin-top: 15px;
+        }
+    }
+    .pie-graph-val {
+        span {
+            position: absolute;
+            font-size: 9px;
+            top: 29px;
+            margin: 2px -17px;
+            text-align: center;
+            line-height: 11px;
+        }
+    }
+}
+
+
+/* Column Chart Type en */
+
+
+/* Update Profile Start */
+.upload-field {
+    .custom-file {
+        width: calc(100% - 44px);
+        display: inline-block;
+    }
+    .uploded-picture {
+        width: 37px;
+        height: 35px;
+        display: inline-block;
+        vertical-align: top;
+        overflow: hidden;
+        padding-left: 2px;
+        margin-top: 1px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.updateprofile{
+    ul{
+        border: 0px solid;
+        margin: auto;
+        li{
+            &.nav-item{
+                width: 50%;
+                text-align: center;
+                border: 0;            
+                border-radius: 0px;
+                a{
+                    border-bottom: 1px solid;
+                    border-radius: 0px;
+                    font-size: 14px;
+                    padding: 13px 0px;                    
+                }                
+            }
+        }
+    }
+    .modal-body{
+        padding: 0px;
+        .card-header{
+            padding: 0px;
+        }
+        .tab-content{
+            padding: 14px 24px 0px 24px;
+        }
+    }
+}
+
+/* Update Profile End */
+
+/* Add Widget Start */
+
+.add-widget-container {
+    position: relative;
+    .card-body {
+        padding: 0;
+    }
+    .card-header {
+        padding: 62px 0px 30px 17px;
+        border-right: 1px solid #e8e8e8;
+
+        @include tablet{
+            padding: 92px 0px 36px 19px;
+        }
+
+        @include mobile{
+            padding: 112px 0px 36px 19px;
+        }
+    }
+    li {
+        margin-bottom: 12px;
+        margin-left: 1px;
+        &.nav-item {
+            a {
+                padding: 9px 20px;
+                border: 1px solid $greyM;
+                background-color: $greyL !important;
+                width: 100%;
+                color: #111 !important;
+                border-radius: 6px 0px 0px 6px;
+                border-right: 0px;
+                position: relative;
+                float: left;
+                font-family: $font_regular !important;
+
+                @include tablet{
+                    padding: 9px 10px;
+                    font-size: 12px;
+                }
+
+                @include mobileS{
+                    border-radius: 6px;
+                    border-right: 1px solid $greyM;
+                }
+
+                &.active {
+                    background-color: #fff !important;
+                    color: $secondary-color !important;
+                }
+            }
+        }
+        &:last-child() {
+            margin-bottom: 0px;
+        }
+    }
+    .tab-content {
+        padding: 30px 20px 30px 20px !important;
+        width: 70%;
+        position: initial;
+    }
+    .tab-heading{
+        position: absolute;
+        left: 0;
+        width: 23%;
+        padding: 0px 20px;
+        top: 10px;
+
+        @include mobileS{
+            width: 100%;
+        }
+
+        h3{
+            font-size: 14px;
+            font-family: $font_regular;
+            line-height: 21px;
+
+            @include mobileS{
+                font-size: 13px!important;
+            }
+        }
+    }
+
+}
+
+#addwidget{
+    .add-widget-container{
+        .tab-content{
+            height: 337px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+}
+
+.add-role {
+    .add-widget-container {
+        .tab-content {
+            padding: 30px 20px 30px 0px !important;
+        }
+    }
+}
+.add-widget{
+    footer{
+        padding: 10px 24px;
+        .btn-link{
+            padding: 0px 0px !important;
+            min-width: 66px;
+        }
+    }
+}
+
+.modal-dialog{
+    @include mobile{
+        margin: 0;
+    }
+
+    .modal-content{
+        @include mobile{
+            border-radius: 0;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .col-6{
+            @include mobileS{
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .relationshipsquery{
+        margin-top: 0!important;
+    }
+}
+
+/* Add Widget End */
+
+/* Add User start */
+
+.workspace-roles {
+    border-bottom: 1px solid $greyM;
+    padding-bottom: 20px;
+}
+.add-workspace{
+    position: relative;
+    i{
+        color: $secondary-color;
+    }
+    .btn-link{
+        position: absolute;
+        left: 17px;
+        top: -9px;
+        color: $secondary-color;
+    }
+}
+.user-detail {
+    border-bottom: 1px solid $greyM;
+    padding: 16px 0px 9px 0px;
+}
+.user-note p {
+    margin: 19px 0px -5px 0px;
+    color: $greyD;
+}
+
+/* Add User end */
+
+
+/* Add Widget start */
+
+.add-widget{
+    .modal-lg{
+        max-width: 1090px;
+    }
+    .w-30{
+        width: 23%;
+
+        @include mobileS{
+            width: 100%;
+        }
+    }
+    .query-builder{
+        .rule-filter-container{
+            width: 180px !important;
+
+            @include mobile{
+                width: 94px!important;
+            }
+
+            @include mobileS{
+                width: 86%!important;
+            }
+        }
+
+        .rule-operator-container{
+            width: 130px!important;
+
+            @include mobile{
+                width: 119px!important;
+            }
+
+            @include mobileS{
+                width: 86%!important;
+            }
+        }
+
+        .rule-value-container{
+            width: 100px!important;
+
+            @include mobileS{
+                width: 86%!important;
+            }
+
+            .query-field{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.modal-body{
+    ul{
+        &.nav-pills{
+            li{
+                &.completed{
+                    position: relative;
+                    pointer-events: none;
+                    a{
+                        color: $primary-color !important;
+                    }
+                    &:after{
+                        content: '\E926';
+                        font-family: icomoon;
+                        position: absolute;
+                        right: 16px;
+                        top: 10px;
+                        color: $primary-color;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Add Widget end */
+
+/* Login Popup start */
+
+#login-popup .forgot-password-text {
+    display: none;
+}
+
+/* Login Popup end */
+
+.modal-cus-md
+{
+    .modal-lg{
+        max-width: 1010px;
+    }
+}
+
+.fotter-btn-hide
+{
+    .modal-footer{
+        .btn{
+            &.btn-primary{
+                opacity: 0;
+                pointer-events:none;
+            }
+        }
+    }
+}
+
+.add-widget{
+    .continue-btn{
+        position: absolute;
+        bottom: -49px;
+        right: 17px;
+    }
+}
+

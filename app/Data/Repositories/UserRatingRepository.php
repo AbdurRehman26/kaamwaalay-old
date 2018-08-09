@@ -66,4 +66,18 @@ public $model;
             }
             return $model;
         }
+
+    public function getAvgRatingCriteria($crtieria, $whereIn = false) {
+            
+            $model = $this->model->where($crtieria);
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->avg('rating');
+            }
+
+            if ($model != NULL) {
+                $model = $model->avg('rating');
+                return $model;
+            }
+            return false;
     }
+}

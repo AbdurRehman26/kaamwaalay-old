@@ -1,0 +1,227 @@
+/*Font family mixin*/
+$font_regular:'AkzidenzGroteskBE-Regular';
+$font_bold:'AkzidenzGroteskBE-Bold';
+$font_light:'OpenSans-Light';
+$font_thin:'OpenSans-Light';
+$font_medium:'AkzidenzGroteskBE-Md';
+$font_ebold:'OpenSans-ExtraBold';
+$font_black:'OpenSans-ExtraBold';
+
+@mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style :normal, $font-stretch: normal) {
+    @font-face {
+        font-family: '#{$font-family}';
+        src: url(('../../fonts/#{$font-filename}.eot'));
+        src: url(('../../fonts/#{$font-filename}.eot?#iefix')) format('embedded-opentype'),
+        url(('../../fonts/#{$font-filename}.woff')) format('woff'),
+        url(('../../fonts/#{$font-filename}.ttf')) format('truetype'),
+        url(('../../fonts/#{$font-filename}.svg##{$font-family}')) format('svg');
+        src: url(('../fonts/#{$font-filename}.woff')) format('woff');
+        font-style:normal;
+        font-weight:400;
+        font-stretch:none;
+    }
+}
+
+@include declare-font-face($font_regular,'AkzidenzGroteskBE-Regular');
+@include declare-font-face($font_bold,'AkzidenzGroteskBE-Bold');
+@include declare-font-face($font_light,'OpenSans-Light');
+@include declare-font-face($font_thin,'OpenSans-Light');
+@include declare-font-face($font_medium,'AkzidenzGroteskBE-Md');
+@include declare-font-face($font_ebold,'OpenSans-ExtraBold');
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/front/icomoon.eot?3toe5f');
+    src: url('../fonts/front/icomoon.eot?3toe5f#iefix') format('embedded-opentype'),
+    url('../fonts/front/icomoon.ttf?3toe5f') format('truetype'),
+    url('../fonts/front/icomoon.woff?3toe5f') format('woff'),
+    url('../fonts/front/icomoon.svg?3toe5f#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-calendar-daily:before {
+  content: "\e90e";
+}
+.icon-list:before {
+  content: "\f03a";
+}
+.icon-angle-double-right:before {
+  content: "\e905";
+}
+.icon-angle-double-right2:before {
+  content: "\e906";
+}
+.icon-user-icon-resue:before {
+  content: "\e90f";
+}
+.icon-facebook-official:before {
+  content: "\e90d";
+}
+.icon-user-icon-resue2:before {
+  content: "\e910";
+}
+.icon-folder:before {
+  content: "\f07b";
+}
+.icon-search:before {
+  content: "\f002";
+}
+.icon-angle-left:before {
+  content: "\f104";
+}
+.icon-angle-right:before {
+  content: "\f105";
+}
+.icon-angle-up:before {
+  content: "\f106";
+}
+.icon-angle-down:before {
+  content: "\f107";
+}
+.icon-google-plus:before {
+  content: "\e90b";
+}
+.icon-instagram:before {
+  content: "\e911";
+}
+.icon-facebook:before {
+  content: "\e90c";
+}
+.icon-send:before {
+  content: "\e900";
+}
+.icon-checked:before {
+  content: "\e901";
+}
+.icon-front-car:before {
+  content: "\e902";
+}
+.icon-work-briefcase:before {
+  content: "\e903";
+}
+.icon-exit:before {
+  content: "\e92e";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-help:before {
+  content: "\e887";
+}
+.icon-delete:before {
+  content: "\e928";
+}
+.icon-menu2:before {
+  content: "\e929";
+}
+.icon-phone_in_talk:before {
+  content: "\e61d";
+}
+.icon-message:before {
+  content: "\e904";
+}
+.icon-quotes-right:before {
+  content: "\e978";
+}
+.icon-quotes-right2:before {
+  content: "\e979";
+}
+.icon-quotes-right3:before {
+  content: "\e97a";
+}
+.icon-trophy:before {
+  content: "\e907";
+}
+.icon-location:before {
+  content: "\e947";
+}
+.icon-quotes-left:before {
+  content: "\e977";
+}
+.icon-search22:before {
+  content: "\e986";
+}
+.icon-lock:before {
+  content: "\e98f";
+}
+.icon-cog2:before {
+  content: "\e994";
+}
+.icon-cross:before {
+  content: "\ea0f";
+}
+.icon-checkmark:before {
+  content: "\ea10";
+}
+.icon-pinterest:before {
+  content: "\e909";
+}
+.icon-twitter:before {
+  content: "\e92a";
+}
+.icon-flag:before {
+  content: "\e908";
+}
+.icon-add-solid:before {
+  content: "\e91f";
+}
+.icon-add-outline:before {
+  content: "\e920";
+}
+.icon-minus-solid:before {
+  content: "\e921";
+}
+.icon-minus-outline:before {
+  content: "\e922";
+}
+.icon-exclamation-solid:before {
+  content: "\e91c";
+}
+.icon-edit-pencil:before {
+  content: "\e91d";
+}
+.icon-brightness-down:before {
+  content: "\e90a";
+}
+.icon-notifications-outline:before {
+  content: "\e918";
+}
+.icon-triangle-up:before {
+  content: "\e912";
+}
+.icon-triangle-right:before {
+  content: "\e913";
+}
+.icon-triangle-left:before {
+  content: "\e914";
+}
+.icon-triangle-down:before {
+  content: "\e915";
+}
+.icon-cancel:before {
+  content: "\e927";
+}
+.icon-cancel2:before {
+  content: "\e91e";
+}
+.icon-checkmark2:before {
+  content: "\e926";
+}

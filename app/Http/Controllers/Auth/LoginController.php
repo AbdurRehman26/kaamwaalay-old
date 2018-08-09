@@ -10,6 +10,8 @@ use App\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Lang;
 use Carbon\carbon;
+use Symfony\Component\HttpFoundation\Response;
+
 class LoginController extends Controller
 {
      /*
@@ -94,8 +96,12 @@ class LoginController extends Controller
     {
         $this->clearLoginAttempts($request);
 
-        return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+        $data =  $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());      
+        $output = ['response' => ['data' => [$data],'message'=>'Success']];
+
+        // HTTP_OK = 200;
+        return response()->json($output, Response::HTTP_OK);
     }
 
     /**

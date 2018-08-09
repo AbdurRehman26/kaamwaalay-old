@@ -40,4 +40,15 @@ class CityRepository extends AbstractRepository implements RepositoryContract
         $this->builder = $model;
 
     }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+
+        $this->builder = $this->model
+                            ->where('state_id', '=' , $data['state_id'])
+                            ->orderBy('name', 'ASC')
+                            ;
+   
+        return  parent::findByAll($pagination, $perPage);
+    
+    }
 }

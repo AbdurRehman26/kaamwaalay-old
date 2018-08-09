@@ -57,7 +57,7 @@
           </div>
       </div>
       <div class="contact-us">
-         <p>Can't log in or need help? <a @click="ContactExpire" href="javascript:void()">Contact Us</a></p>
+         <!-- <p>Can't log in or need help? <a @click="ContactExpire" href="javascript:void()">Contact Us</a></p> -->
       </div>
     </div>
         <contactarea :showContactProp="ContactIsExpire" @HideModalValue="HideContactModal"></contactarea>

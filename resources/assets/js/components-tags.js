@@ -7,34 +7,34 @@ Vue.component('create-password', require('./components/auth/CreatePassword.vue')
 
 
 // Common Component Tags
-Vue.component('logo', require('./components/common-components/Logo.vue'));
-Vue.component('list-group', require('./components/common-components/ListGroup.vue'));
-Vue.component('search', require('./components/common-components/Search.vue'));
-Vue.component('loader', require('./components/common-components/Loader.vue'));
-Vue.component('alert', require('./components/common-components/Alert.vue'));
-Vue.component('title-area', require('./components/common-components/TitleArea.vue'));
-Vue.component('breadcrumb', require('./components/common-components/BreadCrumb.vue'));
+Vue.component('logo', require('./components/admin/common-components/Logo.vue'));
+Vue.component('list-group', require('./components/admin/common-components/ListGroup.vue'));
+Vue.component('search', require('./components/admin/common-components/Search.vue'));
+Vue.component('loader', require('./components/admin/common-components/Loader.vue'));
+Vue.component('alert', require('./components/admin/common-components/Alert.vue'));
+Vue.component('title-area', require('./components/admin/common-components/TitleArea.vue'));
+Vue.component('breadcrumb', require('./components/admin/common-components/BreadCrumb.vue'));
 
-Vue.component('discussion', require('./components/common-components/Discussion.vue'));
-Vue.component('navigation', require('./components/common-components/Navigation.vue'));
-Vue.component('notification', require('./components/common-components/Notification.vue'));
+Vue.component('discussion', require('./components/admin/common-components/Discussion.vue'));
+Vue.component('navigation', require('./components/admin/common-components/Navigation.vue'));
+Vue.component('notification', require('./components/admin/common-components/Notification.vue'));
 
-Vue.component('swap-relation', require('./components/common-components/SwapRelation.vue'));
-Vue.component('loadmore', require('./components/common-components/LoadMore.vue'));
-Vue.component('pageLoader', require('./components/common-components/PageLoader.vue'));
-Vue.component('MidLoader', require('./components/common-components/MediumLoader.vue'));
-Vue.component('SpinnerLoader', require('./components/common-components/SpinnerLoader.vue'));
-Vue.component('DatePicker', require('./components/common-components/Datepicker.vue'));
-Vue.component('SearchField', require('./components/common-components/Search.vue'));
+Vue.component('swap-relation', require('./components/admin/common-components/SwapRelation.vue'));
+Vue.component('loadmore', require('./components/admin/common-components/LoadMore.vue'));
+Vue.component('pageLoader', require('./components/admin/common-components/PageLoader.vue'));
+Vue.component('MidLoader', require('./components/admin/common-components/MediumLoader.vue'));
+Vue.component('SpinnerLoader', require('./components/admin/common-components/SpinnerLoader.vue'));
+Vue.component('DatePicker', require('./components/admin/common-components/Datepicker.vue'));
+Vue.component('SearchField', require('./components/admin/common-components/Search.vue'));
 
 // Common Popup
-Vue.component('delete-popup',require('./components/common-components/DeletePopup.vue'));
-Vue.component('change-pass-popup',require('./components/common-components/ChangePassPopup.vue'));
-Vue.component('changestatuspopup',require('./components/common-components/Status.vue'));
+Vue.component('delete-popup',require('./components/admin/common-components/DeletePopup.vue'));
+Vue.component('change-pass-popup',require('./components/admin/common-components/ChangePassPopup.vue'));
+Vue.component('changestatuspopup',require('./components/admin/common-components/Status.vue'));
 
 
 //left navigation
-Vue.component('left-panel', require('./components/common-components/LeftPanel.vue'));
+Vue.component('left-panel', require('./components/admin/common-components/LeftPanel.vue'));
 
 //admin
 Vue.component('user', require('./components/admin/Main.vue'));
@@ -42,24 +42,30 @@ Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
 
 // Service-Type
-Vue.component('add-service',require('./components/service-type/popup/AddService.vue'));
-Vue.component('view-details',require('./components/service-type/popup/ViewDetails.vue'));
+Vue.component('add-service',require('./components/admin/service-type/popup/AddService.vue'));
+Vue.component('view-details',require('./components/admin/service-type/popup/ViewDetails.vue'));
 
 //service provider
-Vue.component('change-status-provider',require('./components/service-provide/popup/ChangeStatus.vue'));
-Vue.component('service-provider-detail',require('./components/service-provide/popup/ServiceProviderDetail.vue'));
+Vue.component('change-status-provider',require('./components/admin/service-provide/popup/ChangeStatus.vue'));
+Vue.component('service-provider-detail',require('./components/admin/service-provide/popup/ServiceProviderDetail.vue'));
+Vue.component('view-service-record',require('./components/admin/service-provide/popup/ViewServiceRecord.vue'));
+
+
+// service-provide-review-popup
+Vue.component('service-provider-review',require('./components/admin/service-provider-review/popup/ChangeStatus.vue'));
+
 
 // Customer
-Vue.component('customer-detail',require('./components/customer/popup/AddCustomer.vue'));
-Vue.component('view-customer-details',require('./components/customer/popup/ViewCustomerDetails.vue'));
-Vue.component('view-customer-record',require('./components/customer/popup/ViewCustomerRecord.vue'));
+Vue.component('customer-detail',require('./components/admin/customer/popup/AddCustomer.vue'));
+Vue.component('view-customer-details',require('./components/admin/customer/popup/ViewCustomerDetails.vue'));
+Vue.component('view-customer-record',require('./components/admin/customer/popup/ViewCustomerRecord.vue'));
 
 
 //Jobs
-Vue.component('view-bidding-details',require('./components/job/popup/ViewBuiddingDetails.vue'));
+Vue.component('view-bidding-details',require('./components/admin/job/popup/ViewBuiddingDetails.vue'));
 
 // Support Popup
-Vue.component('support-detail',require('./components/support/popup/SupportDetail.vue'));
+Vue.component('support-detail',require('./components/admin/support/popup/SupportDetail.vue'));
 
 
 
@@ -67,4 +73,12 @@ Vue.component('support-detail',require('./components/support/popup/SupportDetail
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
 
 // dashboard
+
+
+
+//****************front components******************//
+
+//header
+Vue.component('front-header',require('./components/front/common-components/header.vue'));
+
 

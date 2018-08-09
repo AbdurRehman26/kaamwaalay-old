@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Service;
+use App\Data\Models\Role;
 
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
@@ -72,12 +73,28 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         $this->builder = $this->model->orderBy('created_at','desc');
 
+        if (!empty($data['zip_code'])) {
+            $this->builder = $this->builder->
+            leftJoin('service_provider_services', function ($join)  use($data) {
+                $join->on('service_provider_services.service_id', '=', 'services.id');
+            })->
+            leftJoin('service_provider_profile_requests', function ($join)  use($data) {
+                $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_services.id');
+            })->
+            leftJoin('users', function ($join)  use($data) {
+                $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+            })
+            ->where('service_provider_profile_requests.status','approved')
+            ->where('users.role_id',Role::SERVICE_PROVIDER)
+            ->where('users.zip_code',$data['zip_code'])
+            ->select(['services.id']);
+        }
 
         if (!empty($data['keyword'])) {
             
             $this->builder = $this->builder->where(function($query)use($data){
                 $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('services.derscription', 'like', "%{$data['keyword']}%");
+                $query->orWhere('services.description', 'like', "%{$data['keyword']}%");
             
             });
         }

@@ -1,0 +1,69 @@
+$max-wrapper:1328px;
+
+//color variables
+//primary colors
+$primary-color:#6004BA;
+$primary-color-md:#8200FF;
+$primary-color-lt:#DDC6F4;
+$primary-color-ot:#DAFBFF;
+//secondary colors
+$secondary-color:#1A1A1A;
+$text-primary-color:#1A1A1A;
+$grey-Edark:#494949;
+$grey-dark:#7D7D7D;
+$grey-medium:#B2B2B2;
+$grey-lite:#E0E0E0;
+$grey-Elite:#F9F9F9;
+$body-bg:#fff;
+$body-color:$text-primary-color;
+$success-bg:#28a745;
+$success-color:#fff;
+$success-border:#28a745;
+$danger-bg:#d9534f;
+$danger-color:#fff;
+$danger-border:#d9534f;
+$warning-bg:#ffc107;
+$warning-color:#fff;
+$warning-border:#ffc107;
+
+//font sizes variables
+$font-size-base:16px;
+$font-size-xxl:36px;
+$font-size-xl:32px;
+$font-size-lg:28px;
+$font-size-md:24px;
+$font-size-sm:20px;
+$font-size-xs:16px;
+$font-size-xxs:14px;
+
+//forms
+$label-size:$font-size-xxs;
+$label-color:$secondary-color;
+$placeholder-color:$grey-dark;
+$input-font-size: $font-size-xxs;
+$input-height:38px;
+$label-margin:0 0 9px 0;
+$input-padding:11px 16px;
+$input-color:$secondary-color;
+$input-border:$grey-medium;
+$input-radius:4px;
+$input-border: $grey-medium;
+
+//buttons
+$button-radius:8px;
+$button-padding:10px 40px;
+$button-height:44px;
+$button-primary-color:$primary-color;
+
+$btn-primary-bg:$primary-color;
+$btn-primary-color:#fff;
+$btn-secondary-bg:$secondary-color;
+$btn-secondary-color:#fff;
+$anchor-color:$primary-color;
+$anchor-color-hover:$primary-color;
+
+//checkbox
+$checkbox-width-height: 14px;
+$checkbox-radius:1px;
+$checkbox-border-color: $input-border;
+$border-radius:20px;
