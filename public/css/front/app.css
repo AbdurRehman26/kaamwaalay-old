@@ -11629,6 +11629,7 @@ textarea {
   background: #fff;
   width: 100%;
   top: 0;
+  z-index: 99;
   padding: 13px 0px;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
@@ -11655,6 +11656,7 @@ textarea {
   vertical-align: middle;
   display: inline-block;
   margin: 0 16px;
+  position: relative;
 }
 
 .navigation ul li a {
@@ -11669,6 +11671,16 @@ textarea {
 .navigation ul li a:hover {
   text-decoration: underline;
   color: #494949 !important;
+}
+
+.navigation ul li a.router-link-active:after {
+  content: '';
+  background-color: #8103ff;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  bottom: -23px;
 }
 
 .navigation ul li:last-child a {
@@ -12063,5 +12075,89 @@ textarea {
   width: 100%;
   background-color: #F9F9F9;
   padding: 22px 0;
+}
+
+/* Testmonial Section */
+
+.testmonial-section .item-list .item {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+.testmonial-section .item-list .item:nth-child(1n) {
+  padding-right: 44px;
+}
+
+.testmonial-section .item-list .item:nth-child(2n) {
+  padding-right: 0px;
+}
+
+.testmonial-section .item-list .testmonial-img {
+  display: block;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.testmonial-section .item-list .testmonial-name {
+  text-align: center;
+  padding-top: 16px;
+}
+
+.testmonial-section .item-list .testmonial-name h3 {
+  font-size: 16px;
+}
+
+.testmonial-block {
+  background-color: #fff;
+  padding: 32px;
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+  min-height: 181px;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.testmonial-block i {
+  color: #6004BA;
+  font-size: 24px;
+  padding-bottom: 20px;
+  display: block;
+}
+
+.testmonial-block p {
+  font-size: 22px;
+  margin-bottom: 0px;
+  line-height: 29px;
+}
+
+.testmonial-block:before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 47%;
+  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+  border-top: 15px solid #fdfdfd;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.testmonial-block:after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 47%;
+  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+  border-top: 15px solid #fdfdfd;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.grey-bg {
+  background-color: #F9F9F9;
 }
 
