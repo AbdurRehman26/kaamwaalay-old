@@ -12627,3 +12627,7 @@ li.nav-item.active {
   margin: 0 auto;
 }
 
+.how-it-work-list .list-description {
+  width: 100%;
+}
+

@@ -3341,6 +3341,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63658,86 +63670,98 @@ var staticRenderFns = [
           _c("div", { staticClass: "services-list" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("div", { staticClass: "list-icon sm white" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("img", {
-                      attrs: { src: "/images/front/svg/electricians.svg" }
-                    })
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/electricians.svg" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v("Electricians")])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "list-description" }, [
-                  _c("p", [_vm._v("Electricians")])
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("div", { staticClass: "list-icon sm white" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("img", {
-                      attrs: { src: "/images/front/svg/carpenters.svg" }
-                    })
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/carpenters.svg" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v("Carpenters")])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "list-description" }, [
-                  _c("p", [_vm._v("Carpenters")])
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("div", { staticClass: "list-icon sm white" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("img", {
-                      attrs: { src: "/images/front/svg/painters.svg" }
-                    })
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/painters.svg" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v("Painters")])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "list-description" }, [
-                  _c("p", [_vm._v("Painters")])
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("div", { staticClass: "list-icon sm white" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("img", {
-                      attrs: { src: "/images/front/svg/plumbers.svg" }
-                    })
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/plumbers.svg" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v("Plumbers")])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "list-description" }, [
-                  _c("p", [_vm._v("Plumbers")])
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("div", { staticClass: "list-icon sm white" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("img", {
-                      attrs: { src: "/images/front/svg/movers.svg" }
-                    })
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/movers.svg" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v("Movers")])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "list-description" }, [
-                  _c("p", [_vm._v("Movers")])
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("div", { staticClass: "list-icon sm white" }, [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("img", {
-                      attrs: { src: "/images/front/svg/gardner.svg" }
-                    })
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/gardner.svg" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v("Gardeners")])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "list-description" }, [
-                  _c("p", [_vm._v("Gardeners")])
                 ])
               ])
             ])
