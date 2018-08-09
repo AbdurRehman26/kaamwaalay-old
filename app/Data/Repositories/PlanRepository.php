@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Plan;
+use Carbon\Carbon;
 
 class PlanRepository extends AbstractRepository implements RepositoryContract
 {
@@ -39,5 +40,42 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
         $this->model = $model;
         $this->builder = $model;
 
+    }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+        $this->builder = $this->builder
+                            ->where('type', '=' , $data['type'])
+                            ->orderBy('amount', 'ASC')
+                            ;   
+        return  parent::findByAll($pagination, $perPage);
+    
+    }
+
+    public function updateOrAddPlans($input)
+    {
+        $data = [];
+        $date = Carbon::now();
+        if(count($input['plans_data'])){
+            foreach ($input['plans_data'] as $key => $value) {
+                
+                $value['id']            =   !empty($value['id'])?$value['id']:NULL;
+                $value['name']          =   'Featured Profile';
+                $value['type']          =   'service';
+                $value['amount']        =   $value['amount'];
+                $value['quantity']      =   $value['quantity'];
+                $value['created_at']    =   $date;
+                $value['updated_at']    =   $date;
+                //dd($value);
+                $data[] =   $value;
+            }
+            //dd($data);
+
+        }
+
+        if($this->model->insertOnDuplicateKey($data,['amount', 'quantity', 'updated_at'])){
+            return true;
+        }
+
+        return false;
     }
 }
