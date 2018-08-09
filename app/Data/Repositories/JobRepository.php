@@ -85,16 +85,19 @@ public $model;
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->service = app('ServiceRepository')->findById($data->service_id);
 
-            $bidsCriteria = ['job_id' => $data->id];
-            $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
 
-            $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
+            if(!empty($details['bid_data'])){
 
-            $bidsCriteria['is_awarded'] = 1;
-            $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+                $bidsCriteria = ['job_id' => $data->id];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
 
-            if($awardedBid){
-                $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+                $bidsCriteria['is_awarded'] = 1;
+                $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+
+                if($awardedBid){
+                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+                }
             }
 
             $ratingCriteria = ['user_id' => $data->user_id];

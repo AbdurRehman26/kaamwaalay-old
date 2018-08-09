@@ -63,9 +63,11 @@ public $model;
             }
 
             if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
             }
 
+            $model = $model->first(['id']);
+            
             if ($model != NULL) {
                 $model = $this->findById($model->id, $refresh, $details, $encode);
             }

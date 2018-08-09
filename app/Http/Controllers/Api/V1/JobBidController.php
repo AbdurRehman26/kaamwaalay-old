@@ -24,7 +24,7 @@ class JobBidController extends ApiResourceController
             'required',
             'exists:jobs,id',
             Rule::unique('job_bids')->where(function ($query) {
-                $query->where('user_id', 1);
+                $query->where('user_id', request()->user()->id);
             }),
         ];
 
@@ -35,7 +35,7 @@ class JobBidController extends ApiResourceController
         $rules['job_id'] = [
             'required',
             Rule::exists('job_bids')->where(function ($query) {
-                $query->where('user_id', 1);
+                $query->where('user_id', request()->user()->id);
             }),
         ];
 
@@ -62,8 +62,8 @@ class JobBidController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'job_id', 'description', 'is_tbd', 'amount');
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : 1;
+    $input = request()->only('id', 'job_id', 'description', 'is_tbd', 'amount', 'filter_by_status');
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
     return $input;
 }
 }

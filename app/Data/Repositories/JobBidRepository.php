@@ -60,6 +60,7 @@ public $model;
 
             if($whereIn){
                 $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+
             }
 
             $model = $model->first(['id']);
@@ -75,8 +76,25 @@ public $model;
 
             $this->builder = $this->model->orderBy('id' , 'desc');
 
-            if(!empty($input['filter_by'])){
-                $this->builder = $this->builder->where('status', '=', $input['filter_by']);            
+            if(!empty($input['filter_by_status'])){
+
+                if($input['filter_by_status'] == 'awarded'){
+
+                    $this->builder = $this->builder->where('is_awarded', '=', 1);            
+
+                }elseif($input['filter_by_status'] == 'invited'){
+
+                    $this->builder = $this->builder->where('is_invited', '=', 1);            
+                    
+                }elseif($input['filter_by_status'] == 'archived'){
+
+                    $this->builder = $this->builder->where('is_archived', '=', 1);            
+                    
+                }else{
+                   
+                    $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+                }
+
             }
 
             $data = parent::findByAll($pagination, $perPage, $input);
