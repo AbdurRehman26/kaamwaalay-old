@@ -69,15 +69,17 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
                 $data[] =   $value;
                 $ids[] = $value['id'];
             }
-        }
-        if(count($ids)){
-            $ids = array_filter($ids);
-            $this->model->where('type', '=', 'service')->whereNotIn('id', $ids)->delete();
+
+            if(count($ids)){
+                $ids = array_filter($ids);
+                $this->model->where('type', '=', 'service')->whereNotIn('id', $ids)->delete();
+            }
+
+            if($this->model->insertOnDuplicateKey($data,['amount', 'quantity', 'updated_at'])){
+                return true;
+            }
         }
 
-        if($this->model->insertOnDuplicateKey($data,['amount', 'quantity', 'updated_at'])){
-            return true;
-        }
 
         return false;
     }
