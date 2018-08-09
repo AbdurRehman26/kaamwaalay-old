@@ -3304,8 +3304,68 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        __webpack_require__("./node_modules/jquery/dist/jquery.js");
+        __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"owl.carousel\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+        $(document).ready(function () {
+            $('.my-owl-carousel').owlCarousel({
+                margin: 10,
+                nav: true,
+                items: 4,
+                responsive: {
+                    /*                        0:{
+                                                items:1
+                                            },
+                                            600:{
+                                                items:3
+                                            },
+                                            1000:{
+                                                items:5
+                                            }*/
+                }
+            });
+        });
+    },
     data: function data() {
         return {
             headerBanner: 'images/front/banners/home.jpg'
@@ -60231,7 +60291,7 @@ var render = function() {
               [
                 _c(
                   "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
                   [
                     _c("div", { staticClass: "icon" }, [
                       _c("img", {
@@ -60240,11 +60300,11 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Pick Leads")]),
+                      _c("h4", [_vm._v("Find")]),
                       _vm._v(" "),
                       _c("p", [
                         _vm._v(
-                          "Pick those which are of interest to you. Signal your interest through the site."
+                          "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
                         )
                       ])
                     ])
@@ -60253,7 +60313,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
                   [
                     _c("div", { staticClass: "icon" }, [
                       _c("img", {
@@ -60262,11 +60322,11 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Get Shortlisted")]),
+                      _c("h4", [_vm._v("Bidding Process")]),
                       _vm._v(" "),
                       _c("p", [
                         _vm._v(
-                          "Customers review your profiles online & shortlist you to bid on the job."
+                          "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
                         )
                       ])
                     ])
@@ -60275,7 +60335,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
                   [
                     _c("div", { staticClass: "icon" }, [
                       _c("img", {
@@ -60284,11 +60344,33 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                      _c("h4", [_vm._v("Communicate & Hire")]),
                       _vm._v(" "),
                       _c("p", [
                         _vm._v(
-                          "Chat with customer to discuss the job or arrange a visit as your normally would."
+                          "CYou can communicate with service provider before hiring and after that award the job to right service provider."
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
+                  [
+                    _c("div", { staticClass: "icon" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/communicate.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Work & Pay")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
                         )
                       ])
                     ])
@@ -60301,6 +60383,17 @@ var render = function() {
           1
         )
       ])
+    ]),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c("div", { staticClass: "section section-grey" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [_vm._m(5), _vm._v(" "), _c("testmonial-sec")],
+        1
+      )
     ])
   ])
 }
@@ -60447,59 +60540,74 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "container" }, [
-        _c("ul", { staticClass: "Popular-services-slides" }, [
-          _c("li", [
-            _c("div", { staticClass: "box-img" }, [
-              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+        _c(
+          "ul",
+          {
+            staticClass:
+              "Popular-services-slides my-owl-carousel owl-carousel owl-theme"
+          },
+          [
+            _c("li", { staticClass: "item" }, [
+              _c("div", { staticClass: "box-img" }, [
+                _c("img", {
+                  attrs: { src: "/images/front/home/carpenter.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("Cleaning Services")]),
+              _vm._v(" "),
+              _c("p", [
+                _c("i", { staticClass: "icon-location" }),
+                _vm._v("Cleaning Services")
+              ])
             ]),
             _vm._v(" "),
-            _c("h4", [_vm._v("Cleaning Services")]),
-            _vm._v(" "),
-            _c("p", [
-              _c("i", { staticClass: "icon-location" }),
-              _vm._v("Cleaning Services")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("div", { staticClass: "box-img" }, [
-              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+            _c("li", { staticClass: "item" }, [
+              _c("div", { staticClass: "box-img" }, [
+                _c("img", {
+                  attrs: { src: "/images/front/home/carpenter.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("Cleaning Services")]),
+              _vm._v(" "),
+              _c("p", [
+                _c("i", { staticClass: "icon-location" }),
+                _vm._v("Cleaning Services")
+              ])
             ]),
             _vm._v(" "),
-            _c("h4", [_vm._v("Cleaning Services")]),
-            _vm._v(" "),
-            _c("p", [
-              _c("i", { staticClass: "icon-location" }),
-              _vm._v("Cleaning Services")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("div", { staticClass: "box-img" }, [
-              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+            _c("li", { staticClass: "item" }, [
+              _c("div", { staticClass: "box-img" }, [
+                _c("img", {
+                  attrs: { src: "/images/front/home/carpenter.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("Cleaning Services")]),
+              _vm._v(" "),
+              _c("p", [
+                _c("i", { staticClass: "icon-location" }),
+                _vm._v("Cleaning Services")
+              ])
             ]),
             _vm._v(" "),
-            _c("h4", [_vm._v("Cleaning Services")]),
-            _vm._v(" "),
-            _c("p", [
-              _c("i", { staticClass: "icon-location" }),
-              _vm._v("Cleaning Services")
+            _c("li", { staticClass: "item" }, [
+              _c("div", { staticClass: "box-img" }, [
+                _c("img", {
+                  attrs: { src: "/images/front/home/carpenter.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("Cleaning Services")]),
+              _vm._v(" "),
+              _c("p", [
+                _c("i", { staticClass: "icon-location" }),
+                _vm._v("Cleaning Services")
+              ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("div", { staticClass: "box-img" }, [
-              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
-            ]),
-            _vm._v(" "),
-            _c("h4", [_vm._v("Cleaning Services")]),
-            _vm._v(" "),
-            _c("p", [
-              _c("i", { staticClass: "icon-location" }),
-              _vm._v("Cleaning Services")
-            ])
-          ])
-        ]),
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "slide-blts" }, [
           _c("ul", [
@@ -60519,6 +60627,64 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
       _c("h2", [_vm._v("How it works")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section ready-to-meet" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h2", [
+              _vm._v(
+                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "avability-app" }, [
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _c("img", {
+                  attrs: { src: "/images/front/common-images/app-store.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _c("img", {
+                  attrs: { src: "/images/front/common-images/google-play.jpg" }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "image-sec" }, [
+            _c("img", {
+              attrs: { src: "/images/front/join-as-pro/customer.jpg" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("What our customers are saying")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Professional service marketplace has helped tens of thousands of people around US to get the job done."
+        )
+      ])
     ])
   }
 ]
