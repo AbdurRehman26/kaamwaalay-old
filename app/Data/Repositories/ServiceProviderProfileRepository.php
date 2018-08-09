@@ -45,7 +45,7 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $input);
 
         if ($data) {
-            $data->user_detail = app('UserRepository')->findById($data->user_id);
+            $data->user_detail = app('UserRepository')->findById($data->user_id,false,true);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
