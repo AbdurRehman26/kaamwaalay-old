@@ -28,6 +28,8 @@ Route::group([
 });
 
 Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
+
 
 Route::resource('campaign', 'Api\V1\CampaignController')->except([
     'edit',
