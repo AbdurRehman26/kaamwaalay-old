@@ -175,12 +175,13 @@
 
 		<!-- Sucess Stories section start-->
 
-		<div class="next-project section-padd">
+		<div class="next-project section-padd grey-bg">
 			<div class="container">
 					<div class="content-sec text-center">
 						<h1>Success Stories</h1>
 						<p>Professional service marketplace has helped thousands of service providers around US.</p>
 					</div>
+					<testmonial-sec></testmonial-sec>
 
 			</div>
 		</div>

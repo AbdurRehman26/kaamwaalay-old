@@ -11480,6 +11480,21 @@ textarea {
   text-decoration: underline;
 }
 
+.btn.btn-facebook {
+  background: #3B579D !important;
+  border-color: #3B579D !important;
+  color: #fff;
+}
+
+.btn.btn-facebook:focus,
+.btn.btn-facebook:visited,
+.btn.btn-facebook:active {
+  background: #3B579D !important;
+  border-color: #3B579D !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 .sort_btn {
   margin-bottom: 9px;
   display: table;
@@ -11560,21 +11575,35 @@ textarea {
 
 .fb-btn {
   position: relative;
+  border-bottom: 1px solid #E0E0E0;
+  padding-bottom: 13px;
+  margin-bottom: 25px;
 }
 
 .fb-btn a.btn {
   width: 100%;
   font-size: 16px;
-  background-color: #3B579D;
-  border-color: #3B579D;
   margin-bottom: 20px;
   font-family: "AkzidenzGroteskBE-Md";
 }
 
 .fb-btn a span {
   position: absolute;
-  font-size: 21px;
-  margin-left: -30px;
+  font-size: 24px;
+  margin-left: -37px;
+}
+
+.fb-btn:after {
+  content: 'OR';
+  color: #494949;
+  position: absolute;
+  font-size: 14px;
+  background: #fff;
+  left: 46%;
+  font-family: "AkzidenzGroteskBE-Md";
+  top: 66px;
+  width: 46px;
+  text-align: center;
 }
 
 .header {
@@ -11590,6 +11619,7 @@ textarea {
   background: #fff;
   width: 100%;
   top: 0;
+  z-index: 99;
   padding: 13px 0px;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
@@ -11616,6 +11646,7 @@ textarea {
   vertical-align: middle;
   display: inline-block;
   margin: 0 16px;
+  position: relative;
 }
 
 .navigation ul li a {
@@ -11630,6 +11661,20 @@ textarea {
 .navigation ul li a:hover {
   text-decoration: underline;
   color: #494949 !important;
+}
+
+.navigation ul li a.router-link-active:after {
+  content: '';
+  background-color: #8103ff;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  bottom: -23px;
+}
+
+.navigation ul li:first-child {
+  margin-left: 0px;
 }
 
 .navigation ul li:last-child {
@@ -11663,6 +11708,10 @@ textarea {
   height: 100%;
   top: 0;
   position: absolute;
+}
+
+.main-banner .content-inner.md {
+  max-width: 930px;
 }
 
 .main-banner.home-banner .content-inner {
@@ -11934,13 +11983,14 @@ textarea {
   margin-right: 0px;
 }
 
-.sign-up {
+.sign-up-info {
   max-width: 850px;
   margin: 0 auto;
 }
 
-.sign-up h1 {
+.sign-up-info h1 {
   margin: 60px 0 40px 0;
+  text-align: center;
 }
 
 .sign-up-form {
@@ -11950,10 +12000,128 @@ textarea {
   background-color: #FFFFFF;
 }
 
+.service-provider-form {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.service-provider-form:after {
+  content: 'CUSTOMER SIGN UP';
+  position: absolute;
+  background: #fff;
+  width: 187px;
+  top: -10px;
+  font-size: 14px;
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+  left: 39%;
+}
+
+.business-form {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.business-form:after {
+  content: 'SERVICE PROVIDER SIGN UP';
+  position: absolute;
+  background: #fff;
+  width: 248px;
+  top: -10px;
+  font-size: 14px;
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+  left: 35%;
+}
+
+.create-account-btn {
+  margin-top: 17px;
+}
+
+.already-signup {
+  font-size: 20px;
+  text-align: center;
+}
+
+.already-signup a {
+  color: #8200FF;
+  text-decoration: none;
+}
+
+.already-signup p {
+  margin-bottom: 40px;
+}
+
 .form-detail p {
   font-size: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
   margin-top: 30px;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 40px;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+  border-color: #fff;
+}
+
+li.nav-item.active {
+  border: 1px solid #6004BA;
+  background-color: #F9F9F9;
+}
+
+.nav-tabs .nav-item {
+  position: relative;
+  margin-bottom: -1px;
+  border: 1px solid #6004BA;
+  border-radius: 8px;
+  margin-right: 60px;
+  border: 1px solid #E0E0E0;
+  background-color: #F9F9F9;
+  height: 98px;
+  width: 395px;
+}
+
+.nav-tabs .nav-item a {
+  font-size: 18px;
+  margin-top: 20px;
+  height: 82px;
+}
+
+.nav-tabs .nav-item a i {
+  position: absolute;
+  right: 9px;
+  top: 12px;
+}
+
+.nav-tabs .nav-item p {
+  font-size: 14px;
+  color: #1A1A1A;
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin-bottom: 0;
+}
+
+.nav-tabs .nav-item:last-child {
+  margin-right: 0px;
+}
+
+.nav-tabs .nav-link {
+  color: #1A1A1A;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+  padding: 0;
+}
+
+.nav-tabs .nav-link.active {
+  border-color: transparent;
+  font-family: "AkzidenzGroteskBE-Md";
+  height: 72px;
+  color: #8200FF;
 }
 
 .featured-categories-home {
@@ -12042,5 +12210,131 @@ textarea {
 
 .slide-blts li.active {
   background-color: #DDC6F4;
+}
+
+/* Testmonial Section */
+
+.testmonial-section .item-list .item {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+.testmonial-section .item-list .item:nth-child(1n) {
+  padding-right: 44px;
+}
+
+.testmonial-section .item-list .item:nth-child(2n) {
+  padding-right: 0px;
+}
+
+.testmonial-section .item-list .testmonial-img {
+  display: block;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.testmonial-section .item-list .testmonial-name {
+  text-align: center;
+  padding-top: 16px;
+}
+
+.testmonial-section .item-list .testmonial-name h3 {
+  font-size: 16px;
+}
+
+.search-filter {
+  margin-bottom: 24px;
+}
+
+.search-filter input {
+  display: inline-block;
+}
+
+.search-filter input.search-service {
+  width: calc(100% - 20%);
+  border-right: 0px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.search-filter input.zip-code {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 5px;
+  border-radius: 0px 4px 4px 0px;
+  margin-left: -4px;
+}
+
+.search-filter .container-zip-code {
+  width: 19%;
+  display: inline-block;
+  position: relative;
+}
+
+.search-filter .container-zip-code i {
+  position: absolute;
+  color: #B2B2B2;
+  font-size: 24px;
+  height: 100%;
+  left: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.testmonial-block {
+  background-color: #fff;
+  padding: 32px;
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+  min-height: 181px;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.testmonial-block i {
+  color: #6004BA;
+  font-size: 24px;
+  padding-bottom: 20px;
+  display: block;
+}
+
+.testmonial-block p {
+  font-size: 22px;
+  margin-bottom: 0px;
+  line-height: 29px;
+}
+
+.testmonial-block:before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 47%;
+  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+  border-top: 15px solid #fdfdfd;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.testmonial-block:after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 47%;
+  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+  border-top: 15px solid #fdfdfd;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.grey-bg {
+  background-color: #F9F9F9;
 }
 
