@@ -27,6 +27,8 @@ Route::group([
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
+Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+
 Route::resource('campaign', 'Api\V1\CampaignController')->except([
     'edit',
 ]);
