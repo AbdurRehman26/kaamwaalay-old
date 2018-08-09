@@ -12017,6 +12017,7 @@ textarea {
 .top-footer {
   border-bottom: 1px solid #E0E0E0;
   margin-bottom: 30px;
+  padding-bottom: 15px;
 }
 
 .navigation {
