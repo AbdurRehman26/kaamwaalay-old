@@ -2883,15 +2883,95 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      bannerimage: '/images/front/explore/banner-bg/banner.jpg'
-    };
-  },
+	data: function data() {
+		return {
+			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 
-  methods: {}
+			electricancategoryitems: [{
+				itemimage: '/images/front/explore/electrician1.jpg',
+				itemtitle: 'Electrical and Wiring Repair'
+			}, {
+				itemimage: '/images/front/explore/electrician2.jpg',
+				itemtitle: 'Air conditioning repair'
+			}, {
+				itemimage: '/images/front/explore/electrician3.jpg',
+				itemtitle: 'Heating system repair'
+			}],
+
+			category: [['Electricians', {
+				itemimage: '/images/front/explore/electrician1.jpg',
+				itemtitle: 'Electrical and Wiring Repair'
+			}, {
+				itemimage: '/images/front/explore/electrician2.jpg',
+				itemtitle: 'Air conditioning repair'
+			}, {
+				itemimage: '/images/front/explore/electrician3.jpg',
+				itemtitle: 'Heating system repair'
+			}], ['Carpenters', {
+				itemimage: '/images/front/explore/carpenter1.jpg',
+				itemtitle: 'Electrical and Wiring Repair'
+			}, {
+				itemimage: '/images/front/explore/carpenter2.jpg',
+				itemtitle: 'Air conditioning repair'
+			}, {
+				itemimage: '/images/front/explore/carpenter3.jpg',
+				itemtitle: 'Heating system repair'
+			}]]
+
+		};
+	},
+
+	methods: {}
 });
 
 /***/ }),
@@ -2901,6 +2981,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3138,6 +3223,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -62338,15 +62426,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content-area" }, [
-    _c("div", { staticClass: "main-banner" }, [
+    _c("div", { staticClass: "main-banner elementary-banner" }, [
       _c("div", { staticClass: "main-img" }, [
         _c("img", { attrs: { src: _vm.bannerimage } })
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "verticle-align" }, [
+          _c("div", { staticClass: "inner" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "element-column-image" }, [
+              _c("img", { attrs: { src: _vm.contentimage } })
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "featured-categories" })
+    _c("div", { staticClass: "featured-categories section" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "category-section" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "category-items" },
+            [
+              _vm._l(_vm.electricancategoryitems, function(category) {
+                return _c("div", { staticClass: "items" }, [
+                  _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                    _c("div", {
+                      staticClass: "item-image",
+                      style: {
+                        "background-image": "url(" + category.itemimage + ")"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("h4", [_vm._v(_vm._s(category.itemtitle))])
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _vm._m(3)
+            ],
+            2
+          )
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -62354,41 +62484,75 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "verticle-align" }, [
-        _c("div", { staticClass: "inner" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "content-inner md" }, [
-              _c("h1", [
-                _vm._v("Find best skilled service professionals near you.")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "search-filter" }, [
-                _c("input", {
-                  staticClass: "form-control search-service",
-                  attrs: {
-                    type: "text",
-                    placeholder: "What service do you need?",
-                    name: ""
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "container-zip-code" }, [
-                  _c("i", { staticClass: "icon-location" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control zip-code",
-                    attrs: { type: "number", placeholder: "Zip code", name: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("span", [_vm._v("Get Started")])
-              ])
-            ])
+    return _c("div", { staticClass: "container element-index" }, [
+      _c("div", { staticClass: "content-inner md" }, [
+        _c("h2", { staticClass: "heading-large" }, [
+          _vm._v("Find best skilled service professionals near you.")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "search-filter" }, [
+          _c("input", {
+            staticClass: "form-control search-service",
+            attrs: {
+              type: "text",
+              placeholder: "What service do you need?",
+              name: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "container-zip-code" }, [
+            _c("i", { staticClass: "icon-location" }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control zip-code",
+              attrs: { type: "number", placeholder: "Zip code", name: "" }
+            })
           ])
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _c("span", [_vm._v("Search")])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left width-max",
+        attrs: { src: "/images/front/banner-bg/bg-5.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-center",
+        attrs: { src: "/images/front/banner-bg/bg-2.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-9.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "category-title" }, [
+      _c("h2", [_vm._v("Electricians")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
       ])
     ])
   }
@@ -63120,22 +63284,24 @@ var render = function() {
             ],
             1
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _vm._m(3)
       ]
     ),
     _vm._v(" "),
-    _vm._m(3),
+    _vm._m(4),
     _vm._v(" "),
     _c("div", { staticClass: "next-project section-padd grey-bg" }, [
       _c(
         "div",
         { staticClass: "container" },
-        [_vm._m(4), _vm._v(" "), _c("testmonial-sec")],
+        [_vm._m(5), _vm._v(" "), _c("testmonial-sec")],
         1
       )
     ]),
     _vm._v(" "),
-    _vm._m(5)
+    _vm._m(6)
   ])
 }
 var staticRenderFns = [
@@ -63320,6 +63486,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-right",
+        attrs: { src: "/images/front/banner-bg/bg-1.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-left",
+        attrs: { src: "/images/front/banner-bg/bg-3.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right",
+        attrs: { src: "/images/front/banner-bg/bg-2.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ready-to-meet white-bg section-padd" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "two-column" }, [
@@ -63405,13 +63592,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "elements" }, [
           _c("img", {
-            staticClass: "bottom-right",
-            attrs: { src: "/images/front/banner-bg/bg-4.jpg" }
+            staticClass: "top-left",
+            attrs: { src: "/images/front/banner-bg/bg-5.png" }
           }),
           _vm._v(" "),
           _c("img", {
-            staticClass: "top-left",
-            attrs: { src: "/images/front/banner-bg/bg-3-top.jpg" }
+            staticClass: "bottom-right",
+            attrs: { src: "/images/front/banner-bg/bg-2.png" }
           })
         ])
       ]
@@ -63882,10 +64069,24 @@ var staticRenderFns = [
                 _vm._v("Get expert help to get done almost anything.")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("input", { attrs: { type: "text", name: "" } }),
+              _c("div", { staticClass: "search-filter" }, [
+                _c("input", {
+                  staticClass: "form-control search-service",
+                  attrs: {
+                    type: "text",
+                    placeholder: "What service do you need?",
+                    name: ""
+                  }
+                }),
                 _vm._v(" "),
-                _c("input", { attrs: { type: "text", name: "" } })
+                _c("div", { staticClass: "container-zip-code" }, [
+                  _c("i", { staticClass: "icon-location" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control zip-code",
+                    attrs: { type: "number", placeholder: "Zip code", name: "" }
+                  })
+                ])
               ]),
               _vm._v(" "),
               _c("button", { staticClass: "btn btn-primary" }, [
