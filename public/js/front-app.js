@@ -59567,9 +59567,17 @@ var render = function() {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "li",
+              [
+                _c("router-link", { attrs: { to: "/sign-up" } }, [
+                  _vm._v("Sign up")
+                ])
+              ],
+              1
+            ),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ])
         ])
       ])
@@ -59583,14 +59591,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Login")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Sign up")])
     ])
   },
   function() {
