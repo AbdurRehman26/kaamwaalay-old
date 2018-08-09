@@ -12105,6 +12105,14 @@ textarea {
   max-width: 430px;
 }
 
+.main-banner.home-banner .search-filter input.search-service {
+  width: calc(100% - 30%);
+}
+
+.main-banner.home-banner .search-filter .container-zip-code {
+  width: 28%;
+}
+
 .main-banner .banner-slogan {
   height: 100%;
   min-height: 600px;

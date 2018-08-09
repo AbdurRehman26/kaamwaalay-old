@@ -11,10 +11,13 @@
                             <div class="content-inner">
                                 <h1>Find the right service provider for the job!</h1>
                                 <h4>Get expert help to get done almost anything.</h4>
-                                <div class="form-control">
-                                   <input type="text" name="">
-                                   <input type="text" name="">
-                               </div>
+                                <div class="search-filter">
+                                    <input type="text" placeholder="What service do you need?" class="form-control search-service" name="">
+                                    <div class="container-zip-code">
+                                        <i class="icon-location"></i>
+                                        <input type="number" placeholder="Zip code" class="form-control zip-code" name="">
+                                    </div>
+                                </div>
                                <button class="btn btn-primary">
                                 <span>Get Started</span>
                             </button>

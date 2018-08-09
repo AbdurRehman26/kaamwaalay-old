@@ -3438,6 +3438,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64066,10 +64069,24 @@ var staticRenderFns = [
                 _vm._v("Get expert help to get done almost anything.")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-control" }, [
-                _c("input", { attrs: { type: "text", name: "" } }),
+              _c("div", { staticClass: "search-filter" }, [
+                _c("input", {
+                  staticClass: "form-control search-service",
+                  attrs: {
+                    type: "text",
+                    placeholder: "What service do you need?",
+                    name: ""
+                  }
+                }),
                 _vm._v(" "),
-                _c("input", { attrs: { type: "text", name: "" } })
+                _c("div", { staticClass: "container-zip-code" }, [
+                  _c("i", { staticClass: "icon-location" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control zip-code",
+                    attrs: { type: "number", placeholder: "Zip code", name: "" }
+                  })
+                ])
               ]),
               _vm._v(" "),
               _c("button", { staticClass: "btn btn-primary" }, [
