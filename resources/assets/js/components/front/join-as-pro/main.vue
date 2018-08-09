@@ -1,12 +1,19 @@
 <template>
 	<div class="content-area">
 		<!-- banner section start-->
-		<div class="main-banner" v-bind:style="{'background-image': 'url(' + bannerimage + ')',}">
-			<div class="container">
-				<div class="banner-slogan">
-					<h2>Your next job is just around the corner</h2>
-					<p>There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work.</p>
-					<a href="javascript:void(0);" class="btn btn-primary">Sign up today</a>
+		<div class="main-banner">
+			<div class="main-img"><img  :src="bannerimage"></div>
+			<div class="content">
+				<div class="verticle-align">
+					<div class="inner">
+						<div class="container">
+							<div class="banner-slogan">
+								<h2>Your next job is just around the corner</h2>
+								<p>There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work.</p>
+								<a href="javascript:void(0);" class="btn btn-primary">Sign up today</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -68,7 +75,7 @@
 								<h4>No credit/debit card required</h4>
 								<p>You don’t have to enter your credit/debit card. You can charge customer in any of your existing payment method.</p>
 							</div>
-						</li>	
+						</li>
 						<li>
 							<div class="list-image">
 								<div class="list-icon"><img src="/images/front/svg/like.svg"></div>
@@ -77,7 +84,7 @@
 								<h4>No fake service providers</h4>
 								<p>You don’t have to compete with any fake service provider. We approve service providers on platform after review.</p>
 							</div>
-						</li>																														
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -123,7 +130,7 @@
 								</div>
 							</b-col>
 						</b-row>
-					</div>						
+					</div>
 				</div>
 
 		</div>
@@ -146,12 +153,29 @@
 					</div>
 					<div class="image-sec">
 						<img src="/images/front/join-as-pro/customer.jpg">
-					</div>					
+					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
 
-		<!-- Ready To Meet section end-->		
+		<!-- Ready To Meet section end-->
+
+
+		<!-- Sucess Stories section start-->
+
+		<div class="next-project section-padd">
+			<div class="container">
+					<div class="content-sec text-center">
+						<h1>Success Stories</h1>
+						<p>Professional service marketplace has helped thousands of service providers around US.</p>
+					</div>
+
+			</div>	
+		</div>
+
+
+		<!-- Sucess Stories section end-->	
+
 
 
 
@@ -165,14 +189,14 @@
 						<p>A proven source of genuine enquiries for quality service providers.</p>
 						<a href="javascript:void(0);" class="btn btn-primary">Get Started</a>
 					</div>
-			</div>	
+			</div>
 			<div class="elements">
 				<img class="bottom-right" src="/images/front/banner-bg/bg-4.jpg">
 				<img class="top-left" src="/images/front/banner-bg/bg-3-top.jpg">
-			</div>					
+			</div>
 		</div>
 
-		<!-- Next Project section end-->	
+		<!-- Next Project section end-->
 
 
 
