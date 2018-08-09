@@ -30,7 +30,7 @@ const routes = [
         path: '/sign-up',
         meta: {
             title: 'Professional Service Marketplace | Sign Up',
-            bodyClass: 'sign-up',
+            bodyClass: 'signup-page',
         },
         component: require('./components/front/sign-up/main.vue'),
     },

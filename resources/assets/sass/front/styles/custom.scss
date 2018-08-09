@@ -168,11 +168,12 @@
 
 // Sign Up Sass Start
 
-.sign-up {
+.sign-up-info {
     max-width: 850px;
     margin: 0 auto;
     h1 {
         margin:60px 0 40px 0;
+        text-align: center;
     }
 }
 
@@ -182,11 +183,113 @@
     border-radius: 8px;
     background-color: #FFFFFF;
 }
+.service-provider-form {
+    position: relative;
+    margin-bottom: 40px;
+    &:after {
+        content: 'CUSTOMER SIGN UP';
+        position: absolute;
+        background: #fff;
+        width: 187px;
+        top: -10px;
+        font-size: 14px;
+        color: $grey-Edark;
+        font-family:$font_medium;
+        text-align: center;
+        left: 39%;
+    }
+}
+.business-form {
+    position: relative;
+    margin-bottom: 40px;
+    &:after {
+        content: 'SERVICE PROVIDER SIGN UP';
+        position: absolute;
+        background: #fff;
+        width: 248px;
+        top: -10px;
+        font-size: 14px;
+        color: $grey-Edark;
+        font-family:$font_medium;
+        text-align: center;
+        left: 35%;
+    }
+}
+.create-account-btn {
+    margin-top: 17px;
+}
+.already-signup {
+    font-size: 20px;
+    text-align: center;
+    a {
+        color: $primary-color-md;
+        text-decoration: none;
+    }
+    p {
+        margin-bottom: 40px;
+    }
+}
 .form-detail {
     p {
         font-size: $font-size-xxs;
         font-family:$font_regular;
         margin-top: 30px;
+    }
+}
+.nav-tabs {
+    border-bottom: none;
+    margin-bottom: 40px;
+}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    border-color: #fff;
+}
+.nav-tabs {
+    .nav-item {
+        position: relative;
+        margin-bottom: -1px;
+        border: 1px solid #6004BA;
+        border-radius: 8px;
+        margin-right: 60px;
+        border: 1px solid #E0E0E0;
+        background-color: transparent;
+        height: 98px;
+        width: 395px;
+            a {
+                font-size: 18px;
+                margin-top: 20px;
+                height: 82px;
+                i {
+                    position: absolute;
+                    right: 9px;
+                    top: 12px;
+                }
+            }
+            p {
+                font-size: 14px;
+                color:$text-primary-color;
+                font-family:$font_regular;
+                margin-bottom: 0;
+            }
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+}
+.nav-tabs {
+    .nav-link {
+        color: $text-primary-color;
+        font-family: $font_medium;
+        text-align: center;
+        padding: 0;
+        // border: 1px solid #E0E0E0;
+        // background-color: #F9F9F9;
+
+        &.active {
+            border-color: transparent;
+            font-family: $font_medium;
+            height: 72px;
+            color: $primary-color-md;
+        }
     }
 }
 // Sign Up Sass End
