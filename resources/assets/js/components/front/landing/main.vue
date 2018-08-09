@@ -11,10 +11,13 @@
                             <div class="content-inner">
                                 <h1>Find the right service provider for the job!</h1>
                                 <h4>Get expert help to get done almost anything.</h4>
-                                <div class="form-control">
-                                   <input type="text" name="">
-                                   <input type="text" name="">
-                               </div>
+                                <div class="search-filter">
+                                    <input type="text" placeholder="What service do you need?" class="form-control search-service" name="">
+                                    <div class="container-zip-code">
+                                        <i class="icon-location"></i>
+                                        <input type="number" placeholder="Zip code" class="form-control zip-code" name="">
+                                    </div>
+                                </div>
                                <button class="btn btn-primary">
                                 <span>Get Started</span>
                             </button>
@@ -31,52 +34,64 @@
             <div class="services-list">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-2">
-                        <div class="list-icon sm white">
-                            <div class="inner"><img src="/images/front/svg/electricians.svg"></div>
-                        </div>
-                        <div class="list-description">
-                            <p>Electricians</p>
-                        </div>
+                        <a href="javascript:;">
+                            <div class="list-icon sm white">
+                                <div class="inner"><img src="/images/front/svg/electricians.svg"></div>
+                            </div>
+                            <div class="list-description">
+                                <p>Electricians</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-2">
-                        <div class="list-icon sm white">
-                            <div class="inner"><img src="/images/front/svg/carpenters.svg"></div>
-                        </div>
-                        <div class="list-description">
-                            <p>Carpenters</p>
-                        </div>
+                        <a href="javascript:;">
+                            <div class="list-icon sm white">
+                                <div class="inner"><img src="/images/front/svg/carpenters.svg"></div>
+                            </div>
+                            <div class="list-description">
+                                <p>Carpenters</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-2">
-                        <div class="list-icon sm white">
-                            <div class="inner"><img src="/images/front/svg/painters.svg"></div>
-                        </div>
-                        <div class="list-description">
-                            <p>Painters</p>
-                        </div>
+                        <a href="javascript:;">
+                            <div class="list-icon sm white">
+                                <div class="inner"><img src="/images/front/svg/painters.svg"></div>
+                            </div>
+                            <div class="list-description">
+                                <p>Painters</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-2">
-                        <div class="list-icon sm white">
-                            <div class="inner"><img src="/images/front/svg/plumbers.svg"></div>
-                        </div>
-                        <div class="list-description">
-                            <p>Plumbers</p>
-                        </div>
+                        <a href="javascript:;">
+                            <div class="list-icon sm white">
+                                <div class="inner"><img src="/images/front/svg/plumbers.svg"></div>
+                            </div>
+                            <div class="list-description">
+                                <p>Plumbers</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-2">
-                        <div class="list-icon sm white">
-                            <div class="inner"><img src="/images/front/svg/movers.svg"></div>
-                        </div>
-                        <div class="list-description">
-                            <p>Movers</p>
-                        </div>
+                        <a href="javascript:;">
+                            <div class="list-icon sm white">
+                                <div class="inner"><img src="/images/front/svg/movers.svg"></div>
+                            </div>
+                            <div class="list-description">
+                                <p>Movers</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-2">
-                        <div class="list-icon sm white">
-                            <div class="inner"><img src="/images/front/svg/gardner.svg"></div>
-                        </div>
-                        <div class="list-description">
-                            <p>Gardeners</p>
-                        </div>
+                        <a href="javascript:;">
+                            <div class="list-icon sm white">
+                                <div class="inner"><img src="/images/front/svg/gardner.svg"></div>
+                            </div>
+                            <div class="list-description">
+                                <p>Gardeners</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
