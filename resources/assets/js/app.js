@@ -59,7 +59,7 @@ const options = {
 }
 
 // Require components tags
-require('./components-tags');
+require('./admin-components-tags');
 
 Vue.mixin({
  data: function() {

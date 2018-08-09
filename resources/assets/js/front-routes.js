@@ -11,6 +11,8 @@ const routes = [
         },
         component: require('./components/front/landing/main.vue'),
     },
+
+    // Join As Pro
     {
         name: 'Join As Pro',
         path: '/join-as-pro',
@@ -22,6 +24,18 @@ const routes = [
     },
 
 
+    // Explore
+    {
+        name: 'Explore',
+        path: '/explore',
+        meta: {
+            title: 'Professional Service Marketplace | Explore',
+            bodyClass: 'explore_page',
+        },
+        component: require('./components/front/explore/main.vue'),
+    },
+
+
 
     // Sign Up
 
@@ -30,9 +44,23 @@ const routes = [
         path: '/sign-up',
         meta: {
             title: 'Professional Service Marketplace | Sign Up',
-            bodyClass: 'sign-up',
+            bodyClass: 'signup-page',
         },
         component: require('./components/front/sign-up/main.vue'),
+    },
+
+
+
+    // Profile
+
+    {
+        name: 'Profile',
+        path: '/profile',
+        meta: {
+            title: 'Professional Service Marketplace | Profile',
+            bodyClass: 'profile-page',
+        },
+        component: require('./components/front/profile/main.vue'),
     },
 
 
