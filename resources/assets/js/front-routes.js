@@ -36,6 +36,20 @@ const routes = [
     },
 
 
+
+    // Profile
+
+    {
+        name: 'Profile',
+        path: '/profile',
+        meta: {
+            title: 'Professional Service Marketplace | Profile',
+            bodyClass: 'profile-page',
+        },
+        component: require('./components/front/profile/main.vue'),
+    },
+
+
 ]
 
 
