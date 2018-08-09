@@ -80,4 +80,17 @@ public $model;
             }
             return false;
     }
+    public function getTotalFeedbackCriteria($crtieria, $whereIn = false) {
+            
+            $model = $this->model->where($crtieria);
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->avg('rating');
+            }
+
+            if ($model != NULL) {
+                $model = $model->count();
+                return $model;
+            }
+            return false;
+    }
 }
