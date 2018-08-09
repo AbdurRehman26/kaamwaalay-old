@@ -5,16 +5,18 @@
 
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">I want to hire a service provider
+
+			<li class="nav-item" :class="{ active: tabval === 'firstsec' }">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"  @click="tabval = 'firstsec'">I want to hire a service provider
 					<p>Get introduced to the right professional for your jobs</p>
-					<i class="icon-checkmark2"></i>
+					<i v-if="tabval == 'firstsec'" class="icon-checkmark2"></i>
 				</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">I want to grow my business
+
+			<li class="nav-item" :class="{ active: tabval === 'secondsec' }">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"  @click="tabval = 'secondsec'">I want to grow my business
 					<p>Respond to customer requests and get hired</p>
-					<i class="icon-checkmark2"></i>
+					<i v-if="tabval == 'secondsec'" class="icon-checkmark2"></i>
 				</a>
 			</li>
 
@@ -69,7 +71,6 @@
 							<loader></loader>
 						</button>
 					</div>
-					<!-- <a href="javascript" class="btn btn-primary">Create Account</a> -->
 					
 					<div class="form-detail">
 						<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
@@ -149,3 +150,13 @@
 
 	</div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+    	tabval: 'firstsec',
+    	}
+  	},
+}
+</script>

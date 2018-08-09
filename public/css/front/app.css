@@ -12022,6 +12022,11 @@ textarea {
   border-color: #fff;
 }
 
+li.nav-item.active {
+  border: 1px solid #6004BA;
+  background-color: #F9F9F9;
+}
+
 .nav-tabs .nav-item {
   position: relative;
   margin-bottom: -1px;
@@ -12029,7 +12034,7 @@ textarea {
   border-radius: 8px;
   margin-right: 60px;
   border: 1px solid #E0E0E0;
-  background-color: transparent;
+  background-color: #F9F9F9;
   height: 98px;
   width: 395px;
 }
