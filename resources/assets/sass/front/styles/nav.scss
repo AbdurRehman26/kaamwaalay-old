@@ -43,6 +43,7 @@ $nav-font:$font-bold;
             &:last-child{
                 margin-right:0;
                 a{
+                    font-family:$font-regular;
                     color:#fff !important;
                     text-decoration:none !important;
                 }
