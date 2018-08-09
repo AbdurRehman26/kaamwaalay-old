@@ -27,6 +27,10 @@ Vue.component('testmonial-sec',require('./components/front/common-components/Tes
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
 
+// Footer
+Vue.component('front-footer',require('./components/front/common-components/footer.vue'));
+
+
 
 
 

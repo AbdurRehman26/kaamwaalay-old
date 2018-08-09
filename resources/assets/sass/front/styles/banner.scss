@@ -19,14 +19,15 @@
     }
     .content-inner{
         &.md{
-            max-width: 840px;   
+
+        max-width: 840px;   
         }
     }
 
     &.home-banner{
         .content-inner{
             max-width:430px;
-        }        
+        }
     }
     .banner-slogan{
         height: 100%;
