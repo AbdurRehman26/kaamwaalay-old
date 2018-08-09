@@ -89,5 +89,49 @@ public function changePassword(Request $request)
         
         return !empty($messages) ? $messages : [];
     }
+    public function socialLogin(Request $request)
+    {
+        $data = $request->only('first_name','last_name', 'email','role_id','social_account_id','social_account_type','profile_pic');
+         $rules = [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'role_id' => 'required|exists:roles,id',
+            'social_account_id' => 'required',
+            'social_account_type' => 'required|in:facebook',
+        ];
+        $user = $this->_repository->findByAttribute('social_account_id',$request->social_account_id);
+        if(!$user){
+           $rules['email'] = 'required|string|email|max:255|unique:users';
+        }
+        $validator = Validator::make($data,$rules);
+        if ($validator->fails()) {
+           $code = 406;
+            $output = [
+                'message' => $validator->messages()->all(),
+            ];
+        }else{
+            if($user){
+              $data['id'] = $user->id; 
+              $result = $this->_repository->update($data);
+            }else{
+              $data['status']  = 'active';   
+              $result = $this->_repository->create($data);
+            }
+            if($result) {
+                $code = 200;
+                $output = [
+                    'data' => $result,
+                    'message' => 'Success',
+                ];
+            }else{
+                $code = 406;
+                $output = [
+                    'message' => 'An error occurred',
+                ];
+            }
+       }
+        return response()->json($output, $code);
+    }
 
 }
