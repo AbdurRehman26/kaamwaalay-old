@@ -16,7 +16,7 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -40,4 +40,31 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         $this->builder = $model;
 
     }
+
+    public function create(array $data = []){
+        $input = $data;
+
+        $job = app('JobRepository')->findById($data['job_id']);
+
+        $input['reciever_id'] = $job->user_id;
+
+        return parent::create($input);
+    }
+
+
+    public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
+
+        $this->builder = $this->model->orderBy('id' , 'desc');
+
+        if(empty($input['job_bid_id'])){
+            return false;
+        }
+        $this->builder = $this->builder->where('job_bid_id', '=', $input['job_bid_id']);            
+
+        $data = parent::findByAll($pagination, $perPage, $input);
+
+        return $data;
+
+    }
+
 }
