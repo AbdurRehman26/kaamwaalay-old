@@ -63768,10 +63768,8 @@ var staticRenderFns = [
               attrs: { type: "password", placeholder: "Enter your city name" }
             })
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("State")]),
@@ -63786,8 +63784,10 @@ var staticRenderFns = [
               _c("option", [_vm._v("California")])
             ])
           ])
-        ]),
-        _vm._v(" "),
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("Zip Code")]),
