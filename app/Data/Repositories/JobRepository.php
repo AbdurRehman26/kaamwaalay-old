@@ -47,31 +47,6 @@ public $model;
         return $data;
     }
 
-    public function findById($id, $refresh = false, $details = false, $encode = true)
-    {
-        $data = parent::findById($id, $refresh, $details, $encode);
-        
-        if($data){  
-            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            $data->service = app('ServiceRepository')->findById($data->service_id);
-
-            $bidsCriteria = ['job_id' => $data->id];
-            $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
-
-            $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
-
-            $bidsCriteria['is_awarded'] = 1;
-            $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
-
-            if($awardedBid){
-                $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
-            }
-        }
-
-        return $data;
-    }
-
-
     public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
 
         $this->builder = $this->model->orderBy('id' , 'desc');
@@ -99,5 +74,34 @@ public $model;
         return $data;   
     }
 
+
+
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        
+        if($data){
+
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            $data->service = app('ServiceRepository')->findById($data->service_id);
+
+            $bidsCriteria = ['job_id' => $data->id];
+            $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+
+            $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
+
+            $bidsCriteria['is_awarded'] = 1;
+            $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+
+            if($awardedBid){
+                $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+            }
+
+            $ratingCriteria = ['user_id' => $data->user_id];
+            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+        }
+
+        return $data;
+    }
 
 }

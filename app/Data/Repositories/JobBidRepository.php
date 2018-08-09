@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobBid;
+use Carbon\Carbon;
 
 class JobBidRepository extends AbstractRepository implements RepositoryContract
 {
@@ -53,7 +54,7 @@ public $model;
      *
      **/
         public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
-        
+
             $model = $this->model->newInstance()
             ->where($crtieria);
 
@@ -98,6 +99,5 @@ public $model;
 
             return $data;
         }
-
 
     }

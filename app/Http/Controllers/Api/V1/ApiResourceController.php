@@ -98,7 +98,6 @@ abstract class ApiResourceController extends Controller
         $input = $this->input(__FUNCTION__);
         $rules = $this->rules(__FUNCTION__);
         $messages = $this->messages(__FUNCTION__);
-
         $this->validate($request, $rules, $messages);
 
         $data = $this->_repository->update($input);

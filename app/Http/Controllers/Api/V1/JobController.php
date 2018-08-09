@@ -16,7 +16,7 @@ class JobController extends ApiResourceController
     $rules = [];
 
     if($value == 'store'){
-
+        
     }
 
     if($value == 'update'){
@@ -49,7 +49,7 @@ public function input($value='')
         'images','schedule_at','preference','status','job_type','filter_by','keyword'
     );
     
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : 1;
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
 
     return $input;
 }
