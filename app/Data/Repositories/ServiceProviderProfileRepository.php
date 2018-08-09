@@ -56,8 +56,17 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $data->finished_jobs = $finishedJobs;
 
             $bidsCriteria = ['user_id' => $data->user_id,'status'=>'completed'];
-            $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria, false);
+            $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
             $data->urgent_jobs_completed = $urgentJobsCompleted;
+
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
+            $totalRevenue = app('JobBidRepository')->getTotalRevenueCriteria($bidsCriteria);
+            $data->total_revenue = $totalRevenue;
+
+            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
+            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+            $data->avg_rating = $avgRating;
+            
         }
         
         return $data;

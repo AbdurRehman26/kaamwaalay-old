@@ -122,6 +122,24 @@ public $model;
             }
             return false;
         }
+
+        public function getTotalRevenueCriteria($crtieria) {
+            
+            $model = $this->model->where($crtieria);
+            if ($model != NULL) {
+                $model = $model->
+                    leftJoin('jobs', function ($join) {
+                        $join->on('jobs.id', '=', 'job_bids.job_id');
+                    })
+                    ->where('jobs.status','completed')
+                    ->select(\DB::raw('AVG(job_bids.amount) as total_revenue'))->pluck('total_revenue')->toArray()[0];
+                
+                return $model;
+            }
+            return false;
+        }
+
+        
         
 
 
