@@ -16,7 +16,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -78,11 +78,11 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $this->model->orderBy('created_at','desc');
 
         if (!empty($data['keyword'])) {
-            
+
             $this->builder = $this->builder->where(function($query)use($data){
                 $query->where('service_provider_profiles.business_name', 'LIKE', "%{$data['keyword']}%");
                 $query->orWhere('service_provider_profiles.business_details', 'like', "%{$data['keyword']}%");
-            
+
             });
         }
         if(!empty($data['filter_by_business_type'])){
@@ -92,4 +92,30 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         return parent::findByAll($pagination, $perPage, $data);
 
     }
-}
+
+        /**
+     *
+     * This method will fetch single model by attribute
+     * and will return output back to client as json
+     *
+     * @access public
+     * @return mixed
+     *
+     * @author Usaama Effendi <usaamaeffendi@gmail.com>
+     *
+     **/
+        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+            $model = $this->model->newInstance()
+            ->where($crtieria);
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+            }
+
+            $model = $model->first(['id']);
+
+            if ($model != NULL) {
+                $model = $this->findById($model->id, $refresh, $details, $encode);
+            }
+            return $model;
+        }
+    }

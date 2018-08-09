@@ -54,13 +54,20 @@ public $model;
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false) {
             $model = $this->model->newInstance()
             ->where($crtieria);
-            if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+
+            if($count){
+                return $model->count();
             }
 
+            if($whereIn){
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+            }
+
+            $model = $model->first(['id']);
+            
             if ($model != NULL) {
                 $model = $this->findById($model->id, $refresh, $details, $encode);
             }

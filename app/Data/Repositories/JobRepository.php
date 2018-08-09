@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
+use Carbon\Carbon;
 
 class JobRepository extends AbstractRepository implements RepositoryContract
 {
@@ -41,43 +42,69 @@ public $model;
 
     }
 
-
-    public function findById($id, $refresh = false, $details = false, $encode = true)
-    {
-        $data = parent::findById($id, $refresh, $details, $encode);
-        
-        if($data){  
-            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            $data->service = app('ServiceRepository')->findById($data->service_id);
-
-            $bidsCriteria = ['job_id' => $data->id];
-            $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
-
-            $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
-
-            $bidsCriteria['is_awarded'] = 1;
-            $awardedBid = app('JobBidRepository')->findByCriteria($data->service_id, false, false);
-
-            if($awardedBid){
-                $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
-            }
-        }
-
+    public function create(array $data = []) {
+        $data = parent::create($data);
         return $data;
     }
-
 
     public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
 
         $this->builder = $this->model->orderBy('id' , 'desc');
         
-        if(!empty($input['filter_by'])){
-            $this->builder = $this->builder->where('status', '=', $input['filter_by']);            
+        if (!empty($data['keyword'])) {
+
+            $this->builder = $this->builder->where(function($query)use($data){
+                $query->where('title', 'LIKE', "%{$data['keyword']}%");
+            });
         }
+
+
+        if(!empty($input['filter_by_status'])){
+            $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+        }
+
+        if(!empty($input['filter_by_service'])){
+            if($input['filter_by_service'])
+                $this->builder = $this->builder->where('service_id', '=', $input['filter_by_service']);            
+        }
+
 
         $data = parent::findByAll($pagination, $perPage, $input);
 
-        return $data;
-        
+        return $data;   
     }
+
+
+
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        
+        if($data){
+
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            $data->service = app('ServiceRepository')->findById($data->service_id);
+
+
+            if(!empty($details['bid_data'])){
+
+                $bidsCriteria = ['job_id' => $data->id];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
+
+                $bidsCriteria['is_awarded'] = 1;
+                $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+
+                if($awardedBid){
+                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+                }
+            }
+
+            $ratingCriteria = ['user_id' => $data->user_id];
+            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+        }
+
+        return $data;
+    }
+
 }

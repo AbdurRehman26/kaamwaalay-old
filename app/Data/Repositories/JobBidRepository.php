@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobBid;
 use App\Data\Models\Job;
+use Carbon\Carbon;
 
 class JobBidRepository extends AbstractRepository implements RepositoryContract
 {
@@ -53,12 +54,17 @@ public $model;
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+
             $model = $this->model->newInstance()
             ->where($crtieria);
+
             if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->first(['id']);
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+
             }
+
+            $model = $model->first(['id']);
 
             if ($model != NULL) {
                 $model = $this->findById($model->id, $refresh, $details, $encode);
@@ -71,8 +77,25 @@ public $model;
 
             $this->builder = $this->model->orderBy('id' , 'desc');
 
-            if(!empty($input['filter_by'])){
-                $this->builder = $this->builder->where('status', '=', $input['filter_by']);            
+            if(!empty($input['filter_by_status'])){
+
+                if($input['filter_by_status'] == 'awarded'){
+
+                    $this->builder = $this->builder->where('is_awarded', '=', 1);            
+
+                }elseif($input['filter_by_status'] == 'invited'){
+
+                    $this->builder = $this->builder->where('is_invited', '=', 1);            
+                    
+                }elseif($input['filter_by_status'] == 'archived'){
+
+                    $this->builder = $this->builder->where('is_archived', '=', 1);            
+                    
+                }else{
+                   
+                    $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+                }
+
             }
 
             $data = parent::findByAll($pagination, $perPage, $input);
@@ -90,7 +113,7 @@ public $model;
                 $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
                 $data->job = app('JobRepository')->findById($data->job_id);
                 $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
-                $data->job_rating = app('UserRatingRepository')->findByCrtieria($ratingCriteria);
+                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
             }
 
             return $data;
@@ -138,9 +161,5 @@ public $model;
             }
             return false;
         }
-
-        
-        
-
 
     }
