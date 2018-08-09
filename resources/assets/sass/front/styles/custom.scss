@@ -198,3 +198,80 @@
     background-color:$grey-Elite;
     padding:22px 0;
 }
+
+
+/* Testmonial Section */
+.testmonial-section{
+    .item-list{
+        .item{
+            display: inline-block;
+            width: 49%;                     
+            vertical-align: top;   
+            &:nth-child(1n){
+                padding-right: 44px;
+            }
+            &:nth-child(2n){
+                padding-right: 0px;
+            }            
+        }
+        .testmonial-img{
+            display: block;
+            text-align: center;
+            width: 80px;
+            height: 80px;
+            margin: auto;     
+        }
+        .testmonial-name {
+            text-align: center;
+            padding-top: 16px;
+            h3{
+                font-size: $font-size-xs;
+            }
+        }        
+    }
+}
+
+.testmonial-block{
+    background-color: #fff;
+    padding: 32px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+    min-height: 181px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;    
+    i{
+        color: $primary-color;
+        font-size: 24px;
+        padding-bottom: 20px;
+        display: block;
+    }
+    p{
+        font-size: $font-size-sm+2;
+        margin-bottom: 0px;
+        line-height: 29px;
+    }
+    &:before{
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 47%;
+        /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+        border-top: 15px solid #fdfdfd;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;    
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 47%;
+        /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+        border-top: 15px solid #fdfdfd;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;        
+    }    
+}
+.grey-bg{
+    background-color: #F9F9F9;
+}

@@ -10536,7 +10536,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda);
-  src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?34da3020831334e7676999a87ef31cb6) format("truetype"), url(/fonts/icomoon.woff?20cbad071de733d0497f5f9fa19e1101) format("woff"), url(/fonts/icomoon.svg?375390387c305872577bcb142c3475e1#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?34da3020831334e7676999a87ef31cb6) format("truetype"), url(/fonts/icomoon.woff?20cbad071de733d0497f5f9fa19e1101) format("woff"), url(/fonts/icomoon.svg?8b09d3e83ef7333539949daca3b0c9de#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11600,6 +11600,7 @@ textarea {
   background: #fff;
   width: 100%;
   top: 0;
+  z-index: 99;
   padding: 13px 0px;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
@@ -11920,5 +11921,89 @@ textarea {
   width: 100%;
   background-color: #F9F9F9;
   padding: 22px 0;
+}
+
+/* Testmonial Section */
+
+.testmonial-section .item-list .item {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+.testmonial-section .item-list .item:nth-child(1n) {
+  padding-right: 44px;
+}
+
+.testmonial-section .item-list .item:nth-child(2n) {
+  padding-right: 0px;
+}
+
+.testmonial-section .item-list .testmonial-img {
+  display: block;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.testmonial-section .item-list .testmonial-name {
+  text-align: center;
+  padding-top: 16px;
+}
+
+.testmonial-section .item-list .testmonial-name h3 {
+  font-size: 16px;
+}
+
+.testmonial-block {
+  background-color: #fff;
+  padding: 32px;
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+  min-height: 181px;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.testmonial-block i {
+  color: #6004BA;
+  font-size: 24px;
+  padding-bottom: 20px;
+  display: block;
+}
+
+.testmonial-block p {
+  font-size: 22px;
+  margin-bottom: 0px;
+  line-height: 29px;
+}
+
+.testmonial-block:before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 47%;
+  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+  border-top: 15px solid #fdfdfd;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.testmonial-block:after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 47%;
+  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+  border-top: 15px solid #fdfdfd;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.grey-bg {
+  background-color: #F9F9F9;
 }
 
