@@ -59,10 +59,12 @@
 						<div class="col-md-3">
 							<div class="footer-links">
 								<ul>
-									<li><strong>About us</strong></li>
+									<li><strong>Company</strong></li>
+									<li><a href="javascript:;">About us</a></li>
 									<li><a href="javascript:;">Blog</a></li>
-									<li><a href="javascript:;">Frequently asked questions</a></li>
+									<li><a href="javascript:;"></a></li>
 									<li><strong>Download</strong></li>
+										
 									<li  class="app-images">
 										<ul>
 											<li>

@@ -62854,7 +62854,13 @@ var staticRenderFns = [
               _c("div", { staticClass: "col-md-3" }, [
                 _c("div", { staticClass: "footer-links" }, [
                   _c("ul", [
-                    _c("li", [_c("strong", [_vm._v("About us")])]),
+                    _c("li", [_c("strong", [_vm._v("Company")])]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("About us")
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c("li", [
                       _c("a", { attrs: { href: "javascript:;" } }, [
@@ -62862,11 +62868,7 @@ var staticRenderFns = [
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Frequently asked questions")
-                      ])
-                    ]),
+                    _c("li", [_c("a", { attrs: { href: "javascript:;" } })]),
                     _vm._v(" "),
                     _c("li", [_c("strong", [_vm._v("Download")])]),
                     _vm._v(" "),
@@ -63818,28 +63820,197 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "section padding-sm profile-form wrapper-sm" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "profile-form-section" }, [
+        _c("div", { staticClass: "sign-up-form business-form" }, [
+          _c("div", { staticClass: "form-signup" }, [
+            _c("form", [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "create-account-btn" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary" },
+                  [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "section padding-sm profile-form wrapper-sm" },
-      [
-        _c("div", { staticClass: "profile-head" }, [
-          _c("h1", [_vm._v("Complete your profile")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure."
-            )
+    return _c("div", { staticClass: "profile-head" }, [
+      _c("h1", [_vm._v("Complete your profile")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "personal-detail" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your first name" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your last name" }
+            })
           ])
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Enter your first email address"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                placeholder: "Enter your mobile or landline number"
+              }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-detail" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your street address" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [
+              _vm._v("Apartment, suite, unit")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your last name" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("City")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Enter your city name" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("State")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("Select State")
+              ]),
+              _vm._v(" "),
+              _c("option", [_vm._v("New York")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("California")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Zip Code")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Enter your zip code" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-detail" }, [
+      _c("p", [
+        _vm._v(
+          "Make sure all the information you entered is accuate before submitting."
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
