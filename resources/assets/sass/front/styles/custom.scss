@@ -545,9 +545,12 @@ li.nav-item.active {
 
 // Profile form sass start
 
-.profile-form {
-    max-width: 850px;
-    margin: 0 auto;
+.profile-head {
+    margin-top: 30px;
+    h1 {
+        margin: 0 0 20px;
+        text-align: center;
+    }
 }
 
 // Profile form sass end

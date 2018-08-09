@@ -11498,7 +11498,7 @@ body .form-control {
   height: 38px;
   font-family: "AkzidenzGroteskBE-Regular";
   font-size: 14px;
-  padding: 11px 16px;
+  padding: 9px 16px;
   border-color: #B2B2B2;
   border-radius: 4px;
   /* color:$text-primary-color; */
@@ -11913,6 +11913,110 @@ textarea {
   max-width: 204px;
   position: relative;
   top: 1px;
+}
+
+.footer-logo {
+  max-width: 204px;
+  margin-bottom: 32px;
+}
+
+.footer-location {
+  margin-bottom: 25px;
+}
+
+.social-icons ul {
+  padding: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  background-color: #F9F9F9;
+}
+
+.social-icons a {
+  color: #7D7D7D;
+  font-size: 20px;
+  text-align: center;
+  line-height: 42px;
+  margin-left: 11px;
+}
+
+.social-icons a:hover,
+.social-icons a:focus {
+  text-decoration: none;
+  color: #8200FF !important;
+  -webkit-transition: ease 0.5s;
+  transition: ease 0.5s;
+}
+
+.social-icons i.icon-facebook {
+  margin-left: 4px;
+}
+
+.footer-links ul li {
+  margin-bottom: 20px;
+}
+
+.footer-links ul li a {
+  color: #494949;
+}
+
+.footer-links ul li a:hover,
+.footer-links ul li a:focus {
+  text-decoration: none;
+}
+
+.footer-links ul li strong {
+  color: #1A1A1A;
+}
+
+.footer-links .app-images ul {
+  padding: 0;
+}
+
+.footer-links .app-images ul li {
+  display: inline-block;
+}
+
+.footer-links .app-images img {
+  width: 120px;
+  height: 40px;
+}
+
+.footer-copyrights p {
+  color: #494949;
+}
+
+.terms-links ul {
+  padding: 0;
+}
+
+.terms-links ul li {
+  display: inline-block;
+}
+
+.terms-links ul li a {
+  color: #494949;
+  text-decoration: none;
+}
+
+.terms-links ul li:after {
+  content: '';
+  border-right: 1px solid #E0E0E0;
+  margin: 0 15px;
+}
+
+.terms-links ul li:last-child:after {
+  border-right: none;
+  margin: 0;
+}
+
+.top-footer {
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom: 30px;
 }
 
 .navigation {
@@ -12622,9 +12726,13 @@ li.nav-item.active {
   background-color: #F9F9F9;
 }
 
-.profile-form {
-  max-width: 850px;
-  margin: 0 auto;
+.profile-head {
+  margin-top: 30px;
+}
+
+.profile-head h1 {
+  margin: 0 0 20px;
+  text-align: center;
 }
 
 .how-it-work-list .list-description {

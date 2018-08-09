@@ -62544,6 +62544,241 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-540ccc29\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/footer.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-section" }, [
+      _c("div", { staticClass: "section-padd" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "top-footer" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "footer-logo" }, [
+                  _c("a", { attrs: { href: "javascript:;" } }, [
+                    _c("img", { attrs: { src: "images/logo.png" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "footer-location" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("select", { staticClass: "form-control" }, [
+                      _c("option", [_vm._v("Select Option")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("New York, NY")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("California, CA")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "social-icons" }, [
+                  _c("ul", [
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _c("i", { staticClass: "icon-facebook" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _c("i", { staticClass: "icon-twitter" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _c("i", { staticClass: "icon-instagram" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _c("i", { staticClass: "icon-google-plus" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _c("i", { staticClass: "icon-pinterest" })
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "footer-links" }, [
+                  _c("ul", [
+                    _c("li", [_c("strong", [_vm._v("Customers")])]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Post a job")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Sign up as a customers")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Explore Services")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Advice center")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Customer support")
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "footer-links" }, [
+                  _c("ul", [
+                    _c("li", [_c("strong", [_vm._v("Service Providers")])]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Sign up as a service provider")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Completed Jobs")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Frequently asked questions")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Service provider support")
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "footer-links" }, [
+                  _c("ul", [
+                    _c("li", [_c("strong", [_vm._v("About us")])]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Blog")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "javascript:;" } }, [
+                        _vm._v("Frequently asked questions")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [_c("strong", [_vm._v("Download")])]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "app-images" }, [
+                      _c("ul", [
+                        _c("li", [
+                          _c("a", { attrs: { href: "javascript:;" } }, [
+                            _c("img", {
+                              attrs: {
+                                src: "images/front/common-images/app-store.jpg"
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c("a", { attrs: { href: "javascript:;" } }, [
+                            _c("img", {
+                              attrs: {
+                                src:
+                                  "images/front/common-images/google-play.jpg"
+                              }
+                            })
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "footer-copyrights" }, [
+            _c("div", { staticClass: "section-padding-sm" }, [
+              _c("div", { staticClass: "float-left" }, [
+                _c("p", [
+                  _vm._v(
+                    "Copyright © 2018 Professional Service Marketplace, Inc. "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "float-right terms-links" }, [
+                _c("ul", [
+                  _c("li", [
+                    _c("a", { attrs: { href: "javascript:;" } }, [
+                      _vm._v("Terms & Conditions")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "javascript:;" } }, [
+                      _vm._v("Privacy Policy")
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-540ccc29", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-55dbc233\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63403,17 +63638,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section-sm profile-form wrapper-sm" }, [
-      _c("div", { staticClass: "profile-head" }, [
-        _c("h1", [_vm._v("Complete your profile")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure."
-          )
+    return _c(
+      "div",
+      { staticClass: "section padding-sm profile-form wrapper-sm" },
+      [
+        _c("div", { staticClass: "profile-head" }, [
+          _c("h1", [_vm._v("Complete your profile")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure."
+            )
+          ])
         ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -63946,167 +64185,180 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "section-sm sign-up-info wrapper-sm" }, [
-    _c("h1", [_vm._v("Sign Up")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
-      [
+  return _c(
+    "div",
+    { staticClass: "section padding-sm sign-up-info wrapper-sm" },
+    [
+      _c("h1", [_vm._v("Sign Up")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        {
+          staticClass: "nav nav-tabs",
+          attrs: { id: "myTab", role: "tablist" }
+        },
+        [
+          _c(
+            "li",
+            {
+              staticClass: "nav-item",
+              class: { active: _vm.tabval === "firstsec" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link active",
+                  attrs: {
+                    id: "home-tab",
+                    "data-toggle": "tab",
+                    href: "#home",
+                    role: "tab",
+                    "aria-controls": "home",
+                    "aria-selected": "true"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.tabval = "firstsec"
+                    }
+                  }
+                },
+                [
+                  _vm._v("I want to hire a service provider\n\t\t\t\t"),
+                  _c("p", [
+                    _vm._v(
+                      "Get introduced to the right professional for your jobs"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm.tabval == "firstsec"
+                    ? _c("i", { staticClass: "icon-checkmark2" })
+                    : _vm._e()
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "nav-item",
+              class: { active: _vm.tabval === "secondsec" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: {
+                    id: "profile-tab",
+                    "data-toggle": "tab",
+                    href: "#profile",
+                    role: "tab",
+                    "aria-controls": "profile",
+                    "aria-selected": "false"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.tabval = "secondsec"
+                    }
+                  }
+                },
+                [
+                  _vm._v("I want to grow my business\n\t\t\t\t"),
+                  _c("p", [
+                    _vm._v("Respond to customer requests and get hired")
+                  ]),
+                  _vm._v(" "),
+                  _vm.tabval == "secondsec"
+                    ? _c("i", { staticClass: "icon-checkmark2" })
+                    : _vm._e()
+                ]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
         _c(
-          "li",
+          "div",
           {
-            staticClass: "nav-item",
-            class: { active: _vm.tabval === "firstsec" }
+            staticClass: "tab-pane active",
+            attrs: {
+              id: "home",
+              role: "tabpanel",
+              "aria-labelledby": "home-tab"
+            }
           },
           [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link active",
-                attrs: {
-                  id: "home-tab",
-                  "data-toggle": "tab",
-                  href: "#home",
-                  role: "tab",
-                  "aria-controls": "home",
-                  "aria-selected": "true"
-                },
-                on: {
-                  click: function($event) {
-                    _vm.tabval = "firstsec"
-                  }
-                }
-              },
-              [
-                _vm._v("I want to hire a service provider\n\t\t\t\t"),
-                _c("p", [
-                  _vm._v(
-                    "Get introduced to the right professional for your jobs"
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.tabval == "firstsec"
-                  ? _c("i", { staticClass: "icon-checkmark2" })
-                  : _vm._e()
-              ]
-            )
+            _c("div", { staticClass: "sign-up-form service-provider-form" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-signup" }, [
+                _c("form", [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "create-account-btn" }, [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-primary" },
+                      [_vm._v("Create Account\n\t\t\t\t\t\t"), _c("loader")],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(3)
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(4)
           ]
         ),
         _vm._v(" "),
         _c(
-          "li",
+          "div",
           {
-            staticClass: "nav-item",
-            class: { active: _vm.tabval === "secondsec" }
+            staticClass: "tab-pane",
+            attrs: {
+              id: "profile",
+              role: "tabpanel",
+              "aria-labelledby": "profile-tab"
+            }
           },
           [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: {
-                  id: "profile-tab",
-                  "data-toggle": "tab",
-                  href: "#profile",
-                  role: "tab",
-                  "aria-controls": "profile",
-                  "aria-selected": "false"
-                },
-                on: {
-                  click: function($event) {
-                    _vm.tabval = "secondsec"
-                  }
-                }
-              },
-              [
-                _vm._v("I want to grow my business\n\t\t\t\t"),
-                _c("p", [_vm._v("Respond to customer requests and get hired")]),
-                _vm._v(" "),
-                _vm.tabval == "secondsec"
-                  ? _c("i", { staticClass: "icon-checkmark2" })
-                  : _vm._e()
-              ]
-            )
+            _c("div", { staticClass: "sign-up-form business-form" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-signup" }, [
+                _c("form", [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "create-account-btn" }, [
+                    _c(
+                      "button",
+                      { staticClass: "btn btn-primary" },
+                      [_vm._v("Create Account\n\t\t\t\t\t\t"), _c("loader")],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(8)
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(9)
           ]
         )
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "tab-content" }, [
-      _c(
-        "div",
-        {
-          staticClass: "tab-pane active",
-          attrs: { id: "home", role: "tabpanel", "aria-labelledby": "home-tab" }
-        },
-        [
-          _c("div", { staticClass: "sign-up-form service-provider-form" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-signup" }, [
-              _c("form", [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "create-account-btn" }, [
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-primary" },
-                    [_vm._v("Create Account\n\t\t\t\t\t\t"), _c("loader")],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(3)
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(4)
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "tab-pane",
-          attrs: {
-            id: "profile",
-            role: "tabpanel",
-            "aria-labelledby": "profile-tab"
-          }
-        },
-        [
-          _c("div", { staticClass: "sign-up-form business-form" }, [
-            _vm._m(5),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-signup" }, [
-              _c("form", [
-                _vm._m(6),
-                _vm._v(" "),
-                _vm._m(7),
-                _vm._v(" "),
-                _c("div", { staticClass: "create-account-btn" }, [
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-primary" },
-                    [_vm._v("Create Account\n\t\t\t\t\t\t"), _c("loader")],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(8)
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(9)
-        ]
-      )
-    ])
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -80970,6 +81222,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/common-components/footer.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-540ccc29\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/footer.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\footer.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-540ccc29", Component.options)
+  } else {
+    hotAPI.reload("data-v-540ccc29", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/common-components/header.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81332,6 +81632,9 @@ Vue.component('testmonial-sec', __webpack_require__("./resources/assets/js/compo
 
 //header
 Vue.component('front-header', __webpack_require__("./resources/assets/js/components/front/common-components/header.vue"));
+
+// Footer
+Vue.component('front-footer', __webpack_require__("./resources/assets/js/components/front/common-components/footer.vue"));
 
 /***/ }),
 
