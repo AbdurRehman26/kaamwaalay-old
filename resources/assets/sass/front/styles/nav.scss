@@ -33,11 +33,15 @@ $nav-font:$font-bold;
                         height: 4px;
                         width: 100%;
                         left: 0;
-                        bottom: -23px;                        
+                        bottom: -23px;
                     }
                 }
             }
+            &:first-child{
+                margin-left: 0px;
+            }
             &:last-child{
+                margin-right:0;
                 a{
                     color:#fff !important;
                     text-decoration:none !important;
