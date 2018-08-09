@@ -27,18 +27,31 @@ import VueProgressBar from 'vue-progressbar';
 import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
-
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Datepicker);
 Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
-Vue.use(VueAxios);
 Vue.use(VeeValidate);
 Vue.use(InfiniteLoading);
 Vue.use(Vuex);
-
+Vue.use(VueAxios, axios)
+Vue.use(VueAuthenticate, {
+    tokenName: 'access_token',
+    baseUrl: '/',
+    loginUrl: '/api/auth/login',
+    registerUrl: '/api/auth/register',
+    logoutUrl: '/api/auth/logout',
+    storageType: 'cookieStorage',
+    providers: {
+        // Define OAuth providers config
+        oauth2: {
+            name: 'oauth2',
+            url: 'Token/Exchange',
+        },
+    }
+})
 
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);

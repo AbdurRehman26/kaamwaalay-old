@@ -19,6 +19,7 @@ Route::get('/', function () {
 /*Route::get('/{any}', function(){
     return view('layout');
 })->where('any', '.*');*/
+Route::post('social/login', 'Api\V1\UserController@socialLogin')->name('socialLogin');
 Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');
 Route::get('password/reset/{token}/{email}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 
