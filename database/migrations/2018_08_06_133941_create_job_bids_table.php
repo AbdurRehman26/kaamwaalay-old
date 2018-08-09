@@ -14,7 +14,7 @@ class CreateJobBidsTable extends Migration {
 	{
 		Schema::create('job_bids', function(Blueprint $table)
 		{
-			$table->increments('id')->unsigned()->primary();
+			$table->increments('id');
 			$table->text('description', 65535)->nullable();
 			$table->decimal('amount', 10)->unsigned()->nullable();
 			$table->boolean('is_tbd')->default(0);
