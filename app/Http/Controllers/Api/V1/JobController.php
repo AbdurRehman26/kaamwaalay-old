@@ -20,7 +20,7 @@ class JobController extends ApiResourceController
     }
 
     if($value == 'update'){
-
+            $rules['id'] =  'required|exists:jobs,id';
     }
 
 
@@ -43,14 +43,14 @@ class JobController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'title', 'user_id', 'service_id', 'country_id', 'state_id', 'city_id', 'title', 'description', 'address', 'apartment', 'zip_code', 'images', 'schedule_at', 'preference', 'status', 'job_type' , 'filter_by');
+    $input = request()->only(
+        'id','title','user_id','service_id','country_id','state_id',
+        'city_id','title','description','address','apartment','zip_code',
+        'images','schedule_at','preference','status','job_type','filter_by','keyword'
+    );
     
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : 1;
 
-    if($value == 'store'){
-        unset($input['status']);
-    }
-    
     return $input;
 }
 

@@ -17,7 +17,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -76,13 +76,21 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
         $this->builder = $this->model->orderBy('id' , 'desc');
         
+        if (!empty($data['keyword'])) {
+
+            $this->builder = $this->builder->where(function($query)use($data){
+                $query->where('title', 'LIKE', "%{$data['keyword']}%");
+            });
+        }
+
+
         if(!empty($input['filter_by_status'])){
             $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
         }
 
-        if(!empty($input['filter_by_user'])){
-            if($input['filter_by_user'])
-            $this->builder = $this->builder->where('status', '=', $input['filter_by_user']);            
+        if(!empty($input['filter_by_service'])){
+            if($input['filter_by_service'])
+                $this->builder = $this->builder->where('service_id', '=', $input['filter_by_service']);            
         }
 
 

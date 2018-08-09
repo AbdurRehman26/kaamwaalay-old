@@ -93,7 +93,7 @@ public $model;
                 $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
                 $data->job = app('JobRepository')->findById($data->job_id);
                 $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
-                $data->job_rating = app('UserRatingRepository')->findByCrtieria($ratingCriteria);
+                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
             }
 
             return $data;
