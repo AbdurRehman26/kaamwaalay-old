@@ -11627,6 +11627,7 @@ textarea {
   vertical-align: middle;
   display: inline-block;
   margin: 0 16px;
+  position: relative;
 }
 
 .navigation ul li a {
@@ -11641,6 +11642,16 @@ textarea {
 .navigation ul li a:hover {
   text-decoration: underline;
   color: #494949 !important;
+}
+
+.navigation ul li a.router-link-active:after {
+  content: '';
+  background-color: #8103ff;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  bottom: -23px;
 }
 
 .navigation ul li:last-child a {

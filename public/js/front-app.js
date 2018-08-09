@@ -59245,7 +59245,27 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "navigation" }, [
+          _c("ul", [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _c("router-link", { attrs: { to: "/join-as-pro" } }, [
+                  _vm._v("Join as a Pro")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3)
+          ])
+        ])
       ])
     ])
   ])
@@ -59255,34 +59275,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navigation" }, [
-      _c("ul", [
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Explore")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [
-            _vm._v("Join as a Pro")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Login")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Sign up")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
-            [_vm._v("Post a Job")]
-          )
-        ])
-      ])
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Explore")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Login")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Sign up")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
+        [_vm._v("Post a Job")]
+      )
     ])
   }
 ]
