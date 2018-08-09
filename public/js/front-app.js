@@ -5090,6 +5090,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5108,6 +5120,137 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62902,96 +63045,94 @@ var render = function() {
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
-    _c("div", { staticClass: "how-it-work elementary-banner section-padd" }, [
-      _c("div", { staticClass: "container element-index" }, [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "how-it-work-list" },
-          [
-            _c(
-              "b-row",
-              [
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
-                  [
-                    _c("div", { staticClass: "list-image" }, [
-                      _c("div", { staticClass: "list-icon" }, [
+    _c(
+      "div",
+      { staticClass: "section section-grey how-it-work elementary-banner" },
+      [
+        _c("div", { staticClass: "container element-index" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "how-it-work-list" },
+            [
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-col",
+                    { staticClass: "text-center", attrs: { sm: "4" } },
+                    [
+                      _c("div", { staticClass: "icon" }, [
                         _c("img", {
                           attrs: { src: "/images/front/svg/find.svg" }
                         })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Pick Leads")]),
+                      ]),
                       _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Pick those which are of interest to you. Signal your interest through the site."
-                        )
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Pick Leads")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "Pick those which are of interest to you. Signal your interest through the site."
+                          )
+                        ])
                       ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
-                  [
-                    _c("div", { staticClass: "list-image" }, [
-                      _c("div", { staticClass: "list-icon" }, [
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "text-center", attrs: { sm: "4" } },
+                    [
+                      _c("div", { staticClass: "icon" }, [
                         _c("img", {
                           attrs: { src: "/images/front/svg/list.svg" }
                         })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Get Shortlisted")]),
+                      ]),
                       _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Customers review your profiles online & shortlist you to bid on the job."
-                        )
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Get Shortlisted")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "Customers review your profiles online & shortlist you to bid on the job."
+                          )
+                        ])
                       ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
-                  [
-                    _c("div", { staticClass: "list-image" }, [
-                      _c("div", { staticClass: "list-icon" }, [
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "text-center", attrs: { sm: "4" } },
+                    [
+                      _c("div", { staticClass: "icon" }, [
                         _c("img", {
                           attrs: { src: "/images/front/svg/communicate.svg" }
                         })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                      ]),
                       _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Chat with customer to discuss the job or arrange a visit as your normally would."
-                        )
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "Chat with customer to discuss the job or arrange a visit as your normally would."
+                          )
+                        ])
                       ])
-                    ])
-                  ]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
-    ]),
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]
+    ),
     _vm._v(" "),
     _vm._m(3),
     _vm._v(" "),
@@ -63036,135 +63177,139 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "services two-column section-padd" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "section-title" }, [
-          _c("h2", [_vm._v("Win more local work")]),
+    return _c(
+      "div",
+      { staticClass: "section services section-local-work two-column" },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "section-title" }, [
+            _c("h2", [_vm._v("Win more local work")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "If you join as a member, here are a selection of the ways we help to give your business a boost:"
+              )
+            ])
+          ]),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "If you join as a member, here are a selection of the ways we help to give your business a boost:"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "services-list" }, [
-          _c("ul", [
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
+          _c("div", { staticClass: "services-list" }, [
+            _c("ul", [
+              _c("li", [
                 _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/user.svg" } })
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/user.svg" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("Business Profile")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Show comprehensive company details including consumer recommendations."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("Business Profile")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Show comprehensive company details including consumer recommendations."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
+              _c("li", [
                 _c("div", { staticClass: "list-icon" }, [
-                  _c("img", {
-                    attrs: { src: "/images/front/svg/discount.svg" }
-                  })
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/discount.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("No Commissions")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "We won't charge any fee or payment from service providers for successful leads."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("No Commissions")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "We won't charge any fee or payment from service providers for successful leads."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
+              _c("li", [
                 _c("div", { staticClass: "list-icon" }, [
-                  _c("img", {
-                    attrs: { src: "/images/front/svg/smartphone.svg" }
-                  })
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/smartphone.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("Pick the jobs you want")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "We’ll send you new leads and jobs right on your mobile phones via push notifications or email."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("Pick the jobs you want")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "We’ll send you new leads and jobs right on your mobile phones via push notifications or email."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
+              _c("li", [
                 _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/chat.svg" } })
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/chat.svg" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("Chat with customers")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Once customer respond to your bid, you can discuss details with customers via one-on-one chat."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("Chat with customers")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Once customer respond to your bid, you can discuss details with customers via one-on-one chat."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
+              _c("li", [
                 _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/card.svg" } })
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/card.svg" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("No credit/debit card required")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "You don’t have to enter your credit/debit card. You can charge customer in any of your existing payment method."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("No credit/debit card required")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "You don’t have to enter your credit/debit card. You can charge customer in any of your existing payment method."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
+              _c("li", [
                 _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/like.svg" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("No fake service providers")]),
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/like.svg" } })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "You don’t have to compete with any fake service provider. We approve service providers on platform after review."
-                  )
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("No fake service providers")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "You don’t have to compete with any fake service provider. We approve service providers on platform after review."
+                    )
+                  ])
                 ])
               ])
             ])
           ])
         ])
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -64954,7 +65099,94 @@ var render = function() {
       _vm._m(0)
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "featured-categories" })
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "section section-grey how-it-work" }, [
+      _c("div", { staticClass: "container element-index" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "how-it-work-list" },
+          [
+            _c(
+              "b-row",
+              [
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  [
+                    _c("div", { staticClass: "icon" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/find.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Pick Leads")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Pick those which are of interest to you. Signal your interest through the site."
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  [
+                    _c("div", { staticClass: "icon" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/list.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Get Shortlisted")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Customers review your profiles online & shortlist you to bid on the job."
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-col",
+                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  [
+                    _c("div", { staticClass: "icon" }, [
+                      _c("img", {
+                        attrs: { src: "/images/front/svg/communicate.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Chat with customer to discuss the job or arrange a visit as your normally would."
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -64988,6 +65220,190 @@ var staticRenderFns = [
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "section padding-sm featured-categories-home" },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "services-list" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("div", { staticClass: "list-icon sm white" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/electricians.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("p", [_vm._v("Electricians")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("div", { staticClass: "list-icon sm white" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/carpenters.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("p", [_vm._v("Carpenters")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("div", { staticClass: "list-icon sm white" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/painters.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("p", [_vm._v("Painters")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("div", { staticClass: "list-icon sm white" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/plumbers.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("p", [_vm._v("Plumbers")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("div", { staticClass: "list-icon sm white" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/movers.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("p", [_vm._v("Movers")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("div", { staticClass: "list-icon sm white" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/gardner.svg" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("p", [_vm._v("Gardeners")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section" }, [
+      _c("div", { staticClass: "section-title" }, [
+        _c("h2", [_vm._v("Popular services in your area")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("ul", { staticClass: "Popular-services-slides" }, [
+          _c("li", [
+            _c("div", { staticClass: "box-img" }, [
+              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+            ]),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Cleaning Services")]),
+            _vm._v(" "),
+            _c("p", [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v("Cleaning Services")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "box-img" }, [
+              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+            ]),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Cleaning Services")]),
+            _vm._v(" "),
+            _c("p", [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v("Cleaning Services")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "box-img" }, [
+              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+            ]),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Cleaning Services")]),
+            _vm._v(" "),
+            _c("p", [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v("Cleaning Services")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "box-img" }, [
+              _c("img", { attrs: { src: "/images/front/home/carpenter.jpg" } })
+            ]),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Cleaning Services")]),
+            _vm._v(" "),
+            _c("p", [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v("Cleaning Services")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "slide-blts" }, [
+          _c("ul", [
+            _c("li", { staticClass: "active" }),
+            _vm._v(" "),
+            _c("li", {}),
+            _vm._v(" "),
+            _c("li", {})
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("How it works")])
     ])
   }
 ]

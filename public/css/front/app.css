@@ -10475,9 +10475,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Regular";
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b);
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.svg?0810fb60d605f32adb74d4a8e34a05b2) format("svg");
-  src: url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10485,9 +10483,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Bold";
-  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526);
-  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.svg?c05809266e20834e7361f789983f8f23) format("svg");
-  src: url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10495,9 +10491,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f);
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.svg?ace36b571e939fcee3c62867a8a728f8) format("svg");
-  src: url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10505,9 +10499,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f);
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.svg?ace36b571e939fcee3c62867a8a728f8) format("svg");
-  src: url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10515,9 +10507,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Md";
-  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f);
-  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.svg?cac43acf6a0c694a2b585485fa9e50ee) format("svg");
-  src: url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10525,9 +10515,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-ExtraBold";
-  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c);
-  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c) format("embedded-opentype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff"), url(/fonts/OpenSans-ExtraBold.ttf?f525db7b833334aff6d3f37459536d0f) format("truetype"), url(/fonts/OpenSans-ExtraBold.svg?67c10bd0697bc9f838e901f939d9094f) format("svg");
-  src: url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff");
+  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c) format("embedded-opentype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff"), url(/fonts/OpenSans-ExtraBold.ttf?f525db7b833334aff6d3f37459536d0f) format("truetype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10804,6 +10792,7 @@ body {
   background: #fff;
   overflow-x: hidden;
   font-size: 16px;
+  line-height: 22px;
 }
 
 .container {
@@ -10841,6 +10830,7 @@ a:focus {
 
 p {
   margin: 0 0 15px;
+  line-height: 22px;
 }
 
 input {
@@ -11642,6 +11632,10 @@ textarea {
   color: #494949 !important;
 }
 
+.navigation ul li:last-child {
+  margin-right: 0;
+}
+
 .navigation ul li:last-child a {
   color: #fff !important;
   text-decoration: none !important;
@@ -11708,6 +11702,20 @@ textarea {
   font-family: "AkzidenzGroteskBE-Regular";
 }
 
+.section {
+  position: relative;
+  background-color: #fff;
+  padding: 100px 0px;
+}
+
+.section.section-grey {
+  background-color: #F9F9F9;
+}
+
+.section.padding-sm {
+  padding: 20px 0px;
+}
+
 .section-title {
   text-align: center;
   padding-bottom: 80px;
@@ -11727,18 +11735,29 @@ textarea {
   background-color: #fff;
 }
 
-.services .list-image {
+/*===
+    list icons
+===*/
+
+.list-image {
   display: inline-block;
-  width: 110px;
-  vertical-align: top;
+  width: 100px;
+  vertical-align: middle;
 }
 
-.services .list-image .list-icon {
+.list-icon {
+  display: inline-block;
   width: 80px;
   height: 80px;
+  vertical-align: middle;
   border: 1px solid #E0E0E0;
   background-color: #F9F9F9;
   border-radius: 12px;
+}
+
+.list-icon .inner {
+  width: 80px;
+  height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11748,25 +11767,45 @@ textarea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 10px;
 }
 
-.services .list-description {
+.list-icon.sm {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+}
+
+.list-icon.sm .inner {
+  width: 55px;
+  height: 55px;
+  padding: 10px;
+}
+
+.list-icon.white {
+  background-color: #fff;
+}
+
+.list-description {
+  vertical-align: middle;
   display: inline-block;
   width: calc(100% - 116px);
 }
 
-.services .list-description h4 {
+.list-description h4 {
   margin-bottom: 0;
   padding-bottom: 16px;
 }
 
-.services .list-description p {
+.list-description p {
   font-size: 16px;
-  line-height: 19px;
   color: #1a1a1a;
-  font-weight: 600;
   margin-bottom: 0;
 }
+
+/*
+    list icons details
+*/
 
 .services .services-list ul {
   padding: 0;
@@ -11780,7 +11819,7 @@ textarea {
 .services.two-column .services-list ul li {
   display: inline-block;
   width: 49%;
-  padding-bottom: 40px;
+  padding-bottom: 52px;
 }
 
 .services.two-column .services-list ul li:nth-last-child(2),
@@ -11797,15 +11836,16 @@ textarea {
   margin-bottom: 0;
 }
 
-.how-it-work .list-icon {
-  min-height: 180px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.how-it-work .icon {
+  display: block;
+  margin: 0 auto;
 }
 
-.how-it-work .list-icon img {
+.how-it-work .icon img {
+  width: auto;
   margin: auto;
+  height: 92px;
+  margin-bottom: 42px;
 }
 
 .elementary-banner {
@@ -11916,9 +11956,91 @@ textarea {
   margin-top: 30px;
 }
 
-.featured-categories {
+.featured-categories-home {
   width: 100%;
   background-color: #F9F9F9;
   padding: 22px 0;
+  border-bottom: solid 1px #E0E0E0;
+}
+
+.featured-categories-home ul {
+  margin: 0;
+  padding: 0;
+}
+
+.featured-categories-home .list-description p {
+  font-family: "AkzidenzGroteskBE-Bold";
+  margin-left: 12px;
+}
+
+.section-local-work .list-icon {
+  margin-right: 30px;
+}
+
+/*===========
+    Popular services
+===========*/
+
+.box-img {
+  border-radius: 14px;
+  overflow: hidden;
+  display: block;
+}
+
+.Popular-services-slides {
+  margin: 0 -20px;
+  clear: both;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.Popular-services-slides li {
+  max-width: 325px;
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.Popular-services-slides li .box-img {
+  margin-bottom: 32px;
+}
+
+.Popular-services-slides li h4 {
+  margin-bottom: 16px;
+}
+
+.Popular-services-slides li p {
+  color: #7D7D7D;
+}
+
+.Popular-services-slides li p i {
+  display: inline-block;
+  color: #6004BA;
+  vertical-align: middle;
+  margin-right: 10px;
+  position: relative;
+  top: -4px;
+}
+
+.slide-blts {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.slide-blts li {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: #E0E0E0;
+  margin: 0px 16px 0;
+  cursor: pointer;
+}
+
+.slide-blts li.active {
+  background-color: #DDC6F4;
 }
 
