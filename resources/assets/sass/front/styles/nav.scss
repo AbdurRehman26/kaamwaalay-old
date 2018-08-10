@@ -21,6 +21,7 @@ $nav-font:$font-bold;
                 text-decoration:none;
                 padding-left: 16px;
                 padding-right: 16px;
+                text-decoration:none !important;
                 &:hover{
                     text-decoration:underline;
                     color:$nav-color !important;
@@ -46,6 +47,7 @@ $nav-font:$font-bold;
                     font-family:$font-regular;
                     color:#fff !important;
                     text-decoration:none !important;
+                    min-width: 140px;
                 }
             }
         }

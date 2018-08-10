@@ -1,7 +1,6 @@
 <template>
-
     <div class="content-area">
-        <div class="main-banner elementary-banner">
+        <div class="main-banner elementary-banner explore-banner">
             <div class="main-img">
                 <img  :src="bannerimage">
             </div>
@@ -10,7 +9,7 @@
                     <div class="inner">
                         <div class="container element-index">
                             <div class="content-inner md">
-                                <h2 class="heading-large">Find best skilled service professionals near you.</h2>
+                                <h1 class="heading-large">Find best skilled service professionals near you.</h1>
                                 <div class="search-filter">
                                      <input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
                                      <div class="container-zip-code">
@@ -21,16 +20,14 @@
                                 <button class="btn btn-primary">
                                     <span>Search</span>
                                 </button>
-                            </div>                            
+                            </div>
                         </div>
                         <div class="element-column-image">
                            	<img :src="contentimage">
                         </div>
-						<div class="elements">
-							<img class="top-left width-max" src="/images/front/banner-bg/bg-5.png">				
-							<img class="bottom-center" src="/images/front/banner-bg/bg-2.png">
-							<img class="bottom-right width-max" src="/images/front/banner-bg/bg-9.png">
-						</div>                                                             
+				        <span class="splash-design md d-1 top-left"></span>
+				        <span class="splash-design d-4 bottom-right lg"></span>
+				        <span class="splash-design d-6 bottom-left sm"></span>
                     </div>
                 </div>
             </div>
@@ -41,8 +38,8 @@
 
 	        	<div class="category-section" v-for="maincategory in category">
 	        		<div class="category-title">
-	        			<h2>{{ maincategory.title }}</h2>	        			
-	        		</div>	        		
+	        			<h2>{{ maincategory.title }}</h2>
+	        		</div>
 	        		<div class="category-items">
 
 	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
@@ -52,8 +49,8 @@
 		        			</a>
 		        		</div>
 		        		<div class="showmore"><a href="javascript:void(0);">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
-	        				
-	        		</div>  	        	      		
+
+	        		</div>
 	        	</div>
 
 
@@ -74,20 +71,20 @@
 			        				<p>{{categorypresent.name}}</p>
 			        			</a>
 			        		</li>
-						</ul>		        		
-	        				
-	        		</div>        		
-	        	</div>     		       		        		
+						</ul>
+
+	        		</div>
+	        	</div>
 			</div>
 			<div class="elements">
-				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">				
+				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
-			</div>				
+			</div>
 		</div>
 
 		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>		
 
-    </div>	
+    </div>
 </template>
 
 <script>
@@ -189,7 +186,7 @@ export default {
 				},
 			],
 
-		},		
+		},
 
 		{
 
@@ -211,9 +208,9 @@ export default {
 				},
 			],
 
-		},				
+		},
 
-	
+
 		],
 
 
@@ -222,7 +219,7 @@ export default {
 		{
 			title:'Crafts',
 			categoryitems:[
-				
+
 					{
 						name: 'Custom Airbrushing',
 					},
@@ -254,7 +251,7 @@ export default {
 			{
 				title:'Legal',
 				categoryitems:[
-					
+
 						{
 							name: 'Consumer Attorney',
 						},
@@ -294,21 +291,21 @@ export default {
 						},
 						{
 							name: 'Personal Injury Attorney',
-						},					
+						},
 						{
 							name: 'Process Serving',
 						},
 						{
 							name: 'Tax Attorney',
-						},					
+						},
 
 
 						],
 			},
 
-			{			
+			{
 				title:'Photography',
-				categoryitems:[				
+				categoryitems:[
 
 						{
 							name: 'Aerial Photography',
@@ -337,10 +334,10 @@ export default {
 						},
 						{
 							name: 'Video Editing',
-						},					
+						},
 
 				],
-			},						
+			},
 
 			{
 			title:'Business',
@@ -373,12 +370,12 @@ export default {
 						},
 
 				],
-			},		
+			},
 
 			{
-			title:'Others',				
+			title:'Others',
 				categoryitems:[
-									
+
 						{
 							name: 'Translation',
 						},
@@ -405,7 +402,7 @@ export default {
 							name: 'Pet Care',
 						},
 
-				],												
+				],
 
 			},
 

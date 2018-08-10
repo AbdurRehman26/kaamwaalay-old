@@ -14,7 +14,7 @@
                         <i class="icon-location"></i>
                         <input type="number" name="zip-code" class="form-control lg" placeholder="Enter your zip code">
                     </div>
-                    <a href="javascript:void();" @click="onHidden" class="btn btn-primary m-t-24">Continue</a>
+                    <a href="javascript:void();" @click="categorydetail" class="btn btn-primary m-t-24">Continue</a>
                 </div>
 	    </b-modal>
 	</div>
@@ -34,6 +34,9 @@ export default {
         },
         onHidden() {
             this.$emit('HideModalValue');
+        },
+        categorydetail(){
+            this.$router.push({name: 'Explore_Detail'});
         }
     },
 

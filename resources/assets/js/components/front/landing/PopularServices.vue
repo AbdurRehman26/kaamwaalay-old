@@ -9,7 +9,7 @@
                     <a href="javascript:;">
                         <div class="box-img"><img :src="service.serviceImage"></div>
                         <h6>{{service.serviceHeading}}</h6>
-                        <p><i class="icon-location"></i>{{service.serviceDesc}}</p>
+                        <p><i class="icon-map-marker2"></i>{{service.serviceDesc}}</p>
                     </a>
                 </li>
             </ul>
@@ -24,7 +24,7 @@
             require('owl.carousel');
             $(document).ready(function(){
               $('.my-owl-carousel').owlCarousel({
-                    margin:10,
+                    margin:40,
                     nav:true,
                     items:4,
                     responsive:{

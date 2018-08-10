@@ -1,8 +1,8 @@
 // Adding components
-Vue.component('login', require('./components/auth/Login.vue'));
-Vue.component('forgot', require('./components/auth/Forgot.vue'));
-Vue.component('reset-password', require('./components/auth/ResetPassword.vue'));
-Vue.component('create-password', require('./components/auth/CreatePassword.vue'));
+Vue.component('login', require('./components/front/auth/Login.vue'));
+Vue.component('forgot', require('./components/front/auth/Forgot.vue'));
+Vue.component('reset-password', require('./components/front/auth/ResetPassword.vue'));
+Vue.component('create-password', require('./components/front/auth/CreatePassword.vue'));
 
 
 
@@ -31,9 +31,10 @@ Vue.component('front-footer',require('./components/front/common-components/foote
 // landing
 Vue.component('featuredCategories', require('./components/front/landing/FeaturedCategories.vue'));
 Vue.component('popularservices', require('./components/front/landing/PopularServices.vue'));
+Vue.component('appstore', require('./components/front/landing/AppStore.vue'));
+Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue'));
 
-
-
-
+//join as pro
+Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 
 
