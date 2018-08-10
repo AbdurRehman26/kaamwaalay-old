@@ -2,6 +2,23 @@
 import VueRouter from 'vue-router'
 
 const routes = [
+
+    // Login page 
+
+    {
+        name: 'login',
+        path: '/front-login',
+        meta: {
+            title: 'PSM | Login',
+            bodyClass: 'login-page',
+            noHeader: true,
+
+        },
+        component: require('./components/front/auth/main.vue'),
+    },
+
+    // Home
+
     {
         name: 'home',
         path: '/',
@@ -13,6 +30,7 @@ const routes = [
     },
 
     // Join As Pro
+
     {
         name: 'Join As Pro',
         path: '/join-as-pro',
@@ -25,6 +43,7 @@ const routes = [
 
 
     // Explore
+
     {
         name: 'Explore',
         path: '/explore',
@@ -61,6 +80,18 @@ const routes = [
             bodyClass: 'profile-page',
         },
         component: require('./components/front/profile/main.vue'),
+    },
+
+    // Job Post
+
+    {
+        name: 'Job Post',
+        path: '/job-post',
+        meta: {
+            title: 'Professional Service Marketplace | Job Post',
+            bodyClass: 'job-post-page',
+        },
+        component: require('./components/front/job-post/main.vue'),
     },
 
 
