@@ -11495,6 +11495,151 @@ textarea::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
+.auth-main-wrapper.verticle-align .inner {
+  display: block;
+  padding-top: 8%;
+}
+
+.auth-panel {
+  max-width: 536px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  padding: 30px 42px 39px;
+  margin: 0 auto;
+  min-height: 273px;
+}
+
+@media (max-width: 767px) {
+  .auth-panel {
+    max-width: 390px;
+    padding: 20px 25px 29px;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-panel {
+    max-width: 320px;
+  }
+}
+
+h2.auth-title {
+  margin-bottom: 35px;
+  font-size: 36px;
+}
+
+.front-auth .already-signup {
+  margin-top: 40px;
+}
+
+.front-auth .already-signup p {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.auth-logo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 414px) {
+  .auth-logo-wrapper {
+    position: static;
+    text-align: center;
+  }
+}
+
+.auth-logo-wrapper .logo {
+  margin-top: 32px;
+  display: inline-block;
+  width: 200px;
+}
+
+@media (max-width: 414px) {
+  .auth-logo-wrapper .logo {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .auth-logo-wrapper .logo img {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-logo-wrapper .logo img {
+    max-width: 40%;
+  }
+}
+
+@media (max-width: 414px) {
+  .auth-logo-wrapper .logo img {
+    display: inline-block;
+    text-align: center;
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-title {
+    font-size: 18px;
+  }
+}
+
+.auth-title .auth-title-desc {
+  font-size: 24px;
+  color: #7D7D7D;
+  display: block;
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin: 10px auto 20px;
+}
+
+@media (max-width: 767px) {
+  .auth-title .auth-title-desc {
+    font-size: 14px;
+  }
+}
+
+.forgot-password-text {
+  float: right;
+  color: #6004BA;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .forgot-password-text {
+    margin-bottom: 20px;
+  }
+}
+
+.back-to-login {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #6004BA;
+  cursor: pointer;
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.forgot-form .back-to-login {
+  float: right;
+  color: #6004BA;
+  cursor: pointer;
+  text-decoration: underline;
+  padding-top: 6px;
+  position: relative;
+}
+
+.form-statement p {
+  font-size: 14px;
+  color: #7D7D7D;
+}
+
 body .form-group {
   position: relative;
 }
@@ -12569,6 +12714,7 @@ textarea {
 }
 
 .already-signup p {
+  font-family: "AkzidenzGroteskBE-Md";
   margin-bottom: 40px;
 }
 
