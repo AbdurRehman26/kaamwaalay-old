@@ -23,6 +23,9 @@ body {
 .container{
     padding:0;
     max-width:1276px;
+    &.md{
+        max-width:960px;            
+    }
 }
 
 img {
@@ -406,4 +409,25 @@ textarea::-webkit-scrollbar-thumb {
 
 #app{
     height:100%;
+}
+
+.width-100{
+    width: 100%;
+}
+
+
+
+$spaceamounts: (0, 5, 10, 15, 20, 24, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+  
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
 }

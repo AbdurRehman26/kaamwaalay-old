@@ -55,6 +55,17 @@ const routes = [
     },
 
 
+    {
+        name: 'Explore_Detail',
+        path: '/explore/explorer-detail',
+        meta: {
+            title: 'Professional Service Marketplace | Category Detail',
+            bodyClass: 'explore_detail_page',
+        },
+        component: require('./components/front/explore/detail-category.vue'),
+    },    
+
+
 
     // Sign Up
 

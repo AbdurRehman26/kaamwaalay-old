@@ -20,6 +20,7 @@ Vue.component('loader', require('./components/admin/common-components/Loader.vue
 Vue.component('alert', require('./components/front/common-components/Alert.vue'));
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue'));
+Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue'));
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
