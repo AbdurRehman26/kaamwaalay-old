@@ -144,13 +144,14 @@ public function changePassword(Request $request)
      */
     public function store(Request $request)
     {
-        $data = $request->only('first_name','last_name', 'email','role_id','access_level');
+        $data = $request->only('first_name','last_name', 'email','role_id','access_level','status');
          $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'role_id' => 'required|exists:roles,id|in:1',
             'access_level' => 'required|in:full,reviewOnly',
+            'status' => 'required|in:active,banned',
         ];
 
         $validator = Validator::make($data,$rules);
