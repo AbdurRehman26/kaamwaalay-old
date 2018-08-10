@@ -52,6 +52,10 @@ $font_black:'OpenSans-ExtraBold';
     -moz-osx-font-smoothing: grayscale;
 }
 
+
+.icon-map-marker:before {
+  content: "\e916";
+}
 .icon-calendar-daily:before {
   content: "\e90e";
 }
@@ -100,41 +104,17 @@ $font_black:'OpenSans-ExtraBold';
 .icon-facebook:before {
   content: "\e90c";
 }
-.icon-send:before {
-  content: "\e900";
+.icon-location:before {
+  content: "\e917";
 }
-.icon-checked:before {
-  content: "\e901";
+.icon-map-marker2:before {
+  content: "\e917";
 }
-.icon-front-car:before {
-  content: "\e902";
+.icon-marker:before {
+  content: "\e917";
 }
-.icon-work-briefcase:before {
-  content: "\e903";
-}
-.icon-exit:before {
-  content: "\e92e";
-}
-.icon-close2:before {
-  content: "\e5ce";
-}
-.icon-keyboard_arrow_right:before {
-  content: "\e935";
-}
-.icon-help:before {
-  content: "\e887";
-}
-.icon-delete:before {
-  content: "\e928";
-}
-.icon-menu2:before {
-  content: "\e929";
-}
-.icon-phone_in_talk:before {
-  content: "\e61d";
-}
-.icon-message:before {
-  content: "\e904";
+.icon-pin:before {
+  content: "\e917";
 }
 .icon-quotes-right:before {
   content: "\e978";
@@ -148,7 +128,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-trophy:before {
   content: "\e907";
 }
-.icon-location:before {
+.icon-location3:before {
   content: "\e947";
 }
 .icon-quotes-left:before {
@@ -174,6 +154,9 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-twitter:before {
   content: "\e92a";
+}
+.icon-location2:before {
+  content: "\e919";
 }
 .icon-flag:before {
   content: "\e908";
@@ -213,6 +196,42 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-triangle-down:before {
   content: "\e915";
+}
+.icon-send:before {
+  content: "\e900";
+}
+.icon-checked:before {
+  content: "\e901";
+}
+.icon-front-car:before {
+  content: "\e902";
+}
+.icon-work-briefcase:before {
+  content: "\e903";
+}
+.icon-exit:before {
+  content: "\e92e";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-help:before {
+  content: "\e887";
+}
+.icon-delete:before {
+  content: "\e928";
+}
+.icon-menu2:before {
+  content: "\e929";
+}
+.icon-phone_in_talk:before {
+  content: "\e61d";
+}
+.icon-message:before {
+  content: "\e904";
 }
 .icon-cancel:before {
   content: "\e927";

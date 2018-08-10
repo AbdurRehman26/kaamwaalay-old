@@ -63827,7 +63827,7 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "profile-form-section" }, [
-        _c("div", { staticClass: "sign-up-form business-form" }, [
+        _c("div", {}, [
           _c("div", { staticClass: "form-signup" }, [
             _c("form", [
               _vm._m(1),
@@ -63872,13 +63872,32 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "personal-detail" }, [
       _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "browse-btn" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "file-upload-label" }, [
+              _vm._v("Browse Photo")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control file-upload-input",
+              attrs: { type: "file" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your first name" }
+              attrs: {
+                type: "text",
+                value: "Arsalan",
+                placeholder: "Enter your first name"
+              }
             })
           ])
         ]),
@@ -63889,7 +63908,11 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your last name" }
+              attrs: {
+                type: "text",
+                value: "Akhtar",
+                placeholder: "Enter your last name"
+              }
             })
           ])
         ])
@@ -63904,6 +63927,7 @@ var staticRenderFns = [
               staticClass: "form-control",
               attrs: {
                 type: "text",
+                value: "arsalan@cygnismedia.com",
                 placeholder: "Enter your first email address"
               }
             })

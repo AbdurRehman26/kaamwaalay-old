@@ -632,7 +632,97 @@ li.nav-item.active {
         text-align: center;
     }
 }
-
+.profile-form {
+    .profile-head {
+        p {
+            margin-bottom: 90px;
+            font-size: 14px;
+            color: $grey-Edark;
+            text-align: center;
+        }
+    }
+}
+.profile-form-section {
+    position: relative;
+    margin-bottom: 40px;
+    border: 1px solid $grey-lite;
+    padding: 65px 33px 33px 33px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    &:after {
+        position: absolute;
+        content: "\E90F";
+        top: -60px;
+        font-family: 'icomoon';
+        font-size: 57px;
+        color: #7d7d7d;
+        border: 1px solid $grey-lite;
+        height: 110px;
+        width: 110px;
+        left: 43.5%;
+        text-align: center;
+        border-radius: 100%;
+        background: #f9f9f9;
+        line-height: 103px;
+    }
+    .personal-detail {
+        position: relative;
+        margin-bottom: 30px;
+        padding-bottom: 23px;
+        border-bottom: 1px solid $grey-lite;
+        &:after {
+            content:'HOME ADDRESS';
+            position: absolute;
+            text-transform: capitalize;
+            font-family: $font_medium;
+            font-size: 14px;
+            color: $grey-Edark;
+            bottom: -12px;
+            background: #fff;
+            width: 160px;
+            left: 40%;
+            text-align: center;
+        }
+    }
+    p {
+        font-size: 14px;
+        color: $grey-Edark;
+        margin-bottom: 0;
+    }
+}
+.browse-btn {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    .file-upload-label {
+        display: block;
+        padding: 6px 22px;
+        color: #fff;
+        background: $primary-color-md;
+        border-radius: 4px;
+        transition: background .3s;
+        font-size: 14px;
+          &:hover {
+            cursor: pointer;
+            background: $primary-color;
+        }
+    }
+    .file-upload-input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width:100%;
+        height: 100%;
+        opacity: 0;
+        &:hover {
+            cursor: pointer;
+            background: $primary-color;
+        }
+    }
+}
 // Profile form sass end
 
 .how-it-work-list{
