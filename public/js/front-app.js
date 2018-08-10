@@ -2930,43 +2930,206 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-			i: 0,
-			electricancategoryitems: [{
-				itemimage: '/images/front/explore/electrician1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+
+			category: [{
+
+				title: 'Electricians',
+				categoryitems: [{
+					itemimage: '/images/front/explore/electrician1.jpg',
+					itemtitle: 'Electrical and Wiring Repair'
+				}, {
+					itemimage: '/images/front/explore/electrician2.jpg',
+					itemtitle: 'Air conditioning repair'
+				}, {
+					itemimage: '/images/front/explore/electrician3.jpg',
+					itemtitle: 'Heating system repair'
+				}]
+
 			}, {
-				itemimage: '/images/front/explore/electrician2.jpg',
-				itemtitle: 'Air conditioning repair'
+
+				title: 'Carpenters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'General carpentry'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
 			}, {
-				itemimage: '/images/front/explore/electrician3.jpg',
-				itemtitle: 'Heating system repair'
+
+				title: 'Cleaning Services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/cleaning1.jpg',
+					itemtitle: 'House Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning2.jpg',
+					itemtitle: 'Carpet Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning3.jpg',
+					itemtitle: 'Exterior Cleaners'
+				}]
+
+			}, {
+
+				title: 'Painters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/painter1.jpg',
+					itemtitle: 'Interior Painting'
+				}, {
+					itemimage: '/images/front/explore/painter2.jpg',
+					itemtitle: 'Wallpaper Installation'
+				}, {
+					itemimage: '/images/front/explore/painter3.jpg',
+					itemtitle: 'Deck Staining'
+				}]
+
+			}, {
+
+				title: 'Movers',
+				categoryitems: [{
+					itemimage: '/images/front/explore/mover1.jpg',
+					itemtitle: 'Local Moving (under 50 miles)'
+				}, {
+					itemimage: '/images/front/explore/mover2.jpg',
+					itemtitle: 'Long Distance Moving'
+				}, {
+					itemimage: '/images/front/explore/mover3.jpg',
+					itemtitle: 'Furniture Moving & Heavy Lifting'
+				}]
+
 			}],
 
-			category: [['Electricians', {
-				itemimage: '/images/front/explore/electrician1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+			othercategory: [{
+				title: 'Crafts',
+				categoryitems: [{
+					name: 'Custom Airbrushing'
+				}, {
+					name: 'Illustrating'
+				}, {
+					name: 'Scrapbooking'
+				}, {
+					name: 'Embroidery'
+				}, {
+					name: 'Portrait Artistry'
+				}, {
+					name: 'Songwriting'
+				}, {
+					name: 'Engraving'
+				}, {
+					name: 'Powder Coating'
+				}]
 			}, {
-				itemimage: '/images/front/explore/electrician2.jpg',
-				itemtitle: 'Air conditioning repair'
+				title: 'Legal',
+				categoryitems: [{
+					name: 'Consumer Attorney'
+				}, {
+					name: 'Contracts Attorney'
+				}, {
+					name: 'Corporate Law Attorney'
+				}, {
+					name: 'Court Interpreting'
+				}, {
+					name: 'Disability Attorney'
+				}, {
+					name: 'Estate Attorney'
+				}, {
+					name: 'Immigration Attorney'
+				}, {
+					name: 'Intellectual Property Attorney'
+				}, {
+					name: 'International Law Attorney'
+				}, {
+					name: 'Labor and Employment Attorney'
+				}, {
+					name: 'Legal Document Preparation'
+				}, {
+					name: 'Mediation'
+				}, {
+					name: 'Personal Injury Attorney'
+				}, {
+					name: 'Process Serving'
+				}, {
+					name: 'Tax Attorney'
+				}]
 			}, {
-				itemimage: '/images/front/explore/electrician3.jpg',
-				itemtitle: 'Heating system repair'
-			}], ['Carpenters', {
-				itemimage: '/images/front/explore/carpenter1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+				title: 'Photography',
+				categoryitems: [{
+					name: 'Aerial Photography'
+				}, {
+					name: 'Boudoir Photography'
+				}, {
+					name: 'Commercial Photography'
+				}, {
+					name: 'Engagement Photography'
+				}, {
+					name: 'Nature Photography'
+				}, {
+					name: 'Pet Photography'
+				}, {
+					name: 'Portrait Photography'
+				}, {
+					name: 'Sports Photography'
+				}, {
+					name: 'Video Editing'
+				}]
 			}, {
-				itemimage: '/images/front/explore/carpenter2.jpg',
-				itemtitle: 'Air conditioning repair'
+				title: 'Business',
+				categoryitems: [{
+					name: 'Accounting'
+				}, {
+					name: 'Business Consulting'
+				}, {
+					name: 'Data Recovery Service'
+				}, {
+					name: 'Individual Tax Preparation'
+				}, {
+					name: 'Marketing'
+				}, {
+					name: 'Payroll Services'
+				}, {
+					name: 'Personal Financial Planning'
+				}, {
+					name: 'Real Estate Agent Services'
+				}]
 			}, {
-				itemimage: '/images/front/explore/carpenter3.jpg',
-				itemtitle: 'Heating system repair'
-			}]]
+				title: 'Others',
+				categoryitems: [{
+					name: 'Translation'
+				}, {
+					name: 'UI Design'
+				}, {
+					name: 'Public Relations'
+				}, {
+					name: 'Grass cutting'
+				}, {
+					name: 'Yard Work'
+				}, {
+					name: 'Replant Seedlings'
+				}, {
+					name: 'Pick Up & Delivery'
+				}, {
+					name: 'Pet Care'
+				}]
+
+			}]
 
 		};
 	},
@@ -62447,36 +62610,81 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "featured-categories section" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "category-section" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "category-items" },
-            [
-              _vm._l(_vm.electricancategoryitems, function(category) {
-                return _c("div", { staticClass: "items" }, [
-                  _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                    _c("div", {
-                      staticClass: "item-image",
-                      style: {
-                        "background-image": "url(" + category.itemimage + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("h4", [_vm._v(_vm._s(category.itemtitle))])
+      _c(
+        "div",
+        { staticClass: "container" },
+        _vm._l(_vm.category, function(maincategory) {
+          return _c("div", { staticClass: "category-section" }, [
+            _c("div", { staticClass: "category-title" }, [
+              _c("h2", [_vm._v(_vm._s(maincategory.title))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "category-items" },
+              [
+                _vm._l(maincategory.categoryitems, function(categoryabc) {
+                  return _c("div", { staticClass: "items" }, [
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _c("div", {
+                        staticClass: "item-image",
+                        style: {
+                          "background-image":
+                            "url(" + categoryabc.itemimage + ")"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                    ])
                   ])
-                ])
-              }),
+                }),
+                _vm._v(" "),
+                _vm._m(2, true)
+              ],
+              2
+            )
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "other-categories section-grey section elementary-banner"
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "container element-index" },
+          _vm._l(_vm.othercategory, function(othercategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(othercategory.title))])
+              ]),
               _vm._v(" "),
-              _vm._m(3)
-            ],
-            2
-          )
-        ])
-      ])
-    ])
+              _c("div", { staticClass: "category-items" }, [
+                _c(
+                  "ul",
+                  { staticClass: "item-list-container" },
+                  _vm._l(othercategory.categoryitems, function(
+                    categorypresent
+                  ) {
+                    return _c("li", { staticClass: "items-list" }, [
+                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                        _c("p", [_vm._v(_vm._s(categorypresent.name))])
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _vm._m(3)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -62541,19 +62749,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "category-title" }, [
-      _c("h2", [_vm._v("Electricians")])
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("View all services related to electricians "),
-        _c("i", { staticClass: "icon-keyboard_arrow_right" })
-      ])
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
     ])
   }
 ]
