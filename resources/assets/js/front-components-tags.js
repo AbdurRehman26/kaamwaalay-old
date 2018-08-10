@@ -17,7 +17,7 @@ Vue.component('logo', require('./components/admin/common-components/Logo.vue'));
 Vue.component('no-record-found', require('./components/admin/common-components/NoRecords.vue'));
 Vue.component('search', require('./components/admin/common-components/Search.vue'));
 Vue.component('loader', require('./components/admin/common-components/Loader.vue'));
-Vue.component('alert', require('./components/admin/common-components/Alert.vue'));
+Vue.component('alert', require('./components/front/common-components/Alert.vue'));
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue'));
 

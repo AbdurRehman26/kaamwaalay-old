@@ -715,10 +715,12 @@ li.nav-item.active {
             text-align: center;
         }
     }
-    p {
-        font-size: 14px;
-        color: $grey-Edark;
-        margin-bottom: 0;
+    .form-detail {
+        p {
+            font-size: 14px;
+            color: $grey-Edark;
+            margin-bottom: 0;
+        }
     }
 }
 .browse-btn {
