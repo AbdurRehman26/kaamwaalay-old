@@ -4,6 +4,7 @@ namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Yadakhov\InsertOnDuplicateKey;
+use Storage;
 
 class User extends Model
 {

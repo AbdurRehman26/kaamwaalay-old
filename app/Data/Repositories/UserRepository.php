@@ -99,19 +99,8 @@ public $model;
     public function update(array $data = []) {
 
         $input = $data['user_details'];
-        $input['id'] = $data['id'];
-
-        if(!empty($data['user_details'])){
-
-            if(request()->hasFile('user_details.profile_image')){
-                $data['profile_image'] = $data['user_details']['profile_image']->hashName();
-                $this->imageStore($data['profile_image'],$data['profile_image']);
-                $input['profile_image'] = $data['profile_image'];
-                unset($data['profile_image']);
-            }
-
-        }
-
+        $input['id'] = $data['user_id'];
+        
         if ($user = parent::update($input)) {
 
             if(!empty($data['business_details'])){
