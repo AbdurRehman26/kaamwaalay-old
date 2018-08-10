@@ -90,5 +90,28 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         return false;
     }
 
+    public function findByAll($pagination = false,$perPage = 10, $data = []){       
+
+        $this->builder = $this->model->orderBy('service_provider_profile_requests.created_at','desc');
+        if (!empty($data['keyword'])) {
+
+            $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
+                                    $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+                                })
+                                ->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
+                                ->orWhere('users.last_name', 'LIKE', "%{$data['keyword']}%");
+                            }
+
+        if(!empty($data['filter_by_business_type'])){
+            $this->builder = $this->builder->leftJoin('service_provider_profiles', function ($join)  use($data){
+                                    $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
+                                })->where('service_provider_profiles.business_type',$data['filter_by_business_type'])
+                                  ->select(['jobs.id']);
+        }
+        
+        return parent::findByAll($pagination, $perPage, $data);
+
+    }
+
 
 }
