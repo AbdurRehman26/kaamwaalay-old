@@ -3030,7 +3030,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -3628,6 +3627,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -62237,7 +62240,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "A proven source of genuine enquiries for quality service providers."
+              "Professional Service Marketplace makes it easy to find quality tradesmen, reviewed by other homeowners."
             )
           ]),
           _vm._v(" "),
@@ -62247,22 +62250,14 @@ var staticRenderFns = [
               staticClass: "btn btn-primary",
               attrs: { href: "javascript:void(0);" }
             },
-            [_vm._v("Get Started")]
+            [_vm._v("Explore Now")]
           )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "elements" }, [
-        _c("img", {
-          staticClass: "top-left",
-          attrs: { src: "/images/front/banner-bg/bg-5.png" }
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "bottom-right",
-          attrs: { src: "/images/front/banner-bg/bg-2.png" }
-        })
-      ])
+      _c("span", { staticClass: "splash-design md d-1 top-left" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
     ])
   }
 ]
@@ -63129,7 +63124,7 @@ var render = function() {
               _c("h6", [_vm._v(_vm._s(service.serviceHeading))]),
               _vm._v(" "),
               _c("p", [
-                _c("i", { staticClass: "icon-location" }),
+                _c("i", { staticClass: "icon-map-marker2" }),
                 _vm._v(_vm._s(service.serviceDesc))
               ])
             ])
@@ -63321,7 +63316,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content-area" }, [
-    _c("div", { staticClass: "main-banner elementary-banner" }, [
+    _c("div", { staticClass: "main-banner elementary-banner explore-banner" }, [
       _c("div", { staticClass: "main-img" }, [
         _c("img", { attrs: { src: _vm.bannerimage } })
       ]),
@@ -63426,13 +63421,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container element-index" }, [
       _c("div", { staticClass: "content-inner md" }, [
-        _c("h2", { staticClass: "heading-large" }, [
+        _c("h1", { staticClass: "heading-large" }, [
           _vm._v("Find best skilled service professionals near you.")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "search-filter" }, [
           _c("input", {
-            staticClass: "form-control search-service",
+            staticClass: "form-control lg search-service",
             attrs: {
               type: "text",
               placeholder: "What service do you need?",
@@ -63444,7 +63439,7 @@ var staticRenderFns = [
             _c("i", { staticClass: "icon-location" }),
             _vm._v(" "),
             _c("input", {
-              staticClass: "form-control zip-code",
+              staticClass: "form-control  lg zip-code",
               attrs: { type: "number", placeholder: "Zip code", name: "" }
             })
           ])
@@ -65206,124 +65201,134 @@ var render = function() {
       _vm._v(" "),
       _c("popularservices"),
       _vm._v(" "),
-      _c("div", { staticClass: "section section-grey how-it-work" }, [
-        _c("div", { staticClass: "container element-index" }, [
-          _vm._m(1),
+      _c(
+        "div",
+        { staticClass: "section section-grey how-it-work elementary-banner" },
+        [
+          _c("div", { staticClass: "container element-index" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "how-it-work-list" },
+              [
+                _c(
+                  "b-row",
+                  [
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/find.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Find")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/bidding.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Bidding Process")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/communicate.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Communicate & Hire")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "You can communicate with service provider before hiring and after that award the job to right service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/like.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Work & Pay")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "how-it-work-list" },
-            [
-              _c(
-                "b-row",
-                [
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/find.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Find")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/bidding.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Bidding Process")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/communicate.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Communicate & Hire")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "You can communicate with service provider before hiring and after that award the job to right service provider."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/like.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Work & Pay")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
-                          )
-                        ])
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ])
-      ]),
+          _c("span", { staticClass: "splash-design lg d-2 top-right" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "splash-design d-3 bottom-left md" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "splash-design d-6 bottom-right sm sp-rt" })
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "section ready-to-meet" }, [
         _c("div", { staticClass: "container" }, [
@@ -65446,7 +65451,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
-      _c("h2", [_vm._v("What our customers are saying")]),
+      _c("h2", { staticClass: "btm-space" }, [
+        _vm._v("What our customers are saying")
+      ]),
       _vm._v(" "),
       _c("p", [
         _vm._v(
@@ -65971,7 +65978,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "I’ve been much busier since I got Featured Profile… it gives me an advantage. I continue to invest in being the best, even when that means making changes."
+                "The first time in all these years of being a landlord in NY where I have had trustworthy service and a good end result, within the time frame promised."
               )
             ]),
             _vm._v(" "),
@@ -65995,7 +66002,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "Professional Service Marketplace are providing excellent service, remaining reliable, having integrity, and being respectful."
+                "Easy to hire electrician when i had been struggling to get quotes, Simple service and workman turned up when he was meant to and price was cheaper too."
               )
             ]),
             _vm._v(" "),

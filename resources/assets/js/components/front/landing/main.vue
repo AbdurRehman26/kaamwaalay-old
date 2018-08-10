@@ -34,7 +34,7 @@
     <popularservices></popularservices>
 
     <!--how its works-->
-    <div class="section section-grey how-it-work">
+    <div class="section section-grey how-it-work elementary-banner">
         <div class="container element-index">
             <div class="section-title">
                 <h2>How it works</h2>
@@ -80,13 +80,17 @@
                 </b-row>
             </div>
         </div>
+        <!-- splash elements -->
+        <span class="splash-design lg d-2 top-right"></span>
+        <span class="splash-design d-3 bottom-left md"></span>
+        <span class="splash-design d-6 bottom-right sm sp-rt"></span>
     </div>
     <!-- app store section -->
     <div class="section ready-to-meet">
         <div class="container">
             <div class="two-column">
                 <div class="content-sec">
-                    <h2>When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!</h2>
+                    <h2 >When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!</h2>
                     <p>See cost estimates, read reviews and chat with service providers, all in the app. Available on both iOS and Android.</p>
                     <appstore></appstore>
                 </div>
@@ -101,7 +105,7 @@
     <div class="section section-grey">
         <div class="container">
             <div class="section-title">
-                <h2>What our customers are saying</h2>
+                <h2 class="btm-space">What our customers are saying</h2>
                 <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
             </div>
             <testmonial-sec></testmonial-sec>
