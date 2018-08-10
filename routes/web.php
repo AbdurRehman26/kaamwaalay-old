@@ -21,7 +21,7 @@ Route::get('/', function () {
 })->where('any', '.*');*/
 Route::post('social/login', 'Api\V1\UserController@socialLogin')->name('socialLogin');
 Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');
-Route::get('password/reset/{token}/{email}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::get('password/set/{token}/{email}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 
 /*Admin Route*/
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');

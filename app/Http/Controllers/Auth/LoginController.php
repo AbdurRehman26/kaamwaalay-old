@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Data\Repositories\UserRepository;
 use Illuminate\Http\Request;
-use App\User;
+use App\Data\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Lang;
 use Carbon\carbon;
