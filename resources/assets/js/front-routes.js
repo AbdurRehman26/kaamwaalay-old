@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 const routes = [
 
-    // Login page 
+    // Login page
 
     {
         name: 'login',

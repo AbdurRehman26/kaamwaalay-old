@@ -10757,32 +10757,8 @@ a.text-dark:focus {
 }
 
 @font-face {
-  font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: none;
-}
-
-@font-face {
-  font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: none;
-}
-
-@font-face {
   font-family: "AkzidenzGroteskBE-Md";
   src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: none;
-}
-
-@font-face {
-  font-family: "OpenSans-ExtraBold";
-  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c) format("embedded-opentype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff"), url(/fonts/OpenSans-ExtraBold.ttf?f525db7b833334aff6d3f37459536d0f) format("truetype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -11471,14 +11447,6 @@ textarea::-webkit-scrollbar-thumb {
   font-family: "AkzidenzGroteskBE-Bold";
 }
 
-.font-light {
-  font-family: "OpenSans-Light";
-}
-
-.font-thin {
-  font-family: "OpenSans-Light";
-}
-
 #app {
   height: 100%;
 }
@@ -11911,8 +11879,8 @@ textarea {
 .btn {
   height: 44px;
   color: #fff;
-  font-family: "AkzidenzGroteskBE-Regular";
-  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 17px;
   padding: 10px 40px;
   min-width: 100px;
   line-height: 22px;
@@ -12297,7 +12265,7 @@ textarea {
 }
 
 .navigation ul li:last-child a {
-  font-family: "AkzidenzGroteskBE-Regular";
+  font-family: "AkzidenzGroteskBE-Md";
   color: #fff !important;
   text-decoration: none !important;
   min-width: 140px;

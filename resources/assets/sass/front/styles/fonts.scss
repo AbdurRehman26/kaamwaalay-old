@@ -1,11 +1,7 @@
 /*Font family mixin*/
 $font_regular:'AkzidenzGroteskBE-Regular';
 $font_bold:'AkzidenzGroteskBE-Bold';
-$font_light:'OpenSans-Light';
-$font_thin:'OpenSans-Light';
 $font_medium:'AkzidenzGroteskBE-Md';
-$font_ebold:'OpenSans-ExtraBold';
-$font_black:'OpenSans-ExtraBold';
 
 @mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style :normal, $font-stretch: normal) {
     @font-face {
@@ -22,10 +18,7 @@ $font_black:'OpenSans-ExtraBold';
 
 @include declare-font-face($font_regular,'AkzidenzGroteskBE-Regular');
 @include declare-font-face($font_bold,'AkzidenzGroteskBE-Bold');
-@include declare-font-face($font_light,'OpenSans-Light');
-@include declare-font-face($font_thin,'OpenSans-Light');
 @include declare-font-face($font_medium,'AkzidenzGroteskBE-Md');
-@include declare-font-face($font_ebold,'OpenSans-ExtraBold');
 
 @font-face {
     font-family: 'icomoon';
