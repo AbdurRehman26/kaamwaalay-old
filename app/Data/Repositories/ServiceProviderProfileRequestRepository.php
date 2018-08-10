@@ -60,6 +60,12 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             $criteria = ['service_provider_profile_request_id' => $data->id];
             $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
             $data->services = $services['data']; 
+            
+            $input['provider_request_data'] = false;
+            $input['profile_data'] = true;
+            $serviceProviderProfile = app('UserRepository')->findById($data->user_id,false,$input);
+            $data->service_provider_profile= $serviceProviderProfile;
+            
         }
 
         return $data;

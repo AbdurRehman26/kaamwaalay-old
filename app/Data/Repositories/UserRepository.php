@@ -48,14 +48,14 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $encode);
         
         if($data){
-            if (empty($details)) {
-                
+            if (!empty($details['profile_data'])) {
                 if($data->role_id == Role::SERVICE_PROVIDER){
                 // Todo
-                    $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
-
+                $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
+                if (!empty($details['provider_request_data'])) {
                     $serviceDetailsCriteria = ['user_id' => $id];
                     $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
+                }
 
                 }
             }
