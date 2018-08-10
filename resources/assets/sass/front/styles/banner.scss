@@ -24,7 +24,7 @@
         }
     }
 
-    &.home-banner{
+    &.home-banner,&.explore-banner{
         .content-inner{
             max-width:445px;
             h1{
@@ -40,6 +40,15 @@
             .container-zip-code{
                 width: 28%
             }
+        }
+    }
+    &.explore-banner{
+        .content-inner{
+            max-width:850px;
+            h1{
+                margin-bottom:32px;
+            }
+
         }
     }
     .banner-slogan{

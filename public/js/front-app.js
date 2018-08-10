@@ -3030,7 +3030,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -62251,7 +62250,7 @@ var staticRenderFns = [
               staticClass: "btn btn-primary",
               attrs: { href: "javascript:void(0);" }
             },
-            [_vm._v("Get Started")]
+            [_vm._v("Explore Now")]
           )
         ])
       ]),
@@ -62910,7 +62909,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content-area" }, [
-    _c("div", { staticClass: "main-banner elementary-banner" }, [
+    _c("div", { staticClass: "main-banner elementary-banner explore-banner" }, [
       _c("div", { staticClass: "main-img" }, [
         _c("img", { attrs: { src: _vm.bannerimage } })
       ]),
@@ -63015,13 +63014,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container element-index" }, [
       _c("div", { staticClass: "content-inner md" }, [
-        _c("h2", { staticClass: "heading-large" }, [
+        _c("h1", { staticClass: "heading-large" }, [
           _vm._v("Find best skilled service professionals near you.")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "search-filter" }, [
           _c("input", {
-            staticClass: "form-control search-service",
+            staticClass: "form-control lg search-service",
             attrs: {
               type: "text",
               placeholder: "What service do you need?",
@@ -63033,7 +63032,7 @@ var staticRenderFns = [
             _c("i", { staticClass: "icon-location" }),
             _vm._v(" "),
             _c("input", {
-              staticClass: "form-control zip-code",
+              staticClass: "form-control  lg zip-code",
               attrs: { type: "number", placeholder: "Zip code", name: "" }
             })
           ])
@@ -65572,7 +65571,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "I’ve been much busier since I got Featured Profile… it gives me an advantage. I continue to invest in being the best, even when that means making changes."
+                "The first time in all these years of being a landlord in NY where I have had trustworthy service and a good end result, within the time frame promised."
               )
             ]),
             _vm._v(" "),
@@ -65596,7 +65595,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "Professional Service Marketplace are providing excellent service, remaining reliable, having integrity, and being respectful."
+                "Easy to hire electrician when i had been struggling to get quotes, Simple service and workman turned up when he was meant to and price was cheaper too."
               )
             ]),
             _vm._v(" "),
