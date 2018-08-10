@@ -11297,22 +11297,6 @@ strong.title-head {
   font-weight: bold;
 }
 
-body::-webkit-scrollbar-track {
-  background-color: #fff;
-  border-radius: 51px;
-}
-
-body::-webkit-scrollbar {
-  width: 6px;
-  background-color: #fff;
-  border-radius: 51px;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: #cfd4d9;
-  border-radius: 51px;
-}
-
 .scrollable {
   overflow-y: auto;
 }
@@ -11391,20 +11375,24 @@ body::-webkit-scrollbar-thumb {
   background-color: #ddd;
 }
 
-body::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #f1f3f5;
+/* body::-webkit-scrollbar-track
+{
+    border-radius: 15px;
+    background-color: #f1f3f5;
 }
 
-body::-webkit-scrollbar {
-  width: 5px;
-  background-color: #ced3d8;
+body::-webkit-scrollbar
+{
+    width: 5px;
+    background-color: #ced3d8;
 }
 
-body::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #ddd;
+body::-webkit-scrollbar-thumb
+{
+    border-radius: 15px;
+    background-color: #ddd;
 }
+ */
 
 .xy-scrollbar {
   max-height: 100%;
@@ -12435,6 +12423,84 @@ textarea {
   background-color: #fff;
 }
 
+/*=========
+    Splashes
+=====*/
+
+.splash-design {
+  position: absolute;
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.splash-design.d-1 {
+  background-image: url(/images/d-1.svg?aed8324ec19cc06180eca1acd8f843ea);
+}
+
+.splash-design.d-2 {
+  background-image: url(/images/d-2.svg?8ac72b22a73d9e78aa2d8b4820d70862);
+}
+
+.splash-design.d-3 {
+  background-image: url(/images/d-3.svg?33c73ce1d9291622fb185c0d6e1731d4);
+}
+
+.splash-design.d-4 {
+  background-image: url(/images/d-4.svg?48cc588fc2123d490c42fa7bb73658a6);
+}
+
+.splash-design.d-5 {
+  background-image: url(/images/d-5.svg?f74158a19f2ee4544a72f6b3596fddf8);
+  height: 133px !important;
+}
+
+.splash-design.d-6 {
+  background-image: url(/images/d-6.svg?29275829ff683521a9607fceba376b55);
+}
+
+.splash-design.lg {
+  width: 100%;
+  max-width: 577px;
+  height: 224px;
+}
+
+.splash-design.md {
+  width: 100%;
+  max-width: 312px;
+  height: 78px;
+}
+
+.splash-design.sm {
+  width: 100%;
+  max-width: 179px;
+  height: 78px;
+}
+
+.splash-design.top-left {
+  top: -3px;
+  left: -3px;
+}
+
+.splash-design.top-right {
+  top: -3px;
+  right: -3px;
+}
+
+.splash-design.bottom-left {
+  bottom: -3px;
+  left: -3px;
+}
+
+.splash-design.bottom-right {
+  bottom: -3px;
+  right: -3px;
+}
+
+.splash-design.sp-rt {
+  right: 78px;
+}
+
 /*===
     list icons
 ===*/
@@ -13252,5 +13318,19 @@ li.nav-item.active {
   font-size: 20px;
   line-height: 29px;
   margin-bottom: 37px;
+}
+
+.get-started-section h1 {
+  margin-bottom: 24px;
+}
+
+.get-started-section p {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
+.get-started-section .splash-design.d-1 {
+  max-width: 376px;
+  height: 107px;
 }
 

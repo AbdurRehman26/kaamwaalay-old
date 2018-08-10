@@ -3768,7 +3768,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62242,7 +62241,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "A proven source of genuine enquiries for quality service providers."
+              "Professional Service Marketplace makes it easy to find quality tradesmen, reviewed by other homeowners."
             )
           ]),
           _vm._v(" "),
@@ -62257,17 +62256,9 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "elements" }, [
-        _c("img", {
-          staticClass: "top-left",
-          attrs: { src: "/images/front/banner-bg/bg-5.png" }
-        }),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "bottom-right",
-          attrs: { src: "/images/front/banner-bg/bg-2.png" }
-        })
-      ])
+      _c("span", { staticClass: "splash-design md d-1 top-left" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
     ])
   }
 ]
@@ -64925,7 +64916,11 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(2)
+          _c("span", { staticClass: "splash-design lg d-2 top-right" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "splash-design d-3 bottom-left md" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "splash-design d-6 bottom-right sm sp-rt" })
         ]
       ),
       _vm._v(" "),
@@ -64953,7 +64948,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(2)
           ])
         ])
       ]),
@@ -64962,12 +64957,12 @@ var render = function() {
         _c(
           "div",
           { staticClass: "container" },
-          [_vm._m(4), _vm._v(" "), _c("testmonial-sec")],
+          [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
           1
         )
       ]),
       _vm._v(" "),
-      _vm._m(5),
+      _vm._m(4),
       _vm._v(" "),
       _c(
         "div",
@@ -65035,27 +65030,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
       _c("h2", [_vm._v("How it works")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "elements" }, [
-      _c("img", {
-        staticClass: "top-right",
-        attrs: { src: "/images/front/banner-bg/bg-1.png" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "bottom-left",
-        attrs: { src: "/images/front/banner-bg/bg-3.png" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "bottom-right",
-        attrs: { src: "/images/front/banner-bg/bg-2.png" }
-      })
     ])
   },
   function() {

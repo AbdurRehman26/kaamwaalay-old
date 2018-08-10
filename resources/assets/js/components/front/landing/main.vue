@@ -80,11 +80,10 @@
                 </b-row>
             </div>
         </div>
-        <div class="elements">
-            <img class="top-right" src="/images/front/banner-bg/bg-1.png">
-            <img class="bottom-left" src="/images/front/banner-bg/bg-3.png">
-            <img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
-        </div>
+        <!-- splash elements -->
+        <span class="splash-design lg d-2 top-right"></span>
+        <span class="splash-design d-3 bottom-left md"></span>
+        <span class="splash-design d-6 bottom-right sm sp-rt"></span>
     </div>
     <!-- app store section -->
     <div class="section ready-to-meet">

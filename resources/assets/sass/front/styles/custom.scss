@@ -31,6 +31,72 @@ $section-padding-sm:20px 0px;
 .white-bg{
     background-color: #fff;
 }
+/*=========
+    Splashes
+=====*/
+
+.splash-design{
+    position:absolute;
+    background-size:100% auto;
+    background-position:center top;
+    background-repeat:no-repeat;
+
+    &.d-1{
+        background-image:url('../../images/front/splash/d-1.svg');
+    }
+    &.d-2{
+        background-image:url('../../images/front/splash/d-2.svg');
+    }
+    &.d-3{
+        background-image:url('../../images/front/splash/d-3.svg');
+    }
+    &.d-4{
+        background-image:url('../../images/front/splash/d-4.svg');
+    }
+    &.d-5{
+        background-image:url('../../images/front/splash/d-5.svg');
+        height:133px !important;
+    }
+    &.d-6{
+        background-image:url('../../images/front/splash/d-6.svg');
+    }
+    &.lg{
+        width:100%;
+        max-width:577px;
+        height:224px;
+    }
+    &.md{
+        width:100%;
+        max-width: 312px;
+        height: 78px;
+    }
+    &.sm{
+        width: 100%;
+        max-width: 179px;
+        height: 78px;
+    }
+
+    &.top-left{
+        top:-3px;
+        left:-3px;
+    }
+    &.top-right{
+        top:-3px;
+        right:-3px;
+    }
+    &.bottom-left{
+        bottom:-3px;
+        left:-3px;
+    }
+    &.bottom-right{
+        bottom:-3px;
+        right:-3px;
+    }
+    &.sp-rt{
+        right: 78px;
+    }
+}
+
 
 
 /*===
@@ -801,5 +867,21 @@ li.nav-item.active {
         font-size:$font-size-sm;
         line-height: 29px;
         margin-bottom: 37px;
+    }
+}
+
+.get-started-section{
+    h1{
+        margin-bottom:24px;
+    }
+    p{
+        font-size:$font-size-sm;
+        margin-bottom:32px;
+    }
+    .splash-design{
+        &.d-1{
+            max-width: 376px;
+            height: 107px;
+        }
     }
 }
