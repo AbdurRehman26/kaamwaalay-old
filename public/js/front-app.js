@@ -2930,43 +2930,206 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-			i: 0,
-			electricancategoryitems: [{
-				itemimage: '/images/front/explore/electrician1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+
+			category: [{
+
+				title: 'Electricians',
+				categoryitems: [{
+					itemimage: '/images/front/explore/electrician1.jpg',
+					itemtitle: 'Electrical and Wiring Repair'
+				}, {
+					itemimage: '/images/front/explore/electrician2.jpg',
+					itemtitle: 'Air conditioning repair'
+				}, {
+					itemimage: '/images/front/explore/electrician3.jpg',
+					itemtitle: 'Heating system repair'
+				}]
+
 			}, {
-				itemimage: '/images/front/explore/electrician2.jpg',
-				itemtitle: 'Air conditioning repair'
+
+				title: 'Carpenters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'General carpentry'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
 			}, {
-				itemimage: '/images/front/explore/electrician3.jpg',
-				itemtitle: 'Heating system repair'
+
+				title: 'Cleaning Services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/cleaning1.jpg',
+					itemtitle: 'House Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning2.jpg',
+					itemtitle: 'Carpet Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning3.jpg',
+					itemtitle: 'Exterior Cleaners'
+				}]
+
+			}, {
+
+				title: 'Painters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/painter1.jpg',
+					itemtitle: 'Interior Painting'
+				}, {
+					itemimage: '/images/front/explore/painter2.jpg',
+					itemtitle: 'Wallpaper Installation'
+				}, {
+					itemimage: '/images/front/explore/painter3.jpg',
+					itemtitle: 'Deck Staining'
+				}]
+
+			}, {
+
+				title: 'Movers',
+				categoryitems: [{
+					itemimage: '/images/front/explore/mover1.jpg',
+					itemtitle: 'Local Moving (under 50 miles)'
+				}, {
+					itemimage: '/images/front/explore/mover2.jpg',
+					itemtitle: 'Long Distance Moving'
+				}, {
+					itemimage: '/images/front/explore/mover3.jpg',
+					itemtitle: 'Furniture Moving & Heavy Lifting'
+				}]
+
 			}],
 
-			category: [['Electricians', {
-				itemimage: '/images/front/explore/electrician1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+			othercategory: [{
+				title: 'Crafts',
+				categoryitems: [{
+					name: 'Custom Airbrushing'
+				}, {
+					name: 'Illustrating'
+				}, {
+					name: 'Scrapbooking'
+				}, {
+					name: 'Embroidery'
+				}, {
+					name: 'Portrait Artistry'
+				}, {
+					name: 'Songwriting'
+				}, {
+					name: 'Engraving'
+				}, {
+					name: 'Powder Coating'
+				}]
 			}, {
-				itemimage: '/images/front/explore/electrician2.jpg',
-				itemtitle: 'Air conditioning repair'
+				title: 'Legal',
+				categoryitems: [{
+					name: 'Consumer Attorney'
+				}, {
+					name: 'Contracts Attorney'
+				}, {
+					name: 'Corporate Law Attorney'
+				}, {
+					name: 'Court Interpreting'
+				}, {
+					name: 'Disability Attorney'
+				}, {
+					name: 'Estate Attorney'
+				}, {
+					name: 'Immigration Attorney'
+				}, {
+					name: 'Intellectual Property Attorney'
+				}, {
+					name: 'International Law Attorney'
+				}, {
+					name: 'Labor and Employment Attorney'
+				}, {
+					name: 'Legal Document Preparation'
+				}, {
+					name: 'Mediation'
+				}, {
+					name: 'Personal Injury Attorney'
+				}, {
+					name: 'Process Serving'
+				}, {
+					name: 'Tax Attorney'
+				}]
 			}, {
-				itemimage: '/images/front/explore/electrician3.jpg',
-				itemtitle: 'Heating system repair'
-			}], ['Carpenters', {
-				itemimage: '/images/front/explore/carpenter1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+				title: 'Photography',
+				categoryitems: [{
+					name: 'Aerial Photography'
+				}, {
+					name: 'Boudoir Photography'
+				}, {
+					name: 'Commercial Photography'
+				}, {
+					name: 'Engagement Photography'
+				}, {
+					name: 'Nature Photography'
+				}, {
+					name: 'Pet Photography'
+				}, {
+					name: 'Portrait Photography'
+				}, {
+					name: 'Sports Photography'
+				}, {
+					name: 'Video Editing'
+				}]
 			}, {
-				itemimage: '/images/front/explore/carpenter2.jpg',
-				itemtitle: 'Air conditioning repair'
+				title: 'Business',
+				categoryitems: [{
+					name: 'Accounting'
+				}, {
+					name: 'Business Consulting'
+				}, {
+					name: 'Data Recovery Service'
+				}, {
+					name: 'Individual Tax Preparation'
+				}, {
+					name: 'Marketing'
+				}, {
+					name: 'Payroll Services'
+				}, {
+					name: 'Personal Financial Planning'
+				}, {
+					name: 'Real Estate Agent Services'
+				}]
 			}, {
-				itemimage: '/images/front/explore/carpenter3.jpg',
-				itemtitle: 'Heating system repair'
-			}]]
+				title: 'Others',
+				categoryitems: [{
+					name: 'Translation'
+				}, {
+					name: 'UI Design'
+				}, {
+					name: 'Public Relations'
+				}, {
+					name: 'Grass cutting'
+				}, {
+					name: 'Yard Work'
+				}, {
+					name: 'Replant Seedlings'
+				}, {
+					name: 'Pick Up & Delivery'
+				}, {
+					name: 'Pet Care'
+				}]
+
+			}]
 
 		};
 	},
@@ -62651,36 +62814,81 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "featured-categories section" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "category-section" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "category-items" },
-            [
-              _vm._l(_vm.electricancategoryitems, function(category) {
-                return _c("div", { staticClass: "items" }, [
-                  _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                    _c("div", {
-                      staticClass: "item-image",
-                      style: {
-                        "background-image": "url(" + category.itemimage + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("h4", [_vm._v(_vm._s(category.itemtitle))])
+      _c(
+        "div",
+        { staticClass: "container" },
+        _vm._l(_vm.category, function(maincategory) {
+          return _c("div", { staticClass: "category-section" }, [
+            _c("div", { staticClass: "category-title" }, [
+              _c("h2", [_vm._v(_vm._s(maincategory.title))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "category-items" },
+              [
+                _vm._l(maincategory.categoryitems, function(categoryabc) {
+                  return _c("div", { staticClass: "items" }, [
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _c("div", {
+                        staticClass: "item-image",
+                        style: {
+                          "background-image":
+                            "url(" + categoryabc.itemimage + ")"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                    ])
                   ])
-                ])
-              }),
+                }),
+                _vm._v(" "),
+                _vm._m(2, true)
+              ],
+              2
+            )
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "other-categories section-grey section elementary-banner"
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "container element-index" },
+          _vm._l(_vm.othercategory, function(othercategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(othercategory.title))])
+              ]),
               _vm._v(" "),
-              _vm._m(3)
-            ],
-            2
-          )
-        ])
-      ])
-    ])
+              _c("div", { staticClass: "category-items" }, [
+                _c(
+                  "ul",
+                  { staticClass: "item-list-container" },
+                  _vm._l(othercategory.categoryitems, function(
+                    categorypresent
+                  ) {
+                    return _c("li", { staticClass: "items-list" }, [
+                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                        _c("p", [_vm._v(_vm._s(categorypresent.name))])
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _vm._m(3)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -62745,19 +62953,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "category-title" }, [
-      _c("h2", [_vm._v("Electricians")])
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("View all services related to electricians "),
-        _c("i", { staticClass: "icon-keyboard_arrow_right" })
-      ])
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
     ])
   }
 ]
@@ -64037,24 +64253,35 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "profile-form-section" }, [
-        _c("div", { staticClass: "sign-up-form business-form" }, [
-          _c("div", { staticClass: "form-signup" }, [
-            _c("form", [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "create-account-btn" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary" },
-                  [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _vm._m(3)
-            ])
+        _c("div", { staticClass: "form-signup" }, [
+          _c("form", [
+            _c(
+              "div",
+              { staticClass: "personal-detail" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("alert"),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3)
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "create-account-btn" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-primary" },
+                [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(5)
           ])
         ])
       ])
@@ -64080,58 +64307,88 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "personal-detail" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your first name" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your last name" }
-            })
-          ])
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "browse-btn" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "file-upload-label" }, [
+            _vm._v("Browse Photo")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control file-upload-input",
+            attrs: { type: "file" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Arsalan",
+              placeholder: "Enter your first name"
+            }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                placeholder: "Enter your first email address"
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                placeholder: "Enter your mobile or landline number"
-              }
-            })
-          ])
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Akhtar",
+              placeholder: "Enter your last name"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "arsalan@cygnismedia.com",
+              placeholder: "Enter your first email address"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              placeholder: "Enter your mobile or landline number"
+            }
+          })
         ])
       ])
     ])
@@ -64599,6 +64856,43 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-d3023370", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d862c4c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {},
+    [
+      _c("b-alert", { attrs: { variant: "danger", hide: "" } }, [
+        _c("i", { staticClass: "icon-success icon-check2" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "icon-danger icon-alert" }),
+        _vm._v(" "),
+        _c("p", [
+          _c("strong", [_vm._v("Error:")]),
+          _vm._v(" Invalid email address or password")
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d862c4c4", module.exports)
   }
 }
 
@@ -65094,43 +65388,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e447004e", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f237a478\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Alert.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {},
-    [
-      _c("b-alert", { attrs: { variant: "danger", hide: "" } }, [
-        _c("i", { staticClass: "icon-success icon-check2" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "icon-danger icon-alert" }),
-        _vm._v(" "),
-        _c("p", [
-          _c("strong", [_vm._v("Error:")]),
-          _vm._v(" Invalid email address or password")
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f237a478", module.exports)
   }
 }
 
@@ -81120,54 +81377,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/admin/common-components/Alert.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f237a478\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Alert.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\Alert.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f237a478", Component.options)
-  } else {
-    hotAPI.reload("data-v-f237a478", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ "./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81589,6 +81798,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5da0c366", Component.options)
   } else {
     hotAPI.reload("data-v-5da0c366", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/common-components/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d862c4c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/Alert.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\Alert.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d862c4c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-d862c4c4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -82241,7 +82498,7 @@ Vue.component('logo', __webpack_require__("./resources/assets/js/components/admi
 Vue.component('no-record-found', __webpack_require__("./resources/assets/js/components/admin/common-components/NoRecords.vue"));
 Vue.component('search', __webpack_require__("./resources/assets/js/components/admin/common-components/Search.vue"));
 Vue.component('loader', __webpack_require__("./resources/assets/js/components/admin/common-components/Loader.vue"));
-Vue.component('alert', __webpack_require__("./resources/assets/js/components/admin/common-components/Alert.vue"));
+Vue.component('alert', __webpack_require__("./resources/assets/js/components/front/common-components/Alert.vue"));
 Vue.component('change-password-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/ChangePassPopup.vue"));
 Vue.component('testmonial-sec', __webpack_require__("./resources/assets/js/components/front/common-components/TestmonialSec.vue"));
 
