@@ -64187,24 +64187,35 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "profile-form-section" }, [
-        _c("div", {}, [
-          _c("div", { staticClass: "form-signup" }, [
-            _c("form", [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "create-account-btn" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary" },
-                  [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _vm._m(3)
-            ])
+        _c("div", { staticClass: "form-signup" }, [
+          _c("form", [
+            _c(
+              "div",
+              { staticClass: "personal-detail" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("alert"),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3)
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "create-account-btn" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-primary" },
+                [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(5)
           ])
         ])
       ])
@@ -64230,82 +64241,88 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "personal-detail" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "browse-btn" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "file-upload-label" }, [
-              _vm._v("Browse Photo")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control file-upload-input",
-              attrs: { type: "file" }
-            })
-          ])
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "browse-btn" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "file-upload-label" }, [
+            _vm._v("Browse Photo")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control file-upload-input",
+            attrs: { type: "file" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Arsalan",
+              placeholder: "Enter your first name"
+            }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "Arsalan",
-                placeholder: "Enter your first name"
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "Akhtar",
-                placeholder: "Enter your last name"
-              }
-            })
-          ])
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Akhtar",
+              placeholder: "Enter your last name"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "arsalan@cygnismedia.com",
+              placeholder: "Enter your first email address"
+            }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "arsalan@cygnismedia.com",
-                placeholder: "Enter your first email address"
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                placeholder: "Enter your mobile or landline number"
-              }
-            })
-          ])
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              placeholder: "Enter your mobile or landline number"
+            }
+          })
         ])
       ])
     ])
@@ -64742,6 +64759,43 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-d3023370", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d862c4c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {},
+    [
+      _c("b-alert", { attrs: { variant: "danger", hide: "" } }, [
+        _c("i", { staticClass: "icon-success icon-check2" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "icon-danger icon-alert" }),
+        _vm._v(" "),
+        _c("p", [
+          _c("strong", [_vm._v("Error:")]),
+          _vm._v(" Invalid email address or password")
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d862c4c4", module.exports)
   }
 }
 
@@ -65237,43 +65291,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e447004e", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f237a478\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Alert.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {},
-    [
-      _c("b-alert", { attrs: { variant: "danger", hide: "" } }, [
-        _c("i", { staticClass: "icon-success icon-check2" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "icon-danger icon-alert" }),
-        _vm._v(" "),
-        _c("p", [
-          _c("strong", [_vm._v("Error:")]),
-          _vm._v(" Invalid email address or password")
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f237a478", module.exports)
   }
 }
 
@@ -81263,54 +81280,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/admin/common-components/Alert.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f237a478\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Alert.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\Alert.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f237a478", Component.options)
-  } else {
-    hotAPI.reload("data-v-f237a478", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ "./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81732,6 +81701,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5da0c366", Component.options)
   } else {
     hotAPI.reload("data-v-5da0c366", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/common-components/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d862c4c4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/Alert.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\Alert.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d862c4c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-d862c4c4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -82288,7 +82305,7 @@ Vue.component('logo', __webpack_require__("./resources/assets/js/components/admi
 Vue.component('no-record-found', __webpack_require__("./resources/assets/js/components/admin/common-components/NoRecords.vue"));
 Vue.component('search', __webpack_require__("./resources/assets/js/components/admin/common-components/Search.vue"));
 Vue.component('loader', __webpack_require__("./resources/assets/js/components/admin/common-components/Loader.vue"));
-Vue.component('alert', __webpack_require__("./resources/assets/js/components/admin/common-components/Alert.vue"));
+Vue.component('alert', __webpack_require__("./resources/assets/js/components/front/common-components/Alert.vue"));
 Vue.component('change-password-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/ChangePassPopup.vue"));
 Vue.component('testmonial-sec', __webpack_require__("./resources/assets/js/components/front/common-components/TestmonialSec.vue"));
 

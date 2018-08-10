@@ -52,7 +52,9 @@ $font_black:'OpenSans-ExtraBold';
     -moz-osx-font-smoothing: grayscale;
 }
 
-
+.icon-alert:before {
+  content: "\e91a";
+}
 .icon-map-marker:before {
   content: "\e916";
 }
@@ -104,6 +106,24 @@ $font_black:'OpenSans-ExtraBold';
 .icon-facebook:before {
   content: "\e90c";
 }
+.icon-check2:before {
+  content: "\e92a";
+}
+.icon-send:before {
+  content: "\e900";
+}
+.icon-checked:before {
+  content: "\e901";
+}
+.icon-front-car:before {
+  content: "\e902";
+}
+.icon-work-briefcase:before {
+  content: "\e903";
+}
+.icon-exit:before {
+  content: "\e92e";
+}
 .icon-location:before {
   content: "\e917";
 }
@@ -153,7 +173,7 @@ $font_black:'OpenSans-ExtraBold';
   content: "\e909";
 }
 .icon-twitter:before {
-  content: "\e92a";
+  content: "\e92b";
 }
 .icon-location2:before {
   content: "\e919";
@@ -196,21 +216,6 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-triangle-down:before {
   content: "\e915";
-}
-.icon-send:before {
-  content: "\e900";
-}
-.icon-checked:before {
-  content: "\e901";
-}
-.icon-front-car:before {
-  content: "\e902";
-}
-.icon-work-briefcase:before {
-  content: "\e903";
-}
-.icon-exit:before {
-  content: "\e92e";
 }
 .icon-close2:before {
   content: "\e5ce";

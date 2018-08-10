@@ -10790,8 +10790,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?eea780eb388704c048eadab5ee228c78);
-  src: url(/fonts/icomoon.eot?eea780eb388704c048eadab5ee228c78#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?8f87733bd9ccf1ee1ebce930a0d2b45f) format("truetype"), url(/fonts/icomoon.woff?2b879a62131089843c33ba4a06a9559d) format("woff");
+  src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a);
+  src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff");
   /*     url('../fonts/front/icomoon.svg?3toe5f#icomoon') format('svg'); */
   font-weight: normal;
   font-style: normal;
@@ -10808,6 +10808,10 @@ a.text-dark:focus {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-alert:before {
+  content: "\E91A";
 }
 
 .icon-map-marker:before {
@@ -10878,6 +10882,30 @@ a.text-dark:focus {
   content: "\E90C";
 }
 
+.icon-check2:before {
+  content: "\E92A";
+}
+
+.icon-send:before {
+  content: "\E900";
+}
+
+.icon-checked:before {
+  content: "\E901";
+}
+
+.icon-front-car:before {
+  content: "\E902";
+}
+
+.icon-work-briefcase:before {
+  content: "\E903";
+}
+
+.icon-exit:before {
+  content: "\E92E";
+}
+
 .icon-location:before {
   content: "\E917";
 }
@@ -10943,7 +10971,7 @@ a.text-dark:focus {
 }
 
 .icon-twitter:before {
-  content: "\E92A";
+  content: "\E92B";
 }
 
 .icon-location2:before {
@@ -11000,26 +11028,6 @@ a.text-dark:focus {
 
 .icon-triangle-down:before {
   content: "\E915";
-}
-
-.icon-send:before {
-  content: "\E900";
-}
-
-.icon-checked:before {
-  content: "\E901";
-}
-
-.icon-front-car:before {
-  content: "\E902";
-}
-
-.icon-work-briefcase:before {
-  content: "\E903";
-}
-
-.icon-exit:before {
-  content: "\E92E";
 }
 
 .icon-close2:before {
@@ -11254,7 +11262,7 @@ h6 {
 }
 
 .danger-color {
-  color: #fff;
+  color: #d9534f;
 }
 
 .warning-color {
@@ -11525,7 +11533,7 @@ body .form-control {
   font-size: 14px;
   padding: 9px 16px;
   border-color: #B2B2B2;
-  border-radius: 8px;
+  border-radius: 4px;
   /* color:$text-primary-color; */
   color: #000000;
 }
@@ -11623,7 +11631,7 @@ body .custom-file-input:focus ~ .custom-file-label {
   width: 14px;
   height: 14px;
   border: solid 1px #B2B2B2;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .custom-checkbox label i {
@@ -11716,6 +11724,57 @@ textarea {
   top: 3px;
 }
 
+.alert {
+  /* height:$alert-height; */
+  height: auto;
+  border-radius: 4px;
+  padding: 9px 20px 9px 47px;
+}
+
+.alert i {
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  font-size: 19px;
+}
+
+.alert p {
+  margin-bottom: 0px;
+}
+
+.alert-success {
+  background: #fff;
+  color: #28a745;
+  border-color: #28a745;
+}
+
+.alert-success .icon-success {
+  display: block;
+  color: #28a745;
+  font-size: 0.9rem;
+  left: 14px;
+  top: 15px;
+}
+
+.alert-success .icon-danger {
+  display: none;
+}
+
+.alert-danger {
+  background: #fff;
+  color: #d9534f;
+  border-color: #d9534f;
+}
+
+.alert-danger .icon-success {
+  display: none;
+}
+
+.alert-danger .icon-danger {
+  display: block;
+  color: #d9534f;
+}
+
 .btn {
   height: 44px;
   color: #fff;
@@ -11724,7 +11783,7 @@ textarea {
   padding: 10px 40px;
   min-width: 100px;
   line-height: 22px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .btn:hover,
@@ -12979,7 +13038,7 @@ li.nav-item.active {
   text-align: center;
 }
 
-.profile-form-section p {
+.profile-form-section .form-detail p {
   font-size: 14px;
   color: #494949;
   margin-bottom: 0;

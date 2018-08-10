@@ -6,7 +6,6 @@
 		</div>
 
 		<div class="profile-form-section">
-			<div class="">
 
 			<div class="form-signup">
 				<form>
@@ -19,6 +18,11 @@
 								</div>
 							</div>
 						</div>
+					
+					<!-- Alert Tag -->
+						<alert></alert>
+					<!-- Alert Tag -->
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -106,7 +110,7 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		
 		</div>
 
 	</div>
