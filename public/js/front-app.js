@@ -64851,24 +64851,17 @@ var render = function() {
               [
                 _vm._l(maincategory.categoryitems, function(categoryabc) {
                   return _c("div", { staticClass: "items" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "javascript:void(0);" },
-                        on: { click: _vm.changecategorypopup }
-                      },
-                      [
-                        _c("div", {
-                          staticClass: "item-image",
-                          style: {
-                            "background-image":
-                              "url(" + categoryabc.itemimage + ")"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
-                      ]
-                    )
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _c("div", {
+                        staticClass: "item-image",
+                        style: {
+                          "background-image":
+                            "url(" + categoryabc.itemimage + ")"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                    ])
                   ])
                 }),
                 _vm._v(" "),

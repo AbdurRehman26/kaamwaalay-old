@@ -110,7 +110,7 @@
 	        		<div class="category-items">
 
 	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
-	        				<a @click="changecategorypopup" href="javascript:void(0);">
+	        				<a href="javascript:void(0);">
 		        			<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
 		        				<h4>{{categoryabc.itemtitle}}</h4>
 		        			</a>
