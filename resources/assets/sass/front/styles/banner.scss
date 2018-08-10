@@ -19,14 +19,25 @@
     }
     .content-inner{
         &.md{
-            max-width:930px;   
+
+        max-width: 840px;
         }
     }
 
     &.home-banner{
         .content-inner{
             max-width:430px;
-        }        
+        }
+        .search-filter{
+            input{
+                &.search-service{
+                    width: calc(100% - 30%);
+                }
+            }
+            .container-zip-code{
+                width: 28%
+            }
+        }
     }
     .banner-slogan{
         height: 100%;
@@ -48,6 +59,16 @@
             font-family: $font_regular;
         }
     }
+}
 
+.banner-hd-main{
+    margin-bottom: 22px;
+}
+
+.banner-hd-sub{
+    font-family:$font-regular;
+    color:$grey-dark;
+    margin-bottom:30px;
+    font-weight: normal;
 }
 

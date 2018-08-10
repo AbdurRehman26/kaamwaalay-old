@@ -35,7 +35,10 @@ body{
         border-radius:$input-radius;
         /* color:$text-primary-color; */
         color: #000000;
-
+        &.lg{
+            height:$input-height-lg;
+            font-size:$input-font-size-lg;
+        }
         &:focus{
             box-shadow:none;
             color: #000000;

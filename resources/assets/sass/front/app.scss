@@ -5,6 +5,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import "styles/variables";
 
+//
+@import "~owl.carousel/src/scss/owl.carousel.scss";
 //Custom Mixin
 @import "styles/custom-mixin";
 
@@ -27,6 +29,9 @@
 
 // header
 @import "styles/header";
+
+// footer
+@import "styles/footer";
 
 // navigation
 @import "styles/nav";

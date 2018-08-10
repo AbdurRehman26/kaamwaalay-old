@@ -144,6 +144,11 @@
 						</b-row>
 					</div>
 				</div>
+			<div class="elements">
+				<img class="top-right" src="/images/front/banner-bg/bg-1.png">				
+				<img class="bottom-left" src="/images/front/banner-bg/bg-3.png">
+				<img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
+			</div>				
 
 		</div>
 
@@ -204,8 +209,8 @@
 					</div>
 			</div>
 			<div class="elements">
-				<img class="bottom-right" src="/images/front/banner-bg/bg-4.jpg">
-				<img class="top-left" src="/images/front/banner-bg/bg-3-top.jpg">
+				<img class="top-left" src="/images/front/banner-bg/bg-5.png">				
+				<img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
 			</div>
 		</div>
 

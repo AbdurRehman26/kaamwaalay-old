@@ -28,6 +28,8 @@
         "material-icons": "^0.2.3",
         "vee-validate": "^2.0.9",
         "vue-authenticate": "^1.3.4",
+        "owl.carousel": "^2.3.4",
+        "v-owl-carousel": "^1.0.2",
         "vue-body-class": "^2.0.0-beta.2",
         "vue-clickaway": "^2.2.2",
         "vue-faker": "^1.0.1",
