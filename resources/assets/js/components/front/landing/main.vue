@@ -83,51 +83,52 @@
                     </div>
                 </div>
             </div>
-            <!-- app store section -->
-            <div class="section ready-to-meet">
-                <div class="container">
-                    <div class="two-column">
-                        <div class="content-sec">
-                            <h2>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</h2>
-                            <p>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</p>
-                            <div class="avability-app">
-                                <a href="javascript:void(0)"><img src="/images/front/common-images/app-store.jpg"></a>
-                                <a href="javascript:void(0)"><img src="/images/front/common-images/google-play.jpg"></a>
-                            </div>
-                        </div>
-                        <div class="image-sec">
-                            <img src="/images/front/join-as-pro/customer.jpg">
+        </div>
+        <!-- app store section -->
+        <div class="section ready-to-meet">
+            <div class="container">
+                <div class="two-column">
+                    <div class="content-sec">
+                        <h2>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</h2>
+                        <p>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</p>
+                        <div class="avability-app">
+                            <a href="javascript:void(0)"><img src="/images/front/common-images/app-store.jpg"></a>
+                            <a href="javascript:void(0)"><img src="/images/front/common-images/google-play.jpg"></a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!--testimonial-section-->
-            <div class="section section-grey">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>What our customers are saying</h2>
-                        <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
+                    <div class="image-sec">
+                        <img src="/images/front/join-as-pro/customer.jpg">
                     </div>
-                    <testmonial-sec></testmonial-sec>
                 </div>
             </div>
         </div>
-    </template>
+
+        <!--testimonial-section-->
+        <div class="section section-grey">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What our customers are saying</h2>
+                    <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
+                </div>
+                <testmonial-sec></testmonial-sec>
+            </div>
+        </div>
+    </div>
+</template>
 
 
-    <script>
+<script>
 
-        export default {
-            mounted(){
-                require('jquery');
-                require('owl.carousel');
-                $(document).ready(function(){
-                  $('.my-owl-carousel').owlCarousel({
-                    margin:10,
-                    nav:true,
-                    items:4,
-                    responsive:{
+    export default {
+        mounted(){
+            require('jquery');
+            require('owl.carousel');
+            $(document).ready(function(){
+              $('.my-owl-carousel').owlCarousel({
+                margin:10,
+                nav:true,
+                items:4,
+                responsive:{
 /*                        0:{
                             items:1
                         },
@@ -139,12 +140,12 @@
                         }*/
                     }
                 });
-              });
-            },
-            data() {
-                return{
-                 headerBanner: 'images/front/banners/home.jpg',
-             }
-         },
-     }
- </script>
+          });
+        },
+        data() {
+            return{
+               headerBanner: 'images/front/banners/home.jpg',
+           }
+       },
+   }
+</script>

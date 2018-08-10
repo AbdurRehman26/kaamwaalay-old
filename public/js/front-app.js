@@ -5266,6 +5266,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68841,7 +68842,277 @@ if (false) {
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d3023370\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "main-banner home-banner" }, [
+      _c("div", { staticClass: "main-img" }, [
+        _c("img", { attrs: { src: _vm.headerBanner } })
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "featured-categories" },
+      [
+        _c("featuredCategories"),
+        _vm._v(" "),
+        _c("popularservices"),
+        _vm._v(" "),
+        _c("div", { staticClass: "section section-grey how-it-work" }, [
+          _c("div", { staticClass: "container element-index" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "how-it-work-list" },
+              [
+                _c(
+                  "b-row",
+                  [
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/find.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Find")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/list.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Bidding Process")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/communicate.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Communicate & Hire")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "CYou can communicate with service provider before hiring and after that award the job to right service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/communicate.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Work & Pay")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "section section-grey" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "verticle-align" }, [
+        _c("div", { staticClass: "inner" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "content-inner" }, [
+              _c("h1", [
+                _vm._v("Find the right service provider for the job!")
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "banner-hd-sub" }, [
+                _vm._v("Get expert help to get done almost anything.")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "search-filter" }, [
+                _c("input", {
+                  staticClass: "form-control lg search-service",
+                  attrs: {
+                    type: "text",
+                    placeholder: "What service do you need?",
+                    name: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "container-zip-code" }, [
+                  _c("i", { staticClass: "icon-location" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control lg zip-code",
+                    attrs: { type: "number", placeholder: "Zip code", name: "" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn btn-primary" }, [
+                _c("span", [_vm._v("Get Started")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("How it works")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section ready-to-meet" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h2", [
+              _vm._v(
+                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "avability-app" }, [
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _c("img", {
+                  attrs: { src: "/images/front/common-images/app-store.jpg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _c("img", {
+                  attrs: { src: "/images/front/common-images/google-play.jpg" }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "image-sec" }, [
+            _c("img", {
+              attrs: { src: "/images/front/join-as-pro/customer.jpg" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("What our customers are saying")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Professional service marketplace has helped tens of thousands of people around US to get the job done."
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
