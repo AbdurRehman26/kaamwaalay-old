@@ -6,12 +6,15 @@ use App\Data\Repositories\UserRepository;
 use App\Data\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Events\NewPasswordSet;
 use Validator;
 
 class UserController extends ApiResourceController
 {
     public $_repository;
-
+    const   PER_PAGE = 50;
+    protected $model;
     public function __construct(UserRepository $repository){
        $this->_repository = $repository;
    }
@@ -119,6 +122,51 @@ public function changePassword(Request $request)
               $result = $this->_repository->create($data);
             }
             if($result) {
+                $code = 200;
+                $output = [
+                    'data' => $result,
+                    'message' => 'Success',
+                ];
+            }else{
+                $code = 406;
+                $output = [
+                    'message' => 'An error occurred',
+                ];
+            }
+       }
+        return response()->json($output, $code);
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $data = $request->only('first_name','last_name', 'email','role_id','access_level');
+         $rules = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'role_id' => 'required|exists:roles,id|in:1',
+            'access_level' => 'required|in:full,reviewOnly',
+        ];
+
+        $validator = Validator::make($data,$rules);
+        if ($validator->fails()) {
+           $code = 406;
+            $output = [
+                'message' => $validator->messages()->all(),
+            ];
+        }else{
+            //generate a password for the new users
+            $pw = User::generatePassword();
+            $data['password'] = $pw;
+            $result = $this->_repository->create($data);
+            if($result) {
+                $user = User::find($result->id);
+                event(new NewPasswordSet($user));
                 $code = 200;
                 $output = [
                     'data' => $result,
