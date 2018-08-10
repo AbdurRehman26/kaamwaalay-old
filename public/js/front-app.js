@@ -3298,13 +3298,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -3510,28 +3503,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        __webpack_require__("./node_modules/jquery/dist/jquery.js");
-        __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
-        $(document).ready(function () {
-            $('.my-owl-carousel').owlCarousel({
-                margin: 10,
-                nav: true,
-                items: 4,
-                responsive: {
-                    /*                        0:{
-                                                items:1
-                                            },
-                                            600:{
-                                                items:3
-                                            },
-                                            1000:{
-                                                items:5
-                                            }*/
-                }
-            });
-        });
-    },
     data: function data() {
         return {
             headerBanner: 'images/front/banners/home.jpg'
@@ -62404,9 +62375,7 @@ var render = function() {
             ])
           ])
         })
-      ),
-      _vm._v(" "),
-      _vm._m(1)
+      )
     ])
   ])
 }
@@ -62417,20 +62386,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
       _c("h2", [_vm._v("Popular services in your area")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "slide-blts" }, [
-      _c("ul", [
-        _c("li", { staticClass: "active" }),
-        _vm._v(" "),
-        _c("li", {}),
-        _vm._v(" "),
-        _c("li", {})
-      ])
     ])
   }
 ]

@@ -13,13 +13,6 @@
                     </a>
                 </li>
             </ul>
-            <div class="slide-blts">
-                <ul>
-                    <li class="active"></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                </ul>
-            </div>
         </div>
     </div>
 </template>

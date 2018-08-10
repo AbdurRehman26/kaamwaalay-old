@@ -394,16 +394,20 @@ li.nav-item.active {
 }
 
 .Popular-services-slides{
-    margin: 0 -20px;
+    margin: 0 0px;
     clear: both;
     display: block;
     padding: 0;
     overflow: hidden;
+        .owl-item{
+            padding-left:16px !important;
+            padding-right:16px !important;
+        }
         li{
-        max-width: 325px;
+/*         max-width:400px;
         float: left;
         padding-left: 20px;
-        padding-right: 20px;
+        padding-right: 20px; */
         a{
             text-decoration:none;
         }
@@ -424,6 +428,29 @@ li.nav-item.active {
                 position: relative;
                 top: -4px;
             }
+        }
+    }
+    .owl-nav{
+        display:none;
+    }
+
+}
+
+
+.owl-dots{
+    text-align:center;
+        margin-top: 60px;
+    button{
+        display:inline-block;
+        width:25px;
+        height:25px;
+        border-radius:100%;
+        background-color:$grey-lite !important;
+        margin:0px 16px 0;
+        cursor: pointer;
+        outline:none !important;
+        &.active{
+            background-color:$primary-color-lt !important;
         }
     }
 }
