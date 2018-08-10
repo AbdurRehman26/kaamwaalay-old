@@ -3193,18 +3193,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3305,7 +3293,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
         $(document).ready(function () {
             $('.my-owl-carousel').owlCarousel({
-                margin: 10,
+                margin: 40,
                 nav: true,
                 items: 4,
                 responsive: {
@@ -3384,6 +3372,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -61952,6 +61960,67 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03e19aba\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/GetStarted.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "container element-index text-center" }, [
+        _c("div", { staticClass: "content-sec" }, [
+          _c("h1", [_vm._v("The better way to find your next project.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "A proven source of genuine enquiries for quality service providers."
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Get Started")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "elements" }, [
+        _c("img", {
+          staticClass: "top-left",
+          attrs: { src: "/images/front/banner-bg/bg-5.png" }
+        }),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "bottom-right",
+          attrs: { src: "/images/front/banner-bg/bg-2.png" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-03e19aba", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1100c94a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Loader.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62395,6 +62464,46 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2e29e278", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3679c0ef\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/AppStore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "avability-app" }, [
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [
+        _c("img", {
+          attrs: { src: "/images/front/common-images/app-store.jpg" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [
+        _c("img", {
+          attrs: { src: "/images/front/common-images/google-play.jpg" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3679c0ef", module.exports)
   }
 }
 
@@ -63447,7 +63556,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(6)
+    _c("div", { staticClass: "section next-project elementary-banner" })
   ])
 }
 var staticRenderFns = [
@@ -63706,49 +63815,6 @@ var staticRenderFns = [
         )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "next-project white-bg elementary-banner section-padd" },
-      [
-        _c("div", { staticClass: "container element-index text-center" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h1", [_vm._v("The better way to find your next project.")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "A proven source of genuine enquiries for quality service providers."
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { href: "javascript:void(0);" }
-              },
-              [_vm._v("Get Started")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "elements" }, [
-          _c("img", {
-            staticClass: "top-left",
-            attrs: { src: "/images/front/banner-bg/bg-5.png" }
-          }),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "bottom-right",
-            attrs: { src: "/images/front/banner-bg/bg-2.png" }
-          })
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -64294,7 +64360,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "icon" }, [
                         _c("img", {
-                          attrs: { src: "/images/front/svg/list.svg" }
+                          attrs: { src: "/images/front/svg/bidding.svg" }
                         })
                       ]),
                       _vm._v(" "),
@@ -64328,7 +64394,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
-                            "CYou can communicate with service provider before hiring and after that award the job to right service provider."
+                            "You can communicate with service provider before hiring and after that award the job to right service provider."
                           )
                         ])
                       ])
@@ -64344,7 +64410,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "icon" }, [
                         _c("img", {
-                          attrs: { src: "/images/front/svg/communicate.svg" }
+                          attrs: { src: "/images/front/svg/like.svg" }
                         })
                       ]),
                       _vm._v(" "),
@@ -64368,7 +64434,34 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "section ready-to-meet" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "two-column" }, [
+            _c(
+              "div",
+              { staticClass: "content-sec" },
+              [
+                _c("h2", [
+                  _vm._v(
+                    "When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "See cost estimates, read reviews and chat with service providers, all in the app. Available on both iOS and Android."
+                  )
+                ]),
+                _vm._v(" "),
+                _c("appstore")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "section section-grey" }, [
         _c(
@@ -64377,7 +64470,19 @@ var render = function() {
           [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
           1
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "section section-grey get-started-section next-project  elementary-banner"
+        },
+        [_c("getstarted")],
+        1
+      )
     ],
     1
   )
@@ -64441,44 +64546,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section ready-to-meet" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "two-column" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h2", [
-              _vm._v(
-                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "avability-app" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/app-store.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/google-play.jpg" }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "image-sec" }, [
-            _c("img", {
-              attrs: { src: "/images/front/join-as-pro/customer.jpg" }
-            })
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "image-sec" }, [
+      _c("img", { attrs: { src: "/images/front/join-as-pro/customer.jpg" } })
     ])
   },
   function() {
@@ -64492,6 +64561,34 @@ var staticRenderFns = [
         _vm._v(
           "Professional service marketplace has helped tens of thousands of people around US to get the job done."
         )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section ready-to-meet" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h2", [_vm._v("Proud of your work? Join us.")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. "
+              )
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _c("span", [_vm._v("Join Us")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "image-sec" }, [
+            _c("img", { attrs: { src: "/images/front/home/join-us.jpg" } })
+          ])
+        ])
       ])
     ])
   }
@@ -81743,6 +81840,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/landing/AppStore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3679c0ef\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/AppStore.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\AppStore.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3679c0ef", Component.options)
+  } else {
+    hotAPI.reload("data-v-3679c0ef", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/landing/FeaturedCategories.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81780,6 +81925,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-59e0d64e", Component.options)
   } else {
     hotAPI.reload("data-v-59e0d64e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/landing/GetStarted.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03e19aba\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/GetStarted.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\GetStarted.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-03e19aba", Component.options)
+  } else {
+    hotAPI.reload("data-v-03e19aba", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -82061,6 +82254,8 @@ Vue.component('front-footer', __webpack_require__("./resources/assets/js/compone
 // landing
 Vue.component('featuredCategories', __webpack_require__("./resources/assets/js/components/front/landing/FeaturedCategories.vue"));
 Vue.component('popularservices', __webpack_require__("./resources/assets/js/components/front/landing/PopularServices.vue"));
+Vue.component('appstore', __webpack_require__("./resources/assets/js/components/front/landing/AppStore.vue"));
+Vue.component('getstarted', __webpack_require__("./resources/assets/js/components/front/landing/GetStarted.vue"));
 
 /***/ }),
 

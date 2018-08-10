@@ -12591,8 +12591,8 @@ li.nav-item.active {
 }
 
 .Popular-services-slides .owl-item {
-  padding-left: 16px !important;
-  padding-right: 16px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .Popular-services-slides li {

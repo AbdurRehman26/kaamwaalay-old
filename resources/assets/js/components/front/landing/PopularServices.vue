@@ -24,7 +24,7 @@
             require('owl.carousel');
             $(document).ready(function(){
               $('.my-owl-carousel').owlCarousel({
-                    margin:10,
+                    margin:40,
                     nav:true,
                     items:4,
                     responsive:{
