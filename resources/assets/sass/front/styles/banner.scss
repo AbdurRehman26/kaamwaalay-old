@@ -20,7 +20,7 @@
     .content-inner{
         &.md{
 
-        max-width: 840px;   
+        max-width: 840px;
         }
     }
 
@@ -59,6 +59,16 @@
             font-family: $font_regular;
         }
     }
+}
 
+.banner-hd-main{
+    margin-bottom: 22px;
+}
+
+.banner-hd-sub{
+    font-family:$font-regular;
+    color:$grey-dark;
+    margin-bottom:30px;
+    font-weight: normal;
 }
 

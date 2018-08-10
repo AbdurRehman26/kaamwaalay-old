@@ -10,12 +10,12 @@
                         <div class="container">
                             <div class="content-inner">
                                 <h1>Find the right service provider for the job!</h1>
-                                <h4>Get expert help to get done almost anything.</h4>
+                                <h5 class="banner-hd-sub">Get expert help to get done almost anything.</h5>
                                 <div class="search-filter">
-                                    <input type="text" placeholder="What service do you need?" class="form-control search-service" name="">
+                                    <input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
                                     <div class="container-zip-code">
                                         <i class="icon-location"></i>
-                                        <input type="number" placeholder="Zip code" class="form-control zip-code" name="">
+                                        <input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
                                     </div>
                                 </div>
                                <button class="btn btn-primary">
@@ -29,111 +29,9 @@
     </div>
 
     <!--featured categories -->
-    <div class="section padding-sm featured-categories-home">
-        <div class="container">
-            <div class="services-list">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-md-2">
-                        <a href="javascript:;">
-                            <div class="list-icon sm white">
-                                <div class="inner"><img src="/images/front/svg/electricians.svg"></div>
-                            </div>
-                            <div class="list-description">
-                                <p>Electricians</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2">
-                        <a href="javascript:;">
-                            <div class="list-icon sm white">
-                                <div class="inner"><img src="/images/front/svg/carpenters.svg"></div>
-                            </div>
-                            <div class="list-description">
-                                <p>Carpenters</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2">
-                        <a href="javascript:;">
-                            <div class="list-icon sm white">
-                                <div class="inner"><img src="/images/front/svg/painters.svg"></div>
-                            </div>
-                            <div class="list-description">
-                                <p>Painters</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2">
-                        <a href="javascript:;">
-                            <div class="list-icon sm white">
-                                <div class="inner"><img src="/images/front/svg/plumbers.svg"></div>
-                            </div>
-                            <div class="list-description">
-                                <p>Plumbers</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2">
-                        <a href="javascript:;">
-                            <div class="list-icon sm white">
-                                <div class="inner"><img src="/images/front/svg/movers.svg"></div>
-                            </div>
-                            <div class="list-description">
-                                <p>Movers</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2">
-                        <a href="javascript:;">
-                            <div class="list-icon sm white">
-                                <div class="inner"><img src="/images/front/svg/gardner.svg"></div>
-                            </div>
-                            <div class="list-description">
-                                <p>Gardeners</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <featuredCategories></featuredCategories>
     <!--popular sevice-->
-    <div class="section">
-        <div class="section-title">
-            <h2>Popular services in your area</h2>
-        </div>
-        <div class="container">
-            <ul class="Popular-services-slides my-owl-carousel owl-carousel owl-theme">
-                <li class="item">
-                    <div class="box-img"><img src="/images/front/home/carpenter.jpg"></div>
-                    <h4>Cleaning Services</h4>
-                    <p><i class="icon-location"></i>Cleaning Services</p>
-                </li>
-                <li class="item">
-                    <div class="box-img"><img src="/images/front/home/carpenter.jpg"></div>
-                    <h4>Cleaning Services</h4>
-                    <p><i class="icon-location"></i>Cleaning Services</p>
-                </li>
-                <li class="item">
-                    <div class="box-img"><img src="/images/front/home/carpenter.jpg"></div>
-                    <h4>Cleaning Services</h4>
-                    <p><i class="icon-location"></i>Cleaning Services</p>
-                </li>
-                <li class="item">
-                    <div class="box-img"><img src="/images/front/home/carpenter.jpg"></div>
-                    <h4>Cleaning Services</h4>
-                    <p><i class="icon-location"></i>Cleaning Services</p>
-                </li>
-            </ul>
-            <div class="slide-blts">
-                <ul>
-                    <li class="active"></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <popularservices></popularservices>
 
     <!--how its works-->
     <div class="section section-grey how-it-work">
@@ -219,31 +117,9 @@
 <script>
 
     export default {
-        mounted(){
-            require('jquery');
-            require('owl.carousel');
-            $(document).ready(function(){
-              $('.my-owl-carousel').owlCarousel({
-                    margin:10,
-                    nav:true,
-                    items:4,
-                    responsive:{
-/*                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:3
-                        },
-                        1000:{
-                            items:5
-                        }*/
-                    }
-              });
-          });
-        },
         data() {
             return{
-               headerBanner: 'images/front/banners/home.jpg'
+               headerBanner: 'images/front/banners/home.jpg',
            }
        },
    }
