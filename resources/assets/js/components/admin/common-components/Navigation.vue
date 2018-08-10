@@ -12,7 +12,11 @@
                             <span class="user-img" @click="ChangePass">
                                 <img src="/images/dummy/user-pic.jpg" alt="">
                             </span>
-                            <router-link to="/"><span><i class="icon-exit"></i></span></router-link>
+                            <div class="profile-username">
+                                    <div class="username">{{first_name}} {{last_name}}</div>
+                                    <i class="icon-triangle-down"></i>
+                           </div>
+                           <logout-component></logout-component> 
                         </div>
                     </div>
                 </b-collapse>
@@ -35,11 +39,18 @@ import { directive as onClickaway } from 'vue-clickaway';
             tab: false,
             tabmenu: false,
             changepass: false,
+            first_name : '',
+            last_name : '',
           }
         },
         directives: {
             onClickaway: onClickaway,
         },
+        mounted () {
+           let user = JSON.parse(this.$store.getters.getAuthUser);
+           this.first_name = user.first_name;
+           this.last_name = user.last_name;
+       },
         methods: {
             ShowModal(){
                 this.showModalValue = true;

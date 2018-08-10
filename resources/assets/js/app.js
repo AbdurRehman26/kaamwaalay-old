@@ -33,7 +33,26 @@ Vue.use(Datepicker);
 Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
-Vue.use(VeeValidate);
+let veeCustomMessage = {
+        en: {
+            custom: {
+                agree: {
+                    required: 'You must agree to the terms and conditions before registering!',
+                    digits: (field, params) => `length must be ${params[0]}`
+                },
+                privacypolicy: {
+                    required: 'You must agree the privacy policy before registering!',
+                    digits: (field, params) => `length must be ${params[0]}`
+                }
+            }
+        }
+    };
+const config = {
+    errorBagName: 'errorBag', // change if property conflicts.
+    dictionary:  veeCustomMessage,
+    events: 'input' 
+};
+Vue.use(VeeValidate,config);
 Vue.use(InfiniteLoading);
 Vue.use(Vuex);
 Vue.use(VueAxios, axios)
@@ -116,7 +135,20 @@ const app = new Vue({
     }
 });
 
-
+Vue.axios.interceptors.response.use((response) => { // intercept the global error
+    return response
+  }, function (error) {
+    let originalRequest = error.config
+    if (error.response.status === 401 && !originalRequest._retry) { // if the error is 401 and hasent already been retried
+                 app.$auth.logout().then(function (Vue) {
+                    app.$store.commit('setAuthUser', '')
+                    router.push({ name: 'landing'})
+                   })
+    }
+   if(error.response.status === 406 || error.response.status === 422){  
+     return Promise.reject(error);
+    }
+  })
 
 
 /*const app = new Vue({
