@@ -6,6 +6,7 @@
     padding:$button-padding;
     min-width: 100px;
     line-height: 22px;
+    border-radius:$input-radius;
 
     &:hover, &:focus{
         color: $body-bg!important;

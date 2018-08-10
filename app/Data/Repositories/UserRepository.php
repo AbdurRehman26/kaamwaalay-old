@@ -48,13 +48,16 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $encode);
         
         if($data){
-            if($data->role_id == Role::SERVICE_PROVIDER){
-            // Todo
-                $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id);                
+            if (empty($details)) {
+                
+                if($data->role_id == Role::SERVICE_PROVIDER){
+                // Todo
+                    $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
 
-                $serviceDetailsCriteria = ['user_id' => $id];
-                $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
+                    $serviceDetailsCriteria = ['user_id' => $id];
+                    $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
 
+                }
             }
 
             if($data->role_id == Role::CUSTOMER){

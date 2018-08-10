@@ -1,5 +1,6 @@
 <template>
-	<div class="sign-up-info">
+
+	<div class="section padding-sm sign-up-info wrapper-sm">
 
 		<h1>Sign Up</h1>
 

@@ -5,7 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Campaign;
-
+use Cache;
 class CampaignRepository extends AbstractRepository implements RepositoryContract
 {
 /**
@@ -38,6 +38,77 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
     {
         $this->model = $model;
         $this->builder = $model;
+        $this->serviceProviderProfileRepo = app('ServiceProviderProfileRepository');
 
+    }
+
+    public function findById($id, $refresh = false, $details = false, $encode = true) {
+        $data = Cache::get($this->_cacheKey.$id);
+
+        if ($data == NULL || $refresh == true) {
+            $query = $this->model->with('plan')->find($id);
+            if ($query != NULL) {
+
+                $data = new \stdClass;
+                foreach ($query->getAttributes() as $column => $value) {
+                    $data->{$column} = $query->{$column};
+                }
+
+                $data->plan = $query->plan;
+                Cache::forever($this->_cacheKey.$id, $data);
+            } else {
+                return null;
+            }
+        }
+        return $data;
+    }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+        $this->builder = $this->builder
+                            ->where('user_id', '=' , $data['user_id'])
+                            ->orderBy('id', 'ASC')
+                            ;   
+        return  parent::findByAll($pagination, $perPage);
+    
+    }
+
+    public function create(array $input = []) {
+        
+        $return = parent::create($input);
+        if($return){
+            $this->serviceProviderProfileRepo->update(['id'=>$input['user_id'],'is_featured'=>1]);
+        }
+
+        return $return;
+        
+    }
+
+    public function updateCampaign($input)
+    {
+        $model = $this->model
+                ->where('user_id', '=', $input['user_id'])
+                ->where('is_completed', '=', 0)
+                ->first()
+                ;
+
+        if($input['type'] == 'view'){
+            $model->views++;
+        }else{
+            $model->clicks++;
+        }
+
+        $getPlanViews = $this->findById($model->id);
+        if($model->views >= $getPlanViews->plan->quantity ){
+            $model->is_completed = 1;
+            $this->serviceProviderProfileRepo->update(['id'=>$input['user_id'],'is_featured'=>0]);
+        }
+
+        if($model->save()){
+            Cache::forget($this->_cacheKey.$model->id);
+            return true;
+        }
+
+
+        return false;
     }
 }

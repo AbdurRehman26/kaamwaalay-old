@@ -16,9 +16,10 @@ class CreateCampaignsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('plan_id')->unsigned()->nullable()->index();
-			$table->integer('clicks')->nullable();
-			$table->integer('views')->nullable();
+			$table->integer('clicks')->default(0);
+			$table->integer('views')->default(0);
 			$table->integer('user_id')->unsigned()->nullable()->index();
+			$table->boolean('is_completed')->default(0);
 			$table->timestamps();
 		});
 	}

@@ -45,17 +45,19 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $input);
 
         if ($data) {
-            $data->user_detail = app('UserRepository')->findById($data->user_id);
+            if (empty($details)) {
+                $data->user_detail = app('UserRepository')->findById($data->user_id,false,true);
+            }
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
             $data->initiated_jobs = $awardedJobs;
 
-            $bidsCriteria = ['user_id' => $data->user_id,'status'=>'completed'];
-            $finishedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id,'.job_bids.status'=>'completed'];
+            $finishedJobs = app('JobBidRepository')->getCompletedJobs($bidsCriteria, false);
             $data->finished_jobs = $finishedJobs;
 
-            $bidsCriteria = ['user_id' => $data->user_id,'status'=>'completed'];
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
             $data->urgent_jobs_completed = $urgentJobsCompleted;
 
@@ -66,7 +68,14 @@ public $model;
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
             $data->avg_rating = $avgRating;
-            
+
+            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
+            $totalFeedbackCount = app('UserRatingRepository')->getTotalFeedbackCriteria($avgCriteria, false);
+            $data->total_feedback_count = $totalFeedbackCount;      
+
+            $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
+            $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
+            $data->services_offered = $subServices;      
         }
         
         return $data;

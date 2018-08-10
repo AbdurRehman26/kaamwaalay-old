@@ -65,5 +65,24 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         return $data;
     }
 
+    public function getSubServices($crtieria) {
+        
+        $model = $this->model->where($crtieria);
+        if ($model != NULL) {
+            $model = $model->
+                leftJoin('service_provider_services', function ($join) {
+                    $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+                })
+                ->leftJoin('services', function ($join) {
+                    $join->on('services.id', '=', 'service_provider_services.service_id');
+                })
+                ->whereNotNull('services.parent_id')
+                ->pluck('services.title','services.id')->toArray();
+            
+            return $model;
+        }
+        return false;
+    }
+
 
 }

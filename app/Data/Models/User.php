@@ -10,9 +10,10 @@ class User extends Model
 	use InsertOnDuplicateKey;
     
     public function getProfileImageAttribute($value){
-
-        return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
-
+        if(substr($value, 0, 8) == "https://"){
+          return  $value;
+        }
+          return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
     }
 
 

@@ -16,13 +16,8 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use( vbclass, router );
 
-
-
 // Require components tags
 require('./components-tags');
-
-
-
 
 const app = new Vue({
     el: '#app',

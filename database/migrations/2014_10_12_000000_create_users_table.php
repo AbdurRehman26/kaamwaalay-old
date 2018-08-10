@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration {
             $table->string('activation_key')->nullable();
             $table->dateTime('activated_at')->nullable();
             $table->string('remember_token', 100)->nullable();
-            $table->string('social_acount_id')->nullable();
+            $table->string('social_account_id')->nullable();
             $table->enum('status', array('pending','active','banned','deactived'))->nullable();
             $table->enum('social_account_type', array('facebook','google'))->nullable();
             $table->timestamps();

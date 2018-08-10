@@ -24,9 +24,24 @@ $nav-font:$font-bold;
                     text-decoration:underline;
                     color:$nav-color !important;
                 }
+                &.router-link-active{
+                    &:after{
+                        content: '';
+                        background-color: #8103ff;
+                        position: absolute;
+                        height: 4px;
+                        width: 100%;
+                        left: 0;
+                        bottom: -24px;
+                    }
+                }
+            }
+            &:first-child{
+                margin-left: 0px;
             }
             &:last-child{
                 a{
+                    font-family:$font-regular;
                     color:#fff !important;
                     text-decoration:none !important;
                 }
