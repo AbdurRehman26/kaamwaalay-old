@@ -145,10 +145,10 @@
 					</div>
 				</div>
 			<div class="elements">
-				<img class="top-right" src="/images/front/banner-bg/bg-1.png">				
+				<img class="top-right" src="/images/front/banner-bg/bg-1.png">
 				<img class="bottom-left" src="/images/front/banner-bg/bg-3.png">
 				<img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
-			</div>				
+			</div>
 
 		</div>
 
@@ -199,21 +199,9 @@
 
 
 		<!-- Next Project section start-->
+		<div class="section next-project elementary-banner">
 
-		<div class="next-project white-bg elementary-banner section-padd">
-			<div class="container element-index text-center">
-					<div class="content-sec">
-						<h1>The better way to find your next project.</h1>
-						<p>A proven source of genuine enquiries for quality service providers.</p>
-						<a href="javascript:void(0);" class="btn btn-primary">Get Started</a>
-					</div>
-			</div>
-			<div class="elements">
-				<img class="top-left" src="/images/front/banner-bg/bg-5.png">				
-				<img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
-			</div>
 		</div>
-
 		<!-- Next Project section end-->
 
 

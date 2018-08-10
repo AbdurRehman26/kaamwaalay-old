@@ -12491,7 +12491,7 @@ textarea {
 
 .list-description p {
   font-size: 16px;
-  color: #1a1a1a;
+  color: #1A1A1A;
   margin-bottom: 0;
 }
 
@@ -12820,8 +12820,8 @@ li.nav-item.active {
 }
 
 .Popular-services-slides .owl-item {
-  padding-left: 16px !important;
-  padding-right: 16px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .Popular-services-slides li {
@@ -13080,7 +13080,7 @@ li.nav-item.active {
 .category-section .category-items .items h4 {
   padding: 30px 0px;
   font-size: 18px;
-  color: #1a1a1a;
+  color: #1A1A1A;
 }
 
 .category-section .category-items .items:first-child {
@@ -13089,6 +13089,18 @@ li.nav-item.active {
 
 .category-section .category-items .items:last-child {
   padding-right: 0px;
+}
+
+.category-section .category-items .item-list-container {
+  padding: 0px;
+  -webkit-column-count: 3;
+          column-count: 3;
+}
+
+.category-section .category-items .item-list-container .items-list p {
+  font-size: 18px;
+  color: #1A1A1A;
+  margin-bottom: 16px;
 }
 
 .category-section .showmore a {
@@ -13103,6 +13115,10 @@ li.nav-item.active {
 .category-section .showmore i {
   font-size: 20px;
   vertical-align: text-top;
+}
+
+.category-section:last-child {
+  padding-bottom: 0px;
 }
 
 .profile-head {

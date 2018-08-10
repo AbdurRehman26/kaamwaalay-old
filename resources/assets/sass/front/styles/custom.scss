@@ -80,7 +80,7 @@ $section-padding-sm:20px 0px;
     }
     p{
         font-size: $font-size-xs;
-        color: #1a1a1a;
+        color: $secondary-color;
         margin-bottom: 0;
     }
 }
@@ -401,8 +401,8 @@ li.nav-item.active {
     padding: 0;
     overflow: hidden;
         .owl-item{
-            padding-left:16px !important;
-            padding-right:16px !important;
+            padding-left:0px !important;
+            padding-right:0px !important;
         }
         li{
 /*         max-width:400px;
@@ -625,13 +625,24 @@ li.nav-item.active {
             h4{
                 padding: 30px 0px;
                 font-size: $font-size-xs+2;
-                color: #1a1a1a;
+                color: $secondary-color;
             }
             &:first-child{
                 padding-left: 0px;
             }
             &:last-child{
                 padding-right: 0px;
+            }
+        }
+        .item-list-container{
+            padding: 0px;
+            column-count: 3;
+            .items-list{
+                p{
+                    font-size: $font-size-xs+2;
+                    color: $secondary-color;
+                    margin-bottom: 16px;
+                }
             }
         }
     }
@@ -646,6 +657,9 @@ li.nav-item.active {
             font-size: 20px;
             vertical-align: text-top;
         }
+    }
+    &:last-child{
+        padding-bottom: 0px;
     }
 }
 

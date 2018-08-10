@@ -3023,43 +3023,206 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-			i: 0,
-			electricancategoryitems: [{
-				itemimage: '/images/front/explore/electrician1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+
+			category: [{
+
+				title: 'Electricians',
+				categoryitems: [{
+					itemimage: '/images/front/explore/electrician1.jpg',
+					itemtitle: 'Electrical and Wiring Repair'
+				}, {
+					itemimage: '/images/front/explore/electrician2.jpg',
+					itemtitle: 'Air conditioning repair'
+				}, {
+					itemimage: '/images/front/explore/electrician3.jpg',
+					itemtitle: 'Heating system repair'
+				}]
+
 			}, {
-				itemimage: '/images/front/explore/electrician2.jpg',
-				itemtitle: 'Air conditioning repair'
+
+				title: 'Carpenters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'General carpentry'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
 			}, {
-				itemimage: '/images/front/explore/electrician3.jpg',
-				itemtitle: 'Heating system repair'
+
+				title: 'Cleaning Services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/cleaning1.jpg',
+					itemtitle: 'House Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning2.jpg',
+					itemtitle: 'Carpet Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning3.jpg',
+					itemtitle: 'Exterior Cleaners'
+				}]
+
+			}, {
+
+				title: 'Painters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/painter1.jpg',
+					itemtitle: 'Interior Painting'
+				}, {
+					itemimage: '/images/front/explore/painter2.jpg',
+					itemtitle: 'Wallpaper Installation'
+				}, {
+					itemimage: '/images/front/explore/painter3.jpg',
+					itemtitle: 'Deck Staining'
+				}]
+
+			}, {
+
+				title: 'Movers',
+				categoryitems: [{
+					itemimage: '/images/front/explore/mover1.jpg',
+					itemtitle: 'Local Moving (under 50 miles)'
+				}, {
+					itemimage: '/images/front/explore/mover2.jpg',
+					itemtitle: 'Long Distance Moving'
+				}, {
+					itemimage: '/images/front/explore/mover3.jpg',
+					itemtitle: 'Furniture Moving & Heavy Lifting'
+				}]
+
 			}],
 
-			category: [['Electricians', {
-				itemimage: '/images/front/explore/electrician1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+			othercategory: [{
+				title: 'Crafts',
+				categoryitems: [{
+					name: 'Custom Airbrushing'
+				}, {
+					name: 'Illustrating'
+				}, {
+					name: 'Scrapbooking'
+				}, {
+					name: 'Embroidery'
+				}, {
+					name: 'Portrait Artistry'
+				}, {
+					name: 'Songwriting'
+				}, {
+					name: 'Engraving'
+				}, {
+					name: 'Powder Coating'
+				}]
 			}, {
-				itemimage: '/images/front/explore/electrician2.jpg',
-				itemtitle: 'Air conditioning repair'
+				title: 'Legal',
+				categoryitems: [{
+					name: 'Consumer Attorney'
+				}, {
+					name: 'Contracts Attorney'
+				}, {
+					name: 'Corporate Law Attorney'
+				}, {
+					name: 'Court Interpreting'
+				}, {
+					name: 'Disability Attorney'
+				}, {
+					name: 'Estate Attorney'
+				}, {
+					name: 'Immigration Attorney'
+				}, {
+					name: 'Intellectual Property Attorney'
+				}, {
+					name: 'International Law Attorney'
+				}, {
+					name: 'Labor and Employment Attorney'
+				}, {
+					name: 'Legal Document Preparation'
+				}, {
+					name: 'Mediation'
+				}, {
+					name: 'Personal Injury Attorney'
+				}, {
+					name: 'Process Serving'
+				}, {
+					name: 'Tax Attorney'
+				}]
 			}, {
-				itemimage: '/images/front/explore/electrician3.jpg',
-				itemtitle: 'Heating system repair'
-			}], ['Carpenters', {
-				itemimage: '/images/front/explore/carpenter1.jpg',
-				itemtitle: 'Electrical and Wiring Repair'
+				title: 'Photography',
+				categoryitems: [{
+					name: 'Aerial Photography'
+				}, {
+					name: 'Boudoir Photography'
+				}, {
+					name: 'Commercial Photography'
+				}, {
+					name: 'Engagement Photography'
+				}, {
+					name: 'Nature Photography'
+				}, {
+					name: 'Pet Photography'
+				}, {
+					name: 'Portrait Photography'
+				}, {
+					name: 'Sports Photography'
+				}, {
+					name: 'Video Editing'
+				}]
 			}, {
-				itemimage: '/images/front/explore/carpenter2.jpg',
-				itemtitle: 'Air conditioning repair'
+				title: 'Business',
+				categoryitems: [{
+					name: 'Accounting'
+				}, {
+					name: 'Business Consulting'
+				}, {
+					name: 'Data Recovery Service'
+				}, {
+					name: 'Individual Tax Preparation'
+				}, {
+					name: 'Marketing'
+				}, {
+					name: 'Payroll Services'
+				}, {
+					name: 'Personal Financial Planning'
+				}, {
+					name: 'Real Estate Agent Services'
+				}]
 			}, {
-				itemimage: '/images/front/explore/carpenter3.jpg',
-				itemtitle: 'Heating system repair'
-			}]]
+				title: 'Others',
+				categoryitems: [{
+					name: 'Translation'
+				}, {
+					name: 'UI Design'
+				}, {
+					name: 'Public Relations'
+				}, {
+					name: 'Grass cutting'
+				}, {
+					name: 'Yard Work'
+				}, {
+					name: 'Replant Seedlings'
+				}, {
+					name: 'Pick Up & Delivery'
+				}, {
+					name: 'Pet Care'
+				}]
+
+			}]
 
 		};
 	},
@@ -3074,18 +3237,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3398,7 +3549,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
         $(document).ready(function () {
             $('.my-owl-carousel').owlCarousel({
-                margin: 10,
+                margin: 40,
                 nav: true,
                 items: 4,
                 responsive: {
@@ -3477,6 +3628,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62045,6 +62216,67 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03e19aba\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/GetStarted.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "container element-index text-center" }, [
+        _c("div", { staticClass: "content-sec" }, [
+          _c("h1", [_vm._v("The better way to find your next project.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "A proven source of genuine enquiries for quality service providers."
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Get Started")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "elements" }, [
+        _c("img", {
+          staticClass: "top-left",
+          attrs: { src: "/images/front/banner-bg/bg-5.png" }
+        }),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "bottom-right",
+          attrs: { src: "/images/front/banner-bg/bg-2.png" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-03e19aba", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-075d9311\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/auth/CreatePassword.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62521,6 +62753,46 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3679c0ef\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/AppStore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "avability-app" }, [
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [
+        _c("img", {
+          attrs: { src: "/images/front/common-images/app-store.jpg" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "javascript:void(0)" } }, [
+        _c("img", {
+          attrs: { src: "/images/front/common-images/google-play.jpg" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3679c0ef", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4af639e9\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./node_modules/vue-fancybox/src/fancyBox.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62663,36 +62935,81 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "featured-categories section" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "category-section" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "category-items" },
-            [
-              _vm._l(_vm.electricancategoryitems, function(category) {
-                return _c("div", { staticClass: "items" }, [
-                  _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                    _c("div", {
-                      staticClass: "item-image",
-                      style: {
-                        "background-image": "url(" + category.itemimage + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("h4", [_vm._v(_vm._s(category.itemtitle))])
+      _c(
+        "div",
+        { staticClass: "container" },
+        _vm._l(_vm.category, function(maincategory) {
+          return _c("div", { staticClass: "category-section" }, [
+            _c("div", { staticClass: "category-title" }, [
+              _c("h2", [_vm._v(_vm._s(maincategory.title))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "category-items" },
+              [
+                _vm._l(maincategory.categoryitems, function(categoryabc) {
+                  return _c("div", { staticClass: "items" }, [
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _c("div", {
+                        staticClass: "item-image",
+                        style: {
+                          "background-image":
+                            "url(" + categoryabc.itemimage + ")"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                    ])
                   ])
-                ])
-              }),
+                }),
+                _vm._v(" "),
+                _vm._m(2, true)
+              ],
+              2
+            )
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "other-categories section-grey section elementary-banner"
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "container element-index" },
+          _vm._l(_vm.othercategory, function(othercategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(othercategory.title))])
+              ]),
               _vm._v(" "),
-              _vm._m(3)
-            ],
-            2
-          )
-        ])
-      ])
-    ])
+              _c("div", { staticClass: "category-items" }, [
+                _c(
+                  "ul",
+                  { staticClass: "item-list-container" },
+                  _vm._l(othercategory.categoryitems, function(
+                    categorypresent
+                  ) {
+                    return _c("li", { staticClass: "items-list" }, [
+                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                        _c("p", [_vm._v(_vm._s(categorypresent.name))])
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _vm._m(3)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -62757,19 +63074,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "category-title" }, [
-      _c("h2", [_vm._v("Electricians")])
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("View all services related to electricians "),
-        _c("i", { staticClass: "icon-keyboard_arrow_right" })
-      ])
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
     ])
   }
 ]
@@ -63314,7 +63639,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(6)
+    _c("div", { staticClass: "section next-project elementary-banner" })
   ])
 }
 var staticRenderFns = [
@@ -63573,49 +63898,6 @@ var staticRenderFns = [
         )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "next-project white-bg elementary-banner section-padd" },
-      [
-        _c("div", { staticClass: "container element-index text-center" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h1", [_vm._v("The better way to find your next project.")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "A proven source of genuine enquiries for quality service providers."
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { href: "javascript:void(0);" }
-              },
-              [_vm._v("Get Started")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "elements" }, [
-          _c("img", {
-            staticClass: "top-left",
-            attrs: { src: "/images/front/banner-bg/bg-5.png" }
-          }),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "bottom-right",
-            attrs: { src: "/images/front/banner-bg/bg-2.png" }
-          })
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -64562,7 +64844,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "icon" }, [
                         _c("img", {
-                          attrs: { src: "/images/front/svg/list.svg" }
+                          attrs: { src: "/images/front/svg/bidding.svg" }
                         })
                       ]),
                       _vm._v(" "),
@@ -64596,7 +64878,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
-                            "CYou can communicate with service provider before hiring and after that award the job to right service provider."
+                            "You can communicate with service provider before hiring and after that award the job to right service provider."
                           )
                         ])
                       ])
@@ -64612,7 +64894,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "icon" }, [
                         _c("img", {
-                          attrs: { src: "/images/front/svg/communicate.svg" }
+                          attrs: { src: "/images/front/svg/like.svg" }
                         })
                       ]),
                       _vm._v(" "),
@@ -64636,7 +64918,34 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "section ready-to-meet" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "two-column" }, [
+            _c(
+              "div",
+              { staticClass: "content-sec" },
+              [
+                _c("h2", [
+                  _vm._v(
+                    "When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "See cost estimates, read reviews and chat with service providers, all in the app. Available on both iOS and Android."
+                  )
+                ]),
+                _vm._v(" "),
+                _c("appstore")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "section section-grey" }, [
         _c(
@@ -64645,7 +64954,19 @@ var render = function() {
           [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
           1
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "section section-grey get-started-section next-project  elementary-banner"
+        },
+        [_c("getstarted")],
+        1
+      )
     ],
     1
   )
@@ -64709,44 +65030,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section ready-to-meet" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "two-column" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h2", [
-              _vm._v(
-                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "avability-app" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/app-store.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/google-play.jpg" }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "image-sec" }, [
-            _c("img", {
-              attrs: { src: "/images/front/join-as-pro/customer.jpg" }
-            })
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "image-sec" }, [
+      _c("img", { attrs: { src: "/images/front/join-as-pro/customer.jpg" } })
     ])
   },
   function() {
@@ -64760,6 +65045,34 @@ var staticRenderFns = [
         _vm._v(
           "Professional service marketplace has helped tens of thousands of people around US to get the job done."
         )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section ready-to-meet" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h2", [_vm._v("Proud of your work? Join us.")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. "
+              )
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _c("span", [_vm._v("Join Us")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "image-sec" }, [
+            _c("img", { attrs: { src: "/images/front/home/join-us.jpg" } })
+          ])
+        ])
       ])
     ])
   }
@@ -82107,6 +82420,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/landing/AppStore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3679c0ef\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/AppStore.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\AppStore.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3679c0ef", Component.options)
+  } else {
+    hotAPI.reload("data-v-3679c0ef", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/landing/FeaturedCategories.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82144,6 +82505,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-59e0d64e", Component.options)
   } else {
     hotAPI.reload("data-v-59e0d64e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/landing/GetStarted.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03e19aba\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/GetStarted.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\GetStarted.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-03e19aba", Component.options)
+  } else {
+    hotAPI.reload("data-v-03e19aba", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -82425,6 +82834,8 @@ Vue.component('front-footer', __webpack_require__("./resources/assets/js/compone
 // landing
 Vue.component('featuredCategories', __webpack_require__("./resources/assets/js/components/front/landing/FeaturedCategories.vue"));
 Vue.component('popularservices', __webpack_require__("./resources/assets/js/components/front/landing/PopularServices.vue"));
+Vue.component('appstore', __webpack_require__("./resources/assets/js/components/front/landing/AppStore.vue"));
+Vue.component('getstarted', __webpack_require__("./resources/assets/js/components/front/landing/GetStarted.vue"));
 
 /***/ }),
 
