@@ -31,9 +31,9 @@ Vue.component('front-footer',require('./components/front/common-components/foote
 Vue.component('featuredCategories', require('./components/front/landing/FeaturedCategories.vue'));
 Vue.component('popularservices', require('./components/front/landing/PopularServices.vue'));
 Vue.component('appstore', require('./components/front/landing/AppStore.vue'));
-Vue.component('getstarted', require('./components/front/landing/GetStarted.vue'));
+Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue'));
 
-
-
+//join as pro
+Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 
 

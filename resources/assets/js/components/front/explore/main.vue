@@ -25,11 +25,9 @@
                         <div class="element-column-image">
                            	<img :src="contentimage">
                         </div>
-						<div class="elements">
-							<img class="top-left width-max" src="/images/front/banner-bg/bg-5.png">
-							<img class="bottom-center" src="/images/front/banner-bg/bg-2.png">
-							<img class="bottom-right width-max" src="/images/front/banner-bg/bg-9.png">
-						</div>
+				        <span class="splash-design md d-1 top-left"></span>
+				        <span class="splash-design d-4 bottom-right lg"></span>
+				        <span class="splash-design d-6 bottom-left sm"></span>
                     </div>
                 </div>
             </div>

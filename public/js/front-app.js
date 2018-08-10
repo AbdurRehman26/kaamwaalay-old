@@ -3028,8 +3028,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -3236,30 +3234,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -62219,59 +62193,6 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03e19aba\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/GetStarted.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "container element-index text-center" }, [
-        _c("div", { staticClass: "content-sec" }, [
-          _c("h1", [_vm._v("The better way to find your next project.")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Professional Service Marketplace makes it easy to find quality tradesmen, reviewed by other homeowners."
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { href: "javascript:void(0);" }
-            },
-            [_vm._v("Explore Now")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "splash-design md d-1 top-left" }),
-      _vm._v(" "),
-      _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-03e19aba", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-075d9311\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/auth/CreatePassword.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62923,7 +62844,11 @@ var render = function() {
               _c("img", { attrs: { src: _vm.contentimage } })
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("span", { staticClass: "splash-design md d-1 top-left" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "splash-design d-4 bottom-right lg" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "splash-design d-6 bottom-left sm" })
           ])
         ])
       ])
@@ -62959,7 +62884,7 @@ var render = function() {
                   ])
                 }),
                 _vm._v(" "),
-                _vm._m(2, true)
+                _vm._m(1, true)
               ],
               2
             )
@@ -63002,7 +62927,7 @@ var render = function() {
           })
         ),
         _vm._v(" "),
-        _vm._m(3)
+        _vm._m(2)
       ]
     )
   ])
@@ -63042,27 +62967,6 @@ var staticRenderFns = [
           _c("span", [_vm._v("Search")])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "elements" }, [
-      _c("img", {
-        staticClass: "top-left width-max",
-        attrs: { src: "/images/front/banner-bg/bg-5.png" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "bottom-center",
-        attrs: { src: "/images/front/banner-bg/bg-2.png" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "bottom-right width-max",
-        attrs: { src: "/images/front/banner-bg/bg-9.png" }
-      })
     ])
   },
   function() {
@@ -63335,7 +63239,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "footer-copyrights" }, [
-            _c("div", { staticClass: "section-padding-sm" }, [
+            _c("div", { staticClass: "section-padding-sm clearfix" }, [
               _c("div", { staticClass: "float-left" }, [
                 _c("p", [
                   _vm._v(
@@ -63521,121 +63425,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-area" }, [
-    _c("div", { staticClass: "main-banner" }, [
-      _c("div", { staticClass: "main-img" }, [
-        _c("img", { attrs: { src: _vm.bannerimage } })
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "section section-grey how-it-work elementary-banner" },
-      [
-        _c("div", { staticClass: "container element-index" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "how-it-work-list" },
-            [
-              _c(
-                "b-row",
-                [
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center", attrs: { sm: "4" } },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/find.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Pick Leads")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Pick those which are of interest to you. Signal your interest through the site."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center", attrs: { sm: "4" } },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/list.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Get Shortlisted")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Customers review your profiles online & shortlist you to bid on the job."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "text-center", attrs: { sm: "4" } },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/communicate.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Chat & Arrange Quotes")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Chat with customer to discuss the job or arrange a visit as your normally would."
-                          )
-                        ])
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(3)
-      ]
-    ),
-    _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _c("div", { staticClass: "next-project section-padd grey-bg" }, [
+  return _c(
+    "div",
+    { staticClass: "content-area" },
+    [
       _c(
         "div",
-        { staticClass: "container" },
-        [_vm._m(5), _vm._v(" "), _c("testmonial-sec")],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "section next-project elementary-banner" })
-  ])
+        { staticClass: "main-banner elementary-banner explore-banner" },
+        [
+          _c("div", { staticClass: "main-img" }, [
+            _c("img", { attrs: { src: _vm.bannerimage } })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "section section-grey how-it-work elementary-banner" },
+        [
+          _c("div", { staticClass: "container element-index" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "how-it-work-list" },
+              [
+                _c(
+                  "b-row",
+                  [
+                    _c(
+                      "b-col",
+                      { staticClass: "text-center", attrs: { sm: "4" } },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/find.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Pick Leads")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Pick those which are of interest to you. Signal your interest through the site."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      { staticClass: "text-center", attrs: { sm: "4" } },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/list.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Get Shortlisted")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Customers review your profiles online & shortlist you to bid on the job."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      { staticClass: "text-center", attrs: { sm: "4" } },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/communicate.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Chat with customer to discuss the job or arrange a visit as your normally would."
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(3)
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "next-project section-padd grey-bg" }, [
+        _c(
+          "div",
+          { staticClass: "container" },
+          [_vm._m(5), _vm._v(" "), _c("testmonial-sec")],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("getstarted")
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -63646,8 +63559,8 @@ var staticRenderFns = [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
           _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "banner-slogan" }, [
-              _c("h2", [_vm._v("Your next job is just around the corner")]),
+            _c("div", { staticClass: "banner-slogan content-inner" }, [
+              _c("h1", [_vm._v("Your next job is just around the corner")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
@@ -63884,8 +63797,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content-sec text-center" }, [
-      _c("h1", [_vm._v("Success Stories")]),
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("Success Stories")]),
       _vm._v(" "),
       _c("p", [
         _vm._v(
@@ -63901,6 +63814,59 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5f3c808a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-640aadb2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/ExploreNow.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "container element-index text-center" }, [
+        _c("div", { staticClass: "content-sec" }, [
+          _c("h1", [_vm._v("The better way to find your next project.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Professional Service Marketplace makes it easy to find quality tradesmen, reviewed by other homeowners."
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Explore Now")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "splash-design md d-1 top-left" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-640aadb2", module.exports)
   }
 }
 
@@ -64772,6 +64738,66 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a4420908\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/join-as-pro/GetStarted.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "section next-project elementary-banner get-started-section"
+      },
+      [
+        _c("div", { staticClass: "container element-index text-center" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h1", [_vm._v("The better way to find your next project.")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "A proven source of genuine enquiries for quality service providers."
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "javascript:void(0);" }
+              },
+              [_vm._v("Get Started")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "splash-design md d-1 top-left" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a4420908", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d3023370\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -64969,7 +64995,7 @@ var render = function() {
           staticClass:
             "section section-grey get-started-section next-project  elementary-banner"
         },
-        [_c("getstarted")],
+        [_c("explorenow")],
         1
       )
     ],
@@ -82379,6 +82405,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/join-as-pro/GetStarted.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a4420908\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/join-as-pro/GetStarted.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\join-as-pro\\GetStarted.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a4420908", Component.options)
+  } else {
+    hotAPI.reload("data-v-a4420908", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/join-as-pro/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82475,6 +82549,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/landing/ExploreNow.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-640aadb2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/ExploreNow.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\ExploreNow.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-640aadb2", Component.options)
+  } else {
+    hotAPI.reload("data-v-640aadb2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/landing/FeaturedCategories.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82512,54 +82634,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-59e0d64e", Component.options)
   } else {
     hotAPI.reload("data-v-59e0d64e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/front/landing/GetStarted.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03e19aba\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/GetStarted.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\GetStarted.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-03e19aba", Component.options)
-  } else {
-    hotAPI.reload("data-v-03e19aba", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -82842,7 +82916,10 @@ Vue.component('front-footer', __webpack_require__("./resources/assets/js/compone
 Vue.component('featuredCategories', __webpack_require__("./resources/assets/js/components/front/landing/FeaturedCategories.vue"));
 Vue.component('popularservices', __webpack_require__("./resources/assets/js/components/front/landing/PopularServices.vue"));
 Vue.component('appstore', __webpack_require__("./resources/assets/js/components/front/landing/AppStore.vue"));
-Vue.component('getstarted', __webpack_require__("./resources/assets/js/components/front/landing/GetStarted.vue"));
+Vue.component('explorenow', __webpack_require__("./resources/assets/js/components/front/landing/ExploreNow.vue"));
+
+//join as pro
+Vue.component('getstarted', __webpack_require__("./resources/assets/js/components/front/join-as-pro/GetStarted.vue"));
 
 /***/ }),
 

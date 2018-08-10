@@ -11118,7 +11118,7 @@ td a:focus {
 }
 
 a {
-  color: #6004BA;
+  color: #8200FF;
   cursor: pointer;
   text-decoration: none;
 }
@@ -12137,6 +12137,10 @@ textarea {
   top: 1px;
 }
 
+.footer-section {
+  border-top: 1px solid #E0E0E0;
+}
+
 .footer-logo {
   max-width: 204px;
   margin-bottom: 32px;
@@ -12179,7 +12183,7 @@ textarea {
 }
 
 .footer-links ul li {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .footer-links ul li a {
@@ -12337,6 +12341,13 @@ textarea {
   margin-bottom: 22px;
 }
 
+.main-banner.home-banner .content-inner p,
+.main-banner.explore-banner .content-inner p {
+  font-size: 20px;
+  margin-bottom: 28px;
+  line-height: 30px;
+}
+
 .main-banner.home-banner .search-filter input.search-service,
 .main-banner.explore-banner .search-filter input.search-service {
   width: calc(100% - 30%);
@@ -12352,25 +12363,20 @@ textarea {
 }
 
 .main-banner.explore-banner .content-inner h1 {
-  margin-bottom: 32px;
+  margin-bottom: 26px;
+}
+
+.main-banner.explore-banner .splash-design.d-6 {
+  left: 30%;
 }
 
 .main-banner .banner-slogan {
   height: 100%;
-  min-height: 600px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  /*         min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center; */
 }
 
 .main-banner .banner-slogan h2 {
@@ -12420,6 +12426,7 @@ textarea {
 
 .section-title h2 {
   font-size: 36px;
+  margin-bottom: 20px;
 }
 
 .section-title h2.btm-space {
@@ -12447,6 +12454,24 @@ textarea {
   background-repeat: no-repeat;
 }
 
+.splash-design.lg {
+  width: 100%;
+  max-width: 540px;
+  height: 134px;
+}
+
+.splash-design.md {
+  width: 100%;
+  max-width: 312px;
+  height: 78px;
+}
+
+.splash-design.sm {
+  width: 100%;
+  max-width: 179px;
+  height: 78px;
+}
+
 .splash-design.d-1 {
   background-image: url(/images/d-1.svg?aed8324ec19cc06180eca1acd8f843ea);
 }
@@ -12465,29 +12490,11 @@ textarea {
 
 .splash-design.d-5 {
   background-image: url(/images/d-5.svg?f74158a19f2ee4544a72f6b3596fddf8);
-  height: 133px !important;
+  height: 122px !important;
 }
 
 .splash-design.d-6 {
   background-image: url(/images/d-6.svg?29275829ff683521a9607fceba376b55);
-}
-
-.splash-design.lg {
-  width: 100%;
-  max-width: 577px;
-  height: 224px;
-}
-
-.splash-design.md {
-  width: 100%;
-  max-width: 312px;
-  height: 78px;
-}
-
-.splash-design.sm {
-  width: 100%;
-  max-width: 179px;
-  height: 78px;
 }
 
 .splash-design.top-left {
@@ -12610,11 +12617,6 @@ textarea {
   padding: 100px 0px;
 }
 
-.how-it-work .section-title {
-  padding-bottom: 20px;
-  margin-bottom: 0;
-}
-
 .how-it-work .icon {
   display: block;
   margin: 0 auto;
@@ -12625,6 +12627,11 @@ textarea {
   margin: auto;
   height: 92px;
   margin-bottom: 42px;
+}
+
+.how-it-work .list-description p {
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 .elementary-banner {
@@ -12883,6 +12890,10 @@ li.nav-item.active {
 .featured-categories-home .list-description p {
   font-family: "AkzidenzGroteskBE-Bold";
   margin-left: 12px;
+}
+
+.section-local-work {
+  padding-bottom: 60px;
 }
 
 .section-local-work .list-icon {
@@ -13327,10 +13338,6 @@ li.nav-item.active {
   width: 100%;
 }
 
-.home_body .how-it-work .section-title {
-  padding-bottom: 80px;
-}
-
 .ready-to-meet p {
   font-size: 20px;
   line-height: 29px;
@@ -13342,7 +13349,7 @@ li.nav-item.active {
 }
 
 .get-started-section p {
-  font-size: 20px;
+  font-size: 21px;
   margin-bottom: 32px;
 }
 

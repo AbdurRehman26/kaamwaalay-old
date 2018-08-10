@@ -64,7 +64,7 @@
 									<li><a href="javascript:;">Blog</a></li>
 									<li><a href="javascript:;"></a></li>
 									<li><strong>Download</strong></li>
-										
+
 									<li  class="app-images">
 										<ul>
 											<li>
@@ -74,7 +74,7 @@
 											</li>
 											<li>
 												<a href="javascript:;">
-													<img src="images/front/common-images/google-play.jpg">	
+													<img src="images/front/common-images/google-play.jpg">
 												</a>
 											</li>
 										</ul>
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<div class="footer-copyrights">
-					<div class="section-padding-sm">
+					<div class="section-padding-sm clearfix">
 						<div class="float-left">
 							<p>Copyright &copy; 2018 Professional Service Marketplace, Inc. </p>
 						</div>
