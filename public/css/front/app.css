@@ -12643,7 +12643,7 @@ textarea {
 }
 
 .wrapper-sm h1 {
-  margin: 0px 0 40px 0;
+  margin: 30px 0 40px 0;
   text-align: center;
 }
 
@@ -12706,7 +12706,6 @@ textarea {
 
 .already-signup p {
   font-family: "AkzidenzGroteskBE-Md";
-  margin-bottom: 40px;
 }
 
 .form-detail p {
@@ -12727,7 +12726,7 @@ textarea {
 
 li.nav-item.active {
   border: 1px solid #8200FF;
-  background-color: #F9F9F9;
+  background-color: #f7f3fb;
 }
 
 .nav-tabs .nav-item {
@@ -12776,6 +12775,7 @@ li.nav-item.active {
   border-color: transparent;
   font-family: "AkzidenzGroteskBE-Md";
   height: 72px;
+  background-color: #f7f3fb;
   color: #8200FF;
 }
 
@@ -13126,12 +13126,11 @@ li.nav-item.active {
 }
 
 .profile-head h1 {
-  margin: 0 0 20px;
+  margin: 0 0 15px;
   text-align: center;
 }
 
-.profile-form .profile-head p {
-  margin-bottom: 90px;
+.profile-head p {
   font-size: 14px;
   color: #494949;
   text-align: center;
@@ -13144,6 +13143,7 @@ li.nav-item.active {
   padding: 65px 33px 33px 33px;
   border-radius: 8px;
   background-color: #FFFFFF;
+  margin-top: 90px;
 }
 
 .profile-form-section:after {
@@ -13227,6 +13227,228 @@ li.nav-item.active {
 .browse-btn .file-upload-input:hover {
   cursor: pointer;
   background: #6004BA;
+}
+
+.post-job-form {
+  position: relative;
+  margin-bottom: 40px;
+  border: 1px solid #E0E0E0;
+  padding: 33px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  margin-top: 25px;
+}
+
+.filter-btn-top-space {
+  margin-top: 8px;
+}
+
+.add-photos {
+  display: block;
+  font-size: 14px;
+  margin-left: 4px;
+  color: #8200FF;
+}
+
+.job-details {
+  margin-bottom: 20px;
+}
+
+.attach-job-files {
+  position: relative;
+  padding-top: 40px;
+  margin-bottom: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.attach-job-files:after {
+  position: absolute;
+  content: 'ATTACH PHOTOS';
+  text-transform: uppercase;
+  top: -8px;
+  background: #fff;
+  width: 150px;
+  color: #494949;
+  font-size: 14px;
+  left: 40%;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+}
+
+.service-need {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.service-need:after {
+  position: absolute;
+  content: 'WHEN YOU NEED THIS SERVICE';
+  text-transform: uppercase;
+  top: -10px;
+  background: #fff;
+  width: 270px;
+  color: #494949;
+  font-size: 14px;
+  left: 33%;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+}
+
+.service-need p {
+  font-size: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #494949;
+  margin-top: 13px;
+}
+
+.service-location {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.service-location:after {
+  position: absolute;
+  content: 'SERVICE LOCATION';
+  text-transform: uppercase;
+  top: -10px;
+  background: #fff;
+  width: 190px;
+  color: #494949;
+  font-size: 14px;
+  left: 38%;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+}
+
+.job-form-submission button {
+  margin-top: 20px;
+}
+
+.job-form-submission p {
+  font-size: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #494949;
+  margin-top: 25px;
+}
+
+.verify-account {
+  position: relative;
+  padding-top: 25px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.verify-account:after {
+  position: absolute;
+  content: 'VERIFY ACCOUNT';
+  text-transform: uppercase;
+  top: -10px;
+  background: #fff;
+  width: 190px;
+  color: #494949;
+  font-size: 14px;
+  left: 38%;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+}
+
+.verify-account .verification-alert p {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #494949;
+  font-size: 14px;
+}
+
+.verify-account .verification-alert span {
+  font-family: "AkzidenzGroteskBE-Md";
+  color: #8200FF;
+}
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: calc(2.19rem + 2px);
+  margin-bottom: 0;
+}
+
+.custom-file input {
+  cursor: pointer;
+}
+
+.custom-file-input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: calc(2.19rem + 2px);
+  margin: 0;
+  opacity: 0;
+  top: -30px;
+}
+
+.custom-file-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  height: calc(2.19rem + 2px);
+  padding: 0.375rem 0.75rem;
+  line-height: 1.6;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.custom-file-label:after {
+  background-color: #8200FF !important;
+  color: #fff !important;
+  border-radius: 5px;
+  padding: 4px 19px;
+  line-height: 1.3;
+  height: 27px;
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  font-size: 14px;
+  content: "Browse";
+  bottom: 0;
+  z-index: 3;
+  display: block;
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.boxed label {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #E0E0E0;
+  background-color: #F9F9F9;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.boxed input[type="radio"] {
+  display: none;
+}
+
+.boxed input[type="radio"]:checked + label {
+  border: 1px solid #8200FF;
+  background-color: rgba(221, 198, 244, 0.1);
+}
+
+.boxed {
+  width: 100%;
+  display: inherit;
+  padding: 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .how-it-work-list .list-description {

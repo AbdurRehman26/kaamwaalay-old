@@ -62456,14 +62456,421 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrapper-sm" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "post-job-form" }, [
+      _c(
+        "form",
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "verify-account" }, [
+            _vm._m(5),
+            _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _vm._m(8),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-form-submission" }, [
+              _c("div", { staticClass: " " }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary" },
+                  [_vm._v("Create Job\n\t\t\t\t\t\t\t"), _c("loader")],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Please make sure all the information you entered is accurate before submitting."
+                )
+              ])
+            ])
+          ])
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Post a Job")])])
+    return _c("div", { staticClass: "profile-head" }, [
+      _c("h1", [_vm._v("Post a Job")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Please fill out the form below to create a new job.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "job-details" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Select Service")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "Carpanter - General Carpentry",
+                placeholder: "Carpanter - General Carpentry"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Job Title")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter job title" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "textarea",
+              { staticClass: "form-control", attrs: { rows: "4" } },
+              [_vm._v("Start typing job details")]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "attach-job-files" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group custom-file" }, [
+            _c("label", [_vm._v("Browse")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control custom-file-input",
+              attrs: { type: "file" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "custom-file-label" }, [
+              _vm._v("Click here to choose a photo file")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "a",
+            {
+              staticClass: "add-photos filter-btn-top-space",
+              attrs: { href: "javascript:;" }
+            },
+            [_vm._v("+ Add more photos")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "service-need" }, [
+      _c("div", { staticClass: "row " }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", [_vm._v("Do you need this service urgently?")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "boxed" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("input", {
+              attrs: {
+                type: "radio",
+                id: "normal",
+                name: "need",
+                value: "Normal job"
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "normal" } }, [
+              _vm._v("No, Normal job")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("input", {
+              attrs: {
+                type: "radio",
+                id: "urgent",
+                name: "need",
+                value: "Urgent job"
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "urgent" } }, [
+              _vm._v("Yes, Urgent job")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("p", [
+            _vm._v(
+              "In case of urgent job, we will send push notifications to all the service providers around you. You need to pay "
+            ),
+            _c("strong", [_vm._v("$2")]),
+            _vm._v(" fee for urgent job.")
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Preference")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("Choose Date")
+              ]),
+              _vm._v(" "),
+              _c("option", [_vm._v("May 20, 2017")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("May 22, 2017")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Select Date")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { placeholder: "Select Date" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "service-location" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "4695 Chabot Dr. Suite 200,",
+                placeholder: "4695 Chabot Dr. Suite 200,"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Apartment, suite, unit")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Enter apartment, suite, unit (optional)"
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("City")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "Pleasanton",
+                placeholder: "Pleasanton"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("State")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "CA" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Zip Code")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", value: "94588" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "verification-alert" }, [
+          _c("p", [
+            _vm._v(
+              "To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.\n\t\t\t\t\t\t\t\t"
+            ),
+            _c("span", [_vm._v("We won't charge your card")]),
+            _vm._v(".")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+          _vm._v(" "),
+          _c("select", { staticClass: "form-control" }, [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
+              _vm._v("Select credit card type")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("VISA")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "", placeholder: "Enter card holder name", name: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "Enter your credit card number",
+              value: "Enter your credit card number"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("select", { staticClass: "form-control" }, [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("Month")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("January")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("select", { staticClass: "form-control" }, [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("Year")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2017")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Security Code (CVV)")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { placeholder: "Enter your cvv number", type: "", name: "" }
+          })
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true

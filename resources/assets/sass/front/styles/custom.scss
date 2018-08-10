@@ -227,7 +227,7 @@ $section-padding-sm:20px 0px;
     max-width: 850px;
     margin: 0 auto;
     h1 {
-        margin:0px 0 40px 0;
+        margin:30px 0 40px 0;
         text-align: center;
     }
 }
@@ -283,7 +283,6 @@ $section-padding-sm:20px 0px;
     }
     p {
         font-family:$font_medium;
-        margin-bottom: 40px;
     }
 }
 .form-detail {
@@ -302,7 +301,7 @@ $section-padding-sm:20px 0px;
 }
 li.nav-item.active {
     border: 1px solid #8200FF;
-    background-color: #F9F9F9;
+    background-color: #f7f3fb;
 }
 .nav-tabs {
     .nav-item {
@@ -347,6 +346,7 @@ li.nav-item.active {
             border-color: transparent;
             font-family: $font_medium;
             height: 72px;
+            background-color: #f7f3fb;
             color: $primary-color-md;
         }
     }
@@ -674,20 +674,19 @@ li.nav-item.active {
 .profile-head {
     margin-top: 30px;
     h1 {
-        margin: 0 0 20px;
+        margin: 0 0 15px;
         text-align: center;
     }
 }
-.profile-form {
-    .profile-head {
-        p {
-            margin-bottom: 90px;
-            font-size: 14px;
-            color: $grey-Edark;
-            text-align: center;
-        }
+
+.profile-head {
+    p {
+        font-size: 14px;
+        color: $grey-Edark;
+        text-align: center;
     }
 }
+
 .profile-form-section {
     position: relative;
     margin-bottom: 40px;
@@ -695,6 +694,8 @@ li.nav-item.active {
     padding: 65px 33px 33px 33px;
     border-radius: 8px;
     background-color: #FFFFFF;
+    margin-top: 90px;
+
     &:after {
         position: absolute;
         content: "\E90F";
@@ -772,6 +773,212 @@ li.nav-item.active {
     }
 }
 // Profile form sass end
+
+// Job Post sass start
+.post-job-form {
+    position: relative;
+    margin-bottom: 40px;
+    border: 1px solid $grey-lite;
+    padding: 33px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    margin-top: 25px;
+}
+.filter-btn-top-space {
+    margin-top: 8px;
+}
+.add-photos {
+    display: block;
+    font-size: 14px;
+    margin-left: 4px;
+    color: $primary-color-md;
+}
+.job-details {
+    margin-bottom: 20px;
+}
+.attach-job-files {
+    position: relative;
+    padding-top: 40px;
+    margin-bottom: 20px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        position: absolute;
+        content:'ATTACH PHOTOS';
+        text-transform: uppercase;
+        top: -8px;
+        background: #fff;
+        width: 150px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 40%;
+        font-family: $font_medium;
+        text-align: center;
+
+    }
+}
+.service-need {
+    position: relative;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        position: absolute;
+        content:'WHEN YOU NEED THIS SERVICE';
+        text-transform: uppercase;
+        top: -10px;
+        background: #fff;
+        width: 270px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 33%;
+        font-family: $font_medium;
+        text-align: center;
+
+    }
+    p {
+        font-size: 14px;
+        font-family: $font_regular;
+        color: $grey-Edark;
+        margin-top: 13px;
+    }
+}
+.service-location {
+    position: relative;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        position: absolute;
+        content:'SERVICE LOCATION';
+        text-transform: uppercase;
+        top: -10px;
+        background: #fff;
+        width: 190px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 38%;
+        font-family: $font_medium;
+        text-align: center;
+    }
+}
+.job-form-submission {
+    button {
+        margin-top: 20px;
+    }
+    p {
+        font-size: 14px;
+        font-family: $font_regular;
+        color: $grey-Edark;
+        margin-top: 25px;
+    }
+}
+.verify-account {
+    position: relative;
+    padding-top: 25px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        position: absolute;
+        content:'VERIFY ACCOUNT';
+        text-transform: uppercase;
+        top: -10px;
+        background: #fff;
+        width: 190px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 38%;
+        font-family: $font_medium;
+        text-align: center;
+    } 
+    .verification-alert {
+        p {
+            font-family: $font_regular;
+            color: $grey-Edark;
+            font-size: 14px;
+        }
+        span {
+            font-family: $font_medium;
+            color: $primary-color-md;
+        }
+    }
+}
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: calc(2.19rem + 2px);
+    margin-bottom: 0;
+
+    input {
+        cursor: pointer;
+    }
+}
+.custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(2.19rem + 2px);
+    margin: 0;
+    opacity: 0;
+    top: -30px;
+}
+.custom-file-label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        height: calc(2.19rem + 2px);
+        padding: 0.375rem 0.75rem;
+        line-height: 1.6;
+        color: #495057;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 14px;
+        &:after {
+            background-color: #8200FF !important;   
+            color: #fff !important;
+            border-radius: 5px;
+            padding: 4px 19px;
+            line-height: 1.3;
+            height: 27px;
+            position: absolute;
+            top: 4px;
+            right: 5px;
+            font-size: 14px;
+            content: "Browse";
+            bottom: 0;
+            z-index: 3;
+            display: block;
+            font-family: $font_regular;
+    }
+}
+.boxed label {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    background-color: #F9F9F9;
+    border-radius: 4px;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.boxed input[type="radio"] {
+    display: none;
+}
+
+.boxed input[type="radio"]:checked + label {
+    border: 1px solid #8200FF;
+    background-color: rgba(221,198,244,0.1);
+}
+.boxed {
+    width: 100%;
+    display: inherit;
+    padding: 10px;
+    transition: all 0.3s;
+}
+// Job Post sass end
 
 .how-it-work-list{
     .list-description{
