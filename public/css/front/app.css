@@ -11994,8 +11994,7 @@ textarea {
   top: 0;
   z-index: 999;
   padding: 13px 0px;
-  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px #E0E0E0;
 }
 
 .header .logo {
@@ -12134,6 +12133,7 @@ textarea {
   text-decoration: none;
   padding-left: 16px;
   padding-right: 16px;
+  text-decoration: none !important;
 }
 
 .navigation ul li a:hover {
@@ -12194,7 +12194,11 @@ textarea {
 }
 
 .main-banner.home-banner .content-inner {
-  max-width: 430px;
+  max-width: 445px;
+}
+
+.main-banner.home-banner .content-inner h1 {
+  margin-bottom: 22px;
 }
 
 .main-banner.home-banner .search-filter input.search-service {
@@ -12265,11 +12269,15 @@ textarea {
 
 .section-title {
   text-align: center;
-  padding-bottom: 80px;
+  padding-bottom: 70px;
 }
 
 .section-title h2 {
   font-size: 36px;
+}
+
+.section-title h2.btm-space {
+  margin-bottom: 22px;
 }
 
 .section-title p {
@@ -12470,7 +12478,8 @@ textarea {
 
 .content-sec h2 {
   font-size: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  line-height: 44px;
 }
 
 .content-sec h1 {
@@ -12638,6 +12647,7 @@ li.nav-item.active {
   background-color: #F9F9F9;
   padding: 22px 0;
   border-bottom: solid 1px #E0E0E0;
+  border-top: solid 1px #E0E0E0;
 }
 
 .featured-categories-home ul {
@@ -12704,11 +12714,12 @@ li.nav-item.active {
 
 .Popular-services-slides li p i {
   display: inline-block;
-  color: #6004BA;
+  color: #8200FF;
   vertical-align: middle;
   margin-right: 10px;
   position: relative;
   top: -4px;
+  font-size: 24px;
 }
 
 .Popular-services-slides .owl-nav {

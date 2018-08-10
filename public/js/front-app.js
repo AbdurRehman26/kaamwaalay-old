@@ -3671,6 +3671,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62601,7 +62606,7 @@ var render = function() {
               _c("h6", [_vm._v(_vm._s(service.serviceHeading))]),
               _vm._v(" "),
               _c("p", [
-                _c("i", { staticClass: "icon-location" }),
+                _c("i", { staticClass: "icon-map-marker2" }),
                 _vm._v(_vm._s(service.serviceDesc))
               ])
             ])
@@ -64572,124 +64577,130 @@ var render = function() {
       _vm._v(" "),
       _c("popularservices"),
       _vm._v(" "),
-      _c("div", { staticClass: "section section-grey how-it-work" }, [
-        _c("div", { staticClass: "container element-index" }, [
-          _vm._m(1),
+      _c(
+        "div",
+        { staticClass: "section section-grey how-it-work elementary-banner" },
+        [
+          _c("div", { staticClass: "container element-index" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "how-it-work-list" },
+              [
+                _c(
+                  "b-row",
+                  [
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/find.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Find")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/bidding.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Bidding Process")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/communicate.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Communicate & Hire")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "You can communicate with service provider before hiring and after that award the job to right service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-col",
+                      {
+                        staticClass: "text-center",
+                        attrs: { sm: "12", md: "3" }
+                      },
+                      [
+                        _c("div", { staticClass: "icon" }, [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/like.svg" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Work & Pay")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "how-it-work-list" },
-            [
-              _c(
-                "b-row",
-                [
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/find.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Find")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/bidding.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Bidding Process")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/communicate.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Communicate & Hire")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "You can communicate with service provider before hiring and after that award the job to right service provider."
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { sm: "12", md: "3" }
-                    },
-                    [
-                      _c("div", { staticClass: "icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/like.svg" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-description" }, [
-                        _c("h4", [_vm._v("Work & Pay")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
-                          )
-                        ])
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ])
-      ]),
+          _vm._m(2)
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "section ready-to-meet" }, [
         _c("div", { staticClass: "container" }, [
@@ -64715,7 +64726,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(3)
           ])
         ])
       ]),
@@ -64724,12 +64735,12 @@ var render = function() {
         _c(
           "div",
           { staticClass: "container" },
-          [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
+          [_vm._m(4), _vm._v(" "), _c("testmonial-sec")],
           1
         )
       ]),
       _vm._v(" "),
-      _vm._m(4),
+      _vm._m(5),
       _vm._v(" "),
       _c(
         "div",
@@ -64803,6 +64814,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-right",
+        attrs: { src: "/images/front/banner-bg/bg-1.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-left",
+        attrs: { src: "/images/front/banner-bg/bg-3.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right",
+        attrs: { src: "/images/front/banner-bg/bg-2.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "image-sec" }, [
       _c("img", { attrs: { src: "/images/front/join-as-pro/customer.jpg" } })
     ])
@@ -64812,7 +64844,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
-      _c("h2", [_vm._v("What our customers are saying")]),
+      _c("h2", { staticClass: "btm-space" }, [
+        _vm._v("What our customers are saying")
+      ]),
       _vm._v(" "),
       _c("p", [
         _vm._v(

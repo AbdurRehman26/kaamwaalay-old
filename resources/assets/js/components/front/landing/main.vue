@@ -34,7 +34,7 @@
     <popularservices></popularservices>
 
     <!--how its works-->
-    <div class="section section-grey how-it-work">
+    <div class="section section-grey how-it-work elementary-banner">
         <div class="container element-index">
             <div class="section-title">
                 <h2>How it works</h2>
@@ -80,13 +80,18 @@
                 </b-row>
             </div>
         </div>
+        <div class="elements">
+            <img class="top-right" src="/images/front/banner-bg/bg-1.png">
+            <img class="bottom-left" src="/images/front/banner-bg/bg-3.png">
+            <img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
+        </div>
     </div>
     <!-- app store section -->
     <div class="section ready-to-meet">
         <div class="container">
             <div class="two-column">
                 <div class="content-sec">
-                    <h2>When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!</h2>
+                    <h2 >When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!</h2>
                     <p>See cost estimates, read reviews and chat with service providers, all in the app. Available on both iOS and Android.</p>
                     <appstore></appstore>
                 </div>
@@ -101,7 +106,7 @@
     <div class="section section-grey">
         <div class="container">
             <div class="section-title">
-                <h2>What our customers are saying</h2>
+                <h2 class="btm-space">What our customers are saying</h2>
                 <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
             </div>
             <testmonial-sec></testmonial-sec>

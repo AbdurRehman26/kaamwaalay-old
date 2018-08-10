@@ -26,7 +26,10 @@
 
     &.home-banner{
         .content-inner{
-            max-width:430px;
+            max-width:445px;
+            h1{
+                margin-bottom: 22px;
+            }
         }
         .search-filter{
             input{

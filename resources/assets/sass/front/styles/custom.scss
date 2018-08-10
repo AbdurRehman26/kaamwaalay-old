@@ -13,9 +13,13 @@ $section-padding-sm:20px 0px;
 }
 .section-title {
     text-align: center;
-    padding-bottom: 80px;
+    padding-bottom:70px;
     h2{
         font-size: $font-size-xxl;
+
+        &.btm-space{
+            margin-bottom:22px;
+        }
     }
     p{
         color: #7D7D7D;
@@ -196,7 +200,8 @@ $section-padding-sm:20px 0px;
     .content-sec{
         h2{
             font-size: $font-size-xl;
-            margin-bottom: 32px;
+            margin-bottom:24px;
+            line-height: 44px;
         }
         h1{
             font-size: $font-size-xxl;
@@ -359,6 +364,7 @@ li.nav-item.active {
     background-color:$grey-Elite;
     padding:22px 0;
     border-bottom:solid 1px $grey-lite;
+    border-top:solid 1px $grey-lite;
     ul{
         margin:0;
         padding:0;
@@ -422,11 +428,12 @@ li.nav-item.active {
             color:$grey-dark;
             i{
                 display:inline-block;
-                color:$primary-color;
+                color:$primary-color-md;
                 vertical-align: middle;
                 margin-right: 10px;
                 position: relative;
                 top: -4px;
+                font-size: 24px;
             }
         }
     }
