@@ -3381,6 +3381,167 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/landing/FeaturedCategories.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            //featured categories
+            categories: [{
+                image: 'images/front/svg/electricians.svg',
+                heading: 'Electricians'
+            }, {
+                image: 'images/front/svg/carpenters.svg',
+                heading: 'Carpenters'
+            }, {
+                image: 'images/front/svg/painters.svg',
+                heading: 'Painters'
+            }, {
+                image: 'images/front/svg/plumbers.svg',
+                heading: 'Plumbers'
+            }, {
+                image: 'images/front/svg/movers.svg',
+                heading: 'Movers'
+            }, {
+                image: 'images/front/svg/gardner.svg',
+                heading: 'Gardeners'
+            }]
+        };
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/landing/PopularServices.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        __webpack_require__("./node_modules/jquery/dist/jquery.js");
+        __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
+        $(document).ready(function () {
+            $('.my-owl-carousel').owlCarousel({
+                margin: 10,
+                nav: true,
+                items: 4,
+                responsive: {
+                    /*                        0:{
+                                                items:1
+                                            },
+                                            600:{
+                                                items:3
+                                            },
+                                            1000:{
+                                                items:5
+                                            }*/
+                }
+            });
+        });
+    },
+    data: function data() {
+        return {
+            services: [{
+                serviceImage: 'images/front/home/cleaning.jpg',
+                serviceHeading: 'Cleaning Services',
+                serviceDesc: '4 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/carpenter.jpg',
+                serviceHeading: 'Carpenter',
+                serviceDesc: '3 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/electrician.jpg',
+                serviceHeading: 'Electricians',
+                serviceDesc: '8 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/movers.jpg',
+                serviceHeading: 'Movers',
+                serviceDesc: '2 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/cleaning.jpg',
+                serviceHeading: 'Cleaning Services',
+                serviceDesc: '4 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/carpenter.jpg',
+                serviceHeading: 'Carpenter',
+                serviceDesc: '3 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/electrician.jpg',
+                serviceHeading: 'Electricians',
+                serviceDesc: '8 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/movers.jpg',
+                serviceHeading: 'Movers',
+                serviceDesc: '2 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/cleaning.jpg',
+                serviceHeading: 'Cleaning Services',
+                serviceDesc: '4 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/carpenter.jpg',
+                serviceHeading: 'Carpenter',
+                serviceDesc: '3 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/electrician.jpg',
+                serviceHeading: 'Electricians',
+                serviceDesc: '8 service providers near you'
+            }, {
+                serviceImage: 'images/front/home/movers.jpg',
+                serviceHeading: 'Movers',
+                serviceDesc: '2 service providers near you'
+            }]
+        };
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/landing/main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3502,133 +3663,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        __webpack_require__("./node_modules/jquery/dist/jquery.js");
-        __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
-        $(document).ready(function () {
-            $('.my-owl-carousel').owlCarousel({
-                margin: 10,
-                nav: true,
-                items: 4,
-                responsive: {
-                    /*                        0:{
-                                                items:1
-                                            },
-                                            600:{
-                                                items:3
-                                            },
-                                            1000:{
-                                                items:5
-                                            }*/
-                }
-            });
-        });
-    },
     data: function data() {
         return {
             headerBanner: 'images/front/banners/home.jpg'
@@ -62468,6 +62505,64 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2e29e278\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/PopularServices.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "section" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "ul",
+        {
+          staticClass:
+            "Popular-services-slides my-owl-carousel owl-carousel owl-theme"
+        },
+        _vm._l(_vm.services, function(service) {
+          return _c("li", { staticClass: "item" }, [
+            _c("a", { attrs: { href: "javascript:;" } }, [
+              _c("div", { staticClass: "box-img" }, [
+                _c("img", { attrs: { src: service.serviceImage } })
+              ]),
+              _vm._v(" "),
+              _c("h6", [_vm._v(_vm._s(service.serviceHeading))]),
+              _vm._v(" "),
+              _c("p", [
+                _c("i", { staticClass: "icon-location" }),
+                _vm._v(_vm._s(service.serviceDesc))
+              ])
+            ])
+          ])
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("Popular services in your area")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e29e278", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4af639e9\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./node_modules/vue-fancybox/src/fancyBox.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63244,6 +63339,55 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-55dbc233", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-59e0d64e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/FeaturedCategories.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "section padding-sm featured-categories-home" },
+    [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "services-list" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.categories, function(category) {
+              return _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("div", { staticClass: "list-icon sm white" }, [
+                    _c("div", { staticClass: "inner" }, [
+                      _c("img", { attrs: { src: category.image } })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-description" }, [
+                    _c("p", [_vm._v(_vm._s(category.heading))])
+                  ])
+                ])
+              ])
+            })
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-59e0d64e", module.exports)
   }
 }
 
@@ -64043,7 +64187,7 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "profile-form-section" }, [
-        _c("div", { staticClass: "sign-up-form business-form" }, [
+        _c("div", {}, [
           _c("div", { staticClass: "form-signup" }, [
             _c("form", [
               _vm._m(1),
@@ -64088,13 +64232,32 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "personal-detail" }, [
       _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "browse-btn" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "file-upload-label" }, [
+              _vm._v("Browse Photo")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control file-upload-input",
+              attrs: { type: "file" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your first name" }
+              attrs: {
+                type: "text",
+                value: "Arsalan",
+                placeholder: "Enter your first name"
+              }
             })
           ])
         ]),
@@ -64105,7 +64268,11 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter your last name" }
+              attrs: {
+                type: "text",
+                value: "Akhtar",
+                placeholder: "Enter your last name"
+              }
             })
           ])
         ])
@@ -64120,6 +64287,7 @@ var staticRenderFns = [
               staticClass: "form-control",
               attrs: {
                 type: "text",
+                value: "arsalan@cygnismedia.com",
                 placeholder: "Enter your first email address"
               }
             })
@@ -64306,137 +64474,153 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "main-banner home-banner" }, [
-      _c("div", { staticClass: "main-img" }, [
-        _c("img", { attrs: { src: _vm.headerBanner } })
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "main-banner home-banner" }, [
+        _c("div", { staticClass: "main-img" }, [
+          _c("img", { attrs: { src: _vm.headerBanner } })
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
       ]),
       _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _c("div", { staticClass: "section section-grey how-it-work" }, [
-      _c("div", { staticClass: "container element-index" }, [
-        _vm._m(3),
-        _vm._v(" "),
+      _c("featuredCategories"),
+      _vm._v(" "),
+      _c("popularservices"),
+      _vm._v(" "),
+      _c("div", { staticClass: "section section-grey how-it-work" }, [
+        _c("div", { staticClass: "container element-index" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "how-it-work-list" },
+            [
+              _c(
+                "b-row",
+                [
+                  _c(
+                    "b-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { sm: "12", md: "3" }
+                    },
+                    [
+                      _c("div", { staticClass: "icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/find.svg" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Find")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
+                          )
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { sm: "12", md: "3" }
+                    },
+                    [
+                      _c("div", { staticClass: "icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/list.svg" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Bidding Process")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
+                          )
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { sm: "12", md: "3" }
+                    },
+                    [
+                      _c("div", { staticClass: "icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/communicate.svg" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Communicate & Hire")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "CYou can communicate with service provider before hiring and after that award the job to right service provider."
+                          )
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { sm: "12", md: "3" }
+                    },
+                    [
+                      _c("div", { staticClass: "icon" }, [
+                        _c("img", {
+                          attrs: { src: "/images/front/svg/communicate.svg" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "list-description" }, [
+                        _c("h4", [_vm._v("Work & Pay")]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "section section-grey" }, [
         _c(
           "div",
-          { staticClass: "how-it-work-list" },
-          [
-            _c(
-              "b-row",
-              [
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
-                  [
-                    _c("div", { staticClass: "icon" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/find.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Find")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
-                  [
-                    _c("div", { staticClass: "icon" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/list.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Bidding Process")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
-                  [
-                    _c("div", { staticClass: "icon" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/communicate.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Communicate & Hire")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "CYou can communicate with service provider before hiring and after that award the job to right service provider."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "12", md: "3" } },
-                  [
-                    _c("div", { staticClass: "icon" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/communicate.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Work & Pay")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ],
-              1
-            )
-          ],
+          { staticClass: "container" },
+          [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
           1
         )
       ])
-    ]),
-    _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _c("div", { staticClass: "section section-grey" }, [
-      _c(
-        "div",
-        { staticClass: "container" },
-        [_vm._m(5), _vm._v(" "), _c("testmonial-sec")],
-        1
-      )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -64452,13 +64636,13 @@ var staticRenderFns = [
                 _vm._v("Find the right service provider for the job!")
               ]),
               _vm._v(" "),
-              _c("h4", [
+              _c("h5", { staticClass: "banner-hd-sub" }, [
                 _vm._v("Get expert help to get done almost anything.")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "search-filter" }, [
                 _c("input", {
-                  staticClass: "form-control search-service",
+                  staticClass: "form-control lg search-service",
                   attrs: {
                     type: "text",
                     placeholder: "What service do you need?",
@@ -64470,7 +64654,7 @@ var staticRenderFns = [
                   _c("i", { staticClass: "icon-location" }),
                   _vm._v(" "),
                   _c("input", {
-                    staticClass: "form-control zip-code",
+                    staticClass: "form-control lg zip-code",
                     attrs: { type: "number", placeholder: "Zip code", name: "" }
                   })
                 ])
@@ -64480,209 +64664,6 @@ var staticRenderFns = [
                 _c("span", [_vm._v("Get Started")])
               ])
             ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "section padding-sm featured-categories-home" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "services-list" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/electricians.svg" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v("Electricians")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/carpenters.svg" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v("Carpenters")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/painters.svg" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v("Painters")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/plumbers.svg" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v("Plumbers")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/movers.svg" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v("Movers")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", {
-                        attrs: { src: "/images/front/svg/gardner.svg" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v("Gardeners")])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section" }, [
-      _c("div", { staticClass: "section-title" }, [
-        _c("h2", [_vm._v("Popular services in your area")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "ul",
-          {
-            staticClass:
-              "Popular-services-slides my-owl-carousel owl-carousel owl-theme"
-          },
-          [
-            _c("li", { staticClass: "item" }, [
-              _c("div", { staticClass: "box-img" }, [
-                _c("img", {
-                  attrs: { src: "/images/front/home/carpenter.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Cleaning Services")]),
-              _vm._v(" "),
-              _c("p", [
-                _c("i", { staticClass: "icon-location" }),
-                _vm._v("Cleaning Services")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "item" }, [
-              _c("div", { staticClass: "box-img" }, [
-                _c("img", {
-                  attrs: { src: "/images/front/home/carpenter.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Cleaning Services")]),
-              _vm._v(" "),
-              _c("p", [
-                _c("i", { staticClass: "icon-location" }),
-                _vm._v("Cleaning Services")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "item" }, [
-              _c("div", { staticClass: "box-img" }, [
-                _c("img", {
-                  attrs: { src: "/images/front/home/carpenter.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Cleaning Services")]),
-              _vm._v(" "),
-              _c("p", [
-                _c("i", { staticClass: "icon-location" }),
-                _vm._v("Cleaning Services")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "item" }, [
-              _c("div", { staticClass: "box-img" }, [
-                _c("img", {
-                  attrs: { src: "/images/front/home/carpenter.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Cleaning Services")]),
-              _vm._v(" "),
-              _c("p", [
-                _c("i", { staticClass: "icon-location" }),
-                _vm._v("Cleaning Services")
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "slide-blts" }, [
-          _c("ul", [
-            _c("li", { staticClass: "active" }),
-            _vm._v(" "),
-            _c("li", {}),
-            _vm._v(" "),
-            _c("li", {})
           ])
         ])
       ])
@@ -82002,6 +81983,102 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/landing/FeaturedCategories.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/landing/FeaturedCategories.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-59e0d64e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/FeaturedCategories.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\FeaturedCategories.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-59e0d64e", Component.options)
+  } else {
+    hotAPI.reload("data-v-59e0d64e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/landing/PopularServices.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/landing/PopularServices.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2e29e278\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/PopularServices.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\landing\\PopularServices.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e29e278", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e29e278", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/landing/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82204,9 +82281,6 @@ Vue.component('create-password', __webpack_require__("./resources/assets/js/comp
 // 404 Component
 Vue.component('not-found-panel', __webpack_require__("./resources/assets/js/components/404/404Panel.vue"));
 
-// dashboard
-
-
 //****************front components******************//
 
 // Common Component Tags
@@ -82223,6 +82297,10 @@ Vue.component('front-header', __webpack_require__("./resources/assets/js/compone
 
 // Footer
 Vue.component('front-footer', __webpack_require__("./resources/assets/js/components/front/common-components/footer.vue"));
+
+// landing
+Vue.component('featuredCategories', __webpack_require__("./resources/assets/js/components/front/landing/FeaturedCategories.vue"));
+Vue.component('popularservices', __webpack_require__("./resources/assets/js/components/front/landing/PopularServices.vue"));
 
 /***/ }),
 

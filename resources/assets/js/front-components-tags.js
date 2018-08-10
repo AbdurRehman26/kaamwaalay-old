@@ -9,9 +9,6 @@ Vue.component('create-password', require('./components/auth/CreatePassword.vue')
 // 404 Component
 Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
 
-// dashboard
-
-
 
 //****************front components******************//
 
@@ -29,6 +26,10 @@ Vue.component('front-header',require('./components/front/common-components/heade
 
 // Footer
 Vue.component('front-footer',require('./components/front/common-components/footer.vue'));
+
+// landing
+Vue.component('featuredCategories', require('./components/front/landing/FeaturedCategories.vue'));
+Vue.component('popularservices', require('./components/front/landing/PopularServices.vue'));
 
 
 

@@ -10790,8 +10790,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda);
-  src: url(/fonts/icomoon.eot?e2cbacb0f64f6950b49e341c17a88dda#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?34da3020831334e7676999a87ef31cb6) format("truetype"), url(/fonts/icomoon.woff?20cbad071de733d0497f5f9fa19e1101) format("woff"), url(/fonts/icomoon.svg?8b09d3e83ef7333539949daca3b0c9de#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?eea780eb388704c048eadab5ee228c78);
+  src: url(/fonts/icomoon.eot?eea780eb388704c048eadab5ee228c78#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?8f87733bd9ccf1ee1ebce930a0d2b45f) format("truetype"), url(/fonts/icomoon.woff?2b879a62131089843c33ba4a06a9559d) format("woff");
+  /*     url('../fonts/front/icomoon.svg?3toe5f#icomoon') format('svg'); */
   font-weight: normal;
   font-style: normal;
 }
@@ -10807,6 +10808,10 @@ a.text-dark:focus {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-map-marker:before {
+  content: "\E916";
 }
 
 .icon-calendar-daily:before {
@@ -10873,52 +10878,20 @@ a.text-dark:focus {
   content: "\E90C";
 }
 
-.icon-send:before {
-  content: "\E900";
+.icon-location:before {
+  content: "\E917";
 }
 
-.icon-checked:before {
-  content: "\E901";
+.icon-map-marker2:before {
+  content: "\E917";
 }
 
-.icon-front-car:before {
-  content: "\E902";
+.icon-marker:before {
+  content: "\E917";
 }
 
-.icon-work-briefcase:before {
-  content: "\E903";
-}
-
-.icon-exit:before {
-  content: "\E92E";
-}
-
-.icon-close2:before {
-  content: "\E5CE";
-}
-
-.icon-keyboard_arrow_right:before {
-  content: "\E935";
-}
-
-.icon-help:before {
-  content: "\E887";
-}
-
-.icon-delete:before {
-  content: "\E928";
-}
-
-.icon-menu2:before {
-  content: "\E929";
-}
-
-.icon-phone_in_talk:before {
-  content: "\E61D";
-}
-
-.icon-message:before {
-  content: "\E904";
+.icon-pin:before {
+  content: "\E917";
 }
 
 .icon-quotes-right:before {
@@ -10937,7 +10910,7 @@ a.text-dark:focus {
   content: "\E907";
 }
 
-.icon-location:before {
+.icon-location3:before {
   content: "\E947";
 }
 
@@ -10971,6 +10944,10 @@ a.text-dark:focus {
 
 .icon-twitter:before {
   content: "\E92A";
+}
+
+.icon-location2:before {
+  content: "\E919";
 }
 
 .icon-flag:before {
@@ -11023,6 +11000,54 @@ a.text-dark:focus {
 
 .icon-triangle-down:before {
   content: "\E915";
+}
+
+.icon-send:before {
+  content: "\E900";
+}
+
+.icon-checked:before {
+  content: "\E901";
+}
+
+.icon-front-car:before {
+  content: "\E902";
+}
+
+.icon-work-briefcase:before {
+  content: "\E903";
+}
+
+.icon-exit:before {
+  content: "\E92E";
+}
+
+.icon-close2:before {
+  content: "\E5CE";
+}
+
+.icon-keyboard_arrow_right:before {
+  content: "\E935";
+}
+
+.icon-help:before {
+  content: "\E887";
+}
+
+.icon-delete:before {
+  content: "\E928";
+}
+
+.icon-menu2:before {
+  content: "\E929";
+}
+
+.icon-phone_in_talk:before {
+  content: "\E61D";
+}
+
+.icon-message:before {
+  content: "\E904";
 }
 
 .icon-cancel:before {
@@ -11500,9 +11525,14 @@ body .form-control {
   font-size: 14px;
   padding: 9px 16px;
   border-color: #B2B2B2;
-  border-radius: 4px;
+  border-radius: 8px;
   /* color:$text-primary-color; */
   color: #000000;
+}
+
+body .form-control.lg {
+  height: 48px;
+  font-size: 16px;
 }
 
 body .form-control:focus {
@@ -11593,7 +11623,7 @@ body .custom-file-input:focus ~ .custom-file-label {
   width: 14px;
   height: 14px;
   border: solid 1px #B2B2B2;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .custom-checkbox label i {
@@ -11694,6 +11724,7 @@ textarea {
   padding: 10px 40px;
   min-width: 100px;
   line-height: 22px;
+  border-radius: 8px;
 }
 
 .btn:hover,
@@ -12070,6 +12101,7 @@ textarea {
 }
 
 .navigation ul li:last-child a {
+  font-family: "AkzidenzGroteskBE-Regular";
   color: #fff !important;
   text-decoration: none !important;
 }
@@ -12145,6 +12177,17 @@ textarea {
 .main-banner .banner-slogan .btn-primary {
   font-size: 16px;
   font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.banner-hd-main {
+  margin-bottom: 22px;
+}
+
+.banner-hd-sub {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #7D7D7D;
+  margin-bottom: 30px;
+  font-weight: normal;
 }
 
 .section {
@@ -12564,26 +12607,36 @@ li.nav-item.active {
 }
 
 .Popular-services-slides {
-  margin: 0 -20px;
+  margin: 0 0px;
   clear: both;
   display: block;
   padding: 0;
   overflow: hidden;
 }
 
+.Popular-services-slides .owl-item {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
 .Popular-services-slides li {
-  max-width: 325px;
-  float: left;
-  padding-left: 20px;
-  padding-right: 20px;
+  /*         max-width:400px;
+        float: left;
+        padding-left: 20px;
+        padding-right: 20px; */
+}
+
+.Popular-services-slides li a {
+  text-decoration: none;
 }
 
 .Popular-services-slides li .box-img {
   margin-bottom: 32px;
 }
 
-.Popular-services-slides li h4 {
+.Popular-services-slides li h6 {
   margin-bottom: 16px;
+  color: #1A1A1A;
 }
 
 .Popular-services-slides li p {
@@ -12599,11 +12652,35 @@ li.nav-item.active {
   top: -4px;
 }
 
+.Popular-services-slides .owl-nav {
+  display: none;
+}
+
+.owl-dots {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.owl-dots button {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: #E0E0E0 !important;
+  margin: 0px 16px 0;
+  cursor: pointer;
+  outline: none !important;
+}
+
+.owl-dots button.active {
+  background-color: #DDC6F4 !important;
+}
+
 .slide-blts {
   width: 100%;
   display: block;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 20px;
 }
 
 .slide-blts li {
@@ -12848,7 +12925,116 @@ li.nav-item.active {
   text-align: center;
 }
 
+.profile-form .profile-head p {
+  margin-bottom: 90px;
+  font-size: 14px;
+  color: #494949;
+  text-align: center;
+}
+
+.profile-form-section {
+  position: relative;
+  margin-bottom: 40px;
+  border: 1px solid #E0E0E0;
+  padding: 65px 33px 33px 33px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.profile-form-section:after {
+  position: absolute;
+  content: "\E90F";
+  top: -60px;
+  font-family: 'icomoon';
+  font-size: 57px;
+  color: #7d7d7d;
+  border: 1px solid #E0E0E0;
+  height: 110px;
+  width: 110px;
+  left: 43.5%;
+  text-align: center;
+  border-radius: 100%;
+  background: #f9f9f9;
+  line-height: 103px;
+}
+
+.profile-form-section .personal-detail {
+  position: relative;
+  margin-bottom: 30px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.profile-form-section .personal-detail:after {
+  content: 'HOME ADDRESS';
+  position: absolute;
+  text-transform: capitalize;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #494949;
+  bottom: -12px;
+  background: #fff;
+  width: 160px;
+  left: 40%;
+  text-align: center;
+}
+
+.profile-form-section p {
+  font-size: 14px;
+  color: #494949;
+  margin-bottom: 0;
+}
+
+.browse-btn {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.browse-btn .file-upload-label {
+  display: block;
+  padding: 6px 22px;
+  color: #fff;
+  background: #8200FF;
+  border-radius: 4px;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+  font-size: 14px;
+}
+
+.browse-btn .file-upload-label:hover {
+  cursor: pointer;
+  background: #6004BA;
+}
+
+.browse-btn .file-upload-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.browse-btn .file-upload-input:hover {
+  cursor: pointer;
+  background: #6004BA;
+}
+
 .how-it-work-list .list-description {
   width: 100%;
+}
+
+.home_body .how-it-work .section-title {
+  padding-bottom: 80px;
+}
+
+.ready-to-meet p {
+  font-size: 20px;
+  line-height: 29px;
+  margin-bottom: 37px;
 }
 
