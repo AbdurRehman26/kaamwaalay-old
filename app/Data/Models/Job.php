@@ -14,4 +14,11 @@ class Job extends Model
     protected $casts = [
         'images' => 'array',
     ];
+
+	const AWARDED 		= 'awarded';
+	const CANCELLED 	= 'cancelled';
+	const COMPLETED 	= 'completed';
+	const IN_BIDDING 	= 'in_bidding';
+	const INITIATED 	= 'initiated';
+
 }

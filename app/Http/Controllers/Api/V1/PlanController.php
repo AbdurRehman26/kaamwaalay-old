@@ -9,10 +9,10 @@ class PlanController extends ApiResourceController
     public $_repository;
 
     public function __construct(PlanRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -30,6 +30,12 @@ class PlanController extends ApiResourceController
 
     if($value == 'show'){
 
+    }
+
+    if($value == 'updateOrAddPlans'){
+        $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1';
+        $rules['plans_data.*.amount']           = 'required|numeric|not_in:0';
+        $rules['plans_data.*.quantity']         = 'required|numeric|not_in:0';
     }
 
     if($value == 'index'){
