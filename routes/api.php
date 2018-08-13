@@ -127,3 +127,6 @@ Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
 //Uploading File
 Route::post('file/upload', 'Api\V1\FileController@upload');
 Route::post('file/remove', 'Api\V1\FileController@remove');
+
+//Dashboard Report
+Route::get('dashboard', 'Api\V1\DashboardController@dashboard');

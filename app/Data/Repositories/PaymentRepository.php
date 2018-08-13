@@ -40,4 +40,19 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         $this->builder = $model;
 
     }
+
+    public function getTotalByCriteria($crtieria, $aggregate = 'count', $field = 'amount') {
+        $record = $this->model;
+        if($crtieria){
+            $record = $record->where($crtieria);
+        }
+
+        if($aggregate && $aggregate == 'sum'){
+            $record = $record->sum($field);   
+        }else{
+            $record = $record->count();
+        }
+
+        return  $record;
+    }
 }
