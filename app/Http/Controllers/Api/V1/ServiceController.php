@@ -19,27 +19,27 @@ class ServiceController extends ApiResourceController
     if($value == 'store'){
 
         $rules['parent_id']               = 'nullable|exists:services,id';           
-        $rules['title']                   = 'required';       
+        $rules['title']                   = 'required|unique:services,title'; 
         $rules['description']            = 'required';               
         $rules['is_display_banner']       = 'required|in:0,1';                   
         $rules['is_display_service_nav']  = 'required|in:0,1';                       
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
         $rules['images']                  = 'required|array';       
         $rules['status']                  = 'required|in:0,1';    
-        // $rules['user_id'] =  'required|exists:users,id,null,role_id,'.Role::ADMIN;   
+        $rules['user_id'] =  'required|exists:users,id';   
     }
 
     if($value == 'update'){
         
         $rules['id'] =  'required|exists:services,id';
-        // $rules['user_id'] =  'required|exists:users,id,null,role_id,'.Role::ADMIN;
+        $rules['user_id'] =  'required|exists:users,id';
     }
 
 
     if($value == 'destroy'){
 
         $rules['id'] =  'required|exists:services,id';
-        // $rules['user_id'] =  'required|exists:users,id,null,role_id,'.Role::ADMIN;
+        $rules['user_id'] =  'required|exists:users,id';
         
 
     }
