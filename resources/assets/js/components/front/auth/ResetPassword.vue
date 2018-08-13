@@ -8,8 +8,8 @@
       </div>
       <div class="container"></div>
       <div class="text-center">
-          <h2 class="auth-title">Welcome to PSI, Pakistan
-            <span class="auth-title-desc" >Reset your password</span>
+          <h2 class="auth-title">Reset your password
+            <!-- <span class="auth-title-desc" >Reset your password</span> -->
           </h2>
       </div>
       <div class="auth-panel">
@@ -73,10 +73,10 @@
         ContactExpire() {
             this.ContactIsExpire = true;
         },        
-        onSubmit() {
-          console.log(this.form);
-          this.$router.push('dashboard');
-        },
+        // onSubmit() {
+        //   console.log(this.form);
+        //   this.$router.push('dashboard');
+        // },
       },
     }
 </script>
