@@ -45,16 +45,16 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <tr v-for="list in listing">
+                                  <tr v-for="record in records">
                                     <td>
                                     <span class="user-img radius-0">
-                                        <img  :src="list.imagepath" >
+                                        <!-- <img  :src="list.imagepath" > -->
                                     </span>
                                     </td>
-                                    <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{list.fullname}}</a></td>
-                                    <!-- <td>{{list.email}} </td> -->
-                                    <td>{{list.contact_number}} </td>
-                                    <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
+                                    <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{record.first_name}} {{record.last_name}}</a></td>
+                                    <!-- <td>{{record.email}} </td> -->
+                                    <td>{{record.phone_number}} </td>
+                                    <td ><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td>
                                     <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                     <td class="text-center">
                                       <div class="action-icons">
@@ -96,80 +96,21 @@ export default {
     return {
     	service: false,
     	customer: false,
-      changestatus:false,
+        changestatus:false,
         viewcustomer: false,
-            listing: [
-                {
-                    imagepath:'',
-                    fullname:'Levi Boyer',
-                    email:'Chester_Kris15@gmail.com',
-                    contact_number:'894-807-8690',
-                    status:'Active',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Miss Godfrey Lemke',
-                    email:'Guadalupe_Hauck@gmail.com',
-                    contact_number:'136-452-8690',
-                    status:'Banned',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Anais Crist',
-                    email:'Burley.Mueller23@hotmail.com',
-                    contact_number:'306-452-8690',
-                    status:'Pending',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Mrs. Orlando Kris',
-                    email:'Virgie_Douglas@gmail.com',
-                    contact_number:'306-452-8690',
-                    status:'Active',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Levi Boyer',
-                    email:'Chester_Kris15@gmail.com',
-                    contact_number:'894-807-8690',
-                    status:'Active',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Miss Godfrey Lemke',
-                    email:'Guadalupe_Hauck@gmail.com',
-                    contact_number:'136-452-8690',
-                    status:'Banned',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Anais Crist',
-                    email:'Burley.Mueller23@hotmail.com',
-                    contact_number:'306-452-8690',
-                    status:'Pending',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Mrs. Orlando Kris',
-                    email:'Virgie_Douglas@gmail.com',
-                    contact_number:'306-452-8690',
-                    status:'Active',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Anais Crist',
-                    email:'Burley.Mueller23@hotmail.com',
-                    contact_number:'306-452-8690',
-                    status:'Pending',
-                },
-                {
-                    imagepath:'',
-                    fullname:'Mrs. Orlando Kris',
-                    email:'Virgie_Douglas@gmail.com',
-                    contact_number:'306-452-8690',
-                    status:'Active',
-                },
+        listing: [
+            {
+            imagepath:'',
+            fullname:'Levi Boyer',
+            email:'Chester_Kris15@gmail.com',
+            contact_number:'894-807-8690',
+            status:'Active',
+            },
         ],
+        records : [],
+        url : 'api/user',
+        showNoRecordFound : false,
+        search : '',
     	}
   	},
 
@@ -190,6 +131,66 @@ export default {
             this.viewcustomer = false;
             this.changestatus = false;
         },
+        getList(data , page , successCallback){
+            let self = this;
+            self.showNoRecordFound = false;
+            let url = self.url;
+
+            if(typeof(page) == 'undefined' || !page){                        
+                self.records = [];
+            }
+
+            if((typeof(data) !== 'undefined' && data) || this.search){
+                
+                // if(data.workspace_id)
+                // {
+                //     this.search = {
+                //         name :  data.name,
+                //         workspace_id : data.workspace_id,
+                //         status : data.status
+                //     };
+
+                // }
+
+                // var query  = '?pagination=true&keyword='+this.search.name+'&workspace_id='+this.search.workspace_id+'&status='+this.search.status;
+                // url = 'user/search'+query;
+            
+            }else{
+                var query  = '?pagination=false&filter_by_role=1';
+                url = url+query;
+            }
+
+            if(typeof(page) !== 'undefined' && page){
+                url += '&page='+page;   
+            }
+
+            self.$http.get(url).then(response=>{
+                console.log(response.data.response)
+            response = response.data.response//response.body.response;
+            
+            if(typeof(page) !== 'undefined' && page){
+            for(var i = 0 ; i < response.data.length ; i++){
+                 self.records.push(response.data[i]);
+            }
+
+            }else{
+                console.log(response.data)
+                self.records = response.data;
+            }
+            
+
+            self.pagination = response.pagination;
+            
+            if (!self.records.length) {
+                self.showNoRecordFound = true;
+            }
+
+            successCallback(true);
+
+            }).catch(error=>{
+
+            });
+        },
 
     },
     components: {
@@ -197,6 +198,7 @@ export default {
     },
 
     mounted(){
+        this.getList();
 /*        for (var i = 1; i <= 50; i++) {
             var loopperson =  {
                         id : i,
