@@ -62,8 +62,8 @@ public function input($value='')
     $input = request()->only(
         'id','title','user_id','service_id','country_id','state_id',
         'city_id','title','description','address','apartment','zip_code',
-        'images','schedule_at','preference','status','job_type','filter_by','keyword',
-        'pagination'
+        'images','schedule_at','preference','status','job_type',
+        'filter_by_status', 'filter_by_service', 'keyword','pagination'
     );
 
     if($value == 'store'){

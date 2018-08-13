@@ -76,7 +76,10 @@ class ServiceController extends ApiResourceController
                             'filter_by_featured',
                             'zip_code'
                             );
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+
     return $input;
     }
 }
