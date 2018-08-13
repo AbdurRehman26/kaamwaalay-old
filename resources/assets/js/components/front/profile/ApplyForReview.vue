@@ -1,8 +1,8 @@
-<template>
+<template>	
 	<div class="section padding-sm profile-form wrapper-sm">
 		<div class="profile-head">
-			<h1>Complete your profile</h1>
-				<p>To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure.</p>
+			<h1>Complete your profile &amp; apply for Review</h1>
+				<p>To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure.</p>
 		</div>
 
 		<div class="profile-form-section">
@@ -13,12 +13,12 @@
 						<div class="row">
 							<div class="browse-btn">
 								<div class="form-group">
-									<label class="file-upload-label">Browse Photo</label>
+									<label class="file-upload-label">Browse Logo or Photo</label>
 									<input class="form-control file-upload-input" type="file">
 								</div>
 							</div>
 						</div>
-
+					
 					<!-- Alert Tag -->
 						<alert></alert>
 					<!-- Alert Tag -->
@@ -89,7 +89,7 @@
 					</div>
 
 					<div class="row">
-
+						
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Zip Code</label>
@@ -98,19 +98,19 @@
 						</div>
 					</div>
 				</div>
-
+				
 					<div class="create-account-btn">
 						<button class="btn btn-primary">Update Profile
 							<loader></loader>
 						</button>
 					</div>
-
+					
 					<div class="form-detail">
 						<p>Make sure all the information you entered is accuate before submitting.</p>
 					</div>
 				</form>
 			</div>
-
+		
 		</div>
 
 	</div>

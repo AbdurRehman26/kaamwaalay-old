@@ -28,7 +28,7 @@
 								<textarea class="form-control" rows="4">Start typing job details</textarea>
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 
 				<div class="attach-job-files">
@@ -36,7 +36,7 @@
 						<div class="col-md-6">
 							<div class="form-group custom-file">
 								<label>Browse</label>
-								<input class="form-control custom-file-input" type="file"> 
+								<input class="form-control custom-file-input" type="file">
 								<span class="custom-file-label">Click here to choose a photo file</span>
 							</div>
 						</div>
@@ -54,11 +54,11 @@
 						<div class="boxed">
 							<div class="col-md-6">
 								<input type="radio" id="normal" name="need" value="Normal job">
-	  								<label for="normal">No, Normal job</label>
+	  							<label for="normal">No, Normal job</label>
 							</div>
 							<div class="col-md-6">
 								  <input type="radio" id="urgent" name="need" value="Urgent job">
-	  								<label for="urgent">Yes, Urgent job</label>
+	  							  <label for="urgent">Yes, Urgent job</label>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -77,9 +77,9 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="form-group">
+							<div class="form-group custom-datepicker">
 								<label>Select Date</label>
-								<input class="form-control" placeholder="Select Date">
+									<date-picker v-model="value" format="DD-MM-YYYY" lang="en"></date-picker>
 							</div>
 						</div>
 					</div>
@@ -158,22 +158,16 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="">Expiry Date</label>							
+							<label for="">Expiry Date</label>
 							<div class="row">
 								<div class="col-md-6">
-									<div class="form-group">
-										<select class="form-control">
-										<option selected="" disabled="">Month</option>
-										<option>January</option>
-									</select>
+									<div class="form-group custom-datepicker">
+										<date-picker v-model="value_month" type="month" placeholder="Select Month" format="MM" lang="en"></date-picker>
 									</div>
 								</div>
 								<div class="col-md-6">
-									<div class="form-group">
-										<select class="form-control">
-										<option selected="" disabled="">Year</option>
-										<option>2017</option>
-									</select>
+									<div class="form-group custom-datepicker">
+										<date-picker v-model="value_year" type="year" placeholder="Select Year" format="YYYY" lang="en"></date-picker>
 									</div>
 								</div>
 							</div>
@@ -198,6 +192,37 @@
 				</div>
 
 			</form>
-		</div>	
+		</div>
 	</div>
 </template>
+
+<script>
+import DatePicker from 'vue2-datepicker'
+ 
+export default {
+  components: { DatePicker },
+  data() {
+    return {
+   	value: '',
+   	value_month:'',
+   	value_year:'',
+    time1: '',
+    time2: '',
+    time3: '',
+      shortcuts: [
+        {
+          text: 'Today',
+          onClick: () => {
+            this.time3 = [ new Date(), new Date() ]
+          }
+        }
+      ],
+      timePickerOptions:{
+        start: '00:00',
+        step: '00:30',
+        end: '23:30'
+      }
+    }
+  }
+}
+</script>

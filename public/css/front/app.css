@@ -10767,8 +10767,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a);
-  src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff");
-  /*     url('../fonts/front/icomoon.svg?3toe5f#icomoon') format('svg'); */
+  src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff"), url(/fonts/icomoon.svg?4ad4e11cb927f5987a7cc998c6f1e3f0#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -12313,6 +12312,52 @@ textarea {
   top: 3px;
 }
 
+.custom-radio {
+  position: relative;
+}
+
+.custom-radio.boxed {
+  padding: 0;
+}
+
+.custom-radio.boxed input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.custom-radio.boxed label {
+  padding: 10px;
+  min-height: 100px;
+  border-radius: 8px;
+  font-size: 17px;
+}
+
+.custom-radio.boxed label span {
+  display: block;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  padding-top: 3px;
+  color: #1A1A1A;
+}
+
+.custom-radio.boxed label i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 18px;
+  display: none;
+}
+
+.custom-radio.boxed label .verticle-align {
+  height: 80px;
+}
+
+.custom-radio.boxed input[type="radio"]:checked + label i {
+  display: block;
+}
+
 .alert {
   /* height:$alert-height; */
   height: auto;
@@ -12566,6 +12611,36 @@ textarea {
   top: 66px;
   width: 46px;
   text-align: center;
+}
+
+.custom-datepicker label {
+  display: block;
+}
+
+.custom-datepicker .mx-datepicker {
+  width: 100%;
+}
+
+.custom-datepicker .mx-input {
+  border: 1px solid #B2B2B2;
+  height: 38px;
+  padding: 9px 16px;
+  line-height: 1.5;
+}
+
+.custom-datepicker svg.mx-input-append {
+  display: none;
+}
+
+.custom-datepicker svg text {
+  display: none;
+}
+
+.custom-datepicker .mx-calendar-icon {
+  background-image: url("/images/front/svg/calendar.svg") !important;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  stroke: none;
 }
 
 .header {
@@ -13246,7 +13321,7 @@ textarea {
 }
 
 .wrapper-sm {
-  max-width: 850px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
