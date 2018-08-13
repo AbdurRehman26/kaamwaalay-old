@@ -4204,6 +4204,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -66306,94 +66326,9 @@ var render = function() {
     [
       _c("h1", [_vm._v("Sign Up")]),
       _vm._v(" "),
-      _c(
-        "ul",
-        {
-          staticClass: "nav nav-tabs",
-          attrs: { id: "myTab", role: "tablist" }
-        },
-        [
-          _c(
-            "li",
-            {
-              staticClass: "nav-item",
-              class: { active: _vm.tabval === "firstsec" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link active",
-                  attrs: {
-                    id: "home-tab",
-                    "data-toggle": "tab",
-                    href: "#home",
-                    role: "tab",
-                    "aria-controls": "home",
-                    "aria-selected": "true"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.tabval = "firstsec"
-                    }
-                  }
-                },
-                [
-                  _vm._v("I want to hire a service provider\n\t\t\t\t"),
-                  _c("p", [
-                    _vm._v(
-                      "Get introduced to the right professional for your jobs"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm.tabval == "firstsec"
-                    ? _c("i", { staticClass: "icon-checkmark2" })
-                    : _vm._e()
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "nav-item",
-              class: { active: _vm.tabval === "secondsec" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    id: "profile-tab",
-                    "data-toggle": "tab",
-                    href: "#profile",
-                    role: "tab",
-                    "aria-controls": "profile",
-                    "aria-selected": "false"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.tabval = "secondsec"
-                    }
-                  }
-                },
-                [
-                  _vm._v("I want to grow my business\n\t\t\t\t"),
-                  _c("p", [
-                    _vm._v("Respond to customer requests and get hired")
-                  ]),
-                  _vm._v(" "),
-                  _vm.tabval == "secondsec"
-                    ? _c("i", { staticClass: "icon-checkmark2" })
-                    : _vm._e()
-                ]
-              )
-            ]
-          )
-        ]
-      ),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "tab-content" }, [
         _c(
@@ -66408,13 +66343,13 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "sign-up-form service-provider-form" }, [
-              _vm._m(0),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "form-signup" }, [
                 _c("form", [
-                  _vm._m(1),
+                  _vm._m(3),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("div", { staticClass: "create-account-btn" }, [
                     _c(
@@ -66425,12 +66360,12 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _vm._m(5)
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(6)
           ]
         ),
         _vm._v(" "),
@@ -66446,13 +66381,13 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "sign-up-form business-form" }, [
-              _vm._m(5),
+              _vm._m(7),
               _vm._v(" "),
               _c("div", { staticClass: "form-signup" }, [
                 _c("form", [
-                  _vm._m(6),
+                  _vm._m(8),
                   _vm._v(" "),
-                  _vm._m(7),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c("div", { staticClass: "create-account-btn" }, [
                     _c(
@@ -66463,12 +66398,12 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(8)
+                  _vm._m(10)
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(9)
+            _vm._m(11)
           ]
         )
       ])
@@ -66476,6 +66411,79 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12 col-sm-6 col-sm-6" }, [
+        _c("div", { staticClass: "custom-radio boxed" }, [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              name: "accountType",
+              id: "type_hire_provider",
+              checked: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "type_hire_provider" } }, [
+            _c("div", { staticClass: "verticle-align" }, [
+              _c("div", { staticClass: "inner" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t\t"
+                ),
+                _c("span", [
+                  _vm._v(
+                    "Get introduced to the right professional for your jobs"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("i", { staticClass: "icon-checkmark2" })
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xs-12 col-sm-6 col-sm-6" }, [
+        _c("div", { staticClass: "custom-radio boxed" }, [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              name: "accountType",
+              id: "type_service_provider"
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "type_service_provider" } }, [
+            _c("div", { staticClass: "verticle-align" }, [
+              _c("div", { staticClass: "inner" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t\t"
+                ),
+                _c("span", [
+                  _vm._v("Respond to customer requests and get hired")
+                ]),
+                _vm._v(" "),
+                _c("i", { staticClass: "icon-checkmark2" })
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

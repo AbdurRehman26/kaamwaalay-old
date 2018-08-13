@@ -12281,6 +12281,52 @@ textarea {
   top: 3px;
 }
 
+.custom-radio {
+  position: relative;
+}
+
+.custom-radio.boxed {
+  padding: 0;
+}
+
+.custom-radio.boxed input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.custom-radio.boxed label {
+  padding: 10px;
+  min-height: 100px;
+  border-radius: 8px;
+  font-size: 17px;
+}
+
+.custom-radio.boxed label span {
+  display: block;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  padding-top: 3px;
+  color: #1A1A1A;
+}
+
+.custom-radio.boxed label i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 18px;
+  display: none;
+}
+
+.custom-radio.boxed label .verticle-align {
+  height: 80px;
+}
+
+.custom-radio.boxed input[type="radio"]:checked + label i {
+  display: block;
+}
+
 .alert {
   /* height:$alert-height; */
   height: auto;
@@ -13214,7 +13260,7 @@ textarea {
 }
 
 .wrapper-sm {
-  max-width: 850px;
+  max-width: 760px;
   margin: 0 auto;
 }
 

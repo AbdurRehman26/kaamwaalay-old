@@ -1,4 +1,4 @@
-<template>	
+<template>
 	<div class="section padding-sm profile-form wrapper-sm">
 		<div class="profile-head">
 			<h1>Complete your profile</h1>
@@ -18,7 +18,7 @@
 								</div>
 							</div>
 						</div>
-					
+
 					<!-- Alert Tag -->
 						<alert></alert>
 					<!-- Alert Tag -->
@@ -89,7 +89,7 @@
 					</div>
 
 					<div class="row">
-						
+
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Zip Code</label>
@@ -98,19 +98,19 @@
 						</div>
 					</div>
 				</div>
-				
+
 					<div class="create-account-btn">
 						<button class="btn btn-primary">Update Profile
 							<loader></loader>
 						</button>
 					</div>
-					
+
 					<div class="form-detail">
 						<p>Make sure all the information you entered is accuate before submitting.</p>
 					</div>
 				</form>
 			</div>
-		
+
 		</div>
 
 	</div>
