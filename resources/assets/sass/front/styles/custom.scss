@@ -206,6 +206,10 @@ $section-padding-sm:20px 0px;
         font-size: $font-size-base;
         font-family: $font-bold;
     }
+    h3{
+        font-size: 16px;
+        margin-bottom: 31px;
+    }
 }
 
 .how-it-work{
@@ -341,6 +345,10 @@ $section-padding-sm:20px 0px;
     border: 2px solid #E0E0E0;
     border-left: 0px solid #E0E0E0;
     border-right: 0px solid #E0E0E0;
+}
+
+.border-bottom{
+    border-bottom: 1px solid #E0E0E0;
 }
 
 // Sign Up Sass Start
@@ -1287,6 +1295,28 @@ li.nav-item.active {
     }
 }
 
+body{
+    .chat-feedback-message{
+        &.white-msg{
+            background-color: #fff;
+                &:after, &:before{
+                    content: '';
+                    border-right: 10px solid #fff !important;
+                }
+                &:after{
+                    content: '';
+                    border-right: 10px solid #E0E0E0 !important;
+                    /* left: -11px !important; */
+                    left: -12px !important;            
+                }
+                &:before {
+                    content: '';
+                    z-index: 9;
+                }        
+        }
+    }
+}
+
 .vue-star-rating-rating-text{
     display: none;
 }
@@ -1442,6 +1472,11 @@ li.nav-item.active {
             right: 0;
             top: 0;
         }
+        .ratings{
+            position: absolute;
+            right: 0;
+            top: -8px;            
+        }
     }
 }
 
@@ -1488,3 +1523,47 @@ li.nav-item.active {
     }
 }
 
+
+/* service detail */
+
+.provider-information{
+    padding-right: 30px;
+}
+.service-detail{
+    position: relative;
+    padding-bottom: 0px;
+    h3{
+        font-size: $font-size-xs;
+        margin-bottom: 0px;
+        display: inline-block;
+    }
+}
+.service-avaliable{
+    h3{
+        font-size: $font-size-xs;
+    }
+    ul{
+        padding: 0px;
+        li{
+            border: 1px solid #E0E0E0;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            font-size: $font-size-xs - 1;
+            padding: 10px 0px 10px 24px;
+            margin-bottom: 11px;
+            position: relative;
+            &:before{
+                content: '';
+                width: 12px;
+                height: 12px;
+                border-radius: 100%;
+                position: absolute;
+                top: 13px;
+                bottom: auto;                
+                display: flex;
+                left: -6px;
+                background-color: $primary-color;
+            }
+        }
+    }
+}

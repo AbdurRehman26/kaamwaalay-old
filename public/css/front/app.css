@@ -11373,6 +11373,10 @@ body::-webkit-scrollbar-thumb
 }
  */
 
+.pointer {
+  cursor: pointer;
+}
+
 .xy-scrollbar {
   max-height: 100%;
   width: 100%;
@@ -13176,6 +13180,11 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "AkzidenzGroteskBE-Bold";
 }
 
+.text-notifer h3 {
+  font-size: 16px;
+  margin-bottom: 31px;
+}
+
 .how-it-work .icon {
   display: block;
   margin: 0 auto;
@@ -13324,6 +13333,10 @@ input[type=number]::-webkit-outer-spin-button {
   border: 2px solid #E0E0E0;
   border-left: 0px solid #E0E0E0;
   border-right: 0px solid #E0E0E0;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .wrapper-sm {
@@ -14362,6 +14375,28 @@ li.nav-item.active {
   z-index: 9;
 }
 
+body .chat-feedback-message.white-msg {
+  background-color: #fff;
+}
+
+body .chat-feedback-message.white-msg:after,
+body .chat-feedback-message.white-msg:before {
+  content: '';
+  border-right: 10px solid #fff !important;
+}
+
+body .chat-feedback-message.white-msg:after {
+  content: '';
+  border-right: 10px solid #E0E0E0 !important;
+  /* left: -11px !important; */
+  left: -12px !important;
+}
+
+body .chat-feedback-message.white-msg:before {
+  content: '';
+  z-index: 9;
+}
+
 .vue-star-rating-rating-text {
   display: none;
 }
@@ -14540,6 +14575,12 @@ li.nav-item.active {
   top: 0;
 }
 
+.chat-feedback .feeback-detail .ratings {
+  position: absolute;
+  right: 0;
+  top: -8px;
+}
+
 .get-started-section h1 {
   margin-bottom: 24px;
 }
@@ -14582,5 +14623,55 @@ li.nav-item.active {
 
 .jobs-completed .review-job.left-border {
   border-left: 1px solid #ccc;
+}
+
+/* service detail */
+
+.provider-information {
+  padding-right: 30px;
+}
+
+.service-detail {
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.service-detail h3 {
+  font-size: 16px;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+.service-avaliable h3 {
+  font-size: 16px;
+}
+
+.service-avaliable ul {
+  padding: 0px;
+}
+
+.service-avaliable ul li {
+  border: 1px solid #E0E0E0;
+  background-color: #F9F9F9;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 10px 0px 10px 24px;
+  margin-bottom: 11px;
+  position: relative;
+}
+
+.service-avaliable ul li:before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  position: absolute;
+  top: 13px;
+  bottom: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: -6px;
+  background-color: #6004BA;
 }
 

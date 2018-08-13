@@ -3457,169 +3457,98 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			categoryimage: '/images/front/explore/carpenter1.jpg',
+		data: function data() {
+				return {
+						categoryimage: '/images/front/explore/carpenter1.jpg',
 
-			jobimage: '/images/front/storage/logoimage1.png',
-			reviewerimage: '/images/front/storage/personimage1.png',
+						jobimage: '/images/front/storage/logoimage1.png',
+						reviewerimage: '/images/front/storage/personimage1.png',
 
-			joblisting: [{
-				job_title_image: '/images/front/storage/logoimage1.png',
-				job_title: 'CHS US Carpenter and Roofing',
-				job_feedback: 261,
-				job_perform: 270,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage1.png',
-				latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-				latest_reviewer_name: 'Shirley Webb',
-				latest_review_post_date: 'August, 2018'
+						joblisting: [{
+								job_title: 'CHS US Carpenter and Roofing',
+								job_feedback: 261,
+								job_perform: 270,
+								job_location: 'New York, NY',
+								job_member_since: 'Jan, 2018',
+								job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.",
 
-			}, {
-				job_title_image: '/images/front/storage/logoimage2.png',
-				job_title: 'M.D.S Joinery & Glazing',
-				job_feedback: 180,
-				job_perform: 208,
-				job_location: 'New York, NY',
-				job_member_since: 'Feb, 2018',
-				job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage2.png',
-				latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
-				latest_reviewer_name: 'Keith McCoy',
-				latest_review_post_date: 'August, 2018'
+								servicesavaliable: [{
+										title: 'General carpentry'
+								}, {
+										title: 'Furniture'
+								}, {
+										title: 'Glazing Installation'
+								}, {
+										title: 'Wooden deck repair'
+								}],
+								review_details: [{
 
-			}, {
-				job_title_image: '/images/front/storage/personimage6.png',
-				job_title: 'Christopher Ward Joinery Services',
-				job_feedback: 164,
-				job_perform: 174,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage7.png',
-				latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
-				latest_reviewer_name: 'Ashley Bel',
-				latest_review_post_date: 'September, 2018'
+										latest_review_image: '/images/front/storage/personimage1.png',
+										latest_review_description: 'Matt installed a new fence at our school and I am more than pleased, he was punctual, polite and did the work quickly and I would offer him other work without hesitation.',
+										list_ratings: 5,
+										latest_reviewer_name: 'Lauren Gomez',
+										latest_review_post_date: 'August, 2018'
+								}, {
 
-			}, {
-				job_title_image: '/images/front/storage/personimage3.png',
-				job_title: 'C&N Home Solutions',
-				job_feedback: 124,
-				job_perform: 148,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage4.png',
-				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-				latest_reviewer_name: 'Lauren Gomez',
-				latest_review_post_date: 'March, 2018'
+										latest_review_image: '/images/front/storage/personimage2.png',
+										latest_review_description: 'Matt did a great job. Took him about 10 minutes to get the door down to size and re-hang it. Room looks a lot better now. Thank you!',
+										list_ratings: 4,
+										latest_reviewer_name: 'Paul Payne',
+										latest_review_post_date: 'August, 2018'
+								}, {
 
-			}, {
-				job_title_image: '/images/front/storage/personimage5.png',
-				job_title: 'C M H Maintenance',
-				job_feedback: 0,
-				job_perform: 0,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-				review_details: false,
-				latest_review_image: '/images/front/storage/personimage4.png',
-				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-				latest_reviewer_name: 'Lauren Gomez',
-				latest_review_post_date: 'March, 2018'
+										latest_review_image: '/images/front/storage/personimage3.png',
+										latest_review_description: 'Matt came exactly when he said, fixed the problem with my window with no fuss and at a good price. Very good bloke and would highly recommend!',
+										list_ratings: 3,
+										latest_reviewer_name: 'William Willis',
+										latest_review_post_date: 'July, 2018'
+								}, {
 
-			}],
+										latest_review_image: '/images/front/storage/personimage4.png',
+										latest_review_description: 'Matt did an amazing job.I was happy with every part of the service he provided. He turned up at the agreed time for the estimate and returned promptly at the agreed time and date to complete the job, which was very affordable.',
+										list_ratings: 4,
+										latest_reviewer_name: 'Brian Howell',
+										latest_review_post_date: 'June, 2018'
+								}, {
 
-			category: [{
+										latest_review_image: '/images/front/storage/personimage5.png',
+										latest_review_description: 'I would highly recommend Matt. He fitted a loft hatch and ladder for us, fitted new handles and locks to our windows and also child safety catches to all our windows upstairs. He was very professional and punctual and we were happy with the work undertaken, which he did very quickly.',
+										list_ratings: 5,
+										latest_reviewer_name: 'Timothy Schultz',
+										latest_review_post_date: 'June, 2018'
+								}]
 
-				title: 'Related services',
-				categoryitems: [{
-					itemimage: '/images/front/explore/carpenter1.jpg',
-					itemtitle: 'Wooden partition service'
-				}, {
-					itemimage: '/images/front/explore/carpenter2.jpg',
-					itemtitle: 'Furniture repair & Installation'
-				}, {
-					itemimage: '/images/front/explore/carpenter3.jpg',
-					itemtitle: 'Wooden deck building & repair'
-				}]
+						}]
 
-			}]
-
-		};
-	},
-
-
-	methods: {
-		AddCustomer: function AddCustomer() {
-			this.customer = true;
+				};
 		},
-		ViewCustomerDetail: function ViewCustomerDetail() {
-			/*this.viewcustomer = true;*/
-			this.$router.push({ name: 'customerdetail' });
-		},
-		changestatuspopup: function changestatuspopup() {
-			this.changestatus = true;
-		},
-		HideModal: function HideModal() {
-			this.customer = false;
-			this.viewcustomer = false;
-			this.changestatus = false;
-		}
-	},
-	components: {
-		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-	},
 
-	mounted: function mounted() {}
+
+		methods: {
+				AddCustomer: function AddCustomer() {
+						this.customer = true;
+				},
+				changestatuspopup: function changestatuspopup() {
+						this.changestatus = true;
+				},
+				HideModal: function HideModal() {
+						this.customer = false;
+						this.viewcustomer = false;
+						this.changestatus = false;
+				},
+				categorylisting: function categorylisting() {
+						this.$router.push({ name: 'Explore_Detail' });
+				}
+		},
+		components: {
+				StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+		},
+
+		mounted: function mounted() {}
 });
 
 /***/ }),
@@ -3888,6 +3817,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.customer = false;
 			this.viewcustomer = false;
 			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -64722,14 +64654,22 @@ var render = function() {
             return _c("div", { staticClass: "job-post-list" }, [
               _c("div", { staticClass: "job-post-details" }, [
                 _c("div", {
-                  staticClass: "job-image",
+                  staticClass: "job-image pointer",
                   style: {
                     "background-image": "url(" + listing.job_title_image + ")"
-                  }
+                  },
+                  on: { click: _vm.servicedetail }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "job-common-description" }, [
-                  _c("h3", [_vm._v(_vm._s(listing.job_title))]),
+                  _c(
+                    "h3",
+                    {
+                      staticClass: "pointer",
+                      on: { click: _vm.servicedetail }
+                    },
+                    [_vm._v(_vm._s(listing.job_title))]
+                  ),
                   _vm._v(" "),
                   _vm._m(4, true),
                   _vm._v(" "),
@@ -66004,7 +65944,10 @@ var render = function() {
   return _c("div", { staticClass: "category-detail" }, [
     _c(
       "div",
-      { staticClass: "next-project grey-bg elementary-banner section-padd md" },
+      {
+        staticClass:
+          "next-project grey-bg elementary-banner section-padd md border-bottom"
+      },
       [
         _c("div", { staticClass: "container element-index text-center md" }, [
           _c("div", { staticClass: "content-sec" }, [
@@ -66040,93 +65983,57 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "service-detail" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { href: "javascript:void(0);" }
+                  },
+                  [_vm._v("Post Job & Invite to Bid")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link",
+                    attrs: { href: "javascript:void(0);" },
+                    on: { click: _vm.categorylisting }
+                  },
+                  [_vm._v("Go back")]
+                )
+              ])
             ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ]
     ),
-    _vm._v(" "),
-    _vm._m(2),
     _vm._v(" "),
     _c("div", { staticClass: "job-post-container section-padd sm" }, [
       _c(
         "div",
         { staticClass: "container md" },
-        [
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._l(_vm.joblisting, function(listing) {
-            return _c("div", { staticClass: "job-post-list" }, [
-              _c("div", { staticClass: "job-post-details" }, [
-                _c("div", {
-                  staticClass: "job-image",
-                  style: {
-                    "background-image": "url(" + listing.job_title_image + ")"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "job-common-description" }, [
-                  _c("h3", [_vm._v(_vm._s(listing.job_title))]),
-                  _vm._v(" "),
-                  _vm._m(4, true),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "jobs-rating" },
-                    [
-                      _c("star-rating", {
-                        attrs: {
-                          "star-size": 20,
-                          "read-only": "",
-                          rating: 4,
-                          "active-color": "#8200ff"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-done" }, [
-                        _c("span", { staticClass: "review-job" }, [
-                          _vm._v(
-                            _vm._s(listing.job_feedback) + " Feedback reviews"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        listing.job_perform == 0
-                          ? _c("span", { staticClass: "review-job" }, [
-                              _vm._v("No Jobs performed")
-                            ])
-                          : _c("span", { staticClass: "review-job" }, [
-                              _vm._v(
-                                _vm._s(listing.job_perform) + " Jobs performed"
-                              )
-                            ])
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary post-bid",
-                      attrs: { href: "javascript:void(0);" }
-                    },
-                    [_vm._v("Post Job & Invite to Bid")]
-                  )
+        _vm._l(_vm.joblisting, function(listing) {
+          return _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-9" }, [
+              _c("div", { staticClass: "provider-information" }, [
+                _c("div", { staticClass: "service-detail" }, [
+                  _c("h3", [_vm._v(_vm._s(listing.job_title))])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "member-details" }, [
                   _c("p", { staticClass: "location" }, [
                     _c("i", { staticClass: "icon-location" }),
-                    _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
+                    _vm._v(" \n\t\t\t\t\t\t\t\t\tLocation "),
                     _c("strong", [_vm._v(_vm._s(listing.job_location))])
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "member-since" }, [
-                    _c("i", { staticClass: "icon-calendar-daily" }),
-                    _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
+                    _vm._v(
+                      "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tMember since "
+                    ),
                     _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
                   ])
                 ]),
@@ -66135,124 +66042,116 @@ var render = function() {
                   _c("p", [_vm._v(_vm._s(listing.job_description))])
                 ]),
                 _vm._v(" "),
-                listing.review_details == true
-                  ? _c("div", { staticClass: "chat-feedback" }, [
-                      _vm._m(5, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "chat-feedback-column" }, [
-                        _c("div", {
-                          staticClass: "chat-feedback-image",
-                          style: {
-                            "background-image":
-                              "url(" + listing.latest_review_image + ")"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "chat-feedback-message" }, [
-                          _c("p", [
-                            _vm._v(_vm._s(listing.latest_review_description))
-                          ]),
+                _c(
+                  "div",
+                  { staticClass: "chat-feedback" },
+                  [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _vm._l(listing.review_details, function(reviewer) {
+                      return _c(
+                        "div",
+                        { staticClass: "chat-feedback-column" },
+                        [
+                          _c("div", {
+                            staticClass: "chat-feedback-image",
+                            style: {
+                              "background-image":
+                                "url(" + reviewer.latest_review_image + ")"
+                            }
+                          }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "feeback-detail" }, [
-                            _c("p", { staticClass: "feedback-personal-info" }, [
-                              _c(
-                                "a",
-                                { attrs: { href: "javascript:void(0);" } },
-                                [_vm._v(_vm._s(listing.latest_reviewer_name))]
-                              ),
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
-                              ),
-                              _c("strong", [
-                                _vm._v(_vm._s(listing.latest_review_post_date))
+                          _c(
+                            "div",
+                            { staticClass: "chat-feedback-message white-msg" },
+                            [
+                              _c("p", [
+                                _vm._v(
+                                  _vm._s(reviewer.latest_review_description)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "feeback-detail" }, [
+                                _c(
+                                  "p",
+                                  { staticClass: "feedback-personal-info" },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "javascript:void(0);" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(reviewer.latest_reviewer_name)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t\t "
+                                    ),
+                                    _c("strong", [
+                                      _vm._v(
+                                        _vm._s(reviewer.latest_review_post_date)
+                                      )
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "ratings" },
+                                  [
+                                    _c("star-rating", {
+                                      attrs: {
+                                        "star-size": 20,
+                                        "read-only": "",
+                                        rating: [reviewer.list_ratings],
+                                        "active-color": "#8200ff"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
                               ])
-                            ]),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "icon-quotes-right3" })
-                          ])
-                        ])
-                      ])
+                            ]
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
+              _c("div", { staticClass: "service-avaliable" }, [
+                _c("h3", { staticClass: "m-b-20" }, [
+                  _vm._v("Services offered")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(listing.servicesavaliable, function(service) {
+                    return _c("li", [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t" +
+                          _vm._s(service.title) +
+                          "\n\t\t\t\t\t\t\t"
+                      )
                     ])
-                  : _vm._e()
+                  })
+                )
               ])
             ])
-          })
-        ],
-        2
+          ])
+        })
       )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "featured-categories section-padd sm  elementary-banner p-t-130"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "container element-index" },
-          _vm._l(_vm.category, function(maincategory) {
-            return _c("div", { staticClass: "category-section" }, [
-              _c("div", { staticClass: "category-title" }, [
-                _c("h2", [_vm._v(_vm._s(maincategory.title))])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "category-items" },
-                [
-                  _vm._l(maincategory.categoryitems, function(categoryabc) {
-                    return _c("div", { staticClass: "items" }, [
-                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                        _c("div", {
-                          staticClass: "item-image",
-                          style: {
-                            "background-image":
-                              "url(" + categoryabc.itemimage + ")"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
-                      ])
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _vm._m(6, true)
-                ],
-                2
-              )
-            ])
-          })
-        ),
-        _vm._v(" "),
-        _vm._m(7)
-      ]
-    )
+    ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "service-detail" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { href: "javascript:void(0);" }
-        },
-        [_vm._v("Post Job & Invite to Bid")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "btn btn-link", attrs: { href: "javascript:void(0);" } },
-        [_vm._v("Go back")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -66273,98 +66172,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "grey-bg section-padd xs border-top-bottom" },
-      [
-        _c("div", { staticClass: "container md" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-10 p-r-0" }, [
-              _c("div", { staticClass: "search-filter m-b-0" }, [
-                _c("input", {
-                  staticClass: "form-control lg search-service",
-                  attrs: {
-                    type: "text",
-                    placeholder: "What service do you need?",
-                    name: ""
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "container-zip-code" }, [
-                  _c("i", { staticClass: "icon-location" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control lg zip-code",
-                    attrs: { type: "number", placeholder: "Zip code", name: "" }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2 p-r-0" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary width-100",
-                  attrs: { href: "javscript:void(0);" }
-                },
-                [_vm._v("Search")]
-              )
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-notifer" }, [
-      _c("p", [
-        _vm._v("14 General carpentry service professionals found near you")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-notifer" }, [
-      _c("p", [_vm._v("Latest feedback & review")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("View all services related to electricians "),
-        _c("i", { staticClass: "icon-keyboard_arrow_right" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "elements" }, [
-      _c("img", {
-        staticClass: "top-left",
-        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
-      }),
-      _vm._v(" "),
-      _c("img", {
-        staticClass: "bottom-right width-max",
-        attrs: { src: "/images/front/banner-bg/bg-8.png" }
-      })
+      _c("h3", [_vm._v("Feedback & Reviews")])
     ])
   }
 ]
@@ -85789,7 +85598,7 @@ var routes = [
     },
     component: __webpack_require__("./resources/assets/js/components/front/explore/service-provider.vue")
 }, {
-    name: 'Explore_Detail',
+    name: 'Service_Provider_Detail',
     path: '/explore/service_provider/service_provider_detail',
     meta: {
         title: 'Professional Service Marketplace | Service Provider Detail',
