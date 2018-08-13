@@ -114,6 +114,19 @@ const routes = [
         component: require('./components/front/job-post/main.vue'),
     },
 
+    /*404*/
+
+   {
+        name: '404',
+        path: '*',
+        component: require('./components/404/Main.vue'),
+        meta: {
+            title: '404 Not Found',
+            noHeader: true,
+            bodyClass: 'not-found-page',
+        },
+    },    
+
 
 ]
 
