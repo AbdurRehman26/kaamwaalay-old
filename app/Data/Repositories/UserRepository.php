@@ -166,4 +166,8 @@ public $model;
 
         return false;
     }
+
+    public function getTotalCountByCriteria($crtieria) {
+        return  $this->model->where($crtieria)->count();
+    }
 }
