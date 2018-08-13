@@ -960,6 +960,7 @@ li.nav-item.active {
 .business-proof {
     position: relative;
     padding-top: 30px;
+    padding-bottom: 10px;
     border-top: 1px solid $grey-lite;
     &:after {
         content:'PROOF OF BUSINESS';
@@ -969,10 +970,10 @@ li.nav-item.active {
         font-family: $font_medium;
         font-size: 14px;
         color: $grey-Edark;
-        left: 40%;
+        left: 37%;
         background: #fff;
         text-align: center;
-        width: 164px;
+        width: 195px;
     }
     p {
         font-size: 14px;
@@ -981,6 +982,54 @@ li.nav-item.active {
     ul {
         li {
             list-style: disc;
+        }
+    }
+}
+.provider-address {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        content:'ADDRESS';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 42%;
+        background: #fff;
+        text-align: center;
+        width: 110px;
+    } 
+}
+.account-fee {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        content:'ACCOUNT FEE';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 140px;
+    } 
+    .verification-alert {
+        p {
+            color: $grey-Edark;
+            font-size: 14px;
+            span {
+                color: $primary-color;
+                font-family: $font_medium;
+            }
         }
     }
 }
@@ -999,8 +1048,8 @@ li.nav-item.active {
 .filter-btn-top-space {
     margin-top: 8px;
 }
-.mt-40{
-    margin-top: 40px;
+.mt-35{
+    margin-top: 35px;
 }
 .add-photos {
     display: block;

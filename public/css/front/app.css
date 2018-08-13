@@ -13990,6 +13990,7 @@ li.nav-item.active {
 .business-proof {
   position: relative;
   padding-top: 30px;
+  padding-bottom: 10px;
   border-top: 1px solid #E0E0E0;
 }
 
@@ -14001,10 +14002,10 @@ li.nav-item.active {
   font-family: "AkzidenzGroteskBE-Md";
   font-size: 14px;
   color: #494949;
-  left: 40%;
+  left: 37%;
   background: #fff;
   text-align: center;
-  width: 164px;
+  width: 195px;
 }
 
 .business-proof p {
@@ -14014,6 +14015,58 @@ li.nav-item.active {
 
 .business-proof ul li {
   list-style: disc;
+}
+
+.provider-address {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.provider-address:after {
+  content: 'ADDRESS';
+  position: absolute;
+  top: -10px;
+  text-transform: capitalize;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #494949;
+  left: 42%;
+  background: #fff;
+  text-align: center;
+  width: 110px;
+}
+
+.account-fee {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.account-fee:after {
+  content: 'ACCOUNT FEE';
+  position: absolute;
+  top: -10px;
+  text-transform: capitalize;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #494949;
+  left: 40%;
+  background: #fff;
+  text-align: center;
+  width: 140px;
+}
+
+.account-fee .verification-alert p {
+  color: #494949;
+  font-size: 14px;
+}
+
+.account-fee .verification-alert p span {
+  color: #6004BA;
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .post-job-form {
@@ -14030,8 +14083,8 @@ li.nav-item.active {
   margin-top: 8px;
 }
 
-.mt-40 {
-  margin-top: 40px;
+.mt-35 {
+  margin-top: 35px;
 }
 
 .add-photos {
