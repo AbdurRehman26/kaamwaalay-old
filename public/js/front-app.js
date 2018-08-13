@@ -3040,281 +3040,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/detail-category.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			categoryimage: '/images/front/explore/carpenter1.jpg',
-
-			jobimage: '/images/front/storage/logoimage1.png',
-			reviewerimage: '/images/front/storage/personimage1.png',
-
-			joblisting: [{
-				job_title_image: '/images/front/storage/logoimage1.png',
-				job_title: 'CHS US Carpenter and Roofing',
-				job_feedback: 261,
-				job_perform: 270,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage1.png',
-				latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-				latest_reviewer_name: 'Shirley Webb',
-				latest_review_post_date: 'August, 2018'
-
-			}, {
-				job_title_image: '/images/front/storage/logoimage2.png',
-				job_title: 'M.D.S Joinery & Glazing',
-				job_feedback: 180,
-				job_perform: 208,
-				job_location: 'New York, NY',
-				job_member_since: 'Feb, 2018',
-				job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage2.png',
-				latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
-				latest_reviewer_name: 'Keith McCoy',
-				latest_review_post_date: 'August, 2018'
-
-			}, {
-				job_title_image: '/images/front/storage/personimage6.png',
-				job_title: 'Christopher Ward Joinery Services',
-				job_feedback: 164,
-				job_perform: 174,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage7.png',
-				latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
-				latest_reviewer_name: 'Ashley Bel',
-				latest_review_post_date: 'September, 2018'
-
-			}, {
-				job_title_image: '/images/front/storage/personimage3.png',
-				job_title: 'C&N Home Solutions',
-				job_feedback: 124,
-				job_perform: 148,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-				review_details: true,
-				latest_review_image: '/images/front/storage/personimage4.png',
-				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-				latest_reviewer_name: 'Lauren Gomez',
-				latest_review_post_date: 'March, 2018'
-
-			}, {
-				job_title_image: '/images/front/storage/personimage5.png',
-				job_title: 'C M H Maintenance',
-				job_feedback: 0,
-				job_perform: 0,
-				job_location: 'New York, NY',
-				job_member_since: 'Jan, 2018',
-				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-				review_details: false,
-				latest_review_image: '/images/front/storage/personimage4.png',
-				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-				latest_reviewer_name: 'Lauren Gomez',
-				latest_review_post_date: 'March, 2018'
-
-			}],
-
-			category: [{
-
-				title: 'Related services',
-				categoryitems: [{
-					itemimage: '/images/front/explore/carpenter1.jpg',
-					itemtitle: 'Wooden partition service'
-				}, {
-					itemimage: '/images/front/explore/carpenter2.jpg',
-					itemtitle: 'Furniture repair & Installation'
-				}, {
-					itemimage: '/images/front/explore/carpenter3.jpg',
-					itemtitle: 'Wooden deck building & repair'
-				}]
-
-			}]
-
-		};
-	},
-
-
-	methods: {
-		AddCustomer: function AddCustomer() {
-			this.customer = true;
-		},
-		ViewCustomerDetail: function ViewCustomerDetail() {
-			/*this.viewcustomer = true;*/
-			this.$router.push({ name: 'customerdetail' });
-		},
-		changestatuspopup: function changestatuspopup() {
-			this.changestatus = true;
-		},
-		HideModal: function HideModal() {
-			this.customer = false;
-			this.viewcustomer = false;
-			this.changestatus = false;
-		}
-	},
-	components: {
-		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-	},
-
-	mounted: function mounted() {}
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3613,6 +3338,563 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.categoryval = false;
 		}
 	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			categoryimage: '/images/front/explore/carpenter1.jpg',
+
+			jobimage: '/images/front/storage/logoimage1.png',
+			reviewerimage: '/images/front/storage/personimage1.png',
+
+			joblisting: [{
+				job_title_image: '/images/front/storage/logoimage1.png',
+				job_title: 'CHS US Carpenter and Roofing',
+				job_feedback: 261,
+				job_perform: 270,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage1.png',
+				latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
+				latest_reviewer_name: 'Shirley Webb',
+				latest_review_post_date: 'August, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/logoimage2.png',
+				job_title: 'M.D.S Joinery & Glazing',
+				job_feedback: 180,
+				job_perform: 208,
+				job_location: 'New York, NY',
+				job_member_since: 'Feb, 2018',
+				job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage2.png',
+				latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
+				latest_reviewer_name: 'Keith McCoy',
+				latest_review_post_date: 'August, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage6.png',
+				job_title: 'Christopher Ward Joinery Services',
+				job_feedback: 164,
+				job_perform: 174,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage7.png',
+				latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
+				latest_reviewer_name: 'Ashley Bel',
+				latest_review_post_date: 'September, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage3.png',
+				job_title: 'C&N Home Solutions',
+				job_feedback: 124,
+				job_perform: 148,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage5.png',
+				job_title: 'C M H Maintenance',
+				job_feedback: 0,
+				job_perform: 0,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: false,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
+
+			}],
+
+			category: [{
+
+				title: 'Related services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'Wooden partition service'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
+			}]
+
+		};
+	},
+
+
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
+
+	mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			categoryimage: '/images/front/explore/carpenter1.jpg',
+
+			jobimage: '/images/front/storage/logoimage1.png',
+			reviewerimage: '/images/front/storage/personimage1.png',
+
+			joblisting: [{
+				job_title_image: '/images/front/storage/logoimage1.png',
+				job_title: 'CHS US Carpenter and Roofing',
+				job_feedback: 261,
+				job_perform: 270,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage1.png',
+				latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
+				latest_reviewer_name: 'Shirley Webb',
+				latest_review_post_date: 'August, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/logoimage2.png',
+				job_title: 'M.D.S Joinery & Glazing',
+				job_feedback: 180,
+				job_perform: 208,
+				job_location: 'New York, NY',
+				job_member_since: 'Feb, 2018',
+				job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage2.png',
+				latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
+				latest_reviewer_name: 'Keith McCoy',
+				latest_review_post_date: 'August, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage6.png',
+				job_title: 'Christopher Ward Joinery Services',
+				job_feedback: 164,
+				job_perform: 174,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage7.png',
+				latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
+				latest_reviewer_name: 'Ashley Bel',
+				latest_review_post_date: 'September, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage3.png',
+				job_title: 'C&N Home Solutions',
+				job_feedback: 124,
+				job_perform: 148,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage5.png',
+				job_title: 'C M H Maintenance',
+				job_feedback: 0,
+				job_perform: 0,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: false,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
+
+			}],
+
+			category: [{
+
+				title: 'Related services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'Wooden partition service'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
+			}]
+
+		};
+	},
+
+
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
+
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -64463,6 +64745,363 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5062611c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "category-detail" }, [
+    _c(
+      "div",
+      { staticClass: "next-project grey-bg elementary-banner section-padd md" },
+      [
+        _c("div", { staticClass: "container element-index text-center md" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("div", {
+              staticClass: "category-image",
+              style: { "background-image": "url(" + _vm.categoryimage + ")" }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "job-post-container section-padd sm" }, [
+      _c(
+        "div",
+        { staticClass: "container md" },
+        [
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._l(_vm.joblisting, function(listing) {
+            return _c("div", { staticClass: "job-post-list" }, [
+              _c("div", { staticClass: "job-post-details" }, [
+                _c("div", {
+                  staticClass: "job-image",
+                  style: {
+                    "background-image": "url(" + listing.job_title_image + ")"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "job-common-description" }, [
+                  _c("h3", [_vm._v(_vm._s(listing.job_title))]),
+                  _vm._v(" "),
+                  _vm._m(4, true),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "jobs-rating" },
+                    [
+                      _c("star-rating", {
+                        attrs: {
+                          "star-size": 20,
+                          "read-only": "",
+                          rating: 4,
+                          "active-color": "#8200ff"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "jobs-done" }, [
+                        _c("span", { staticClass: "review-job" }, [
+                          _vm._v(
+                            _vm._s(listing.job_feedback) + " Feedback reviews"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        listing.job_perform == 0
+                          ? _c("span", { staticClass: "review-job" }, [
+                              _vm._v("No Jobs performed")
+                            ])
+                          : _c("span", { staticClass: "review-job" }, [
+                              _vm._v(
+                                _vm._s(listing.job_perform) + " Jobs performed"
+                              )
+                            ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary post-bid",
+                      attrs: { href: "javascript:void(0);" }
+                    },
+                    [_vm._v("Post Job & Invite to Bid")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "member-details" }, [
+                  _c("p", { staticClass: "location" }, [
+                    _c("i", { staticClass: "icon-location" }),
+                    _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
+                    _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "member-since" }, [
+                    _c("i", { staticClass: "icon-calendar-daily" }),
+                    _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
+                    _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "post-job-description" }, [
+                  _c("p", [_vm._v(_vm._s(listing.job_description))])
+                ]),
+                _vm._v(" "),
+                listing.review_details == true
+                  ? _c("div", { staticClass: "chat-feedback" }, [
+                      _vm._m(5, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "chat-feedback-column" }, [
+                        _c("div", {
+                          staticClass: "chat-feedback-image",
+                          style: {
+                            "background-image":
+                              "url(" + listing.latest_review_image + ")"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "chat-feedback-message" }, [
+                          _c("p", [
+                            _vm._v(_vm._s(listing.latest_review_description))
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "feeback-detail" }, [
+                            _c("p", { staticClass: "feedback-personal-info" }, [
+                              _c(
+                                "a",
+                                { attrs: { href: "javascript:void(0);" } },
+                                [_vm._v(_vm._s(listing.latest_reviewer_name))]
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
+                              ),
+                              _c("strong", [
+                                _vm._v(_vm._s(listing.latest_review_post_date))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "icon-quotes-right3" })
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "featured-categories section-padd sm  elementary-banner p-t-130"
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "container element-index" },
+          _vm._l(_vm.category, function(maincategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(maincategory.title))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "category-items" },
+                [
+                  _vm._l(maincategory.categoryitems, function(categoryabc) {
+                    return _c("div", { staticClass: "items" }, [
+                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                        _c("div", {
+                          staticClass: "item-image",
+                          style: {
+                            "background-image":
+                              "url(" + categoryabc.itemimage + ")"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm._m(6, true)
+                ],
+                2
+              )
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _vm._m(7)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "category-content" }, [
+      _c("h2", [_vm._v("General carpentry")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("strong", [_vm._v("Are you looking to find a carpenter for hire?")]),
+        _vm._v(
+          " Then, we can help. When you post a job you will receive custom bids from local carpenters!"
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-5.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right",
+        attrs: { src: "/images/front/banner-bg/bg-2.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "grey-bg section-padd xs border-top-bottom" },
+      [
+        _c("div", { staticClass: "container md" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-10 p-r-0" }, [
+              _c("div", { staticClass: "search-filter m-b-0" }, [
+                _c("input", {
+                  staticClass: "form-control lg search-service",
+                  attrs: {
+                    type: "text",
+                    placeholder: "What service do you need?",
+                    name: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "container-zip-code" }, [
+                  _c("i", { staticClass: "icon-location" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control lg zip-code",
+                    attrs: { type: "number", placeholder: "Zip code", name: "" }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2 p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary width-100",
+                  attrs: { href: "javscript:void(0);" }
+                },
+                [_vm._v("Search")]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-notifer" }, [
+      _c("p", [
+        _vm._v("14 General carpentry service professionals found near you")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-notifer" }, [
+      _c("p", [_vm._v("Latest feedback & review")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5062611c", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-50b0b1d4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/404/Main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65418,60 +66057,7 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-640aadb2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/ExploreNow.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "container element-index text-center" }, [
-        _c("div", { staticClass: "content-sec" }, [
-          _c("h1", [_vm._v("The better way to find your next project.")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Professional Service Marketplace makes it easy to find quality tradesmen, reviewed by other homeowners."
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { href: "javascript:void(0);" }
-            },
-            [_vm._v("Explore Now")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "splash-design md d-1 top-left" }),
-      _vm._v(" "),
-      _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-640aadb2", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68d99f92\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/detail-category.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-604d5b52\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65490,7 +66076,35 @@ var render = function() {
               style: { "background-image": "url(" + _vm.categoryimage + ")" }
             }),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", { staticClass: "category-content" }, [
+              _c("h2", [_vm._v("General carpentry")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "jobs-completed" },
+                [
+                  _c("star-rating", {
+                    attrs: {
+                      "star-size": 20,
+                      "read-only": "",
+                      rating: 4,
+                      "active-color": "#8200ff"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "review-job" }, [
+                    _vm._v("180 Feedback reviews")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "review-job left-border" }, [
+                    _vm._v("208 Jobs performed")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -65685,21 +66299,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "category-content" }, [
-      _c("h2", [_vm._v("General carpentry")]),
+    return _c("div", { staticClass: "service-detail" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "javascript:void(0);" }
+        },
+        [_vm._v("Post Job & Invite to Bid")]
+      ),
       _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _c("strong", [_vm._v("Are you looking to find a carpenter for hire?")]),
-        _vm._v(
-          " Then, we can help. When you post a job you will receive custom bids from local carpenters!"
-        )
-      ])
+      _c(
+        "a",
+        { staticClass: "btn btn-link", attrs: { href: "javascript:void(0);" } },
+        [_vm._v("Go back")]
+      )
     ])
   },
   function() {
@@ -65822,7 +66436,60 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-68d99f92", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-604d5b52", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-640aadb2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/ExploreNow.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "container element-index text-center" }, [
+        _c("div", { staticClass: "content-sec" }, [
+          _c("h1", [_vm._v("The better way to find your next project.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Professional Service Marketplace makes it easy to find quality tradesmen, reviewed by other homeowners."
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Explore Now")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "splash-design md d-1 top-left" }),
+      _vm._v(" "),
+      _c("span", { staticClass: "splash-design d-5 bottom-right lg" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-640aadb2", module.exports)
   }
 }
 
@@ -84349,54 +85016,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/front/explore/detail-category.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/detail-category.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68d99f92\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/detail-category.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\front\\explore\\detail-category.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-68d99f92", Component.options)
-  } else {
-    hotAPI.reload("data-v-68d99f92", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ "./resources/assets/js/components/front/explore/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -84434,6 +85053,102 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4f35f14c", Component.options)
   } else {
     hotAPI.reload("data-v-4f35f14c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/explore/service-provider-detail.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-604d5b52\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\explore\\service-provider-detail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-604d5b52", Component.options)
+  } else {
+    hotAPI.reload("data-v-604d5b52", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/explore/service-provider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5062611c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\explore\\service-provider.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5062611c", Component.options)
+  } else {
+    hotAPI.reload("data-v-5062611c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -85130,12 +85845,20 @@ var routes = [
     component: __webpack_require__("./resources/assets/js/components/front/explore/main.vue")
 }, {
     name: 'Explore_Detail',
-    path: '/explore/explorer-detail',
+    path: '/explore/service_provider',
     meta: {
         title: 'Professional Service Marketplace | Category Detail',
         bodyClass: 'explore_detail_page'
     },
-    component: __webpack_require__("./resources/assets/js/components/front/explore/detail-category.vue")
+    component: __webpack_require__("./resources/assets/js/components/front/explore/service-provider.vue")
+}, {
+    name: 'Explore_Detail',
+    path: '/explore/service_provider/service_provider_detail',
+    meta: {
+        title: 'Professional Service Marketplace | Service Provider Detail',
+        bodyClass: 'service_provider_detail_page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/explore/service-provider-detail.vue")
 },
 
 // Sign Up

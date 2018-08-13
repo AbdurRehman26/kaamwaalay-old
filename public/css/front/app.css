@@ -12358,6 +12358,12 @@ textarea {
   display: block;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .alert {
   /* height:$alert-height; */
   height: auto;
@@ -14577,5 +14583,34 @@ li.nav-item.active {
   max-width: 433px;
   height: 107px;
   left: -74px;
+}
+
+.jobs-completed {
+  padding-bottom: 24px;
+}
+
+.jobs-completed .vue-star-rating {
+  display: inline-block !important;
+  vertical-align: text-bottom;
+  padding-right: 5px;
+}
+
+.jobs-completed .review-job {
+  padding: 0px 5px;
+  font-size: 14px;
+  color: #8200FF;
+}
+
+.jobs-completed .review-job:first-child {
+  padding-left: 0px;
+  border-right: 1px solid #ccc;
+}
+
+.jobs-completed .review-job:last-child {
+  padding-right: 0px;
+}
+
+.jobs-completed .review-job.left-border {
+  border-left: 1px solid #ccc;
 }
 
