@@ -30,6 +30,7 @@ class UserController extends ApiResourceController
         $rules['user_details.last_name']     = 'required';
         $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
         $rules['user_details.profile_image']     = 'nullable|string';
+        $rules['business_details.business_type']     = 'nullable|in:business,individual';
 
     }
 
@@ -78,11 +79,10 @@ public function messages($value = '')
     $messages = [
         'user_details.first_name.required' => 'The first name field is required.',
         'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-    ];
+        'user_details.email.required' => 'The email field is required.',
+        'user_details.phone_number.required' => 'The phone number field is required.',
+        'business_details.business_type.in' => 'The business details type is invalid'
+        ];
 
     return !empty($messages) ? $messages : [];
 }

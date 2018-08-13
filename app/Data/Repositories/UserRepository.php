@@ -107,7 +107,6 @@ public $model;
 
                 $business_details = $data['business_details']; 
                 $business_details['user_id'] = $user->id;
-
                 if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $user->id)){
                     $business_details['id'] = $business->id;
                     $user->business_details = app('ServiceProviderProfileRepository')->update($business_details);
@@ -117,8 +116,14 @@ public $model;
             }
 
             if(!empty($data['service_details'])){
+
                 foreach ($data['service_details'] as $key => $service) {
+                    if(empty($service['service_id'])){
+                            continue;
+                        }
+
                     if(!empty($service['id'])){
+
                         $existingServiceIds[$service['id']][] = $service['service_id'];
                         $service['service_provider_profile_request_id'] = $service['id'];
                         unset($service['id']);
