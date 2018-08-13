@@ -7,8 +7,15 @@
 
 					<div class="category-content">
 						<h2>General carpentry</h2>
-						<p>Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile.</p>
-						<p><strong>Are you looking to find a carpenter for hire?</strong> Then, we can help. When you post a job you will receive custom bids from local carpenters!</p>
+						<div class="jobs-completed">
+							<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>	
+							<span class="review-job">180 Feedback reviews</span>				
+							<span class="review-job left-border">208 Jobs performed</span>
+						</div>
+						<div class="service-detail">
+							<a href="javascript:void(0);" class="btn btn-primary">Post Job & Invite to Bid</a>
+							<a href="javascript:void(0);" class="btn btn-link">Go back</a>
+						</div>	
 					</div>
 				</div>
 			</div> 

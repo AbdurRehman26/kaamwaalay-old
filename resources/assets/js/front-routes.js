@@ -57,13 +57,24 @@ const routes = [
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service-provider',
+        path: '/explore/service_provider',
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',
         },
         component: require('./components/front/explore/service-provider.vue'),
     },    
+
+    {
+        name: 'Explore_Detail',
+        path: '/explore/service_provider/service_provider_detail',
+        meta: {
+            title: 'Professional Service Marketplace | Service Provider Detail',
+            bodyClass: 'service_provider_detail_page',
+        },
+        component: require('./components/front/explore/service-provider-detail.vue'),
+    },    
+
 
 
 
