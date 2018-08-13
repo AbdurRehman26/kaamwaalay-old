@@ -13,7 +13,7 @@
                             <li><router-link to="/join-as-pro">Join as a Pro</router-link></li>
                             <li><router-link to="/login">Login</router-link></li>
                             <li><router-link to="/sign-up">Sign up</router-link></li>
-                            <li><a href="javascript:;" class="btn btn-primary">Post a Job</a></li>
+                            <li><a href="/job-post" class="btn btn-primary">Post a Job</a></li>
                         </ul>
                     </div>
                     <!-- custom heder -->

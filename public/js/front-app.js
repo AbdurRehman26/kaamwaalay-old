@@ -67365,7 +67365,7 @@ var staticRenderFns = [
     return _c("li", [
       _c(
         "a",
-        { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
+        { staticClass: "btn btn-primary", attrs: { href: "/job-post" } },
         [_vm._v("Post a Job")]
       )
     ])
