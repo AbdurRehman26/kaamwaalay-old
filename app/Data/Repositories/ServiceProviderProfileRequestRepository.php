@@ -5,6 +5,8 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfileRequest;
+use App\Data\Models\Role;
+use Carbon\Carbon;
 
 class ServiceProviderProfileRequestRepository extends AbstractRepository implements RepositoryContract
 {
@@ -110,6 +112,25 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         }
         
         return parent::findByAll($pagination, $perPage, $data);
+
+    }
+
+
+    public function update(array $data = []) {
+        
+        if ($data['role_id'] == Role::ADMIN) {
+            unset($data['role_id']);
+            $data['approved_by'] = $data['user_id'];  
+            unset($data['user_id']);
+            if ($data['status'] == 'approved') {
+                $data['approved_at'] = Carbon::now();
+                
+            }
+            return parent::update($data);
+        
+        }
+        return false;
+
 
     }
 
