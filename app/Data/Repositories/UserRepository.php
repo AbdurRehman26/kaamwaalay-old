@@ -99,26 +99,14 @@ public $model;
     public function update(array $data = []) {
 
         $input = $data['user_details'];
-        $input['id'] = $data['id'];
-
-        if(!empty($data['user_details'])){
-
-            if(request()->hasFile('user_details.profile_image')){
-                $data['profile_image'] = $data['user_details']['profile_image']->hashName();
-                $this->imageStore($data['profile_image'],$data['profile_image']);
-                $input['profile_image'] = $data['profile_image'];
-                unset($data['profile_image']);
-            }
-
-        }
-
+        $input['id'] = $data['user_id'];
+        
         if ($user = parent::update($input)) {
 
             if(!empty($data['business_details'])){
 
                 $business_details = $data['business_details']; 
                 $business_details['user_id'] = $user->id;
-
                 if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $user->id)){
                     $business_details['id'] = $business->id;
                     $user->business_details = app('ServiceProviderProfileRepository')->update($business_details);
@@ -128,8 +116,14 @@ public $model;
             }
 
             if(!empty($data['service_details'])){
+
                 foreach ($data['service_details'] as $key => $service) {
+                    if(empty($service['service_id'])){
+                            continue;
+                        }
+
                     if(!empty($service['id'])){
+
                         $existingServiceIds[$service['id']][] = $service['service_id'];
                         $service['service_provider_profile_request_id'] = $service['id'];
                         unset($service['id']);
@@ -168,5 +162,9 @@ public $model;
 
 
         return false;
+    }
+
+    public function getTotalCountByCriteria($crtieria) {
+        return  $this->model->where($crtieria)->count();
     }
 }

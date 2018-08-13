@@ -98,7 +98,7 @@ class LoginController extends Controller
 
         $data =  $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());      
-        $output = ['response' => ['data' => [$data],'message'=>'Success']];
+        $output = ['access_token'=>$data->access_token, 'response' => ['data' => [$data],'message'=>'Success']];
 
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);
@@ -124,8 +124,9 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-        return redirect('/');
+       $user = $request->user();
+       $user->token()->revoke();
+       return redirect('/');
     }
 
     /**

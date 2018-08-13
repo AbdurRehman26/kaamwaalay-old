@@ -31,15 +31,10 @@ Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans'
 Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
 
 
-Route::resource('campaign', 'Api\V1\CampaignController')->except([
-    'edit',
-]);
 
-Route::resource('city', 'Api\V1\CityController')->except([
-    'edit',
-]);
+Route::group(['middleware' => ['auth:api']], function () {
 
-Route::resource('country', 'Api\V1\CountryController')->except([
+Route::resource('user', 'Api\V1\UserController')->except([
     'edit',
 ]);
 
@@ -52,6 +47,21 @@ Route::resource('job', 'Api\V1\JobController')->except([
 ]);
 
 Route::resource('job-message', 'Api\V1\JobMessageController')->except([
+    'edit',
+]);
+
+});
+
+
+Route::resource('campaign', 'Api\V1\CampaignController')->except([
+    'edit',
+]);
+
+Route::resource('city', 'Api\V1\CityController')->except([
+    'edit',
+]);
+
+Route::resource('country', 'Api\V1\CountryController')->except([
     'edit',
 ]);
 
@@ -107,9 +117,7 @@ Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
     'edit',
 ]);
 
-Route::resource('user', 'Api\V1\UserController')->except([
-    'edit',
-]);
+
 
 Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
     'edit',
@@ -118,3 +126,6 @@ Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
 //Uploading File
 Route::post('file/upload', 'Api\V1\FileController@upload');
 Route::post('file/remove', 'Api\V1\FileController@remove');
+
+//Dashboard Report
+Route::get('dashboard', 'Api\V1\DashboardController@dashboard');

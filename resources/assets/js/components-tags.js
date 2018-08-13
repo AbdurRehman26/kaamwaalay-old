@@ -81,4 +81,5 @@ Vue.component('not-found-panel', require('./components/404/404Panel.vue'));
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
 
-
+/*logout*/
+Vue.component('logout-component',require('./components/auth/LogoutComponent.vue'));

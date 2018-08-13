@@ -1,16 +1,4 @@
-$section-padding:100px 0px;
-$section-padding-sm:20px 0px;
-.section{
-    position:relative;
-    background-color:#fff;
-    padding:$section-padding;
-    &.section-grey{
-        background-color:$grey-Elite;
-    }
-    &.padding-sm{
-        padding:$section-padding-sm;
-    }
-}
+
 .section-title {
     text-align: center;
     padding-bottom: 80px;
@@ -28,68 +16,37 @@ $section-padding-sm:20px 0px;
     background-color: #fff;
 }
 
-
-/*===
-    list icons
-===*/
-
-.list-image{
-    display: inline-block;
-    width:100px;
-    vertical-align: middle;
-}
-
-.list-icon {
-    display: inline-block;
-    width:80px;
-    height:80px;
-    vertical-align:middle;
-    border: 1px solid #E0E0E0;
-    background-color: #F9F9F9;
-    border-radius: 12px;
-    .inner{
-        width: 80px;
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-    }
-    &.sm{
-        width:55px;
-        height:55px;
-        border-radius: 10px;
-        .inner{
-            width:55px;
-            height:55px;
-            padding: 10px;
+.services{
+    .list-image{
+        display: inline-block;
+        width: 110px;
+        vertical-align: top;
+        .list-icon {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #E0E0E0;
+            background-color: #F9F9F9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
-    &.white{
-        background-color:#fff;
-    }
-}
-
-.list-description {
-    vertical-align:middle;
-    display: inline-block;
-    width: calc(100% - 116px);
-    h4{
-        margin-bottom: 0;
+    .list-description {
+        display: inline-block;
+        width: calc(100% - 116px);
+        h4{
+            margin-bottom: 0;
         padding-bottom:12px;
+        }
+        p{
+            font-size: $font-size-xs;
+            line-height: 19px;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
     }
-    p{
-        font-size: $font-size-xs;
-        color: #1a1a1a;
-        margin-bottom: 0;
-    }
-}
-
-/*
-    list icons details
-*/
-
-.services{
 
     .services-list{
         ul{
@@ -104,7 +61,7 @@ $section-padding-sm:20px 0px;
                 li{
                     display: inline-block;
                     width: 49%;
-                    padding-bottom:52px;
+                    padding-bottom: 40px;
                     &:nth-last-child(2), &:last-child(1){
                         padding-bottom: 0px;
                     }
@@ -123,14 +80,11 @@ $section-padding-sm:20px 0px;
         padding-bottom: 20px;
         margin-bottom: 0;
     }
-    .icon{
-        display: block;
-        margin: 0 auto;
+    .list-icon{
+        min-height: 180px;
+        display: flex;
         img{
-            width: auto;
             margin: auto;
-            height: 92px;
-            margin-bottom: 42px;
         }
     }
 }
@@ -223,12 +177,11 @@ $section-padding-sm:20px 0px;
 
 // Sign Up Sass Start
 
-.wrapper-sm {
+.sign-up {
     max-width: 850px;
     margin: 0 auto;
     h1 {
-        margin:0px 0 40px 0;
-        text-align: center;
+        margin:60px 0 40px 0;
     }
 }
 
@@ -238,53 +191,6 @@ $section-padding-sm:20px 0px;
     border-radius: 8px;
     background-color: #FFFFFF;
 }
-
-.service-provider-form {
-    position: relative;
-    margin-bottom: 40px;
-    &:after {
-        content: 'CUSTOMER SIGN UP';
-        position: absolute;
-        background: #fff;
-        width: 187px;
-        top: -10px;
-        font-size: 14px;
-        color: $grey-Edark;
-        font-family:$font_medium;
-        text-align: center;
-        left: 39%;
-    }
-}
-.business-form {
-    position: relative;
-    margin-bottom: 40px;
-    &:after {
-        content: 'SERVICE PROVIDER SIGN UP';
-        position: absolute;
-        background: #fff;
-        width: 248px;
-        top: -10px;
-        font-size: 14px;
-        color: $grey-Edark;
-        font-family:$font_medium;
-        text-align: center;
-        left: 35%;
-    }
-}
-.create-account-btn {
-    margin-top: 17px;
-}
-.already-signup {
-    font-size: 20px;
-    text-align: center;
-    a {
-        color: $primary-color-md;
-        text-decoration: none;
-    }
-    p {
-        margin-bottom: 40px;
-    }
-}
 .form-detail {
     p {
         font-size: $font-size-xxs;
@@ -292,69 +198,11 @@ $section-padding-sm:20px 0px;
         margin-top: 30px;
     }
 }
-.nav-tabs {
-    border-bottom: none;
-    margin-bottom: 40px;
-}
-.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-    border-color: #fff;
-}
-li.nav-item.active {
-    border: 1px solid #8200FF;
-    background-color: #F9F9F9;
-}
-.nav-tabs {
-    .nav-item {
-        position: relative;
-        margin-bottom: -1px;
-        border: 1px solid #6004BA;
-        border-radius: 8px;
-        margin-right: 60px;
-        border: 1px solid #E0E0E0;
-        background-color: #F9F9F9;
-        height: 98px;
-        width: 395px;
-            a {
-                font-size: 18px;
-                margin-top: 20px;
-                height: 82px;
-                i {
-                    position: absolute;
-                    right: 9px;
-                    top: 12px;
-                }
-            }
-            p {
-                font-size: 14px;
-                color:$text-primary-color;
-                font-family:$font_regular;
-                margin-bottom: 0;
-            }
-            &:last-child {
-                margin-right: 0px;
-            }
-        }
-}
-.nav-tabs {
-    .nav-link {
-        color: $text-primary-color;
-        font-family: $font_medium;
-        text-align: center;
-        padding: 0;
-
-        &.active {
-            border-color: transparent;
-            font-family: $font_medium;
-            height: 72px;
-            color: $primary-color-md;
-        }
-    }
-}
 // Sign Up Sass End
 
 
 //featured categories
-.featured-categories-home{
+.featured-categories{
     width:100%;
     background-color:$grey-Elite;
     padding:22px 0;

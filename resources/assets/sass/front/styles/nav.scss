@@ -13,7 +13,6 @@ $nav-font:$font-bold;
             vertical-align: middle;
             display: inline-block;
             margin: 0 16px;
-            position: relative;
             a{
                 font-size:$nav-font-size;
                 color:$nav-color;
@@ -41,7 +40,6 @@ $nav-font:$font-bold;
                 margin-left: 0px;
             }
             &:last-child{
-                margin-right:0;
                 a{
                     font-family:$font-regular;
                     color:#fff !important;

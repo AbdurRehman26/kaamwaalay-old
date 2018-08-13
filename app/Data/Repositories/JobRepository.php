@@ -42,8 +42,8 @@ public $model;
 
     }
 
-    public function create(array $data = []) {
-        $data = parent::create($data);
+    public function update(array $data = []) {
+        $data = parent::update($data);
         return $data;
     }
 
@@ -105,6 +105,10 @@ public $model;
         }
 
         return $data;
+    }
+
+    public function getTotalCountByCriteria($crtieria) {
+        return  $this->model->where($crtieria)->count();
     }
 
 }

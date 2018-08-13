@@ -12,7 +12,9 @@ const routes = [
             title: 'PSM | Dashboard',
             bodyClass: 'dashboard-page',
             pagetitle:'Dashboard',
-            icon:'icon-speedometer'
+            icon:'icon-speedometer',
+            requiresAuth: true,
+            forAdmin :true,
         },
         component: require('./components/admin/dashboard/main.vue'),
     },
@@ -26,8 +28,7 @@ const routes = [
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
-            noHeader: true,
-
+            noHeader: true
         },
         component: require('./components/auth/main.vue'),
     },
@@ -43,6 +44,8 @@ const routes = [
             title: 'PSM | Create Password',
             bodyClass: 'login-page',
             noHeader: true,
+            requiresAuth: true,
+            forAdmin :true,
 
         },
         component: require('./components/auth/CreatePassword.vue'),
@@ -58,7 +61,9 @@ const routes = [
         meta: {
             title: 'PSM | Service Type',
             pagetitle:'Service Types',
-            icon:'icon-tools-2'
+            icon:'icon-tools-2',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -71,7 +76,9 @@ const routes = [
         meta: {
             title: 'PSM | Customer Panel' ,
             pagetitle:'Customers',
-            icon:'icon-users'
+            icon:'icon-users',
+            requiresAuth: true,
+            forAdmin :true,
         }
 
     },
@@ -82,7 +89,9 @@ const routes = [
         meta: {
             title: 'PSM | Customer Detail' ,
             pagetitle:'Customers Detail',
-            icon:'icon-users'
+            icon:'icon-users',
+            requiresAuth: true,
+            forAdmin :true,
         }
 
     },
@@ -93,7 +102,9 @@ const routes = [
         meta: {
             title: 'View Job Detail',
             pagetitle:'Customer Job detail Section',
-            icon:'icon-users'
+            icon:'icon-users',
+            requiresAuth: true,
+            forAdmin :true,
         },
     },
 
@@ -106,7 +117,9 @@ const routes = [
         meta: {
             title: 'PSM | Service Provider',
             pagetitle:'Service Providers',
-            icon:'icon-handshake-o'
+            icon:'icon-handshake-o',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -117,7 +130,9 @@ const routes = [
         meta: {
             title: 'PSM | View Jobs',
             pagetitle:'Service Jobs Detail',
-            icon:'icon-handshake-o'
+            icon:'icon-handshake-o',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -130,7 +145,9 @@ const routes = [
         meta: {
             title: 'PSM | Create Job',
             pagetitle:'Jobs',
-            icon:'icon-briefcase'
+            icon:'icon-briefcase',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -143,7 +160,9 @@ const routes = [
         meta: {
             title: 'Job Details',
             pagetitle:'Job Details',
-            icon:'icon-briefcase'
+            icon:'icon-briefcase',
+            requiresAuth: true,
+            forAdmin :true,
         },
 
     },
@@ -155,7 +174,9 @@ const routes = [
         meta: {
             title: 'Bidding Details',
             pagetitle:'Bidding Details',
-            icon:'icon-briefcase'
+            icon:'icon-briefcase',
+            requiresAuth: true,
+            forAdmin :true,
         },
     },
 
@@ -171,7 +192,9 @@ const routes = [
         meta: {
             title: 'PSM | Service provider review',
             pagetitle:'Service Provider Review',
-            icon:'icon-star_border'
+            icon:'icon-star_border',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -182,7 +205,9 @@ const routes = [
         meta: {
             title: 'PSM | Service provider review',
             pagetitle:'Service Provider Detail Review',
-            icon:'icon-search'
+            icon:'icon-search',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -195,7 +220,9 @@ const routes = [
         meta: {
             title: 'PSM | Service provider details',
             pagetitle:'Service Provider Details',
-            icon:'icon-briefcase'
+            icon:'icon-briefcase',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -208,7 +235,9 @@ const routes = [
         meta: {
             title: 'PSM | General Setting',
             pagetitle:'General Setting',
-            icon:'icon-settings'
+            icon:'icon-settings',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -221,7 +250,9 @@ const routes = [
         meta: {
             title: 'PSM | Payment',
             pagetitle:'Payment',
-            icon:'icon-credit-card'
+            icon:'icon-credit-card',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -234,7 +265,9 @@ const routes = [
         meta: {
             title: 'PSM | Support',
             pagetitle:'Support',
-            icon:'icon-help_outline'
+            icon:'icon-help_outline',
+            requiresAuth: true,
+            forAdmin :true,
         }
     },
 
@@ -248,6 +281,8 @@ const routes = [
             title: '404 Not Found',
             noHeader: true,
             bodyClass: 'not-found-page',
+            requiresAuth: true,
+            forAdmin :true,
         },
     },
 
@@ -260,7 +295,9 @@ const routes = [
             title: 'PSM | Admin Listed',
             bodyClass: 'Admin-listed',
             pagetitle:'Admins',
-            icon:'icon-lock_outline'
+            icon:'icon-lock_outline',
+            requiresAuth: true,
+            forAdmin :true,
 
         },
         component: require('./components/admin/Main.vue'),
@@ -271,7 +308,33 @@ const routes = [
 // Create the router instance
 const router = new VueRouter({
     mode: 'history',
-    routes // short for `routes: routes`
+    routes, // short for `routes: routes`
+    app,
+})
+const admin = 1;
+const title = document.title
+router.beforeEach((to, from, next) => {
+    let user;
+    if(router.app.$store.getters.getAuthUser != 'undefined'){
+      user = JSON.parse(router.app.$store.getters.getAuthUser);
+    }
+    document.title = (title + ' | ' + to.meta.title)
+    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+        next({name: 'login'});
+    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+        next({name: 'dashboard'});
+    } else {
+        next();
+    }
+
+    if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
+        if(user  && user.role_id == admin){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
 })
 
 export default router
