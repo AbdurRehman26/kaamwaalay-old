@@ -204,7 +204,6 @@ return response()->json($output, $code);
     }
     return response()->json($output, $code);
 }
-=======
 public function socialLogin(Request $request)
 {
     $data = $request->only('first_name','last_name', 'email','role_id','social_account_id','social_account_type','profile_pic');
