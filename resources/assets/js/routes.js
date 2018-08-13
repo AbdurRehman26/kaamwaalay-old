@@ -44,13 +44,21 @@ const routes = [
             title: 'PSM | Create Password',
             bodyClass: 'login-page',
             noHeader: true,
-            requiresAuth: true,
             forAdmin :true,
 
         },
         component: require('./components/auth/CreatePassword.vue'),
     },
-
+    {
+            path: '/password/set/:token/:email',
+            component: require('./components/auth/CreatePassword.vue'),
+             meta: {
+                title: 'PSM | Create Password',
+                bodyClass: 'login-page',
+                noHeader: true,
+                forAdmin :true,
+            },
+    },
 
     /* Service Type */
 
