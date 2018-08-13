@@ -86,7 +86,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
     public function updateCampaign($input)
     {
         $model = $this->model
-                ->where('user_id', '=', $input['user_id'])
+                ->where('user_id', '=', $input['service_provider_user_id'])
                 ->where('is_completed', '=', 0)
                 ->first()
                 ;
@@ -100,7 +100,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
         $getPlanViews = $this->findById($model->id);
         if($model->views >= $getPlanViews->plan->quantity ){
             $model->is_completed = 1;
-            $this->serviceProviderProfileRepo->update(['id'=>$input['user_id'],'is_featured'=>0]);
+            $this->serviceProviderProfileRepo->update(['id'=>$input['service_provider_user_id'],'is_featured'=>0]);
         }
 
         if($model->save()){

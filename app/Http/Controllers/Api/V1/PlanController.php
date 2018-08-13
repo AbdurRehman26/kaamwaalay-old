@@ -42,8 +42,8 @@ class PlanController extends ApiResourceController
 
         if($value == 'updateOrAddPlans'){
             $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1';
-            $rules['plans_data.*.amount']           = 'required';
-            $rules['plans_data.*.quantity']         = 'required';
+            $rules['plans_data.*.amount']           = 'required|numeric|not_in:0';
+            $rules['plans_data.*.quantity']         = 'required|numeric|not_in:0';
         }
 
         return $rules;
