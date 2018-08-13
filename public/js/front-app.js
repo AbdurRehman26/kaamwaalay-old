@@ -3136,89 +3136,137 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-				data: function data() {
-								return {
-												categoryimage: '/images/front/explore/carpenter1.jpg',
+	data: function data() {
+		return {
+			categoryimage: '/images/front/explore/carpenter1.jpg',
 
-												jobimage: '/images/front/storage/logoimage1.png',
-												reviewerimage: '/images/front/storage/personimage1.png',
+			jobimage: '/images/front/storage/logoimage1.png',
+			reviewerimage: '/images/front/storage/personimage1.png',
 
-												joblisting: [{
-																job_title_image: '/images/front/storage/logoimage1.png',
-																job_title: 'CHS US Carpenter and Roofing',
-																job_feedback: 261,
-																job_perform: 270,
-																job_location: 'New York, NY',
-																job_member_since: 'Jan, 2018',
-																job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
+			joblisting: [{
+				job_title_image: '/images/front/storage/logoimage1.png',
+				job_title: 'CHS US Carpenter and Roofing',
+				job_feedback: 261,
+				job_perform: 270,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage1.png',
+				latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
+				latest_reviewer_name: 'Shirley Webb',
+				latest_review_post_date: 'August, 2018'
 
-																latest_review_image: '/images/front/storage/personimage1.png',
-																latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-																latest_reviewer_name: 'Shirley Webb',
-																latest_review_post_date: 'August, 2018'
+			}, {
+				job_title_image: '/images/front/storage/logoimage2.png',
+				job_title: 'M.D.S Joinery & Glazing',
+				job_feedback: 180,
+				job_perform: 208,
+				job_location: 'New York, NY',
+				job_member_since: 'Feb, 2018',
+				job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage2.png',
+				latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
+				latest_reviewer_name: 'Keith McCoy',
+				latest_review_post_date: 'August, 2018'
 
-												}, {
-																job_title_image: '/images/front/storage/logoimage2.png',
-																job_title: 'M.D.S Joinery & Glazing',
-																job_feedback: 180,
-																job_perform: 208,
-																job_location: 'New York, NY',
-																job_member_since: 'Feb, 2018',
-																job_description: 'Hi Im Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...',
+			}, {
+				job_title_image: '/images/front/storage/personimage6.png',
+				job_title: 'Christopher Ward Joinery Services',
+				job_feedback: 164,
+				job_perform: 174,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage7.png',
+				latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
+				latest_reviewer_name: 'Ashley Bel',
+				latest_review_post_date: 'September, 2018'
 
-																latest_review_image: '/images/front/storage/personimage2.png',
-																latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
-																latest_reviewer_name: 'Keith McCoy',
-																latest_review_post_date: 'August, 2018'
+			}, {
+				job_title_image: '/images/front/storage/personimage3.png',
+				job_title: 'C&N Home Solutions',
+				job_feedback: 124,
+				job_perform: 148,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
 
-												}],
+			}, {
+				job_title_image: '/images/front/storage/personimage5.png',
+				job_title: 'C M H Maintenance',
+				job_feedback: 0,
+				job_perform: 0,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: false,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
 
-												category: [{
+			}],
 
-																title: 'Related services',
-																categoryitems: [{
-																				itemimage: '/images/front/explore/carpenter1.jpg',
-																				itemtitle: 'Wooden partition service'
-																}, {
-																				itemimage: '/images/front/explore/carpenter2.jpg',
-																				itemtitle: 'Furniture repair & Installation'
-																}, {
-																				itemimage: '/images/front/explore/carpenter3.jpg',
-																				itemtitle: 'Wooden deck building & repair'
-																}]
+			category: [{
 
-												}]
+				title: 'Related services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'Wooden partition service'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
 
-								};
-				},
+			}]
+
+		};
+	},
 
 
-				methods: {
-								AddCustomer: function AddCustomer() {
-												this.customer = true;
-								},
-								ViewCustomerDetail: function ViewCustomerDetail() {
-												/*this.viewcustomer = true;*/
-												this.$router.push({ name: 'customerdetail' });
-								},
-								changestatuspopup: function changestatuspopup() {
-												this.changestatus = true;
-								},
-								HideModal: function HideModal() {
-												this.customer = false;
-												this.viewcustomer = false;
-												this.changestatus = false;
-								}
-				},
-				components: {
-								StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-				},
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
 
-				mounted: function mounted() {}
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -65307,11 +65355,15 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("span", { staticClass: "review-job" }, [
-                          _vm._v(
-                            _vm._s(listing.job_perform) + " Jobs performed"
-                          )
-                        ])
+                        listing.job_perform == 0
+                          ? _c("span", { staticClass: "review-job" }, [
+                              _vm._v("No Jobs performed")
+                            ])
+                          : _c("span", { staticClass: "review-job" }, [
+                              _vm._v(
+                                _vm._s(listing.job_perform) + " Jobs performed"
+                              )
+                            ])
                       ])
                     ],
                     1
@@ -65345,41 +65397,45 @@ var render = function() {
                   _c("p", [_vm._v(_vm._s(listing.job_description))])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "chat-feedback" }, [
-                  _vm._m(5, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "chat-feedback-column" }, [
-                    _c("div", {
-                      staticClass: "chat-feedback-image",
-                      style: {
-                        "background-image":
-                          "url(" + listing.latest_review_image + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "chat-feedback-message" }, [
-                      _c("p", [
-                        _vm._v(_vm._s(listing.latest_review_description))
-                      ]),
+                listing.review_details == true
+                  ? _c("div", { staticClass: "chat-feedback" }, [
+                      _vm._m(5, true),
                       _vm._v(" "),
-                      _c("div", { staticClass: "feeback-detail" }, [
-                        _c("p", { staticClass: "feedback-personal-info" }, [
-                          _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                            _vm._v(_vm._s(listing.latest_reviewer_name))
-                          ]),
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
-                          ),
-                          _c("strong", [
-                            _vm._v(_vm._s(listing.latest_review_post_date))
-                          ])
-                        ]),
+                      _c("div", { staticClass: "chat-feedback-column" }, [
+                        _c("div", {
+                          staticClass: "chat-feedback-image",
+                          style: {
+                            "background-image":
+                              "url(" + listing.latest_review_image + ")"
+                          }
+                        }),
                         _vm._v(" "),
-                        _c("i", { staticClass: "icon-quotes-right3" })
+                        _c("div", { staticClass: "chat-feedback-message" }, [
+                          _c("p", [
+                            _vm._v(_vm._s(listing.latest_review_description))
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "feeback-detail" }, [
+                            _c("p", { staticClass: "feedback-personal-info" }, [
+                              _c(
+                                "a",
+                                { attrs: { href: "javascript:void(0);" } },
+                                [_vm._v(_vm._s(listing.latest_reviewer_name))]
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
+                              ),
+                              _c("strong", [
+                                _vm._v(_vm._s(listing.latest_review_post_date))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "icon-quotes-right3" })
+                          ])
+                        ])
                       ])
                     ])
-                  ])
-                ])
+                  : _vm._e()
               ])
             ])
           })
@@ -65388,44 +65444,53 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "featured-categories section-padd sm" }, [
-      _c(
-        "div",
-        { staticClass: "container" },
-        _vm._l(_vm.category, function(maincategory) {
-          return _c("div", { staticClass: "category-section" }, [
-            _c("div", { staticClass: "category-title" }, [
-              _c("h2", [_vm._v(_vm._s(maincategory.title))])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "category-items" },
-              [
-                _vm._l(maincategory.categoryitems, function(categoryabc) {
-                  return _c("div", { staticClass: "items" }, [
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _c("div", {
-                        staticClass: "item-image",
-                        style: {
-                          "background-image":
-                            "url(" + categoryabc.itemimage + ")"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+    _c(
+      "div",
+      {
+        staticClass:
+          "featured-categories section-padd sm  elementary-banner p-t-130"
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "container element-index" },
+          _vm._l(_vm.category, function(maincategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(maincategory.title))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "category-items" },
+                [
+                  _vm._l(maincategory.categoryitems, function(categoryabc) {
+                    return _c("div", { staticClass: "items" }, [
+                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                        _c("div", {
+                          staticClass: "item-image",
+                          style: {
+                            "background-image":
+                              "url(" + categoryabc.itemimage + ")"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                      ])
                     ])
-                  ])
-                }),
-                _vm._v(" "),
-                _vm._m(6, true)
-              ],
-              2
-            )
-          ])
-        })
-      )
-    ])
+                  }),
+                  _vm._v(" "),
+                  _vm._m(6, true)
+                ],
+                2
+              )
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _vm._m(7)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -65546,6 +65611,22 @@ var staticRenderFns = [
         _vm._v("View all services related to electricians "),
         _c("i", { staticClass: "icon-keyboard_arrow_right" })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
     ])
   }
 ]

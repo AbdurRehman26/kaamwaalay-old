@@ -11906,6 +11906,38 @@ textarea::-webkit-scrollbar-thumb {
   padding-right: 100px !important;
 }
 
+.m-t-130 {
+  margin-top: 130px !important;
+}
+
+.p-t-130 {
+  padding-top: 130px !important;
+}
+
+.m-b-130 {
+  margin-bottom: 130px !important;
+}
+
+.p-b-130 {
+  padding-bottom: 130px !important;
+}
+
+.m-l-130 {
+  margin-left: 130px !important;
+}
+
+.p-l-130 {
+  padding-left: 130px !important;
+}
+
+.m-r-130 {
+  margin-right: 130px !important;
+}
+
+.p-r-130 {
+  padding-right: 130px !important;
+}
+
 .auth-main-wrapper.verticle-align .inner {
   display: block;
   padding-top: 8%;
@@ -13660,25 +13692,25 @@ li.nav-item.active {
 }
 
 .testmonial-block:before {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 47%;
-  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
-  border-top: 15px solid #fdfdfd;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
+  /*         content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 47%;        
+        border-top: 15px solid #fdfdfd;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent; */
 }
 
 .testmonial-block:after {
   content: '';
   position: absolute;
-  bottom: -15px;
+  bottom: -28px;
   left: 47%;
-  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
-  border-top: 15px solid #fdfdfd;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
+  background-image: url(/images/caret-top.png);
+  width: 29px;
+  height: 29px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .grey-bg {
@@ -14247,6 +14279,32 @@ li.nav-item.active {
   background-color: #fff;
 }
 
+.job-post-list:hover .chat-feedback-message:after,
+.job-post-list:hover .chat-feedback-message:before,
+.job-post-list:focus .chat-feedback-message:after,
+.job-post-list:focus .chat-feedback-message:before,
+.job-post-list:active .chat-feedback-message:after,
+.job-post-list:active .chat-feedback-message:before {
+  content: '';
+  border-right: 10px solid #fff !important;
+}
+
+.job-post-list:hover .chat-feedback-message:after,
+.job-post-list:focus .chat-feedback-message:after,
+.job-post-list:active .chat-feedback-message:after {
+  content: '';
+  border-right: 10px solid #E0E0E0 !important;
+  /* left: -11px !important; */
+  left: -12px !important;
+}
+
+.job-post-list:hover .chat-feedback-message:before,
+.job-post-list:focus .chat-feedback-message:before,
+.job-post-list:active .chat-feedback-message:before {
+  content: '';
+  z-index: 9;
+}
+
 .vue-star-rating-rating-text {
   display: none;
 }
@@ -14345,6 +14403,14 @@ li.nav-item.active {
   margin-bottom: 0;
 }
 
+.chat-feedback .chat-feedback-column {
+  padding-bottom: 21px;
+}
+
+.chat-feedback .chat-feedback-column:last-child {
+  padding-bottom: 0px;
+}
+
 .chat-feedback .chat-feedback-image {
   width: 47px;
   height: 47px;
@@ -14360,6 +14426,7 @@ li.nav-item.active {
   border: 1px solid #E0E0E0;
   margin-left: 18px;
   border-radius: 8px;
+  position: relative;
   background-color: #F9F9F9;
 }
 
@@ -14367,6 +14434,31 @@ li.nav-item.active {
   font-size: 16px;
   line-height: 19px;
   margin-bottom: 0px;
+}
+
+.chat-feedback .chat-feedback-message:before,
+.chat-feedback .chat-feedback-message:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 10px solid #f9f9f9;
+  position: absolute;
+  left: -10px;
+  top: 11px;
+}
+
+.chat-feedback .chat-feedback-message:after {
+  content: '';
+  border-right: 10px solid #E0E0E0 !important;
+  /* left: -11px !important; */
+  left: -12px !important;
+}
+
+.chat-feedback .chat-feedback-message:before {
+  content: '';
+  z-index: 9;
 }
 
 .chat-feedback .feeback-detail {
