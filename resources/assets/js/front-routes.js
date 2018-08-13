@@ -77,7 +77,7 @@ const routes = [
     },    
 
     {
-        name: 'Explore_Detail',
+        name: 'Service_Provider_Detail',
         path: '/explore/service_provider/service_provider_detail',
         meta: {
             title: 'Professional Service Marketplace | Service Provider Detail',

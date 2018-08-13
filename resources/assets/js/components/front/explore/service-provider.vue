@@ -47,10 +47,10 @@
 
 				<div class="job-post-list" v-for="listing in joblisting">
 					<div class="job-post-details">
-						<div class="job-image" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
+						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
 
 						<div class="job-common-description">
-							<h3>{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
+							<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
 							<div class="jobs-rating">
 								<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>
 								<div class="jobs-done">
@@ -284,6 +284,9 @@ export default {
             this.viewcustomer = false;
             this.changestatus = false;
         },
+        servicedetail(){
+        	this.$router.push({name: 'Service_Provider_Detail'});
+        }
 
     },
     components: {
