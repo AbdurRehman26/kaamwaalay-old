@@ -81,7 +81,7 @@ class ResetPasswordController extends Controller
         $user->password = Hash::make($password);
         $user->setRememberToken(Str::random(60));
         $user->save();
-       $this->_userRepository->update(['id'=>$user->id , 'user_details'=>['status'=>$status]]);
+       $this->_userRepository->update(['id'=>$user->id ,'user_id'=>$user->id, 'user_details'=>['status'=>$status]]);
         event(new PasswordReset($user));
         $this->guard()->login($user);
     }
