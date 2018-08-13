@@ -16,7 +16,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
      * @access public
      *
      **/
-public $model;
+    public $model;
 
     /**
      *
@@ -38,54 +38,64 @@ public $model;
     {
         $this->model = $model;
         $this->builder = $model;
+        $this->userRepo = app('UserRepository');
 
     }
 
-
-    
-        /**
-     *
-     * This method will fetch single model by attribute
-     * and will return output back to client as json
-     *
-     * @access public
-     * @return mixed
-     *
-     * @author Usaama Effendi <usaamaeffendi@gmail.com>
-     *
-     **/
-        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false) {
-            $model = $this->model->newInstance()
-            ->where($crtieria);
-
-            if($count){
-                return $model->count();
+    public function findById($id, $refresh = false, $details = false, $encode = true) {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        $data->rated_by_name = '';
+        if($data && $data->rated_by){
+            $userData = $this->userRepo->findById($data->rated_by);
+            if($userData){
+                $data->rated_by_name     = $userData->first_name.' '.$userData->last_name;
             }
-
-            if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
-            }
-
-            $model = $model->first(['id']);
-            
-            if ($model != NULL) {
-                $model = $this->findById($model->id, $refresh, $details, $encode);
-            }
-            return $model;
         }
 
-    public function getAvgRatingCriteria($crtieria, $whereIn = false) {
-            
-            $model = $this->model->where($crtieria);
-            if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->avg('rating');
-            }
+        return $data;
+    }
+    
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+        $this->builder = $this->builder
+                            ->where('user_id', '=' , $data['user_id'])
+                            ->orderBy('rating', 'DESC')
+                            ;      
+        return  parent::findByAll($pagination, $perPage);
 
-            if ($model != NULL) {
-                $model = $model->avg('rating');
-                return $model;
-            }
-            return false;
+    }
+
+    public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false) {
+        $model = $this->model->newInstance()
+        ->where($crtieria);
+
+        if($count){
+            return $model->count();
+        }
+
+        if($whereIn){
+            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+        }
+
+        $model = $model->first(['id']);
+
+        if ($model != NULL) {
+            $model = $this->findById($model->id, $refresh, $details, $encode);
+        }
+        return $model;
+    }
+
+    public function getAvgRatingCriteria($crtieria, $whereIn = false) {
+
+        $model = $this->model->where($crtieria);
+        if($whereIn){
+            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->avg('rating');
+        }
+
+        if ($model != NULL) {
+            $model = $model->avg('rating');
+            return $model;
+        }
+        return false;
     }
     public function getTotalFeedbackCriteria($crtieria, $whereIn = false) {
             

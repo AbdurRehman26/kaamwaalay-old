@@ -16,7 +16,12 @@ class UserRatingController extends ApiResourceController
     $rules = [];
 
     if($value == 'store'){
-
+        $rules['job_id']        =  'required|exists:jobs,id';
+        $rules['message']       =  'required';
+        $rules['rating']        =  'required|max:5';
+        $rules['user_service_id']        =  'required|exists:service_provider_services,id';
+        $rules['user_id']        =  'required|exists:users,id';
+        $rules['rated_by']       =  'required';
     }
 
     if($value == 'update'){
@@ -33,7 +38,8 @@ class UserRatingController extends ApiResourceController
     }
 
     if($value == 'index'){
-
+        $rules['user_id']           =  'required|exists:users,id';
+        $rules['pagination']        =  'nullable|boolean';
     }
 
     return $rules;
@@ -43,8 +49,13 @@ class UserRatingController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'title');
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $input = request()->only('id', 'pagination', 'rating', 'message', 'job_id', 'user_service_id', 'rated_by', 'user_id');
+    //$input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+
+    if($value == 'store'){
+        $input['rated_by'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    }
+
     return $input;
 }
 
