@@ -113,4 +113,28 @@ class ServiceController extends ApiResourceController
         return response()->json($output, Response::HTTP_OK);
 
     }
+
+    //Create single record
+    public function store(Request $request)
+    {
+
+        $input = $this->input(__FUNCTION__);
+        $rules = $this->rules(__FUNCTION__);
+        $messages = $this->messages(__FUNCTION__);
+
+        $this->validate($request, $rules, $messages);
+
+        $data = $this->_repository->create($input);
+        if ($data == 'not_parent') {
+            $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
+        }else{
+            $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        }
+
+        
+        // HTTP_OK = 200;
+
+        return response()->json($output, Response::HTTP_OK);
+
+    }
 }
