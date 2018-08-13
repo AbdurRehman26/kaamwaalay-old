@@ -59,8 +59,18 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = []) {
         unset($data['user_id']);
+        if (!empty($data['parent_id'])) {
 
-        return parent::create($data);
+            $parentExist = Service::where('id','=',$data['parent_id'])->whereNull('parent_id')->count();
+
+            if ($parentExist) {
+                return parent::create($data);
+            }else{
+                return 'not_parent';
+            }
+        }else{
+            return parent::update($data);
+        }
     }
     public function update(array $data = []) {
         

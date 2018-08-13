@@ -50,14 +50,4 @@ class ForgotPasswordController extends Controller
         $output = ['response' => ['data' => [],'message'=> trans($response)]];
         return response()->json($output, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
-
-     /**
-     * Display the form to request a password reset link.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showLinkRequestForm(request $request)
-    {  
-       return view('layout')->withEmail(request('email',$request->email));
-    }
 }

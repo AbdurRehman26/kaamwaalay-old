@@ -7,6 +7,7 @@ use App\Data\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
 
 class ServiceController extends ApiResourceController
 {
@@ -36,12 +37,17 @@ class ServiceController extends ApiResourceController
         
         
         $rules['id']                      =  'required|exists:services,id';
-        $rules['title']                   = 'required'; 
         $rules['is_display_banner']       = 'nullable|in:0,1';                   
         $rules['is_display_service_nav']  = 'nullable|in:0,1';                       
         $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
         $rules['status']                  = 'nullable|in:0,1';        
         $rules['user_id']                 =  'required|exists:users,id';
+        $rules['title']                   = [
+                                            'required',
+                                            Rule::unique('services')->where(function ($query) {
+                                                $query->where('id','!=', $this->input()['id']);
+                                            }),
+                                            ]; 
 
     }
 
@@ -110,6 +116,30 @@ class ServiceController extends ApiResourceController
         }
 
         // HTTP_OK = 200;
+        return response()->json($output, Response::HTTP_OK);
+
+    }
+
+    //Create single record
+    public function store(Request $request)
+    {
+
+        $input = $this->input(__FUNCTION__);
+        $rules = $this->rules(__FUNCTION__);
+        $messages = $this->messages(__FUNCTION__);
+
+        $this->validate($request, $rules, $messages);
+
+        $data = $this->_repository->create($input);
+        if ($data == 'not_parent') {
+            $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
+        }else{
+            $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        }
+
+        
+        // HTTP_OK = 200;
+
         return response()->json($output, Response::HTTP_OK);
 
     }
