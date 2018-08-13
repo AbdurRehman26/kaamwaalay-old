@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plan extends Model
 {
-	use InsertOnDuplicateKey;
-	use SoftDeletes;
+	use InsertOnDuplicateKey, SoftDeletes;
 }

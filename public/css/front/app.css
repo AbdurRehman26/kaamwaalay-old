@@ -10742,7 +10742,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Regular";
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b);
+  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.svg?dd51ccf93caa7e0d772647aa186dea41) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10750,7 +10752,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Bold";
-  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526);
+  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.svg?94b941fa3892aaac12647ecdbd8e0915) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10758,7 +10762,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f);
+  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.svg?ace36b571e939fcee3c62867a8a728f8) format("svg");
+  src: url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10766,7 +10772,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f);
+  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.svg?ace36b571e939fcee3c62867a8a728f8) format("svg");
+  src: url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10774,7 +10782,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Md";
-  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f);
+  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.svg?cfbe407436551ac8f74cdf1faa296f1b) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10782,7 +10792,9 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-ExtraBold";
-  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c) format("embedded-opentype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff"), url(/fonts/OpenSans-ExtraBold.ttf?f525db7b833334aff6d3f37459536d0f) format("truetype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff");
+  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c);
+  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c) format("embedded-opentype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff"), url(/fonts/OpenSans-ExtraBold.ttf?f525db7b833334aff6d3f37459536d0f) format("truetype"), url(/fonts/OpenSans-ExtraBold.svg?67c10bd0697bc9f838e901f939d9094f) format("svg");
+  src: url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -11059,7 +11071,6 @@ body {
   background: #fff;
   overflow-x: hidden;
   font-size: 16px;
-  line-height: 22px;
 }
 
 .container {
@@ -11097,7 +11108,6 @@ a:focus {
 
 p {
   margin: 0 0 15px;
-  line-height: 22px;
 }
 
 input {
@@ -11769,21 +11779,6 @@ textarea {
   text-decoration: underline;
 }
 
-.btn.btn-facebook {
-  background: #3B579D !important;
-  border-color: #3B579D !important;
-  color: #fff;
-}
-
-.btn.btn-facebook:focus,
-.btn.btn-facebook:visited,
-.btn.btn-facebook:active {
-  background: #3B579D !important;
-  border-color: #3B579D !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-}
-
 .sort_btn {
   margin-bottom: 9px;
   display: table;
@@ -11864,35 +11859,21 @@ textarea {
 
 .fb-btn {
   position: relative;
-  border-bottom: 1px solid #E0E0E0;
-  padding-bottom: 13px;
-  margin-bottom: 25px;
 }
 
 .fb-btn a.btn {
   width: 100%;
   font-size: 16px;
+  background-color: #3B579D;
+  border-color: #3B579D;
   margin-bottom: 20px;
   font-family: "AkzidenzGroteskBE-Md";
 }
 
 .fb-btn a span {
   position: absolute;
-  font-size: 24px;
-  margin-left: -37px;
-}
-
-.fb-btn:after {
-  content: 'OR';
-  color: #494949;
-  position: absolute;
-  font-size: 14px;
-  background: #fff;
-  left: 46%;
-  font-family: "AkzidenzGroteskBE-Md";
-  top: 66px;
-  width: 46px;
-  text-align: center;
+  font-size: 21px;
+  margin-left: -30px;
 }
 
 .header {
@@ -12040,7 +12021,6 @@ textarea {
   vertical-align: middle;
   display: inline-block;
   margin: 0 16px;
-  position: relative;
 }
 
 .navigation ul li a {
@@ -12069,10 +12049,6 @@ textarea {
 
 .navigation ul li:first-child {
   margin-left: 0px;
-}
-
-.navigation ul li:last-child {
-  margin-right: 0;
 }
 
 .navigation ul li:last-child a {
@@ -12165,20 +12141,6 @@ textarea {
   font-weight: normal;
 }
 
-.section {
-  position: relative;
-  background-color: #fff;
-  padding: 100px 0px;
-}
-
-.section.section-grey {
-  background-color: #F9F9F9;
-}
-
-.section.padding-sm {
-  padding: 20px 0px;
-}
-
 .section-title {
   text-align: center;
   padding-bottom: 80px;
@@ -12198,29 +12160,18 @@ textarea {
   background-color: #fff;
 }
 
-/*===
-    list icons
-===*/
-
-.list-image {
+.services .list-image {
   display: inline-block;
-  width: 100px;
-  vertical-align: middle;
+  width: 110px;
+  vertical-align: top;
 }
 
-.list-icon {
-  display: inline-block;
+.services .list-image .list-icon {
   width: 80px;
   height: 80px;
-  vertical-align: middle;
   border: 1px solid #E0E0E0;
   background-color: #F9F9F9;
   border-radius: 12px;
-}
-
-.list-icon .inner {
-  width: 80px;
-  height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12230,45 +12181,25 @@ textarea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 10px;
 }
 
-.list-icon.sm {
-  width: 55px;
-  height: 55px;
-  border-radius: 10px;
-}
-
-.list-icon.sm .inner {
-  width: 55px;
-  height: 55px;
-  padding: 10px;
-}
-
-.list-icon.white {
-  background-color: #fff;
-}
-
-.list-description {
-  vertical-align: middle;
+.services .list-description {
   display: inline-block;
   width: calc(100% - 116px);
 }
 
-.list-description h4 {
+.services .list-description h4 {
   margin-bottom: 0;
   padding-bottom: 12px;
 }
 
-.list-description p {
+.services .list-description p {
   font-size: 16px;
+  line-height: 19px;
   color: #1a1a1a;
+  font-weight: 600;
   margin-bottom: 0;
 }
-
-/*
-    list icons details
-*/
 
 .services .services-list ul {
   padding: 0;
@@ -12282,7 +12213,7 @@ textarea {
 .services.two-column .services-list ul li {
   display: inline-block;
   width: 49%;
-  padding-bottom: 52px;
+  padding-bottom: 40px;
 }
 
 .services.two-column .services-list ul li:nth-last-child(2),
@@ -12299,16 +12230,15 @@ textarea {
   margin-bottom: 0;
 }
 
-.how-it-work .icon {
-  display: block;
-  margin: 0 auto;
+.how-it-work .list-icon {
+  min-height: 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.how-it-work .icon img {
-  width: auto;
+.how-it-work .list-icon img {
   margin: auto;
-  height: 92px;
-  margin-bottom: 42px;
 }
 
 .elementary-banner {
@@ -12408,14 +12338,13 @@ textarea {
   margin-right: 0px;
 }
 
-.wrapper-sm {
+.sign-up {
   max-width: 850px;
   margin: 0 auto;
 }
 
-.wrapper-sm h1 {
-  margin: 0px 0 40px 0;
-  text-align: center;
+.sign-up h1 {
+  margin: 60px 0 40px 0;
 }
 
 .sign-up-form {
@@ -12425,143 +12354,25 @@ textarea {
   background-color: #FFFFFF;
 }
 
-.service-provider-form {
-  position: relative;
-  margin-bottom: 40px;
-}
-
-.service-provider-form:after {
-  content: 'CUSTOMER SIGN UP';
-  position: absolute;
-  background: #fff;
-  width: 187px;
-  top: -10px;
-  font-size: 14px;
-  color: #494949;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-  left: 39%;
-}
-
-.business-form {
-  position: relative;
-  margin-bottom: 40px;
-}
-
-.business-form:after {
-  content: 'SERVICE PROVIDER SIGN UP';
-  position: absolute;
-  background: #fff;
-  width: 248px;
-  top: -10px;
-  font-size: 14px;
-  color: #494949;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-  left: 35%;
-}
-
-.create-account-btn {
-  margin-top: 17px;
-}
-
-.already-signup {
-  font-size: 20px;
-  text-align: center;
-}
-
-.already-signup a {
-  color: #8200FF;
-  text-decoration: none;
-}
-
-.already-signup p {
-  margin-bottom: 40px;
-}
-
 .form-detail p {
   font-size: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
   margin-top: 30px;
 }
 
-.nav-tabs {
-  border-bottom: none;
-  margin-bottom: 40px;
-}
-
-.nav-tabs .nav-link:hover,
-.nav-tabs .nav-link:focus {
-  border-color: #fff;
-}
-
-li.nav-item.active {
-  border: 1px solid #8200FF;
-  background-color: #F9F9F9;
-}
-
-.nav-tabs .nav-item {
-  position: relative;
-  margin-bottom: -1px;
-  border: 1px solid #6004BA;
-  border-radius: 8px;
-  margin-right: 60px;
-  border: 1px solid #E0E0E0;
-  background-color: #F9F9F9;
-  height: 98px;
-  width: 395px;
-}
-
-.nav-tabs .nav-item a {
-  font-size: 18px;
-  margin-top: 20px;
-  height: 82px;
-}
-
-.nav-tabs .nav-item a i {
-  position: absolute;
-  right: 9px;
-  top: 12px;
-}
-
-.nav-tabs .nav-item p {
-  font-size: 14px;
-  color: #1A1A1A;
-  font-family: "AkzidenzGroteskBE-Regular";
-  margin-bottom: 0;
-}
-
-.nav-tabs .nav-item:last-child {
-  margin-right: 0px;
-}
-
-.nav-tabs .nav-link {
-  color: #1A1A1A;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-  padding: 0;
-}
-
-.nav-tabs .nav-link.active {
-  border-color: transparent;
-  font-family: "AkzidenzGroteskBE-Md";
-  height: 72px;
-  color: #8200FF;
-}
-
-.featured-categories-home {
+.featured-categories {
   width: 100%;
   background-color: #F9F9F9;
   padding: 22px 0;
   border-bottom: solid 1px #E0E0E0;
 }
 
-.featured-categories-home ul {
+.featured-categories ul {
   margin: 0;
   padding: 0;
 }
 
-.featured-categories-home .list-description p {
+.featured-categories .list-description p {
   font-family: "AkzidenzGroteskBE-Bold";
   margin-left: 12px;
 }

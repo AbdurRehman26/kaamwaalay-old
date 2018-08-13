@@ -38,6 +38,17 @@ Route::resource('user', 'Api\V1\UserController')->except([
     'edit',
 ]);
 
+Route::resource('job-bid', 'Api\V1\JobBidController')->except([
+    'edit',
+]);
+
+Route::resource('job', 'Api\V1\JobController')->except([
+    'edit',
+]);
+
+Route::resource('job-message', 'Api\V1\JobMessageController')->except([
+    'edit',
+]);
 
 });
 
@@ -51,18 +62,6 @@ Route::resource('city', 'Api\V1\CityController')->except([
 ]);
 
 Route::resource('country', 'Api\V1\CountryController')->except([
-    'edit',
-]);
-
-Route::resource('job-bid', 'Api\V1\JobBidController')->except([
-    'edit',
-]);
-
-Route::resource('job', 'Api\V1\JobController')->except([
-    'edit',
-]);
-
-Route::resource('job-message', 'Api\V1\JobMessageController')->except([
     'edit',
 ]);
 

@@ -42,8 +42,8 @@ public $model;
 
     }
 
-    public function create(array $data = []) {
-        $data = parent::create($data);
+    public function update(array $data = []) {
+        $data = parent::update($data);
         return $data;
     }
 

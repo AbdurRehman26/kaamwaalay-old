@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/clear', function () {
+    \Cache::flush();
+    dd('cache cleared');
+});
+
 Route::get('/', function () {
     return view('layout');
 });

@@ -5,7 +5,6 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Plan;
-use Carbon\Carbon;
 
 class PlanRepository extends AbstractRepository implements RepositoryContract
 {

@@ -23,7 +23,7 @@ class UserController extends ApiResourceController
     $rules = [];
 
     if($value == 'store'){
-
+        $rules['user_id'] = 'required|exists:users,id';
     }
 
     if($value == 'update'){
@@ -34,7 +34,8 @@ class UserController extends ApiResourceController
         $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
         $rules['user_details.profile_image']     = 'nullable|string';
         $rules['business_details.business_type']     = 'nullable|in:business,individual';
-
+        $rules['user_id'] = 'required|exists:users,id';
+        
     }
 
 
@@ -71,7 +72,12 @@ public function input($value='')
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     
-    unset($input['user_details']['email']);
+    if($value == 'update'){
+        unset($input['user_details']['email']);
+    }
+
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
     return $input;
 }
@@ -114,50 +120,6 @@ public function changePassword(Request $request)
     }
 }
 
-public function socialLogin(Request $request)
-{
-    $data = $request->only('first_name','last_name', 'email','role_id','social_account_id','social_account_type','profile_pic');
-    $rules = [
-        'first_name' => 'required|string|max:255',
-        'last_name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255',
-        'role_id' => 'required|exists:roles,id',
-        'social_account_id' => 'required',
-        'social_account_type' => 'required|in:facebook',
-    ];
-    $user = $this->_repository->findByAttribute('social_account_id',$request->social_account_id);
-    if(!$user){
-     $rules['email'] = 'required|string|email|max:255|unique:users';
- }
- $validator = Validator::make($data,$rules);
- if ($validator->fails()) {
-     $code = 406;
-     $output = [
-        'message' => $validator->messages()->all(),
-    ];
-}else{
-    if($user){
-      $data['id'] = $user->id; 
-      $result = $this->_repository->update($data);
-  }else{
-      $data['status']  = 'active';   
-      $result = $this->_repository->create($data);
-  }
-  if($result) {
-    $code = 200;
-    $output = [
-        'data' => $result,
-        'message' => 'Success',
-    ];
-}else{
-    $code = 406;
-    $output = [
-        'message' => 'An error occurred',
-    ];
-}
-}
-return response()->json($output, $code);
-}
     /**
      * Store a newly created resource in storage.
      *
@@ -180,9 +142,9 @@ return response()->json($output, $code);
         if ($validator->fails()) {
          $code = 406;
          $output = [
-            'message' => $validator->messages()->all(),
-        ];
-    }else{
+             'message' => $validator->messages()->all(),
+         ];
+     }else{
             //generate a password for the new users
         $pw = User::generatePassword();
         $data['password'] = $pw;
@@ -223,9 +185,9 @@ public function socialLogin(Request $request)
  if ($validator->fails()) {
      $code = 406;
      $output = [
-        'message' => $validator->messages()->all(),
-    ];
-}else{
+         'message' => $validator->messages()->all(),
+     ];
+ }else{
     if($user){
       $data['id'] = $user->id; 
       $result = $this->_repository->update($data);
