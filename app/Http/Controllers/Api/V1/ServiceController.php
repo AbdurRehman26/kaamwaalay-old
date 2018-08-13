@@ -7,6 +7,7 @@ use App\Data\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
 
 class ServiceController extends ApiResourceController
 {
@@ -36,12 +37,17 @@ class ServiceController extends ApiResourceController
         
         
         $rules['id']                      =  'required|exists:services,id';
-        $rules['title']                   = 'required'; 
         $rules['is_display_banner']       = 'nullable|in:0,1';                   
         $rules['is_display_service_nav']  = 'nullable|in:0,1';                       
         $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
         $rules['status']                  = 'nullable|in:0,1';        
         $rules['user_id']                 =  'required|exists:users,id';
+        $rules['title']                   = [
+                                            'required',
+                                            Rule::unique('services')->where(function ($query) {
+                                                $query->where('id','!=', $this->input()['id']);
+                                            }),
+                                            ]; 
 
     }
 
