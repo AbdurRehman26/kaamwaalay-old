@@ -4550,16 +4550,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -67044,8 +67034,6 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
       _c("div", { staticClass: "tab-content" }, [
         _c(
           "div",
@@ -67059,13 +67047,13 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "sign-up-form service-provider-form" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "form-signup" }, [
                 _c("form", [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("div", { staticClass: "create-account-btn" }, [
                     _c(
@@ -67076,12 +67064,12 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _vm._m(4)
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(6)
+            _vm._m(5)
           ]
         ),
         _vm._v(" "),
@@ -67097,13 +67085,13 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "sign-up-form business-form" }, [
-              _vm._m(7),
+              _vm._m(6),
               _vm._v(" "),
               _c("div", { staticClass: "form-signup" }, [
                 _c("form", [
-                  _vm._m(8),
+                  _vm._m(7),
                   _vm._v(" "),
-                  _vm._m(9),
+                  _vm._m(8),
                   _vm._v(" "),
                   _c("div", { staticClass: "create-account-btn" }, [
                     _c(
@@ -67114,12 +67102,12 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(10)
+                  _vm._m(9)
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(11)
+            _vm._m(10)
           ]
         )
       ])
@@ -67132,18 +67120,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-xs-12 col-sm-6 col-sm-6" }, [
-        _c("div", { staticClass: "custom-radio boxed" }, [
+        _c("div", { staticClass: "custom-radio boxed m-b-30" }, [
           _c("input", {
             attrs: {
               type: "radio",
