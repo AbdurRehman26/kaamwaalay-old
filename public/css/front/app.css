@@ -12112,6 +12112,36 @@ textarea {
   text-align: center;
 }
 
+.custom-datepicker label {
+  display: block;
+}
+
+.custom-datepicker .mx-datepicker {
+  width: 100%;
+}
+
+.custom-datepicker .mx-input {
+  border: 1px solid #B2B2B2;
+  height: 38px;
+  padding: 9px 16px;
+  line-height: 1.5;
+}
+
+.custom-datepicker svg.mx-input-append {
+  display: none;
+}
+
+.custom-datepicker svg text {
+  display: none;
+}
+
+.custom-datepicker .mx-calendar-icon {
+  background-image: url("/images/front/svg/calendar.svg") !important;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  stroke: none;
+}
+
 .header {
   position: relative;
   height: 70px;

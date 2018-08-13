@@ -81,6 +81,15 @@ const routes = [
         },
         component: require('./components/front/profile/main.vue'),
     },
+    {
+        name: 'Apply for Review',
+        path: '/apply-for-review',
+        meta: {
+            title: 'Professional Service Marketplace | Apply for Review',
+            bodyClass: 'apply-for-review-page',
+        },
+        component: require('./components/front/profile/ApplyForReview.vue'),
+    },
 
     // Job Post
 
