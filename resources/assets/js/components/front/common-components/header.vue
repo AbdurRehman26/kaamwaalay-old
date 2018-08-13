@@ -7,7 +7,7 @@
                         <img :src="logo">
                     </router-link>
                 </span>
-                    <div class="navigation main-navigation" style="display:none">
+                    <div class="navigation main-navigation" style="display:block">
                         <ul>
                             <li><router-link to="/explore">Explore</router-link></li>
                             <li><router-link to="/join-as-pro">Join as a Pro</router-link></li>
@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                     <!-- custom heder -->
-                    <div class="navigation main-navigation customer-navigation" style="display:block">
+                    <div class="navigation main-navigation customer-navigation" style="display:none">
                         <ul class="float-left">
                             <li><router-link to="/explore">Explore</router-link></li>
                             <li><router-link to="/explore">My Jobs</router-link></li>

@@ -67146,7 +67146,7 @@ var render = function() {
           "div",
           {
             staticClass: "navigation main-navigation",
-            staticStyle: { display: "none" }
+            staticStyle: { display: "block" }
           },
           [
             _c("ul", [
@@ -67199,7 +67199,7 @@ var render = function() {
           "div",
           {
             staticClass: "navigation main-navigation customer-navigation",
-            staticStyle: { display: "block" }
+            staticStyle: { display: "none" }
           },
           [
             _c("ul", { staticClass: "float-left" }, [
