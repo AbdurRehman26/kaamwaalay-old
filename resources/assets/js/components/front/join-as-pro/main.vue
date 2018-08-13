@@ -23,7 +23,7 @@
 
 		<!-- Local Work section start-->
 
-		<div class="section services section-local-work two-column">
+		<div class="services two-column section-padd">
 			<div class="container">
 				<div class="section-title">
 					<h2>Win more local work</h2>
@@ -32,10 +32,8 @@
 				<div class="services-list">
 					<ul>
 						<li>
-							<div class="list-icon">
-								<div class="inner">
-									<img src="/images/front/svg/user.svg">
-								</div>
+							<div class="list-image">
+								<div class="list-icon"><img src="/images/front/svg/user.svg"></div>
 							</div>
 							<div class="list-description">
 								<h4>Business Profile</h4>
@@ -43,10 +41,8 @@
 							</div>
 						</li>
 						<li>
-							<div class="list-icon">
-								<div class="inner">
-									<img src="/images/front/svg/discount.svg">
-								</div>
+							<div class="list-image">
+								<div class="list-icon"><img src="/images/front/svg/discount.svg"></div>
 							</div>
 							<div class="list-description">
 								<h4>No Commissions</h4>
@@ -54,32 +50,26 @@
 							</div>
 						</li>
 						<li>
-							<div class="list-icon">
-								<div class="inner">
-									<img src="/images/front/svg/smartphone.svg">
-								</div>
-							  </div>
+							<div class="list-image">
+								<div class="list-icon"><img src="/images/front/svg/smartphone.svg"></div>
+							</div>
 							<div class="list-description">
 								<h4>Pick the jobs you want</h4>
 								<p>We’ll send you new leads and jobs right on your mobile phones via push notifications or email.</p>
 							</div>
 						</li>
 						<li>
-							<div class="list-icon">
-								<div class="inner">
-									<img src="/images/front/svg/chat.svg">
-								</div>
-							  </div>
+							<div class="list-image">
+								<div class="list-icon"><img src="/images/front/svg/chat.svg"></div>
+							</div>
 							<div class="list-description">
 								<h4>Chat with customers</h4>
 								<p>Once customer respond to your bid, you can discuss details with customers via one-on-one chat.</p>
 							</div>
 						</li>
 						<li>
-							<div class="list-icon">
-								<div class="inner">
-									<img src="/images/front/svg/card.svg">
-								</div>
+							<div class="list-image">
+								<div class="list-icon"><img src="/images/front/svg/card.svg"></div>
 							</div>
 							<div class="list-description">
 								<h4>No credit/debit card required</h4>
@@ -87,10 +77,8 @@
 							</div>
 						</li>
 						<li>
-							<div class="list-icon">
-								<div class="inner">
-									<img src="/images/front/svg/like.svg">
-								</div>
+							<div class="list-image">
+								<div class="list-icon"><img src="/images/front/svg/like.svg"></div>
 							</div>
 							<div class="list-description">
 								<h4>No fake service providers</h4>
@@ -107,7 +95,7 @@
 
 		<!-- How it Work section start-->
 
-		<div class="section section-grey how-it-work elementary-banner">
+		<div class="how-it-work elementary-banner section-padd">
 			<div class="container element-index">
 				<div class="section-title">
 					<h2>How it works</h2>
@@ -115,8 +103,8 @@
 					<div class="how-it-work-list">
 						<b-row>
 							<b-col sm="4" class="text-center">
-								<div class="icon">
-										<img src="/images/front/svg/find.svg">
+								<div class="list-image">
+									<div class="list-icon"><img src="/images/front/svg/find.svg"></div>
 								</div>
 								<div class="list-description">
 									<h4>Pick Leads</h4>
@@ -124,18 +112,18 @@
 								</div>
 							</b-col>
 							<b-col sm="4" class="text-center">
-									<div class="icon">
-										<img src="/images/front/svg/list.svg">
-									</div>
+								<div class="list-image">
+									<div class="list-icon"><img src="/images/front/svg/list.svg"></div>
+								</div>
 								<div class="list-description">
 									<h4>Get Shortlisted</h4>
 									<p>Customers review your profiles online & shortlist you to bid on the job.</p>
 								</div>
 							</b-col>
 							<b-col sm="4" class="text-center">
-									<div class="icon">
-										<img src="/images/front/svg/communicate.svg">
-									</div>
+								<div class="list-image">
+									<div class="list-icon"><img src="/images/front/svg/communicate.svg"></div>
+								</div>
 								<div class="list-description">
 									<h4>Chat & Arrange Quotes</h4>
 									<p>Chat with customer to discuss the job or arrange a visit as your normally would.</p>
@@ -180,19 +168,18 @@
 
 		<!-- Sucess Stories section start-->
 
-		<div class="next-project section-padd grey-bg">
+		<div class="next-project section-padd">
 			<div class="container">
 					<div class="content-sec text-center">
 						<h1>Success Stories</h1>
 						<p>Professional service marketplace has helped thousands of service providers around US.</p>
 					</div>
-					<testmonial-sec></testmonial-sec>
 
-			</div>
+			</div>	
 		</div>
 
 
-		<!-- Sucess Stories section end-->
+		<!-- Sucess Stories section end-->	
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobMessageRepository;
+use Illuminate\Validation\Rule;
 
 class JobMessageController extends ApiResourceController
 {
@@ -16,7 +17,8 @@ class JobMessageController extends ApiResourceController
     $rules = [];
 
     if($value == 'store'){
-
+        $rules['job_id'] =  'required|exists:jobs,id';
+        $rules['job_bid_id'] =  'required|exists:job_bids,id';
     }
 
     if($value == 'update'){
@@ -43,8 +45,16 @@ class JobMessageController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'title');
+    $input = request()->only('id', 'text', 'job_id', 'job_bid_id');
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $input['sender_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    
+
+    if($value == 'store'){
+        unset($input['user_id']);
+    }
+
     return $input;
 }
+
 }
