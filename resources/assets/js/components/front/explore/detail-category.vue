@@ -76,22 +76,25 @@
 							<p>{{ listing.job_description }}</p>
 						</div>
 
-						<div class="chart-feedback">
+						<div class="chat-feedback">
 							<div class="text-notifer">
 								<p>Latest feedback & review</p>	
 							</div>
-							<div class="chart-feedback-image" v-bind:style="{'background-image': 'url('+ listing.latest_review_image +')',}"></div>
-							<div class="chart-feedback-message">
-								<p>{{listing.latest_review_description}}</p>
-								<div class="feeback-detail">
-									<p class="feedback-personal-info">
-										<a href="javascript:void(0);">{{listing.latest_reviewer_name}}</a>
-										 posted on 
-										 <strong>{{listing.latest_review_post_date}}</strong>
-									</p>
-									<i class="icon-quotes-right3"></i>
+							<div class="chat-feedback-column">
+								<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ listing.latest_review_image +')',}"></div>
+								<div class="chat-feedback-message">
+									<p>{{listing.latest_review_description}}</p>
+									<div class="feeback-detail">
+										<p class="feedback-personal-info">
+											<a href="javascript:void(0);">{{listing.latest_reviewer_name}}</a>
+											 posted on 
+											 <strong>{{listing.latest_review_post_date}}</strong>
+										</p>
+										<i class="icon-quotes-right3"></i>
+									</div>
 								</div>
 							</div>
+
 						</div>						
 
 					</div>
