@@ -10,6 +10,8 @@ use Laravel\Passport\HasApiTokens;
 use App\Notifications\ActivationNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
+use Storage;
+
 class User extends Authenticatable
 {
 	use InsertOnDuplicateKey,HasApiTokens, Notifiable;
