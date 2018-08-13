@@ -14,7 +14,7 @@
                                      <input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
                                      <div class="container-zip-code">
                                      	<i class="icon-location"></i>
-                                     	<input type="number" placeholder="Zip code" class="form-control  lg zip-code" name="">
+                                     	<input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
                                      </div>
                                 </div>
                                 <button class="btn btn-primary">
@@ -25,11 +25,9 @@
                         <div class="element-column-image">
                            	<img :src="contentimage">
                         </div>
-						<div class="elements">
-							<img class="top-left width-max" src="/images/front/banner-bg/bg-5.png">
-							<img class="bottom-center" src="/images/front/banner-bg/bg-2.png">
-							<img class="bottom-right width-max" src="/images/front/banner-bg/bg-9.png">
-						</div>
+				        <span class="splash-design md d-1 top-left"></span>
+				        <span class="splash-design d-4 bottom-right lg"></span>
+				        <span class="splash-design d-6 bottom-left sm"></span>
                     </div>
                 </div>
             </div>
@@ -45,7 +43,7 @@
 	        		<div class="category-items">
 
 	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
-	        				<a href="javascript:void(0);">
+	        				<a @click="changecategorypopup" href="javascript:void(0);">
 		        			<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
 		        				<h4>{{categoryabc.itemtitle}}</h4>
 		        			</a>
@@ -84,7 +82,7 @@
 			</div>
 		</div>
 
-
+		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>		
 
     </div>
 </template>
@@ -95,7 +93,7 @@ export default {
     return {
 		bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 		contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-
+		categoryval: false,
 		category:[
 
 		{
@@ -416,6 +414,13 @@ export default {
   	},
     methods: {
 
-    }
+        changecategorypopup() {
+            this.categoryval = true;
+        },
+        HideModal(){
+            this.categoryval = false;
+        },
+
+    },
 }
 </script>

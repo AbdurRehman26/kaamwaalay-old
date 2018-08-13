@@ -1,3 +1,7 @@
+.footer-section{
+	border-top: 1px solid $grey-lite;
+}
+
 .footer-logo {
     max-width: 204px;
     margin-bottom: 32px;
@@ -28,7 +32,7 @@
 	    	transition: ease 0.5s;
 	    }
 	}
-	i.icon-facebook {	
+	i.icon-facebook {
 		margin-left: 4px;
 	}
 }
@@ -36,7 +40,7 @@
 .footer-links {
 	ul {
 		li {
-			margin-bottom: 20px;
+			margin-bottom:16px;
 			a {
 				color: $grey-Edark;
 				&:hover,&:focus {
@@ -60,7 +64,7 @@
 			width: 120px;
 		    height: 40px;
 		}
-	} 
+	}
 }
 .footer-copyrights {
 	p {

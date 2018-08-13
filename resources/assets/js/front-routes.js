@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 const routes = [
 
-    // Login page 
+    // Login page
 
     {
         name: 'login',
@@ -53,6 +53,17 @@ const routes = [
         },
         component: require('./components/front/explore/main.vue'),
     },
+
+
+    {
+        name: 'Explore_Detail',
+        path: '/explore/explorer-detail',
+        meta: {
+            title: 'Professional Service Marketplace | Category Detail',
+            bodyClass: 'explore_detail_page',
+        },
+        component: require('./components/front/explore/detail-category.vue'),
+    },    
 
 
 

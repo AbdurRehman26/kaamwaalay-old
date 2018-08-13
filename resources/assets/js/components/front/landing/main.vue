@@ -132,7 +132,7 @@
 
      <!--get started-->
     <div class="section section-grey get-started-section next-project  elementary-banner">
-         <getstarted></getstarted>
+         <explorenow></explorenow>
     </div>
 </div>
 </template>

@@ -4,24 +4,44 @@
 		<h1>Sign Up</h1>
 
 		<!-- Nav tabs -->
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6">
 
-			<li class="nav-item" :class="{ active: tabval === 'firstsec' }">
-				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"  @click="tabval = 'firstsec'">I want to hire a service provider
-					<p>Get introduced to the right professional for your jobs</p>
-					<i v-if="tabval == 'firstsec'" class="icon-checkmark2"></i>
-				</a>
-			</li>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6">
 
-			<li class="nav-item" :class="{ active: tabval === 'secondsec' }">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"  @click="tabval = 'secondsec'">I want to grow my business
-					<p>Respond to customer requests and get hired</p>
-					<i v-if="tabval == 'secondsec'" class="icon-checkmark2"></i>
-				</a>
-			</li>
-
-		</ul>
-
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-6">
+				<div class="custom-radio boxed">
+						<input type="radio" name="accountType" id="type_hire_provider" checked>
+						<label for="type_hire_provider">
+							<div class="verticle-align">
+								<div class="inner">
+									I want to hire a service provider
+									<span>Get introduced to the right professional for your jobs</span>
+									<i class="icon-checkmark2"></i>
+								</div>
+							</div>
+						</label>
+					</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-sm-6">
+				<div class="custom-radio boxed">
+						<input type="radio" name="accountType" id="type_service_provider">
+						<label for="type_service_provider">
+							<div class="verticle-align">
+								<div class="inner">
+									I want to grow my business
+									<span>Respond to customer requests and get hired</span>
+									<i class="icon-checkmark2"></i>
+								</div>
+							</div>
+						</label>
+					</div>
+			</div>
+		</div>
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -65,13 +85,13 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="create-account-btn">
 						<button class="btn btn-primary">Create Account
 							<loader></loader>
 						</button>
 					</div>
-					
+
 					<div class="form-detail">
 						<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
 					</div>
@@ -127,14 +147,14 @@
 							</div>
 						</div>
 					</div>
-					
-				
+
+
 					<div class="create-account-btn">
 						<button class="btn btn-primary">Create Account
 							<loader></loader>
 						</button>
 					</div>
-					
+
 					<div class="form-detail">
 						<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
 					</div>
