@@ -45,7 +45,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         $data = parent::findById($id, $refresh, $details, $input);
 
         if ($data) {
-            if($data->parent_id != 0){
+            if($data->parent_id != NULL){
                 $data->parent = $this->findById($data->parent_id);
                 
             }else{
@@ -63,9 +63,23 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         return parent::create($data);
     }
     public function update(array $data = []) {
+        
         unset($data['user_id']);
+        
+        if (!empty($data['parent_id'])) {
+            $parentExist = Service::where('id','=',$data['parent_id'])->whereNull('parent_id')->count();
+            if ($parentExist) {
+                return parent::update($data);
+                
+            }else{
+                return 'not_parent';
+            }
+            
+        }else{
+            return parent::update($data);
+        }
 
-        return parent::update($data);
+
     }
 
 
