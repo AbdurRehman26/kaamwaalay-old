@@ -1,32 +1,10 @@
-/*Font family mixin*/
-$font_regular:'AkzidenzGroteskBE-Regular';
-$font_bold:'AkzidenzGroteskBE-Bold';
-$font_medium:'AkzidenzGroteskBE-Md';
-
-@mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style :normal, $font-stretch: normal) {
-    @font-face {
-        font-family: '#{$font-family}';
-        src: url('../../fonts/#{$font-filename}.eot?#iefix') format('embedded-opentype'),
-        url('../../fonts/#{$font-filename}.woff') format('woff'),
-        url('../../fonts/#{$font-filename}.ttf') format('truetype'),
-        url('../../fonts/#{$font-filename}.woff') format('woff');
-        font-style:normal;
-        font-weight:400;
-        font-stretch:none;
-    }
-}
-
-@include declare-font-face($font_regular,'AkzidenzGroteskBE-Regular');
-@include declare-font-face($font_bold,'AkzidenzGroteskBE-Bold');
-@include declare-font-face($font_medium,'AkzidenzGroteskBE-Md');
-
 @font-face {
     font-family: 'icomoon';
-    src: url('../../fonts/front/icomoon-front.eot?3toe5f');
-    src: url('../../fonts/front/icomoon-front.eot?3toe5f#iefix') format('embedded-opentype'),
-    url('../../fonts/front/icomoon-front.ttf?3toe5f') format('truetype'),
-    url('../../fonts/front/icomoon-front.woff?3toe5f') format('woff'),
-    url('../../fonts/front/icomoon-front.svg?3toe5f#icomoon') format('svg');
+    src: url('fonts/icomoon.eot?3toe5f');
+    src: url('fonts/icomoon.eot?3toe5f#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?3toe5f') format('truetype'),
+    url('fonts/icomoon.woff?3toe5f') format('woff'),
+    url('fonts/icomoon.svg?3toe5f#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
