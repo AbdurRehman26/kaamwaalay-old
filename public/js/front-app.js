@@ -3133,6 +3133,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -64794,36 +64797,38 @@ var render = function() {
                   _c("p", [_vm._v(_vm._s(listing.job_description))])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "chart-feedback" }, [
+                _c("div", { staticClass: "chat-feedback" }, [
                   _vm._m(5, true),
                   _vm._v(" "),
-                  _c("div", {
-                    staticClass: "chart-feedback-image",
-                    style: {
-                      "background-image":
-                        "url(" + listing.latest_review_image + ")"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "chart-feedback-message" }, [
-                    _c("p", [
-                      _vm._v(_vm._s(listing.latest_review_description))
-                    ]),
+                  _c("div", { staticClass: "chat-feedback-column" }, [
+                    _c("div", {
+                      staticClass: "chat-feedback-image",
+                      style: {
+                        "background-image":
+                          "url(" + listing.latest_review_image + ")"
+                      }
+                    }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "feeback-detail" }, [
-                      _c("p", { staticClass: "feedback-personal-info" }, [
-                        _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                          _vm._v(_vm._s(listing.latest_reviewer_name))
-                        ]),
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t "
-                        ),
-                        _c("strong", [
-                          _vm._v(_vm._s(listing.latest_review_post_date))
-                        ])
+                    _c("div", { staticClass: "chat-feedback-message" }, [
+                      _c("p", [
+                        _vm._v(_vm._s(listing.latest_review_description))
                       ]),
                       _vm._v(" "),
-                      _c("i", { staticClass: "icon-quotes-right3" })
+                      _c("div", { staticClass: "feeback-detail" }, [
+                        _c("p", { staticClass: "feedback-personal-info" }, [
+                          _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                            _vm._v(_vm._s(listing.latest_reviewer_name))
+                          ]),
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
+                          ),
+                          _c("strong", [
+                            _vm._v(_vm._s(listing.latest_review_post_date))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("i", { staticClass: "icon-quotes-right3" })
+                      ])
                     ])
                   ])
                 ])
