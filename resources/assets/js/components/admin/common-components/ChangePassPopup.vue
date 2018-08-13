@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div slot="modal-footer" class="w-100">
-                        <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-block' ,'btn-secondary' , 'float-left','col-sm-3' ]">Submit
+                        <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit
                             <loader></loader>
                         </button>
                 </div>

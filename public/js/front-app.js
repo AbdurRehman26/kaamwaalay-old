@@ -67186,9 +67186,8 @@ var render = function() {
                       class: [
                         _vm.loading ? "show-spinner" : "",
                         "btn",
-                        "btn-block",
-                        "btn-secondary",
-                        "float-left",
+                        "btn-primary",
+                        "apply-primary-color",
                         "col-sm-3"
                       ]
                     },
