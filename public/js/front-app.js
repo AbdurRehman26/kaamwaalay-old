@@ -84178,7 +84178,7 @@ Vue.component('getstarted', __webpack_require__("./resources/assets/js/component
 
 var routes = [
 
-// Login page 
+// Login page
 
 {
     name: 'login',
