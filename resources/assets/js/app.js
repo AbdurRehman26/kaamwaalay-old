@@ -74,6 +74,7 @@ Vue.use(Vuex);
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
+require('./filters')
 
 const options = {
     color: '#8200ff',
