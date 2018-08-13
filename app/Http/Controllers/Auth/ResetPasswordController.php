@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
 use App\Data\Repositories\UserRepository;
+use App\Data\Models\User;
 class ResetPasswordController extends Controller
 {
     /*
@@ -74,13 +75,13 @@ class ResetPasswordController extends Controller
     protected function resetPassword($user, $password)
     {
         $status = $user->status;
-        if($user->status != -1){
-            $status  = 1;
+        if($user->status != User::IN_ACTIVE){
+            $status  = User::ACTIVE;
         }
         $user->password = Hash::make($password);
         $user->setRememberToken(Str::random(60));
         $user->save();
-       $this->_userRepository->update(['id'=>$user->id , 'status'=>$status]);
+       $this->_userRepository->update(['id'=>$user->id , 'user_details'=>['status'=>$status]]);
         event(new PasswordReset($user));
         $this->guard()->login($user);
     }

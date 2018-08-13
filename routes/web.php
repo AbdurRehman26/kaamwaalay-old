@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/password/set/{token}/{email}', function(){
+    return view('admin-layout');
+})->where('id', '.*')->name('password.reset');
 Route::get('/', function () {
     return view('layout');
 });
@@ -21,7 +23,6 @@ Route::get('/', function () {
 })->where('any', '.*');*/
 Route::post('social/login', 'Api\V1\UserController@socialLogin')->name('socialLogin');
 Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');
-Route::get('password/set/{token}/{email}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 
 /*Admin Route*/
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');

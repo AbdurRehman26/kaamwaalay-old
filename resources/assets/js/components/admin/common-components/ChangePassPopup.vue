@@ -1,5 +1,6 @@
 <template>	
 	<div>
+        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
 		<form @submit.prevent="validateBeforeSubmit">
             <b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ref="myModalRef" size="sm" title="Change Password" no-close-on-backdrop no-close-on-esc>
                 <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
