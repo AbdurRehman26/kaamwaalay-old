@@ -54,8 +54,10 @@
 							<div class="jobs-rating">
 								<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>
 								<div class="jobs-done">
-									<span class="review-job">{{ listing.job_feedback }} Feedback reviews</span>					
-									<span class="review-job">{{ listing.job_perform }} Jobs performed</span>
+									<span class="review-job">{{ listing.job_feedback }} Feedback reviews</span>				
+
+									<span class="review-job" v-if="listing.job_perform == 0">No Jobs performed</span>
+									<span class="review-job" v-else>{{ listing.job_perform }} Jobs performed</span>
 								</div>	
 							</div>
 							<a href="javascript:void(0);" class="btn btn-primary post-bid">Post Job & Invite to Bid</a>
@@ -76,7 +78,7 @@
 							<p>{{ listing.job_description }}</p>
 						</div>
 
-						<div class="chat-feedback">
+						<div class="chat-feedback" v-if="listing.review_details == true">
 							<div class="text-notifer">
 								<p>Latest feedback & review</p>	
 							</div>
@@ -103,8 +105,8 @@
 			</div>			
 		</div>
 
-        <div class="featured-categories section-padd sm">
-        	<div class="container">
+        <div class="featured-categories section-padd sm  elementary-banner p-t-130">
+        	<div class="container element-index">
 
 	        	<div class="category-section" v-for="maincategory in category">
 	        		<div class="category-title">
@@ -125,6 +127,10 @@
 
 
         	</div>
+			<div class="elements">
+				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
+				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
+			</div>        	
         </div>
 
 	</div>
@@ -152,7 +158,7 @@ export default {
 	    		job_location: 'New York, NY',
 	    		job_member_since: 'Jan, 2018',
 	    		job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-
+	    		review_details: true,
 	    		latest_review_image: '/images/front/storage/personimage1.png',
 	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
 	    		latest_reviewer_name: 'Shirley Webb',
@@ -167,14 +173,65 @@ export default {
 	    		job_perform: 208,
 	    		job_location: 'New York, NY',
 	    		job_member_since: 'Feb, 2018',
-	    		job_description: 'Hi Im Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...',
-
+	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
+	    		review_details: true,
 	    		latest_review_image: '/images/front/storage/personimage2.png',
 	    		latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
 	    		latest_reviewer_name: 'Keith McCoy',
 	    		latest_review_post_date: 'August, 2018',
 
-	    	},	    	
+	    	},
+
+	    	{
+	    		job_title_image: '/images/front/storage/personimage6.png',
+	    		job_title: 'Christopher Ward Joinery Services',
+	    		job_feedback: 164,
+	    		job_perform: 174,
+	    		job_location: 'New York, NY',
+	    		job_member_since: 'Jan, 2018',
+	    		job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
+	    		review_details: true,
+	    		latest_review_image: '/images/front/storage/personimage7.png',
+	    		latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
+	    		latest_reviewer_name: 'Ashley Bel',
+	    		latest_review_post_date: 'September, 2018',
+
+	    	},	
+
+	    	{
+	    		job_title_image: '/images/front/storage/personimage3.png',
+	    		job_title: 'C&N Home Solutions',
+	    		job_feedback: 124,
+	    		job_perform: 148,
+	    		job_location: 'New York, NY',
+	    		job_member_since: 'Jan, 2018',
+	    		job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+	    		review_details: true,
+	    		latest_review_image: '/images/front/storage/personimage4.png',
+	    		latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+	    		latest_reviewer_name: 'Lauren Gomez',
+	    		latest_review_post_date: 'March, 2018',
+
+	    	},	
+
+
+	    	{
+	    		job_title_image: '/images/front/storage/personimage5.png',
+	    		job_title: 'C M H Maintenance',
+	    		job_feedback: 0,
+	    		job_perform: 0,
+	    		job_location: 'New York, NY',
+	    		job_member_since: 'Jan, 2018',
+	    		job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+	    		review_details: false,
+	    		latest_review_image: '/images/front/storage/personimage4.png',
+	    		latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+	    		latest_reviewer_name: 'Lauren Gomez',
+	    		latest_review_post_date: 'March, 2018',
+
+	    	},		    	
+
+	    		    	    		    	
 
     	],
 

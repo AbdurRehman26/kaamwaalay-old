@@ -684,24 +684,24 @@ li.nav-item.active {
         line-height: 29px;
     }
     &:before{
-        content: '';
+/*         content: '';
         position: absolute;
         bottom: -15px;
-        left: 47%;
-        /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
+        left: 47%;        
         border-top: 15px solid #fdfdfd;
         border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
+        border-right: 15px solid transparent; */
     }
     &:after{
         content: '';
         position: absolute;
-        bottom: -15px;
+        bottom: -28px;
         left: 47%;
-        /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
-        border-top: 15px solid #fdfdfd;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
+        background-image: url(/images/caret-top.png);
+        width: 29px;
+        height: 29px;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 }
 .grey-bg{
@@ -1269,6 +1269,20 @@ li.nav-item.active {
         border-radius: 12px;
         .chat-feedback-message{
             background-color: #fff;
+            &:after, &:before{
+                content: '';
+                border-right: 10px solid #fff !important;
+            }
+            &:after{
+                content: '';
+                border-right: 10px solid #E0E0E0 !important;
+                /* left: -11px !important; */
+                left: -12px !important;            
+            }
+            &:before {
+                content: '';
+                z-index: 9;
+            }                         
         }
     }
 }
@@ -1360,6 +1374,12 @@ li.nav-item.active {
             margin-bottom: 0;
         }
     }
+    .chat-feedback-column{
+        padding-bottom: 21px;
+        &:last-child{
+            padding-bottom: 0px;
+        }
+    }
     .chat-feedback-image {
         width: 47px;
         height: 47px;
@@ -1374,13 +1394,35 @@ li.nav-item.active {
         border: 1px solid #E0E0E0;
         margin-left: 18px;
         border-radius: 8px;
+        position: relative;
         background-color: #F9F9F9;
         p{
             font-size: $font-size-xs;
             line-height: 19px;
             margin-bottom: 0px;
         }
-    }
+        &:before,&:after{
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-right: 10px solid #f9f9f9;
+            position: absolute;
+            left: -10px;
+            top: 11px;
+        }
+        &:after{
+            content: '';
+            border-right: 10px solid #E0E0E0 !important;
+            /* left: -11px !important; */
+            left: -12px !important;            
+        }
+        &:before {
+            content: '';
+            z-index: 9;
+        }        
+    }    
     .feeback-detail {
         margin-top: 16px;
         position: relative;

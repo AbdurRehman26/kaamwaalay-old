@@ -10742,7 +10742,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Regular";
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10750,7 +10750,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Bold";
-  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10758,7 +10758,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Md";
-  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
+  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -10766,8 +10766,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a);
-  src: url(/fonts/icomoon.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff"), url(/fonts/icomoon.svg?4ad4e11cb927f5987a7cc998c6f1e3f0#icomoon) format("svg");
+  src: url(/fonts/icomoon-front.eot?82d3cdba4bf03b5b5bbbfade6105352a);
+  src: url(/fonts/icomoon-front.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon-front.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff"), url(/fonts/icomoon-front.svg?4ad4e11cb927f5987a7cc998c6f1e3f0#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11904,6 +11904,38 @@ textarea::-webkit-scrollbar-thumb {
 
 .p-r-100 {
   padding-right: 100px !important;
+}
+
+.m-t-130 {
+  margin-top: 130px !important;
+}
+
+.p-t-130 {
+  padding-top: 130px !important;
+}
+
+.m-b-130 {
+  margin-bottom: 130px !important;
+}
+
+.p-b-130 {
+  padding-bottom: 130px !important;
+}
+
+.m-l-130 {
+  margin-left: 130px !important;
+}
+
+.p-l-130 {
+  padding-left: 130px !important;
+}
+
+.m-r-130 {
+  margin-right: 130px !important;
+}
+
+.p-r-130 {
+  padding-right: 130px !important;
 }
 
 .auth-main-wrapper.verticle-align .inner {
@@ -13660,25 +13692,25 @@ li.nav-item.active {
 }
 
 .testmonial-block:before {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 47%;
-  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
-  border-top: 15px solid #fdfdfd;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
+  /*         content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 47%;        
+        border-top: 15px solid #fdfdfd;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent; */
 }
 
 .testmonial-block:after {
   content: '';
   position: absolute;
-  bottom: -15px;
+  bottom: -28px;
   left: 47%;
-  /* box-shadow: 0 0 10px 0 rgba(0,0,0,0.2); */
-  border-top: 15px solid #fdfdfd;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
+  background-image: url(/images/caret-top.png);
+  width: 29px;
+  height: 29px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .grey-bg {
@@ -14298,6 +14330,32 @@ li.nav-item.active {
   background-color: #fff;
 }
 
+.job-post-list:hover .chat-feedback-message:after,
+.job-post-list:hover .chat-feedback-message:before,
+.job-post-list:focus .chat-feedback-message:after,
+.job-post-list:focus .chat-feedback-message:before,
+.job-post-list:active .chat-feedback-message:after,
+.job-post-list:active .chat-feedback-message:before {
+  content: '';
+  border-right: 10px solid #fff !important;
+}
+
+.job-post-list:hover .chat-feedback-message:after,
+.job-post-list:focus .chat-feedback-message:after,
+.job-post-list:active .chat-feedback-message:after {
+  content: '';
+  border-right: 10px solid #E0E0E0 !important;
+  /* left: -11px !important; */
+  left: -12px !important;
+}
+
+.job-post-list:hover .chat-feedback-message:before,
+.job-post-list:focus .chat-feedback-message:before,
+.job-post-list:active .chat-feedback-message:before {
+  content: '';
+  z-index: 9;
+}
+
 .vue-star-rating-rating-text {
   display: none;
 }
@@ -14396,6 +14454,14 @@ li.nav-item.active {
   margin-bottom: 0;
 }
 
+.chat-feedback .chat-feedback-column {
+  padding-bottom: 21px;
+}
+
+.chat-feedback .chat-feedback-column:last-child {
+  padding-bottom: 0px;
+}
+
 .chat-feedback .chat-feedback-image {
   width: 47px;
   height: 47px;
@@ -14411,6 +14477,7 @@ li.nav-item.active {
   border: 1px solid #E0E0E0;
   margin-left: 18px;
   border-radius: 8px;
+  position: relative;
   background-color: #F9F9F9;
 }
 
@@ -14418,6 +14485,31 @@ li.nav-item.active {
   font-size: 16px;
   line-height: 19px;
   margin-bottom: 0px;
+}
+
+.chat-feedback .chat-feedback-message:before,
+.chat-feedback .chat-feedback-message:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 10px solid #f9f9f9;
+  position: absolute;
+  left: -10px;
+  top: 11px;
+}
+
+.chat-feedback .chat-feedback-message:after {
+  content: '';
+  border-right: 10px solid #E0E0E0 !important;
+  /* left: -11px !important; */
+  left: -12px !important;
+}
+
+.chat-feedback .chat-feedback-message:before {
+  content: '';
+  z-index: 9;
 }
 
 .chat-feedback .feeback-detail {

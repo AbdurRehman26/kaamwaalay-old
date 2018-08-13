@@ -30751,7 +30751,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Regular";
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
+  src: url("/fonts/AkzidenzGroteskBE-Regular.eot?#iefix") format("embedded-opentype"), url("/fonts/AkzidenzGroteskBE-Regular.woff") format("woff"), url("/fonts/AkzidenzGroteskBE-Regular.ttf") format("truetype"), url("/fonts/AkzidenzGroteskBE-Regular.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30759,7 +30759,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Bold";
-  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
+  src: url("/fonts/AkzidenzGroteskBE-Bold.eot?#iefix") format("embedded-opentype"), url("/fonts/AkzidenzGroteskBE-Bold.woff") format("woff"), url("/fonts/AkzidenzGroteskBE-Bold.ttf") format("truetype"), url("/fonts/AkzidenzGroteskBE-Bold.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30767,7 +30767,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  src: url("/fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("/fonts/OpenSans-Light.woff") format("woff"), url("/fonts/OpenSans-Light.ttf") format("truetype"), url("/fonts/OpenSans-Light.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30775,7 +30775,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-Light";
-  src: url(/fonts/OpenSans-Light.eot?4dfa927030dec6d0ca8f5c6f546cce8f) format("embedded-opentype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff"), url(/fonts/OpenSans-Light.ttf?0e81d518fab72ed76dcefda224a01fce) format("truetype"), url(/fonts/OpenSans-Light.woff?df242428fd06b20811421e2c5db03179) format("woff");
+  src: url("/fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("/fonts/OpenSans-Light.woff") format("woff"), url("/fonts/OpenSans-Light.ttf") format("truetype"), url("/fonts/OpenSans-Light.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30783,7 +30783,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "AkzidenzGroteskBE-Md";
-  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
+  src: url("/fonts/AkzidenzGroteskBE-Md.eot?#iefix") format("embedded-opentype"), url("/fonts/AkzidenzGroteskBE-Md.woff") format("woff"), url("/fonts/AkzidenzGroteskBE-Md.ttf") format("truetype"), url("/fonts/AkzidenzGroteskBE-Md.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30791,7 +30791,7 @@ a.text-dark:focus {
 
 @font-face {
   font-family: "OpenSans-ExtraBold";
-  src: url(/fonts/OpenSans-ExtraBold.eot?338b9f42d2b9184b4cb7ed3c21ea485c) format("embedded-opentype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff"), url(/fonts/OpenSans-ExtraBold.ttf?f525db7b833334aff6d3f37459536d0f) format("truetype"), url(/fonts/OpenSans-ExtraBold.woff?29a8b1d56f79853bf4a1690cd1dbec3c) format("woff");
+  src: url("/fonts/OpenSans-ExtraBold.eot?#iefix") format("embedded-opentype"), url("/fonts/OpenSans-ExtraBold.woff") format("woff"), url("/fonts/OpenSans-ExtraBold.ttf") format("truetype"), url("/fonts/OpenSans-ExtraBold.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-stretch: none;
@@ -30799,8 +30799,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?5afa942908391f7efed056d6bd3c5d24);
-  src: url(/fonts/icomoon.eot?5afa942908391f7efed056d6bd3c5d24) format("embedded-opentype"), url(/fonts/icomoon.ttf?d1db9380a8f199331d07719e1b0d55c5) format("truetype"), url(/fonts/icomoon.woff?d65c89b3b1bedcd0f5ca5fb381b89775) format("woff"), url(/fonts/icomoon.svg?d82dc4494dff4a049fd4dd4fb24749c9) format("svg");
+  src: url("/fonts/admin/icomoon-admin.eot?3toe5f");
+  src: url("/fonts/admin/icomoon-admin.eot?3toe5f#iefix") format("embedded-opentype"), url("/fonts/admin/icomoon-admin.ttf?3toe5f") format("truetype"), url("/fonts/admin/icomoon-admin.woff?3toe5f") format("woff"), url("/fonts/admin/icomoon-admin.svg?3toe5f#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -32378,7 +32378,7 @@ h4 {
 .not-found .not-found-panel h1 {
   font-size: 9.4rem;
   margin-bottom: 0;
-  color: #FF8500;
+  color: #111;
 }
 
 .not-found .not-found-panel h3 {
@@ -32431,7 +32431,7 @@ h4 {
 }
 
 .secondary-color-bg {
-  background-color: #FF8500;
+  background-color: #111;
 }
 
 .primary-color {
@@ -32439,7 +32439,7 @@ h4 {
 }
 
 .secondary-color {
-  color: #FF8500;
+  color: #111;
 }
 
 .danger-color {
@@ -32899,7 +32899,7 @@ body .hide {
 }
 
 .icon-circle.secondary-color {
-  background: #FF8500;
+  background: #111;
 }
 
 .icon-circle.primary-color {
@@ -32955,7 +32955,7 @@ body .hide {
   position: absolute;
   left: -29px;
   top: 9px;
-  color: #FF8500;
+  color: #111;
   cursor: pointer;
   position: absolute;
 }
@@ -33654,7 +33654,7 @@ body .ag-theme-balham .ag-cell-focus:after {
   font-family: 'icomoon' !important;
   position: absolute;
   right: 12px;
-  color: #FF8500;
+  color: #111;
   top: 2px;
 }
 
@@ -34178,7 +34178,7 @@ body .ag-theme-balham .ag-header {
 }
 
 .btn.btn-secondary-color {
-  color: #FF8500;
+  color: #111;
   font-family: "AkzidenzGroteskBE-Regular";
   text-decoration: underline;
   background: transparent;
@@ -34195,15 +34195,15 @@ body .ag-theme-balham .ag-header {
 }
 
 .btn.btn-secondary {
-  background: #FF8500;
-  border-color: #FF8500;
+  background: #111;
+  border-color: #111;
 }
 
 .btn.btn-secondary:focus,
 .btn.btn-secondary:visited,
 .btn.btn-secondary:active {
-  background: #FF8500 !important;
-  border-color: #FF8500 !important;
+  background: #111 !important;
+  border-color: #111 !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
@@ -34250,7 +34250,7 @@ body .ag-theme-balham .ag-header {
   width: 100%;
   background-color: transparent !important;
   border: 1px solid #d9d9d9 !important;
-  color: #FF8500;
+  color: #111;
   padding: 24px 0px;
   border-style: dashed !important;
   display: block;
@@ -34265,7 +34265,7 @@ body .ag-theme-balham .ag-header {
 
 .btn.widget-btn:hover,
 .btn.widget-btn:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
   background-color: transparent !important;
 }
 
@@ -34338,12 +34338,12 @@ body .ag-theme-balham .ag-header {
 
 .card-header ul li a:hover,
 .card-header ul li a:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .card-header ul li .nav-link.active {
   background-color: #fff;
-  color: #FF8500;
+  color: #111;
 }
 
 .card-body {
@@ -34414,9 +34414,9 @@ body .ag-theme-balham .ag-header {
 
 .tabs-btn ul li a.active,
 .tabs-btn ul li a:hover {
-  background-color: #FF8500 !important;
+  background-color: #111 !important;
   color: #fff !important;
-  border-color: #FF8500 !important;
+  border-color: #111 !important;
 }
 
 .tabs-btn ul li:last-child {
@@ -34552,7 +34552,7 @@ body .ag-theme-balham .ag-header {
 }
 
 .list-group .list-group-item.active {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .list-group .list-group-item h5 {
@@ -34811,7 +34811,7 @@ body .ag-theme-balham .ag-header {
 }
 
 .list-style-2 .list-row .list-group-item .list-action i:hover {
-  color: #FF8500;
+  color: #111;
 }
 
 @media (max-width: 414px) {
@@ -34950,7 +34950,7 @@ body .ag-theme-balham .ag-header {
   position: absolute;
   top: 0;
   right: 0;
-  color: #FF8500;
+  color: #111;
   cursor: pointer;
   font-family: "AkzidenzGroteskBE-Regular";
 }
@@ -35161,8 +35161,8 @@ body .custom-file-input:focus ~ .custom-file-label {
 }
 
 .custom-checkbox input[type="checkbox"]:checked + label:before {
-  background-color: #FF8500;
-  border-color: #FF8500;
+  background-color: #111;
+  border-color: #111;
 }
 
 .custom-checkbox input[type="checkbox"]:checked + label i {
@@ -35312,11 +35312,11 @@ textarea {
 }
 
 .navbar-nav .active > .nav-link {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .navbar-nav .router-link-active {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .nav-head {
@@ -35472,7 +35472,7 @@ textarea {
 }
 
 .left-cog .notify-dropdown .right-notification span {
-  color: #FF8500;
+  color: #111;
   margin-left: 0;
 }
 
@@ -35496,7 +35496,7 @@ textarea {
   top: -6px;
   width: 22px;
   height: 25px;
-  background-image: url(/images/caret-top.png?4f269d1c1781767e911ded63467c1ee7);
+  background-image: url(/images/caret-top.png?0695d01f344026c0ec22424268e7b047);
   background-repeat: no-repeat;
   background-size: 100% auto;
   -webkit-box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2);
@@ -35586,7 +35586,7 @@ textarea {
 
 .navbar a:hover,
 .navbar a:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .user-img {
@@ -36519,7 +36519,7 @@ body .ag-header .ag-filter-icon p span {
 
 .chart-legends .widget-box .actions i:hover,
 .chart-legends .widget-box .actions i:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .chart-legends .widget-box:hover .actions i,
@@ -36570,7 +36570,7 @@ body .vue-grid-item .list-action i {
 
 body .vue-grid-item .list-action i:hover,
 body .vue-grid-item .list-action i:focus {
-  color: #FF8500;
+  color: #111;
 }
 
 .vue-grid-item .list-action i {
@@ -36648,7 +36648,7 @@ body .vue-grid-item .list-action i:focus {
 }
 
 .mx-calendar-table .today {
-  background-color: #FF8500 !important;
+  background-color: #111 !important;
 }
 
 .mx-calendar-table td,
@@ -36713,7 +36713,7 @@ body .vue-grid-item .list-action i:focus {
 }
 
 .data-block a {
-  color: #FF8500 !important;
+  color: #111 !important;
   text-decoration: underline !important;
 }
 
@@ -37034,7 +37034,7 @@ body .vue-grid-item .list-action i:focus {
 
 .add-widget-container li.nav-item a.active {
   background-color: #fff !important;
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .add-widget-container li:last-child {
@@ -37133,14 +37133,14 @@ body .vue-grid-item .list-action i:focus {
 }
 
 .add-workspace i {
-  color: #FF8500;
+  color: #111;
 }
 
 .add-workspace .btn-link {
   position: absolute;
   left: 17px;
   top: -9px;
-  color: #FF8500;
+  color: #111;
 }
 
 .user-detail {
@@ -37674,8 +37674,8 @@ body .query-builder .rule-value-container {
 
 .query-builder .btn.btn-primary {
   background: none;
-  border-color: #FF8500;
-  color: #FF8500;
+  border-color: #111;
+  color: #111;
 }
 
 @media (max-width: 414px) {
@@ -37686,19 +37686,19 @@ body .query-builder .rule-value-container {
 
 .query-builder .btn.btn-primary:hover {
   background: #fff;
-  color: #FF8500;
+  color: #111;
 }
 
 .query-builder .btn.btn-primary.active,
 .query-builder .btn.btn-primary:hover {
-  background: #FF8500;
+  background: #111;
   color: #fff !important;
   border-color: transparent;
 }
 
 .query-builder .rules-group-header .group-actions .btn {
   background: none;
-  color: #FF8500;
+  color: #111;
   border-color: transparent;
   text-transform: capitalize;
   font-family: "AkzidenzGroteskBE-Md";
@@ -37707,7 +37707,7 @@ body .query-builder .rule-value-container {
 
 .query-builder .rules-group-header .group-actions .btn:hover,
 .query-builder .rules-group-header .group-actions .btn:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .query-builder .rules-group-header .group-actions .btn i.glyphicon-plus {
@@ -37726,7 +37726,7 @@ body .query-builder .rule-value-container {
 }
 
 .query-builder .rules-group-header .group-actions .btn i.glyphicon-remove {
-  color: #FF8500 !important;
+  color: #111 !important;
   font-weight: 100;
   font-style: normal;
   font-size: 17px;
@@ -37735,7 +37735,7 @@ body .query-builder .rule-value-container {
 .query-builder .rules-group-header .group-actions .btn i.glyphicon-remove:before {
   content: "\E927";
   font-size: 23px;
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 @media (max-width: 767px) {
@@ -37751,7 +37751,7 @@ body .query-builder .rule-value-container {
 }
 
 .query-builder .rule-header i.glyphicon-remove {
-  color: #FF8500 !important;
+  color: #111 !important;
   font-weight: 100;
   font-style: normal;
   font-size: 17px;
@@ -37760,7 +37760,7 @@ body .query-builder .rule-value-container {
 .query-builder .rule-header i.glyphicon-remove:before {
   content: "\E927";
   font-size: 23px;
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .query-builder .query-builder .rule-value-container input[type=text],
@@ -39175,11 +39175,11 @@ select.form-control {
 }
 
 i[active="true"] {
-  color: #FF8500;
+  color: #111;
 }
 
 .dropdown.show i.icon-dots-three-vertical {
-  color: #FF8500;
+  color: #111;
 }
 
 .breadcrum ul {
@@ -39207,12 +39207,12 @@ i[active="true"] {
 }
 
 .breadcrum ul li a.active {
-  color: #FF8500;
+  color: #111;
 }
 
 .breadcrum ul li a.active:hover,
 .breadcrum ul li a.active:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .breadcrum ul li a.currentpage {
@@ -39507,7 +39507,7 @@ i[active="true"] {
 }
 
 .config-area .secondary-color {
-  background-color: #FF8500;
+  background-color: #111;
 }
 
 .setting-panel .dashboard-icons i {
@@ -39899,7 +39899,7 @@ i[active="true"] {
 
 .sorting-checkbox li:hover i.float-right,
 .sorting-checkbox li:focus i.float-right {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .sorting-checkbox i.float-right {
@@ -39917,7 +39917,7 @@ i[active="true"] {
 
 .sorting-checkbox i.handler:hover,
 .sorting-checkbox i.handler:focus {
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .sorting-checkbox strong {
@@ -40082,7 +40082,7 @@ i[active="true"] {
   top: 27px;
   font-size: 22px;
   left: -7px;
-  color: #FF8500;
+  color: #111;
   cursor: pointer;
 }
 
@@ -40092,7 +40092,7 @@ i[active="true"] {
 
 .add-relations {
   font-size: 0.875rem;
-  color: #FF8500;
+  color: #111;
   padding-left: 40px;
   font-family: "AkzidenzGroteskBE-Bold";
 }
@@ -40100,7 +40100,7 @@ i[active="true"] {
 .add-relations span {
   text-decoration: underline;
   font-size: 0.875rem;
-  color: #FF8500;
+  color: #111;
   font-family: "AkzidenzGroteskBE-Bold";
 }
 
@@ -40412,7 +40412,7 @@ i[active="true"] {
 
 .reportingtable i.icon-comment-icon:hover,
 .reportingtable i.icon-comment-icon:focus {
-  color: #FF8500;
+  color: #111;
 }
 
 .table-row-detail .list-group-item {
@@ -40469,7 +40469,7 @@ i[active="true"] {
   padding-left: 0px;
   padding-top: 11px;
   padding-bottom: 0px;
-  color: #FF8500;
+  color: #111;
 }
 
 .area-box .col-6 {
@@ -40482,7 +40482,7 @@ i[active="true"] {
 }
 
 .area-box .icon-add-solid {
-  color: #FF8500;
+  color: #111;
   position: relative;
   top: 7px;
 }
@@ -40603,7 +40603,7 @@ i[active="true"] {
 }
 
 .steps-details .chart-legends .divider .progress.warning .progress-bar {
-  background-color: #FF8500 !important;
+  background-color: #111 !important;
 }
 
 .steps-details .chart-legends .divider h3 {
@@ -40851,7 +40851,7 @@ i[active="true"] {
 }
 
 .progress-file .warning .progress-bar {
-  background-color: #FF8500 !important;
+  background-color: #111 !important;
 }
 
 .nextstep .btn {
@@ -40871,7 +40871,7 @@ i[active="true"] {
 }
 
 .list-action i:hover {
-  color: #FF8500;
+  color: #111;
 }
 
 .data-header {
@@ -40945,7 +40945,7 @@ i[active="true"] {
 }
 
 .table-graphs .table tr td:nth-child(3) {
-  color: #FF8500;
+  color: #111;
 }
 
 .table-graphs .table tr td:nth-child(4) {
@@ -41131,7 +41131,7 @@ i[active="true"] {
 
 .report-page .graph-log-entires label span a {
   float: right;
-  color: #FF8500;
+  color: #111;
   font-size: 0.875rem;
   font-family: "AkzidenzGroteskBE-Regular";
 }
@@ -41157,7 +41157,7 @@ i[active="true"] {
 .report-page .graph-log-entires label span a:hover,
 .report-page .graph-log-entires label span a:focus {
   text-decoration: none;
-  color: #FF8500 !important;
+  color: #111 !important;
 }
 
 .close {

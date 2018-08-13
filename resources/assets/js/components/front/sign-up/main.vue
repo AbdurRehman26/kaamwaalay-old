@@ -2,19 +2,9 @@
 	<div class="section padding-sm sign-up-info wrapper-sm">
 
 		<h1>Sign Up</h1>
-
-		<!-- Nav tabs -->
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6">
-
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6">
-
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-6">
-				<div class="custom-radio boxed">
+				<div class="custom-radio boxed m-b-30">
 						<input type="radio" name="accountType" id="type_hire_provider" checked>
 						<label for="type_hire_provider">
 							<div class="verticle-align">
