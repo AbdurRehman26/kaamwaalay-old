@@ -112,6 +112,33 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="business-proof">
+					<div class="row">
+						<div class="col-md-12">
+							<p>We can confirm your association to the business or organization with any of these documents:
+							<ul>
+								<li>Certificate of Formation (for a partnership)</li>
+								<li>Articles of Incorporation (for a corporation)</li>
+								<li>Local Business License (issued by your city, county, state, etc.)</li>
+								<li>More documents to be decided.</li>
+							</ul>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group custom-file">
+								<label>Browse</label>
+								<input class="form-control custom-file-input" type="file">
+								<span class="custom-file-label">Click here to choose a photo file</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
+						</div>
+					</div>
+				</div>
 				
 					<div class="create-account-btn">
 						<button class="btn btn-primary">Update Profile

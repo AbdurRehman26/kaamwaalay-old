@@ -63727,6 +63727,8 @@ var render = function() {
             _vm._v(" "),
             _vm._m(5),
             _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
             _c("div", { staticClass: "create-account-btn" }, [
               _c(
                 "button",
@@ -63736,7 +63738,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(6)
+            _vm._m(7)
           ])
         ])
       ])
@@ -63951,6 +63953,67 @@ var staticRenderFns = [
               attrs: { href: "javascript:;" }
             },
             [_vm._v("+ Add more services")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "business-proof" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("p", [
+            _vm._v(
+              "We can confirm your association to the business or organization with any of these documents:\n\t\t\t\t\t\t"
+            ),
+            _c("ul", [
+              _c("li", [
+                _vm._v("Certificate of Formation (for a partnership)")
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._v("Articles of Incorporation (for a corporation)")
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._v(
+                  "Local Business License (issued by your city, county, state, etc.)"
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [_vm._v("More documents to be decided.")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group custom-file" }, [
+            _c("label", [_vm._v("Browse")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control custom-file-input",
+              attrs: { type: "file" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "custom-file-label" }, [
+              _vm._v("Click here to choose a photo file")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "a",
+            {
+              staticClass: "add-photos filter-btn-top-space",
+              attrs: { href: "javascript:;" }
+            },
+            [_vm._v("+ Add more photos")]
           )
         ])
       ])
@@ -66090,7 +66153,7 @@ var staticRenderFns = [
     return _c("li", [
       _c(
         "a",
-        { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
+        { staticClass: "btn btn-primary", attrs: { href: "/job-post" } },
         [_vm._v("Post a Job")]
       )
     ])
@@ -67425,7 +67488,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "already-signup" }, [
       _c("p", [
         _vm._v("Already a member? "),
-        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Log in")])
+        _c("a", { attrs: { href: "/login" } }, [_vm._v("Log in")])
       ])
     ])
   }
