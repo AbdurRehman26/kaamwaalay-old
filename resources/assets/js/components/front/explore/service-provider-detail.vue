@@ -14,7 +14,7 @@
 						</div>
 						<div class="service-detail">
 							<a href="javascript:void(0);" class="btn btn-primary">Post Job & Invite to Bid</a>
-							<a @click="categorylisting" href="javascript:void(0);" class="btn btn-link">Go back</a>
+							<a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a>
 						</div>	
 					</div>
 				</div>

@@ -66593,7 +66593,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn btn-link",
+                    staticClass: "btn btn-link go-back",
                     attrs: { href: "javascript:void(0);" },
                     on: { click: _vm.categorylisting }
                   },

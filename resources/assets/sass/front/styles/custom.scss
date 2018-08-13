@@ -1442,6 +1442,11 @@ body{
         top: 0;
     }
 }
+.go-back{
+    color: $grey-dark !important;
+    font-size: $font-size-xxs;
+    padding: 10px 40px 10px 20px;
+}
 
 .member-details {
     display: block;
