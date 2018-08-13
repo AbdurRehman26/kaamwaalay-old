@@ -5,7 +5,6 @@
 <script>
     export default {
         mounted() {
-            console.log( this.$auth,'logout');
         },
         methods: {
 
@@ -13,7 +12,7 @@
                 var this_ = this;
                 this.$auth.logout().then(function (Vue) {
                     this_.$store.commit('setAuthUser', '');
-                    this_.$router.push({ name: 'landing'})
+                    this_.$router.push({ name: 'login'})
                 })
             }
         }
