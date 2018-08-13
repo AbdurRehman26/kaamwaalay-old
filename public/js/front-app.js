@@ -2391,9 +2391,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            errorMessage: '',
+            successMessage: '',
+            showNoRecordFound: false,
+            UpdatedFound: false,
+            userData: {
+                'old_password': '',
+                'new_password': '',
+                'password_confirmation': ''
+            },
+            loading: false
+        };
+    },
 
     props: ['showModalProp'],
     methods: {
@@ -2402,18 +2433,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         hideModal: function hideModal() {
             this.$refs.myModalRef.hide();
+            this.clearFormFields();
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
+        },
+        clearFormFields: function clearFormFields() {
+            var self = this;
+            self.userData.old_password = '';
+            self.userData.new_password = '';
+            self.userData.password_confirmation = '';
+
+            setTimeout(function () {
+                Vue.nextTick(function () {
+                    self.errorBag.clear();
+                });
+            }, 100);
+        },
+        validateBeforeSubmit: function validateBeforeSubmit() {
+            var _this = this;
+
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.errorMessage = '';
+                    _this.update();
+                    return;
+                }
+
+                _this.errorMessage = _this.errorBag.all()[0];
+            });
+        },
+
+        update: function update() {
+            var self = this;
+            self.loading = true;
+            this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
+                self.loading = false;
+                self.successMessage = response.data.message;
+                setTimeout(function () {
+                    self.successMessage = '';
+                    self.hideModal();
+                }, 5000);
+            }).catch(function (error) {
+                self.loading = false;
+                self.errorMessage = 'Old Password is not valid.';
+                setTimeout(function () {
+                    self.errorMessage = '';
+                }, 5000);
+            });
         }
     },
     watch: {
         showModalProp: function showModalProp(value) {
-
             if (value) {
                 this.showModal();
             }
             if (!value) {
+                this.errorMessage = '';
+                this.successMessage = '';
                 this.hideModal();
             }
         }
@@ -63481,74 +63558,257 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-modal",
-        {
-          ref: "myModalRef",
-          attrs: {
-            id: "change-pass",
-            centered: "",
-            "title-tag": "h4",
-            "ok-variant": "primary",
-            size: "sm",
-            title: "Change Password",
-            "ok-only": "",
-            "ok-title": "Submit"
+  return _c("div", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.validateBeforeSubmit($event)
+          }
+        }
+      },
+      [
+        _c(
+          "b-modal",
+          {
+            ref: "myModalRef",
+            attrs: {
+              id: "change-pass",
+              centered: "",
+              "title-tag": "h4",
+              size: "sm",
+              title: "Change Password",
+              "no-close-on-backdrop": "",
+              "no-close-on-esc": ""
+            },
+            on: { hidden: _vm.onHidden }
           },
-          on: { hidden: _vm.onHidden }
-        },
-        [
-          _c("alert"),
-          _vm._v(" "),
-          _c("div", [
-            _c("label", [_vm._v("Old Password")]),
+          [
+            _vm.errorMessage || _vm.successMessage
+              ? _c("alert", {
+                  attrs: {
+                    errorMessage: _vm.errorMessage,
+                    successMessage: _vm.successMessage
+                  }
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "password",
-                  placeholder: "Enter old password",
-                  name: ""
-                }
-              })
+            _c("div", [
+              _c(
+                "div",
+                {
+                  class: [
+                    "form-group",
+                    _vm.UpdatedFound ? "alert alert-success" : "d-none"
+                  ],
+                  attrs: { role: "alert" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Password Updated Successfully\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Old Password")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "form-group",
+                    _vm.errorBag.first("old_password") ? "is-invalid" : ""
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.userData.old_password,
+                          expression: "userData.old_password"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "required|min:8|max:25",
+                          expression: "'required|min:8|max:25'"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        "data-vv-as": "old password",
+                        name: "old_password",
+                        "data-vv-name": "old_password",
+                        placeholder: "Enter old password"
+                      },
+                      domProps: { value: _vm.userData.old_password },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.userData,
+                            "old_password",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("New Password")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "form-group",
+                    _vm.errorBag.first("new_password") ? "is-invalid" : ""
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.userData.new_password,
+                          expression: "userData.new_password"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "required|min:8|max:25",
+                          expression: "'required|min:8|max:25'"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        "data-vv-as": "new password",
+                        name: "new_password",
+                        "data-vv-name": "new_password",
+                        placeholder: "Create new password"
+                      },
+                      domProps: { value: _vm.userData.new_password },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.userData,
+                            "new_password",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Confirm Password")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "form-group",
+                    _vm.errorBag.first("password_confirmation")
+                      ? "is-invalid"
+                      : ""
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "form-group mb-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.userData.password_confirmation,
+                          expression: "userData.password_confirmation"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "required|confirmed:new_password",
+                          expression: "'required|confirmed:new_password'"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        "data-vv-as": "confirm password",
+                        name: "password_confirmation",
+                        "data-vv-name": "password_confirmation",
+                        placeholder: "Re-type new password"
+                      },
+                      domProps: { value: _vm.userData.password_confirmation },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.userData,
+                            "password_confirmation",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
-            _c("label", [_vm._v("New Password")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "password",
-                  placeholder: "Create new password",
-                  name: ""
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", [_vm._v("Confirm Password")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group mb-0" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "password",
-                  placeholder: "Re-type new password",
-                  name: ""
-                }
-              })
-            ])
-          ])
-        ],
-        1
-      )
-    ],
-    1
-  )
+            _c(
+              "div",
+              {
+                staticClass: "w-100",
+                attrs: { slot: "modal-footer" },
+                slot: "modal-footer"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    class: [
+                      _vm.loading ? "show-spinner" : "",
+                      "btn",
+                      "btn-block",
+                      "btn-secondary",
+                      "float-left",
+                      "col-sm-3"
+                    ]
+                  },
+                  [
+                    _vm._v("Submit\n                            "),
+                    _c("loader")
+                  ],
+                  1
+                )
+              ]
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
