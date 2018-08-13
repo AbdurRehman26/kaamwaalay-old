@@ -35252,6 +35252,12 @@ textarea {
   border-color: #66AFE9;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .main-nav {
   position: relative;
   height: 56px;
