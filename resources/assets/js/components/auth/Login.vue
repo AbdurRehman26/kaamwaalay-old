@@ -67,7 +67,7 @@
           window.successMessage = ""
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
-            this_.$store.commit('setAuthUser', response.data);
+            this_.$store.commit('setAuthUser', response.data.response.data[0]);
             this_.$router.push({ name: 'dashboard'})
           }).catch(error => {
             this.loading = false

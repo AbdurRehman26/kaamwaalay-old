@@ -2720,7 +2720,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       window.successMessage = "";
       this.$auth.login(this.login_info).then(function (response) {
         self.loading = false;
-        this_.$store.commit('setAuthUser', response.data);
+        this_.$store.commit('setAuthUser', response.data.response.data[0]);
         this_.$router.push({ name: 'dashboard' });
       }).catch(function (error) {
         _this.loading = false;

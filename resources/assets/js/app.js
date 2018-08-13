@@ -54,7 +54,6 @@ const config = {
 };
 Vue.use(VeeValidate,config);
 Vue.use(InfiniteLoading);
-Vue.use(Vuex);
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
     tokenName: 'access_token',
@@ -68,10 +67,10 @@ Vue.use(VueAuthenticate, {
         oauth2: {
             name: 'oauth2',
             url: 'Token/Exchange',
-        },
+        }
     }
 })
-
+Vue.use(Vuex);
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
