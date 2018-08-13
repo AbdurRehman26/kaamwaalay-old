@@ -1919,7 +1919,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_touch__ = __webpack_require__("./node_modules/vue-touch/dist/vue-touch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_touch__ = __webpack_require__("./node_modules/vue-fancybox/node_modules/vue-touch/dist/vue-touch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_touch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_touch__);
 //
 //
@@ -2342,6 +2342,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Alert.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['errorMessage', 'successMessage']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2669,81 +2691,60 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return _ref = {
       titleproperties: 'dashboard-title'
-    }, _defineProperty(_ref, 'titleproperties', 'bodyclass'), _defineProperty(_ref, 'facebookLoginData', {}), _ref;
+    }, _defineProperty(_ref, 'titleproperties', 'bodyclass'), _defineProperty(_ref, 'errorMessage', window.errorMessage), _defineProperty(_ref, 'successMessage', window.successMessage), _defineProperty(_ref, 'login_info', {
+      'email': '',
+      'password': '',
+      'remember': false
+    }), _defineProperty(_ref, 'loading', false), _ref;
+  },
+  mounted: function mounted() {
+    self = this;
+    this.$nextTick(function () {
+      setTimeout(function () {
+        self.errorMessage = '';
+      }, 5000);
+    });
   },
 
+  watch: {
+    message: function message(value) {
+      this.successMessage = value;
+    }
+  },
   methods: {
-    onSubmit: function onSubmit() {
-      console.log(this.form);
-      this.$router.push({ name: 'dashboard' });
-    },
-    openFbLoginDialog: function openFbLoginDialog() {
-      FB.login(this.checkLoginState, { scope: 'email' });
-    },
+    login: function login() {
+      var _this = this;
 
-    checkLoginState: function checkLoginState(response) {
-      var self = this;
-      if (response.status === 'connected') {
-        FB.api('/me', { fields: 'first_name,last_name,email,picture' }, function (profile) {
-          self.facebookLoginData.social_account_id = profile.id;
-          self.facebookLoginData.first_name = profile.first_name;
-          self.facebookLoginData.last_name = profile.last_name;
-          self.facebookLoginData.email = profile.email;
-          self.facebookLoginData.profile_image = profile.picture.data.url;
-          self.facebookLoginData.role_id = 2;
-          self.facebookLoginData.social_account_type = 'facebook';
-          self.socialLogin();
-        });
-      } else if (response.status === 'not_authorized') {
-        // the user is logged in to Facebook, 
-        // but has not authenticated your app
-      } else {
-          // the user isn't logged in to Facebook.
-        }
-    },
-    socialLogin: function socialLogin() {
-      var self = this;
-      //self.loading = true
-      this.$http.post('/social/login', self.facebookLoginData).then(function (response) {
-        console.log(response.data, 'success');
-        self.$router.push('dashboard');
-        // self.loading = false
-        //self.successMessage = 'Add New Admin successfully'
-        //self.$parent.getList()
-        // self.hideModal();
-        // setTimeout(function(){
-        //     self.successMessage='';
-        // }, 5000);
+      var this_ = this;
+      this.loading = true;
+      window.successMessage = "";
+      this.$auth.login(this.login_info).then(function (response) {
+        self.loading = false;
+        this_.$store.commit('setAuthUser', response.data.response.data[0]);
+        this_.$router.push({ name: 'dashboard' });
       }).catch(function (error) {
-        //self.loading = false
-        //self.errorMessage = 'Email address already taken.'
-        // setTimeout(function(){
-        //     self.errorMessage=''
-        // }, 5000);
+        _this.loading = false;
+        this_.errorMessage = error.response.data.errors.email[0];
+        setTimeout(function () {
+          this_.errorMessage = '';
+          this.loading = false;
+        }, 5000);
+      });
+    },
+    validateBeforeSubmit: function validateBeforeSubmit() {
+      var _this2 = this;
+
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          _this2.login();
+          _this2.errorMessage = '';
+          return;
+        }
+        _this2.errorMessage = _this2.errorBag.all()[0];
       });
     }
   }
 });
-window.fbAsyncInit = function () {
-  FB.init({
-    appId: '212566316088719', //todo dynamic 
-    autoLogAppEvents: true,
-    xfbml: true,
-    version: 'v3.1'
-  });
-  FB.AppEvents.logPageView();
-};
-
-(function (d, s, id) {
-  var js,
-      fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {
-    return;
-  }
-  js = d.createElement(s);js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, 'script', 'facebook-jssdk');
 
 /***/ }),
 
@@ -61714,6 +61715,278 @@ exports.default = VueBodyClass;
 
 /***/ }),
 
+/***/ "./node_modules/vue-fancybox/node_modules/vue-touch/dist/vue-touch.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+   true ? factory(__webpack_require__("./node_modules/hammerjs/hammer.js")) :
+  typeof define === 'function' && define.amd ? define(['hammerjs'], factory) :
+  (factory(global.Hammer));
+}(this, (function (Hammer) { 'use strict';
+
+Hammer = 'default' in Hammer ? Hammer['default'] : Hammer;
+
+function assign(target) {
+  var sources = [], len = arguments.length - 1;
+  while ( len-- > 0 ) sources[ len ] = arguments[ len + 1 ];
+  for (var i = 0; i < sources.length; i++) {
+    var source = sources[i];
+    var keys = Object.keys(source);
+    for (var i$1 = 0; i$1 < keys.length; i$1++) {
+      var key = keys[i$1];
+      target[key] = source[key];
+    }
+  }
+  return target
+}
+function createProp() {
+  return {
+    type: Object,
+    default: function() { return {} }
+  }
+}
+function capitalize (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+var directions = ['up', 'down', 'left', 'right', 'horizontal', 'vertical', 'all'];
+function guardDirections (options) {
+  var dir = options.direction;
+  if (typeof dir === 'string') {
+    var hammerDirection = 'DIRECTION_' + dir.toUpperCase();
+    if (directions.indexOf(dir) > -1 && Hammer.hasOwnProperty(hammerDirection)) {
+      options.direction = Hammer[hammerDirection];
+    } else {
+      console.warn('[vue-touch] invalid direction: ' + dir);
+    }
+  }
+  return options
+}
+var config = {
+};
+var customEvents = {
+};
+var gestures = [
+  'pan','panstart','panmove','panend','pancancel','panleft','panright','panup','pandown',
+  'pinch','pinchstart','pinchmove','pinchend','pinchcancel','pinchin','pinchout',
+  'press','pressup',
+  'rotate','rotatestart','rotatemove','rotateend','rotatecancel',
+  'swipe','swipeleft','swiperight','swipeup','swipedown',
+  'tap'
+];
+var gestureMap = {
+  pan: 'pan',
+  panstart: 'pan',
+  panmove: 'pan',
+  panend: 'pan',
+  pancancel: 'pan',
+  panleft: 'pan',
+  panright: 'pan',
+  panup: 'pan',
+  pandown: 'pan',
+  pinch: 'pinch',
+  pinchstart: 'pinch',
+  pinchmove: 'pinch',
+  pinchend: 'pinch',
+  pinchcancel: 'pinch',
+  pinchin: 'pinch',
+  pinchout: 'pinch',
+  press: 'press',
+  pressup: 'press',
+  rotate: 'rotate',
+  rotatestart: 'rotate',
+  rotatemove: 'rotate',
+  rotateend: 'rotate',
+  rotatecancel: 'rotate',
+  swipe: 'swipe',
+  swipeleft: 'swipe',
+  swiperight: 'swipe',
+  swipeup: 'swipe',
+  swipedown: 'swipe',
+  tap: 'tap'
+};
+
+var Component = {
+  props: {
+    options: createProp(),
+    tapOptions: createProp(),
+    panOptions: createProp(),
+    pinchOptions: createProp(),
+    pressOptions: createProp(),
+    rotateOptions: createProp(),
+    swipeOptions: createProp(),
+    tag: { type: String, default: 'div' },
+    enabled: {
+      default: true,
+      type: [Boolean, Object],
+    }
+  },
+  mounted: function mounted() {
+    if (!this.$isServer) {
+      this.hammer = new Hammer.Manager(this.$el, this.options);
+      this.recognizers = {};
+      this.setupBuiltinRecognizers();
+      this.setupCustomRecognizers();
+      this.updateEnabled(this.enabled);
+    }
+  },
+  destroyed: function destroyed() {
+    if (!this.$isServer) {
+      this.hammer.destroy();
+    }
+  },
+  watch: {
+    enabled: {
+      deep: true,
+      handler: function handler() {
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+        (ref = this).updateEnabled.apply(ref, args);
+        var ref;
+      }
+    }
+  },
+  methods: {
+    setupBuiltinRecognizers: function setupBuiltinRecognizers()  {
+      var this$1 = this;
+      for (var i = 0; i < gestures.length; i++) {
+        var gesture = gestures[i];
+        if (this$1._events[gesture]) {
+          var mainGesture = gestureMap[gesture];
+          var options = assign({}, (config[mainGesture] || {}), this$1[(mainGesture + "Options")]);
+          this$1.addRecognizer(mainGesture, options);
+          this$1.addEvent(gesture);
+        }
+      }
+    },
+    setupCustomRecognizers: function setupCustomRecognizers() {
+      var this$1 = this;
+      var gestures$$1 = Object.keys(customEvents);
+      for (var i = 0; i < gestures$$1.length; i++) {
+        var gesture = gestures$$1[i];
+        if (this$1._events[gesture]) {
+          var opts = customEvents[gesture];
+          var localCustomOpts = this$1[(gesture + "Options")] || {};
+          var options = assign({}, opts, localCustomOpts);
+          this$1.addRecognizer(gesture, options, {mainGesture: options.type});
+          this$1.addEvent(gesture);
+        }
+      }
+    },
+    addRecognizer: function addRecognizer(gesture, options, ref) {
+      if ( ref === void 0 ) ref = {};
+      var mainGesture = ref.mainGesture;
+      if (!this.recognizers[gesture]) {
+        var recognizer = new Hammer[capitalize(mainGesture || gesture)](guardDirections(options));
+        this.recognizers[gesture] = recognizer;
+        this.hammer.add(recognizer);
+        recognizer.recognizeWith(this.hammer.recognizers);
+      }
+    },
+    addEvent: function addEvent(gesture) {
+      var this$1 = this;
+      this.hammer.on(gesture, function (e) { return this$1.$emit(gesture, e); });
+    },
+    updateEnabled: function updateEnabled(newVal, oldVal) {
+      var this$1 = this;
+      if (newVal === true) {
+        this.enableAll();
+      } else if (newVal === false) {
+        this.disableAll();
+      } else if (typeof newVal === 'object') {
+        var keys = Object.keys(newVal);
+        for (var i = 0; i < keys.length; i++) {
+          var event = keys[i];
+          if (this$1.recognizers[event]) {
+            newVal[event]
+              ? this$1.enable(event)
+              : this$1.disable(event);
+          }
+        }
+      }
+    },
+    enable: function enable(r) {
+      var recognizer = this.recognizers[r];
+      if (!recognizer.options.enable) {
+        recognizer.set({ enable: true });
+      }
+    },
+    disable: function disable(r) {
+      var recognizer = this.recognizers[r];
+      if (recognizer.options.enable) {
+        recognizer.set({ enable: false });
+      }
+    },
+    toggle: function toggle(r) {
+      var recognizer = this.recognizers[r];
+      if (recognizer) {
+        recognizer.options.enable
+          ? this.disable(r)
+          : this.enable(r);
+      }
+    },
+    enableAll: function enableAll(r) {
+      this.toggleAll({ enable: true });
+    },
+    disableAll: function disableAll(r) {
+      this.toggleAll({ enable: false });
+    },
+    toggleAll: function toggleAll(ref) {
+      var this$1 = this;
+      var enable = ref.enable;
+      var keys = Object.keys(this.recognizers);
+      for (var i = 0; i < keys.length; i++) {
+        var r = this$1.recognizers[keys[i]];
+        if (r.options.enable !== enable) {
+          r.set({ enable: enable });
+        }
+      }
+    },
+    isEnabled: function isEnabled(r) {
+      return this.recognizers[r] && this.recognizers[r].options.enable
+    }
+  },
+  render: function render(h) {
+    return h(this.tag, {}, this.$slots.default)
+  }
+};
+
+var installed = false;
+var vueTouch = { config: config, customEvents: customEvents };
+vueTouch.install = function install(Vue, opts) {
+  if ( opts === void 0 ) opts = {};
+  var name = opts.name || 'v-touch';
+  Vue.component(name, assign(Component, { name: name }));
+  installed = true;
+}.bind(vueTouch);
+vueTouch.registerCustomEvent = function registerCustomEvent(event, options) {
+  if ( options === void 0 ) options = {};
+  if (installed) {
+    console.warn(("\n      [vue-touch]: Custom Event '" + event + "' couldn't be added to vue-touch.\n      Custom Events have to be registered before installing the plugin.\n      "));
+    return
+  }
+  options.event = event;
+  customEvents[event] = options;
+  Component.props[(event + "Options")] = {
+    type: Object,
+    default: function default$1() { return {} }
+  };
+}.bind(vueTouch);
+vueTouch.component = Component;
+if (true) {
+  module.exports = vueTouch;
+} else if (typeof define == "function" && define.amd) {
+  define([], function(){ return vueTouch });
+} else if (typeof window !== 'undefined' && window.Vue) {
+  window.VueTouch = vueTouch;
+  Vue.use(vueTouch);
+}
+
+})));
+//# sourceMappingURL=vue-touch.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-fancybox/src/fancyBox.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -62786,96 +63059,173 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "login-form auth-forms active" }, [
-    _c("form", [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
+  return _c(
+    "div",
+    { staticClass: "login-form auth-forms active" },
+    [
+      _vm.errorMessage || _vm.successMessage
+        ? _c("alert", {
+            attrs: {
+              errorMessage: _vm.errorMessage,
+              successMessage: _vm.successMessage
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.validateBeforeSubmit($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "row" }, [
             _c(
-              "span",
+              "div",
               {
-                staticClass: "forgot-password-text",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.$emit("show-login")
-                  }
-                }
+                staticClass: "col-xs-12 col-md-12",
+                class: [_vm.errorBag.first("email") ? "is-invalid" : ""]
               },
-              [_vm._v("Forgot Password?")]
-            )
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Email Address")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.login_info.email,
+                        expression: "login_info.email"
+                      },
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required|email",
+                        expression: "'required|email'"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: [_vm.errorBag.first("email") ? "is-invalid" : ""],
+                    attrs: {
+                      id: "login_email",
+                      type: "email",
+                      name: "email",
+                      "data-vv-name": "email",
+                      placeholder: "Enter your email address"
+                    },
+                    domProps: { value: _vm.login_info.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.login_info, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-xs-12 col-md-12",
+                class: [_vm.errorBag.first("password") ? "is-invalid" : ""]
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Password")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.login_info.password,
+                        expression: "login_info.password"
+                      },
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: [_vm.errorBag.first("password") ? "is-invalid" : ""],
+                    attrs: {
+                      id: "login_password",
+                      type: "password",
+                      "data-vv-as": "password",
+                      name: "password",
+                      "data-vv-name": "password",
+                      placeholder: "Enter your account password"
+                    },
+                    domProps: { value: _vm.login_info.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.login_info,
+                          "password",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "forgot-password-text",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.$emit("show-login")
+                      }
+                    }
+                  },
+                  [_vm._v("Forgot Password?")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+              _c(
+                "button",
+                {
+                  class: [
+                    _vm.loading ? "show-spinner" : "",
+                    "btn",
+                    "btn-primary",
+                    "apply-primary-color"
+                  ]
+                },
+                [_c("span", [_vm._v("Log In")]), _vm._v(" "), _c("loader")],
+                1
+              )
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary apply-primary-color",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.onSubmit($event)
-                }
-              }
-            },
-            [_c("span", [_vm._v("Log In")]), _vm._v(" "), _c("loader")],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.openFbLoginDialog } }, [
-      _vm._v("Facebook Login")
-    ])
-  ])
+        ]
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Email Address")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "email",
-            name: "email",
-            placeholder: "Enter your email address"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Password")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "password",
-            name: "password",
-            placeholder: "Enter your account password"
-          }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -65095,18 +65445,48 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
     [
-      _c("b-alert", { attrs: { variant: "danger", hide: "" } }, [
-        _c("i", { staticClass: "icon-success icon-check2" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "icon-danger icon-alert" }),
-        _vm._v(" "),
-        _c("p", [
-          _c("strong", [_vm._v("Error:")]),
-          _vm._v(" Invalid email address or password")
-        ])
-      ])
+      _c(
+        "b-alert",
+        {
+          attrs: { variant: _vm.errorMessage ? "danger" : "success", show: "" }
+        },
+        [
+          _c("i", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.successMessage,
+                expression: "successMessage"
+              }
+            ],
+            class: [_vm.successMessage ? "icon-success" : "", "icon-check2"]
+          }),
+          _vm._v(" "),
+          _c("i", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.errorMessage,
+                expression: "errorMessage"
+              }
+            ],
+            class: [_vm.errorMessage ? "icon-danger" : "", "icon-alert"]
+          }),
+          _vm._v(" "),
+          _c("p", [
+            _c("strong", [
+              _vm._v(_vm._s(_vm.errorMessage ? "Alert" : "Success") + ":")
+            ]),
+            _vm._v(
+              " " +
+                _vm._s(_vm.errorMessage ? _vm.errorMessage : _vm.successMessage)
+            )
+          ])
+        ]
+      )
     ],
     1
   )
@@ -68094,278 +68474,6 @@ module.exports = function listToStyles (parentId, list) {
   }
   return styles
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-touch/dist/vue-touch.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-(function (global, factory) {
-   true ? factory(__webpack_require__("./node_modules/hammerjs/hammer.js")) :
-  typeof define === 'function' && define.amd ? define(['hammerjs'], factory) :
-  (factory(global.Hammer));
-}(this, (function (Hammer) { 'use strict';
-
-Hammer = 'default' in Hammer ? Hammer['default'] : Hammer;
-
-function assign(target) {
-  var sources = [], len = arguments.length - 1;
-  while ( len-- > 0 ) sources[ len ] = arguments[ len + 1 ];
-  for (var i = 0; i < sources.length; i++) {
-    var source = sources[i];
-    var keys = Object.keys(source);
-    for (var i$1 = 0; i$1 < keys.length; i$1++) {
-      var key = keys[i$1];
-      target[key] = source[key];
-    }
-  }
-  return target
-}
-function createProp() {
-  return {
-    type: Object,
-    default: function() { return {} }
-  }
-}
-function capitalize (str) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-var directions = ['up', 'down', 'left', 'right', 'horizontal', 'vertical', 'all'];
-function guardDirections (options) {
-  var dir = options.direction;
-  if (typeof dir === 'string') {
-    var hammerDirection = 'DIRECTION_' + dir.toUpperCase();
-    if (directions.indexOf(dir) > -1 && Hammer.hasOwnProperty(hammerDirection)) {
-      options.direction = Hammer[hammerDirection];
-    } else {
-      console.warn('[vue-touch] invalid direction: ' + dir);
-    }
-  }
-  return options
-}
-var config = {
-};
-var customEvents = {
-};
-var gestures = [
-  'pan','panstart','panmove','panend','pancancel','panleft','panright','panup','pandown',
-  'pinch','pinchstart','pinchmove','pinchend','pinchcancel','pinchin','pinchout',
-  'press','pressup',
-  'rotate','rotatestart','rotatemove','rotateend','rotatecancel',
-  'swipe','swipeleft','swiperight','swipeup','swipedown',
-  'tap'
-];
-var gestureMap = {
-  pan: 'pan',
-  panstart: 'pan',
-  panmove: 'pan',
-  panend: 'pan',
-  pancancel: 'pan',
-  panleft: 'pan',
-  panright: 'pan',
-  panup: 'pan',
-  pandown: 'pan',
-  pinch: 'pinch',
-  pinchstart: 'pinch',
-  pinchmove: 'pinch',
-  pinchend: 'pinch',
-  pinchcancel: 'pinch',
-  pinchin: 'pinch',
-  pinchout: 'pinch',
-  press: 'press',
-  pressup: 'press',
-  rotate: 'rotate',
-  rotatestart: 'rotate',
-  rotatemove: 'rotate',
-  rotateend: 'rotate',
-  rotatecancel: 'rotate',
-  swipe: 'swipe',
-  swipeleft: 'swipe',
-  swiperight: 'swipe',
-  swipeup: 'swipe',
-  swipedown: 'swipe',
-  tap: 'tap'
-};
-
-var Component = {
-  props: {
-    options: createProp(),
-    tapOptions: createProp(),
-    panOptions: createProp(),
-    pinchOptions: createProp(),
-    pressOptions: createProp(),
-    rotateOptions: createProp(),
-    swipeOptions: createProp(),
-    tag: { type: String, default: 'div' },
-    enabled: {
-      default: true,
-      type: [Boolean, Object],
-    }
-  },
-  mounted: function mounted() {
-    if (!this.$isServer) {
-      this.hammer = new Hammer.Manager(this.$el, this.options);
-      this.recognizers = {};
-      this.setupBuiltinRecognizers();
-      this.setupCustomRecognizers();
-      this.updateEnabled(this.enabled);
-    }
-  },
-  destroyed: function destroyed() {
-    if (!this.$isServer) {
-      this.hammer.destroy();
-    }
-  },
-  watch: {
-    enabled: {
-      deep: true,
-      handler: function handler() {
-        var args = [], len = arguments.length;
-        while ( len-- ) args[ len ] = arguments[ len ];
-        (ref = this).updateEnabled.apply(ref, args);
-        var ref;
-      }
-    }
-  },
-  methods: {
-    setupBuiltinRecognizers: function setupBuiltinRecognizers()  {
-      var this$1 = this;
-      for (var i = 0; i < gestures.length; i++) {
-        var gesture = gestures[i];
-        if (this$1._events[gesture]) {
-          var mainGesture = gestureMap[gesture];
-          var options = assign({}, (config[mainGesture] || {}), this$1[(mainGesture + "Options")]);
-          this$1.addRecognizer(mainGesture, options);
-          this$1.addEvent(gesture);
-        }
-      }
-    },
-    setupCustomRecognizers: function setupCustomRecognizers() {
-      var this$1 = this;
-      var gestures$$1 = Object.keys(customEvents);
-      for (var i = 0; i < gestures$$1.length; i++) {
-        var gesture = gestures$$1[i];
-        if (this$1._events[gesture]) {
-          var opts = customEvents[gesture];
-          var localCustomOpts = this$1[(gesture + "Options")] || {};
-          var options = assign({}, opts, localCustomOpts);
-          this$1.addRecognizer(gesture, options, {mainGesture: options.type});
-          this$1.addEvent(gesture);
-        }
-      }
-    },
-    addRecognizer: function addRecognizer(gesture, options, ref) {
-      if ( ref === void 0 ) ref = {};
-      var mainGesture = ref.mainGesture;
-      if (!this.recognizers[gesture]) {
-        var recognizer = new Hammer[capitalize(mainGesture || gesture)](guardDirections(options));
-        this.recognizers[gesture] = recognizer;
-        this.hammer.add(recognizer);
-        recognizer.recognizeWith(this.hammer.recognizers);
-      }
-    },
-    addEvent: function addEvent(gesture) {
-      var this$1 = this;
-      this.hammer.on(gesture, function (e) { return this$1.$emit(gesture, e); });
-    },
-    updateEnabled: function updateEnabled(newVal, oldVal) {
-      var this$1 = this;
-      if (newVal === true) {
-        this.enableAll();
-      } else if (newVal === false) {
-        this.disableAll();
-      } else if (typeof newVal === 'object') {
-        var keys = Object.keys(newVal);
-        for (var i = 0; i < keys.length; i++) {
-          var event = keys[i];
-          if (this$1.recognizers[event]) {
-            newVal[event]
-              ? this$1.enable(event)
-              : this$1.disable(event);
-          }
-        }
-      }
-    },
-    enable: function enable(r) {
-      var recognizer = this.recognizers[r];
-      if (!recognizer.options.enable) {
-        recognizer.set({ enable: true });
-      }
-    },
-    disable: function disable(r) {
-      var recognizer = this.recognizers[r];
-      if (recognizer.options.enable) {
-        recognizer.set({ enable: false });
-      }
-    },
-    toggle: function toggle(r) {
-      var recognizer = this.recognizers[r];
-      if (recognizer) {
-        recognizer.options.enable
-          ? this.disable(r)
-          : this.enable(r);
-      }
-    },
-    enableAll: function enableAll(r) {
-      this.toggleAll({ enable: true });
-    },
-    disableAll: function disableAll(r) {
-      this.toggleAll({ enable: false });
-    },
-    toggleAll: function toggleAll(ref) {
-      var this$1 = this;
-      var enable = ref.enable;
-      var keys = Object.keys(this.recognizers);
-      for (var i = 0; i < keys.length; i++) {
-        var r = this$1.recognizers[keys[i]];
-        if (r.options.enable !== enable) {
-          r.set({ enable: enable });
-        }
-      }
-    },
-    isEnabled: function isEnabled(r) {
-      return this.recognizers[r] && this.recognizers[r].options.enable
-    }
-  },
-  render: function render(h) {
-    return h(this.tag, {}, this.$slots.default)
-  }
-};
-
-var installed = false;
-var vueTouch = { config: config, customEvents: customEvents };
-vueTouch.install = function install(Vue, opts) {
-  if ( opts === void 0 ) opts = {};
-  var name = opts.name || 'v-touch';
-  Vue.component(name, assign(Component, { name: name }));
-  installed = true;
-}.bind(vueTouch);
-vueTouch.registerCustomEvent = function registerCustomEvent(event, options) {
-  if ( options === void 0 ) options = {};
-  if (installed) {
-    console.warn(("\n      [vue-touch]: Custom Event '" + event + "' couldn't be added to vue-touch.\n      Custom Events have to be registered before installing the plugin.\n      "));
-    return
-  }
-  options.event = event;
-  customEvents[event] = options;
-  Component.props[(event + "Options")] = {
-    type: Object,
-    default: function default$1() { return {} }
-  };
-}.bind(vueTouch);
-vueTouch.component = Component;
-if (true) {
-  module.exports = vueTouch;
-} else if (typeof define == "function" && define.amd) {
-  define([], function(){ return vueTouch });
-} else if (typeof window !== 'undefined' && window.Vue) {
-  window.VueTouch = vueTouch;
-  Vue.use(vueTouch);
-}
-
-})));
-//# sourceMappingURL=vue-touch.js.map
 
 
 /***/ }),
@@ -81113,7 +81221,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Alert.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f237a478\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Alert.vue")
 /* template functional */
