@@ -31,6 +31,17 @@ Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans'
 Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
 
 
+
+Route::group(['middleware' => ['auth:api']], function () {
+
+Route::resource('user', 'Api\V1\UserController')->except([
+    'edit',
+]);
+
+
+});
+
+
 Route::resource('campaign', 'Api\V1\CampaignController')->except([
     'edit',
 ]);
@@ -107,9 +118,7 @@ Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
     'edit',
 ]);
 
-Route::resource('user', 'Api\V1\UserController')->except([
-    'edit',
-]);
+
 
 Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
     'edit',
