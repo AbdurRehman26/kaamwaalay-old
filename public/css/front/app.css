@@ -13901,6 +13901,53 @@ li.nav-item.active {
   background: #6004BA;
 }
 
+/* Apply For Review sass*/
+
+.personal-provider-detail {
+  padding-bottom: 20px;
+}
+
+.business-detail {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.business-detail:after {
+  content: 'BUSINESS DETAILS';
+  position: absolute;
+  top: -10px;
+  text-transform: capitalize;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #494949;
+  left: 40%;
+  background: #fff;
+  text-align: center;
+  width: 164px;
+}
+
+.service-offered {
+  position: relative;
+  padding-top: 30px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.service-offered:after {
+  content: 'SERVICES OFFERED';
+  position: absolute;
+  top: -10px;
+  text-transform: capitalize;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #494949;
+  left: 40%;
+  background: #fff;
+  text-align: center;
+  width: 164px;
+}
+
 .post-job-form {
   position: relative;
   margin-bottom: 40px;
@@ -13913,6 +13960,10 @@ li.nav-item.active {
 
 .filter-btn-top-space {
   margin-top: 8px;
+}
+
+.mt-40 {
+  margin-top: 40px;
 }
 
 .add-photos {

@@ -85,10 +85,10 @@
 /*        seen: true*/
       },
       methods: {
-        onSubmit() {
-          console.log(this.form);
-          this.$router.push({ name: 'dashboard'});
-        },
+        // onSubmit() {
+        //   console.log(this.form);
+        //   this.$router.push({ name: 'dashboard'});
+        // },
       },
     }
 </script>

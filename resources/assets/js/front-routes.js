@@ -7,7 +7,7 @@ const routes = [
 
     {
         name: 'login',
-        path: '/front-login',
+        path: '/login',
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
@@ -15,6 +15,17 @@ const routes = [
 
         },
         component: require('./components/front/auth/main.vue'),
+    },
+    {
+        name: 'reset-password',
+        path: '/reset-password',
+        meta: {
+            title: 'PSM | reset-password',
+            bodyClass: 'reset-password-page',
+            noHeader: true,
+
+        },
+        component: require('./components/front/auth/ResetPassword.vue'),
     },
 
     // Home

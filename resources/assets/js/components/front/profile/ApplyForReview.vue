@@ -9,7 +9,7 @@
 
 			<div class="form-signup">
 				<form>
-					<div class="personal-detail">
+					<div class="personal-provider-detail">
 						<div class="row">
 							<div class="browse-btn">
 								<div class="form-group">
@@ -53,18 +53,22 @@
 						</div>
 					</div>
 				</div>
-				<div class="home-detail">
+
+				<div class="business-detail">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">Address</label>
-									<input type="text" class="form-control" placeholder="Enter your street address">
+								<label for="">Are you an individual or a business?</label>
+									<select class="form-control">
+										<option disabled="">Select Business</option>
+										<option selected="">Business</option>
+									</select>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">Apartment, suite, unit</label>
-									<input type="text" class="form-control" placeholder="Enter your last name">
+								<label for="">DUNS Number</label>
+									<input type="text" class="form-control" placeholder="DUNS number for verification (optional)">
 							</div>
 						</div>
 					</div>
@@ -72,29 +76,39 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">City</label>
-									<input type="password" class="form-control" placeholder="Enter your city name">
+								<label for="">Business Name</label>
+									<input type="password" class="form-control" placeholder="Enter business name">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">State</label>
-									<select class="form-control">
-										<option selected="" disabled="">Select State</option>
-										<option>New York</option>
-										<option>California</option>
-									</select>
+								<label for="">Working since</label>
+									<input type="password" class="form-control" placeholder="e.g. June 2010">
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
 						
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="">About</label>
+									<textarea class="form-control" rows="2" placeholder="Start typing about your business / profile info"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="service-offered">
+					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">Zip Code</label>
-									<input type="password" class="form-control" placeholder="Enter your zip code">
+								<label for="">Service</label>
+									<input type="text" class="form-control" placeholder="Start typing service name">
 							</div>
+						</div>
+						<div class="col-md-6">
+							<a href="javascript:;" class="add-photos mt-40">+ Add more services</a>
 						</div>
 					</div>
 				</div>
