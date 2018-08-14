@@ -50,8 +50,21 @@ import { directive as onClickaway } from 'vue-clickaway';
            let user = JSON.parse(this.$store.getters.getAuthUser);
            this.first_name = user.first_name;
            this.last_name = user.last_name;
+           this.getAllServices();
        },
         methods: {
+
+            getAllServices() {
+                let self = this;
+                let url = 'api/service';
+
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.$store.commit('setAllServices' , response.data);
+                }).catch(error=>{
+
+                });
+            },
             ShowModal(){
                 this.showModalValue = true;
             },

@@ -72,14 +72,14 @@ abstract class ApiResourceController extends Controller
 
     //Create single record
     public function store(Request $request)
-    {
-
+    {   
+        $images = json_decode($request->input('images'));
+        $request->merge(['images' => $images]);
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
         $messages = $this->messages(__FUNCTION__);
-
-        $this->validate($request, $rules, $messages);
-
+        $this->validate($request, $rules);
+        
         $data = $this->_repository->create($input);
 
         $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];

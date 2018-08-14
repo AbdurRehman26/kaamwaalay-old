@@ -42,6 +42,10 @@ Route::resource('user', 'Api\V1\UserController')->except([
 });
 
 
+Route::resource('service', 'Api\V1\ServiceController')->except([
+    'edit',
+]);
+
 Route::resource('campaign', 'Api\V1\CampaignController')->except([
     'edit',
 ]);
@@ -90,9 +94,6 @@ Route::resource('service-provider-service', 'Api\V1\ServiceProviderServiceContro
     'edit',
 ]);
 
-Route::resource('service', 'Api\V1\ServiceController')->except([
-    'edit',
-]);
 
 Route::resource('state', 'Api\V1\StateController')->except([
     'edit',

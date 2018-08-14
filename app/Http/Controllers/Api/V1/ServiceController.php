@@ -26,7 +26,7 @@ class ServiceController extends ApiResourceController
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
         $rules['images']                  = 'required|array';       
         $rules['status']                  = 'required|in:0,1';    
-        $rules['user_id'] =  'required|exists:users,id';   
+        //$rules['user_id'] =  'required|exists:users,id';   
     }
 
     if($value == 'update'){
@@ -65,17 +65,24 @@ class ServiceController extends ApiResourceController
         $input = request()->only(
                             'id',
                             'title',
-                            'title',
                             'images',
                             'parent_id',
                             'pagination',
                             'description',
                             'is_display_banner',
                             'is_display_service_nav',
+                            'is_display_footer_nav',
+                            'is_featured',
+                            'url_prefix',
+                            'parent_service',
+                            'status',
                             'keyword',
                             'filter_by_featured',
                             'zip_code'
                             );
+        /*
+
+        */
         $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
     }
