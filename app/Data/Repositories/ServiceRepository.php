@@ -73,6 +73,13 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         $this->builder = $this->model->orderBy('created_at','desc');
 
+        //select * from `psm`.`services` as p1 left join `psm`.`services` p2 on p1.id = p2.parent_id where p1.parent_id is null order by p1.id
+       
+        /*$this->builder = $this->builder
+                    ->leftJoin('services AS s2', 'id', '=', 's2.parent_id')
+                    ->whereNull('parent_id')
+                    ->orderBy('id');*/
+
         if (!empty($data['zip_code'])) {
             $this->builder = $this->builder->
             leftJoin('service_provider_services', function ($join)  use($data) {
@@ -92,7 +99,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         if (!empty($data['keyword'])) {
             
-            $this->builder = $this->builder->where(function($query)use($data){
+            $this->builder = $this->builder->where(function($query) use($data){
                 $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
                 $query->orWhere('services.description', 'like', "%{$data['keyword']}%");
             

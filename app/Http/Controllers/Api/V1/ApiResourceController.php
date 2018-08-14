@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class ApiResourceController extends Controller
 {
     public $_repository;
-    const   PER_PAGE = 10;
+    const   PER_PAGE = 2;
 
     public function __constructor($repository)
     {
@@ -33,7 +33,6 @@ abstract class ApiResourceController extends Controller
         $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
 
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
-
         $output = [
             'response' => [
                 'data' => $data['data'],
