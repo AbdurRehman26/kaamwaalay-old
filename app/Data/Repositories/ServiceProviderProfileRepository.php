@@ -88,11 +88,13 @@ public $model;
 
         if (!empty($data['keyword'])) {
 
-            $this->builder = $this->builder->where(function($query)use($data){
-                $query->where('service_provider_profiles.business_name', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('service_provider_profiles.business_details', 'like', "%{$data['keyword']}%");
+            $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
+                $join->on('users.id', '=', 'service_provider_profiles.user_id');
+            })->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
+            ->orWhere('users.last_name', 'like', "%{$data['keyword']}%")
+            ->select('service_provider_profiles.*')
+            ->groupBy('service_provider_profiles.user_id');
 
-            });
         }
         if(!empty($data['filter_by_business_type'])){
             $this->builder = $this->builder->where('business_type','=',$data['filter_by_business_type']);
