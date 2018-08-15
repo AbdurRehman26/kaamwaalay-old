@@ -1,12 +1,12 @@
  <template>
-     <div>
+   <div>
       <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" >
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
         <div>
             <form action="" method="">
                 <div class="form-group">
-                 <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parentId">
+                   <label>Parent Service</label>
+                   <select class="form-control" v-model="formData.parentId">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -68,12 +68,11 @@
 </div>
 <div slot="modal-footer" class="">
     <b-col class="float-right" cols="12">
-       <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit">
+     <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit">
         <span>Submit</span> 
         <loader></loader>
     </button>
-</button>
-</b-col>
+    </b-col>
 </div>
 </b-modal>
 </div>
@@ -180,9 +179,9 @@
                       msg: 'The file must be an image.',
                       rule: 'image',
                       id: 6,
-                    });
-                   this.errorMessage = this.errorBag.all()[0];
-                   return;
+                  });
+                    this.errorMessage = this.errorBag.all()[0];
+                    return;
                 }
                 this.errorBag.clear();
 
@@ -191,35 +190,36 @@
                 this.createImage(files[0]);
             },
             createImage(file) {
-                  var self = this;    
-                  var image = new Image();
-                  var reader = new FileReader();
-                  self.formData.images[0].original_name = file.name;
-                  reader.onload = (e) => {
-                    self.formData.images[0].name = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            onSubmit() {
-                var self = this;
-                this.loading = true;
-                let url = this.url;
+              var self = this;    
+              var image = new Image();
+              var reader = new FileReader();
+              self.formData.images[0].original_name = file.name;
+              reader.onload = (e) => {
+                self.formData.images[0].name = e.target.result;
+                self.image = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        onSubmit() {
+            var self = this;
+            this.loading = true;
+            let url = this.url;
 
-                var data = new FormData();
-                data.append('title', self.formData.serviceName);
-                data.append('description', self.formData.serviceDescription);
-                data.append('is_display_banner', self.formData.isDisplayBanner);
-                data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
-                data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
-                data.append('is_featured', self.formData.isFeatured);
-                data.append('is_hero_nav', self.formData.isHeroNavigation);
-                data.append('url_prefix', self.formData.urlPrefix);
-                data.append('parent_id', self.formData.parentId);
-                data.append('status', self.formData.status);
-                data.append('images', JSON.stringify(self.formData.images));
+            var data = new FormData();
+            data.append('title', self.formData.serviceName);
+            data.append('description', self.formData.serviceDescription);
+            data.append('is_display_banner', self.formData.isDisplayBanner);
+            data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
+            data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
+            data.append('is_featured', self.formData.isFeatured);
+            data.append('is_hero_nav', self.formData.isHeroNavigation);
+            data.append('url_prefix', self.formData.urlPrefix);
+            data.append('parent_id', self.formData.parentId);
+            data.append('status', self.formData.status);
+            data.append('images', JSON.stringify(self.formData.images));
 
-                this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+            this.$http.post(url, data).then(response => {
+                response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
                     
                     self.loading = false;
@@ -227,7 +227,8 @@
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
-                        self.resetFormFields();              
+                        self.resetFormFields(); 
+                        self.$emit('call-list');             
                     } , 3000);
 
                     setTimeout(function () {
@@ -251,17 +252,17 @@
                     this.loading = false;
                 });
             }
-},
+        },
 
-watch: {
-    showModalProp(value) {
-        if(value) {
-            this.showModal();
-        }
-        if(!value) {
-            this.hideModal();
-        }
+        watch: {
+            showModalProp(value) {
+                if(value) {
+                    this.showModal();
+                }
+                if(!value) {
+                    this.hideModal();
+                }
+            }
+        },
     }
-},
-}
 </script>

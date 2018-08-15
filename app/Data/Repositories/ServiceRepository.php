@@ -6,7 +6,6 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
-
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
 /**
@@ -31,7 +30,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      *
      **/
-
+    protected $cacheTag = true;
     protected $_cacheKey = 'Service';
     protected $_cacheTotalKey = 'total-Service';
 
@@ -55,6 +54,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         }
         
         return $data;
+    }
+
+    public function getServiceCount() {
+        return $this->model->count();
     }
 
     public function create(array $data = []) {
@@ -113,4 +116,26 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     }
 
+
+    public function deleteById($id) {
+        $model = $this->model->find($id);
+        if($model->parent_id == NULL) {
+            $sub_model = $this->model->where('parent_id', '=', $id)->delete();
+        }
+        $this->cache()->flush();
+        //Cache::tags(['Service'])->flush();
+        // if($sub_model != NULL) {
+        //     foreach ($sub_model as $model) {
+        //         //Cache::forget($this->_cacheKey.$model->id);
+        //         //Cache::forget($this->_cacheTotalKey);
+        //         $model->delete();
+        //     }
+        // }
+        if($model != NULL) {
+            //Cache::forget($this->_cacheKey.$id);
+            //Cache::forget($this->_cacheTotalKey);
+            return $model->delete();
+        }
+        return false;
+    }
 }

@@ -25,6 +25,8 @@ Route::group([
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+    
+    
 });
 
 Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
@@ -34,17 +36,16 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 Route::group(['middleware' => ['auth:api']], function () {
 
-Route::resource('user', 'Api\V1\UserController')->except([
-    'edit',
-]);
+    Route::resource('user', 'Api\V1\UserController')->except([
+        'edit',
+    ]);
 
-
+    Route::resource('service', 'Api\V1\ServiceController')->except([
+        'edit',
+    ]);
 });
 
 
-Route::resource('service', 'Api\V1\ServiceController')->except([
-    'edit',
-]);
 
 Route::resource('campaign', 'Api\V1\CampaignController')->except([
     'edit',

@@ -49,17 +49,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="list in listing">
-              <td>{{list.id}}</th>
-                <td>{{list.title}}</td>
-                <td>{{list.subservice}}</td>
-                <td class="text-center">{{list.is_featured? "YES":"NO"}}</td>
-                <td class="text-center">{{list.is_hero_nav? "YES":"NO"}}</td>
+            <tr v-for="(list, index) in listing">
+              <td>{{(index + 1)}}</th>
+                <td>{{list.parent_id? list.parent.title: list.title}}</td>
+                <td>{{list.parent_id? list.title : list.parent.title }}</td>
+                <td class="text-center">{{list.parent_id? list.is_featured? "YES":"NO" : list.parent.is_featured? "YES":"NO" }}</td>
+                <td class="text-center">{{list.parent_id? list.is_hero_nav? "YES":"NO" : list.parent.is_hero_nav? "YES":"NO" }}</td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i v-b-tooltip.hover title="View Details" @click="ViewDetails" class="icon-eye"></i>
+                    <i v-b-tooltip.hover title="View Details" @click="ViewDetails(list, index)" class="icon-eye"></i>
                     <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="AddService"></i>
-                    <i v-b-tooltip.hover title="Delete" @click="ActionDelete" class="icon-delete"></i>
+                    <i v-b-tooltip.hover title="Delete" @click="ActionDelete(list)" class="icon-delete"></i>
                   </div>
                 </td>
               </tr>
@@ -72,20 +72,20 @@
   <div class="row">
     <div class="col-xs-12 col-md-12">
 
-      <div class="total-record float-left">
+      <div class="total-record float-left" v-if="totalServicesCount">
         <p><strong>Total records: <span>{{totalServicesCount}}</span></strong></p>
       </div>
 
-      <div class="pagination-wrapper float-right">
+      <div class="pagination-wrapper float-right" v-if="totalServicesCount">
         <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="2"></b-pagination>
       </div>
     </div>
   </div>
 
 </div>
-<add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
-<view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-<delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete"></delete-popup>
+<add-service @HideModalValue="HideModal" :showModalProp="service" @call-list="getList(false, false)"></add-service>
+<view-details @HideModalValue="HideModal" :showModalProp="viewdetails" :selectedService="selectedService"></view-details>
+<delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete" :item="selectedService" :url="url" @call-list="getList(false, false)"></delete-popup>
 </div>
 </template>
 
@@ -101,10 +101,11 @@
        currentPage: 1,
        listing: [],
        search : '',
-       filter_by_featured: 1,
+       filter_by_featured: "both",
        pagination : false,
        showNoRecordFound: false,
        url: 'api/service',
+       selectedService: '',
      }
    },
    watch : {
@@ -123,6 +124,9 @@
         };
       this.getList(data, false);
     },
+    onDelete(itemId) {
+        alert(itemId);
+    },
     onSearch(val) {
         this.search = val;
         console.log(this.search, "search");
@@ -130,10 +134,13 @@
     AddService(){
       this.service = true;
     },
-    ViewDetails() {
+    ViewDetails(list, index) {
+      list['index'] = index;
+      this.selectedService = list;
       this.viewdetails = true;
     },
-    ActionDelete() {
+    ActionDelete(list) {
+      this.selectedService = list;
       this.actiondelete = true;
     },
     HideModal(){
@@ -177,15 +184,12 @@
         response = response.data.response;
         console.log(response, 33332123);
         self.listing = response.data;
-        // if(typeof(page) !== 'undefined' && page){
-        //   var listingLength = response.data.length;
-        //   for(var i = 0 ; i < listingLength; i++){
-        //     self.listing.push(response.data[i]);
-        //   }
-        // }else{
-        // }
+        var serviceArray = _.filter(self.listing, {parent_id: null});
+        self.totalServicesCount = response.service_count;
+        if(this.filter_by_featured != "both" || this.search != "") {
 
-        self.totalServicesCount = self.$store.getters.getAllServices.length;
+            self.totalServicesCount = response.data.length;//response.service_count;
+        }
         self.pagination = response.pagination;
 
         if (!self.listing.length) {

@@ -33,9 +33,11 @@ abstract class ApiResourceController extends Controller
         $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
 
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
+        $count = $this->_repository->getServiceCount();
         $output = [
             'response' => [
                 'data' => $data['data'],
+                'service_count' => $count,
                 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
                 'message' => $this->response_messages(__FUNCTION__),
             ]
@@ -113,6 +115,7 @@ abstract class ApiResourceController extends Controller
     //Delete single record
     public function destroy(Request $request, $id)
     {
+        $request->request->add(['user_id' => $request->user()->id]);
         $request->request->add(['id' => $id]);
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
