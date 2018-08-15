@@ -21,6 +21,7 @@ class CreateServicesTable extends Migration {
 			$table->boolean('is_display_service_nav')->nullable()->default(0);
 			$table->boolean('is_display_footer_nav')->nullable()->default(0);
 			$table->boolean('is_featured')->nullable()->default(0);
+			$table->boolean('is_hero_nav')->nullable()->default(0);
 			$table->string('url_prefix', 50)->nullable();
 			$table->integer('parent_id')->nullable()->default(0);
 			$table->json('images', 65535)->nullable();

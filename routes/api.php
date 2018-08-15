@@ -25,6 +25,8 @@ Route::group([
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+    
+    
 });
 
 Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
@@ -58,10 +60,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
-
-Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-    'edit',
-]);
+    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+        'edit',
+    ]);
 
 });
 
