@@ -113,9 +113,6 @@
                     <!-- Bidding Detail -->
 
                         <div class="col-xs-12 block-area">
- <!--                            <div class="customer-detail-title">
-                                <h4 class="page-title">Service Detail</h4>
-                            </div> -->
                             <div class="view-details-list">
                                 <b-row>
                                     <b-col class="text-right fixed-label">
