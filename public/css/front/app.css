@@ -10743,7 +10743,7 @@ a.text-dark:focus {
 @font-face {
   font-family: "AkzidenzGroteskBE-Regular";
   src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b);
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.svg?dd51ccf93caa7e0d772647aa186dea41) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.svg?dd51ccf93caa7e0d772647aa186dea41) format("svg");
   src: url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
   font-style: normal;
   font-weight: 400;
