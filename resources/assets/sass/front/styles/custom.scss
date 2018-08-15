@@ -612,7 +612,8 @@ li.nav-item.active {
     .item-list{
         .item{
             display: inline-block;
-            width: 49%;
+            /* width: 49%; */
+            width: 49.8%;
             vertical-align: top;
             &:nth-child(1n){
                 padding-right: 44px;

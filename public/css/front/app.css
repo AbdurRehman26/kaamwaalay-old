@@ -13614,7 +13614,8 @@ li.nav-item.active {
 
 .testmonial-section .item-list .item {
   display: inline-block;
-  width: 49%;
+  /* width: 49%; */
+  width: 49.8%;
   vertical-align: top;
 }
 
