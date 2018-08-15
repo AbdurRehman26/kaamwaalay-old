@@ -92,7 +92,7 @@ body{
         align-items: center;
         justify-content: center;
         flex-direction: column;
-    }    
+    }
 }
 
 .customer-detail-title {
@@ -208,13 +208,13 @@ span.tags {
     .fixed-label {
         display: inline-block;
         width: 300px;
-    }   
+    }
     .calculated-value{
         width: calc(100% - 320px);
         &.max-text{
             max-width: 400px;
         }
-    } 
+    }
     .row{
         display: block;
         margin: 0;
@@ -2421,6 +2421,7 @@ i[active="true"]{
     .gallery-item {
         display: inline-block;
         width: 90px;
+        cursor: pointer;
     }
     .lightbox{
         /* padding: 0px 500px; */
@@ -2487,6 +2488,7 @@ i[active="true"]{
         left: 303px;
         li{
           font-size: 12px;
+          z-index: 999;
         }
     }
 }

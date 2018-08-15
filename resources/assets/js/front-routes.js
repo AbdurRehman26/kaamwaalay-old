@@ -2,6 +2,34 @@
 import VueRouter from 'vue-router'
 
 const routes = [
+
+    // Login page
+
+    {
+        name: 'login',
+        path: '/login',
+        meta: {
+            title: 'PSM | Login',
+            bodyClass: 'login-page',
+            noHeader: true,
+
+        },
+        component: require('./components/front/auth/main.vue'),
+    },
+    {
+        name: 'reset-password',
+        path: '/reset-password',
+        meta: {
+            title: 'PSM | reset-password',
+            bodyClass: 'reset-password-page',
+            noHeader: true,
+
+        },
+        component: require('./components/front/auth/ResetPassword.vue'),
+    },
+
+    // Home
+
     {
         name: 'home',
         path: '/',
@@ -11,6 +39,8 @@ const routes = [
         },
         component: require('./components/front/landing/main.vue'),
     },
+
+    // Join As Pro
     {
         name: 'Join As Pro',
         path: '/join-as-pro',
@@ -22,6 +52,38 @@ const routes = [
     },
 
 
+    // Explore
+
+    {
+        name: 'Explore',
+        path: '/explore',
+        meta: {
+            title: 'Professional Service Marketplace | Explore',
+            bodyClass: 'explore_page',
+        },
+        component: require('./components/front/explore/main.vue'),
+    },
+
+
+    {
+        name: 'Explore_Detail',
+        path: '/explore/service_provider',
+        meta: {
+            title: 'Professional Service Marketplace | Category Detail',
+            bodyClass: 'explore_detail_page',
+        },
+        component: require('./components/front/explore/service-provider.vue'),
+    },    
+
+    {
+        name: 'Service_Provider_Detail',
+        path: '/explore/service_provider/service_provider_detail',
+        meta: {
+            title: 'Professional Service Marketplace | Service Provider Detail',
+            bodyClass: 'service_provider_detail_page',
+        },
+        component: require('./components/front/explore/service-provider-detail.vue'),
+    },    
 
     // Sign Up
 
@@ -36,6 +98,51 @@ const routes = [
     },
 
 
+    // Profile
+
+    {
+        name: 'Profile',
+        path: '/profile',
+        meta: {
+            title: 'Professional Service Marketplace | Profile',
+            bodyClass: 'profile-page',
+        },
+        component: require('./components/front/profile/main.vue'),
+    },
+    {
+        name: 'Apply for Review',
+        path: '/apply-for-review',
+        meta: {
+            title: 'Professional Service Marketplace | Apply for Review',
+            bodyClass: 'apply-for-review-page',
+        },
+        component: require('./components/front/profile/ApplyForReview.vue'),
+    },
+
+    // Job Post
+
+    {
+        name: 'Job Post',
+        path: '/job-post',
+        meta: {
+            title: 'Professional Service Marketplace | Job Post',
+            bodyClass: 'job-post-page',
+        },
+        component: require('./components/front/job-post/main.vue'),
+    },
+
+    /*404*/
+
+   {
+        name: '404',
+        path: '*',
+        component: require('./components/404/Main.vue'),
+        meta: {
+            title: '404 Not Found',
+            noHeader: true,
+            bodyClass: 'not-found-page',
+        },
+    },    
 ]
 
 

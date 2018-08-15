@@ -1,11 +1,7 @@
 /*Font family mixin*/
 $font_regular:'AkzidenzGroteskBE-Regular';
 $font_bold:'AkzidenzGroteskBE-Bold';
-$font_light:'OpenSans-Light';
-$font_thin:'OpenSans-Light';
 $font_medium:'AkzidenzGroteskBE-Md';
-$font_ebold:'OpenSans-ExtraBold';
-$font_black:'OpenSans-ExtraBold';
 
 @mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style :normal, $font-stretch: normal) {
     @font-face {
@@ -24,18 +20,15 @@ $font_black:'OpenSans-ExtraBold';
 
 @include declare-font-face($font_regular,'AkzidenzGroteskBE-Regular');
 @include declare-font-face($font_bold,'AkzidenzGroteskBE-Bold');
-@include declare-font-face($font_light,'OpenSans-Light');
-@include declare-font-face($font_thin,'OpenSans-Light');
 @include declare-font-face($font_medium,'AkzidenzGroteskBE-Md');
-@include declare-font-face($font_ebold,'OpenSans-ExtraBold');
 
 @font-face {
     font-family: 'icomoon';
-    src: url('../fonts/front/icomoon.eot?3toe5f');
-    src: url('../fonts/front/icomoon.eot?3toe5f#iefix') format('embedded-opentype'),
-    url('../fonts/front/icomoon.ttf?3toe5f') format('truetype'),
-    url('../fonts/front/icomoon.woff?3toe5f') format('woff'),
-    url('../fonts/front/icomoon.svg?3toe5f#icomoon') format('svg');
+    src: url('../../fonts/front/icomoon-front.eot?3toe5f');
+    src: url('../../fonts/front/icomoon-front.eot?3toe5f#iefix') format('embedded-opentype'),
+    url('../../fonts/front/icomoon-front.ttf?3toe5f') format('truetype'),
+    url('../../fonts/front/icomoon-front.woff?3toe5f') format('woff'),
+    url('../../fonts/front/icomoon-front.svg?3toe5f#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -54,6 +47,12 @@ $font_black:'OpenSans-ExtraBold';
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-alert:before {
+  content: "\e91a";
+}
+.icon-map-marker:before {
+  content: "\e916";
+}
 .icon-calendar-daily:before {
   content: "\e90e";
 }
@@ -102,6 +101,9 @@ $font_black:'OpenSans-ExtraBold';
 .icon-facebook:before {
   content: "\e90c";
 }
+.icon-check2:before {
+  content: "\e92a";
+}
 .icon-send:before {
   content: "\e900";
 }
@@ -117,26 +119,17 @@ $font_black:'OpenSans-ExtraBold';
 .icon-exit:before {
   content: "\e92e";
 }
-.icon-close2:before {
-  content: "\e5ce";
+.icon-location:before {
+  content: "\e917";
 }
-.icon-keyboard_arrow_right:before {
-  content: "\e935";
+.icon-map-marker2:before {
+  content: "\e917";
 }
-.icon-help:before {
-  content: "\e887";
+.icon-marker:before {
+  content: "\e917";
 }
-.icon-delete:before {
-  content: "\e928";
-}
-.icon-menu2:before {
-  content: "\e929";
-}
-.icon-phone_in_talk:before {
-  content: "\e61d";
-}
-.icon-message:before {
-  content: "\e904";
+.icon-pin:before {
+  content: "\e917";
 }
 .icon-quotes-right:before {
   content: "\e978";
@@ -150,7 +143,7 @@ $font_black:'OpenSans-ExtraBold';
 .icon-trophy:before {
   content: "\e907";
 }
-.icon-location:before {
+.icon-location3:before {
   content: "\e947";
 }
 .icon-quotes-left:before {
@@ -175,7 +168,10 @@ $font_black:'OpenSans-ExtraBold';
   content: "\e909";
 }
 .icon-twitter:before {
-  content: "\e92a";
+  content: "\e92b";
+}
+.icon-location2:before {
+  content: "\e919";
 }
 .icon-flag:before {
   content: "\e908";
@@ -215,6 +211,27 @@ $font_black:'OpenSans-ExtraBold';
 }
 .icon-triangle-down:before {
   content: "\e915";
+}
+.icon-close2:before {
+  content: "\e5ce";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e935";
+}
+.icon-help:before {
+  content: "\e887";
+}
+.icon-delete:before {
+  content: "\e928";
+}
+.icon-menu2:before {
+  content: "\e929";
+}
+.icon-phone_in_talk:before {
+  content: "\e61d";
+}
+.icon-message:before {
+  content: "\e904";
 }
 .icon-cancel:before {
   content: "\e927";

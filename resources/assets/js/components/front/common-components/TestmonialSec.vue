@@ -5,7 +5,7 @@
 			<div class="item">
 				<div class="testmonial-block">
 					<i class="icon-quotes-left"></i>
-					<p>I’ve been much busier since I got Featured Profile… it gives me an advantage. I continue to invest in being the best, even when that means making changes.</p>
+					<p>The first time in all these years of being a landlord in NY where I have had trustworthy service and a good end result, within the time frame promised.</p>
 					<div class="caret"></div>
 				</div>
 				<div class="testmonial-img">
@@ -20,7 +20,7 @@
 			<div class="item">
 				<div class="testmonial-block">
 					<i class="icon-quotes-left"></i>
-					<p>Professional Service Marketplace are providing excellent service, remaining reliable, having integrity, and being respectful.</p>
+					<p>Easy to hire electrician when i had been struggling to get quotes, Simple service and workman turned up when he was meant to and price was cheaper too.</p>
 					<div class="caret"></div>
 				</div>
 				<div class="testmonial-img">
@@ -30,7 +30,7 @@
 					<h3>Kamron Sparks</h3>
 				</div>
 
-			</div>			
+			</div>
 
 		</div>
 	</div>
