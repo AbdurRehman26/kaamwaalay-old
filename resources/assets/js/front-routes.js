@@ -124,6 +124,9 @@ const routes = [
         component: require('./components/front/profile/ApplyForReview.vue'),
     },
 
+
+
+
     // Job Post
 
     {
@@ -135,6 +138,34 @@ const routes = [
         },
         component: require('./components/front/job-post/main.vue'),
     },
+
+
+
+    //jobs pages
+
+    {
+        name: 'My Jobs',
+        path: '/my-jobs',
+        meta: {
+            title: 'Professional Service Marketplace | My Jobs',
+            bodyClass: 'my-job-post-page',
+        },
+        component: require('./components/front/jobs/my-jobs.vue'),
+    },
+
+
+    {
+        name: 'job-details',
+        path: '/job-details',
+        meta: {
+            title: 'Professional Service Marketplace | Job Details',
+            bodyClass: 'job-detail-page',
+        },
+        component: require('./components/front/jobs/job-detail.vue'),
+    },
+
+
+
 
     /*404*/
 
