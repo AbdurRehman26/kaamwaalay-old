@@ -1,13 +1,6 @@
 {
-<<<<<<< HEAD
-    "/js/app.js": "/js/app.js?id=5278464f04f6c69db8d5",
+    "/js/app.js": "/js/app.js?id=cad1c5a06a1b0a598bec",
     "/css/app.css": "/css/app.css?id=08bc711cbb06d6923303",
     "/css/front/app.css": "/css/front/app.css?id=2f7fd9be248e3c245fd2",
-    "/js/front-app.js": "/js/front-app.js?id=c549322f3a9070c2ae3f"
-=======
-    "/js/app.js": "/js/app.js?id=fec5a6556b9a261b7448",
-    "/css/app.css": "/css/app.css?id=76bc8fe01678704bfd21",
-    "/css/front/app.css": "/css/front/app.css?id=36c709491b9faed4a041",
-    "/js/front-app.js": "/js/front-app.js?id=bfa10aba7f72ff9e5562"
->>>>>>> PSM-97
+    "/js/front-app.js": "/js/front-app.js?id=6e84e5ec73f5831f63e3"
 }
