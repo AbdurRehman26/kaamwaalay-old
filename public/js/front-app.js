@@ -62732,13 +62732,14 @@ var render = function() {
                             {
                               name: "validate",
                               rawName: "v-validate",
-                              value: "required|min:8",
-                              expression: "'required|min:8'"
+                              value: "required|min:8|max:25",
+                              expression: "'required|min:8|max:25'"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: {
                             type: "password",
+                            maxlength: 25,
                             "data-vv-as": "password",
                             name: "password",
                             placeholder: "Enter your new password"
@@ -62810,6 +62811,7 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "password",
+                            maxlength: 25,
                             "data-vv-as": "confirm password",
                             name: "password_confirmation",
                             placeholder: "Re-enter new password"
@@ -63340,6 +63342,7 @@ var render = function() {
       _c(
         "form",
         {
+          attrs: { novalidate: "" },
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -63427,6 +63430,7 @@ var render = function() {
                     attrs: {
                       id: "login_password",
                       type: "password",
+                      maxlength: 25,
                       "data-vv-as": "password",
                       name: "password",
                       "data-vv-name": "password",
@@ -63761,6 +63765,7 @@ var render = function() {
       _c(
         "form",
         {
+          attrs: { novalidate: "" },
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -63841,6 +63846,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
+                          maxlength: 25,
                           "data-vv-as": "old password",
                           name: "old_password",
                           "data-vv-name": "old_password",
@@ -63894,6 +63900,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
+                          maxlength: 25,
                           "data-vv-as": "new password",
                           name: "new_password",
                           "data-vv-name": "new_password",
@@ -63949,6 +63956,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
+                          maxlength: 25,
                           "data-vv-as": "confirm password",
                           name: "password_confirmation",
                           "data-vv-name": "password_confirmation",

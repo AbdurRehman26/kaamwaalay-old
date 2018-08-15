@@ -29,14 +29,14 @@
                         <div :class="[ 'col-xs-12' , 'col-md-12' , 'form-group' , errorBag.first('password')  ? 'is-invalid' : '']">
                             <div class="form-group">
                                 <label>New Password</label>
-                                <input type="password" @keyup.enter="!loading ? validateBeforeSubmit() : '';" v-model="formData.password" v-validate="'required|min:8'" data-vv-as="password" name="password" class="form-control" placeholder="Enter your new password">
+                                <input type="password" :maxlength="25" @keyup.enter="!loading ? validateBeforeSubmit() : '';" v-model="formData.password" v-validate="'required|min:8|max:25'" data-vv-as="password" name="password" class="form-control" placeholder="Enter your new password">
                             </div>
                         </div>
 
                         <div :class="[ 'col-xs-12' , 'col-md-12' , 'form-group' , errorBag.first('password_confirmation')  ? 'is-invalid' : '']">
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input type="password" @keyup.enter="!loading ? validateBeforeSubmit() : '';" v-model="formData.password_confirmation" v-validate="'required|confirmed:password'" data-vv-as="confirm password" name="password_confirmation" class="form-control" placeholder="Re-enter new password">
+                                <input type="password" :maxlength="25" @keyup.enter="!loading ? validateBeforeSubmit() : '';" v-model="formData.password_confirmation" v-validate="'required|confirmed:password'" data-vv-as="confirm password" name="password_confirmation" class="form-control" placeholder="Re-enter new password">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-12">
