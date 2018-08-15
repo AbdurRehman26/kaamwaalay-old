@@ -7,21 +7,21 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-                <SearchField></SearchField>
+                <SearchField @search="onSearch"></SearchField>
               </div>
             </div>
             <div class="col-xs-12 col-md-2 datepicker-field">
               <div class="form-group">
                <label>Is Featured</label>
-               <select class="form-control">
-                 <option>Both</option>
-                 <option>Yes</option>
-                 <option>No</option>
+               <select class="form-control" v-model="filter_by_featured">
+                 <option value="both" selected="">Both</option>
+                 <option value="1" >Yes</option>
+                 <option value="0">No</option>
                </select>
              </div>
            </div>                            
            <div class="col-xs-12 col-md-2">
-            <button class="btn btn-primary filter-btn-top-space">
+            <button class="btn btn-primary filter-btn-top-space" @click="onApply">
               <span>Apply</span>
               <loader></loader>
             </button>
@@ -54,7 +54,7 @@
                 <td>{{list.title}}</td>
                 <td>{{list.subservice}}</td>
                 <td class="text-center">{{list.is_featured? "YES":"NO"}}</td>
-                <td class="text-center">{{list.heronavigation? "YES":"NO"}}</td>
+                <td class="text-center">{{list.is_hero_nav? "YES":"NO"}}</td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i v-b-tooltip.hover title="View Details" @click="ViewDetails" class="icon-eye"></i>
@@ -116,6 +116,17 @@
     }
   },
   methods: {
+    onApply() {
+        var data = {
+            search : this.search,
+            filter: this.filter_by_featured
+        };
+      this.getList(data, false);
+    },
+    onSearch(val) {
+        this.search = val;
+        console.log(this.search, "search");
+    },
     AddService(){
       this.service = true;
     },
@@ -144,7 +155,14 @@
       }
 
       if((typeof(data) !== 'undefined' && data) || this.search){
-        var query  = '?pagination=true&keyword='+this.search+'&filter_by_featured='+this.search.filter_by_featured;
+        var query  = '?pagination=true';
+        if(data.search != "") {
+            var query  = query + '&keyword='+data.search;        
+        }
+        if(data.filter != "both") {
+            var query  = query + '&filter_by_featured='+data.filter;
+        }
+        //var query  = '?pagination=true&keyword='+this.search+'&filter_by_featured='+this.search.filter_by_featured;
         url = url+query;
       }else{
         var query  = '?pagination=true';

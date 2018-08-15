@@ -212,6 +212,7 @@
                 data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
                 data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
                 data.append('is_featured', self.formData.isFeatured);
+                data.append('is_hero_nav', self.formData.isHeroNavigation);
                 data.append('url_prefix', self.formData.urlPrefix);
                 data.append('parent_id', self.formData.parentId);
                 data.append('status', self.formData.status);

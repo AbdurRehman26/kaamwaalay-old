@@ -26,6 +26,8 @@ class ServiceController extends ApiResourceController
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
         $rules['images']                  = 'required|array';       
         $rules['status']                  = 'required|in:0,1';    
+        $rules['is_featured']                  = 'required|in:0,1';    
+        $rules['is_hero_nav']                  = 'required|in:0,1';    
         //$rules['user_id'] =  'required|exists:users,id';   
     }
 
@@ -73,6 +75,7 @@ class ServiceController extends ApiResourceController
                             'is_display_service_nav',
                             'is_display_footer_nav',
                             'is_featured',
+                            'is_hero_nav',
                             'url_prefix',
                             'parent_service',
                             'status',

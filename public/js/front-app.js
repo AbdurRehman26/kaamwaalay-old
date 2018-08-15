@@ -2566,9 +2566,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //https://www.npmjs.com/package/vue2-typeahead
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    TypeAhead: __WEBPACK_IMPORTED_MODULE_0_vue2_typeahead___default.a
-  }
+	//src="/static/data.json?keyword=:keyword"
+	components: {
+		TypeAhead: __WEBPACK_IMPORTED_MODULE_0_vue2_typeahead___default.a
+	},
+	data: function data() {
+		return {
+			search: ''
+		};
+	},
+
+	methods: {
+		onHit: function onHit(item, vue, index) {
+			// this.search = item;
+			// alert(this.search);
+			// this.$emit('search' , this.search)
+		},
+
+		getResponse: function getResponse(response) {
+			return []; //response.data.data.items
+		}
+	},
+	watch: {
+		search: function search(val) {
+			this.search = val;
+			this.$emit('search', this.search);
+		}
+	}
 });
 
 /***/ }),
@@ -64879,7 +64903,15 @@ var render = function() {
         attrs: {
           src: "/static/data.json?keyword=:keyword",
           getResponse: _vm.getResponse,
+          onHit: _vm.onHit,
           placeholder: "Search"
+        },
+        model: {
+          value: _vm.search,
+          callback: function($$v) {
+            _vm.search = $$v
+          },
+          expression: "search"
         }
       })
     ],
