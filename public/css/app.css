@@ -41300,6 +41300,7 @@ i[active="true"] {
 .gallery-pic .gallery-item {
   display: inline-block;
   width: 90px;
+  cursor: pointer;
 }
 
 .gallery-pic .lightbox {
@@ -41369,6 +41370,7 @@ i[active="true"] {
 
 .breadcrumb .breadcrumb li {
   font-size: 12px;
+  z-index: 999;
 }
 
 a.underline {
