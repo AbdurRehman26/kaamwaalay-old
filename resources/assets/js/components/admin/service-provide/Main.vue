@@ -57,19 +57,19 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr v-for="list in listing">
+                                  <tr v-for="record in records">
                                     <td>
                                         <span class="user-img radius-0">
-                                            <img  :src="list.imagepath" >
+                                            <img  :src="record.imagepath" >
                                         </span>
                                     </td>
-                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.fullname }}</a> </td>
-                                    <td> {{ list.business }} </td>
-                                    <td> {{ list.businessName }} </td>
-                                    <!-- <td> {{ list.DUNSnum }} </td>
-                                        <td> {{ list.email_address }} </td> -->
-                                        <td> {{ list.contact_number }} </td>
-                                        <td ><span class="tags" :class="[list.status.replace(/\s/g, '').toLowerCase().trim()]">{{list.status}}</span></td>
+                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ record.fullname }}</a> </td>
+                                    <td> {{ record.business }} </td>
+                                    <td> {{ record.businessName }} </td>
+                                    <!-- <td> {{ record.DUNSnum }} </td>
+                                        <td> {{ record.email_address }} </td> -->
+                                        <td> {{ record.contact_number }} </td>
+                                        <td ><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td>
                                         <td><star-rating :star-size="20" read-only :rating="3" active-color="#8200ff"></star-rating></td>
                                         <td class="text-center">
                                           <div class="action-icons">
@@ -80,6 +80,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <no-record-found v-show="noRecordFound"></no-record-found>
                     </div>
                 </div>
             </div>
@@ -108,7 +109,7 @@
                 filter_by_status : '',
                 keyword : ''
             },
-            url : 'api/user?filter_by_role=3&pagination=true',
+            url : 'api/service-provider-profile?filter_by_role=3&pagination=true',
             loading : true,
             statuses : [
             {
@@ -178,7 +179,7 @@
 
     },
     searchList(){
-        let url = 'api/user?filter_by_role=3&pagination=true';
+        let url = 'api/service-provider-profile?filter_by_role=3&pagination=true';
         this.url = JSON.parse(JSON.stringify(url));
 
         Reflect.ownKeys(this.search).forEach(key =>{

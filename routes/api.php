@@ -54,6 +54,10 @@ Route::resource('service', 'Api\V1\ServiceController')->except([
     'edit',
 ]);
 
+Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+    'edit',
+]);
+
 });
 
 
