@@ -15110,7 +15110,6 @@ body .chat-feedback-message.white-msg:before {
   background-color: #6004BA;
 }
 
-<<<<<<< HEAD
 /* == Featured Profile sass start == */
 
 .featured-profile {
@@ -15236,6 +15235,7 @@ body .chat-feedback-message.white-msg:before {
 .campaigns .camp-views .view-status-detail .calender-date {
   font-family: "AkzidenzGroteskBE-Regular";
   color: #494949;
+  font-size: 14px;
 }
 
 .campaigns .camp-views .view-status-detail .calender-date i {
@@ -15266,7 +15266,7 @@ body .chat-feedback-message.white-msg:before {
 }
 
 /* == Featured Profile sass end == */
-=======
+
 .my-job-indication {
   text-align: center;
   padding-top: 52px;
@@ -15500,5 +15500,4 @@ body .chat-feedback-message.white-msg:before {
   width: auto !important;
   height: auto;
 }
->>>>>>> f4b6ba1c57c6735489cfd32c1b71e9cb2ad3e58e
 
