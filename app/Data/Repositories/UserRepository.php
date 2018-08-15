@@ -57,12 +57,18 @@ public $model;
                     $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
                 }
 
-                }
+                }   
             }
 
             if($data->role_id == Role::CUSTOMER){
             // Todo
             }
+            $country = app('CountryRepository')->findById($data->country_id);                
+            $data->country = !empty($country->name) ? $country->name : '';
+            $City = app('CityRepository')->findById($data->city_id);                
+            $data->City = !empty($City->name)?$City->name:'';
+            $state = app('StateRepository')->findById($data->state_id);                
+            $data->state = !empty($state->name)?$state->name:'';
         }
 
         return $data;

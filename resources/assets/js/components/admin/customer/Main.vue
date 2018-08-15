@@ -56,14 +56,14 @@
                         <img  :src="record.profile_image" >
                     </span>
                 </td>
-                <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{record.first_name}} {{record.last_name}}</a></td>
+                <td><a href="javascript:void(0);" @click="ViewCustomerDetail(record.id)">{{record.first_name}} {{record.last_name}}</a></td>
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td>
                 <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                     <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                 </div>
             </td>
@@ -92,93 +92,94 @@
     import StarRating from 'vue-star-rating';
 
     export default {
-      data () {
-        return {
-            noRecordFound : false,
-            search : {
-                filter_by_status : '',
-                keyword : ''
-            },
-            service: false,
-            customer: false,
-            changestatus:false,
-            viewcustomer: false,
-            url : 'api/user?filter_by_role=3&pagination=true',
-            loading : true,
-            statuses : [
-            {
-                key : 'active',
-                value : 'active'
-            },
-            {
-                key : 'in_active',
-                value : 'Inactive'
-            },
-            {
-                key : 'banned',
-                value :'Banned'
+        data () {
+            return {
+                noRecordFound : false,
+                search : {
+                    filter_by_status : '',
+                    keyword : ''
+                },
+                service: false,
+                customer: false,
+                changestatus:false,
+                viewcustomer: false,
+                url : 'api/user?filter_by_role=3&pagination=true',
+                loading : true,
+                statuses : [
+                {
+                    key : 'active',
+                    value : 'active'
+                },
+                {
+                    key : 'in_active',
+                    value : 'Inactive'
+                },
+                {
+                    key : 'banned',
+                    value :'Banned'
+                }
+                ],
+                records : [],
+                // record : {},
             }
-            ],
-            records : []
-        }
-    },
+        },
 
-    computed : {
-        requestUrl(){
+        computed : {
+            requestUrl(){
+                this.loading = true;
+                return this.url;
+            }
+        },
+
+        methods: {
+            AddCustomer() {
+                this.customer = true;
+            },
+            ViewCustomerDetail(id) {
+
+                /*this.viewcustomer = true;*/
+                // alert('ss')
+                // alert(id)
+                this.$router.push({name: 'customerdetail',params: { id:id }});
+            },
+            changestatuspopup() {
+                this.changestatus = true;
+            },
+            HideModal(){
+                this.customer = false;
+                this.viewcustomer = false;
+                this.changestatus = false;
+            },
+            getRecords(data){
+                let self = this;
+                self.loading = false;
+                self.records = data;
+                console.log(self.records , '12312321');
+                if (!self.records.length) {
+                    self.noRecordFound = true;
+                }
+
+            },
+            searchList(){
+                let url = 'api/user?filter_by_role=3&pagination=true';
+                this.url = JSON.parse(JSON.stringify(url));
+
+                Reflect.ownKeys(this.search).forEach(key =>{
+
+                    if(key !== '__ob__'){
+                        this.url += '&' + key + '=' + this.search[key];
+                    }        
+                });
+            }   
+
+        },
+        components: {
+            StarRating
+        },
+
+        mounted(){
             this.loading = true;
-            return this.url;
         }
-    },
-    methods: {
 
-     AddCustomer() {
-      this.customer = true;
-  },
-  ViewCustomerDetail() {
-    /*this.viewcustomer = true;*/
-    this.$router.push({name: 'customerdetail'});
-},
-changestatuspopup() {
-    this.changestatus = true;
-},
-HideModal(){
-    this.customer = false;
-    this.viewcustomer = false;
-    this.changestatus = false;
-},
-getRecords(data){
-    let self = this;
-    self.loading = false;
-    self.records = data;
-    console.log(self.records , '12312321');
-    if (!self.records.length) {
-        self.noRecordFound = true;
     }
-
-},
-searchList(){
-    let url = 'api/user?filter_by_role=3&pagination=true';
-    this.url = JSON.parse(JSON.stringify(url));
-
-    Reflect.ownKeys(this.search).forEach(key =>{
-
-        if(key !== '__ob__'){
-            this.url += '&' + key + '=' + this.search[key];
-        }        
-    });
-
-}
-
-},
-components: {
-    StarRating
-},
-
-mounted(){
-
-    this.loading = true;
-
-}
-
-}
 </script>
