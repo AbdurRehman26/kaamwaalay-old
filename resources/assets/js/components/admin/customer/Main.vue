@@ -99,10 +99,6 @@
                 filter_by_status : '',
                 keyword : ''
             },
-            service: false,
-            customer: false,
-            changestatus:false,
-            viewcustomer: false,
             url : 'api/user?filter_by_role=3&pagination=true',
             loading : true,
             statuses : [
@@ -119,7 +115,12 @@
                 value :'Banned'
             }
             ],
-            records : []
+            records : [],
+            service: false,
+            customer: false,
+            changestatus:false,
+            viewcustomer: false,
+            
         }
     },
 
