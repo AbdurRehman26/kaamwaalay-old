@@ -2973,9 +2973,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var user = JSON.parse(this.$store.getters.getAuthUser);
         this.first_name = user.first_name;
         this.last_name = user.last_name;
+        this.getServicesList();
     },
 
     methods: {
+        getServicesList: function getServicesList() {
+            var _this = this;
+
+            var self = this;
+            self.noRecordFound = false;
+            var url = 'api/service';
+
+            self.$http.get(url).then(function (response) {
+                console.log(_this.$store, '2131232132121321213213');
+                response = response.data.response;
+
+                _this.$store.commit('setServicesList', response.data);
+                console.log(response, '21312321');
+            }).catch(function (error) {
+                console.log(error, 'error');
+            });
+        },
         ShowModal: function ShowModal() {
             this.showModalValue = true;
         },
@@ -2995,6 +3013,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.tab = false;
         }
 
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['pagination'],
+    data: function data() {
+        return {
+            records: [],
+            url: 'api/dashboard_reports',
+            showNoRecordFound: false,
+            pagination: ''
+        };
+    },
+    mounted: function mounted() {
+        this.getList();
+    },
+
+    computed: {
+        totalRecords: function totalRecords() {
+            return this.pagination ? this.pagination.total : 0;
+        }
+    },
+    methods: {
+        changePage: function changePage(pageNumber) {
+            this.$emit('page-changed', pageNumber);
+        }
     }
 });
 
@@ -4337,6 +4402,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            errorMessage: '',
+            successMessage: '',
             emailaddress: 'arsalan@cygnismedia.com',
             fullname: 'Arsalan Akhtar',
             image: 'images/dummy/user-pic.jpg',
@@ -66479,7 +66546,14 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
             _c("form", { attrs: { action: "", method: "" } }, [
@@ -68628,6 +68702,55 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-a6648a26", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a724213c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+    _c("div", { staticClass: "total-record float-left" }, [
+      _c("p", [
+        _c("strong", [
+          _vm._v("Total records: "),
+          _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "pagination-wrapper float-right" },
+      [
+        _c("b-pagination", {
+          attrs: { size: "md", "total-rows": _vm.totalRecords, "per-page": 10 },
+          on: { input: _vm.changePage },
+          model: {
+            value: _vm.currentPage,
+            callback: function($$v) {
+              _vm.currentPage = $$v
+            },
+            expression: "currentPage"
+          }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a724213c", module.exports)
   }
 }
 
@@ -85920,6 +86043,8 @@ Vue.component('front-header', __webpack_require__("./resources/assets/js/compone
 /*logout*/
 Vue.component('logout-component', __webpack_require__("./resources/assets/js/components/auth/LogoutComponent.vue"));
 
+Vue.component('vue-pagination', __webpack_require__("./resources/assets/js/components/admin/common-components/Pagination.vue"));
+
 /***/ }),
 
 /***/ "./resources/assets/js/components/404/404Panel.vue":
@@ -86710,6 +86835,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-33ca9b4a", Component.options)
   } else {
     hotAPI.reload("data-v-33ca9b4a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/admin/common-components/Pagination.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a724213c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\Pagination.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a724213c", Component.options)
+  } else {
+    hotAPI.reload("data-v-a724213c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

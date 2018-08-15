@@ -2,243 +2,206 @@
 	<div class="panel-inner">
 		<div class="row">
             <div class=" col-xs-12 col-md-12">
-                    <div class="datepicker-row">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <SearchField></SearchField>
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <label>By Type</label>
-                                   <select class="form-control">
-                                     <option>Select All</option>
-                                     <option>Electrician</option>
-                                     <option>Electrician >> Ac</option>
-                                   </select>
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <label>By Job Status</label>
-                                   <select class="form-control">
-                                     <option >Select All</option>
-                                     <option>In Bidding</option>
-                                     <option>Awarded</option>
-                                     <option>Completed</option>
-                                     <option>Archived</option>
-                                     <option>Initiated</option>
-                                   </select>
-                              </div>
-                            </div>                            
-                            <div class="col-xs-12 col-md-2">
-                                <button class="btn btn-primary filter-btn-top-space">
-                                    <span>Apply</span>
-                                    <loader></loader>
-                                </button>
-                            </div>
+                <div class="datepicker-row">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3 datepicker-field">
+                          <div class="form-group">
+                            <label>Search</label>
+                            <input @keyup.enter.prevent="getList(false)" type="text" placeholder="Search" autocomplete="off" v-model="search.keyword" class="form-control type-ahead-select taller">
                         </div>
                     </div>
-            </div>
+                    <div class="col-xs-12 col-md-3 datepicker-field">
+                      <div class="form-group">
+                       <label>By Type</label>
+                       <select v-model="search.service_id" class="form-control">
+                         <option value="">Select All</option>
+                         <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
+                     </select>
+                 </div>
+             </div>
+             <div class="col-xs-12 col-md-3 datepicker-field">
+              <div class="form-group">
+               <label>By Job Status</label>
+               <select v-model="search.status" class="form-control">
+                 <option value="">Select All</option>
+                 <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
+             </select>
+         </div>
+     </div>                            
+     <div class="col-xs-12 col-md-2">
+        <button @click.prevent="getList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+            <span>Apply</span>
+            <loader></loader>
+        </button>
+    </div>
+</div>
+</div>
+</div>
 
-				<div class="col-md-12">
-                    <div class="table-area">
-                        <div class="table-responsive">
-                            <table class="table first-last-col-fix">
-                              <thead>
-                                <tr>
-                                  <th>Id</th>
-                                  <th>Title</th>
-                                  <th>Customer</th>
-                                  <th>Service Type</th>
-                                  <th>Service Sub-type</th>
-                                  <th>Job Status</th>
-                                  <th class="text-center">Actions</th>
-                                </tr>
-                              </thead>
-                              <tbody>
+<div class="col-md-12">
+    <div class="table-area">
+        <div class="table-responsive">
+            <table class="table first-last-col-fix">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Title</th>
+                  <th>Customer</th>
+                  <th>Service Type</th>
+                  <th>Service Sub-type</th>
+                  <th>Job Status</th>
+                  <th class="text-center">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
 
-                                  <tr v-for="list in listing">
-                                    <td> {{list.id}} </td>
-                                    <td> {{ list.title }} </td>
-                                    <td> <a href="javascript:void(0);" @click="profileimage">{{ list.customer_name }}</a> </td>
-                                    <td> {{ list.service_type }} </td>
-                                    <td> {{ list.service_subtype }} </td>
-                                    <td>
-                                        <span class="tags" :class="[list.job_status.replace(/\s/g, '').toLowerCase().trim()]">
-                                            {{ list.job_status }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                      <div class="action-icons">
-                                        <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
-                                       <!-- <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i> -->
-                                      </div>
-                                    </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                        </div>
-            </div>
+            <tr v-for="record in records">
+                <td> {{record.id}} </td>
+                <td> {{ record.title }} </td>
+                <td> <a href="javascript:void(0);" @click="profileimage">{{ record.user.first_name }}</a> </td>
+                <td> {{ record.service.parent_id ? record.service.parent.title : record.service.title }} </td>
+                <td> {{ record.service.parent_id ? record.service.title : '' }} </td>
+                <td>
+                    <span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">
+                        {{ record | jobStatus }}
+                    </span>
+                </td>
+                <td class="text-center">
+                  <div class="action-icons">
+                    <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails"></i>
+                    <!-- <i class="icon-pencil" v-b-tooltip.hover title="Edit Details" @click="AddService"></i> -->
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
 
-		  		</div>
+</div>
 
 
-          <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-          <div class="col-xs-12 col-md-12">
-            
-            <div class="total-record float-left">
-                <p><strong>Total records: <span>10</span></strong></p>
-            </div>
 
-            <div class="pagination-wrapper float-right">
-                <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
-            </div>
-          </div>
-		    </div>
-        <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
-        <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
+<vue-pagination @page-changed="getList" :pagination="pagination"></vue-pagination>
 
-	</div>
+</div>
+
+<customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
+<change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
+
+</div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-    	service: false,
-    	customer: false,
-        changeProviderStatus: false,
-            listing: [
-                {
-                    id : 1,
-                    customer_name: 'Michel',
-                    service_type: 'Electrician',
-                    service_subtype: 'Electrical and Wiring Repair',
-                    zip_code: '15235',
-                    address: 'California Street 251',
-                    title: 'Electrician Required',
-                    job_status: 'In Bidding'
-                },
-                {
-                    id : 2,
-                    customer_name: 'Shawn',
-                    service_type: 'Carpenter',
-                    service_subtype: 'Window',
-                    zip_code: '25647',
-                    address: 'Plexwood Street 251',
-                    title: 'Concrete Floor Building',
-                    job_status: 'Awarded'
-                },
-                {
-                    id : 3,
-                    customer_name: 'Racheal',
-                    service_type: 'Cleaning',
-                    service_subtype: 'House Cleaning',
-                    zip_code: '12312',
-                    address: 'California Street 251',
-                    title: 'Cleaner Required',
-                    job_status: 'Completed'
-                },
-                {
-                    id : 4,
-                    customer_name: 'Jimmy',
-                    service_type: 'Painter',
-                    service_subtype: 'House',
-                    zip_code: '23411',
-                    address: 'California Street 251',
-                    title: 'Painting & Other Jobs',
-                    job_status: 'Archived'
-                },
-                {
-                    id : 5,
-                    customer_name: 'Harman',
-                    service_type: 'Plumber',
-                    service_subtype: 'Building',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Leaking Water Pipe',
-                    job_status: 'Initiated'
-                },
-
-                {
-                    id : 6,
-                    customer_name: 'Johnny',
-                    service_type: 'Doctor',
-                    service_subtype: 'Clinic',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Part Time Doctor',
-                    job_status: 'Completed'
-                },
-
-                {
-                    id : 7,
-                    customer_name: 'Simons',
-                    service_type: 'Painter',
-                    service_subtype: 'Wallpaper Installation',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Canvas Painter Required',
-                    job_status: 'Archived'
-                },
-
-                {
-                    id : 8,
-                    customer_name: 'Nathan',
-                    service_type: 'Electrician',
-                    service_subtype: 'Air Conditioning Repair',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Floor Electric',
-                    job_status: 'Awarded'
-                },
-
-                {
-                    id : 9,
-                    customer_name: 'Julia',
-                    service_type: 'Carpenter',
-                    service_subtype: 'General Carpentry',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Door Repairing',
-                    job_status: 'In Bidding'
-                },
-
-                {
-                    id : 10,
-                    customer_name: 'Drake',
-                    service_type: 'Cleaning',
-                    service_subtype: 'Carpet Cleaning',
-                    zip_code: '23311',
-                    address: 'California Street 251',
-                    title: 'Carpet & House Cleaning',
-                    job_status: 'Archived'
-                },
-            ],
-    	}
-  	},
-
-    methods: {
-
-        HideModal(){
-            this.changeProviderStatus = false;
-            this.customer = false;
+    export default {
+        mounted(){
+            this.getList();
         },
-        ViewDetails(){
-            /*this.customer = true;*/
-            this.$router.push({name: 'mainjobdetail'});
-        },
+        data () {
+            return {
+                search : {
+                    service_id : '',
+                    status : '',
+                    keyword : ''
+                },
+                loading : false,
+                jobStatuses : [
+                {
+                    key : 'in_bidding',
+                    value : 'Bidding'
+                },
+                {
+                    key : 'cancelled',
+                    value : 'Archived'
+                },
+                {
+                    key : 'completed',
+                    value :'Completed'
+                },
+                {
+                    key :'awarded',
+                    value : 'Awarded'
+                },
+                {
+                    key :'initiated',
+                    value : 'Initiated'
+                }
 
-        AddService(){
-            this.changeProviderStatus = true;
+                ],
+                service: false,
+                customer: false,
+                changeProviderStatus: false,
+                url : 'api/job',
+                noRecordFound : false,
+                records : [],
+                pagination : []
+            }
         },
-        profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
-        },        
+        computed : {
+            servicesList(){
+                return this.$store.getters.getServicesList;
+            },
+            currentPage(){
+                return this.pagination ? this.pagination.current : 0; 
+            }
+        },
+        methods: {
+            getList(page){
 
-    },
-}
+                let self = this;
+                self.noRecordFound = false;
+                let url = self.url;
+                self.loading = true;
+
+                if(this.search.service_id || this.search.status || this.search.keyword){
+                    var query  = '?pagination=true&keyword='+this.search.keyword+'&filter_by_service='+this.search.service_id+'&filter_by_status='+this.search.status;
+
+                }else{
+
+                    var query  = '?pagination=true';
+                }
+                
+                url = self.url+query;
+
+                if(typeof(page) !== 'undefined' && page){
+                    url += '&page='+page;   
+                }
+
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+
+                    self.records = response.data;
+                    self.pagination = response.pagination;
+
+                    if (!self.records.length) {
+                        self.showNoRecordFound = true;
+                    }
+                    self.loading = false;
+
+
+                }).catch(error=>{
+                    self.loading = false;
+                    console.log(error , 'error');
+                });
+            },
+            HideModal(){
+                this.changeProviderStatus = false;
+                this.customer = false;
+            },
+            ViewDetails(){
+                /*this.customer = true;*/
+                this.$router.push({name: 'mainjobdetail'});
+            },
+
+            AddService(){
+                this.changeProviderStatus = true;
+            },
+            profileimage(){
+              this.$router.push({name: 'Service_Provider_Detail'});  
+          },        
+
+      },
+  }
 </script>
