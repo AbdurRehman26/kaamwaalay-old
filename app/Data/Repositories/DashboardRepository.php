@@ -37,6 +37,7 @@ class DashboardRepository
         $this->userRepo         = app('UserRepository');
         $this->jobRepo          = app('JobRepository');
         $this->paymentRepo      = app('PaymentRepository');
+        $this->jobBidRepo       = app('JobBidRepository');
     }
 
     public function stats($input)
@@ -81,7 +82,7 @@ class DashboardRepository
                     )
                     ->where('role_id', '=', $roleId)
                     ->whereBetween('created_at', [$startDate, $endDate])
-                    ->groupBy('created_at')
+                    ->groupBy('date')
                     ->get()
                     ->toArray()
                     ;
@@ -138,29 +139,135 @@ class DashboardRepository
         return $result;
     }
 
-    public function topServiceProvider($input)
+    public function PrOverTime($input)
+    {   
+        $startDate      = Carbon::parse($input['start_date']);
+        $endDate        = Carbon::parse($input['end_date'])->modify('23:59:59');
+        $data['data']   = [];
+
+
+        $result = $this->paymentRepo->model
+                    ->select(
+                        DB::raw('SUM(amount) as value'),
+                        DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
+
+                    )
+                    ->whereBetween('created_at', [$startDate, $endDate])
+                    ->groupBy('date')
+                    ->get()
+                    ->toArray()
+                    ;
+
+        
+        
+        if(!empty($result)){
+
+            $totalValues  = Helper::getDateRange($startDate, $endDate, 'P1D', 'Y-m-d');
+            $records = collect($result);
+            $dates = $records->pluck('date')->toArray();
+
+            foreach ($totalValues as $value) {
+                if (!in_array($value, $dates)) {
+                    $emptyData = [];
+                    $emptyData['value'] = 0 ;
+                    $emptyData['date'] = $value ;
+
+                    $result[] = $emptyData;
+                }
+            }
+
+            usort($result, function ($a, $b) {
+                return  strtotime($a['date']) -  strtotime($b['date']);
+            });
+        }
+
+        return $result;
+    }
+
+    public function PrType($input)
     {   
         $startDate      = Carbon::parse($input['start_date']);
         $endDate        = Carbon::parse($input['end_date'])->modify('23:59:59');
 
+
+        $result = $this->paymentRepo->model
+        ->select(
+            'type',
+            DB::raw('SUM(amount) as value')
+
+        )
+        ->whereBetween('created_at', [$startDate, $endDate])
+        ->groupBy('type')
+        ->get()
+        ->toArray()
+        ;
+
+        return $result;
+    }
+
+
+    public function topServiceProvider($input)
+    {   
+        $startDate      = Carbon::parse($input['start_date']);
+        $endDate        = Carbon::parse($input['end_date'])->modify('23:59:59');
 
         $result = $this->userRepo->model
         ->leftJoin('user_ratings', function ($joins) {
             $joins->on('user_ratings.user_id', '=', 'users.id');
         })
         ->leftJoin('job_bids', function ($joins) {
-            $joins->on('job_bids.user_id', '=', 'users.id');
+            $joins->on('job_bids.user_id', '=', 'users.id')
+            ->where('job_bids.status', '=', $this->jobBidRepo->model::COMPLETED);
         })
         ->whereBetween('users.created_at', [$startDate, $endDate])
         ->where('role_id', '=', Role::SERVICE_PROVIDER)
         ->select(
-            'services.title as title',
-            DB::raw('COUNT(jobs.id) as value')
+            'users.id as user_id',
+            'users.email as email',
+            DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
+            DB::raw('AVG(rating) as rating'),
+            DB::raw('COUNT(job_bids.id) as job_completed')
 
         )
-        ->groupBy('services.id')
-        ->limit(10)
-        ->orderBy('services.title','ASC')
+        ->groupBy('users.id')
+        ->limit(5)
+        ->orderBy('job_completed','DESC')
+        ->orderBy('rating','DESC')
+        ->get()
+        ->toArray()
+        ;
+
+        return $result;
+    }
+
+    public function topCustomer($input)
+    {   
+        $startDate      = Carbon::parse($input['start_date']);
+        $endDate        = Carbon::parse($input['end_date'])->modify('23:59:59');
+        $data = [];
+
+        $result = $this->userRepo->model
+        ->leftJoin('user_ratings', function ($joins) {
+            $joins->on('user_ratings.user_id', '=', 'users.id');
+        })
+        ->leftJoin('jobs', function ($joins) {
+            $joins->on('jobs.user_id', '=', 'users.id')
+            ->where('jobs.status', '=', $this->jobRepo->model::COMPLETED);
+        })
+        ->whereBetween('users.created_at', [$startDate, $endDate])
+        ->where('role_id', '=', Role::CUSTOMER)
+        ->select(
+            'users.id as user_id',
+            'users.email as email',
+            DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
+            DB::raw('AVG(rating) as rating'),
+            DB::raw('COUNT(jobs.id) as job_completed')
+
+        )
+        ->groupBy('users.id')
+        ->limit(5)
+        ->orderBy('job_completed','DESC')
+        ->orderBy('rating','DESC')
         ->get()
         ->toArray()
         ;

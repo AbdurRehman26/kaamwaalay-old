@@ -42,14 +42,14 @@ class DashboardController {
             }else if($input['type'] == 'job_service_type'){
                 $output = $this->_repository->jobServiceType($input);
             }else if($input['type'] == 'pr_over_time'){
-                
+                $output = $this->_repository->PrOverTime($input);
             }else if($input['type'] == 'pr_type'){
-                
+                $output = $this->_repository->PrType($input);
             }else if($input['type'] == 'top_service_provider'){
                 $output = $this->_repository->topServiceProvider($input);
                 
             }else if($input['type'] == 'top_customer'){
-                
+                $output = $this->_repository->topCustomer($input);                
             }
             
         }
