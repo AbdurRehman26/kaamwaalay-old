@@ -2653,6 +2653,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = self.url;
 
             url = self.url;
+            this.$emit('start-loading');
 
             if (typeof page !== 'undefined' && page) {
                 url += '&page=' + page;
@@ -3146,6 +3147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         changePage: function changePage(pageNumber) {
+            console.log(pageNumber, '123');
             this.$emit('page-changed', pageNumber);
         }
     }
@@ -66283,11 +66285,7 @@ var render = function() {
   return _c("vue-pagination", {
     staticClass: "col-xs-12 col-md-12",
     attrs: { pagination: _vm.pagination },
-    on: {
-      "page-changed": function($event) {
-        _vm.getList(false)
-      }
-    }
+    on: { "page-changed": _vm.getList }
   })
 }
 var staticRenderFns = []

@@ -98,6 +98,17 @@ public $model;
             $this->builder = $this->builder->where('business_type','=',$data['filter_by_business_type']);
         }
         
+        if(!empty($data['filter_by_service'])){
+
+            $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
+                $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
+            })->join('service_provider_services', function($join) use ($data){
+                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
+            })->where('service_provider_services.service_id',$data['filter_by_service'])
+            ->select('service_provider_profiles.*')
+            ->groupBy('service_provider_profiles.user_id');
+        }
+
         return parent::findByAll($pagination, $perPage, $data);
 
     }
