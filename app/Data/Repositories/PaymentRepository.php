@@ -41,11 +41,15 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
 
     }
 
-    public function getTotalByCriteria($crtieria, $aggregate = 'count', $field = 'amount') {
+    public function getTotalByCriteria($crtieria = [], $aggregate = 'count', $field = 'amount', $startDate = NULL, $endDate = NULL) {
+        
         $record = $this->model;
-        if($crtieria){
+
+        if($crtieria)
             $record = $record->where($crtieria);
-        }
+
+        if($startDate && $endDate)
+        $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
 
         if($aggregate && $aggregate == 'sum'){
             $record = $record->sum($field);   
