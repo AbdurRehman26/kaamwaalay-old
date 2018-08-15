@@ -21,7 +21,7 @@ class UserRatingController extends ApiResourceController
         $rules['rating']        =  'required|max:5';
         $rules['user_service_id']        =  'required|exists:service_provider_services,id';
         $rules['user_id']        =  'required|exists:users,id';
-        $rules['rated_by']       =  'required';
+        //$rules['rated_by']       =  'required';
     }
 
     if($value == 'update'){
