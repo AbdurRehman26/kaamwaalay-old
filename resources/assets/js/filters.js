@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import moment from 'moment';
 
 const jobStatuses = [
 {
@@ -40,8 +41,12 @@ const providerStatuses = [
 {
     key :'rejected',
     value : 'Rejected'
-}
+},
 
+{
+    key :'banned',
+    value : 'Banned'
+},
 ];
 
 
@@ -65,6 +70,11 @@ Vue.filter('userStatus', function (value) {
             return item; 
         }
     });
+    return typeof(obj) == 'undefined' ? '' : obj.value.replace(/\s/g, '').toLowerCase().trim();
+});
 
-    return obj.value.replace(/\s/g, '').toLowerCase().trim();
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('MMMM DD,YYYY')
+    }
 });

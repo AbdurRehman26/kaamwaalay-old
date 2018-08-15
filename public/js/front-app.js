@@ -2448,8 +2448,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -2458,33 +2456,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             changestatus: false,
             actiondelete: false,
             pageTitle: 'Admin',
-
-            listing: [{
-                fname: 'Dickerson',
-                lname: 'Macdonald',
-                email: 'dmacdonald@gmail.com',
-                acesslevel: 'Full',
-                jdate: '22-01-2018',
-                status: 'Active'
-            }, {
-                fname: 'Larsen',
-                lname: 'Shaw',
-                email: 'shawlarsen@gmail.com',
-                acesslevel: 'Review',
-                jdate: 'July 1, 2018',
-                status: 'Active'
-            }, {
-                fname: 'Geneva',
-                lname: 'Wilson',
-                email: 'genevawilson@gmail.com',
-                acesslevel: 'Full',
-                jdate: 'July 2, 2018',
-                status: 'Deactive'
-            }]
-
+            noRecordFound: false,
+            url: 'api/user?filter_by_role=1&pagination=true',
+            loading: true,
+            records: []
         };
     },
 
+    computed: {
+        requestUrl: function requestUrl() {
+            this.loading = true;
+            return this.url;
+        }
+    },
     methods: {
         ShowModalUser: function ShowModalUser() {
             this.showModalValue = true;
@@ -2504,7 +2488,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 event.target.className = "active";
                 event.target.text = "Active";
             }
+        },
+        getRecords: function getRecords(data) {
+            var self = this;
+            self.loading = false;
+            self.records = data;
+            if (!self.records.length) {
+                self.noRecordFound = true;
+            }
         }
+    },
+    mounted: function mounted() {
+
+        this.loading = true;
     }
 });
 
@@ -65314,53 +65310,89 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "table-area" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table last-col-fix" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.listing, function(list) {
-                      return _c("tr", [
-                        _c("td", [_vm._v(_vm._s(list.fname))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(list.lname))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("a", { attrs: { href: "javascript:;" } }, [
-                            _vm._v(_vm._s(list.email))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(list.acesslevel))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(list.jdate))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-center statustext" }, [
-                          _c("div", {}, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "table-area" }, [
+                _c(
+                  "div",
+                  { staticClass: "table-responsive" },
+                  [
+                    _c("table", { staticClass: "table last-col-fix" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.records, function(record) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(record.first_name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(record.last_name))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("a", { attrs: { href: "javascript:;" } }, [
+                                _vm._v(_vm._s(record.email))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(record.access_level))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("formatDate")(record.created_at.date)
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
                             _c(
-                              "a",
-                              {
-                                staticClass: "active",
-                                on: { click: _vm.statusLink }
-                              },
-                              [_vm._v("Active")]
+                              "td",
+                              { staticClass: "text-center statustext" },
+                              [
+                                _c("div", {}, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "active",
+                                      on: { click: _vm.statusLink }
+                                    },
+                                    [_vm._v(_vm._s(record.status))]
+                                  )
+                                ])
+                              ]
                             )
                           ])
-                        ])
-                      ])
+                        })
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("no-record-found", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.noRecordFound,
+                          expression: "noRecordFound"
+                        }
+                      ]
                     })
-                  )
-                ])
+                  ],
+                  1
+                )
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "clearfix" }),
+            _vm._v(" "),
+            _c("vue-common-methods", {
+              attrs: { url: _vm.requestUrl },
+              on: { "get-records": _vm.getRecords }
+            })
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("add-new-user", {
           attrs: { showModalProp: _vm.showModalValue },
@@ -65394,18 +65426,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Join Date")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Status")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "total-record float-left" }, [
-        _c("p", [
-          _c("strong", [_vm._v("Total records: "), _c("span", [_vm._v("3")])])
-        ])
       ])
     ])
   }

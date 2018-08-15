@@ -26,26 +26,24 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr v-for="list in listing">
-                                  <td>{{list.fname}}</td>
-                                  <td>{{list.lname}}</td>
-                                  <td><a href="javascript:;">{{list.email}}</a></td>
-                                  <td >{{list.acesslevel}}</td>
-                                  <td>{{list.jdate}}</td>
+                                <tr v-for="record in records">
+                                  <td>{{record.first_name}}</td>
+                                  <td>{{record.last_name}}</td>
+                                  <td><a href="javascript:;">{{record.email}}</a></td>
+                                  <td >{{record.access_level}}</td>
+                                  <td>{{record.created_at.date | formatDate}}</td>
                                   <td class="text-center statustext">
-                                    <div class=""><a class="active" @click="statusLink">Active</a></div>
-                                </td>
+                                    <div class=""><a class="active" @click="statusLink">{{record.status}}</a></div>
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>
+                            <no-record-found v-show="noRecordFound"></no-record-found>
                         </div>
 		    		</div>
 		  		</div>
-            <div class="col-xs-12 col-md-12">
-                    <div class="total-record float-left">
-                        <p><strong>Total records: <span>3</span></strong></p>
-                    </div>
-                </div>
+          <div class="clearfix"></div>
+           <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 		    </div>
 
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
@@ -57,40 +55,22 @@
 export default {
   data () {
     return {
-    	showModalValue: false,
-        changestatus: false,
-        actiondelete: false,
-        pageTitle:'Admin',
-
-            listing: [
-                {
-                    fname:'Dickerson',
-                    lname:'Macdonald',
-                    email:'dmacdonald@gmail.com',
-                    acesslevel:'Full',
-                    jdate: '22-01-2018',
-                    status: 'Active',
-                },
-                {
-                    fname:'Larsen',
-                    lname:'Shaw',
-                    email:'shawlarsen@gmail.com',
-                    acesslevel:'Review',
-                    jdate: 'July 1, 2018',
-                    status: 'Active',
-                },
-                {
-                    fname:'Geneva',
-                    lname:'Wilson',
-                    email:'genevawilson@gmail.com',
-                    acesslevel:'Full',
-                    jdate: 'July 2, 2018',
-                    status: 'Deactive',
-                },
-            ],
-
+        	  showModalValue: false,
+            changestatus: false,
+            actiondelete: false,
+            pageTitle:'Admin',
+            noRecordFound : false,
+            url : 'api/user?filter_by_role=1&pagination=true',
+            loading : true,
+            records : [],
     	}
   	},
+    computed : {
+        requestUrl(){
+            this.loading = true;
+            return this.url;
+        }
+    },
     methods: {
         ShowModalUser(){
             this.showModalValue = true;
@@ -102,6 +82,7 @@ export default {
             this.showModalValue = false;
             this.changestatus = false;
         },
+
           statusLink(event) {
             if(event.target.className == "active")
             {
@@ -113,7 +94,21 @@ export default {
                 event.target.className = "active";
                 event.target.text = "Active";
             }
-          }
+          },
+          getRecords(data){
+            let self = this;
+            self.loading = false;
+            self.records = data;
+            if (!self.records.length) {
+              self.noRecordFound = true;
+            }
+
+          },
+    },
+    mounted(){
+
+      this.loading = true;
+
     }
 }
 </script>
