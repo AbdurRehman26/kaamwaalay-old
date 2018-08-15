@@ -24,6 +24,7 @@ class CreateUserRatingsTable extends Migration {
 			$table->enum('status', array('pending','rejected','approved'))->default('pending');
 			$table->timestamps();
 			$table->softDeletes();
+			$table->unique(['job_id' , 'rated_by'])->index();
 		});
 	}
 

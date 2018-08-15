@@ -68,7 +68,7 @@ public function input($value='')
         'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
         'business_details.years_of_experience', 'business_details.business_type',
         
-        'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role');
+        'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role','filter_by_service');
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
