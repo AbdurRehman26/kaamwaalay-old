@@ -71,8 +71,7 @@ public $model;
 
 
     public function findByAll($pagination = false,$perPage = 10, $data = []){       
-
-        $this->builder = $this->model->orderBy('created_at','desc');
+        $this->builder = $this->model->orderBy('users.created_at','desc');
 
         if (!empty($data['keyword'])) {
 
@@ -89,6 +88,15 @@ public $model;
 
         if(!empty($data['filter_by_role'])){
             $this->builder = $this->builder->where('role_id','=',$data['filter_by_role']);
+        }
+
+        if(!empty($data['filter_by_service'])){
+          
+                $this->builder->leftJoin('jobs', function ($join)  use($data){
+                                    $join->on('jobs.user_id', '=', 'users.id');
+                                })->where('jobs.service_id',$data['filter_by_service'])
+                                ->select(['users.id'])
+                                ->groupBy('users.id');
         }
 
         

@@ -220,3 +220,50 @@ textarea{
     }
 }
 
+.custom-radio
+{
+    position:relative;
+    &.boxed{
+        padding:0;
+        input{
+            position:absolute;
+            top:0;
+            left:0;
+            opacity:0;
+        }
+        label{
+            padding:10px;
+            min-height: 100px;
+            border-radius: 8px;
+            font-size:$font-size-sm - 3px;
+            span{
+                display:block;
+                font-family:$font-regular;
+                font-size:$font-size-xxs;
+                padding-top: 3px;
+                color:$text-primary-color;
+            }
+            i{
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font-size: 18px;
+                display:none;
+            }
+            .verticle-align{
+                height:80px;
+            }
+        }
+        input[type="radio"]:checked + label i{
+            display:block;
+
+        }
+    }
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

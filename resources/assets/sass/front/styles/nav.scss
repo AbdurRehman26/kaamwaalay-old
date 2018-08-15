@@ -20,6 +20,7 @@ $nav-font:$font-bold;
                 text-decoration:none;
                 padding-left: 16px;
                 padding-right: 16px;
+                text-decoration:none !important;
                 &:hover{
                     text-decoration:underline;
                     color:$nav-color !important;
@@ -41,11 +42,193 @@ $nav-font:$font-bold;
             }
             &:last-child{
                 a{
-                    font-family:$font-regular;
+                    font-family:$font_medium;
                     color:#fff !important;
                     text-decoration:none !important;
+                    min-width: 140px;
                 }
+                }
+            }
+        }
+    .action-icon{
+        font-size: 24px;
+        vertical-align: middle;
+        color:$grey-dark;
+    }
+}
+
+.left-cog {
+    text-align: right;
+    position: relative;
+    float:right;
+
+    @include tablet{
+        position: fixed;
+        top: 12px;
+        right: 56px;
+    }
+
+    i {
+        font-size: 24px;
+        top: 2px;
+
+        @include tabletL{
+            font-size: 21px;
+        }
+
+        &.icon-notifications-outline {
+            position: relative;
+            font-size: 26px;
+        }
+    }
+    span {
+        margin-left: 21px;
+        vertical-align: middle;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .notify-dropdown {
+        position: absolute;
+        right: -19px;
+        top: 12px;
+        width: 335px;
+        max-height: 277px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        border: 1px solid $grey-medium;
+        padding: 25px;
+        text-align: left;
+        background-color: #fff;
+
+        &.scrollbar {
+            min-height: 338px;
+        }
+        .notify-block {
+            position: relative;
+        }
+        .notify-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .right-notification {
+            width: calc(100% - 42px);
+            display: inline-block;
+            border-bottom: 1px solid $grey-medium;
+            margin-left: 6px;
+            margin-bottom: 14px;
+            padding-bottom: 17px;
+
+            p {
+                font-size: 12px;
+                margin-bottom: 0px;
+                &:first-child {
+                    margin-bottom: 0;
+                    color: $grey-dark;
+                    strong {
+                        color: #1a1a1a;
+                    }
+                    span{
+                        margin-top: -9px;
+                    }
+                }
+                &:nth-child(2) {
+                    margin: 4px 0px;
+                    line-height: 14px;
+                }
+                &:nth-child(3) {
+                    color: $grey-dark;
+                }
+            }
+            span {
+                color: $secondary-color;
+                margin-left: 0;
+            }
+        }
+    }
+    a {
+        position: relative;
+        top: 2px;
+        i{
+            color: #1A1A1A;
+        }
+    }
+}
+
+.user-img {
+    width: 37px;
+    height: 37px;
+    display: inline-block;
+    border-radius: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+    background-color: $grey-medium;
+    margin-left: 3px;
+}
+
+.notification-block{
+    position: relative;
+    &:after{
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: -6px;
+        width: 22px;
+        height: 25px;
+/*         background-image: url('../images/caret-top.png'); */
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+    .notify-list{
+        &:last-child{
+            .right-notification{
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: 0;
             }
         }
     }
 }
+.nav-icons {
+    i {
+        margin-right: 13px;
+        font-size: 24px;
+        vertical-align: middle;
+
+        @include tabletL{
+            font-size: 22px;
+            display: none;
+        }
+
+        @include tablet{
+            font-size: 22px;
+            display: inline-block;
+        }
+    }
+}
+
+.user-login-detail{
+    .username{
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 0 10px;
+        padding: 0;
+        position: relative;
+        top: 1px;
+        font-family:$font-medium;
+    }
+}
+
+.post-job-btn{
+    color:#fff !important;
+    &:hover{
+        color:#fff !important;
+    }
+}
+

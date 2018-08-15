@@ -3,18 +3,36 @@
 	<div class="section padding-sm sign-up-info wrapper-sm">
 
 		<h1>Sign Up</h1>
-
-		<!-- Nav tabs -->
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">I want to hire a service provider</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">I want to grow my business</a>
-			</li>
-
-		</ul>
-
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-6">
+				<div class="custom-radio boxed m-b-30">
+						<input type="radio" name="accountType" id="type_hire_provider" checked>
+						<label for="type_hire_provider">
+							<div class="verticle-align">
+								<div class="inner">
+									I want to hire a service provider
+									<span>Get introduced to the right professional for your jobs</span>
+									<i class="icon-checkmark2"></i>
+								</div>
+							</div>
+						</label>
+					</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-sm-6">
+				<div class="custom-radio boxed">
+						<input type="radio" name="accountType" id="type_service_provider">
+						<label for="type_service_provider">
+							<div class="verticle-align">
+								<div class="inner">
+									I want to grow my business
+									<span>Respond to customer requests and get hired</span>
+									<i class="icon-checkmark2"></i>
+								</div>
+							</div>
+						</label>
+					</div>
+			</div>
+		</div>
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
@@ -71,6 +89,11 @@
 						<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
 					</div>
 				</form>
+			</div>
+		</div>
+			<div class="already-signup">
+				<p>Already a member? <a href="/login">Log in</a></p>
+			</div>
 			</div>
 		</div>
 	</div>

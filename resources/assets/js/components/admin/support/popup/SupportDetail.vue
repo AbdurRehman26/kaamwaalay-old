@@ -46,9 +46,7 @@
                     </b-col>
                     <b-col cols="12">
                         <div class="form-group">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p>Great services, had an amazing experience working with PSM.</p>
                         </div>
                     </b-col>
                 </b-row>

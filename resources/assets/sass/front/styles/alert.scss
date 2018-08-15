@@ -1,7 +1,7 @@
 .alert{
     /* height:$alert-height; */
     height:auto;
-    border-radius: $global-radius;
+    border-radius: $input-radius;
     padding:$alert-padding;
 
     i{
@@ -17,13 +17,13 @@
 
 .alert-success
 {
-    background:$success-bg;
-    color:$success-color;
-    border-color: $success-border;
+    background: #fff;
+    color:$success-bg;
+    border-color: $success-bg;
 
     .icon-success{
         display: block;
-        color:$success-color;
+        color:$success-bg;
         font-size: 0.9rem;
         left: 14px;
         top: 15px;
@@ -35,7 +35,7 @@
 
 .alert-danger
 {
-    background:$danger-bg;
+    background: #fff;
     color:$danger-color;
     border-color: $danger-border;
 

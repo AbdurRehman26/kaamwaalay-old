@@ -1,12 +1,12 @@
 .btn{
     height: $button-height;
     color: $body-bg;
-    font-family: $font_regular;
-    font-size: $font-size-xs;
+    font-family:$font_medium;
+    font-size: $font-size-xs+1;
     padding:$button-padding;
     min-width: 100px;
     line-height: 22px;
-    border-radius:$input-radius;
+    border-radius:$button-radius;
 
     &:hover, &:focus{
         color: $body-bg!important;
