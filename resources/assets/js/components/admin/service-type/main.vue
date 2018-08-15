@@ -50,7 +50,7 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
-                                  <td>{{list.id}}</th>
+                                  <td>{{list.id}}</td>
                                   <td>{{list.service}}</td>
                                   <td>{{list.subservice}}</td>
                                   <td class="text-center">{{list.featured}}</td>

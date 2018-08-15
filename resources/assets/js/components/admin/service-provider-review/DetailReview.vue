@@ -194,9 +194,7 @@
                                         <p><strong class="title-head">Profile/business details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value max-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p>Highly professional work quality. Having 15 years of experience.</p>
                                     </b-col>
                                 </b-row>
 
@@ -205,9 +203,28 @@
                                         <p><strong class="title-head">Status</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <b-form-select v-model="selected" :options="options" class="max-field"/>
+                                        <b-form-select v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
+                                    </b-col>
+                                    <b-col>
+                                       <!--  <button class="btn btn-primary">
+                                            <span>Apply</span>
+                                            <loader></loader>
+                                        </button> -->
                                     </b-col>
                                 </b-row>
+
+                                <b-row>
+                                    <b-col  class="text-right fixed-label">
+                                        <p><strong class="title-head">Action</strong></p>
+                                    </b-col>
+                                    <b-col class="calculated-value">
+                                        <button class="btn btn-primary">
+                                            <span>Apply</span>
+                                            <loader></loader>
+                                        </button>                                   
+                                    </b-col>
+                                </b-row>
+
                             </div>
                         </div>
                 </div>

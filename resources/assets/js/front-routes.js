@@ -91,9 +91,6 @@ const routes = [
         component: require('./components/front/explore/service-provider-detail.vue'),
     },
 
-
-
-
     // Sign Up
 
     {
@@ -106,8 +103,6 @@ const routes = [
         },
         component: require('./components/front/sign-up/main.vue'),
     },
-
-
 
     // Profile
 
@@ -132,6 +127,9 @@ const routes = [
         component: require('./components/front/profile/ApplyForReview.vue'),
     },
 
+
+
+
     // Job Post
 
     {
@@ -143,6 +141,42 @@ const routes = [
             navigation: 'customer-nav',
         },
         component: require('./components/front/job-post/main.vue'),
+    },
+
+    // Featured Profile
+
+    {
+        name: 'Featured Profile',
+        path: '/featured-profile',
+        meta: {
+            title: 'Professional Service Marketplace | Featured Profile',
+            bodyClass: 'featured-profile-page',
+        },
+        component: require('./components/front/featured-profile/main.vue'),
+    },
+
+
+    //jobs pages
+
+    {
+        name: 'My Jobs',
+        path: '/my-jobs',
+        meta: {
+            title: 'Professional Service Marketplace | My Jobs',
+            bodyClass: 'my-job-post-page',
+        },
+        component: require('./components/front/jobs/my-jobs.vue'),
+    },
+
+
+    {
+        name: 'job-details',
+        path: '/job-details',
+        meta: {
+            title: 'Professional Service Marketplace | Job Details',
+            bodyClass: 'job-detail-page',
+        },
+        component: require('./components/front/jobs/job-detail.vue'),
     },
 
     /*404*/
