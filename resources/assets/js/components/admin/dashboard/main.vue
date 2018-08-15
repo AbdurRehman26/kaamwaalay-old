@@ -7,17 +7,17 @@
                         <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
                               <label>Start Date</label>
-                              <datepicker v-model="start_date" v-validate="'required'" placeholder="Start date" calendar-button-icon="fa fa-calendar"></datepicker>
+                              <datepicker v-model="start_date" data-vv-name="start_date" v-validate="'required'" placeholder="Start date" calendar-button-icon="fa fa-calendar"></datepicker>
                           </div>
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
                               <label>End Date</label>
-                              <datepicker v-model="end_date" v-validate="'required'" placeholder="End date" calendar-button-icon="fa fa-calendar"></datepicker>
+                              <datepicker v-model="end_date" data-vv-name="end_date" v-validate="'required'" placeholder="End date" calendar-button-icon="fa fa-calendar"></datepicker>
                           </div>
                       </div>
                       <div class="col-xs-12 col-md-2">
-                        <button @click.prevent="generate(true)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                        <button @click.prevent="validateBeforeSubmit(true)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                             <span>Apply</span>
                             <loader></loader>
                         </button>
@@ -213,8 +213,14 @@ import StarRating from 'vue-star-rating';
 export default{
     data () {
         return {
+            loading : false,
             start_date:'',
             end_date:'',
+            url:'api/dashboard',
+            total_customer_signup:0,
+            total_job_initiated:0,
+            total_payment_collected:0,
+            total_service_provider_signup:0,
             isShowing:false,
             showModalValue : false,
             leftpanel: false,
@@ -274,11 +280,15 @@ export default{
     },
 
     created() {
+        this.start_date = moment().subtract(1, 'month').format('MM/DD/Y');
+        this.end_date   = moment().format('MM/DD/Y');
     },
 
     mounted() {
-        // this.initializeCharts();
+        let self = this;
+        self.initializeCharts();
         // this.titlepush();
+        self.generateReport();
     },
 
     methods: {
@@ -286,6 +296,61 @@ export default{
             this.show = true;
             this.listingResponsive ^= true;
         },
+        validateBeforeSubmit() {
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                    this.generateReport(true);
+                    return;
+                }
+                //this.errorMessage = 'Please fill in the highlighted fields.';
+                return false;
+            });
+        },
+        generateReport(isApply){
+            let self = this;
+            var isApply = isApply || false;
+            alert(isApply)
+            self.dashboard(isApply, 'stats');
+            setTimeout(function () {
+                self.dashboard(isApply, 'customer_signup');
+            } , 100);
+            setTimeout(function () {
+                self.dashboard(isApply, 'service_provider_signup');
+            } , 200);
+            setTimeout(function () {
+                self.dashboard(isApply, 'job_service_type');
+            } , 300);
+            setTimeout(function () {
+                self.dashboard(isApply, 'pr_over_time');
+            } , 400);
+            setTimeout(function () {
+                self.dashboard(isApply, 'pr_type');
+            } , 500);
+            setTimeout(function () {
+                self.dashboard(isApply, 'top_service_provider');
+            } , 600);
+            setTimeout(function () {
+                self.dashboard(isApply, 'top_customer');
+            } , 700);
+        },
+        dashboard (isApply, type) {
+            let self = this;
+            self.loading = isApply;
+            let params = {
+                start_date: this.start_date,
+                end_date: this.end_date,
+                type: type,
+            };
+            self.$http.get(self.url, {params: params}).then(response=>{
+                let data = response.data;
+                console.log(data)
+                self.loading = false;
+
+            }).catch(error=>{
+                self.loading = false;
+            });
+        },
+
 
 //line charts
 
@@ -2680,10 +2745,6 @@ AmCharts.makeChart("pieChart",
 );
 
 }
-},
-mounted() {
-    this.initializeCharts();
-    this.titlepush();
 },
 
 }
