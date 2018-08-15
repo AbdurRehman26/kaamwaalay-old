@@ -111,7 +111,14 @@
    },
    watch : {
     currentPage(pageNumber){
-      this.getList(false, pageNumber);
+      console.log(this.search, this.filter_by_featured, 88998989);
+      
+      var data = {
+          search : this.search,
+          filter: this.filter_by_featured
+      };
+        this.getList(data, pageNumber);
+
     },
     totalServicesCount(count) {
       this.totalServicesCount = count;
@@ -163,10 +170,10 @@
 
       if((typeof(data) !== 'undefined' && data) || this.search){
         var query  = '?pagination=true';
-        if(data.search != "") {
+        if(data.search != "" && data.search != "undefined") {
             var query  = query + '&keyword='+data.search;        
         }
-        if(data.filter != "both") {
+        if(data.filter != "both" && data.filter != "undefined") {
             var query  = query + '&filter_by_featured='+data.filter;
         }
         //var query  = '?pagination=true&keyword='+this.search+'&filter_by_featured='+this.search.filter_by_featured;
@@ -189,10 +196,7 @@
         }
         var serviceArray = _.filter(self.listing, {parent_id: null});
         self.totalServicesCount = response.service_count;
-        if(this.filter_by_featured != "both" || this.search != "") {
-
-            self.totalServicesCount = response.data.length;//response.service_count;
-        }
+        
         self.pagination = response.pagination;
 
         if (!self.listing.length) {

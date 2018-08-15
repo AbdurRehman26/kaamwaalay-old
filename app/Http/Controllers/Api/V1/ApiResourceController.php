@@ -33,11 +33,11 @@ abstract class ApiResourceController extends Controller
         $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
 
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
-        $count = $this->_repository->getServiceCount();
+        //$count = $this->_repository->getServiceCount();
         $output = [
             'response' => [
-                'data' => $data['data'],
-                'service_count' => $count,
+                'data' => $data['data']['data'],
+                'service_count' => $data['record_count'],
                 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
                 'message' => $this->response_messages(__FUNCTION__),
             ]

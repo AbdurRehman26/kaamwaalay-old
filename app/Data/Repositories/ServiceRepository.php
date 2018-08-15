@@ -135,9 +135,9 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         if(!empty($data['filter_by_featured'])){
             $this->builder = $this->builder->where('is_featured','=',$data['filter_by_featured']);
         }
-        
-        return parent::findByAll($pagination, $perPage, $data);
-
+        $modelData['record_count'] = $this->builder->count();
+        $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+        return $modelData;
     }
 
 
