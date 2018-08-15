@@ -1,5 +1,5 @@
 <template>
-<div class="col-xs-12 col-md-12">
+<div>
 
     <div class="total-record float-left">
         <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>
@@ -17,18 +17,23 @@
         data(){
             return{
             records : [],
-            url : 'api/dashboard_reports',
             showNoRecordFound : false,
-            pagination : '',
           }
         },
         mounted(){
-            this.getList();
         },
         computed : {
             totalRecords(){
                 return this.pagination ? this.pagination.total : 0;
             },
+            currentPage(){
+                return this.pagination ? this.pagination.current : 1;    
+            }
+        },
+        watch :{
+            pagination(){
+
+            }
         },
         methods: {
             changePage(pageNumber){
