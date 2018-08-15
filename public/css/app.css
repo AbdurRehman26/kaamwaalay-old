@@ -36232,7 +36232,7 @@ body .ag-header .ag-filter-icon p span {
 
 .loadmore-records {
   padding: 20px 0;
-  display: block;
+  display: none;
 }
 
 .loadmore-records .spinner-image {
@@ -36246,37 +36246,6 @@ body .ag-header .ag-filter-icon p span {
   text-transform: uppercase;
   font-family: "AkzidenzGroteskBE-Md";
   color: #838383;
-}
-
-/* Safari and Chrome */
-
-@-webkit-keyframes rotating {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotating {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.rotating {
-  -webkit-animation: rotating 2s linear infinite;
-  animation: rotating 2s linear infinite;
 }
 
 .lds-spinner {
