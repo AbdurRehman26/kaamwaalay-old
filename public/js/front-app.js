@@ -2744,11 +2744,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['showModalProp', 'item', 'url'],
+    data: function data() {
+        return {
+            loading: false,
+            errorMessage: "",
+            successMessage: ""
+        };
+    },
 
-    props: ['showModalProp'],
     methods: {
         showModal: function showModal() {
             this.$refs.myModalRef.show();
@@ -2758,6 +2779,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
+        },
+        validateBeforeSubmit: function validateBeforeSubmit(evt) {
+            var _this = this;
+
+            // Prevent modal from closing
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.onDelete();
+                    _this.errorMessage = '';
+                    return;
+                }
+                _this.errorMessage = _this.errorBag.all()[0];
+            });
+        },
+        onDelete: function onDelete() {
+            var self = this;
+
+            self.errorMessage = '';
+            self.successMessage = '';
+
+            var id = this.item.id; //this.item.parent_id? this.item.id : this.item.parent_id;
+
+            self.loading = true;
+            var url = self.url + '/' + id;
+            self.$http.delete(url).then(function (response) {
+                response = response.data.response;
+                self.loading = false;
+                self.successMessage = response.message;
+                setTimeout(function () {
+                    self.hideModal();
+                    self.onHidden();
+                    self.successMessage = '';
+                    self.$emit('call-list');
+                }, 2000);
+            }).catch(function (error) {
+                var errors = error.data.response;
+
+                self.loading = false;
+                _.forEach(errors, function (value, key) {
+                    self.errorMessage = errors[key][0];
+                    return false;
+                });
+            });
         }
     },
 
@@ -2770,6 +2834,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!value) {
                 this.hideModal();
             }
+        },
+        item: function item(value) {
+            this.item = value;
+        },
+        url: function url(value) {
+            this.url = value;
         }
     }
 });
@@ -3080,27 +3150,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var user = JSON.parse(this.$store.getters.getAuthUser);
         this.first_name = user.first_name;
+        this.getAllServices();
         this.last_name = user.last_name;
-        this.getServicesList();
     },
 
     methods: {
-        getServicesList: function getServicesList() {
-            var _this = this;
-
+        getAllServices: function getAllServices() {
             var self = this;
-            self.noRecordFound = false;
             var url = 'api/service';
 
             self.$http.get(url).then(function (response) {
-                console.log(_this.$store, '2131232132121321213213');
                 response = response.data.response;
-
-                _this.$store.commit('setServicesList', response.data);
-                console.log(response, '21312321');
-            }).catch(function (error) {
-                console.log(error, 'error');
-            });
+                self.$store.commit('setAllServices', response.data);
+            }).catch(function (error) {});
         },
         ShowModal: function ShowModal() {
             this.showModalValue = true;
@@ -3221,9 +3283,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //https://www.npmjs.com/package/vue2-typeahead
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    TypeAhead: __WEBPACK_IMPORTED_MODULE_0_vue2_typeahead___default.a
-  }
+	//src="/static/data.json?keyword=:keyword"
+	components: {
+		TypeAhead: __WEBPACK_IMPORTED_MODULE_0_vue2_typeahead___default.a
+	},
+	data: function data() {
+		return {
+			search: ''
+		};
+	},
+
+	methods: {
+		onHit: function onHit(item, vue, index) {
+			// this.search = item;
+			// alert(this.search);
+			// this.$emit('search' , this.search)
+		},
+
+		getResponse: function getResponse(response) {
+			return []; //response.data.data.items
+		}
+	},
+	watch: {
+		search: function search(val) {
+			this.search = val;
+			this.$emit('search', this.search);
+		}
+	}
 });
 
 /***/ }),
@@ -4454,6 +4540,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -4533,49 +4624,173 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
+        var _ref;
+
+        return _ref = {
             errorMessage: '',
             successMessage: '',
-            emailaddress: 'arsalan@cygnismedia.com',
-            fullname: 'Arsalan Akhtar',
-            image: 'images/dummy/user-pic.jpg',
-            file: null
-        };
+            services: []
+        }, _defineProperty(_ref, 'errorMessage', ''), _defineProperty(_ref, 'successMessage', ''), _defineProperty(_ref, 'formData', {
+            parentId: '',
+            serviceName: '',
+            serviceDescription: '',
+            isFeatured: 0,
+            isHeroNavigation: 0,
+            images: [{
+                'name': '',
+                'original_name': ''
+            }],
+            urlPrefix: '',
+            status: 1,
+            isDisplayBanner: 1,
+            isDisplayServiceNav: 1,
+            isDisplayFooterNav: 1
+
+        }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/user-pic.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _ref;
     },
 
 
     props: ['showModalProp'],
 
     methods: {
+        resetFormFields: function resetFormFields() {
+            var self = this;
+            this.formData = {
+                parentId: '',
+                serviceName: '',
+                serviceDescription: '',
+                isFeatured: 0,
+                isHeroNavigation: 0,
+                images: [{
+                    'name': '',
+                    'original_name': ''
+                }],
+                urlPrefix: '',
+                status: 1,
+                isDisplayBanner: 1,
+                isDisplayServiceNav: 1,
+                isDisplayFooterNav: 1
+
+            };
+            setTimeout(function () {
+                Vue.nextTick(function () {
+                    self.errorBag.clear();
+                });
+            }, 10);
+        },
+        validateBeforeSubmit: function validateBeforeSubmit() {
+            var _this = this;
+
+            var self = this;
+            this.$validator.validateAll().then(function (result) {
+                if (result && !_this.errorBag.all().length) {
+                    _this.onSubmit();
+                    _this.errorMessage = '';
+                    return;
+                }
+                _this.errorMessage = _this.errorBag.all()[0];
+            });
+        },
         showModal: function showModal() {
             this.$refs.myModalRef.show();
+            var allServices = this.$store.getters.getAllServices;
+            // filter only services
+            this.services = _.filter(allServices, { parent_id: null });
         },
         hideModal: function hideModal() {
+            var self = this;
+            this.resetFormFields();
             this.$refs.myModalRef.hide();
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
         },
         onFileChange: function onFileChange(e) {
+            var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
             var files = e.target.files || e.dataTransfer.files;
+            this.errorMessage = "";
+            if (!supportedType.includes(files[0].type)) {
+                this.errorBag.add({
+                    field: 'upload image',
+                    msg: 'The file must be an image.',
+                    rule: 'image',
+                    id: 6
+                });
+                this.errorMessage = this.errorBag.all()[0];
+                return;
+            }
+            this.errorBag.clear();
+
             if (!files.length) return;
             this.createImage(files[0]);
         },
         createImage: function createImage(file) {
+            var self = this;
             var image = new Image();
             var reader = new FileReader();
-            var vm = this;
-
+            self.formData.images[0].original_name = file.name;
             reader.onload = function (e) {
-                vm.image = e.target.result;
+                self.formData.images[0].name = e.target.result;
+                self.image = e.target.result;
             };
             reader.readAsDataURL(file);
+        },
+        onSubmit: function onSubmit() {
+            var _this2 = this;
+
+            var self = this;
+            this.loading = true;
+            var url = this.url;
+
+            var data = new FormData();
+            data.append('title', self.formData.serviceName);
+            data.append('description', self.formData.serviceDescription);
+            data.append('is_display_banner', self.formData.isDisplayBanner);
+            data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
+            data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
+            data.append('is_featured', self.formData.isFeatured);
+            data.append('is_hero_nav', self.formData.isHeroNavigation);
+            data.append('url_prefix', self.formData.urlPrefix);
+            data.append('parent_id', self.formData.parentId);
+            data.append('status', self.formData.status);
+            data.append('images', JSON.stringify(self.formData.images));
+
+            this.$http.post(url, data).then(function (response) {
+                response = response.data.response;
+                self.successMessage = response.message; //'Updated Successfully';
+
+                self.loading = false;
+
+                setTimeout(function () {
+                    self.successMessage = '';
+                    self.hideModal();
+                    self.resetFormFields();
+                    self.$emit('call-list');
+                }, 3000);
+
+                setTimeout(function () {
+                    Vue.nextTick(function () {
+                        self.errorBag.clear();
+                    });
+                }, 10);
+            }).catch(function (error) {
+                error = error.response.data;
+                var errors = error.errors;
+                _.forEach(errors, function (value, key) {
+                    if (key == "title") {
+                        self.errorMessage = "The Service Name has alreary been taken.";
+                        return false;
+                    }
+                    self.errorMessage = errors[key][0];
+                    return false;
+                });
+                _this2.loading = false;
+            });
         }
     },
 
     watch: {
         showModalProp: function showModalProp(value) {
-
             if (value) {
                 this.showModal();
             }
@@ -4695,10 +4910,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'selectedService'],
+    data: function data() {
+        return {
+            successMessage: ""
+        };
+    },
 
     methods: {
         showModal: function showModal() {
+
+            console.log(this.selectedService, 9999999);
             this.$refs.myModalRef.show();
         },
         hideModal: function hideModal() {
@@ -4718,6 +4940,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!value) {
                 this.hideModal();
             }
+        },
+        selectedService: function selectedService(value) {
+            this.selectedService = value;
         }
     }
 });
@@ -5172,10 +5397,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         logout: function logout() {
             var this_ = this;
-            this.$auth.logout().then(function (Vue) {
-                this_.$store.commit('setAuthUser', '');
+            if (this.$auth.isAuthenticated()) {
+                this.$auth.logout().then(function (Vue) {
+                    this_.$store.commit('setAuthUser', '');
+                    this_.$router.push({ name: 'login' });
+                });
+            } else {
                 this_.$router.push({ name: 'login' });
-            });
+            }
         }
     }
 });
@@ -64207,13 +64436,14 @@ var render = function() {
                             {
                               name: "validate",
                               rawName: "v-validate",
-                              value: "required|min:8",
-                              expression: "'required|min:8'"
+                              value: "required|min:8|max:25",
+                              expression: "'required|min:8|max:25'"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: {
                             type: "password",
+                            maxlength: 25,
                             "data-vv-as": "password",
                             name: "password",
                             placeholder: "Enter your new password"
@@ -64285,6 +64515,7 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "password",
+                            maxlength: 25,
                             "data-vv-as": "confirm password",
                             name: "password_confirmation",
                             placeholder: "Re-enter new password"
@@ -64791,16 +65022,119 @@ var render = function() {
             size: "sm",
             title: "Warning",
             "ok-only": "",
-            "ok-title": "Submit"
+            "ok-title": "Submit",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": ""
           },
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
-            _c("p", [_vm._v("Are you sure you want to delete this item?")])
-          ])
+            _c("p", [
+              _vm._v(
+                "Are you sure you want to delete this " +
+                  _vm._s(
+                    _vm.item.parent_id ? _vm.item.parent.title : _vm.item.title
+                  ) +
+                  "? "
+              ),
+              !_vm.item.parent_id
+                ? _c("span", [
+                    _vm._v(
+                      " Removing this service will remove all its associated services."
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c(
+                "b-col",
+                { staticClass: "float-right", attrs: { cols: "6" } },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: [
+                        _vm.loading ? "show-spinner" : "",
+                        "btn",
+                        "btn-primary",
+                        "apply-primary-color"
+                      ],
+                      on: {
+                        click: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "prevant",
+                              undefined,
+                              $event.key,
+                              undefined
+                            )
+                          ) {
+                            return null
+                          }
+                          _vm.validateBeforeSubmit()
+                        }
+                      }
+                    },
+                    [
+                      _c("span", [_vm._v("Confirm")]),
+                      _vm._v(" "),
+                      _c("loader")
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { staticClass: "float-right", attrs: { cols: "6" } },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: ["btn", "btn-link", "apply-primary-color"],
+                      on: {
+                        click: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "prevant",
+                              undefined,
+                              $event.key,
+                              undefined
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.onHidden($event)
+                        }
+                      }
+                    },
+                    [_c("span", [_vm._v("Cancel")])]
+                  )
+                ]
+              )
+            ],
+            1
+          )
         ],
         1
       )
@@ -64993,12 +65327,14 @@ var render = function() {
             size: "md",
             title: "Service Detail",
             "ok-only": "",
-            "ok-title": "Close"
+            "ok-title": "Close",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": ""
           },
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.successMessage ? _c("alert") : _vm._e(),
           _vm._v(" "),
           _c(
             "div",
@@ -65016,7 +65352,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("1")])
+                    _c("p", [_vm._v(_vm._s(_vm.selectedService.index + 1))])
                   ])
                 ],
                 1
@@ -65034,7 +65370,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Carpenters")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.parent.title
+                            : _vm.selectedService.title
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -65052,7 +65396,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Wiring")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.title
+                            : ""
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -65070,7 +65422,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("www.psm.com")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.parent.url_prefix
+                            : _vm.selectedService.url_prefix
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -65088,7 +65448,19 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("No")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.parent.is_featured
+                              ? "YES"
+                              : "NO"
+                            : _vm.selectedService.is_featured
+                              ? "YES"
+                              : "NO"
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -65100,13 +65472,25 @@ var render = function() {
                   _c("b-col", { attrs: { cols: "5" } }, [
                     _c("p", [
                       _c("strong", { staticClass: "title-head" }, [
-                        _vm._v("Hero Navigation")
+                        _vm._v("Is Hero Navigation?")
                       ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Yes")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.parent.is_hero_nav
+                              ? "YES"
+                              : "NO"
+                            : _vm.selectedService.is_hero_nav
+                              ? "YES"
+                              : "NO"
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -65181,7 +65565,11 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _c("p", [
                         _vm._v(
-                          "Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs."
+                          _vm._s(
+                            _vm.selectedService.parent_id
+                              ? _vm.selectedService.parent.description
+                              : _vm.selectedService.description
+                          )
                         )
                       ])
                     ])
@@ -66004,8 +66392,8 @@ var render = function() {
             "ok-variant": "primary",
             size: "md",
             title: "Add new Service",
-            "ok-only": "",
-            "ok-title": "Submit"
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": ""
           },
           on: { hidden: _vm.onHidden }
         },
@@ -66024,36 +66412,89 @@ var render = function() {
               _c("div", { staticClass: "form-group" }, [
                 _c("label", [_vm._v("Parent Service")]),
                 _vm._v(" "),
-                _c("select", { staticClass: "form-control" }, [
-                  _c(
-                    "option",
-                    { attrs: { value: "", selected: "", disabled: "" } },
-                    [_vm._v("Select Parent Service")]
-                  ),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [_vm._v("None")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Electrician")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Carpenter")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Plumber")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Painter")])
-                ])
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formData.parentId,
+                        expression: "formData.parentId"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.formData,
+                          "parentId",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "", selected: "" } }, [
+                      _vm._v("None")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.services, function(service) {
+                      return _c("option", { domProps: { value: service.id } }, [
+                        _vm._v(_vm._s(service.title))
+                      ])
+                    })
+                  ],
+                  2
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", [_vm._v("Service Name")]),
                 _vm._v(" "),
                 _c("input", {
+                  directives: [
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: "'required'"
+                    },
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.serviceName,
+                      expression: "formData.serviceName"
+                    }
+                  ],
                   staticClass: "form-control",
+                  class: [
+                    "form-group",
+                    _vm.errorBag.first("service name") ? "is-invalid" : ""
+                  ],
                   attrs: {
                     type: "text",
-                    name: "",
+                    name: "service name",
                     placeholder: "Enter service name"
+                  },
+                  domProps: { value: _vm.formData.serviceName },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.formData, "serviceName", $event.target.value)
+                    }
                   }
                 })
               ]),
@@ -66065,12 +66506,28 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isFeatured,
+                            expression: "formData.isFeatured"
+                          }
+                        ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
                           name: "inlineRadioOptions",
                           id: "inlineRadio1",
-                          value: "option1"
+                          value: "1"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isFeatured, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isFeatured", "1")
+                          }
                         }
                       }),
                       _vm._v(" "),
@@ -66086,13 +66543,29 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isFeatured,
+                            expression: "formData.isFeatured"
+                          }
+                        ],
                         staticClass: "form-check-input",
                         attrs: {
                           checked: "",
                           type: "radio",
                           name: "inlineRadioOptions",
-                          id: "inlineRadio1",
-                          value: "option1"
+                          id: "inlineRadio2",
+                          value: "0"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isFeatured, "0")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isFeatured", "0")
+                          }
                         }
                       }),
                       _vm._v(" "),
@@ -66114,12 +66587,28 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isHeroNavigation,
+                            expression: "formData.isHeroNavigation"
+                          }
+                        ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
                           name: "inlineRadioOptions2",
-                          id: "inlineRadio2",
-                          value: "option1"
+                          id: "inlineRadio4",
+                          value: "1"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isHeroNavigation, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isHeroNavigation", "1")
+                          }
                         }
                       }),
                       _vm._v(" "),
@@ -66135,13 +66624,29 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isHeroNavigation,
+                            expression: "formData.isHeroNavigation"
+                          }
+                        ],
                         staticClass: "form-check-input",
                         attrs: {
                           checked: "",
                           type: "radio",
                           name: "inlineRadioOptions2",
-                          id: "inlineRadio2",
-                          value: "option1"
+                          id: "inlineRadio3",
+                          value: "0"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isHeroNavigation, "0")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isHeroNavigation", "0")
+                          }
                         }
                       }),
                       _vm._v(" "),
@@ -66162,8 +66667,43 @@ var render = function() {
                 _c("label", [_vm._v("Description")]),
                 _vm._v(" "),
                 _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.serviceDescription,
+                      expression: "formData.serviceDescription"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: "'required'"
+                    }
+                  ],
                   staticClass: "form-control",
-                  attrs: { rows: "5", placeholder: "Enter description" }
+                  class: [
+                    "form-group",
+                    _vm.errorBag.first("description") ? "is-invalid" : ""
+                  ],
+                  attrs: {
+                    rows: "5",
+                    placeholder: "Enter description",
+                    name: "description"
+                  },
+                  domProps: { value: _vm.formData.serviceDescription },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.formData,
+                        "serviceDescription",
+                        $event.target.value
+                      )
+                    }
+                  }
                 })
               ]),
               _vm._v(" "),
@@ -66174,9 +66714,22 @@ var render = function() {
                   _c("label", [_vm._v("Upload Image")]),
                   _vm._v(" "),
                   _c("b-form-file", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    class: [
+                      "form-group",
+                      _vm.errorBag.first("upload image") ? "is-invalid" : ""
+                    ],
                     attrs: {
-                      accept: ".jpg, .png",
-                      placeholder: "Click here to upload image"
+                      accept: "image/jpeg, image/png, image/jpg",
+                      placeholder: "Click here to upload image",
+                      name: "upload image"
                     },
                     on: { change: _vm.onFileChange },
                     model: {
@@ -66199,12 +66752,88 @@ var render = function() {
                 _c("label", [_vm._v("URL")]),
                 _vm._v(" "),
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.urlPrefix,
+                      expression: "formData.urlPrefix"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|url",
+                      expression: "'required|url'"
+                    }
+                  ],
                   staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Enter url", name: "" }
+                  class: [
+                    "form-group",
+                    _vm.errorBag.first("url") ? "is-invalid" : ""
+                  ],
+                  attrs: {
+                    type: "text",
+                    placeholder: "Enter url",
+                    name: "",
+                    name: "url"
+                  },
+                  domProps: { value: _vm.formData.urlPrefix },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.formData, "urlPrefix", $event.target.value)
+                    }
+                  }
                 })
               ])
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c(
+                "b-col",
+                { staticClass: "float-right", attrs: { cols: "12" } },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: [
+                        _vm.loading ? "show-spinner" : "",
+                        "btn",
+                        "btn-primary",
+                        "apply-primary-color"
+                      ],
+                      on: {
+                        click: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "prevant",
+                              undefined,
+                              $event.key,
+                              undefined
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.validateBeforeSubmit($event)
+                        }
+                      }
+                    },
+                    [_c("span", [_vm._v("Submit")]), _vm._v(" "), _c("loader")],
+                    1
+                  )
+                ]
+              )
+            ],
+            1
+          )
         ],
         1
       )
@@ -66769,6 +67398,7 @@ var render = function() {
       _c(
         "form",
         {
+          attrs: { novalidate: "" },
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -66856,6 +67486,7 @@ var render = function() {
                     attrs: {
                       id: "login_password",
                       type: "password",
+                      maxlength: 25,
                       "data-vv-as": "password",
                       name: "password",
                       "data-vv-name": "password",
@@ -66953,6 +67584,7 @@ var render = function() {
       _c(
         "form",
         {
+          attrs: { novalidate: "" },
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -67033,6 +67665,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
+                          maxlength: 25,
                           "data-vv-as": "old password",
                           name: "old_password",
                           "data-vv-name": "old_password",
@@ -67086,6 +67719,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
+                          maxlength: 25,
                           "data-vv-as": "new password",
                           name: "new_password",
                           "data-vv-name": "new_password",
@@ -67141,6 +67775,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
+                          maxlength: 25,
                           "data-vv-as": "confirm password",
                           name: "password_confirmation",
                           "data-vv-name": "password_confirmation",
@@ -69188,7 +69823,15 @@ var render = function() {
         attrs: {
           src: "/static/data.json?keyword=:keyword",
           getResponse: _vm.getResponse,
+          onHit: _vm.onHit,
           placeholder: "Search"
+        },
+        model: {
+          value: _vm.search,
+          callback: function($$v) {
+            _vm.search = $$v
+          },
+          expression: "search"
         }
       })
     ],
@@ -86884,7 +87527,6 @@ try {
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
 window.axios = __webpack_require__("./node_modules/axios/index.js");
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -86951,6 +87593,7 @@ Vue.component('MidLoader', __webpack_require__("./resources/assets/js/components
 Vue.component('SpinnerLoader', __webpack_require__("./resources/assets/js/components/admin/common-components/SpinnerLoader.vue"));
 Vue.component('DatePicker', __webpack_require__("./resources/assets/js/components/admin/common-components/Datepicker.vue"));
 Vue.component('SearchField', __webpack_require__("./resources/assets/js/components/admin/common-components/Search.vue"));
+Vue.component('no-record-found', __webpack_require__("./resources/assets/js/components/admin/common-components/NoRecords.vue"));
 
 // Common Popup
 Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/DeletePopup.vue"));

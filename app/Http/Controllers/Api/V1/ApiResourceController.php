@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class ApiResourceController extends Controller
 {
     public $_repository;
-    const   PER_PAGE = 10;
+    const   PER_PAGE = 2;
 
     public function __constructor($repository)
     {
@@ -33,10 +33,11 @@ abstract class ApiResourceController extends Controller
         $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
 
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
-
+        $count = $this->_repository->getServiceCount();
         $output = [
             'response' => [
                 'data' => $data['data'],
+                'service_count' => $count,
                 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
                 'message' => $this->response_messages(__FUNCTION__),
             ]
@@ -72,14 +73,14 @@ abstract class ApiResourceController extends Controller
 
     //Create single record
     public function store(Request $request)
-    {
-
+    {   
+        $images = json_decode($request->input('images'));
+        $request->merge(['images' => $images]);
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
         $messages = $this->messages(__FUNCTION__);
-
-        $this->validate($request, $rules, $messages);
-
+        $this->validate($request, $rules);
+        
         $data = $this->_repository->create($input);
 
         $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
@@ -114,6 +115,7 @@ abstract class ApiResourceController extends Controller
     //Delete single record
     public function destroy(Request $request, $id)
     {
+        $request->request->add(['user_id' => $request->user()->id]);
         $request->request->add(['id' => $id]);
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);

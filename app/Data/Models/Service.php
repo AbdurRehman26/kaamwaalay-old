@@ -17,5 +17,10 @@ class Service extends Model
     protected $casts = [
         'images' => 'array',
     ];
-   
+
+    public function subServices()
+    {
+        return $this->hasMany('App\Data\Models\Service', 'parent_id');
+    }
+
 }
