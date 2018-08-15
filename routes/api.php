@@ -59,6 +59,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     ]);
 
 
+Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+    'edit',
+]);
+
 });
 
 

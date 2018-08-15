@@ -71,13 +71,11 @@ public function input($value='')
         'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role');
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
     
     if($value == 'update'){
         unset($input['user_details']['email']);
     }
-
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
-    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
     return $input;
 }
