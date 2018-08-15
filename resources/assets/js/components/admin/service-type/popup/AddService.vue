@@ -1,65 +1,65 @@
  <template>
-	<div>
+   <div>
       <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" no-close-on-backdrop no-close-on-esc>                        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-		    	<div>
-                    <form action="" method="">
-                    <div class="form-group">
-                    	<label>Parent Service</label>
+         <div>
+            <form action="" method="">
+                <div class="form-group">
+                   <label>Parent Service</label>
                    <select class="form-control" v-model="formData.parentId">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
-                        </select>
-                    </div>
+                </select>
+            </div>
 
-                    <div class="form-group">
-                		<label>Service Name</label>
+            <div class="form-group">
+              <label>Service Name</label>
               <input type="text" name="service name" v-validate="'required'" class="form-control" placeholder="Enter service name" v-model="formData.serviceName" :class="['form-group' , errorBag.first('service name') ? 'is-invalid' : '']" >
-                    </div>
+          </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group radio-group-row">
-                                <label>Is Featured?</label>
-                                    <div class="form-check form-check-inline">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group radio-group-row">
+                    <label>Is Featured?</label>
+                    <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" v-model="formData.isFeatured">
-                                      <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
+                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
                       <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0" v-model="formData.isFeatured">
-                                      <label class="form-check-label" for="inlineRadio1">No</label>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group radio-group-row">
-                                <label>Hero Navigation?</label>
-                                    <div class="form-check form-check-inline">
+                      <label class="form-check-label" for="inlineRadio1">No</label>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group radio-group-row">
+                <label>Hero Navigation?</label>
+                <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="1" v-model="formData.isHeroNavigation">
-                                      <label class="form-check-label" for="inlineRadio2">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
+                  <label class="form-check-label" for="inlineRadio2">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
                   <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3" value="0" v-model="formData.isHeroNavigation">
-                                      <label class="form-check-label" for="inlineRadio2">No</label>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
+                  <label class="form-check-label" for="inlineRadio2">No</label>
+              </div>
+          </div>
+      </div>
+  </div>
 
-                    <div class="form-group">
-                        <label>Description</label>
+  <div class="form-group">
+    <label>Description</label>
     <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.serviceDescription" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
 </div>
 
 <div class="form-group">
-                        <label>Upload Image</label>
+    <label>Upload Image</label>
     <b-form-file @change="onFileChange" v-model="file" accept="image/jpeg, image/png, image/jpg" placeholder="Click here to upload image" name="upload image" v-validate="'required'"  :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']"></b-form-file>
-                        <div class="uploded-picture">
-                            <img :src="image" />
-                        </div>
+    <div class="uploded-picture">
+        <img :src="image" />
+    </div>
 </div>
 
 <div class="form-group">
-                        <label>URL</label>
+    <label>URL</label>
     <input type="text" class="form-control" placeholder="Enter url" name="" v-model="formData.urlPrefix" name="url" v-validate="'required|url'" :class="['form-group' , errorBag.first('url') ? 'is-invalid' : '']">
 </div>
 </form>
@@ -67,10 +67,10 @@
 </div>
 <div slot="modal-footer" class="">
     <b-col class="float-right" cols="12">
-     <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit">
-        <span>Submit</span> 
-        <loader></loader>
-    </button>
+        <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit">
+            <span>{{isUpdate? 'Update' : 'Submit'}}</span> 
+            <loader></loader>
+        </button>
     </b-col>
 </div>
 </b-modal>
@@ -79,44 +79,42 @@
 
 <script>
     export default {
-    data () {
-        return {
-            errorMessage : '',
-            successMessage : '',
-            services: [],
-            errorMessage: '',
-            successMessage: '',
-            formData: {
-                parentId: '',
-                serviceName: '',
-                serviceDescription: '',
-                isFeatured: 0,
-                isHeroNavigation: 0,
-                images: [
-                {
-                    'name': '', 
-                    'original_name': ''
-                }
-                ],
-                urlPrefix: '',
-                status: 1,
-                isDisplayBanner: 1,
-                isDisplayServiceNav: 1,
-                isDisplayFooterNav: 1,
 
-            },
-            emailaddress: 'arsalan@cygnismedia.com',
-            fullname: 'Arsalan Akhtar',
-            image: 'images/dummy/user-pic.jpg',
-            file: null,
-            url: 'api/service',
-            loading: false,
-        }
-    },
-
-    props: ['showModalProp'],
-
-    methods: {
+        props: ['showModalProp', 'isUpdate', 'list'],
+        data () {
+            return {
+                errorMessage : '',
+                successMessage : '',
+                services: [],
+                errorMessage: '',
+                successMessage: '',
+                formData: {
+                    parentId: '',
+                    serviceName: '',
+                    serviceDescription: '',
+                    isFeatured: 0,
+                    isHeroNavigation: 0,
+                    images: [
+                    {
+                        'name': '', 
+                        'original_name': ''
+                    }
+                    ],
+                    urlPrefix: '',
+                    status: 1,
+                    isDisplayBanner: 1,
+                    isDisplayServiceNav: 1,
+                    isDisplayFooterNav: 1,
+                },
+                emailaddress: 'arsalan@cygnismedia.com',
+                fullname: 'Arsalan Akhtar',
+                image: 'images/dummy/user-pic.jpg',
+                file: null,
+                url: 'api/service',
+                loading: false,
+            }
+        },
+        methods: {
             resetFormFields() {
                 var self = this;
                 this.formData = {
@@ -149,30 +147,34 @@
                 var self = this;
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
-                        this.onSubmit();
+                        if(this.isUpdate) {
+                            this.onUpdate();
+                        }else {
+                            this.onSubmit();
+                        }
                         this.errorMessage = '';
                         return;
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },  
-        showModal () {
+            showModal () {
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
                 // filter only services
                 this.services = _.filter(allServices, { parent_id: null});
-        },
-        hideModal () {
+            },
+            hideModal () {
                 var self = this;
                 this.resetFormFields(); 
                 this.$refs.myModalRef.hide();
-        },
-        onHidden() {
-            this.$emit('HideModalValue');
-        },
-        onFileChange(e) {
+            },
+            onHidden() {
+                this.$emit('HideModalValue');
+            },
+            onFileChange(e) {
                 var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
-          var files = e.target.files || e.dataTransfer.files;
+                var files = e.target.files || e.dataTransfer.files;
                 this.errorMessage = "";
                 if(!supportedType.includes(files[0].type)) {
                     this.errorBag.add({
@@ -186,20 +188,20 @@
                 }
                 this.errorBag.clear();
 
-          if (!files.length)
-            return;
-          this.createImage(files[0]);
-        },
-        createImage(file) {
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
               var self = this;    
-          var image = new Image();
-          var reader = new FileReader();
+              var image = new Image();
+              var reader = new FileReader();
               self.formData.images[0].original_name = file.name;
-          reader.onload = (e) => {
+              reader.onload = (e) => {
                 self.formData.images[0].name = e.target.result;
                 self.image = e.target.result;
-          };
-          reader.readAsDataURL(file);
+            };
+            reader.readAsDataURL(file);
         },
         onSubmit() {
             var self = this;
@@ -252,18 +254,96 @@
                     });
                     this.loading = false;
                 });
-            }
-    },
+            },
+            onUpdate() {
+                var self = this;
+                this.loading = true;
+                let url = this.url+"/"+this.list.id;
 
-    watch: {
-        showModalProp(value) {
-            if(value) {
-                this.showModal();
+                var data = new FormData();
+                data.append('title', self.formData.serviceName);
+                data.append('description', self.formData.serviceDescription);
+                data.append('is_display_banner', self.formData.isDisplayBanner);
+                data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
+                data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
+                data.append('is_featured', self.formData.isFeatured);
+                data.append('is_hero_nav', self.formData.isHeroNavigation);
+                data.append('url_prefix', self.formData.urlPrefix);
+                data.append('parent_id', self.formData.parentId);
+                data.append('status', self.formData.status);
+                data.append('images', JSON.stringify(self.formData.images));
+                this.$http.post(url, data).then(response => {
+                    response = response.data.response;
+                    self.successMessage = response.message;//'Updated Successfully';
+
+                    self.loading = false;
+                    
+                    setTimeout(function () {
+                        self.successMessage = '';
+                        self.hideModal();  
+                        self.resetFormFields(); 
+                        self.$emit('call-list');             
+                    } , 3000);
+
+                    setTimeout(function () {
+                        Vue.nextTick(() => {
+                            self.errorBag.clear()
+                        })
+                    }, 10);
+
+
+                }).catch(error => {
+                    error = error.response.data;
+                    let errors = error.errors;
+                    _.forEach(errors, function(value, key) {
+                        if(key == "title") {
+                            self.errorMessage =  "The Service Name has alreary been taken.";    
+                            return false;
+                        }
+                        self.errorMessage =  errors[key][0];
+                        return false;
+                    });
+                    this.loading = false;
+                });
             }
-            if(!value) {
-                this.hideModal();
+        },
+
+        watch: {
+            showModalProp(value) {
+                if(value) {
+                    this.showModal();
+                }
+                if(!value) {
+                    this.hideModal();
+                }
+            },
+            isUpdate(value) {
+                this.isUpdate = value;
+                var img = JSON.parse(this.list.images);
+                if(this.isUpdate) {
+                    this.formData = {
+                        parentId: this.list.parent_id? this.list.parent_id : "",
+                        serviceName: this.list.title,
+                        serviceDescription: this.list.description,
+                        isFeatured: this.list.is_featured,
+                        isHeroNavigation: this.list.is_hero_nav,
+                        images: [
+                        {
+                            'name': img[0].name, 
+                            'original_name': img[0].original_name
+                        }
+                        ],
+                        urlPrefix: this.list.url_prefix,
+                        status: this.list.status,
+                        isDisplayBanner: this.list.is_display_banner,
+                        isDisplayServiceNav: this.list.is_display_service_nav,
+                        isDisplayFooterNav: this.list.is_display_footer_nav
+                    };
+
+                    this.image = img[0].original_name;
+                    this.file = img[0].original_name;
+                }
             }
-        }
-    },
+        },
     }
 </script>

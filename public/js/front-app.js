@@ -4623,6 +4623,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp', 'isUpdate', 'list'],
     data: function data() {
         var _ref;
 
@@ -4645,12 +4647,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             isDisplayBanner: 1,
             isDisplayServiceNav: 1,
             isDisplayFooterNav: 1
-
         }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/user-pic.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _ref;
     },
-
-
-    props: ['showModalProp'],
 
     methods: {
         resetFormFields: function resetFormFields() {
@@ -4684,7 +4682,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var self = this;
             this.$validator.validateAll().then(function (result) {
                 if (result && !_this.errorBag.all().length) {
-                    _this.onSubmit();
+                    if (_this.isUpdate) {
+                        _this.onUpdate();
+                    } else {
+                        _this.onSubmit();
+                    }
                     _this.errorMessage = '';
                     return;
                 }
@@ -4786,6 +4788,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
                 _this2.loading = false;
             });
+        },
+        onUpdate: function onUpdate() {
+            var _this3 = this;
+
+            var self = this;
+            this.loading = true;
+            var url = this.url + "/" + this.list.id;
+
+            var data = new FormData();
+            data.append('title', self.formData.serviceName);
+            data.append('description', self.formData.serviceDescription);
+            data.append('is_display_banner', self.formData.isDisplayBanner);
+            data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
+            data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
+            data.append('is_featured', self.formData.isFeatured);
+            data.append('is_hero_nav', self.formData.isHeroNavigation);
+            data.append('url_prefix', self.formData.urlPrefix);
+            data.append('parent_id', self.formData.parentId);
+            data.append('status', self.formData.status);
+            data.append('images', JSON.stringify(self.formData.images));
+            this.$http.post(url, data).then(function (response) {
+                response = response.data.response;
+                self.successMessage = response.message; //'Updated Successfully';
+
+                self.loading = false;
+
+                setTimeout(function () {
+                    self.successMessage = '';
+                    self.hideModal();
+                    self.resetFormFields();
+                    self.$emit('call-list');
+                }, 3000);
+
+                setTimeout(function () {
+                    Vue.nextTick(function () {
+                        self.errorBag.clear();
+                    });
+                }, 10);
+            }).catch(function (error) {
+                error = error.response.data;
+                var errors = error.errors;
+                _.forEach(errors, function (value, key) {
+                    if (key == "title") {
+                        self.errorMessage = "The Service Name has alreary been taken.";
+                        return false;
+                    }
+                    self.errorMessage = errors[key][0];
+                    return false;
+                });
+                _this3.loading = false;
+            });
         }
     },
 
@@ -4796,6 +4849,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
             if (!value) {
                 this.hideModal();
+            }
+        },
+        isUpdate: function isUpdate(value) {
+            this.isUpdate = value;
+            var img = JSON.parse(this.list.images);
+            if (this.isUpdate) {
+                this.formData = {
+                    parentId: this.list.parent_id ? this.list.parent_id : "",
+                    serviceName: this.list.title,
+                    serviceDescription: this.list.description,
+                    isFeatured: this.list.is_featured,
+                    isHeroNavigation: this.list.is_hero_nav,
+                    images: [{
+                        'name': img[0].name,
+                        'original_name': img[0].original_name
+                    }],
+                    urlPrefix: this.list.url_prefix,
+                    status: this.list.status,
+                    isDisplayBanner: this.list.is_display_banner,
+                    isDisplayServiceNav: this.list.is_display_service_nav,
+                    isDisplayFooterNav: this.list.is_display_footer_nav
+                };
+
+                this.image = img[0].original_name;
+                this.file = img[0].original_name;
             }
         }
     }
@@ -66826,7 +66904,13 @@ var render = function() {
                         }
                       }
                     },
-                    [_c("span", [_vm._v("Submit")]), _vm._v(" "), _c("loader")],
+                    [
+                      _c("span", [
+                        _vm._v(_vm._s(_vm.isUpdate ? "Update" : "Submit"))
+                      ]),
+                      _vm._v(" "),
+                      _c("loader")
+                    ],
                     1
                   )
                 ]

@@ -28,7 +28,7 @@ class ServiceController extends ApiResourceController
         $rules['is_display_banner']       = 'required|in:0,1';                   
         $rules['is_display_service_nav']  = 'required|in:0,1';                       
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
-        $rules['images']                  = 'required|array';       
+        $rules['images']                  = 'required';       
         $rules['status']                  = 'required|in:0,1';    
         $rules['is_featured']                  = 'required|in:0,1';    
         $rules['is_hero_nav']                  = 'required|in:0,1';    
@@ -110,7 +110,6 @@ class ServiceController extends ApiResourceController
     //Update single record
     public function update(Request $request, $id)
     {   
-
         $request->request->add(['id' => $id]);
         $input = $this->input(__FUNCTION__);
         $rules = $this->rules(__FUNCTION__);

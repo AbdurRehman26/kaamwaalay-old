@@ -53,12 +53,12 @@
               <td>{{(index + 1)}}</th>
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
-                <td class="text-center">{{list.parent_id? list.is_featured? "YES":"NO" : list.parent.is_featured? "YES":"NO" }}</td>
-                <td class="text-center">{{list.parent_id? list.is_hero_nav? "YES":"NO" : list.parent.is_hero_nav? "YES":"NO" }}</td>
+                <td class="text-center">{{list.is_featured? "YES":"NO"}}</td>
+                <td class="text-center">{{list.is_hero_nav? "YES":"NO"}}</td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i v-b-tooltip.hover title="View Details" @click="ViewDetails(list, index)" class="icon-eye"></i>
-                    <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="AddService"></i>
+                    <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="updateService(list)"></i>
                     <i v-b-tooltip.hover title="Delete" @click="ActionDelete(list)" class="icon-delete"></i>
                   </div>
                 </td>
@@ -84,7 +84,7 @@
   </div>
 
 </div>
-<add-service @HideModalValue="HideModal" :showModalProp="service" @call-list="getList(false, false)"></add-service>
+<add-service @HideModalValue="HideModal" :showModalProp="service" @call-list="getList(false, false)" :isUpdate="isUpdate" :list="list"></add-service>
 <view-details @HideModalValue="HideModal" :showModalProp="viewdetails" :selectedService="selectedService"></view-details>
 <delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete" :item="selectedService" :url="url" @call-list="getList(false, false)"></delete-popup>
 </div>
@@ -107,17 +107,18 @@
        showNoRecordFound: false,
        url: 'api/service',
        selectedService: '',
+       isUpdate: false,
+       list: {},
      }
    },
    watch : {
     currentPage(pageNumber){
-      console.log(this.search, this.filter_by_featured, 88998989);
-      
+
       var data = {
-          search : this.search,
-          filter: this.filter_by_featured
+        search : this.search,
+        filter: this.filter_by_featured
       };
-        this.getList(data, pageNumber);
+      this.getList(data, pageNumber);
 
     },
     totalServicesCount(count) {
@@ -126,19 +127,25 @@
   },
   methods: {
     onApply() {
-        var data = {
-            search : this.search,
-            filter: this.filter_by_featured
-        };
+      var data = {
+        search : this.search,
+        filter: this.filter_by_featured
+      };
       this.getList(data, false);
     },
     onDelete(itemId) {
-        alert(itemId);
+      alert(itemId);
     },
     onSearch(val) {
-        this.search = val;
+      this.search = val;
     },
     AddService(){
+      this.isUpdate = false;
+      this.service = true;
+    },
+    updateService(list){
+      this.list = list
+      this.isUpdate = true;
       this.service = true;
     },
     ViewDetails(list, index) {
@@ -154,6 +161,8 @@
       this.service = false;
       this.viewdetails = false;
       this.actiondelete = false;
+      this.isUpdate = false;
+      this.list = {};
     },
     getResponse(response) {
       return response.data.items
@@ -171,10 +180,10 @@
       if((typeof(data) !== 'undefined' && data) || this.search){
         var query  = '?pagination=true';
         if(data.search != "" && data.search != "undefined") {
-            var query  = query + '&keyword='+data.search;        
+          var query  = query + '&keyword='+data.search;        
         }
         if(data.filter != "both" && data.filter != "undefined") {
-            var query  = query + '&filter_by_featured='+data.filter;
+          var query  = query + '&filter_by_featured='+data.filter;
         }
         //var query  = '?pagination=true&keyword='+this.search+'&filter_by_featured='+this.search.filter_by_featured;
         url = url+query;
@@ -189,10 +198,9 @@
 
       self.$http.get(url).then(response => {
         response = response.data.response;
-        console.log(response, 33332123);
         self.listing = response.data;
         if(!self.listing.length) {
-            self.showNoRecordFound = true;
+          self.showNoRecordFound = true;
         }
         var serviceArray = _.filter(self.listing, {parent_id: null});
         self.totalServicesCount = response.service_count;
@@ -207,7 +215,6 @@
       }).catch(error=>{
         if(error.status == 403) {
           self.pagination = false;
-          console.log(self.listing.length,"asdsad");
         }
 
       });
