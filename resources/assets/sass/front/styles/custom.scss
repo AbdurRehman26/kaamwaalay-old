@@ -1600,7 +1600,7 @@ body{
             padding-right: 0px;
         }
         &.left-border{
-            border-left:    1px solid #ccc
+            border-left: 1px solid #ccc;
         }  
     }
 }
@@ -1649,3 +1649,148 @@ body{
         }
     }
 }
+
+
+/* == Featured Profile sass start == */
+.featured-profile {
+    margin: 40px 0 0 0;
+    padding-bottom: 70px;
+    border-bottom: 1px solid #E0E0E0;
+}
+.featured-profile-section {
+    margin-top: 25px;
+}
+.profile-budget {
+    border: 1px solid #e0e0e0;
+    padding: 32px;
+    border-radius: 12px;
+    min-height: 382px;
+    background-color: #F9F9F9;
+    
+    h2 {
+        font-size: 20px;
+        font-family: "AkzidenzGroteskBE-Md";
+        margin-bottom: 25px;
+    }
+    p {
+        &.patment-detail {
+            padding-left: 38px;
+            padding-top: 0;
+            margin-bottom: 20px;
+            margin-top: -20px;
+            font-size: 14px;
+            font-family:$font_regular;
+            color: #1a1a1a;
+        }
+    }
+}
+.payment-continue {
+    margin-top: 20px;
+}
+.featured-profile {
+    h3 {
+        font-family:$font_medium;
+        font-size: 20px;
+        color: $primary-color-md;    
+        margin-left: 20px;
+    }
+}
+.featured-places {
+    position: relative;
+    margin-left: 20px;
+    margin-top: 28px;
+    
+    p {
+        margin: 0;
+    }
+
+    i {
+        font-size: 21px;
+        color: #7D7D7D;
+    }
+
+    span {
+        font-family:$font_medium;
+        font-size: 16px;
+        color: #1a1a1a;
+        padding-left:17px;
+        position: absolute;
+        left:25px;
+    }
+
+    p {
+        &.featured-detail {
+            padding-left:40px;
+            font-size: 14px;
+        }
+    }
+
+}
+.campaigns {
+    margin: 70px 0;
+    h3 {
+        color: #494949;
+        font-family:$font_medium;
+        font-size: 16px;
+    }
+    .camp-views {
+        position: relative;
+        padding-bottom: 70px;
+        padding-top: 30px;
+        .view-status {
+            display: inline-block;
+            float: left;
+            border: 1px solid #8200FF;
+            border-radius: 12px;
+            position: absolute;
+            width: 62px;    
+            height: 62px;
+            background-color: rgba(221,198,244,0.1);
+            span {
+                font-family:$font_medium;
+                color: #8200FF;
+                font-size: 13px;
+                position: absolute;
+                left: 11px;
+                line-height: 1.4;
+                text-align: center;
+                max-width: 36px;
+                top: 11px;
+            }
+        }
+        .view-status-detail {
+            width: calc(100% - 97px);
+            float: right;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            .calender-date {
+                font-family:$font_regular;
+                color: #494949;
+                i {
+                    color: $primary-color;
+                }
+            }
+            span {
+                font-family:$font_medium;
+                color: #1a1a1a;
+                font-size: 16px;
+            }
+            .views-percentage {
+                padding: 0;
+                margin-top: 10px;
+                li {
+                    display: inline-block;
+                    margin-right: 41px;
+                    font-family:$font_regular;
+                    font-size: 14px;
+                    span{
+                        font-family:$font_medium;
+                        font-size: 13px;
+                    }
+                }
+            }
+       }
+
+    }
+}
+/* == Featured Profile sass end == */

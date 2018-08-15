@@ -3869,6 +3869,153 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/featured-profile/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__ = __webpack_require__("./node_modules/vue2-datepicker/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { DatePicker: __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default.a },
+  data: function data() {
+    var _this = this;
+
+    return {
+      value: '',
+      value_month: '',
+      value_year: '',
+      time1: '',
+      time2: '',
+      time3: '',
+      shortcuts: [{
+        text: 'Today',
+        onClick: function onClick() {
+          _this.time3 = [new Date(), new Date()];
+        }
+      }],
+      timePickerOptions: {
+        start: '00:00',
+        step: '00:30',
+        end: '23:30'
+      }
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/job-post/main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -68028,6 +68175,247 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a506035e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/featured-profile/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container md" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "featured-profile" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "profile-budget" }, [
+            _c("h2", [_vm._v("Please select your featured profile budget.")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary payment-continue" },
+                  [
+                    _vm._v("\n\t\t\t\t\t\t\t\tContinue\n\t\t\t\t\t\t\t\t"),
+                    _c("loader")
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(4)
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(5)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile-head" }, [
+      _c("h1", [_vm._v("Featured Profile")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Attract more of the right customers by highlighting your specialties and profile on the service provider listing page."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "payment-charges" }, [
+        _c("p", [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              id: "views1",
+              name: "radio-group",
+              checked: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "views1" } }, [_vm._v("$10.00 one time")])
+        ]),
+        _c("p", { staticClass: "patment-detail" }, [
+          _vm._v("100 featured profile listing views")
+        ]),
+        _vm._v(" "),
+        _c("p")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "payment-charges" }, [
+        _c("p", [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              id: "views2",
+              name: "radio-group",
+              checked: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "views2" } }, [_vm._v("$15.00 one time")])
+        ]),
+        _c("p", { staticClass: "patment-detail" }, [
+          _vm._v("200 featured profile listing views")
+        ]),
+        _vm._v(" "),
+        _c("p")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "payment-charges" }, [
+        _c("p", [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              id: "views3",
+              name: "radio-group",
+              checked: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "views3" } }, [_vm._v("$25.00 one time")])
+        ]),
+        _c("p", { staticClass: "patment-detail" }, [
+          _vm._v("500 featured profile listing views")
+        ]),
+        _vm._v(" "),
+        _c("p")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "featured-profile-section" }, [
+        _c("h3", [
+          _vm._v(
+            "Your featured profile may appear on a variety of places, including:"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "featured-places" }, [
+          _c("p", [
+            _c("i", { staticClass: "icon-list" }),
+            _vm._v(" "),
+            _c("span", [_vm._v("Service Pages")])
+          ]),
+          _c("p", { staticClass: "featured-detail" }, [
+            _vm._v(
+              "Your featured profile will appear almost at the top of service pages related to the services you are offering."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "featured-places" }, [
+          _c("p", [
+            _c("i", { staticClass: "icon-search22" }),
+            _vm._v(" "),
+            _c("span", [_vm._v("Search result pages")])
+          ]),
+          _c("p", { staticClass: "featured-detail" }, [
+            _vm._v(
+              "When someone search specific service which you are offering, your profile may appear at the top of the search results."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "featured-places" }, [
+          _c("p", [
+            _c("i", { staticClass: "icon-list" }),
+            _vm._v(" "),
+            _c("span", [_vm._v("Inside iOS & Android Apps")])
+          ]),
+          _c("p", { staticClass: "featured-detail" }, [
+            _vm._v(
+              "Your featured profile appear on PSM’s iPhone and Android apps, on search result and service pages."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "campaigns" }, [
+      _c("h3", [_vm._v("MY CAMPAIGNS")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "camp-views" }, [
+        _c("div", { staticClass: "view-status" }, [
+          _c("span", [_vm._v("100 VIEWS")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "view-status-detail" }, [
+          _c("span", [_vm._v("Paid $10.00 one time")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "float-right calender-date" }, [
+            _c("i", { staticClass: "icon-calendar-daily" }),
+            _vm._v(" Date: "),
+            _c("strong", [_vm._v("12 Dec, 2017")])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "views-percentage" }, [
+            _c("li", [_vm._v("Actual views: "), _c("span", [_vm._v("80")])]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Clicks: "), _c("span", [_vm._v("20")])]),
+            _vm._v(" "),
+            _c("li", [_vm._v("CTR: "), _c("span", [_vm._v("25%")])])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a506035e", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d3023370\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/landing/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -85770,6 +86158,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/featured-profile/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/featured-profile/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a506035e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/featured-profile/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\featured-profile\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a506035e", Component.options)
+  } else {
+    hotAPI.reload("data-v-a506035e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/job-post/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -86513,6 +86949,18 @@ var routes = [
         bodyClass: 'job-post-page'
     },
     component: __webpack_require__("./resources/assets/js/components/front/job-post/main.vue")
+},
+
+// Featured Profile
+
+{
+    name: 'Featured Profile',
+    path: '/featured-profile',
+    meta: {
+        title: 'Professional Service Marketplace | Featured Profile',
+        bodyClass: 'featured-profile-page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/featured-profile/main.vue")
 },
 
 /*404*/

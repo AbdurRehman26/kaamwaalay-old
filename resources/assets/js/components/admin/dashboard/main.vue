@@ -152,7 +152,7 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
-                                  <td><a >{{list.fname}}</a></th>
+                                  <td><a >{{list.fname}}</a></td>
                                   <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
                                   <td>{{list.stype}}<span :class="[list.sarrows]"></span> {{list.sstype}}</td>

@@ -86,9 +86,6 @@ const routes = [
         component: require('./components/front/explore/service-provider-detail.vue'),
     },    
 
-
-
-
     // Sign Up
 
     {
@@ -100,8 +97,6 @@ const routes = [
         },
         component: require('./components/front/sign-up/main.vue'),
     },
-
-
 
     // Profile
 
@@ -134,6 +129,18 @@ const routes = [
             bodyClass: 'job-post-page',
         },
         component: require('./components/front/job-post/main.vue'),
+    },
+
+    // Featured Profile
+
+    {
+        name: 'Featured Profile',
+        path: '/featured-profile',
+        meta: {
+            title: 'Professional Service Marketplace | Featured Profile',
+            bodyClass: 'featured-profile-page',
+        },
+        component: require('./components/front/featured-profile/main.vue'),
     },
 
     /*404*/

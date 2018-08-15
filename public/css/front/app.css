@@ -12419,6 +12419,62 @@ input[type=number]::-webkit-outer-spin-button {
   color: #d9534f;
 }
 
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 38px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #1A1A1A;
+  font-size: 16px;
+}
+
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #B2B2B2;
+  border-radius: 100%;
+  background: #fff;
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #8200FF;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
 .btn {
   height: 44px;
   color: #fff;
@@ -14963,4 +15019,160 @@ body .chat-feedback-message.white-msg:before {
   left: -6px;
   background-color: #6004BA;
 }
+
+/* == Featured Profile sass start == */
+
+.featured-profile {
+  margin: 40px 0 0 0;
+  padding-bottom: 70px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.featured-profile-section {
+  margin-top: 25px;
+}
+
+.profile-budget {
+  border: 1px solid #e0e0e0;
+  padding: 32px;
+  border-radius: 12px;
+  min-height: 382px;
+  background-color: #F9F9F9;
+}
+
+.profile-budget h2 {
+  font-size: 20px;
+  font-family: "AkzidenzGroteskBE-Md";
+  margin-bottom: 25px;
+}
+
+.profile-budget p.patment-detail {
+  padding-left: 38px;
+  padding-top: 0;
+  margin-bottom: 20px;
+  margin-top: -20px;
+  font-size: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #1a1a1a;
+}
+
+.payment-continue {
+  margin-top: 20px;
+}
+
+.featured-profile h3 {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 20px;
+  color: #8200FF;
+  margin-left: 20px;
+}
+
+.featured-places {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 28px;
+}
+
+.featured-places p {
+  margin: 0;
+}
+
+.featured-places i {
+  font-size: 21px;
+  color: #7D7D7D;
+}
+
+.featured-places span {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 16px;
+  color: #1a1a1a;
+  padding-left: 17px;
+  position: absolute;
+  left: 25px;
+}
+
+.featured-places p.featured-detail {
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.campaigns {
+  margin: 70px 0;
+}
+
+.campaigns h3 {
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 16px;
+}
+
+.campaigns .camp-views {
+  position: relative;
+  padding-bottom: 70px;
+  padding-top: 30px;
+}
+
+.campaigns .camp-views .view-status {
+  display: inline-block;
+  float: left;
+  border: 1px solid #8200FF;
+  border-radius: 12px;
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  background-color: rgba(221, 198, 244, 0.1);
+}
+
+.campaigns .camp-views .view-status span {
+  font-family: "AkzidenzGroteskBE-Md";
+  color: #8200FF;
+  font-size: 13px;
+  position: absolute;
+  left: 11px;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 36px;
+  top: 11px;
+}
+
+.campaigns .camp-views .view-status-detail {
+  width: calc(100% - 97px);
+  float: right;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.campaigns .camp-views .view-status-detail .calender-date {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #494949;
+}
+
+.campaigns .camp-views .view-status-detail .calender-date i {
+  color: #6004BA;
+}
+
+.campaigns .camp-views .view-status-detail span {
+  font-family: "AkzidenzGroteskBE-Md";
+  color: #1a1a1a;
+  font-size: 16px;
+}
+
+.campaigns .camp-views .view-status-detail .views-percentage {
+  padding: 0;
+  margin-top: 10px;
+}
+
+.campaigns .camp-views .view-status-detail .views-percentage li {
+  display: inline-block;
+  margin-right: 41px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+}
+
+.campaigns .camp-views .view-status-detail .views-percentage li span {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 13px;
+}
+
+/* == Featured Profile sass end == */
 
