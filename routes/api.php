@@ -34,29 +34,25 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 Route::group(['middleware' => ['auth:api']], function () {
 
-    Route::resource('user', 'Api\V1\UserController')->except([
-        'edit',
-    ]);
+Route::resource('user', 'Api\V1\UserController')->except([
+    'edit',
+]);
 
-    Route::resource('job-bid', 'Api\V1\JobBidController')->except([
-        'edit',
-    ]);
+Route::resource('job-bid', 'Api\V1\JobBidController')->except([
+    'edit',
+]);
 
-    Route::resource('job', 'Api\V1\JobController')->except([
-        'edit',
-    ]);
+Route::resource('job', 'Api\V1\JobController')->except([
+    'edit',
+]);
 
-    Route::resource('job-message', 'Api\V1\JobMessageController')->except([
-        'edit',
-    ]);
+Route::resource('job-message', 'Api\V1\JobMessageController')->except([
+    'edit',
+]);
 
-    Route::resource('service', 'Api\V1\ServiceController')->except([
-        'edit',
-    ]);
-
-    Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-        'edit',
-    ]);
+Route::resource('service', 'Api\V1\ServiceController')->except([
+    'edit',
+]);
 
 });
 
@@ -116,6 +112,12 @@ Route::resource('testimonial', 'Api\V1\TestimonialController')->except([
 Route::resource('user-agent', 'Api\V1\UserAgentController')->except([
     'edit',
 ]);
+
+Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
+    'edit',
+]);
+
+
 
 Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
     'edit',
