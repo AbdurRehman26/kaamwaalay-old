@@ -26,6 +26,7 @@ Vue.component('MidLoader', require('./components/admin/common-components/MediumL
 Vue.component('SpinnerLoader', require('./components/admin/common-components/SpinnerLoader.vue'));
 Vue.component('DatePicker', require('./components/admin/common-components/Datepicker.vue'));
 Vue.component('SearchField', require('./components/admin/common-components/Search.vue'));
+Vue.component('no-record-found', require('./components/admin/common-components/NoRecords.vue'));
 
 // Common Popup
 Vue.component('delete-popup',require('./components/admin/common-components/DeletePopup.vue'));

@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(list, index) in listing">
+            <tr v-for="(list, index) in listing" v-if="listing.length">
               <td>{{(index + 1)}}</th>
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
@@ -65,6 +65,7 @@
               </tr>
             </tbody>
           </table>
+          <no-record-found v-if="!listing.length && showNoRecordFound"></no-record-found>
         </div>
       </div>
     </div>
@@ -129,7 +130,6 @@
     },
     onSearch(val) {
         this.search = val;
-        console.log(this.search, "search");
     },
     AddService(){
       this.service = true;
@@ -184,6 +184,9 @@
         response = response.data.response;
         console.log(response, 33332123);
         self.listing = response.data;
+        if(!self.listing.length) {
+            self.showNoRecordFound = true;
+        }
         var serviceArray = _.filter(self.listing, {parent_id: null});
         self.totalServicesCount = response.service_count;
         if(this.filter_by_featured != "both" || this.search != "") {

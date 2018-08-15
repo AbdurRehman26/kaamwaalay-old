@@ -104,7 +104,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
             $this->builder = $this->builder->where(function($query) use($data){
                 $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('services.description', 'like', "%{$data['keyword']}%");
+                //$query->orWhere('services.description', 'like', "%{$data['keyword']}%");
             
             });
         }

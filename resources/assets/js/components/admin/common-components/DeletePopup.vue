@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Warning" ok-only ok-title="Submit">
+		<b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Warning" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
             <div>
               <p>Are you sure you want to delete this {{item.parent_id? item.parent.title : item.title}}? <span v-if="!item.parent_id"> Removing this service will remove all its associated services.</span></p>
