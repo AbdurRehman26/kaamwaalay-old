@@ -48,7 +48,8 @@ class ServiceProviderProfileRequestController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'keyword','filter_by_business_type','status','reason');
+    $input = request()->only('id', 'keyword','filter_by_business_type','status','reason', 'pagination', 'filter_by_service');
+
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     $input['role_id'] = !empty(request()->user()->role_id) ? request()->user()->role_id : null ;
 

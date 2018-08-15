@@ -26,7 +26,7 @@ const routes = [
         name: 'login',
         path: '/admin',
         meta: {
-            title: 'PSM | Login',
+            title: 'Login',
             bodyClass: 'login-page',
             noHeader: true
         },
@@ -41,7 +41,7 @@ const routes = [
         name: 'createpassword',
         path: '/admin/create-password',
         meta: {
-            title: 'PSM | Create Password',
+            title: 'Create Password',
             bodyClass: 'login-page',
             noHeader: true,
             forAdmin :true,
@@ -53,7 +53,7 @@ const routes = [
             path: '/password/set/:token/:email',
             component: require('./components/auth/CreatePassword.vue'),
              meta: {
-                title: 'PSM | Create Password',
+                title: 'Create Password',
                 bodyClass: 'login-page',
                 noHeader: true,
                 forAdmin :true,
@@ -67,7 +67,7 @@ const routes = [
         path: '/admin/service-type',
         component: require('./components/admin/service-type/main.vue'),
         meta: {
-            title: 'PSM | Service Type',
+            title: 'Service Type',
             pagetitle:'Service Types',
             icon:'icon-tools-2',
             requiresAuth: true,
@@ -82,7 +82,7 @@ const routes = [
         path: '/admin/customer',
         component: require('./components/admin/customer/main.vue'),
         meta: {
-            title: 'PSM | Customer Panel' ,
+            title: 'Customer Panel' ,
             pagetitle:'Customers',
             icon:'icon-users',
             requiresAuth: true,
@@ -95,7 +95,7 @@ const routes = [
         path: '/admin/customer/customer_detail',
         component: require('./components/admin/customer/CustomerDetails.vue'),
         meta: {
-            title: 'PSM | Customer Detail' ,
+            title: 'Customer Detail' ,
             pagetitle:'Customers Detail',
             icon:'icon-users',
             requiresAuth: true,
@@ -123,7 +123,7 @@ const routes = [
         path: '/admin/service-provider',
         component: require('./components/admin/service-provide/main.vue'),
         meta: {
-            title: 'PSM | Service Provider',
+            title: 'Service Provider',
             pagetitle:'Service Providers',
             icon:'icon-handshake-o',
             requiresAuth: true,
@@ -136,7 +136,7 @@ const routes = [
         path: '/admin/service-provider/viewjobdetail',
         component: require('./components/admin/service-provide/ViewJobDetail.vue'),
         meta: {
-            title: 'PSM | View Jobs',
+            title: 'View Jobs',
             pagetitle:'Service Jobs Detail',
             icon:'icon-handshake-o',
             requiresAuth: true,
@@ -151,7 +151,7 @@ const routes = [
         path: '/admin/jobs',
         component: require('./components/admin/job/Main.vue'),
         meta: {
-            title: 'PSM | Create Job',
+            title: 'Create Job',
             pagetitle:'Jobs',
             icon:'icon-briefcase',
             requiresAuth: true,
@@ -198,7 +198,7 @@ const routes = [
         path: '/admin/service-provider-review',
         component: require('./components/admin/service-provider-review/main.vue'),
         meta: {
-            title: 'PSM | Service provider review',
+            title: 'Service provider review',
             pagetitle:'Service Provider Review',
             icon:'icon-star_border',
             requiresAuth: true,
@@ -211,7 +211,7 @@ const routes = [
         path: '/admin/service-provider-review/detail-review',
         component: require('./components/admin/service-provider-review/DetailReview.vue'),
         meta: {
-            title: 'PSM | Service provider review',
+            title: 'Service provider review',
             pagetitle:'Service Provider Detail Review',
             icon:'icon-search',
             requiresAuth: true,
@@ -226,7 +226,7 @@ const routes = [
         path: '/admin/service-provider/service-provider-detail',
         component: require('./components/admin/service-provide/providerdetails.vue'),
         meta: {
-            title: 'PSM | Service provider details',
+            title: 'Service provider details',
             pagetitle:'Service Provider Details',
             icon:'icon-briefcase',
             requiresAuth: true,
@@ -241,7 +241,7 @@ const routes = [
         path: '/admin/general-setting',
         component: require('./components/admin/general-setting/main.vue'),
         meta: {
-            title: 'PSM | General Setting',
+            title: 'General Setting',
             pagetitle:'General Setting',
             icon:'icon-settings',
             requiresAuth: true,
@@ -256,7 +256,7 @@ const routes = [
         path: '/admin/payment',
         component: require('./components/admin/payment/main.vue'),
         meta: {
-            title: 'PSM | Payment',
+            title: 'Payment',
             pagetitle:'Payment',
             icon:'icon-credit-card',
             requiresAuth: true,
@@ -271,7 +271,7 @@ const routes = [
         path: '/admin/support',
         component: require('./components/admin/support/main.vue'),
         meta: {
-            title: 'PSM | Support',
+            title: 'Support',
             pagetitle:'Support',
             icon:'icon-help_outline',
             requiresAuth: true,
@@ -300,7 +300,7 @@ const routes = [
         name: 'User Listed',
         path: '/admin/admin-listing',
         meta: {
-            title: 'PSM | Admin Listed',
+            title: 'Admin Listed',
             bodyClass: 'Admin-listed',
             pagetitle:'Admins',
             icon:'icon-lock_outline',

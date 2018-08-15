@@ -178,9 +178,6 @@
         if (!self.records.length) {
             self.noRecordFound = true;
         }
-
-
-
     },
     searchList(){
         let url = 'api/service-provider-profile?pagination=true';

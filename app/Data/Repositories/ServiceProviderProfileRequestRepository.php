@@ -61,8 +61,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         if($data){
             $criteria = ['service_provider_profile_request_id' => $data->id];
             $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
-            $data->services = $services['data']; 
-            
+            $data->services = $services['data'];       
             $input['provider_request_data'] = false;
             $input['profile_data'] = true;
             $serviceProviderProfile = app('UserRepository')->findById($data->user_id,false,$input);
@@ -108,7 +107,14 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             $this->builder = $this->builder->leftJoin('service_provider_profiles', function ($join)  use($data){
                                     $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
                                 })->where('service_provider_profiles.business_type',$data['filter_by_business_type'])
-                                  ->select(['jobs.id']);
+                                  ->select('service_provider_profile_requests.*');
+        }
+
+        if(!empty($data['filter_by_service'])){
+            $this->builder = $this->builder->leftJoin('service_provider_services', function ($join)  use($data){
+                                    $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
+                                })->where('service_provider_services.service_id',$data['filter_by_service'])
+                                  ->select('service_provider_profile_requests.*');
         }
         
         return parent::findByAll($pagination, $perPage, $data);

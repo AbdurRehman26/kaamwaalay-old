@@ -58,10 +58,14 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
+    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+        'edit',
+    ]);
 
-Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-    'edit',
-]);
+    Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
+        'edit',
+    ]);
+
 
 });
 
@@ -87,10 +91,6 @@ Route::resource('plan', 'Api\V1\PlanController')->except([
 ]);
 
 Route::resource('role', 'Api\V1\RoleController')->except([
-    'edit',
-]);
-
-Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
     'edit',
 ]);
 
