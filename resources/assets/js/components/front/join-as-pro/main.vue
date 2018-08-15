@@ -1,14 +1,14 @@
 <template>
 	<div class="content-area">
 		<!-- banner section start-->
-		<div class="main-banner">
+		<div class="main-banner elementary-banner explore-banner">
 			<div class="main-img"><img  :src="bannerimage"></div>
 			<div class="content">
 				<div class="verticle-align">
 					<div class="inner">
 						<div class="container">
-							<div class="banner-slogan">
-								<h2>Your next job is just around the corner</h2>
+							<div class="banner-slogan content-inner">
+								<h1>Your next job is just around the corner</h1>
 								<p>There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work.</p>
 								<a href="javascript:void(0);" class="btn btn-primary">Sign up today</a>
 							</div>
@@ -19,11 +19,8 @@
 		</div>
 		<!-- banner section end -->
 
-
-
 		<!-- Local Work section start-->
-
-		<div class="services two-column section-padd">
+		<div class="section services section-local-work two-column">
 			<div class="container">
 				<div class="section-title">
 					<h2>Win more local work</h2>
@@ -89,13 +86,10 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Local Work section start-->
 
-
 		<!-- How it Work section start-->
-
-		<div class="how-it-work elementary-banner section-padd">
+		<div class="section section-grey how-it-work elementary-banner">
 			<div class="container element-index">
 				<div class="section-title">
 					<h2>How it works</h2>
@@ -139,12 +133,9 @@
 			</div>				
 
 		</div>
-
 		<!-- How it Work section end-->
 
-
 		<!-- Ready To Meet section start-->
-
 		<div class="ready-to-meet white-bg section-padd">
 			<div class="container">
 				<div class="two-column">
@@ -162,49 +153,23 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Ready To Meet section end-->
 
-
 		<!-- Sucess Stories section start-->
-
-		<div class="next-project section-padd">
+		<div class="next-project section-padd grey-bg">
 			<div class="container">
-					<div class="content-sec text-center">
-						<h1>Success Stories</h1>
+					<div class="section-title">
+						<h2>Success Stories</h2>
 						<p>Professional service marketplace has helped thousands of service providers around US.</p>
 					</div>
-
+					<testmonial-sec></testmonial-sec>
 			</div>	
 		</div>
-
-
 		<!-- Sucess Stories section end-->	
 
-
-
-
-
 		<!-- Next Project section start-->
-
-		<div class="next-project white-bg elementary-banner section-padd">
-			<div class="container element-index text-center">
-					<div class="content-sec">
-						<h1>The better way to find your next project.</h1>
-						<p>A proven source of genuine enquiries for quality service providers.</p>
-						<a href="javascript:void(0);" class="btn btn-primary">Get Started</a>
-					</div>
-			</div>
-			<div class="elements">
-				<img class="top-left" src="/images/front/banner-bg/bg-5.png">				
-				<img class="bottom-right" src="/images/front/banner-bg/bg-2.png">
-			</div>
-		</div>
-
+			<getstarted></getstarted>
 		<!-- Next Project section end-->
-
-
-
 
 	</div>
 </template>

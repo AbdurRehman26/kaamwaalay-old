@@ -22,6 +22,9 @@ body {
 .container{
     padding:0;
     max-width:1276px;
+    &.md{
+        max-width:960px;
+    }
 }
 
 img {
@@ -124,7 +127,6 @@ h6{
     display: table;
     width: 100%;
     height: 100%;
-
     .inner {
         display: table-cell;
         vertical-align: middle;
@@ -207,28 +209,6 @@ strong {
        font-weight:bold;
     }
 }
-
-
- body{
-        &::-webkit-scrollbar-track
-    {
-        background-color: $body-bg;
-        border-radius: 51px;
-    }
-    &::-webkit-scrollbar
-    {
-        width: 6px;
-        background-color: $body-bg;
-        border-radius: 51px;
-    }
-
-        &::-webkit-scrollbar-thumb
-    {
-        background-color: #cfd4d9;
-        border-radius: 51px;
-    }
-
- }
 
 .scrollable{
     overflow-y:auto;
@@ -326,7 +306,7 @@ strong {
 
 // Scroll Body
 
-body::-webkit-scrollbar-track
+/* body::-webkit-scrollbar-track
 {
     border-radius: 15px;
     background-color: #f1f3f5;
@@ -343,9 +323,11 @@ body::-webkit-scrollbar-thumb
     border-radius: 15px;
     background-color: #ddd;
 }
+ */
 
-
-
+.pointer{
+    cursor: pointer
+}
 
 .xy-scrollbar{
     max-height: 100%;
@@ -424,14 +406,27 @@ textarea::-webkit-scrollbar-thumb {
     font-family:$font-bold;
 }
 
-.font-light{
-    font-family:$font-light;
-}
-
-.font-thin{
-    font-family:$font-thin;
-}
-
 #app{
     height:100%;
+}
+
+.width-100{
+    width: 100%;
+}
+
+
+
+$spaceamounts: (0, 5, 10, 15, 20, 24, 25, 30, 35, 40, 45, 50, 75, 100, 130); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
 }

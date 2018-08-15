@@ -36,7 +36,7 @@
             <popularservices></popularservices>
 
             <!--how its works-->
-            <div class="section section-grey how-it-work">
+    <div class="section section-grey how-it-work elementary-banner">
                 <div class="container element-index">
                     <div class="section-title">
                         <h2>How it works</h2>
@@ -54,7 +54,7 @@
                             </b-col>
                             <b-col sm="12" md="3" class="text-center">
                                 <div class="icon">
-                                    <img src="/images/front/svg/list.svg">
+                            <img src="/images/front/svg/bidding.svg">
                                 </div>
                                 <div class="list-description">
                                     <h4>Bidding Process</h4>
@@ -67,12 +67,12 @@
                                 </div>
                                 <div class="list-description">
                                     <h4>Communicate & Hire</h4>
-                                    <p>CYou can communicate with service provider before hiring and after that award the job to right service provider.</p>
+                            <p>You can communicate with service provider before hiring and after that award the job to right service provider.</p>
                                 </div>
                             </b-col>
                             <b-col sm="12" md="3" class="text-center">
                                 <div class="icon">
-                                    <img src="/images/front/svg/communicate.svg">
+                            <img src="/images/front/svg/like.svg">
                                 </div>
                                 <div class="list-description">
                                     <h4>Work & Pay</h4>
@@ -82,6 +82,10 @@
                         </b-row>
                     </div>
                 </div>
+        <!-- splash elements -->
+        <span class="splash-design lg d-2 top-right"></span>
+        <span class="splash-design d-3 bottom-left md"></span>
+        <span class="splash-design d-6 bottom-right sm sp-rt"></span>
             </div>
         </div>
         <!-- app store section -->
@@ -89,12 +93,9 @@
             <div class="container">
                 <div class="two-column">
                     <div class="content-sec">
-                        <h2>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</h2>
-                        <p>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</p>
-                        <div class="avability-app">
-                            <a href="javascript:void(0)"><img src="/images/front/common-images/app-store.jpg"></a>
-                            <a href="javascript:void(0)"><img src="/images/front/common-images/google-play.jpg"></a>
-                        </div>
+                    <h2 >When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!</h2>
+                    <p>See cost estimates, read reviews and chat with service providers, all in the app. Available on both iOS and Android.</p>
+                    <appstore></appstore>
                     </div>
                     <div class="image-sec">
                         <img src="/images/front/join-as-pro/customer.jpg">
@@ -107,41 +108,41 @@
         <div class="section section-grey">
             <div class="container">
                 <div class="section-title">
-                    <h2>What our customers are saying</h2>
+                <h2 class="btm-space">What our customers are saying</h2>
                     <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
                 </div>
                 <testmonial-sec></testmonial-sec>
             </div>
         </div>
+    <!-- -->
+    <div class="section ready-to-meet">
+        <div class="container">
+            <div class="two-column">
+                <div class="content-sec">
+                    <h2>Proud of your work? Join us.</h2>
+                    <p>We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. </p>
+                    <button class="btn btn-primary">
+                        <span>Join Us</span>
+                    </button>
+                </div>
+                <div class="image-sec">
+                    <img src="/images/front/home/join-us.jpg">
+                </div>
+            </div>
+        </div>
     </div>
+
+     <!--get started-->
+    <div class="section section-grey get-started-section next-project  elementary-banner">
+         <explorenow></explorenow>
+    </div>
+</div>
 </template>
 
 
 <script>
 
     export default {
-        mounted(){
-            require('jquery');
-            require('owl.carousel');
-            $(document).ready(function(){
-              $('.my-owl-carousel').owlCarousel({
-                margin:10,
-                nav:true,
-                items:4,
-                responsive:{
-/*                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:3
-                        },
-                        1000:{
-                            items:5
-                        }*/
-                    }
-                });
-          });
-        },
         data() {
             return{
                headerBanner: 'images/front/banners/home.jpg',

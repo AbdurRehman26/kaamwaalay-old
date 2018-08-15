@@ -22,10 +22,11 @@
                    </div>
                    <div class="col-xs-12 col-md-3 datepicker-field">
                       <div class="form-group">
-                       <label>By Status</label>
-                       <select v-model="search.filter_by_status" class="form-control">
-                         <option value="">Select All</option>
-                         <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select Service Type</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
                      </select>
                  </div>
              </div>

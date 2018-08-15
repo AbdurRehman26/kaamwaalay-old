@@ -1,4 +1,4 @@
-<template>	
+<template>
 	<div class="section padding-sm profile-form wrapper-sm">
 		<div class="profile-head">
 			<h1>Complete your profile</h1>
@@ -6,22 +6,34 @@
 		</div>
 
 		<div class="profile-form-section">
-			<div class="sign-up-form business-form">
 
 			<div class="form-signup">
 				<form>
 					<div class="personal-detail">
+						<div class="row">
+							<div class="browse-btn">
+								<div class="form-group">
+									<label class="file-upload-label">Browse Photo</label>
+									<input class="form-control file-upload-input" type="file">
+								</div>
+							</div>
+						</div>
+
+					<!-- Alert Tag -->
+						<alert></alert>
+					<!-- Alert Tag -->
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">First Name</label>
-									<input type="text" class="form-control" placeholder="Enter your first name">
+									<input type="text" class="form-control" value="Arsalan" placeholder="Enter your first name">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Last Name</label>
-									<input type="text" class="form-control" placeholder="Enter your last name">
+									<input type="text" class="form-control" value="Akhtar" placeholder="Enter your last name">
 							</div>
 						</div>
 					</div>
@@ -30,7 +42,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Email Address</label>
-									<input type="text" class="form-control" placeholder="Enter your first email address">
+									<input type="text" class="form-control" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -77,7 +89,7 @@
 					</div>
 
 					<div class="row">
-						
+
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Zip Code</label>
@@ -86,19 +98,19 @@
 						</div>
 					</div>
 				</div>
-				
+
 					<div class="create-account-btn">
 						<button class="btn btn-primary">Update Profile
 							<loader></loader>
 						</button>
 					</div>
-					
+
 					<div class="form-detail">
 						<p>Make sure all the information you entered is accuate before submitting.</p>
 					</div>
 				</form>
 			</div>
-		</div>
+
 		</div>
 
 	</div>
