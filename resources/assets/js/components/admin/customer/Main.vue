@@ -5,22 +5,22 @@
                     <div class="datepicker-row">
                         <div class="row">
                             <div class="col-xs-12 col-md-3 datepicker-field">
-                              <div class="form-group">
-                                   <SearchField></SearchField>
-                              </div>
+                                <div class="form-group">
+                                    <label>Search</label>
+                                    <input @keyup.enter.prevent="getList(false)" type="text" placeholder="Search" autocomplete="off" v-model="search.keyword" class="form-control type-ahead-select taller">
+                                </div>
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                    <label>By Type</label>
-                                   <select class="form-control">
-                                     <option>Select Type</option>
-                                     <option>Electrician</option>
-                                     <option>Electrician >> Ac</option>
+                                   <select v-model="search.service_id" class="form-control">
+                                     <option value="">Select All</option>
+                                     <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
                                    </select>
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-2">
-                                <button class="btn btn-primary filter-btn-top-space">
+                                <button @click.prevent="getList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                                     <span>Apply</span>
                                     <loader></loader>
                                 </button>
@@ -82,7 +82,7 @@
             </div>
           </div>
 		    </div>
-        <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
+        <changestatuspopup @HideModalValue="HideModal" :showModalProp="changeCustomerStatus"></changestatuspopup>
         <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
         <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
 	</div>
@@ -96,24 +96,27 @@ export default {
     return {
     	service: false,
     	customer: false,
-        changestatus:false,
+        changeCustomerStatus:false,
         viewcustomer: false,
-        listing: [
-            {
-            imagepath:'',
-            fullname:'Levi Boyer',
-            email:'Chester_Kris15@gmail.com',
-            contact_number:'894-807-8690',
-            status:'Active',
-            },
-        ],
         records : [],
         url : 'api/user',
-        showNoRecordFound : false,
-        search : '',
+        noRecordFound : false,
+        search : {
+            service_id : '',
+            keyword : ''
+        },
+        loading : false,
+        pagination : []
     	}
   	},
-
+    computed : {
+        servicesList(){
+            return this.$store.getters.getServicesList;
+        },
+        currentPage(){
+            return this.pagination ? this.pagination.current : 0; 
+        }
+    },
     methods: {
 
     	AddCustomer() {
@@ -124,72 +127,50 @@ export default {
             this.$router.push({name: 'customerdetail'});
         },
         changestatuspopup() {
-            this.changestatus = true;
+            this.changeCustomerStatus = true;
         },
         HideModal(){
             this.customer = false;
             this.viewcustomer = false;
-            this.changestatus = false;
+            this.changeCustomerStatus = false;
         },
-        getList(data , page , successCallback){
+        getList(page){
             let self = this;
-            self.showNoRecordFound = false;
+            self.noRecordFound = false;
             let url = self.url;
+            self.loading = true;
 
-            if(typeof(page) == 'undefined' || !page){                        
-                self.records = [];
-            }
+            if(this.search.service_id || this.search.keyword){
+                    var query  = '?pagination=true&filter_by_role=3&keyword='+this.search.keyword+'&filter_by_service='+this.search.service_id;
 
-            if((typeof(data) !== 'undefined' && data) || this.search){
-                
-                // if(data.workspace_id)
-                // {
-                //     this.search = {
-                //         name :  data.name,
-                //         workspace_id : data.workspace_id,
-                //         status : data.status
-                //     };
-
-                // }
-
-                // var query  = '?pagination=true&keyword='+this.search.name+'&workspace_id='+this.search.workspace_id+'&status='+this.search.status;
-                // url = 'user/search'+query;
-            
             }else{
-                var query  = '?pagination=false&filter_by_role=1';
-                url = url+query;
+
+                var query  = '?pagination=true&filter_by_role=3';
             }
+
+            url = self.url+query;
 
             if(typeof(page) !== 'undefined' && page){
                 url += '&page='+page;   
             }
 
             self.$http.get(url).then(response=>{
-                console.log(response.data.response)
-            response = response.data.response//response.body.response;
-            
-            if(typeof(page) !== 'undefined' && page){
-            for(var i = 0 ; i < response.data.length ; i++){
-                 self.records.push(response.data[i]);
-            }
+                    response = response.data.response;
 
-            }else{
-                console.log(response.data)
-                self.records = response.data;
-            }
-            
+                    self.records = response.data;
+                    self.pagination = response.pagination;
 
-            self.pagination = response.pagination;
-            
-            if (!self.records.length) {
-                self.showNoRecordFound = true;
-            }
+                    if (!self.records.length) {
+                        self.showNoRecordFound = true;
+                    }
+                    self.loading = false;
 
-            successCallback(true);
 
             }).catch(error=>{
-
+                self.loading = false;
+                console.log(error , 'error');
             });
+
         },
 
     },
@@ -199,25 +180,7 @@ export default {
 
     mounted(){
         this.getList();
-/*        for (var i = 1; i <= 50; i++) {
-            var loopperson =  {
-                        id : i,
-                        imagepath:'',
-                        fullname: this.$faker().name.findName(),
-                        email_address: this.$faker().internet.email(),
-                        address: this.$faker().address.streetAddress(),
-                        city: this.$faker().address.city(),
-                        state: this.$faker().address.state(),
-                        zip_code: this.$faker().address.zipCode(),
-                        country: this.$faker().address.country(),
-                        contact_number: this.$faker().phone.phoneNumber(),
-                        avg_rating: '5',
-                        status: 'Active',
-                        join_date: 'May 25 2018',
-                        approval_date: this.$faker().date.past(),
-            };
-            this.listing.push(loopperson);
-        };*/
+
     }
 
 }
