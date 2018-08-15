@@ -48,9 +48,7 @@
                     </b-col>
                     <b-col cols="12">
                         <div class="form-group">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p>Essentially you pay an hourly rate, but only up to a certain point with the obligation to finish the project remaining even after reaching the cap.</p>
                         </div>
                     </b-col>
                 </b-row>

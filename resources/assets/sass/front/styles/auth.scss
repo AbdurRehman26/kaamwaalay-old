@@ -11,7 +11,8 @@
     max-width:$auth-panel-width;
     background:$auth-panel-bg;
     border-radius:$auth-panel-radius;
-    box-shadow:$auth-panel-shadow;
+    // box-shadow:$auth-panel-shadow;
+    border: 1px solid $grey-lite;
     padding:$auth-panel-padding;
     margin:0 auto;
     min-height: 273px;
@@ -25,7 +26,20 @@
         max-width: 320px;
     }
 }
-
+h2 {
+    &.auth-title {
+        margin-bottom: 35px;
+        font-size: 36px;
+    }
+}
+.front-auth {
+    .already-signup {
+        margin-top: 40px; 
+        p {
+            font-family: $font_medium;
+        }
+    }
+}
 .auth-logo-wrapper{
     position:absolute;
     top:0;
@@ -75,7 +89,7 @@
 
     .auth-title-desc{
         font-size:$font-size-md;
-        color:$greyD;
+        color:$grey-dark;
         display: block;
         font-family:$font-regular;
         margin:10px auto 20px;
@@ -102,7 +116,7 @@
     position:absolute;
     top:0;
     right:0;
-    color:$secondary-color;
+    color: $primary-color;
     cursor:pointer;
     font-family: $font_regular;
 }
@@ -111,7 +125,7 @@
 .forgot-form{
     .back-to-login{
         float: right;
-        color: #FF8500;
+        color: $primary-color;
         cursor: pointer;
         text-decoration: underline;
         padding-top: 6px;
@@ -122,6 +136,6 @@
 .form-statement{
      p {
         font-size: 14px;
-        color:$greyD;
+        color:$grey-dark;
     }
 }
