@@ -1,7 +1,7 @@
 <template>
   <div class="login-form auth-forms active">
     <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>     
-    <form @submit.prevent="validateBeforeSubmit">
+    <form @submit.prevent="validateBeforeSubmit" novalidate="">
        <div class="row">
          <div class="col-xs-12 col-md-12"  :class="[errorBag.first('email') ? 'is-invalid' : '']">
             <div class="form-group">
@@ -12,7 +12,7 @@
             <div class="col-xs-12 col-md-12" :class="[errorBag.first('password') ? 'is-invalid' : '']">
             <div class="form-group">
               <label>Password</label>
-              <input id="login_password" type="password" v-model="login_info.password" v-validate="'required'" data-vv-as="password" name="password" class="form-control"  data-vv-name="password" placeholder="Enter your account password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
+              <input id="login_password" type="password" :maxlength="25" v-model="login_info.password" v-validate="'required'" data-vv-as="password" name="password" class="form-control"  data-vv-name="password" placeholder="Enter your account password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
             </div>
          </div>
          <div class="col-xs-12 col-md-12">
