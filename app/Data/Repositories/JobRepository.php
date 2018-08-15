@@ -50,11 +50,11 @@ public $model;
     public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
 
         $this->builder = $this->model->orderBy('id' , 'desc');
-        
-        if (!empty($data['keyword'])) {
+    
+        if (!empty($input['keyword'])) {
 
-            $this->builder = $this->builder->where(function($query)use($data){
-                $query->where('title', 'LIKE', "%{$data['keyword']}%");
+            $this->builder = $this->builder->where(function($query)use($input){
+                $query->where('title', 'LIKE', "%{$input['keyword']}%");
             });
         }
 
@@ -62,7 +62,7 @@ public $model;
         if(!empty($input['filter_by_status'])){
             $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
         }
-
+        
         if(!empty($input['filter_by_service'])){
             if($input['filter_by_service'])
                 $this->builder = $this->builder->where('service_id', '=', $input['filter_by_service']);            
@@ -102,6 +102,9 @@ public $model;
 
             $ratingCriteria = ['user_id' => $data->user_id];
             $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+            
+            $data->user = app('UserRepository')->findById($data->user_id);
+
         }
 
         return $data;

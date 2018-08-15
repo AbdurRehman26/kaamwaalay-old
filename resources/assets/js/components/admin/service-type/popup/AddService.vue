@@ -1,7 +1,7 @@
  <template>
 	<div>
 		<b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" ok-only ok-title="Submit">
-            <alert></alert>
+                        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
 		    	<div>
                     <form action="" method="">
                     <div class="form-group">
@@ -78,6 +78,8 @@
 export default {
     data () {
         return {
+            errorMessage : '',
+            successMessage : '',
             emailaddress: 'arsalan@cygnismedia.com',
             fullname: 'Arsalan Akhtar',
             image: 'images/dummy/user-pic.jpg',

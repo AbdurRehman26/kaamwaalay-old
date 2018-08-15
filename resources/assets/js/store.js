@@ -24,10 +24,14 @@ export default new Vuex.Store({
         barQueryArr : {},
         tabularQueryArr : {},
         scatterQueryArr : {},
+        servicesList : []
     },
 
     // You can use it as a state getter function (probably the best solution)
     getters: {
+        getServicesList(state){
+                return state.servicesList;
+        },
         getStep2StatsData(state){
             return state.step2StatsData;
         },
@@ -77,6 +81,9 @@ export default new Vuex.Store({
 
     // Mutation for when you use it as state property
     mutations: {
+        setServicesList(state , data){
+            state.servicesList = data;
+        },
         setStep2StatsData(state , data){
             state.step2StatsData = data;
         },

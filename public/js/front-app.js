@@ -2528,6 +2528,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2972,9 +2973,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var user = JSON.parse(this.$store.getters.getAuthUser);
         this.first_name = user.first_name;
         this.last_name = user.last_name;
+        this.getServicesList();
     },
 
     methods: {
+        getServicesList: function getServicesList() {
+            var _this = this;
+
+            var self = this;
+            self.noRecordFound = false;
+            var url = 'api/service';
+
+            self.$http.get(url).then(function (response) {
+                console.log(_this.$store, '2131232132121321213213');
+                response = response.data.response;
+
+                _this.$store.commit('setServicesList', response.data);
+                console.log(response, '21312321');
+            }).catch(function (error) {
+                console.log(error, 'error');
+            });
+        },
         ShowModal: function ShowModal() {
             this.showModalValue = true;
         },
@@ -2994,6 +3013,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.tab = false;
         }
 
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['pagination'],
+    data: function data() {
+        return {
+            records: [],
+            url: 'api/dashboard_reports',
+            showNoRecordFound: false,
+            pagination: ''
+        };
+    },
+    mounted: function mounted() {
+        this.getList();
+    },
+
+    computed: {
+        totalRecords: function totalRecords() {
+            return this.pagination ? this.pagination.total : 0;
+        }
+    },
+    methods: {
+        changePage: function changePage(pageNumber) {
+            this.$emit('page-changed', pageNumber);
+        }
     }
 });
 
@@ -4336,6 +4402,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            errorMessage: '',
+            successMessage: '',
             emailaddress: 'arsalan@cygnismedia.com',
             fullname: 'Arsalan Akhtar',
             image: 'images/dummy/user-pic.jpg',
@@ -4692,30 +4760,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      ContactIsExpire: false
-    };
-  },
+    data: function data() {
+        return {
+            errorMessage: '',
+            ContactIsExpire: false,
+            successMessage: '',
+            formData: {
+                email: this.$route.params.email,
+                password_confirmation: '',
+                password: '',
+                token: this.token
+            },
+            loading: false
+        };
+    },
 
-  methods: {
-    HideContactModal: function HideContactModal() {
-      this.ContactIsExpire = false;
-    },
-    ContactExpire: function ContactExpire() {
-      this.ContactIsExpire = true;
-    },
-    onSubmit: function onSubmit() {
-      console.log(this.form);
-      this.$router.push('dashboard');
+    methods: {
+        validateBeforeSubmit: function validateBeforeSubmit() {
+            var _this = this;
+
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.onSubmit();
+                    _this.errorMessage = '';
+                    return;
+                }
+                _this.errorMessage = _this.errorBag.all()[0];
+            });
+        },
+        onSubmit: function onSubmit() {
+            var _this2 = this;
+
+            var data = this.$route.params;
+            if (!data.token) {
+                return;
+            } else {
+                this.formData.token = data.token;
+            }
+
+            /*  data.password = this.formData.password;
+             data.password_confirmation = this.formData.password_confirmation;
+             data.email = this.formData.email;*/
+            this.loading = true;
+            var self = this;
+            this.$http.post('/api/auth/password/reset', this.formData).then(function (response) {
+                _this2.loading = false;
+                self.successMessage = response.data.response.message;
+                _this2.$store.commit('setForgotPassword', false);
+                self.$router.push({ name: 'login', params: { login: 'login' } });
+                location.reload();
+                setTimeout(function () {
+                    self.successMessage = '';
+                }, 5000);
+            }).catch(function (error) {
+                _this2.loading = false;
+                _this2.errorMessage = error;
+                _this2.loading = false;
+                self.errorMessage = error.response.data.response.message;
+                setTimeout(function () {
+                    self.errorMessage = '';
+                    this.loading = false;
+                }, 5000);
+                return false;
+            });
+        },
+        HideContactModal: function HideContactModal() {
+            this.ContactIsExpire = false;
+        },
+        ContactExpire: function ContactExpire() {
+            this.ContactIsExpire = true;
+        }
     }
-  }
 });
 
 /***/ }),
@@ -4748,25 +4866,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
+    data: function data() {
 
-    return {
-      form: {
-        email: '',
-        name: ''
-      },
-      show: true
-    };
-  },
+        return {
+            errorMessage: '',
+            successMessage: '',
+            reset_info: {
+                'email': ''
+            },
+            loading: false
+        };
+    },
 
-  methods: {
-    onSubmit: function onSubmit(evt) {},
-    ShowNewPassword: function ShowNewPassword() {
-      this.$router.push({ name: 'createpassword' });
+    methods: {
+        forgot: function forgot() {
+            var _this = this;
+
+            var self = this;
+            this.loading = true;
+            this.$http.post('/api/auth/password/email', this.reset_info).then(function (response) {
+                self.loading = false;
+                self.successMessage = response.data.response.message;
+                setTimeout(function () {
+                    self.successMessage = '';
+                }, 5000);
+            }).catch(function (error) {
+                _this.loading = false;
+                self.errorMessage = error.response.data.response.message;
+                setTimeout(function () {
+                    self.errorMessage = '';
+                    this.loading = false;
+                }, 5000);
+            });
+        },
+        validateBeforeSubmit: function validateBeforeSubmit(scope) {
+            var _this2 = this;
+
+            this.$validator.validateAll(scope).then(function (result) {
+                if (result) {
+                    _this2.forgot();
+                    _this2.errorMessage = '';
+                    return;
+                }
+                _this2.errorMessage = _this2.errorBag.all()[0];
+            });
+        }
     }
-  }
 });
 
 /***/ }),
@@ -64782,33 +64934,180 @@ var render = function() {
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "auth-panel" },
-          [
-            _vm.showAlert ? _c("alert") : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "new-password-form auth-forms active" }, [
+        _c("div", { staticClass: "auth-panel" }, [
+          _c(
+            "div",
+            { staticClass: "new-password-form auth-forms active" },
+            [
+              _vm.errorMessage || _vm.successMessage
+                ? _c("alert", {
+                    attrs: {
+                      errorMessage: _vm.errorMessage,
+                      successMessage: _vm.successMessage
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
               _c("form", [
                 _vm._m(1),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(2),
+                  _c(
+                    "div",
+                    {
+                      class: [
+                        "col-xs-12",
+                        "col-md-12",
+                        "form-group",
+                        _vm.errorBag.first("password") ? "is-invalid" : ""
+                      ]
+                    },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("New Password")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formData.password,
+                              expression: "formData.password"
+                            },
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required|min:8",
+                              expression: "'required|min:8'"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            "data-vv-as": "password",
+                            name: "password",
+                            placeholder: "Enter your new password"
+                          },
+                          domProps: { value: _vm.formData.password },
+                          on: {
+                            keyup: function($event) {
+                              if (
+                                !("button" in $event) &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "enter",
+                                  13,
+                                  $event.key,
+                                  "Enter"
+                                )
+                              ) {
+                                return null
+                              }
+                              !_vm.loading ? _vm.validateBeforeSubmit() : ""
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formData,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _vm._m(4),
+                  _c(
+                    "div",
+                    {
+                      class: [
+                        "col-xs-12",
+                        "col-md-12",
+                        "form-group",
+                        _vm.errorBag.first("password_confirmation")
+                          ? "is-invalid"
+                          : ""
+                      ]
+                    },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Confirm Password")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formData.password_confirmation,
+                              expression: "formData.password_confirmation"
+                            },
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: "required|confirmed:password",
+                              expression: "'required|confirmed:password'"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            "data-vv-as": "confirm password",
+                            name: "password_confirmation",
+                            placeholder: "Re-enter new password"
+                          },
+                          domProps: {
+                            value: _vm.formData.password_confirmation
+                          },
+                          on: {
+                            keyup: function($event) {
+                              if (
+                                !("button" in $event) &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "enter",
+                                  13,
+                                  $event.key,
+                                  "Enter"
+                                )
+                              ) {
+                                return null
+                              }
+                              !_vm.loading ? _vm.validateBeforeSubmit() : ""
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formData,
+                                "password_confirmation",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-xs-12 col-md-12" }, [
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary apply-primary-color",
-                        attrs: { type: "button" },
+                        class: [
+                          _vm.loading ? "show-spinner" : "",
+                          "btn",
+                          "btn-primary",
+                          "apply-primary-color"
+                        ],
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.onSubmit($event)
+                            _vm.validateBeforeSubmit()
                           }
                         }
                       },
@@ -64818,14 +65117,28 @@ var render = function() {
                         _c("loader")
                       ],
                       1
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "contact-us" }, [
+                      _c("p", [
+                        _vm._v("Need help? "),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:;" },
+                            on: { click: _vm.ContactExpire }
+                          },
+                          [_vm._v("Contact Us")]
+                        )
+                      ])
+                    ])
                   ])
                 ])
               ])
-            ])
-          ],
-          1
-        ),
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "contact-us" })
       ]),
@@ -64845,7 +65158,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h2", { staticClass: "auth-title" }, [
-        _vm._v("Welcome to PSI, Pakistan\n            "),
+        _vm._v("Welcome to PSI, Pakistan\n          "),
         _c("span", { staticClass: "auth-title-desc" }, [
           _vm._v("Please create your account password")
         ])
@@ -64861,64 +65174,6 @@ var staticRenderFns = [
         _vm._v(
           "You'll need to create a new password to access your PSI account."
         )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group non-editable" }, [
-        _c("label", [_vm._v("Email Address")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "email",
-            name: "email",
-            value: "arsalan@cygnismedia.com",
-            placeholder: "Enter your email address"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Create Your Password")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "password",
-            name: "password",
-            placeholder: "Enter your password"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Confirm Password")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "password",
-            name: "password",
-            placeholder: "Re-enter your password"
-          }
-        })
       ])
     ])
   }
@@ -66291,7 +66546,14 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
             _c("form", { attrs: { action: "", method: "" } }, [
@@ -66757,257 +67019,269 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.validateBeforeSubmit($event)
-          }
-        }
-      },
-      [
-        _c(
-          "b-modal",
-          {
-            ref: "myModalRef",
+  return _c(
+    "div",
+    [
+      _vm.errorMessage || _vm.successMessage
+        ? _c("alert", {
             attrs: {
-              id: "change-pass",
-              centered: "",
-              "title-tag": "h4",
-              size: "sm",
-              title: "Change Password",
-              "no-close-on-backdrop": "",
-              "no-close-on-esc": ""
-            },
-            on: { hidden: _vm.onHidden }
-          },
-          [
-            _vm.errorMessage || _vm.successMessage
-              ? _c("alert", {
-                  attrs: {
-                    errorMessage: _vm.errorMessage,
-                    successMessage: _vm.successMessage
-                  }
-                })
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", [
-              _c(
-                "div",
-                {
-                  class: [
-                    "form-group",
-                    _vm.UpdatedFound ? "alert alert-success" : "d-none"
-                  ],
-                  attrs: { role: "alert" }
-                },
-                [
-                  _vm._v(
-                    "\n                        Password Updated Successfully\n                    "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("label", [_vm._v("Old Password")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: [
-                    "form-group",
-                    _vm.errorBag.first("old_password") ? "is-invalid" : ""
-                  ]
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.userData.old_password,
-                          expression: "userData.old_password"
-                        },
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|min:8|max:25",
-                          expression: "'required|min:8|max:25'"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "password",
-                        "data-vv-as": "old password",
-                        name: "old_password",
-                        "data-vv-name": "old_password",
-                        placeholder: "Enter old password"
-                      },
-                      domProps: { value: _vm.userData.old_password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.userData,
-                            "old_password",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("label", [_vm._v("New Password")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: [
-                    "form-group",
-                    _vm.errorBag.first("new_password") ? "is-invalid" : ""
-                  ]
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.userData.new_password,
-                          expression: "userData.new_password"
-                        },
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|min:8|max:25",
-                          expression: "'required|min:8|max:25'"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "password",
-                        "data-vv-as": "new password",
-                        name: "new_password",
-                        "data-vv-name": "new_password",
-                        placeholder: "Create new password"
-                      },
-                      domProps: { value: _vm.userData.new_password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.userData,
-                            "new_password",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("label", [_vm._v("Confirm Password")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: [
-                    "form-group",
-                    _vm.errorBag.first("password_confirmation")
-                      ? "is-invalid"
-                      : ""
-                  ]
-                },
-                [
-                  _c("div", { staticClass: "form-group mb-0" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.userData.password_confirmation,
-                          expression: "userData.password_confirmation"
-                        },
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required|confirmed:new_password",
-                          expression: "'required|confirmed:new_password'"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "password",
-                        "data-vv-as": "confirm password",
-                        name: "password_confirmation",
-                        "data-vv-name": "password_confirmation",
-                        placeholder: "Re-type new password"
-                      },
-                      domProps: { value: _vm.userData.password_confirmation },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.userData,
-                            "password_confirmation",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "w-100",
-                attrs: { slot: "modal-footer" },
-                slot: "modal-footer"
+              errorMessage: _vm.errorMessage,
+              successMessage: _vm.successMessage
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.validateBeforeSubmit($event)
+            }
+          }
+        },
+        [
+          _c(
+            "b-modal",
+            {
+              ref: "myModalRef",
+              attrs: {
+                id: "change-pass",
+                centered: "",
+                "title-tag": "h4",
+                size: "sm",
+                title: "Change Password",
+                "no-close-on-backdrop": "",
+                "no-close-on-esc": ""
               },
-              [
+              on: { hidden: _vm.onHidden }
+            },
+            [
+              _vm.errorMessage || _vm.successMessage
+                ? _c("alert", {
+                    attrs: {
+                      errorMessage: _vm.errorMessage,
+                      successMessage: _vm.successMessage
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", [
                 _c(
-                  "button",
+                  "div",
                   {
                     class: [
-                      _vm.loading ? "show-spinner" : "",
-                      "btn",
-                      "btn-block",
-                      "btn-secondary",
-                      "float-left",
-                      "col-sm-3"
+                      "form-group",
+                      _vm.UpdatedFound ? "alert alert-success" : "d-none"
+                    ],
+                    attrs: { role: "alert" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Password Updated Successfully\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", [_vm._v("Old Password")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: [
+                      "form-group",
+                      _vm.errorBag.first("old_password") ? "is-invalid" : ""
                     ]
                   },
                   [
-                    _vm._v("Submit\n                            "),
-                    _c("loader")
-                  ],
-                  1
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.userData.old_password,
+                            expression: "userData.old_password"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required|min:8|max:25",
+                            expression: "'required|min:8|max:25'"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          "data-vv-as": "old password",
+                          name: "old_password",
+                          "data-vv-name": "old_password",
+                          placeholder: "Enter old password"
+                        },
+                        domProps: { value: _vm.userData.old_password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.userData,
+                              "old_password",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", [_vm._v("New Password")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: [
+                      "form-group",
+                      _vm.errorBag.first("new_password") ? "is-invalid" : ""
+                    ]
+                  },
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.userData.new_password,
+                            expression: "userData.new_password"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required|min:8|max:25",
+                            expression: "'required|min:8|max:25'"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          "data-vv-as": "new password",
+                          name: "new_password",
+                          "data-vv-name": "new_password",
+                          placeholder: "Create new password"
+                        },
+                        domProps: { value: _vm.userData.new_password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.userData,
+                              "new_password",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", [_vm._v("Confirm Password")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: [
+                      "form-group",
+                      _vm.errorBag.first("password_confirmation")
+                        ? "is-invalid"
+                        : ""
+                    ]
+                  },
+                  [
+                    _c("div", { staticClass: "form-group mb-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.userData.password_confirmation,
+                            expression: "userData.password_confirmation"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required|confirmed:new_password",
+                            expression: "'required|confirmed:new_password'"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          "data-vv-as": "confirm password",
+                          name: "password_confirmation",
+                          "data-vv-name": "password_confirmation",
+                          placeholder: "Re-type new password"
+                        },
+                        domProps: { value: _vm.userData.password_confirmation },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.userData,
+                              "password_confirmation",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]
                 )
-              ]
-            )
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "w-100",
+                  attrs: { slot: "modal-footer" },
+                  slot: "modal-footer"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: [
+                        _vm.loading ? "show-spinner" : "",
+                        "btn",
+                        "btn-primary",
+                        "apply-primary-color",
+                        "col-sm-3"
+                      ]
+                    },
+                    [
+                      _vm._v("Submit\n                            "),
+                      _c("loader")
+                    ],
+                    1
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -67685,84 +67959,124 @@ var render = function() {
     "div",
     { staticClass: "forgot-form auth-forms" },
     [
-      _vm.show
-        ? _c(
-            "b-form",
+      _vm.errorMessage || _vm.successMessage
+        ? _c("alert", {
+            attrs: {
+              errorMessage: _vm.errorMessage,
+              successMessage: _vm.successMessage
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c("form", { attrs: { "data-vv-scope": "forgot" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-xs-12 col-md-12",
+              class: [_vm.errorBag.first("forgot.email") ? "is-invalid" : ""]
+            },
             [
-              _c("div", { staticClass: "form-statement" }, [
-                _c("p", [
-                  _vm._v(
-                    "Don't worry. Resetting your password is easy, just tell us the email address you registered with PSM"
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                {
-                  attrs: {
-                    id: "exampleInputGroup1",
-                    label: "Email Address:",
-                    "label-for": "exampleInput1",
-                    description: ""
-                  }
-                },
-                [
-                  _c("b-form-input", {
-                    attrs: {
-                      id: "login_email",
-                      type: "email",
-                      placeholder: "Enter your email address"
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Email Address:")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|email",
+                      expression: "'required|email'"
                     },
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
-                      },
-                      expression: "form.email"
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.reset_info.email,
+                      expression: "reset_info.email"
                     }
-                  })
+                  ],
+                  staticClass: "form-control",
+                  class: [
+                    _vm.errorBag.first("forgot.email") ? "is-invalid" : ""
+                  ],
+                  attrs: {
+                    id: "reset_email",
+                    type: "email",
+                    placeholder: "Enter your email address",
+                    name: "email",
+                    "data-vv-name": "email"
+                  },
+                  domProps: { value: _vm.reset_info.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.reset_info, "email", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+            _c(
+              "button",
+              {
+                class: [
+                  _vm.loading ? "show-spinner" : "",
+                  "btn",
+                  "btn-primary",
+                  "apply-primary-color"
                 ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-button",
-                {
-                  staticClass: "btn btn-primary apply-primary-color",
-                  attrs: { type: "submit", variant: "primary" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.ShowNewPassword($event)
-                    }
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.validateBeforeSubmit("forgot")
                   }
-                },
-                [_vm._v("Send")]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "back-to-login",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.$emit("show-login", "valuechange")
-                    }
+                }
+              },
+              [_c("span", [_vm._v("Send")]), _vm._v(" "), _c("loader")],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "back-to-login",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.$emit("show-login", "valuechange")
                   }
-                },
-                [_vm._v("Back to login")]
-              )
-            ],
-            1
-          )
-        : _vm._e()
+                }
+              },
+              [_vm._v("Back to login")]
+            )
+          ])
+        ])
+      ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-statement" }, [
+      _c("p", [
+        _vm._v(
+          "Don't worry. Resetting your password is easy, just tell us the email address you registered with PSM"
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -68388,6 +68702,55 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-a6648a26", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a724213c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+    _c("div", { staticClass: "total-record float-left" }, [
+      _c("p", [
+        _c("strong", [
+          _vm._v("Total records: "),
+          _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "pagination-wrapper float-right" },
+      [
+        _c("b-pagination", {
+          attrs: { size: "md", "total-rows": _vm.totalRecords, "per-page": 10 },
+          on: { input: _vm.changePage },
+          model: {
+            value: _vm.currentPage,
+            callback: function($$v) {
+              _vm.currentPage = $$v
+            },
+            expression: "currentPage"
+          }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a724213c", module.exports)
   }
 }
 
@@ -85680,6 +86043,8 @@ Vue.component('front-header', __webpack_require__("./resources/assets/js/compone
 /*logout*/
 Vue.component('logout-component', __webpack_require__("./resources/assets/js/components/auth/LogoutComponent.vue"));
 
+Vue.component('vue-pagination', __webpack_require__("./resources/assets/js/components/admin/common-components/Pagination.vue"));
+
 /***/ }),
 
 /***/ "./resources/assets/js/components/404/404Panel.vue":
@@ -86470,6 +86835,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-33ca9b4a", Component.options)
   } else {
     hotAPI.reload("data-v-33ca9b4a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/admin/common-components/Pagination.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a724213c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/Pagination.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\Pagination.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a724213c", Component.options)
+  } else {
+    hotAPI.reload("data-v-a724213c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
