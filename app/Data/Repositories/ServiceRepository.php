@@ -69,7 +69,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 return 'not_parent';
             }
         }else{
-            return parent::update($data);
+            return parent::create($data);
         }
     }
     public function update(array $data = []) {
