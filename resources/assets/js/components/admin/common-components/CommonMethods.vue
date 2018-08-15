@@ -1,6 +1,6 @@
 <template>
 
-    <vue-pagination class="col-xs-12 col-md-12" @page-changed="getList(false)" :pagination="pagination"></vue-pagination>
+    <vue-pagination class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination"></vue-pagination>
 
 </template>
 
@@ -25,6 +25,7 @@
                 let url = self.url;
                 
                 url = self.url;
+                this.$emit('start-loading');
 
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
