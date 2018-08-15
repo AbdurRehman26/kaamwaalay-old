@@ -24,6 +24,9 @@ Vue.component('category-popup',require('./components/front/common-components/Cat
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
+Vue.component('main-nav',require('./components/front/common-components/navigations/MainNav.vue'));
+Vue.component('customer-nav',require('./components/front/common-components/navigations/CustomerNav.vue'));
+Vue.component('provider-nav',require('./components/front/common-components/navigations/ProviderNav.vue'));
 
 // Footer
 Vue.component('front-footer',require('./components/front/common-components/footer.vue'));

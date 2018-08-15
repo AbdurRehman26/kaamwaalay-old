@@ -10766,8 +10766,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon-front.eot?82d3cdba4bf03b5b5bbbfade6105352a);
-  src: url(/fonts/icomoon-front.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon-front.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff"), url(/fonts/icomoon-front.svg?4ad4e11cb927f5987a7cc998c6f1e3f0#icomoon) format("svg");
+  src: url(/fonts/icomoon-front.eot?d85dd7b83f4f0555b9790a19c2eb3a99);
+  src: url(/fonts/icomoon-front.eot?d85dd7b83f4f0555b9790a19c2eb3a99#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?1843d72f1023b7500919faa078cd8515) format("truetype"), url(/fonts/icomoon-front.woff?14e39a8e04eb92e8c8d1b382eaa04817) format("woff"), url(/fonts/icomoon-front.svg?1d3f174ff86596cff49ec4dad8a6aa7d#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -10785,8 +10785,17 @@ a.text-dark:focus {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-notification:before {
+  content: "\E91B";
+}
+
+.icon-cog2:before {
+  content: "\E922";
+}
+
 .icon-alert:before {
   content: "\E91A";
+  color: #d9534f;
 }
 
 .icon-map-marker:before {
@@ -10859,6 +10868,7 @@ a.text-dark:focus {
 
 .icon-check2:before {
   content: "\E92A";
+  color: #00699e;
 }
 
 .icon-send:before {
@@ -10929,7 +10939,7 @@ a.text-dark:focus {
   content: "\E98F";
 }
 
-.icon-cog2:before {
+.icon-cog22:before {
   content: "\E994";
 }
 
@@ -10970,7 +10980,7 @@ a.text-dark:focus {
 }
 
 .icon-minus-outline:before {
-  content: "\E922";
+  content: "\E923";
 }
 
 .icon-exclamation-solid:before {
@@ -12802,6 +12812,8 @@ input[type=number]::-webkit-outer-spin-button {
   display: inline-block;
   margin: 0 16px;
   position: relative;
+  height: 57px;
+  padding: 12px 0 0px;
 }
 
 .navigation ul li a {
@@ -12812,11 +12824,12 @@ input[type=number]::-webkit-outer-spin-button {
   padding-left: 16px;
   padding-right: 16px;
   text-decoration: none !important;
+  display: block;
 }
 
 .navigation ul li a:hover {
   text-decoration: underline;
-  color: #494949 !important;
+  /*                     color:$nav-color !important; */
 }
 
 .navigation ul li a.router-link-active:after {
@@ -12826,7 +12839,17 @@ input[type=number]::-webkit-outer-spin-button {
   height: 4px;
   width: 100%;
   left: 0;
-  bottom: -24px;
+  right: 0;
+  margin: 0 auto;
+  bottom: 0px;
+}
+
+.navigation ul li a.btn:hover {
+  color: #fff;
+}
+
+.navigation ul li a.btn span:hover {
+  color: #fff;
 }
 
 .navigation ul li:first-child {
@@ -12844,10 +12867,22 @@ input[type=number]::-webkit-outer-spin-button {
   min-width: 140px;
 }
 
+.navigation ul li .post-job-btn {
+  top: -12px;
+  position: relative;
+}
+
 .navigation .action-icon {
   font-size: 24px;
   vertical-align: middle;
   color: #7D7D7D;
+  cursor: pointer;
+  position: relative;
+  top: -2px;
+}
+
+.navigation .action-icon.icon-cog2 {
+  font-size: 28px;
 }
 
 .left-cog {
@@ -13025,6 +13060,10 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.user-login-detail {
+  margin-top: -7px;
+}
+
 .user-login-detail .username {
   display: inline-block;
   vertical-align: middle;
@@ -13041,6 +13080,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .post-job-btn:hover {
   color: #fff !important;
+}
+
+.notify-block {
+  position: relative;
+}
+
+.badge-count {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background: #6004BA;
+  display: block;
+  position: absolute;
+  top: 2px;
+  right: -7px;
+  border: solid 2px #fff;
+  text-align: center;
+  font-size: 10px;
+  color: #fff;
+  line-height: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
 }
 
 .main-banner {

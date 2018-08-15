@@ -12,7 +12,7 @@ const routes = [
             title: 'PSM | Login',
             bodyClass: 'login-page',
             noHeader: true,
-
+            navigation: 'main-nav',
         },
         component: require('./components/front/auth/main.vue'),
     },
@@ -23,7 +23,7 @@ const routes = [
             title: 'PSM | reset-password',
             bodyClass: 'reset-password-page',
             noHeader: true,
-
+            navigation: 'main-nav',
         },
         component: require('./components/front/auth/ResetPassword.vue'),
     },
@@ -31,11 +31,12 @@ const routes = [
     // Home
 
     {
-        name: 'home',
+        name: 'main_page',
         path: '/',
         meta: {
             title: 'Professional Service Marketplace | Landing',
             bodyClass: 'home_body',
+            navigation: 'main-nav',
         },
         component: require('./components/front/landing/main.vue'),
     },
@@ -48,6 +49,7 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Join As Pro',
             bodyClass: 'Join_pro',
+            navigation: 'main-nav',
         },
         component: require('./components/front/join-as-pro/main.vue'),
     },
@@ -61,6 +63,7 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Explore',
             bodyClass: 'explore_page',
+            navigation: 'main-nav',
         },
         component: require('./components/front/explore/main.vue'),
     },
@@ -72,9 +75,10 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',
+            navigation: 'main-nav',
         },
         component: require('./components/front/explore/service-provider.vue'),
-    },    
+    },
 
     {
         name: 'Service_Provider_Detail',
@@ -82,9 +86,10 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Service Provider Detail',
             bodyClass: 'service_provider_detail_page',
+            navigation: 'provider-nav',
         },
         component: require('./components/front/explore/service-provider-detail.vue'),
-    },    
+    },
 
 
 
@@ -97,6 +102,7 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Sign Up',
             bodyClass: 'signup-page',
+            navigation: 'main-nav',
         },
         component: require('./components/front/sign-up/main.vue'),
     },
@@ -106,20 +112,22 @@ const routes = [
     // Profile
 
     {
-        name: 'Profile',
+        name: 'customer_profile',
         path: '/profile',
         meta: {
             title: 'Professional Service Marketplace | Profile',
             bodyClass: 'profile-page',
+            navigation: 'customer-nav',
         },
         component: require('./components/front/profile/main.vue'),
     },
     {
-        name: 'Apply for Review',
+        name: 'provider_profile',
         path: '/apply-for-review',
         meta: {
             title: 'Professional Service Marketplace | Apply for Review',
             bodyClass: 'apply-for-review-page',
+            navigation: 'provider-nav',
         },
         component: require('./components/front/profile/ApplyForReview.vue'),
     },
@@ -132,6 +140,7 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Job Post',
             bodyClass: 'job-post-page',
+            navigation: 'customer-nav',
         },
         component: require('./components/front/job-post/main.vue'),
     },
@@ -147,7 +156,7 @@ const routes = [
             noHeader: true,
             bodyClass: 'not-found-page',
         },
-    },    
+    },
 
 
 ]

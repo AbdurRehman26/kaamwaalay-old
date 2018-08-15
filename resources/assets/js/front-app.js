@@ -19,6 +19,16 @@ Vue.use( vbclass, router );
 // Require components tags
 require('./front-components-tags');
 
+Vue.mixin({
+ data: function() {
+   return {
+    globalReadOnlyProperty() {
+        return  'testinggfsd';
+     }
+   }
+ }
+});
+
 const app = new Vue({
     el: '#app',
     router,
