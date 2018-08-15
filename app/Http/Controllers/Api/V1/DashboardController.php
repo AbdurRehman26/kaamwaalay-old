@@ -26,7 +26,7 @@ class DashboardController {
         ];
 
         $messages = [];
-
+        $output = [];
         $validator = Validator::make($input, $rules, $messages);
         // if validation fails
         if ($validator->fails()) {
@@ -37,22 +37,19 @@ class DashboardController {
             $code = 200;
             if($input['type'] == 'stats'){
                 $output = $this->_repository->stats($input);
-            }else if($input['type'] == 'customer_signup'){
-                
-            }else if($input['type'] == 'customer_signup'){
-                
-            }else if($input['type'] == 'service_provider_signup'){
-                
+            }else if($input['type'] == 'customer_signup' || $input['type'] == 'service_provider_signup'){
+                $output = $this->_repository->signUpsOverTime($input);
             }else if($input['type'] == 'job_service_type'){
-                
+                $output = $this->_repository->jobServiceType($input);
             }else if($input['type'] == 'pr_over_time'){
-                
+                $output = $this->_repository->PrOverTime($input);
             }else if($input['type'] == 'pr_type'){
-                
+                $output = $this->_repository->PrType($input);
             }else if($input['type'] == 'top_service_provider'){
+                $output = $this->_repository->topServiceProvider($input);
                 
             }else if($input['type'] == 'top_customer'){
-                
+                $output = $this->_repository->topCustomer($input);                
             }
             
         }

@@ -44,7 +44,6 @@
             <table class="table first-last-col-fix">
               <thead>
                 <tr>
-                  <th>Id</th>
                   <th>Title</th>
                   <th>Customer</th>
                   <th>Service Type</th>
@@ -56,7 +55,6 @@
           <tbody>
 
             <tr v-for="record in records">
-                <td> {{record.id}} </td>
                 <td> {{ record.title }} </td>
                 <td> <a href="javascript:void(0);" @click="profileimage">{{ record.user.first_name }}</a> </td>
                 <td> {{ record.service.parent_id ? record.service.parent.title : record.service.title }} </td>
