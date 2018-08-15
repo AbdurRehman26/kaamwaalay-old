@@ -53,12 +53,15 @@
               <tr v-for="record in records">
                 <td>
                     <span class="user-img radius-0">
-                        <img  :src="record.imagepath" >
+                        <img  :src="record.profile_image" >
                     </span>
                 </td>
                 <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{record.user_details.first_name + ' ' + record.user_details.last_name }}</a></td>
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.user_details.phone_number}} </td>
+                <td><a href="javascript:void(0);" @click="ViewCustomerDetail">{{record.first_name}} + ' ' +{{record.last_name}}</a></td>
+                <!-- <td>{{list.email}} </td> -->
+                <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td>
                 <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
@@ -155,8 +158,6 @@ getRecords(data){
     if (!self.records.length) {
         self.noRecordFound = true;
     }
-
-
 
 },
 searchList(){

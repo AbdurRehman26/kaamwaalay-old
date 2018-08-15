@@ -12,6 +12,7 @@
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
+<<<<<<< HEAD
                            <label>By Business/Individual</label>
                            <select v-model="search.filter_by_business_type" class="form-control">
                              <option value="">Select</option>
@@ -19,6 +20,24 @@
                              <option value="individual">Individual</option>
                          </select>
                      </div>
+=======
+                             <label>By Business/Individual</label>
+                             <select class="form-control">
+                               <option>Select</option>
+                               <option>Business</option>
+                               <option>Individual</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="col-xs-12 col-md-3 datepicker-field">
+                      <div class="form-group">
+                                   <label>By Type</label>
+                                   <select class="form-control">
+                                     <option>Select Service Type</option>
+                                     <option>Electrician</option>
+                                     <option>Electrician >> Ac</option>
+                     </select>
+>>>>>>> e1cc315382b1823ab9f98f33552a5933edf3d541
                  </div>
                  <div class="col-xs-12 col-md-3 datepicker-field">
                   <div class="form-group">

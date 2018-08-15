@@ -2342,6 +2342,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/404/Main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            showModalValue: false,
+            isShowing: false,
+            showWarningValue: false,
+            listingResponsive: false,
+            show: false
+        };
+    },
+
+    methods: {
+        ShowModal: function ShowModal() {
+            this.showModalValue = true;
+        },
+        HideModal: function HideModal() {
+            this.showModalValue = false;
+            this.showWarningValue = false;
+        },
+        deletelisting: function deletelisting() {
+            this.showWarningValue = true;
+        },
+        showleftpanel: function showleftpanel() {
+            this.show = true;
+            this.listingResponsive ^= true;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/Main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3734,8 +3782,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -3780,8 +3826,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
-//
-//
 //
 //
 //
@@ -4304,8 +4348,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -4650,8 +4692,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -4689,8 +4729,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -5234,11 +5272,213 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/auth/ResetPassword.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      /*         activepanel:false,*/
+      /*          loginForm: {
+                  email: '',
+                  name: '',
+                  checked: []
+                },*/
+      /*          show: true*/
+      ContactIsExpire: false
+      /*        seen: true*/
+    };
+  },
+
+  methods: {
+    HideContactModal: function HideContactModal() {
+      this.ContactIsExpire = false;
+    },
+    ContactExpire: function ContactExpire() {
+      this.ContactIsExpire = true;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/auth/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      showAlert: false,
+      tabVal: 'login',
+      message: 'Log in to access your account',
+      ContactIsExpire: false
+    };
+  },
+
+  methods: {
+    ShowLogin: function ShowLogin() {
+      this.tabVal = 'login';
+      this.message = 'Log in to access your account';
+    },
+    ShowForgot: function ShowForgot() {
+      this.tabVal = 'forgot';
+      this.message = 'Forgot your password';
+    },
+    ShowChangepassword: function ShowChangepassword() {
+      this.$router.push('reset-password');
+    },
+    HideContactModal: function HideContactModal() {
+      this.ContactIsExpire = false;
+    },
+    ContactExpire: function ContactExpire() {
+      this.ContactIsExpire = true;
+    },
+    FrontSignUp: function FrontSignUp() {
+      this.$router.push('sign-up');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/header.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5273,7 +5513,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/join-as-pro/main.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5313,6 +5553,1001 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
+			categoryval: false,
+			category: [{
+
+				title: 'Electricians',
+				categoryitems: [{
+					itemimage: '/images/front/explore/electrician1.jpg',
+					itemtitle: 'Electrical and Wiring Repair'
+				}, {
+					itemimage: '/images/front/explore/electrician2.jpg',
+					itemtitle: 'Air conditioning repair'
+				}, {
+					itemimage: '/images/front/explore/electrician3.jpg',
+					itemtitle: 'Heating system repair'
+				}]
+
+			}, {
+
+				title: 'Carpenters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'General carpentry'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
+			}, {
+
+				title: 'Cleaning Services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/cleaning1.jpg',
+					itemtitle: 'House Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning2.jpg',
+					itemtitle: 'Carpet Cleaners'
+				}, {
+					itemimage: '/images/front/explore/cleaning3.jpg',
+					itemtitle: 'Exterior Cleaners'
+				}]
+
+			}, {
+
+				title: 'Painters',
+				categoryitems: [{
+					itemimage: '/images/front/explore/painter1.jpg',
+					itemtitle: 'Interior Painting'
+				}, {
+					itemimage: '/images/front/explore/painter2.jpg',
+					itemtitle: 'Wallpaper Installation'
+				}, {
+					itemimage: '/images/front/explore/painter3.jpg',
+					itemtitle: 'Deck Staining'
+				}]
+
+			}, {
+
+				title: 'Movers',
+				categoryitems: [{
+					itemimage: '/images/front/explore/mover1.jpg',
+					itemtitle: 'Local Moving (under 50 miles)'
+				}, {
+					itemimage: '/images/front/explore/mover2.jpg',
+					itemtitle: 'Long Distance Moving'
+				}, {
+					itemimage: '/images/front/explore/mover3.jpg',
+					itemtitle: 'Furniture Moving & Heavy Lifting'
+				}]
+
+			}],
+
+			othercategory: [{
+				title: 'Crafts',
+				categoryitems: [{
+					name: 'Custom Airbrushing'
+				}, {
+					name: 'Illustrating'
+				}, {
+					name: 'Scrapbooking'
+				}, {
+					name: 'Embroidery'
+				}, {
+					name: 'Portrait Artistry'
+				}, {
+					name: 'Songwriting'
+				}, {
+					name: 'Engraving'
+				}, {
+					name: 'Powder Coating'
+				}]
+			}, {
+				title: 'Legal',
+				categoryitems: [{
+					name: 'Consumer Attorney'
+				}, {
+					name: 'Contracts Attorney'
+				}, {
+					name: 'Corporate Law Attorney'
+				}, {
+					name: 'Court Interpreting'
+				}, {
+					name: 'Disability Attorney'
+				}, {
+					name: 'Estate Attorney'
+				}, {
+					name: 'Immigration Attorney'
+				}, {
+					name: 'Intellectual Property Attorney'
+				}, {
+					name: 'International Law Attorney'
+				}, {
+					name: 'Labor and Employment Attorney'
+				}, {
+					name: 'Legal Document Preparation'
+				}, {
+					name: 'Mediation'
+				}, {
+					name: 'Personal Injury Attorney'
+				}, {
+					name: 'Process Serving'
+				}, {
+					name: 'Tax Attorney'
+				}]
+			}, {
+				title: 'Photography',
+				categoryitems: [{
+					name: 'Aerial Photography'
+				}, {
+					name: 'Boudoir Photography'
+				}, {
+					name: 'Commercial Photography'
+				}, {
+					name: 'Engagement Photography'
+				}, {
+					name: 'Nature Photography'
+				}, {
+					name: 'Pet Photography'
+				}, {
+					name: 'Portrait Photography'
+				}, {
+					name: 'Sports Photography'
+				}, {
+					name: 'Video Editing'
+				}]
+			}, {
+				title: 'Business',
+				categoryitems: [{
+					name: 'Accounting'
+				}, {
+					name: 'Business Consulting'
+				}, {
+					name: 'Data Recovery Service'
+				}, {
+					name: 'Individual Tax Preparation'
+				}, {
+					name: 'Marketing'
+				}, {
+					name: 'Payroll Services'
+				}, {
+					name: 'Personal Financial Planning'
+				}, {
+					name: 'Real Estate Agent Services'
+				}]
+			}, {
+				title: 'Others',
+				categoryitems: [{
+					name: 'Translation'
+				}, {
+					name: 'UI Design'
+				}, {
+					name: 'Public Relations'
+				}, {
+					name: 'Grass cutting'
+				}, {
+					name: 'Yard Work'
+				}, {
+					name: 'Replant Seedlings'
+				}, {
+					name: 'Pick Up & Delivery'
+				}, {
+					name: 'Pet Care'
+				}]
+
+			}]
+
+		};
+	},
+
+	methods: {
+		changecategorypopup: function changecategorypopup() {
+			this.categoryval = true;
+		},
+		HideModal: function HideModal() {
+			this.categoryval = false;
+		}
+	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+		data: function data() {
+				return {
+						categoryimage: '/images/front/explore/mds.png',
+
+						jobimage: '/images/front/storage/logoimage1.png',
+						reviewerimage: '/images/front/storage/personimage1.png',
+
+						joblisting: [{
+								job_title: 'M.D.S Joinery & Glazing',
+								job_feedback: 180,
+								job_perform: 208,
+								job_full_rating: 4,
+								job_location: 'New York, NY',
+								job_member_since: 'Jan, 2018',
+								job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\r\n-  I offer a friendly, honest and punctual service \r\n-  Installation of timber and UPVC Windows & Doors. \r\n-  UPVC door/window Lock repairs & replacements. \r\n-  Also repair/replacing broken and misted double/single glazing. \r\n-  Made to measure Gates, Fencing and Decking. \r\n-  General Maintenance repairs etc. \r\n-  My work is carried out to high standards and resonably priced! \r\n-  No job too small. \r\n-  Get in touch for a quote.",
+
+								servicesavaliable: [{
+										title: 'General carpentry'
+								}, {
+										title: 'Furniture'
+								}, {
+										title: 'Glazing Installation'
+								}, {
+										title: 'Wooden deck repair'
+								}],
+								review_details: [{
+
+										latest_review_image: '/images/front/storage/personimage1.png',
+										latest_review_description: 'Matt installed a new fence at our school and I am more than pleased, he was punctual, polite and did the work quickly and I would offer him other work without hesitation.',
+										list_ratings: 5,
+										latest_reviewer_name: 'Lauren Gomez',
+										latest_review_post_date: 'August, 2018'
+								}, {
+
+										latest_review_image: '/images/front/storage/personimage2.png',
+										latest_review_description: 'Matt did a great job. Took him about 10 minutes to get the door down to size and re-hang it. Room looks a lot better now. Thank you!',
+										list_ratings: 4,
+										latest_reviewer_name: 'Paul Payne',
+										latest_review_post_date: 'August, 2018'
+								}, {
+
+										latest_review_image: '/images/front/storage/personimage3.png',
+										latest_review_description: 'Matt came exactly when he said, fixed the problem with my window with no fuss and at a good price. Very good bloke and would highly recommend!',
+										list_ratings: 3,
+										latest_reviewer_name: 'William Willis',
+										latest_review_post_date: 'July, 2018'
+								}, {
+
+										latest_review_image: '/images/front/storage/personimage4.png',
+										latest_review_description: 'Matt did an amazing job.I was happy with every part of the service he provided. He turned up at the agreed time for the estimate and returned promptly at the agreed time and date to complete the job, which was very affordable.',
+										list_ratings: 4,
+										latest_reviewer_name: 'Brian Howell',
+										latest_review_post_date: 'June, 2018'
+								}, {
+
+										latest_review_image: '/images/front/storage/personimage5.png',
+										latest_review_description: 'I would highly recommend Matt. He fitted a loft hatch and ladder for us, fitted new handles and locks to our windows and also child safety catches to all our windows upstairs. He was very professional and punctual and we were happy with the work undertaken, which he did very quickly.',
+										list_ratings: 5,
+										latest_reviewer_name: 'Timothy Schultz',
+										latest_review_post_date: 'June, 2018'
+								}]
+
+						}]
+
+				};
+		},
+
+
+		methods: {
+				AddCustomer: function AddCustomer() {
+						this.customer = true;
+				},
+				changestatuspopup: function changestatuspopup() {
+						this.changestatus = true;
+				},
+				HideModal: function HideModal() {
+						this.customer = false;
+						this.viewcustomer = false;
+						this.changestatus = false;
+				},
+				categorylisting: function categorylisting() {
+						this.$router.push({ name: 'Explore_Detail' });
+				}
+		},
+		components: {
+				StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+		},
+
+		mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			categoryimage: '/images/front/explore/carpenter1.jpg',
+
+			jobimage: '/images/front/storage/logoimage1.png',
+			reviewerimage: '/images/front/storage/personimage1.png',
+
+			joblisting: [{
+				job_title_image: '/images/front/storage/logoimage1.png',
+				job_title: 'CHS US Carpenter and Roofing',
+				job_feedback: 261,
+				job_perform: 270,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage1.png',
+				latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
+				latest_reviewer_name: 'Shirley Webb',
+				latest_review_post_date: 'August, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/logoimage2.png',
+				job_title: 'M.D.S Joinery & Glazing',
+				job_feedback: 180,
+				job_perform: 208,
+				job_location: 'New York, NY',
+				job_member_since: 'Feb, 2018',
+				job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage2.png',
+				latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
+				latest_reviewer_name: 'Keith McCoy',
+				latest_review_post_date: 'August, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage6.png',
+				job_title: 'Christopher Ward Joinery Services',
+				job_feedback: 164,
+				job_perform: 174,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage7.png',
+				latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
+				latest_reviewer_name: 'Ashley Bel',
+				latest_review_post_date: 'September, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage3.png',
+				job_title: 'C&N Home Solutions',
+				job_feedback: 124,
+				job_perform: 148,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: true,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
+
+			}, {
+				job_title_image: '/images/front/storage/personimage5.png',
+				job_title: 'C M H Maintenance',
+				job_feedback: 0,
+				job_perform: 0,
+				job_location: 'New York, NY',
+				job_member_since: 'Jan, 2018',
+				job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+				review_details: false,
+				latest_review_image: '/images/front/storage/personimage4.png',
+				latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+				latest_reviewer_name: 'Lauren Gomez',
+				latest_review_post_date: 'March, 2018'
+
+			}],
+
+			category: [{
+
+				title: 'Related services',
+				categoryitems: [{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'Wooden partition service'
+				}, {
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation'
+				}, {
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair'
+				}]
+
+			}]
+
+		};
+	},
+
+
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
+
+	mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/job-post/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__ = __webpack_require__("./node_modules/vue2-datepicker/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { DatePicker: __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default.a },
+  data: function data() {
+    var _this = this;
+
+    return {
+      value: '',
+      value_month: '',
+      value_year: '',
+      time1: '',
+      time2: '',
+      time3: '',
+      shortcuts: [{
+        text: 'Today',
+        onClick: function onClick() {
+          _this.time3 = [new Date(), new Date()];
+        }
+      }],
+      timePickerOptions: {
+        start: '00:00',
+        step: '00:30',
+        end: '23:30'
+      }
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/join-as-pro/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -5626,36 +6861,335 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        __webpack_require__("./node_modules/jquery/dist/jquery.js");
-        __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
-        $(document).ready(function () {
-            $('.my-owl-carousel').owlCarousel({
-                margin: 10,
-                nav: true,
-                items: 4,
-                responsive: {
-                    /*                        0:{
-                                                items:1
-                                            },
-                                            600:{
-                                                items:3
-                                            },
-                                            1000:{
-                                                items:5
-                                            }*/
-                }
-            });
-        });
-    },
     data: function data() {
         return {
             headerBanner: 'images/front/banners/home.jpg'
         };
     }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile/ApplyForReview.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__ = __webpack_require__("./node_modules/vue2-datepicker/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { DatePicker: __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default.a },
+  data: function data() {
+    var _this = this;
+
+    return {
+      value: '',
+      value_month: '',
+      value_year: '',
+      time1: '',
+      time2: '',
+      time3: '',
+      shortcuts: [{
+        text: 'Today',
+        onClick: function onClick() {
+          _this.time3 = [new Date(), new Date()];
+        }
+      }],
+      timePickerOptions: {
+        start: '00:00',
+        step: '00:30',
+        end: '23:30'
+      }
+    };
+  }
 });
 
 /***/ }),
@@ -56603,3461 +58137,6 @@ module.exports = startCase;
 
 /***/ }),
 
-/***/ "./node_modules/owl.carousel/dist/owl.carousel.js":
-/***/ (function(module, exports) {
-
-/**
- * Owl Carousel v2.3.4
- * Copyright 2013-2018 David Deutsch
- * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
- */
-/**
- * Owl carousel
- * @version 2.3.4
- * @author Bartosz Wojciechowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- * @todo Lazy Load Icon
- * @todo prevent animationend bubling
- * @todo itemsScaleUp
- * @todo Test Zepto
- * @todo stagePadding calculate wrong active classes
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates a carousel.
-	 * @class The Owl Carousel.
-	 * @public
-	 * @param {HTMLElement|jQuery} element - The element to create the carousel for.
-	 * @param {Object} [options] - The options
-	 */
-	function Owl(element, options) {
-
-		/**
-		 * Current settings for the carousel.
-		 * @public
-		 */
-		this.settings = null;
-
-		/**
-		 * Current options set by the caller including defaults.
-		 * @public
-		 */
-		this.options = $.extend({}, Owl.Defaults, options);
-
-		/**
-		 * Plugin element.
-		 * @public
-		 */
-		this.$element = $(element);
-
-		/**
-		 * Proxied event handlers.
-		 * @protected
-		 */
-		this._handlers = {};
-
-		/**
-		 * References to the running plugins of this carousel.
-		 * @protected
-		 */
-		this._plugins = {};
-
-		/**
-		 * Currently suppressed events to prevent them from being retriggered.
-		 * @protected
-		 */
-		this._supress = {};
-
-		/**
-		 * Absolute current position.
-		 * @protected
-		 */
-		this._current = null;
-
-		/**
-		 * Animation speed in milliseconds.
-		 * @protected
-		 */
-		this._speed = null;
-
-		/**
-		 * Coordinates of all items in pixel.
-		 * @todo The name of this member is missleading.
-		 * @protected
-		 */
-		this._coordinates = [];
-
-		/**
-		 * Current breakpoint.
-		 * @todo Real media queries would be nice.
-		 * @protected
-		 */
-		this._breakpoint = null;
-
-		/**
-		 * Current width of the plugin element.
-		 */
-		this._width = null;
-
-		/**
-		 * All real items.
-		 * @protected
-		 */
-		this._items = [];
-
-		/**
-		 * All cloned items.
-		 * @protected
-		 */
-		this._clones = [];
-
-		/**
-		 * Merge values of all items.
-		 * @todo Maybe this could be part of a plugin.
-		 * @protected
-		 */
-		this._mergers = [];
-
-		/**
-		 * Widths of all items.
-		 */
-		this._widths = [];
-
-		/**
-		 * Invalidated parts within the update process.
-		 * @protected
-		 */
-		this._invalidated = {};
-
-		/**
-		 * Ordered list of workers for the update process.
-		 * @protected
-		 */
-		this._pipe = [];
-
-		/**
-		 * Current state information for the drag operation.
-		 * @todo #261
-		 * @protected
-		 */
-		this._drag = {
-			time: null,
-			target: null,
-			pointer: null,
-			stage: {
-				start: null,
-				current: null
-			},
-			direction: null
-		};
-
-		/**
-		 * Current state information and their tags.
-		 * @type {Object}
-		 * @protected
-		 */
-		this._states = {
-			current: {},
-			tags: {
-				'initializing': [ 'busy' ],
-				'animating': [ 'busy' ],
-				'dragging': [ 'interacting' ]
-			}
-		};
-
-		$.each([ 'onResize', 'onThrottledResize' ], $.proxy(function(i, handler) {
-			this._handlers[handler] = $.proxy(this[handler], this);
-		}, this));
-
-		$.each(Owl.Plugins, $.proxy(function(key, plugin) {
-			this._plugins[key.charAt(0).toLowerCase() + key.slice(1)]
-				= new plugin(this);
-		}, this));
-
-		$.each(Owl.Workers, $.proxy(function(priority, worker) {
-			this._pipe.push({
-				'filter': worker.filter,
-				'run': $.proxy(worker.run, this)
-			});
-		}, this));
-
-		this.setup();
-		this.initialize();
-	}
-
-	/**
-	 * Default options for the carousel.
-	 * @public
-	 */
-	Owl.Defaults = {
-		items: 3,
-		loop: false,
-		center: false,
-		rewind: false,
-		checkVisibility: true,
-
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
-		freeDrag: false,
-
-		margin: 0,
-		stagePadding: 0,
-
-		merge: false,
-		mergeFit: true,
-		autoWidth: false,
-
-		startPosition: 0,
-		rtl: false,
-
-		smartSpeed: 250,
-		fluidSpeed: false,
-		dragEndSpeed: false,
-
-		responsive: {},
-		responsiveRefreshRate: 200,
-		responsiveBaseElement: window,
-
-		fallbackEasing: 'swing',
-		slideTransition: '',
-
-		info: false,
-
-		nestedItemSelector: false,
-		itemElement: 'div',
-		stageElement: 'div',
-
-		refreshClass: 'owl-refresh',
-		loadedClass: 'owl-loaded',
-		loadingClass: 'owl-loading',
-		rtlClass: 'owl-rtl',
-		responsiveClass: 'owl-responsive',
-		dragClass: 'owl-drag',
-		itemClass: 'owl-item',
-		stageClass: 'owl-stage',
-		stageOuterClass: 'owl-stage-outer',
-		grabClass: 'owl-grab'
-	};
-
-	/**
-	 * Enumeration for width.
-	 * @public
-	 * @readonly
-	 * @enum {String}
-	 */
-	Owl.Width = {
-		Default: 'default',
-		Inner: 'inner',
-		Outer: 'outer'
-	};
-
-	/**
-	 * Enumeration for types.
-	 * @public
-	 * @readonly
-	 * @enum {String}
-	 */
-	Owl.Type = {
-		Event: 'event',
-		State: 'state'
-	};
-
-	/**
-	 * Contains all registered plugins.
-	 * @public
-	 */
-	Owl.Plugins = {};
-
-	/**
-	 * List of workers involved in the update process.
-	 */
-	Owl.Workers = [ {
-		filter: [ 'width', 'settings' ],
-		run: function() {
-			this._width = this.$element.width();
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function(cache) {
-			cache.current = this._items && this._items[this.relative(this._current)];
-		}
-	}, {
-		filter: [ 'items', 'settings' ],
-		run: function() {
-			this.$stage.children('.cloned').remove();
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function(cache) {
-			var margin = this.settings.margin || '',
-				grid = !this.settings.autoWidth,
-				rtl = this.settings.rtl,
-				css = {
-					'width': 'auto',
-					'margin-left': rtl ? margin : '',
-					'margin-right': rtl ? '' : margin
-				};
-
-			!grid && this.$stage.children().css(css);
-
-			cache.css = css;
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function(cache) {
-			var width = (this.width() / this.settings.items).toFixed(3) - this.settings.margin,
-				merge = null,
-				iterator = this._items.length,
-				grid = !this.settings.autoWidth,
-				widths = [];
-
-			cache.items = {
-				merge: false,
-				width: width
-			};
-
-			while (iterator--) {
-				merge = this._mergers[iterator];
-				merge = this.settings.mergeFit && Math.min(merge, this.settings.items) || merge;
-
-				cache.items.merge = merge > 1 || cache.items.merge;
-
-				widths[iterator] = !grid ? this._items[iterator].width() : width * merge;
-			}
-
-			this._widths = widths;
-		}
-	}, {
-		filter: [ 'items', 'settings' ],
-		run: function() {
-			var clones = [],
-				items = this._items,
-				settings = this.settings,
-				// TODO: Should be computed from number of min width items in stage
-				view = Math.max(settings.items * 2, 4),
-				size = Math.ceil(items.length / 2) * 2,
-				repeat = settings.loop && items.length ? settings.rewind ? view : Math.max(view, size) : 0,
-				append = '',
-				prepend = '';
-
-			repeat /= 2;
-
-			while (repeat > 0) {
-				// Switch to only using appended clones
-				clones.push(this.normalize(clones.length / 2, true));
-				append = append + items[clones[clones.length - 1]][0].outerHTML;
-				clones.push(this.normalize(items.length - 1 - (clones.length - 1) / 2, true));
-				prepend = items[clones[clones.length - 1]][0].outerHTML + prepend;
-				repeat -= 1;
-			}
-
-			this._clones = clones;
-
-			$(append).addClass('cloned').appendTo(this.$stage);
-			$(prepend).addClass('cloned').prependTo(this.$stage);
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function() {
-			var rtl = this.settings.rtl ? 1 : -1,
-				size = this._clones.length + this._items.length,
-				iterator = -1,
-				previous = 0,
-				current = 0,
-				coordinates = [];
-
-			while (++iterator < size) {
-				previous = coordinates[iterator - 1] || 0;
-				current = this._widths[this.relative(iterator)] + this.settings.margin;
-				coordinates.push(previous + current * rtl);
-			}
-
-			this._coordinates = coordinates;
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function() {
-			var padding = this.settings.stagePadding,
-				coordinates = this._coordinates,
-				css = {
-					'width': Math.ceil(Math.abs(coordinates[coordinates.length - 1])) + padding * 2,
-					'padding-left': padding || '',
-					'padding-right': padding || ''
-				};
-
-			this.$stage.css(css);
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function(cache) {
-			var iterator = this._coordinates.length,
-				grid = !this.settings.autoWidth,
-				items = this.$stage.children();
-
-			if (grid && cache.items.merge) {
-				while (iterator--) {
-					cache.css.width = this._widths[this.relative(iterator)];
-					items.eq(iterator).css(cache.css);
-				}
-			} else if (grid) {
-				cache.css.width = cache.items.width;
-				items.css(cache.css);
-			}
-		}
-	}, {
-		filter: [ 'items' ],
-		run: function() {
-			this._coordinates.length < 1 && this.$stage.removeAttr('style');
-		}
-	}, {
-		filter: [ 'width', 'items', 'settings' ],
-		run: function(cache) {
-			cache.current = cache.current ? this.$stage.children().index(cache.current) : 0;
-			cache.current = Math.max(this.minimum(), Math.min(this.maximum(), cache.current));
-			this.reset(cache.current);
-		}
-	}, {
-		filter: [ 'position' ],
-		run: function() {
-			this.animate(this.coordinates(this._current));
-		}
-	}, {
-		filter: [ 'width', 'position', 'items', 'settings' ],
-		run: function() {
-			var rtl = this.settings.rtl ? 1 : -1,
-				padding = this.settings.stagePadding * 2,
-				begin = this.coordinates(this.current()) + padding,
-				end = begin + this.width() * rtl,
-				inner, outer, matches = [], i, n;
-
-			for (i = 0, n = this._coordinates.length; i < n; i++) {
-				inner = this._coordinates[i - 1] || 0;
-				outer = Math.abs(this._coordinates[i]) + padding * rtl;
-
-				if ((this.op(inner, '<=', begin) && (this.op(inner, '>', end)))
-					|| (this.op(outer, '<', begin) && this.op(outer, '>', end))) {
-					matches.push(i);
-				}
-			}
-
-			this.$stage.children('.active').removeClass('active');
-			this.$stage.children(':eq(' + matches.join('), :eq(') + ')').addClass('active');
-
-			this.$stage.children('.center').removeClass('center');
-			if (this.settings.center) {
-				this.$stage.children().eq(this.current()).addClass('center');
-			}
-		}
-	} ];
-
-	/**
-	 * Create the stage DOM element
-	 */
-	Owl.prototype.initializeStage = function() {
-		this.$stage = this.$element.find('.' + this.settings.stageClass);
-
-		// if the stage is already in the DOM, grab it and skip stage initialization
-		if (this.$stage.length) {
-			return;
-		}
-
-		this.$element.addClass(this.options.loadingClass);
-
-		// create stage
-		this.$stage = $('<' + this.settings.stageElement + '>', {
-			"class": this.settings.stageClass
-		}).wrap( $( '<div/>', {
-			"class": this.settings.stageOuterClass
-		}));
-
-		// append stage
-		this.$element.append(this.$stage.parent());
-	};
-
-	/**
-	 * Create item DOM elements
-	 */
-	Owl.prototype.initializeItems = function() {
-		var $items = this.$element.find('.owl-item');
-
-		// if the items are already in the DOM, grab them and skip item initialization
-		if ($items.length) {
-			this._items = $items.get().map(function(item) {
-				return $(item);
-			});
-
-			this._mergers = this._items.map(function() {
-				return 1;
-			});
-
-			this.refresh();
-
-			return;
-		}
-
-		// append content
-		this.replace(this.$element.children().not(this.$stage.parent()));
-
-		// check visibility
-		if (this.isVisible()) {
-			// update view
-			this.refresh();
-		} else {
-			// invalidate width
-			this.invalidate('width');
-		}
-
-		this.$element
-			.removeClass(this.options.loadingClass)
-			.addClass(this.options.loadedClass);
-	};
-
-	/**
-	 * Initializes the carousel.
-	 * @protected
-	 */
-	Owl.prototype.initialize = function() {
-		this.enter('initializing');
-		this.trigger('initialize');
-
-		this.$element.toggleClass(this.settings.rtlClass, this.settings.rtl);
-
-		if (this.settings.autoWidth && !this.is('pre-loading')) {
-			var imgs, nestedSelector, width;
-			imgs = this.$element.find('img');
-			nestedSelector = this.settings.nestedItemSelector ? '.' + this.settings.nestedItemSelector : undefined;
-			width = this.$element.children(nestedSelector).width();
-
-			if (imgs.length && width <= 0) {
-				this.preloadAutoWidthImages(imgs);
-			}
-		}
-
-		this.initializeStage();
-		this.initializeItems();
-
-		// register event handlers
-		this.registerEventHandlers();
-
-		this.leave('initializing');
-		this.trigger('initialized');
-	};
-
-	/**
-	 * @returns {Boolean} visibility of $element
-	 *                    if you know the carousel will always be visible you can set `checkVisibility` to `false` to
-	 *                    prevent the expensive browser layout forced reflow the $element.is(':visible') does
-	 */
-	Owl.prototype.isVisible = function() {
-		return this.settings.checkVisibility
-			? this.$element.is(':visible')
-			: true;
-	};
-
-	/**
-	 * Setups the current settings.
-	 * @todo Remove responsive classes. Why should adaptive designs be brought into IE8?
-	 * @todo Support for media queries by using `matchMedia` would be nice.
-	 * @public
-	 */
-	Owl.prototype.setup = function() {
-		var viewport = this.viewport(),
-			overwrites = this.options.responsive,
-			match = -1,
-			settings = null;
-
-		if (!overwrites) {
-			settings = $.extend({}, this.options);
-		} else {
-			$.each(overwrites, function(breakpoint) {
-				if (breakpoint <= viewport && breakpoint > match) {
-					match = Number(breakpoint);
-				}
-			});
-
-			settings = $.extend({}, this.options, overwrites[match]);
-			if (typeof settings.stagePadding === 'function') {
-				settings.stagePadding = settings.stagePadding();
-			}
-			delete settings.responsive;
-
-			// responsive class
-			if (settings.responsiveClass) {
-				this.$element.attr('class',
-					this.$element.attr('class').replace(new RegExp('(' + this.options.responsiveClass + '-)\\S+\\s', 'g'), '$1' + match)
-				);
-			}
-		}
-
-		this.trigger('change', { property: { name: 'settings', value: settings } });
-		this._breakpoint = match;
-		this.settings = settings;
-		this.invalidate('settings');
-		this.trigger('changed', { property: { name: 'settings', value: this.settings } });
-	};
-
-	/**
-	 * Updates option logic if necessery.
-	 * @protected
-	 */
-	Owl.prototype.optionsLogic = function() {
-		if (this.settings.autoWidth) {
-			this.settings.stagePadding = false;
-			this.settings.merge = false;
-		}
-	};
-
-	/**
-	 * Prepares an item before add.
-	 * @todo Rename event parameter `content` to `item`.
-	 * @protected
-	 * @returns {jQuery|HTMLElement} - The item container.
-	 */
-	Owl.prototype.prepare = function(item) {
-		var event = this.trigger('prepare', { content: item });
-
-		if (!event.data) {
-			event.data = $('<' + this.settings.itemElement + '/>')
-				.addClass(this.options.itemClass).append(item)
-		}
-
-		this.trigger('prepared', { content: event.data });
-
-		return event.data;
-	};
-
-	/**
-	 * Updates the view.
-	 * @public
-	 */
-	Owl.prototype.update = function() {
-		var i = 0,
-			n = this._pipe.length,
-			filter = $.proxy(function(p) { return this[p] }, this._invalidated),
-			cache = {};
-
-		while (i < n) {
-			if (this._invalidated.all || $.grep(this._pipe[i].filter, filter).length > 0) {
-				this._pipe[i].run(cache);
-			}
-			i++;
-		}
-
-		this._invalidated = {};
-
-		!this.is('valid') && this.enter('valid');
-	};
-
-	/**
-	 * Gets the width of the view.
-	 * @public
-	 * @param {Owl.Width} [dimension=Owl.Width.Default] - The dimension to return.
-	 * @returns {Number} - The width of the view in pixel.
-	 */
-	Owl.prototype.width = function(dimension) {
-		dimension = dimension || Owl.Width.Default;
-		switch (dimension) {
-			case Owl.Width.Inner:
-			case Owl.Width.Outer:
-				return this._width;
-			default:
-				return this._width - this.settings.stagePadding * 2 + this.settings.margin;
-		}
-	};
-
-	/**
-	 * Refreshes the carousel primarily for adaptive purposes.
-	 * @public
-	 */
-	Owl.prototype.refresh = function() {
-		this.enter('refreshing');
-		this.trigger('refresh');
-
-		this.setup();
-
-		this.optionsLogic();
-
-		this.$element.addClass(this.options.refreshClass);
-
-		this.update();
-
-		this.$element.removeClass(this.options.refreshClass);
-
-		this.leave('refreshing');
-		this.trigger('refreshed');
-	};
-
-	/**
-	 * Checks window `resize` event.
-	 * @protected
-	 */
-	Owl.prototype.onThrottledResize = function() {
-		window.clearTimeout(this.resizeTimer);
-		this.resizeTimer = window.setTimeout(this._handlers.onResize, this.settings.responsiveRefreshRate);
-	};
-
-	/**
-	 * Checks window `resize` event.
-	 * @protected
-	 */
-	Owl.prototype.onResize = function() {
-		if (!this._items.length) {
-			return false;
-		}
-
-		if (this._width === this.$element.width()) {
-			return false;
-		}
-
-		if (!this.isVisible()) {
-			return false;
-		}
-
-		this.enter('resizing');
-
-		if (this.trigger('resize').isDefaultPrevented()) {
-			this.leave('resizing');
-			return false;
-		}
-
-		this.invalidate('width');
-
-		this.refresh();
-
-		this.leave('resizing');
-		this.trigger('resized');
-	};
-
-	/**
-	 * Registers event handlers.
-	 * @todo Check `msPointerEnabled`
-	 * @todo #261
-	 * @protected
-	 */
-	Owl.prototype.registerEventHandlers = function() {
-		if ($.support.transition) {
-			this.$stage.on($.support.transition.end + '.owl.core', $.proxy(this.onTransitionEnd, this));
-		}
-
-		if (this.settings.responsive !== false) {
-			this.on(window, 'resize', this._handlers.onThrottledResize);
-		}
-
-		if (this.settings.mouseDrag) {
-			this.$element.addClass(this.options.dragClass);
-			this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
-			this.$stage.on('dragstart.owl.core selectstart.owl.core', function() { return false });
-		}
-
-		if (this.settings.touchDrag){
-			this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
-			this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
-		}
-	};
-
-	/**
-	 * Handles `touchstart` and `mousedown` events.
-	 * @todo Horizontal swipe threshold as option
-	 * @todo #261
-	 * @protected
-	 * @param {Event} event - The event arguments.
-	 */
-	Owl.prototype.onDragStart = function(event) {
-		var stage = null;
-
-		if (event.which === 3) {
-			return;
-		}
-
-		if ($.support.transform) {
-			stage = this.$stage.css('transform').replace(/.*\(|\)| /g, '').split(',');
-			stage = {
-				x: stage[stage.length === 16 ? 12 : 4],
-				y: stage[stage.length === 16 ? 13 : 5]
-			};
-		} else {
-			stage = this.$stage.position();
-			stage = {
-				x: this.settings.rtl ?
-					stage.left + this.$stage.width() - this.width() + this.settings.margin :
-					stage.left,
-				y: stage.top
-			};
-		}
-
-		if (this.is('animating')) {
-			$.support.transform ? this.animate(stage.x) : this.$stage.stop()
-			this.invalidate('position');
-		}
-
-		this.$element.toggleClass(this.options.grabClass, event.type === 'mousedown');
-
-		this.speed(0);
-
-		this._drag.time = new Date().getTime();
-		this._drag.target = $(event.target);
-		this._drag.stage.start = stage;
-		this._drag.stage.current = stage;
-		this._drag.pointer = this.pointer(event);
-
-		$(document).on('mouseup.owl.core touchend.owl.core', $.proxy(this.onDragEnd, this));
-
-		$(document).one('mousemove.owl.core touchmove.owl.core', $.proxy(function(event) {
-			var delta = this.difference(this._drag.pointer, this.pointer(event));
-
-			$(document).on('mousemove.owl.core touchmove.owl.core', $.proxy(this.onDragMove, this));
-
-			if (Math.abs(delta.x) < Math.abs(delta.y) && this.is('valid')) {
-				return;
-			}
-
-			event.preventDefault();
-
-			this.enter('dragging');
-			this.trigger('drag');
-		}, this));
-	};
-
-	/**
-	 * Handles the `touchmove` and `mousemove` events.
-	 * @todo #261
-	 * @protected
-	 * @param {Event} event - The event arguments.
-	 */
-	Owl.prototype.onDragMove = function(event) {
-		var minimum = null,
-			maximum = null,
-			pull = null,
-			delta = this.difference(this._drag.pointer, this.pointer(event)),
-			stage = this.difference(this._drag.stage.start, delta);
-
-		if (!this.is('dragging')) {
-			return;
-		}
-
-		event.preventDefault();
-
-		if (this.settings.loop) {
-			minimum = this.coordinates(this.minimum());
-			maximum = this.coordinates(this.maximum() + 1) - minimum;
-			stage.x = (((stage.x - minimum) % maximum + maximum) % maximum) + minimum;
-		} else {
-			minimum = this.settings.rtl ? this.coordinates(this.maximum()) : this.coordinates(this.minimum());
-			maximum = this.settings.rtl ? this.coordinates(this.minimum()) : this.coordinates(this.maximum());
-			pull = this.settings.pullDrag ? -1 * delta.x / 5 : 0;
-			stage.x = Math.max(Math.min(stage.x, minimum + pull), maximum + pull);
-		}
-
-		this._drag.stage.current = stage;
-
-		this.animate(stage.x);
-	};
-
-	/**
-	 * Handles the `touchend` and `mouseup` events.
-	 * @todo #261
-	 * @todo Threshold for click event
-	 * @protected
-	 * @param {Event} event - The event arguments.
-	 */
-	Owl.prototype.onDragEnd = function(event) {
-		var delta = this.difference(this._drag.pointer, this.pointer(event)),
-			stage = this._drag.stage.current,
-			direction = delta.x > 0 ^ this.settings.rtl ? 'left' : 'right';
-
-		$(document).off('.owl.core');
-
-		this.$element.removeClass(this.options.grabClass);
-
-		if (delta.x !== 0 && this.is('dragging') || !this.is('valid')) {
-			this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed);
-			this.current(this.closest(stage.x, delta.x !== 0 ? direction : this._drag.direction));
-			this.invalidate('position');
-			this.update();
-
-			this._drag.direction = direction;
-
-			if (Math.abs(delta.x) > 3 || new Date().getTime() - this._drag.time > 300) {
-				this._drag.target.one('click.owl.core', function() { return false; });
-			}
-		}
-
-		if (!this.is('dragging')) {
-			return;
-		}
-
-		this.leave('dragging');
-		this.trigger('dragged');
-	};
-
-	/**
-	 * Gets absolute position of the closest item for a coordinate.
-	 * @todo Setting `freeDrag` makes `closest` not reusable. See #165.
-	 * @protected
-	 * @param {Number} coordinate - The coordinate in pixel.
-	 * @param {String} direction - The direction to check for the closest item. Ether `left` or `right`.
-	 * @return {Number} - The absolute position of the closest item.
-	 */
-	Owl.prototype.closest = function(coordinate, direction) {
-		var position = -1,
-			pull = 30,
-			width = this.width(),
-			coordinates = this.coordinates();
-
-		if (!this.settings.freeDrag) {
-			// check closest item
-			$.each(coordinates, $.proxy(function(index, value) {
-				// on a left pull, check on current index
-				if (direction === 'left' && coordinate > value - pull && coordinate < value + pull) {
-					position = index;
-				// on a right pull, check on previous index
-				// to do so, subtract width from value and set position = index + 1
-				} else if (direction === 'right' && coordinate > value - width - pull && coordinate < value - width + pull) {
-					position = index + 1;
-				} else if (this.op(coordinate, '<', value)
-					&& this.op(coordinate, '>', coordinates[index + 1] !== undefined ? coordinates[index + 1] : value - width)) {
-					position = direction === 'left' ? index + 1 : index;
-				}
-				return position === -1;
-			}, this));
-		}
-
-		if (!this.settings.loop) {
-			// non loop boundries
-			if (this.op(coordinate, '>', coordinates[this.minimum()])) {
-				position = coordinate = this.minimum();
-			} else if (this.op(coordinate, '<', coordinates[this.maximum()])) {
-				position = coordinate = this.maximum();
-			}
-		}
-
-		return position;
-	};
-
-	/**
-	 * Animates the stage.
-	 * @todo #270
-	 * @public
-	 * @param {Number} coordinate - The coordinate in pixels.
-	 */
-	Owl.prototype.animate = function(coordinate) {
-		var animate = this.speed() > 0;
-
-		this.is('animating') && this.onTransitionEnd();
-
-		if (animate) {
-			this.enter('animating');
-			this.trigger('translate');
-		}
-
-		if ($.support.transform3d && $.support.transition) {
-			this.$stage.css({
-				transform: 'translate3d(' + coordinate + 'px,0px,0px)',
-				transition: (this.speed() / 1000) + 's' + (
-					this.settings.slideTransition ? ' ' + this.settings.slideTransition : ''
-				)
-			});
-		} else if (animate) {
-			this.$stage.animate({
-				left: coordinate + 'px'
-			}, this.speed(), this.settings.fallbackEasing, $.proxy(this.onTransitionEnd, this));
-		} else {
-			this.$stage.css({
-				left: coordinate + 'px'
-			});
-		}
-	};
-
-	/**
-	 * Checks whether the carousel is in a specific state or not.
-	 * @param {String} state - The state to check.
-	 * @returns {Boolean} - The flag which indicates if the carousel is busy.
-	 */
-	Owl.prototype.is = function(state) {
-		return this._states.current[state] && this._states.current[state] > 0;
-	};
-
-	/**
-	 * Sets the absolute position of the current item.
-	 * @public
-	 * @param {Number} [position] - The new absolute position or nothing to leave it unchanged.
-	 * @returns {Number} - The absolute position of the current item.
-	 */
-	Owl.prototype.current = function(position) {
-		if (position === undefined) {
-			return this._current;
-		}
-
-		if (this._items.length === 0) {
-			return undefined;
-		}
-
-		position = this.normalize(position);
-
-		if (this._current !== position) {
-			var event = this.trigger('change', { property: { name: 'position', value: position } });
-
-			if (event.data !== undefined) {
-				position = this.normalize(event.data);
-			}
-
-			this._current = position;
-
-			this.invalidate('position');
-
-			this.trigger('changed', { property: { name: 'position', value: this._current } });
-		}
-
-		return this._current;
-	};
-
-	/**
-	 * Invalidates the given part of the update routine.
-	 * @param {String} [part] - The part to invalidate.
-	 * @returns {Array.<String>} - The invalidated parts.
-	 */
-	Owl.prototype.invalidate = function(part) {
-		if ($.type(part) === 'string') {
-			this._invalidated[part] = true;
-			this.is('valid') && this.leave('valid');
-		}
-		return $.map(this._invalidated, function(v, i) { return i });
-	};
-
-	/**
-	 * Resets the absolute position of the current item.
-	 * @public
-	 * @param {Number} position - The absolute position of the new item.
-	 */
-	Owl.prototype.reset = function(position) {
-		position = this.normalize(position);
-
-		if (position === undefined) {
-			return;
-		}
-
-		this._speed = 0;
-		this._current = position;
-
-		this.suppress([ 'translate', 'translated' ]);
-
-		this.animate(this.coordinates(position));
-
-		this.release([ 'translate', 'translated' ]);
-	};
-
-	/**
-	 * Normalizes an absolute or a relative position of an item.
-	 * @public
-	 * @param {Number} position - The absolute or relative position to normalize.
-	 * @param {Boolean} [relative=false] - Whether the given position is relative or not.
-	 * @returns {Number} - The normalized position.
-	 */
-	Owl.prototype.normalize = function(position, relative) {
-		var n = this._items.length,
-			m = relative ? 0 : this._clones.length;
-
-		if (!this.isNumeric(position) || n < 1) {
-			position = undefined;
-		} else if (position < 0 || position >= n + m) {
-			position = ((position - m / 2) % n + n) % n + m / 2;
-		}
-
-		return position;
-	};
-
-	/**
-	 * Converts an absolute position of an item into a relative one.
-	 * @public
-	 * @param {Number} position - The absolute position to convert.
-	 * @returns {Number} - The converted position.
-	 */
-	Owl.prototype.relative = function(position) {
-		position -= this._clones.length / 2;
-		return this.normalize(position, true);
-	};
-
-	/**
-	 * Gets the maximum position for the current item.
-	 * @public
-	 * @param {Boolean} [relative=false] - Whether to return an absolute position or a relative position.
-	 * @returns {Number}
-	 */
-	Owl.prototype.maximum = function(relative) {
-		var settings = this.settings,
-			maximum = this._coordinates.length,
-			iterator,
-			reciprocalItemsWidth,
-			elementWidth;
-
-		if (settings.loop) {
-			maximum = this._clones.length / 2 + this._items.length - 1;
-		} else if (settings.autoWidth || settings.merge) {
-			iterator = this._items.length;
-			if (iterator) {
-				reciprocalItemsWidth = this._items[--iterator].width();
-				elementWidth = this.$element.width();
-				while (iterator--) {
-					reciprocalItemsWidth += this._items[iterator].width() + this.settings.margin;
-					if (reciprocalItemsWidth > elementWidth) {
-						break;
-					}
-				}
-			}
-			maximum = iterator + 1;
-		} else if (settings.center) {
-			maximum = this._items.length - 1;
-		} else {
-			maximum = this._items.length - settings.items;
-		}
-
-		if (relative) {
-			maximum -= this._clones.length / 2;
-		}
-
-		return Math.max(maximum, 0);
-	};
-
-	/**
-	 * Gets the minimum position for the current item.
-	 * @public
-	 * @param {Boolean} [relative=false] - Whether to return an absolute position or a relative position.
-	 * @returns {Number}
-	 */
-	Owl.prototype.minimum = function(relative) {
-		return relative ? 0 : this._clones.length / 2;
-	};
-
-	/**
-	 * Gets an item at the specified relative position.
-	 * @public
-	 * @param {Number} [position] - The relative position of the item.
-	 * @return {jQuery|Array.<jQuery>} - The item at the given position or all items if no position was given.
-	 */
-	Owl.prototype.items = function(position) {
-		if (position === undefined) {
-			return this._items.slice();
-		}
-
-		position = this.normalize(position, true);
-		return this._items[position];
-	};
-
-	/**
-	 * Gets an item at the specified relative position.
-	 * @public
-	 * @param {Number} [position] - The relative position of the item.
-	 * @return {jQuery|Array.<jQuery>} - The item at the given position or all items if no position was given.
-	 */
-	Owl.prototype.mergers = function(position) {
-		if (position === undefined) {
-			return this._mergers.slice();
-		}
-
-		position = this.normalize(position, true);
-		return this._mergers[position];
-	};
-
-	/**
-	 * Gets the absolute positions of clones for an item.
-	 * @public
-	 * @param {Number} [position] - The relative position of the item.
-	 * @returns {Array.<Number>} - The absolute positions of clones for the item or all if no position was given.
-	 */
-	Owl.prototype.clones = function(position) {
-		var odd = this._clones.length / 2,
-			even = odd + this._items.length,
-			map = function(index) { return index % 2 === 0 ? even + index / 2 : odd - (index + 1) / 2 };
-
-		if (position === undefined) {
-			return $.map(this._clones, function(v, i) { return map(i) });
-		}
-
-		return $.map(this._clones, function(v, i) { return v === position ? map(i) : null });
-	};
-
-	/**
-	 * Sets the current animation speed.
-	 * @public
-	 * @param {Number} [speed] - The animation speed in milliseconds or nothing to leave it unchanged.
-	 * @returns {Number} - The current animation speed in milliseconds.
-	 */
-	Owl.prototype.speed = function(speed) {
-		if (speed !== undefined) {
-			this._speed = speed;
-		}
-
-		return this._speed;
-	};
-
-	/**
-	 * Gets the coordinate of an item.
-	 * @todo The name of this method is missleanding.
-	 * @public
-	 * @param {Number} position - The absolute position of the item within `minimum()` and `maximum()`.
-	 * @returns {Number|Array.<Number>} - The coordinate of the item in pixel or all coordinates.
-	 */
-	Owl.prototype.coordinates = function(position) {
-		var multiplier = 1,
-			newPosition = position - 1,
-			coordinate;
-
-		if (position === undefined) {
-			return $.map(this._coordinates, $.proxy(function(coordinate, index) {
-				return this.coordinates(index);
-			}, this));
-		}
-
-		if (this.settings.center) {
-			if (this.settings.rtl) {
-				multiplier = -1;
-				newPosition = position + 1;
-			}
-
-			coordinate = this._coordinates[position];
-			coordinate += (this.width() - coordinate + (this._coordinates[newPosition] || 0)) / 2 * multiplier;
-		} else {
-			coordinate = this._coordinates[newPosition] || 0;
-		}
-
-		coordinate = Math.ceil(coordinate);
-
-		return coordinate;
-	};
-
-	/**
-	 * Calculates the speed for a translation.
-	 * @protected
-	 * @param {Number} from - The absolute position of the start item.
-	 * @param {Number} to - The absolute position of the target item.
-	 * @param {Number} [factor=undefined] - The time factor in milliseconds.
-	 * @returns {Number} - The time in milliseconds for the translation.
-	 */
-	Owl.prototype.duration = function(from, to, factor) {
-		if (factor === 0) {
-			return 0;
-		}
-
-		return Math.min(Math.max(Math.abs(to - from), 1), 6) * Math.abs((factor || this.settings.smartSpeed));
-	};
-
-	/**
-	 * Slides to the specified item.
-	 * @public
-	 * @param {Number} position - The position of the item.
-	 * @param {Number} [speed] - The time in milliseconds for the transition.
-	 */
-	Owl.prototype.to = function(position, speed) {
-		var current = this.current(),
-			revert = null,
-			distance = position - this.relative(current),
-			direction = (distance > 0) - (distance < 0),
-			items = this._items.length,
-			minimum = this.minimum(),
-			maximum = this.maximum();
-
-		if (this.settings.loop) {
-			if (!this.settings.rewind && Math.abs(distance) > items / 2) {
-				distance += direction * -1 * items;
-			}
-
-			position = current + distance;
-			revert = ((position - minimum) % items + items) % items + minimum;
-
-			if (revert !== position && revert - distance <= maximum && revert - distance > 0) {
-				current = revert - distance;
-				position = revert;
-				this.reset(current);
-			}
-		} else if (this.settings.rewind) {
-			maximum += 1;
-			position = (position % maximum + maximum) % maximum;
-		} else {
-			position = Math.max(minimum, Math.min(maximum, position));
-		}
-
-		this.speed(this.duration(current, position, speed));
-		this.current(position);
-
-		if (this.isVisible()) {
-			this.update();
-		}
-	};
-
-	/**
-	 * Slides to the next item.
-	 * @public
-	 * @param {Number} [speed] - The time in milliseconds for the transition.
-	 */
-	Owl.prototype.next = function(speed) {
-		speed = speed || false;
-		this.to(this.relative(this.current()) + 1, speed);
-	};
-
-	/**
-	 * Slides to the previous item.
-	 * @public
-	 * @param {Number} [speed] - The time in milliseconds for the transition.
-	 */
-	Owl.prototype.prev = function(speed) {
-		speed = speed || false;
-		this.to(this.relative(this.current()) - 1, speed);
-	};
-
-	/**
-	 * Handles the end of an animation.
-	 * @protected
-	 * @param {Event} event - The event arguments.
-	 */
-	Owl.prototype.onTransitionEnd = function(event) {
-
-		// if css2 animation then event object is undefined
-		if (event !== undefined) {
-			event.stopPropagation();
-
-			// Catch only owl-stage transitionEnd event
-			if ((event.target || event.srcElement || event.originalTarget) !== this.$stage.get(0)) {
-				return false;
-			}
-		}
-
-		this.leave('animating');
-		this.trigger('translated');
-	};
-
-	/**
-	 * Gets viewport width.
-	 * @protected
-	 * @return {Number} - The width in pixel.
-	 */
-	Owl.prototype.viewport = function() {
-		var width;
-		if (this.options.responsiveBaseElement !== window) {
-			width = $(this.options.responsiveBaseElement).width();
-		} else if (window.innerWidth) {
-			width = window.innerWidth;
-		} else if (document.documentElement && document.documentElement.clientWidth) {
-			width = document.documentElement.clientWidth;
-		} else {
-			console.warn('Can not detect viewport width.');
-		}
-		return width;
-	};
-
-	/**
-	 * Replaces the current content.
-	 * @public
-	 * @param {HTMLElement|jQuery|String} content - The new content.
-	 */
-	Owl.prototype.replace = function(content) {
-		this.$stage.empty();
-		this._items = [];
-
-		if (content) {
-			content = (content instanceof jQuery) ? content : $(content);
-		}
-
-		if (this.settings.nestedItemSelector) {
-			content = content.find('.' + this.settings.nestedItemSelector);
-		}
-
-		content.filter(function() {
-			return this.nodeType === 1;
-		}).each($.proxy(function(index, item) {
-			item = this.prepare(item);
-			this.$stage.append(item);
-			this._items.push(item);
-			this._mergers.push(item.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
-		}, this));
-
-		this.reset(this.isNumeric(this.settings.startPosition) ? this.settings.startPosition : 0);
-
-		this.invalidate('items');
-	};
-
-	/**
-	 * Adds an item.
-	 * @todo Use `item` instead of `content` for the event arguments.
-	 * @public
-	 * @param {HTMLElement|jQuery|String} content - The item content to add.
-	 * @param {Number} [position] - The relative position at which to insert the item otherwise the item will be added to the end.
-	 */
-	Owl.prototype.add = function(content, position) {
-		var current = this.relative(this._current);
-
-		position = position === undefined ? this._items.length : this.normalize(position, true);
-		content = content instanceof jQuery ? content : $(content);
-
-		this.trigger('add', { content: content, position: position });
-
-		content = this.prepare(content);
-
-		if (this._items.length === 0 || position === this._items.length) {
-			this._items.length === 0 && this.$stage.append(content);
-			this._items.length !== 0 && this._items[position - 1].after(content);
-			this._items.push(content);
-			this._mergers.push(content.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
-		} else {
-			this._items[position].before(content);
-			this._items.splice(position, 0, content);
-			this._mergers.splice(position, 0, content.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
-		}
-
-		this._items[current] && this.reset(this._items[current].index());
-
-		this.invalidate('items');
-
-		this.trigger('added', { content: content, position: position });
-	};
-
-	/**
-	 * Removes an item by its position.
-	 * @todo Use `item` instead of `content` for the event arguments.
-	 * @public
-	 * @param {Number} position - The relative position of the item to remove.
-	 */
-	Owl.prototype.remove = function(position) {
-		position = this.normalize(position, true);
-
-		if (position === undefined) {
-			return;
-		}
-
-		this.trigger('remove', { content: this._items[position], position: position });
-
-		this._items[position].remove();
-		this._items.splice(position, 1);
-		this._mergers.splice(position, 1);
-
-		this.invalidate('items');
-
-		this.trigger('removed', { content: null, position: position });
-	};
-
-	/**
-	 * Preloads images with auto width.
-	 * @todo Replace by a more generic approach
-	 * @protected
-	 */
-	Owl.prototype.preloadAutoWidthImages = function(images) {
-		images.each($.proxy(function(i, element) {
-			this.enter('pre-loading');
-			element = $(element);
-			$(new Image()).one('load', $.proxy(function(e) {
-				element.attr('src', e.target.src);
-				element.css('opacity', 1);
-				this.leave('pre-loading');
-				!this.is('pre-loading') && !this.is('initializing') && this.refresh();
-			}, this)).attr('src', element.attr('src') || element.attr('data-src') || element.attr('data-src-retina'));
-		}, this));
-	};
-
-	/**
-	 * Destroys the carousel.
-	 * @public
-	 */
-	Owl.prototype.destroy = function() {
-
-		this.$element.off('.owl.core');
-		this.$stage.off('.owl.core');
-		$(document).off('.owl.core');
-
-		if (this.settings.responsive !== false) {
-			window.clearTimeout(this.resizeTimer);
-			this.off(window, 'resize', this._handlers.onThrottledResize);
-		}
-
-		for (var i in this._plugins) {
-			this._plugins[i].destroy();
-		}
-
-		this.$stage.children('.cloned').remove();
-
-		this.$stage.unwrap();
-		this.$stage.children().contents().unwrap();
-		this.$stage.children().unwrap();
-		this.$stage.remove();
-		this.$element
-			.removeClass(this.options.refreshClass)
-			.removeClass(this.options.loadingClass)
-			.removeClass(this.options.loadedClass)
-			.removeClass(this.options.rtlClass)
-			.removeClass(this.options.dragClass)
-			.removeClass(this.options.grabClass)
-			.attr('class', this.$element.attr('class').replace(new RegExp(this.options.responsiveClass + '-\\S+\\s', 'g'), ''))
-			.removeData('owl.carousel');
-	};
-
-	/**
-	 * Operators to calculate right-to-left and left-to-right.
-	 * @protected
-	 * @param {Number} [a] - The left side operand.
-	 * @param {String} [o] - The operator.
-	 * @param {Number} [b] - The right side operand.
-	 */
-	Owl.prototype.op = function(a, o, b) {
-		var rtl = this.settings.rtl;
-		switch (o) {
-			case '<':
-				return rtl ? a > b : a < b;
-			case '>':
-				return rtl ? a < b : a > b;
-			case '>=':
-				return rtl ? a <= b : a >= b;
-			case '<=':
-				return rtl ? a >= b : a <= b;
-			default:
-				break;
-		}
-	};
-
-	/**
-	 * Attaches to an internal event.
-	 * @protected
-	 * @param {HTMLElement} element - The event source.
-	 * @param {String} event - The event name.
-	 * @param {Function} listener - The event handler to attach.
-	 * @param {Boolean} capture - Wether the event should be handled at the capturing phase or not.
-	 */
-	Owl.prototype.on = function(element, event, listener, capture) {
-		if (element.addEventListener) {
-			element.addEventListener(event, listener, capture);
-		} else if (element.attachEvent) {
-			element.attachEvent('on' + event, listener);
-		}
-	};
-
-	/**
-	 * Detaches from an internal event.
-	 * @protected
-	 * @param {HTMLElement} element - The event source.
-	 * @param {String} event - The event name.
-	 * @param {Function} listener - The attached event handler to detach.
-	 * @param {Boolean} capture - Wether the attached event handler was registered as a capturing listener or not.
-	 */
-	Owl.prototype.off = function(element, event, listener, capture) {
-		if (element.removeEventListener) {
-			element.removeEventListener(event, listener, capture);
-		} else if (element.detachEvent) {
-			element.detachEvent('on' + event, listener);
-		}
-	};
-
-	/**
-	 * Triggers a public event.
-	 * @todo Remove `status`, `relatedTarget` should be used instead.
-	 * @protected
-	 * @param {String} name - The event name.
-	 * @param {*} [data=null] - The event data.
-	 * @param {String} [namespace=carousel] - The event namespace.
-	 * @param {String} [state] - The state which is associated with the event.
-	 * @param {Boolean} [enter=false] - Indicates if the call enters the specified state or not.
-	 * @returns {Event} - The event arguments.
-	 */
-	Owl.prototype.trigger = function(name, data, namespace, state, enter) {
-		var status = {
-			item: { count: this._items.length, index: this.current() }
-		}, handler = $.camelCase(
-			$.grep([ 'on', name, namespace ], function(v) { return v })
-				.join('-').toLowerCase()
-		), event = $.Event(
-			[ name, 'owl', namespace || 'carousel' ].join('.').toLowerCase(),
-			$.extend({ relatedTarget: this }, status, data)
-		);
-
-		if (!this._supress[name]) {
-			$.each(this._plugins, function(name, plugin) {
-				if (plugin.onTrigger) {
-					plugin.onTrigger(event);
-				}
-			});
-
-			this.register({ type: Owl.Type.Event, name: name });
-			this.$element.trigger(event);
-
-			if (this.settings && typeof this.settings[handler] === 'function') {
-				this.settings[handler].call(this, event);
-			}
-		}
-
-		return event;
-	};
-
-	/**
-	 * Enters a state.
-	 * @param name - The state name.
-	 */
-	Owl.prototype.enter = function(name) {
-		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
-			if (this._states.current[name] === undefined) {
-				this._states.current[name] = 0;
-			}
-
-			this._states.current[name]++;
-		}, this));
-	};
-
-	/**
-	 * Leaves a state.
-	 * @param name - The state name.
-	 */
-	Owl.prototype.leave = function(name) {
-		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
-			this._states.current[name]--;
-		}, this));
-	};
-
-	/**
-	 * Registers an event or state.
-	 * @public
-	 * @param {Object} object - The event or state to register.
-	 */
-	Owl.prototype.register = function(object) {
-		if (object.type === Owl.Type.Event) {
-			if (!$.event.special[object.name]) {
-				$.event.special[object.name] = {};
-			}
-
-			if (!$.event.special[object.name].owl) {
-				var _default = $.event.special[object.name]._default;
-				$.event.special[object.name]._default = function(e) {
-					if (_default && _default.apply && (!e.namespace || e.namespace.indexOf('owl') === -1)) {
-						return _default.apply(this, arguments);
-					}
-					return e.namespace && e.namespace.indexOf('owl') > -1;
-				};
-				$.event.special[object.name].owl = true;
-			}
-		} else if (object.type === Owl.Type.State) {
-			if (!this._states.tags[object.name]) {
-				this._states.tags[object.name] = object.tags;
-			} else {
-				this._states.tags[object.name] = this._states.tags[object.name].concat(object.tags);
-			}
-
-			this._states.tags[object.name] = $.grep(this._states.tags[object.name], $.proxy(function(tag, i) {
-				return $.inArray(tag, this._states.tags[object.name]) === i;
-			}, this));
-		}
-	};
-
-	/**
-	 * Suppresses events.
-	 * @protected
-	 * @param {Array.<String>} events - The events to suppress.
-	 */
-	Owl.prototype.suppress = function(events) {
-		$.each(events, $.proxy(function(index, event) {
-			this._supress[event] = true;
-		}, this));
-	};
-
-	/**
-	 * Releases suppressed events.
-	 * @protected
-	 * @param {Array.<String>} events - The events to release.
-	 */
-	Owl.prototype.release = function(events) {
-		$.each(events, $.proxy(function(index, event) {
-			delete this._supress[event];
-		}, this));
-	};
-
-	/**
-	 * Gets unified pointer coordinates from event.
-	 * @todo #261
-	 * @protected
-	 * @param {Event} - The `mousedown` or `touchstart` event.
-	 * @returns {Object} - Contains `x` and `y` coordinates of current pointer position.
-	 */
-	Owl.prototype.pointer = function(event) {
-		var result = { x: null, y: null };
-
-		event = event.originalEvent || event || window.event;
-
-		event = event.touches && event.touches.length ?
-			event.touches[0] : event.changedTouches && event.changedTouches.length ?
-				event.changedTouches[0] : event;
-
-		if (event.pageX) {
-			result.x = event.pageX;
-			result.y = event.pageY;
-		} else {
-			result.x = event.clientX;
-			result.y = event.clientY;
-		}
-
-		return result;
-	};
-
-	/**
-	 * Determines if the input is a Number or something that can be coerced to a Number
-	 * @protected
-	 * @param {Number|String|Object|Array|Boolean|RegExp|Function|Symbol} - The input to be tested
-	 * @returns {Boolean} - An indication if the input is a Number or can be coerced to a Number
-	 */
-	Owl.prototype.isNumeric = function(number) {
-		return !isNaN(parseFloat(number));
-	};
-
-	/**
-	 * Gets the difference of two vectors.
-	 * @todo #261
-	 * @protected
-	 * @param {Object} - The first vector.
-	 * @param {Object} - The second vector.
-	 * @returns {Object} - The difference.
-	 */
-	Owl.prototype.difference = function(first, second) {
-		return {
-			x: first.x - second.x,
-			y: first.y - second.y
-		};
-	};
-
-	/**
-	 * The jQuery Plugin for the Owl Carousel
-	 * @todo Navigation plugin `next` and `prev`
-	 * @public
-	 */
-	$.fn.owlCarousel = function(option) {
-		var args = Array.prototype.slice.call(arguments, 1);
-
-		return this.each(function() {
-			var $this = $(this),
-				data = $this.data('owl.carousel');
-
-			if (!data) {
-				data = new Owl(this, typeof option == 'object' && option);
-				$this.data('owl.carousel', data);
-
-				$.each([
-					'next', 'prev', 'to', 'destroy', 'refresh', 'replace', 'add', 'remove'
-				], function(i, event) {
-					data.register({ type: Owl.Type.Event, name: event });
-					data.$element.on(event + '.owl.carousel.core', $.proxy(function(e) {
-						if (e.namespace && e.relatedTarget !== this) {
-							this.suppress([ event ]);
-							data[event].apply(this, [].slice.call(arguments, 1));
-							this.release([ event ]);
-						}
-					}, data));
-				});
-			}
-
-			if (typeof option == 'string' && option.charAt(0) !== '_') {
-				data[option].apply(data, args);
-			}
-		});
-	};
-
-	/**
-	 * The constructor for the jQuery Plugin
-	 * @public
-	 */
-	$.fn.owlCarousel.Constructor = Owl;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * AutoRefresh Plugin
- * @version 2.3.4
- * @author Artus Kolanowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates the auto refresh plugin.
-	 * @class The Auto Refresh Plugin
-	 * @param {Owl} carousel - The Owl Carousel
-	 */
-	var AutoRefresh = function(carousel) {
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		/**
-		 * Refresh interval.
-		 * @protected
-		 * @type {number}
-		 */
-		this._interval = null;
-
-		/**
-		 * Whether the element is currently visible or not.
-		 * @protected
-		 * @type {Boolean}
-		 */
-		this._visible = null;
-
-		/**
-		 * All event handlers.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'initialized.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoRefresh) {
-					this.watch();
-				}
-			}, this)
-		};
-
-		// set default options
-		this._core.options = $.extend({}, AutoRefresh.Defaults, this._core.options);
-
-		// register event handlers
-		this._core.$element.on(this._handlers);
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	AutoRefresh.Defaults = {
-		autoRefresh: true,
-		autoRefreshInterval: 500
-	};
-
-	/**
-	 * Watches the element.
-	 */
-	AutoRefresh.prototype.watch = function() {
-		if (this._interval) {
-			return;
-		}
-
-		this._visible = this._core.isVisible();
-		this._interval = window.setInterval($.proxy(this.refresh, this), this._core.settings.autoRefreshInterval);
-	};
-
-	/**
-	 * Refreshes the element.
-	 */
-	AutoRefresh.prototype.refresh = function() {
-		if (this._core.isVisible() === this._visible) {
-			return;
-		}
-
-		this._visible = !this._visible;
-
-		this._core.$element.toggleClass('owl-hidden', !this._visible);
-
-		this._visible && (this._core.invalidate('width') && this._core.refresh());
-	};
-
-	/**
-	 * Destroys the plugin.
-	 */
-	AutoRefresh.prototype.destroy = function() {
-		var handler, property;
-
-		window.clearInterval(this._interval);
-
-		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Lazy Plugin
- * @version 2.3.4
- * @author Bartosz Wojciechowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates the lazy plugin.
-	 * @class The Lazy Plugin
-	 * @param {Owl} carousel - The Owl Carousel
-	 */
-	var Lazy = function(carousel) {
-
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		/**
-		 * Already loaded items.
-		 * @protected
-		 * @type {Array.<jQuery>}
-		 */
-		this._loaded = [];
-
-		/**
-		 * Event handlers.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'initialized.owl.carousel change.owl.carousel resized.owl.carousel': $.proxy(function(e) {
-				if (!e.namespace) {
-					return;
-				}
-
-				if (!this._core.settings || !this._core.settings.lazyLoad) {
-					return;
-				}
-
-				if ((e.property && e.property.name == 'position') || e.type == 'initialized') {
-					var settings = this._core.settings,
-						n = (settings.center && Math.ceil(settings.items / 2) || settings.items),
-						i = ((settings.center && n * -1) || 0),
-						position = (e.property && e.property.value !== undefined ? e.property.value : this._core.current()) + i,
-						clones = this._core.clones().length,
-						load = $.proxy(function(i, v) { this.load(v) }, this);
-					//TODO: Need documentation for this new option
-					if (settings.lazyLoadEager > 0) {
-						n += settings.lazyLoadEager;
-						// If the carousel is looping also preload images that are to the "left"
-						if (settings.loop) {
-              position -= settings.lazyLoadEager;
-              n++;
-            }
-					}
-
-					while (i++ < n) {
-						this.load(clones / 2 + this._core.relative(position));
-						clones && $.each(this._core.clones(this._core.relative(position)), load);
-						position++;
-					}
-				}
-			}, this)
-		};
-
-		// set the default options
-		this._core.options = $.extend({}, Lazy.Defaults, this._core.options);
-
-		// register event handler
-		this._core.$element.on(this._handlers);
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	Lazy.Defaults = {
-		lazyLoad: false,
-		lazyLoadEager: 0
-	};
-
-	/**
-	 * Loads all resources of an item at the specified position.
-	 * @param {Number} position - The absolute position of the item.
-	 * @protected
-	 */
-	Lazy.prototype.load = function(position) {
-		var $item = this._core.$stage.children().eq(position),
-			$elements = $item && $item.find('.owl-lazy');
-
-		if (!$elements || $.inArray($item.get(0), this._loaded) > -1) {
-			return;
-		}
-
-		$elements.each($.proxy(function(index, element) {
-			var $element = $(element), image,
-                url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src') || $element.attr('data-srcset');
-
-			this._core.trigger('load', { element: $element, url: url }, 'lazy');
-
-			if ($element.is('img')) {
-				$element.one('load.owl.lazy', $.proxy(function() {
-					$element.css('opacity', 1);
-					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
-				}, this)).attr('src', url);
-            } else if ($element.is('source')) {
-                $element.one('load.owl.lazy', $.proxy(function() {
-                    this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
-                }, this)).attr('srcset', url);
-			} else {
-				image = new Image();
-				image.onload = $.proxy(function() {
-					$element.css({
-						'background-image': 'url("' + url + '")',
-						'opacity': '1'
-					});
-					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
-				}, this);
-				image.src = url;
-			}
-		}, this));
-
-		this._loaded.push($item.get(0));
-	};
-
-	/**
-	 * Destroys the plugin.
-	 * @public
-	 */
-	Lazy.prototype.destroy = function() {
-		var handler, property;
-
-		for (handler in this.handlers) {
-			this._core.$element.off(handler, this.handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * AutoHeight Plugin
- * @version 2.3.4
- * @author Bartosz Wojciechowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates the auto height plugin.
-	 * @class The Auto Height Plugin
-	 * @param {Owl} carousel - The Owl Carousel
-	 */
-	var AutoHeight = function(carousel) {
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		this._previousHeight = null;
-
-		/**
-		 * All event handlers.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'initialized.owl.carousel refreshed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoHeight) {
-					this.update();
-				}
-			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoHeight && e.property.name === 'position'){
-					this.update();
-				}
-			}, this),
-			'loaded.owl.lazy': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoHeight
-					&& e.element.closest('.' + this._core.settings.itemClass).index() === this._core.current()) {
-					this.update();
-				}
-			}, this)
-		};
-
-		// set default options
-		this._core.options = $.extend({}, AutoHeight.Defaults, this._core.options);
-
-		// register event handlers
-		this._core.$element.on(this._handlers);
-		this._intervalId = null;
-		var refThis = this;
-
-		// These changes have been taken from a PR by gavrochelegnou proposed in #1575
-		// and have been made compatible with the latest jQuery version
-		$(window).on('load', function() {
-			if (refThis._core.settings.autoHeight) {
-				refThis.update();
-			}
-		});
-
-		// Autoresize the height of the carousel when window is resized
-		// When carousel has images, the height is dependent on the width
-		// and should also change on resize
-		$(window).resize(function() {
-			if (refThis._core.settings.autoHeight) {
-				if (refThis._intervalId != null) {
-					clearTimeout(refThis._intervalId);
-				}
-
-				refThis._intervalId = setTimeout(function() {
-					refThis.update();
-				}, 250);
-			}
-		});
-
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	AutoHeight.Defaults = {
-		autoHeight: false,
-		autoHeightClass: 'owl-height'
-	};
-
-	/**
-	 * Updates the view.
-	 */
-	AutoHeight.prototype.update = function() {
-		var start = this._core._current,
-			end = start + this._core.settings.items,
-			lazyLoadEnabled = this._core.settings.lazyLoad,
-			visible = this._core.$stage.children().toArray().slice(start, end),
-			heights = [],
-			maxheight = 0;
-
-		$.each(visible, function(index, item) {
-			heights.push($(item).height());
-		});
-
-		maxheight = Math.max.apply(null, heights);
-
-		if (maxheight <= 1 && lazyLoadEnabled && this._previousHeight) {
-			maxheight = this._previousHeight;
-		}
-
-		this._previousHeight = maxheight;
-
-		this._core.$stage.parent()
-			.height(maxheight)
-			.addClass(this._core.settings.autoHeightClass);
-	};
-
-	AutoHeight.prototype.destroy = function() {
-		var handler, property;
-
-		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] !== 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Video Plugin
- * @version 2.3.4
- * @author Bartosz Wojciechowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates the video plugin.
-	 * @class The Video Plugin
-	 * @param {Owl} carousel - The Owl Carousel
-	 */
-	var Video = function(carousel) {
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		/**
-		 * Cache all video URLs.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._videos = {};
-
-		/**
-		 * Current playing item.
-		 * @protected
-		 * @type {jQuery}
-		 */
-		this._playing = null;
-
-		/**
-		 * All event handlers.
-		 * @todo The cloned content removale is too late
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'initialized.owl.carousel': $.proxy(function(e) {
-				if (e.namespace) {
-					this._core.register({ type: 'state', name: 'playing', tags: [ 'interacting' ] });
-				}
-			}, this),
-			'resize.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.video && this.isInFullScreen()) {
-					e.preventDefault();
-				}
-			}, this),
-			'refreshed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.is('resizing')) {
-					this._core.$stage.find('.cloned .owl-video-frame').remove();
-				}
-			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && e.property.name === 'position' && this._playing) {
-					this.stop();
-				}
-			}, this),
-			'prepared.owl.carousel': $.proxy(function(e) {
-				if (!e.namespace) {
-					return;
-				}
-
-				var $element = $(e.content).find('.owl-video');
-
-				if ($element.length) {
-					$element.css('display', 'none');
-					this.fetch($element, $(e.content));
-				}
-			}, this)
-		};
-
-		// set default options
-		this._core.options = $.extend({}, Video.Defaults, this._core.options);
-
-		// register event handlers
-		this._core.$element.on(this._handlers);
-
-		this._core.$element.on('click.owl.video', '.owl-video-play-icon', $.proxy(function(e) {
-			this.play(e);
-		}, this));
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	Video.Defaults = {
-		video: false,
-		videoHeight: false,
-		videoWidth: false
-	};
-
-	/**
-	 * Gets the video ID and the type (YouTube/Vimeo/vzaar only).
-	 * @protected
-	 * @param {jQuery} target - The target containing the video data.
-	 * @param {jQuery} item - The item containing the video.
-	 */
-	Video.prototype.fetch = function(target, item) {
-			var type = (function() {
-					if (target.attr('data-vimeo-id')) {
-						return 'vimeo';
-					} else if (target.attr('data-vzaar-id')) {
-						return 'vzaar'
-					} else {
-						return 'youtube';
-					}
-				})(),
-				id = target.attr('data-vimeo-id') || target.attr('data-youtube-id') || target.attr('data-vzaar-id'),
-				width = target.attr('data-width') || this._core.settings.videoWidth,
-				height = target.attr('data-height') || this._core.settings.videoHeight,
-				url = target.attr('href');
-
-		if (url) {
-
-			/*
-					Parses the id's out of the following urls (and probably more):
-					https://www.youtube.com/watch?v=:id
-					https://youtu.be/:id
-					https://vimeo.com/:id
-					https://vimeo.com/channels/:channel/:id
-					https://vimeo.com/groups/:group/videos/:id
-					https://app.vzaar.com/videos/:id
-
-					Visual example: https://regexper.com/#(http%3A%7Chttps%3A%7C)%5C%2F%5C%2F(player.%7Cwww.%7Capp.)%3F(vimeo%5C.com%7Cyoutu(be%5C.com%7C%5C.be%7Cbe%5C.googleapis%5C.com)%7Cvzaar%5C.com)%5C%2F(video%5C%2F%7Cvideos%5C%2F%7Cembed%5C%2F%7Cchannels%5C%2F.%2B%5C%2F%7Cgroups%5C%2F.%2B%5C%2F%7Cwatch%5C%3Fv%3D%7Cv%5C%2F)%3F(%5BA-Za-z0-9._%25-%5D*)(%5C%26%5CS%2B)%3F
-			*/
-
-			id = url.match(/(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com|be\-nocookie\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
-
-			if (id[3].indexOf('youtu') > -1) {
-				type = 'youtube';
-			} else if (id[3].indexOf('vimeo') > -1) {
-				type = 'vimeo';
-			} else if (id[3].indexOf('vzaar') > -1) {
-				type = 'vzaar';
-			} else {
-				throw new Error('Video URL not supported.');
-			}
-			id = id[6];
-		} else {
-			throw new Error('Missing video URL.');
-		}
-
-		this._videos[url] = {
-			type: type,
-			id: id,
-			width: width,
-			height: height
-		};
-
-		item.attr('data-video', url);
-
-		this.thumbnail(target, this._videos[url]);
-	};
-
-	/**
-	 * Creates video thumbnail.
-	 * @protected
-	 * @param {jQuery} target - The target containing the video data.
-	 * @param {Object} info - The video info object.
-	 * @see `fetch`
-	 */
-	Video.prototype.thumbnail = function(target, video) {
-		var tnLink,
-			icon,
-			path,
-			dimensions = video.width && video.height ? 'width:' + video.width + 'px;height:' + video.height + 'px;' : '',
-			customTn = target.find('img'),
-			srcType = 'src',
-			lazyClass = '',
-			settings = this._core.settings,
-			create = function(path) {
-				icon = '<div class="owl-video-play-icon"></div>';
-
-				if (settings.lazyLoad) {
-					tnLink = $('<div/>',{
-						"class": 'owl-video-tn ' + lazyClass,
-						"srcType": path
-					});
-				} else {
-					tnLink = $( '<div/>', {
-						"class": "owl-video-tn",
-						"style": 'opacity:1;background-image:url(' + path + ')'
-					});
-				}
-				target.after(tnLink);
-				target.after(icon);
-			};
-
-		// wrap video content into owl-video-wrapper div
-		target.wrap( $( '<div/>', {
-			"class": "owl-video-wrapper",
-			"style": dimensions
-		}));
-
-		if (this._core.settings.lazyLoad) {
-			srcType = 'data-src';
-			lazyClass = 'owl-lazy';
-		}
-
-		// custom thumbnail
-		if (customTn.length) {
-			create(customTn.attr(srcType));
-			customTn.remove();
-			return false;
-		}
-
-		if (video.type === 'youtube') {
-			path = "//img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
-			create(path);
-		} else if (video.type === 'vimeo') {
-			$.ajax({
-				type: 'GET',
-				url: '//vimeo.com/api/v2/video/' + video.id + '.json',
-				jsonp: 'callback',
-				dataType: 'jsonp',
-				success: function(data) {
-					path = data[0].thumbnail_large;
-					create(path);
-				}
-			});
-		} else if (video.type === 'vzaar') {
-			$.ajax({
-				type: 'GET',
-				url: '//vzaar.com/api/videos/' + video.id + '.json',
-				jsonp: 'callback',
-				dataType: 'jsonp',
-				success: function(data) {
-					path = data.framegrab_url;
-					create(path);
-				}
-			});
-		}
-	};
-
-	/**
-	 * Stops the current video.
-	 * @public
-	 */
-	Video.prototype.stop = function() {
-		this._core.trigger('stop', null, 'video');
-		this._playing.find('.owl-video-frame').remove();
-		this._playing.removeClass('owl-video-playing');
-		this._playing = null;
-		this._core.leave('playing');
-		this._core.trigger('stopped', null, 'video');
-	};
-
-	/**
-	 * Starts the current video.
-	 * @public
-	 * @param {Event} event - The event arguments.
-	 */
-	Video.prototype.play = function(event) {
-		var target = $(event.target),
-			item = target.closest('.' + this._core.settings.itemClass),
-			video = this._videos[item.attr('data-video')],
-			width = video.width || '100%',
-			height = video.height || this._core.$stage.height(),
-			html,
-			iframe;
-
-		if (this._playing) {
-			return;
-		}
-
-		this._core.enter('playing');
-		this._core.trigger('play', null, 'video');
-
-		item = this._core.items(this._core.relative(item.index()));
-
-		this._core.reset(item.index());
-
-		html = $( '<iframe frameborder="0" allowfullscreen mozallowfullscreen webkitAllowFullScreen ></iframe>' );
-		html.attr( 'height', height );
-		html.attr( 'width', width );
-		if (video.type === 'youtube') {
-			html.attr( 'src', '//www.youtube.com/embed/' + video.id + '?autoplay=1&rel=0&v=' + video.id );
-		} else if (video.type === 'vimeo') {
-			html.attr( 'src', '//player.vimeo.com/video/' + video.id + '?autoplay=1' );
-		} else if (video.type === 'vzaar') {
-			html.attr( 'src', '//view.vzaar.com/' + video.id + '/player?autoplay=true' );
-		}
-
-		iframe = $(html).wrap( '<div class="owl-video-frame" />' ).insertAfter(item.find('.owl-video'));
-
-		this._playing = item.addClass('owl-video-playing');
-	};
-
-	/**
-	 * Checks whether an video is currently in full screen mode or not.
-	 * @todo Bad style because looks like a readonly method but changes members.
-	 * @protected
-	 * @returns {Boolean}
-	 */
-	Video.prototype.isInFullScreen = function() {
-		var element = document.fullscreenElement || document.mozFullScreenElement ||
-				document.webkitFullscreenElement;
-
-		return element && $(element).parent().hasClass('owl-video-frame');
-	};
-
-	/**
-	 * Destroys the plugin.
-	 */
-	Video.prototype.destroy = function() {
-		var handler, property;
-
-		this._core.$element.off('click.owl.video');
-
-		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.Video = Video;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Animate Plugin
- * @version 2.3.4
- * @author Bartosz Wojciechowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates the animate plugin.
-	 * @class The Navigation Plugin
-	 * @param {Owl} scope - The Owl Carousel
-	 */
-	var Animate = function(scope) {
-		this.core = scope;
-		this.core.options = $.extend({}, Animate.Defaults, this.core.options);
-		this.swapping = true;
-		this.previous = undefined;
-		this.next = undefined;
-
-		this.handlers = {
-			'change.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && e.property.name == 'position') {
-					this.previous = this.core.current();
-					this.next = e.property.value;
-				}
-			}, this),
-			'drag.owl.carousel dragged.owl.carousel translated.owl.carousel': $.proxy(function(e) {
-				if (e.namespace) {
-					this.swapping = e.type == 'translated';
-				}
-			}, this),
-			'translate.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this.swapping && (this.core.options.animateOut || this.core.options.animateIn)) {
-					this.swap();
-				}
-			}, this)
-		};
-
-		this.core.$element.on(this.handlers);
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	Animate.Defaults = {
-		animateOut: false,
-		animateIn: false
-	};
-
-	/**
-	 * Toggles the animation classes whenever an translations starts.
-	 * @protected
-	 * @returns {Boolean|undefined}
-	 */
-	Animate.prototype.swap = function() {
-
-		if (this.core.settings.items !== 1) {
-			return;
-		}
-
-		if (!$.support.animation || !$.support.transition) {
-			return;
-		}
-
-		this.core.speed(0);
-
-		var left,
-			clear = $.proxy(this.clear, this),
-			previous = this.core.$stage.children().eq(this.previous),
-			next = this.core.$stage.children().eq(this.next),
-			incoming = this.core.settings.animateIn,
-			outgoing = this.core.settings.animateOut;
-
-		if (this.core.current() === this.previous) {
-			return;
-		}
-
-		if (outgoing) {
-			left = this.core.coordinates(this.previous) - this.core.coordinates(this.next);
-			previous.one($.support.animation.end, clear)
-				.css( { 'left': left + 'px' } )
-				.addClass('animated owl-animated-out')
-				.addClass(outgoing);
-		}
-
-		if (incoming) {
-			next.one($.support.animation.end, clear)
-				.addClass('animated owl-animated-in')
-				.addClass(incoming);
-		}
-	};
-
-	Animate.prototype.clear = function(e) {
-		$(e.target).css( { 'left': '' } )
-			.removeClass('animated owl-animated-out owl-animated-in')
-			.removeClass(this.core.settings.animateIn)
-			.removeClass(this.core.settings.animateOut);
-		this.core.onTransitionEnd();
-	};
-
-	/**
-	 * Destroys the plugin.
-	 * @public
-	 */
-	Animate.prototype.destroy = function() {
-		var handler, property;
-
-		for (handler in this.handlers) {
-			this.core.$element.off(handler, this.handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.Animate = Animate;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Autoplay Plugin
- * @version 2.3.4
- * @author Bartosz Wojciechowski
- * @author Artus Kolanowski
- * @author David Deutsch
- * @author Tom De Caluwé
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	/**
-	 * Creates the autoplay plugin.
-	 * @class The Autoplay Plugin
-	 * @param {Owl} scope - The Owl Carousel
-	 */
-	var Autoplay = function(carousel) {
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		/**
-		 * The autoplay timeout id.
-		 * @type {Number}
-		 */
-		this._call = null;
-
-		/**
-		 * Depending on the state of the plugin, this variable contains either
-		 * the start time of the timer or the current timer value if it's
-		 * paused. Since we start in a paused state we initialize the timer
-		 * value.
-		 * @type {Number}
-		 */
-		this._time = 0;
-
-		/**
-		 * Stores the timeout currently used.
-		 * @type {Number}
-		 */
-		this._timeout = 0;
-
-		/**
-		 * Indicates whenever the autoplay is paused.
-		 * @type {Boolean}
-		 */
-		this._paused = true;
-
-		/**
-		 * All event handlers.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'changed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && e.property.name === 'settings') {
-					if (this._core.settings.autoplay) {
-						this.play();
-					} else {
-						this.stop();
-					}
-				} else if (e.namespace && e.property.name === 'position' && this._paused) {
-					// Reset the timer. This code is triggered when the position
-					// of the carousel was changed through user interaction.
-					this._time = 0;
-				}
-			}, this),
-			'initialized.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.autoplay) {
-					this.play();
-				}
-			}, this),
-			'play.owl.autoplay': $.proxy(function(e, t, s) {
-				if (e.namespace) {
-					this.play(t, s);
-				}
-			}, this),
-			'stop.owl.autoplay': $.proxy(function(e) {
-				if (e.namespace) {
-					this.stop();
-				}
-			}, this),
-			'mouseover.owl.autoplay': $.proxy(function() {
-				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
-					this.pause();
-				}
-			}, this),
-			'mouseleave.owl.autoplay': $.proxy(function() {
-				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
-					this.play();
-				}
-			}, this),
-			'touchstart.owl.core': $.proxy(function() {
-				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
-					this.pause();
-				}
-			}, this),
-			'touchend.owl.core': $.proxy(function() {
-				if (this._core.settings.autoplayHoverPause) {
-					this.play();
-				}
-			}, this)
-		};
-
-		// register event handlers
-		this._core.$element.on(this._handlers);
-
-		// set default options
-		this._core.options = $.extend({}, Autoplay.Defaults, this._core.options);
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	Autoplay.Defaults = {
-		autoplay: false,
-		autoplayTimeout: 5000,
-		autoplayHoverPause: false,
-		autoplaySpeed: false
-	};
-
-	/**
-	 * Transition to the next slide and set a timeout for the next transition.
-	 * @private
-	 * @param {Number} [speed] - The animation speed for the animations.
-	 */
-	Autoplay.prototype._next = function(speed) {
-		this._call = window.setTimeout(
-			$.proxy(this._next, this, speed),
-			this._timeout * (Math.round(this.read() / this._timeout) + 1) - this.read()
-		);
-
-		if (this._core.is('interacting') || document.hidden) {
-			return;
-		}
-		this._core.next(speed || this._core.settings.autoplaySpeed);
-	}
-
-	/**
-	 * Reads the current timer value when the timer is playing.
-	 * @public
-	 */
-	Autoplay.prototype.read = function() {
-		return new Date().getTime() - this._time;
-	};
-
-	/**
-	 * Starts the autoplay.
-	 * @public
-	 * @param {Number} [timeout] - The interval before the next animation starts.
-	 * @param {Number} [speed] - The animation speed for the animations.
-	 */
-	Autoplay.prototype.play = function(timeout, speed) {
-		var elapsed;
-
-		if (!this._core.is('rotating')) {
-			this._core.enter('rotating');
-		}
-
-		timeout = timeout || this._core.settings.autoplayTimeout;
-
-		// Calculate the elapsed time since the last transition. If the carousel
-		// wasn't playing this calculation will yield zero.
-		elapsed = Math.min(this._time % (this._timeout || timeout), timeout);
-
-		if (this._paused) {
-			// Start the clock.
-			this._time = this.read();
-			this._paused = false;
-		} else {
-			// Clear the active timeout to allow replacement.
-			window.clearTimeout(this._call);
-		}
-
-		// Adjust the origin of the timer to match the new timeout value.
-		this._time += this.read() % timeout - elapsed;
-
-		this._timeout = timeout;
-		this._call = window.setTimeout($.proxy(this._next, this, speed), timeout - elapsed);
-	};
-
-	/**
-	 * Stops the autoplay.
-	 * @public
-	 */
-	Autoplay.prototype.stop = function() {
-		if (this._core.is('rotating')) {
-			// Reset the clock.
-			this._time = 0;
-			this._paused = true;
-
-			window.clearTimeout(this._call);
-			this._core.leave('rotating');
-		}
-	};
-
-	/**
-	 * Pauses the autoplay.
-	 * @public
-	 */
-	Autoplay.prototype.pause = function() {
-		if (this._core.is('rotating') && !this._paused) {
-			// Pause the clock.
-			this._time = this.read();
-			this._paused = true;
-
-			window.clearTimeout(this._call);
-		}
-	};
-
-	/**
-	 * Destroys the plugin.
-	 */
-	Autoplay.prototype.destroy = function() {
-		var handler, property;
-
-		this.stop();
-
-		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Navigation Plugin
- * @version 2.3.4
- * @author Artus Kolanowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-	'use strict';
-
-	/**
-	 * Creates the navigation plugin.
-	 * @class The Navigation Plugin
-	 * @param {Owl} carousel - The Owl Carousel.
-	 */
-	var Navigation = function(carousel) {
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		/**
-		 * Indicates whether the plugin is initialized or not.
-		 * @protected
-		 * @type {Boolean}
-		 */
-		this._initialized = false;
-
-		/**
-		 * The current paging indexes.
-		 * @protected
-		 * @type {Array}
-		 */
-		this._pages = [];
-
-		/**
-		 * All DOM elements of the user interface.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._controls = {};
-
-		/**
-		 * Markup for an indicator.
-		 * @protected
-		 * @type {Array.<String>}
-		 */
-		this._templates = [];
-
-		/**
-		 * The carousel element.
-		 * @type {jQuery}
-		 */
-		this.$element = this._core.$element;
-
-		/**
-		 * Overridden methods of the carousel.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._overrides = {
-			next: this._core.next,
-			prev: this._core.prev,
-			to: this._core.to
-		};
-
-		/**
-		 * All event handlers.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'prepared.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.dotsData) {
-					this._templates.push('<div class="' + this._core.settings.dotClass + '">' +
-						$(e.content).find('[data-dot]').addBack('[data-dot]').attr('data-dot') + '</div>');
-				}
-			}, this),
-			'added.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.dotsData) {
-					this._templates.splice(e.position, 0, this._templates.pop());
-				}
-			}, this),
-			'remove.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.dotsData) {
-					this._templates.splice(e.position, 1);
-				}
-			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && e.property.name == 'position') {
-					this.draw();
-				}
-			}, this),
-			'initialized.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && !this._initialized) {
-					this._core.trigger('initialize', null, 'navigation');
-					this.initialize();
-					this.update();
-					this.draw();
-					this._initialized = true;
-					this._core.trigger('initialized', null, 'navigation');
-				}
-			}, this),
-			'refreshed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._initialized) {
-					this._core.trigger('refresh', null, 'navigation');
-					this.update();
-					this.draw();
-					this._core.trigger('refreshed', null, 'navigation');
-				}
-			}, this)
-		};
-
-		// set default options
-		this._core.options = $.extend({}, Navigation.Defaults, this._core.options);
-
-		// register event handlers
-		this.$element.on(this._handlers);
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 * @todo Rename `slideBy` to `navBy`
-	 */
-	Navigation.Defaults = {
-		nav: false,
-		navText: [
-			'<span aria-label="' + 'Previous' + '">&#x2039;</span>',
-			'<span aria-label="' + 'Next' + '">&#x203a;</span>'
-		],
-		navSpeed: false,
-		navElement: 'button type="button" role="presentation"',
-		navContainer: false,
-		navContainerClass: 'owl-nav',
-		navClass: [
-			'owl-prev',
-			'owl-next'
-		],
-		slideBy: 1,
-		dotClass: 'owl-dot',
-		dotsClass: 'owl-dots',
-		dots: true,
-		dotsEach: false,
-		dotsData: false,
-		dotsSpeed: false,
-		dotsContainer: false
-	};
-
-	/**
-	 * Initializes the layout of the plugin and extends the carousel.
-	 * @protected
-	 */
-	Navigation.prototype.initialize = function() {
-		var override,
-			settings = this._core.settings;
-
-		// create DOM structure for relative navigation
-		this._controls.$relative = (settings.navContainer ? $(settings.navContainer)
-			: $('<div>').addClass(settings.navContainerClass).appendTo(this.$element)).addClass('disabled');
-
-		this._controls.$previous = $('<' + settings.navElement + '>')
-			.addClass(settings.navClass[0])
-			.html(settings.navText[0])
-			.prependTo(this._controls.$relative)
-			.on('click', $.proxy(function(e) {
-				this.prev(settings.navSpeed);
-			}, this));
-		this._controls.$next = $('<' + settings.navElement + '>')
-			.addClass(settings.navClass[1])
-			.html(settings.navText[1])
-			.appendTo(this._controls.$relative)
-			.on('click', $.proxy(function(e) {
-				this.next(settings.navSpeed);
-			}, this));
-
-		// create DOM structure for absolute navigation
-		if (!settings.dotsData) {
-			this._templates = [ $('<button role="button">')
-				.addClass(settings.dotClass)
-				.append($('<span>'))
-				.prop('outerHTML') ];
-		}
-
-		this._controls.$absolute = (settings.dotsContainer ? $(settings.dotsContainer)
-			: $('<div>').addClass(settings.dotsClass).appendTo(this.$element)).addClass('disabled');
-
-		this._controls.$absolute.on('click', 'button', $.proxy(function(e) {
-			var index = $(e.target).parent().is(this._controls.$absolute)
-				? $(e.target).index() : $(e.target).parent().index();
-
-			e.preventDefault();
-
-			this.to(index, settings.dotsSpeed);
-		}, this));
-
-		/*$el.on('focusin', function() {
-			$(document).off(".carousel");
-
-			$(document).on('keydown.carousel', function(e) {
-				if(e.keyCode == 37) {
-					$el.trigger('prev.owl')
-				}
-				if(e.keyCode == 39) {
-					$el.trigger('next.owl')
-				}
-			});
-		});*/
-
-		// override public methods of the carousel
-		for (override in this._overrides) {
-			this._core[override] = $.proxy(this[override], this);
-		}
-	};
-
-	/**
-	 * Destroys the plugin.
-	 * @protected
-	 */
-	Navigation.prototype.destroy = function() {
-		var handler, control, property, override, settings;
-		settings = this._core.settings;
-
-		for (handler in this._handlers) {
-			this.$element.off(handler, this._handlers[handler]);
-		}
-		for (control in this._controls) {
-			if (control === '$relative' && settings.navContainer) {
-				this._controls[control].html('');
-			} else {
-				this._controls[control].remove();
-			}
-		}
-		for (override in this.overides) {
-			this._core[override] = this._overrides[override];
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	/**
-	 * Updates the internal state.
-	 * @protected
-	 */
-	Navigation.prototype.update = function() {
-		var i, j, k,
-			lower = this._core.clones().length / 2,
-			upper = lower + this._core.items().length,
-			maximum = this._core.maximum(true),
-			settings = this._core.settings,
-			size = settings.center || settings.autoWidth || settings.dotsData
-				? 1 : settings.dotsEach || settings.items;
-
-		if (settings.slideBy !== 'page') {
-			settings.slideBy = Math.min(settings.slideBy, settings.items);
-		}
-
-		if (settings.dots || settings.slideBy == 'page') {
-			this._pages = [];
-
-			for (i = lower, j = 0, k = 0; i < upper; i++) {
-				if (j >= size || j === 0) {
-					this._pages.push({
-						start: Math.min(maximum, i - lower),
-						end: i - lower + size - 1
-					});
-					if (Math.min(maximum, i - lower) === maximum) {
-						break;
-					}
-					j = 0, ++k;
-				}
-				j += this._core.mergers(this._core.relative(i));
-			}
-		}
-	};
-
-	/**
-	 * Draws the user interface.
-	 * @todo The option `dotsData` wont work.
-	 * @protected
-	 */
-	Navigation.prototype.draw = function() {
-		var difference,
-			settings = this._core.settings,
-			disabled = this._core.items().length <= settings.items,
-			index = this._core.relative(this._core.current()),
-			loop = settings.loop || settings.rewind;
-
-		this._controls.$relative.toggleClass('disabled', !settings.nav || disabled);
-
-		if (settings.nav) {
-			this._controls.$previous.toggleClass('disabled', !loop && index <= this._core.minimum(true));
-			this._controls.$next.toggleClass('disabled', !loop && index >= this._core.maximum(true));
-		}
-
-		this._controls.$absolute.toggleClass('disabled', !settings.dots || disabled);
-
-		if (settings.dots) {
-			difference = this._pages.length - this._controls.$absolute.children().length;
-
-			if (settings.dotsData && difference !== 0) {
-				this._controls.$absolute.html(this._templates.join(''));
-			} else if (difference > 0) {
-				this._controls.$absolute.append(new Array(difference + 1).join(this._templates[0]));
-			} else if (difference < 0) {
-				this._controls.$absolute.children().slice(difference).remove();
-			}
-
-			this._controls.$absolute.find('.active').removeClass('active');
-			this._controls.$absolute.children().eq($.inArray(this.current(), this._pages)).addClass('active');
-		}
-	};
-
-	/**
-	 * Extends event data.
-	 * @protected
-	 * @param {Event} event - The event object which gets thrown.
-	 */
-	Navigation.prototype.onTrigger = function(event) {
-		var settings = this._core.settings;
-
-		event.page = {
-			index: $.inArray(this.current(), this._pages),
-			count: this._pages.length,
-			size: settings && (settings.center || settings.autoWidth || settings.dotsData
-				? 1 : settings.dotsEach || settings.items)
-		};
-	};
-
-	/**
-	 * Gets the current page position of the carousel.
-	 * @protected
-	 * @returns {Number}
-	 */
-	Navigation.prototype.current = function() {
-		var current = this._core.relative(this._core.current());
-		return $.grep(this._pages, $.proxy(function(page, index) {
-			return page.start <= current && page.end >= current;
-		}, this)).pop();
-	};
-
-	/**
-	 * Gets the current succesor/predecessor position.
-	 * @protected
-	 * @returns {Number}
-	 */
-	Navigation.prototype.getPosition = function(successor) {
-		var position, length,
-			settings = this._core.settings;
-
-		if (settings.slideBy == 'page') {
-			position = $.inArray(this.current(), this._pages);
-			length = this._pages.length;
-			successor ? ++position : --position;
-			position = this._pages[((position % length) + length) % length].start;
-		} else {
-			position = this._core.relative(this._core.current());
-			length = this._core.items().length;
-			successor ? position += settings.slideBy : position -= settings.slideBy;
-		}
-
-		return position;
-	};
-
-	/**
-	 * Slides to the next item or page.
-	 * @public
-	 * @param {Number} [speed=false] - The time in milliseconds for the transition.
-	 */
-	Navigation.prototype.next = function(speed) {
-		$.proxy(this._overrides.to, this._core)(this.getPosition(true), speed);
-	};
-
-	/**
-	 * Slides to the previous item or page.
-	 * @public
-	 * @param {Number} [speed=false] - The time in milliseconds for the transition.
-	 */
-	Navigation.prototype.prev = function(speed) {
-		$.proxy(this._overrides.to, this._core)(this.getPosition(false), speed);
-	};
-
-	/**
-	 * Slides to the specified item or page.
-	 * @public
-	 * @param {Number} position - The position of the item or page.
-	 * @param {Number} [speed] - The time in milliseconds for the transition.
-	 * @param {Boolean} [standard=false] - Whether to use the standard behaviour or not.
-	 */
-	Navigation.prototype.to = function(position, speed, standard) {
-		var length;
-
-		if (!standard && this._pages.length) {
-			length = this._pages.length;
-			$.proxy(this._overrides.to, this._core)(this._pages[((position % length) + length) % length].start, speed);
-		} else {
-			$.proxy(this._overrides.to, this._core)(position, speed);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Hash Plugin
- * @version 2.3.4
- * @author Artus Kolanowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-	'use strict';
-
-	/**
-	 * Creates the hash plugin.
-	 * @class The Hash Plugin
-	 * @param {Owl} carousel - The Owl Carousel
-	 */
-	var Hash = function(carousel) {
-		/**
-		 * Reference to the core.
-		 * @protected
-		 * @type {Owl}
-		 */
-		this._core = carousel;
-
-		/**
-		 * Hash index for the items.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._hashes = {};
-
-		/**
-		 * The carousel element.
-		 * @type {jQuery}
-		 */
-		this.$element = this._core.$element;
-
-		/**
-		 * All event handlers.
-		 * @protected
-		 * @type {Object}
-		 */
-		this._handlers = {
-			'initialized.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && this._core.settings.startPosition === 'URLHash') {
-					$(window).trigger('hashchange.owl.navigation');
-				}
-			}, this),
-			'prepared.owl.carousel': $.proxy(function(e) {
-				if (e.namespace) {
-					var hash = $(e.content).find('[data-hash]').addBack('[data-hash]').attr('data-hash');
-
-					if (!hash) {
-						return;
-					}
-
-					this._hashes[hash] = e.content;
-				}
-			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
-				if (e.namespace && e.property.name === 'position') {
-					var current = this._core.items(this._core.relative(this._core.current())),
-						hash = $.map(this._hashes, function(item, hash) {
-							return item === current ? hash : null;
-						}).join();
-
-					if (!hash || window.location.hash.slice(1) === hash) {
-						return;
-					}
-
-					window.location.hash = hash;
-				}
-			}, this)
-		};
-
-		// set default options
-		this._core.options = $.extend({}, Hash.Defaults, this._core.options);
-
-		// register the event handlers
-		this.$element.on(this._handlers);
-
-		// register event listener for hash navigation
-		$(window).on('hashchange.owl.navigation', $.proxy(function(e) {
-			var hash = window.location.hash.substring(1),
-				items = this._core.$stage.children(),
-				position = this._hashes[hash] && items.index(this._hashes[hash]);
-
-			if (position === undefined || position === this._core.current()) {
-				return;
-			}
-
-			this._core.to(this._core.relative(position), false, true);
-		}, this));
-	};
-
-	/**
-	 * Default options.
-	 * @public
-	 */
-	Hash.Defaults = {
-		URLhashListener: false
-	};
-
-	/**
-	 * Destroys the plugin.
-	 * @public
-	 */
-	Hash.prototype.destroy = function() {
-		var handler, property;
-
-		$(window).off('hashchange.owl.navigation');
-
-		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
-		}
-		for (property in Object.getOwnPropertyNames(this)) {
-			typeof this[property] != 'function' && (this[property] = null);
-		}
-	};
-
-	$.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
-
-})(window.Zepto || window.jQuery, window, document);
-
-/**
- * Support Plugin
- *
- * @version 2.3.4
- * @author Vivid Planet Software GmbH
- * @author Artus Kolanowski
- * @author David Deutsch
- * @license The MIT License (MIT)
- */
-;(function($, window, document, undefined) {
-
-	var style = $('<support>').get(0).style,
-		prefixes = 'Webkit Moz O ms'.split(' '),
-		events = {
-			transition: {
-				end: {
-					WebkitTransition: 'webkitTransitionEnd',
-					MozTransition: 'transitionend',
-					OTransition: 'oTransitionEnd',
-					transition: 'transitionend'
-				}
-			},
-			animation: {
-				end: {
-					WebkitAnimation: 'webkitAnimationEnd',
-					MozAnimation: 'animationend',
-					OAnimation: 'oAnimationEnd',
-					animation: 'animationend'
-				}
-			}
-		},
-		tests = {
-			csstransforms: function() {
-				return !!test('transform');
-			},
-			csstransforms3d: function() {
-				return !!test('perspective');
-			},
-			csstransitions: function() {
-				return !!test('transition');
-			},
-			cssanimations: function() {
-				return !!test('animation');
-			}
-		};
-
-	function test(property, prefixed) {
-		var result = false,
-			upper = property.charAt(0).toUpperCase() + property.slice(1);
-
-		$.each((property + ' ' + prefixes.join(upper + ' ') + upper).split(' '), function(i, property) {
-			if (style[property] !== undefined) {
-				result = prefixed ? property : true;
-				return false;
-			}
-		});
-
-		return result;
-	}
-
-	function prefixed(property) {
-		return test(property, true);
-	}
-
-	if (tests.csstransitions()) {
-		/* jshint -W053 */
-		$.support.transition = new String(prefixed('transition'))
-		$.support.transition.end = events.transition.end[ $.support.transition ];
-	}
-
-	if (tests.cssanimations()) {
-		/* jshint -W053 */
-		$.support.animation = new String(prefixed('animation'))
-		$.support.animation.end = events.animation.end[ $.support.animation ];
-	}
-
-	if (tests.csstransforms()) {
-		/* jshint -W053 */
-		$.support.transform = new String(prefixed('transform'));
-		$.support.transform3d = tests.csstransforms3d();
-	}
-
-})(window.Zepto || window.jQuery, window, document);
-
-
-/***/ }),
-
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64373,7 +62452,7 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _c("p", [
                         _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                          "Great services, had an amazing experience working with PSM."
                         )
                       ])
                     ])
@@ -64536,6 +62615,480 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0919b896", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0cb6c52a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/job-post/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "wrapper-sm" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "post-job-form" }, [
+      _c(
+        "form",
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "service-need" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group custom-datepicker" },
+                  [
+                    _c("label", [_vm._v("Select Date")]),
+                    _vm._v(" "),
+                    _c("date-picker", {
+                      attrs: { format: "DD-MM-YYYY", lang: "en" },
+                      model: {
+                        value: _vm.value,
+                        callback: function($$v) {
+                          _vm.value = $$v
+                        },
+                        expression: "value"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
+          _c("div", { staticClass: "verify-account" }, [
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group custom-datepicker" },
+                      [
+                        _c("date-picker", {
+                          attrs: {
+                            type: "month",
+                            placeholder: "Select Month",
+                            format: "MM",
+                            lang: "en"
+                          },
+                          model: {
+                            value: _vm.value_month,
+                            callback: function($$v) {
+                              _vm.value_month = $$v
+                            },
+                            expression: "value_month"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group custom-datepicker" },
+                      [
+                        _c("date-picker", {
+                          attrs: {
+                            type: "year",
+                            placeholder: "Select Year",
+                            format: "YYYY",
+                            lang: "en"
+                          },
+                          model: {
+                            value: _vm.value_year,
+                            callback: function($$v) {
+                              _vm.value_year = $$v
+                            },
+                            expression: "value_year"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(9),
+            _vm._v(" "),
+            _c("div", { staticClass: "job-form-submission" }, [
+              _c("div", { staticClass: " " }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary" },
+                  [_vm._v("Create Job\n\t\t\t\t\t\t\t"), _c("loader")],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Please make sure all the information you entered is accurate before submitting."
+                )
+              ])
+            ])
+          ])
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile-head" }, [
+      _c("h1", [_vm._v("Post a Job")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Please fill out the form below to create a new job.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "job-details" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Select Service")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "Carpanter - General Carpentry",
+                placeholder: "Carpanter - General Carpentry"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Job Title")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter job title" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "textarea",
+              { staticClass: "form-control", attrs: { rows: "4" } },
+              [_vm._v("Start typing job details")]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "attach-job-files" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group custom-file" }, [
+            _c("label", [_vm._v("Browse")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control custom-file-input",
+              attrs: { type: "file" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "custom-file-label" }, [
+              _vm._v("Click here to choose a photo file")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "a",
+            {
+              staticClass: "add-photos filter-btn-top-space",
+              attrs: { href: "javascript:;" }
+            },
+            [_vm._v("+ Add more photos")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row " }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("label", [_vm._v("Do you need this service urgently?")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "boxed" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              id: "normal",
+              name: "need",
+              value: "Normal job"
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "normal" } }, [_vm._v("No, Normal job")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              id: "urgent",
+              name: "need",
+              value: "Urgent job"
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "urgent" } }, [_vm._v("Yes, Urgent job")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("p", [
+          _vm._v(
+            "In case of urgent job, we will send push notifications to all the service providers around you. You need to pay "
+          ),
+          _c("strong", [_vm._v("$2")]),
+          _vm._v(" fee for urgent job.")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Preference")]),
+        _vm._v(" "),
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("Choose Date")
+          ]),
+          _vm._v(" "),
+          _c("option", [_vm._v("May 20, 2017")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("May 22, 2017")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "service-location" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "4695 Chabot Dr. Suite 200,",
+                placeholder: "4695 Chabot Dr. Suite 200,"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Apartment, suite, unit")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Enter apartment, suite, unit (optional)"
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("City")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "Pleasanton",
+                placeholder: "Pleasanton"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("State")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "CA" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Zip Code")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", value: "94588" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "verification-alert" }, [
+          _c("p", [
+            _vm._v(
+              "To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.\n\t\t\t\t\t\t\t\t"
+            ),
+            _c("span", [_vm._v("We won't charge your card")]),
+            _vm._v(".")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+          _vm._v(" "),
+          _c("select", { staticClass: "form-control" }, [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
+              _vm._v("Select credit card type")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("VISA")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "", placeholder: "Enter card holder name", name: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            placeholder: "Enter your credit card number",
+            value: "Enter your credit card number"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Security Code (CVV)")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { placeholder: "Enter your cvv number", type: "", name: "" }
+          })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0cb6c52a", module.exports)
   }
 }
 
@@ -64999,6 +63552,593 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-216253f4", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2332c7d0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile/ApplyForReview.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "section padding-sm profile-form wrapper-sm" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "profile-form-section" }, [
+        _c("div", { staticClass: "form-signup" }, [
+          _c("form", [
+            _c(
+              "div",
+              { staticClass: "personal-provider-detail" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("alert"),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3)
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _c("div", { staticClass: "account-fee" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _vm._m(10),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group custom-datepicker" },
+                        [
+                          _c("date-picker", {
+                            attrs: {
+                              type: "month",
+                              placeholder: "Select Month",
+                              format: "MM",
+                              lang: "en"
+                            },
+                            model: {
+                              value: _vm.value_month,
+                              callback: function($$v) {
+                                _vm.value_month = $$v
+                              },
+                              expression: "value_month"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group custom-datepicker" },
+                        [
+                          _c("date-picker", {
+                            attrs: {
+                              type: "year",
+                              placeholder: "Select Year",
+                              format: "YYYY",
+                              lang: "en"
+                            },
+                            model: {
+                              value: _vm.value_year,
+                              callback: function($$v) {
+                                _vm.value_year = $$v
+                              },
+                              expression: "value_year"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(11)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "submit-approval-btn" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-primary" },
+                [_vm._v("Submit for Apporoval\n\t\t\t\t\t\t"), _c("loader")],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(12)
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile-head" }, [
+      _c("h1", [_vm._v("Complete your profile & apply for Review")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "browse-btn" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "file-upload-label" }, [
+            _vm._v("Browse Logo or Photo")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control file-upload-input",
+            attrs: { type: "file" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Arsalan",
+              placeholder: "Enter your first name"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Akhtar",
+              placeholder: "Enter your last name"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "arsalan@cygnismedia.com",
+              placeholder: "Enter your first email address"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              placeholder: "Enter your mobile or landline number"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "business-detail" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [
+              _vm._v("Are you an individual or a business?")
+            ]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { disabled: "" } }, [
+                _vm._v("Select Business")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { selected: "" } }, [_vm._v("Business")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("DUNS Number")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "DUNS number for verification (optional)"
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Business Name")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Enter business name" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Working since")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "e.g. June 2010" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("About")]),
+            _vm._v(" "),
+            _c("textarea", {
+              staticClass: "form-control",
+              attrs: {
+                rows: "2",
+                placeholder: "Start typing about your business / profile info"
+              }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "service-offered" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Service")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Start typing service name" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "a",
+            {
+              staticClass: "add-photos mt-35",
+              attrs: { href: "javascript:;" }
+            },
+            [_vm._v("+ Add more services")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "business-proof" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("p", [
+            _vm._v(
+              "We can confirm your association to the business or organization with any of these documents:\n\t\t\t\t\t\t"
+            ),
+            _c("ul", [
+              _c("li", [
+                _vm._v("Certificate of Formation (for a partnership)")
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._v("Articles of Incorporation (for a corporation)")
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._v(
+                  "Local Business License (issued by your city, county, state, etc.)"
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [_vm._v("More documents to be decided.")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group custom-file" }, [
+            _c("label", [_vm._v("Browse")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control custom-file-input",
+              attrs: { type: "file" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "custom-file-label" }, [
+              _vm._v("Click here to choose a photo file")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "a",
+            {
+              staticClass: "add-photos filter-btn-top-space",
+              attrs: { href: "javascript:;" }
+            },
+            [_vm._v("+ Add more photos")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "provider-address" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "4695 Chabot Dr. Suite 200,",
+                placeholder: "4695 Chabot Dr. Suite 200,"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Apartment, suite, unit")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Enter apartment, suite, unit (optional)"
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("City")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                value: "Pleasanton",
+                placeholder: "Pleasanton"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("State")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { selected: "" } }, [_vm._v("CA")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("NW")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("TX")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Zip Code")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", value: "94588" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "verification-alert" }, [
+          _c("p", [
+            _vm._v(
+              "Enter your credit card details to pay service provider account creation fee of "
+            ),
+            _c("span", [_vm._v("$50")]),
+            _vm._v(".")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+          _vm._v(" "),
+          _c("select", { staticClass: "form-control" }, [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
+              _vm._v("Select credit card type")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("VISA")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "", placeholder: "Enter card holder name", name: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            placeholder: "Enter your credit card number",
+            value: "Enter your credit card number"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Security Code (CVV)")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { placeholder: "Enter your cvv number", type: "", name: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-detail" }, [
+      _c("p", [
+        _vm._v(
+          "Please make sure all the information you entered is accurate before submitting."
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2332c7d0", module.exports)
   }
 }
 
@@ -65894,7 +65034,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Electrician")])
+                    _c("p", [_vm._v("Carpenters")])
                   ])
                 ],
                 1
@@ -66041,7 +65181,7 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _c("p", [
                         _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                          "Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs."
                         )
                       ])
                     ])
@@ -66471,6 +65611,215 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4f35f14c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-area" },
+    [
+      _c(
+        "div",
+        { staticClass: "main-banner elementary-banner explore-banner" },
+        [
+          _c("div", { staticClass: "main-img" }, [
+            _c("img", { attrs: { src: _vm.bannerimage } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "content" }, [
+            _c("div", { staticClass: "verticle-align" }, [
+              _c("div", { staticClass: "inner" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "element-column-image" }, [
+                  _c("img", { attrs: { src: _vm.contentimage } })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "splash-design md d-1 top-left" }),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "splash-design d-4 bottom-right lg"
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "splash-design d-6 bottom-left sm" })
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "featured-categories section" }, [
+        _c(
+          "div",
+          { staticClass: "container" },
+          _vm._l(_vm.category, function(maincategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(maincategory.title))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "category-items" },
+                [
+                  _vm._l(maincategory.categoryitems, function(categoryabc) {
+                    return _c("div", { staticClass: "items" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:void(0);" },
+                          on: { click: _vm.changecategorypopup }
+                        },
+                        [
+                          _c("div", {
+                            staticClass: "item-image",
+                            style: {
+                              "background-image":
+                                "url(" + categoryabc.itemimage + ")"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                        ]
+                      )
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ],
+                2
+              )
+            ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "other-categories section-grey section elementary-banner"
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "container element-index" },
+            _vm._l(_vm.othercategory, function(othercategory) {
+              return _c("div", { staticClass: "category-section" }, [
+                _c("div", { staticClass: "category-title" }, [
+                  _c("h2", [_vm._v(_vm._s(othercategory.title))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "category-items" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "item-list-container" },
+                    _vm._l(othercategory.categoryitems, function(
+                      categorypresent
+                    ) {
+                      return _c("li", { staticClass: "items-list" }, [
+                        _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                          _c("p", [_vm._v(_vm._s(categorypresent.name))])
+                        ])
+                      ])
+                    })
+                  )
+                ])
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _vm._m(2)
+        ]
+      ),
+      _vm._v(" "),
+      _c("category-popup", {
+        attrs: { showModalProp: _vm.categoryval },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container element-index" }, [
+      _c("div", { staticClass: "content-inner md" }, [
+        _c("h1", { staticClass: "heading-large" }, [
+          _vm._v("Find best skilled service professionals near you.")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "search-filter" }, [
+          _c("input", {
+            staticClass: "form-control lg search-service",
+            attrs: {
+              type: "text",
+              placeholder: "What service do you need?",
+              name: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "container-zip-code" }, [
+            _c("i", { staticClass: "icon-location" }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control lg zip-code",
+              attrs: { type: "number", placeholder: "Zip code", name: "" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _c("span", [_vm._v("Search")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4f35f14c", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4f36030e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/job/popup/ViewBuiddingDetails.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -66604,7 +65953,7 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _c("p", [
                         _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                          "Essentially you pay an hourly rate, but only up to a certain point with the obligation to finish the project remaining even after reaching the cap."
                         )
                       ])
                     ])
@@ -66875,6 +66224,371 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5062611c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "category-detail" }, [
+    _c(
+      "div",
+      { staticClass: "next-project grey-bg elementary-banner section-padd md" },
+      [
+        _c("div", { staticClass: "container element-index text-center md" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("div", {
+              staticClass: "category-image",
+              style: { "background-image": "url(" + _vm.categoryimage + ")" }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "job-post-container section-padd sm" }, [
+      _c(
+        "div",
+        { staticClass: "container md" },
+        [
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._l(_vm.joblisting, function(listing) {
+            return _c("div", { staticClass: "job-post-list" }, [
+              _c("div", { staticClass: "job-post-details" }, [
+                _c("div", {
+                  staticClass: "job-image pointer",
+                  style: {
+                    "background-image": "url(" + listing.job_title_image + ")"
+                  },
+                  on: { click: _vm.servicedetail }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "job-common-description" }, [
+                  _c(
+                    "h3",
+                    {
+                      staticClass: "pointer",
+                      on: { click: _vm.servicedetail }
+                    },
+                    [_vm._v(_vm._s(listing.job_title))]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(4, true),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "jobs-rating" },
+                    [
+                      _c("star-rating", {
+                        attrs: {
+                          "star-size": 20,
+                          "read-only": "",
+                          rating: 4,
+                          "active-color": "#8200ff"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "jobs-done" }, [
+                        _c("span", { staticClass: "review-job" }, [
+                          _vm._v(
+                            _vm._s(listing.job_feedback) + " Feedback reviews"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        listing.job_perform == 0
+                          ? _c("span", { staticClass: "review-job" }, [
+                              _vm._v("No Jobs performed")
+                            ])
+                          : _c("span", { staticClass: "review-job" }, [
+                              _vm._v(
+                                _vm._s(listing.job_perform) + " Jobs performed"
+                              )
+                            ])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary post-bid",
+                      attrs: { href: "javascript:void(0);" }
+                    },
+                    [_vm._v("Post Job & Invite to Bid")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "member-details" }, [
+                  _c("p", { staticClass: "location" }, [
+                    _c("i", { staticClass: "icon-location" }),
+                    _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
+                    _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "member-since" }, [
+                    _c("i", { staticClass: "icon-calendar-daily" }),
+                    _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
+                    _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "post-job-description" }, [
+                  _c("p", [_vm._v(_vm._s(listing.job_description))])
+                ]),
+                _vm._v(" "),
+                listing.review_details == true
+                  ? _c("div", { staticClass: "chat-feedback" }, [
+                      _vm._m(5, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "chat-feedback-column" }, [
+                        _c("div", {
+                          staticClass: "chat-feedback-image",
+                          style: {
+                            "background-image":
+                              "url(" + listing.latest_review_image + ")"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "chat-feedback-message" }, [
+                          _c("p", [
+                            _vm._v(_vm._s(listing.latest_review_description))
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "feeback-detail" }, [
+                            _c("p", { staticClass: "feedback-personal-info" }, [
+                              _c(
+                                "a",
+                                { attrs: { href: "javascript:void(0);" } },
+                                [_vm._v(_vm._s(listing.latest_reviewer_name))]
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
+                              ),
+                              _c("strong", [
+                                _vm._v(_vm._s(listing.latest_review_post_date))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "icon-quotes-right3" })
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "featured-categories section-padd sm  elementary-banner p-t-130"
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "container element-index" },
+          _vm._l(_vm.category, function(maincategory) {
+            return _c("div", { staticClass: "category-section" }, [
+              _c("div", { staticClass: "category-title" }, [
+                _c("h2", [_vm._v(_vm._s(maincategory.title))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "category-items" },
+                [
+                  _vm._l(maincategory.categoryitems, function(categoryabc) {
+                    return _c("div", { staticClass: "items" }, [
+                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                        _c("div", {
+                          staticClass: "item-image",
+                          style: {
+                            "background-image":
+                              "url(" + categoryabc.itemimage + ")"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm._m(6, true)
+                ],
+                2
+              )
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _vm._m(7)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "category-content" }, [
+      _c("h2", [_vm._v("General carpentry")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("strong", [_vm._v("Are you looking to find a carpenter for hire?")]),
+        _vm._v(
+          " Then, we can help. When you post a job you will receive custom bids from local carpenters!"
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-5.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right",
+        attrs: { src: "/images/front/banner-bg/bg-2.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "grey-bg section-padd xs border-top-bottom" },
+      [
+        _c("div", { staticClass: "container md" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-10 p-r-0" }, [
+              _c("div", { staticClass: "search-filter m-b-0" }, [
+                _c("input", {
+                  staticClass: "form-control lg search-service",
+                  attrs: {
+                    type: "text",
+                    placeholder: "What service do you need?",
+                    name: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "container-zip-code" }, [
+                  _c("i", { staticClass: "icon-location" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control lg zip-code",
+                    attrs: { type: "number", placeholder: "Zip code", name: "" }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2 p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary width-100",
+                  attrs: { href: "javscript:void(0);" }
+                },
+                [_vm._v("Search")]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-notifer" }, [
+      _c("p", [
+        _vm._v("14 General carpentry service professionals found near you")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-notifer" }, [
+      _c("p", [_vm._v("Latest feedback & review")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "showmore" }, [
+      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+        _vm._v("View all services related to electricians "),
+        _c("i", { staticClass: "icon-keyboard_arrow_right" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-3-top.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right width-max",
+        attrs: { src: "/images/front/banner-bg/bg-8.png" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5062611c", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-50a6e7d6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/service-provider-review/popup/ChangeStatus.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -66937,6 +66651,60 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-50a6e7d6", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-50b0b1d4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/404/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "not-found-container" },
+    [
+      _c("not-found-panel"),
+      _vm._v(" "),
+      _c("data-approval", {
+        attrs: { showModalProp: _vm.showModalValue },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("discussion", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isShowing,
+            expression: "isShowing"
+          }
+        ],
+        on: {
+          CloseDiscussion: function($event) {
+            _vm.isShowing = false
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("warning", {
+        attrs: { showModalProp: _vm.showWarningValue },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-50b0b1d4", module.exports)
   }
 }
 
@@ -67603,116 +67371,138 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-area" }, [
-    _c("div", { staticClass: "main-banner" }, [
-      _c("div", { staticClass: "main-img" }, [
-        _c("img", { attrs: { src: _vm.bannerimage } })
-      ]),
+  return _c(
+    "div",
+    { staticClass: "content-area" },
+    [
+      _c(
+        "div",
+        { staticClass: "main-banner elementary-banner explore-banner" },
+        [
+          _c("div", { staticClass: "main-img" }, [
+            _c("img", { attrs: { src: _vm.bannerimage } })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
       _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("div", { staticClass: "how-it-work elementary-banner section-padd" }, [
-      _c("div", { staticClass: "container element-index" }, [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "how-it-work-list" },
-          [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "section section-grey how-it-work elementary-banner" },
+        [
+          _c("div", { staticClass: "container element-index" }, [
+            _vm._m(2),
+            _vm._v(" "),
             _c(
-              "b-row",
+              "div",
+              { staticClass: "how-it-work-list" },
               [
                 _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
+                  "b-row",
                   [
-                    _c("div", { staticClass: "list-image" }, [
-                      _c("div", { staticClass: "list-icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/find.svg" }
-                        })
-                      ])
-                    ]),
+                    _c(
+                      "b-col",
+                      { staticClass: "text-center", attrs: { sm: "4" } },
+                      [
+                        _c("div", { staticClass: "list-image" }, [
+                          _c("div", { staticClass: "list-icon" }, [
+                            _c("img", {
+                              attrs: { src: "/images/front/svg/find.svg" }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Pick Leads")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Pick those which are of interest to you. Signal your interest through the site."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Pick Leads")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Pick those which are of interest to you. Signal your interest through the site."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
-                  [
-                    _c("div", { staticClass: "list-image" }, [
-                      _c("div", { staticClass: "list-icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/list.svg" }
-                        })
-                      ])
-                    ]),
+                    _c(
+                      "b-col",
+                      { staticClass: "text-center", attrs: { sm: "4" } },
+                      [
+                        _c("div", { staticClass: "list-image" }, [
+                          _c("div", { staticClass: "list-icon" }, [
+                            _c("img", {
+                              attrs: { src: "/images/front/svg/list.svg" }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Get Shortlisted")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Customers review your profiles online & shortlist you to bid on the job."
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Get Shortlisted")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Customers review your profiles online & shortlist you to bid on the job."
-                        )
-                      ])
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-col",
-                  { staticClass: "text-center", attrs: { sm: "4" } },
-                  [
-                    _c("div", { staticClass: "list-image" }, [
-                      _c("div", { staticClass: "list-icon" }, [
-                        _c("img", {
-                          attrs: { src: "/images/front/svg/communicate.svg" }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("h4", [_vm._v("Chat & Arrange Quotes")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Chat with customer to discuss the job or arrange a visit as your normally would."
-                        )
-                      ])
-                    ])
-                  ]
+                    _c(
+                      "b-col",
+                      { staticClass: "text-center", attrs: { sm: "4" } },
+                      [
+                        _c("div", { staticClass: "list-image" }, [
+                          _c("div", { staticClass: "list-icon" }, [
+                            _c("img", {
+                              attrs: {
+                                src: "/images/front/svg/communicate.svg"
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("h4", [_vm._v("Chat & Arrange Quotes")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Chat with customer to discuss the job or arrange a visit as your normally would."
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ],
+                  1
                 )
               ],
               1
             )
-          ],
+          ]),
+          _vm._v(" "),
+          _vm._m(3)
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "next-project section-padd grey-bg" }, [
+        _c(
+          "div",
+          { staticClass: "container" },
+          [_vm._m(5), _vm._v(" "), _c("testmonial-sec")],
           1
         )
       ]),
       _vm._v(" "),
-      _vm._m(3)
-    ]),
-    _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _vm._m(5),
-    _vm._v(" "),
-    _vm._m(6)
-  ])
+      _c("getstarted")
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -67723,8 +67513,8 @@ var staticRenderFns = [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
           _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "banner-slogan" }, [
-              _c("h2", [_vm._v("Your next job is just around the corner")]),
+            _c("div", { staticClass: "banner-slogan content-inner" }, [
+              _c("h1", [_vm._v("Your next job is just around the corner")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(
@@ -67750,135 +67540,139 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "services two-column section-padd" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "section-title" }, [
-          _c("h2", [_vm._v("Win more local work")]),
+    return _c(
+      "div",
+      { staticClass: "section services section-local-work two-column" },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "section-title" }, [
+            _c("h2", [_vm._v("Win more local work")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "If you join as a member, here are a selection of the ways we help to give your business a boost:"
+              )
+            ])
+          ]),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "If you join as a member, here are a selection of the ways we help to give your business a boost:"
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "services-list" }, [
-          _c("ul", [
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
-                _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/user.svg" } })
+          _c("div", { staticClass: "services-list" }, [
+            _c("ul", [
+              _c("li", [
+                _c("div", { staticClass: "list-image" }, [
+                  _c("div", { staticClass: "list-icon" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/user.svg" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("Business Profile")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Show comprehensive company details including consumer recommendations."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("Business Profile")]),
+              _c("li", [
+                _c("div", { staticClass: "list-image" }, [
+                  _c("div", { staticClass: "list-icon" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/discount.svg" }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Show comprehensive company details including consumer recommendations."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
-                _c("div", { staticClass: "list-icon" }, [
-                  _c("img", {
-                    attrs: { src: "/images/front/svg/discount.svg" }
-                  })
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("No Commissions")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "We won't charge any fee or payment from service providers for successful leads."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("No Commissions")]),
+              _c("li", [
+                _c("div", { staticClass: "list-image" }, [
+                  _c("div", { staticClass: "list-icon" }, [
+                    _c("img", {
+                      attrs: { src: "/images/front/svg/smartphone.svg" }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "We won't charge any fee or payment from service providers for successful leads."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
-                _c("div", { staticClass: "list-icon" }, [
-                  _c("img", {
-                    attrs: { src: "/images/front/svg/smartphone.svg" }
-                  })
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("Pick the jobs you want")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "We’ll send you new leads and jobs right on your mobile phones via push notifications or email."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("Pick the jobs you want")]),
+              _c("li", [
+                _c("div", { staticClass: "list-image" }, [
+                  _c("div", { staticClass: "list-icon" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/chat.svg" } })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "We’ll send you new leads and jobs right on your mobile phones via push notifications or email."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
-                _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/chat.svg" } })
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("Chat with customers")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Once customer respond to your bid, you can discuss details with customers via one-on-one chat."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("Chat with customers")]),
+              _c("li", [
+                _c("div", { staticClass: "list-image" }, [
+                  _c("div", { staticClass: "list-icon" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/card.svg" } })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Once customer respond to your bid, you can discuss details with customers via one-on-one chat."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
-                _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/card.svg" } })
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("No credit/debit card required")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "You don’t have to enter your credit/debit card. You can charge customer in any of your existing payment method."
+                    )
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("No credit/debit card required")]),
+              _c("li", [
+                _c("div", { staticClass: "list-image" }, [
+                  _c("div", { staticClass: "list-icon" }, [
+                    _c("img", { attrs: { src: "/images/front/svg/like.svg" } })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "You don’t have to enter your credit/debit card. You can charge customer in any of your existing payment method."
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("div", { staticClass: "list-image" }, [
-                _c("div", { staticClass: "list-icon" }, [
-                  _c("img", { attrs: { src: "/images/front/svg/like.svg" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "list-description" }, [
-                _c("h4", [_vm._v("No fake service providers")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "You don’t have to compete with any fake service provider. We approve service providers on platform after review."
-                  )
+                _c("div", { staticClass: "list-description" }, [
+                  _c("h4", [_vm._v("No fake service providers")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "You don’t have to compete with any fake service provider. We approve service providers on platform after review."
+                    )
+                  ])
                 ])
               ])
             ])
           ])
         ])
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -67957,62 +67751,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "next-project section-padd" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "content-sec text-center" }, [
-          _c("h1", [_vm._v("Success Stories")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Professional service marketplace has helped thousands of service providers around US."
-            )
-          ])
-        ])
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("Success Stories")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Professional service marketplace has helped thousands of service providers around US."
+        )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "next-project white-bg elementary-banner section-padd" },
-      [
-        _c("div", { staticClass: "container element-index text-center" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h1", [_vm._v("The better way to find your next project.")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "A proven source of genuine enquiries for quality service providers."
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { href: "javascript:void(0);" }
-              },
-              [_vm._v("Get Started")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "elements" }, [
-          _c("img", {
-            staticClass: "top-left",
-            attrs: { src: "/images/front/banner-bg/bg-5.png" }
-          }),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "bottom-right",
-            attrs: { src: "/images/front/banner-bg/bg-2.png" }
-          })
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -68021,6 +67768,431 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5f3c808a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-604d5b52\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "category-detail" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "content" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "next-project grey-bg elementary-banner section-padd md border-bottom"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "container element-index text-center md" },
+              [
+                _c("div", { staticClass: "content-sec" }, [
+                  _c("div", {
+                    staticClass: "category-image",
+                    style: {
+                      "background-image": "url(" + _vm.categoryimage + ")"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "category-content" }, [
+                    _c("h2", [_vm._v(_vm._s(listing.job_title))]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "jobs-completed" },
+                      [
+                        _c("star-rating", {
+                          attrs: {
+                            "star-size": 20,
+                            "read-only": "",
+                            rating: [listing.job_full_rating],
+                            "active-color": "#8200ff"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "review-job" }, [
+                          _vm._v(
+                            _vm._s(listing.job_feedback) + " Feedback reviews"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "review-job left-border" }, [
+                          _vm._v(
+                            _vm._s(listing.job_perform) + " Jobs performed"
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "service-detail" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { href: "javascript:void(0);" }
+                        },
+                        [_vm._v("Post Job & Invite to Bid")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-link go-back",
+                          attrs: { href: "javascript:void(0);" },
+                          on: { click: _vm.categorylisting }
+                        },
+                        [_vm._v("Go back")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(0, true)
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-post-container section-padd sm" }, [
+          _c("div", { staticClass: "container md" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-9" }, [
+                _c("div", { staticClass: "provider-information" }, [
+                  _vm._m(1, true),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "member-details" }, [
+                    _c("p", { staticClass: "location" }, [
+                      _c("i", { staticClass: "icon-location" }),
+                      _vm._v(" \n\t\t\t\t\t\t\t\t\t\tLocation "),
+                      _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "member-since" }, [
+                      _vm._v(
+                        "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tMember since "
+                      ),
+                      _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "post-job-description" }, [
+                    _c("p", [_vm._v(_vm._s(listing.job_description))])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "chat-feedback" },
+                    [
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _vm._l(listing.review_details, function(reviewer) {
+                        return _c(
+                          "div",
+                          { staticClass: "chat-feedback-column" },
+                          [
+                            _c("div", {
+                              staticClass: "chat-feedback-image",
+                              style: {
+                                "background-image":
+                                  "url(" + reviewer.latest_review_image + ")"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "chat-feedback-message white-msg"
+                              },
+                              [
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(reviewer.latest_review_description)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "feeback-detail" }, [
+                                  _c(
+                                    "p",
+                                    { staticClass: "feedback-personal-info" },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0);" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              reviewer.latest_reviewer_name
+                                            )
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t\t\t "
+                                      ),
+                                      _c("strong", [
+                                        _vm._v(
+                                          _vm._s(
+                                            reviewer.latest_review_post_date
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "ratings" },
+                                    [
+                                      _c("star-rating", {
+                                        attrs: {
+                                          "star-size": 20,
+                                          "read-only": "",
+                                          rating: [reviewer.list_ratings],
+                                          "active-color": "#8200ff"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
+                _c("div", { staticClass: "service-avaliable" }, [
+                  _c("h3", { staticClass: "m-b-20" }, [
+                    _vm._v("Services offered")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    _vm._l(listing.servicesavaliable, function(service) {
+                      return _c("li", [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t\t" +
+                            _vm._s(service.title) +
+                            "\n\t\t\t\t\t\t\t\t"
+                        )
+                      ])
+                    })
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "elements" }, [
+      _c("img", {
+        staticClass: "top-left",
+        attrs: { src: "/images/front/banner-bg/bg-5.png" }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "bottom-right",
+        attrs: { src: "/images/front/banner-bg/bg-2.png" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "service-detail" }, [
+      _c("h3", [_vm._v("About")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-notifer" }, [
+      _c("h3", [_vm._v("Feedback & Reviews")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-604d5b52", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6cedfa20\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/auth/ResetPassword.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "verticle-align auth-main-wrapper" },
+    [
+      _c("div", { staticClass: "inner" }, [
+        _c("div", { staticClass: "auth-logo-wrapper" }, [
+          _c("div", { staticClass: "container-fluid" }, [_c("logo")], 1)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "auth-panel" },
+          [
+            _vm.showAlert ? _c("alert") : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "new-password-form auth-forms active" }, [
+              _c("form", [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary apply-primary-color",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.onSubmit($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("span", [_vm._v("Reset Password")]),
+                        _vm._v(" "),
+                        _c("loader")
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "contact-us" })
+      ]),
+      _vm._v(" "),
+      _c("contactarea", {
+        attrs: { showContactProp: _vm.ContactIsExpire },
+        on: { HideModalValue: _vm.HideContactModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h2", { staticClass: "auth-title" }, [
+        _vm._v("Reset your password\n          ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-statement" }, [
+      _c("p", [
+        _vm._v(
+          "Enter your new password below. Once confirmed you'll be logged into your account and your new password will be active."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("New Password")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "password",
+            name: "password",
+            placeholder: "Enter new password"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Confirm Password")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "password",
+            name: "password",
+            placeholder: "Re-enter new password"
+          }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6cedfa20", module.exports)
   }
 }
 
@@ -68047,7 +68219,217 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "div",
+          {
+            staticClass: "navigation main-navigation",
+            staticStyle: { display: "block" }
+          },
+          [
+            _c("ul", [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("Explore")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/join-as-pro" } }, [
+                    _vm._v("Join as a Pro")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/login" } }, [
+                    _vm._v("Login")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/sign-up" } }, [
+                    _vm._v("Sign up")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navigation main-navigation customer-navigation",
+            staticStyle: { display: "none" }
+          },
+          [
+            _c("ul", { staticClass: "float-left" }, [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("Explore")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("My Jobs")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("li", [
+                _c("div", { staticClass: "user-login-detail float-left" }, [
+                  _c(
+                    "span",
+                    { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                    [
+                      _c("img", {
+                        attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "username" }, [
+                    _vm._v("Arsalan Akhtar")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "on-clickaway",
+                        rawName: "v-on-clickaway",
+                        value: _vm.away,
+                        expression: "away"
+                      }
+                    ],
+                    staticClass: "notify-block",
+                    on: {
+                      click: [
+                        function($event) {
+                          _vm.isShowing ^= true
+                        },
+                        _vm.Showactive
+                      ]
+                    }
+                  },
+                  [
+                    _c(
+                      "i",
+                      {
+                        staticClass: "icon-notifications-outline action-icon",
+                        attrs: { active: _vm.tab == true }
+                      },
+                      [
+                        _c("span", { staticClass: "badge-count" }, [
+                          _vm._v("5")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("notification", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.isShowing,
+                          expression: "isShowing"
+                        }
+                      ]
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navigation main-navigation provider-navigation",
+            staticStyle: { display: "none" }
+          },
+          [
+            _c("ul", [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("Explore")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/join-as-pro" } }, [
+                    _vm._v("Join as a Pro")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/login" } }, [
+                    _vm._v("Login")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/sign-up" } }, [
+                    _vm._v("Sign up")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ]
+        )
       ])
     ])
   ])
@@ -68057,34 +68439,51 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navigation" }, [
-      _c("ul", [
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Explore")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [
-            _vm._v("Join as a Pro")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Login")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Sign up")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
-            [_vm._v("Post a Job")]
-          )
-        ])
-      ])
+    return _c("li", [
+      _c(
+        "a",
+        { staticClass: "btn btn-primary", attrs: { href: "/job-post" } },
+        [_vm._v("Post a Job")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary post-job-btn",
+          attrs: { href: "javascript:;" }
+        },
+        [_vm._v("Post a Job")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "icon-exit action-icon" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        { staticClass: "btn btn-primary ", attrs: { href: "javascript:;" } },
+        [_vm._v("Post a Job")]
+      )
     ])
   }
 ]
@@ -68284,7 +68683,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Electrician")])
+                    _c("p", [_vm._v("Carpenters")])
                   ])
                 ],
                 1
@@ -68408,7 +68807,7 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _c("p", [
                         _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                          "Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs."
                         )
                       ])
                     ])
@@ -68433,6 +68832,340 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-7738c68e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-78636a73\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/auth/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "wrapper-sm verticle-align auth-main-wrapper front-auth" },
+    [
+      _c("div", { staticClass: "inner" }, [
+        _c("div", { staticClass: "auth-logo-wrapper" }, [
+          _c("div", { staticClass: "container-fluid" }, [_c("logo")], 1)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "auth-panel" },
+          [
+            _vm.showAlert ? _c("alert") : _vm._e(),
+            _vm._v(" "),
+            _vm.tabVal == "login"
+              ? _c("login", { on: { "show-login": _vm.ShowForgot } })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.tabVal == "forgot"
+              ? _c("forgot", {
+                  on: {
+                    "show-login": _vm.ShowLogin,
+                    "show-new-password": _vm.ShowChangepassword
+                  }
+                })
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "already-signup" }, [
+          _c("p", [
+            _vm._v("Not a member? "),
+            _c(
+              "a",
+              {
+                attrs: { href: "javascript:;" },
+                on: { click: _vm.FrontSignUp }
+              },
+              [_vm._v("Sign Up")]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h2", { staticClass: "auth-title" }, [
+        _vm._v("Welcome Back\n          ")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-78636a73", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7e400a14\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "section padding-sm profile-form wrapper-sm" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "profile-form-section" }, [
+        _c("div", { staticClass: "form-signup" }, [
+          _c("form", [
+            _c(
+              "div",
+              { staticClass: "personal-detail" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("alert"),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3)
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "create-account-btn" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-primary" },
+                [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(5)
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile-head" }, [
+      _c("h1", [_vm._v("Complete your profile")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "browse-btn" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "file-upload-label" }, [
+            _vm._v("Browse Photo")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control file-upload-input",
+            attrs: { type: "file" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Arsalan",
+              placeholder: "Enter your first name"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "Akhtar",
+              placeholder: "Enter your last name"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Email Address")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              value: "arsalan@cygnismedia.com",
+              placeholder: "Enter your first email address"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Contact Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              placeholder: "Enter your mobile or landline number"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-detail" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your street address" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [
+              _vm._v("Apartment, suite, unit")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter your last name" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("City")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Enter your city name" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("State")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("Select State")
+              ]),
+              _vm._v(" "),
+              _c("option", [_vm._v("New York")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("California")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Zip Code")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Enter your zip code" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-detail" }, [
+      _c("p", [
+        _vm._v(
+          "Make sure all the information you entered is accuate before submitting."
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7e400a14", module.exports)
   }
 }
 
@@ -69559,7 +70292,7 @@ var render = function() {
                     _c("div", { staticClass: "form-group" }, [
                       _c("p", [
                         _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                          "Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs."
                         )
                       ])
                     ])
@@ -69794,129 +70527,170 @@ var render = function() {
         _vm._v(" "),
         _c("popularservices"),
         _vm._v(" "),
-        _c("div", { staticClass: "section section-grey how-it-work" }, [
-          _c("div", { staticClass: "container element-index" }, [
-            _vm._m(1),
+        _c(
+          "div",
+          { staticClass: "section section-grey how-it-work elementary-banner" },
+          [
+            _c("div", { staticClass: "container element-index" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "how-it-work-list" },
+                [
+                  _c(
+                    "b-row",
+                    [
+                      _c(
+                        "b-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { sm: "12", md: "3" }
+                        },
+                        [
+                          _c("div", { staticClass: "icon" }, [
+                            _c("img", {
+                              attrs: { src: "/images/front/svg/find.svg" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "list-description" }, [
+                            _c("h4", [_vm._v("Find")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
+                              )
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { sm: "12", md: "3" }
+                        },
+                        [
+                          _c("div", { staticClass: "icon" }, [
+                            _c("img", {
+                              attrs: { src: "/images/front/svg/bidding.svg" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "list-description" }, [
+                            _c("h4", [_vm._v("Bidding Process")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
+                              )
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { sm: "12", md: "3" }
+                        },
+                        [
+                          _c("div", { staticClass: "icon" }, [
+                            _c("img", {
+                              attrs: {
+                                src: "/images/front/svg/communicate.svg"
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "list-description" }, [
+                            _c("h4", [_vm._v("Communicate & Hire")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "You can communicate with service provider before hiring and after that award the job to right service provider."
+                              )
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { sm: "12", md: "3" }
+                        },
+                        [
+                          _c("div", { staticClass: "icon" }, [
+                            _c("img", {
+                              attrs: { src: "/images/front/svg/like.svg" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "list-description" }, [
+                            _c("h4", [_vm._v("Work & Pay")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "how-it-work-list" },
-              [
-                _c(
-                  "b-row",
-                  [
-                    _c(
-                      "b-col",
-                      {
-                        staticClass: "text-center",
-                        attrs: { sm: "12", md: "3" }
-                      },
-                      [
-                        _c("div", { staticClass: "icon" }, [
-                          _c("img", {
-                            attrs: { src: "/images/front/svg/find.svg" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "list-description" }, [
-                          _c("h4", [_vm._v("Find")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Post a job to tell us about your assignment or task. We'll quickly match you with the right service provider."
-                            )
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-col",
-                      {
-                        staticClass: "text-center",
-                        attrs: { sm: "12", md: "3" }
-                      },
-                      [
-                        _c("div", { staticClass: "icon" }, [
-                          _c("img", {
-                            attrs: { src: "/images/front/svg/list.svg" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "list-description" }, [
-                          _c("h4", [_vm._v("Bidding Process")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Professional service providers will post a bid on your job after evaluating your task and give you estimate."
-                            )
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-col",
-                      {
-                        staticClass: "text-center",
-                        attrs: { sm: "12", md: "3" }
-                      },
-                      [
-                        _c("div", { staticClass: "icon" }, [
-                          _c("img", {
-                            attrs: { src: "/images/front/svg/communicate.svg" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "list-description" }, [
-                          _c("h4", [_vm._v("Communicate & Hire")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "CYou can communicate with service provider before hiring and after that award the job to right service provider."
-                            )
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-col",
-                      {
-                        staticClass: "text-center",
-                        attrs: { sm: "12", md: "3" }
-                      },
-                      [
-                        _c("div", { staticClass: "icon" }, [
-                          _c("img", {
-                            attrs: { src: "/images/front/svg/communicate.svg" }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "list-description" }, [
-                          _c("h4", [_vm._v("Work & Pay")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "The service provider work on your assignment and once you satisfied with the work you pay to service provider."
-                            )
-                          ])
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ])
-        ])
+            _c("span", { staticClass: "splash-design lg d-2 top-right" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "splash-design d-3 bottom-left md" }),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "splash-design d-6 bottom-right sm sp-rt"
+            })
+          ]
+        )
       ],
       1
     ),
     _vm._v(" "),
-    _vm._m(2),
+    _c("div", { staticClass: "section ready-to-meet" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c(
+            "div",
+            { staticClass: "content-sec" },
+            [
+              _c("h2", [
+                _vm._v(
+                  "When you need someone to get the job done, whether it's an electrician, a plumber, a carpenter, or someone else - we find them for you, for free!"
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "See cost estimates, read reviews and chat with service providers, all in the app. Available on both iOS and Android."
+                )
+              ]),
+              _vm._v(" "),
+              _c("appstore")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "section section-grey" }, [
       _c(
@@ -69925,7 +70699,19 @@ var render = function() {
         [_vm._m(3), _vm._v(" "), _c("testmonial-sec")],
         1
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "section section-grey get-started-section next-project  elementary-banner"
+      },
+      [_c("explorenow")],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -69987,44 +70773,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section ready-to-meet" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "two-column" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h2", [
-              _vm._v(
-                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "avability-app" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/app-store.jpg" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/google-play.jpg" }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "image-sec" }, [
-            _c("img", {
-              attrs: { src: "/images/front/join-as-pro/customer.jpg" }
-            })
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "image-sec" }, [
+      _c("img", { attrs: { src: "/images/front/join-as-pro/customer.jpg" } })
     ])
   },
   function() {
@@ -70032,12 +70782,42 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
-      _c("h2", [_vm._v("What our customers are saying")]),
+      _c("h2", { staticClass: "btm-space" }, [
+        _vm._v("What our customers are saying")
+      ]),
       _vm._v(" "),
       _c("p", [
         _vm._v(
           "Professional service marketplace has helped tens of thousands of people around US to get the job done."
         )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section ready-to-meet" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "two-column" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("h2", [_vm._v("Proud of your work? Join us.")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. "
+              )
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _c("span", [_vm._v("Join Us")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "image-sec" }, [
+            _c("img", { attrs: { src: "/images/front/home/join-us.jpg" } })
+          ])
+        ])
       ])
     ])
   }
@@ -70073,50 +70853,64 @@ var staticRenderFns = [
       [
         _c("h1", [_vm._v("Sign Up")]),
         _vm._v(" "),
-        _c(
-          "ul",
-          {
-            staticClass: "nav nav-tabs",
-            attrs: { id: "myTab", role: "tablist" }
-          },
-          [
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link active",
-                  attrs: {
-                    id: "home-tab",
-                    "data-toggle": "tab",
-                    href: "#home",
-                    role: "tab",
-                    "aria-controls": "home",
-                    "aria-selected": "true"
-                  }
-                },
-                [_vm._v("I want to hire a service provider")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    id: "profile-tab",
-                    "data-toggle": "tab",
-                    href: "#profile",
-                    role: "tab",
-                    "aria-controls": "profile",
-                    "aria-selected": "false"
-                  }
-                },
-                [_vm._v("I want to grow my business")]
-              )
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xs-12 col-sm-6 col-sm-6" }, [
+            _c("div", { staticClass: "custom-radio boxed m-b-30" }, [
+              _c("input", {
+                attrs: {
+                  type: "radio",
+                  name: "accountType",
+                  id: "type_hire_provider",
+                  checked: ""
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "type_hire_provider" } }, [
+                _c("div", { staticClass: "verticle-align" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _vm._v(
+                      "\n\t\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t\t"
+                    ),
+                    _c("span", [
+                      _vm._v(
+                        "Get introduced to the right professional for your jobs"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "icon-checkmark2" })
+                  ])
+                ])
+              ])
             ])
-          ]
-        ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xs-12 col-sm-6 col-sm-6" }, [
+            _c("div", { staticClass: "custom-radio boxed" }, [
+              _c("input", {
+                attrs: {
+                  type: "radio",
+                  name: "accountType",
+                  id: "type_service_provider"
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "type_service_provider" } }, [
+                _c("div", { staticClass: "verticle-align" }, [
+                  _c("div", { staticClass: "inner" }, [
+                    _vm._v(
+                      "\n\t\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t\t"
+                    ),
+                    _c("span", [
+                      _vm._v("Respond to customer requests and get hired")
+                    ]),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "icon-checkmark2" })
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "tab-content" }, [
           _c(
@@ -70280,6 +71074,13 @@ var staticRenderFns = [
                 ])
               ])
             ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "already-signup" }, [
+          _c("p", [
+            _vm._v("Already a member? "),
+            _c("a", { attrs: { href: "/login" } }, [_vm._v("Log in")])
           ])
         ])
       ]
@@ -84392,6 +85193,13 @@ module.exports = Vue;
 
 /***/ }),
 
+/***/ "./node_modules/vue2-datepicker/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.DatePicker=t():e.DatePicker=t()}(window,function(){return function(e){var t={};function n(a){if(t[a])return t[a].exports;var r=t[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:a})},n.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=3)}([function(e,t,n){var a;!function(r){"use strict";var i={},s=/d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g,o=/\d\d?/,l=/[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i,u=/\[([^]*?)\]/gm,c=function(){};function d(e,t){for(var n=[],a=0,r=e.length;a<r;a++)n.push(e[a].substr(0,t));return n}function h(e){return function(t,n,a){var r=a[e].indexOf(n.charAt(0).toUpperCase()+n.substr(1).toLowerCase());~r&&(t.month=r)}}function p(e,t){for(e=String(e),t=t||2;e.length<t;)e="0"+e;return e}var f=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],m=["January","February","March","April","May","June","July","August","September","October","November","December"],g=d(m,3),v=d(f,3);i.i18n={dayNamesShort:v,dayNames:f,monthNamesShort:g,monthNames:m,amPm:["am","pm"],DoFn:function(e){return e+["th","st","nd","rd"][e%10>3?0:(e-e%10!=10)*e%10]}};var x={D:function(e){return e.getDate()},DD:function(e){return p(e.getDate())},Do:function(e,t){return t.DoFn(e.getDate())},d:function(e){return e.getDay()},dd:function(e){return p(e.getDay())},ddd:function(e,t){return t.dayNamesShort[e.getDay()]},dddd:function(e,t){return t.dayNames[e.getDay()]},M:function(e){return e.getMonth()+1},MM:function(e){return p(e.getMonth()+1)},MMM:function(e,t){return t.monthNamesShort[e.getMonth()]},MMMM:function(e,t){return t.monthNames[e.getMonth()]},YY:function(e){return String(e.getFullYear()).substr(2)},YYYY:function(e){return p(e.getFullYear(),4)},h:function(e){return e.getHours()%12||12},hh:function(e){return p(e.getHours()%12||12)},H:function(e){return e.getHours()},HH:function(e){return p(e.getHours())},m:function(e){return e.getMinutes()},mm:function(e){return p(e.getMinutes())},s:function(e){return e.getSeconds()},ss:function(e){return p(e.getSeconds())},S:function(e){return Math.round(e.getMilliseconds()/100)},SS:function(e){return p(Math.round(e.getMilliseconds()/10),2)},SSS:function(e){return p(e.getMilliseconds(),3)},a:function(e,t){return e.getHours()<12?t.amPm[0]:t.amPm[1]},A:function(e,t){return e.getHours()<12?t.amPm[0].toUpperCase():t.amPm[1].toUpperCase()},ZZ:function(e){var t=e.getTimezoneOffset();return(t>0?"-":"+")+p(100*Math.floor(Math.abs(t)/60)+Math.abs(t)%60,4)}},b={D:[o,function(e,t){e.day=t}],Do:[new RegExp(o.source+l.source),function(e,t){e.day=parseInt(t,10)}],M:[o,function(e,t){e.month=t-1}],YY:[o,function(e,t){var n=+(""+(new Date).getFullYear()).substr(0,2);e.year=""+(t>68?n-1:n)+t}],h:[o,function(e,t){e.hour=t}],m:[o,function(e,t){e.minute=t}],s:[o,function(e,t){e.second=t}],YYYY:[/\d{4}/,function(e,t){e.year=t}],S:[/\d/,function(e,t){e.millisecond=100*t}],SS:[/\d{2}/,function(e,t){e.millisecond=10*t}],SSS:[/\d{3}/,function(e,t){e.millisecond=t}],d:[o,c],ddd:[l,c],MMM:[l,h("monthNamesShort")],MMMM:[l,h("monthNames")],a:[l,function(e,t,n){var a=t.toLowerCase();a===n.amPm[0]?e.isPm=!1:a===n.amPm[1]&&(e.isPm=!0)}],ZZ:[/([\+\-]\d\d:?\d\d|Z)/,function(e,t){"Z"===t&&(t="+00:00");var n,a=(t+"").match(/([\+\-]|\d\d)/gi);a&&(n=60*a[1]+parseInt(a[2],10),e.timezoneOffset="+"===a[0]?n:-n)}]};b.dd=b.d,b.dddd=b.ddd,b.DD=b.D,b.mm=b.m,b.hh=b.H=b.HH=b.h,b.MM=b.M,b.ss=b.s,b.A=b.a,i.masks={default:"ddd MMM DD YYYY HH:mm:ss",shortDate:"M/D/YY",mediumDate:"MMM D, YYYY",longDate:"MMMM D, YYYY",fullDate:"dddd, MMMM D, YYYY",shortTime:"HH:mm",mediumTime:"HH:mm:ss",longTime:"HH:mm:ss.SSS"},i.format=function(e,t,n){var a=n||i.i18n;if("number"==typeof e&&(e=new Date(e)),"[object Date]"!==Object.prototype.toString.call(e)||isNaN(e.getTime()))throw new Error("Invalid Date in fecha.format");var r=[];return(t=(t=(t=i.masks[t]||t||i.masks.default).replace(u,function(e,t){return r.push(t),"??"})).replace(s,function(t){return t in x?x[t](e,a):t.slice(1,t.length-1)})).replace(/\?\?/g,function(){return r.shift()})},i.parse=function(e,t,n){var a=n||i.i18n;if("string"!=typeof t)throw new Error("Invalid format in fecha.parse");if(t=i.masks[t]||t,e.length>1e3)return!1;var r=!0,o={};if(t.replace(s,function(t){if(b[t]){var n=b[t],i=e.search(n[0]);~i?e.replace(n[0],function(t){return n[1](o,t,a),e=e.substr(i+t.length),t}):r=!1}return b[t]?"":t.slice(1,t.length-1)}),!r)return!1;var l,u=new Date;return!0===o.isPm&&null!=o.hour&&12!=+o.hour?o.hour=+o.hour+12:!1===o.isPm&&12==+o.hour&&(o.hour=0),null!=o.timezoneOffset?(o.minute=+(o.minute||0)-+o.timezoneOffset,l=new Date(Date.UTC(o.year||u.getFullYear(),o.month||0,o.day||1,o.hour||0,o.minute||0,o.second||0,o.millisecond||0))):l=new Date(o.year||u.getFullYear(),o.month||0,o.day||1,o.hour||0,o.minute||0,o.second||0,o.millisecond||0),l},void 0!==e&&e.exports?e.exports=i:void 0===(a=function(){return i}.call(t,n,t,e))||(e.exports=a)}()},function(e,t){var n=/^(attrs|props|on|nativeOn|class|style|hook)$/;function a(e,t){return function(){e&&e.apply(this,arguments),t&&t.apply(this,arguments)}}e.exports=function(e){return e.reduce(function(e,t){var r,i,s,o,l;for(s in t)if(r=e[s],i=t[s],r&&n.test(s))if("class"===s&&("string"==typeof r&&(l=r,e[s]=r={},r[l]=!0),"string"==typeof i&&(l=i,t[s]=i={},i[l]=!0)),"on"===s||"nativeOn"===s||"hook"===s)for(o in i)r[o]=a(r[o],i[o]);else if(Array.isArray(r))e[s]=r.concat(i);else if(Array.isArray(i))e[s]=[r].concat(i);else for(o in i)r[o]=i[o];else e[s]=t[s];return e},{})}},function(e,t,n){"use strict";function a(e,t){for(var n=[],a={},r=0;r<t.length;r++){var i=t[r],s=i[0],o={id:e+":"+r,css:i[1],media:i[2],sourceMap:i[3]};a[s]?a[s].parts.push(o):n.push(a[s]={id:s,parts:[o]})}return n}n.r(t),n.d(t,"default",function(){return f});var r="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!r)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var i={},s=r&&(document.head||document.getElementsByTagName("head")[0]),o=null,l=0,u=!1,c=function(){},d=null,h="data-vue-ssr-id",p="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function f(e,t,n,r){u=n,d=r||{};var s=a(e,t);return m(s),function(t){for(var n=[],r=0;r<s.length;r++){var o=s[r];(l=i[o.id]).refs--,n.push(l)}t?m(s=a(e,t)):s=[];for(r=0;r<n.length;r++){var l;if(0===(l=n[r]).refs){for(var u=0;u<l.parts.length;u++)l.parts[u]();delete i[l.id]}}}}function m(e){for(var t=0;t<e.length;t++){var n=e[t],a=i[n.id];if(a){a.refs++;for(var r=0;r<a.parts.length;r++)a.parts[r](n.parts[r]);for(;r<n.parts.length;r++)a.parts.push(v(n.parts[r]));a.parts.length>n.parts.length&&(a.parts.length=n.parts.length)}else{var s=[];for(r=0;r<n.parts.length;r++)s.push(v(n.parts[r]));i[n.id]={id:n.id,refs:1,parts:s}}}}function g(){var e=document.createElement("style");return e.type="text/css",s.appendChild(e),e}function v(e){var t,n,a=document.querySelector("style["+h+'~="'+e.id+'"]');if(a){if(u)return c;a.parentNode.removeChild(a)}if(p){var r=l++;a=o||(o=g()),t=y.bind(null,a,r,!1),n=y.bind(null,a,r,!0)}else a=g(),t=function(e,t){var n=t.css,a=t.media,r=t.sourceMap;a&&e.setAttribute("media",a);d.ssrId&&e.setAttribute(h,t.id);r&&(n+="\n/*# sourceURL="+r.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,a),n=function(){a.parentNode.removeChild(a)};return t(e),function(a){if(a){if(a.css===e.css&&a.media===e.media&&a.sourceMap===e.sourceMap)return;t(e=a)}else n()}}var x,b=(x=[],function(e,t){return x[e]=t,x.filter(Boolean).join("\n")});function y(e,t,n,a){var r=n?"":a.css;if(e.styleSheet)e.styleSheet.cssText=b(t,r);else{var i=document.createTextNode(r),s=e.childNodes;s[t]&&e.removeChild(s[t]),s.length?e.insertBefore(i,s[t]):e.appendChild(i)}}},function(e,t,n){"use strict";n.r(t);var a=n(0),r=n.n(a),i={bind:function(e,t,n){e["@clickoutside"]=function(a){!e.contains(a.target)&&t.expression&&n.context[t.expression]&&t.value()},document.addEventListener("click",e["@clickoutside"],!0)},unbind:function(e){document.removeEventListener("click",e["@clickoutside"],!0)}};function s(e){return e instanceof Date}function o(e){return null!==e&&void 0!==e&&!!new Date(e).getTime()}function l(e){return Array.isArray(e)&&2===e.length&&o(e[0])&&o(e[1])&&new Date(e[1]).getTime()>=new Date(e[0]).getTime()}function u(e){var t=(e||"").split(":");return t.length>=2?{hours:parseInt(t[0],10),minutes:parseInt(t[1],10)}:null}function c(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"24",n=e.hours,a=(n=(n="24"===t?n:n%12||12)<10?"0"+n:n)+":"+(e.minutes<10?"0"+e.minutes:e.minutes);return"12"===t&&(a+=e.hours>=12?" pm":" am"),a}var d={zh:{days:["日","一","二","三","四","五","六"],months:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],pickers:["未来7天","未来30天","最近7天","最近30天"],placeholder:{date:"请选择日期",dateRange:"请选择日期范围"}},en:{days:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],pickers:["next 7 days","next 30 days","previous 7 days","previous 30 days"],placeholder:{date:"Select Date",dateRange:"Select Date Range"}},ro:{days:["Lun","Mar","Mie","Joi","Vin","Sâm","Dum"],months:["Ian","Feb","Mar","Apr","Mai","Iun","Iul","Aug","Sep","Oct","Noi","Dec"],pickers:["urmatoarele 7 zile","urmatoarele 30 zile","ultimele 7 zile","ultimele 30 zile"],placeholder:{date:"Selectați Data",dateRange:"Selectați Intervalul De Date"}},fr:{days:["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"],months:["Jan","Fev","Mar","Avr","Mai","Juin","Juil","Aout","Sep","Oct","Nov","Dec"],pickers:["7 jours suivants","30 jours suivants","7 jours précédents","30 jours précédents"],placeholder:{date:"Sélectionnez une date",dateRange:"Sélectionnez une période"}},es:{days:["Dom","Lun","mar","Mie","Jue","Vie","Sab"],months:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],pickers:["próximos 7 días","próximos 30 días","7 días anteriores","30 días anteriores"],placeholder:{date:"Seleccionar fecha",dateRange:"Seleccionar un rango de fechas"}},"pt-br":{days:["Dom","Seg","Ter","Qua","Quin","Sex","Sáb"],months:["Jan","Fev","Mar","Abr","Maio","Jun","Jul","Ago","Set","Out","Nov","Dez"],pickers:["próximos 7 dias","próximos 30 dias","7 dias anteriores"," 30 dias anteriores"],placeholder:{date:"Selecione uma data",dateRange:"Selecione um período"}},ru:{days:["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],months:["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек"],pickers:["след. 7 дней","след. 30 дней","прош. 7 дней","прош. 30 дней"],placeholder:{date:"Выберите дату",dateRange:"Выберите период"}},de:{days:["So","Mo","Di","Mi","Do","Fr","Sa"],months:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],pickers:["nächsten 7 Tage","nächsten 30 Tage","vorigen 7 Tage","vorigen 30 Tage"],placeholder:{date:"Datum auswählen",dateRange:"Zeitraum auswählen"}},it:{days:["Dom","Lun","Mar","Mer","Gio","Ven","Sab"],months:["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],pickers:["successivi 7 giorni","successivi 30 giorni","precedenti 7 giorni","precedenti 30 giorni"],placeholder:{date:"Seleziona una data",dateRange:"Seleziona un intervallo date"}},cs:{days:["Ned","Pon","Úte","Stř","Čtv","Pát","Sob"],months:["Led","Úno","Bře","Dub","Kvě","Čer","Čerc","Srp","Zář","Říj","Lis","Pro"],pickers:["příštích 7 dní","příštích 30 dní","předchozích 7 dní","předchozích 30 dní"],placeholder:{date:"Vyberte datum",dateRange:"Vyberte časové rozmezí"}},sl:{days:["Ned","Pon","Tor","Sre","Čet","Pet","Sob"],months:["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Avg","Sep","Okt","Nov","Dec"],pickers:["naslednjih 7 dni","naslednjih 30 dni","prejšnjih 7 dni","prejšnjih 30 dni"],placeholder:{date:"Izberite datum",dateRange:"Izberite razpon med 2 datumoma"}}},h=d.zh,p={methods:{t:function(e){for(var t=this,n=t.$options.name;t&&(!n||"DatePicker"!==n);)(t=t.$parent)&&(n=t.$options.name);for(var a=t&&t.language||h,r=e.split("."),i=a,s=void 0,o=0,l=r.length;o<l;o++){if(s=i[r[o]],o===l-1)return s;if(!s)return"";i=s}return""}}};var f=n(1),m=n.n(f);function g(e,t,n,a,r,i,s,o){var l,u="function"==typeof e?e.options:e;if(t&&(u.render=t,u.staticRenderFns=n,u._compiled=!0),a&&(u.functional=!0),i&&(u._scopeId="data-v-"+i),s?(l=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),r&&r.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(s)},u._ssrRegister=l):r&&(l=o?function(){r.call(this,this.$root.$options.shadowRoot)}:r),l)if(u.functional){u._injectStyles=l;var c=u.render;u.render=function(e,t){return l.call(t),c(e,t)}}else{var d=u.beforeCreate;u.beforeCreate=d?[].concat(d,l):[l]}return{exports:e,options:u}}var v=g({name:"CalendarPanel",components:{PanelDate:{name:"panelDate",mixins:[p],props:{value:null,startAt:null,endAt:null,calendarMonth:{default:(new Date).getMonth()},calendarYear:{default:(new Date).getFullYear()},firstDayOfWeek:{default:7,type:Number,validator:function(e){return e>=1&&e<=7}},disabledDate:{type:Function,default:function(){return!1}}},methods:{selectDate:function(e){var t=e.year,n=e.month,a=e.day,r=new Date(t,n,a);this.disabledDate(r)||this.$emit("select",r)},getDays:function(e){var t=this.t("days"),n=parseInt(e,10);return t.concat(t).slice(n,n+7)},getDates:function(e,t,n){var a=[],r=new Date(e,t);r.setDate(0);for(var i=(r.getDay()+7-n)%7+1,s=r.getDate()-(i-1),o=0;o<i;o++)a.push({year:e,month:t-1,day:s+o});r.setMonth(r.getMonth()+2,0);for(var l=r.getDate(),u=0;u<l;u++)a.push({year:e,month:t,day:1+u});r.setMonth(r.getMonth()+1,1);for(var c=42-(i+l),d=0;d<c;d++)a.push({year:e,month:t+1,day:1+d});return a},getCellClasses:function(e){var t=e.year,n=e.month,a=e.day,r=[],i=new Date(t,n,a).getTime(),s=(new Date).setHours(0,0,0,0),o=this.value&&new Date(this.value).setHours(0,0,0,0),l=this.startAt&&new Date(this.startAt).setHours(0,0,0,0),u=this.endAt&&new Date(this.endAt).setHours(0,0,0,0);return n<this.calendarMonth?r.push("last-month"):n>this.calendarMonth?r.push("next-month"):r.push("cur-month"),i===s&&r.push("today"),this.disabledDate(i)&&r.push("disabled"),o&&(i===o?r.push("actived"):l&&i<=o?r.push("inrange"):u&&i>=o&&r.push("inrange")),r},getCellTitle:function(e){var t=e.year,n=e.month,a=e.day;return new Date(t,n,a).toLocaleDateString()}},render:function(e){var t=this,n=this.getDays(this.firstDayOfWeek).map(function(t){return e("th",[t])}),a=this.getDates(this.calendarYear,this.calendarMonth,this.firstDayOfWeek),r=Array.apply(null,{length:6}).map(function(n,r){var i=a.slice(7*r,7*r+7).map(function(n){var a={class:t.getCellClasses(n)};return e("td",m()([{class:"cell"},a,{attrs:{title:t.getCellTitle(n)},on:{click:t.selectDate.bind(t,n)}}]),[n.day])});return e("tr",[i])});return e("table",{class:"mx-panel mx-panel-date"},[e("thead",[e("tr",[n])]),e("tbody",[r])])}},PanelYear:{name:"panelYear",props:{value:null,firstYear:Number,disabledYear:Function},methods:{isDisabled:function(e){return!("function"!=typeof this.disabledYear||!this.disabledYear(e))},selectYear:function(e){this.isDisabled(e)||this.$emit("select",e)}},render:function(e){var t=this,n=10*Math.floor(this.firstYear/10),a=this.value&&new Date(this.value).getFullYear(),r=Array.apply(null,{length:10}).map(function(r,i){var s=n+i;return e("span",{class:{cell:!0,actived:a===s,disabled:t.isDisabled(s)},on:{click:t.selectYear.bind(t,s)}},[s])});return e("div",{class:"mx-panel mx-panel-year"},[r])}},PanelMonth:{name:"panelMonth",mixins:[p],props:{value:null,calendarYear:{default:(new Date).getFullYear()},disabledMonth:Function},methods:{isDisabled:function(e){return!("function"!=typeof this.disabledMonth||!this.disabledMonth(e))},selectMonth:function(e){this.isDisabled(e)||this.$emit("select",e)}},render:function(e){var t=this,n=this.t("months"),a=this.value&&new Date(this.value).getFullYear(),r=this.value&&new Date(this.value).getMonth();return n=n.map(function(n,i){return e("span",{class:{cell:!0,actived:a===t.calendarYear&&r===i,disabled:t.isDisabled(i)},on:{click:t.selectMonth.bind(t,i)}},[n])}),e("div",{class:"mx-panel mx-panel-month"},[n])}},PanelTime:{name:"panelTime",props:{timePickerOptions:{type:[Object,Function],default:function(){return null}},minuteStep:{type:Number,default:0,validator:function(e){return e>=0&&e<=60}},value:null,disabledTime:Function},computed:{currentHours:function(){return new Date(this.value).getHours()},currentMinutes:function(){return new Date(this.value).getMinutes()},currentSeconds:function(){return new Date(this.value).getSeconds()}},methods:{stringifyText:function(e){return("00"+e).slice(String(e).length)},selectTime:function(e){"function"==typeof this.disabledTime&&this.disabledTime(e)||this.$emit("select",new Date(e))},getTimeSelectOptions:function(){var e=[],t=this.timePickerOptions;if(!t)return[];if("function"==typeof t)return t()||[];var n=u(t.start),a=u(t.end),r=u(t.step);if(n&&a&&r)for(var i=n.minutes+60*n.hours,s=a.minutes+60*a.hours,o=r.minutes+60*r.hours,l=Math.floor((s-i)/o),d=0;d<=l;d++){var h=i+d*o,p={hours:Math.floor(h/60),minutes:h%60};e.push({value:p,label:c(p)})}return e}},render:function(e){var t=this,n=new Date(this.value),a="function"==typeof this.disabledTime&&this.disabledTime,r=this.getTimeSelectOptions();if(Array.isArray(r)&&r.length)return r=r.map(function(r){var i=r.value.hours,s=r.value.minutes,o=new Date(n).setHours(i,s,0);return e("li",{class:{"mx-time-picker-item":!0,cell:!0,actived:i===t.currentHours&&s===t.currentMinutes,disabled:a&&a(o)},on:{click:t.selectTime.bind(t,o)}},[r.label])}),e("div",{class:"mx-panel mx-panel-time"},[e("ul",{class:"mx-time-list"},[r])]);var i=Array.apply(null,{length:24}).map(function(r,i){var s=new Date(n).setHours(i);return e("li",{class:{cell:!0,actived:i===t.currentHours,disabled:a&&a(s)},on:{click:t.selectTime.bind(t,s)}},[t.stringifyText(i)])}),s=this.minuteStep||1,o=parseInt(60/s),l=Array.apply(null,{length:o}).map(function(r,i){var o=i*s,l=new Date(n).setMinutes(o);return e("li",{class:{cell:!0,actived:o===t.currentMinutes,disabled:a&&a(l)},on:{click:t.selectTime.bind(t,l)}},[t.stringifyText(o)])}),u=Array.apply(null,{length:60}).map(function(r,i){var s=new Date(n).setSeconds(i);return e("li",{class:{cell:!0,actived:i===t.currentSeconds,disabled:a&&a(s)},on:{click:t.selectTime.bind(t,s)}},[t.stringifyText(i)])}),c=[i,l];return 0===this.minuteStep&&c.push(u),c=c.map(function(t){return e("ul",{class:"mx-time-list",style:{width:100/c.length+"%"}},[t])}),e("div",{class:"mx-panel mx-panel-time"},[c])}}},mixins:[p],props:{value:{default:null,validator:function(e){return null===e||o(e)}},startAt:null,endAt:null,visible:{type:Boolean,default:!1},type:{type:String,default:"date"},firstDayOfWeek:{default:7,type:Number,validator:function(e){return e>=1&&e<=7}},notBefore:{default:null,validator:function(e){return!e||o(e)}},notAfter:{default:null,validator:function(e){return!e||o(e)}},disabledDays:{type:[Array,Function],default:function(){return[]}},minuteStep:{type:Number,default:0,validator:function(e){return e>=0&&e<=60}},timePickerOptions:{type:[Object,Function],default:function(){return null}}},data:function(){var e=new Date,t=e.getFullYear();return{panel:"DATE",dates:[],calendarMonth:e.getMonth(),calendarYear:t,firstYear:10*Math.floor(t/10)}},computed:{now:{get:function(){return new Date(this.calendarYear,this.calendarMonth).getTime()},set:function(e){var t=new Date(e);this.calendarYear=t.getFullYear(),this.calendarMonth=t.getMonth()}},timeHeader:function(){return this.value&&new Date(this.value).toLocaleDateString()},yearHeader:function(){return this.firstYear+" ~ "+(this.firstYear+10)},months:function(){return this.t("months")}},watch:{value:{immediate:!0,handler:"updateNow"},visible:{immediate:!0,handler:"init"},panel:{immediate:!0,handler:"handelPanelChange"}},methods:{handelPanelChange:function(e){var t=this;"YEAR"===e?this.firstYear=10*Math.floor(this.calendarYear/10):"TIME"===e&&this.$nextTick(function(){[].concat(function(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}(t.$el.querySelectorAll(".mx-panel-time .mx-time-list"))).forEach(function(e){!function(e,t){if(t){for(var n=[],a=t.offsetParent;a&&e!==a&&e.contains(a);)n.push(a),a=a.offsetParent;var r=t.offsetTop+n.reduce(function(e,t){return e+t.offsetTop},0),i=r+t.offsetHeight,s=e.scrollTop,o=s+e.clientHeight;r<s?e.scrollTop=r:i>o&&(e.scrollTop=i-e.clientHeight)}else e.scrollTop=0}(e,e.querySelector(".actived"))})})},init:function(){"month"===this.type.toLowerCase()?this.panel="MONTH":"year"===this.type.toLowerCase()?this.panel="YEAR":this.panel="DATE",this.updateNow(this.value)},updateNow:function(e){this.now=e?new Date(e):new Date},isDisabledTime:function(e,t,n){var a=new Date(e).getTime(),r=this.notBefore&&a<new Date(this.notBefore),i=this.notAfter&&a>new Date(this.notAfter);return t=(t=void 0===t?this.startAt:t)&&a<new Date(t),n=(n=void 0===n?this.endAt:n)&&a>new Date(n),r||i||t||n},isDisabledDate:function(e,t,n){var a=new Date(e).getTime(),r=this.notBefore&&a<new Date(this.notBefore).setHours(0,0,0,0),i=this.notAfter&&a>new Date(this.notAfter).setHours(0,0,0,0);t=(t=void 0===t?this.startAt:t)&&a<new Date(t).setHours(0,0,0,0),n=(n=void 0===n?this.endAt:n)&&a>new Date(n).setHours(0,0,0,0);var s=!1;return Array.isArray(this.disabledDays)?s=this.disabledDays.some(function(e){return new Date(e).setHours(0,0,0,0)===a}):"function"==typeof this.disabledDays&&(s=this.disabledDays(new Date(e))),r||i||s||t||n},isDisabledYear:function(e){var t=new Date(e,this.calendarMonth);return this.isDisabledDate(t)},isDisabledMonth:function(e){var t=new Date(this.calendarYear,e);return this.isDisabledDate(t)},selectDate:function(e){if("datetime"===this.type){var t=new Date(e);return s(this.value)&&t.setHours(this.value.getHours(),this.value.getMinutes(),this.value.getSeconds()),this.isDisabledTime(t)&&(t.setHours(0,0,0,0),this.notBefore&&t.getTime()<new Date(this.notBefore).getTime()&&(t=new Date(this.notBefore)),this.startAt&&t.getTime()<new Date(this.startAt).getTime()&&(t=new Date(this.startAt))),this.$emit("select-time",t),void(this.panel="TIME")}this.$emit("select-date",e)},selectYear:function(e){if(this.changeCalendarYear(e),"year"===this.type.toLowerCase())return this.selectDate(new Date(this.now));this.showPanelMonth()},selectMonth:function(e){if(this.changeCalendarMonth(e),"month"===this.type.toLowerCase())return this.selectDate(new Date(this.now));this.showPanelDate()},selectTime:function(e){this.$emit("select-time",e)},changeCalendarYear:function(e){this.now=new Date(e,this.calendarMonth)},changeCalendarMonth:function(e){this.now=new Date(this.calendarYear,e)},handleIconMonth:function(e){this.changeCalendarMonth(this.calendarMonth+e)},handleIconYear:function(e){"YEAR"===this.panel?this.changePanelYears(e):this.changeCalendarYear(this.calendarYear+e)},handleBtnYear:function(){this.showPanelYear()},handleBtnMonth:function(){this.showPanelMonth()},changePanelYears:function(e){this.firstYear=this.firstYear+10*e},showPanelDate:function(){this.panel="DATE"},showPanelYear:function(){this.panel="YEAR"},showPanelMonth:function(){this.panel="MONTH"}}},function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"mx-calendar"},[n("div",{staticClass:"mx-calendar-header"},[n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"!==e.panel,expression:"panel !== 'TIME'"}],staticClass:"mx-icon-last-year",on:{click:function(t){e.handleIconYear(-1)}}},[e._v("«")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-icon-last-month",on:{click:function(t){e.handleIconMonth(-1)}}},[e._v("‹")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"!==e.panel,expression:"panel !== 'TIME'"}],staticClass:"mx-icon-next-year",on:{click:function(t){e.handleIconYear(1)}}},[e._v("»")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-icon-next-month",on:{click:function(t){e.handleIconMonth(1)}}},[e._v("›")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-current-month",on:{click:e.handleBtnMonth}},[e._v(e._s(e.months[e.calendarMonth]))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel||"MONTH"===e.panel,expression:"panel === 'DATE' || panel === 'MONTH'"}],staticClass:"mx-current-year",on:{click:e.handleBtnYear}},[e._v(e._s(e.calendarYear))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"YEAR"===e.panel,expression:"panel === 'YEAR'"}],staticClass:"mx-current-year"},[e._v(e._s(e.yearHeader))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"===e.panel,expression:"panel === 'TIME'"}],staticClass:"mx-time-header",on:{click:e.showPanelDate}},[e._v(e._s(e.timeHeader))])]),e._v(" "),n("div",{staticClass:"mx-calendar-content"},[n("panel-date",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],attrs:{value:e.value,"calendar-month":e.calendarMonth,"calendar-year":e.calendarYear,"start-at":e.startAt,"end-at":e.endAt,"first-day-of-week":e.firstDayOfWeek,"disabled-date":e.isDisabledDate},on:{select:e.selectDate}}),e._v(" "),n("panel-year",{directives:[{name:"show",rawName:"v-show",value:"YEAR"===e.panel,expression:"panel === 'YEAR'"}],attrs:{value:e.value,"disabled-year":e.isDisabledYear,"first-year":e.firstYear},on:{select:e.selectYear}}),e._v(" "),n("panel-month",{directives:[{name:"show",rawName:"v-show",value:"MONTH"===e.panel,expression:"panel === 'MONTH'"}],attrs:{value:e.value,"disabled-month":e.isDisabledMonth,"calendar-year":e.calendarYear},on:{select:e.selectMonth}}),e._v(" "),n("panel-time",{directives:[{name:"show",rawName:"v-show",value:"TIME"===e.panel,expression:"panel === 'TIME'"}],attrs:{"minute-step":e.minuteStep,"time-picker-options":e.timePickerOptions,value:e.value,"disabled-time":e.isDisabledTime},on:{select:e.selectTime}})],1)])},[],!1,null,null,null).exports,x=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},b=g({fecha:r.a,name:"DatePicker",components:{CalendarPanel:v},mixins:[p],directives:{clickoutside:i},props:{value:null,placeholder:{type:String,default:null},lang:{type:[String,Object],default:"zh"},format:{type:String,default:"YYYY-MM-DD"},range:{type:Boolean,default:!1},rangeSeparator:{type:String,default:"~"},width:{type:[String,Number],default:null},confirmText:{type:String,default:"OK"},confirm:{type:Boolean,default:!1},editable:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},shortcuts:{type:[Boolean,Array],default:!0},inputName:{type:String,default:"date"},inputClass:{type:[String,Array],default:"mx-input"}},data:function(){return{currentValue:this.range?[null,null]:null,userInput:null,popupVisible:!1,position:{}}},watch:{value:{immediate:!0,handler:"handleValueChange"},popupVisible:function(e){e?this.initCalendar():this.userInput=null}},computed:{language:function(){return e=this.lang,"[object Object]"===Object.prototype.toString.call(e)?x({},d.en,this.lang):d[this.lang]||d.en;var e},innerPlaceholder:function(){return"string"==typeof this.placeholder?this.placeholder:this.range?this.t("placeholder.dateRange"):this.t("placeholder.date")},text:function(){return null!==this.userInput?this.userInput:this.range?l(this.value)?this.stringify(this.value[0])+" "+this.rangeSeparator+" "+this.stringify(this.value[1]):"":o(this.value)?this.stringify(this.value):""},computedWidth:function(){return"number"==typeof this.width||"string"==typeof this.width&&/^\d+$/.test(this.width)?this.width+"px":this.width},showClearIcon:function(){return!this.disabled&&this.clearable&&(this.range?l(this.value):o(this.value))},innnerShortcuts:function(){if(Array.isArray(this.shortcuts))return this.shortcuts;if(!1===this.shortcuts)return[];var e=this.t("pickers");return[{text:e[0],onClick:function(e){e.currentValue=[new Date,new Date(Date.now()+6048e5)],e.updateDate(!0)}},{text:e[1],onClick:function(e){e.currentValue=[new Date,new Date(Date.now()+2592e6)],e.updateDate(!0)}},{text:e[2],onClick:function(e){e.currentValue=[new Date(Date.now()-6048e5),new Date],e.updateDate(!0)}},{text:e[3],onClick:function(e){e.currentValue=[new Date(Date.now()-2592e6),new Date],e.updateDate(!0)}}]}},methods:{initCalendar:function(){this.handleValueChange(this.value),this.displayPopup()},stringify:function(e,t){try{return t=t||this.format,r.a.format(new Date(e),t)}catch(e){return""}},parseDate:function(e,t){try{return t=t||this.format,r.a.parse(e,t)}catch(e){return!1}},dateEqual:function(e,t){return s(e)&&s(t)&&e.getTime()===t.getTime()},rangeEqual:function(e,t){var n=this;return Array.isArray(e)&&Array.isArray(t)&&e.length===t.length&&e.every(function(e,a){return n.dateEqual(e,t[a])})},selectRange:function(e){if("function"==typeof e.onClick)return e.onClick(this);this.currentValue=[new Date(e.start),new Date(e.end)],this.updateDate(!0)},clearDate:function(){var e=this.range?[null,null]:null;this.currentValue=e,this.updateDate(!0)},confirmDate:function(){(this.range?l(this.currentValue):o(this.currentValue))&&this.updateDate(!0),this.$emit("confirm",this.currentValue),this.closePopup()},updateDate:function(){var e=arguments.length>0&&void 0!==arguments[0]&&arguments[0];return!(this.confirm&&!e||this.disabled)&&((this.range?!this.rangeEqual(this.value,this.currentValue):!this.dateEqual(this.value,this.currentValue))&&(this.$emit("input",this.currentValue),this.$emit("change",this.currentValue),!0))},handleValueChange:function(e){this.range?this.currentValue=l(e)?[new Date(e[0]),new Date(e[1])]:[null,null]:this.currentValue=o(e)?new Date(e):null},selectDate:function(e){this.currentValue=e,this.updateDate()&&this.closePopup()},selectStartDate:function(e){this.$set(this.currentValue,0,e),this.currentValue[1]&&this.updateDate()},selectEndDate:function(e){this.$set(this.currentValue,1,e),this.currentValue[0]&&this.updateDate()},selectTime:function(e){this.currentValue=e,this.updateDate()},selectStartTime:function(e){this.selectStartDate(e)},selectEndTime:function(e){this.selectEndDate(e)},showPopup:function(){this.disabled||(this.popupVisible=!0)},closePopup:function(){this.popupVisible=!1},displayPopup:function(){var e=document.documentElement.clientWidth,t=document.documentElement.clientHeight,n=this.$el.getBoundingClientRect(),a=this.$refs.calendar.getBoundingClientRect();this.position={},e-n.left<a.width&&n.right<a.width?this.position.left=1-n.left+"px":n.left+n.width/2<=e/2?this.position.left=0:this.position.right=0,n.top<=a.height+1&&t-n.bottom<=a.height+1?this.position.top=t-n.top-a.height-1+"px":n.top+n.height/2<=t/2?this.position.top="100%":this.position.bottom="100%"},handleInput:function(e){this.userInput=e.target.value},handleChange:function(e){var t=e.target.value;if(this.editable&&null!==this.userInput){var n=this.$children[0],a="date"===n.type?n.isDisabledDate:n.isDisabledTime;if(this.range){var r=t.split(" "+this.rangeSeparator+" ");if(2===r.length){var i=this.parseDate(r[0],this.format),s=this.parseDate(r[1],this.format);if(i&&s&&!a(i,null,s)&&!a(s,i,null))return this.currentValue=[i,s],this.updateDate(!0),void this.closePopup()}}else{var o=this.parseDate(t,this.format);if(o&&!a(o,null,null))return this.currentValue=o,this.updateDate(!0),void this.closePopup()}this.$emit("input-error",t)}}}},function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:e.closePopup,expression:"closePopup"}],staticClass:"mx-datepicker",class:{"mx-datepicker-range":e.range,disabled:e.disabled},style:{width:e.computedWidth}},[n("div",{staticClass:"mx-input-wrapper",on:{click:e.showPopup}},[n("input",{ref:"input",class:e.inputClass,attrs:{type:"text",name:e.inputName,disabled:e.disabled,readonly:!e.editable,placeholder:e.innerPlaceholder},domProps:{value:e.text},on:{input:e.handleInput,change:e.handleChange}}),e._v(" "),n("span",{staticClass:"mx-input-append"},[e._t("calendar-icon",[n("svg",{staticClass:"mx-calendar-icon",attrs:{xmlns:"http://www.w3.org/2000/svg",version:"1.1",viewBox:"0 0 200 200"}},[n("rect",{attrs:{x:"13",y:"29",rx:"14",ry:"14",width:"174",height:"158",fill:"transparent"}}),e._v(" "),n("line",{attrs:{x1:"46",x2:"46",y1:"8",y2:"50"}}),e._v(" "),n("line",{attrs:{x1:"154",x2:"154",y1:"8",y2:"50"}}),e._v(" "),n("line",{attrs:{x1:"13",x2:"187",y1:"70",y2:"70"}}),e._v(" "),n("text",{attrs:{x:"50%",y:"135","font-size":"90","stroke-width":"1","text-anchor":"middle","dominant-baseline":"middle"}},[e._v(e._s((new Date).getDate()))])])])],2),e._v(" "),e.showClearIcon?n("span",{staticClass:"mx-input-append mx-clear-wrapper",on:{click:function(t){return t.stopPropagation(),e.clearDate(t)}}},[e._t("mx-clear-icon",[n("i",{staticClass:"mx-input-icon mx-clear-icon"})])],2):e._e()]),e._v(" "),n("div",{directives:[{name:"show",rawName:"v-show",value:e.popupVisible,expression:"popupVisible"}],ref:"calendar",staticClass:"mx-datepicker-popup",style:e.position},[e._t("header",[e.range&&e.innnerShortcuts.length?n("div",{staticClass:"mx-shortcuts-wrapper"},e._l(e.innnerShortcuts,function(t,a){return n("button",{key:a,staticClass:"mx-shortcuts",attrs:{type:"button"},on:{click:function(n){e.selectRange(t)}}},[e._v(e._s(t.text))])})):e._e()]),e._v(" "),e.range?n("div",{staticClass:"mx-range-wrapper"},[n("calendar-panel",e._b({staticStyle:{"box-shadow":"1px 0 rgba(0, 0, 0, .1)"},attrs:{value:e.currentValue[0],"end-at":e.currentValue[1],"start-at":null,visible:e.popupVisible},on:{"select-date":e.selectStartDate,"select-time":e.selectStartTime}},"calendar-panel",e.$attrs,!1)),e._v(" "),n("calendar-panel",e._b({attrs:{value:e.currentValue[1],"start-at":e.currentValue[0],"end-at":null,visible:e.popupVisible},on:{"select-date":e.selectEndDate,"select-time":e.selectEndTime}},"calendar-panel",e.$attrs,!1))],1):n("calendar-panel",e._b({attrs:{value:e.currentValue,visible:e.popupVisible},on:{"select-date":e.selectDate,"select-time":e.selectTime}},"calendar-panel",e.$attrs,!1)),e._v(" "),e._t("footer",[e.confirm?n("div",{staticClass:"mx-datepicker-footer"},[n("button",{staticClass:"mx-datepicker-btn mx-datepicker-btn-confirm",attrs:{type:"button"},on:{click:e.confirmDate}},[e._v(e._s(e.confirmText))])]):e._e()],{confirm:e.confirmDate})],2)])},[],!1,null,null,null).exports;n(6);b.install=function(e){e.component(b.name,b)};t.default=b},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var n=this[t];n[2]?e.push("@media "+n[2]+"{"+n[1]+"}"):e.push(n[1])}return e.join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var a={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(a[i]=!0)}for(r=0;r<t.length;r++){var s=t[r];"number"==typeof s[0]&&a[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),e.push(s))}},e}},function(e,t,n){(e.exports=n(4)()).push([e.i,"@charset \"UTF-8\";\n.mx-datepicker {\n  position: relative;\n  display: inline-block;\n  width: 210px;\n  color: #73879c;\n  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif; }\n  .mx-datepicker * {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n  .mx-datepicker.disabled {\n    opacity: 0.7;\n    cursor: not-allowed; }\n\n.mx-datepicker-range {\n  width: 320px; }\n\n.mx-datepicker-popup {\n  position: absolute;\n  margin-top: 1px;\n  margin-bottom: 1px;\n  border: 1px solid #d9d9d9;\n  background-color: #fff;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  z-index: 1000; }\n\n.mx-input-wrapper {\n  position: relative; }\n  .mx-input-wrapper .mx-clear-wrapper {\n    display: none; }\n  .mx-input-wrapper:hover .mx-clear-wrapper {\n    display: block; }\n\n.mx-input {\n  display: inline-block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 30px;\n  padding-left: 10px;\n  font-size: 14px;\n  line-height: 1.4;\n  color: #555;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }\n  .mx-input:disabled, .mx-input.disabled {\n    opacity: 0.7;\n    cursor: not-allowed; }\n  .mx-input:focus {\n    outline: none; }\n\n.mx-input-append {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 30px;\n  height: 100%;\n  padding: 6px;\n  background-color: #fff;\n  background-clip: content-box; }\n\n.mx-input-icon {\n  display: inline-block;\n  width: 100%;\n  height: 100%;\n  font-style: normal;\n  color: #555;\n  text-align: center;\n  cursor: pointer; }\n\n.mx-calendar-icon {\n  width: 100%;\n  height: 100%;\n  color: #555;\n  stroke-width: 8px;\n  stroke: currentColor;\n  fill: currentColor; }\n\n.mx-clear-icon::before {\n  display: inline-block;\n  content: '\\2716';\n  vertical-align: middle; }\n\n.mx-clear-icon::after {\n  content: '';\n  display: inline-block;\n  width: 0;\n  height: 100%;\n  vertical-align: middle; }\n\n.mx-range-wrapper {\n  width: 496px;\n  overflow: hidden; }\n\n.mx-shortcuts-wrapper {\n  text-align: left;\n  padding: 0 12px;\n  line-height: 34px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }\n  .mx-shortcuts-wrapper .mx-shortcuts {\n    background: none;\n    outline: none;\n    border: 0;\n    color: inherit;\n    margin: 0;\n    padding: 0;\n    white-space: nowrap;\n    cursor: pointer; }\n    .mx-shortcuts-wrapper .mx-shortcuts:hover {\n      color: #419dec; }\n    .mx-shortcuts-wrapper .mx-shortcuts:after {\n      content: '|';\n      margin: 0 10px;\n      color: #48576a; }\n\n.mx-datepicker-footer {\n  padding: 4px;\n  clear: both;\n  text-align: right;\n  border-top: 1px solid rgba(0, 0, 0, 0.05); }\n\n.mx-datepicker-btn {\n  font-size: 12px;\n  line-height: 1;\n  padding: 7px 15px;\n  margin: 0 5px;\n  cursor: pointer;\n  background-color: transparent;\n  outline: none;\n  border: none;\n  border-radius: 3px; }\n\n.mx-datepicker-btn-confirm {\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  color: #73879c; }\n  .mx-datepicker-btn-confirm:hover {\n    color: #1284e7;\n    border-color: #1284e7; }\n\n/* 日历组件 */\n.mx-calendar {\n  float: left;\n  color: #73879c;\n  padding: 6px 12px;\n  font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,sans-serif; }\n  .mx-calendar * {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n\n.mx-calendar-header {\n  padding: 0 4px;\n  height: 34px;\n  line-height: 34px;\n  text-align: center;\n  overflow: hidden; }\n  .mx-calendar-header > a {\n    color: inherit;\n    text-decoration: none;\n    cursor: pointer; }\n    .mx-calendar-header > a:hover {\n      color: #419dec; }\n  .mx-icon-last-month, .mx-icon-last-year,\n  .mx-icon-next-month,\n  .mx-icon-next-year {\n    padding: 0 6px;\n    font-size: 20px;\n    line-height: 30px; }\n  .mx-icon-last-month, .mx-icon-last-year {\n    float: left; }\n  \n  .mx-icon-next-month,\n  .mx-icon-next-year {\n    float: right; }\n\n.mx-calendar-content {\n  width: 224px;\n  height: 224px; }\n  .mx-calendar-content .cell {\n    cursor: pointer; }\n    .mx-calendar-content .cell:hover {\n      background-color: #eaf8fe; }\n    .mx-calendar-content .cell.actived {\n      color: #fff;\n      background-color: #1284e7; }\n    .mx-calendar-content .cell.inrange {\n      background-color: #eaf8fe; }\n    .mx-calendar-content .cell.disabled {\n      cursor: not-allowed;\n      color: #ccc;\n      background-color: #f3f3f3; }\n\n.mx-panel {\n  width: 100%;\n  height: 100%;\n  text-align: center; }\n\n.mx-panel-date {\n  table-layout: fixed;\n  border-collapse: collapse;\n  border-spacing: 0; }\n  .mx-panel-date td, .mx-panel-date th {\n    font-size: 12px;\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    overflow: hidden;\n    text-align: center; }\n  .mx-panel-date td.today {\n    color: #2a90e9; }\n  .mx-panel-date td.last-month, .mx-panel-date td.next-month {\n    color: #ddd; }\n\n.mx-panel-year {\n  padding: 7px 0; }\n  .mx-panel-year .cell {\n    display: inline-block;\n    width: 40%;\n    margin: 1px 5%;\n    line-height: 40px; }\n\n.mx-panel-month .cell {\n  display: inline-block;\n  width: 30%;\n  line-height: 40px;\n  margin: 8px 1.5%; }\n\n.mx-time-list {\n  position: relative;\n  float: left;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  width: 100%;\n  height: 100%;\n  border-top: 1px solid rgba(0, 0, 0, 0.05);\n  border-left: 1px solid rgba(0, 0, 0, 0.05);\n  overflow-y: auto;\n  /* 滚动条滑块 */ }\n  .mx-time-list .mx-time-picker-item {\n    display: block;\n    text-align: left;\n    padding-left: 10px; }\n  .mx-time-list:first-child {\n    border-left: 0; }\n  .mx-time-list .cell {\n    width: 100%;\n    font-size: 12px;\n    height: 30px;\n    line-height: 30px; }\n  .mx-time-list::-webkit-scrollbar {\n    width: 8px;\n    height: 8px; }\n  .mx-time-list::-webkit-scrollbar-thumb {\n    background-color: rgba(0, 0, 0, 0.05);\n    border-radius: 10px;\n    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);\n            box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }\n  .mx-time-list:hover::-webkit-scrollbar-thumb {\n    background-color: rgba(0, 0, 0, 0.2); }\n",""])},function(e,t,n){var a=n(5);"string"==typeof a&&(a=[[e.i,a,""]]),a.locals&&(e.exports=a.locals);(0,n(2).default)("511dbeb0",a,!0,{})}])});
+
+/***/ }),
+
 /***/ "./node_modules/vue2-typeahead/node_modules/axios/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -86238,6 +87046,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-01ce7eb2", Component.options)
   } else {
     hotAPI.reload("data-v-01ce7eb2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/404/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/404/Main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-50b0b1d4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/404/Main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\404\\Main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-50b0b1d4", Component.options)
+  } else {
+    hotAPI.reload("data-v-50b0b1d4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -88248,6 +89104,102 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/auth/ResetPassword.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/auth/ResetPassword.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6cedfa20\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/auth/ResetPassword.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\auth\\ResetPassword.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6cedfa20", Component.options)
+  } else {
+    hotAPI.reload("data-v-6cedfa20", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/auth/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/auth/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-78636a73\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/auth/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\auth\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-78636a73", Component.options)
+  } else {
+    hotAPI.reload("data-v-78636a73", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/common-components/header.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -88285,6 +89237,198 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-753f301b", Component.options)
   } else {
     hotAPI.reload("data-v-753f301b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/explore/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4f35f14c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\explore\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4f35f14c", Component.options)
+  } else {
+    hotAPI.reload("data-v-4f35f14c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/explore/service-provider-detail.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-604d5b52\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider-detail.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\explore\\service-provider-detail.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-604d5b52", Component.options)
+  } else {
+    hotAPI.reload("data-v-604d5b52", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/explore/service-provider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/explore/service-provider.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5062611c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/explore/service-provider.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\explore\\service-provider.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5062611c", Component.options)
+  } else {
+    hotAPI.reload("data-v-5062611c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/job-post/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/job-post/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0cb6c52a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/job-post/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\job-post\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0cb6c52a", Component.options)
+  } else {
+    hotAPI.reload("data-v-0cb6c52a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -88381,6 +89525,102 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-d3023370", Component.options)
   } else {
     hotAPI.reload("data-v-d3023370", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/profile/ApplyForReview.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile/ApplyForReview.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2332c7d0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile/ApplyForReview.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\profile\\ApplyForReview.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2332c7d0", Component.options)
+  } else {
+    hotAPI.reload("data-v-2332c7d0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/profile/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7e400a14\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\profile\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7e400a14", Component.options)
+  } else {
+    hotAPI.reload("data-v-7e400a14", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -88494,7 +89734,35 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 // Front Route components
 
 
-var routes = [{
+var routes = [
+
+// Login page
+
+{
+    name: 'login',
+    path: '/login',
+    meta: {
+        title: 'PSM | Login',
+        bodyClass: 'login-page',
+        noHeader: true
+
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/auth/main.vue")
+}, {
+    name: 'reset-password',
+    path: '/reset-password',
+    meta: {
+        title: 'PSM | reset-password',
+        bodyClass: 'reset-password-page',
+        noHeader: true
+
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/auth/ResetPassword.vue")
+},
+
+// Home
+
+{
     name: 'home',
     path: '/',
     meta: {
@@ -88502,7 +89770,10 @@ var routes = [{
         bodyClass: 'home_body'
     },
     component: __webpack_require__("./resources/assets/js/components/front/landing/main.vue")
-}, {
+},
+
+// Join As Pro
+{
     name: 'Join As Pro',
     path: '/join-as-pro',
     meta: {
@@ -88510,6 +89781,34 @@ var routes = [{
         bodyClass: 'Join_pro'
     },
     component: __webpack_require__("./resources/assets/js/components/front/join-as-pro/main.vue")
+},
+
+// Explore
+
+{
+    name: 'Explore',
+    path: '/explore',
+    meta: {
+        title: 'Professional Service Marketplace | Explore',
+        bodyClass: 'explore_page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/explore/main.vue")
+}, {
+    name: 'Explore_Detail',
+    path: '/explore/service_provider',
+    meta: {
+        title: 'Professional Service Marketplace | Category Detail',
+        bodyClass: 'explore_detail_page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/explore/service-provider.vue")
+}, {
+    name: 'Service_Provider_Detail',
+    path: '/explore/service_provider/service_provider_detail',
+    meta: {
+        title: 'Professional Service Marketplace | Service Provider Detail',
+        bodyClass: 'service_provider_detail_page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/explore/service-provider-detail.vue")
 },
 
 // Sign Up
@@ -88522,6 +89821,51 @@ var routes = [{
         bodyClass: 'sign-up'
     },
     component: __webpack_require__("./resources/assets/js/components/front/sign-up/main.vue")
+},
+
+// Profile
+
+{
+    name: 'Profile',
+    path: '/profile',
+    meta: {
+        title: 'Professional Service Marketplace | Profile',
+        bodyClass: 'profile-page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/profile/main.vue")
+}, {
+    name: 'Apply for Review',
+    path: '/apply-for-review',
+    meta: {
+        title: 'Professional Service Marketplace | Apply for Review',
+        bodyClass: 'apply-for-review-page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/profile/ApplyForReview.vue")
+},
+
+// Job Post
+
+{
+    name: 'Job Post',
+    path: '/job-post',
+    meta: {
+        title: 'Professional Service Marketplace | Job Post',
+        bodyClass: 'job-post-page'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/job-post/main.vue")
+},
+
+/*404*/
+
+{
+    name: '404',
+    path: '*',
+    component: __webpack_require__("./resources/assets/js/components/404/Main.vue"),
+    meta: {
+        title: '404 Not Found',
+        noHeader: true,
+        bodyClass: 'not-found-page'
+    }
 }];
 
 // Create the router instance
