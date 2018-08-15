@@ -37,6 +37,7 @@
         },
         methods: {
             changePage(pageNumber){
+                console.log(pageNumber , '123');
                 this.$emit('page-changed', pageNumber);
             }
         }
