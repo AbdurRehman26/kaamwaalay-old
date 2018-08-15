@@ -3029,6 +3029,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -67132,51 +67168,217 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "navigation" }, [
-          _c("ul", [
-            _c(
-              "li",
-              [
-                _c("router-link", { attrs: { to: "/explore" } }, [
-                  _vm._v("Explore")
+        _c(
+          "div",
+          {
+            staticClass: "navigation main-navigation",
+            staticStyle: { display: "block" }
+          },
+          [
+            _c("ul", [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("Explore")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/join-as-pro" } }, [
+                    _vm._v("Join as a Pro")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/login" } }, [
+                    _vm._v("Login")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/sign-up" } }, [
+                    _vm._v("Sign up")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navigation main-navigation customer-navigation",
+            staticStyle: { display: "none" }
+          },
+          [
+            _c("ul", { staticClass: "float-left" }, [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("Explore")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("My Jobs")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("li", [
+                _c("div", { staticClass: "user-login-detail float-left" }, [
+                  _c(
+                    "span",
+                    { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                    [
+                      _c("img", {
+                        attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "username" }, [
+                    _vm._v("Arsalan Akhtar")
+                  ])
                 ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              [
-                _c("router-link", { attrs: { to: "/join-as-pro" } }, [
-                  _vm._v("Join as a Pro")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              [
-                _c("router-link", { attrs: { to: "/login" } }, [
-                  _vm._v("Login")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              [
-                _c("router-link", { attrs: { to: "/sign-up" } }, [
-                  _vm._v("Sign up")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(0)
-          ])
-        ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "on-clickaway",
+                        rawName: "v-on-clickaway",
+                        value: _vm.away,
+                        expression: "away"
+                      }
+                    ],
+                    staticClass: "notify-block",
+                    on: {
+                      click: [
+                        function($event) {
+                          _vm.isShowing ^= true
+                        },
+                        _vm.Showactive
+                      ]
+                    }
+                  },
+                  [
+                    _c(
+                      "i",
+                      {
+                        staticClass: "icon-notifications-outline action-icon",
+                        attrs: { active: _vm.tab == true }
+                      },
+                      [
+                        _c("span", { staticClass: "badge-count" }, [
+                          _vm._v("5")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("notification", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.isShowing,
+                          expression: "isShowing"
+                        }
+                      ]
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navigation main-navigation provider-navigation",
+            staticStyle: { display: "none" }
+          },
+          [
+            _c("ul", [
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/explore" } }, [
+                    _vm._v("Explore")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/join-as-pro" } }, [
+                    _vm._v("Join as a Pro")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/login" } }, [
+                    _vm._v("Login")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c("router-link", { attrs: { to: "/sign-up" } }, [
+                    _vm._v("Sign up")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ]
+        )
       ])
     ])
   ])
@@ -67190,6 +67392,45 @@ var staticRenderFns = [
       _c(
         "a",
         { staticClass: "btn btn-primary", attrs: { href: "/job-post" } },
+        [_vm._v("Post a Job")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary post-job-btn",
+          attrs: { href: "javascript:;" }
+        },
+        [_vm._v("Post a Job")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "icon-exit action-icon" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        { staticClass: "btn btn-primary ", attrs: { href: "javascript:;" } },
         [_vm._v("Post a Job")]
       )
     ])
