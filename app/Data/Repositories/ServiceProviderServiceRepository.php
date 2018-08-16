@@ -55,7 +55,7 @@ public $model;
     {
         $data = parent::findById($id, $refresh, $details, $encode);
         
-        if($data){
+        if($data && $details){
 
             $data->service = app('ServiceRepository')->findById($data->service_id);
             

@@ -18,7 +18,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -58,7 +58,8 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
     {
         $data = parent::findById($id, $refresh, $details, $encode);
         
-        if($data){
+        if($data && $details){
+            
             $criteria = ['service_provider_profile_request_id' => $data->id];
             $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
             $data->services = $services['data'];       
@@ -77,14 +78,14 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         $model = $this->model->where($crtieria);
         if ($model != NULL) {
             $model = $model->
-                leftJoin('service_provider_services', function ($join) {
-                    $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
-                })
-                ->leftJoin('services', function ($join) {
-                    $join->on('services.id', '=', 'service_provider_services.service_id');
-                })
-                ->whereNotNull('services.parent_id')
-                ->pluck('services.title','services.id')->toArray();
+            leftJoin('service_provider_services', function ($join) {
+                $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+            })
+            ->leftJoin('services', function ($join) {
+                $join->on('services.id', '=', 'service_provider_services.service_id');
+            })
+            ->whereNotNull('services.parent_id')
+            ->pluck('services.title','services.id')->toArray();
             
             return $model;
         }
@@ -97,24 +98,24 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         if (!empty($data['keyword'])) {
 
             $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
-                                    $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
-                                })
-                                ->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
-                                ->orWhere('users.last_name', 'LIKE', "%{$data['keyword']}%");
-                            }
+                $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+            })
+            ->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
+            ->orWhere('users.last_name', 'LIKE', "%{$data['keyword']}%");
+        }
 
         if(!empty($data['filter_by_business_type'])){
             $this->builder = $this->builder->leftJoin('service_provider_profiles', function ($join)  use($data){
-                                    $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
-                                })->where('service_provider_profiles.business_type',$data['filter_by_business_type'])
-                                  ->select('service_provider_profile_requests.*');
+                $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
+            })->where('service_provider_profiles.business_type',$data['filter_by_business_type'])
+            ->select('service_provider_profile_requests.*');
         }
 
         if(!empty($data['filter_by_service'])){
             $this->builder = $this->builder->leftJoin('service_provider_services', function ($join)  use($data){
-                                    $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
-                                })->where('service_provider_services.service_id',$data['filter_by_service'])
-                                  ->select('service_provider_profile_requests.*');
+                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
+            })->where('service_provider_services.service_id',$data['filter_by_service'])
+            ->select('service_provider_profile_requests.*');
         }
         
         return parent::findByAll($pagination, $perPage, $data);
@@ -133,12 +134,38 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                 
             }
             return parent::update($data);
-        
+            
         }
         return false;
 
 
     }
 
+            /**
+     *
+     * This method will fetch single model by attribute
+     * and will return output back to client as json
+     *
+     * @access public
+     * @return mixed
+     *
+     * @author Usaama Effendi <usaamaeffendi@gmail.com>
+     *
+     **/
+            public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+                $model = $this->model->newInstance()
+                ->where($crtieria);
+                if($whereIn){
+                    $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+                }
 
-}
+                $model = $model->first(['id']);
+
+                if ($model != NULL) {
+                    $model = $this->findById($model->id, $refresh, $details, $encode);
+                }
+                return $model;
+            }
+
+
+        }
