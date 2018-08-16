@@ -2448,10 +2448,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            errorMessage: '',
+            successMessage: '',
             showModalValue: false,
             changestatus: false,
             actiondelete: false,
@@ -2459,7 +2462,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             noRecordFound: false,
             url: 'api/user?filter_by_role=1&pagination=true',
             loading: true,
-            records: []
+            currentRecord: {},
+            records: [],
+            user_id: null
         };
     },
 
@@ -2480,14 +2485,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.showModalValue = false;
             this.changestatus = false;
         },
-        statusLink: function statusLink(event) {
-            if (event.target.className == "active") {
-                event.target.className = "deactive";
-                event.target.text = "Deactive";
+        statusLink: function statusLink(record) {
+            this.currentRecord = record;
+            if (this.currentRecord.status == 'banned') {
+                this.currentRecord.status = 'active';
             } else {
-                event.target.className = "active";
-                event.target.text = "Active";
+                this.currentRecord.status = 'banned';
             }
+            this.update();
         },
         getRecords: function getRecords(data) {
             var self = this;
@@ -2496,11 +2501,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!self.records.length) {
                 self.noRecordFound = true;
             }
+        },
+
+        update: function update() {
+            var self = this;
+            var data = {
+                "id": self.currentRecord.id,
+                "status": self.currentRecord.status
+            };
+            this.$http.put('api/user/change-status', data).then(function (response) {
+                self.successMessage = response.data.message;
+                setTimeout(function () {
+                    self.successMessage = '';
+                }, 5000);
+            }).catch(function (error) {
+                self.loading = false;
+                self.errorMessage = 'An Error occured';
+                setTimeout(function () {
+                    self.errorMessage = '';
+                }, 5000);
+            });
         }
     },
     mounted: function mounted() {
 
         this.loading = true;
+    },
+    beforeMount: function beforeMount() {
+        var user = JSON.parse(this.$store.getters.getAuthUser);
+        this.user_id = user.id;
     }
 });
 
@@ -65310,6 +65339,15 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _vm.errorMessage || _vm.successMessage
+          ? _c("alert", {
+              attrs: {
+                errorMessage: _vm.errorMessage,
+                successMessage: _vm.successMessage
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "row" },
@@ -65337,7 +65375,9 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(record.access_level))]),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm._f("accessLevel")(record)))
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
@@ -65355,10 +65395,33 @@ var render = function() {
                                   _c(
                                     "a",
                                     {
-                                      staticClass: "active",
-                                      on: { click: _vm.statusLink }
+                                      class: {
+                                        deactive: record.status != "active",
+                                        active: record.status == "active",
+                                        disabled: _vm.user_id == record.id
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.statusLink(record)
+                                        }
+                                      },
+                                      model: {
+                                        value: _vm.currentRecord.status,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.currentRecord,
+                                            "status",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "currentRecord.status"
+                                      }
                                     },
-                                    [_vm._v(_vm._s(record.status))]
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm._f("adminStatus")(record))
+                                      )
+                                    ]
                                   )
                                 ])
                               ]

@@ -10,6 +10,7 @@
                 </div>
             </div>
         </div>
+         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-area">
@@ -30,10 +31,10 @@
                                   <td>{{record.first_name}}</td>
                                   <td>{{record.last_name}}</td>
                                   <td><a href="javascript:;">{{record.email}}</a></td>
-                                  <td >{{record.access_level}}</td>
+                                  <td >{{record | accessLevel}}</td>
                                   <td>{{record.created_at.date | formatDate}}</td>
                                   <td class="text-center statustext">
-                                    <div class=""><a class="active" @click="statusLink">{{record.status}}</a></div>
+                                    <div class=""><a class="" @click="statusLink(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
                                   </td>
                                 </tr>
                               </tbody>
@@ -55,6 +56,8 @@
 export default {
   data () {
     return {
+            errorMessage: '',
+            successMessage: '',
         	  showModalValue: false,
             changestatus: false,
             actiondelete: false,
@@ -62,14 +65,16 @@ export default {
             noRecordFound : false,
             url : 'api/user?filter_by_role=1&pagination=true',
             loading : true,
+            currentRecord :{},
             records : [],
+            user_id: null,
     	}
   	},
     computed : {
         requestUrl(){
             this.loading = true;
             return this.url;
-        }
+      }
     },
     methods: {
         ShowModalUser(){
@@ -83,17 +88,14 @@ export default {
             this.changestatus = false;
         },
 
-          statusLink(event) {
-            if(event.target.className == "active")
-            {
-                event.target.className = "deactive";
-                event.target.text = "Deactive";
+          statusLink(record) {
+            this.currentRecord = record
+            if(this.currentRecord.status == 'banned'){
+              this.currentRecord.status = 'active'
+            }else{
+              this.currentRecord.status = 'banned'
             }
-            else
-            {
-                event.target.className = "active";
-                event.target.text = "Active";
-            }
+            this.update();
           },
           getRecords(data){
             let self = this;
@@ -104,11 +106,36 @@ export default {
             }
 
           },
-    },
+          update: function () {
+                let self = this;
+                let data  = {
+                  "id" : self.currentRecord.id,
+                  "status" : self.currentRecord.status,
+                }
+                this.$http.put('api/user/change-status', data)
+                    .then(response => {
+                            self.successMessage= response.data.message;
+                            setTimeout(function(){
+                                self.successMessage='';
+                            }, 5000);
+                    })
+                    .catch(error => {
+                        self.loading = false
+                        self.errorMessage ='An Error occured';
+                        setTimeout(function(){
+                            self.errorMessage='';
+                        }, 5000);
+                    })
+            },
+          },
     mounted(){
 
       this.loading = true;
 
-    }
+    },
+    beforeMount() {
+          let user = JSON.parse(this.$store.getters.getAuthUser);
+          this.user_id = user.id;
+        },
 }
 </script>

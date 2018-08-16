@@ -49,7 +49,26 @@ const providerStatuses = [
 },
 ];
 
-
+const adminStatuses = [
+{
+    key : 'active',
+    value : 'Active'
+},
+{
+    key : 'banned',
+    value : 'Deactive'
+}
+];
+const accessLevelField = [
+{
+    key : 'full',
+    value : 'Full'
+},
+{
+    key : 'reviewOnly',
+    value : 'Review'
+}
+];
 
 Vue.filter('jobStatus', function (value) {
 
@@ -77,4 +96,23 @@ Vue.filter('formatDate', function(value) {
     if (value) {
         return moment(String(value)).format('MMMM DD,YYYY')
     }
+});
+
+Vue.filter('adminStatus', function (value) {
+
+    let obj = _.find(adminStatuses, item =>{
+        if(item.key == value.status){
+            return item; 
+        }
+    });
+
+    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+Vue.filter('accessLevel', function (value) {
+    let obj = _.find(accessLevelField, item =>{
+        if(item.key == value.access_level){
+            return item; 
+        }
+    });
+    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
 });
