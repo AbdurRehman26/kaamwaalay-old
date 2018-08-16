@@ -70,7 +70,7 @@ class JobBidController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'job_id', 'description', 'is_tbd', 'amount', 'status', 'filter_by_status');
+    $input = request()->only('id', 'job_id', 'description', 'is_tbd', 'amount', 'status', 'filter_by_status', 'filter_by_job_id');
         
     if(!empty($input['amount'])){
         unset($input['is_tbd']);
@@ -78,6 +78,10 @@ public function input($value='')
 
     if(!empty($input['is_tbd'])){
         unset($input['amount']);
+    }
+
+    if($value == 'store'){
+        unset($input['status']);
     }
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : 1;

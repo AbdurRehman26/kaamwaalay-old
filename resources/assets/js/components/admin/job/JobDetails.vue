@@ -1,6 +1,6 @@
 <template>
-<div class="panel-inner">
-            <div class="view-job-details main-detail-content">
+    <div class="panel-inner">
+        <div class="view-job-details main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">
@@ -9,16 +9,16 @@
 
                 <div class="provider-detail">
 
-                        <div class="col-xs-12">
-                            <div class="customer-detail-title">
-                                <h2 class="page-title">Door Repairing</h2>
-                                <!-- <h4 class="page-title float-right">Category: Plumber</h4> -->
-                            </div>
+                    <div class="col-xs-12">
+                        <div class="customer-detail-title">
+                            <h2 class="page-title">{{record.title}}</h2>
+                            <!-- <h4 class="page-title float-right">Category: Plumber</h4> -->
                         </div>
-  
+                    </div>
+
                     <!-- Basic Detail -->
- 
-                        <div class="col-xs-12 block-area">
+
+                    <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
                                 <h4 class="page-title">Basic Detail</h4>
                             </div> -->
@@ -28,7 +28,7 @@
                                         <p><strong class="title-head">Customer</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">                                        
-                                        <a href="javascript:void(0);">Shawn</a>
+                                        <a href="javascript:void(0);">{{record.user | fullName}}</a>
                                     </b-col>
                                 </b-row>                                                              
                                 <b-row>
@@ -36,7 +36,7 @@
                                         <p><strong class="title-head">Service</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Plumber <span class="services-arrow"></span> General Carpentry</p>
+                                        <p>{{record.service | mainService }} <span v-if="record.service && record.service.parent_id" class="services-arrow"></span> {{record.service | childOrParentService }}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -44,7 +44,7 @@
                                         <p><strong class="title-head">Address</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>4657 Kirk Highway, Geovannyfurt, Missouri, 39185-5150, Pitcairn Islands  </p>
+                                        <p>{{record.address}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -52,14 +52,14 @@
                                         <p><strong class="title-head">Zip Code</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>23411</p>
+                                        <p>{{record.zip_code}}</p>
                                     </b-col>
                                 </b-row>                                                                                                                                   
                             </div>
                         </div>
-    
 
-                    <!-- Project Detail -->
+
+                        <!-- Project Detail -->
 
                         <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
@@ -71,7 +71,7 @@
                                         <p><strong class="title-head">Project Title</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Door Repairing</p>
+                                        <p>{{record.title}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -79,7 +79,7 @@
                                         <p><strong class="title-head">Project Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value max-text">
-                                        <p>Responsible for disassembling, relocating and reassembling furniture. Will assist carpenters by transporting materials to various job sites, removing construction debris, and various carpentry duties. Must maintain a neat and professional demeanor. Must works effectively with team members and all departments.</p>
+                                        <p>{{record.description}}</p>
                                     </b-col>
                                 </b-row>                                                                
                                 <b-row>
@@ -87,8 +87,8 @@
                                         <p><strong class="title-head">Job Status</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <span class="tags inbidding">
-                                            In Bidding
+                                        <span :class="[ 'tags', Object.keys(record).length ? record.status.replace(/\s/g, '').toLowerCase().trim() : '']">
+                                            {{ record | jobStatus }}
                                         </span>
                                     </b-col>
                                 </b-row>
@@ -98,19 +98,19 @@
                                     </b-col>
                                     <b-col class="calculated-value">
                                         <div class="gallery-pic">
-                                            <div class="gallery-item" v-for="(n, index) in imageList" :data-index="index">
+                                            <div class="gallery-item" v-for="(n, index) in record.images" :data-index="index">
                                                 <img @click="open($event)" :src="n.url">
                                             </div>
                                         </div>
                                     </b-col>
                                 </b-row>                                                                   
-                                                                                                                              
+
                             </div>
                         </div>
 
 
 
-                    <!-- Bidding Detail -->
+                        <!-- Bidding Detail -->
 
                         <div class="col-xs-12 block-area">
  <!--                            <div class="customer-detail-title">
@@ -122,51 +122,62 @@
                                         <p><strong class="title-head">Total Bidding Initiated</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>50</p>
+                                        <p>{{record.bids_count}}</p>
                                     </b-col>
                                 </b-row>
-                                                                                                                                                                                  
+
                                 <b-row>
                                     <b-col class="text-right fixed-label">
                                         <p><strong class="title-head">Bidding Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a @click="biddingdetails" href="javascript:void(0);">See All</a>
+                                        <a @click="biddingdetails(record.id)" href="javascript:void(0);">See All</a>
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>
                         </div>
-
-                    
-
+                    </div>
                 </div>
+                <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+
             </div>
-</div>
-</template>
+        </template>
 
-<script>
-import fancyBox from 'vue-fancybox';
-import StarRating from 'vue-star-rating';
-export default{
-        data () {
-          return {
-              imageList: [
-                { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
-                { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
-              ]            
+        <script>
+            import fancyBox from 'vue-fancybox';
+            import StarRating from 'vue-star-rating';
+            export default{
+                data () {
+                  return {
+                    url : 'api/job/',
+                    record : [],
+                    imageList: [
+                    { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
+                    { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
+                    ]            
+                }
+            },
+            computed : {
+                requestUrl(){
+                    console.log(this.$route);
+                    return this.url+this.$route.params.id+'?bid_data=true';
+                },
+            },
+            components: {
+                StarRating
+            },
+            methods:{
+                getRecords(data){
+                    this.record = data;
+                },
+                biddingdetails(id){
+                    console.log(id , '13213');
+                    this.$router.push({name: 'BiddingDetails', params : {jobId : id}});
+                },
+                open (e) {            
+                    fancyBox(e.target, this.imageList);
+                }                
+            },    
         }
-    },
-    components: {
-        StarRating
-    },
-    methods:{
-        biddingdetails(){
-            this.$router.push({name: 'BiddingDetails'});
-        },
-        open (e) {            
-            fancyBox(e.target, this.imageList);
-        }                
-    },    
-}
 
-</script>
+    </script>

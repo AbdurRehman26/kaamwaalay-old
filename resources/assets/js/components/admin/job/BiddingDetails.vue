@@ -1,93 +1,79 @@
 <template>
   <div class="panel-inner">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                    <div class="float-left">
-                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-title-strip">
+                <div class="float-left">
                 </div>
             </div>
         </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-md-12">
-        <div class="customer-detail-title">
-            <h2 class="page-title">Door Repairing</h2>
-        </div>
-          <div class="table-area">
+            <div class="customer-detail-title">
+                <h2 class="page-title">Door Repairing</h2>
+            </div>
+            <div class="table-area">
                 <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Image</th>
                             <th class="text-center">Name</th>
                             <th class="text-center">Bid Amount</th>                          
                             <th>Rating</th>
                             <th class="text-right">Action</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="list in listing">
-                            <td>{{ list.id }}</td>
+                    </thead>
+                    <tbody>
+                        <tr v-for="record in records">
                             <td><span class="user-img radius-0"><img src=""></span></td>
-                            <td class="text-center"><a href="javascript:void(0);">{{ list.name }}</a></td>
-                            <td class="text-center">${{ list.amount }}</td>                           
-                            <td><star-rating :star-size="20" read-only :rating="[list.rating]" active-color="#8200ff"></star-rating></td>
+                            <td class="text-center"><a href="javascript:void(0);">{{ record.user | fullName }}</a></td>
+                            <td class="text-center">${{ record.amount }}</td>                           
+                            <td><star-rating :star-size="20" read-only :rating="[record.user.average_rating]" active-color="#8200ff"></star-rating></td>
                             <td class="text-right">
                                 <div class="action-icons">
-                                    <i @click="ViewCustomerRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                    <i @click="currentRecord = record; showModalValue = true;" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                 </div>
                             </td>
                         </tr>
-                      </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
-          </div>
         </div>
-        <view-bidding-details :showModalProp="customerrecord" @HideModalValue="HideModal"></view-bidding-details>   
-  </div> 
+    </div>
+</div>
+<view-bidding-details :showModalProp="showModalValue" :item="currentRecord" @HideModalValue="showModalValue = false"></view-bidding-details>   
+
+<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+
+</div> 
 </template>
 <script>
-import StarRating from 'vue-star-rating';
+    import StarRating from 'vue-star-rating';
 
-export default {
-  data () {
-    return {
-        customerrecord: false,
-        
-        listing: [
-            {   
-                id: 1,
-                name: 'Elif',
-                amount: 300,                
-                rating: 3,
-            },
-            {
-                id: 2,
-                name: 'Anthony',
-                amount: 555,                 
-                rating: 2,
-            },
-            {
-                id: 3,
-                name: 'Johnny',
-                amount: 1000,    
-                rating: 5,                
-            },
-        ],
+    export default {
+      data () {
+        return {
+            currentRecord : '',
+            showModalValue : false,
+            url : 'api/job-bid',
+            records : [],
 
         }
     },
     components: {
         StarRating
     },
-    methods: {
-        ViewCustomerRecord() {
-            this.customerrecord = true;
+    computed : {
+        requestUrl(){
+            return this.url+'?filter_by_job_id='+this.$route.params.jobId+'&pagination=true';
         },
-        HideModal(){
-            this.customerrecord = false;
+    },
+
+    methods: {
+        getRecords(data){
+            this.records = data;
         },
     }
 }

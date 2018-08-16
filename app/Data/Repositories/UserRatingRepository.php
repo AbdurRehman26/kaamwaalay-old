@@ -88,7 +88,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
 
         $model = $this->model->where($crtieria);
         if($whereIn){
-            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->avg('rating');
+            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
         }
 
         if ($model != NULL) {
@@ -101,7 +101,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
             
             $model = $this->model->where($crtieria);
             if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->avg('rating');
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
             }
 
             if ($model != NULL) {

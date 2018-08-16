@@ -79,7 +79,7 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        
+
         if($data){
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
@@ -90,7 +90,7 @@ public $model;
 
                 $bidsCriteria = ['job_id' => $data->id];
                 $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
-                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, $bidsWhereIn);
+                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
 
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
@@ -100,9 +100,6 @@ public $model;
                 }
             }
 
-            $ratingCriteria = ['user_id' => $data->user_id];
-            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
-            
             $data->user = app('UserRepository')->findById($data->user_id);
 
         }
