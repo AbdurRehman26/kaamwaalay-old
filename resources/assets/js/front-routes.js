@@ -128,8 +128,6 @@ const routes = [
     },
 
 
-
-
     // Job Post
 
     {
@@ -180,6 +178,19 @@ const routes = [
             navigation: 'customer-nav',
         },
         component: require('./components/front/jobs/job-detail.vue'),
+    },
+
+    // Advice Center
+
+    {
+        name: 'Advice Center',
+        path: '/advice-center',
+        meta: {
+            title: 'Professional Service Marketplace | Advice Center',
+            bodyClass: 'advice-center-page',
+            navigation: 'customer-nav',
+        },
+        component: require('./components/front/advice-center/main.vue'),
     },
 
     /*404*/

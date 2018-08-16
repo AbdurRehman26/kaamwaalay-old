@@ -34224,6 +34224,21 @@ body .ag-theme-balham .ag-header {
   text-decoration: underline;
 }
 
+.btn.btn-danger {
+  background: #d9534f;
+  border-color: #d9534f;
+  color: #fff;
+}
+
+.btn.btn-danger:focus,
+.btn.btn-danger:visited,
+.btn.btn-danger:active {
+  background: #d9534f !important;
+  border-color: #d9534f !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 .sort_btn {
   margin-bottom: 9px;
   display: table;

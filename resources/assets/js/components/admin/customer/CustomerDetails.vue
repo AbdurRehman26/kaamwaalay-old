@@ -204,7 +204,7 @@
                                         <p><strong class="title-head">Job Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a @click="viewjob" href="javascript:void(0);">View Jobs</a>
+                                        <a @click="viewjob" href="javascript:void(0);">View All Jobs</a>
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>

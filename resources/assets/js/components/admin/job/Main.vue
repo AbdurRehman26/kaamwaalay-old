@@ -236,7 +236,7 @@ export default {
             this.changeProviderStatus = true;
         },
         profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
+          this.$router.push({name: 'customerdetail'});  
         },        
 
     },
