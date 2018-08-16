@@ -18,12 +18,12 @@ class CampaignController extends ApiResourceController
         $rules = [];
 
         if($value == 'store'){
-            $rules['plan_id'] =  'required|exists:plans,id';
+            $rules['plan_id'] =  'required|numeric|exists:plans,id';
         }
 
         if($value == 'update'){
 
-    }
+        }
 
 
         if($value == 'destroy'){
@@ -39,7 +39,7 @@ class CampaignController extends ApiResourceController
         }
 
         if($value == 'updateCampaign'){
-            $rules['service_provider_user_id'] =  'required|exists:users,id';
+            $rules['service_provider_user_id'] =  'required|numeric|exists:users,id';
             $rules['type']          =  'required|in:view,click';
         }
 
