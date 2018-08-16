@@ -3287,6 +3287,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		TypeAhead: __WEBPACK_IMPORTED_MODULE_0_vue2_typeahead___default.a
 	},
+	props: ['searchValue'],
 	data: function data() {
 		return {
 			search: ''
@@ -3308,6 +3309,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		search: function search(val) {
 			this.search = val;
 			this.$emit('search', this.search);
+		},
+		searchValue: function searchValue(value) {
+			this.search = value;
 		}
 	}
 });
@@ -4621,6 +4625,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -4997,11 +5002,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         showModal: function showModal() {
-
-            console.log(this.selectedService, 9999999);
             this.$refs.myModalRef.show();
         },
         hideModal: function hideModal() {
+            this.loading = false;
             this.$refs.myModalRef.hide();
         },
         onHidden: function onHidden() {
@@ -5090,10 +5094,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'selectedInquiry'],
+    data: function data() {
+        return {
+            errorMessage: '',
+            successMessage: '',
+            role: {},
+            support_question: {},
+            url: 'api/support-inquiry',
+            loading: false
+        };
+    },
 
     methods: {
         showModal: function showModal() {
@@ -5103,7 +5125,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs.myModalRef.hide();
         },
         onHidden: function onHidden() {
+            this.loading = false;
             this.$emit('HideModalValue');
+        },
+        onReply: function onReply() {
+            this.onUpdate();
+            location.href = "mailto:" + this.selectedInquiry.email + '?&subject=Inquiry Support' + '&body=' + this.selectedInquiry.message;
+        },
+        onUpdate: function onUpdate() {
+            var _this = this;
+
+            var self = this;
+            this.loading = true;
+            var url = this.url + "/" + this.selectedInquiry.id;
+
+            var data = new FormData();
+            data.append('_method', 'put');
+            data.append('is_replied', 1);
+
+            this.$http.post(url, data).then(function (response) {
+                response = response.data.response;
+                self.successMessage = 'Replied Successfully!'; //response.message;
+
+                self.loading = false;
+
+                setTimeout(function () {
+                    self.successMessage = '';
+                    self.hideModal();
+                }, 3000);
+
+                setTimeout(function () {
+                    Vue.nextTick(function () {
+                        self.errorBag.clear();
+                    });
+                }, 10);
+            }).catch(function (error) {
+                error = error.response.data;
+                var errors = error.errors;
+                _.forEach(errors, function (value, key) {
+                    if (key == "title") {
+                        self.errorMessage = "The Service Name has alreary been taken.";
+                        return false;
+                    }
+                    self.errorMessage = errors[key][0];
+                    return false;
+                });
+                _this.loading = false;
+            });
         }
     },
 
@@ -5116,6 +5184,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!value) {
                 this.hideModal();
             }
+        },
+        selectedInquiry: function selectedInquiry(value) {
+            console.log(value, 8899988);
+            this.selectedInquiry = value;
+            this.role = value.role;
+            this.support_question = value.support_question;
         }
     }
 });
@@ -62659,14 +62733,19 @@ var render = function() {
             "title-tag": "h4",
             "ok-variant": "primary",
             size: "md",
-            title: "Support Detail",
-            "ok-only": "",
-            "ok-title": "Reply"
+            title: "Support Detail"
           },
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "div",
@@ -62684,7 +62763,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Methew Peterson")])
+                    _c("p", [_vm._v(_vm._s(_vm.selectedInquiry.name))])
                   ])
                 ],
                 1
@@ -62702,7 +62781,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Email Address")])
+                    _c("p", [_vm._v(_vm._s(_vm.selectedInquiry.email))])
                   ])
                 ],
                 1
@@ -62720,7 +62799,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Customer")])
+                    _c("p", [_vm._v(_vm._s(_vm.role.title))])
                   ])
                 ],
                 1
@@ -62738,7 +62817,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("General Question")])
+                    _c("p", [_vm._v(_vm._s(_vm.support_question.question))])
                   ])
                 ],
                 1
@@ -62757,15 +62836,55 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("p", [
-                        _vm._v(
-                          "Great services, had an amazing experience working with PSM."
-                        )
-                      ])
+                      _c("p", [_vm._v(_vm._s(_vm.selectedInquiry.message))])
                     ])
                   ])
                 ],
                 1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c(
+                "b-col",
+                { staticClass: "float-right", attrs: { cols: "12" } },
+                [
+                  _c(
+                    "button",
+                    {
+                      class: [
+                        _vm.loading ? "show-spinner" : "",
+                        "btn",
+                        "btn-primary",
+                        "apply-primary-color"
+                      ],
+                      on: {
+                        click: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "prevant",
+                              undefined,
+                              $event.key,
+                              undefined
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.onReply($event)
+                        }
+                      }
+                    },
+                    [_c("span", [_vm._v("Reply")]), _vm._v(" "), _c("loader")],
+                    1
+                  )
+                ]
               )
             ],
             1
@@ -65405,9 +65524,7 @@ var render = function() {
             size: "md",
             title: "Service Detail",
             "ok-only": "",
-            "ok-title": "Close",
-            "no-close-on-backdrop": "",
-            "no-close-on-esc": ""
+            "ok-title": "Close"
           },
           on: { hidden: _vm.onHidden }
         },

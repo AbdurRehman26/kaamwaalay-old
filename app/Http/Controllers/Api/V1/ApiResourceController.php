@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class ApiResourceController extends Controller
 {
     public $_repository;
-    const   PER_PAGE = 2;
+    const   PER_PAGE = 25;
 
     public function __constructor($repository)
     {
@@ -36,8 +36,7 @@ abstract class ApiResourceController extends Controller
         //$count = $this->_repository->getServiceCount();
         $output = [
             'response' => [
-                'data' => $data['data']['data'],
-                'service_count' => $data['record_count'],
+                'data' => $data['data'],
                 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
                 'message' => $this->response_messages(__FUNCTION__),
             ]
@@ -94,7 +93,6 @@ abstract class ApiResourceController extends Controller
     //Update single record
     public function update(Request $request, $id)
     {   
-
         $request->request->add(['id' => $id]);
         $input = $this->input(__FUNCTION__);
         $rules = $this->rules(__FUNCTION__);
@@ -102,7 +100,6 @@ abstract class ApiResourceController extends Controller
         $this->validate($request, $rules, $messages);
 
         $data = $this->_repository->update($input);
-        
         $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
 
         // HTTP_OK = 200;

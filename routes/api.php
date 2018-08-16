@@ -69,7 +69,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
-
+    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->except([
+        'edit',
+    ]);
 });
 
 
@@ -109,9 +111,6 @@ Route::resource('state', 'Api\V1\StateController')->except([
     'edit',
 ]);
 
-Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->except([
-    'edit',
-]);
 
 Route::resource('support-question', 'Api\V1\SupportQuestionController')->except([
     'edit',
