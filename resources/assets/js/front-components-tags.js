@@ -27,6 +27,7 @@ Vue.component('post-bid-popup',require('./components/front/common-components/Pos
 Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));
 Vue.component('go-to-visit-popup',require('./components/front/common-components/GoToVisitPopup.vue'));
 Vue.component('write-review-popup',require('./components/front/common-components/writeReviewPopup.vue'));
+Vue.component('profile-rejection',require('./components/front/common-components/ProfileRejection.vue'));
 
 
 //header
@@ -48,3 +49,10 @@ Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue')
 Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 
 
+
+//my-bids
+Vue.component('bid-invitation', require('./components/front/bids/Invitations.vue'));
+Vue.component('bid-completed', require('./components/front/bids/Completed.vue'));
+Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
+Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
+Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));

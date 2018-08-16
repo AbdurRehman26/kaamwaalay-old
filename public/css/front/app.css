@@ -14845,6 +14845,7 @@ body .chat-feedback-message.white-msg:before {
 
 .job-notification .jobs-done {
   padding-top: 8px;
+  padding-left: 0px !important;
 }
 
 .job-notification .job-category {
@@ -14856,6 +14857,24 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .job-notification .job-category:after {
+  content: '|';
+  position: absolute;
+  right: 0;
+}
+
+.job-notification .job-category.noborder:after {
+  display: none;
+}
+
+.job-notification .job-poster {
+  display: inline-block;
+  color: #B2B2B2;
+  font-size: 14px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.job-notification .job-poster:after {
   content: '|';
   position: absolute;
   right: 0;
@@ -14965,6 +14984,26 @@ body .chat-feedback-message.white-msg:before {
 .member-details p.bid,
 .job-details p.bid {
   padding-right: 20px;
+}
+
+.member-details p.offer,
+.job-details p.offer {
+  padding-left: 60px;
+}
+
+.member-details p.customer-rating,
+.job-details p.customer-rating {
+  padding-left: 0px;
+  display: inline-block;
+}
+
+.member-details p.customer-rating .vue-star-rating,
+.job-details p.customer-rating .vue-star-rating {
+  display: inline-block !important;
+  vertical-align: bottom;
+  position: relative;
+  top: -2px;
+  padding-left: 3px;
 }
 
 .member-details i,
@@ -15336,12 +15375,14 @@ body .chat-feedback-message.white-msg:before {
 
 /* == Featured Profile sass end == */
 
-.my-job-indication {
+.my-job-indication,
+.bidding-sec {
   text-align: center;
   padding-top: 52px;
 }
 
-.my-job-indication span {
+.my-job-indication span,
+.bidding-sec span {
   color: #8200FF !important;
 }
 
@@ -15572,6 +15613,115 @@ body .chat-feedback-message.white-msg:before {
 
 .custom-timepicker .mx-calendar-icon {
   background-image: url(/images/clock.png?0d35adad010e68e534f6f54b484435e7) !important;
+}
+
+/* my-bidding */
+
+.bidding-sec h2 {
+  margin-bottom: 0px;
+  padding-bottom: 50px;
+}
+
+.bidding-navigation ul {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bidding-navigation li {
+  margin-right: 24px;
+  border-bottom: 4px solid #E0E0E0;
+  padding: 0px 20px 7px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bidding-navigation li p {
+  color: #494949;
+  margin-bottom: 0px;
+  font-family: "AkzidenzGroteskBE-Bold";
+}
+
+.bidding-navigation li p span {
+  color: #494949 !important;
+}
+
+.bidding-navigation li:last-child {
+  margin-right: 0px;
+}
+
+.bidding-navigation li.active {
+  border-color: #8200FF;
+}
+
+.bidding-navigation li.active p {
+  color: #8200FF;
+}
+
+.bidding-navigation li.active p span {
+  color: #8200FF !important;
+}
+
+.chat-message i {
+  font-size: 32px;
+  vertical-align: middle;
+  margin-right: 50px;
+}
+
+.chat-message.disable {
+  pointer-events: none;
+}
+
+.chat-message.disable i {
+  color: #ccc;
+}
+
+.profile-rejection-box {
+  border-radius: 12px;
+  background-color: #F9F9F9;
+  border: 1px solid #E0E0E0;
+  padding: 24px 32px;
+  max-width: 469px;
+  text-align: center;
+  margin: auto;
+}
+
+.profile-rejection-box h2 {
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+}
+
+.profile-rejection-box p {
+  font-size: 14px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+}
+
+.profile-rejection-content {
+  padding: 32px 0px;
+}
+
+.rejectionicon {
+  position: relative;
+  max-width: 56px;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.rejectionicon img {
+  display: inline-block;
+}
+
+.rejectionicon img.cross {
+  position: absolute;
+  right: -7px;
+  top: 0;
 }
 
 .modal-sm {

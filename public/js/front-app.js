@@ -2939,6 +2939,795 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/ActiveBids.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+
+            joblisting: [{
+                job_title_image: '/images/front/storage/bidimage1.png',
+                job_title: 'Concrete Floor Building',
+                job_poster: 'Nathan Alvarez',
+                job_category: 'Construction - Concrete Flooring',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'within a week',
+                job_location: 'New York, NY',
+                chat_message: false,
+                job_offer: '$250',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+                list_ratings: 5
+            }, {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 4
+
+            }]
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Archived.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+				data: function data() {
+								return {
+
+												joblisting: [{
+																job_title_image: '/images/front/storage/bidimage1.png',
+																job_title: 'Concrete Floor Building',
+																job_poster: 'Nathan Alvarez',
+																job_category: 'Construction - Concrete Flooring',
+																job_status: 'Active',
+																job_perform: 270,
+																job_service: 'within a week',
+																job_location: 'New York, NY',
+																chat_message: false,
+																job_offer: '$250',
+																job_post_date: '24 Jan, 2018',
+																job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+																list_ratings: 5
+												}, {
+																job_title_image: '/images/front/storage/bidimage2.png',
+																job_title: 'Leaking water pipe',
+																job_category: 'Construction - Concrete Flooring',
+																job_poster: 'Lisa Burns',
+																job_status: 'Active',
+																job_perform: 270,
+																job_service: 'urgent',
+																job_location: 'New York, NY',
+																chat_message: true,
+																job_offer: 'TBH',
+																job_post_date: '24 Jan, 2018',
+																job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+																list_ratings: 4
+
+												}, {
+																job_title_image: '/images/front/storage/bidimage1.png',
+																job_title: 'Concrete Floor Building',
+																job_poster: 'Nathan Alvarez',
+																job_category: 'Construction - Concrete Flooring',
+																job_status: 'Active',
+																job_perform: 270,
+																job_service: 'within a week',
+																job_location: 'New York, NY',
+																chat_message: false,
+																job_offer: '$250',
+																job_post_date: '24 Jan, 2018',
+																job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+																list_ratings: 5
+												}]
+
+								};
+				},
+
+
+				methods: {
+								AddCustomer: function AddCustomer() {
+												this.customer = true;
+								},
+								ViewCustomerDetail: function ViewCustomerDetail() {
+												/*this.viewcustomer = true;*/
+												this.$router.push({ name: 'customerdetail' });
+								},
+								changestatuspopup: function changestatuspopup() {
+												this.changestatus = true;
+								},
+								HideModal: function HideModal() {
+												this.customer = false;
+												this.viewcustomer = false;
+												this.changestatus = false;
+								},
+								servicedetail: function servicedetail() {
+												this.$router.push({ name: 'job-details' });
+								}
+				},
+				components: {
+								StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+				},
+
+				mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Awarded.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+
+            joblisting: []
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {
+        for (var i = 12 - 1; i >= 0; i--) {
+            var listing = {
+                job_title_image: '/images/front/storage/bidimage1.png',
+                job_title: 'Concrete Floor Building',
+                job_poster: 'Nathan Alvarez',
+                job_category: 'Construction - Concrete Flooring',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'within a week',
+                job_location: 'New York, NY',
+                chat_message: false,
+                job_offer: '$250',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+                list_ratings: 5
+            };
+            this.joblisting.push(listing);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Completed.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            joblisting: []
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {
+        for (var i = 10 - 1; i >= 0; i--) {
+            var listing = {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 4
+
+            };
+            this.joblisting.push(listing);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Invitations.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+
+            joblisting: [{
+                job_title_image: '/images/front/storage/bidimage1.png',
+                job_title: 'Concrete Floor Building',
+                job_poster: 'Nathan Alvarez',
+                job_category: 'Construction - Concrete Flooring',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'within a week',
+                job_location: 'New York, NY',
+                chat_message: false,
+                job_offer: '$250',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+                list_ratings: 5
+            }]
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            bid_selection: 'activebid'
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {},
+
+    watch: {
+        bid_selection: function bid_selection(val) {
+            return this.val;
+        }
+    }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/AwardJobPopup.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5268,7 +6057,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												this.changestatus = false;
 								},
 								servicedetail: function servicedetail() {
-												this.$router.push({ name: 'Service_Provider_Detail' });
+												this.$router.push({ name: 'job-details' });
 								}
 				},
 				components: {
@@ -5822,6 +6611,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             headerBanner: 'images/front/banners/home.jpg'
         };
     }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile-rejection/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -65174,6 +66024,213 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0d0586cf\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Completed.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container md" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "job-post-list" }, [
+        _c("div", { staticClass: "job-post-details" }, [
+          _c("div", {
+            staticClass: "job-image pointer",
+            style: {
+              "background-image": "url(" + listing.job_title_image + ")"
+            },
+            on: { click: _vm.servicedetail }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-common-description job-perform" }, [
+            _c("div", { staticClass: "col-md-6 p-l-0" }, [
+              _c(
+                "h3",
+                { staticClass: "pointer", on: { click: _vm.servicedetail } },
+                [_vm._v(_vm._s(listing.job_title))]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "job-notification" }, [
+                _c("div", { staticClass: "jobs-done" }, [
+                  _c("span", { staticClass: "job-poster" }, [
+                    _vm._v("Posted By "),
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _vm._v(_vm._s(listing.job_poster))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "job-category noborder" }, [
+                    _vm._v(_vm._s(listing.job_category))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "chat-message",
+                  class: { disable: listing.chat_message === false },
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_c("i", { staticClass: "icon-message" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary post-bid",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("View Details")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-details" }, [
+            _c("p", { staticClass: "location" }, [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v(" \n\t\t\t\t\tLocation "),
+              _c("strong", [_vm._v(_vm._s(listing.job_location))])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "offer" }, [
+              _c("i", { staticClass: "icon-work-briefcase" }),
+              _vm._v(" \n\t\t\t\tOffer: "),
+              _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
+              _vm._v(" - "),
+              _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                _vm._v("Change Bid")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "member-since" }, [
+              _c("i", { staticClass: "icon-calendar-daily" }),
+              _vm._v("\n\t\t\t\t\tPost Date "),
+              _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-job-description" }, [
+            _c("p", [_vm._v(_vm._s(listing.job_description))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-details" }, [
+            _c(
+              "p",
+              { staticClass: "customer-rating" },
+              [
+                _c("strong", [_vm._v("Customer rating:")]),
+                _vm._v(" "),
+                _c("star-rating", {
+                  attrs: {
+                    "star-size": 20,
+                    "read-only": "",
+                    rating: [listing.list_ratings],
+                    "active-color": "#8200ff"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "service-requirment" }, [
+              _c("i", { staticClass: "icon-brightness-down" }),
+              _vm._v("\n\t\t\t\t\tService required \n\t\t\t\t\t"),
+              listing.job_service == "urgent"
+                ? _c("strong", { staticClass: "urgent" }, [
+                    _vm._v(_vm._s(listing.job_service))
+                  ])
+                : _c("strong", [_vm._v(_vm._s(listing.job_service))])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0d0586cf", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0fcb15e4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/ProfileRejection.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile-rejection-box" }, [
+      _c("div", { staticClass: "rejectionicon" }, [
+        _c("img", {
+          staticClass: "building",
+          attrs: { src: "images/front/svg/sp-default.svg" }
+        }),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "cross",
+          attrs: { src: "images/front/svg/cancel.svg" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Your profile has been rejected.")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "You need to provide certification document related to electrician service. Also you need to provide proof of business. "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "javascript:void(0);" }
+        },
+        [_vm._v("Re-submit your profile")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0fcb15e4", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1098569d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/PostBidPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65409,6 +66466,156 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1100c94a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-15d08280\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Awarded.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container md" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "job-post-list" }, [
+        _c("div", { staticClass: "job-post-details" }, [
+          _c("div", {
+            staticClass: "job-image pointer",
+            style: {
+              "background-image": "url(" + listing.job_title_image + ")"
+            },
+            on: { click: _vm.servicedetail }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-common-description job-perform" }, [
+            _c("div", { staticClass: "col-md-6 p-l-0" }, [
+              _c(
+                "h3",
+                { staticClass: "pointer", on: { click: _vm.servicedetail } },
+                [_vm._v(_vm._s(listing.job_title))]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "job-notification" }, [
+                _c("div", { staticClass: "jobs-done" }, [
+                  _c("span", { staticClass: "job-poster" }, [
+                    _vm._v("Posted By "),
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _vm._v(_vm._s(listing.job_poster))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "job-category noborder" }, [
+                    _vm._v(_vm._s(listing.job_category))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "chat-message",
+                  class: { disable: listing.chat_message === false },
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_c("i", { staticClass: "icon-message" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary post-bid",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("View Details")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-details" }, [
+            _c("p", { staticClass: "location" }, [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v(" \n\t\t\t\t\tLocation "),
+              _c("strong", [_vm._v(_vm._s(listing.job_location))])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "offer" }, [
+              _c("i", { staticClass: "icon-work-briefcase" }),
+              _vm._v(" \n\t\t\t\tOffer: "),
+              _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
+              _vm._v(" - "),
+              _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                _vm._v("Change Bid")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "member-since" }, [
+              _c("i", { staticClass: "icon-calendar-daily" }),
+              _vm._v("\n\t\t\t\t\tPost Date "),
+              _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-job-description" }, [
+            _c("p", [_vm._v(_vm._s(listing.job_description))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-details" }, [
+            _c(
+              "p",
+              { staticClass: "customer-rating" },
+              [
+                _c("strong", [_vm._v("Customer rating:")]),
+                _vm._v(" "),
+                _c("star-rating", {
+                  attrs: {
+                    "star-size": 20,
+                    "read-only": "",
+                    rating: [listing.list_ratings],
+                    "active-color": "#8200ff"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "service-requirment" }, [
+              _c("i", { staticClass: "icon-brightness-down" }),
+              _vm._v("\n\t\t\t\t\tService required \n\t\t\t\t\t"),
+              listing.job_service == "urgent"
+                ? _c("strong", { staticClass: "urgent" }, [
+                    _vm._v(_vm._s(listing.job_service))
+                  ])
+                : _c("strong", [_vm._v(_vm._s(listing.job_service))])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-15d08280", module.exports)
   }
 }
 
@@ -66287,7 +67494,7 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/explore" } }, [
+            _c("router-link", { attrs: { to: "/my-jobs" } }, [
               _vm._v("My Jobs")
             ])
           ],
@@ -66296,92 +67503,72 @@ var render = function() {
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "" } }, [
-              _c("div", { staticClass: "user-login-detail float-left" }, [
-                _c(
-                  "span",
-                  { staticClass: "user-img", on: { click: _vm.ShowModal } },
-                  [
-                    _c("img", {
-                      attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
-              ])
-            ])
-          ],
-          1
-        ),
+        _c("li", [
+          _c("div", { staticClass: "user-login-detail float-left" }, [
+            _c(
+              "span",
+              { staticClass: "user-img", on: { click: _vm.ShowModal } },
+              [
+                _c("img", {
+                  attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
+          ])
+        ]),
         _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "" } }, [
-              _c("i", { staticClass: "icon-cog2 action-icon" })
-            ])
-          ],
-          1
-        ),
+        _vm._m(1),
         _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "" } }, [
-              _c(
-                "span",
+        _c("li", [
+          _c(
+            "span",
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "on-clickaway",
-                      rawName: "v-on-clickaway",
-                      value: _vm.away,
-                      expression: "away"
-                    }
-                  ],
-                  staticClass: "notify-block",
-                  on: {
-                    click: [
-                      function($event) {
-                        _vm.isShowing ^= true
-                      },
-                      _vm.Showactive
-                    ]
-                  }
+                  name: "on-clickaway",
+                  rawName: "v-on-clickaway",
+                  value: _vm.away,
+                  expression: "away"
+                }
+              ],
+              staticClass: "notify-block",
+              on: {
+                click: [
+                  function($event) {
+                    _vm.isShowing ^= true
+                  },
+                  _vm.Showactive
+                ]
+              }
+            },
+            [
+              _c(
+                "i",
+                {
+                  staticClass: "icon-notification action-icon",
+                  attrs: { active: _vm.tab == true }
                 },
-                [
-                  _c(
-                    "i",
-                    {
-                      staticClass: "icon-notification action-icon",
-                      attrs: { active: _vm.tab == true }
-                    },
-                    [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
-                  ),
-                  _vm._v(" "),
-                  _c("notification", {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.isShowing,
-                        expression: "isShowing"
-                      }
-                    ]
-                  })
-                ],
-                1
-              )
-            ])
-          ],
-          1
-        ),
+                [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
+              ),
+              _vm._v(" "),
+              _c("notification", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.isShowing,
+                    expression: "isShowing"
+                  }
+                ]
+              })
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(2)
       ])
     ]
   )
@@ -66401,6 +67588,12 @@ var staticRenderFns = [
         [_vm._v("Post a Job")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
   },
   function() {
     var _vm = this
@@ -66622,6 +67815,345 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-3a28fc32", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3b6f60c5\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "my-job-lising-content" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "bidding-sec" }, [
+        _c("h2", [_vm._v("My Bids")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "bidding-navigation" }, [
+          _c("ul", [
+            _c(
+              "li",
+              {
+                class: { active: _vm.bid_selection === "invitebid" },
+                on: {
+                  click: function($event) {
+                    _vm.bid_selection = "invitebid"
+                  }
+                }
+              },
+              [_vm._m(0)]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                class: { active: _vm.bid_selection === "activebid" },
+                on: {
+                  click: function($event) {
+                    _vm.bid_selection = "activebid"
+                  }
+                }
+              },
+              [_vm._m(1)]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                class: { active: _vm.bid_selection === "awardedbid" },
+                on: {
+                  click: function($event) {
+                    _vm.bid_selection = "awardedbid"
+                  }
+                }
+              },
+              [_vm._m(2)]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                class: { active: _vm.bid_selection === "completedbid" },
+                on: {
+                  click: function($event) {
+                    _vm.bid_selection = "completedbid"
+                  }
+                }
+              },
+              [_vm._m(3)]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                class: { active: _vm.bid_selection === "archivedbid" },
+                on: {
+                  click: function($event) {
+                    _vm.bid_selection = "archivedbid"
+                  }
+                }
+              },
+              [_vm._m(4)]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "job-post-container section-padd sm" },
+        [
+          _c("bid-invitation", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.bid_selection == "invitebid",
+                expression: "bid_selection == 'invitebid'"
+              }
+            ]
+          }),
+          _vm._v(" "),
+          _c("bid-completed", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.bid_selection == "completedbid",
+                expression: "bid_selection == 'completedbid'"
+              }
+            ]
+          }),
+          _vm._v(" "),
+          _c("bid-awarded", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.bid_selection == "awardedbid",
+                expression: "bid_selection == 'awardedbid'"
+              }
+            ]
+          }),
+          _vm._v(" "),
+          _c("bid-archived", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.bid_selection == "archivedbid",
+                expression: "bid_selection == 'archivedbid'"
+              }
+            ]
+          }),
+          _vm._v(" "),
+          _c("bid-active", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.bid_selection == "activebid",
+                expression: "bid_selection == 'activebid'"
+              }
+            ]
+          })
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("INVITATIONS "), _c("span", [_vm._v("(1)")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("ACTIVE BIDS "), _c("span", [_vm._v("(2)")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("AWARDED "), _c("span", [_vm._v("(12)")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("COMPLETED "), _c("span", [_vm._v("(10)")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("ARCHIVED "), _c("span", [_vm._v("(3)")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3b6f60c5", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-44e36c30\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/ActiveBids.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container md" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "job-post-list" }, [
+        _c("div", { staticClass: "job-post-details" }, [
+          _c("div", {
+            staticClass: "job-image pointer",
+            style: {
+              "background-image": "url(" + listing.job_title_image + ")"
+            },
+            on: { click: _vm.servicedetail }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-common-description job-perform" }, [
+            _c("div", { staticClass: "col-md-6 p-l-0" }, [
+              _c(
+                "h3",
+                { staticClass: "pointer", on: { click: _vm.servicedetail } },
+                [_vm._v(_vm._s(listing.job_title))]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "job-notification" }, [
+                _c("div", { staticClass: "jobs-done" }, [
+                  _c("span", { staticClass: "job-poster" }, [
+                    _vm._v("Posted By "),
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _vm._v(_vm._s(listing.job_poster))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "job-category noborder" }, [
+                    _vm._v(_vm._s(listing.job_category))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "chat-message",
+                  class: { disable: listing.chat_message === false },
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_c("i", { staticClass: "icon-message" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary post-bid",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("View Details")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-details" }, [
+            _c("p", { staticClass: "location" }, [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v(" \n\t\t\t\t\tLocation "),
+              _c("strong", [_vm._v(_vm._s(listing.job_location))])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "offer" }, [
+              _c("i", { staticClass: "icon-work-briefcase" }),
+              _vm._v(" \n\t\t\t\tOffer: "),
+              _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
+              _vm._v(" - "),
+              _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                _vm._v("Change Bid")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "member-since" }, [
+              _c("i", { staticClass: "icon-calendar-daily" }),
+              _vm._v("\n\t\t\t\t\tPost Date "),
+              _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-job-description" }, [
+            _c("p", [_vm._v(_vm._s(listing.job_description))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-details" }, [
+            _c(
+              "p",
+              { staticClass: "customer-rating" },
+              [
+                _c("strong", [_vm._v("Customer rating:")]),
+                _vm._v(" "),
+                _c("star-rating", {
+                  attrs: {
+                    "star-size": 20,
+                    "read-only": "",
+                    rating: [listing.list_ratings],
+                    "active-color": "#8200ff"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "service-requirment" }, [
+              _c("i", { staticClass: "icon-brightness-down" }),
+              _vm._v("\n\t\t\t\t\tService required \n\t\t\t\t\t"),
+              listing.job_service == "urgent"
+                ? _c("strong", { staticClass: "urgent" }, [
+                    _vm._v(_vm._s(listing.job_service))
+                  ])
+                : _c("strong", [_vm._v(_vm._s(listing.job_service))])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-44e36c30", module.exports)
   }
 }
 
@@ -67972,111 +69504,101 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
-          [_c("router-link", { attrs: { to: "" } }, [_vm._v("My Bids")])],
+          [
+            _c("router-link", { attrs: { to: "/my-bids" } }, [
+              _vm._v("My Bids")
+            ])
+          ],
           1
         ),
         _vm._v(" "),
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "" } }, [
+            _c("router-link", { attrs: { to: "/featured-profile" } }, [
               _vm._v("Featured Profile")
             ])
           ],
           1
         ),
         _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "" } }, [
-              _c("div", { staticClass: "user-login-detail float-left" }, [
-                _c(
-                  "span",
-                  { staticClass: "user-img", on: { click: _vm.ShowModal } },
-                  [
-                    _c("img", {
-                      attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
-              ])
-            ])
-          ],
-          1
-        ),
+        _c("li", [
+          _c("div", { staticClass: "user-login-detail float-left" }, [
+            _c(
+              "span",
+              { staticClass: "user-img", on: { click: _vm.ShowModal } },
+              [
+                _c("img", {
+                  attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
+          ])
+        ]),
         _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "" } }, [
-              _c("i", { staticClass: "icon-cog2 action-icon" })
-            ])
-          ],
-          1
-        ),
+        _vm._m(0),
         _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "" } }, [
-              _c(
-                "span",
+        _c("li", [
+          _c(
+            "span",
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "on-clickaway",
-                      rawName: "v-on-clickaway",
-                      value: _vm.away,
-                      expression: "away"
-                    }
-                  ],
-                  staticClass: "notify-block",
-                  on: {
-                    click: [
-                      function($event) {
-                        _vm.isShowing ^= true
-                      },
-                      _vm.Showactive
-                    ]
-                  }
+                  name: "on-clickaway",
+                  rawName: "v-on-clickaway",
+                  value: _vm.away,
+                  expression: "away"
+                }
+              ],
+              staticClass: "notify-block",
+              on: {
+                click: [
+                  function($event) {
+                    _vm.isShowing ^= true
+                  },
+                  _vm.Showactive
+                ]
+              }
+            },
+            [
+              _c(
+                "i",
+                {
+                  staticClass: "icon-notification action-icon",
+                  attrs: { active: _vm.tab == true }
                 },
-                [
-                  _c(
-                    "i",
-                    {
-                      staticClass: "icon-notification action-icon",
-                      attrs: { active: _vm.tab == true }
-                    },
-                    [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
-                  ),
-                  _vm._v(" "),
-                  _c("notification", {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.isShowing,
-                        expression: "isShowing"
-                      }
-                    ]
-                  })
-                ],
-                1
-              )
-            ])
-          ],
-          1
-        ),
+                [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
+              ),
+              _vm._v(" "),
+              _c("notification", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.isShowing,
+                    expression: "isShowing"
+                  }
+                ]
+              })
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
-        _vm._m(0)
+        _vm._m(1)
       ])
     ]
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -69224,6 +70746,306 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-6cedfa20", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-701a71fe\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Invitations.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container md" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "job-post-list" }, [
+        _c("div", { staticClass: "job-post-details" }, [
+          _c("div", {
+            staticClass: "job-image pointer",
+            style: {
+              "background-image": "url(" + listing.job_title_image + ")"
+            },
+            on: { click: _vm.servicedetail }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-common-description job-perform" }, [
+            _c("div", { staticClass: "col-md-6 p-l-0" }, [
+              _c(
+                "h3",
+                { staticClass: "pointer", on: { click: _vm.servicedetail } },
+                [_vm._v(_vm._s(listing.job_title))]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "job-notification" }, [
+                _c("div", { staticClass: "jobs-done" }, [
+                  _c("span", { staticClass: "job-poster" }, [
+                    _vm._v("Posted By "),
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _vm._v(_vm._s(listing.job_poster))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "job-category noborder" }, [
+                    _vm._v(_vm._s(listing.job_category))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "chat-message",
+                  class: { disable: listing.chat_message === false },
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_c("i", { staticClass: "icon-message" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary post-bid",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("View Details")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-details" }, [
+            _c("p", { staticClass: "location" }, [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v(" \n\t\t\t\t\tLocation "),
+              _c("strong", [_vm._v(_vm._s(listing.job_location))])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "offer" }, [
+              _c("i", { staticClass: "icon-work-briefcase" }),
+              _vm._v(" \n\t\t\t\tOffer: "),
+              _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
+              _vm._v(" - "),
+              _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                _vm._v("Change Bid")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "member-since" }, [
+              _c("i", { staticClass: "icon-calendar-daily" }),
+              _vm._v("\n\t\t\t\t\tPost Date "),
+              _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-job-description" }, [
+            _c("p", [_vm._v(_vm._s(listing.job_description))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-details" }, [
+            _c(
+              "p",
+              { staticClass: "customer-rating" },
+              [
+                _c("strong", [_vm._v("Customer rating:")]),
+                _vm._v(" "),
+                _c("star-rating", {
+                  attrs: {
+                    "star-size": 20,
+                    "read-only": "",
+                    rating: [listing.list_ratings],
+                    "active-color": "#8200ff"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "service-requirment" }, [
+              _c("i", { staticClass: "icon-brightness-down" }),
+              _vm._v("\n\t\t\t\t\tService required \n\t\t\t\t\t"),
+              listing.job_service == "urgent"
+                ? _c("strong", { staticClass: "urgent" }, [
+                    _vm._v(_vm._s(listing.job_service))
+                  ])
+                : _c("strong", [_vm._v(_vm._s(listing.job_service))])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-701a71fe", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-728c108e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Archived.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container md" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "job-post-list" }, [
+        _c("div", { staticClass: "job-post-details" }, [
+          _c("div", {
+            staticClass: "job-image pointer",
+            style: {
+              "background-image": "url(" + listing.job_title_image + ")"
+            },
+            on: { click: _vm.servicedetail }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-common-description job-perform" }, [
+            _c("div", { staticClass: "col-md-6 p-l-0" }, [
+              _c(
+                "h3",
+                { staticClass: "pointer", on: { click: _vm.servicedetail } },
+                [_vm._v(_vm._s(listing.job_title))]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "job-notification" }, [
+                _c("div", { staticClass: "jobs-done" }, [
+                  _c("span", { staticClass: "job-poster" }, [
+                    _vm._v("Posted By "),
+                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                      _vm._v(_vm._s(listing.job_poster))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "job-category noborder" }, [
+                    _vm._v(_vm._s(listing.job_category))
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "chat-message",
+                  class: { disable: listing.chat_message === false },
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_c("i", { staticClass: "icon-message" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary post-bid",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("View Details")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-details" }, [
+            _c("p", { staticClass: "location" }, [
+              _c("i", { staticClass: "icon-location" }),
+              _vm._v(" \n\t\t\t\t\tLocation "),
+              _c("strong", [_vm._v(_vm._s(listing.job_location))])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "offer" }, [
+              _c("i", { staticClass: "icon-work-briefcase" }),
+              _vm._v(" \n\t\t\t\tOffer: "),
+              _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
+              _vm._v(" - "),
+              _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                _vm._v("Change Bid")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "member-since" }, [
+              _c("i", { staticClass: "icon-calendar-daily" }),
+              _vm._v("\n\t\t\t\t\tPost Date "),
+              _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "post-job-description" }, [
+            _c("p", [_vm._v(_vm._s(listing.job_description))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-details" }, [
+            _c(
+              "p",
+              { staticClass: "customer-rating" },
+              [
+                _c("strong", [_vm._v("Customer rating:")]),
+                _vm._v(" "),
+                _c("star-rating", {
+                  attrs: {
+                    "star-size": 20,
+                    "read-only": "",
+                    rating: [listing.list_ratings],
+                    "active-color": "#8200ff"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "service-requirment" }, [
+              _c("i", { staticClass: "icon-brightness-down" }),
+              _vm._v("\n\t\t\t\t\tService required \n\t\t\t\t\t"),
+              listing.job_service == "urgent"
+                ? _c("strong", { staticClass: "urgent" }, [
+                    _vm._v(_vm._s(listing.job_service))
+                  ])
+                : _c("strong", [_vm._v(_vm._s(listing.job_service))])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-728c108e", module.exports)
   }
 }
 
@@ -71744,6 +73566,59 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e447004e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-eac81e8c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile-rejection/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "my-job-lising-content" }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "profile-rejection-content" },
+        [_c("profile-rejection")],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "my-job-indication" }, [
+      _c("h2", [_vm._v("My Bids")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("You have total "),
+        _c("span", { staticClass: "primary-color text-bold" }, [
+          _vm._v("0 active")
+        ]),
+        _vm._v(" job and "),
+        _c("span", { staticClass: "primary-color text-bold" }, [
+          _vm._v("0 completed")
+        ]),
+        _vm._v(" jobs.")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-eac81e8c", module.exports)
   }
 }
 
@@ -88276,6 +90151,294 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/bids/ActiveBids.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/ActiveBids.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-44e36c30\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/ActiveBids.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\bids\\ActiveBids.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-44e36c30", Component.options)
+  } else {
+    hotAPI.reload("data-v-44e36c30", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/bids/Archived.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Archived.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-728c108e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Archived.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\bids\\Archived.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-728c108e", Component.options)
+  } else {
+    hotAPI.reload("data-v-728c108e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/bids/Awarded.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Awarded.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-15d08280\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Awarded.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\bids\\Awarded.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-15d08280", Component.options)
+  } else {
+    hotAPI.reload("data-v-15d08280", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/bids/Completed.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Completed.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0d0586cf\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Completed.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\bids\\Completed.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0d0586cf", Component.options)
+  } else {
+    hotAPI.reload("data-v-0d0586cf", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/bids/Invitations.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/Invitations.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-701a71fe\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/Invitations.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\bids\\Invitations.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-701a71fe", Component.options)
+  } else {
+    hotAPI.reload("data-v-701a71fe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/bids/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/bids/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3b6f60c5\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/bids/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\bids\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3b6f60c5", Component.options)
+  } else {
+    hotAPI.reload("data-v-3b6f60c5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/common-components/Alert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -88553,6 +90716,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-1098569d", Component.options)
   } else {
     hotAPI.reload("data-v-1098569d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/common-components/ProfileRejection.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0fcb15e4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/ProfileRejection.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\ProfileRejection.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0fcb15e4", Component.options)
+  } else {
+    hotAPI.reload("data-v-0fcb15e4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -89620,6 +91831,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/profile-rejection/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile-rejection/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-eac81e8c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile-rejection/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\profile-rejection\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eac81e8c", Component.options)
+  } else {
+    hotAPI.reload("data-v-eac81e8c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/profile/ApplyForReview.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -89849,6 +92108,7 @@ Vue.component('post-bid-popup', __webpack_require__("./resources/assets/js/compo
 Vue.component('customer-support-popup', __webpack_require__("./resources/assets/js/components/front/common-components/CustomerSupportPopup.vue"));
 Vue.component('go-to-visit-popup', __webpack_require__("./resources/assets/js/components/front/common-components/GoToVisitPopup.vue"));
 Vue.component('write-review-popup', __webpack_require__("./resources/assets/js/components/front/common-components/writeReviewPopup.vue"));
+Vue.component('profile-rejection', __webpack_require__("./resources/assets/js/components/front/common-components/ProfileRejection.vue"));
 
 //header
 Vue.component('front-header', __webpack_require__("./resources/assets/js/components/front/common-components/header.vue"));
@@ -89867,6 +92127,13 @@ Vue.component('explorenow', __webpack_require__("./resources/assets/js/component
 
 //join as pro
 Vue.component('getstarted', __webpack_require__("./resources/assets/js/components/front/join-as-pro/GetStarted.vue"));
+
+//my-bids
+Vue.component('bid-invitation', __webpack_require__("./resources/assets/js/components/front/bids/Invitations.vue"));
+Vue.component('bid-completed', __webpack_require__("./resources/assets/js/components/front/bids/Completed.vue"));
+Vue.component('bid-awarded', __webpack_require__("./resources/assets/js/components/front/bids/Awarded.vue"));
+Vue.component('bid-archived', __webpack_require__("./resources/assets/js/components/front/bids/Archived.vue"));
+Vue.component('bid-active', __webpack_require__("./resources/assets/js/components/front/bids/ActiveBids.vue"));
 
 /***/ }),
 
@@ -90016,7 +92283,8 @@ var routes = [
     path: '/featured-profile',
     meta: {
         title: 'Professional Service Marketplace | Featured Profile',
-        bodyClass: 'featured-profile-page'
+        bodyClass: 'featured-profile-page',
+        navigation: 'provider-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/featured-profile/main.vue")
 },
@@ -90028,7 +92296,8 @@ var routes = [
     path: '/my-jobs',
     meta: {
         title: 'Professional Service Marketplace | My Jobs',
-        bodyClass: 'my-job-post-page'
+        bodyClass: 'my-job-post-page',
+        navigation: 'customer-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/jobs/my-jobs.vue")
 }, {
@@ -90036,9 +92305,34 @@ var routes = [
     path: '/job-details',
     meta: {
         title: 'Professional Service Marketplace | Job Details',
-        bodyClass: 'job-detail-page'
+        bodyClass: 'job-detail-page',
+        navigation: 'customer-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/jobs/job-detail.vue")
+},
+
+//bidding page
+{
+    name: 'my-bid',
+    path: '/my-bids',
+    meta: {
+        title: 'Professional Service Marketplace | My Bids',
+        bodyClass: 'my-bids-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/bids/main.vue")
+},
+
+//Profile Rejection
+{
+    name: 'profile-rejection',
+    path: '/profile-rejected',
+    meta: {
+        title: 'Professional Service Marketplace | Profile Rejected',
+        bodyClass: 'profile-rejection-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/profile-rejection/main.vue")
 },
 
 /*404*/

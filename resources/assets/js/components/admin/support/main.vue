@@ -37,7 +37,7 @@
                                   <th>Full Name</th>
                                   <th>Email Address</th>
                                   <th>Type</th>
-                                  <th class="text-center">Actions</th>
+                                  <th class="text-center">Action</th>
                                 </tr>
                               </thead>
                               <tbody>
