@@ -67265,7 +67265,7 @@ var render = function() {
               _c(
                 "i",
                 {
-                  staticClass: "icon-notification action-icon",
+                  staticClass: "icon-notifications-outline action-icon",
                   attrs: { active: _vm.tab == true }
                 },
                 [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
@@ -67311,7 +67311,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
+    return _c("li", [_c("i", { staticClass: "icon-cog22 action-icon" })])
   },
   function() {
     var _vm = this
@@ -69204,7 +69204,7 @@ var render = function() {
               _c(
                 "i",
                 {
-                  staticClass: "icon-notification action-icon",
+                  staticClass: "icon-notifications-outline action-icon",
                   attrs: { active: _vm.tab == true }
                 },
                 [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
@@ -69235,7 +69235,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
+    return _c("li", [_c("i", { staticClass: "icon-cog22 action-icon" })])
   },
   function() {
     var _vm = this
