@@ -15179,7 +15179,401 @@ body .chat-feedback-message.white-msg:before {
   background-color: #6004BA;
 }
 
-<<<<<<< HEAD
+/* == Featured Profile sass start == */
+
+.featured-profile {
+  margin: 40px 0 0 0;
+  padding-bottom: 70px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.featured-profile-section {
+  margin-top: 25px;
+}
+
+.profile-budget {
+  border: 1px solid #e0e0e0;
+  padding: 32px;
+  border-radius: 12px;
+  min-height: 382px;
+  background-color: #F9F9F9;
+}
+
+.profile-budget h2 {
+  font-size: 20px;
+  font-family: "AkzidenzGroteskBE-Md";
+  margin-bottom: 25px;
+}
+
+.profile-budget p.patment-detail {
+  padding-left: 38px;
+  padding-top: 0;
+  margin-bottom: 20px;
+  margin-top: -20px;
+  font-size: 14px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #1a1a1a;
+}
+
+.payment-continue {
+  margin-top: 20px;
+}
+
+.featured-profile h3 {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 20px;
+  color: #8200FF;
+  margin-left: 20px;
+}
+
+.featured-places {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 28px;
+}
+
+.featured-places p {
+  margin: 0;
+}
+
+.featured-places i {
+  font-size: 21px;
+  color: #7D7D7D;
+}
+
+.featured-places span {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 16px;
+  color: #1a1a1a;
+  padding-left: 17px;
+  position: absolute;
+  left: 25px;
+}
+
+.featured-places p.featured-detail {
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.campaigns {
+  margin: 70px 0;
+}
+
+.campaigns h3 {
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 16px;
+}
+
+.campaigns .camp-views {
+  position: relative;
+  padding-bottom: 70px;
+  padding-top: 30px;
+}
+
+.campaigns .camp-views .view-status {
+  display: inline-block;
+  float: left;
+  border: 1px solid #8200FF;
+  border-radius: 12px;
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  background-color: rgba(221, 198, 244, 0.1);
+}
+
+.campaigns .camp-views .view-status span {
+  font-family: "AkzidenzGroteskBE-Md";
+  color: #8200FF;
+  font-size: 13px;
+  position: absolute;
+  left: 11px;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 36px;
+  top: 11px;
+}
+
+.campaigns .camp-views .view-status-detail {
+  width: calc(100% - 97px);
+  float: right;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.campaigns .camp-views .view-status-detail .calender-date {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #494949;
+  font-size: 14px;
+}
+
+.campaigns .camp-views .view-status-detail .calender-date i {
+  color: #6004BA;
+}
+
+.campaigns .camp-views .view-status-detail span {
+  font-family: "AkzidenzGroteskBE-Md";
+  color: #1a1a1a;
+  font-size: 16px;
+}
+
+.campaigns .camp-views .view-status-detail .views-percentage {
+  padding: 0;
+  margin-top: 10px;
+}
+
+.campaigns .camp-views .view-status-detail .views-percentage li {
+  display: inline-block;
+  margin-right: 41px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+}
+
+.campaigns .camp-views .view-status-detail .views-percentage li span {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 13px;
+}
+
+/* == Featured Profile sass end == */
+
+.my-job-indication {
+  text-align: center;
+  padding-top: 52px;
+}
+
+.my-job-indication span {
+  color: #8200FF !important;
+}
+
+.text-bold {
+  font-family: "AkzidenzGroteskBE-Bold";
+}
+
+.tags.active {
+  background-color: #4B9EC0;
+}
+
+.tags.completed {
+  background-color: #7CC04B;
+}
+
+.tags.canceled {
+  background-color: #C04B4B;
+}
+
+.job-main-heading .content-sec .job-image {
+  width: 103px;
+  height: 103px;
+  background-size: cover;
+  display: inline-block;
+  border-radius: 15px;
+  margin-right: 30px;
+}
+
+.job-main-heading .content-sec .job-content {
+  font-size: 36px;
+  margin-bottom: 0px;
+  padding-bottom: 7px !important;
+  padding-top: 11px;
+  width: calc(100% - 138px);
+}
+
+.job-main-heading .content-sec .job-content h2 {
+  padding-bottom: 0px;
+}
+
+.job-main-heading .content-sec .job-content .job-details {
+  padding-top: 19px;
+  text-align: right;
+}
+
+.job-main-heading .content-sec .job-content .job-details p {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-right: 12px;
+  vertical-align: top;
+  font-size: 14px;
+}
+
+.job-main-heading .content-sec .job-content .job-details p:last-child {
+  padding-right: 0px;
+}
+
+.job-main-heading .content-sec .job-content .job-details p i {
+  font-size: 18px;
+}
+
+.job-main-heading .content-sec .job-content .job-details p i.icon-brightness-down {
+  font-size: 21px;
+  vertical-align: text-top;
+  position: relative;
+  top: -2px;
+}
+
+.job-bidding {
+  position: relative;
+  padding-left: 64px;
+  margin-bottom: 38px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 32px !important;
+}
+
+.job-bidding .job-common-description {
+  padding: 0px;
+  padding-bottom: 17px;
+}
+
+.job-bidding .chat-feedback-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.job-bidding .chat-feedback-message {
+  margin-top: 15px;
+}
+
+.job-bidding .bit-offered {
+  font-size: 14px;
+  padding-top: 21px;
+}
+
+.job-bidding .bit-offered i {
+  color: #8200FF;
+}
+
+.job-bidding .proposal-message {
+  padding-top: 24px;
+}
+
+.provider-bidding-btn {
+  margin-top: 0px;
+  padding-top: 24px;
+}
+
+.provider-bidding-btn .btn {
+  font-size: 16px !important;
+  margin-left: 9px;
+}
+
+.provider-bidding-btn .btn:first-child {
+  margin-left: 0px;
+}
+
+.jobs-post-files {
+  padding-top: 40px;
+}
+
+.jobs-post-files h3 {
+  font-size: 16px;
+  margin-bottom: 31px;
+}
+
+.jobs-post-files .gallery-item {
+  width: 144px;
+  display: inline-block;
+  vertical-align: top;
+  height: 144px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.jobs-post-files .gallery-item img {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.jobs-post-files iframe {
+  width: 100%;
+}
+
+.service-provider .service-providers-invite {
+  padding: 21px 25px;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  border-radius: 11px;
+}
+
+.service-provider .service-providers-invite:before {
+  content: '';
+  background-color: rgba(17, 17, 17, 0.8);
+  position: absolute;
+  float: left;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+}
+
+.service-provider .service-providers-invite a.btn {
+  margin-top: 0px;
+}
+
+.service-provider h3 {
+  font-size: 20px;
+  position: relative;
+  color: #fff;
+}
+
+.service-provider p {
+  position: relative;
+  color: #DDC6F4;
+}
+
+.service-provider a {
+  position: relative;
+}
+
+.service-provider a.btn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.service-provider a.btn i {
+  position: absolute;
+  left: 17px;
+}
+
+.fancy-box-mask {
+  background-color: rgba(51, 51, 51, 0.82) !important;
+  z-index: 999 !important;
+}
+
+.fancy-box-mask .fancy-box-image-wrapper div {
+  padding-top: 10%;
+}
+
+.fancy-box-mask .fancy-box-image-wrapper div div {
+  padding-top: 0%;
+  -webkit-transform: none !important;
+          transform: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.fancy-box-mask .fancy-box-image-wrapper img {
+  width: auto !important;
+  height: auto;
+}
+
+.custom-timepicker .mx-calendar-icon {
+  background-image: url(/images/clock.png?0d35adad010e68e534f6f54b484435e7) !important;
+}
+
 .modal-sm {
   max-width: 520px;
 }
@@ -15199,7 +15593,30 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .modal-body {
-  padding: 29px;
+  padding: 28px 33px 10px 33px;
+}
+
+.modal-body p {
+  font-size: 16px;
+  margin: 0 0 24px 0;
+  color: #1A1A1A;
+}
+
+.modal-body h6 {
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin-bottom: 15px;
+  color: #7D7D7D;
+}
+
+.modal-body .custom-circle-radio label {
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 27px !important;
+}
+
+.modal-body .form-group {
+  margin-bottom: 24px;
 }
 
 .modal-body .category-selected {
@@ -15217,11 +15634,13 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .modal-header {
-  padding: 15px 24px;
+  padding: 25px 33px 23px 33px;
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .modal-footer {
-  padding: 10px 24px;
+  padding: 23px 33px 26px 33px;
+  border-top: 1px solid #E0E0E0;
 }
 
 /* Data Approval scss start */
@@ -15788,396 +16207,5 @@ body .chat-feedback-message.white-msg:before {
   position: absolute;
   bottom: -49px;
   right: 17px;
-=======
-/* == Featured Profile sass start == */
-
-.featured-profile {
-  margin: 40px 0 0 0;
-  padding-bottom: 70px;
-  border-bottom: 1px solid #E0E0E0;
-}
-
-.featured-profile-section {
-  margin-top: 25px;
-}
-
-.profile-budget {
-  border: 1px solid #e0e0e0;
-  padding: 32px;
-  border-radius: 12px;
-  min-height: 382px;
-  background-color: #F9F9F9;
-}
-
-.profile-budget h2 {
-  font-size: 20px;
-  font-family: "AkzidenzGroteskBE-Md";
-  margin-bottom: 25px;
-}
-
-.profile-budget p.patment-detail {
-  padding-left: 38px;
-  padding-top: 0;
-  margin-bottom: 20px;
-  margin-top: -20px;
-  font-size: 14px;
-  font-family: "AkzidenzGroteskBE-Regular";
-  color: #1a1a1a;
-}
-
-.payment-continue {
-  margin-top: 20px;
-}
-
-.featured-profile h3 {
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 20px;
-  color: #8200FF;
-  margin-left: 20px;
-}
-
-.featured-places {
-  position: relative;
-  margin-left: 20px;
-  margin-top: 28px;
-}
-
-.featured-places p {
-  margin: 0;
-}
-
-.featured-places i {
-  font-size: 21px;
-  color: #7D7D7D;
-}
-
-.featured-places span {
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 16px;
-  color: #1a1a1a;
-  padding-left: 17px;
-  position: absolute;
-  left: 25px;
-}
-
-.featured-places p.featured-detail {
-  padding-left: 40px;
-  font-size: 14px;
-}
-
-.campaigns {
-  margin: 70px 0;
-}
-
-.campaigns h3 {
-  color: #494949;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 16px;
-}
-
-.campaigns .camp-views {
-  position: relative;
-  padding-bottom: 70px;
-  padding-top: 30px;
-}
-
-.campaigns .camp-views .view-status {
-  display: inline-block;
-  float: left;
-  border: 1px solid #8200FF;
-  border-radius: 12px;
-  position: absolute;
-  width: 62px;
-  height: 62px;
-  background-color: rgba(221, 198, 244, 0.1);
-}
-
-.campaigns .camp-views .view-status span {
-  font-family: "AkzidenzGroteskBE-Md";
-  color: #8200FF;
-  font-size: 13px;
-  position: absolute;
-  left: 11px;
-  line-height: 1.4;
-  text-align: center;
-  max-width: 36px;
-  top: 11px;
-}
-
-.campaigns .camp-views .view-status-detail {
-  width: calc(100% - 97px);
-  float: right;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.campaigns .camp-views .view-status-detail .calender-date {
-  font-family: "AkzidenzGroteskBE-Regular";
-  color: #494949;
-  font-size: 14px;
-}
-
-.campaigns .camp-views .view-status-detail .calender-date i {
-  color: #6004BA;
-}
-
-.campaigns .camp-views .view-status-detail span {
-  font-family: "AkzidenzGroteskBE-Md";
-  color: #1a1a1a;
-  font-size: 16px;
-}
-
-.campaigns .camp-views .view-status-detail .views-percentage {
-  padding: 0;
-  margin-top: 10px;
-}
-
-.campaigns .camp-views .view-status-detail .views-percentage li {
-  display: inline-block;
-  margin-right: 41px;
-  font-family: "AkzidenzGroteskBE-Regular";
-  font-size: 14px;
-}
-
-.campaigns .camp-views .view-status-detail .views-percentage li span {
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 13px;
-}
-
-/* == Featured Profile sass end == */
-
-.my-job-indication {
-  text-align: center;
-  padding-top: 52px;
-}
-
-.my-job-indication span {
-  color: #8200FF !important;
-}
-
-.text-bold {
-  font-family: "AkzidenzGroteskBE-Bold";
-}
-
-.tags.active {
-  background-color: #4B9EC0;
-}
-
-.tags.completed {
-  background-color: #7CC04B;
-}
-
-.tags.canceled {
-  background-color: #C04B4B;
-}
-
-.job-main-heading .content-sec .job-image {
-  width: 103px;
-  height: 103px;
-  background-size: cover;
-  display: inline-block;
-  border-radius: 15px;
-  margin-right: 30px;
-}
-
-.job-main-heading .content-sec .job-content {
-  font-size: 36px;
-  margin-bottom: 0px;
-  padding-bottom: 7px !important;
-  padding-top: 11px;
-  width: calc(100% - 138px);
-}
-
-.job-main-heading .content-sec .job-content h2 {
-  padding-bottom: 0px;
-}
-
-.job-main-heading .content-sec .job-content .job-details {
-  padding-top: 19px;
-  text-align: right;
-}
-
-.job-main-heading .content-sec .job-content .job-details p {
-  display: inline-block;
-  margin-bottom: 0;
-  padding-right: 12px;
-  vertical-align: top;
-  font-size: 14px;
-}
-
-.job-main-heading .content-sec .job-content .job-details p:last-child {
-  padding-right: 0px;
-}
-
-.job-main-heading .content-sec .job-content .job-details p i {
-  font-size: 18px;
-}
-
-.job-main-heading .content-sec .job-content .job-details p i.icon-brightness-down {
-  font-size: 21px;
-  vertical-align: text-top;
-  position: relative;
-  top: -2px;
-}
-
-.job-bidding {
-  position: relative;
-  padding-left: 64px;
-  margin-bottom: 38px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 32px !important;
-}
-
-.job-bidding .job-common-description {
-  padding: 0px;
-  padding-bottom: 17px;
-}
-
-.job-bidding .chat-feedback-image {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.job-bidding .chat-feedback-message {
-  margin-top: 15px;
-}
-
-.job-bidding .bit-offered {
-  font-size: 14px;
-  padding-top: 21px;
-}
-
-.job-bidding .bit-offered i {
-  color: #8200FF;
-}
-
-.job-bidding .proposal-message {
-  padding-top: 24px;
-}
-
-.provider-bidding-btn {
-  margin-top: 0px;
-  padding-top: 24px;
-}
-
-.provider-bidding-btn .btn {
-  font-size: 16px !important;
-  margin-left: 9px;
-}
-
-.provider-bidding-btn .btn:first-child {
-  margin-left: 0px;
-}
-
-.jobs-post-files {
-  padding-top: 40px;
-}
-
-.jobs-post-files h3 {
-  font-size: 16px;
-  margin-bottom: 31px;
-}
-
-.jobs-post-files .gallery-item {
-  width: 144px;
-  display: inline-block;
-  vertical-align: top;
-  height: 144px;
-  background-size: cover;
-  background-position: 50%;
-  border-radius: 10px;
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-.jobs-post-files .gallery-item img {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-}
-
-.jobs-post-files iframe {
-  width: 100%;
-}
-
-.service-provider .service-providers-invite {
-  padding: 21px 25px;
-  background-size: cover;
-  position: relative;
-  overflow: hidden;
-  border-radius: 11px;
-}
-
-.service-provider .service-providers-invite:before {
-  content: '';
-  background-color: rgba(17, 17, 17, 0.8);
-  position: absolute;
-  float: left;
-  top: 0;
-  width: 100%;
-  left: 0;
-  height: 100%;
-}
-
-.service-provider .service-providers-invite a.btn {
-  margin-top: 0px;
-}
-
-.service-provider h3 {
-  font-size: 20px;
-  position: relative;
-  color: #fff;
-}
-
-.service-provider p {
-  position: relative;
-  color: #DDC6F4;
-}
-
-.service-provider a {
-  position: relative;
-}
-
-.service-provider a.btn {
-  margin-top: 20px;
-  width: 100%;
-}
-
-.service-provider a.btn i {
-  position: absolute;
-  left: 17px;
-}
-
-.fancy-box-mask {
-  background-color: rgba(51, 51, 51, 0.82) !important;
-  z-index: 999 !important;
-}
-
-.fancy-box-mask .fancy-box-image-wrapper div {
-  padding-top: 10%;
-}
-
-.fancy-box-mask .fancy-box-image-wrapper div div {
-  padding-top: 0%;
-  -webkit-transform: none !important;
-          transform: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.fancy-box-mask .fancy-box-image-wrapper img {
-  width: auto !important;
-  height: auto;
->>>>>>> c2dd457320981d63562d77023c850cfd30c5e328
 }
 
