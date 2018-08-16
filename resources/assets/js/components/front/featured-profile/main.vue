@@ -12,7 +12,7 @@
 						<h2>Please select your featured profile budget.</h2>
 						<div class="row">
 							<div class="col-md-12">
-								<div class="payment-charges">
+								<div class="payment-charges custom-circle-radio">
 									<p>
 									    <input type="radio" id="views1" name="radio-group" checked>
 									    <label for="views1">$10.00 one time</label>
@@ -22,7 +22,7 @@
 							</div>
 								
 							<div class="col-md-12">
-								<div class="payment-charges">
+								<div class="payment-charges custom-circle-radio">
 									<p>
 										<input type="radio" id="views2" name="radio-group" checked>
 										<label for="views2">$15.00 one time</label>
@@ -32,7 +32,7 @@
 							</div>
 
 							<div class="col-md-12">
-								<div class="payment-charges">
+								<div class="payment-charges custom-circle-radio">
 									<p>
 										<input type="radio" id="views3" name="radio-group" checked>
 										<label for="views3">$25.00 one time</label>
