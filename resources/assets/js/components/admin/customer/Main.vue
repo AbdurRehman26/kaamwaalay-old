@@ -60,7 +60,7 @@
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td>
-                <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
+                <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -138,9 +138,7 @@
             ViewCustomerDetail(id) {
 
                 /*this.viewcustomer = true;*/
-                // alert('ss')
-                // alert(id)
-                this.$router.push({name: 'customerdetail',params: { id:id }});
+                this.$router.push({ name: 'customerdetail', params: { id:id }})
             },
             changestatuspopup() {
                 this.changestatus = true;
@@ -154,7 +152,7 @@
                 let self = this;
                 self.loading = false;
                 self.records = data;
-                console.log(self.records , '12312321');
+                // console.log(self.records , '12312321');
                 if (!self.records.length) {
                     self.noRecordFound = true;
                 }

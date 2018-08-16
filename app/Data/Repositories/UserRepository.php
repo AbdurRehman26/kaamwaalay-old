@@ -62,6 +62,27 @@ public $model;
 
             if($data->role_id == Role::CUSTOMER){
             // Todo
+                $avgCriteria = ['user_id' => $data->id,'status'=>'approved'];
+                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+                $data->avg_rating = $avgRating;
+
+                $totalInitiatedJobsCriteria = ['user_id' => $data->id,'status'=>'initiated'];
+                $totalInitiatedJobs = app('JobRepository')->getTotalCountByCriteria($totalInitiatedJobsCriteria);
+                $data->total_initiated_jobs = $totalInitiatedJobs;
+
+                $totalFinsheddJobsCriteria = ['user_id' => $data->id,'status'=>'completed'];
+                $totalFinshedJobs = app('JobRepository')->getTotalCountByCriteria($totalFinsheddJobsCriteria);
+                $data->total_finshed_jobs = $totalFinshedJobs;
+
+                $totalUrgentJobsCreatedCriteria = ['user_id' => $data->id,'job_type'=>'urgent'];
+                $totalUrgentJobsCreated = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCreatedCriteria);
+                $data->total_urgent_jobs_created = $totalUrgentJobsCreated;
+
+                $totalUrgentJobsCompletedCriteria = ['user_id' => $data->id,'job_type'=>'urgent','status'=>'completed'];
+                $totalUrgentJobsCompleted = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCompletedCriteria);
+                $data->total_urgent_jobs_completed = $totalUrgentJobsCompleted;
+                
+                
             }
             $country = app('CountryRepository')->findById($data->country_id);                
             $data->country = !empty($country->name) ? $country->name : '';

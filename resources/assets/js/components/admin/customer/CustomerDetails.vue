@@ -105,7 +105,7 @@
                                         <p><strong class="title-head">Avg. Rating</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>
+                                        <star-rating :star-size="20" read-only :rating="customerDetail.avg_rating" active-color="#8200ff"></star-rating>
                                     </b-col>
                                 </b-row>                                                                                                 
                                 <b-row>
@@ -133,7 +133,7 @@
                                         <p><strong class="title-head">Total Jobs Initiated</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>50</p>
+                                        <p>{{customerDetail.total_initiated_jobs}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -141,7 +141,7 @@
                                         <p><strong class="title-head">Total Jobs Finished</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>40</p>
+                                        <p>{{customerDetail.total_finshed_jobs}}</p>
                                     </b-col>
                                 </b-row>                                                                
                                 <b-row>
@@ -149,7 +149,7 @@
                                         <p><strong class="title-head">Total Urgent Jobs Created</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>6</p>
+                                        <p>{{customerDetail.total_urgent_jobs_created}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -157,7 +157,7 @@
                                         <p><strong class="title-head">Total Urgent Jobs Completed</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>4</p>
+                                        <p>{{customerDetail.total_urgent_jobs_completed}}</p>
                                     </b-col>
                                 </b-row>                                                                   
                                 <b-row>
@@ -165,7 +165,7 @@
                                         <p><strong class="title-head">Job Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a @click="viewjob" href="javascript:void(0);">View Jobs</a>
+                                        <a @click="viewjob(customerDetail.id)" href="javascript:void(0);">View All Jobs</a>
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>
@@ -196,8 +196,9 @@ export default{
     },
 
     methods:{
-        viewjob(){
-            this.$router.push({name: 'customerjobdetail'});
+        viewjob(id){
+            
+            this.$router.push({name: 'customerjobdetail',params: { id:id }});
         },
         getSingle(){
             // alert('single')
@@ -212,8 +213,8 @@ export default{
                 response = response.data.response;
 
                 self.customerDetail = response.data;
-console.log(response.data.first_name);
-console.log(customerDetail.first_name)
+
+
                 if (!self.report.length) {
                     self.showNoRecordFound = true;
                 }
