@@ -303,3 +303,23 @@
     opacity: 0;
   }
 }
+
+
+
+/* block page loader */
+
+.block-loader{
+    min-height: 350px;
+    position: relative;
+  .button-loader{      
+      vertical-align: middle;
+      display: flex;
+      margin-top: 0px;
+      margin-bottom: 0px;      
+      height: 100%;
+      align-content: center;
+      align-items: center;
+      background-color: #fff;
+      width: 100% !important;
+    }
+}
