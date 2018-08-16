@@ -77,6 +77,11 @@ export default {
 
     mounted(){
 
+    },
+    watch:{
+    	bid_selection: function (val){
+    		return this.val
+    	},
     }
 
 }

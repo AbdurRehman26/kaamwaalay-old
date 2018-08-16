@@ -1429,6 +1429,23 @@ body{
                 position: absolute;
                 right: 0;
             }
+            &.noborder{
+                &:after{
+                    display:none;
+                }                
+            }
+        }
+        .job-poster{
+            display: inline-block;
+            color: #B2B2B2;
+            font-size: 14px;
+            padding-right: 10px;
+            position: relative;
+            &:after{
+                content: '|';
+                position: absolute;
+                right: 0;
+            }                        
         }
         .job-status{
             display: inline-block;
@@ -2094,7 +2111,8 @@ body{
         cursor: pointer;
         p{
             color: #494949;
-            margin-bottom: 0px;                        
+            margin-bottom: 0px;
+            font-family: $font-bold;                        
             span{
                 color: #494949 !important;
             }
@@ -2103,11 +2121,11 @@ body{
             margin-right: 0px;
         }
         &.active{
-            border-color: $primary-color;
+            border-color: $primary-color-md;
             p{
-                color: $primary-color;
+                color: $primary-color-md;
                 span{
-                    color: $primary-color !important;
+                    color: $primary-color-md !important;
                 }
             }
         }
@@ -2119,5 +2137,11 @@ body{
         font-size: $font-size-xl;
         vertical-align: middle;
         margin-right: 50px;
+    }
+    &.disable{
+        pointer-events: none;
+        i{
+            color: #ccc;
+        }
     }
 }

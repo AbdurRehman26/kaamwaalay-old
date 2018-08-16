@@ -14862,6 +14862,24 @@ body .chat-feedback-message.white-msg:before {
   right: 0;
 }
 
+.job-notification .job-category.noborder:after {
+  display: none;
+}
+
+.job-notification .job-poster {
+  display: inline-block;
+  color: #B2B2B2;
+  font-size: 14px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.job-notification .job-poster:after {
+  content: '|';
+  position: absolute;
+  right: 0;
+}
+
 .job-notification .job-status {
   display: inline-block;
 }
@@ -15622,6 +15640,7 @@ body .chat-feedback-message.white-msg:before {
 .bidding-navigation li p {
   color: #494949;
   margin-bottom: 0px;
+  font-family: "AkzidenzGroteskBE-Bold";
 }
 
 .bidding-navigation li p span {
@@ -15633,21 +15652,29 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .bidding-navigation li.active {
-  border-color: #6004BA;
+  border-color: #8200FF;
 }
 
 .bidding-navigation li.active p {
-  color: #6004BA;
+  color: #8200FF;
 }
 
 .bidding-navigation li.active p span {
-  color: #6004BA !important;
+  color: #8200FF !important;
 }
 
 .chat-message i {
   font-size: 32px;
   vertical-align: middle;
   margin-right: 50px;
+}
+
+.chat-message.disable {
+  pointer-events: none;
+}
+
+.chat-message.disable i {
+  color: #ccc;
 }
 
 .modal-sm {

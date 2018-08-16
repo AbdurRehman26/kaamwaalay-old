@@ -10,17 +10,14 @@
 								<div class="col-md-6 p-l-0">
 									<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
 									<div class="job-notification">									
-										<div class="jobs-done">
-											<span class="job-category">{{ listing.job_category }}</span>		
-											<div class="job-status">
-												<span class="tags" :class="[listing.job_status.replace(/\s/g, '').toLowerCase().trim()]">{{ listing.job_status }}</span>	
-											</div>
-											
+										<div class="jobs-done">											
+											<span class="job-poster">Posted By <a href="javascript:void(0);">{{ listing.job_poster }}</a></span>		
+											<span class="job-category noborder">{{ listing.job_category }}</span>											
 										</div>	
 									</div>
 								</div>
 								<div class="col-md-6 job-bid-btn p-r-0">
-									<a href="javascript:void(0);" class="chat-message"><i class="icon-message"></i></a>						
+									<a href="javascript:void(0);" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>						
 									<a href="javascript:void(0);" class="btn btn-primary post-bid">View Details</a>
 								</div>
 							</div>
@@ -32,7 +29,7 @@
 								</p>
 								<p class="offer">
 								<i class="icon-work-briefcase"></i> 
-								Offer: <strong>$250</strong> - <a href="javascript:void(0);">Change Bid</a>
+								Offer: <strong>{{ listing.job_offer }}</strong> - <a href="javascript:void(0);">Change Bid</a>
 								</p>
 
 								<p class="member-since">
@@ -76,31 +73,21 @@ export default {
     	joblisting:[
 
 	    	{
-	    		job_title_image: '/images/front/storage/logoimage1.png',
-	    		job_title: 'CHS US Carpenter and Roofing',
+	    		job_title_image: '/images/front/storage/bidimage1.png',
+	    		job_title: 'Concrete Floor Building',
+	    		job_poster: 'Nathan Alvarez',
 	    		job_category: 'Construction - Concrete Flooring',
 	    		job_status: 'Active',
 	    		job_perform: 270,
-	    		job_bid: false,
-	    		job_bid_number: 4,
-	    		project_awarded: false,
-	    		job_awarded: 'A-General Plumbing & Sewer Service',
 	    		job_service: 'within a week',
 	    		job_location: 'New York, NY',
+	    		chat_message: false,
+	    		job_offer: '$250',
 	    		job_post_date: '24 Jan, 2018',
-	    		job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-	    		job_bid_recieved: 10,
-	    		job_service_Requirment: 'within a week',
-	    		review_details: false,
-	    		list_ratings: 4,
-	    		latest_review_image: '/images/front/storage/personimage1.png',
-	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-	    		latest_reviewer_name: 'Shirley Webb',
-	    		latest_review_post_date: 'August, 2018',
-
+	    		job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+	    		list_ratings: 5,
 	    	},
-
-
+	    	
     	], 	
 
     	}

@@ -10,17 +10,14 @@
 								<div class="col-md-6 p-l-0">
 									<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
 									<div class="job-notification">									
-										<div class="jobs-done">
-											<span class="job-category">{{ listing.job_category }}</span>		
-											<div class="job-status">
-												<span class="tags" :class="[listing.job_status.replace(/\s/g, '').toLowerCase().trim()]">{{ listing.job_status }}</span>	
-											</div>
-											
+										<div class="jobs-done">											
+											<span class="job-poster">Posted By <a href="javascript:void(0);">{{ listing.job_poster }}</a></span>		
+											<span class="job-category noborder">{{ listing.job_category }}</span>											
 										</div>	
 									</div>
 								</div>
 								<div class="col-md-6 job-bid-btn p-r-0">
-									<a href="javascript:void(0);" class="chat-message"><i class="icon-message"></i></a>						
+									<a href="javascript:void(0);" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>						
 									<a href="javascript:void(0);" class="btn btn-primary post-bid">View Details</a>
 								</div>
 							</div>
@@ -32,7 +29,7 @@
 								</p>
 								<p class="offer">
 								<i class="icon-work-briefcase"></i> 
-								Offer: <strong>$250</strong> - <a href="javascript:void(0);">Change Bid</a>
+								Offer: <strong>{{ listing.job_offer }}</strong> - <a href="javascript:void(0);">Change Bid</a>
 								</p>
 
 								<p class="member-since">
@@ -72,36 +69,7 @@ import StarRating from 'vue-star-rating';
 export default {
   data () {
     return {
-
-    	joblisting:[
-
-	    	{
-	    		job_title_image: '/images/front/storage/logoimage1.png',
-	    		job_title: 'CHS US Carpenter and Roofing',
-	    		job_category: 'Construction - Concrete Flooring',
-	    		job_status: 'Active',
-	    		job_perform: 270,
-	    		job_bid: false,
-	    		job_bid_number: 4,
-	    		project_awarded: false,
-	    		job_awarded: 'A-General Plumbing & Sewer Service',
-	    		job_service: 'within a week',
-	    		job_location: 'New York, NY',
-	    		job_post_date: '24 Jan, 2018',
-	    		job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-	    		job_bid_recieved: 10,
-	    		job_service_Requirment: 'within a week',
-	    		review_details: false,
-	    		list_ratings: 4,
-	    		latest_review_image: '/images/front/storage/personimage1.png',
-	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-	    		latest_reviewer_name: 'Shirley Webb',
-	    		latest_review_post_date: 'August, 2018',
-
-	    	},
-
-
-    	], 	
+		joblisting:[],
 
     	}
   	},
@@ -132,9 +100,28 @@ export default {
         StarRating
     },
 
-    mounted(){
+   mounted(){
+    	for (var i = 10 - 1; i >= 0; i--) {
+    		var listing = {
+	    		job_title_image: '/images/front/storage/bidimage2.png',
+	    		job_title: 'Leaking water pipe',
+	    		job_category: 'Construction - Concrete Flooring',
+	    		job_poster: 'Lisa Burns',
+	    		job_status: 'Active',
+	    		job_perform: 270,
+	    		job_service: 'urgent',
+	    		job_location: 'New York, NY',
+	    		chat_message: true,
+	    		job_offer: 'TBH',
+	    		job_post_date: '24 Jan, 2018',
+	    		job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+	    		list_ratings: 4,
 
-    }
+	    	};
+    	this.joblisting.push(listing);
+    	}
+
+    },
 
 }
 </script>
