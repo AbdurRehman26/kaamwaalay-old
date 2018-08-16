@@ -2663,14 +2663,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.loading = true;
             this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
                 self.loading = false;
-                self.successMessage = response.data.message;
+                self.successMessage = response.data.response.message;
                 setTimeout(function () {
                     self.successMessage = '';
                     self.hideModal();
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'Old Password is not valid.';
+                self.errorMessage = 'An Error Occured.';
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);
@@ -3179,6 +3179,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.last_name = user.last_name;
     },
 
+    computed: {
+        fullName: function fullName() {
+            return this.first_name + ' ' + this.last_name;
+        }
+    },
     methods: {
         getAllServices: function getAllServices() {
             var self = this;
@@ -5507,6 +5512,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }), _defineProperty(_ref, 'loading', false), _ref;
   },
   mounted: function mounted() {
+    this.$auth.options.loginUrl = '/api/auth/login/admin';
     self = this;
     this.$nextTick(function () {
       setTimeout(function () {
@@ -5527,18 +5533,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var this_ = this;
       this.loading = true;
       window.successMessage = "";
-      this.$auth.login(this.login_info).then(function (response) {
-        self.loading = false;
-        this_.$store.commit('setAuthUser', response.data.response.data[0]);
-        this_.$router.push({ name: 'dashboard' });
-      }).catch(function (error) {
-        _this.loading = false;
-        this_.errorMessage = error.response.data.errors.email[0];
+      if (!this.$auth.isAuthenticated()) {
+        //this.$http.put('api/auth/login/admin', this.userData)
+        this.$auth.login(this.login_info).then(function (response) {
+          self.loading = false;
+          this_.$store.commit('setAuthUser', response.data.response.data[0]);
+          this_.$router.push({ name: 'dashboard' });
+        }).catch(function (error) {
+          _this.loading = false;
+          this_.errorMessage = error.response.data.errors.email[0];
+          setTimeout(function () {
+            this_.errorMessage = '';
+            this.loading = false;
+          }, 5000);
+        });
+      } else {
         setTimeout(function () {
-          this_.errorMessage = '';
           this.loading = false;
+          this_.$router.push({ name: 'dashboard' });
         }, 5000);
-      });
+      }
     },
     validateBeforeSubmit: function validateBeforeSubmit() {
       var _this2 = this;
@@ -70347,7 +70361,7 @@ var render = function() {
               _c("div", { staticClass: "float-right" }, [
                 _c(
                   "div",
-                  { staticClass: "left-cog" },
+                  { staticClass: "left-cog profile-block" },
                   [
                     _c(
                       "span",
@@ -70364,9 +70378,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "profile-username" }, [
                       _c("div", { staticClass: "username" }, [
-                        _vm._v(
-                          _vm._s(_vm.first_name) + " " + _vm._s(_vm.last_name)
-                        )
+                        _vm._v(_vm._s(_vm.fullName))
                       ]),
                       _vm._v(" "),
                       _c("i", { staticClass: "icon-triangle-down" })

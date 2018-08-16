@@ -8,12 +8,12 @@
                         <h2 class="page-title"><i :class="[$route.meta.icon]"></i>{{$route.meta.pagetitle}}</h2>
                     </div>
                     <div class="float-right">
-                        <div class="left-cog">
+                        <div class="left-cog profile-block">
                             <span class="user-img" @click="ChangePass">
                                 <img src="/images/dummy/user-pic.jpg" alt="">
                             </span>
                             <div class="profile-username">
-                                    <div class="username">{{first_name}} {{last_name}}</div>
+                                    <div class="username">{{fullName}}</div>
                                     <i class="icon-triangle-down"></i>
                            </div>
                            <logout-component></logout-component> 
@@ -52,6 +52,11 @@ import { directive as onClickaway } from 'vue-clickaway';
            this.getAllServices();
            this.last_name = user.last_name;
        },
+       computed : {
+        fullName(){
+            return this.first_name + ' ' + this.last_name;
+            },
+        },
         methods: {
 
             getAllServices() {

@@ -98,7 +98,7 @@ data () {
                 this.$http.put('api/auth/change/password/', this.userData)
                     .then(response => {
                             self.loading = false
-                            self.successMessage= response.data.message;
+                            self.successMessage= response.data.response.message;
                             setTimeout(function(){
                                 self.successMessage='';
                                 self.hideModal();
@@ -106,7 +106,7 @@ data () {
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage ='Old Password is not valid.';
+                        self.errorMessage ='An Error Occured.';
                         setTimeout(function(){
                             self.errorMessage='';
                         }, 5000);
