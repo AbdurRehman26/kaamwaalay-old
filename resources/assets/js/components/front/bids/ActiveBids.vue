@@ -129,7 +129,7 @@ export default {
             this.changestatus = false;
         },
         servicedetail(){
-        	this.$router.push({name: 'job-details'});
+        	this.$router.push('/job-details/serviceprovider');
         }
 
     },

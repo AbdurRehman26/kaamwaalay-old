@@ -173,7 +173,7 @@ const routes = [
 
     {
         name: 'job-details',
-        path: '/job-details',
+        path: '/job-details/:id?',
         meta: {
             title: 'Professional Service Marketplace | Job Details',
             bodyClass: 'job-detail-page',

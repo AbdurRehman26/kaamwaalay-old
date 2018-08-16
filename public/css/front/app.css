@@ -14991,6 +14991,11 @@ body .chat-feedback-message.white-msg:before {
   padding-left: 60px;
 }
 
+.member-details p.service-requirment,
+.job-details p.service-requirment {
+  padding-top: 3px;
+}
+
 .member-details p.customer-rating,
 .job-details p.customer-rating {
   padding-left: 0px;

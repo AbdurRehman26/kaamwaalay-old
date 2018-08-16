@@ -3070,7 +3070,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.changestatus = false;
         },
         servicedetail: function servicedetail() {
-            this.$router.push({ name: 'job-details' });
+            this.$router.push('/job-details/serviceprovider');
         }
     },
     components: {
@@ -5736,6 +5736,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5743,7 +5756,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             jobimage: '/images/front/explore/concret.png',
-
+            job_detail_right_panel: this.$route.params.id,
             reviewerimage: '/images/front/storage/personimage1.png',
 
             imageList: [{ width: 900, height: 675, url: '/images/dummy/jobfileimage1.png' }, { width: 900, height: 675, url: '/images/dummy/jobfileimage2.png' }, { width: 900, height: 675, url: '/images/dummy/jobfileimage3.png' }],
@@ -5813,13 +5826,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },*/
         open: function open(e) {
             __WEBPACK_IMPORTED_MODULE_1_vue_fancybox___default()(e.target, this.imageList);
+        },
+        routerparama: function routerparama() {
+            this.list = this.$route.params.id;
+            alert(this.$route.params.id);
         }
     },
     components: {
         StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
     },
 
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        routerparama();
+    }
 });
 
 /***/ }),
@@ -72311,318 +72330,345 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "job-main-details" },
-    _vm._l(_vm.joblisting, function(listing) {
-      return _c("div", { staticClass: "content" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "job-main-heading grey-bg elementary-banner section-padd xs border-bottom"
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "container element-index text-center md" },
-              [
-                _c("div", { staticClass: "content-sec" }, [
-                  _c("div", {
-                    staticClass: "job-image",
-                    style: { "background-image": "url(" + _vm.jobimage + ")" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "job-content" }, [
-                    _c("h2", [_vm._v(_vm._s(listing.job_title))]),
+    [
+      _vm._l(_vm.joblisting, function(listing) {
+        return _c("div", { staticClass: "content" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "job-main-heading grey-bg elementary-banner section-padd xs border-bottom"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "container element-index text-center md" },
+                [
+                  _c("div", { staticClass: "content-sec" }, [
+                    _c("div", {
+                      staticClass: "job-image",
+                      style: { "background-image": "url(" + _vm.jobimage + ")" }
+                    }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "job-notification flexable" }, [
-                      _c("div", { staticClass: "col-md-6  p-l-0" }, [
-                        _c("div", { staticClass: "jobs-done" }, [
-                          _c("span", { staticClass: "job-category" }, [
-                            _vm._v(_vm._s(listing.job_category))
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "job-status" }, [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "tags",
-                                class: [
-                                  listing.job_status
-                                    .replace(/\s/g, "")
-                                    .toLowerCase()
-                                    .trim()
-                                ]
-                              },
-                              [_vm._v(_vm._s(listing.job_status))]
-                            )
-                          ])
-                        ])
-                      ]),
+                    _c("div", { staticClass: "job-content" }, [
+                      _c("h2", [_vm._v(_vm._s(listing.job_title))]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 p-r-0" }, [
-                        _c("div", { staticClass: "job-details" }, [
-                          _c("p", { staticClass: "awarded" }, [
-                            _c("i", { staticClass: "icon-checkmark2" }),
-                            _vm._v(
-                              " \n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                _vm._s(listing.job_awarded) +
-                                "\n\t\t\t\t\t\t\t\t\t\t\t"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "service-requirment" }, [
-                            _c("i", { staticClass: "icon-brightness-down" }),
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t\t\t\t\tService required \n\t\t\t\t\t\t\t\t\t\t\t\t"
-                            ),
-                            listing.job_service == "urgent"
-                              ? _c("strong", { staticClass: "urgent" }, [
-                                  _vm._v(_vm._s(listing.job_service))
-                                ])
-                              : _c("strong", [
-                                  _vm._v(_vm._s(listing.job_service))
-                                ])
+                      _c("div", { staticClass: "job-notification flexable" }, [
+                        _c("div", { staticClass: "col-md-6  p-l-0" }, [
+                          _c("div", { staticClass: "jobs-done" }, [
+                            _c("span", { staticClass: "job-category" }, [
+                              _vm._v(_vm._s(listing.job_category))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "job-status" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "tags",
+                                  class: [
+                                    listing.job_status
+                                      .replace(/\s/g, "")
+                                      .toLowerCase()
+                                      .trim()
+                                  ]
+                                },
+                                [_vm._v(_vm._s(listing.job_status))]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6 p-r-0" }, [
+                          _c("div", { staticClass: "job-details" }, [
+                            _c("p", { staticClass: "awarded" }, [
+                              _c("i", { staticClass: "icon-checkmark2" }),
+                              _vm._v(
+                                " \n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                  _vm._s(listing.job_awarded) +
+                                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "service-requirment" }, [
+                              _c("i", { staticClass: "icon-brightness-down" }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\tService required \n\t\t\t\t\t\t\t\t\t\t\t\t"
+                              ),
+                              listing.job_service == "urgent"
+                                ? _c("strong", { staticClass: "urgent" }, [
+                                    _vm._v(_vm._s(listing.job_service))
+                                  ])
+                                : _c("strong", [
+                                    _vm._v(_vm._s(listing.job_service))
+                                  ])
+                            ])
                           ])
                         ])
                       ])
                     ])
                   ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(0, true)
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "job-post-container section-padd sm" }, [
-          _c("div", { staticClass: "container md" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-9" }, [
-                _c("div", { staticClass: "provider-information" }, [
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "member-details" }, [
-                    _c("p", { staticClass: "location" }, [
-                      _c("i", { staticClass: "icon-location" }),
-                      _vm._v(" \n\t\t\t\t\t\t\t\t\t\t\tLocation "),
-                      _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true)
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "job-post-container section-padd sm" }, [
+            _c("div", { staticClass: "container md" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-9" }, [
+                  _c("div", { staticClass: "provider-information" }, [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "member-details" }, [
+                      _c("p", { staticClass: "location" }, [
+                        _c("i", { staticClass: "icon-location" }),
+                        _vm._v(" \n\t\t\t\t\t\t\t\t\t\t\tLocation "),
+                        _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "member-since" }, [
+                        _vm._v(
+                          "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\tMember since "
+                        ),
+                        _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("p", { staticClass: "member-since" }, [
-                      _vm._v(
-                        "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\tMember since "
-                      ),
-                      _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "post-job-description" }, [
-                    _c("p", [_vm._v(_vm._s(listing.job_description))])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "jobs-post-files" },
-                    [
-                      _c("h3", [_vm._v("Related Photos")]),
-                      _vm._v(" "),
-                      _vm._l(_vm.imageList, function(n, index) {
-                        return _c(
-                          "div",
-                          {
-                            staticClass: "gallery-item",
-                            style: { "background-image": "url(" + n.url + ")" },
-                            attrs: { "data-index": index }
-                          },
-                          [
-                            _c("img", {
-                              attrs: { src: n.url },
-                              on: {
-                                click: function($event) {
-                                  _vm.open($event)
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _vm._m(2, true),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "chat-feedback" },
-                    [
-                      _vm._m(3, true),
-                      _vm._v(" "),
-                      _vm._l(listing.review_details, function(reviewer) {
-                        return _c(
-                          "div",
-                          { staticClass: "chat-feedback-column job-bidding" },
-                          [
-                            _c("div", {
-                              staticClass: "chat-feedback-image",
+                    _c("div", { staticClass: "post-job-description" }, [
+                      _c("p", [_vm._v(_vm._s(listing.job_description))])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "jobs-post-files" },
+                      [
+                        _c("h3", [_vm._v("Related Photos")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.imageList, function(n, index) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "gallery-item",
                               style: {
-                                "background-image":
-                                  "url(" + reviewer.latest_review_image + ")"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "job-common-description" },
-                              [
-                                _c("h3", { staticClass: "pointer" }, [
-                                  _vm._v(_vm._s(listing.job_title))
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "jobs-rating" },
-                                  [
-                                    _c("star-rating", {
-                                      attrs: {
-                                        "star-size": 20,
-                                        "read-only": "",
-                                        rating: 4,
-                                        "active-color": "#8200ff"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "jobs-done" }, [
-                                      _c(
-                                        "span",
-                                        { staticClass: "review-job" },
-                                        [
-                                          _vm._v(
-                                            _vm._s(reviewer.job_feedback) +
-                                              " Feedback reviews"
-                                          )
-                                        ]
-                                      ),
+                                "background-image": "url(" + n.url + ")"
+                              },
+                              attrs: { "data-index": index }
+                            },
+                            [
+                              _c("img", {
+                                attrs: { src: n.url },
+                                on: {
+                                  click: function($event) {
+                                    _vm.open($event)
+                                  }
+                                }
+                              })
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2, true),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "chat-feedback" },
+                      [
+                        _vm._m(3, true),
+                        _vm._v(" "),
+                        _vm._l(listing.review_details, function(reviewer) {
+                          return _c(
+                            "div",
+                            { staticClass: "chat-feedback-column job-bidding" },
+                            [
+                              _c("div", {
+                                staticClass: "chat-feedback-image",
+                                style: {
+                                  "background-image":
+                                    "url(" + reviewer.latest_review_image + ")"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "job-common-description" },
+                                [
+                                  _c("h3", { staticClass: "pointer" }, [
+                                    _vm._v(_vm._s(listing.job_title))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "jobs-rating" },
+                                    [
+                                      _c("star-rating", {
+                                        attrs: {
+                                          "star-size": 20,
+                                          "read-only": "",
+                                          rating: 4,
+                                          "active-color": "#8200ff"
+                                        }
+                                      }),
                                       _vm._v(" "),
-                                      reviewer.job_perform == 0
-                                        ? _c(
-                                            "span",
-                                            { staticClass: "review-job" },
-                                            [_vm._v("No Jobs performed")]
-                                          )
-                                        : _c(
-                                            "span",
-                                            { staticClass: "review-job" },
-                                            [
-                                              _vm._v(
-                                                _vm._s(reviewer.job_perform) +
-                                                  " Jobs performed"
-                                              )
-                                            ]
-                                          )
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "job-proposal" }, [
-                              _c("div", { staticClass: "bit-offered" }, [
-                                _c("span", [
-                                  _c("i", {
-                                    staticClass: "icon-work-briefcase"
-                                  }),
-                                  _vm._v(
-                                    " Offer: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                  ),
-                                  _c("strong", [
+                                      _c("div", { staticClass: "jobs-done" }, [
+                                        _c(
+                                          "span",
+                                          { staticClass: "review-job" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(reviewer.job_feedback) +
+                                                " Feedback reviews"
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        reviewer.job_perform == 0
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "review-job" },
+                                              [_vm._v("No Jobs performed")]
+                                            )
+                                          : _c(
+                                              "span",
+                                              { staticClass: "review-job" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(reviewer.job_perform) +
+                                                    " Jobs performed"
+                                                )
+                                              ]
+                                            )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "job-proposal" }, [
+                                _c("div", { staticClass: "bit-offered" }, [
+                                  _c("span", [
+                                    _c("i", {
+                                      staticClass: "icon-work-briefcase"
+                                    }),
                                     _vm._v(
-                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                        _vm._s(reviewer.job_bid_amount) +
-                                        "\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                      " Offer: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                    ),
+                                    _c("strong", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(reviewer.job_bid_amount) +
+                                          "\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "pull-right" }, [
+                                    _c("i", {
+                                      staticClass: "icon-calendar-daily"
+                                    }),
+                                    _vm._v(
+                                      " Date:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                    ),
+                                    _c("strong", [
+                                      _vm._v(
+                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                          _vm._s(reviewer.job_bid_data) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "proposal-message" }, [
+                                  _c("p", [
+                                    _vm._v(
+                                      _vm._s(reviewer.latest_review_description)
                                     )
                                   ])
                                 ]),
                                 _vm._v(" "),
-                                _c("span", { staticClass: "pull-right" }, [
-                                  _c("i", {
-                                    staticClass: "icon-calendar-daily"
-                                  }),
-                                  _vm._v(
-                                    " Date:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                  ),
-                                  _c("strong", [
-                                    _vm._v(
-                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                        _vm._s(reviewer.job_bid_data) +
-                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                    )
-                                  ])
-                                ])
+                                _vm._m(4, true)
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
+                  _vm.job_detail_right_panel == "awarded"
+                    ? _c("div", { staticClass: "service-provider" }, [
+                        _vm._m(5, true),
+                        _vm._v(" "),
+                        _vm._m(6, true),
+                        _vm._v(" "),
+                        _vm._m(7, true),
+                        _vm._v(" "),
+                        _vm._m(8, true)
+                      ])
+                    : _vm.job_detail_right_panel == "serviceprovider"
+                      ? _c("div", { staticClass: "service-provider" }, [
+                          _vm._m(9, true),
+                          _vm._v(" "),
+                          _vm._m(10, true),
+                          _vm._v(" "),
+                          _vm._m(11, true)
+                        ])
+                      : _c("div", { staticClass: "service-provider" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "service-providers-invite",
+                              style: {
+                                "background-image": "url(" + _vm.jobimage + ")"
+                              }
+                            },
+                            [
+                              _c("h3", [
+                                _vm._v(
+                                  "Find & invite service providers to bid on your job."
+                                )
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "proposal-message" }, [
-                                _c("p", [
-                                  _vm._v(
-                                    _vm._s(reviewer.latest_review_description)
-                                  )
-                                ])
+                              _c("p", [
+                                _vm._v(
+                                  "14 service providers available around you related to concrete flooring."
+                                )
                               ]),
                               _vm._v(" "),
-                              _vm._m(4, true)
-                            ])
-                          ]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
-                _c("div", { staticClass: "service-provider" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "service-providers-invite",
-                      style: { "background-image": "url(" + _vm.jobimage + ")" }
-                    },
-                    [
-                      _c("h3", [
-                        _vm._v(
-                          "Find & invite service providers to bid on your job."
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "14 service providers available around you related to concrete flooring."
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Find & Invite")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(5, true),
-                  _vm._v(" "),
-                  _vm._m(6, true)
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: { href: "javascript:void(0);" }
+                                },
+                                [_vm._v("Find & Invite")]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(12, true),
+                          _vm._v(" "),
+                          _vm._m(13, true)
+                        ])
                 ])
               ])
             ])
           ])
         ])
-      ])
-    })
+      }),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.job_detail_right_panel))])
+    ],
+    2
   )
 }
 var staticRenderFns = [
@@ -72709,6 +72755,97 @@ var staticRenderFns = [
         [_vm._v("Award Job")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-trophy" }), _vm._v(" Job Awarded")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-checkmark2" }), _vm._v(" Mark Done")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-cancel-job",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-folder" }), _vm._v(" Archive")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-edit-pencil" }), _vm._v(" Modify Bid")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-cancel-job",
+        attrs: { href: "javascript:void(0);" }
+      },
+      [_c("i", { staticClass: "icon-folder" }), _vm._v(" Archive")]
+    )
   },
   function() {
     var _vm = this
@@ -92302,7 +92439,7 @@ var routes = [
     component: __webpack_require__("./resources/assets/js/components/front/jobs/my-jobs.vue")
 }, {
     name: 'job-details',
-    path: '/job-details',
+    path: '/job-details/:id?',
     meta: {
         title: 'Professional Service Marketplace | Job Details',
         bodyClass: 'job-detail-page',
