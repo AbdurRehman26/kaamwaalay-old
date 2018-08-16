@@ -150,7 +150,8 @@ const routes = [
         path: '/featured-profile',
         meta: {
             title: 'Professional Service Marketplace | Featured Profile',
-            bodyClass: 'featured-profile-page',
+            bodyClass: 'featured-profile-page',  
+            navigation: 'provider-nav',          
         },
         component: require('./components/front/featured-profile/main.vue'),
     },
@@ -164,6 +165,7 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
             bodyClass: 'my-job-post-page',
+            navigation: 'customer-nav',
         },
         component: require('./components/front/jobs/my-jobs.vue'),
     },
@@ -175,6 +177,7 @@ const routes = [
         meta: {
             title: 'Professional Service Marketplace | Job Details',
             bodyClass: 'job-detail-page',
+            navigation: 'customer-nav',
         },
         component: require('./components/front/jobs/job-detail.vue'),
     },
