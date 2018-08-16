@@ -2196,3 +2196,121 @@ body{
         }
     }
 }
+
+// notification
+
+.notification-block{
+    position: relative;
+    &:after{
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: -6px;
+        width: 22px;
+        height: 25px;
+        background-image: url('/images/caret-top.png');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2);
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+    .notify-list{
+        display: block;
+        margin-left: 0!important;
+        clear: both;
+        margin-right: 0;
+        padding-top: 0;
+
+        &:last-child{
+            .notification-content{
+                padding-bottom: 0;
+                margin-bottom: 0;
+                border: none;
+            }
+        }
+    }
+}
+
+.notify-dropdown {
+        position: absolute;
+        right: -19px;
+        top: 18px;
+        width: 420px;
+        border-radius: 12px;
+        max-height: 277px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        padding: 25px 0 25px 33px;
+        text-align: left;
+        background-color: #fff;
+
+        &.scrollbar {
+            min-height: 338px;
+        }
+        .notify-block {
+            position: relative;
+        }
+        .notify-image {
+            width: 45px;
+            height: 45px;
+            float: left;
+            border-radius: 10px;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .right-notification {
+            width: calc(100% - 45px);
+            display: inline-block;
+            float: left;
+            padding-left: 12px;
+           
+            .notification-content{
+                padding-right: 25px;
+                margin-bottom: 23px;
+                padding-bottom: 22px;
+                border-bottom: 1px solid $grey-lite;
+
+            }
+
+            p {
+                font-size: $font-size-xxs;
+                margin-bottom: 12px;
+            }
+
+            .notification-limit{
+                margin-bottom: 0;
+                span{
+                    color: $grey-Edark;
+                    font-size: $font-size-xxs;
+                    position: relative;
+                    
+                    a{
+                        display: inline-block;
+                        color: $primary-color-md!important;
+                        min-width: auto!important;
+                        font-size: $font-size-xxs;
+                        padding-left: 0; 
+
+                        &:hover{
+                            color: $primary-color-md!important;
+                            text-decoration: underline!important;
+                        }
+                    }
+                }
+
+                span + span{
+                    &:before{
+                        position: absolute;
+                        content: "";
+                        width: 1px;
+                        height: 15px;
+                        left: -8px;
+                        background-color: $grey-Edark;
+                        top: 0;
+                    }
+                }
+            }
+        }
+    }

@@ -20,10 +20,43 @@
                 <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
                     <i v-bind:active="tab == true" class="icon-notifications-outline action-icon">
                     <span class="badge-count">5</span></i>
-                    <notification v-show="isShowing"></notification>
+                    <notification v-show="isShowing"></notification> 
                 </span>
             </li>
             <li><i class="icon-exit action-icon"></i></li>
         </ul>
     </div>
 </template>
+
+<script>
+import { directive as onClickaway } from 'vue-clickaway';
+    export default{
+        data () {
+          return {
+            isShowing:false,
+            showModalValue : false,
+            tab: false,
+            tabmenu: false,
+          }
+        },
+        directives: {
+            onClickaway: onClickaway,
+        },         
+        methods: {
+            ShowModal(){
+                this.showModalValue = true;
+            },
+            HideModal(){
+                this.showModalValue = false;
+            },
+            Showactive(){
+                this.tab ^= true;
+            },
+            away: function(){
+                this.isShowing = false;
+                this.tab = false;
+            }
+
+        }
+    }
+</script>
