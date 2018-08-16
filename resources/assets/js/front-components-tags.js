@@ -27,6 +27,7 @@ Vue.component('post-bid-popup',require('./components/front/common-components/Pos
 Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));
 Vue.component('go-to-visit-popup',require('./components/front/common-components/GoToVisitPopup.vue'));
 Vue.component('write-review-popup',require('./components/front/common-components/writeReviewPopup.vue'));
+Vue.component('profile-rejection',require('./components/front/common-components/ProfileRejection.vue'));
 
 
 //header

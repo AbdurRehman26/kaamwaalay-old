@@ -6415,6 +6415,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile-rejection/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile/ApplyForReview.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -65913,6 +65974,63 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0fcb15e4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/ProfileRejection.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile-rejection-box" }, [
+      _c("div", { staticClass: "rejectionicon" }, [
+        _c("img", {
+          staticClass: "building",
+          attrs: { src: "images/front/svg/sp-default.svg" }
+        }),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "cross",
+          attrs: { src: "images/front/svg/cancel.svg" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Your profile has been rejected.")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "You need to provide certification document related to electrician service. Also you need to provide proof of business. "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "javascript:void(0);" }
+        },
+        [_vm._v("Re-submit your profile")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0fcb15e4", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1098569d\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/PostBidPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -73086,6 +73204,59 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e447004e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-eac81e8c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile-rejection/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "my-job-lising-content" }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "profile-rejection-content" },
+        [_c("profile-rejection")],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "my-job-indication" }, [
+      _c("h2", [_vm._v("My Bids")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("You have total "),
+        _c("span", { staticClass: "primary-color text-bold" }, [
+          _vm._v("0 active")
+        ]),
+        _vm._v(" job and "),
+        _c("span", { staticClass: "primary-color text-bold" }, [
+          _vm._v("0 completed")
+        ]),
+        _vm._v(" jobs.")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-eac81e8c", module.exports)
   }
 }
 
@@ -90194,6 +90365,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/common-components/ProfileRejection.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0fcb15e4\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/ProfileRejection.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\ProfileRejection.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0fcb15e4", Component.options)
+  } else {
+    hotAPI.reload("data-v-0fcb15e4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/common-components/TestmonialSec.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -91250,6 +91469,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/profile-rejection/main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile-rejection/main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-eac81e8c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile-rejection/main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\profile-rejection\\main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eac81e8c", Component.options)
+  } else {
+    hotAPI.reload("data-v-eac81e8c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/profile/ApplyForReview.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -91479,6 +91746,7 @@ Vue.component('post-bid-popup', __webpack_require__("./resources/assets/js/compo
 Vue.component('customer-support-popup', __webpack_require__("./resources/assets/js/components/front/common-components/CustomerSupportPopup.vue"));
 Vue.component('go-to-visit-popup', __webpack_require__("./resources/assets/js/components/front/common-components/GoToVisitPopup.vue"));
 Vue.component('write-review-popup', __webpack_require__("./resources/assets/js/components/front/common-components/writeReviewPopup.vue"));
+Vue.component('profile-rejection', __webpack_require__("./resources/assets/js/components/front/common-components/ProfileRejection.vue"));
 
 //header
 Vue.component('front-header', __webpack_require__("./resources/assets/js/components/front/common-components/header.vue"));
@@ -91691,6 +91959,18 @@ var routes = [
         navigation: 'provider-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/bids/main.vue")
+},
+
+//Profile Rejection
+{
+    name: 'profile-rejection',
+    path: '/profile-rejected',
+    meta: {
+        title: 'Professional Service Marketplace | Profile Rejected',
+        bodyClass: 'profile-rejection-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/profile-rejection/main.vue")
 },
 
 /*404*/

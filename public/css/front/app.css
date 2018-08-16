@@ -15677,6 +15677,49 @@ body .chat-feedback-message.white-msg:before {
   color: #ccc;
 }
 
+.profile-rejection-box {
+  border-radius: 12px;
+  background-color: #F9F9F9;
+  border: 1px solid #E0E0E0;
+  padding: 24px 32px;
+  max-width: 469px;
+  text-align: center;
+  margin: auto;
+}
+
+.profile-rejection-box h2 {
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+}
+
+.profile-rejection-box p {
+  font-size: 14px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+}
+
+.profile-rejection-content {
+  padding: 32px 0px;
+}
+
+.rejectionicon {
+  position: relative;
+  max-width: 56px;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.rejectionicon img {
+  display: inline-block;
+}
+
+.rejectionicon img.cross {
+  position: absolute;
+  right: -7px;
+  top: 0;
+}
+
 .modal-sm {
   max-width: 520px;
 }

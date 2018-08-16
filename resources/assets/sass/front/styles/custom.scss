@@ -2145,3 +2145,42 @@ body{
         }
     }
 }
+
+.profile-rejection-box{
+    border-radius: 12px;
+    background-color: #F9F9F9;
+    border: 1px solid #E0E0E0;
+    padding: 24px 32px;
+    max-width: 469px;
+    text-align: center;
+    margin: auto;    
+    h2{
+        font-size: $font-size-sm;
+        margin-bottom: 0px;
+        padding-bottom: 30px;
+    }
+    p{
+        font-size: $font-size-xxs;
+        margin-bottom: 0px;
+        padding-bottom: 30px;
+    }
+}
+
+.profile-rejection-content{
+    padding: 32px 0px;
+}
+
+.rejectionicon{
+    position: relative;
+    max-width: 56px;
+    margin: auto;
+    padding-bottom: 30px;
+    img{
+        display: inline-block;
+        &.cross{
+            position:absolute;
+            right: -7px;
+            top: 0;
+        }
+    }
+}

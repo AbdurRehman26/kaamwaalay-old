@@ -197,6 +197,19 @@ const routes = [
 
 
 
+    //Profile Rejection
+    {
+        name: 'profile-rejection',
+        path: '/profile-rejected',
+        meta: {
+            title: 'Professional Service Marketplace | Profile Rejected',
+            bodyClass: 'profile-rejection-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/profile-rejection/main.vue'),
+    },
+
+
     /*404*/
 
    {
