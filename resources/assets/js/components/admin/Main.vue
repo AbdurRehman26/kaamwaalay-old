@@ -20,8 +20,8 @@
                                   <th>First Name</th>
                                   <th>Last Name</th>
                                   <th>Email Address</th>
-                                  <th>Access Level</th>
                                   <th>Join Date</th>
+                                  <th>Access Level</th>
                                   <th class="text-center">Status</th>
                                 </tr>
                               </thead>
@@ -30,8 +30,8 @@
                                   <td>{{list.fname}}</td>
                                   <td>{{list.lname}}</td>
                                   <td><a href="javascript:;">{{list.email}}</a></td>
-                                  <td >{{list.acesslevel}}</td>
                                   <td>{{list.jdate}}</td>
+                                  <td >{{list.acesslevel}}</td>
                                   <td class="text-center statustext">
                                     <div class=""><a class="active" @click="statusLink">Active</a></div>
                                 </td>

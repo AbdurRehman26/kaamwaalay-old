@@ -11,11 +11,12 @@
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
-                                   <label>By Type</label>
+                                   <label>By Status</label>
                                    <select class="form-control">
-                                     <option>Select Type</option>
-                                     <option>Electrician</option>
-                                     <option>Electrician >> Ac</option>
+                                     <option>Select Status</option>
+                                     <option>Active</option>
+                                     <option>Banned</option>
+                                     <option>Pending</option>
                                    </select>
                               </div>
                             </div>
@@ -59,7 +60,7 @@
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="ViewCustomerDetail" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                                       </div>
                                     </td>
                                 </tr>
