@@ -239,7 +239,7 @@ export default {
             this.changestatus = false;
         },
         servicedetail(){
-        	this.$router.push({name: 'Service_Provider_Detail'});
+        	this.$router.push({name: 'job-details'});
         }
 
     },
