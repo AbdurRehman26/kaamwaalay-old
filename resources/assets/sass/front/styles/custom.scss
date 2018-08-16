@@ -1286,10 +1286,16 @@ $section-padding-sm:20px 0px;
 
     .category-content-block{
         width: calc(100% - 80px);
-        padding-left: 15px; 
+        padding-left: 22px; 
         position: relative;
         float: left;
-        padding-top: 12px;  
+        padding-top: 12px; 
+
+        h6{
+            font-size:$font-size-base;
+            font-family: $font_bold;
+            color: $secondary-color; 
+        } 
     }
 
 
@@ -1416,6 +1422,7 @@ body{
     .job-notification{
         .jobs-done{
             padding-top: 8px;
+            padding-left: 0px !important;
         }
         .job-category{
             display: inline-block;
@@ -1428,6 +1435,23 @@ body{
                 position: absolute;
                 right: 0;
             }
+            &.noborder{
+                &:after{
+                    display:none;
+                }                
+            }
+        }
+        .job-poster{
+            display: inline-block;
+            color: #B2B2B2;
+            font-size: 14px;
+            padding-right: 10px;
+            position: relative;
+            &:after{
+                content: '|';
+                position: absolute;
+                right: 0;
+            }                        
         }
         .job-status{
             display: inline-block;
@@ -1513,6 +1537,20 @@ body{
         &.bid{
             padding-right: 20px;
         }
+        &.offer{
+            padding-left: 60px;
+        }
+        &.customer-rating{
+            padding-left: 0px;
+            display: inline-block;
+            .vue-star-rating{
+                display: inline-block !important;
+                vertical-align: bottom;
+                position: relative;
+                top: -2px;
+                padding-left: 3px;
+            }
+        }        
     }
     i{
         color: $primary-color-md;
@@ -1852,6 +1890,7 @@ body{
 
 /* == Featured Profile sass end == */
 
+
 /* == Advice Center sass start == */
 
 .advice-text {
@@ -1966,7 +2005,9 @@ body{
 
 /* == Advice Center sass end == */
 
-.my-job-indication{
+
+.my-job-indication, .bidding-sec{
+
     text-align: center;
     padding-top: 52px;
     span{
@@ -2172,3 +2213,105 @@ body{
     }
 }
 
+
+.custom-timepicker{
+    .mx-calendar-icon{
+        background-image: url(../../images/front/svg/clock.png) !important;
+    }
+}
+
+/* my-bidding */
+.bidding-sec{
+    h2{
+        margin-bottom: 0px;
+        padding-bottom: 50px;
+    }
+}
+.bidding-navigation{
+    ul {
+        padding: 0;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+    li{
+        margin-right: 24px;
+        border-bottom: 4px solid #E0E0E0;
+        padding: 0px 20px 7px 20px;
+        font-size: $font-size-xxs;        
+        cursor: pointer;
+        p{
+            color: #494949;
+            margin-bottom: 0px;
+            font-family: $font-bold;                        
+            span{
+                color: #494949 !important;
+            }
+        }
+        &:last-child(){
+            margin-right: 0px;
+        }
+        &.active{
+            border-color: $primary-color-md;
+            p{
+                color: $primary-color-md;
+                span{
+                    color: $primary-color-md !important;
+                }
+            }
+        }
+    }    
+}
+
+.chat-message{
+    i {
+        font-size: $font-size-xl;
+        vertical-align: middle;
+        margin-right: 50px;
+    }
+    &.disable{
+        pointer-events: none;
+        i{
+            color: #ccc;
+        }
+    }
+}
+
+.profile-rejection-box{
+    border-radius: 12px;
+    background-color: #F9F9F9;
+    border: 1px solid #E0E0E0;
+    padding: 24px 32px;
+    max-width: 469px;
+    text-align: center;
+    margin: auto;    
+    h2{
+        font-size: $font-size-sm;
+        margin-bottom: 0px;
+        padding-bottom: 30px;
+    }
+    p{
+        font-size: $font-size-xxs;
+        margin-bottom: 0px;
+        padding-bottom: 30px;
+    }
+}
+
+.profile-rejection-content{
+    padding: 32px 0px;
+}
+
+.rejectionicon{
+    position: relative;
+    max-width: 56px;
+    margin: auto;
+    padding-bottom: 30px;
+    img{
+        display: inline-block;
+        &.cross{
+            position:absolute;
+            right: -7px;
+            top: 0;
+        }
+    }
+}

@@ -41,7 +41,7 @@
 									<li><a href="javascript:;">Sign up as a customers</a></li>
 									<li><a href="javascript:;">Explore Services</a></li>
 									<li><a href="javascript:;">Advice center</a></li>
-									<li><a href="javascript:;">Customer support</a></li>
+									<li><a href="javascript:;" @click="customersupportpopup">Customer support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 									<li><a href="javascript:;">Sign up as a service provider</a></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
 									<li><a href="javascript:;">Frequently asked questions</a></li>
-									<li><a href="javascript:;">Service provider support</a></li>
+									<li><a href="javascript:;" @click="customersupportpopup">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -99,5 +99,28 @@
 				</div>
 			</div>
 		</div>
+
+		<customer-support-popup @HideModalValue="HideModal" :showModalProp="customersupport"></customer-support-popup>
+
 	</div>
 </template>
+
+<script type="text/javascript">
+    export default {
+        methods: {
+            customersupportpopup() {
+                this.customersupport = true;
+            },
+            HideModal(){
+                this.customersupport = false;
+            },
+
+        },
+        
+        data(){
+            return{
+                customersupport: false,
+            }
+        }
+    }
+</script>

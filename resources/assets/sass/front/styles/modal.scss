@@ -14,7 +14,32 @@
 }
 
 .modal-body {
-    padding: 29px;
+    padding: 28px 33px 10px 33px;
+
+    p{
+        font-size:$font-size-base;
+        margin:0 0 24px 0; 
+        color: $secondary-color;
+    }
+
+    h6{
+        font-family: $font_regular;
+        margin-bottom: 15px;
+        color: $grey-dark;
+    }
+
+    .custom-circle-radio{
+        label{
+            font-family: $font_regular;
+            font-size: $font-size-xxs;
+            margin-bottom: 8px;
+            line-height: 27px!important;
+        }
+    }
+
+    .form-group{
+        margin-bottom: 24px;
+    }
 
     .category-selected{
         padding-bottom: 29px;
@@ -32,11 +57,13 @@
 }
 
 .modal-header {
-    padding: 15px 24px;
+    padding: 25px 33px 23px 33px;
+    border-bottom: 1px solid $grey-lite;
 }
 
 .modal-footer {
-    padding: 10px 24px;
+    padding: 23px 33px 26px 33px;
+    border-top: 1px solid $grey-lite;
 }
 
 /* Data Approval scss start */
@@ -594,6 +621,45 @@
         position: absolute;
         bottom: -49px;
         right: 17px;
+    }
+}
+
+.categories-popup{
+    .modal-body{
+        padding:33px;
+
+        .category-search-field{
+            h5{
+                margin: 22px 0 24px 0;
+                padding: 0;
+            }
+
+            h6{
+                font-size:$font-size-base;
+                font-family: $font_bold;
+                color: $secondary-color; 
+                margin: 20px 0 12px 0;
+            }    
+        } 
+
+        a.btn{
+            margin-right: 16px;
+
+            &:last-of-type{
+                margin-right: 0;
+            }
+        }
+    }
+
+    i.icon-close2{
+        top: -10px;
+        right: -10px;
+    }
+
+    .category-content-block{
+        i.icon-close2{
+            @extend .icon-close2;
+        }
     }
 }
 

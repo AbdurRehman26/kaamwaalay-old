@@ -193,6 +193,33 @@ const routes = [
         component: require('./components/front/advice-center/main.vue'),
     },
 
+
+    //bidding page
+    {
+        name: 'my-bid',
+        path: '/my-bids',
+        meta: {
+            title: 'Professional Service Marketplace | My Bids',
+            bodyClass: 'my-bids-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/bids/main.vue'),
+    },
+
+
+
+    //Profile Rejection
+    {
+        name: 'profile-rejection',
+        path: '/profile-rejected',
+        meta: {
+            title: 'Professional Service Marketplace | Profile Rejected',
+            bodyClass: 'profile-rejection-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/profile-rejection/main.vue'),
+    },
+
     /*404*/
 
    {

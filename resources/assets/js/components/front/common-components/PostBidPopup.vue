@@ -4,15 +4,16 @@
         <alert></alert>
             <div>
                 <p>Post a bid on <strong>Concrete Floor Building</strong> job posted by <a href="javascript:void;">Nathan Alvarez</a></p>
-                <label>Bid Amount</label>
                 <b-row class="justify-content-md-center">
                     <b-col cols="2" md="6">
                         <div class="form-group">
+                            <label>Bid Amount</label>
                             <input type="number" name="" class="form-control" />
                         </div>
                     </b-col>
                     <b-col cols="2" md="6">
                         <div class="form-group">
+                            <label>&nbsp;</label>
                             <select class="form-control">
                               <option v-model="selected">Minimum</option>
                             </select>
@@ -22,11 +23,28 @@
                         <h6 class="text-center">OR</h6>
                     </b-col>
                      <b-col cols="1" md="12">
-                        <div class="radio">
-                          <label><input type="radio" name="optradio" checked>Further discussion (chat) required to quote</label>
+                        <div class="form-group">
+                            <div class="custom-circle-radio">
+                                <input type="radio" id="further_discussion" name="radio-group" checked>
+                                <label for="further_discussion">Further discussion (chat) required to quote</label>   
+                            </div>
+
+                            <div class="custom-circle-radio">
+                                <input type="radio" id="visit_required" name="radio-group">
+                                <label for="visit_required">Visit required to quote (request for visit)</label>  
+                            </div>
                         </div>
-                        <div class="radio">
-                          <label><input type="radio" name="optradio">Visit required to quote (request for visit)</label>
+                    </b-col>
+                    <b-col cols="2" md="6">
+                        <div class="form-group custom-datepicker">
+                            <label>Preferred date and time of visit</label>
+                            <date-picker v-model="value" format="DD-MM-YYYY" lang="en"></date-picker>
+                        </div>
+                    </b-col>
+                    <b-col cols="2" md="6">
+                        <div class="form-group custom-datepicker custom-timepicker">
+                            <label>&nbsp;</label>
+                            <date-picker v-model="value12" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time"></date-picker>
                         </div>
                     </b-col>
                      <b-col cols="1" md="12">
@@ -43,9 +61,34 @@
 </template>
 
 <script>
+    import DatePicker from 'vue2-datepicker'
 
 export default {
-
+      data() {
+    return {
+    value: '', 
+    value12:'',
+    value_month:'',
+    value_year:'',
+    time1: '',
+    time2: '',
+    time3: '',
+      shortcuts: [
+        {
+          text: 'Today',
+          onClick: () => {
+            this.time3 = [ new Date(), new Date() ]
+          }
+        }
+      ],
+      timePickerOptions:{
+        start: '00:00',
+        step: '00:30',
+        end: '23:30'
+      }
+    }
+  },
+    components: { DatePicker },
     props : ['showModalProp'],
         methods: {
         showModal() {

@@ -11015,7 +11015,8 @@ a.text-dark:focus {
   content: "\E915";
 }
 
-.icon-close2:before {
+.icon-close2:before,
+.categories-popup .category-content-block i.icon-close2:before {
   content: "\E5CE";
 }
 
@@ -14635,10 +14636,16 @@ input[type=number]::-webkit-outer-spin-button {
 
 .category-selected .category-content-block {
   width: calc(100% - 80px);
-  padding-left: 15px;
+  padding-left: 22px;
   position: relative;
   float: left;
   padding-top: 12px;
+}
+
+.category-selected .category-content-block h6 {
+  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
 }
 
 .category-selected h4 {
@@ -14797,6 +14804,7 @@ body .chat-feedback-message.white-msg:before {
 
 .job-notification .jobs-done {
   padding-top: 8px;
+  padding-left: 0px !important;
 }
 
 .job-notification .job-category {
@@ -14808,6 +14816,24 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .job-notification .job-category:after {
+  content: '|';
+  position: absolute;
+  right: 0;
+}
+
+.job-notification .job-category.noborder:after {
+  display: none;
+}
+
+.job-notification .job-poster {
+  display: inline-block;
+  color: #B2B2B2;
+  font-size: 14px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.job-notification .job-poster:after {
   content: '|';
   position: absolute;
   right: 0;
@@ -14917,6 +14943,26 @@ body .chat-feedback-message.white-msg:before {
 .member-details p.bid,
 .job-details p.bid {
   padding-right: 20px;
+}
+
+.member-details p.offer,
+.job-details p.offer {
+  padding-left: 60px;
+}
+
+.member-details p.customer-rating,
+.job-details p.customer-rating {
+  padding-left: 0px;
+  display: inline-block;
+}
+
+.member-details p.customer-rating .vue-star-rating,
+.job-details p.customer-rating .vue-star-rating {
+  display: inline-block !important;
+  vertical-align: bottom;
+  position: relative;
+  top: -2px;
+  padding-left: 3px;
 }
 
 .member-details i,
@@ -15407,12 +15453,14 @@ body .chat-feedback-message.white-msg:before {
 
 /* == Advice Center sass end == */
 
-.my-job-indication {
+.my-job-indication,
+.bidding-sec {
   text-align: center;
   padding-top: 52px;
 }
 
-.my-job-indication span {
+.my-job-indication span,
+.bidding-sec span {
   color: #8200FF !important;
 }
 
@@ -15641,6 +15689,119 @@ body .chat-feedback-message.white-msg:before {
   height: auto;
 }
 
+.custom-timepicker .mx-calendar-icon {
+  background-image: url(/images/clock.png?0d35adad010e68e534f6f54b484435e7) !important;
+}
+
+/* my-bidding */
+
+.bidding-sec h2 {
+  margin-bottom: 0px;
+  padding-bottom: 50px;
+}
+
+.bidding-navigation ul {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bidding-navigation li {
+  margin-right: 24px;
+  border-bottom: 4px solid #E0E0E0;
+  padding: 0px 20px 7px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bidding-navigation li p {
+  color: #494949;
+  margin-bottom: 0px;
+  font-family: "AkzidenzGroteskBE-Bold";
+}
+
+.bidding-navigation li p span {
+  color: #494949 !important;
+}
+
+.bidding-navigation li:last-child {
+  margin-right: 0px;
+}
+
+.bidding-navigation li.active {
+  border-color: #8200FF;
+}
+
+.bidding-navigation li.active p {
+  color: #8200FF;
+}
+
+.bidding-navigation li.active p span {
+  color: #8200FF !important;
+}
+
+.chat-message i {
+  font-size: 32px;
+  vertical-align: middle;
+  margin-right: 50px;
+}
+
+.chat-message.disable {
+  pointer-events: none;
+}
+
+.chat-message.disable i {
+  color: #ccc;
+}
+
+.profile-rejection-box {
+  border-radius: 12px;
+  background-color: #F9F9F9;
+  border: 1px solid #E0E0E0;
+  padding: 24px 32px;
+  max-width: 469px;
+  text-align: center;
+  margin: auto;
+}
+
+.profile-rejection-box h2 {
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+}
+
+.profile-rejection-box p {
+  font-size: 14px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+}
+
+.profile-rejection-content {
+  padding: 32px 0px;
+}
+
+.rejectionicon {
+  position: relative;
+  max-width: 56px;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.rejectionicon img {
+  display: inline-block;
+}
+
+.rejectionicon img.cross {
+  position: absolute;
+  right: -7px;
+  top: 0;
+}
+
 .modal-sm {
   max-width: 520px;
 }
@@ -15660,7 +15821,30 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .modal-body {
-  padding: 29px;
+  padding: 28px 33px 10px 33px;
+}
+
+.modal-body p {
+  font-size: 16px;
+  margin: 0 0 24px 0;
+  color: #1A1A1A;
+}
+
+.modal-body h6 {
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin-bottom: 15px;
+  color: #7D7D7D;
+}
+
+.modal-body .custom-circle-radio label {
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 27px !important;
+}
+
+.modal-body .form-group {
+  margin-bottom: 24px;
 }
 
 .modal-body .category-selected {
@@ -15678,11 +15862,13 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .modal-header {
-  padding: 15px 24px;
+  padding: 25px 33px 23px 33px;
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .modal-footer {
-  padding: 10px 24px;
+  padding: 23px 33px 26px 33px;
+  border-top: 1px solid #E0E0E0;
 }
 
 /* Data Approval scss start */
@@ -16249,5 +16435,35 @@ body .chat-feedback-message.white-msg:before {
   position: absolute;
   bottom: -49px;
   right: 17px;
+}
+
+.categories-popup .modal-body {
+  padding: 33px;
+}
+
+.categories-popup .modal-body .category-search-field h5 {
+  margin: 22px 0 24px 0;
+  padding: 0;
+}
+
+.categories-popup .modal-body .category-search-field h6 {
+  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
+  margin: 20px 0 12px 0;
+}
+
+.categories-popup .modal-body a.btn {
+  margin-right: 16px;
+}
+
+.categories-popup .modal-body a.btn:last-of-type {
+  margin-right: 0;
+}
+
+.categories-popup i.icon-close2,
+.categories-popup .category-content-block i.icon-close2 {
+  top: -10px;
+  right: -10px;
 }
 

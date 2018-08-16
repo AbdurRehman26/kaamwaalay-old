@@ -1,5 +1,5 @@
  <template> 
-    <div class="popup">
+    <div class="popup categories-popup">
         <b-modal id="award-job" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Yes, award job">
             <alert></alert>
                 <div class="category-selected">
@@ -10,8 +10,8 @@
                 </div>
                 <div class="category-search-field">
                     <h5>Are you sure you want to award this job to C&N Home Solutions?</h5>
-                    <a href="javascript:void();" class="btn btn-primary m-t-24">Yes, award job</a>
-                    <a href="javascript:void();" class="btn btn-link m-t-24" @click="hideModal">Cancel</a>
+                    <a href="javascript:void();" class="btn btn-primary">Yes, award job</a>
+                    <a href="javascript:void();" class="btn btn-link" @click="hideModal">Cancel</a>
                 </div>
         </b-modal>
     </div>
