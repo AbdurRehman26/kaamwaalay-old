@@ -13,7 +13,7 @@ use Validator;
 class UserController extends ApiResourceController
 {
     public $_repository;
-    const   PER_PAGE = 50;
+    const   PER_PAGE = 25;
     protected $model;
     public function __construct(UserRepository $repository){
      $this->_repository = $repository;
