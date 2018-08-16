@@ -1922,6 +1922,12 @@ body{
         margin: 0 auto;
         .nav-link {
             border-bottom: 4px solid #E0E0E0;
+            
+            &:hover{
+                border-top:none;
+                border-left:none;
+                border-right:none;
+            }
 
             &.active {
                 border-color: #fff;
