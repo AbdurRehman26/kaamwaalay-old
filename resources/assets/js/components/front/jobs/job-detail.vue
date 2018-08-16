@@ -167,7 +167,7 @@
 			</div>
 
 	</div>
-	<p>{{job_detail_right_panel}}</p>
+	<!-- <p>{{job_detail_right_panel}}</p> -->
 	</div>
 </template>
 
