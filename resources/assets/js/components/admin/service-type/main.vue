@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-                <SearchField @search="onSearch"></SearchField>
+                <SearchField @search="onSearch" :searchValue="search"></SearchField>
               </div>
             </div>
             <div class="col-xs-12 col-md-2 datepicker-field">
@@ -78,7 +78,7 @@
       </div>
 
       <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-        <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="2"></b-pagination>
+        <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
       </div>
     </div>
   </div>
@@ -132,6 +132,7 @@
         filter: this.filter_by_featured
       };
       this.getList(data, false);
+      this.search = "";
     },
     onDelete(itemId) {
       alert(itemId);

@@ -108,7 +108,10 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
         ->orderBy('support_inquiries.created_at', 'DESC')
         ;
 
-        return  parent::findByAll($pagination, $perPage);
+        $modelData['record_count'] = $this->builder->count();
+        $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+        return $modelData;
+        //return  parent::findByAll($pagination, $perPage);
     
     }
 }

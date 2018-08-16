@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 class ServiceController extends ApiResourceController
 {
     public $_repository;
+    const   PER_PAGE = 25;
 
     public function __construct(ServiceRepository $repository){
        $this->_repository = $repository;
@@ -152,4 +153,33 @@ class ServiceController extends ApiResourceController
         return response()->json($output, Response::HTTP_OK);
 
     }
+    //Get all records
+    public function index(Request $request)
+    {
+        $rules = $this->rules(__FUNCTION__);
+        $input = $this->input(__FUNCTION__);
+
+        $this->validate($request, $rules);
+        
+        $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
+
+        $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
+
+        $data = $this->_repository->findByAll($pagination, $per_page, $input);
+        //$count = $this->_repository->getServiceCount();
+        $output = [
+            'response' => [
+                'data' => $data['data']['data'],
+                'service_count' => $data['record_count'],
+                'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
+                'message' => $this->response_messages(__FUNCTION__),
+            ]
+        ];
+
+        // HTTP_OK = 200;
+
+        return response()->json($output, Response::HTTP_OK);
+
+    }
+
 }
