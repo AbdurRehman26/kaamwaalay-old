@@ -167,7 +167,20 @@
                                     <b-col class="calculated-value">
                                         <p>$10000</p>
                                     </b-col>
-                                </b-row>                                 
+                                </b-row>  
+
+                                <b-row>
+                                    <b-col class="text-right fixed-label">
+                                        <p><strong class="title-head">Photos</strong></p>
+                                    </b-col>
+                                    <b-col class="calculated-value">
+                                        <div class="gallery-pic">
+                                            <div class="gallery-item" v-for="(n, index) in imageList" :data-index="index">
+                                                <img @click="open($event)" :src="n.url">
+                                            </div>
+                                        </div>
+                                    </b-col>
+                                </b-row> 
 <!--                                 <b-row>
                                     <b-col class="text-right fixed-label">
                                         <p><strong class="title-head">Related activites</strong></p>
@@ -183,7 +196,7 @@
                                         <p><strong class="title-head">Description</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value max-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p>Highly effficient work quality</p>
                                     </b-col>
                                 </b-row>                                 
                                 <b-row>
@@ -205,10 +218,15 @@
 </template>
 
 <script>
+import fancyBox from 'vue-fancybox';
 import StarRating from 'vue-star-rating';
 export default{
         data () {
           return {
+            imageList: [
+                { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
+                { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
+              ] 
         }
     },
     components: {
@@ -218,7 +236,10 @@ export default{
     methods:{
         viewjob(){
             this.$router.push({name: 'customerjobdetail'});
-        }
+        },
+        open (e) {            
+            fancyBox(e.target, this.imageList);
+        } 
     }
 }
 

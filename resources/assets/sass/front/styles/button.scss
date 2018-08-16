@@ -34,6 +34,9 @@
             text-decoration: underline;
         }
     }
+    &.btn-cancel-job{
+        background-color: #7D7D7D;
+    }
     &.btn-secondary{
         background:$secondary-color;
         border-color:$secondary-color;

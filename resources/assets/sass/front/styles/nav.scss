@@ -14,6 +14,9 @@ $nav-font:$font-bold;
             display: inline-block;
             margin: 0 16px;
             position: relative;
+            height: 57px;
+            padding: 12px 0 0px;
+
             a{
                 font-size:$nav-font-size;
                 color:$nav-color;
@@ -22,9 +25,10 @@ $nav-font:$font-bold;
                 padding-left: 16px;
                 padding-right: 16px;
                 text-decoration:none !important;
+                display:block;
                 &:hover{
                     text-decoration:underline;
-                    color:$nav-color !important;
+/*                     color:$nav-color !important; */
                 }
                 &.router-link-active{
                     &:after{
@@ -34,7 +38,19 @@ $nav-font:$font-bold;
                         height: 4px;
                         width: 100%;
                         left: 0;
-                        bottom: -24px;
+                        right:0;
+                        margin:0 auto;
+                        bottom:0px;
+                    }
+                }
+                &.btn{
+                    &:hover{
+                        color:#fff;
+                    }
+                    span{
+                        &:hover{
+                            color:#fff;
+                        }
                     }
                 }
             }
@@ -50,12 +66,22 @@ $nav-font:$font-bold;
                     min-width: 140px;
                 }
             }
+            .post-job-btn{
+                top: -12px;
+                position: relative;
+            }
         }
     }
     .action-icon{
         font-size: 24px;
         vertical-align: middle;
         color:$grey-dark;
+        cursor:pointer;
+        position: relative;
+        top: -2px;
+        &.icon-cog2{
+            font-size:28px;
+        }
     }
 }
 
@@ -216,6 +242,7 @@ $nav-font:$font-bold;
 }
 
 .user-login-detail{
+    margin-top: -7px;
     .username{
         display: inline-block;
         vertical-align: middle;
@@ -233,4 +260,25 @@ $nav-font:$font-bold;
         color:#fff !important;
     }
 }
+.notify-block {
+    position: relative;
+}
+
+.badge-count{
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background: $primary-color;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: -7px;
+    border: solid 2px #fff;
+    text-align: center;
+    font-size: 10px;
+    color: #fff;
+    line-height: 14px;
+    font-family:$font-regular;
+}
+
 

@@ -45,8 +45,15 @@ $font_medium:'AkzidenzGroteskBE-Md';
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-notification:before {
+  content: "\e91b";
+}
+.icon-cog2:before {
+  content: "\e922";
+}
 .icon-alert:before {
   content: "\e91a";
+  color: #d9534f;
 }
 .icon-map-marker:before {
   content: "\e916";
@@ -101,6 +108,7 @@ $font_medium:'AkzidenzGroteskBE-Md';
 }
 .icon-check2:before {
   content: "\e92a";
+  color: #00699e;
 }
 .icon-send:before {
   content: "\e900";
@@ -153,7 +161,7 @@ $font_medium:'AkzidenzGroteskBE-Md';
 .icon-lock:before {
   content: "\e98f";
 }
-.icon-cog2:before {
+.icon-cog22:before {
   content: "\e994";
 }
 .icon-cross:before {
@@ -184,7 +192,7 @@ $font_medium:'AkzidenzGroteskBE-Md';
   content: "\e921";
 }
 .icon-minus-outline:before {
-  content: "\e922";
+  content: "\e923";
 }
 .icon-exclamation-solid:before {
   content: "\e91c";
