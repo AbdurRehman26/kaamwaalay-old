@@ -15611,6 +15611,10 @@ body .chat-feedback-message.white-msg:before {
   height: auto;
 }
 
+.custom-timepicker .mx-calendar-icon {
+  background-image: url(/images/clock.png?0d35adad010e68e534f6f54b484435e7) !important;
+}
+
 /* my-bidding */
 
 .bidding-sec h2 {
@@ -15739,7 +15743,30 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .modal-body {
-  padding: 29px;
+  padding: 28px 33px 10px 33px;
+}
+
+.modal-body p {
+  font-size: 16px;
+  margin: 0 0 24px 0;
+  color: #1A1A1A;
+}
+
+.modal-body h6 {
+  font-family: "AkzidenzGroteskBE-Regular";
+  margin-bottom: 15px;
+  color: #7D7D7D;
+}
+
+.modal-body .custom-circle-radio label {
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 27px !important;
+}
+
+.modal-body .form-group {
+  margin-bottom: 24px;
 }
 
 .modal-body .category-selected {
@@ -15757,11 +15784,13 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .modal-header {
-  padding: 15px 24px;
+  padding: 25px 33px 23px 33px;
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .modal-footer {
-  padding: 10px 24px;
+  padding: 23px 33px 26px 33px;
+  border-top: 1px solid #E0E0E0;
 }
 
 /* Data Approval scss start */

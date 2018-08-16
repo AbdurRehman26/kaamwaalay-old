@@ -2089,6 +2089,12 @@ body{
 }
 
 
+.custom-timepicker{
+    .mx-calendar-icon{
+        background-image: url(../../images/front/svg/clock.png) !important;
+    }
+}
+
 /* my-bidding */
 .bidding-sec{
     h2{

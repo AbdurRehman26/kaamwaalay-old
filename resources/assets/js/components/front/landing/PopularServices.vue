@@ -6,7 +6,7 @@
         <div class="container">
             <ul class="Popular-services-slides my-owl-carousel owl-carousel owl-theme">
                 <li class="item" v-for="service in services">
-                    <a href="javascript:;">
+                    <a href="javascript:;" @click="changecategorypopup">
                         <div class="box-img"><img :src="service.serviceImage"></div>
                         <h6>{{service.serviceHeading}}</h6>
                         <p><i class="icon-map-marker2"></i>{{service.serviceDesc}}</p>
@@ -14,11 +14,21 @@
                 </li>
             </ul>
         </div>
+        <category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>
     </div>
 </template>
 
 <script>
     export default {
+        methods: {
+            changecategorypopup() {
+                this.categoryval = true;
+            },
+            HideModal(){
+                this.categoryval = false;
+            },
+
+        },
         mounted(){
             require('jquery');
             require('owl.carousel');
@@ -43,6 +53,7 @@
         },
         data() {
             return{
+                categoryval: false,
                 services:[
                     {
                         serviceImage:'images/front/home/cleaning.jpg',

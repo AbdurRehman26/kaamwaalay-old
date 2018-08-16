@@ -3967,6 +3967,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__ = __webpack_require__("./node_modules/vue2-datepicker/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__);
 //
 //
 //
@@ -4011,10 +4013,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        var _this = this;
 
+        return {
+            value: '',
+            value12: '',
+            value_month: '',
+            value_year: '',
+            time1: '',
+            time2: '',
+            time3: '',
+            shortcuts: [{
+                text: 'Today',
+                onClick: function onClick() {
+                    _this.time3 = [new Date(), new Date()];
+                }
+            }],
+            timePickerOptions: {
+                start: '00:00',
+                step: '00:30',
+                end: '23:30'
+            }
+        };
+    },
+
+    components: { DatePicker: __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default.a },
     props: ['showModalProp'],
     methods: {
         showModal: function showModal() {
@@ -4100,6 +4146,138 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.hideModal();
             }
         }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/footer.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        customersupportpopup: function customersupportpopup() {
+            this.customersupport = true;
+        },
+        HideModal: function HideModal() {
+            this.customersupport = false;
+        }
+    },
+
+    data: function data() {
+        return {
+            customersupport: false
+        };
     }
 });
 
@@ -6123,10 +6301,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        changecategorypopup: function changecategorypopup() {
+            this.categoryval = true;
+        },
+        HideModal: function HideModal() {
+            this.categoryval = false;
+        }
+    },
+
     data: function data() {
         return {
+            categoryval: false,
             //featured categories
             categories: [{
                 image: 'images/front/svg/electricians.svg',
@@ -6177,8 +6367,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        changecategorypopup: function changecategorypopup() {
+            this.categoryval = true;
+        },
+        HideModal: function HideModal() {
+            this.categoryval = false;
+        }
+    },
     mounted: function mounted() {
         __webpack_require__("./node_modules/jquery/dist/jquery.js");
         __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
@@ -6203,6 +6402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            categoryval: false,
             services: [{
                 serviceImage: 'images/front/home/cleaning.jpg',
                 serviceHeading: 'Cleaning Services',
@@ -66072,14 +66272,14 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("label", [_vm._v("Bid Amount")]),
-              _vm._v(" "),
               _c(
                 "b-row",
                 { staticClass: "justify-content-md-center" },
                 [
                   _c("b-col", { attrs: { cols: "2", md: "6" } }, [
                     _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Bid Amount")]),
+                      _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "number", name: "" }
@@ -66089,6 +66289,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "2", md: "6" } }, [
                     _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v(" ")]),
+                      _vm._v(" "),
                       _c("select", { staticClass: "form-control" }, [
                         _c(
                           "option",
@@ -66112,27 +66314,90 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "1", md: "12" } }, [
-                    _c("div", { staticClass: "radio" }, [
-                      _c("label", [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "custom-circle-radio" }, [
                         _c("input", {
                           attrs: {
                             type: "radio",
-                            name: "optradio",
+                            id: "further_discussion",
+                            name: "radio-group",
                             checked: ""
                           }
                         }),
-                        _vm._v("Further discussion (chat) required to quote")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "radio" }, [
-                      _c("label", [
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "further_discussion" } }, [
+                          _vm._v("Further discussion (chat) required to quote")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "custom-circle-radio" }, [
                         _c("input", {
-                          attrs: { type: "radio", name: "optradio" }
+                          attrs: {
+                            type: "radio",
+                            id: "visit_required",
+                            name: "radio-group"
+                          }
                         }),
-                        _vm._v("Visit required to quote (request for visit)")
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "visit_required" } }, [
+                          _vm._v("Visit required to quote (request for visit)")
+                        ])
                       ])
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group custom-datepicker" },
+                      [
+                        _c("label", [
+                          _vm._v("Preferred date and time of visit")
+                        ]),
+                        _vm._v(" "),
+                        _c("date-picker", {
+                          attrs: { format: "DD-MM-YYYY", lang: "en" },
+                          model: {
+                            value: _vm.value,
+                            callback: function($$v) {
+                              _vm.value = $$v
+                            },
+                            expression: "value"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group custom-datepicker custom-timepicker"
+                      },
+                      [
+                        _c("label", [_vm._v(" ")]),
+                        _vm._v(" "),
+                        _c("date-picker", {
+                          attrs: {
+                            lang: "en",
+                            type: "time",
+                            format: "HH:mm:ss",
+                            placeholder: "Select Time"
+                          },
+                          model: {
+                            value: _vm.value12,
+                            callback: function($$v) {
+                              _vm.value12 = $$v
+                            },
+                            expression: "value12"
+                          }
+                        })
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "1", md: "12" } }, [
@@ -67136,35 +67401,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "section" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c(
-        "ul",
-        {
-          staticClass:
-            "Popular-services-slides my-owl-carousel owl-carousel owl-theme"
-        },
-        _vm._l(_vm.services, function(service) {
-          return _c("li", { staticClass: "item" }, [
-            _c("a", { attrs: { href: "javascript:;" } }, [
-              _c("div", { staticClass: "box-img" }, [
-                _c("img", { attrs: { src: service.serviceImage } })
-              ]),
-              _vm._v(" "),
-              _c("h6", [_vm._v(_vm._s(service.serviceHeading))]),
-              _vm._v(" "),
-              _c("p", [
-                _c("i", { staticClass: "icon-map-marker2" }),
-                _vm._v(_vm._s(service.serviceDesc))
-              ])
+  return _c(
+    "div",
+    { staticClass: "section" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "ul",
+          {
+            staticClass:
+              "Popular-services-slides my-owl-carousel owl-carousel owl-theme"
+          },
+          _vm._l(_vm.services, function(service) {
+            return _c("li", { staticClass: "item" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:;" },
+                  on: { click: _vm.changecategorypopup }
+                },
+                [
+                  _c("div", { staticClass: "box-img" }, [
+                    _c("img", { attrs: { src: service.serviceImage } })
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", [_vm._v(_vm._s(service.serviceHeading))]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("i", { staticClass: "icon-map-marker2" }),
+                    _vm._v(_vm._s(service.serviceDesc))
+                  ])
+                ]
+              )
             ])
-          ])
-        })
-      )
-    ])
-  ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("category-popup", {
+        attrs: { showModalProp: _vm.categoryval },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -68661,217 +68943,284 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "footer-section" },
+    [
+      _c("div", { staticClass: "section-padd" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "top-footer" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "footer-links" }, [
+                  _c("ul", [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:;" },
+                          on: { click: _vm.customersupportpopup }
+                        },
+                        [_vm._v("Customer support")]
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "footer-links" }, [
+                  _c("ul", [
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:;" },
+                          on: { click: _vm.customersupportpopup }
+                        },
+                        [_vm._v("Service provider support")]
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(10)
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(11)
+        ])
+      ]),
+      _vm._v(" "),
+      _c("customer-support-popup", {
+        attrs: { showModalProp: _vm.customersupport },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-section" }, [
-      _c("div", { staticClass: "section-padd" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "top-footer" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "footer-logo" }, [
-                  _c("a", { attrs: { href: "javascript:;" } }, [
-                    _c("img", { attrs: { src: "images/logo.png" } })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "footer-location" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("select", { staticClass: "form-control" }, [
-                      _c("option", [_vm._v("Select Option")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("New York, NY")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("California, CA")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "social-icons" }, [
-                  _c("ul", [
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _c("i", { staticClass: "icon-facebook" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _c("i", { staticClass: "icon-twitter" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _c("i", { staticClass: "icon-instagram" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _c("i", { staticClass: "icon-google-plus" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _c("i", { staticClass: "icon-pinterest" })
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "footer-links" }, [
-                  _c("ul", [
-                    _c("li", [_c("strong", [_vm._v("Customers")])]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Post a job")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Sign up as a customers")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Explore Services")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Advice center")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Customer support")
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "footer-links" }, [
-                  _c("ul", [
-                    _c("li", [_c("strong", [_vm._v("Service Providers")])]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Sign up as a service provider")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Completed Jobs")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Frequently asked questions")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Service provider support")
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "footer-links" }, [
-                  _c("ul", [
-                    _c("li", [_c("strong", [_vm._v("Company")])]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("About us")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "javascript:;" } }, [
-                        _vm._v("Blog")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [_c("a", { attrs: { href: "javascript:;" } })]),
-                    _vm._v(" "),
-                    _c("li", [_c("strong", [_vm._v("Download")])]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "app-images" }, [
-                      _c("ul", [
-                        _c("li", [
-                          _c("a", { attrs: { href: "javascript:;" } }, [
-                            _c("img", {
-                              attrs: {
-                                src: "images/front/common-images/app-store.jpg"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("a", { attrs: { href: "javascript:;" } }, [
-                            _c("img", {
-                              attrs: {
-                                src:
-                                  "images/front/common-images/google-play.jpg"
-                              }
-                            })
-                          ])
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ])
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "footer-logo" }, [
+        _c("a", { attrs: { href: "javascript:;" } }, [
+          _c("img", { attrs: { src: "images/logo.png" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "footer-location" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("select", { staticClass: "form-control" }, [
+            _c("option", [_vm._v("Select Option")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("New York, NY")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("California, CA")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "social-icons" }, [
+        _c("ul", [
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [
+              _c("i", { staticClass: "icon-facebook" })
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "footer-copyrights" }, [
-            _c("div", { staticClass: "section-padding-sm clearfix" }, [
-              _c("div", { staticClass: "float-left" }, [
-                _c("p", [
-                  _vm._v(
-                    "Copyright © 2018 Professional Service Marketplace, Inc. "
-                  )
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [
+              _c("i", { staticClass: "icon-twitter" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [
+              _c("i", { staticClass: "icon-instagram" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [
+              _c("i", { staticClass: "icon-google-plus" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [
+              _c("i", { staticClass: "icon-pinterest" })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("strong", [_vm._v("Customers")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Post a job")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [
+        _vm._v("Sign up as a customers")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Explore Services")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Advice center")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("strong", [_vm._v("Service Providers")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [
+        _vm._v("Sign up as a service provider")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Completed Jobs")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "javascript:;" } }, [
+        _vm._v("Frequently asked questions")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "footer-links" }, [
+        _c("ul", [
+          _c("li", [_c("strong", [_vm._v("Company")])]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("About us")])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Blog")])
+          ]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "javascript:;" } })]),
+          _vm._v(" "),
+          _c("li", [_c("strong", [_vm._v("Download")])]),
+          _vm._v(" "),
+          _c("li", { staticClass: "app-images" }, [
+            _c("ul", [
+              _c("li", [
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("img", {
+                    attrs: { src: "images/front/common-images/app-store.jpg" }
+                  })
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "float-right terms-links" }, [
-                _c("ul", [
-                  _c("li", [
-                    _c("a", { attrs: { href: "javascript:;" } }, [
-                      _vm._v("Terms & Conditions")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "javascript:;" } }, [
-                      _vm._v("Privacy Policy")
-                    ])
-                  ])
+              _c("li", [
+                _c("a", { attrs: { href: "javascript:;" } }, [
+                  _c("img", {
+                    attrs: { src: "images/front/common-images/google-play.jpg" }
+                  })
                 ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-copyrights" }, [
+      _c("div", { staticClass: "section-padding-sm clearfix" }, [
+        _c("div", { staticClass: "float-left" }, [
+          _c("p", [
+            _vm._v("Copyright © 2018 Professional Service Marketplace, Inc. ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "float-right terms-links" }, [
+          _c("ul", [
+            _c("li", [
+              _c("a", { attrs: { href: "javascript:;" } }, [
+                _vm._v("Terms & Conditions")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { href: "javascript:;" } }, [
+                _vm._v("Privacy Policy")
               ])
             ])
           ])
@@ -69087,23 +69436,36 @@ var render = function() {
             { staticClass: "row" },
             _vm._l(_vm.categories, function(category) {
               return _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c("a", { attrs: { href: "javascript:;" } }, [
-                  _c("div", { staticClass: "list-icon sm white" }, [
-                    _c("div", { staticClass: "inner" }, [
-                      _c("img", { attrs: { src: category.image } })
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "javascript:;" },
+                    on: { click: _vm.changecategorypopup }
+                  },
+                  [
+                    _c("div", { staticClass: "list-icon sm white" }, [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("img", { attrs: { src: category.image } })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-description" }, [
+                      _c("p", [_vm._v(_vm._s(category.heading))])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-description" }, [
-                    _c("p", [_vm._v(_vm._s(category.heading))])
-                  ])
-                ])
+                  ]
+                )
               ])
             })
           )
         ])
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c("category-popup", {
+        attrs: { showModalProp: _vm.categoryval },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -90515,7 +90877,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/footer.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-540ccc29\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/footer.vue")
 /* template functional */
