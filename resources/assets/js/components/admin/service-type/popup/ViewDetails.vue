@@ -1,6 +1,6 @@
  <template>	
 	<div>
-		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close" no-close-on-backdrop no-close-on-esc>
+		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close">
             <alert v-if="successMessage"></alert>
             <div class="view-details-list">
                 <b-row>
@@ -108,12 +108,11 @@ export default {
    },
     methods: {
         showModal () {
-
-            console.log(this.selectedService, 9999999);
             this.$refs.myModalRef.show();
 
         },
         hideModal () {
+            this.loading = false;
             this.$refs.myModalRef.hide();
         },
         onHidden() {

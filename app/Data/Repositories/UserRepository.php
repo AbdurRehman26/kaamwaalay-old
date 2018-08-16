@@ -199,5 +199,9 @@ public $model;
 
         return  $this->model->count();
     }
+    public function changeStatus(array $data = []) {
+        unset($data['user_id']);
+       return parent::update($data);
+    }
 
 }
