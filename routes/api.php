@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
+    Route::post('service/{id}', 'Api\V1\ServiceController@update');
     Route::resource('service', 'Api\V1\ServiceController')->except([
         'edit',
     ]);
