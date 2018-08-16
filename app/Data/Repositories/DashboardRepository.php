@@ -58,7 +58,7 @@ class DashboardRepository
         $criteria = [];
         $aggregate = 'sum';
         $field = 'amount';
-        $data['total_payment_collected'] = $this->paymentRepo->getTotalByCriteria($criteria, $aggregate, $field);
+        $data['total_payment_collected'] = $this->paymentRepo->getTotalByCriteria($criteria, $aggregate, $field, $startDate, $endDate);
 
         return $data;
     }
@@ -219,6 +219,9 @@ class DashboardRepository
             $joins->on('job_bids.user_id', '=', 'users.id')
             ->where('job_bids.status', '=', $this->jobBidRepo->model::COMPLETED);
         })
+        ->leftJoin('service_provider_profiles', function ($joins) {
+            $joins->on('service_provider_profiles.user_id', '=', 'users.id');
+        })
         ->whereBetween('users.created_at', [$startDate, $endDate])
         ->where('role_id', '=', Role::SERVICE_PROVIDER)
         ->select(
@@ -226,7 +229,9 @@ class DashboardRepository
             'users.email as email',
             DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
             DB::raw('AVG(rating) as rating'),
-            DB::raw('COUNT(job_bids.id) as job_completed')
+            DB::raw('COUNT(DISTINCT job_bids.id) as job_completed'),
+            'duns_number',
+            'business_type'
 
         )
         ->groupBy('users.id')

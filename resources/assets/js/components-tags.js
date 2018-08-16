@@ -26,6 +26,8 @@ Vue.component('MidLoader', require('./components/admin/common-components/MediumL
 Vue.component('SpinnerLoader', require('./components/admin/common-components/SpinnerLoader.vue'));
 Vue.component('DatePicker', require('./components/admin/common-components/Datepicker.vue'));
 Vue.component('SearchField', require('./components/admin/common-components/Search.vue'));
+Vue.component('block-spinner', require('./components/admin/common-components/BlockSpinner.vue'));
+
 
 // Common Popup
 Vue.component('delete-popup',require('./components/admin/common-components/DeletePopup.vue'));
