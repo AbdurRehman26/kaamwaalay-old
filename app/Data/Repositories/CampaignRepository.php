@@ -91,23 +91,25 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 ->first()
                 ;
 
-        if($input['type'] == 'view'){
-            $model->views++;
-        }else{
-            $model->clicks++;
-        }
+        if($model){
+            if($input['type'] == 'view'){
+                $model->views++;
+            }else{
+                $model->clicks++;
+            }
 
-        $getPlanViews = $this->findById($model->id);
-        if($model->views >= $getPlanViews->plan->quantity ){
-            $model->is_completed = 1;
-            $this->serviceProviderProfileRepo->update(['id'=>$input['service_provider_user_id'],'is_featured'=>0]);
-        }
+            $getPlanViews = $this->findById($model->id);
+            if($model->views >= $getPlanViews->plan->quantity ){
+                $model->is_completed = 1;
+                $this->serviceProviderProfileRepo->update(['id'=>$input['service_provider_user_id'],'is_featured'=>0]);
+            }
 
-        if($model->save()){
-            Cache::forget($this->_cacheKey.$model->id);
-            return true;
-        }
+            if($model->save()){
+                Cache::forget($this->_cacheKey.$model->id);
+                return true;
+            }
 
+        }
 
         return false;
     }
