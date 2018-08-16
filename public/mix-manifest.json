@@ -1,6 +1,13 @@
 {
+<<<<<<< HEAD
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/front/app.css": "/css/front/app.css",
     "/js/front-app.js": "/js/front-app.js"
+=======
+    "/js/app.js": "/js/app.js?id=74026d3c1b5187568dc6",
+    "/css/app.css": "/css/app.css?id=08bc711cbb06d6923303",
+    "/css/front/app.css": "/css/front/app.css?id=e31c6c352bcda1370751",
+    "/js/front-app.js": "/js/front-app.js?id=4fe5b28a780e0196edf9"
+>>>>>>> 50fcb247727bc81ffc99016973c4321853ff98b7
 }
