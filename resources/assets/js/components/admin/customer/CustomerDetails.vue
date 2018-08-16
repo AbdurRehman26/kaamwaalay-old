@@ -179,6 +179,7 @@
 </template>
 
 <script>
+import fancyBox from 'vue-fancybox';
 import StarRating from 'vue-star-rating';
 export default{
     data () {

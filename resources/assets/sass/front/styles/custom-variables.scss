@@ -20,7 +20,7 @@ $success-bg:#28a745;
 $success-color:#fff;
 $success-border:#28a745;
 $danger-bg:#d9534f;
-$danger-color:#fff;
+$danger-color:#d9534f;
 $danger-border:#d9534f;
 $warning-bg:#ffc107;
 $warning-color:#fff;
@@ -48,7 +48,7 @@ $label-margin:0 0 9px 0;
 $input-padding:9px 16px;
 $input-color:$secondary-color;
 $input-border:$grey-medium;
-$input-radius:8px;
+$input-radius: 4px;
 $input-border: $grey-medium;
 
 //buttons
@@ -61,7 +61,7 @@ $btn-primary-bg:$primary-color;
 $btn-primary-color:#fff;
 $btn-secondary-bg:$secondary-color;
 $btn-secondary-color:#fff;
-$anchor-color:$primary-color;
+$anchor-color:$primary-color-md;
 $anchor-color-hover:$primary-color;
 
 //checkbox
@@ -69,3 +69,17 @@ $checkbox-width-height: 14px;
 $checkbox-radius:1px;
 $checkbox-border-color: $input-border;
 $border-radius:20px;
+
+//alert
+$alert-height:43px;
+$alert-padding:13px 47px;
+$alert-width:100%;
+$alert-radius: $input-radius;
+$alert-padding:9px 20px 9px 47px;
+
+//auth panel
+$auth-panel-width:536px;
+$auth-panel-bg:#fff;
+$auth-panel-radius: 8px;
+$auth-panel-shadow:0 0 10px 0 rgba(0,0,0,0.2);
+$auth-panel-padding:30px 42px 39px;

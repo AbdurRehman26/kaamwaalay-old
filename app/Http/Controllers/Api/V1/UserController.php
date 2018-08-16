@@ -36,6 +36,9 @@ class UserController extends ApiResourceController
         $rules['business_details.business_type']     = 'nullable|in:business,individual';
         $rules['user_id'] = 'required|exists:users,id';
         
+        $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
+        $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
+        
     }
 
 
@@ -71,29 +74,13 @@ public function input($value='')
         'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role','filter_by_service');
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
     
     if($value == 'update'){
         unset($input['user_details']['email']);
     }
 
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
-    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
-
     return $input;
-}
-
-
-public function messages($value = '')
-{
-    $messages = [
-        'user_details.first_name.required' => 'The first name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.email.required' => 'The email field is required.',
-        'user_details.phone_number.required' => 'The phone number field is required.',
-        'business_details.business_type.in' => 'The business details type is invalid'
-    ];
-
-    return !empty($messages) ? $messages : [];
 }
 
 public function changePassword(Request $request)
@@ -210,5 +197,54 @@ public function socialLogin(Request $request)
 }
 return response()->json($output, $code);
 }
+
+
+public function messages($value = '')
+{
+    $messages = [
+        'user_details.first_name.required' => 'The first name field is required.',
+        'user_details.last_name.required' => 'The last name field is required.',
+        'user_details.email.required' => 'The email field is required.',
+        'user_details.phone_number.required' => 'The phone number field is required.',
+        'business_details.business_type.in' => 'The business details type is invalid',
+        'service_details.*.id.exists' => 'The service profile request id is invalid',
+        'service_details.*.service_id.exists' => 'The service id is invalid'
+    ];
+
+    return !empty($messages) ? $messages : [];
+}
+public function changeStatus(Request $request)
+    {
+        $data = $request->only('status','id','user_id');
+        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+        request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+        $rules = [
+            'status' => 'required|in:active,banned',
+            'id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id'
+        ];
+        $validator = Validator::make($data,$rules);
+        if ($validator->fails()) {
+         $code = 406;
+         $output = [
+             'message' => $validator->messages()->all(),
+         ];
+     }else{
+        $result = $this->_repository->changeStatus($data);
+        if($result) {
+            $code = 200;
+            $output = [
+                'data' => 'Status has been updated successfully.',
+                'message' => 'Status has been updated successfully.',
+            ];
+        }else{
+            $code = 406;
+            $output = [
+                'message' => 'An error occurred',
+            ];
+        }
+    }
+    return response()->json($output, $code);
+  }
 
 }

@@ -9,11 +9,15 @@
         methods: {
 
             logout: function () {
-                var this_ = this;
-                this.$auth.logout().then(function (Vue) {
-                    this_.$store.commit('setAuthUser', '');
-                    this_.$router.push({ name: 'login'})
-                })
+                  var this_ = this;
+                  if(this.$auth.isAuthenticated()){
+                        this.$auth.logout().then(function (Vue) {
+                            this_.$store.commit('setAuthUser', '');
+                            this_.$router.push({ name: 'login'})
+                        })
+                   }else{
+                            this_.$router.push({ name: 'login'})
+                   }
             }
         }
     }

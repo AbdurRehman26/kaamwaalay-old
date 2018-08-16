@@ -16,12 +16,12 @@ class UserRatingController extends ApiResourceController
     $rules = [];
 
     if($value == 'store'){
-        $rules['job_id']        =  'required|exists:jobs,id';
-        $rules['message']       =  'required';
-        $rules['rating']        =  'required|max:5';
-        $rules['user_service_id']        =  'required|exists:service_provider_services,id';
-        $rules['user_id']        =  'required|exists:users,id';
-        $rules['rated_by']       =  'required';
+        $rules['job_id']        =  'required|numeric|exists:jobs,id';
+        $rules['message']       =  'required|alpha_num';
+        $rules['rating']        =  'required|numeric|max:5';
+        $rules['user_service_id']        =  'required|numeric|exists:service_provider_services,id';
+        $rules['user_id']        =  'required|numeric|exists:users,id';
+        //$rules['rated_by']       =  'required';
     }
 
     if($value == 'update'){
@@ -34,11 +34,11 @@ class UserRatingController extends ApiResourceController
     }
 
     if($value == 'show'){
-
+        $rules['id']                =  'required|numeric|exists:user_ratings,id';
     }
 
     if($value == 'index'){
-        $rules['user_id']           =  'required|exists:users,id';
+        $rules['user_id']           =  'required|numeric|exists:users,id';
         $rules['pagination']        =  'nullable|boolean';
     }
 

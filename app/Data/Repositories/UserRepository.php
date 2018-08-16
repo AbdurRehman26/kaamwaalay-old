@@ -51,11 +51,11 @@ public $model;
             if (!empty($details['profile_data'])) {
                 if($data->role_id == Role::SERVICE_PROVIDER){
                 // Todo
-                $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
-                if (!empty($details['provider_request_data'])) {
-                    $serviceDetailsCriteria = ['user_id' => $id];
-                    $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
-                }
+                    $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
+                    if (!empty($details['provider_request_data'])) {
+                        $serviceDetailsCriteria = ['user_id' => $id];
+                        $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
+                    }
 
                 }   
             }
@@ -119,11 +119,11 @@ public $model;
 
         if(!empty($data['filter_by_service'])){
           
-                $this->builder->leftJoin('jobs', function ($join)  use($data){
-                                    $join->on('jobs.user_id', '=', 'users.id');
-                                })->where('jobs.service_id',$data['filter_by_service'])
-                                ->select(['users.id'])
-                                ->groupBy('users.id');
+            $this->builder->leftJoin('jobs', function ($join)  use($data){
+                $join->on('jobs.user_id', '=', 'users.id');
+            })->where('jobs.service_id',$data['filter_by_service'])
+            ->select(['users.id'])
+            ->groupBy('users.id');
         }
 
         
@@ -134,64 +134,81 @@ public $model;
     public function update(array $data = []) {
 
         $input = $data['user_details'];
-        $input['id'] = $data['user_id'];
+        
+
+        $input['id'] = $data['id'];
         
         if ($user = parent::update($input)) {
 
-            if(!empty($data['business_details'])){
+            if($user->role_id == Role::SERVICE_PROVIDER){
 
-                $business_details = $data['business_details']; 
-                $business_details['user_id'] = $user->id;
-                if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $user->id)){
-                    $business_details['id'] = $business->id;
-                    $user->business_details = app('ServiceProviderProfileRepository')->update($business_details);
-                }else{
-                    $user->business_details = app('ServiceProviderProfileRepository')->create($business_details);
+                if(!empty($data['business_details'])){
+
+                    $business_details = $data['business_details']; 
+                    $business_details['user_id'] = $user->id;
+                    if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $user->id)){
+                        $business_details['id'] = $business->id;
+                        $user->business_details = app('ServiceProviderProfileRepository')->update($business_details);
+                    }else{
+                        $user->business_details = app('ServiceProviderProfileRepository')->create($business_details);
+                    }
                 }
-            }
 
-            if(!empty($data['service_details'])){
+                if(!empty($data['service_details'])){
 
-                foreach ($data['service_details'] as $key => $service) {
-                    if(empty($service['service_id'])){
-                            continue;
+                    $criteria = ['user_id' => $input['id'] , 'status' => 'pending'];
+
+                    $profileRequest = app('ServiceProviderProfileRequestRepository')->findByCriteria($criteria);
+                    
+                    if(!$profileRequest){
+                        
+
+                        foreach ($data['service_details'] as $key => $service) {
+                            if(empty($service['service_id'])){
+                                continue;
+                            }
+                            
+                            if(!empty($service['id'])){
+
+                                $existingServiceIds[$service['id']][] = $service['service_id'];
+                                $service['service_provider_profile_request_id'] = $service['id'];
+                                unset($service['id']);
+
+                                $service['deleted_at'] = null;
+                                $existingServices[] = $service;
+
+                            }else{
+                                $newServices[] = $service;
+                            }
                         }
 
-                    if(!empty($service['id'])){
+                        if(!empty($newServices)){
+                            $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
+                            foreach ($newServices as $key => $newService) {
+                                $newServices[$key]['service_provider_profile_request_id'] = $serviceProfileRequest->id; 
+                            }
+                            app('ServiceProviderServiceRepository')->model->insert($newServices);
+                        }
 
-                        $existingServiceIds[$service['id']][] = $service['service_id'];
-                        $service['service_provider_profile_request_id'] = $service['id'];
-                        unset($service['id']);
+                        if(!empty($existingServiceIds)){
+                            foreach ($existingServiceIds as $key => $existingServiceId) {
+                                app('ServiceProviderServiceRepository')->model
+                                ->where('service_provider_profile_request_id' , $key)
+                                ->whereNotIn('id', $existingServiceId)->delete();
+                            }
 
-                        $service['deleted_at'] = null;
-                        $existingServices[] = $service;
+                            app('ServiceProviderServiceRepository')->model->insertOnDuplicateKey($existingServices);
 
-                    }else{
-                        $newServices[] = $service;
+                        }
                     }
-                }                
 
-                if(!empty($newServices)){
-                    $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
-                    foreach ($newServices as $key => $newService) {
-                        $newServices[$key]['service_provider_profile_request_id'] = $serviceProfileRequest->id; 
-                    }
-                    app('ServiceProviderServiceRepository')->model->insert($newServices);
                 }
 
-                if(!empty($existingServiceIds)){
-                    foreach ($existingServiceIds as $key => $existingServiceId) {
-                        app('ServiceProviderServiceRepository')->model
-                        ->where('service_provider_profile_request_id' , $key)
-                        ->whereNotIn('id', $existingServiceId)->delete();
-                    }
+                $details = ['profile_data' => true , 'provider_request_data' => true];
+                $user = self::findById($user->id , true, $details);
+            }
 
-                    app('ServiceProviderServiceRepository')->model->insertOnDuplicateKey($existingServices);
-                    
-                }
 
-                $user = self::findById($user->id , true);
-            }            
             return $user;
         }
 
@@ -205,9 +222,13 @@ public $model;
             $this->model = $this->model->where($crtieria);
 
         if($startDate && $endDate)
-        $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
 
         return  $this->model->count();
+    }
+    public function changeStatus(array $data = []) {
+        unset($data['user_id']);
+       return parent::update($data);
     }
 
 }

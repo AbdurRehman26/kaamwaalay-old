@@ -64,9 +64,7 @@
                     </b-col>
                     <b-col cols="12">
                         <div class="form-group">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p>Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs.</p>
                         </div>
                     </b-col>
                 </b-row>

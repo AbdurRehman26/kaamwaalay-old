@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="customer-detail-title">
-                    <h2 class="page-title">Javed Miadad</h2>
+                    <h2 class="page-title">Edward Jackson</h2>
                 </div>
                 <div class="table-area">
                     <div class="table-responsive">

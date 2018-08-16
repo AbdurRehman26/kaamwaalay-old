@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 class ServiceController extends ApiResourceController
 {
     public $_repository;
+    const   PER_PAGE = 25;
 
     public function __construct(ServiceRepository $repository){
        $this->_repository = $repository;
@@ -28,9 +29,10 @@ class ServiceController extends ApiResourceController
         $rules['is_display_banner']       = 'required|in:0,1';                   
         $rules['is_display_service_nav']  = 'required|in:0,1';                       
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
-        $rules['images']                  = 'required|array';       
+        $rules['images']                  = 'required';       
         $rules['status']                  = 'required|in:0,1';    
-        $rules['user_id'] =  'required|exists:users,id';   
+        $rules['is_featured']                  = 'required|in:0,1';    
+        //$rules['user_id'] =  'required|exists:users,id';   
     }
 
     if($value == 'update'){
@@ -81,13 +83,18 @@ class ServiceController extends ApiResourceController
         $input = request()->only(
                             'id',
                             'title',
-                            'title',
                             'images',
                             'parent_id',
                             'pagination',
                             'description',
                             'is_display_banner',
                             'is_display_service_nav',
+                            'is_display_footer_nav',
+                            'is_featured',
+                            'is_hero_nav',
+                            'url_prefix',
+                            'parent_service',
+                            'status',
                             'keyword',
                             'filter_by_featured',
                             'zip_code'
@@ -103,7 +110,6 @@ class ServiceController extends ApiResourceController
     //Update single record
     public function update(Request $request, $id)
     {   
-
         $request->request->add(['id' => $id]);
         $input = $this->input(__FUNCTION__);
         $rules = $this->rules(__FUNCTION__);
@@ -146,4 +152,33 @@ class ServiceController extends ApiResourceController
         return response()->json($output, Response::HTTP_OK);
 
     }
+    //Get all records
+    public function index(Request $request)
+    {
+        $rules = $this->rules(__FUNCTION__);
+        $input = $this->input(__FUNCTION__);
+
+        $this->validate($request, $rules);
+        
+        $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
+
+        $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
+
+        $data = $this->_repository->findByAll($pagination, $per_page, $input);
+        //$count = $this->_repository->getServiceCount();
+        $output = [
+            'response' => [
+                'data' => $data['data']['data'],
+                'service_count' => $data['record_count'],
+                'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
+                'message' => $this->response_messages(__FUNCTION__),
+            ]
+        ];
+
+        // HTTP_OK = 200;
+
+        return response()->json($output, Response::HTTP_OK);
+
+    }
+
 }

@@ -88,16 +88,29 @@ public $model;
 
         if (!empty($data['keyword'])) {
 
-            $this->builder = $this->builder->where(function($query)use($data){
-                $query->where('service_provider_profiles.business_name', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('service_provider_profiles.business_details', 'like', "%{$data['keyword']}%");
+            $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
+                $join->on('users.id', '=', 'service_provider_profiles.user_id');
+            })->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
+            ->orWhere('users.last_name', 'like', "%{$data['keyword']}%")
+            ->select('service_provider_profiles.*')
+            ->groupBy('service_provider_profiles.user_id');
 
-            });
         }
         if(!empty($data['filter_by_business_type'])){
             $this->builder = $this->builder->where('business_type','=',$data['filter_by_business_type']);
         }
         
+        if(!empty($data['filter_by_service'])){
+
+            $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
+                $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
+            })->join('service_provider_services', function($join) use ($data){
+                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
+            })->where('service_provider_services.service_id',$data['filter_by_service'])
+            ->select('service_provider_profiles.*')
+            ->groupBy('service_provider_profiles.user_id');
+        }
+
         return parent::findByAll($pagination, $perPage, $data);
 
     }
@@ -113,7 +126,7 @@ public $model;
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
             $model = $this->model->newInstance()
             ->where($crtieria);
             if($whereIn){

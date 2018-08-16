@@ -6,7 +6,6 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
-
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
 /**
@@ -31,7 +30,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      *
      **/
-
+    protected $cacheTag = true;
     protected $_cacheKey = 'Service';
     protected $_cacheTotalKey = 'total-Service';
 
@@ -57,6 +56,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         return $data;
     }
 
+    public function getServiceCount() {
+        return $this->model->count();
+    }
+
     public function create(array $data = []) {
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
@@ -69,13 +72,12 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 return 'not_parent';
             }
         }else{
-            return parent::update($data);
+            return parent::create($data);
         }
     }
     public function update(array $data = []) {
         
         unset($data['user_id']);
-        
         if (!empty($data['parent_id'])) {
             $parentExist = Service::where('id','=',$data['parent_id'])->whereNull('parent_id')->count();
             if ($parentExist) {
@@ -97,6 +99,13 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         $this->builder = $this->model->orderBy('created_at','desc');
 
+        //select * from `psm`.`services` as p1 left join `psm`.`services` p2 on p1.id = p2.parent_id where p1.parent_id is null order by p1.id
+       
+        /*$this->builder = $this->builder
+                    ->leftJoin('services AS s2', 'id', '=', 's2.parent_id')
+                    ->whereNull('parent_id')
+                    ->orderBy('id');*/
+
         if (!empty($data['zip_code'])) {
             $this->builder = $this->builder->
             leftJoin('service_provider_services', function ($join)  use($data) {
@@ -116,18 +125,40 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         if (!empty($data['keyword'])) {
             
-            $this->builder = $this->builder->where(function($query)use($data){
+            $this->builder = $this->builder->where(function($query) use($data){
                 $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('services.description', 'like', "%{$data['keyword']}%");
+                //$query->orWhere('services.description', 'like', "%{$data['keyword']}%");
             
             });
         }
         if(!empty($data['filter_by_featured'])){
             $this->builder = $this->builder->where('is_featured','=',$data['filter_by_featured']);
         }
-        
-        return parent::findByAll($pagination, $perPage, $data);
-
+        $modelData['record_count'] = $this->builder->count();
+        $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+        return $modelData;
     }
 
+
+    public function deleteById($id) {
+        $model = $this->model->find($id);
+        if($model->parent_id == NULL) {
+            $sub_model = $this->model->where('parent_id', '=', $id)->delete();
+        }
+        $this->cache()->flush();
+        //Cache::tags(['Service'])->flush();
+        // if($sub_model != NULL) {
+        //     foreach ($sub_model as $model) {
+        //         //Cache::forget($this->_cacheKey.$model->id);
+        //         //Cache::forget($this->_cacheTotalKey);
+        //         $model->delete();
+        //     }
+        // }
+        if($model != NULL) {
+            //Cache::forget($this->_cacheKey.$id);
+            //Cache::forget($this->_cacheTotalKey);
+            return $model->delete();
+        }
+        return false;
+    }
 }
