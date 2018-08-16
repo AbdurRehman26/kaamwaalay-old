@@ -13,6 +13,7 @@ export default {
 	components: {
 		TypeAhead
 	},
+	props: ['searchValue'],
 	data () {
 		return {
 			search: ''
@@ -32,6 +33,9 @@ export default {
 		search(val) {
 			this.search = val;
 			this.$emit('search' , this.search);
+		},
+		searchValue(value) {
+			this.search = value;
 		}
 	}
 }

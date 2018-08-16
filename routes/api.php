@@ -36,6 +36,7 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 Route::group(['middleware' => ['auth:api']], function () {
 
+    Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit',
     ]);
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
+    Route::post('service/{id}', 'Api\V1\ServiceController@update');
     Route::resource('service', 'Api\V1\ServiceController')->except([
         'edit',
     ]);
@@ -68,7 +70,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
-
+    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->except([
+        'edit',
+    ]);
 });
 
 
@@ -108,9 +112,6 @@ Route::resource('state', 'Api\V1\StateController')->except([
     'edit',
 ]);
 
-Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->except([
-    'edit',
-]);
 
 Route::resource('support-question', 'Api\V1\SupportQuestionController')->except([
     'edit',

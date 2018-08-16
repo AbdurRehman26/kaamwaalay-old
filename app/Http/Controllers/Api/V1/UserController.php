@@ -213,5 +213,38 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
+public function changeStatus(Request $request)
+    {
+        $data = $request->only('status','id','user_id');
+        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+        request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+        $rules = [
+            'status' => 'required|in:active,banned',
+            'id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id'
+        ];
+        $validator = Validator::make($data,$rules);
+        if ($validator->fails()) {
+         $code = 406;
+         $output = [
+             'message' => $validator->messages()->all(),
+         ];
+     }else{
+        $result = $this->_repository->changeStatus($data);
+        if($result) {
+            $code = 200;
+            $output = [
+                'data' => 'Status has been updated successfully.',
+                'message' => 'Status has been updated successfully.',
+            ];
+        }else{
+            $code = 406;
+            $output = [
+                'message' => 'An error occurred',
+            ];
+        }
+    }
+    return response()->json($output, $code);
+  }
 
 }

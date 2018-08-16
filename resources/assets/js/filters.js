@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import moment from 'moment';
 
 const jobStatuses = [
 {
@@ -45,9 +46,32 @@ const providerStatuses = [
     key :'rejected',
     value : 'Rejected'
 },
+{
+    key :'banned',
+    value : 'Banned'
+},
 ];
 
-
+const adminStatuses = [
+{
+    key : 'active',
+    value : 'Active'
+},
+{
+    key : 'banned',
+    value : 'Deactive'
+}
+];
+const accessLevelField = [
+{
+    key : 'full',
+    value : 'Full'
+},
+{
+    key : 'reviewOnly',
+    value : 'Review'
+}
+];
 
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
@@ -74,8 +98,13 @@ Vue.filter('userStatus', function (value) {
             return item; 
         }
     });
+    return typeof(obj) == 'undefined' ? '' : obj.value.replace(/\s/g, '').toLowerCase().trim();
+});
 
-    return obj.value.replace(/\s/g, '').toLowerCase().trim();
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('MMMM DD,YYYY')
+    }
 });
 
 Vue.filter('fullName', function (value) {
@@ -109,5 +138,23 @@ Vue.filter('childOrParentService', function (value) {
     }
 
     return value.parent.title;
+});
 
+Vue.filter('adminStatus', function (value) {
+
+    let obj = _.find(adminStatuses, item =>{
+        if(item.key == value.status){
+            return item; 
+        }
+    });
+
+    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+Vue.filter('accessLevel', function (value) {
+    let obj = _.find(accessLevelField, item =>{
+        if(item.key == value.access_level){
+            return item; 
+        }
+    });
+    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
 });
