@@ -12589,6 +12589,23 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: underline;
 }
 
+.btn.btn-grey {
+  background-color: #F9F9F9;
+  color: #1A1A1A !important;
+  border: 1px solid #E0E0E0;
+}
+
+.btn.btn-grey:focus,
+.btn.btn-grey:visited,
+.btn.btn-grey:active,
+.btn.btn-grey:hover {
+  color: #1A1A1A !important;
+  background-color: F9F9F9 !important;
+  border-color: #E0E0E0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 .btn.btn-facebook {
   background: #3B579D !important;
   border-color: #3B579D !important;
@@ -13758,71 +13775,6 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
   margin-top: 30px;
-}
-
-.nav-tabs {
-  border-bottom: none;
-  margin-bottom: 40px;
-}
-
-.nav-tabs .nav-link:hover,
-.nav-tabs .nav-link:focus {
-  border-color: #fff;
-}
-
-li.nav-item.active {
-  border: 1px solid #8200FF;
-  background-color: #f7f3fb;
-}
-
-.nav-tabs .nav-item {
-  position: relative;
-  margin-bottom: -1px;
-  border: 1px solid #6004BA;
-  border-radius: 8px;
-  margin-right: 60px;
-  border: 1px solid #E0E0E0;
-  background-color: #F9F9F9;
-  height: 98px;
-  width: 395px;
-}
-
-.nav-tabs .nav-item a {
-  font-size: 18px;
-  margin-top: 20px;
-  height: 82px;
-}
-
-.nav-tabs .nav-item a i {
-  position: absolute;
-  right: 9px;
-  top: 12px;
-}
-
-.nav-tabs .nav-item p {
-  font-size: 14px;
-  color: #1A1A1A;
-  font-family: "AkzidenzGroteskBE-Regular";
-  margin-bottom: 0;
-}
-
-.nav-tabs .nav-item:last-child {
-  margin-right: 0px;
-}
-
-.nav-tabs .nav-link {
-  color: #1A1A1A;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-  padding: 0;
-}
-
-.nav-tabs .nav-link.active {
-  border-color: transparent;
-  font-family: "AkzidenzGroteskBE-Md";
-  height: 72px;
-  background-color: #f7f3fb;
-  color: #8200FF;
 }
 
 .featured-categories-home {
@@ -14998,6 +14950,11 @@ body .chat-feedback-message.white-msg:before {
   padding-left: 60px;
 }
 
+.member-details p.service-requirment,
+.job-details p.service-requirment {
+  padding-top: 3px;
+}
+
 .member-details p.customer-rating,
 .job-details p.customer-rating {
   padding-left: 0px;
@@ -15291,9 +15248,10 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
   font-size: 16px;
   color: #1a1a1a;
-  padding-left: 17px;
+  padding-left: 15px;
   position: absolute;
   left: 25px;
+  top: -3px;
 }
 
 .featured-places p.featured-detail {
@@ -15381,6 +15339,130 @@ body .chat-feedback-message.white-msg:before {
 }
 
 /* == Featured Profile sass end == */
+
+/* == Advice Center sass start == */
+
+.advice-text {
+  max-width: 615px;
+  margin: 0 auto;
+}
+
+.advice-text p {
+  font-size: 20px;
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.advice-topics {
+  text-align: center;
+  margin: 70px 0;
+}
+
+.advice-tabs {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+}
+
+.advice-tabs .nav-tabs {
+  border-bottom: transparent;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.advice-tabs .nav-tabs .nav-link {
+  border-bottom: 4px solid #E0E0E0;
+}
+
+.advice-tabs .nav-tabs .nav-link:hover {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.advice-tabs .nav-tabs .nav-link.active {
+  border-color: #fff;
+  border-bottom: 4px solid #8200FF;
+  color: #8200FF;
+}
+
+.advice-tabs .nav-tabs .nav-item a {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #495057;
+  width: 300px;
+  margin-left: 35px;
+}
+
+.advice-tabs .tab-content {
+  margin-top: 70px;
+}
+
+.advice-tabs .card {
+  border: none;
+}
+
+.advice-tabs .card a.btn {
+  height: 64px;
+  line-height: 38px;
+}
+
+.advice-tabs .card-header {
+  padding: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  border-bottom: 0;
+}
+
+.advice-tabs .card-header a {
+  text-align: left;
+}
+
+.advice-tabs .card-header span.switch-icon-caret {
+  position: absolute;
+  top: 15px;
+  right: 24px;
+  font-size: 22px;
+  color: #7d7d7d;
+}
+
+.advice-tabs .card-header .btn {
+  border-radius: 12px;
+}
+
+.advice-tabs .card-body {
+  padding: 30px 30px;
+}
+
+.advice-tabs .card-header .btn-block.collapsed span.switch-icon-caret {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  -webkit-transition: ease-in-out 0.4s;
+  transition: ease-in-out 0.4s;
+}
+
+.advice-tabs .card-header .btn-block span.switch-icon-caret {
+  -webkit-transform: scaleY(-1);
+          transform: scaleY(-1);
+  -webkit-transition: ease-in-out 0.4s;
+  transition: ease-in-out 0.4s;
+}
+
+.need-help-text {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.need-help-text p {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #7D7D7D;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+/* == Advice Center sass end == */
 
 .my-job-indication,
 .bidding-sec {

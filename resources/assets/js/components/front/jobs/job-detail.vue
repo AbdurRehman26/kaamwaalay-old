@@ -132,11 +132,24 @@
 							</div>
 						</div>
 
-
-
-
 						<div class="col-md-3 p-l-0 p-r-0">
-							<div class="service-provider">
+
+							<div class="service-provider" v-if="job_detail_right_panel == 'awarded'">
+								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-trophy"></i> Job Awarded</a>					
+								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-checkmark2"></i> Mark Done</a>					
+								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>					
+								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+							</div>
+
+
+							<div class="service-provider" v-else-if="job_detail_right_panel == 'serviceprovider'">
+														
+								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Bid</a>	
+								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
+								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+							</div>
+
+							<div class="service-provider" v-else>
 								<div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
 									<h3>Find & invite service providers to bid on your job.</h3>
 									<p>14 service providers available around you related to concrete flooring.</p>
@@ -145,16 +158,16 @@
 								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
 								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Cancel Job</a>								
 							</div>
+
 							
 						</div>
 					</div>
-
-
 
 				</div>			
 			</div>
 
 	</div>
+	<!-- <p>{{job_detail_right_panel}}</p> -->
 	</div>
 </template>
 
@@ -166,7 +179,7 @@ export default {
   data () {
     return {
     	jobimage: '/images/front/explore/concret.png',
-
+    	job_detail_right_panel: this.$route.params.id,
     	reviewerimage: '/images/front/storage/personimage1.png',
 
         imageList: [
@@ -254,7 +267,12 @@ export default {
         },*/
         open (e) {            
             fancyBox(e.target, this.imageList);
-        }                        
+        },                        
+
+        routerparama(){
+        	this.list = this.$route.params.id
+        	alert(this.$route.params.id);
+        }
 
     },
     components: {
@@ -262,8 +280,8 @@ export default {
     },
 
     mounted(){
-
-    }
+    	routerparama();
+    },
 
 }
 </script>

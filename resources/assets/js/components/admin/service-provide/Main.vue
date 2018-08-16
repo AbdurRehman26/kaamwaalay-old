@@ -75,6 +75,11 @@
                                       <div class="action-icons">
                                         <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                         <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
+
+                                        <i @click="ConfirmationPopup" v-if="list.check == true" v-b-tooltip.hover title="Select Confirmation" class="icon-check"></i>
+
+                                        <i @click="ConfirmationPopup" v-else v-b-tooltip.hover title="Un-select Confirmation" class="icon-close2"></i>
+
                                       </div>
                                     </td>
                                 </tr>
@@ -101,6 +106,7 @@
         <change-status-provider @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-provider>
         <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
         <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
+        <confirmation-popup @HideModalValue="HideModal" :showModalProp="confirmationpopup"></confirmation-popup>
 	</div>
 </template>
 
@@ -110,11 +116,12 @@ import StarRating from 'vue-star-rating';
 export default {
   data () {
     return {
-    	  service: false,
+    	service: false,
         viewdetails: false,
         changeProviderStatus: false,
         changestatus:false,
         providerdetailpopup:false,
+        confirmationpopup: false,
             listing: [
                 {
                     imagepath:'',
@@ -125,6 +132,7 @@ export default {
                     email_address: this.$faker().internet.email(),
                     contact_number: this.$faker().phone.phoneNumber(),
                     status: 'Active',
+                    check: true,
                 },
                 {
                     imagepath:'',
@@ -135,6 +143,7 @@ export default {
                     email_address: this.$faker().internet.email(),
                     contact_number: this.$faker().phone.phoneNumber(),
                     status: 'Pending',
+                    check: true,
                 },
                 {
                     imagepath:'',
@@ -165,6 +174,7 @@ export default {
                     email_address: this.$faker().internet.email(),
                     contact_number: this.$faker().phone.phoneNumber(),
                     status: 'Active',
+                    check: true,
                 },
                 {
                     imagepath:'',
@@ -195,6 +205,7 @@ export default {
                     email_address: this.$faker().internet.email(),
                     contact_number: this.$faker().phone.phoneNumber(),
                     status: 'Rejected',
+                    check: true,
                 },
                 {
                     imagepath:'',
@@ -227,11 +238,15 @@ export default {
             /*this.providerdetailpopup = true;*/
             this.$router.push({name: 'Service_Provider_Detail'});
         },
+        ConfirmationPopup() {
+            this.confirmationpopup = true;
+        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
             this.changestatus = false;
             this.providerdetailpopup = false;
+            this.confirmationpopup = false;
         },
         profileimage(){
           this.$router.push({name: 'Service_Provider_Detail'});  
