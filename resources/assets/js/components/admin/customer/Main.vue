@@ -78,7 +78,7 @@
 
 <div class="clearfix"></div>
 
-<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
 
 </div>
@@ -132,6 +132,9 @@
         },
 
         methods: {
+            startLoading(){
+                this.loading = true;
+            },
             AddCustomer() {
                 this.customer = true;
             },
@@ -152,6 +155,7 @@
                 let self = this;
                 self.loading = false;
                 self.records = data;
+                self.noRecordFound = false;
                 // console.log(self.records , '12312321');
                 if (!self.records.length) {
                     self.noRecordFound = true;
