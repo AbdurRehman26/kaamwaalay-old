@@ -18,6 +18,7 @@ export default new Vuex.Store({
         loginTab : false,
         forgotPassword : false,
         country : [],
+        allServices : [],
         start_year : '',
         end_year : '',
         bubbleQueryArr : {},
@@ -77,6 +78,9 @@ export default new Vuex.Store({
         getScatterChartQuery(state){
             return     state.scatterQueryArr;
         },
+        getAllServices(state){
+            return     state.allServices;
+        },
     },
 
     // Mutation for when you use it as state property
@@ -124,8 +128,8 @@ export default new Vuex.Store({
         setTabularChartQuery(state, data){
             state.tabularQueryArr = data;
         },
-        setScatterChartQuery(state, data){
-            state.scatterQueryArr = data;
+        setAllServices(state, data){
+            state.allServices = data;
         },
     },
 });

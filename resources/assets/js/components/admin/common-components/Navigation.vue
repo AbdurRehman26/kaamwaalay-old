@@ -49,23 +49,20 @@ import { directive as onClickaway } from 'vue-clickaway';
         mounted () {
            let user = JSON.parse(this.$store.getters.getAuthUser);
            this.first_name = user.first_name;
+           this.getAllServices();
            this.last_name = user.last_name;
-           this.getServicesList();
        },
         methods: {
-            getServicesList(){
-                let self = this;
-                self.noRecordFound = false;
-                let url = 'api/service';
-                
-                self.$http.get(url).then(response=>{
-                    console.log(this.$store , '2131232132121321213213');
-                    response = response.data.response;
 
-                    this.$store.commit('setServicesList', response.data);
-                    console.log(response , '21312321');
+            getAllServices() {
+                let self = this;
+                let url = 'api/service';
+
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.$store.commit('setAllServices' , response.data);
                 }).catch(error=>{
-                    console.log(error , 'error');
+
                 });
             },
             ShowModal(){

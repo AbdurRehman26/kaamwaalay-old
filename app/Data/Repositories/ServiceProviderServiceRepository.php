@@ -51,4 +51,18 @@ public $model;
         return $this->findByAll();
     }
 
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        
+        if($data){
+
+            $data->service = app('ServiceRepository')->findById($data->service_id);
+            
+        }
+
+        return $data;
+    }
+
+
 }

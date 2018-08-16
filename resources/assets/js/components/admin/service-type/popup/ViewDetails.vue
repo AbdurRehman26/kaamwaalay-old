@@ -1,14 +1,14 @@
  <template>	
 	<div>
-		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close">
-            <alert></alert>
+		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close" no-close-on-backdrop no-close-on-esc>
+            <alert v-if="successMessage"></alert>
             <div class="view-details-list">
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">ID</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>1</p>
+                        <p>{{(selectedService.index + 1)}}</p>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -16,7 +16,7 @@
                         <p><strong class="title-head">Service</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Carpenters</p>
+                        <p>{{selectedService.parent_id? selectedService.parent.title : selectedService.title}}</p>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -24,7 +24,7 @@
                         <p><strong class="title-head">Sub-Service</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Wiring</p>
+                        <p>{{selectedService.parent_id? selectedService.title : ""}}</p>
                     </b-col>
                 </b-row>
 
@@ -33,7 +33,7 @@
                         <p><strong class="title-head">URL Prefix</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>www.psm.com</p>
+                        <p>{{selectedService.parent_id? selectedService.parent.url_prefix : selectedService.url_prefix}}</p>
                     </b-col>
                 </b-row>
 
@@ -42,15 +42,15 @@
                         <p><strong class="title-head">Is Featured?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>No</p>
+                        <p>{{selectedService.parent_id? selectedService.parent.is_featured? "YES":"NO"  : selectedService.is_featured? "YES":"NO" }}</p>
                     </b-col>
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Hero Navigation</strong></p>
+                        <p><strong class="title-head">Is Hero Navigation?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Yes</p>
+                        <p>{{selectedService.parent_id? selectedService.parent.is_hero_nav? "YES":"NO"  : selectedService.is_hero_nav? "YES":"NO" }}</p>
                     </b-col>
                 </b-row>
                        
@@ -87,7 +87,7 @@
                     </b-col>
                     <b-col cols="12">
                         <div class="form-group">
-                            <p>Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs.</p>
+                            <p>{{selectedService.parent_id? selectedService.parent.description : selectedService.description}}</p>
                         </div>
                     </b-col>
                 </b-row>
@@ -100,14 +100,21 @@
 <script>
 export default {
 
-    props: ['showModalProp'],
-    
+    props: ['showModalProp', 'selectedService'],
+    data () {
+      return {
+       successMessage: "",
+     }
+   },
     methods: {
         showModal () {
-            this.$refs.myModalRef.show()
+
+            console.log(this.selectedService, 9999999);
+            this.$refs.myModalRef.show();
+
         },
         hideModal () {
-            this.$refs.myModalRef.hide()
+            this.$refs.myModalRef.hide();
         },
         onHidden() {
             this.$emit('HideModalValue');
@@ -123,6 +130,9 @@ export default {
             if(!value) {
                 this.hideModal();
             }
+        },
+        selectedService(value) {
+            this.selectedService = value;
         }
     },
 }

@@ -274,7 +274,6 @@ export default{
     },
 
     created() {
-        alert()
     },
 
     mounted() {
