@@ -3962,22 +3962,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'item'],
 
     methods: {
         showModal: function showModal() {
@@ -3988,10 +3978,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
-        },
-        ViewCustomerRecord: function ViewCustomerRecord() {
-            this.$router.push('/customer/viewjobdetail');
         }
+    },
+    data: function data() {
+        return {
+            currentItem: ''
+        };
+    },
+    mounted: function mounted() {
+        this.currentItem = this.item;
     },
 
     components: {
@@ -3999,6 +3994,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     watch: {
+        item: function item(value) {
+            this.currentItem = value;
+        },
         showModalProp: function showModalProp(value) {
 
             if (value) {
@@ -66235,30 +66233,10 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "view-details-list" },
             [
-              _c(
-                "b-row",
-                [
-                  _c("b-col", { attrs: { cols: "5" } }, [
-                    _c("p", [
-                      _c("strong", { staticClass: "title-head" }, [
-                        _vm._v("ID")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("1")])
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "b-row",
                 [
@@ -66271,7 +66249,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Johnny")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm._f("fullName")(_vm.currentItem.user)))
+                    ])
                   ])
                 ],
                 1
@@ -66289,7 +66269,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("$1000")])
+                    _c("p", [_vm._v("$" + _vm._s(_vm.currentItem.amount))])
                   ])
                 ],
                 1
@@ -66314,7 +66294,9 @@ var render = function() {
                           attrs: {
                             "star-size": 20,
                             "read-only": "",
-                            rating: 4,
+                            rating: _vm.currentItem.user
+                              ? _vm.currentItem.user.average_rating
+                              : 0,
                             "active-color": "#8200ff"
                           }
                         })
@@ -66339,11 +66321,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("p", [
-                        _vm._v(
-                          "Essentially you pay an hourly rate, but only up to a certain point with the obligation to finish the project remaining even after reaching the cap."
-                        )
-                      ])
+                      _c("p", [_vm._v(_vm._s(_vm.currentItem.description))])
                     ])
                   ])
                 ],
@@ -66352,8 +66330,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
+        ]
       )
     ],
     1
@@ -70241,35 +70218,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "total-record float-left" }, [
-      _c("p", [
-        _c("strong", [
-          _vm._v("Total records: "),
-          _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
-        ])
+  return _vm.pagination
+    ? _c("div", [
+        _c("div", { staticClass: "total-record float-left" }, [
+          _c("p", [
+            _c("strong", [
+              _vm._v("Total records: "),
+              _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "pagination-wrapper float-right" },
+          [
+            _c("b-pagination", {
+              attrs: {
+                size: "md",
+                "total-rows": _vm.totalRecords,
+                "per-page": 10
+              },
+              on: { input: _vm.changePage },
+              model: {
+                value: _vm.currentPage,
+                callback: function($$v) {
+                  _vm.currentPage = $$v
+                },
+                expression: "currentPage"
+              }
+            })
+          ],
+          1
+        )
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "pagination-wrapper float-right" },
-      [
-        _c("b-pagination", {
-          attrs: { size: "md", "total-rows": _vm.totalRecords, "per-page": 10 },
-          on: { input: _vm.changePage },
-          model: {
-            value: _vm.currentPage,
-            callback: function($$v) {
-              _vm.currentPage = $$v
-            },
-            expression: "currentPage"
-          }
-        })
-      ],
-      1
-    )
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

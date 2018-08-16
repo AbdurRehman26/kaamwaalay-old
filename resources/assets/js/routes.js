@@ -163,7 +163,7 @@ const routes = [
 
     {
         name: 'mainjobdetail',
-        path: '/admin/jobs/viewjobdetail',
+        path: '/admin/jobs/viewjobdetail/:id',
         component: require('./components/admin/job/JobDetails.vue'),
         meta: {
             title: 'Job Details',
@@ -177,7 +177,7 @@ const routes = [
 
     {
         name: 'BiddingDetails',
-        path: '/admin/jobs/biddingdetails',
+        path: '/admin/jobs/biddingdetails/:jobId',
         component: require('./components/admin/job/BiddingDetails.vue'),
         meta: {
             title: 'Bidding Details',
