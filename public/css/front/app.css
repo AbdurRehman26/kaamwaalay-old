@@ -11015,7 +11015,8 @@ a.text-dark:focus {
   content: "\E915";
 }
 
-.icon-close2:before {
+.icon-close2:before,
+.categories-popup .category-content-block i.icon-close2:before {
   content: "\E5CE";
 }
 
@@ -14683,10 +14684,16 @@ li.nav-item.active {
 
 .category-selected .category-content-block {
   width: calc(100% - 80px);
-  padding-left: 15px;
+  padding-left: 22px;
   position: relative;
   float: left;
   padding-top: 12px;
+}
+
+.category-selected .category-content-block h6 {
+  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
 }
 
 .category-selected h4 {
@@ -16357,5 +16364,35 @@ body .chat-feedback-message.white-msg:before {
   position: absolute;
   bottom: -49px;
   right: 17px;
+}
+
+.categories-popup .modal-body {
+  padding: 33px;
+}
+
+.categories-popup .modal-body .category-search-field h5 {
+  margin: 22px 0 24px 0;
+  padding: 0;
+}
+
+.categories-popup .modal-body .category-search-field h6 {
+  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
+  margin: 20px 0 12px 0;
+}
+
+.categories-popup .modal-body a.btn {
+  margin-right: 16px;
+}
+
+.categories-popup .modal-body a.btn:last-of-type {
+  margin-right: 0;
+}
+
+.categories-popup i.icon-close2,
+.categories-popup .category-content-block i.icon-close2 {
+  top: -10px;
+  right: -10px;
 }
 

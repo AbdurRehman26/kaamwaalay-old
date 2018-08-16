@@ -4116,6 +4116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -67662,7 +67663,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popup" },
+    { staticClass: "popup categories-popup" },
     [
       _c(
         "b-modal",
@@ -67708,7 +67709,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-primary m-t-24",
+                staticClass: "btn btn-primary",
                 attrs: { href: "javascript:void();" }
               },
               [_vm._v("Yes, award job")]
@@ -67717,7 +67718,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-link m-t-24",
+                staticClass: "btn btn-link",
                 attrs: { href: "javascript:void();" },
                 on: { click: _vm.hideModal }
               },
@@ -68397,7 +68398,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("category-popup", {
+      _c("customer-support-popup", {
         attrs: { showModalProp: _vm.categoryval },
         on: { HideModalValue: _vm.HideModal }
       })
@@ -69337,7 +69338,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popup" },
+    { staticClass: "popup categories-popup" },
     [
       _c(
         "b-modal",
@@ -69350,7 +69351,7 @@ var render = function() {
             "hide-footer": "false",
             "title-tag": "h4",
             "ok-variant": "primary",
-            size: "md",
+            size: "sm",
             title: "Parent Service Detail",
             "ok-only": "",
             "ok-title": "Continue"
@@ -72757,7 +72758,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popup" },
+    { staticClass: "popup categories-popup" },
     [
       _c(
         "b-modal",
@@ -72781,6 +72782,11 @@ var render = function() {
           _c("alert"),
           _vm._v(" "),
           _c("div", { staticClass: "category-selected" }, [
+            _c("i", {
+              staticClass: "icon-close2",
+              on: { click: _vm.onHidden }
+            }),
+            _vm._v(" "),
             _c("div", {
               staticClass: "category-image-block",
               staticStyle: {
@@ -72789,11 +72795,6 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "category-content-block" }, [
-              _c("i", {
-                staticClass: "icon-close2",
-                on: { click: _vm.onHidden }
-              }),
-              _vm._v(" "),
               _c("h6", [
                 _vm._v(
                   "Christopher Ward Joinery Services Requested to visit your address to evaluate work before bidding."
@@ -72816,7 +72817,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-primary m-t-24",
+                staticClass: "btn btn-primary",
                 attrs: { href: "javascript:void();" }
               },
               [_vm._v("Yes, allow visit")]
@@ -72825,7 +72826,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-primary m-t-24",
+                staticClass: "btn btn-primary",
                 attrs: { href: "javascript:void();" },
                 on: { click: _vm.hideModal }
               },

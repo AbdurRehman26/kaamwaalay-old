@@ -624,3 +624,42 @@
     }
 }
 
+.categories-popup{
+    .modal-body{
+        padding:33px;
+
+        .category-search-field{
+            h5{
+                margin: 22px 0 24px 0;
+                padding: 0;
+            }
+
+            h6{
+                font-size:$font-size-base;
+                font-family: $font_bold;
+                color: $secondary-color; 
+                margin: 20px 0 12px 0;
+            }    
+        } 
+
+        a.btn{
+            margin-right: 16px;
+
+            &:last-of-type{
+                margin-right: 0;
+            }
+        }
+    }
+
+    i.icon-close2{
+        top: -10px;
+        right: -10px;
+    }
+
+    .category-content-block{
+        i.icon-close2{
+            @extend .icon-close2;
+        }
+    }
+}
+
