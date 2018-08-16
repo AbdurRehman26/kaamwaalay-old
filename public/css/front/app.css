@@ -14845,6 +14845,7 @@ body .chat-feedback-message.white-msg:before {
 
 .job-notification .jobs-done {
   padding-top: 8px;
+  padding-left: 0px !important;
 }
 
 .job-notification .job-category {
@@ -14965,6 +14966,26 @@ body .chat-feedback-message.white-msg:before {
 .member-details p.bid,
 .job-details p.bid {
   padding-right: 20px;
+}
+
+.member-details p.offer,
+.job-details p.offer {
+  padding-left: 60px;
+}
+
+.member-details p.customer-rating,
+.job-details p.customer-rating {
+  padding-left: 0px;
+  display: inline-block;
+}
+
+.member-details p.customer-rating .vue-star-rating,
+.job-details p.customer-rating .vue-star-rating {
+  display: inline-block !important;
+  vertical-align: bottom;
+  position: relative;
+  top: -2px;
+  padding-left: 3px;
 }
 
 .member-details i,
@@ -15336,12 +15357,14 @@ body .chat-feedback-message.white-msg:before {
 
 /* == Featured Profile sass end == */
 
-.my-job-indication {
+.my-job-indication,
+.bidding-sec {
   text-align: center;
   padding-top: 52px;
 }
 
-.my-job-indication span {
+.my-job-indication span,
+.bidding-sec span {
   color: #8200FF !important;
 }
 
@@ -15568,6 +15591,63 @@ body .chat-feedback-message.white-msg:before {
 .fancy-box-mask .fancy-box-image-wrapper img {
   width: auto !important;
   height: auto;
+}
+
+/* my-bidding */
+
+.bidding-sec h2 {
+  margin-bottom: 0px;
+  padding-bottom: 50px;
+}
+
+.bidding-navigation ul {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.bidding-navigation li {
+  margin-right: 24px;
+  border-bottom: 4px solid #E0E0E0;
+  padding: 0px 20px 7px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bidding-navigation li p {
+  color: #494949;
+  margin-bottom: 0px;
+}
+
+.bidding-navigation li p span {
+  color: #494949 !important;
+}
+
+.bidding-navigation li:last-child {
+  margin-right: 0px;
+}
+
+.bidding-navigation li.active {
+  border-color: #6004BA;
+}
+
+.bidding-navigation li.active p {
+  color: #6004BA;
+}
+
+.bidding-navigation li.active p span {
+  color: #6004BA !important;
+}
+
+.chat-message i {
+  font-size: 32px;
+  vertical-align: middle;
+  margin-right: 50px;
 }
 
 .modal-sm {

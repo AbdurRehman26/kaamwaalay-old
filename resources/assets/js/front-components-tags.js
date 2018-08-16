@@ -48,3 +48,10 @@ Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue')
 Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 
 
+
+//my-bids
+Vue.component('bid-invitation', require('./components/front/bids/Invitations.vue'));
+Vue.component('bid-completed', require('./components/front/bids/Completed.vue'));
+Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
+Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
+Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));

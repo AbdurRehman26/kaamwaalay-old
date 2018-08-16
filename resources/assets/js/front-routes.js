@@ -182,6 +182,21 @@ const routes = [
         component: require('./components/front/jobs/job-detail.vue'),
     },
 
+
+    //bidding page
+    {
+        name: 'my-bid',
+        path: '/my-bids',
+        meta: {
+            title: 'Professional Service Marketplace | My Bids',
+            bodyClass: 'my-bids-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/bids/main.vue'),
+    },
+
+
+
     /*404*/
 
    {

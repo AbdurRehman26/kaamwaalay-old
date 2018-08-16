@@ -3,7 +3,7 @@
     <div class="navigation main-navigation provider-navigation">
         <ul class="float-left">
             <li><router-link to="/explore">Explore Jobs </router-link></li>
-            <li><router-link to="/my-bid">My Bids</router-link></li>
+            <li><router-link to="/my-bids">My Bids</router-link></li>
             <li><router-link to="/featured-profile">Featured Profile</router-link></li>
             <li>
                     <div class="user-login-detail float-left">
