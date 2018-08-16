@@ -1280,8 +1280,19 @@ li.nav-item.active {
         width: 80px;
         height: 80px;
         background-size: cover;
+        float: left;
         border-radius: 10px;
     }
+
+    .category-content-block{
+        width: calc(100% - 80px);
+        padding-left: 15px; 
+        position: relative;
+        float: left;
+        padding-top: 12px;  
+    }
+
+
     h4{
         margin-bottom: 0;
         vertical-align: middle;
