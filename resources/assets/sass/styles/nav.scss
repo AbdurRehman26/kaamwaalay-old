@@ -33,6 +33,27 @@
     }
 }
 
+.left-cog.profile-block{
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .profile-username {
+        .username{
+            font-weight: 700;
+            padding-left: 12px;
+            max-width: 73px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    span.logout{
+        margin-left: 15px;
+    }        
+}
+
+
 .navbar-collapse{
     .navbar-nav{
         position: relative;
