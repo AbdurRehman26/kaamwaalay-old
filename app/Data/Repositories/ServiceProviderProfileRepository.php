@@ -126,7 +126,7 @@ public $model;
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-        public function findByCrtieria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
             $model = $this->model->newInstance()
             ->where($crtieria);
             if($whereIn){

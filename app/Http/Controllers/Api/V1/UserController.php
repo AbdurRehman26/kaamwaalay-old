@@ -36,6 +36,9 @@ class UserController extends ApiResourceController
         $rules['business_details.business_type']     = 'nullable|in:business,individual';
         $rules['user_id'] = 'required|exists:users,id';
         
+        $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
+        $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
+        
     }
 
 
@@ -78,20 +81,6 @@ public function input($value='')
     }
 
     return $input;
-}
-
-
-public function messages($value = '')
-{
-    $messages = [
-        'user_details.first_name.required' => 'The first name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.email.required' => 'The email field is required.',
-        'user_details.phone_number.required' => 'The phone number field is required.',
-        'business_details.business_type.in' => 'The business details type is invalid'
-    ];
-
-    return !empty($messages) ? $messages : [];
 }
 
 public function changePassword(Request $request)
@@ -207,6 +196,22 @@ public function socialLogin(Request $request)
 }
 }
 return response()->json($output, $code);
+}
+
+
+public function messages($value = '')
+{
+    $messages = [
+        'user_details.first_name.required' => 'The first name field is required.',
+        'user_details.last_name.required' => 'The last name field is required.',
+        'user_details.email.required' => 'The email field is required.',
+        'user_details.phone_number.required' => 'The phone number field is required.',
+        'business_details.business_type.in' => 'The business details type is invalid',
+        'service_details.*.id.exists' => 'The service profile request id is invalid',
+        'service_details.*.service_id.exists' => 'The service id is invalid'
+    ];
+
+    return !empty($messages) ? $messages : [];
 }
 
 }
