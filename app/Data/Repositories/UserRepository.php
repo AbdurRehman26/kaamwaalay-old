@@ -60,6 +60,11 @@ public $model;
                 }
             }
 
+            if (!empty($details['user_rating'])) {
+                    $criteria = ['user_id' => $id];
+                    $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
+            }
+
             if($data->role_id == Role::CUSTOMER){
             // Todo
             }
@@ -91,7 +96,7 @@ public $model;
         }
 
         if(!empty($data['filter_by_service'])){
-          
+
             $this->builder->leftJoin('jobs', function ($join)  use($data){
                 $join->on('jobs.user_id', '=', 'users.id');
             })->where('jobs.service_id',$data['filter_by_service'])
@@ -134,7 +139,7 @@ public $model;
                     $profileRequest = app('ServiceProviderProfileRequestRepository')->findByCriteria($criteria);
                     
                     if(!$profileRequest){
-                        
+
 
                         foreach ($data['service_details'] as $key => $service) {
                             if(empty($service['service_id'])){

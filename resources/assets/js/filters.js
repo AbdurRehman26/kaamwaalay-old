@@ -35,6 +35,10 @@ const providerStatuses = [
     value : 'Pending'
 },
 {
+    key : 'in_pending',
+    value : 'Pending'
+},
+{
     key : 'in_review',
     value :'In Review'
 },
@@ -71,7 +75,13 @@ const accessLevelField = [
 ];
 
 Vue.filter('jobStatus', function (value) {
+    if(typeof(value) == 'undefined'){
+        return ;
+    }
 
+    if(!Object.keys(value).length){
+        return ;
+    }
 
     let obj = _.find(jobStatuses, item =>{
         if(item.key == value.status){
@@ -79,7 +89,7 @@ Vue.filter('jobStatus', function (value) {
         }
     });
 
-    return obj.value.replace(/\s/g, '').toLowerCase().trim();
+    return obj.value.replace(/\s/g, '').trim();
 });
 
 Vue.filter('userStatus', function (value) {
@@ -115,4 +125,37 @@ Vue.filter('accessLevel', function (value) {
         }
     });
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+
+Vue.filter('fullName', function (value) {
+    if(value){
+        return value.first_name + ' '+ value.last_name;
+    }
+});
+
+
+Vue.filter('mainService', function (value) {
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        return value.parent.title;
+    }
+
+    return value.title;
+
+});
+
+Vue.filter('childOrParentService', function (value) {
+
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        return value.title;
+    }
+
+    return value.parent.title;
 });
