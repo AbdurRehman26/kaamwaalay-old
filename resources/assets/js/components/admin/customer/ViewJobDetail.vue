@@ -30,10 +30,10 @@
                           <tbody>
                             <tr v-for="record in records">
                                 <td>{{ record.title }}</td>
-                                <td>Electrician</td>
+                                <td>{{record.service_provider}}</td>
                                 <td class="text-center"> {{ record |jobType}}</td>
-                                <td class="text-center">$555</td>                           
-                                <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
+                                <td class="text-center">{{record.job_amount == null ? '-':'$'+record.job_amount}}  </td>                           
+                                <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
 
                                 <td class="text-center">
                                     <div class="action-icons">

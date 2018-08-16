@@ -68,6 +68,10 @@ public $model;
                 $this->builder = $this->builder->where('service_id', '=', $input['filter_by_service']);            
         }
 
+        if(!empty($input['filter_by_user'])){
+            $this->builder = $this->builder->where('user_id', '=', $input['filter_by_user']);            
+        }
+
 
         $data = parent::findByAll($pagination, $perPage, $input);
 
@@ -102,8 +106,25 @@ public $model;
 
             $ratingCriteria = ['user_id' => $data->user_id];
             $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+
+            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
+            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+            $data->avg_rating = $avgRating;
             
             $data->user = app('UserRepository')->findById($data->user_id);
+
+            if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
+                $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
+                $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
+                $data->job_amount = $jobAmount;
+
+                $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
+                $servicerProvider = app('JobBidRepository')->getJobServiceProvider($bidsCriteria);
+                $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
+                                          $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
+                
+                
+            }
 
         }
 
