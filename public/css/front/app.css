@@ -10766,8 +10766,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon-front.eot?82d3cdba4bf03b5b5bbbfade6105352a);
-  src: url(/fonts/icomoon-front.eot?82d3cdba4bf03b5b5bbbfade6105352a#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?8258622c567a1da6e54fc5dd1f0e3061) format("truetype"), url(/fonts/icomoon-front.woff?a5929a25c0d0b4e225adf7ea8829f6d8) format("woff"), url(/fonts/icomoon-front.svg?4ad4e11cb927f5987a7cc998c6f1e3f0#icomoon) format("svg");
+  src: url(/fonts/icomoon-front.eot?d85dd7b83f4f0555b9790a19c2eb3a99);
+  src: url(/fonts/icomoon-front.eot?d85dd7b83f4f0555b9790a19c2eb3a99#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?1843d72f1023b7500919faa078cd8515) format("truetype"), url(/fonts/icomoon-front.woff?14e39a8e04eb92e8c8d1b382eaa04817) format("woff"), url(/fonts/icomoon-front.svg?0b22bddd255f640ca6501381ae738891#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11015,7 +11015,8 @@ a.text-dark:focus {
   content: "\E915";
 }
 
-.icon-close2:before {
+.icon-close2:before,
+.categories-popup .category-content-block i.icon-close2:before {
   content: "\E5CE";
 }
 
@@ -12588,6 +12589,23 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: underline;
 }
 
+.btn.btn-grey {
+  background-color: #F9F9F9;
+  color: #1A1A1A !important;
+  border: 1px solid #E0E0E0;
+}
+
+.btn.btn-grey:focus,
+.btn.btn-grey:visited,
+.btn.btn-grey:active,
+.btn.btn-grey:hover {
+  color: #1A1A1A !important;
+  background-color: F9F9F9 !important;
+  border-color: #E0E0E0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 .btn.btn-facebook {
   background: #3B579D !important;
   border-color: #3B579D !important;
@@ -13759,71 +13777,6 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 30px;
 }
 
-.nav-tabs {
-  border-bottom: none;
-  margin-bottom: 40px;
-}
-
-.nav-tabs .nav-link:hover,
-.nav-tabs .nav-link:focus {
-  border-color: #fff;
-}
-
-li.nav-item.active {
-  border: 1px solid #8200FF;
-  background-color: #f7f3fb;
-}
-
-.nav-tabs .nav-item {
-  position: relative;
-  margin-bottom: -1px;
-  border: 1px solid #6004BA;
-  border-radius: 8px;
-  margin-right: 60px;
-  border: 1px solid #E0E0E0;
-  background-color: #F9F9F9;
-  height: 98px;
-  width: 395px;
-}
-
-.nav-tabs .nav-item a {
-  font-size: 18px;
-  margin-top: 20px;
-  height: 82px;
-}
-
-.nav-tabs .nav-item a i {
-  position: absolute;
-  right: 9px;
-  top: 12px;
-}
-
-.nav-tabs .nav-item p {
-  font-size: 14px;
-  color: #1A1A1A;
-  font-family: "AkzidenzGroteskBE-Regular";
-  margin-bottom: 0;
-}
-
-.nav-tabs .nav-item:last-child {
-  margin-right: 0px;
-}
-
-.nav-tabs .nav-link {
-  color: #1A1A1A;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-  padding: 0;
-}
-
-.nav-tabs .nav-link.active {
-  border-color: transparent;
-  font-family: "AkzidenzGroteskBE-Md";
-  height: 72px;
-  background-color: #f7f3fb;
-  color: #8200FF;
-}
-
 .featured-categories-home {
   width: 100%;
   background-color: #F9F9F9;
@@ -14683,10 +14636,16 @@ li.nav-item.active {
 
 .category-selected .category-content-block {
   width: calc(100% - 80px);
-  padding-left: 15px;
+  padding-left: 22px;
   position: relative;
   float: left;
   padding-top: 12px;
+}
+
+.category-selected .category-content-block h6 {
+  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
 }
 
 .category-selected h4 {
@@ -15289,9 +15248,10 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
   font-size: 16px;
   color: #1a1a1a;
-  padding-left: 17px;
+  padding-left: 15px;
   position: absolute;
   left: 25px;
+  top: -3px;
 }
 
 .featured-places p.featured-detail {
@@ -15379,6 +15339,130 @@ body .chat-feedback-message.white-msg:before {
 }
 
 /* == Featured Profile sass end == */
+
+/* == Advice Center sass start == */
+
+.advice-text {
+  max-width: 615px;
+  margin: 0 auto;
+}
+
+.advice-text p {
+  font-size: 20px;
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.advice-topics {
+  text-align: center;
+  margin: 70px 0;
+}
+
+.advice-tabs {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+}
+
+.advice-tabs .nav-tabs {
+  border-bottom: transparent;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.advice-tabs .nav-tabs .nav-link {
+  border-bottom: 4px solid #E0E0E0;
+}
+
+.advice-tabs .nav-tabs .nav-link:hover {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.advice-tabs .nav-tabs .nav-link.active {
+  border-color: #fff;
+  border-bottom: 4px solid #8200FF;
+  color: #8200FF;
+}
+
+.advice-tabs .nav-tabs .nav-item a {
+  font-family: "AkzidenzGroteskBE-Md";
+  font-size: 14px;
+  color: #495057;
+  width: 300px;
+  margin-left: 35px;
+}
+
+.advice-tabs .tab-content {
+  margin-top: 70px;
+}
+
+.advice-tabs .card {
+  border: none;
+}
+
+.advice-tabs .card a.btn {
+  height: 64px;
+  line-height: 38px;
+}
+
+.advice-tabs .card-header {
+  padding: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  border-bottom: 0;
+}
+
+.advice-tabs .card-header a {
+  text-align: left;
+}
+
+.advice-tabs .card-header span.switch-icon-caret {
+  position: absolute;
+  top: 15px;
+  right: 24px;
+  font-size: 22px;
+  color: #7d7d7d;
+}
+
+.advice-tabs .card-header .btn {
+  border-radius: 12px;
+}
+
+.advice-tabs .card-body {
+  padding: 30px 30px;
+}
+
+.advice-tabs .card-header .btn-block.collapsed span.switch-icon-caret {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  -webkit-transition: ease-in-out 0.4s;
+  transition: ease-in-out 0.4s;
+}
+
+.advice-tabs .card-header .btn-block span.switch-icon-caret {
+  -webkit-transform: scaleY(-1);
+          transform: scaleY(-1);
+  -webkit-transition: ease-in-out 0.4s;
+  transition: ease-in-out 0.4s;
+}
+
+.need-help-text {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.need-help-text p {
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #7D7D7D;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+/* == Advice Center sass end == */
 
 .my-job-indication,
 .bidding-sec {
@@ -16362,5 +16446,35 @@ body .chat-feedback-message.white-msg:before {
   position: absolute;
   bottom: -49px;
   right: 17px;
+}
+
+.categories-popup .modal-body {
+  padding: 33px;
+}
+
+.categories-popup .modal-body .category-search-field h5 {
+  margin: 22px 0 24px 0;
+  padding: 0;
+}
+
+.categories-popup .modal-body .category-search-field h6 {
+  font-size: 16px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
+  margin: 20px 0 12px 0;
+}
+
+.categories-popup .modal-body a.btn {
+  margin-right: 16px;
+}
+
+.categories-popup .modal-body a.btn:last-of-type {
+  margin-right: 0;
+}
+
+.categories-popup i.icon-close2,
+.categories-popup .category-content-block i.icon-close2 {
+  top: -10px;
+  right: -10px;
 }
 

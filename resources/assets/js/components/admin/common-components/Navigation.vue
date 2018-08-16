@@ -10,7 +10,7 @@
                     <div class="float-right">
                         <div class="left-cog">
                             <span class="user-img" @click="ChangePass">
-                                <img src="/images/dummy/user-pic.jpg" alt="">
+                                <img src="" alt="">
                             </span>
                             <router-link to="/"><span><i class="icon-exit"></i></span></router-link>
                         </div>

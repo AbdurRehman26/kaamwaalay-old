@@ -57,6 +57,18 @@
             text-decoration: underline;
         }
     }
+    &.btn-grey{
+        background-color: #F9F9F9;
+        color: #1A1A1A !important;
+        border: 1px solid #E0E0E0;
+
+        &:focus,&:visited,&:active,&:hover{
+            color: #1A1A1A !important;
+            background-color:F9F9F9!important;
+            border-color:#E0E0E0 !important;
+            box-shadow:none !important;
+        }
+    }
     &.btn-facebook {
         background: #3B579D!important;
         border-color:#3B579D!important;

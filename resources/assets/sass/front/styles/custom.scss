@@ -422,65 +422,65 @@ $section-padding-sm:20px 0px;
         margin-top: 30px;
     }
 }
-.nav-tabs {
-    border-bottom: none;
-    margin-bottom: 40px;
-}
-.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-    border-color: #fff;
-}
-li.nav-item.active {
-    border: 1px solid #8200FF;
-    background-color: #f7f3fb;
-}
-.nav-tabs {
-    .nav-item {
-        position: relative;
-        margin-bottom: -1px;
-        border: 1px solid #6004BA;
-        border-radius: 8px;
-        margin-right: 60px;
-        border: 1px solid #E0E0E0;
-        background-color: #F9F9F9;
-        height: 98px;
-        width: 395px;
-            a {
-                font-size: 18px;
-                margin-top: 20px;
-                height: 82px;
-                i {
-                    position: absolute;
-                    right: 9px;
-                    top: 12px;
-                }
-            }
-            p {
-                font-size: 14px;
-                color:$text-primary-color;
-                font-family:$font_regular;
-                margin-bottom: 0;
-            }
-            &:last-child {
-                margin-right: 0px;
-            }
-        }
-}
-.nav-tabs {
-    .nav-link {
-        color: $text-primary-color;
-        font-family: $font_medium;
-        text-align: center;
-        padding: 0;
+// .nav-tabs {
+//     border-bottom: none;
+//     margin-bottom: 40px;
+// }
+// .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+//     border-color: #fff;
+// }
+// li.nav-item.active {
+//     border: 1px solid #8200FF;
+//     background-color: #f7f3fb;
+// }
+// .nav-tabs {
+//     .nav-item {
+//         position: relative;
+//         margin-bottom: -1px;
+//         border: 1px solid #6004BA;
+//         border-radius: 8px;
+//         margin-right: 60px;
+//         border: 1px solid #E0E0E0;
+//         background-color: #F9F9F9;
+//         height: 98px;
+//         width: 395px;
+//             a {
+//                 font-size: 18px;
+//                 margin-top: 20px;
+//                 height: 82px;
+//                 i {
+//                     position: absolute;
+//                     right: 9px;
+//                     top: 12px;
+//                 }
+//             }
+//             p {
+//                 font-size: 14px;
+//                 color:$text-primary-color;
+//                 font-family:$font_regular;
+//                 margin-bottom: 0;
+//             }
+//             &:last-child {
+//                 margin-right: 0px;
+//             }
+//         }
+// }
+// .nav-tabs {
+//     .nav-link {
+//         color: $text-primary-color;
+//         font-family: $font_medium;
+//         text-align: center;
+//         padding: 0;
 
-        &.active {
-            border-color: transparent;
-            font-family: $font_medium;
-            height: 72px;
-            background-color: #f7f3fb;
-            color: $primary-color-md;
-        }
-    }
-}
+//         &.active {
+//             border-color: transparent;
+//             font-family: $font_medium;
+//             height: 72px;
+//             background-color: #f7f3fb;
+//             color: $primary-color-md;
+//         }
+//     }
+// }
 // Sign Up Sass End
 
 
@@ -1286,10 +1286,16 @@ li.nav-item.active {
 
     .category-content-block{
         width: calc(100% - 80px);
-        padding-left: 15px; 
+        padding-left: 22px; 
         position: relative;
         float: left;
-        padding-top: 12px;  
+        padding-top: 12px; 
+
+        h6{
+            font-size:$font-size-base;
+            font-family: $font_bold;
+            color: $secondary-color; 
+        } 
     }
 
 
@@ -1802,9 +1808,10 @@ body{
         font-family:$font_medium;
         font-size: 16px;
         color: #1a1a1a;
-        padding-left:17px;
+        padding-left: 15px;
         position: absolute;
-        left:25px;
+        left: 25px;
+        top: -3px;
     }
 
     p {
@@ -1883,9 +1890,133 @@ body{
 
     }
 }
+
 /* == Featured Profile sass end == */
 
+
+/* == Advice Center sass start == */
+
+.advice-text {
+    max-width: 615px;
+    margin: 0 auto;
+    h1 {
+
+    }
+    p {
+        font-size: 20px;
+        color: $grey-Edark;
+        font-family:$font_regular;
+    }
+}
+.advice-topics {
+    text-align: center;
+    margin: 70px 0;
+}
+.advice-tabs {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+    
+    .nav-tabs {
+        border-bottom: transparent;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        .nav-link {
+            border-bottom: 4px solid #E0E0E0;
+            
+            &:hover{
+                border-top:none;
+                border-left:none;
+                border-right:none;
+            }
+
+            &.active {
+                border-color: #fff;
+                border-bottom: 4px solid #8200FF;
+                color: #8200FF;  
+                &:hover {
+                    // border-color: transparent;
+                }    
+            }
+            
+        }
+        .nav-item {
+            a {
+                font-family:$font_medium;
+                font-size: 14px;
+                color: #495057;
+                width: 300px;
+                margin-left: 35px;
+            }
+        }
+    }
+
+    .tab-content {
+        margin-top: 70px;
+    }
+    .card {
+        border: none;
+        a.btn {
+            height: 64px;
+            line-height: 38px;
+        }
+    }
+    .card-header {
+        padding: 0;
+        margin-bottom: 0;
+        background-color: transparent;
+        border-bottom: 0;
+        a {
+            text-align: left;
+        }
+        span {
+            &.switch-icon-caret {
+                position: absolute;
+                top: 15px;
+                right: 24px;
+                font-size: 22px;
+                color: #7d7d7d;
+            }
+        }
+        .btn {
+            border-radius: 12px;
+        }
+    }
+    .card-body {
+        padding: 30px 30px;
+    }
+
+}
+
+.advice-tabs .card-header .btn-block.collapsed span.switch-icon-caret {
+    transform: scaleY(1);
+    transition: ease-in-out 0.4s;
+}
+.advice-tabs .card-header .btn-block span.switch-icon-caret {
+    transform: scaleY(-1);
+    transition: ease-in-out 0.4s;
+
+}
+.need-help-text {
+    max-width: 800px;
+    margin: 0 auto;
+    p {
+        font-family:$font_regular;
+        color: #7D7D7D;
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+}
+
+
+
+/* == Advice Center sass end == */
+
+
 .my-job-indication, .bidding-sec{
+
     text-align: center;
     padding-top: 52px;
     span{

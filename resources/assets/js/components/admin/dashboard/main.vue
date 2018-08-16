@@ -145,7 +145,7 @@
                                   <th>Full Name</th>
                                   <th>Email</th>
                                   <th>DUNS</th>
-                                  <th>Service Type</th>
+                                  <th>Business Type</th>
                                   <th>Rating</th>
                                   <th class="text-center">Jobs Completed</th>
                                 </tr>
@@ -155,7 +155,7 @@
                                   <td><a >{{list.fname}}</a></td>
                                   <td><a >{{list.email}}</a></td>
                                   <td>{{list.duns}}</td>
-                                  <td>{{list.stype}}<span :class="[list.sarrows]"></span> {{list.sstype}}</td>
+                                  <td>{{list.stype}}</td>
                                   <td ><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
                                   <td class="text-center">{{list.jobscompleted}}</td>
                                 </tr>
@@ -223,8 +223,7 @@ export default{
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians',
-                    sstype: 'Cars',
+                    stype: 'Business',
                     sarrows:'services-arrow',
                     jobscompleted:'10'
                 },
@@ -232,7 +231,7 @@ export default{
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
-                    stype: 'Carpenters',
+                    stype: 'Individual',
                     jobscompleted:'40',
                     sarrows:'',
                 },
@@ -240,7 +239,7 @@ export default{
                     fname:'Geneva Wilson',
                     email:'genevawilson@gmail.com',
                     duns:'245689',
-                    stype: 'Cleaning Services',
+                    stype: 'Individual',
                     jobscompleted:'5',
                     sarrows:'',
                 },
@@ -248,8 +247,7 @@ export default{
                     fname:'Dickerson Macdonald',
                     email:'dmacdonald@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians',
-                    sstype: 'Wiring repair',
+                    stype: 'Business',
                     sarrows:'services-arrow',
                     jobscompleted:'30'
                 },
@@ -257,8 +255,7 @@ export default{
                     fname:'Larsen Shaw',
                     email:'shawlarsen@gmail.com',
                     duns:'245689',
-                    stype: 'Electricians',
-                    sstype: 'Air conditioning',
+                    stype: 'Business',
                     jobscompleted:'50',
                     sarrows:'services-arrow',
                 }
