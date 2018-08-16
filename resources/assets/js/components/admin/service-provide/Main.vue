@@ -19,40 +19,24 @@
                              <option value="individual">Individual</option>
                          </select>
                      </div>
-                             <label>By Business/Individual</label>
-                             <select class="form-control">
-                               <option>Select</option>
-                               <option>Business</option>
-                               <option>Individual</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 datepicker-field">
-                      <div class="form-group">
-                                   <label>By Type</label>
-                                   <select class="form-control">
-                                     <option>Select Service Type</option>
-                                     <option>Electrician</option>
-                                     <option>Electrician >> Ac</option>
-                     </select>
                  </div>
                  <div class="col-xs-12 col-md-3 datepicker-field">
-                  <div class="form-group">
-                   <label>By Type</label>
-                   <select v-model="search.filter_by_service" class="form-control">
-                     <option value="">Select All</option>
-                     <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                 </select>
+                    <div class="form-group">
+                       <label>By Type</label>
+                       <select v-model="search.filter_by_service" class="form-control">
+                         <option value="">Select All</option>
+                         <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
+                     </select>
+                 </div>
              </div>
-         </div>
-         <div class="col-xs-12 col-md-2">
-            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                <span>Apply</span>
-                <loader></loader>
-            </button>
+             <div class="col-xs-12 col-md-2">
+                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                    <span>Apply</span>
+                    <loader></loader>
+                </button>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <div class="col-md-12">
  <div class="table-area">
