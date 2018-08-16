@@ -2448,89 +2448,114 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            errorMessage: '',
-            successMessage: '',
-            showModalValue: false,
-            changestatus: false,
-            actiondelete: false,
-            pageTitle: 'Admin',
-            noRecordFound: false,
-            url: 'api/user?filter_by_role=1&pagination=true',
-            loading: true,
-            currentRecord: {},
-            records: [],
-            user_id: null
-        };
-    },
+  data: function data() {
+    return {
+      errorMessage: '',
+      successMessage: '',
+      showModalValue: false,
+      changestatus: false,
+      actionConfirmation: false,
+      pageTitle: 'Admin',
+      noRecordFound: false,
+      url: 'api/user?filter_by_role=1&pagination=true',
+      updateUrl: '',
+      updateData: {},
+      loading: true,
+      currentRecord: {},
+      records: [],
+      user_id: null
+    };
+  },
 
-    computed: {
-        requestUrl: function requestUrl() {
-            this.loading = true;
-            return this.url;
-        }
-    },
-    methods: {
-        ShowModalUser: function ShowModalUser() {
-            this.showModalValue = true;
-        },
-        StatusChange: function StatusChange() {
-            this.changestatus = true;
-        },
-        HideModal: function HideModal() {
-            this.showModalValue = false;
-            this.changestatus = false;
-        },
-        statusLink: function statusLink(record) {
-            this.currentRecord = record;
-            if (this.currentRecord.status == 'banned') {
-                this.currentRecord.status = 'active';
-            } else {
-                this.currentRecord.status = 'banned';
-            }
-            this.update();
-        },
-        getRecords: function getRecords(data) {
-            var self = this;
-            self.loading = false;
-            self.records = data;
-            if (!self.records.length) {
-                self.noRecordFound = true;
-            }
-        },
-
-        update: function update() {
-            var self = this;
-            var data = {
-                "id": self.currentRecord.id,
-                "status": self.currentRecord.status
-            };
-            this.$http.put('api/user/change-status', data).then(function (response) {
-                self.successMessage = response.data.message;
-                setTimeout(function () {
-                    self.successMessage = '';
-                }, 5000);
-            }).catch(function (error) {
-                self.loading = false;
-                self.errorMessage = 'An Error occured';
-                setTimeout(function () {
-                    self.errorMessage = '';
-                }, 5000);
-            });
-        }
-    },
-    mounted: function mounted() {
-
-        this.loading = true;
-    },
-    beforeMount: function beforeMount() {
-        var user = JSON.parse(this.$store.getters.getAuthUser);
-        this.user_id = user.id;
+  computed: {
+    requestUrl: function requestUrl() {
+      this.loading = true;
+      return this.url;
     }
+  },
+  methods: {
+    ShowModalUser: function ShowModalUser() {
+      this.showModalValue = true;
+    },
+    StatusChange: function StatusChange() {
+      this.changestatus = true;
+    },
+    HideModal: function HideModal() {
+      this.showModalValue = false;
+      this.changestatus = false;
+    },
+
+
+    update: function update() {
+      this.updateRecord();
+      this.actionConfirmation = false;
+    },
+    statusLink: function statusLink(record) {
+      this.actionConfirmation = true;
+      var self = this;
+      this.currentRecord = record;
+      if (this.currentRecord.status == 'banned') {
+        this.currentRecord.status = 'active';
+      } else {
+        this.currentRecord.status = 'banned';
+      }
+      self.updateUrl = 'api/user/change-status';
+      self.updateData = {
+        "id": self.currentRecord.id,
+        "status": self.currentRecord.status
+      };
+      self.currentRecord.status = self.currentRecord.status;
+    },
+    accessLevelLink: function accessLevelLink(record) {
+      var self = this;
+      this.currentRecord = record;
+      if (this.currentRecord.access_level == 'reviewOnly') {
+        this.currentRecord.access_level = 'full';
+      } else {
+        this.currentRecord.access_level = 'reviewOnly';
+      }
+      self.updateUrl = 'api/user/change-access-level';
+      self.updateData = {
+        "id": self.currentRecord.id,
+        "access_level": self.currentRecord.access_level
+      };
+      this.updateRecord();
+    },
+    getRecords: function getRecords(data) {
+      var self = this;
+      self.loading = false;
+      self.records = data;
+      if (!self.records.length) {
+        self.noRecordFound = true;
+      }
+    },
+
+    updateRecord: function updateRecord() {
+      var self = this;
+      this.$http.put(self.updateUrl, self.updateData).then(function (response) {
+        self.successMessage = response.data.message;
+        setTimeout(function () {
+          self.successMessage = '';
+        }, 5000);
+      }).catch(function (error) {
+        self.loading = false;
+        self.errorMessage = 'An Error occured';
+        setTimeout(function () {
+          self.errorMessage = '';
+        }, 5000);
+      });
+    }
+  },
+  mounted: function mounted() {
+
+    this.loading = true;
+  },
+  beforeMount: function beforeMount() {
+    var user = JSON.parse(this.$store.getters.getAuthUser);
+    this.user_id = user.id;
+  }
 });
 
 /***/ }),
@@ -2753,12 +2778,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/DeletePopup.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp'],
+    data: function data() {
+        return {
+            records: [],
+            pagination: '',
+            errorMessage: '',
+            successMessage: ''
+        };
+    },
+
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        },
+        submit: function submit() {
+            var self = this;
+            self.$parent.update();
+            self.errorMessage = self.$parent.errorMessage;
+            self.successMessage = self.$parent.successMessage;
+            setTimeout(function () {
+                self.successMessage = '';
+                self.errorMessage = '';
+                self.$parent.actionConfirmation = false;
+                self.hideModal();
+            }, 5000);
+        }
+    },
+
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/DeletePopup.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -64822,18 +64915,17 @@ var render = function() {
             size: "sm",
             title: "Warning",
             "ok-only": "",
-            "ok-title": "Submit"
+            "ok-title": "Submit",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": ""
           },
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
-          _vm._v(" "),
           _c("div", [
             _c("p", [_vm._v("Are you sure you want to delete this item?")])
           ])
-        ],
-        1
+        ]
       )
     ],
     1
@@ -65339,15 +65431,6 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm.errorMessage || _vm.successMessage
-          ? _c("alert", {
-              attrs: {
-                errorMessage: _vm.errorMessage,
-                successMessage: _vm.successMessage
-              }
-            })
-          : _vm._e(),
-        _vm._v(" "),
         _c(
           "div",
           { staticClass: "row" },
@@ -65376,7 +65459,28 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm._v(_vm._s(_vm._f("accessLevel")(record)))
+                              _c(
+                                "a",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.accessLevelLink(record)
+                                    }
+                                  },
+                                  model: {
+                                    value: _vm.currentRecord.access_level,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.currentRecord,
+                                        "access_level",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "currentRecord.access_level"
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm._f("accessLevel")(record)))]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -65456,6 +65560,11 @@ var render = function() {
           ],
           1
         ),
+        _vm._v(" "),
+        _c("confirmation-popup", {
+          attrs: { showModalProp: _vm.actionConfirmation },
+          on: { HideModalValue: _vm.HideModal }
+        }),
         _vm._v(" "),
         _c("add-new-user", {
           attrs: { showModalProp: _vm.showModalValue },
@@ -68141,6 +68250,72 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-604d5b52", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-69e9345f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "delete-popup",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "primary",
+            size: "sm",
+            title: "Warning",
+            "ok-only": "",
+            "ok-title": "Submit",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": ""
+          },
+          on: {
+            hidden: _vm.onHidden,
+            ok: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
+          }
+        },
+        [
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", [_vm._v("Are you sure you want to perform this action?")])
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-69e9345f", module.exports)
   }
 }
 
@@ -87049,6 +87224,7 @@ Vue.component('SearchField', __webpack_require__("./resources/assets/js/componen
 
 // Common Popup
 Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/DeletePopup.vue"));
+Vue.component('confirmation-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue"));
 Vue.component('change-pass-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/ChangePassPopup.vue"));
 Vue.component('changestatuspopup', __webpack_require__("./resources/assets/js/components/admin/common-components/Status.vue"));
 
@@ -87429,6 +87605,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-455eb22f", Component.options)
   } else {
     hotAPI.reload("data-v-455eb22f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-69e9345f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\ConfirmationPopup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-69e9345f", Component.options)
+  } else {
+    hotAPI.reload("data-v-69e9345f", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

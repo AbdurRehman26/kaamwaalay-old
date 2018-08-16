@@ -29,6 +29,7 @@ Vue.component('SearchField', require('./components/admin/common-components/Searc
 
 // Common Popup
 Vue.component('delete-popup',require('./components/admin/common-components/DeletePopup.vue'));
+Vue.component('confirmation-popup',require('./components/admin/common-components/ConfirmationPopup.vue'));
 Vue.component('change-pass-popup',require('./components/admin/common-components/ChangePassPopup.vue'));
 Vue.component('changestatuspopup',require('./components/admin/common-components/Status.vue'));
 

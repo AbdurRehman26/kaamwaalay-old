@@ -10,8 +10,7 @@
                 </div>
             </div>
         </div>
-         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
-			<div class="row">
+     	<div class="row">
 				<div class="col-md-12">
 					<div class="table-area">
                         <div class="table-responsive">
@@ -31,7 +30,7 @@
                                   <td>{{record.first_name}}</td>
                                   <td>{{record.last_name}}</td>
                                   <td><a href="javascript:;">{{record.email}}</a></td>
-                                  <td >{{record | accessLevel}}</td>
+                                  <td ><a class="" @click="accessLevelLink(record)" v-model="currentRecord.access_level">{{record | accessLevel}}</a></td>
                                   <td>{{record.created_at.date | formatDate}}</td>
                                   <td class="text-center statustext">
                                     <div class=""><a class="" @click="statusLink(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
@@ -46,7 +45,7 @@
           <div class="clearfix"></div>
            <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 		    </div>
-
+     <confirmation-popup @HideModalValue="HideModal" :showModalProp="actionConfirmation"></confirmation-popup>
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
      <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
 	</div>
@@ -60,10 +59,12 @@ export default {
             successMessage: '',
         	  showModalValue: false,
             changestatus: false,
-            actiondelete: false,
+            actionConfirmation: false,
             pageTitle:'Admin',
             noRecordFound : false,
             url : 'api/user?filter_by_role=1&pagination=true',
+            updateUrl : '',
+            updateData : {},
             loading : true,
             currentRecord :{},
             records : [],
@@ -88,14 +89,40 @@ export default {
             this.changestatus = false;
         },
 
-          statusLink(record) {
+          update: function () {
+            this.updateRecord();
+             this.actionConfirmation = false;
+          },
+          statusLink(record){
+             this.actionConfirmation = true;
+             let self = this
             this.currentRecord = record
             if(this.currentRecord.status == 'banned'){
               this.currentRecord.status = 'active'
             }else{
               this.currentRecord.status = 'banned'
             }
-            this.update();
+            self.updateUrl = 'api/user/change-status'
+            self.updateData  = {
+                  "id" : self.currentRecord.id,
+                  "status" : self.currentRecord.status,
+                }
+            self.currentRecord.status = self.currentRecord.status;
+          }, 
+          accessLevelLink(record) {
+            let self = this
+            this.currentRecord = record
+            if(this.currentRecord.access_level == 'reviewOnly'){
+              this.currentRecord.access_level = 'full'
+            }else{
+              this.currentRecord.access_level = 'reviewOnly'
+            }
+            self.updateUrl = 'api/user/change-access-level'
+            self.updateData  = {
+                  "id" : self.currentRecord.id,
+                  "access_level" : self.currentRecord.access_level,
+                }
+            this.updateRecord();
           },
           getRecords(data){
             let self = this;
@@ -106,13 +133,9 @@ export default {
             }
 
           },
-          update: function () {
+          updateRecord: function () {
                 let self = this;
-                let data  = {
-                  "id" : self.currentRecord.id,
-                  "status" : self.currentRecord.status,
-                }
-                this.$http.put('api/user/change-status', data)
+                this.$http.put(self.updateUrl,self.updateData)
                     .then(response => {
                             self.successMessage= response.data.message;
                             setTimeout(function(){
