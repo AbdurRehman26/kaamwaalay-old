@@ -74,7 +74,7 @@
                                     <td class="text-center">
                                       <div class="action-icons">
                                         <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                                        <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                                       </div>
                                     </td>
                                 </tr>

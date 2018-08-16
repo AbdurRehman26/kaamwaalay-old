@@ -45,7 +45,7 @@
                         <p><strong class="title-head">Service</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Electrician > AC</p>
+                        <p>Electrician <span class="services-arrow"></span> AC</p>
                     </b-col>
                 </b-row>  
 
@@ -54,7 +54,7 @@
                         <p><strong class="title-head">Project Amount</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>400$</p>
+                        <p>$400</p>
                     </b-col>
                 </b-row>                                
 

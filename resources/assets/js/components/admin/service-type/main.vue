@@ -10,7 +10,7 @@
                                 <SearchField></SearchField>
                               </div>
                             </div>
-                           <div class="col-xs-12 col-md-2 datepicker-field">
+                           <div class="col-xs-12 col-md-3 datepicker-field">
                               <div class="form-group">
                                    <label>Is Featured</label>
                                    <select class="form-control">
