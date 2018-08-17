@@ -24,7 +24,7 @@
             </div>        
         </div>
 		<div class="container">
-			<div class="category-section">
+			<div class="category-section-search">
 				<h2>General Carpentry Jobs in New York, NY</h2>
 			</div>
 

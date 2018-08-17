@@ -4736,12 +4736,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            logo: 'images/logo.png'
+            logo: 'images/logo.png',
+            changepopup: false
         };
+    },
+    method: {
+        ProfilePopup: function ProfilePopup() {
+            this.changepopup = true;
+        },
+        HideModal: function HideModal() {
+            this.changepopup = false;
+        }
     }
 });
 
@@ -4754,6 +4764,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
+//
+//
 //
 //
 //
@@ -69958,22 +69970,41 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("li", [
-          _c("div", { staticClass: "user-login-detail float-left" }, [
-            _c(
-              "span",
-              { staticClass: "user-img", on: { click: _vm.ShowModal } },
-              [
-                _c("img", {
-                  attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
-          ])
+          _c(
+            "div",
+            {
+              staticClass: "user-login-detail float-left",
+              on: {
+                click: function($event) {
+                  _vm.$emit("profilepopup")
+                }
+              }
+            },
+            [
+              _c(
+                "span",
+                { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                [
+                  _c("img", {
+                    attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c(
+          "li",
+          [
+            _c("router-link", { attrs: { to: "/profile" } }, [
+              _c("i", { staticClass: "icon-cog2 action-icon" })
+            ])
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("li", [
           _c(
@@ -70022,7 +70053,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(2)
+        _vm._m(1)
       ])
     ]
   )
@@ -70042,12 +70073,6 @@ var staticRenderFns = [
         [_vm._v("Post a Job")]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
   },
   function() {
     var _vm = this
@@ -70448,7 +70473,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "category-section" }, [
+    return _c("div", { staticClass: "category-section-search" }, [
       _c("h2", [_vm._v("General Carpentry Jobs in New York, NY")])
     ])
   },
@@ -72279,22 +72304,41 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("li", [
-          _c("div", { staticClass: "user-login-detail float-left" }, [
-            _c(
-              "span",
-              { staticClass: "user-img", on: { click: _vm.ShowModal } },
-              [
-                _c("img", {
-                  attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
-          ])
+          _c(
+            "div",
+            {
+              staticClass: "user-login-detail float-left",
+              on: {
+                click: function($event) {
+                  _vm.$emit("profilepopup")
+                }
+              }
+            },
+            [
+              _c(
+                "span",
+                { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                [
+                  _c("img", {
+                    attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "li",
+          [
+            _c("router-link", { attrs: { to: "/profile" } }, [
+              _c("i", { staticClass: "icon-cog2 action-icon" })
+            ])
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("li", [
           _c(
@@ -72343,18 +72387,12 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("i", { staticClass: "icon-cog2 action-icon" })])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -74056,60 +74094,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "header" }, [
-    _c("div", { staticClass: "inner" }, [
-      _c(
-        "div",
-        { staticClass: "container" },
-        [
-          _c(
-            "span",
-            { staticClass: "logo" },
-            [
-              _c("router-link", { staticClass: "logo", attrs: { to: "/" } }, [
-                _c("img", { attrs: { src: _vm.logo } })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("main-nav", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.$route.meta.navigation == "main-nav",
-                expression: "$route.meta.navigation == 'main-nav'"
-              }
-            ]
-          }),
-          _vm._v(" "),
-          _c("customer-nav", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.$route.meta.navigation == "customer-nav",
-                expression: "$route.meta.navigation == 'customer-nav'"
-              }
-            ]
-          }),
-          _vm._v(" "),
-          _c("provider-nav", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.$route.meta.navigation == "provider-nav",
-                expression: "$route.meta.navigation == 'provider-nav'"
-              }
-            ]
-          })
-        ],
-        1
-      )
-    ])
-  ])
+  return _c(
+    "div",
+    { staticClass: "header" },
+    [
+      _c("div", { staticClass: "inner" }, [
+        _c(
+          "div",
+          { staticClass: "container" },
+          [
+            _c(
+              "span",
+              { staticClass: "logo" },
+              [
+                _c("router-link", { staticClass: "logo", attrs: { to: "/" } }, [
+                  _c("img", { attrs: { src: _vm.logo } })
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("main-nav", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.$route.meta.navigation == "main-nav",
+                  expression: "$route.meta.navigation == 'main-nav'"
+                }
+              ]
+            }),
+            _vm._v(" "),
+            _c("customer-nav", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.$route.meta.navigation == "customer-nav",
+                  expression: "$route.meta.navigation == 'customer-nav'"
+                }
+              ],
+              on: { profilepopup: _vm.ProfilePopup }
+            }),
+            _vm._v(" "),
+            _c("provider-nav", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.$route.meta.navigation == "provider-nav",
+                  expression: "$route.meta.navigation == 'provider-nav'"
+                }
+              ],
+              on: { profilepopup: _vm.ProfilePopup }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("change-password-popup", {
+        attrs: { showModalProp: _vm.changepopup },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

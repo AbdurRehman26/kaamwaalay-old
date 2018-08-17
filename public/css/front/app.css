@@ -15516,13 +15516,13 @@ body .chat-feedback-message.white-msg:before {
   color: #8200FF !important;
 }
 
-.category-section {
+.category-section-search {
   text-align: center;
   padding-top: 52px;
   padding-bottom: 0px;
 }
 
-.category-section span {
+.category-section-search span {
   color: #8200FF !important;
 }
 
