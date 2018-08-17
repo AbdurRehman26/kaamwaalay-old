@@ -3,18 +3,27 @@
 		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change Password" ok-only ok-title="Submit">
         <alert></alert>
 		    <div>
-		        <label>Old Password</label>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Enter old password" name="">
-                    </div>
-                <label>New Password</label>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Create new password" name="">
-                    </div>
-                <label>Confirm Password</label>
-                    <div class="form-group mb-0">
-                        <input type="password" class="form-control" placeholder="Re-type new password" name="">
-                    </div>            
+
+                <b-row class="justify-content-md-center">
+                    <b-col cols="1" md="12">
+                        <div class="form-group">
+                            <label>Old Password</label>
+                            <input type="password" class="form-control" placeholder="Enter old password" name="">
+                        </div>
+                    </b-col> 
+                    <b-col cols="2" md="6">
+                        <div class="form-group">
+                             <label>New Password</label>
+                            <input type="password" class="form-control" placeholder="Create new password" name="">
+                        </div>
+                    </b-col> 
+                    <b-col cols="2" md="6">
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" placeholder="Re-type new password" name="">
+                        </div> 
+                    </b-col> 
+                </b-row>           
 		    </div>
 	    </b-modal>
 	</div>
