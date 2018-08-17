@@ -25,14 +25,14 @@
 			</div>
 
 			<div class="job-post-container section-padd sm">
-				<bid-invitation v-show="bid_selection == 'invitebid'"></bid-invitation>
-				<bid-completed v-show="bid_selection == 'completedbid'"></bid-completed>
-				<bid-awarded v-show="bid_selection == 'awardedbid'"></bid-awarded>
-				<bid-archived v-show="bid_selection == 'archivedbid'"></bid-archived>
-				<bid-active v-show="bid_selection == 'activebid'"></bid-active>
+				<bid-invitation @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'invitebid'"></bid-invitation>
+				<bid-completed @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'completedbid'"></bid-completed>
+				<bid-awarded @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'awardedbid'"></bid-awarded>
+				<bid-archived @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'archivedbid'"></bid-archived>
+				<bid-active @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'activebid'"></bid-active>
 			</div>
 
-
+            <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
 
 		</div>
 
@@ -46,6 +46,7 @@ export default {
   data () {
     return {
     	bid_selection: 'activebid',
+        bidpopup: false,
     	}
   	},
 
@@ -61,10 +62,11 @@ export default {
         changestatuspopup() {
             this.changestatus = true;
         },
+        ChangeBid(){
+            this.bidpopup = true;
+        },
         HideModal(){
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
+            this.bidpopup = false;
         },
         servicedetail(){
         	this.$router.push({name: 'job-details'});
