@@ -4719,16 +4719,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 serviceName: '',
                 serviceDescription: '',
                 isFeatured: 0,
-                isHeroNavigation: 0,
                 images: [{
                     'name': '',
-                    'original_name': ''
+                    'original_name': '',
+                    'upload_url': ''
                 }],
                 urlPrefix: '',
                 status: 1,
-                isDisplayBanner: 1,
-                isDisplayServiceNav: 1,
-                isDisplayFooterNav: 1
+                isDisplayBanner: 0,
+                isDisplayServiceNav: 0,
+                isDisplayFooterNav: 0
 
             };
             setTimeout(function () {
@@ -4791,12 +4791,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var self = this;
             var image = new Image();
             var reader = new FileReader();
-            self.formData.images[0].original_name = file.name;
             reader.onload = function (e) {
-                self.formData.images[0].name = e.target.result;
                 self.image = e.target.result;
             };
             reader.readAsDataURL(file);
+            this.onUpload(file);
+        },
+        onUpload: function onUpload(file) {
+            var self = this;
+            this.loading = true;
+            var url = "api/file/upload";
+
+            var data = new FormData();
+            data.append('key', 'service');
+            data.append('file', file);
+
+            this.$http.post(url, data).then(function (response) {
+                response = response.data;
+                self.formData.images[0].name = response.name;
+                self.formData.images[0].original_name = response.original_name;
+                console.log(self.formData.images[0], 88898989);
+            }).catch(function (error) {
+                error = error.response.data;
+                var errors = error.errors;
+                _.forEach(errors, function (value, key) {
+                    self.errorMessage = errors[key][0];
+                    return false;
+                });
+            });
         },
         onSubmit: function onSubmit() {
             var _this2 = this;
@@ -4863,7 +4885,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
             data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
             data.append('is_featured', self.formData.isFeatured);
-            data.append('is_hero_nav', self.formData.isHeroNavigation);
             data.append('url_prefix', self.formData.urlPrefix);
             data.append('parent_id', self.formData.parentId);
             data.append('status', self.formData.status);
@@ -4914,13 +4935,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         isUpdate: function isUpdate(value) {
             this.isUpdate = value;
             var img = JSON.parse(this.list.images);
+            console.log(this.list, 77887);
             if (this.isUpdate) {
                 this.formData = {
                     parentId: this.list.parent_id ? this.list.parent_id : "",
                     serviceName: this.list.title,
                     serviceDescription: this.list.description,
                     isFeatured: this.list.is_featured,
-                    isHeroNavigation: this.list.is_hero_nav,
                     images: [{
                         'name': img[0].name,
                         'original_name': img[0].original_name
@@ -65744,15 +65765,7 @@ var render = function() {
                   _c("b-col", { attrs: { cols: "7" } }, [
                     _c("p", [
                       _vm._v(
-                        _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_featured
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_featured
-                              ? "YES"
-                              : "NO"
-                        )
+                        _vm._s(_vm.selectedService.is_featured ? "YES" : "NO")
                       )
                     ])
                   ])
@@ -65775,13 +65788,7 @@ var render = function() {
                     _c("p", [
                       _vm._v(
                         _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_display_banner
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_display_banner
-                              ? "YES"
-                              : "NO"
+                          _vm.selectedService.is_display_banner ? "YES" : "NO"
                         )
                       )
                     ])
@@ -65805,13 +65812,9 @@ var render = function() {
                     _c("p", [
                       _vm._v(
                         _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_display_service_nav
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_display_service_nav
-                              ? "YES"
-                              : "NO"
+                          _vm.selectedService.is_display_service_nav
+                            ? "YES"
+                            : "NO"
                         )
                       )
                     ])
@@ -65835,13 +65838,9 @@ var render = function() {
                     _c("p", [
                       _vm._v(
                         _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_display_footer_nav
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_display_footer_nav
-                              ? "YES"
-                              : "NO"
+                          _vm.selectedService.is_display_footer_nav
+                            ? "YES"
+                            : "NO"
                         )
                       )
                     ])
@@ -66909,7 +66908,7 @@ var render = function() {
                         attrs: {
                           type: "radio",
                           name: "radioServname",
-                          id: "inlineRadio4",
+                          id: "inlineRadio1",
                           value: "1"
                         },
                         domProps: {
@@ -66926,7 +66925,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio1" }
                         },
                         [_vm._v("Yes")]
                       )
@@ -66947,7 +66946,7 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioServname",
-                          id: "inlineRadio3",
+                          id: "inlineRadio5",
                           value: "0"
                         },
                         domProps: {
@@ -66964,7 +66963,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio5" }
                         },
                         [_vm._v("No")]
                       )
@@ -66982,23 +66981,23 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayBanner,
-                            expression: "formData.isDisplayBanner"
+                            value: _vm.formData.isDisplayFooterNav,
+                            expression: "formData.isDisplayFooterNav"
                           }
                         ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
                           name: "radioFootnav",
-                          id: "inlineRadio4",
+                          id: "inlineRadio2",
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayBanner, "1")
+                          checked: _vm._q(_vm.formData.isDisplayFooterNav, "1")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayBanner", "1")
+                            _vm.$set(_vm.formData, "isDisplayFooterNav", "1")
                           }
                         }
                       }),
@@ -67019,8 +67018,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayBanner,
-                            expression: "formData.isDisplayBanner"
+                            value: _vm.formData.isDisplayFooterNav,
+                            expression: "formData.isDisplayFooterNav"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67028,15 +67027,15 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioFootnav",
-                          id: "inlineRadio3",
+                          id: "inlineRadio6",
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayBanner, "0")
+                          checked: _vm._q(_vm.formData.isDisplayFooterNav, "0")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayBanner", "0")
+                            _vm.$set(_vm.formData, "isDisplayFooterNav", "0")
                           }
                         }
                       }),
@@ -67045,7 +67044,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio6" }
                         },
                         [_vm._v("No")]
                       )
@@ -67071,7 +67070,7 @@ var render = function() {
                         attrs: {
                           type: "radio",
                           name: "radioFeature",
-                          id: "inlineRadio1",
+                          id: "inlineRadio3",
                           value: "1"
                         },
                         domProps: {
@@ -67088,7 +67087,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio1" }
+                          attrs: { for: "inlineRadio3" }
                         },
                         [_vm._v("Yes")]
                       )
@@ -67109,7 +67108,7 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioFeature",
-                          id: "inlineRadio2",
+                          id: "inlineRadio7",
                           value: "0"
                         },
                         domProps: {
@@ -67126,7 +67125,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio1" }
+                          attrs: { for: "inlineRadio7" }
                         },
                         [_vm._v("No")]
                       )
@@ -67169,7 +67168,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio4" }
                         },
                         [_vm._v("Yes")]
                       )
@@ -67190,7 +67189,7 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioBanner",
-                          id: "inlineRadio3",
+                          id: "inlineRadio8",
                           value: "0"
                         },
                         domProps: {
@@ -67207,7 +67206,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio8" }
                         },
                         [_vm._v("No")]
                       )

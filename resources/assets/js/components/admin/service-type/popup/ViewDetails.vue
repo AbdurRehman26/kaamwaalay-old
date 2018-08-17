@@ -42,7 +42,7 @@
                         <p><strong class="title-head">Is Featured?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.parent.is_featured? "YES":"NO"  : selectedService.is_featured? "YES":"NO" }}</p>
+                        <p>{{selectedService.is_featured? "YES":"NO"}}</p>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -50,7 +50,7 @@
                         <p><strong class="title-head">Is Display Banner?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.parent.is_display_banner? "YES":"NO"  : selectedService.is_display_banner? "YES":"NO" }}</p>
+                        <p>{{selectedService.is_display_banner? "YES":"NO"}}</p>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -58,7 +58,7 @@
                         <p><strong class="title-head">Is Display Service Navigation?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.parent.is_display_service_nav? "YES":"NO"  : selectedService.is_display_service_nav? "YES":"NO" }}</p>
+                        <p>{{selectedService.is_display_service_nav? "YES":"NO"}}</p>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -66,7 +66,7 @@
                         <p><strong class="title-head">Is Display Footer Navigation?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.parent.is_display_footer_nav? "YES":"NO"  : selectedService.is_display_footer_nav? "YES":"NO" }}</p>
+                        <p>{{selectedService.is_display_footer_nav? "YES":"NO"}}</p>
                     </b-col>
                 </b-row>
                        

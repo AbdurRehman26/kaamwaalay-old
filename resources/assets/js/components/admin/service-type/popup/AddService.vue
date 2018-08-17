@@ -1,12 +1,12 @@
  <template>
-   <div>
+     <div>
       <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" no-close-on-backdrop no-close-on-esc>                        
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-         <div>
+        <div>
             <form action="" method="">
                 <div class="form-group">
-                   <label>Parent Service</label>
-                   <select class="form-control" v-model="formData.parentId">
+                 <label>Parent Service</label>
+                 <select class="form-control" v-model="formData.parentId">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -19,61 +19,61 @@
 
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group radio-group-row">
-                <label>Is Service Navigation?</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio4" value="1" v-model="formData.isDisplayServiceNav">
-                  <label class="form-check-label" for="inlineRadio2">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio3" value="0" v-model="formData.isDisplayServiceNav">
-                  <label class="form-check-label" for="inlineRadio2">No</label>
+                <div class="form-group radio-group-row">
+                    <label>Is Service Navigation?</label>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.isDisplayServiceNav">
+                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio5" value="0" v-model="formData.isDisplayServiceNav">
+                      <label class="form-check-label" for="inlineRadio5">No</label>
+                  </div>
               </div>
           </div>
-      </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group radio-group-row">
                 <label>Is Footer Navigation?</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
+                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.isDisplayFooterNav">
                   <label class="form-check-label" for="inlineRadio2">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio3" value="0" v-model="formData.isDisplayBanner">
-                  <label class="form-check-label" for="inlineRadio2">No</label>
+                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio6" value="0" v-model="formData.isDisplayFooterNav">
+                  <label class="form-check-label" for="inlineRadio6">No</label>
               </div>
           </div>
       </div>
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="form-group radio-group-row">
-                    <label>Is Featured?</label>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio1" value="1" v-model="formData.isFeatured">
-                      <label class="form-check-label" for="inlineRadio1">Yes</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                      <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio2" value="0" v-model="formData.isFeatured">
-                      <label class="form-check-label" for="inlineRadio1">No</label>
-                  </div>
-              </div>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group radio-group-row">
+            <label>Is Featured?</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.isFeatured">
+              <label class="form-check-label" for="inlineRadio3">Yes</label>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group radio-group-row">
-                <label>Display Banner?</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
-                  <label class="form-check-label" for="inlineRadio2">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio3" value="0" v-model="formData.isDisplayBanner">
-                  <label class="form-check-label" for="inlineRadio2">No</label>
-              </div>
+          <div class="form-check form-check-inline">
+              <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.isFeatured">
+              <label class="form-check-label" for="inlineRadio7">No</label>
           </div>
       </div>
-          
   </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group radio-group-row">
+        <label>Display Banner?</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
+          <label class="form-check-label" for="inlineRadio4">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+          <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.isDisplayBanner">
+          <label class="form-check-label" for="inlineRadio8">No</label>
+      </div>
+  </div>
+</div>
 
-  <div class="form-group">
+</div>
+
+<div class="form-group">
     <label>Description</label>
     <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.serviceDescription" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
 </div>
@@ -150,18 +150,18 @@
                     serviceName: '',
                     serviceDescription: '',
                     isFeatured: 0,
-                    isHeroNavigation: 0,
                     images: [
                     {
                         'name': '', 
-                        'original_name': ''
+                        'original_name': '',
+                        'upload_url': '',
                     }
                     ],
                     urlPrefix: '',
                     status: 1,
-                    isDisplayBanner: 1,
-                    isDisplayServiceNav: 1,
-                    isDisplayFooterNav: 1,
+                    isDisplayBanner: 0,
+                    isDisplayServiceNav: 0,
+                    isDisplayFooterNav: 0,
 
                 };
                 setTimeout(function () {
@@ -224,12 +224,35 @@
               var self = this;    
               var image = new Image();
               var reader = new FileReader();
-              self.formData.images[0].original_name = file.name;
               reader.onload = (e) => {
-                self.formData.images[0].name = e.target.result;
                 self.image = e.target.result;
             };
             reader.readAsDataURL(file);
+            this.onUpload(file);
+        },
+        onUpload(file) {
+            var self = this;
+            this.loading = true;
+            let url = "api/file/upload";
+
+            var data = new FormData();
+            data.append('key', 'service');
+            data.append('file', file);
+
+            this.$http.post(url, data).then(response => {
+                response = response.data;
+                self.formData.images[0].name = response.name;
+                self.formData.images[0].original_name = response.original_name;
+                console.log(self.formData.images[0], 88898989);
+
+            }).catch(error => {
+                error = error.response.data;
+                let errors = error.errors;
+                _.forEach(errors, function(value, key) {
+                    self.errorMessage =  errors[key][0];
+                    return false;
+                });
+            });
         },
         onSubmit() {
             var self = this;
@@ -294,7 +317,6 @@
                 data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
                 data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
                 data.append('is_featured', self.formData.isFeatured);
-                data.append('is_hero_nav', self.formData.isHeroNavigation);
                 data.append('url_prefix', self.formData.urlPrefix);
                 data.append('parent_id', self.formData.parentId);
                 data.append('status', self.formData.status);
@@ -347,13 +369,13 @@
             isUpdate(value) {
                 this.isUpdate = value;
                 var img = JSON.parse(this.list.images);
+                console.log(this.list, 77887);
                 if(this.isUpdate) {
                     this.formData = {
                         parentId: this.list.parent_id? this.list.parent_id : "",
                         serviceName: this.list.title,
                         serviceDescription: this.list.description,
                         isFeatured: this.list.is_featured,
-                        isHeroNavigation: this.list.is_hero_nav,
                         images: [
                         {
                             'name': img[0].name, 

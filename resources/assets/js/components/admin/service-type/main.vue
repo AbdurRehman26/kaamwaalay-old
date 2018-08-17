@@ -45,7 +45,6 @@
               <th>Service</th>
               <th>Sub Service</th>
               <th class="text-center">Is Featured</th>
-              <th class="text-center">Hero Navigation</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
@@ -55,7 +54,6 @@
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
                 <td class="text-center">{{list.is_featured? "YES":"NO"}}</td>
-                <td class="text-center">{{list.is_hero_nav? "YES":"NO"}}</td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i v-b-tooltip.hover title="View Details" @click="ViewDetails(list, index)" class="icon-eye"></i>
