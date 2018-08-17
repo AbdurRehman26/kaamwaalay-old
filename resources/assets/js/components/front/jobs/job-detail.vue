@@ -98,7 +98,7 @@
 										<iframe width="1280" height="365" src="https://www.youtube.com/embed/3o7DvKGeZn0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 									</div>
 
-									<div class="jobs-post-files" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
+									<div class="jobs-post-files" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded'">
 										<h3>Customer Information</h3>
 										<div class="coustomer-info-line">
 											<i class="icon-phone_in_talk"></i>
@@ -213,7 +213,7 @@
 
 							<div class="service-provider" v-else-if="job_detail_right_panel == 'serviceprovider'">
 														
-								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Bid</a>	
+								<a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
 								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
 								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 							</div>
@@ -243,7 +243,8 @@
 			</div>
 			<award-job-popup @HideModalValue="HideModal" :showModalProp="awardjob"></award-job-popup>
 			<visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
-			<go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>			
+			<go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
+			<post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>			
 	</div>
 	<!-- <p>{{job_detail_right_panel}}</p> -->
 	</div>
@@ -259,6 +260,7 @@ export default {
     	awardjob: false,
     	visitjob: false,
     	visitpopup: false,
+    	bidpopup: false,
     	jobimage: '/images/front/explore/concret.png',
     	job_detail_right_panel: this.$route.params.id,
     	reviewerimage: '/images/front/storage/personimage1.png',
@@ -378,10 +380,14 @@ export default {
         VisitApproval(){
 			this.visitjob = true;
         },
+        BidModify(){
+        	this.bidpopup = true;
+        },
         HideModal(){
             this.awardjob = false;
             this.visitjob = false;
             this.visitpopup = false;
+            this.bidpopup = false;
         },        
 
     },

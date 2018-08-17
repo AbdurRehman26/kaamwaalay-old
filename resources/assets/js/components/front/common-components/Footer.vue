@@ -41,7 +41,7 @@
 									<li><a href="javascript:;">Sign up as a customers</a></li>
 									<li><a href="javascript:;">Explore Services</a></li>
 									<li><a href="javascript:;">Advice center</a></li>
-									<li><a href="javascript:;" @click="customersupportpopup">Customer support</a></li>
+									<li><a href="javascript:;" @click="CustomerSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -108,7 +108,7 @@
 <script type="text/javascript">
     export default {
         methods: {
-            customersupportpopup() {
+            CustomerSupportPopup() {
                 this.customersupport = true;
             },
             HideModal(){

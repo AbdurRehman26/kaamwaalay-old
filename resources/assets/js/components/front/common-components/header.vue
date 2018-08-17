@@ -23,20 +23,20 @@
 </template>
 
 <script>
-export default {
-    data: function () {
-        return{
-            logo: 'images/logo.png',
-            changepopup: false,
-        }
-    },
-    method:{
-        ProfilePopup(){
-            this.changepopup = true;
+    export default {
+        data: function () {
+            return{
+                logo: 'images/logo.png',
+                changepopup: false,
+            }
         },
-        HideModal(){
-            this.changepopup = false;   
+        methods:{
+            ProfilePopup(){
+                this.changepopup = true;
+            },
+            HideModal(){
+                this.changepopup = false;   
+            }
         }
     }
-}
 </script>

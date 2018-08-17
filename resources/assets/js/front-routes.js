@@ -234,7 +234,7 @@ const routes = [
 
     /*404*/
 
-   {
+    {
         name: '404',
         path: '*',
         component: require('./components/404/Main.vue'),
@@ -246,7 +246,7 @@ const routes = [
     },
 
 
-]
+    ]
 
 
 

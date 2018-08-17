@@ -3437,69 +3437,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
+	data: function data() {
+		return {
 
-            joblisting: [{
-                job_title_image: '/images/front/storage/bidimage1.png',
-                job_title: 'Concrete Floor Building',
-                job_poster: 'Nathan Alvarez',
-                job_category: 'Construction - Concrete Flooring',
-                job_status: 'Active',
-                job_perform: 270,
-                job_service: 'within a week',
-                job_location: 'New York, NY',
-                chat_message: false,
-                job_offer: '$250',
-                job_post_date: '24 Jan, 2018',
-                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
-                list_ratings: 5
-            }, {
-                job_title_image: '/images/front/storage/bidimage2.png',
-                job_title: 'Leaking water pipe',
-                job_category: 'Construction - Concrete Flooring',
-                job_poster: 'Lisa Burns',
-                job_status: 'Active',
-                job_perform: 270,
-                job_service: 'urgent',
-                job_location: 'New York, NY',
-                chat_message: true,
-                job_offer: 'TBH',
-                job_post_date: '24 Jan, 2018',
-                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
-                list_ratings: 4
+			joblisting: [{
+				job_title_image: '/images/front/storage/bidimage1.png',
+				job_title: 'Concrete Floor Building',
+				job_poster: 'Nathan Alvarez',
+				job_category: 'Construction - Concrete Flooring',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'within a week',
+				job_location: 'New York, NY',
+				chat_message: false,
+				job_offer: '$250',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+				list_ratings: 5
+			}, {
+				job_title_image: '/images/front/storage/bidimage2.png',
+				job_title: 'Leaking water pipe',
+				job_category: 'Construction - Concrete Flooring',
+				job_poster: 'Lisa Burns',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'urgent',
+				job_location: 'New York, NY',
+				chat_message: true,
+				job_offer: 'TBH',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+				list_ratings: 4
 
-            }]
+			}]
 
-        };
-    },
+		};
+	},
 
 
-    methods: {
-        AddCustomer: function AddCustomer() {
-            this.customer = true;
-        },
-        ViewCustomerDetail: function ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
-            this.$router.push({ name: 'customerdetail' });
-        },
-        changestatuspopup: function changestatuspopup() {
-            this.changestatus = true;
-        },
-        HideModal: function HideModal() {
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
-        },
-        servicedetail: function servicedetail() {
-            this.$router.push('/job-details/serviceprovider');
-        }
-    },
-    components: {
-        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-    },
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push('/job-details/serviceprovider');
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
 
-    mounted: function mounted() {}
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -3580,83 +3580,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-				data: function data() {
-								return {
+	data: function data() {
+		return {
 
-												joblisting: [{
-																job_title_image: '/images/front/storage/bidimage1.png',
-																job_title: 'Concrete Floor Building',
-																job_poster: 'Nathan Alvarez',
-																job_category: 'Construction - Concrete Flooring',
-																job_status: 'Active',
-																job_perform: 270,
-																job_service: 'within a week',
-																job_location: 'New York, NY',
-																chat_message: false,
-																job_offer: '$250',
-																job_post_date: '24 Jan, 2018',
-																job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
-																list_ratings: 5
-												}, {
-																job_title_image: '/images/front/storage/bidimage2.png',
-																job_title: 'Leaking water pipe',
-																job_category: 'Construction - Concrete Flooring',
-																job_poster: 'Lisa Burns',
-																job_status: 'Active',
-																job_perform: 270,
-																job_service: 'urgent',
-																job_location: 'New York, NY',
-																chat_message: true,
-																job_offer: 'TBH',
-																job_post_date: '24 Jan, 2018',
-																job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
-																list_ratings: 4
+			joblisting: [{
+				job_title_image: '/images/front/storage/bidimage1.png',
+				job_title: 'Concrete Floor Building',
+				job_poster: 'Nathan Alvarez',
+				job_category: 'Construction - Concrete Flooring',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'within a week',
+				job_location: 'New York, NY',
+				chat_message: false,
+				job_offer: '$250',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+				list_ratings: 5
+			}, {
+				job_title_image: '/images/front/storage/bidimage2.png',
+				job_title: 'Leaking water pipe',
+				job_category: 'Construction - Concrete Flooring',
+				job_poster: 'Lisa Burns',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'urgent',
+				job_location: 'New York, NY',
+				chat_message: true,
+				job_offer: 'TBH',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+				list_ratings: 4
 
-												}, {
-																job_title_image: '/images/front/storage/bidimage1.png',
-																job_title: 'Concrete Floor Building',
-																job_poster: 'Nathan Alvarez',
-																job_category: 'Construction - Concrete Flooring',
-																job_status: 'Active',
-																job_perform: 270,
-																job_service: 'within a week',
-																job_location: 'New York, NY',
-																chat_message: false,
-																job_offer: '$250',
-																job_post_date: '24 Jan, 2018',
-																job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
-																list_ratings: 5
-												}]
+			}, {
+				job_title_image: '/images/front/storage/bidimage1.png',
+				job_title: 'Concrete Floor Building',
+				job_poster: 'Nathan Alvarez',
+				job_category: 'Construction - Concrete Flooring',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'within a week',
+				job_location: 'New York, NY',
+				chat_message: false,
+				job_offer: '$250',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+				list_ratings: 5
+			}]
 
-								};
-				},
+		};
+	},
 
 
-				methods: {
-								AddCustomer: function AddCustomer() {
-												this.customer = true;
-								},
-								ViewCustomerDetail: function ViewCustomerDetail() {
-												/*this.viewcustomer = true;*/
-												this.$router.push({ name: 'customerdetail' });
-								},
-								changestatuspopup: function changestatuspopup() {
-												this.changestatus = true;
-								},
-								HideModal: function HideModal() {
-												this.customer = false;
-												this.viewcustomer = false;
-												this.changestatus = false;
-								},
-								servicedetail: function servicedetail() {
-												this.$router.push('/job-details/serviceprovider');
-								}
-				},
-				components: {
-								StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-				},
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push('/job-details/serviceprovider');
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
 
-				mounted: function mounted() {}
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -3737,59 +3737,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
+	data: function data() {
+		return {
 
-            joblisting: []
+			joblisting: []
 
-        };
-    },
+		};
+	},
 
 
-    methods: {
-        AddCustomer: function AddCustomer() {
-            this.customer = true;
-        },
-        ViewCustomerDetail: function ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
-            this.$router.push({ name: 'customerdetail' });
-        },
-        changestatuspopup: function changestatuspopup() {
-            this.changestatus = true;
-        },
-        HideModal: function HideModal() {
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
-        },
-        servicedetail: function servicedetail() {
-            this.$router.push('/job-details/serviceprovider');
-        }
-    },
-    components: {
-        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-    },
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push('/job-details/serviceprovider');
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
 
-    mounted: function mounted() {
-        for (var i = 12 - 1; i >= 0; i--) {
-            var listing = {
-                job_title_image: '/images/front/storage/bidimage1.png',
-                job_title: 'Concrete Floor Building',
-                job_poster: 'Nathan Alvarez',
-                job_category: 'Construction - Concrete Flooring',
-                job_status: 'Active',
-                job_perform: 270,
-                job_service: 'within a week',
-                job_location: 'New York, NY',
-                chat_message: false,
-                job_offer: '$250',
-                job_post_date: '24 Jan, 2018',
-                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
-                list_ratings: 5
-            };
-            this.joblisting.push(listing);
-        }
-    }
+	mounted: function mounted() {
+		for (var i = 12 - 1; i >= 0; i--) {
+			var listing = {
+				job_title_image: '/images/front/storage/bidimage1.png',
+				job_title: 'Concrete Floor Building',
+				job_poster: 'Nathan Alvarez',
+				job_category: 'Construction - Concrete Flooring',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'within a week',
+				job_location: 'New York, NY',
+				chat_message: false,
+				job_offer: '$250',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+				list_ratings: 5
+			};
+			this.joblisting.push(listing);
+		}
+	}
 });
 
 /***/ }),
@@ -3870,59 +3870,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            joblisting: []
+	data: function data() {
+		return {
+			joblisting: []
 
-        };
-    },
+		};
+	},
 
 
-    methods: {
-        AddCustomer: function AddCustomer() {
-            this.customer = true;
-        },
-        ViewCustomerDetail: function ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
-            this.$router.push({ name: 'customerdetail' });
-        },
-        changestatuspopup: function changestatuspopup() {
-            this.changestatus = true;
-        },
-        HideModal: function HideModal() {
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
-        },
-        servicedetail: function servicedetail() {
-            this.$router.push('/job-details/serviceprovider');
-        }
-    },
-    components: {
-        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-    },
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push('/job-details/serviceprovider');
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
 
-    mounted: function mounted() {
-        for (var i = 10 - 1; i >= 0; i--) {
-            var listing = {
-                job_title_image: '/images/front/storage/bidimage2.png',
-                job_title: 'Leaking water pipe',
-                job_category: 'Construction - Concrete Flooring',
-                job_poster: 'Lisa Burns',
-                job_status: 'Active',
-                job_perform: 270,
-                job_service: 'urgent',
-                job_location: 'New York, NY',
-                chat_message: true,
-                job_offer: 'TBH',
-                job_post_date: '24 Jan, 2018',
-                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
-                list_ratings: 4
+	mounted: function mounted() {
+		for (var i = 10 - 1; i >= 0; i--) {
+			var listing = {
+				job_title_image: '/images/front/storage/bidimage2.png',
+				job_title: 'Leaking water pipe',
+				job_category: 'Construction - Concrete Flooring',
+				job_poster: 'Lisa Burns',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'urgent',
+				job_location: 'New York, NY',
+				chat_message: true,
+				job_offer: 'TBH',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+				list_ratings: 4
 
-            };
-            this.joblisting.push(listing);
-        }
-    }
+			};
+			this.joblisting.push(listing);
+		}
+	}
 });
 
 /***/ }),
@@ -4003,54 +4003,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
+	data: function data() {
+		return {
 
-            joblisting: [{
-                job_title_image: '/images/front/storage/bidimage1.png',
-                job_title: 'Concrete Floor Building',
-                job_poster: 'Nathan Alvarez',
-                job_category: 'Construction - Concrete Flooring',
-                job_status: 'Active',
-                job_perform: 270,
-                job_service: 'within a week',
-                job_location: 'New York, NY',
-                chat_message: false,
-                job_offer: '$250',
-                job_post_date: '24 Jan, 2018',
-                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
-                list_ratings: 5
-            }]
+			joblisting: [{
+				job_title_image: '/images/front/storage/bidimage1.png',
+				job_title: 'Concrete Floor Building',
+				job_poster: 'Nathan Alvarez',
+				job_category: 'Construction - Concrete Flooring',
+				job_status: 'Active',
+				job_perform: 270,
+				job_service: 'within a week',
+				job_location: 'New York, NY',
+				chat_message: false,
+				job_offer: '$250',
+				job_post_date: '24 Jan, 2018',
+				job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+				list_ratings: 5
+			}]
 
-        };
-    },
+		};
+	},
 
 
-    methods: {
-        AddCustomer: function AddCustomer() {
-            this.customer = true;
-        },
-        ViewCustomerDetail: function ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
-            this.$router.push({ name: 'customerdetail' });
-        },
-        changestatuspopup: function changestatuspopup() {
-            this.changestatus = true;
-        },
-        HideModal: function HideModal() {
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
-        },
-        servicedetail: function servicedetail() {
-            this.$router.push('/job-details/serviceprovider');
-        }
-    },
-    components: {
-        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
-    },
+	methods: {
+		AddCustomer: function AddCustomer() {
+			this.customer = true;
+		},
+		ViewCustomerDetail: function ViewCustomerDetail() {
+			/*this.viewcustomer = true;*/
+			this.$router.push({ name: 'customerdetail' });
+		},
+		changestatuspopup: function changestatuspopup() {
+			this.changestatus = true;
+		},
+		HideModal: function HideModal() {
+			this.customer = false;
+			this.viewcustomer = false;
+			this.changestatus = false;
+		},
+		servicedetail: function servicedetail() {
+			this.$router.push('/job-details/serviceprovider');
+		}
+	},
+	components: {
+		StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+	},
 
-    mounted: function mounted() {}
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -4691,7 +4691,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
-        customersupportpopup: function customersupportpopup() {
+        CustomerSupportPopup: function CustomerSupportPopup() {
             this.customersupport = true;
         },
         HideModal: function HideModal() {
@@ -4745,7 +4745,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             changepopup: false
         };
     },
-    method: {
+    methods: {
         ProfilePopup: function ProfilePopup() {
             this.changepopup = true;
         },
@@ -4765,6 +4765,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            isShowing: false,
+            showModalValue: false,
+            tab: false,
+            tabmenu: false
+        };
+    },
+
+    directives: {
+        onClickaway: __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__["directive"]
+    },
+    methods: {
+        ShowModal: function ShowModal() {
+            this.showModalValue = true;
+        },
+        HideModal: function HideModal() {
+            this.showModalValue = false;
+        },
+        Showactive: function Showactive() {
+            this.tab ^= true;
+        },
+
+        away: function away() {
+            this.isShowing = false;
+            this.tab = false;
+        }
+
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/navigations/ProviderNav.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
 //
 //
 //
@@ -6571,6 +6645,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -6580,6 +6655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             awardjob: false,
             visitjob: false,
             visitpopup: false,
+            bidpopup: false,
             jobimage: '/images/front/explore/concret.png',
             job_detail_right_panel: this.$route.params.id,
             reviewerimage: '/images/front/storage/personimage1.png',
@@ -6678,10 +6754,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         VisitApproval: function VisitApproval() {
             this.visitjob = true;
         },
+        BidModify: function BidModify() {
+            this.bidpopup = true;
+        },
         HideModal: function HideModal() {
             this.awardjob = false;
             this.visitjob = false;
             this.visitpopup = false;
+            this.bidpopup = false;
         }
     },
     components: {
@@ -67707,7 +67787,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "offer" }, [
               _c("i", { staticClass: "icon-work-briefcase" }),
-              _vm._v(" \n\t\t\t\tOffer: "),
+              _vm._v(" \n\t\t\t\t\tOffer: "),
               _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
               _vm._v(" - "),
               _c(
@@ -68808,7 +68888,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "offer" }, [
               _c("i", { staticClass: "icon-work-briefcase" }),
-              _vm._v(" \n\t\t\t\tOffer: "),
+              _vm._v(" \n\t\t\t\t\tOffer: "),
               _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
               _vm._v(" - "),
               _c(
@@ -70325,9 +70405,7 @@ var render = function() {
                   _c("div", { staticClass: "member-details" }, [
                     _c("p", { staticClass: "location" }, [
                       _c("i", { staticClass: "icon-location" }),
-                      _vm._v(
-                        " \n                                    Location "
-                      ),
+                      _vm._v(" \n                                Location "),
                       _c("strong", [_vm._v(_vm._s(listing.job_location))])
                     ]),
                     _vm._v(" "),
@@ -70352,9 +70430,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("p", { staticClass: "member-since" }, [
                       _c("i", { staticClass: "icon-calendar-daily" }),
-                      _vm._v(
-                        "\n                                    Post Date "
-                      ),
+                      _vm._v("\n                                Post Date "),
                       _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
                     ])
                   ]),
@@ -70385,7 +70461,7 @@ var render = function() {
                     _c("p", { staticClass: "service-requirment" }, [
                       _c("i", { staticClass: "icon-brightness-down" }),
                       _vm._v(
-                        "\n                                    Service required \n                                    "
+                        "\n                                Service required \n                                "
                       ),
                       listing.job_service == "urgent"
                         ? _c("strong", { staticClass: "urgent" }, [
@@ -70859,7 +70935,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "offer" }, [
               _c("i", { staticClass: "icon-work-briefcase" }),
-              _vm._v(" \n\t\t\t\tOffer: "),
+              _vm._v(" \n\t\t\t\t\tOffer: "),
               _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
               _vm._v(" - "),
               _c(
@@ -71752,7 +71828,7 @@ var render = function() {
                         "a",
                         {
                           attrs: { href: "javascript:;" },
-                          on: { click: _vm.customersupportpopup }
+                          on: { click: _vm.CustomerSupportPopup }
                         },
                         [_vm._v("Customer support")]
                       )
@@ -73642,7 +73718,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "offer" }, [
               _c("i", { staticClass: "icon-work-briefcase" }),
-              _vm._v(" \n\t\t\t\tOffer: "),
+              _vm._v(" \n\t\t\t\t\tOffer: "),
               _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
               _vm._v(" - "),
               _c(
@@ -73807,7 +73883,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "offer" }, [
               _c("i", { staticClass: "icon-work-briefcase" }),
-              _vm._v(" \n\t\t\t\tOffer: "),
+              _vm._v(" \n\t\t\t\t\tOffer: "),
               _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
               _vm._v(" - "),
               _c(
@@ -75504,8 +75580,7 @@ var render = function() {
                         "service-provider-customer-end" ||
                       _vm.job_detail_right_panel ==
                         "serviceprovidercustomerend" ||
-                      _vm.job_detail_right_panel == "awarded" ||
-                      _vm.job_detail_right_panel == "serviceprovider"
+                      _vm.job_detail_right_panel == "awarded"
                         ? _c("div", { staticClass: "jobs-post-files" }, [
                             _c("h3", [_vm._v("Customer Information")]),
                             _vm._v(" "),
@@ -75865,11 +75940,22 @@ var render = function() {
                       ])
                     : _vm.job_detail_right_panel == "serviceprovider"
                       ? _c("div", { staticClass: "service-provider" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { href: "javascript:void(0);" },
+                              on: { click: _vm.BidModify }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-edit-pencil" }),
+                              _vm._v(" Modify Bid")
+                            ]
+                          ),
+                          _vm._v(" "),
                           _vm._m(13, true),
                           _vm._v(" "),
-                          _vm._m(14, true),
-                          _vm._v(" "),
-                          _vm._m(15, true)
+                          _vm._m(14, true)
                         ])
                       : _vm.job_detail_right_panel ==
                           "service-provider-customer-end" ||
@@ -75889,9 +75975,9 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(16, true),
+                            _vm._m(15, true),
                             _vm._v(" "),
-                            _vm._m(17, true)
+                            _vm._m(16, true)
                           ])
                         : _c("div", { staticClass: "service-provider" }, [
                             _c(
@@ -75941,7 +76027,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(18, true)
+                            _vm._m(17, true)
                           ])
                 ])
               ])
@@ -75960,6 +76046,11 @@ var render = function() {
           _vm._v(" "),
           _c("go-to-visit-popup", {
             attrs: { showModalProp: _vm.visitpopup },
+            on: { HideModalValue: _vm.HideModal }
+          }),
+          _vm._v(" "),
+          _c("post-bid-popup", {
+            attrs: { showModalProp: _vm.bidpopup },
             on: { HideModalValue: _vm.HideModal }
           })
         ],
@@ -76143,19 +76234,6 @@ var staticRenderFns = [
         attrs: { href: "javascript:void(0);" }
       },
       [_c("i", { staticClass: "icon-folder" }), _vm._v(" Archive")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-edit-pencil" }), _vm._v(" Modify Bid")]
     )
   },
   function() {
@@ -94748,7 +94826,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/navigations/ProviderNav.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5cef0337\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/navigations/ProviderNav.vue")
 /* template functional */

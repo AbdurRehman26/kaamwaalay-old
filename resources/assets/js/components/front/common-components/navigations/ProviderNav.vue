@@ -29,3 +29,35 @@
         </ul>
     </div>
 </template>
+<script>
+import { directive as onClickaway } from 'vue-clickaway';
+    export default{
+        data () {
+          return {
+            isShowing:false,
+            showModalValue : false,
+            tab: false,
+            tabmenu: false,
+          }
+        },
+        directives: {
+            onClickaway: onClickaway,
+        },
+        methods: {
+            ShowModal(){
+                this.showModalValue = true;
+            },
+            HideModal(){
+                this.showModalValue = false;
+            },
+            Showactive(){
+                this.tab ^= true;
+            },
+            away: function(){
+                this.isShowing = false;
+                this.tab = false;
+            }
+
+        }
+    }
+</script>
