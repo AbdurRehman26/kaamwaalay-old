@@ -46,8 +46,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 job-bid-btn p-r-0">
-                                    <a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>                        
-                                    <a href="javascript:void(0);" class="btn btn-primary post-bid">View Details</a>
+                                    <a href="javascript:void(0);" v-if="listing.job_bidding == true" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
+                                    <a href="javascript:void(0);" v-else class="chat-message"><i class="icon-message"></i></a> <a href="javascript:void(0);" @click="servicedetail" class="btn btn-primary post-bid">View Details</a>
                                 </div>
                             </div>
 
@@ -116,7 +116,7 @@ export default {
                 job_status: 'Active',
                 job_perform: 270,
                 job_service: 'within a week',
-                job_location: 'New York, NY',
+                job_location: 'New York, NY',                
                 chat_message: false,
                 job_offer: '$250',
                 job_post_date: '24 Jan, 2018',
@@ -134,12 +134,66 @@ export default {
                 job_service: 'urgent',
                 job_location: 'New York, NY',
                 chat_message: true,
+                job_bidding: true,
                 job_offer: 'TBH',
                 job_post_date: '24 Jan, 2018',
                 job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
                 list_ratings: 4,
 
             },          
+
+            {
+                job_title_image: '/images/front/storage/bidimage1.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_bidding: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 2,
+
+            },
+
+            {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 3,
+
+            },
+
+            {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_bidding: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 4,
+
+            },                        
 
 
         ],          
@@ -165,7 +219,7 @@ export default {
             this.bidpopup = false;
         },
         servicedetail(){
-        	this.$router.push({name: 'job-details'});
+        	this.$router.push('/job-details/serviceprovider');
         }
 
     },

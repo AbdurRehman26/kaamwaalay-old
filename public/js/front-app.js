@@ -6203,6 +6203,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 job_service: 'urgent',
                 job_location: 'New York, NY',
                 chat_message: true,
+                job_bidding: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 4
+
+            }, {
+                job_title_image: '/images/front/storage/bidimage1.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_bidding: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 2
+
+            }, {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 3
+
+            }, {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_bidding: true,
                 job_offer: 'TBH',
                 job_post_date: '24 Jan, 2018',
                 job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
@@ -6231,7 +6279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.bidpopup = false;
         },
         servicedetail: function servicedetail() {
-            this.$router.push({ name: 'job-details' });
+            this.$router.push('/job-details/serviceprovider');
         }
     },
     components: {
@@ -70217,26 +70265,31 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "chat-message",
-                            class: { disable: listing.chat_message === false },
-                            attrs: { href: "javascript:void(0);" },
-                            on: {
-                              click: function($event) {
-                                _vm.$emit("chatmessage")
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "icon-message" })]
-                        ),
+                        listing.job_bidding == true
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary post-bid m-r-10",
+                                attrs: { href: "javascript:void(0);" },
+                                on: { click: _vm.ChangeBid }
+                              },
+                              [_vm._v("Bid Now")]
+                            )
+                          : _c(
+                              "a",
+                              {
+                                staticClass: "chat-message",
+                                attrs: { href: "javascript:void(0);" }
+                              },
+                              [_c("i", { staticClass: "icon-message" })]
+                            ),
                         _vm._v(" "),
                         _c(
                           "a",
                           {
                             staticClass: "btn btn-primary post-bid",
-                            attrs: { href: "javascript:void(0);" }
+                            attrs: { href: "javascript:void(0);" },
+                            on: { click: _vm.servicedetail }
                           },
                           [_vm._v("View Details")]
                         )
