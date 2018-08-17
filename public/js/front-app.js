@@ -3174,12 +3174,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onClickaway: __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__["directive"]
     },
     mounted: function mounted() {
+        var self = this;
         this.getAllServices();
-        this.user = JSON.parse(this.$store.getters.getAuthUser);
-        this.first_name = this.user.first_name;
-        this.last_name = this.user.last_name;
+        self.user = JSON.parse(self.$store.getters.getAuthUser);
+        self.first_name = self.user.first_name;
+        self.last_name = self.user.last_name;
     },
-
     computed: {
         fullName: function fullName() {
             return this.first_name + ' ' + this.last_name;

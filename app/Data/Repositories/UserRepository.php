@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
 use App\Data\Models\Role;
+use DB;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -109,8 +110,9 @@ public $model;
 
             $this->builder = $this->builder->where(function($query)use($data){
                 $query->where('email', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('first_name', 'like', "%{$data['keyword']}%");
-                $query->orWhere('last_name', 'like', "%{$data['keyword']}%");
+                //$query->orWhere('first_name', 'like', "%{$data['keyword']}%");
+                //$query->orWhere('last_name', 'like', "%{$data['keyword']}%");
+                $query->orWhere(DB::raw('concat(first_name," ",last_name)') , 'LIKE' , "%{$data['keyword']}%");
             });
         }
 

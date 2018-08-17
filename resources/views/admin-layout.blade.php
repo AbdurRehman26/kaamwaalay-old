@@ -19,7 +19,7 @@
     </head>
     <body>
         <div id="app">
-            <navigation v-show="$route.meta.noHeader===true === false"></navigation>
+            <navigation  v-if="$auth.isAuthenticated()" v-show="$route.meta.noHeader===true === false"></navigation>
             <div class="panel">
                <left-panel v-show="$route.meta.noHeader===true === false"></left-panel>
                <breadcrumb v-show="$route.meta.noHeader===true === false" ></breadcrumb>
