@@ -170,6 +170,18 @@ const routes = [
 
 
     {
+        name: 'Explore_Jobs',
+        path: '/explore-jobs',
+        meta: {
+            title: 'Professional Service Marketplace | My Jobs',
+            bodyClass: 'my-explore-job-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/jobs/explore-jobs.vue'),
+    },
+
+
+    {
         name: 'job-details',
         path: '/job-details/:id?',
         meta: {

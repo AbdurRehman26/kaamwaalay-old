@@ -26,7 +26,15 @@
 										</div>	
 									</div>		
 									<div class="col-md-6 p-r-0">
-										<div class="job-details">
+									<div class="job-details" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
+								
+											<p class="service-requirment">
+												<i class="icon-brightness-down"></i>
+												Service required 
+												<strong v-if="listing.job_service == 'urgent'" class="urgent">{{ listing.job_service }}</strong>												
+											</p>
+										</div>
+										<div class="job-details" v-else>
 											<p class="awarded">
 												<i class="icon-checkmark2"></i> 
 												{{ listing.job_awarded }}
@@ -37,7 +45,7 @@
 												<strong v-if="listing.job_service == 'urgent'" class="urgent">{{ listing.job_service }}</strong>
 												<strong v-else>{{ listing.job_service }}</strong>
 											</p>
-										</div>										
+										</div>																				
 									</div>					
 
 								</div>	
@@ -74,8 +82,8 @@
 										</p>
 									</div>
 
-									<div class="post-job-description">
-										<p>{{ listing.job_description }}</p>
+									<div class="post-job-description" v-for="description in listing.job_description.split('\n')">
+										<p>{{ description }}</p>
 									</div>
 
 									<div class="jobs-post-files">
@@ -275,7 +283,7 @@ export default {
 	    		job_service: 'urgent',
 	    		job_location: 'New York, NY',
 	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\r\n-  I offer a friendly, honest and punctual service \r\n-  Installation of timber and UPVC Windows & Doors. \r\n-  UPVC door/window Lock repairs & replacements. \r\n-  Also repair/replacing broken and misted double/single glazing. \r\n-  Made to measure Gates, Fencing and Decking. \r\n-  General Maintenance repairs etc. \r\n-  My work is carried out to high standards and resonably priced! \r\n-  No job too small. \r\n-  Get in touch for a quote.",
+	    		job_description: "Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height. \n Depending on cost I would also be interested in a quote to concrete an area 265 x 170 cm and another approx. 290 x 240 cm again with currently a brick flooring on both these areas.",
 
 	    		review_details:[
 
