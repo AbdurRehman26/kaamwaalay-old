@@ -28,7 +28,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr v-for="record in records">
+                            <tr v-for="(record, index) in records">
                                 <td>{{ record.title }}</td>
                                 <td>{{record.service_provider}}</td>
                                 <td class="text-center"> {{ record |jobType}}</td>
@@ -37,7 +37,7 @@
 
                                 <td class="text-center">
                                     <div class="action-icons">
-                                        <i @click="ViewCustomerRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="ViewCustomerRecord(record,index)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -49,7 +49,7 @@
             </div>
             </div>
         <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-        <view-customer-record :showModalProp="customerrecord" @HideModalValue="HideModal"></view-customer-record>
+        <view-customer-record :showModalProp="viewCustomerRecord" @HideModalValue="HideModal" :selectedJob="selectedJob"></view-customer-record>
   </div> 
 </template>
 <script>
@@ -58,12 +58,14 @@ import StarRating from 'vue-star-rating';
 export default {
     data () {
         return {
-            customerrecord: false,
+            viewCustomerRecord: false,
             customerId: null,
             noRecordFound : false,
             loading : true,
             records : [],
             url:'',
+            record:{},
+            selectedJob:''
         }
     },
 
@@ -72,17 +74,20 @@ export default {
     },
 
     methods: {
-        ViewCustomerRecord() {
-            this.customerrecord = true;
+        ViewCustomerRecord(record,index) {
+            record['index'] = index;
+            this.selectedJob = record;
+            this.viewCustomerRecord = true;
         },
         HideModal(){
-            this.customerrecord = false;
+            this.viewCustomerRecord = false;
+            this.record = {};
         },
         getRecords(data){
             let self = this;
             self.loading = false;
             self.records = data;
-            console.log(self.records , 'job detail');
+            // console.log(self.records , 'job detail');
             if (!self.records.length) {
                 self.noRecordFound = true;
             }
