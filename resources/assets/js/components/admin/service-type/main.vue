@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-                <SearchField @search="onSearch" :searchValue="search"></SearchField>
+                <SearchField @search="onSearch" :searchValue="search" @onSearchEnter="onApply"></SearchField>
               </div>
             </div>
             <div class="col-xs-12 col-md-2 datepicker-field">

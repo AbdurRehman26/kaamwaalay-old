@@ -1,18 +1,19 @@
 <template>
 	<div class="search-field">
 		<label>Search</label>
-		<TypeAhead src="/static/data.json?keyword=:keyword" :getResponse="getResponse" :onHit="onHit" placeholder="Search" v-model="search"></TypeAhead>
+		<!--<TypeAhead placeholder="Search" v-model="search" @keyup.enter="onHit" :getResponse="getResponse"></TypeAhead>-->
+		<input type="text" placeholder="Search" v-model="search" @keyup.enter="onSearch">
 	</div>
 </template>
 
 <script>
 //https://www.npmjs.com/package/vue2-typeahead
-import TypeAhead  from 'vue2-typeahead';
+//import TypeAhead  from 'vue2-typeahead';
 export default {
 	//src="/static/data.json?keyword=:keyword"
-	components: {
-		TypeAhead
-	},
+	// components: {
+	// 	TypeAhead
+	// },
 	props: ['searchValue'],
 	data () {
 		return {
@@ -20,13 +21,9 @@ export default {
 		}
 	},
 	methods: { 
-		onHit(item, vue, index){
+		onSearch(){
 			// this.search = item;
-			// alert(this.search);
-			// this.$emit('search' , this.search)
-		},
-		getResponse: function (response) {
-			return [];//response.data.data.items
+			this.$emit('onSearchEnter');
 		},
 	},
 	watch: {
