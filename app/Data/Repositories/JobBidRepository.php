@@ -54,7 +54,7 @@ public $model;
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-        public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
+        public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false) {
 
             $model = $this->model->newInstance()
             ->where($criteria);

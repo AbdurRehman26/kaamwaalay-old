@@ -16,7 +16,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
      * @access public
      *
      **/
-public $model;
+    public $model;
 
     /**
      *

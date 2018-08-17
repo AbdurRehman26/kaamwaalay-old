@@ -70549,7 +70549,7 @@ var render = function() {
               attrs: {
                 size: "md",
                 "total-rows": _vm.totalRecords,
-                "per-page": 10
+                "per-page": 25
               },
               on: { input: _vm.changePage },
               model: {
