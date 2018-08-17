@@ -1,7 +1,7 @@
  <template>
    <div>
       <b-modal id="view-details-support" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Support Detail">
-        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert> 
+        <!--<alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>--> 
         <div class="view-details-support">
 
             <b-row>

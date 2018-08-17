@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 class SupportInquiryController extends ApiResourceController
 {
     public $_repository;
-    const   PER_PAGE = 2;
+    const   PER_PAGE = 25;
 
     public function __construct(SupportInquiryRepository $repository){
         $this->_repository = $repository;
