@@ -1,4 +1,4 @@
- <template>	
+ <template>
 	<div>
 		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close">
             <alert></alert>
@@ -47,13 +47,37 @@
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
+                        <p><strong class="title-head">Display Banner?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>No</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Display Service Nav?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>No</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Display Footer Nav?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>No</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
                         <p><strong class="title-head">Hero Navigation</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p>Yes</p>
                     </b-col>
                 </b-row>
-                       
+
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Service Providers</strong></p>
@@ -91,7 +115,7 @@
                         </div>
                     </b-col>
                 </b-row>
-                
+
             </div>
 	   </b-modal>
 	</div>
@@ -101,7 +125,7 @@
 export default {
 
     props: ['showModalProp'],
-    
+
     methods: {
         showModal () {
             this.$refs.myModalRef.show()

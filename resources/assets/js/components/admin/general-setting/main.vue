@@ -60,7 +60,7 @@
 				<!-- Featured Row End -->
 
 	        	<!-- Urgent Row -->
-					<div class="urgent-section-row">
+					<div class="urgent-section-row featured-row">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="urgent-detail-title">
@@ -89,6 +89,37 @@
 						</div>
 					</div>
     					<!-- Urgent Row End -->
+
+                <!-- Account creation -->
+                    <div class="urgent-section-row">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="urgent-detail-title">
+                                    <h2 class="page-title">Account Creation</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row urgent-setting">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Account Creation Fee</label>
+                                    <input class="form-control" placeholder="Enter urgent amount">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3">
+                                <button class="btn btn-primary">
+                                    <span>Apply</span>
+                                    <loader></loader>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Urgent Row End -->
 
     					<!-- Location Row -->
 
