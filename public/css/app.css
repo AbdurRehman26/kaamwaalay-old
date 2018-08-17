@@ -35273,6 +35273,14 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.label-with-120 {
+  width: 120px;
+}
+
+.label-with-150 {
+  width: 150px;
+}
+
 .main-nav {
   position: relative;
   height: 56px;
