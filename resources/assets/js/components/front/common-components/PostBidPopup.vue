@@ -10,7 +10,7 @@
                             <label>Bid Amount</label>
                             <input type="number" name="" class="form-control" />
                         </div>
-                    </b-col>
+                    </b-col> 
                     <b-col cols="2" md="6">
                         <div class="form-group">
                             <label>&nbsp;</label>
