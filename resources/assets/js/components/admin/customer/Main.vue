@@ -108,11 +108,11 @@
                 statuses : [
                 {
                     key : 'active',
-                    value : 'active'
+                    value : 'Active'
                 },
                 {
-                    key : 'in_active',
-                    value : 'Inactive'
+                    key : 'pending',
+                    value : 'Pending'
                 },
                 {
                     key : 'banned',
@@ -126,7 +126,7 @@
 
         computed : {
             requestUrl(){
-                this.loading = true;
+                
                 return this.url;
             }
         },
