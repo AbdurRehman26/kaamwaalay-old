@@ -7,7 +7,8 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-                <SearchField @search="onSearch" :searchValue="search"></SearchField>
+                <label>Search</label>
+                <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
               </div>
             </div>
             <div class="col-xs-12 col-md-2 datepicker-field">
@@ -21,7 +22,7 @@
              </div>
            </div>                            
            <div class="col-xs-12 col-md-2">
-            <button class="btn btn-primary filter-btn-top-space" @click="onApply">
+            <button class="btn btn-primary filter-btn-top-space" @click="onApply" :class="[loading  ? 'show-spinner' : '']">
               <span>Apply</span>
               <loader></loader>
             </button>
@@ -109,6 +110,7 @@
        selectedService: '',
        isUpdate: false,
        list: {},
+       loading: false,
      }
    },
    watch : {
@@ -127,18 +129,16 @@
   },
   methods: {
     onApply() {
+
+      this.loading = true;
       var data = {
         search : this.search,
         filter: this.filter_by_featured
       };
       this.getList(data, false);
-      this.search = "";
     },
     onDelete(itemId) {
       alert(itemId);
-    },
-    onSearch(val) {
-      this.search = val;
     },
     AddService(){
       this.isUpdate = false;
@@ -211,6 +211,7 @@
         if (!self.listing.length) {
           self.showNoRecordFound = true;
         }
+        self.loading = false;
         successCallback(true);
 
       }).catch(error=>{

@@ -6,7 +6,8 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-               <SearchField @search="onSearch" :searchValue="search"></SearchField>
+                <label>Search</label>
+                <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
              </div>
            </div>
            <div class="col-xs-12 col-md-3 datepicker-field">
@@ -19,7 +20,7 @@
            </div>
          </div>                           
          <div class="col-xs-12 col-md-2">
-          <button class="btn btn-primary filter-btn-top-space" @click="onApply">
+          <button class="btn btn-primary filter-btn-top-space" @click="onApply" :class="[loading  ? 'show-spinner' : '']">
             <span>Apply</span>
             <loader></loader>
           </button>
@@ -68,7 +69,7 @@
     </div>
 
     <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-      <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="2"></b-pagination>
+      <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
     </div>
       <!--<div class="pagination-wrapper float-right">
           <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
@@ -99,6 +100,7 @@
         selectedInquiry: '',
         isUpdate: false,
         roles: {},
+        loading: false,
       }
     },
 
@@ -121,16 +123,12 @@
         this.supportdetailpopup = false;
       },
       onApply() {
-
+        this.loading = true;
         var data = {
           search : this.search,
           filter: this.filter_by_inquiry
         };
         this.getList(data, false);
-        this.search = "";
-      },
-      onSearch(val) {
-        this.search = val;
       },
       SupportDetail(list) {
         this.selectedInquiry = list;
@@ -178,6 +176,7 @@
         if (!self.listing.length) {
           self.showNoRecordFound = true;
         }
+        self.loading = false;
         successCallback(true);
 
       }).catch(error=>{
