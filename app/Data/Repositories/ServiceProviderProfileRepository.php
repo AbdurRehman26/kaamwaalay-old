@@ -46,7 +46,8 @@ public $model;
 
         if ($data) {
             if (empty($details)) {
-                $data->user_detail = app('UserRepository')->findById($data->user_id,false,true);
+                $details  = ['user_rating' => true];
+                $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
             }
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];

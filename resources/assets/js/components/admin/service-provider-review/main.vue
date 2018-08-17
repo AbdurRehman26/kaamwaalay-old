@@ -138,7 +138,7 @@
             return this.url;
         },
         servicesList(){
-            return this.$store.getters.getServicesList;
+                return this.$store.getters.getAllServices;
         },
 
     },

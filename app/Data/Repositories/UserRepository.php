@@ -59,7 +59,7 @@ public $model;
 
                 }
             }
-
+                
             if (!empty($details['user_rating'])) {
                     $criteria = ['user_id' => $id];
                     $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
