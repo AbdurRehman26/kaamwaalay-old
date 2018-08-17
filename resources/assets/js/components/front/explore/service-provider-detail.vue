@@ -115,8 +115,8 @@ export default {
     return {
     	categoryimage: '/images/front/explore/mds.png',
 
-    	jobimage: '/images/front/storage/logoimage1.png',
-    	reviewerimage: '/images/front/storage/personimage1.png',
+    	jobimage: '/images/front/profile-images/logoimage1.png',
+    	reviewerimage: '/images/front/profile-images/personimage1.png',
 
     	joblisting:[
 
@@ -152,7 +152,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage1.png',
+			    		latest_review_image: '/images/front/profile-images/personimage1.png',
 			    		latest_review_description: 'Matt installed a new fence at our school and I am more than pleased, he was punctual, polite and did the work quickly and I would offer him other work without hesitation.',
 			    		list_ratings: 5,
 			    		latest_reviewer_name: 'Lauren Gomez',
@@ -161,7 +161,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage2.png',
+			    		latest_review_image: '/images/front/profile-images/personimage2.png',
 			    		latest_review_description: 'Matt did a great job. Took him about 10 minutes to get the door down to size and re-hang it. Room looks a lot better now. Thank you!',
 			    		list_ratings: 4,
 			    		latest_reviewer_name: 'Paul Payne',
@@ -170,7 +170,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage3.png',
+			    		latest_review_image: '/images/front/profile-images/personimage3.png',
 			    		latest_review_description: 'Matt came exactly when he said, fixed the problem with my window with no fuss and at a good price. Very good bloke and would highly recommend!',
 			    		list_ratings: 3,
 			    		latest_reviewer_name: 'William Willis',
@@ -179,7 +179,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage4.png',
+			    		latest_review_image: '/images/front/profile-images/personimage4.png',
 			    		latest_review_description: 'Matt did an amazing job.I was happy with every part of the service he provided. He turned up at the agreed time for the estimate and returned promptly at the agreed time and date to complete the job, which was very affordable.',
 			    		list_ratings: 4,
 			    		latest_reviewer_name: 'Brian Howell',
@@ -188,7 +188,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage5.png',
+			    		latest_review_image: '/images/front/profile-images/personimage5.png',
 			    		latest_review_description: 'I would highly recommend Matt. He fitted a loft hatch and ladder for us, fitted new handles and locks to our windows and also child safety catches to all our windows upstairs. He was very professional and punctual and we were happy with the work undertaken, which he did very quickly.',
 			    		list_ratings: 5,
 			    		latest_reviewer_name: 'Timothy Schultz',

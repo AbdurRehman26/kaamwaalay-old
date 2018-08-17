@@ -28,6 +28,12 @@ body {
     }
 }
 
+.modal-open {
+    overflow: auto;
+    padding-right: 0px !important;
+    overflow-x: hidden;
+}
+
 img {
     display: block;
     max-width: 100%;
