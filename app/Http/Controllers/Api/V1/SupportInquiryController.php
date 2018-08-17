@@ -38,7 +38,7 @@ class SupportInquiryController extends ApiResourceController
         }
 
         if($value == 'show'){
-
+            $rules['id'] =  'required|exists:support_inquiries,id';
         }
 
         if($value == 'index'){

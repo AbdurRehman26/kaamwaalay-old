@@ -70,6 +70,7 @@ import { directive as onClickaway } from 'vue-clickaway';
                     self.$store.commit('setAllServices' , response.data);
                 }).catch(error=>{
 
+
                 });
             },
             ShowModal(){

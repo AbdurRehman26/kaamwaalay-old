@@ -4130,21 +4130,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'selectedJob'],
+    data: function data() {
+        return {
+            successMessage: "",
+            selectedJob: {}
+        };
+    },
+
 
     methods: {
         showModal: function showModal() {
             this.$refs.myModalRef.show();
         },
         hideModal: function hideModal() {
+            this.loading = false;
             this.$refs.myModalRef.hide();
         },
         onHidden: function onHidden() {
@@ -4164,6 +4169,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!value) {
                 this.hideModal();
             }
+        },
+        selectedJob: function selectedJob(value) {
+            this.selectedJob = value;
         }
     }
 });
@@ -5445,7 +5453,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         selectedInquiry: function selectedInquiry(value) {
-            console.log(value, 8899988);
             this.selectedInquiry = value;
             this.role = value.role;
             this.support_question = value.support_question;
@@ -63006,15 +63013,6 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _vm.errorMessage || _vm.successMessage
-            ? _c("alert", {
-                attrs: {
-                  errorMessage: _vm.errorMessage,
-                  successMessage: _vm.successMessage
-                }
-              })
-            : _vm._e(),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "view-details-support" },
@@ -63157,8 +63155,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
+        ]
       )
     ],
     1
@@ -65154,7 +65151,14 @@ var render = function() {
     { staticClass: "breadcrumb", attrs: { "aria-label": "breadcrumb" } },
     [
       _c("ol", { staticClass: "breadcrumb" }, [
-        _vm._m(0),
+        _c(
+          "li",
+          { staticClass: "breadcrumb-item" },
+          [
+            _c("router-link", { attrs: { to: "dashboard" } }, [_vm._v("Admin")])
+          ],
+          1
+        ),
         _vm._v(" "),
         _c(
           "li",
@@ -65168,16 +65172,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "breadcrumb-item" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [_vm._v("Admin")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -69959,7 +69954,7 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.successMessage ? _c("alert") : _vm._e(),
           _vm._v(" "),
           _c(
             "div",
@@ -69977,7 +69972,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Carpenters")])
+                    _c("p", [_vm._v(_vm._s(_vm.selectedJob.title))])
                   ])
                 ],
                 1
@@ -69995,7 +69990,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("James")])
+                    _c("p", [_vm._v(_vm._s(_vm.selectedJob.service_provider))])
                   ])
                 ],
                 1
@@ -70013,7 +70008,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Yes")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedJob.job_type == "urgent" ? "Yes" : "No"
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -70038,7 +70039,7 @@ var render = function() {
                           attrs: {
                             "star-size": 20,
                             "read-only": "",
-                            rating: 4,
+                            rating: _vm.selectedJob.avg_rating,
                             "active-color": "#8200ff"
                           }
                         })
@@ -70062,7 +70063,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Electrician > AC")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedJob.service != null
+                            ? _vm.selectedJob.service.title
+                            : "-"
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -70080,7 +70089,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("400$")])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedJob.job_amount == null
+                            ? "-"
+                            : "$" + _vm.selectedJob.job_amount
+                        )
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -70099,11 +70116,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("p", [
-                        _vm._v(
-                          "Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs."
-                        )
-                      ])
+                      _c("p", [_vm._v(_vm._s(_vm.selectedJob.description))])
                     ])
                   ])
                 ],
@@ -71003,7 +71016,7 @@ var render = function() {
               attrs: {
                 size: "md",
                 "total-rows": _vm.totalRecords,
-                "per-page": 10
+                "per-page": 25
               },
               on: { input: _vm.changePage },
               model: {

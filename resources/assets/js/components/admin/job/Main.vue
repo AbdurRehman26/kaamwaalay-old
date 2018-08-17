@@ -56,9 +56,9 @@
 
             <tr v-for="record in records">
                 <td> {{ record.title }} </td>
-                <td> <a href="javascript:void(0);" @click="profileimage">{{ record.user.first_name }}</a> </td>
-                <td> {{ record.service.parent_id ? record.service.parent.title : record.service.title }} </td>
-                <td> {{ record.service.parent_id ? record.service.title : '' }} </td>
+                <td> <a href="javascript:void(0);" @click="profileimage(record.user.id)">{{ record.user.first_name }}</a> </td>
+                <td> {{ record.service | mainService }} </td>
+                <td> {{ record.service | childOrParentService }} </td>
                 <td>
                     <span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">
                         {{ record | jobStatus }}
@@ -72,6 +72,8 @@
         </tr>
     </tbody>
 </table>
+<no-record-found v-show="noRecordFound"></no-record-found>
+
 </div>
 </div>
 
@@ -81,9 +83,10 @@
 <div class="clearfix"></div>
 
 
-<vue-pagination @page-changed="getList" :pagination="pagination"></vue-pagination>
 
 </div>
+
+<vue-pagination @page-changed="getList" :pagination="pagination"></vue-pagination>
 
 <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
 <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
@@ -98,6 +101,7 @@
         },
         data () {
             return {
+                noRecordFound : false,
                 search : {
                     service_id : '',
                     status : '',
@@ -138,7 +142,7 @@
         },
         computed : {
             servicesList(){
-                return this.$store.getters.getServicesList;
+                return this.$store.getters.getAllServices;
             },
             currentPage(){
                 return this.pagination ? this.pagination.current : 0; 
@@ -151,6 +155,7 @@
                 self.noRecordFound = false;
                 let url = self.url;
                 self.loading = true;
+                self.noRecordFound = false;
 
                 if(this.search.service_id || this.search.status || this.search.keyword){
                     var query  = '?pagination=true&keyword='+this.search.keyword+'&filter_by_service='+this.search.service_id+'&filter_by_status='+this.search.status;
@@ -173,7 +178,7 @@
                     self.pagination = response.pagination;
 
                     if (!self.records.length) {
-                        self.showNoRecordFound = true;
+                        self.noRecordFound = true;
                     }
                     self.loading = false;
 
@@ -195,8 +200,8 @@
             AddService(){
                 this.changeProviderStatus = true;
             },
-            profileimage(){
-              this.$router.push({name: 'Service_Provider_Detail'});  
+            profileimage(id){
+              this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id}});  
           },        
 
       },

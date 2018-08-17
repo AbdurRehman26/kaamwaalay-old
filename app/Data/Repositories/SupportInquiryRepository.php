@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\SupportInquiry;
 use Cache,StdClass;
+use DB;
 
 class SupportInquiryRepository extends AbstractRepository implements RepositoryContract
 {
@@ -97,8 +98,9 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
                 $query->orWhere('name', 'LIKE', '%'.$data['keyword'].'%');
                 $query->orWhere('support_inquiries.email', 'LIKE', '%'.$data['keyword'].'%');
                 $query->orWhere('users.email', 'LIKE', '%'.$data['keyword'].'%');
-                $query->orWhere('users.first_name', 'LIKE', '%'.$data['keyword'].'%');
-                $query->orWhere('users.last_name', 'LIKE', '%'.$data['keyword'].'%');
+                $query->orWhere(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , '%'.$data['keyword'].'%');
+                //$query->orWhere('users.first_name', 'LIKE', '%'.$data['keyword'].'%');
+                //$query->orWhere('users.last_name', 'LIKE', '%'.$data['keyword'].'%');
             })
             ;            
         }

@@ -65,8 +65,8 @@
             <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
-            <td ><span class="tags" :class="[record.status]">{{record.status}}</span></td>
-            <td><star-rating :star-size="20" read-only :rating="3" active-color="#8200ff"></star-rating></td>
+            <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
+            <td><star-rating :star-size="20" read-only :rating="record.user_detail ?  record.user_detail.average_rating : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
                 <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -135,7 +135,7 @@
             return this.url;
         },
         servicesList(){
-            return this.$store.getters.getServicesList;
+                return this.$store.getters.getAllServices;
         },
 
     },

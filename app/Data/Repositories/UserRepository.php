@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
 use App\Data\Models\Role;
+use DB;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -57,9 +58,9 @@ public $model;
                         $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
                     }
 
-                }
+                }   
             }
-
+                
             if (!empty($details['user_rating'])) {
                     $criteria = ['user_id' => $id];
                     $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
@@ -67,7 +68,34 @@ public $model;
 
             if($data->role_id == Role::CUSTOMER){
             // Todo
+                $avgCriteria = ['user_id' => $data->id,'status'=>'approved'];
+                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+                $data->avg_rating = $avgRating;
+
+                $totalInitiatedJobsCriteria = ['user_id' => $data->id,'status'=>'initiated'];
+                $totalInitiatedJobs = app('JobRepository')->getTotalCountByCriteria($totalInitiatedJobsCriteria);
+                $data->total_initiated_jobs = $totalInitiatedJobs;
+
+                $totalFinsheddJobsCriteria = ['user_id' => $data->id,'status'=>'completed'];
+                $totalFinshedJobs = app('JobRepository')->getTotalCountByCriteria($totalFinsheddJobsCriteria);
+                $data->total_finshed_jobs = $totalFinshedJobs;
+
+                $totalUrgentJobsCreatedCriteria = ['user_id' => $data->id,'job_type'=>'urgent'];
+                $totalUrgentJobsCreated = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCreatedCriteria);
+                $data->total_urgent_jobs_created = $totalUrgentJobsCreated;
+
+                $totalUrgentJobsCompletedCriteria = ['user_id' => $data->id,'job_type'=>'urgent','status'=>'completed'];
+                $totalUrgentJobsCompleted = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCompletedCriteria);
+                $data->total_urgent_jobs_completed = $totalUrgentJobsCompleted;
+                
+                
             }
+            $country = app('CountryRepository')->findById($data->country_id);                
+            $data->country = !empty($country->name) ? $country->name : '';
+            $City = app('CityRepository')->findById($data->city_id);                
+            $data->City = !empty($City->name)?$City->name:'';
+            $state = app('StateRepository')->findById($data->state_id);                
+            $data->state = !empty($state->name)?$state->name:'';
         }
 
         return $data;
@@ -82,8 +110,9 @@ public $model;
 
             $this->builder = $this->builder->where(function($query)use($data){
                 $query->where('email', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere('first_name', 'like', "%{$data['keyword']}%");
-                $query->orWhere('last_name', 'like', "%{$data['keyword']}%");
+                //$query->orWhere('first_name', 'like', "%{$data['keyword']}%");
+                //$query->orWhere('last_name', 'like', "%{$data['keyword']}%");
+                $query->orWhere(DB::raw('concat(first_name," ",last_name)') , 'LIKE' , "%{$data['keyword']}%");
             });
         }
 

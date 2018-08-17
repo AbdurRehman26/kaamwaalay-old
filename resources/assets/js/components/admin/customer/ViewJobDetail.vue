@@ -28,72 +28,85 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr v-for="list in listing">
-                                <td>{{ list.jobtitle }}</td>
-                                <td>{{ list.serviceprovider }}</td>
-                                <td class="text-center">{{ list.urgentjob }}</td>
-                                <td class="text-center">${{ list.amount }}</td>                           
-                                <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
+                            <tr v-for="(record, index) in records">
+                                <td>{{ record.title }}</td>
+                                <td>{{record.service_provider}}</td>
+                                <td class="text-center"> {{ record |jobType}}</td>
+                                <td class="text-center">{{record.job_amount == null ? '-':'$'+record.job_amount}}  </td>                           
+                                <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
 
                                 <td class="text-center">
                                     <div class="action-icons">
-                                        <i @click="ViewCustomerRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <i @click="ViewCustomerRecord(record,index)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                     </div>
                                 </td>
                             </tr>
                           </tbody>
                         </table>
+                        <no-record-found v-show="noRecordFound"></no-record-found>
                     </div>
                 </div>
             </div>
             </div>
-        <view-customer-record :showModalProp="customerrecord" @HideModalValue="HideModal"></view-customer-record>
+        <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+        <view-customer-record :showModalProp="viewCustomerRecord" @HideModalValue="HideModal" :selectedJob="selectedJob"></view-customer-record>
   </div> 
 </template>
 <script>
 import StarRating from 'vue-star-rating';
 
 export default {
-  data () {
-    return {
-        customerrecord: false,
-        
-        listing: [
-            {
-                jobtitle:'Electrician',
-                serviceprovider: 'Elif',
-                amount: 300,
-                urgentjob: 'Yes',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, deserunt accusamus at veniam culpa quia illum tempore consectetur dolor voluptates tempora quis natus libero modi, nesciunt magnam ipsum quod!',
-            },
-            {
-                jobtitle:'Plumber',
-                serviceprovider: 'Anthony',
-                amount: 555,     
-                urgentjob: 'No',       
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
-            },
-            {
-                jobtitle:'Carpenter',
-                serviceprovider: 'Anthony',
-                amount: 1000,    
-                urgentjob: 'Yes',          
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
-            },
-        ],
-
+    data () {
+        return {
+            viewCustomerRecord: false,
+            customerId: null,
+            noRecordFound : false,
+            loading : true,
+            records : [],
+            url:'',
+            record:{},
+            selectedJob:''
         }
     },
+
     components: {
         StarRating
     },
+
     methods: {
-        ViewCustomerRecord() {
-            this.customerrecord = true;
+        ViewCustomerRecord(record,index) {
+            record['index'] = index;
+            this.selectedJob = record;
+            this.viewCustomerRecord = true;
         },
         HideModal(){
-            this.customerrecord = false;
+            this.viewCustomerRecord = false;
+            this.record = {};
         },
-    }
+        getRecords(data){
+            let self = this;
+            self.loading = false;
+            self.records = data;
+            // console.log(self.records , 'job detail');
+            if (!self.records.length) {
+                self.noRecordFound = true;
+            }
+        },
+    },
+
+    mounted(){
+        this.loading = true;
+        this.customerId = this.$route.params.id;
+        this.url = 'api/job?filter_by_user='+this.$route.params.id+'&pagination=true'
+        
+    },
+
+    computed : {
+        requestUrl(){
+            this.loading = true;
+            return this.url;
+        }
+    },
+
 }
 </script>
