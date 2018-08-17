@@ -68869,7 +68869,9 @@ var render = function() {
                             }
                           ],
                           staticClass: "duns-help-icon",
-                          attrs: { title: "Verify number?" }
+                          attrs: {
+                            title: "This is required for business verification"
+                          }
                         },
                         [_c("i", { staticClass: "icon-help" })]
                       )

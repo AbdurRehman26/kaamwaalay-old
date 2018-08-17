@@ -67,7 +67,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">DUNS Number <span v-b-tooltip.hover title="Verify number?" class="duns-help-icon"><i class="icon-help"></i></span></label>
+								<label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
 									<input type="text" class="form-control" placeholder="DUNS number for verification (optional)">
 							</div>
 						</div>
