@@ -47,11 +47,12 @@ import { directive as onClickaway } from 'vue-clickaway';
         directives: {
             onClickaway: onClickaway,
         },
-        mounted () {
-           this.user = JSON.parse(this.$store.getters.getAuthUser);
-           this.first_name = this.user.first_name;
-           this.last_name = this.user.last_name;
-       },
+       mounted: function () {
+            let self = this;
+            self.user = JSON.parse(self.$store.getters.getAuthUser);
+            self.first_name = self.user.first_name;
+            self.last_name = self.user.last_name;
+      },
        computed : {
         fullName(){
             return this.first_name + ' ' + this.last_name;
