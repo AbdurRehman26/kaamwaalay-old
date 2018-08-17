@@ -19,7 +19,7 @@
                                      <option>No</option>
                                    </select>
                               </div>
-                            </div>                            
+                            </div>
                             <div class="col-xs-12 col-md-2">
                                 <button class="btn btn-primary filter-btn-top-space">
                                     <span>Apply</span>
@@ -44,7 +44,6 @@
                                   <th>Service</th>
                                   <th>Sub Service</th>
                                   <th class="text-center">Is Featured</th>
-                                  <th class="text-center">Hero Navigation</th>
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -54,7 +53,6 @@
                                   <td>{{list.service}}</td>
                                   <td>{{list.subservice}}</td>
                                   <td class="text-center">{{list.featured}}</td>
-                                  <td class="text-center">{{list.heronavigation}}</td>
                                   <td class="text-center">
                                     <div class="action-icons">
                                       <i v-b-tooltip.hover title="View Details" @click="ViewDetails" class="icon-eye"></i>

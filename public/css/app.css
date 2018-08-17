@@ -41572,6 +41572,14 @@ a.underline {
   color: #838383 !important;
 }
 
+.statustext .fullaccess {
+  color: #007bff !important;
+}
+
+.statustext .review {
+  color: #838383 !important;
+}
+
 .general-setting .customer-detail-title h2.page-title {
   font-size: 18px;
 }
