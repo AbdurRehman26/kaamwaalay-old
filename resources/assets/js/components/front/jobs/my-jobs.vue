@@ -27,8 +27,8 @@
 									</div>
 								</div>
 								<div class="col-md-6 job-bid-btn p-r-0">
-									<a href="javascript:void(0);" class="btn btn-primary post-bid">View Details</a>
-									<a href="javascript:void(0);" class="btn btn-primary post-bid" v-if="listing.job_bid == true">
+									<a href="javascript:void(0);" class="btn btn-primary post-bid" @click="servicedetail">View Details</a>
+									<a href="javascript:void(0);" @click="WriteReview" class="btn btn-primary post-bid" v-if="listing.job_bid == true">
 									Write Review</a>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 							<div class="job-details">
 								<p class="bid">
 									<i class="icon-flag"></i> 
-									<strong>{{ listing.job_bid_number }} bids received - <a href="javascript:void(0);">View Bids</a></strong>
+									<strong>{{ listing.job_bid_number }} bids received - <a href="javascript:void(0);" @click="servicedetail">View Bids</a></strong>
 								</p>
 								<p class="awarded" v-if="listing.project_awarded == true">
 									<i class="icon-checkmark2"></i> 
@@ -97,7 +97,7 @@
 				</div>			
 			</div>
 		</div>
-
+		<write-review-popup @HideModalValue="HideModal" :showModalProp="writereview"></write-review-popup>
 	</div>
 </template>
 
@@ -108,7 +108,7 @@ export default {
   data () {
     return {
     	categoryimage: '/images/front/explore/carpenter1.jpg',
-
+    	writereview: false,
     	jobimage: '/images/front/storage/logoimage1.png',
     	reviewerimage: '/images/front/storage/personimage1.png',
 
@@ -230,13 +230,11 @@ export default {
             /*this.viewcustomer = true;*/
             this.$router.push({name: 'customerdetail'});
         },
-        changestatuspopup() {
-            this.changestatus = true;
+        WriteReview(){
+        	this.writereview = true;
         },
         HideModal(){
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
+            this.writereview = false;
         },
         servicedetail(){
         	this.$router.push({name: 'job-details'});

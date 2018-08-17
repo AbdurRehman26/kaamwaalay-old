@@ -10,8 +10,15 @@
 						<div class="job-content">
 							<h2>{{listing.job_title}}</h2>
 								<div class="job-notification flexable">	
-									<div class="col-md-6  p-l-0">
-										<div class="jobs-done">
+									<div class="col-md-8  p-l-0">
+										<div class="jobs-done"  v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
+											<div class="job-status job-poster">
+												<span>Posted by <a href="javascript:void(0);">Nathan Alvarez</a></span>	
+												<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>												
+											</div>												
+											<span class="job-category job-post-category">{{ listing.job_category }}</span>									
+										</div>											
+										<div class="jobs-done" v-else>
 											<span class="job-category">{{ listing.job_category }}</span>		
 											<div class="job-status">
 												<span class="tags" :class="[listing.job_status.replace(/\s/g, '').toLowerCase().trim()]">{{ listing.job_status }}</span>	
@@ -83,9 +90,61 @@
 										<iframe width="1280" height="365" src="https://www.youtube.com/embed/3o7DvKGeZn0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 									</div>
 
+									<div class="jobs-post-files" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
+										<h3>Customer Information</h3>
+										<div class="coustomer-info-line">
+											<i class="icon-phone_in_talk"></i>
+											<p>Phone number: <strong>+1-541-754-3010</strong></p>
+										</div>
+										<div class="coustomer-info-line">
+											<i class="icon-pin"></i>
+											<p>Address: 
+												<strong>
+													1429 Netus Rd. Reedsport NY 48247
+												</strong>
+												 <a href="javascript:void(0);">
+												 	Get driving directions
+												 </a>
+												</p>
+										</div>						
+										<div class="coustomer-info-line">
+											<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d187.3521292068258!2d-124.0968600187008!3d43.70235783020168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c3c3b9ac656e47%3A0x7b79c93b5e4b888!2sReedsport%2C+OR+97467!5e0!3m2!1sen!2s!4v1534485973398" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
+										</div>				
+									</div>
 
 
-									<div class="chat-feedback"">
+									<div class="chat-feedback" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
+										<div class="text-notifer">
+											<h3>My Bid</h3>	
+										</div>
+										<div class="chat-feedback-column job-bidding" v-for="reviewer in listing.my_bid">
+											<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ reviewer.latest_review_image +')',}"></div>
+											<div class="job-common-description">
+												<h3 class="pointer">{{listing.job_title}}</h3>							
+											</div>										
+											<div class="job-proposal">
+												<div class="bit-offered">
+													<span><i class="icon-work-briefcase"></i> Offer: 
+														<strong>
+															{{reviewer.job_bid_amount}}		
+														</strong>
+													</span>
+													<span class="pull-right"><i class="icon-calendar-daily"></i> Date:
+														<strong>
+															{{reviewer.job_bid_data}}
+														</strong>
+													</span>
+												</div>
+												<div class="proposal-message">
+													<p>{{reviewer.latest_review_description}}</p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+
+									<div class="chat-feedback" v-else>
 										<div class="text-notifer">
 											<h3>Bids Received (2)</h3>	
 										</div>
@@ -121,8 +180,10 @@
 												</div>
 												<div class="provider-bidding-btn">
 													<a href="javascript:void(0);" class="btn btn-primary">View Profile</a>
-													<a href="javascript:void(0);" class="btn btn-primary">Chat</a>
-													<a href="javascript:void(0);" class="btn btn-primary">Award Job</a>
+													<a href="javascript:void(0);" class="btn btn-primary">Chat</a>													
+													<a href="javascript:void(0);" @click="AwardJob" v-if="reviewer.job_visited == true" class="btn btn-primary">Award Job</a>
+
+													<a href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 												</div>
 											</div>
 										</div>
@@ -149,13 +210,20 @@
 								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 							</div>
 
+							<div class="service-provider" v-else-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend'">
+														
+								<a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
+								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
+								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+							</div>							
+
 							<div class="service-provider" v-else>
 								<div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
 									<h3>Find & invite service providers to bid on your job.</h3>
 									<p>14 service providers available around you related to concrete flooring.</p>
-									<a href="javascript:void(0);" class="btn btn-primary">Find & Invite</a>				
+									<a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find & Invite</a>				
 								</div>						
-								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+								<a href="javascript:void(0);" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
 								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Cancel Job</a>								
 							</div>
 
@@ -165,7 +233,9 @@
 
 				</div>			
 			</div>
-
+			<award-job-popup @HideModalValue="HideModal" :showModalProp="awardjob"></award-job-popup>
+			<visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
+			<go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>			
 	</div>
 	<!-- <p>{{job_detail_right_panel}}</p> -->
 	</div>
@@ -178,6 +248,9 @@ import fancyBox from 'vue-fancybox';
 export default {
   data () {
     return {
+    	awardjob: false,
+    	visitjob: false,
+    	visitpopup: false,
     	jobimage: '/images/front/explore/concret.png',
     	job_detail_right_panel: this.$route.params.id,
     	reviewerimage: '/images/front/storage/personimage1.png',
@@ -217,6 +290,7 @@ export default {
 			    		latest_review_post_date: 'August, 2018',
 			    		job_bid_amount: '$250',
 			    		job_bid_data: '12 Dec, 2017',
+			    		job_visited: true,
 		    		},
 
 		    		{
@@ -233,7 +307,20 @@ export default {
 		    		},
 	    			    			    			    		
 
-	    		]
+	    		],
+	    		my_bid:[
+	    				{
+				    		latest_review_image: '/images/front/storage/personimage2.png',
+				    		latest_review_description: 'We have experienced team of talented workers who can do this job. Before quoting, we have some queries. Let’s chat to discuss further.',
+				    		list_ratings: 4,
+							job_feedback: 164,
+				    		job_perform: 174,			    		
+				    		latest_reviewer_name: 'Christopher Ward Joinery Services',
+				    		latest_review_post_date: 'August, 2018',
+				    		job_bid_amount: 'Visit Request',
+				    		job_bid_data: '12 Dec, 2017',		    		
+			    		}
+	    		],
 
 
 	    	},
@@ -254,11 +341,6 @@ export default {
         changestatuspopup() {
             this.changestatus = true;
         },
-        HideModal(){
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
-        },
         categorylisting(){
         	this.$router.push({name: 'Explore_Detail'});	
         },
@@ -272,7 +354,27 @@ export default {
         routerparama(){
         	this.list = this.$route.params.id
         	alert(this.$route.params.id);
-        }
+        },
+        FindInvite(){
+        	this.$router.push({name: 'Explore_Detail'});
+        },
+        Modify(){
+        	this.$router.push({name: 'Job-Post'});
+        },        
+        VisitPopup(){
+        	this.visitpopup = true;
+        },
+        AwardJob(){
+        	this.awardjob = true;
+        },
+        VisitApproval(){
+			this.visitjob = true;
+        },
+        HideModal(){
+            this.awardjob = false;
+            this.visitjob = false;
+            this.visitpopup = false;
+        },        
 
     },
     components: {

@@ -131,7 +131,7 @@ const routes = [
     // Job Post
 
     {
-        name: 'Job Post',
+        name: 'Job-Post',
         path: '/job-post',
         meta: {
             title: 'Professional Service Marketplace | Job Post',
