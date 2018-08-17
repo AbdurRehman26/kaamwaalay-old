@@ -145,7 +145,6 @@
                 return this.pagination ? this.pagination.current : 0; 
             },
             requestUrl(){
-                this.records = [];
                 return this.url ;
             }
         },
@@ -180,7 +179,6 @@
                 this.customer = false;
             },
             ViewDetails(id){
-                /*this.customer = true;*/
                 this.$router.push({name: 'mainjobdetail' , params : { id : id}});
             },
 
@@ -188,7 +186,7 @@
                 this.changeProviderStatus = true;
             },
             profileimage(id){
-              this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id}});  
+              this.$router.push({name: 'customerdetail' , params : {id  : id}});  
           },        
 
       },

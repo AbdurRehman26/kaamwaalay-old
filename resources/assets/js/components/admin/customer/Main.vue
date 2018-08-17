@@ -126,8 +126,6 @@
 
         computed : {
             requestUrl(){
-                this.records = [];
-
                 return this.url;
             }
         },

@@ -4712,12 +4712,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'item'],
 
     methods: {
         showModal: function showModal() {
@@ -4730,11 +4734,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('HideModalValue');
         }
     },
+    data: function data() {
+        return {
+            currentItem: ''
+        };
+    },
+    mounted: function mounted() {
+        this.currentItem = this.item;
+    },
+
     components: {
         StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
     },
 
     watch: {
+        item: function item(value) {
+            this.currentItem = value;
+        },
         showModalProp: function showModalProp(value) {
 
             if (value) {
@@ -71009,37 +71025,41 @@ var render = function() {
     [
       _vm.loadingStart ? _c("block-spinner") : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "total-record float-left" }, [
-        _c("p", [
-          _c("strong", [
-            _vm._v("Total records: "),
-            _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+      _vm.pagination
+        ? _c("div", { staticClass: "total-record float-left" }, [
+            _c("p", [
+              _c("strong", [
+                _vm._v("Total records: "),
+                _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+              ])
+            ])
           ])
-        ])
-      ]),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "pagination-wrapper float-right" },
-        [
-          _c("b-pagination", {
-            attrs: {
-              size: "md",
-              "total-rows": _vm.totalRecords,
-              "per-page": 25
-            },
-            on: { input: _vm.changePage },
-            model: {
-              value: _vm.currentPage,
-              callback: function($$v) {
-                _vm.currentPage = $$v
-              },
-              expression: "currentPage"
-            }
-          })
-        ],
-        1
-      )
+      _vm.pagination
+        ? _c(
+            "div",
+            { staticClass: "pagination-wrapper float-right" },
+            [
+              _c("b-pagination", {
+                attrs: {
+                  size: "md",
+                  "total-rows": _vm.totalRecords,
+                  "per-page": 25
+                },
+                on: { input: _vm.changePage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -71566,8 +71586,6 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "view-details-list" },
@@ -71584,7 +71602,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Electrician")])
+                    _c("p", [_vm._v(_vm._s(_vm.currentItem.title))])
                   ])
                 ],
                 1
@@ -71602,7 +71620,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Elif")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm._f("fullName")(_vm.currentItem.user)))
+                    ])
                   ])
                 ],
                 1
@@ -71620,7 +71640,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Yes")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm._f("jobType")(_vm.currentItem)))
+                    ])
                   ])
                 ],
                 1
@@ -71645,7 +71667,9 @@ var render = function() {
                           attrs: {
                             "star-size": 20,
                             "read-only": "",
-                            rating: 4,
+                            rating: _vm.currentItem.user
+                              ? _vm.currentItem.user.average_rating
+                              : 0,
                             "active-color": "#8200ff"
                           }
                         })
@@ -71669,7 +71693,28 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Electrician > AC")])
+                    _c("p", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(
+                            _vm._f("mainService")(_vm.currentItem.service)
+                          ) +
+                          " \n                        " +
+                          _vm._s(
+                            _vm.currentItem.service &&
+                            _vm.currentItem.service.parent_id
+                              ? ">"
+                              : ""
+                          ) +
+                          "\n                        " +
+                          _vm._s(
+                            _vm._f("childOrParentService")(
+                              _vm.currentItem.service
+                            )
+                          ) +
+                          "\n                    "
+                      )
+                    ])
                   ])
                 ],
                 1
@@ -71687,7 +71732,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("400$")])
+                    _c("p", [_vm._v(_vm._s(_vm.currentItem.job_amount) + "$")])
                   ])
                 ],
                 1
@@ -71706,11 +71751,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("p", [
-                        _vm._v(
-                          "Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs."
-                        )
-                      ])
+                      _c("p", [_vm._v(_vm._s(_vm.currentItem.description))])
                     ])
                   ])
                 ],
@@ -71719,8 +71760,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
+        ]
       )
     ],
     1

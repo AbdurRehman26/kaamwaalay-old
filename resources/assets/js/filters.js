@@ -105,6 +105,9 @@ Vue.filter('jobStatus', function (value) {
 
 Vue.filter('jobType', function (value) {
 
+    if(!value){
+        return ;
+    }
 
     let obj = _.find(jobTypes, item =>{
         if(item.key == value.job_type){
