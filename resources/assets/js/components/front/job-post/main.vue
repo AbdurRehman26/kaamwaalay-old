@@ -53,7 +53,7 @@
 						</div>
 						<div class="boxed">
 							<div class="col-md-6">
-								<input type="radio" id="normal" name="need" value="Normal job">
+								<input type="radio" id="normal" name="need" value="Normal job" checked="">
 	  							<label for="normal">No, Normal job</label>
 							</div>
 							<div class="col-md-6">

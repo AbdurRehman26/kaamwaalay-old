@@ -57,3 +57,9 @@ Vue.component('bid-completed', require('./components/front/bids/Completed.vue'))
 Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
 Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
 Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));
+
+// Advice Center
+Vue.component('customer', require('./components/front/advice-center/Customer.vue'));
+Vue.component('service-provider', require('./components/front/advice-center/ServiceProvider.vue'));
+
+

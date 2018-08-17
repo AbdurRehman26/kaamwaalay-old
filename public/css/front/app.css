@@ -15443,6 +15443,10 @@ body .chat-feedback-message.white-msg:before {
   padding: 30px 30px;
 }
 
+.advice-tabs .card-body .card-text {
+  text-align: left;
+}
+
 .advice-tabs .card-header .btn-block.collapsed span.switch-icon-caret {
   -webkit-transform: scaleY(1);
           transform: scaleY(1);
