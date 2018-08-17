@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="customer-detail-title">
-                    <h2 class="page-title">Edward Jackson</h2>
+                    <h2 class="page-title">{{mainUser | fullName}}</h2>
                 </div>
                 <div class="table-area">
                     <div class="table-responsive">
@@ -48,7 +48,10 @@
                 </div>
             </div>
             </div>
+        
         <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+        <vue-common-methods :url="requestUserUrl" @get-records="getUserRecord"></vue-common-methods>
+
         <view-customer-record :showModalProp="viewCustomerRecord" @HideModalValue="HideModal" :selectedJob="selectedJob"></view-customer-record>
   </div> 
 </template>
@@ -65,7 +68,8 @@ export default {
             records : [],
             url:'',
             record:{},
-            selectedJob:''
+            selectedJob:'',
+            mainUser : ''
         }
     },
 
@@ -92,19 +96,24 @@ export default {
                 self.noRecordFound = true;
             }
         },
+        getUserRecord(data){
+            this.mainUser = data;
+        }
     },
 
     mounted(){
         this.loading = true;
         this.customerId = this.$route.params.id;
         this.url = 'api/job?filter_by_user='+this.$route.params.id+'&pagination=true'
-        
     },
 
     computed : {
         requestUrl(){
             this.loading = true;
             return this.url;
+        },
+        requestUserUrl(){
+            return 'api/user/'+this.$route.params.id;    
         }
     },
 

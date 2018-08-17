@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="customer-detail-title">
-                <h2 class="page-title">Bobby Rodes</h2>
+                <h2 class="page-title">{{serviceProvider.user_detail | fullName }}</h2>
             </div>
             <div class="table-area">
                 <div class="table-responsive">
@@ -50,6 +50,7 @@
 </div>
 <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 <view-service-record :item="currentItem" :showModalProp="servicerecord" @HideModalValue="HideModal"></view-service-record>
+<vue-common-methods :url="requestSecondaryUrl" @get-records="getSecondaryRecord"></vue-common-methods>
 
 </div> 
 </template>
@@ -65,7 +66,8 @@
             noRecordFound : false,
             loading : true,
             records : [],
-            url: 'api/job'
+            url: 'api/job',
+            serviceProvider : ''
         }
     },
     components: {
@@ -90,11 +92,18 @@
                 self.noRecordFound = true;
             }
         },
+        getSecondaryRecord(data){
+            this.serviceProvider = data;
+        }
     },
     computed : {
         requestUrl(){
             return this.url + '?filter_by_service_provider='+this.$route.params.id;
+        },
+        requestSecondaryUrl(){
+            return 'api/service-provider-profile/'+this.$route.params.id;    
         }
+
     },
     mounted(){
         this.loading = true;

@@ -2725,14 +2725,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['url', 'search'],
     data: function data() {
         return {
             records: [],
-            pagination: ''
+            pagination: '',
+            loading: true
         };
     },
     mounted: function mounted() {
@@ -2745,9 +2745,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
 
             var url = self.url;
-
+            self.loading = true;
             url = self.url;
-            this.$emit('start-loading');
+            self.$emit('start-loading');
 
             if (typeof page !== 'undefined' && page) {
                 url += '&page=' + page;
@@ -2759,6 +2759,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.records = response.data;
                 self.$emit('get-records', self.records);
                 self.pagination = response.pagination;
+
+                self.loading = false;
             }).catch(function (error) {
                 self.loading = false;
                 console.log(error, 'error');
@@ -3378,11 +3380,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['pagination'],
+    props: ['pagination', 'loadingStart'],
     data: function data() {
         return {
+            loading: false,
             records: [],
             showNoRecordFound: false
         };
@@ -3398,6 +3402,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     watch: {
+        loadingStart: function loadingStart(value) {
+            console.log(value, 12321);
+        },
         pagination: function pagination() {}
     },
     methods: {
@@ -66406,7 +66413,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("vue-pagination", {
     staticClass: "col-xs-12 col-md-12",
-    attrs: { pagination: _vm.pagination },
+    attrs: { loadingStart: _vm.loading, pagination: _vm.pagination },
     on: { "page-changed": _vm.getList }
   })
 }
@@ -71013,41 +71020,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.pagination
-    ? _c("div", [
-        _c("div", { staticClass: "total-record float-left" }, [
-          _c("p", [
-            _c("strong", [
-              _vm._v("Total records: "),
-              _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+  return _c(
+    "div",
+    [
+      _vm.loadingStart ? _c("block-spinner") : _vm._e(),
+      _vm._v(" "),
+      _vm.pagination
+        ? _c("div", { staticClass: "total-record float-left" }, [
+            _c("p", [
+              _c("strong", [
+                _vm._v("Total records: "),
+                _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+              ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "pagination-wrapper float-right" },
-          [
-            _c("b-pagination", {
-              attrs: {
-                size: "md",
-                "total-rows": _vm.totalRecords,
-                "per-page": 25
-              },
-              on: { input: _vm.changePage },
-              model: {
-                value: _vm.currentPage,
-                callback: function($$v) {
-                  _vm.currentPage = $$v
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.pagination
+        ? _c(
+            "div",
+            { staticClass: "pagination-wrapper float-right" },
+            [
+              _c("b-pagination", {
+                attrs: {
+                  size: "md",
+                  "total-rows": _vm.totalRecords,
+                  "per-page": 25
                 },
-                expression: "currentPage"
-              }
-            })
-          ],
-          1
-        )
-      ])
-    : _vm._e()
+                on: { input: _vm.changePage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

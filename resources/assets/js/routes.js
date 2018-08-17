@@ -9,7 +9,7 @@ const routes = [
         name: 'dashboard',
         path: '/admin/dashboard',
         meta: {
-            title: 'PSM | Dashboard',
+            title: 'Dashboard',
             bodyClass: 'dashboard-page',
             pagetitle:'Dashboard',
             icon:'icon-speedometer',

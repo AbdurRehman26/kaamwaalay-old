@@ -1,24 +1,26 @@
 <template>
-<div v-if="pagination">
+    <div>
 
-    <div class="total-record float-left">
-        <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>
-    </div>
+        <block-spinner v-if="loadingStart"></block-spinner>
 
-    <div class="pagination-wrapper float-right">
-        <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
+        <div v-if="pagination" class="total-record float-left">
+            <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>
+        </div>
+        <div v-if="pagination" class="pagination-wrapper float-right">
+            <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
+        </div>
     </div>
-</div>
 </template>
 
 <script>
     export default{
-        props : ['pagination'],
+        props : ['pagination', 'loadingStart'],
         data(){
             return{
-            records : [],
-            showNoRecordFound : false,
-          }
+                loading : false,
+                records : [],
+                showNoRecordFound : false,
+            }
         },
         mounted(){
         },
@@ -31,6 +33,9 @@
             }
         },
         watch :{
+            loadingStart(value){
+                console.log(value , 12321);
+            },
             pagination(){
 
             }
@@ -43,4 +48,3 @@
         }
     }
 </script>
-            

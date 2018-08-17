@@ -11,14 +11,14 @@
                         </div>                     </div>
                         <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                           <label>By Status</label>
-                           <select v-model="search.filter_by_status" class="form-control">
-                             <option value="">Select All</option>
-                             <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-xs-12 col-md-2">
+                             <label>By Status</label>
+                             <select v-model="search.filter_by_status" class="form-control">
+                               <option value="">Select All</option>
+                               <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="col-xs-12 col-md-2">
                     <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                         <span>Apply</span>
                         <loader></loader>
@@ -126,7 +126,6 @@
 
         computed : {
             requestUrl(){
-                
                 return this.url;
             }
         },

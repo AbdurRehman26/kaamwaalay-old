@@ -21,22 +21,23 @@
                      </div>
                  </div>
                  <div class="col-xs-12 col-md-3 datepicker-field">
-                    <div class="form-group">
-                       <label>By Type</label>
-                       <select v-model="search.filter_by_service" class="form-control">
-                         <option value="">Select All</option>
-                         <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                     </select>
-                 </div>
+
+                  <div class="form-group">
+                   <label>By Type</label>
+                   <select v-model="search.filter_by_service" class="form-control">
+                     <option value="">Select All</option>
+                     <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
+                 </select>
              </div>
-             <div class="col-xs-12 col-md-2">
-                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                    <span>Apply</span>
-                    <loader></loader>
-                </button>
-            </div>
+         </div>
+         <div class="col-xs-12 col-md-2">
+            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                <span>Apply</span>
+                <loader></loader>
+            </button>
         </div>
     </div>
+</div>
 </div>
 <div class="col-md-12">
  <div class="table-area">
@@ -157,7 +158,7 @@
             this.changestatus = true;
         },
         providerdetailclick(id) {
-            this.$router.push({name: 'Service_Provider_Detail' , params : {id : id}});
+            this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id }});
         },
         HideModal(){
             this.service = false;
