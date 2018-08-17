@@ -57,8 +57,8 @@
             <tr v-for="record in records">
                 <td> {{ record.title }} </td>
                 <td> <a href="javascript:void(0);" @click="profileimage">{{ record.user.first_name }}</a> </td>
-                <td> {{ record.service.parent_id ? record.service.parent.title : record.service.title }} </td>
-                <td> {{ record.service.parent_id ? record.service.title : '' }} </td>
+                <td> {{ record.service | mainService }} </td>
+                <td> {{ record.service | childOrParentService }} </td>
                 <td>
                     <span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">
                         {{ record | jobStatus }}

@@ -5215,7 +5215,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         selectedInquiry: function selectedInquiry(value) {
-            console.log(value, 8899988);
             this.selectedInquiry = value;
             this.role = value.role;
             this.support_question = value.support_question;
@@ -62776,15 +62775,6 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _vm.errorMessage || _vm.successMessage
-            ? _c("alert", {
-                attrs: {
-                  errorMessage: _vm.errorMessage,
-                  successMessage: _vm.successMessage
-                }
-              })
-            : _vm._e(),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "view-details-support" },
@@ -62927,8 +62917,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
+        ]
       )
     ],
     1
@@ -64924,7 +64913,14 @@ var render = function() {
     { staticClass: "breadcrumb", attrs: { "aria-label": "breadcrumb" } },
     [
       _c("ol", { staticClass: "breadcrumb" }, [
-        _vm._m(0),
+        _c(
+          "li",
+          { staticClass: "breadcrumb-item" },
+          [
+            _c("router-link", { attrs: { to: "dashboard" } }, [_vm._v("Admin")])
+          ],
+          1
+        ),
         _vm._v(" "),
         _c(
           "li",
@@ -64938,16 +64934,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "breadcrumb-item" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [_vm._v("Admin")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
