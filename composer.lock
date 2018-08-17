@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.cygnismedia.com:cygnis-php/abstraction.git",
-                "reference": "d744f36fff3abfb2991a78282622ba523aa54e0b"
+                "reference": "f2810e0d0e90814f10ef4e383f1b5eb452bd2ef9"
             },
             "require": {
                 "hashids/hashids": "^1.0",
@@ -39,7 +39,7 @@
                 }
             ],
             "description": "Abstract Repository for Repository Pattern - Laravel",
-            "time": "2018-08-15 11:15:28"
+            "time": "2018-08-17 06:19:15"
         },
         {
             "name": "defuse/php-encryption",
