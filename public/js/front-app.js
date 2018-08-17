@@ -2449,42 +2449,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            errorMessage: '',
+            successMessage: '',
             showModalValue: false,
             changestatus: false,
             actiondelete: false,
             pageTitle: 'Admin',
-
-            listing: [{
-                fname: 'Dickerson',
-                lname: 'Macdonald',
-                email: 'dmacdonald@gmail.com',
-                acesslevel: 'Full',
-                jdate: '22-01-2018',
-                status: 'Active'
-            }, {
-                fname: 'Larsen',
-                lname: 'Shaw',
-                email: 'shawlarsen@gmail.com',
-                acesslevel: 'Review',
-                jdate: 'July 1, 2018',
-                status: 'Active'
-            }, {
-                fname: 'Geneva',
-                lname: 'Wilson',
-                email: 'genevawilson@gmail.com',
-                acesslevel: 'Full',
-                jdate: 'July 2, 2018',
-                status: 'Deactive'
-            }]
-
+            noRecordFound: false,
+            url: 'api/user?filter_by_role=1&pagination=true',
+            loading: true,
+            currentRecord: {},
+            records: [],
+            user_id: null
         };
     },
 
+    computed: {
+        requestUrl: function requestUrl() {
+            this.loading = true;
+            return this.url;
+        }
+    },
     methods: {
         ShowModalUser: function ShowModalUser() {
             this.showModalValue = true;
@@ -2496,15 +2485,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.showModalValue = false;
             this.changestatus = false;
         },
-        statusLink: function statusLink(event) {
-            if (event.target.className == "active") {
-                event.target.className = "deactive";
-                event.target.text = "Deactive";
+        statusLink: function statusLink(record) {
+            this.currentRecord = record;
+            if (this.currentRecord.status == 'banned') {
+                this.currentRecord.status = 'active';
             } else {
-                event.target.className = "active";
-                event.target.text = "Active";
+                this.currentRecord.status = 'banned';
             }
+            this.update();
+        },
+        getRecords: function getRecords(data) {
+            var self = this;
+            self.loading = false;
+            self.records = data;
+            if (!self.records.length) {
+                self.noRecordFound = true;
+            }
+        },
+
+        update: function update() {
+            var self = this;
+            var data = {
+                "id": self.currentRecord.id,
+                "status": self.currentRecord.status
+            };
+            this.$http.put('api/user/change-status', data).then(function (response) {
+                self.successMessage = response.data.message;
+                setTimeout(function () {
+                    self.successMessage = '';
+                }, 5000);
+            }).catch(function (error) {
+                self.loading = false;
+                self.errorMessage = 'An Error occured';
+                setTimeout(function () {
+                    self.errorMessage = '';
+                }, 5000);
+            });
         }
+    },
+    mounted: function mounted() {
+
+        this.loading = true;
+    },
+    beforeMount: function beforeMount() {
+        var user = JSON.parse(this.$store.getters.getAuthUser);
+        this.user_id = user.id;
     }
 });
 
@@ -2638,14 +2663,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.loading = true;
             this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
                 self.loading = false;
-                self.successMessage = response.data.message;
+                self.successMessage = response.data.response.message;
                 setTimeout(function () {
                     self.successMessage = '';
                     self.hideModal();
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'Old Password is not valid.';
+                self.errorMessage = error.response.data.message;
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);
@@ -3140,7 +3165,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tabmenu: false,
             changepass: false,
             first_name: '',
-            last_name: ''
+            last_name: '',
+            user: {}
         };
     },
 
@@ -3148,12 +3174,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onClickaway: __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__["directive"]
     },
     mounted: function mounted() {
-        var user = JSON.parse(this.$store.getters.getAuthUser);
-        this.first_name = user.first_name;
         this.getAllServices();
-        this.last_name = user.last_name;
+        this.user = JSON.parse(this.$store.getters.getAuthUser);
+        this.first_name = this.user.first_name;
+        this.last_name = this.user.last_name;
     },
 
+    computed: {
+        fullName: function fullName() {
+            return this.first_name + ' ' + this.last_name;
+        }
+    },
     methods: {
         getAllServices: function getAllServices() {
             var self = this;
@@ -3966,22 +3997,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'item'],
 
     methods: {
         showModal: function showModal() {
@@ -3992,10 +4013,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
-        },
-        ViewCustomerRecord: function ViewCustomerRecord() {
-            this.$router.push('/customer/viewjobdetail');
         }
+    },
+    data: function data() {
+        return {
+            currentItem: ''
+        };
+    },
+    mounted: function mounted() {
+        this.currentItem = this.item;
     },
 
     components: {
@@ -4003,6 +4029,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     watch: {
+        item: function item(value) {
+            this.currentItem = value;
+        },
         showModalProp: function showModalProp(value) {
 
             if (value) {
@@ -5186,7 +5215,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         selectedInquiry: function selectedInquiry(value) {
-            console.log(value, 8899988);
             this.selectedInquiry = value;
             this.role = value.role;
             this.support_question = value.support_question;
@@ -5482,6 +5510,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }), _defineProperty(_ref, 'loading', false), _ref;
   },
   mounted: function mounted() {
+    this.$auth.options.loginUrl = '/api/auth/login/admin';
     self = this;
     this.$nextTick(function () {
       setTimeout(function () {
@@ -5502,18 +5531,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var this_ = this;
       this.loading = true;
       window.successMessage = "";
-      this.$auth.login(this.login_info).then(function (response) {
-        self.loading = false;
-        this_.$store.commit('setAuthUser', response.data.response.data[0]);
-        this_.$router.push({ name: 'dashboard' });
-      }).catch(function (error) {
-        _this.loading = false;
-        this_.errorMessage = error.response.data.errors.email[0];
+      if (!this.$auth.isAuthenticated()) {
+        //this.$http.put('api/auth/login/admin', this.userData)
+        this.$auth.login(this.login_info).then(function (response) {
+          self.loading = false;
+          this_.$store.commit('setAuthUser', response.data.response.data[0]);
+          this_.$router.push({ name: 'dashboard' });
+        }).catch(function (error) {
+          _this.loading = false;
+          this_.errorMessage = error.response.data.errors.email[0];
+          setTimeout(function () {
+            this_.errorMessage = '';
+            this.loading = false;
+          }, 5000);
+        });
+      } else {
         setTimeout(function () {
-          this_.errorMessage = '';
           this.loading = false;
+          this_.$router.push({ name: 'dashboard' });
         }, 5000);
-      });
+      }
     },
     validateBeforeSubmit: function validateBeforeSubmit() {
       var _this2 = this;
@@ -63524,7 +63561,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "loader-sm" }, [
       _c("div", { staticClass: "button-loader" }, [
         _c("div", { staticClass: "loader" }, [_vm._v("Loading...")])
       ])
@@ -64909,6 +64946,38 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2fe3bf94\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/BlockSpinner.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "loader-sm block-loader" }, [
+      _c("div", { staticClass: "button-loader" }, [
+        _c("div", { staticClass: "loader" }, [_vm._v("Loading...")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2fe3bf94", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33ca9b4a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/PageLoader.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65879,53 +65948,123 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "table-area" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table last-col-fix" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.listing, function(list) {
-                      return _c("tr", [
-                        _c("td", [_vm._v(_vm._s(list.fname))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(list.lname))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("a", { attrs: { href: "javascript:;" } }, [
-                            _vm._v(_vm._s(list.email))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(list.acesslevel))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(list.jdate))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-center statustext" }, [
-                          _c("div", {}, [
+        _vm.errorMessage || _vm.successMessage
+          ? _c("alert", {
+              attrs: {
+                errorMessage: _vm.errorMessage,
+                successMessage: _vm.successMessage
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "table-area" }, [
+                _c(
+                  "div",
+                  { staticClass: "table-responsive" },
+                  [
+                    _c("table", { staticClass: "table last-col-fix" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.records, function(record) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(record.first_name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(record.last_name))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("a", { attrs: { href: "javascript:;" } }, [
+                                _vm._v(_vm._s(record.email))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm._f("accessLevel")(record)))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("formatDate")(record.created_at.date)
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
                             _c(
-                              "a",
-                              {
-                                staticClass: "active",
-                                on: { click: _vm.statusLink }
-                              },
-                              [_vm._v("Active")]
+                              "td",
+                              { staticClass: "text-center statustext" },
+                              [
+                                _c("div", {}, [
+                                  _c(
+                                    "a",
+                                    {
+                                      class: {
+                                        deactive: record.status != "active",
+                                        active: record.status == "active",
+                                        disabled: _vm.user_id == record.id
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.statusLink(record)
+                                        }
+                                      },
+                                      model: {
+                                        value: _vm.currentRecord.status,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.currentRecord,
+                                            "status",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "currentRecord.status"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm._f("adminStatus")(record))
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
                             )
                           ])
-                        ])
-                      ])
+                        })
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("no-record-found", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.noRecordFound,
+                          expression: "noRecordFound"
+                        }
+                      ]
                     })
-                  )
-                ])
+                  ],
+                  1
+                )
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "clearfix" }),
+            _vm._v(" "),
+            _c("vue-common-methods", {
+              attrs: { url: _vm.requestUrl },
+              on: { "get-records": _vm.getRecords }
+            })
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("add-new-user", {
           attrs: { showModalProp: _vm.showModalValue },
@@ -65959,18 +66098,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Join Date")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center" }, [_vm._v("Status")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-12" }, [
-      _c("div", { staticClass: "total-record float-left" }, [
-        _c("p", [
-          _c("strong", [_vm._v("Total records: "), _c("span", [_vm._v("3")])])
-        ])
       ])
     ])
   }
@@ -66418,30 +66545,10 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "view-details-list" },
             [
-              _c(
-                "b-row",
-                [
-                  _c("b-col", { attrs: { cols: "5" } }, [
-                    _c("p", [
-                      _c("strong", { staticClass: "title-head" }, [
-                        _vm._v("ID")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("1")])
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "b-row",
                 [
@@ -66454,7 +66561,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("Johnny")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm._f("fullName")(_vm.currentItem.user)))
+                    ])
                   ])
                 ],
                 1
@@ -66472,7 +66581,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("$1000")])
+                    _c("p", [_vm._v("$" + _vm._s(_vm.currentItem.amount))])
                   ])
                 ],
                 1
@@ -66497,7 +66606,9 @@ var render = function() {
                           attrs: {
                             "star-size": 20,
                             "read-only": "",
-                            rating: 4,
+                            rating: _vm.currentItem.user
+                              ? _vm.currentItem.user.average_rating
+                              : 0,
                             "active-color": "#8200ff"
                           }
                         })
@@ -66522,11 +66633,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("p", [
-                        _vm._v(
-                          "Essentially you pay an hourly rate, but only up to a certain point with the obligation to finish the project remaining even after reaching the cap."
-                        )
-                      ])
+                      _c("p", [_vm._v(_vm._s(_vm.currentItem.description))])
                     ])
                   ])
                 ],
@@ -66535,8 +66642,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
+        ]
       )
     ],
     1
@@ -70220,7 +70326,7 @@ var render = function() {
               _c("div", { staticClass: "float-right" }, [
                 _c(
                   "div",
-                  { staticClass: "left-cog" },
+                  { staticClass: "left-cog profile-block" },
                   [
                     _c(
                       "span",
@@ -70228,18 +70334,12 @@ var render = function() {
                         staticClass: "user-img",
                         on: { click: _vm.ChangePass }
                       },
-                      [
-                        _c("img", {
-                          attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                        })
-                      ]
+                      [_c("img", { attrs: { src: "", alt: "" } })]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "profile-username" }, [
                       _c("div", { staticClass: "username" }, [
-                        _vm._v(
-                          _vm._s(_vm.first_name) + " " + _vm._s(_vm.last_name)
-                        )
+                        _vm._v(_vm._s(_vm.fullName))
                       ]),
                       _vm._v(" "),
                       _c("i", { staticClass: "icon-triangle-down" })
@@ -70430,35 +70530,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "total-record float-left" }, [
-      _c("p", [
-        _c("strong", [
-          _vm._v("Total records: "),
-          _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
-        ])
+  return _vm.pagination
+    ? _c("div", [
+        _c("div", { staticClass: "total-record float-left" }, [
+          _c("p", [
+            _c("strong", [
+              _vm._v("Total records: "),
+              _c("span", [_vm._v(_vm._s(_vm.totalRecords))])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "pagination-wrapper float-right" },
+          [
+            _c("b-pagination", {
+              attrs: {
+                size: "md",
+                "total-rows": _vm.totalRecords,
+                "per-page": 10
+              },
+              on: { input: _vm.changePage },
+              model: {
+                value: _vm.currentPage,
+                callback: function($$v) {
+                  _vm.currentPage = $$v
+                },
+                expression: "currentPage"
+              }
+            })
+          ],
+          1
+        )
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "pagination-wrapper float-right" },
-      [
-        _c("b-pagination", {
-          attrs: { size: "md", "total-rows": _vm.totalRecords, "per-page": 10 },
-          on: { input: _vm.changePage },
-          model: {
-            value: _vm.currentPage,
-            callback: function($$v) {
-              _vm.currentPage = $$v
-            },
-            expression: "currentPage"
-          }
-        })
-      ],
-      1
-    )
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -87783,6 +87889,7 @@ Vue.component('SpinnerLoader', __webpack_require__("./resources/assets/js/compon
 Vue.component('DatePicker', __webpack_require__("./resources/assets/js/components/admin/common-components/Datepicker.vue"));
 Vue.component('SearchField', __webpack_require__("./resources/assets/js/components/admin/common-components/Search.vue"));
 Vue.component('no-record-found', __webpack_require__("./resources/assets/js/components/admin/common-components/NoRecords.vue"));
+Vue.component('block-spinner', __webpack_require__("./resources/assets/js/components/admin/common-components/BlockSpinner.vue"));
 
 // Common Popup
 Vue.component('delete-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/DeletePopup.vue"));
@@ -87836,8 +87943,6 @@ Vue.component('logout-component', __webpack_require__("./resources/assets/js/com
 
 Vue.component('vue-pagination', __webpack_require__("./resources/assets/js/components/admin/common-components/Pagination.vue"));
 Vue.component('vue-common-methods', __webpack_require__("./resources/assets/js/components/admin/common-components/CommonMethods.vue"));
-
-Vue.component('no-record-found', __webpack_require__("./resources/assets/js/components/admin/common-components/NoRecords.vue"));
 
 /***/ }),
 
@@ -88022,6 +88127,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-f237a478", Component.options)
   } else {
     hotAPI.reload("data-v-f237a478", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/admin/common-components/BlockSpinner.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2fe3bf94\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/BlockSpinner.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\BlockSpinner.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2fe3bf94", Component.options)
+  } else {
+    hotAPI.reload("data-v-2fe3bf94", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

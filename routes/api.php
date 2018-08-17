@@ -22,6 +22,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('login', 'Auth\LoginController@login');
+    Route::post('login/admin', 'Auth\LoginController@adminLogin');
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
@@ -36,6 +37,7 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 Route::group(['middleware' => ['auth:api']], function () {
 
+    Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit',
     ]);

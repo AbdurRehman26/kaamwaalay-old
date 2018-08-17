@@ -57,12 +57,44 @@ public $model;
                         $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
                     }
 
-                }
+                }   
+            }
+                
+            if (!empty($details['user_rating'])) {
+                    $criteria = ['user_id' => $id];
+                    $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
             }
 
             if($data->role_id == Role::CUSTOMER){
             // Todo
+                $avgCriteria = ['user_id' => $data->id,'status'=>'approved'];
+                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+                $data->avg_rating = $avgRating;
+
+                $totalInitiatedJobsCriteria = ['user_id' => $data->id,'status'=>'initiated'];
+                $totalInitiatedJobs = app('JobRepository')->getTotalCountByCriteria($totalInitiatedJobsCriteria);
+                $data->total_initiated_jobs = $totalInitiatedJobs;
+
+                $totalFinsheddJobsCriteria = ['user_id' => $data->id,'status'=>'completed'];
+                $totalFinshedJobs = app('JobRepository')->getTotalCountByCriteria($totalFinsheddJobsCriteria);
+                $data->total_finshed_jobs = $totalFinshedJobs;
+
+                $totalUrgentJobsCreatedCriteria = ['user_id' => $data->id,'job_type'=>'urgent'];
+                $totalUrgentJobsCreated = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCreatedCriteria);
+                $data->total_urgent_jobs_created = $totalUrgentJobsCreated;
+
+                $totalUrgentJobsCompletedCriteria = ['user_id' => $data->id,'job_type'=>'urgent','status'=>'completed'];
+                $totalUrgentJobsCompleted = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCompletedCriteria);
+                $data->total_urgent_jobs_completed = $totalUrgentJobsCompleted;
+                
+                
             }
+            $country = app('CountryRepository')->findById($data->country_id);                
+            $data->country = !empty($country->name) ? $country->name : '';
+            $City = app('CityRepository')->findById($data->city_id);                
+            $data->City = !empty($City->name)?$City->name:'';
+            $state = app('StateRepository')->findById($data->state_id);                
+            $data->state = !empty($state->name)?$state->name:'';
         }
 
         return $data;
@@ -91,7 +123,7 @@ public $model;
         }
 
         if(!empty($data['filter_by_service'])){
-          
+
             $this->builder->leftJoin('jobs', function ($join)  use($data){
                 $join->on('jobs.user_id', '=', 'users.id');
             })->where('jobs.service_id',$data['filter_by_service'])
@@ -134,7 +166,7 @@ public $model;
                     $profileRequest = app('ServiceProviderProfileRequestRepository')->findByCriteria($criteria);
                     
                     if(!$profileRequest){
-                        
+
 
                         foreach ($data['service_details'] as $key => $service) {
                             if(empty($service['service_id'])){
@@ -198,6 +230,10 @@ public $model;
             $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
 
         return  $this->model->count();
+    }
+    public function changeStatus(array $data = []) {
+        unset($data['user_id']);
+       return parent::update($data);
     }
 
 }

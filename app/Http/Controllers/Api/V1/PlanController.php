@@ -23,7 +23,7 @@ class PlanController extends ApiResourceController
 
         if($value == 'update'){
             $rules['id'] =  'required|exists:plans,id';
-            $rules['amount'] = 'required|numeric|not_in';
+            $rules['amount'] = 'required|numeric|not_in:0';
         }
 
 

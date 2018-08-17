@@ -48,6 +48,7 @@
         }
       },
       mounted() {
+        this.$auth.options.loginUrl = '/api/auth/login/admin'
         self = this
         this.$nextTick(function () {
          setTimeout(function(){
@@ -62,22 +63,30 @@
       },
       methods: {
         login: function () {
-          var this_ = this;
-          this.loading = true
-          window.successMessage = ""
-          this.$auth.login(this.login_info).then(function (response) {
-            self.loading = false
-            this_.$store.commit('setAuthUser', response.data.response.data[0]);
-            this_.$router.push({ name: 'dashboard'})
-          }).catch(error => {
-            this.loading = false
-            this_.errorMessage  =error.response.data.errors.email[0];
-            setTimeout(function(){
-              this_.errorMessage='';
-              this.loading = false
-            }, 5000);
-          })
-        },
+                    var this_ = this;
+                    this.loading = true
+                    window.successMessage = ""
+                    if(!this.$auth.isAuthenticated()){
+                      //this.$http.put('api/auth/login/admin', this.userData)
+                     this.$auth.login(this.login_info).then(function (response) {
+                      self.loading = false
+                      this_.$store.commit('setAuthUser', response.data.response.data[0]);
+                      this_.$router.push({ name: 'dashboard'})
+                    }).catch(error => {
+                      this.loading = false
+                      this_.errorMessage  =error.response.data.errors.email[0];
+                      setTimeout(function(){
+                        this_.errorMessage='';
+                        this.loading = false
+                      }, 5000);
+                    })
+                  }else{
+                    setTimeout(function(){
+                        this.loading = false
+                        this_.$router.push({ name: 'dashboard'})
+                      }, 5000);
+                  }
+                 },
         validateBeforeSubmit() {
           this.$validator.validateAll().then((result) => {
             if (result) {

@@ -12,50 +12,34 @@
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                           <label>By Business/Individual</label>
-                           <select v-model="search.filter_by_business_type" class="form-control">
-                             <option value="">Select</option>
-                             <option value="business">Business</option>
-                             <option value="individual">Individual</option>
-                         </select>
-                     </div>
                              <label>By Business/Individual</label>
-                             <select class="form-control">
-                               <option>Select</option>
-                               <option>Business</option>
-                               <option>Individual</option>
+                             <select v-model="search.filter_by_business_type" class="form-control">
+                               <option value="">Select</option>
+                               <option value="business">Business</option>
+                               <option value="individual">Individual</option>
                            </select>
                        </div>
                    </div>
                    <div class="col-xs-12 col-md-3 datepicker-field">
                       <div class="form-group">
-                                   <label>By Type</label>
-                                   <select class="form-control">
-                                     <option>Select Service Type</option>
-                                     <option>Electrician</option>
-                                     <option>Electrician >> Ac</option>
-                     </select>
-                 </div>
-                 <div class="col-xs-12 col-md-3 datepicker-field">
-                  <div class="form-group">
-                   <label>By Type</label>
-                   <select v-model="search.filter_by_service" class="form-control">
-                     <option value="">Select All</option>
-                     <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                 </select>
-             </div>
-         </div>
-         <div class="col-xs-12 col-md-2">
-            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                <span>Apply</span>
-                <loader></loader>
-            </button>
+                         <label>By Type</label>
+                         <select v-model="search.filter_by_service" class="form-control">
+                           <option value="">Select All</option>
+                           <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
+                       </select>
+                   </div>
+               </div>
+               <div class="col-xs-12 col-md-2">
+                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                    <span>Apply</span>
+                    <loader></loader>
+                </button>
+            </div>
         </div>
     </div>
 </div>
-</div>
 <div class="col-md-12">
- <div class="table-area">
+   <div class="table-area">
     <div class="table-responsive">
         <table class="table service-provider-table first-last-col-fix">
           <thead>
@@ -81,8 +65,8 @@
             <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
-            <td ><span class="tags" :class="[record.status]">{{record.status}}</span></td>
-            <td><star-rating :star-size="20" read-only :rating="3" active-color="#8200ff"></star-rating></td>
+            <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
+            <td><star-rating :star-size="20" read-only :rating="record.user_detail ?  record.user_detail.average_rating : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
                 <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -151,7 +135,7 @@
             return this.url;
         },
         servicesList(){
-            return this.$store.getters.getServicesList;
+                return this.$store.getters.getAllServices;
         },
 
     },

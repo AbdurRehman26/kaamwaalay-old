@@ -32,7 +32,6 @@ class ServiceController extends ApiResourceController
         $rules['images']                  = 'required';       
         $rules['status']                  = 'required|in:0,1';    
         $rules['is_featured']                  = 'required|in:0,1';    
-        $rules['is_hero_nav']                  = 'required|in:0,1';    
         //$rules['user_id'] =  'required|exists:users,id';   
     }
 
