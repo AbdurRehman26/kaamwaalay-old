@@ -1991,6 +1991,9 @@ body{
     }
     .card-body {
         padding: 30px 30px;
+        .card-text {
+            text-align: left;
+        }
     }
 
 }

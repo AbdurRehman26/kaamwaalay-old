@@ -2522,7 +2522,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/advice-center/main.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/advice-center/Customer.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2663,59 +2663,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			advice_center: 'customer',
+			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+
+			text1: "After posting your job, you'll receive bids from professionals ready to help. You can initiate chat with professionals to discuss further. We’ll let you know with text or email notifications whenever a service provider sends you a new message.",
+			text2: " When you receive an email notification about a new message or bid from a service provider, click the Reply button in the body of the email (instead of replying in your email inbox)",
+			message: ""
+
+		};
+	},
+	mounted: function mounted() {
+		this.message = this.text1 + '\n' + this.text2;
+	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/advice-center/ServiceProvider.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -2856,6 +2828,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
+			advice_center: 'customer',
+			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+
+			text1: "After posting your job, you'll receive bids from professionals ready to help. You can initiate chat with professionals to discuss further. We’ll let you know with text or email notifications whenever a service provider sends you a new message.",
+			text2: " When you receive an email notification about a new message or bid from a service provider, click the Reply button in the body of the email (instead of replying in your email inbox)",
+			message: ""
+
+		};
+	},
+	mounted: function mounted() {
+		this.message = this.text1 + '\n' + this.text2;
+	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/advice-center/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			advice_center: 'customer',
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 
 			text1: "After posting your job, you'll receive bids from professionals ready to help. You can initiate chat with professionals to discuss further. We’ll let you know with text or email notifications whenever a service provider sends you a new message.",
@@ -65970,6 +66043,645 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-00d6c33a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/advice-center/Customer.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "advice-topics" }, [
+    _c("div", { staticClass: "advice-tabs" }, [
+      _c(
+        "div",
+        { attrs: { role: "tablist" } },
+        [
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion1",
+                          modifiers: { accordion1: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to sign up and use professional service marketplace? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion1",
+                    visible: "",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion2",
+                          modifiers: { accordion2: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to message service providers using professional service marketplace? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion2",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion3",
+                          modifiers: { accordion3: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to download Professional service marketplace mobile app? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion3",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion4",
+                          modifiers: { accordion4: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to post a new job? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion4",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion5",
+                          modifiers: { accordion5: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to add photos to my job request? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion5",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion6",
+                          modifiers: { accordion6: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to change my job details later on? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion6",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion7",
+                          modifiers: { accordion7: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How and where to view bids on my job? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion7",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion8",
+                          modifiers: { accordion8: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to award a job to service provider? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion8",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion9",
+                          modifiers: { accordion9: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to remove my job if I don’t need that work anymore? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion9",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion10",
+                          modifiers: { accordion10: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to post urgent job requests? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion10",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-00d6c33a", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-01ce7eb2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/404/404Panel.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -66429,7 +67141,8 @@ var staticRenderFns = [
               type: "radio",
               id: "normal",
               name: "need",
-              value: "Normal job"
+              value: "Normal job",
+              checked: ""
             }
           }),
           _vm._v(" "),
@@ -66872,6 +67585,645 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0fcb15e4", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1063d71a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/advice-center/ServiceProvider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "advice-topics" }, [
+    _c("div", { staticClass: "advice-tabs" }, [
+      _c(
+        "div",
+        { attrs: { role: "tablist" } },
+        [
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion11",
+                          modifiers: { accordion11: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to sign up and use professional service marketplace? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion11",
+                    visible: "",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion12",
+                          modifiers: { accordion12: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to message service providers using professional service marketplace? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion12",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion13",
+                          modifiers: { accordion13: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to download Professional service marketplace mobile app? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion13",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion14",
+                          modifiers: { accordion14: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to post a new job? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion14",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion15",
+                          modifiers: { accordion15: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to add photos to my job request? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion15",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion16",
+                          modifiers: { accordion16: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to change my job details later on? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion16",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion17",
+                          modifiers: { accordion17: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How and where to view bids on my job? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion17",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion18",
+                          modifiers: { accordion18: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to award a job to service provider? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion18",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion19",
+                          modifiers: { accordion19: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v(
+                        "How to remove my job if I don’t need that work anymore? "
+                      ),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion19",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            { staticClass: "mb-3", attrs: { "no-body": "" } },
+            [
+              _c(
+                "b-card-header",
+                {
+                  staticClass: "p-1",
+                  attrs: { "header-tag": "header", role: "tab" }
+                },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "b-toggle",
+                          rawName: "v-b-toggle.accordion20",
+                          modifiers: { accordion20: true }
+                        }
+                      ],
+                      attrs: { block: "", href: "#", variant: "grey" }
+                    },
+                    [
+                      _vm._v("How to post urgent job requests? "),
+                      _c("span", { staticClass: "switch-icon-caret" }, [
+                        _c("i", { staticClass: "icon-triangle-up" })
+                      ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-collapse",
+                {
+                  attrs: {
+                    id: "accordion20",
+                    accordion: "my-accordion",
+                    role: "tabpanel"
+                  }
+                },
+                [
+                  _c("b-card-body", [
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.message) +
+                          "\n\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1063d71a", module.exports)
   }
 }
 
@@ -68061,1350 +69413,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "advice-center" }, [
-    _c("div", { staticClass: "content-area" }, [
-      _c(
-        "div",
-        { staticClass: "main-banner elementary-banner explore-banner" },
-        [
-          _c("div", { staticClass: "main-img" }, [
-            _c("img", { attrs: { src: _vm.bannerimage } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("div", { staticClass: "verticle-align" }, [
-              _c("div", { staticClass: "inner" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "element-column-image" }, [
-                  _c("img", { attrs: { src: _vm.contentimage } })
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "splash-design md d-1 top-left" }),
-                _vm._v(" "),
-                _c("span", {
-                  staticClass: "splash-design d-4 bottom-right lg"
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "splash-design d-6 bottom-left sm" })
+  return _c(
+    "div",
+    { staticClass: "advice-center" },
+    [
+      _c("div", { staticClass: "content-area" }, [
+        _c(
+          "div",
+          { staticClass: "main-banner elementary-banner explore-banner" },
+          [
+            _c("div", { staticClass: "main-img" }, [
+              _c("img", { attrs: { src: _vm.bannerimage } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "content" }, [
+              _c("div", { staticClass: "verticle-align" }, [
+                _c("div", { staticClass: "inner" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "element-column-image" }, [
+                    _c("img", { attrs: { src: _vm.contentimage } })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "splash-design md d-1 top-left" }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "splash-design d-4 bottom-right lg"
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "splash-design d-6 bottom-left sm"
+                  })
+                ])
               ])
             ])
-          ])
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "advice-topics" }, [
-      _vm._m(1),
+          ]
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "advice-tabs" },
-        [
-          _c(
-            "b-tabs",
-            [
-              _c("b-tab", { attrs: { title: "CUSTOMERS", active: "" } }, [
-                _c(
-                  "div",
-                  { attrs: { role: "tablist" } },
-                  [
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion1",
-                                    modifiers: { accordion1: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How to sign up and use professional service marketplace? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion1",
-                              visible: "",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion2",
-                                    modifiers: { accordion2: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How to message service providers using professional service marketplace? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion2",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion3",
-                                    modifiers: { accordion3: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How to download Professional service marketplace mobile app? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion3",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion4",
-                                    modifiers: { accordion4: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v("How to post a new job? "),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion4",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion5",
-                                    modifiers: { accordion5: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v("How to add photos to my job request? "),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion5",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion6",
-                                    modifiers: { accordion6: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How to change my job details later on? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion6",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion7",
-                                    modifiers: { accordion7: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How and where to view bids on my job? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion7",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion8",
-                                    modifiers: { accordion8: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How to award a job to service provider? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion8",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion9",
-                                    modifiers: { accordion9: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v(
-                                  "How to remove my job if I don’t need that work anymore? "
-                                ),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion9",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-card",
-                      { staticClass: "mb-3", attrs: { "no-body": "" } },
-                      [
-                        _c(
-                          "b-card-header",
-                          {
-                            staticClass: "p-1",
-                            attrs: { "header-tag": "header", role: "tab" }
-                          },
-                          [
-                            _c(
-                              "b-btn",
-                              {
-                                directives: [
-                                  {
-                                    name: "b-toggle",
-                                    rawName: "v-b-toggle.accordion10",
-                                    modifiers: { accordion10: true }
-                                  }
-                                ],
-                                attrs: { block: "", href: "#", variant: "grey" }
-                              },
-                              [
-                                _vm._v("How to post urgent job requests? "),
-                                _c(
-                                  "span",
-                                  { staticClass: "switch-icon-caret" },
-                                  [_c("i", { staticClass: "icon-triangle-up" })]
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-collapse",
-                          {
-                            attrs: {
-                              id: "accordion10",
-                              accordion: "my-accordion",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("b-card-body", [
-                              _c("p", { staticClass: "card-text" }, [
-                                _vm._v(
-                                  "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                    _vm._s(_vm.message) +
-                                    "\n\t\t\t\t\t    \t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-tab",
-                { attrs: { title: "SERVICE PROVIDER" } },
-                [
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion1",
-                                  modifiers: { accordion1: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v(
-                                "How to sign up and use professional service marketplace? "
-                              ),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion1",
-                            visible: "",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion2",
-                                  modifiers: { accordion2: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v(
-                                "How to message service providers using professional service marketplace? "
-                              ),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion2",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion3",
-                                  modifiers: { accordion3: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v(
-                                "How to download Professional service marketplace mobile app? "
-                              ),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion3",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion4",
-                                  modifiers: { accordion4: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v("How to post a new job? "),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion4",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion5",
-                                  modifiers: { accordion5: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v("How to add photos to my job request? "),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion5",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion6",
-                                  modifiers: { accordion6: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v("How to change my job details later on? "),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion6",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion7",
-                                  modifiers: { accordion7: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v("How and where to view bids on my job? "),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion7",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion8",
-                                  modifiers: { accordion8: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v(
-                                "How to award a job to service provider? "
-                              ),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion8",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion9",
-                                  modifiers: { accordion9: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v(
-                                "How to remove my job if I don’t need that work anymore? "
-                              ),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion9",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card",
-                    { staticClass: "mb-3", attrs: { "no-body": "" } },
-                    [
-                      _c(
-                        "b-card-header",
-                        {
-                          staticClass: "p-1",
-                          attrs: { "header-tag": "header", role: "tab" }
-                        },
-                        [
-                          _c(
-                            "b-btn",
-                            {
-                              directives: [
-                                {
-                                  name: "b-toggle",
-                                  rawName: "v-b-toggle.accordion10",
-                                  modifiers: { accordion10: true }
-                                }
-                              ],
-                              attrs: { block: "", href: "#", variant: "grey" }
-                            },
-                            [
-                              _vm._v("How to post urgent job requests? "),
-                              _c("span", { staticClass: "switch-icon-caret" }, [
-                                _c("i", { staticClass: "icon-triangle-up" })
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-collapse",
-                        {
-                          attrs: {
-                            id: "accordion10",
-                            accordion: "my-accordion",
-                            role: "tabpanel"
-                          }
-                        },
-                        [
-                          _c("b-card-body", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t    \t\t\t\t\t" +
-                                  _vm._s(_vm.message) +
-                                  "\n\t\t\t\t\t    \t\t\t\t"
-                              )
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "content-area" }, [
-      _c(
-        "div",
-        { staticClass: "main-banner elementary-banner explore-banner" },
-        [
-          _c("div", { staticClass: "main-img" }, [
-            _c("img", { attrs: { src: _vm.bannerimage } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("div", { staticClass: "verticle-align" }, [
-              _c("div", { staticClass: "inner" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "element-column-image" }, [
-                  _c("img", { attrs: { src: _vm.contentimage } })
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "splash-design md d-1 top-left" }),
-                _vm._v(" "),
-                _c("span", {
-                  staticClass: "splash-design d-4 bottom-right lg"
+      _c("div", { staticClass: "advice-topics" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "advice-tabs" },
+          [
+            _c(
+              "b-tabs",
+              [
+                _c("b-tab", {
+                  class: { active: _vm.advice_center === "customer" },
+                  attrs: { title: "CUSTOMERS" },
+                  on: {
+                    click: function($event) {
+                      _vm.advice_center = "customer"
+                    }
+                  }
                 }),
                 _vm._v(" "),
-                _c("span", { staticClass: "splash-design d-6 bottom-left sm" })
+                _c("b-tab", {
+                  class: { active: _vm.advice_center === "service-provider" },
+                  attrs: { title: "SERVICE PROVIDER" },
+                  on: {
+                    click: function($event) {
+                      _vm.advice_center = "service-provider"
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("customer", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.advice_center == "customer",
+            expression: "advice_center == 'customer'"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("service-provider", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.advice_center == "service-provider",
+            expression: "advice_center == 'service-provider'"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-area" }, [
+        _c(
+          "div",
+          { staticClass: "main-banner elementary-banner explore-banner" },
+          [
+            _c("div", { staticClass: "main-img" }, [
+              _c("img", { attrs: { src: _vm.bannerimage } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "content" }, [
+              _c("div", { staticClass: "verticle-align" }, [
+                _c("div", { staticClass: "inner" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "element-column-image" }, [
+                    _c("img", { attrs: { src: _vm.contentimage } })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "splash-design md d-1 top-left" }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "splash-design d-4 bottom-right lg"
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "splash-design d-6 bottom-left sm"
+                  })
+                ])
               ])
             ])
-          ])
-        ]
-      )
-    ])
-  ])
+          ]
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -92613,6 +92754,102 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/advice-center/Customer.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/advice-center/Customer.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-00d6c33a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/advice-center/Customer.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\advice-center\\Customer.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-00d6c33a", Component.options)
+  } else {
+    hotAPI.reload("data-v-00d6c33a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/advice-center/ServiceProvider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/advice-center/ServiceProvider.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1063d71a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/advice-center/ServiceProvider.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\advice-center\\ServiceProvider.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1063d71a", Component.options)
+  } else {
+    hotAPI.reload("data-v-1063d71a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/advice-center/main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -94933,6 +95170,10 @@ Vue.component('bid-completed', __webpack_require__("./resources/assets/js/compon
 Vue.component('bid-awarded', __webpack_require__("./resources/assets/js/components/front/bids/Awarded.vue"));
 Vue.component('bid-archived', __webpack_require__("./resources/assets/js/components/front/bids/Archived.vue"));
 Vue.component('bid-active', __webpack_require__("./resources/assets/js/components/front/bids/ActiveBids.vue"));
+
+// Advice Center
+Vue.component('customer', __webpack_require__("./resources/assets/js/components/front/advice-center/Customer.vue"));
+Vue.component('service-provider', __webpack_require__("./resources/assets/js/components/front/advice-center/ServiceProvider.vue"));
 
 /***/ }),
 
