@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="pagination">
 
     <div class="total-record float-left">
         <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>

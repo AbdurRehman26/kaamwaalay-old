@@ -25,6 +25,17 @@ const jobStatuses = [
 
 ];
 
+const jobTypes = [
+{
+    key : 'normal',
+    value : 'No'
+},
+{
+    key : 'urgent',
+    value : 'Yes'
+},
+];
+
 const providerStatuses = [
 {
     key : 'active',
@@ -32,6 +43,10 @@ const providerStatuses = [
 },
 {
     key : 'pending',
+    value : 'Pending'
+},
+{
+    key : 'in_pending',
     value : 'Pending'
 },
 {
@@ -71,7 +86,13 @@ const accessLevelField = [
 ];
 
 Vue.filter('jobStatus', function (value) {
+    if(typeof(value) == 'undefined'){
+        return ;
+    }
 
+    if(!Object.keys(value).length){
+        return ;
+    }
 
     let obj = _.find(jobStatuses, item =>{
         if(item.key == value.status){
@@ -79,7 +100,18 @@ Vue.filter('jobStatus', function (value) {
         }
     });
 
-    return obj.value.replace(/\s/g, '').toLowerCase().trim();
+    return obj.value.replace(/\s/g, '').trim();
+});
+
+Vue.filter('jobType', function (value) {
+
+
+    let obj = _.find(jobTypes, item =>{
+        if(item.key == value.job_type){
+            return item; 
+        }
+    });
+    return obj.value;
 });
 
 Vue.filter('userStatus', function (value) {
@@ -115,4 +147,37 @@ Vue.filter('accessLevel', function (value) {
         }
     });
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+
+Vue.filter('fullName', function (value) {
+    if(value){
+        return value.first_name + ' '+ value.last_name;
+    }
+});
+
+
+Vue.filter('mainService', function (value) {
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        return value.parent.title;
+    }
+
+    return value.title;
+
+});
+
+Vue.filter('childOrParentService', function (value) {
+
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        return value.title;
+    }
+
+    return value.parent.title;
 });
