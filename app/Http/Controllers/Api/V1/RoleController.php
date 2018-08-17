@@ -29,7 +29,7 @@ class RoleController extends ApiResourceController
     }
 
     if($value == 'show'){
-
+        $rules['id'] =  'required|exists:roles,id';
     }
 
     if($value == 'index'){
