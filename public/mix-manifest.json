@@ -2,5 +2,9 @@
     "/js/app.js": "/js/app.js?id=65b0238eeff626d0f428",
     "/css/app.css": "/css/app.css?id=d13732da0179c88713d8",
     "/css/front/app.css": "/css/front/app.css?id=601b0581f2a10e76139e",
+<<<<<<< HEAD
     "/js/front-app.js": "/js/front-app.js?id=2c55731c9651191ea1fc"
+=======
+    "/js/front-app.js": "/js/front-app.js?id=598d4dd8eee4e2f4320a"
+>>>>>>> 551c5a805dab8911740028553988de662fad6ecf
 }
