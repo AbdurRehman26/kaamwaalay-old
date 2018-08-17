@@ -1828,9 +1828,13 @@ body{
         font-size: 16px;
     }
     .camp-views {
-        position: relative;
+        /* position: relative;
         padding-bottom: 70px;
-        padding-top: 30px;
+        padding-top: 30px; */
+        position: relative;
+        padding-bottom: 0px;
+        padding-top: 20px;
+        overflow: auto;        
         .view-status {
             display: inline-block;
             float: left;
@@ -2230,11 +2234,12 @@ body{
             i{
                 position: absolute;
                 left: 17px;
+                font-size: 21px;
             }            
         }
         &.btn-cancel-job{
             i.icon-folder{
-                top: 12px;
+                top: 9px;
             }
         }
     }
