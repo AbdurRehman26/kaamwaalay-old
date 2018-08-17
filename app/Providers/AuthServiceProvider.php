@@ -24,7 +24,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+        Passport::tokensCan([
+            'user.index' => 'User list',
+            'service.index' => 'Service list',
+        ]);
         Passport::routes();
     }
 }

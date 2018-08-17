@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group([
-    'prefix' => 'auth'
+    'prefix' => 'auth','scopes'
 ], function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('login/admin', 'Auth\LoginController@adminLogin');
@@ -35,7 +35,7 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['middleware' => ['auth:api','scopes']], function () {
 
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus');

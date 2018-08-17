@@ -19,6 +19,7 @@ class RolesTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'title' => 'Admin',
+                'scope' => 'user.index,service.index',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
