@@ -70053,7 +70053,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "user-login-detail float-left",
+              staticClass: "user-login-detail float-left pointer",
               on: {
                 click: function($event) {
                   _vm.$emit("profilepopup")
@@ -72383,7 +72383,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "user-login-detail float-left",
+              staticClass: "user-login-detail float-left pointer",
               on: {
                 click: function($event) {
                   _vm.$emit("profilepopup")

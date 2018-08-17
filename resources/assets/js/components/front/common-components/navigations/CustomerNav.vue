@@ -6,7 +6,7 @@
             <li><router-link to="/my-jobs">My Jobs</router-link></li>
             <li><a href="/job-post" class="btn btn-primary post-job-btn">Post a Job</a></li>
             <li>
-                <div class="user-login-detail float-left" @click="$emit('profilepopup')">
+                <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
                         <img src="/images/dummy/user-pic.jpg" alt="">
                     </span>
