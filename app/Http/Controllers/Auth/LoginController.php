@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Data\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Data\Models\User;
+use App\Data\Models\Role;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Lang;
 use Carbon\carbon;
@@ -76,6 +77,52 @@ class LoginController extends Controller
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
                 return $this->sendPendingLoginResponse($request);
+            } else {
+                // Increment the failed login attempts and redirect back to the
+                // login form with an error message.
+                $this->incrementLoginAttempts($request);
+
+                return $this->sendBlockedLoginResponse($request);
+            }
+        }
+        return $this->sendFailedLoginResponse($request);
+    }
+      /**
+     * Handle a admin login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function adminLogin(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+        if ($this->guard()->validate($this->credentials($request))) {
+            $user = $this->guard()->getLastAttempted();
+            // Make sure the user is active
+            if ($user->status == User::ACTIVE && $this->attemptLogin($request) && $user->role_id == Role::ADMIN) {
+                // Send the normal successful login response
+                return $this->sendLoginResponse($request);
+            }else if($user->status == User::PENDING){
+                // Increment the failed login attempts and redirect back to the
+                // login form with an error message.
+                $this->incrementLoginAttempts($request);
+                return $this->sendPendingLoginResponse($request);
+            } else if($user->role_id != Role::ADMIN){
+                // Increment the failed login attempts and redirect back to the
+                // login form with an error message.
+                $this->incrementLoginAttempts($request);
+                return $this->sendCheckAdminLoginResponse($request);
             } else {
                 // Increment the failed login attempts and redirect back to the
                 // login form with an error message.
@@ -171,5 +218,11 @@ class LoginController extends Controller
             }
 
         }
+    }
+    protected function sendCheckAdminLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.adminLogin')],
+        ]);
     }
 }
