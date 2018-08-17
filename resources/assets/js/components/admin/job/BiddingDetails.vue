@@ -39,6 +39,8 @@
                         </tr>
                     </tbody>
                 </table>
+                <no-record-found v-show="noRecordFound"></no-record-found>
+
             </div>
         </div>
     </div>
@@ -73,6 +75,12 @@
 
     methods: {
         getRecords(data){
+            let self = this;
+            self.noRecordFound = false;
+
+            if (!self.records.length) {
+                self.noRecordFound = true;
+            }
             this.records = data;
         },
     }

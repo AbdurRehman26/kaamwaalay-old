@@ -44,12 +44,12 @@ public $model;
 
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  []) {
         $data = parent::findById($id, $refresh, $details, $input);
-
+        
         if ($data) {
-            if (empty($details)) {
+            if (!empty($details['user_rating'])) {
                 $details  = ['user_rating' => true];
-                $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
             }
+            $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
@@ -62,6 +62,11 @@ public $model;
             $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
             $data->urgent_jobs_completed = $urgentJobsCompleted;
+
+
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id];
+            $data->urgent_jobs_created  = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
+
 
             $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $totalRevenue = app('JobBidRepository')->getTotalRevenueCriteria($bidsCriteria);
