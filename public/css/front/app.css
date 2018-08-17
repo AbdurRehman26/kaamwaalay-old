@@ -15838,6 +15838,11 @@ body .chat-feedback-message.white-msg:before {
   color: #ccc;
 }
 
+.chat-message:hover,
+.chat-message:focus {
+  text-decoration: none !important;
+}
+
 .profile-rejection-box {
   border-radius: 12px;
   background-color: #F9F9F9;

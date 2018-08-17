@@ -2324,6 +2324,9 @@ body{
             color: #ccc;
         }
     }
+        &:hover,&:focus{
+            text-decoration: none !important;
+        }        
 }
 
 .profile-rejection-box{
