@@ -41603,3 +41603,8 @@ a.underline {
   top: -1px;
 }
 
+.addmore-text {
+  position: relative;
+  top: 9px;
+}
+

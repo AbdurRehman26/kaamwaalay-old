@@ -6,7 +6,7 @@
 				<div class="general-setting">
 
 	        	<!-- Featured Row -->
-					
+
 				<div class="featured-row">
 					<div class="row">
 						<div class="col-md-12">
@@ -17,27 +17,44 @@
 					</div>
 
 					<div class="row featured-setting">
-							
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>Featured Amount</label>
-								<input class="form-control" placeholder="Enter featured amount">
-							</div>
-						</div>
-
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>Featured Quantity</label>
-								<input class="form-control" placeholder="Enter featured quantity">
-							</div>
-						</div>
-
-                        <div class="col-xs-12 col-md-2 filter-btn-top-space add-more-featured">
-                            <a href="javascript:;">+ Add more</a>
+                        <div class="col-xs-12 col-md-4">
+                            <label>Featured Amount</label>
                         </div>
+                        <div class="col-xs-12 col-md-4">
+                            <label>Featured Quantity</label>
+                        </div>
+                        <div class="col-xs-12 col-md-8 featured-setting-row">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Enter featured amount">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Enter featured quantity">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-8 featured-setting-row">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Enter featured amount">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Enter featured quantity">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="addmore-text">+ Add more</a>
+                    </div>
 
-					</div>
-						
+
 					<div class="row">
 							<div class="col-xs-12 col-md-3">
                                 <button class="btn btn-primary">
@@ -48,7 +65,7 @@
 					</div>
 				</div>
 				<!-- Featured Row End -->
-				
+
 	        	<!-- Urgent Row -->
 					<div class="urgent-section-row">
 						<div class="row">
@@ -59,7 +76,7 @@
 							</div>
 						</div>
 
-						<div class="row urgent-setting">	
+						<div class="row urgent-setting">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>Urgent Amount</label>
@@ -90,7 +107,7 @@
 							</div>
 						</div>
 
-						<div class="row urgent-setting">	
+						<div class="row urgent-setting">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>State</label>
@@ -106,17 +123,17 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>City</label>
-									<multiselect 
-									      v-model="value" 
-									      :options="options" 
-									      :multiple="true" 
-									      :close-on-select="false" 
-									      :clear-on-select="false" 
-									      :hide-selected="true" 
-									      :preserve-search="true" 
-									      placeholder="Pick some" 
-									      label="name" 
-									      track-by="name" 
+									<multiselect
+									      v-model="value"
+									      :options="options"
+									      :multiple="true"
+									      :close-on-select="false"
+									      :clear-on-select="false"
+									      :hide-selected="true"
+									      :preserve-search="true"
+									      placeholder="Pick some"
+									      label="name"
+									      track-by="name"
 									      :preselect-first="true">
 
 								    <template slot="tag" slot-scope="props">
@@ -167,9 +184,9 @@ export default {
 	    ],
     	}
   	},
-  	
-  	components: { 
-  	 	Multiselect 
+
+  	components: {
+  	 	Multiselect
   	},
 
     methods: {
