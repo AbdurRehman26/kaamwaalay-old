@@ -6,7 +6,8 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-               <SearchField @search="onSearch" :searchValue="search" @onSearchEnter="onApply"></SearchField>
+                <label>Search</label>
+                <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
              </div>
            </div>
            <div class="col-xs-12 col-md-3 datepicker-field">
@@ -128,10 +129,6 @@
           filter: this.filter_by_inquiry
         };
         this.getList(data, false);
-      },
-      onSearch(val) {
-        console.log(val);
-        this.search = val;
       },
       SupportDetail(list) {
         this.selectedInquiry = list;
