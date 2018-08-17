@@ -10766,8 +10766,8 @@ a.text-dark:focus {
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon-front.eot?d85dd7b83f4f0555b9790a19c2eb3a99);
-  src: url(/fonts/icomoon-front.eot?d85dd7b83f4f0555b9790a19c2eb3a99#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?1843d72f1023b7500919faa078cd8515) format("truetype"), url(/fonts/icomoon-front.woff?14e39a8e04eb92e8c8d1b382eaa04817) format("woff"), url(/fonts/icomoon-front.svg?0b22bddd255f640ca6501381ae738891#icomoon) format("svg");
+  src: url(/fonts/icomoon-front.eot?2a621f2c38f6b11ca3c596867369de71);
+  src: url(/fonts/icomoon-front.eot?2a621f2c38f6b11ca3c596867369de71#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?7f920f01c39f79826daa3f3259bf8e39) format("truetype"), url(/fonts/icomoon-front.woff?0e0f164c05fa0b9e0a5787f44f0867b8) format("woff"), url(/fonts/icomoon-front.svg?9b46ee979e5cdf0d38c74e3bd8923b21#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -10783,6 +10783,78 @@ a.text-dark:focus {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clock:before {
+  content: "\E94E";
+}
+
+.icon-location:before {
+  content: "\E917";
+}
+
+.icon-map-marker2:before {
+  content: "\E917";
+}
+
+.icon-marker:before {
+  content: "\E917";
+}
+
+.icon-pin:before {
+  content: "\E917";
+}
+
+.icon-quotes-right:before {
+  content: "\E978";
+}
+
+.icon-quotes-right2:before {
+  content: "\E979";
+}
+
+.icon-quotes-right3:before {
+  content: "\E97A";
+}
+
+.icon-trophy:before {
+  content: "\E907";
+}
+
+.icon-location3:before {
+  content: "\E947";
+}
+
+.icon-quotes-left:before {
+  content: "\E977";
+}
+
+.icon-search22:before {
+  content: "\E986";
+}
+
+.icon-lock:before {
+  content: "\E98F";
+}
+
+.icon-cog22:before {
+  content: "\E994";
+}
+
+.icon-cross:before {
+  content: "\EA0F";
+}
+
+.icon-checkmark:before {
+  content: "\EA10";
+}
+
+.icon-pinterest:before {
+  content: "\E909";
+}
+
+.icon-twitter:before {
+  content: "\E92B";
 }
 
 .icon-notification:before {
@@ -10889,74 +10961,6 @@ a.text-dark:focus {
 
 .icon-exit:before {
   content: "\E92E";
-}
-
-.icon-location:before {
-  content: "\E917";
-}
-
-.icon-map-marker2:before {
-  content: "\E917";
-}
-
-.icon-marker:before {
-  content: "\E917";
-}
-
-.icon-pin:before {
-  content: "\E917";
-}
-
-.icon-quotes-right:before {
-  content: "\E978";
-}
-
-.icon-quotes-right2:before {
-  content: "\E979";
-}
-
-.icon-quotes-right3:before {
-  content: "\E97A";
-}
-
-.icon-trophy:before {
-  content: "\E907";
-}
-
-.icon-location3:before {
-  content: "\E947";
-}
-
-.icon-quotes-left:before {
-  content: "\E977";
-}
-
-.icon-search22:before {
-  content: "\E986";
-}
-
-.icon-lock:before {
-  content: "\E98F";
-}
-
-.icon-cog22:before {
-  content: "\E994";
-}
-
-.icon-cross:before {
-  content: "\EA0F";
-}
-
-.icon-checkmark:before {
-  content: "\EA10";
-}
-
-.icon-pinterest:before {
-  content: "\E909";
-}
-
-.icon-twitter:before {
-  content: "\E92B";
 }
 
 .icon-location2:before {
@@ -15940,6 +15944,29 @@ body .chat-feedback-message.white-msg:before {
   left: -8px;
   background-color: #494949;
   top: 0;
+}
+
+.coustomer-info-line i {
+  display: inline-block;
+  color: #8200FF;
+  font-size: 26px;
+  padding-right: 20px;
+}
+
+.coustomer-info-line p {
+  display: inline-block;
+}
+
+.job-poster .vue-star-rating {
+  display: inline-block !important;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  padding-left: 5px;
+}
+
+.job-poster .job-post-category:after {
+  display: none;
 }
 
 .modal-sm {

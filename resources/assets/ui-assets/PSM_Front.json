@@ -1,57 +1,63 @@
 {
   "selection": [
     {
-      "order": 66,
+      "ligatures": "clock, time2",
+      "name": "clock",
+      "order": 197,
+      "prevSize": 32
+    },
+    {
+      "order": 198,
       "name": "notification",
       "prevSize": 32
     },
     {
-      "order": 67,
+      "order": 199,
       "prevSize": 32,
       "name": "cog2"
     },
     {
-      "order": 68,
+      "order": 200,
       "name": "alert",
       "prevSize": 32
     },
     {
-      "order": 69,
+      "order": 201,
       "name": "check2",
       "prevSize": 32
     },
     {
-      "order": 70,
+      "order": 202,
       "name": "map-marker",
       "prevSize": 32
     },
     {
-      "order": 71,
+      "order": 203,
       "name": "location, map-marker2, marker, pin",
       "prevSize": 32
     },
     {
-      "order": 72,
+      "order": 204,
       "name": "location2",
       "prevSize": 20
     },
     {
-      "order": 73,
+      "order": 205,
       "name": "calendar-daily",
       "prevSize": 32
     },
     {
-      "order": 74,
+      "order": 206,
       "name": "send",
       "prevSize": 32
     },
     {
       "name": "list",
-      "order": 75,
+      "order": 207,
       "prevSize": 32
     },
     {
-      "order": 76,
+      "order": 208,
       "ligatures": "clear, close",
       "prevSize": 24,
       "name": "close2"
@@ -59,280 +65,280 @@
     {
       "ligatures": "quotes-right, rdquo",
       "name": "quotes-right",
-      "order": 77,
+      "order": 209,
       "prevSize": 32
     },
     {
-      "order": 78,
+      "order": 210,
       "prevSize": 24,
       "name": "keyboard_arrow_right"
     },
     {
-      "order": 79,
+      "order": 211,
       "prevSize": 32,
       "name": "angle-double-right"
     },
     {
       "ligatures": "quotes-right, rdquo",
       "name": "quotes-right2",
-      "order": 80,
+      "order": 212,
       "prevSize": 32
     },
     {
-      "order": 81,
+      "order": 213,
       "prevSize": 32,
       "name": "angle-double-right2"
     },
     {
       "ligatures": "quotes-right, rdquo",
       "name": "quotes-right3",
-      "order": 82,
+      "order": 214,
       "prevSize": 32
     },
     {
-      "order": 83,
+      "order": 215,
       "name": "checked",
       "prevSize": 32
     },
     {
-      "order": 84,
+      "order": 216,
       "name": "user-icon-resue",
       "prevSize": 32
     },
     {
-      "order": 85,
+      "order": 217,
       "prevSize": 32,
       "name": "facebook-official"
     },
     {
-      "order": 86,
+      "order": 218,
       "name": "user-icon-resue2",
       "prevSize": 32
     },
     {
-      "order": 87,
+      "order": 219,
       "name": "flag",
       "prevSize": 20
     },
     {
-      "order": 88,
+      "order": 220,
       "ligatures": "help",
       "prevSize": 24,
       "name": "help"
     },
     {
-      "order": 89,
+      "order": 221,
       "prevSize": 32,
       "name": "cancel"
     },
     {
-      "order": 90,
+      "order": 222,
       "prevSize": 24,
       "name": "delete"
     },
     {
-      "order": 91,
+      "order": 223,
       "prevSize": 24,
       "name": "menu2"
     },
     {
-      "order": 92,
+      "order": 224,
       "name": "add-solid",
       "prevSize": 20
     },
     {
-      "order": 93,
+      "order": 225,
       "name": "add-outline",
       "prevSize": 20
     },
     {
-      "order": 94,
+      "order": 226,
       "prevSize": 20,
       "name": "minus-solid"
     },
     {
-      "order": 95,
+      "order": 227,
       "prevSize": 20,
       "name": "minus-outline"
     },
     {
-      "order": 96,
+      "order": 228,
       "prevSize": 32,
       "name": "cancel2"
     },
     {
-      "order": 97,
+      "order": 229,
       "prevSize": 32,
       "ligatures": "trophy, cup",
       "name": "trophy"
     },
     {
-      "order": 98,
+      "order": 230,
       "name": "exclamation-solid",
       "prevSize": 20
     },
     {
-      "order": 99,
+      "order": 231,
       "name": "edit-pencil",
       "prevSize": 20
     },
     {
-      "order": 100,
+      "order": 232,
       "prevSize": 32,
       "name": "checkmark2"
     },
     {
-      "order": 101,
+      "order": 233,
       "name": "front-car",
       "prevSize": 32
     },
     {
       "name": "folder",
-      "order": 102,
+      "order": 234,
       "prevSize": 32
     },
     {
       "ligatures": "phone_in_talk",
-      "order": 103,
+      "order": 235,
       "prevSize": 24,
       "name": "phone_in_talk"
     },
     {
-      "order": 104,
+      "order": 236,
       "name": "message",
       "prevSize": 24
     },
     {
-      "order": 105,
+      "order": 237,
       "name": "work-briefcase",
       "prevSize": 32
     },
     {
       "ligatures": "location, map-marker",
       "name": "location3",
-      "order": 106,
+      "order": 238,
       "prevSize": 32
     },
     {
-      "order": 107,
+      "order": 239,
       "name": "brightness-down",
       "prevSize": 20
     },
     {
-      "order": 108,
+      "order": 240,
       "prevSize": 20,
       "name": "notifications-outline"
     },
     {
-      "order": 109,
+      "order": 241,
       "name": "exit",
       "prevSize": 32
     },
     {
       "name": "search",
-      "order": 110,
+      "order": 242,
       "prevSize": 32
     },
     {
       "name": "angle-left",
-      "order": 111,
+      "order": 243,
       "prevSize": 32
     },
     {
       "name": "angle-right",
-      "order": 112,
+      "order": 244,
       "prevSize": 32
     },
     {
       "name": "angle-up",
-      "order": 113,
+      "order": 245,
       "prevSize": 32
     },
     {
       "name": "angle-down",
-      "order": 114,
+      "order": 246,
       "prevSize": 32
     },
     {
       "ligatures": "quotes-left, ldquo",
       "name": "quotes-left",
-      "order": 115,
+      "order": 247,
       "prevSize": 32
     },
     {
       "ligatures": "search, magnifier",
       "name": "search22",
-      "order": 116,
+      "order": 248,
       "prevSize": 32
     },
     {
       "ligatures": "lock, secure",
       "name": "lock",
-      "order": 117,
+      "order": 249,
       "prevSize": 32
     },
     {
       "ligatures": "cog, gear",
       "name": "cog22",
-      "order": 118,
+      "order": 250,
       "prevSize": 32
     },
     {
       "ligatures": "cross, cancel",
       "name": "cross",
-      "order": 119,
+      "order": 251,
       "prevSize": 32
     },
     {
       "ligatures": "checkmark, tick",
       "name": "checkmark",
-      "order": 120,
+      "order": 252,
       "prevSize": 32
     },
     {
-      "order": 121,
+      "order": 253,
       "name": "triangle-up",
       "prevSize": 20
     },
     {
-      "order": 122,
+      "order": 254,
       "name": "triangle-right",
       "prevSize": 20
     },
     {
-      "order": 123,
+      "order": 255,
       "name": "triangle-left",
       "prevSize": 20
     },
     {
-      "order": 124,
+      "order": 256,
       "name": "triangle-down",
       "prevSize": 20
     },
     {
-      "order": 125,
+      "order": 257,
       "prevSize": 32,
       "name": "pinterest",
       "ligatures": "pinterest, brand72"
     },
     {
-      "order": 126,
+      "order": 258,
       "prevSize": 32,
       "name": "google-plus"
     },
     {
-      "order": 127,
+      "order": 259,
       "prevSize": 32,
       "name": "instagram"
     },
     {
-      "order": 128,
+      "order": 260,
       "prevSize": 32,
       "ligatures": "twitter, brand16",
       "name": "twitter"
     },
     {
-      "order": 129,
+      "order": 261,
       "prevSize": 32,
       "name": "facebook"
     }
@@ -343,11 +349,23 @@
       "width": 512,
       "height": 512
     },
-    "iconsHash": 906294361
+    "iconsHash": 866177838
   },
   "height": 1024,
   "prevSize": 32,
   "icons": [
+    {
+      "paths": [
+        "M658.744 749.256l-210.744-210.746v-282.51h128v229.49l173.256 173.254zM512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM512 896c-212.078 0-384-171.922-384-384s171.922-384 384-384c212.078 0 384 171.922 384 384s-171.922 384-384 384z"
+      ],
+      "tags": [
+        "clock",
+        "time",
+        "schedule"
+      ],
+      "defaultCode": 59726,
+      "grid": 16
+    },
     {
       "paths": [
         "M935.624 863.702l-73.258-122.112c-33.834-56.362-51.712-120.918-51.712-186.624v-106.966c0-135.040-90.112-249.258-213.334-286.080v-76.586c0-47.062-38.272-85.334-85.334-85.334s-85.334 38.272-85.334 85.334v76.586c-123.22 36.822-213.332 151.040-213.332 286.080v106.966c0 65.706-17.878 130.218-51.67 186.582l-73.258 122.112c-3.968 6.614-4.054 14.806-0.256 21.504s10.838 10.838 18.518 10.838h810.666c7.68 0 14.762-4.138 18.56-10.794 3.798-6.658 3.67-14.936-0.256-21.506z",
