@@ -2477,7 +2477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'An Error Occured.';
+                self.errorMessage = error.response.data.message;
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);

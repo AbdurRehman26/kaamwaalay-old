@@ -10,7 +10,7 @@
                     <div class="float-right">
                         <div class="left-cog profile-block">
                             <span class="user-img" @click="ChangePass">
-                                <img src="/images/dummy/user-pic.jpg" alt="">
+                                <img src="" alt="">
                             </span>
                             <div class="profile-username">
                                     <div class="username">{{fullName}}</div>
@@ -41,15 +41,16 @@ import { directive as onClickaway } from 'vue-clickaway';
             changepass: false,
             first_name : '',
             last_name : '',
+            user:{}
           }
         },
         directives: {
             onClickaway: onClickaway,
         },
         mounted () {
-           let user = JSON.parse(this.$store.getters.getAuthUser);
-           this.first_name = user.first_name;
-           this.last_name = user.last_name;
+           this.user = JSON.parse(this.$store.getters.getAuthUser);
+           this.first_name = this.user.first_name;
+           this.last_name = this.user.last_name;
        },
        computed : {
         fullName(){
