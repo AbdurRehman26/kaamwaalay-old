@@ -109,7 +109,7 @@
            joblisting:[
 
            {
-            job_title_image: '/images/front/storage/bidimage1.png',
+            job_title_image: '/images/front/profile-images/bidimage1.png',
             job_title: 'Concrete Floor Building',
             job_poster: 'Nathan Alvarez',
             job_category: 'Construction - Concrete Flooring',
@@ -125,7 +125,7 @@
         },
 
         {
-            job_title_image: '/images/front/storage/bidimage2.png',
+            job_title_image: '/images/front/profile-images/bidimage2.png',
             job_title: 'Leaking water pipe',
             job_category: 'Construction - Concrete Flooring',
             job_poster: 'Lisa Burns',
@@ -143,7 +143,7 @@
         },          
 
         {
-            job_title_image: '/images/front/storage/bidimage1.png',
+            job_title_image: '/images/front/profile-images/bidimage1.png',
             job_title: 'Leaking water pipe',
             job_category: 'Construction - Concrete Flooring',
             job_poster: 'Lisa Burns',
@@ -161,7 +161,7 @@
         },
 
         {
-            job_title_image: '/images/front/storage/bidimage2.png',
+            job_title_image: '/images/front/profile-images/bidimage2.png',
             job_title: 'Leaking water pipe',
             job_category: 'Construction - Concrete Flooring',
             job_poster: 'Lisa Burns',
@@ -178,7 +178,7 @@
         },
 
         {
-            job_title_image: '/images/front/storage/bidimage2.png',
+            job_title_image: '/images/front/profile-images/bidimage2.png',
             job_title: 'Leaking water pipe',
             job_category: 'Construction - Concrete Flooring',
             job_poster: 'Lisa Burns',

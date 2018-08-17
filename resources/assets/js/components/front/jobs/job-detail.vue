@@ -291,7 +291,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage1.png',
+			    		latest_review_image: '/images/front/profile-images/personimage1.png',
 			    		latest_review_description: 'Hi, we have a 10 years experience in home constructions and repairing including concrete flooring. Our team will get done this work within 3 days. Please contact for further discussion. The bid amount is based on the details you have provided however it may vary slightly. ',
 			    		list_ratings: 5,
 			    		job_feedback: 124,
@@ -305,7 +305,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage2.png',
+			    		latest_review_image: '/images/front/profile-images/personimage2.png',
 			    		latest_review_description: 'We have experienced team of talented workers who can do this job. Before quoting, we have some queries. Let’s chat to discuss further.',
 			    		list_ratings: 4,
 						job_feedback: 164,
@@ -320,7 +320,7 @@ export default {
 	    		],
 	    		my_bid:[
 	    				{
-				    		latest_review_image: '/images/front/storage/personimage2.png',
+				    		latest_review_image: '/images/front/profile-images/personimage2.png',
 				    		latest_review_description: 'We have experienced team of talented workers who can do this job. Before quoting, we have some queries. Let’s chat to discuss further.',
 				    		list_ratings: 4,
 							job_feedback: 164,

@@ -104,7 +104,7 @@
 		mounted(){
 			for (var i = 12 - 1; i >= 0; i--) {
 				var listing = {
-					job_title_image: '/images/front/storage/bidimage1.png',
+					job_title_image: '/images/front/profile-images/bidimage1.png',
 					job_title: 'Concrete Floor Building',
 					job_poster: 'Nathan Alvarez',
 					job_category: 'Construction - Concrete Flooring',

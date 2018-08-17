@@ -103,7 +103,7 @@
 		mounted(){
 			for (var i = 10 - 1; i >= 0; i--) {
 				var listing = {
-					job_title_image: '/images/front/storage/bidimage2.png',
+					job_title_image: '/images/front/profile-images/bidimage2.png',
 					job_title: 'Leaking water pipe',
 					job_category: 'Construction - Concrete Flooring',
 					job_poster: 'Lisa Burns',
