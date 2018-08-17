@@ -142,7 +142,7 @@ public function changePassword(Request $request)
             $code = 200;
             $output = [
                 'data' => $result,
-                'message' => 'Success',
+                'message' => 'Add Admin successfully',
             ];
         }else{
             $code = 406;
