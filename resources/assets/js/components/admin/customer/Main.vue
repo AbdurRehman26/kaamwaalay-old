@@ -59,7 +59,7 @@
                 <td><a href="javascript:void(0);" @click="ViewCustomerDetail(record.id)">{{record.first_name}} {{record.last_name}}</a></td>
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
-                <td ><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td>
+                <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
                 <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
