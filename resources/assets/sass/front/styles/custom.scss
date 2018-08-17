@@ -2447,3 +2447,31 @@ body{
             }
         }
     }
+
+.coustomer-info-line{
+    i{
+        display: inline-block;
+        color: $primary-color-md;
+        font-size: 26px;
+        padding-right: 20px;        
+    }
+    p{
+        display: inline-block;
+    }
+}
+
+.job-poster{
+    .vue-star-rating {
+        display: inline-block !important;
+        vertical-align: bottom;
+        position: relative;
+        top: -1px;
+        padding-left: 5px;
+    }
+    .job-post-category{
+        &:after{
+            display: none;
+        }
+    }
+}
+

@@ -17,7 +17,7 @@
 									</div>
 								</div>
 								<div class="col-md-6 job-bid-btn p-r-0">
-									<a href="javascript:void(0);" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>						
+									<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>						
 									<a href="javascript:void(0);" class="btn btn-primary post-bid">View Details</a>
 								</div>
 							</div>
@@ -29,7 +29,7 @@
 								</p>
 								<p class="offer">
 								<i class="icon-work-briefcase"></i> 
-								Offer: <strong>{{ listing.job_offer }}</strong> - <a href="javascript:void(0);">Change Bid</a>
+								Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="$emit('changebid')" href="javascript:void(0);">Change Bid</a>
 								</p>
 
 								<p class="member-since">
