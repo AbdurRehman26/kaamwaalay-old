@@ -63,7 +63,7 @@
                 </td>
                 <td> <a href="javascript:void(0);" @click="detailreview">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
                 <!-- <td> {{ record.email_address }} </td> -->
-                <td> <span v-for="(service , index) in record.services">{{service.service.title }} 
+                <td> <span v-for="(service , index) in record.services">{{service.service ? service.service.title : '' }} 
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
                 <!-- <td> {{ record.contact_number }} </td> -->
