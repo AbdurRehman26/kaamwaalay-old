@@ -40,100 +40,74 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
     Route::resource('user', 'Api\V1\UserController')->except([
-        'edit',
+        'edit','destory','create'
     ]);
 
     Route::resource('job-bid', 'Api\V1\JobBidController')->except([
-        'edit',
+        'edit','create','destory'
     ]);
 
     Route::resource('job', 'Api\V1\JobController')->except([
-        'edit',
+        'edit','create','destory'
     ]);
 
     Route::resource('job-message', 'Api\V1\JobMessageController')->except([
-        'edit',
+        'edit','create','destory'
     ]);
 
     Route::post('service/{id}', 'Api\V1\ServiceController@update');
     Route::resource('service', 'Api\V1\ServiceController')->except([
-        'edit',
+        'edit','create'
     ]);
 
     Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-        'edit',
+        'edit','create','destory'
     ]);
 
     Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-        'edit',
+        'edit','create','destory','store','update'
     ]);
 
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
-        'edit',
+        'edit','create','destory','store'
     ]);
 
-    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
-        'index', 'store', 'show', 'update',
+    Route::resource('campaign', 'Api\V1\CampaignController')->only([
+        'index', 'store', 'show',
     ]);
+
+    Route::resource('city', 'Api\V1\CityController')->only([
+        'index', 'show',
+    ]);
+
+    Route::resource('country', 'Api\V1\CountryController')->only([
+        'index', 'show',
+    ]);
+
+    Route::resource('plan', 'Api\V1\PlanController')->only([
+        'index', 'show', 'update',
+    ]);
+
+    Route::resource('role', 'Api\V1\RoleController')->only([
+        'index', 'show',
+    ]);
+
+    Route::resource('state', 'Api\V1\StateController')->only([
+        'index', 'show',
+    ]);
+
+//Dashboard Report
+Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
 });
 
-
-Route::resource('campaign', 'Api\V1\CampaignController')->only([
-    'index', 'store', 'show',
+Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
+    'index', 'store', 'show', 'update',
 ]);
-
-Route::resource('city', 'Api\V1\CityController')->only([
-    'index', 'show',
-]);
-
-Route::resource('country', 'Api\V1\CountryController')->only([
-    'index', 'show',
-]);
-
-Route::resource('payment', 'Api\V1\PaymentController')->except([
-    'edit',
-]);
-
-Route::resource('plan', 'Api\V1\PlanController')->only([
-    'index', 'show', 'update',
-]);
-
-Route::resource('role', 'Api\V1\RoleController')->only([
-    'index', 'show',
-]);
-
-Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-    'edit',
-]);
-
-Route::resource('service-provider-service', 'Api\V1\ServiceProviderServiceController')->except([
-    'edit',
-]);
-
-Route::resource('state', 'Api\V1\StateController')->only([
-    'index', 'show',
-]);
-
 
 Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
     'index',
 ]);
 
-Route::resource('testimonial', 'Api\V1\TestimonialController')->except([
-    'edit',
-]);
-
-Route::resource('user-agent', 'Api\V1\UserAgentController')->except([
-    'edit',
-]);
-
-Route::resource('zip-code', 'Api\V1\ZipCodeController')->except([
-    'edit',
-]);
-
 //Uploading File
 Route::post('file/upload', 'Api\V1\FileController@upload');
 Route::post('file/remove', 'Api\V1\FileController@remove');
-
-//Dashboard Report
-Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
