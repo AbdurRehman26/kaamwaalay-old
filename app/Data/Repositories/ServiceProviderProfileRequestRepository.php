@@ -57,6 +57,8 @@ public $model;
     {
         $data = parent::findById($id, $refresh, $details, $encode);
         
+        \Log::info('details value : $details');
+
         if($data && $details){
             
             $criteria = ['service_provider_profile_request_id' => $data->id];
