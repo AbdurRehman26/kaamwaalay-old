@@ -219,12 +219,12 @@
 
 							<div class="service-provider" v-else>
 								<div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
-									<h3>Find & invite service providers to bid on your job.</h3>
+									<h3>Find &amp; invite service providers to bid on your job.</h3>
 									<p>14 service providers available around you related to concrete flooring.</p>
-									<a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find & Invite</a>				
+									<a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
 								</div>						
 								<a href="javascript:void(0);" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Cancel Job</a>								
+								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 							</div>
 
 							

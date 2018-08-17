@@ -7697,27 +7697,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-		data: function data() {
-				remind: null;
-				return {
-						tabval: 'firstsec',
-						type: 'customer',
-						mainNav: 'true'
-				};
-		},
+	data: function data() {
+		remind: null;
+		return {
+			tabval: 'firstsec',
+			type: 'customer',
+			mainNav: 'true'
+		};
+	},
 
-		methods: {
-				switchType: function switchType(type) {
-						var result = [];
-						if (this.type === 'customer') {
-								this.$router.push('profile');
-						}
-						if (this.type === 'provider') {
-								this.$router.push('apply-for-review');
-						}
-						return result;
-				}
+	methods: {
+		switchType: function switchType(type) {
+			var result = [];
+			if (this.type === 'customer') {
+				this.$router.push('profile');
+			}
+			if (this.type === 'provider') {
+				this.$router.push('apply-for-review');
+			}
+			return result;
 		}
+	}
 });
 
 /***/ }),
@@ -68832,7 +68832,7 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "profile-form-section" }, [
+      _c("div", { staticClass: "profile-form-section apply-review-sec" }, [
         _c("div", { staticClass: "form-signup" }, [
           _c("form", [
             _c(
@@ -68850,21 +68850,60 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._m(5),
-            _vm._v(" "),
-            _vm._m(6),
+            _c("div", { staticClass: "business-detail" }, [
+              _c("div", { staticClass: "row" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("DUNS Number "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "b-tooltip",
+                              rawName: "v-b-tooltip.hover",
+                              modifiers: { hover: true }
+                            }
+                          ],
+                          staticClass: "duns-help-icon",
+                          attrs: { title: "Verify number?" }
+                        },
+                        [_c("i", { staticClass: "icon-help" })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "DUNS number for verification (optional)"
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6)
+            ]),
             _vm._v(" "),
             _vm._m(7),
             _vm._v(" "),
+            _vm._m(8),
+            _vm._v(" "),
+            _vm._m(9),
+            _vm._v(" "),
             _c("div", { staticClass: "account-fee" }, [
-              _vm._m(8),
+              _vm._m(10),
               _vm._v(" "),
-              _vm._m(9),
+              _vm._m(11),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _vm._m(10),
+                _vm._m(12),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
@@ -68923,7 +68962,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(11)
+              _vm._m(13)
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "submit-approval-btn" }, [
@@ -68935,7 +68974,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(12)
+            _vm._m(14)
           ])
         ])
       ])
@@ -69051,76 +69090,66 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "business-detail" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [
-              _vm._v("Are you an individual or a business?")
-            ]),
-            _vm._v(" "),
-            _c("select", { staticClass: "form-control" }, [
-              _c("option", { attrs: { disabled: "" } }, [
-                _vm._v("Select Business")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { selected: "" } }, [_vm._v("Business")])
-            ])
-          ])
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [
+          _vm._v("Are you an individual or a business?")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("DUNS Number")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                placeholder: "DUNS number for verification (optional)"
-              }
-            })
-          ])
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", { attrs: { disabled: "" } }, [
+            _vm._v("Select Business")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { selected: "" } }, [_vm._v("Business")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Business Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "password", placeholder: "Enter business name" }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Business Name")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "password", placeholder: "Enter business name" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Working since")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "password", placeholder: "e.g. June 2010" }
-            })
-          ])
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Working since")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "password", placeholder: "e.g. June 2010" }
+          })
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("About")]),
-            _vm._v(" "),
-            _c("textarea", {
-              staticClass: "form-control",
-              attrs: {
-                rows: "2",
-                placeholder: "Start typing about your business / profile info"
-              }
-            })
-          ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("About")]),
+          _vm._v(" "),
+          _c("textarea", {
+            staticClass: "form-control",
+            attrs: {
+              rows: "2",
+              placeholder: "Start typing about your business / profile info"
+            }
+          })
         ])
       ])
     ])
@@ -69792,7 +69821,7 @@ var staticRenderFns = [
       _c(
         "a",
         {
-          staticClass: "btn btn-primary post-job-btn",
+          staticClass: "btn btn-primary post-job-btn btn-md",
           attrs: { href: "/job-post" }
         },
         [_vm._v("Post a Job")]
@@ -72077,10 +72106,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c(
                 "a",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { href: "javascript:void(0);" }
-                },
+                { staticClass: "btn btn-primary", attrs: { href: "/sign-up" } },
                 [_vm._v("Sign up today")]
               )
             ])
@@ -74303,7 +74329,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-primary apply-primary-color",
+              staticClass: "btn btn-primary apply-primary-color btn-lg",
               attrs: { type: "button" },
               on: {
                 click: function($event) {
@@ -75576,7 +75602,7 @@ var staticRenderFns = [
         staticClass: "btn btn-cancel-job",
         attrs: { href: "javascript:void(0);" }
       },
-      [_c("i", { staticClass: "icon-folder" }), _vm._v(" Cancel Job")]
+      [_c("i", { staticClass: "icon-close2" }), _vm._v(" Cancel Job")]
     )
   }
 ]
@@ -76159,7 +76185,10 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" Create Account\n\t\t\t\t\t\t"), _c("loader")],
+                      [
+                        _vm._v(" Create Account\n\t\t\t\t\t\t\t\t\t"),
+                        _c("loader")
+                      ],
                       1
                     )
                   ]),
@@ -76185,7 +76214,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
           _vm._v(
-            "\n\t\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t\t"
+            "\n\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t"
           ),
           _c("span", [
             _vm._v("Get introduced to the right professional for your jobs")
@@ -76203,9 +76232,7 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "type_service_provider" } }, [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
-          _vm._v(
-            "\n\t\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t\t"
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t"),
           _c("span", [_vm._v("Respond to customer requests and get hired")]),
           _vm._v(" "),
           _c("i", { staticClass: "icon-checkmark2" })
@@ -76317,10 +76344,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "already-signup" }, [
+    return _c("div", { staticClass: "already-signup login" }, [
       _c("p", [
         _vm._v("Already a member? "),
-        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Log in")])
+        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Log In")])
       ])
     ])
   }

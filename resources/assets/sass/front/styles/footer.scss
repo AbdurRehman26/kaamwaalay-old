@@ -13,12 +13,16 @@
 	ul {
 		padding: 0;
 	}
-	li {
+	li {	
 		display: inline-block;
 		width: 42px;
     	height: 42px;
     	border-radius: 100%;
     	background-color: $grey-Elite;
+    	margin-right: 16px;
+    	&:last-child {
+    		margin-right: 0;
+    	}
 	}
 	a {
 	    color: $grey-dark;
