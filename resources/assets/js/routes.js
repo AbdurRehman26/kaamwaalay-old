@@ -134,7 +134,7 @@ const routes = [
     {
         name: 'viewservicejobdetail',
         path: '/admin/service-provider/viewjobdetail/:id',
-        component: require('./components/admin/customer/ViewJobDetail.vue'),
+        component: require('./components/admin/service-provide/ViewJobDetail.vue'),
         meta: {
             title: 'View Jobs',
             pagetitle:'Service Jobs Detail',
