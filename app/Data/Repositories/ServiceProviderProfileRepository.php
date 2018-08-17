@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfile;
+use DB;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
@@ -91,19 +92,22 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
                 $join->on('users.id', '=', 'service_provider_profiles.user_id');
-            })->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
-            ->orWhere('users.last_name', 'like', "%{$data['keyword']}%")
-            ->select('service_provider_profiles.*')
+            })->where(function($query)use($data){
+                $query->where('users.email', 'LIKE', "%{$data['keyword']}%");
+                $query->orWhere('users.first_name', 'like', "%{$data['keyword']}%");
+                $query->orWhere('users.last_name', 'like', "%{$data['keyword']}%");
+                $query->orWhere(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , "%{$data['keyword']}%");
+            })->select('service_provider_profiles.*')
             ->groupBy('service_provider_profiles.user_id');
-
         }
+
         if(!empty($data['filter_by_business_type'])){
-            $this->builder = $this->builder->where('business_type','=',$data['filter_by_business_type']);
+            $this->builder = $this->builder->where('service_provider_profiles.business_type','=',$data['filter_by_business_type']);
         }
         
         if(!empty($data['filter_by_service'])){
 
-            $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
+            $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
                 $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
             })->join('service_provider_services', function($join) use ($data){
                 $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
