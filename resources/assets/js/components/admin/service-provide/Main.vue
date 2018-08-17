@@ -69,7 +69,7 @@
             <td><star-rating :star-size="20" read-only :rating="record.user_detail ?  record.user_detail.average_rating : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
-                <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                 <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
             </div>
         </td>
@@ -135,7 +135,7 @@
             return this.url;
         },
         servicesList(){
-                return this.$store.getters.getAllServices;
+            return this.$store.getters.getAllServices;
         },
 
     },
@@ -156,9 +156,8 @@
         changestatuspopup() {
             this.changestatus = true;
         },
-        providerdetailclick() {
-            /*this.providerdetailpopup = true;*/
-            this.$router.push({name: 'Service_Provider_Detail'});
+        providerdetailclick(id) {
+            this.$router.push({name: 'Service_Provider_Detail' , params : {id : id}});
         },
         HideModal(){
             this.service = false;
@@ -167,42 +166,42 @@
             this.providerdetailpopup = false;
         },
         profileimage(id){
-          this.$router.push({name: 'Service_Provider_Detail' , params : {id : id }});  
-      },
-      getRecords(data){
-        let self = this;
-        self.loading = false;
-        self.records = data;
-        self.noRecordFound = false;
+            this.$router.push({name: 'Service_Provider_Detail' , params : {id : id }});  
+        },
+        getRecords(data){
+            let self = this;
+            self.loading = false;
+            self.records = data;
+            self.noRecordFound = false;
 
-        if (!self.records.length) {
-            self.noRecordFound = true;
+            if (!self.records.length) {
+                self.noRecordFound = true;
+            }
+        },
+        searchList(){
+            let url = 'api/service-provider-profile?pagination=true';
+            this.url = JSON.parse(JSON.stringify(url));
+
+            Reflect.ownKeys(this.search).forEach(key =>{
+
+                if(key !== '__ob__'){
+                    this.url += '&' + key + '=' + this.search[key];
+                }        
+            });
+
         }
+
+
     },
-    searchList(){
-        let url = 'api/service-provider-profile?pagination=true';
-        this.url = JSON.parse(JSON.stringify(url));
 
-        Reflect.ownKeys(this.search).forEach(key =>{
+    components: {
+        StarRating
+    },
+    mounted(){
 
-            if(key !== '__ob__'){
-                this.url += '&' + key + '=' + this.search[key];
-            }        
-        });
+        this.loading = true;
 
     }
-
-
-},
-
-components: {
-    StarRating
-},
-mounted(){
-
-    this.loading = true;
-
-}
 
 }
 </script>
