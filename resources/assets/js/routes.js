@@ -223,7 +223,7 @@ const routes = [
 
     {
         name: 'Service_Provider_Detail',
-        path: '/admin/service-provider/service-provider-detail',
+        path: '/admin/service-provider/service-provider-detail/:id',
         component: require('./components/admin/service-provide/providerdetails.vue'),
         meta: {
             title: 'Service provider details',
