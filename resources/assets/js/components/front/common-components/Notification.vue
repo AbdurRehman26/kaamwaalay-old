@@ -4,7 +4,7 @@
             <ul>
                 <li class="notify-list">
                     <div class="notify-image">
-                        <img src="images/front/storage/personimage6.png" alt="">
+                        <img src="images/front/profile-images/personimage6.png" alt="">
                     </div>
                     <div class="right-notification">
                         <div class="notification-content">

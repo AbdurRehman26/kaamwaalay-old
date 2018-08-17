@@ -74062,7 +74062,10 @@ var staticRenderFns = [
           _c("li", { staticClass: "notify-list" }, [
             _c("div", { staticClass: "notify-image" }, [
               _c("img", {
-                attrs: { src: "images/front/storage/personimage6.png", alt: "" }
+                attrs: {
+                  src: "images/front/profile-images/personimage6.png",
+                  alt: ""
+                }
               })
             ]),
             _vm._v(" "),
