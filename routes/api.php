@@ -36,6 +36,7 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 Route::group(['middleware' => ['auth:api']], function () {
 
+    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit',
