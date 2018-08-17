@@ -72198,7 +72198,7 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: "/explore" } }, [
+            _c("router-link", { attrs: { to: "/explore-jobs" } }, [
               _vm._v("Explore Jobs ")
             ])
           ],
