@@ -15490,9 +15490,13 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .campaigns .camp-views {
+  /* position: relative;
+        padding-bottom: 70px;
+        padding-top: 30px; */
   position: relative;
-  padding-bottom: 70px;
-  padding-top: 30px;
+  padding-bottom: 0px;
+  padding-top: 20px;
+  overflow: auto;
 }
 
 .campaigns .camp-views .view-status {
@@ -15927,10 +15931,11 @@ body .chat-feedback-message.white-msg:before {
 .service-provider a.btn i {
   position: absolute;
   left: 17px;
+  font-size: 21px;
 }
 
 .service-provider a.btn-cancel-job i.icon-folder {
-  top: 12px;
+  top: 9px;
 }
 
 .fancy-box-mask {
