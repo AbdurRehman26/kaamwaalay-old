@@ -1542,6 +1542,11 @@ body{
         }
         &.service-requirment{
             padding-top: 3px;
+            i.icon-brightness-down{
+                font-size: 21px;
+                position: relative;
+                top: 4px;            
+            }
         }
         &.customer-rating{
             padding-left: 0px;
