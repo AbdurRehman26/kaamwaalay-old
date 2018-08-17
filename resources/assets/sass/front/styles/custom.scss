@@ -828,7 +828,7 @@ $section-padding-sm:20px 0px;
         text-align: center;
     }
 }
-.job-post-page {
+.job-post-page,.featured-profile-page {
     .profile-head {
         margin-top: 50px;
     }
@@ -1950,6 +1950,15 @@ body{
 
 
 
+.advice-center-page {
+    .advice-center {
+        height: auto;
+        .main-img {
+            max-height: 326px;
+            overflow: hidden;
+        }
+    }
+}
 
 .advice-text {
     max-width: 615px;
@@ -2272,7 +2281,7 @@ body{
                 position: absolute;
                 left: 18px;
                 top: 11px;
-                font-size: 21px;
+                // font-size: 21px;
                 &.icon-close2 {
                     font-size: 21px;
                     top: 9px;
