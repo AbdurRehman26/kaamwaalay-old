@@ -1,6 +1,6 @@
- <template>	
-	<div>
-		<b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close">
+ <template>
+     <div>
+        <b-modal id="view-service-detail" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Service Detail" ok-only ok-title="Close">
             <alert></alert>
             <div class="view-details-list">
                 <b-row>
@@ -27,7 +27,6 @@
                         <p>Wiring</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">URL Prefix</strong></p>
@@ -36,10 +35,33 @@
                         <p>www.psm.com</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Is Featured?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>No</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Display Banner?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>No</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Display Service Nav?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>No</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Display Footer Nav?</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p>No</p>
@@ -53,7 +75,6 @@
                         <p>Yes</p>
                     </b-col>
                 </b-row>
-                       
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Service Providers</strong></p>
@@ -62,7 +83,6 @@
                         <p>12</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Jobs Initiated</strong></p>
@@ -71,7 +91,6 @@
                         <p>12</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Jobs Finished</strong></p>
@@ -80,7 +99,6 @@
                         <p>12</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Description</strong></p>
@@ -91,39 +109,38 @@
                         </div>
                     </b-col>
                 </b-row>
-                
             </div>
-	   </b-modal>
-	</div>
+        </b-modal>
+    </div>
 </template>
 
 <script>
-export default {
+    export default {
 
-    props: ['showModalProp'],
-    
-    methods: {
-        showModal () {
-            this.$refs.myModalRef.show()
-        },
-        hideModal () {
-            this.$refs.myModalRef.hide()
-        },
-        onHidden() {
-            this.$emit('HideModalValue');
-        }
-    },
+     props: ['showModalProp'],
 
-    watch: {
-        showModalProp(value) {
+     methods: {
+      showModal () {
+       this.$refs.myModalRef.show()
+   },
+   hideModal () {
+       this.$refs.myModalRef.hide()
+   },
+   onHidden() {
+       this.$emit('HideModalValue');
+   }
+},
 
-            if(value) {
-                this.showModal();
-            }
-            if(!value) {
-                this.hideModal();
-            }
-        }
-    },
+watch: {
+    showModalProp(value) {
+
+     if(value) {
+      this.showModal();
+  }
+  if(!value) {
+      this.hideModal();
+  }
+}
+},
 }
 </script>

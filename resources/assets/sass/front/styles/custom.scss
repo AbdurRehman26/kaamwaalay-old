@@ -753,9 +753,8 @@ $section-padding-sm:20px 0px;
         .items{
             /* width: 33%; */
             width: 33.3%;
-            display: inline-block;
-            vertical-align: top;            
-            padding-right: 11px;
+            float: left;
+            vertical-align: top;                        
             a{
                 text-decoration:none;
             }
@@ -775,13 +774,7 @@ $section-padding-sm:20px 0px;
                 margin-left: auto;                
             }
             &:first-child{                
-            }
-            &:last-child{
-                padding-right: 0px;
-            }
-            &:nth-last-child(2){
-                padding-right: 0px;
-            }            
+            }          
         }
         .item-list-container{
             padding: 0px;
@@ -795,7 +788,7 @@ $section-padding-sm:20px 0px;
             }
         }
         .showmore{
-            padding-left: 22px;
+            padding-left: 35px;
         }
     }
     .showmore{
@@ -1937,6 +1930,23 @@ body{
 
 /* == Advice Center sass start == */
 
+.search-fixture {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    z-index: 99;    
+    .search-fix {
+        border-top: 1px solid #E0E0E0;
+        border-bottom: 1px solid #E0E0E0;
+        padding: 10px 0px !important;
+        position: fixed;
+        width: 100%;
+    }
+}
+
+
+
+
 .advice-text {
     max-width: 615px;
     margin: 0 auto;
@@ -1949,6 +1959,12 @@ body{
         font-family:$font_regular;
         line-height: 1.4;
     }
+}
+.labelheading{
+    font-size: 17px;
+    height: 100%;
+    display: flex;
+    align-items: center;    
 }
 .advice-topics {
     text-align: center;
@@ -2067,6 +2083,17 @@ body{
     span{
         color: $primary-color-md !important;
     }    
+}
+.category-section-search{
+    text-align: center;
+    padding-top: 52px;
+    padding-bottom: 0px;
+    span{
+        color: $primary-color-md !important;
+    }
+    h2{
+
+    }       
 }
 
 .text-bold{
@@ -2247,6 +2274,11 @@ body{
                 }
             }            
         }
+        &.btn-cancel-job{
+            i.icon-folder{
+                top: 12px;
+            }
+        }
     }
 }
 
@@ -2334,6 +2366,9 @@ body{
             color: #ccc;
         }
     }
+        &:hover,&:focus{
+            text-decoration: none !important;
+        }        
 }
 
 .profile-rejection-box{
@@ -2513,10 +2548,10 @@ body{
         top: -1px;
         padding-left: 5px;
     }
-    .job-post-category{
-        &:after{
-            display: none;
-        }
+}
+.job-post-category{
+    &:after{
+        display: none;
     }
 }
 

@@ -34,57 +34,57 @@
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
 
-		</div>
+        </div>
 
-	</div>
+    </div>
 </template>
 
 <script>
-import StarRating from 'vue-star-rating';
+    import StarRating from 'vue-star-rating';
 
-export default {
-  data () {
-    return {
-    	bid_selection: 'activebid',
-        bidpopup: false,
-    	}
-  	},
+    export default {
+      data () {
+        return {
+           bid_selection: 'activebid',
+           bidpopup: false,
+       }
+   },
 
-    methods: {
+   methods: {
 
-    	AddCustomer() {
-    		this.customer = true;
-    	},
-        ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
-            this.$router.push({name: 'customerdetail'});
-        },
-        changestatuspopup() {
-            this.changestatus = true;
-        },
-        ChangeBid(){
-            this.bidpopup = true;
-        },
-        HideModal(){
-            this.bidpopup = false;
-        },
-        servicedetail(){
-        	this.$router.push({name: 'job-details'});
-        }
-
+       AddCustomer() {
+          this.customer = true;
+      },
+      ViewCustomerDetail() {
+        /*this.viewcustomer = true;*/
+        this.$router.push({name: 'customerdetail'});
     },
-    components: {
-        StarRating
+    changestatuspopup() {
+        this.changestatus = true;
     },
-
-    mounted(){
-
+    ChangeBid(){
+        this.bidpopup = true;
     },
-    watch:{
-    	bid_selection: function (val){
-    		return this.val
-    	},
-    }
+    HideModal(){
+        this.bidpopup = false;
+    },
+    servicedetail(){
+       this.$router.push({name: 'job-details'});
+   }
+
+},
+components: {
+    StarRating
+},
+
+mounted(){
+
+},
+watch:{
+   bid_selection: function (val){
+      return this.val
+  },
+}
 
 }
 </script>

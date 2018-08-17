@@ -109,13 +109,13 @@ export default {
     return {
     	categoryimage: '/images/front/explore/carpenter1.jpg',
     	writereview: false,
-    	jobimage: '/images/front/storage/logoimage1.png',
-    	reviewerimage: '/images/front/storage/personimage1.png',
+    	jobimage: '/images/front/profile-images/logoimage1.png',
+    	reviewerimage: '/images/front/profile-images/personimage1.png',
 
     	joblisting:[
 
 	    	{
-	    		job_title_image: '/images/front/storage/logoimage1.png',
+	    		job_title_image: '/images/front/profile-images/logoimage1.png',
 	    		job_title: 'CHS US Carpenter and Roofing',
 	    		job_category: 'Construction - Concrete Flooring',
 	    		job_status: 'Active',
@@ -131,7 +131,7 @@ export default {
 	    		job_bid_recieved: 10,
 	    		job_service_Requirment: 'within a week',
 	    		review_details: false,
-	    		latest_review_image: '/images/front/storage/personimage1.png',
+	    		latest_review_image: '/images/front/profile-images/personimage1.png',
 	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
 	    		latest_reviewer_name: 'Shirley Webb',
 	    		latest_review_post_date: 'August, 2018',
@@ -140,7 +140,7 @@ export default {
 
 
 	    	{
-	    		job_title_image: '/images/front/storage/logoimage1.png',
+	    		job_title_image: '/images/front/profile-images/logoimage1.png',
 	    		job_title: 'Leaking water pipe',
 	    		job_category: 'Plumber - Sewer Service',
 	    		job_status: 'COMPLETED',
@@ -156,7 +156,7 @@ export default {
 	    		job_bid_recieved: 2,
 	    		job_service_Requirment: 'urgent',
 	    		review_details: false,
-	    		latest_review_image: '/images/front/storage/personimage1.png',
+	    		latest_review_image: '/images/front/profile-images/personimage1.png',
 	    		latest_review_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
 	    		latest_reviewer_name: 'Shirley Webb',
 	    		latest_review_post_date: 'August, 2018',
@@ -165,7 +165,7 @@ export default {
 	    	
 
 	    	{
-	    		job_title_image: '/images/front/storage/logoimage1.png',
+	    		job_title_image: '/images/front/profile-images/logoimage1.png',
 	    		job_title: 'Painting and other jobs',
 	    		job_category: 'Painters - interior Painting',
 	    		job_status: 'CANCELED',
@@ -181,7 +181,7 @@ export default {
 	    		job_bid_recieved: 1,
 	    		job_service_Requirment: 'within a week',
 	    		review_details: false,
-	    		latest_review_image: '/images/front/storage/personimage1.png',
+	    		latest_review_image: '/images/front/profile-images/personimage1.png',
 	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
 	    		latest_reviewer_name: 'Shirley Webb',
 	    		latest_review_post_date: 'August, 2018',
@@ -190,7 +190,7 @@ export default {
 
 
 	    	{
-	    		job_title_image: '/images/front/storage/logoimage1.png',
+	    		job_title_image: '/images/front/profile-images/logoimage1.png',
 	    		job_title: 'Flat roof to be repaired',
 	    		job_category: 'Roofing',
 	    		job_status: 'COMPLETED',
@@ -206,7 +206,7 @@ export default {
 	    		job_bid_recieved: 2,
 	    		job_service_Requirment: 'in next few days',
 	    		review_details: true,
-	    		latest_review_image: '/images/front/storage/personimage1.png',
+	    		latest_review_image: '/images/front/profile-images/personimage1.png',
 	    		latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
 	    		latest_reviewer_name: 'Ashley Bell',
 	    		latest_review_post_date: 'September, 2018',

@@ -40,6 +40,8 @@ Vue.component('left-panel', require('./components/admin/common-components/LeftPa
 Vue.component('user', require('./components/admin/Main.vue'));
 Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
+Vue.component('confirmation',require('./components/admin/popup/Confirmation.vue'));
+Vue.component('confirmation-access',require('./components/admin/popup/ChangeAccess.vue'));
 
 // Service-Type
 Vue.component('add-service',require('./components/admin/service-type/popup/AddService.vue'));

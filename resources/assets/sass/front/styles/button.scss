@@ -23,6 +23,18 @@
             box-shadow:none !important;
         }
     }
+    &.btn-outline{
+        background-color: transparent !important;
+        color: $primary-color-md !important;
+        &:hover, &:focus{
+            background-color: transparent !important;
+            color: $primary-color-md !important;            
+        }
+    }
+    &.btn.disable {
+        opacity: 0.4;
+        pointer-events: none;
+    }    
     &.btn-secondary-color{
         color: $secondary-color;
         font-family: $font_regular;
