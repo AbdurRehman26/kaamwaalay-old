@@ -41,14 +41,20 @@ public $model;
 
     }
 
-    public function findCollectionByCriteria($criteria , $whereInModelIds = false)
+    public function findCollectionByCriteria($criteria , $whereInModelIds = false, $details = [])
     {
         $this->builder = $this->model->where($criteria);
         if(is_array($whereInModelIds)){
             $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
         }
+        
+        if($details){
+            $details = ['details' => true];
+        }else{
+            $details = ['details' => false];
+        }
 
-        return $this->findByAll();
+        return $this->findByAll(false, 10, $details);
     }
 
     public function findById($id, $refresh = false, $details = false, $encode = true)

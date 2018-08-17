@@ -49,7 +49,6 @@ public $model;
         if(is_array($whereInModelIds)){
             $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
         }
-
         return $this->findByAll();
     }
 
@@ -61,7 +60,7 @@ public $model;
         if($data && $details){
             
             $criteria = ['service_provider_profile_request_id' => $data->id];
-            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
+            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria, false, $details);
             $data->services = $services['data'];       
             $input['provider_request_data'] = false;
             $input['profile_data'] = true;
@@ -117,7 +116,7 @@ public $model;
             })->where('service_provider_services.service_id',$data['filter_by_service'])
             ->select('service_provider_profile_requests.*');
         }
-        
+        $data['details'] = true;
         return parent::findByAll($pagination, $perPage, $data);
 
     }
