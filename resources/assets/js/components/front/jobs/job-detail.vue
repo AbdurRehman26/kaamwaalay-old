@@ -93,7 +93,7 @@
                                             </div>
 									</div>
 
-									<div class="jobs-post-files">
+									<div class="jobs-post-files" v-if="job_detail_right_panel != 'awarded'">
 										<h3>Related Videos</h3>
 										<iframe width="1280" height="365" src="https://www.youtube.com/embed/3o7DvKGeZn0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 									</div>
@@ -204,10 +204,10 @@
 						<div class="col-md-3 p-l-0 p-r-0">
 
 							<div class="service-provider" v-if="job_detail_right_panel == 'awarded'">
-								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-trophy"></i> Job Awarded</a>					
+								<a href="javascript:void(0);" class="btn btn-primary btn-outline"><i class="icon-trophy"></i> Job Awarded</a>					
 								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-checkmark2"></i> Mark Done</a>					
 								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>					
-								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+								<a href="javascript:void(0);" class="btn btn-cancel-job disable"><i class="icon-folder"></i> Archive</a>								
 							</div>
 
 

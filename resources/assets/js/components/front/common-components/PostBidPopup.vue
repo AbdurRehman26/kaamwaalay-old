@@ -38,7 +38,7 @@
                     <b-col cols="2" md="6">
                         <div class="form-group custom-datepicker">
                             <label>Preferred date and time of visit</label>
-                            <date-picker v-model="value" format="DD-MM-YYYY" lang="en"></date-picker>
+                            <date-picker v-model="value" type="date" format="DD-MM-YYYY" lang="en"></date-picker>
                         </div>
                     </b-col>
                     <b-col cols="2" md="6">

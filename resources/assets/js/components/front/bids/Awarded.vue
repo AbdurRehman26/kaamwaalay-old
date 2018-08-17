@@ -82,7 +82,8 @@
 			},
 			ViewCustomerDetail() {
 				/*this.viewcustomer = true;*/
-				this.$router.push({name: 'customerdetail'});
+				/*this.$router.push({name: 'customerdetail'});*/
+				this.$router.push('/job-details/awarded');
 			},
 			changestatuspopup() {
 				this.changestatus = true;
@@ -93,7 +94,7 @@
 				this.changestatus = false;
 			},
 			servicedetail(){
-				this.$router.push('/job-details/serviceprovider');
+				this.$router.push('/job-details/awarded');
 			}
 
 		},
