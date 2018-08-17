@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'hassaan.zia@cygnismedia.com',
             'password' => Hash::make('cygnismedia'),
             'role_id' => Role::ADMIN,
+            'access_level' => 'full',
             'country_id' => NULL,
             'state_id' => NULL,
             'city_id' => NULL,

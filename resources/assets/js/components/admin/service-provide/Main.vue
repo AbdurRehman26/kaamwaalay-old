@@ -61,7 +61,7 @@
                     <img  :src="record.imagepath" >
                 </span>
             </td>
-            <td> <a href="javascript:void(0);" @click="profileimage">{{ record.user_detail.first_name +' '+ record.user_detail.last_name }}</a> </td>
+            <td> <a href="javascript:void(0);" @click="profileimage(record.id)">{{ record.user_detail.first_name +' '+ record.user_detail.last_name }}</a> </td>
             <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
@@ -166,8 +166,8 @@
             this.changestatus = false;
             this.providerdetailpopup = false;
         },
-        profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
+        profileimage(id){
+          this.$router.push({name: 'Service_Provider_Detail' , params : {id : id }});  
       },
       getRecords(data){
         let self = this;
