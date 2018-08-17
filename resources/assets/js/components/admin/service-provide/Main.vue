@@ -12,34 +12,34 @@
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                             <label>By Business/Individual</label>
-                             <select v-model="search.filter_by_business_type" class="form-control">
-                               <option value="">Select</option>
-                               <option value="business">Business</option>
-                               <option value="individual">Individual</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 datepicker-field">
-                      <div class="form-group">
-                         <label>By Type</label>
-                         <select v-model="search.filter_by_service" class="form-control">
-                           <option value="">Select All</option>
-                           <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-xs-12 col-md-2">
-                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                    <span>Apply</span>
-                    <loader></loader>
-                </button>
-            </div>
+                           <label>By Business/Individual</label>
+                           <select v-model="search.filter_by_business_type" class="form-control">
+                             <option value="">Select</option>
+                             <option value="business">Business</option>
+                             <option value="individual">Individual</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-xs-12 col-md-3 datepicker-field">
+                  <div class="form-group">
+                   <label>By Type</label>
+                   <select v-model="search.filter_by_service" class="form-control">
+                     <option value="">Select All</option>
+                     <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
+                 </select>
+             </div>
+         </div>
+         <div class="col-xs-12 col-md-2">
+            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                <span>Apply</span>
+                <loader></loader>
+            </button>
         </div>
     </div>
 </div>
+</div>
 <div class="col-md-12">
-   <div class="table-area">
+ <div class="table-area">
     <div class="table-responsive">
         <table class="table service-provider-table first-last-col-fix">
           <thead>
@@ -69,7 +69,7 @@
             <td><star-rating :star-size="20" read-only :rating="record.user_detail ?  record.user_detail.average_rating : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
-                <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                 <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
             </div>
         </td>
@@ -132,10 +132,12 @@
     },
     computed : {
         requestUrl(){
+            this.records = [];
+
             return this.url;
         },
         servicesList(){
-                return this.$store.getters.getAllServices;
+            return this.$store.getters.getAllServices;
         },
 
     },
@@ -156,9 +158,9 @@
         changestatuspopup() {
             this.changestatus = true;
         },
-        providerdetailclick() {
+        providerdetailclick(id) {
             /*this.providerdetailpopup = true;*/
-            this.$router.push({name: 'Service_Provider_Detail'});
+            this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id }});
         },
         HideModal(){
             this.service = false;
