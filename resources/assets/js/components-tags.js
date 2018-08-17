@@ -32,7 +32,7 @@ Vue.component('delete-popup',require('./components/admin/common-components/Delet
 Vue.component('confirmation-popup',require('./components/admin/common-components/ConfirmationPopup.vue'));
 Vue.component('change-pass-popup',require('./components/admin/common-components/ChangePassPopup.vue'));
 Vue.component('changestatuspopup',require('./components/admin/common-components/Status.vue'));
-
+Vue.component('warning', require('./components/admin/common-components/Warning.vue'));
 
 //left navigation
 Vue.component('left-panel', require('./components/admin/common-components/LeftPanel.vue'));

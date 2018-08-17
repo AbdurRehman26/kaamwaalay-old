@@ -1,9 +1,14 @@
 <template>
     <div>
-        <b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Warning" ok-only ok-title="Submit" @ok.prevent="submit" no-close-on-backdrop no-close-on-esc>
+        <b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
             <div>
                 <p>Are you sure you want to perform this action?</p>
+            </div>
+             <div slot="modal-footer" class="w-100">
+                        <button @click.prevent="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit
+                            <loader></loader>
+                        </button>
             </div>
         </b-modal>
     </div>
@@ -13,13 +18,16 @@
 
 export default {
 
-    props : ['showModalProp'],
+    props : ['showModalProp','url','data'],
         data () {
             return {
                 records : [],
                 pagination : '',
                 errorMessage: '',
                 successMessage: '',
+                loading: false,
+                url : '',
+                data : {}
             }  
         },
         methods: {
@@ -31,17 +39,29 @@ export default {
             },
             onHidden(){
                 this.$emit('HideModalValue');
+                this.$parent.actionConfirmation = false
             },submit(){
                 let self = this
-                self.$parent.update()
-                self.errorMessage = self.$parent.errorMessage
-                self.successMessage = self.$parent.successMessage
-                setTimeout(function(){
-                    self.successMessage='';
-                    self.errorMessage='';
-                    self.$parent.actionConfirmation = false;
-                    self.hideModal()
-                }, 5000);
+                self.loading = true
+                self.$http.put(self.url,self.data)
+                    .then(response => {
+                            self.successMessage= response.data.message
+                            self.$parent.currentRecord.status = self.data.status
+                            setTimeout(function(){
+                                self.successMessage=''
+                                self.loading = false
+                                self.$parent.currentRecord.status = self.data.status
+                                self.$parent.actionConfirmation = false
+                                self.hideModal()
+                            }, 5000);
+                    })
+                    .catch(error => {
+                        self.loading = false
+                        self.errorMessage ='An Error occured';
+                        setTimeout(function(){
+                            self.errorMessage=''
+                        }, 5000);
+                    })
             },
         },
 
@@ -55,6 +75,12 @@ export default {
                 this.hideModal();
             }
 
+        },
+        url(value){
+            this.url = value
+        },
+        data(value){
+            this.data = value
         }
     },
 }

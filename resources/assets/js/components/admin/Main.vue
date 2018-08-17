@@ -1,6 +1,7 @@
 <template>
   <div>
 	<div class="panel-inner">
+    <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>         
         <div class="row">
             <div class=" col-xs-12 col-md-12">
                 <div class="row">
@@ -30,10 +31,10 @@
                                   <td>{{record.first_name}}</td>
                                   <td>{{record.last_name}}</td>
                                   <td><a href="javascript:;">{{record.email}}</a></td>
-                                  <td ><a class="" @click="accessLevelLink(record)" v-model="currentRecord.access_level">{{record | accessLevel}}</a></td>
+                                  <td ><a class="" @click="changeAccessLevel(record)" v-model="currentRecord.access_level">{{record | accessLevel}}</a></td>
                                   <td>{{record.created_at.date | formatDate}}</td>
                                   <td class="text-center statustext">
-                                    <div class=""><a class="" @click="statusLink(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
+                                    <div class=""><a class="" @click="changeStatus(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
                                   </td>
                                 </tr>
                               </tbody>
@@ -45,7 +46,7 @@
           <div class="clearfix"></div>
            <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 		    </div>
-     <confirmation-popup @HideModalValue="HideModal" :showModalProp="actionConfirmation"></confirmation-popup>
+     <confirmation-popup @HideModalValue="HideModal" :showModalProp="actionConfirmation" :url='updateUrl' :data='updateData'></confirmation-popup>
 		 <add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
      <change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
 	</div>
@@ -88,28 +89,23 @@ export default {
             this.showModalValue = false;
             this.changestatus = false;
         },
-
-          update: function () {
-            this.updateRecord();
-             this.actionConfirmation = false;
-          },
-          statusLink(record){
+          changeStatus(record){
              this.actionConfirmation = true;
              let self = this
+             let status = ''
             this.currentRecord = record
             if(this.currentRecord.status == 'banned'){
-              this.currentRecord.status = 'active'
+                status= 'active'
             }else{
-              this.currentRecord.status = 'banned'
-            }
+                status= 'banned'
+            } 
             self.updateUrl = 'api/user/change-status'
             self.updateData  = {
                   "id" : self.currentRecord.id,
-                  "status" : self.currentRecord.status,
+                  "status" : status,
                 }
-            self.currentRecord.status = self.currentRecord.status;
           }, 
-          accessLevelLink(record) {
+          changeAccessLevel(record) {
             let self = this
             this.currentRecord = record
             if(this.currentRecord.access_level == 'reviewOnly'){
@@ -121,8 +117,8 @@ export default {
             self.updateData  = {
                   "id" : self.currentRecord.id,
                   "access_level" : self.currentRecord.access_level,
-                }
-            this.updateRecord();
+                }   
+            this.updateAccessLevel();
           },
           getRecords(data){
             let self = this;
@@ -131,9 +127,8 @@ export default {
             if (!self.records.length) {
               self.noRecordFound = true;
             }
-
           },
-          updateRecord: function () {
+          updateAccessLevel: function () {
                 let self = this;
                 this.$http.put(self.updateUrl,self.updateData)
                     .then(response => {
@@ -149,8 +144,8 @@ export default {
                             self.errorMessage='';
                         }, 5000);
                     })
-            },
-          },
+          }
+      },
     mounted(){
 
       this.loading = true;
@@ -158,6 +153,7 @@ export default {
     },
     beforeMount() {
           let user = JSON.parse(this.$store.getters.getAuthUser);
+          console.log
           this.user_id = user.id;
         },
 }
