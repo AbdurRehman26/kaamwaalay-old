@@ -156,7 +156,7 @@
                                 <p><strong class="title-head">Total Urgent Jobs Created</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>{{records.duns_number ?  records.duns_number : 0}}</p>
+                                <p>{{records.urgent_jobs_created ?  records.urgent_jobs_created : 0}}</p>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -179,10 +179,8 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Related activites</strong></p>
                             </b-col>
-                            <b-col class="calculated-value">
-                                <span class="tags">Carpenter</span>
-                                <span class="tags">Developer</span>
-                                <span class="tags">Electrician</span>                                        
+                            <b-col v-show="records.services_offered" class="calculated-value">
+                                <span v-for="service in records.services_offered" class="tags">{{service}}</span>
                             </b-col>
                         </b-row>                                 
                         <b-row>
@@ -191,7 +189,7 @@
                             </b-col>
 
                             <b-col class="calculated-value">
-                                <a href="javascript:void(0);" @click="ServiceJobDetail">See All</a>
+                                <a href="javascript:void(0);" @click="ServiceJobDetail(records.id)">See All</a>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
@@ -217,8 +215,8 @@
         StarRating
     },    
     methods: {
-        ServiceJobDetail() {
-            this.$router.push({name: 'viewservicejobdetail'});
+        ServiceJobDetail(id) {
+            this.$router.push({name: 'viewservicejobdetail', params : {id : id}});
         },
         getRecords(data){
             let self = this;
