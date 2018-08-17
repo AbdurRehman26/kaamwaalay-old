@@ -25,6 +25,17 @@ const jobStatuses = [
 
 ];
 
+const jobTypes = [
+{
+    key : 'normal',
+    value : 'No'
+},
+{
+    key : 'urgent',
+    value : 'Yes'
+},
+];
+
 const providerStatuses = [
 {
     key : 'active',
@@ -90,6 +101,17 @@ Vue.filter('jobStatus', function (value) {
     });
 
     return obj.value.replace(/\s/g, '').trim();
+});
+
+Vue.filter('jobType', function (value) {
+
+
+    let obj = _.find(jobTypes, item =>{
+        if(item.key == value.job_type){
+            return item; 
+        }
+    });
+    return obj.value;
 });
 
 Vue.filter('userStatus', function (value) {

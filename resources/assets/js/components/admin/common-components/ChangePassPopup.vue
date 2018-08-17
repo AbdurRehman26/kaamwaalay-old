@@ -106,7 +106,7 @@ data () {
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage ='An Error Occured.';
+                        self.errorMessage =error.response.data.message;
                         setTimeout(function(){
                             self.errorMessage='';
                         }, 5000);

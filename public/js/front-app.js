@@ -2670,7 +2670,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'An Error Occured.';
+                self.errorMessage = error.response.data.message;
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);
@@ -3165,7 +3165,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tabmenu: false,
             changepass: false,
             first_name: '',
-            last_name: ''
+            last_name: '',
+            user: {}
         };
     },
 
@@ -3173,10 +3174,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onClickaway: __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__["directive"]
     },
     mounted: function mounted() {
-        var user = JSON.parse(this.$store.getters.getAuthUser);
-        this.first_name = user.first_name;
         this.getAllServices();
-        this.last_name = user.last_name;
+        this.user = JSON.parse(this.$store.getters.getAuthUser);
+        this.first_name = this.user.first_name;
+        this.last_name = this.user.last_name;
     },
 
     computed: {
@@ -70346,11 +70347,7 @@ var render = function() {
                         staticClass: "user-img",
                         on: { click: _vm.ChangePass }
                       },
-                      [
-                        _c("img", {
-                          attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                        })
-                      ]
+                      [_c("img", { attrs: { src: "", alt: "" } })]
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "profile-username" }, [

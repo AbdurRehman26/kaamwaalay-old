@@ -54,10 +54,10 @@ public $model;
      * @author Usaama Effendi <usaamaeffendi@gmail.com>
      *
      **/
-        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false) {
+        public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false) {
 
             $model = $this->model->newInstance()
-            ->where($crtieria);
+            ->where($criteria);
 
             if($whereIn){
                 $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
@@ -131,9 +131,11 @@ public $model;
             return $data;
         }
 
-        public function getCountByCriteria($crtieria, $whereIn = false) {
 
-            $model = $this->model->where($crtieria);
+        public function getCountByCriteria($criteria, $whereIn = false) {
+            
+            $model = $this->model->where($criteria);
+
             if($whereIn){
                 $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->count();
             }
@@ -145,9 +147,11 @@ public $model;
             return false;
         }
 
-        public function getUrgentJobsCompleted($crtieria) {
 
-            $model = $this->model->where($crtieria);
+        public function getUrgentJobsCompleted($criteria) {
+            
+            $model = $this->model->where($criteria);
+            
             if ($model != NULL) {
 
                 $model = $model->
@@ -164,9 +168,11 @@ public $model;
             return false;
         }
 
-        public function getTotalRevenueCriteria($crtieria) {
 
-            $model = $this->model->where($crtieria);
+        public function getTotalRevenueCriteria($criteria) {
+            
+            $model = $this->model->where($criteria);
+
             if ($model != NULL) {
                 $model = $model->
                 leftJoin('jobs', function ($join) {
@@ -180,9 +186,11 @@ public $model;
             return false;
         }
 
-        public function getCompletedJobs($crtieria) {
 
-            $model = $this->model->where($crtieria);
+        public function getCompletedJobs($criteria) {
+            
+            $model = $this->model->where($criteria);
+
             if ($model != NULL) {
                 $model = $model->
                 leftJoin('jobs', function ($join) {
@@ -196,4 +204,31 @@ public $model;
             return false;
         }
 
-    }
+
+        public function getAwardedJobAmount($criteria) {
+            
+            $model = $this->model->where($criteria);
+            if ($model != NULL) {
+                $model = $model->value('amount');
+                
+                return $model;
+            }
+            return false;
+        }
+
+        public function getJobServiceProvider($criteria) {
+            
+            $model = $this->model->where($criteria);
+            if ($model != NULL) {
+                $model = $model->leftJoin('users', function ($join) {
+                        $join->on('users.id', '=', 'job_bids.user_id');
+                    })                    
+                    ->select('first_name', 'last_name')->first();
+                
+                return $model;
+            }
+            return false;
+        }
+
+}
+
