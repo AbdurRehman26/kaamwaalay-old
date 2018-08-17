@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-modal id="status-user-change" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change User Status" ok-only ok-title="Submit">
+        <b-modal id="status-user-change" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change Status" ok-only ok-title="Update">
         <alert></alert>
             <div>
                <p>Are you sure you want to change this access level?</p>
