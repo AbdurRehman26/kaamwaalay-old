@@ -12523,6 +12523,202 @@ input[type=number]::-webkit-outer-spin-button {
   transform: scale(1);
 }
 
+.discussion-panel {
+  width: 390px;
+  height: 640px;
+  border-top: none;
+  position: fixed;
+  background-color: #fff;
+  z-index: 99;
+  right: 0;
+  margin-top: 1px;
+  bottom: 0px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px 12px 0 0;
+  -webkit-box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 414px) {
+  .discussion-panel {
+    width: 100%;
+    top: 0;
+    height: 100%;
+  }
+}
+
+.discussion-panel h5 {
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.discussion-panel h5 span {
+  color: #7D7D7D;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 16px;
+  margin-left: 16px;
+}
+
+.discussion-panel .list-group-item:hover,
+.discussion-panel .list-group-item:focus {
+  z-index: 0;
+}
+
+.discussion-panel h6 {
+  color: #7D7D7D;
+  font-size: 16px;
+  text-align: center;
+  font-family: "AkzidenzGroteskBE-Bold";
+  position: relative;
+  text-transform: uppercase;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.discussion-panel h6:after,
+.discussion-panel h6:before {
+  position: absolute;
+  content: "";
+  background-color: #B2B2B2;
+  width: 40%;
+  height: 1px;
+  right: 0;
+  top: 6px;
+}
+
+.discussion-panel h6:before {
+  left: 0;
+}
+
+.discussion-panel .today-message .time-date i {
+  font-style: normal;
+  display: none;
+}
+
+.discussion-panel .time-date i {
+  font-style: normal;
+}
+
+.discussion-panel .panel-heading {
+  border-bottom: 1px #dee2e6 solid;
+  padding: 15px;
+  margin-bottom: 0px;
+  position: relative;
+  background: #F9F9F9;
+}
+
+.discussion-panel .panel-heading h3 {
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #1A1A1A;
+  font-size: 24px;
+  margin: 0;
+  display: inline-block;
+}
+
+.discussion-panel .panel-heading .close-icon {
+  position: absolute;
+  top: 14px;
+  right: 24px;
+  font-size: 26px;
+  color: #7D7D7D;
+  cursor: pointer;
+}
+
+.discussion-panel .discussion-content {
+  padding: 15px;
+  position: absolute;
+  height: calc(100% - 121px);
+  overflow-y: auto;
+  padding: 20px 30px 20px 41px;
+}
+
+.discussion-panel .discussion-content .list-group .list-group-item {
+  padding: 0 0 32px 0;
+  border: none;
+}
+
+.discussion-panel .discussion-content .list-group .list-group-item:after {
+  display: none;
+}
+
+.discussion-panel .discussion-content.scrollbar {
+  max-height: 100%;
+  height: calc(100% - 140px);
+  position: relative;
+  right: 8px;
+}
+
+.discussion-panel .section-separator {
+  margin: 10px 0 40px 0;
+  text-align: center;
+}
+
+.discussion-panel .section-separator span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 4px 0;
+  background-color: #fff;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100px;
+  top: -13px;
+  font-family: "AkzidenzGroteskBE-Bold";
+  color: #7D7D7D;
+}
+
+.discussion-panel .panel-footer {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  background-color: #E0E0E0;
+  bottom: 0;
+  left: 0;
+  -webkit-box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px 63px 20px 37px;
+}
+
+.discussion-panel .panel-footer textarea {
+  background: none;
+  border: none;
+  background: none;
+  border: none;
+  resize: none;
+  height: 54px !important;
+}
+
+.discussion-panel .panel-footer .icon-circle {
+  position: absolute;
+  right: 34px;
+  top: 17px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.discussion-panel .panel-footer .icon-circle i {
+  position: relative;
+  top: 12px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.profile-message {
+  width: calc(100% - 60px);
+  float: left;
+}
+
+.profile-message p {
+  font-size: 13.5px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  color: #1A1A1A;
+  margin-bottom: 0;
+  line-height: 19px;
+}
+
 .btn {
   height: 44px;
   color: #fff;
@@ -15352,9 +15548,13 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .campaigns .camp-views {
+  /* position: relative;
+        padding-bottom: 70px;
+        padding-top: 30px; */
   position: relative;
-  padding-bottom: 70px;
-  padding-top: 30px;
+  padding-bottom: 0px;
+  padding-top: 20px;
+  overflow: auto;
 }
 
 .campaigns .camp-views .view-status {
@@ -15795,6 +15995,7 @@ body .chat-feedback-message.white-msg:before {
   position: absolute;
   left: 18px;
   top: 11px;
+  font-size: 21px;
 }
 
 .service-provider a.btn i.icon-close2 {
@@ -15803,7 +16004,7 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .service-provider a.btn-cancel-job i.icon-folder {
-  top: 12px;
+  top: 9px;
 }
 
 .fancy-box-mask {
