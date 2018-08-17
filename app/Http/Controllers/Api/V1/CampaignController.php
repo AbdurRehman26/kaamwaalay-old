@@ -21,15 +21,6 @@ class CampaignController extends ApiResourceController
             $rules['plan_id'] =  'required|numeric|exists:plans,id';
         }
 
-        if($value == 'update'){
-
-        }
-
-
-        if($value == 'destroy'){
-
-        }
-
         if($value == 'show'){
             $rules['id'] =  'required|exists:campaigns,id';
         }

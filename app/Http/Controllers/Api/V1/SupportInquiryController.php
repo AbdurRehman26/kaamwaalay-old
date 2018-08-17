@@ -32,11 +32,6 @@ class SupportInquiryController extends ApiResourceController
             $rules['is_replied']    =  'nullable|boolean';
         }
 
-
-        if($value == 'destroy'){
-
-        }
-
         if($value == 'show'){
             $rules['id'] =  'required|exists:support_inquiries,id';
         }
