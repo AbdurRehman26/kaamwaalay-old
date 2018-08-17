@@ -9,7 +9,6 @@ import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
 import router from './front-routes';
 import BootstrapVue from 'bootstrap-vue';
-
 import fancyBox from 'vue-fancybox';
 
 Vue.use(VueRouter);

@@ -3752,7 +3752,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
-			this.$router.push({ name: 'customerdetail' });
+			/*this.$router.push({name: 'customerdetail'});*/
+			this.$router.push('/job-details/awarded');
 		},
 		changestatuspopup: function changestatuspopup() {
 			this.changestatus = true;
@@ -3763,7 +3764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.changestatus = false;
 		},
 		servicedetail: function servicedetail() {
-			this.$router.push('/job-details/serviceprovider');
+			this.$router.push('/job-details/awarded');
 		}
 	},
 	components: {
@@ -68756,7 +68757,11 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("date-picker", {
-                          attrs: { format: "DD-MM-YYYY", lang: "en" },
+                          attrs: {
+                            type: "date",
+                            format: "DD-MM-YYYY",
+                            lang: "en"
+                          },
                           model: {
                             value: _vm.value,
                             callback: function($$v) {
@@ -70986,7 +70991,8 @@ var render = function() {
                 "a",
                 {
                   staticClass: "btn btn-primary post-bid",
-                  attrs: { href: "javascript:void(0);" }
+                  attrs: { href: "javascript:void(0);" },
+                  on: { click: _vm.servicedetail }
                 },
                 [_vm._v("View Details")]
               )
@@ -75749,7 +75755,23 @@ var render = function() {
                         2
                       ),
                       _vm._v(" "),
-                      _vm._m(3, true),
+                      _vm.job_detail_right_panel != "awarded"
+                        ? _c("div", { staticClass: "jobs-post-files" }, [
+                            _c("h3", [_vm._v("Related Videos")]),
+                            _vm._v(" "),
+                            _c("iframe", {
+                              attrs: {
+                                width: "1280",
+                                height: "365",
+                                src:
+                                  "https://www.youtube.com/embed/3o7DvKGeZn0",
+                                frameborder: "0",
+                                allow: "autoplay; encrypted-media",
+                                allowfullscreen: ""
+                              }
+                            })
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm.job_detail_right_panel ==
                         "service-provider-customer-end" ||
@@ -75759,11 +75781,11 @@ var render = function() {
                         ? _c("div", { staticClass: "jobs-post-files" }, [
                             _c("h3", [_vm._v("Customer Information")]),
                             _vm._v(" "),
+                            _vm._m(3, true),
+                            _vm._v(" "),
                             _vm._m(4, true),
                             _vm._v(" "),
-                            _vm._m(5, true),
-                            _vm._v(" "),
-                            _vm._m(6, true)
+                            _vm._m(5, true)
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -75777,7 +75799,7 @@ var render = function() {
                             "div",
                             { staticClass: "chat-feedback" },
                             [
-                              _vm._m(7, true),
+                              _vm._m(6, true),
                               _vm._v(" "),
                               _vm._l(listing.my_bid, function(reviewer) {
                                 return _c(
@@ -75879,7 +75901,7 @@ var render = function() {
                             "div",
                             { staticClass: "chat-feedback" },
                             [
-                              _vm._m(8, true),
+                              _vm._m(7, true),
                               _vm._v(" "),
                               _vm._l(listing.review_details, function(
                                 reviewer
@@ -76105,13 +76127,13 @@ var render = function() {
                 _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
                   _vm.job_detail_right_panel == "awarded"
                     ? _c("div", { staticClass: "service-provider" }, [
+                        _vm._m(8, true),
+                        _vm._v(" "),
                         _vm._m(9, true),
                         _vm._v(" "),
                         _vm._m(10, true),
                         _vm._v(" "),
-                        _vm._m(11, true),
-                        _vm._v(" "),
-                        _vm._m(12, true)
+                        _vm._m(11, true)
                       ])
                     : _vm.job_detail_right_panel == "serviceprovider"
                       ? _c("div", { staticClass: "service-provider" }, [
@@ -76128,9 +76150,9 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(13, true),
+                          _vm._m(12, true),
                           _vm._v(" "),
-                          _vm._m(14, true)
+                          _vm._m(13, true)
                         ])
                       : _vm.job_detail_right_panel ==
                           "service-provider-customer-end" ||
@@ -76150,9 +76172,9 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(15, true),
+                            _vm._m(14, true),
                             _vm._v(" "),
-                            _vm._m(16, true)
+                            _vm._m(15, true)
                           ])
                         : _c("div", { staticClass: "service-provider" }, [
                             _c(
@@ -76202,7 +76224,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(17, true)
+                            _vm._m(16, true)
                           ])
                 ])
               ])
@@ -76268,25 +76290,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "service-detail" }, [
       _c("h3", [_vm._v("Job Details")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "jobs-post-files" }, [
-      _c("h3", [_vm._v("Related Videos")]),
-      _vm._v(" "),
-      _c("iframe", {
-        attrs: {
-          width: "1280",
-          height: "365",
-          src: "https://www.youtube.com/embed/3o7DvKGeZn0",
-          frameborder: "0",
-          allow: "autoplay; encrypted-media",
-          allowfullscreen: ""
-        }
-      })
     ])
   },
   function() {
@@ -76366,7 +76369,7 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn btn-primary",
+        staticClass: "btn btn-primary btn-outline",
         attrs: { href: "javascript:void(0);" }
       },
       [_c("i", { staticClass: "icon-trophy" }), _vm._v(" Job Awarded")]
@@ -76405,7 +76408,7 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn btn-cancel-job",
+        staticClass: "btn btn-cancel-job disable",
         attrs: { href: "javascript:void(0);" }
       },
       [_c("i", { staticClass: "icon-folder" }), _vm._v(" Archive")]
@@ -96070,7 +96073,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-
 
 
 
