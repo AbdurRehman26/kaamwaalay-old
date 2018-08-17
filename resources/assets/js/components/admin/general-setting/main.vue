@@ -8,61 +8,54 @@
 	        	<!-- Featured Row -->
 
 				<div class="featured-row">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="featured-detail-title">
-								<h2 class="page-title">Featured Profile</h2>
-							</div>
-						</div>
-					</div>
+                            <div class="row featured-setting" >
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-5">
+                                            <div class="form-group">
+                                                <label>Featured Amount</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-5">
+                                            <div class="form-group">
+                                                <label>Featured Quantity</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-					<div class="row featured-setting">
-                        <div class="col-xs-12 col-md-4">
-                            <label>Featured Amount</label>
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                            <label>Featured Quantity</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 featured-setting-row">
+                                <div class="col-xs-12 col-md-12 featured-setting-row">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Enter featured amount"  >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Enter featured quantity"  >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="javascript:;"> remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-md-2 filter-btn-top-space add-more-featured">
+                                    <a href="javascript:;">+ Add more</a>
+                                </div>
+
+                            </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Enter featured amount">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Enter featured quantity">
-                                    </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <button  class="btn btn-primary">
+                                        <span>Apply</span>
+                                        <loader></loader>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-md-8 featured-setting-row">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Enter featured amount">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Enter featured quantity">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="javascript:;" class="addmore-text">+ Add more</a>
-                    </div>
-
-
-					<div class="row">
-							<div class="col-xs-12 col-md-3">
-                                <button class="btn btn-primary">
-                                    <span>Apply</span>
-                                    <loader></loader>
-                                </button>
-                            </div>
-					</div>
 				</div>
 				<!-- Featured Row End -->
 

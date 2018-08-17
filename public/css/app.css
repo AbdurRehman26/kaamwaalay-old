@@ -41476,6 +41476,8 @@ a.underline {
 
 .add-more-featured {
   margin-top: 34px;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .add-more-featured a {
@@ -41601,10 +41603,5 @@ a.underline {
   line-height: 0;
   position: relative;
   top: -1px;
-}
-
-.addmore-text {
-  position: relative;
-  top: 9px;
 }
 
