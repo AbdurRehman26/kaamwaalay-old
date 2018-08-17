@@ -6,7 +6,7 @@
     </div>
 
     <div class="pagination-wrapper float-right">
-        <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="10"></b-pagination>
+        <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
     </div>
 </div>
 </template>
