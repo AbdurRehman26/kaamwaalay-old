@@ -31,7 +31,7 @@ class CampaignController extends ApiResourceController
         }
 
         if($value == 'show'){
-
+            $rules['id'] =  'required|exists:campaigns,id';
         }
 
         if($value == 'index'){

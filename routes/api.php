@@ -72,34 +72,34 @@ Route::group(['middleware' => ['auth:api']], function () {
         'edit',
     ]);
 
-    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->except([
-        'edit',
+    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
+        'index', 'store', 'show', 'update',
     ]);
 });
 
 
-Route::resource('campaign', 'Api\V1\CampaignController')->except([
-    'edit',
+Route::resource('campaign', 'Api\V1\CampaignController')->only([
+    'index', 'store', 'show',
 ]);
 
-Route::resource('city', 'Api\V1\CityController')->except([
-    'edit',
+Route::resource('city', 'Api\V1\CityController')->only([
+    'index', 'show',
 ]);
 
-Route::resource('country', 'Api\V1\CountryController')->except([
-    'edit',
+Route::resource('country', 'Api\V1\CountryController')->only([
+    'index', 'show',
 ]);
 
 Route::resource('payment', 'Api\V1\PaymentController')->except([
     'edit',
 ]);
 
-Route::resource('plan', 'Api\V1\PlanController')->except([
-    'edit',
+Route::resource('plan', 'Api\V1\PlanController')->only([
+    'index', 'show', 'update',
 ]);
 
-Route::resource('role', 'Api\V1\RoleController')->except([
-    'edit',
+Route::resource('role', 'Api\V1\RoleController')->only([
+    'index', 'show',
 ]);
 
 Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
@@ -110,13 +110,13 @@ Route::resource('service-provider-service', 'Api\V1\ServiceProviderServiceContro
     'edit',
 ]);
 
-Route::resource('state', 'Api\V1\StateController')->except([
-    'edit',
+Route::resource('state', 'Api\V1\StateController')->only([
+    'index', 'show',
 ]);
 
 
-Route::resource('support-question', 'Api\V1\SupportQuestionController')->except([
-    'edit',
+Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
+    'index',
 ]);
 
 Route::resource('testimonial', 'Api\V1\TestimonialController')->except([
