@@ -3576,7 +3576,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												this.changestatus = false;
 								},
 								servicedetail: function servicedetail() {
-												this.$router.push({ name: 'job-details' });
+												this.$router.push('/job-details/serviceprovider');
 								}
 				},
 				components: {
@@ -3690,7 +3690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.changestatus = false;
         },
         servicedetail: function servicedetail() {
-            this.$router.push({ name: 'job-details' });
+            this.$router.push('/job-details/serviceprovider');
         }
     },
     components: {
@@ -3822,7 +3822,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.changestatus = false;
         },
         servicedetail: function servicedetail() {
-            this.$router.push({ name: 'job-details' });
+            this.$router.push('/job-details/serviceprovider');
         }
     },
     components: {
@@ -3970,7 +3970,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.changestatus = false;
         },
         servicedetail: function servicedetail() {
-            this.$router.push({ name: 'job-details' });
+            this.$router.push('/job-details/serviceprovider');
         }
     },
     components: {
@@ -5250,7 +5250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 								job_full_rating: 4,
 								job_location: 'New York, NY',
 								job_member_since: 'Jan, 2018',
-								job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\r\n-  I offer a friendly, honest and punctual service \r\n-  Installation of timber and UPVC Windows & Doors. \r\n-  UPVC door/window Lock repairs & replacements. \r\n-  Also repair/replacing broken and misted double/single glazing. \r\n-  Made to measure Gates, Fencing and Decking. \r\n-  General Maintenance repairs etc. \r\n-  My work is carried out to high standards and resonably priced! \r\n-  No job too small. \r\n-  Get in touch for a quote.",
+								job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote.",
 
 								servicesavaliable: [{
 										title: 'General carpentry'
@@ -5991,6 +5991,192 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/jobs/explore-jobs.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            bid_selection: 'activebid',
+            bidpopup: false,
+            joblisting: [{
+                job_title_image: '/images/front/storage/bidimage1.png',
+                job_title: 'Concrete Floor Building',
+                job_poster: 'Nathan Alvarez',
+                job_category: 'Construction - Concrete Flooring',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'within a week',
+                job_location: 'New York, NY',
+                chat_message: false,
+                job_offer: '$250',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
+                list_ratings: 5
+            }, {
+                job_title_image: '/images/front/storage/bidimage2.png',
+                job_title: 'Leaking water pipe',
+                job_category: 'Construction - Concrete Flooring',
+                job_poster: 'Lisa Burns',
+                job_status: 'Active',
+                job_perform: 270,
+                job_service: 'urgent',
+                job_location: 'New York, NY',
+                chat_message: true,
+                job_offer: 'TBH',
+                job_post_date: '24 Jan, 2018',
+                job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+                list_ratings: 4
+
+            }]
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        ViewCustomerDetail: function ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({ name: 'customerdetail' });
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        ChangeBid: function ChangeBid() {
+            this.bidpopup = true;
+        },
+        HideModal: function HideModal() {
+            this.bidpopup = false;
+        },
+        servicedetail: function servicedetail() {
+            this.$router.push({ name: 'job-details' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {},
+
+    watch: {
+        bid_selection: function bid_selection(val) {
+            return this.val;
+        }
+    }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/jobs/job-detail.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6000,6 +6186,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_fancybox__ = __webpack_require__("./node_modules/vue-fancybox/src/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_fancybox___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_fancybox__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6270,7 +6464,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 job_service: 'urgent',
                 job_location: 'New York, NY',
                 job_member_since: 'Jan, 2018',
-                job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\r\n-  I offer a friendly, honest and punctual service \r\n-  Installation of timber and UPVC Windows & Doors. \r\n-  UPVC door/window Lock repairs & replacements. \r\n-  Also repair/replacing broken and misted double/single glazing. \r\n-  Made to measure Gates, Fencing and Decking. \r\n-  General Maintenance repairs etc. \r\n-  My work is carried out to high standards and resonably priced! \r\n-  No job too small. \r\n-  Get in touch for a quote.",
+                job_description: "Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height. \n Depending on cost I would also be interested in a quote to concrete an area 265 x 170 cm and another approx. 290 x 240 cm again with currently a brick flooring on both these areas.",
 
                 review_details: [{
 
@@ -66723,7 +66917,8 @@ var render = function() {
                 "a",
                 {
                   staticClass: "btn btn-primary post-bid",
-                  attrs: { href: "javascript:void(0);" }
+                  attrs: { href: "javascript:void(0);" },
+                  on: { click: _vm.servicedetail }
                 },
                 [_vm._v("View Details")]
               )
@@ -67184,7 +67379,8 @@ var render = function() {
                 "a",
                 {
                   staticClass: "btn btn-primary post-bid",
-                  attrs: { href: "javascript:void(0);" }
+                  attrs: { href: "javascript:void(0);" },
+                  on: { click: _vm.servicedetail }
                 },
                 [_vm._v("View Details")]
               )
@@ -69812,6 +70008,274 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-39d8199c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/jobs/explore-jobs.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "my-job-lising-content" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-post-container section-padd sm" }, [
+          _c(
+            "div",
+            { staticClass: "container md" },
+            _vm._l(_vm.joblisting, function(listing) {
+              return _c("div", { staticClass: "job-post-list" }, [
+                _c("div", { staticClass: "job-post-details" }, [
+                  _c("div", {
+                    staticClass: "job-image pointer",
+                    style: {
+                      "background-image": "url(" + listing.job_title_image + ")"
+                    },
+                    on: { click: _vm.servicedetail }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "job-common-description job-perform" },
+                    [
+                      _c("div", { staticClass: "col-md-6 p-l-0" }, [
+                        _c(
+                          "h3",
+                          {
+                            staticClass: "pointer",
+                            on: { click: _vm.servicedetail }
+                          },
+                          [_vm._v(_vm._s(listing.job_title))]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2, true),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "job-notification" }, [
+                          _c("div", { staticClass: "jobs-done" }, [
+                            _c("span", { staticClass: "job-poster" }, [
+                              _vm._v("Posted By "),
+                              _c(
+                                "a",
+                                { attrs: { href: "javascript:void(0);" } },
+                                [_vm._v(_vm._s(listing.job_poster))]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "job-category noborder" },
+                              [_vm._v(_vm._s(listing.job_category))]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 job-bid-btn p-r-0" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "chat-message",
+                            class: { disable: listing.chat_message === false },
+                            attrs: { href: "javascript:void(0);" },
+                            on: {
+                              click: function($event) {
+                                _vm.$emit("chatmessage")
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "icon-message" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary post-bid",
+                            attrs: { href: "javascript:void(0);" }
+                          },
+                          [_vm._v("View Details")]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "member-details" }, [
+                    _c("p", { staticClass: "location" }, [
+                      _c("i", { staticClass: "icon-location" }),
+                      _vm._v(
+                        " \n                                    Location "
+                      ),
+                      _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "offer" }, [
+                      _c("i", { staticClass: "icon-work-briefcase" }),
+                      _vm._v(" \n                                Offer: "),
+                      _c("strong", [_vm._v(_vm._s(listing.job_offer))]),
+                      _vm._v(" - "),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:void(0);" },
+                          on: {
+                            click: function($event) {
+                              _vm.$emit("changebid")
+                            }
+                          }
+                        },
+                        [_vm._v("Change Bid")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "member-since" }, [
+                      _c("i", { staticClass: "icon-calendar-daily" }),
+                      _vm._v(
+                        "\n                                    Post Date "
+                      ),
+                      _c("strong", [_vm._v(_vm._s(listing.job_post_date))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "post-job-description" }, [
+                    _c("p", [_vm._v(_vm._s(listing.job_description))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "job-details" }, [
+                    _c(
+                      "p",
+                      { staticClass: "customer-rating" },
+                      [
+                        _c("strong", [_vm._v("Customer rating:")]),
+                        _vm._v(" "),
+                        _c("star-rating", {
+                          attrs: {
+                            "star-size": 20,
+                            "read-only": "",
+                            rating: [listing.list_ratings],
+                            "active-color": "#8200ff"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "service-requirment" }, [
+                      _c("i", { staticClass: "icon-brightness-down" }),
+                      _vm._v(
+                        "\n                                    Service required \n                                    "
+                      ),
+                      listing.job_service == "urgent"
+                        ? _c("strong", { staticClass: "urgent" }, [
+                            _vm._v(_vm._s(listing.job_service))
+                          ])
+                        : _c("strong", [_vm._v(_vm._s(listing.job_service))])
+                    ])
+                  ])
+                ])
+              ])
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("post-bid-popup", {
+          attrs: { showModalProp: _vm.bidpopup },
+          on: { HideModalValue: _vm.HideModal }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "search-fixture" }, [
+      _c(
+        "div",
+        { staticClass: "grey-bg section-padd xs border-top-bottom search-fix" },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-2 p-r-0" }, [
+                _c("h3", { staticClass: "labelheading" }, [
+                  _vm._v("Select Service Category")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-8 p-r-0" }, [
+                _c("div", { staticClass: "search-filter m-b-0" }, [
+                  _c("input", {
+                    staticClass: "form-control lg search-service",
+                    attrs: {
+                      type: "text",
+                      placeholder: "What service do you need?",
+                      name: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "container-zip-code" }, [
+                    _c("i", { staticClass: "icon-location" }),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control lg zip-code",
+                      attrs: {
+                        type: "number",
+                        placeholder: "Zip code",
+                        name: ""
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 p-r-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-primary width-100",
+                    attrs: { href: "javscript:void(0);" }
+                  },
+                  [_vm._v("Search")]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "category-section" }, [
+      _c("h2", [_vm._v("General Carpentry Jobs in New York, NY")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "icon-checked" })])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-39d8199c", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3a28fc32\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/GoToVisitPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -72280,115 +72744,128 @@ var render = function() {
           _c("div", { staticClass: "container md" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-9" }, [
-                _c("div", { staticClass: "provider-information" }, [
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "member-details" }, [
-                    _c("p", { staticClass: "location" }, [
-                      _c("i", { staticClass: "icon-location" }),
-                      _vm._v(" \n\t\t\t\t\t\t\t\t\t\tLocation "),
-                      _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                _c(
+                  "div",
+                  { staticClass: "provider-information" },
+                  [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "member-details" }, [
+                      _c("p", { staticClass: "location" }, [
+                        _c("i", { staticClass: "icon-location" }),
+                        _vm._v(" \n\t\t\t\t\t\t\t\t\t\tLocation "),
+                        _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "member-since" }, [
+                        _vm._v(
+                          "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tMember since "
+                        ),
+                        _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("p", { staticClass: "member-since" }, [
-                      _vm._v(
-                        "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tMember since "
-                      ),
-                      _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "post-job-description" }, [
-                    _c("p", [_vm._v(_vm._s(listing.job_description))])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "chat-feedback" },
-                    [
-                      _vm._m(2, true),
-                      _vm._v(" "),
-                      _vm._l(listing.review_details, function(reviewer) {
-                        return _c(
-                          "div",
-                          { staticClass: "chat-feedback-column" },
-                          [
-                            _c("div", {
-                              staticClass: "chat-feedback-image",
-                              style: {
-                                "background-image":
-                                  "url(" + reviewer.latest_review_image + ")"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "chat-feedback-message white-msg"
-                              },
-                              [
-                                _c("p", [
-                                  _vm._v(
-                                    _vm._s(reviewer.latest_review_description)
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "feeback-detail" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "feedback-personal-info" },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "javascript:void(0);" }
-                                        },
-                                        [
+                    _vm._l(listing.job_description.split("\n"), function(
+                      description
+                    ) {
+                      return _c(
+                        "div",
+                        { staticClass: "post-job-description" },
+                        [_c("p", [_vm._v(_vm._s(description))])]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "chat-feedback" },
+                      [
+                        _vm._m(2, true),
+                        _vm._v(" "),
+                        _vm._l(listing.review_details, function(reviewer) {
+                          return _c(
+                            "div",
+                            { staticClass: "chat-feedback-column" },
+                            [
+                              _c("div", {
+                                staticClass: "chat-feedback-image",
+                                style: {
+                                  "background-image":
+                                    "url(" + reviewer.latest_review_image + ")"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "chat-feedback-message white-msg"
+                                },
+                                [
+                                  _c("p", [
+                                    _vm._v(
+                                      _vm._s(reviewer.latest_review_description)
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "feeback-detail" }, [
+                                    _c(
+                                      "p",
+                                      { staticClass: "feedback-personal-info" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: "javascript:void(0);"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                reviewer.latest_reviewer_name
+                                              )
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t\t\t "
+                                        ),
+                                        _c("strong", [
                                           _vm._v(
                                             _vm._s(
-                                              reviewer.latest_reviewer_name
+                                              reviewer.latest_review_post_date
                                             )
                                           )
-                                        ]
-                                      ),
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t\t\t "
-                                      ),
-                                      _c("strong", [
-                                        _vm._v(
-                                          _vm._s(
-                                            reviewer.latest_review_post_date
-                                          )
-                                        )
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "ratings" },
-                                    [
-                                      _c("star-rating", {
-                                        attrs: {
-                                          "star-size": 20,
-                                          "read-only": "",
-                                          rating: [reviewer.list_ratings],
-                                          "active-color": "#8200ff"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ])
-                              ]
-                            )
-                          ]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "ratings" },
+                                      [
+                                        _c("star-rating", {
+                                          attrs: {
+                                            "star-size": 20,
+                                            "read-only": "",
+                                            rating: [reviewer.list_ratings],
+                                            "active-color": "#8200ff"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ],
+                  2
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
@@ -72916,7 +73393,8 @@ var render = function() {
                 "a",
                 {
                   staticClass: "btn btn-primary post-bid",
-                  attrs: { href: "javascript:void(0);" }
+                  attrs: { href: "javascript:void(0);" },
+                  on: { click: _vm.servicedetail }
                 },
                 [_vm._v("View Details")]
               )
@@ -73080,7 +73558,8 @@ var render = function() {
                 "a",
                 {
                   staticClass: "btn btn-primary post-bid",
-                  attrs: { href: "javascript:void(0);" }
+                  attrs: { href: "javascript:void(0);" },
+                  on: { click: _vm.servicedetail }
                 },
                 [_vm._v("View Details")]
               )
@@ -74676,30 +75155,53 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-6 p-r-0" }, [
-                          _c("div", { staticClass: "job-details" }, [
-                            _c("p", { staticClass: "awarded" }, [
-                              _c("i", { staticClass: "icon-checkmark2" }),
-                              _vm._v(
-                                " \n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                  _vm._s(listing.job_awarded) +
-                                  "\n\t\t\t\t\t\t\t\t\t\t\t"
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "service-requirment" }, [
-                              _c("i", { staticClass: "icon-brightness-down" }),
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\t\t\tService required \n\t\t\t\t\t\t\t\t\t\t\t\t"
-                              ),
-                              listing.job_service == "urgent"
-                                ? _c("strong", { staticClass: "urgent" }, [
-                                    _vm._v(_vm._s(listing.job_service))
-                                  ])
-                                : _c("strong", [
-                                    _vm._v(_vm._s(listing.job_service))
-                                  ])
-                            ])
-                          ])
+                          _vm.job_detail_right_panel ==
+                            "service-provider-customer-end" ||
+                          _vm.job_detail_right_panel ==
+                            "serviceprovidercustomerend" ||
+                          _vm.job_detail_right_panel == "awarded" ||
+                          _vm.job_detail_right_panel == "serviceprovider"
+                            ? _c("div", { staticClass: "job-details" }, [
+                                _c("p", { staticClass: "service-requirment" }, [
+                                  _c("i", {
+                                    staticClass: "icon-brightness-down"
+                                  }),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\tService required \n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                  ),
+                                  listing.job_service == "urgent"
+                                    ? _c("strong", { staticClass: "urgent" }, [
+                                        _vm._v(_vm._s(listing.job_service))
+                                      ])
+                                    : _vm._e()
+                                ])
+                              ])
+                            : _c("div", { staticClass: "job-details" }, [
+                                _c("p", { staticClass: "awarded" }, [
+                                  _c("i", { staticClass: "icon-checkmark2" }),
+                                  _vm._v(
+                                    " \n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                      _vm._s(listing.job_awarded) +
+                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "service-requirment" }, [
+                                  _c("i", {
+                                    staticClass: "icon-brightness-down"
+                                  }),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\tService required \n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                  ),
+                                  listing.job_service == "urgent"
+                                    ? _c("strong", { staticClass: "urgent" }, [
+                                        _vm._v(_vm._s(listing.job_service))
+                                      ])
+                                    : _c("strong", [
+                                        _vm._v(_vm._s(listing.job_service))
+                                      ])
+                                ])
+                              ])
                         ])
                       ])
                     ])
@@ -74715,384 +75217,423 @@ var render = function() {
             _c("div", { staticClass: "container md" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-9" }, [
-                  _c("div", { staticClass: "provider-information" }, [
-                    _vm._m(2, true),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "member-details" }, [
-                      _c("p", { staticClass: "location" }, [
-                        _c("i", { staticClass: "icon-location" }),
-                        _vm._v(" \n\t\t\t\t\t\t\t\t\t\t\tLocation "),
-                        _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                  _c(
+                    "div",
+                    { staticClass: "provider-information" },
+                    [
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "member-details" }, [
+                        _c("p", { staticClass: "location" }, [
+                          _c("i", { staticClass: "icon-location" }),
+                          _vm._v(" \n\t\t\t\t\t\t\t\t\t\t\tLocation "),
+                          _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "member-since" }, [
+                          _vm._v(
+                            "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\tMember since "
+                          ),
+                          _c("strong", [
+                            _vm._v(_vm._s(listing.job_member_since))
+                          ])
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("p", { staticClass: "member-since" }, [
-                        _vm._v(
-                          "\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\tMember since "
-                        ),
-                        _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "post-job-description" }, [
-                      _c("p", [_vm._v(_vm._s(listing.job_description))])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "jobs-post-files" },
-                      [
-                        _c("h3", [_vm._v("Related Photos")]),
-                        _vm._v(" "),
-                        _vm._l(_vm.imageList, function(n, index) {
-                          return _c(
-                            "div",
-                            {
-                              staticClass: "gallery-item",
-                              style: {
-                                "background-image": "url(" + n.url + ")"
-                              },
-                              attrs: { "data-index": index }
-                            },
-                            [
-                              _c("img", {
-                                attrs: { src: n.url },
-                                on: {
-                                  click: function($event) {
-                                    _vm.open($event)
-                                  }
-                                }
-                              })
-                            ]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm._m(3, true),
-                    _vm._v(" "),
-                    _vm.job_detail_right_panel ==
-                      "service-provider-customer-end" ||
-                    _vm.job_detail_right_panel ==
-                      "serviceprovidercustomerend" ||
-                    _vm.job_detail_right_panel == "awarded" ||
-                    _vm.job_detail_right_panel == "serviceprovider"
-                      ? _c("div", { staticClass: "jobs-post-files" }, [
-                          _c("h3", [_vm._v("Customer Information")]),
-                          _vm._v(" "),
-                          _vm._m(4, true),
-                          _vm._v(" "),
-                          _vm._m(5, true),
-                          _vm._v(" "),
-                          _vm._m(6, true)
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.job_detail_right_panel ==
-                      "service-provider-customer-end" ||
-                    _vm.job_detail_right_panel ==
-                      "serviceprovidercustomerend" ||
-                    _vm.job_detail_right_panel == "awarded" ||
-                    _vm.job_detail_right_panel == "serviceprovider"
-                      ? _c(
+                      _vm._l(listing.job_description.split("\n"), function(
+                        description
+                      ) {
+                        return _c(
                           "div",
-                          { staticClass: "chat-feedback" },
-                          [
-                            _vm._m(7, true),
-                            _vm._v(" "),
-                            _vm._l(listing.my_bid, function(reviewer) {
-                              return _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "chat-feedback-column job-bidding"
-                                },
-                                [
-                                  _c("div", {
-                                    staticClass: "chat-feedback-image",
-                                    style: {
-                                      "background-image":
-                                        "url(" +
-                                        reviewer.latest_review_image +
-                                        ")"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "job-common-description" },
-                                    [
-                                      _c("h3", { staticClass: "pointer" }, [
-                                        _vm._v(_vm._s(listing.job_title))
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "job-proposal" }, [
-                                    _c("div", { staticClass: "bit-offered" }, [
-                                      _c("span", [
-                                        _c("i", {
-                                          staticClass: "icon-work-briefcase"
-                                        }),
-                                        _vm._v(
-                                          " Offer: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                        _c("strong", [
-                                          _vm._v(
-                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                              _vm._s(reviewer.job_bid_amount) +
-                                              "\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ])
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "pull-right" },
-                                        [
-                                          _c("i", {
-                                            staticClass: "icon-calendar-daily"
-                                          }),
-                                          _vm._v(
-                                            " Date:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                          ),
-                                          _c("strong", [
-                                            _vm._v(
-                                              "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                _vm._s(reviewer.job_bid_data) +
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                            )
-                                          ])
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "proposal-message" },
-                                      [
-                                        _c("p", [
-                                          _vm._v(
-                                            _vm._s(
-                                              reviewer.latest_review_description
-                                            )
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              )
-                            })
-                          ],
-                          2
+                          { staticClass: "post-job-description" },
+                          [_c("p", [_vm._v(_vm._s(description))])]
                         )
-                      : _c(
-                          "div",
-                          { staticClass: "chat-feedback" },
-                          [
-                            _vm._m(8, true),
-                            _vm._v(" "),
-                            _vm._l(listing.review_details, function(reviewer) {
-                              return _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "chat-feedback-column job-bidding"
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "jobs-post-files" },
+                        [
+                          _c("h3", [_vm._v("Related Photos")]),
+                          _vm._v(" "),
+                          _vm._l(_vm.imageList, function(n, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass: "gallery-item",
+                                style: {
+                                  "background-image": "url(" + n.url + ")"
                                 },
-                                [
-                                  _c("div", {
-                                    staticClass: "chat-feedback-image",
-                                    style: {
-                                      "background-image":
-                                        "url(" +
-                                        reviewer.latest_review_image +
-                                        ")"
+                                attrs: { "data-index": index }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: { src: n.url },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.open($event)
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "job-common-description" },
-                                    [
-                                      _c("h3", { staticClass: "pointer" }, [
-                                        _vm._v(_vm._s(listing.job_title))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "jobs-rating" },
-                                        [
-                                          _c("star-rating", {
-                                            attrs: {
-                                              "star-size": 20,
-                                              "read-only": "",
-                                              rating: 4,
-                                              "active-color": "#8200ff"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "jobs-done" },
-                                            [
-                                              _c(
-                                                "span",
-                                                { staticClass: "review-job" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      reviewer.job_feedback
-                                                    ) + " Feedback reviews"
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              reviewer.job_perform == 0
-                                                ? _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "review-job"
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "No Jobs performed"
-                                                      )
-                                                    ]
-                                                  )
-                                                : _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "review-job"
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          reviewer.job_perform
-                                                        ) + " Jobs performed"
-                                                      )
-                                                    ]
-                                                  )
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "job-proposal" }, [
-                                    _c("div", { staticClass: "bit-offered" }, [
-                                      _c("span", [
-                                        _c("i", {
-                                          staticClass: "icon-work-briefcase"
-                                        }),
-                                        _vm._v(
-                                          " Offer: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                        _c("strong", [
-                                          _vm._v(
-                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                              _vm._s(reviewer.job_bid_amount) +
-                                              "\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ])
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "pull-right" },
-                                        [
-                                          _c("i", {
-                                            staticClass: "icon-calendar-daily"
-                                          }),
-                                          _vm._v(
-                                            " Date:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                          ),
-                                          _c("strong", [
-                                            _vm._v(
-                                              "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                _vm._s(reviewer.job_bid_data) +
-                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                            )
-                                          ])
-                                        ]
-                                      )
-                                    ]),
+                                  }
+                                })
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm._m(3, true),
+                      _vm._v(" "),
+                      _vm.job_detail_right_panel ==
+                        "service-provider-customer-end" ||
+                      _vm.job_detail_right_panel ==
+                        "serviceprovidercustomerend" ||
+                      _vm.job_detail_right_panel == "awarded" ||
+                      _vm.job_detail_right_panel == "serviceprovider"
+                        ? _c("div", { staticClass: "jobs-post-files" }, [
+                            _c("h3", [_vm._v("Customer Information")]),
+                            _vm._v(" "),
+                            _vm._m(4, true),
+                            _vm._v(" "),
+                            _vm._m(5, true),
+                            _vm._v(" "),
+                            _vm._m(6, true)
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.job_detail_right_panel ==
+                        "service-provider-customer-end" ||
+                      _vm.job_detail_right_panel ==
+                        "serviceprovidercustomerend" ||
+                      _vm.job_detail_right_panel == "awarded" ||
+                      _vm.job_detail_right_panel == "serviceprovider"
+                        ? _c(
+                            "div",
+                            { staticClass: "chat-feedback" },
+                            [
+                              _vm._m(7, true),
+                              _vm._v(" "),
+                              _vm._l(listing.my_bid, function(reviewer) {
+                                return _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "chat-feedback-column job-bidding"
+                                  },
+                                  [
+                                    _c("div", {
+                                      staticClass: "chat-feedback-image",
+                                      style: {
+                                        "background-image":
+                                          "url(" +
+                                          reviewer.latest_review_image +
+                                          ")"
+                                      }
+                                    }),
                                     _vm._v(" "),
                                     _c(
                                       "div",
-                                      { staticClass: "proposal-message" },
+                                      { staticClass: "job-common-description" },
                                       [
-                                        _c("p", [
-                                          _vm._v(
-                                            _vm._s(
-                                              reviewer.latest_review_description
-                                            )
-                                          )
+                                        _c("h3", { staticClass: "pointer" }, [
+                                          _vm._v(_vm._s(listing.job_title))
                                         ])
                                       ]
                                     ),
                                     _vm._v(" "),
+                                    _c("div", { staticClass: "job-proposal" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "bit-offered" },
+                                        [
+                                          _c("span", [
+                                            _c("i", {
+                                              staticClass: "icon-work-briefcase"
+                                            }),
+                                            _vm._v(
+                                              " Offer: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                            ),
+                                            _c("strong", [
+                                              _vm._v(
+                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                  _vm._s(
+                                                    reviewer.job_bid_amount
+                                                  ) +
+                                                  "\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "pull-right" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-calendar-daily"
+                                              }),
+                                              _vm._v(
+                                                " Date:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                              _c("strong", [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(
+                                                      reviewer.job_bid_data
+                                                    ) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "proposal-message" },
+                                        [
+                                          _c("p", [
+                                            _vm._v(
+                                              _vm._s(
+                                                reviewer.latest_review_description
+                                              )
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        : _c(
+                            "div",
+                            { staticClass: "chat-feedback" },
+                            [
+                              _vm._m(8, true),
+                              _vm._v(" "),
+                              _vm._l(listing.review_details, function(
+                                reviewer
+                              ) {
+                                return _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "chat-feedback-column job-bidding"
+                                  },
+                                  [
+                                    _c("div", {
+                                      staticClass: "chat-feedback-image",
+                                      style: {
+                                        "background-image":
+                                          "url(" +
+                                          reviewer.latest_review_image +
+                                          ")"
+                                      }
+                                    }),
+                                    _vm._v(" "),
                                     _c(
                                       "div",
-                                      { staticClass: "provider-bidding-btn" },
+                                      { staticClass: "job-common-description" },
                                       [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "btn btn-primary",
-                                            attrs: {
-                                              href: "javascript:void(0);"
-                                            }
-                                          },
-                                          [_vm._v("View Profile")]
-                                        ),
+                                        _c("h3", { staticClass: "pointer" }, [
+                                          _vm._v(_vm._s(listing.job_title))
+                                        ]),
                                         _vm._v(" "),
                                         _c(
-                                          "a",
-                                          {
-                                            staticClass: "btn btn-primary",
-                                            attrs: {
-                                              href: "javascript:void(0);"
-                                            }
-                                          },
-                                          [_vm._v("Chat")]
-                                        ),
-                                        _vm._v(" "),
-                                        reviewer.job_visited == true
-                                          ? _c(
-                                              "a",
-                                              {
-                                                staticClass: "btn btn-primary",
-                                                attrs: {
-                                                  href: "javascript:void(0);"
-                                                },
-                                                on: { click: _vm.AwardJob }
-                                              },
-                                              [_vm._v("Award Job")]
+                                          "div",
+                                          { staticClass: "jobs-rating" },
+                                          [
+                                            _c("star-rating", {
+                                              attrs: {
+                                                "star-size": 20,
+                                                "read-only": "",
+                                                rating: 4,
+                                                "active-color": "#8200ff"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "jobs-done" },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "review-job" },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        reviewer.job_feedback
+                                                      ) + " Feedback reviews"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                reviewer.job_perform == 0
+                                                  ? _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "review-job"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "No Jobs performed"
+                                                        )
+                                                      ]
+                                                    )
+                                                  : _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "review-job"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            reviewer.job_perform
+                                                          ) + " Jobs performed"
+                                                        )
+                                                      ]
+                                                    )
+                                              ]
                                             )
-                                          : _c(
-                                              "a",
-                                              {
-                                                staticClass: "btn btn-primary",
-                                                attrs: {
-                                                  href: "javascript:void(0);"
-                                                },
-                                                on: { click: _vm.VisitApproval }
-                                              },
-                                              [_vm._v("Visit Approval")]
-                                            )
+                                          ],
+                                          1
+                                        )
                                       ]
-                                    )
-                                  ])
-                                ]
-                              )
-                            })
-                          ],
-                          2
-                        )
-                  ])
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "job-proposal" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "bit-offered" },
+                                        [
+                                          _c("span", [
+                                            _c("i", {
+                                              staticClass: "icon-work-briefcase"
+                                            }),
+                                            _vm._v(
+                                              " Offer: \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                            ),
+                                            _c("strong", [
+                                              _vm._v(
+                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                  _vm._s(
+                                                    reviewer.job_bid_amount
+                                                  ) +
+                                                  "\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "pull-right" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "icon-calendar-daily"
+                                              }),
+                                              _vm._v(
+                                                " Date:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                              _c("strong", [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(
+                                                      reviewer.job_bid_data
+                                                    ) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "proposal-message" },
+                                        [
+                                          _c("p", [
+                                            _vm._v(
+                                              _vm._s(
+                                                reviewer.latest_review_description
+                                              )
+                                            )
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "provider-bidding-btn" },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "btn btn-primary",
+                                              attrs: {
+                                                href: "javascript:void(0);"
+                                              }
+                                            },
+                                            [_vm._v("View Profile")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "btn btn-primary",
+                                              attrs: {
+                                                href: "javascript:void(0);"
+                                              }
+                                            },
+                                            [_vm._v("Chat")]
+                                          ),
+                                          _vm._v(" "),
+                                          reviewer.job_visited == true
+                                            ? _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-primary",
+                                                  attrs: {
+                                                    href: "javascript:void(0);"
+                                                  },
+                                                  on: { click: _vm.AwardJob }
+                                                },
+                                                [_vm._v("Award Job")]
+                                              )
+                                            : _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-primary",
+                                                  attrs: {
+                                                    href: "javascript:void(0);"
+                                                  },
+                                                  on: {
+                                                    click: _vm.VisitApproval
+                                                  }
+                                                },
+                                                [_vm._v("Visit Approval")]
+                                              )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                    ],
+                    2
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
@@ -90579,7 +91120,7 @@ module.exports = Vue;
 /***/ "./node_modules/vue2-datepicker/lib/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.DatePicker=t():e.DatePicker=t()}(window,function(){return function(e){var t={};function n(a){if(t[a])return t[a].exports;var r=t[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:a})},n.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=3)}([function(e,t,n){var a;!function(r){"use strict";var i={},s=/d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g,o=/\d\d?/,l=/[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i,u=/\[([^]*?)\]/gm,c=function(){};function d(e,t){for(var n=[],a=0,r=e.length;a<r;a++)n.push(e[a].substr(0,t));return n}function h(e){return function(t,n,a){var r=a[e].indexOf(n.charAt(0).toUpperCase()+n.substr(1).toLowerCase());~r&&(t.month=r)}}function p(e,t){for(e=String(e),t=t||2;e.length<t;)e="0"+e;return e}var f=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],m=["January","February","March","April","May","June","July","August","September","October","November","December"],g=d(m,3),v=d(f,3);i.i18n={dayNamesShort:v,dayNames:f,monthNamesShort:g,monthNames:m,amPm:["am","pm"],DoFn:function(e){return e+["th","st","nd","rd"][e%10>3?0:(e-e%10!=10)*e%10]}};var x={D:function(e){return e.getDate()},DD:function(e){return p(e.getDate())},Do:function(e,t){return t.DoFn(e.getDate())},d:function(e){return e.getDay()},dd:function(e){return p(e.getDay())},ddd:function(e,t){return t.dayNamesShort[e.getDay()]},dddd:function(e,t){return t.dayNames[e.getDay()]},M:function(e){return e.getMonth()+1},MM:function(e){return p(e.getMonth()+1)},MMM:function(e,t){return t.monthNamesShort[e.getMonth()]},MMMM:function(e,t){return t.monthNames[e.getMonth()]},YY:function(e){return String(e.getFullYear()).substr(2)},YYYY:function(e){return p(e.getFullYear(),4)},h:function(e){return e.getHours()%12||12},hh:function(e){return p(e.getHours()%12||12)},H:function(e){return e.getHours()},HH:function(e){return p(e.getHours())},m:function(e){return e.getMinutes()},mm:function(e){return p(e.getMinutes())},s:function(e){return e.getSeconds()},ss:function(e){return p(e.getSeconds())},S:function(e){return Math.round(e.getMilliseconds()/100)},SS:function(e){return p(Math.round(e.getMilliseconds()/10),2)},SSS:function(e){return p(e.getMilliseconds(),3)},a:function(e,t){return e.getHours()<12?t.amPm[0]:t.amPm[1]},A:function(e,t){return e.getHours()<12?t.amPm[0].toUpperCase():t.amPm[1].toUpperCase()},ZZ:function(e){var t=e.getTimezoneOffset();return(t>0?"-":"+")+p(100*Math.floor(Math.abs(t)/60)+Math.abs(t)%60,4)}},b={D:[o,function(e,t){e.day=t}],Do:[new RegExp(o.source+l.source),function(e,t){e.day=parseInt(t,10)}],M:[o,function(e,t){e.month=t-1}],YY:[o,function(e,t){var n=+(""+(new Date).getFullYear()).substr(0,2);e.year=""+(t>68?n-1:n)+t}],h:[o,function(e,t){e.hour=t}],m:[o,function(e,t){e.minute=t}],s:[o,function(e,t){e.second=t}],YYYY:[/\d{4}/,function(e,t){e.year=t}],S:[/\d/,function(e,t){e.millisecond=100*t}],SS:[/\d{2}/,function(e,t){e.millisecond=10*t}],SSS:[/\d{3}/,function(e,t){e.millisecond=t}],d:[o,c],ddd:[l,c],MMM:[l,h("monthNamesShort")],MMMM:[l,h("monthNames")],a:[l,function(e,t,n){var a=t.toLowerCase();a===n.amPm[0]?e.isPm=!1:a===n.amPm[1]&&(e.isPm=!0)}],ZZ:[/([\+\-]\d\d:?\d\d|Z)/,function(e,t){"Z"===t&&(t="+00:00");var n,a=(t+"").match(/([\+\-]|\d\d)/gi);a&&(n=60*a[1]+parseInt(a[2],10),e.timezoneOffset="+"===a[0]?n:-n)}]};b.dd=b.d,b.dddd=b.ddd,b.DD=b.D,b.mm=b.m,b.hh=b.H=b.HH=b.h,b.MM=b.M,b.ss=b.s,b.A=b.a,i.masks={default:"ddd MMM DD YYYY HH:mm:ss",shortDate:"M/D/YY",mediumDate:"MMM D, YYYY",longDate:"MMMM D, YYYY",fullDate:"dddd, MMMM D, YYYY",shortTime:"HH:mm",mediumTime:"HH:mm:ss",longTime:"HH:mm:ss.SSS"},i.format=function(e,t,n){var a=n||i.i18n;if("number"==typeof e&&(e=new Date(e)),"[object Date]"!==Object.prototype.toString.call(e)||isNaN(e.getTime()))throw new Error("Invalid Date in fecha.format");var r=[];return(t=(t=(t=i.masks[t]||t||i.masks.default).replace(u,function(e,t){return r.push(t),"??"})).replace(s,function(t){return t in x?x[t](e,a):t.slice(1,t.length-1)})).replace(/\?\?/g,function(){return r.shift()})},i.parse=function(e,t,n){var a=n||i.i18n;if("string"!=typeof t)throw new Error("Invalid format in fecha.parse");if(t=i.masks[t]||t,e.length>1e3)return!1;var r=!0,o={};if(t.replace(s,function(t){if(b[t]){var n=b[t],i=e.search(n[0]);~i?e.replace(n[0],function(t){return n[1](o,t,a),e=e.substr(i+t.length),t}):r=!1}return b[t]?"":t.slice(1,t.length-1)}),!r)return!1;var l,u=new Date;return!0===o.isPm&&null!=o.hour&&12!=+o.hour?o.hour=+o.hour+12:!1===o.isPm&&12==+o.hour&&(o.hour=0),null!=o.timezoneOffset?(o.minute=+(o.minute||0)-+o.timezoneOffset,l=new Date(Date.UTC(o.year||u.getFullYear(),o.month||0,o.day||1,o.hour||0,o.minute||0,o.second||0,o.millisecond||0))):l=new Date(o.year||u.getFullYear(),o.month||0,o.day||1,o.hour||0,o.minute||0,o.second||0,o.millisecond||0),l},void 0!==e&&e.exports?e.exports=i:void 0===(a=function(){return i}.call(t,n,t,e))||(e.exports=a)}()},function(e,t){var n=/^(attrs|props|on|nativeOn|class|style|hook)$/;function a(e,t){return function(){e&&e.apply(this,arguments),t&&t.apply(this,arguments)}}e.exports=function(e){return e.reduce(function(e,t){var r,i,s,o,l;for(s in t)if(r=e[s],i=t[s],r&&n.test(s))if("class"===s&&("string"==typeof r&&(l=r,e[s]=r={},r[l]=!0),"string"==typeof i&&(l=i,t[s]=i={},i[l]=!0)),"on"===s||"nativeOn"===s||"hook"===s)for(o in i)r[o]=a(r[o],i[o]);else if(Array.isArray(r))e[s]=r.concat(i);else if(Array.isArray(i))e[s]=[r].concat(i);else for(o in i)r[o]=i[o];else e[s]=t[s];return e},{})}},function(e,t,n){"use strict";function a(e,t){for(var n=[],a={},r=0;r<t.length;r++){var i=t[r],s=i[0],o={id:e+":"+r,css:i[1],media:i[2],sourceMap:i[3]};a[s]?a[s].parts.push(o):n.push(a[s]={id:s,parts:[o]})}return n}n.r(t),n.d(t,"default",function(){return f});var r="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!r)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var i={},s=r&&(document.head||document.getElementsByTagName("head")[0]),o=null,l=0,u=!1,c=function(){},d=null,h="data-vue-ssr-id",p="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function f(e,t,n,r){u=n,d=r||{};var s=a(e,t);return m(s),function(t){for(var n=[],r=0;r<s.length;r++){var o=s[r];(l=i[o.id]).refs--,n.push(l)}t?m(s=a(e,t)):s=[];for(r=0;r<n.length;r++){var l;if(0===(l=n[r]).refs){for(var u=0;u<l.parts.length;u++)l.parts[u]();delete i[l.id]}}}}function m(e){for(var t=0;t<e.length;t++){var n=e[t],a=i[n.id];if(a){a.refs++;for(var r=0;r<a.parts.length;r++)a.parts[r](n.parts[r]);for(;r<n.parts.length;r++)a.parts.push(v(n.parts[r]));a.parts.length>n.parts.length&&(a.parts.length=n.parts.length)}else{var s=[];for(r=0;r<n.parts.length;r++)s.push(v(n.parts[r]));i[n.id]={id:n.id,refs:1,parts:s}}}}function g(){var e=document.createElement("style");return e.type="text/css",s.appendChild(e),e}function v(e){var t,n,a=document.querySelector("style["+h+'~="'+e.id+'"]');if(a){if(u)return c;a.parentNode.removeChild(a)}if(p){var r=l++;a=o||(o=g()),t=y.bind(null,a,r,!1),n=y.bind(null,a,r,!0)}else a=g(),t=function(e,t){var n=t.css,a=t.media,r=t.sourceMap;a&&e.setAttribute("media",a);d.ssrId&&e.setAttribute(h,t.id);r&&(n+="\n/*# sourceURL="+r.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,a),n=function(){a.parentNode.removeChild(a)};return t(e),function(a){if(a){if(a.css===e.css&&a.media===e.media&&a.sourceMap===e.sourceMap)return;t(e=a)}else n()}}var x,b=(x=[],function(e,t){return x[e]=t,x.filter(Boolean).join("\n")});function y(e,t,n,a){var r=n?"":a.css;if(e.styleSheet)e.styleSheet.cssText=b(t,r);else{var i=document.createTextNode(r),s=e.childNodes;s[t]&&e.removeChild(s[t]),s.length?e.insertBefore(i,s[t]):e.appendChild(i)}}},function(e,t,n){"use strict";n.r(t);var a=n(0),r=n.n(a),i={bind:function(e,t,n){e["@clickoutside"]=function(a){!e.contains(a.target)&&t.expression&&n.context[t.expression]&&t.value()},document.addEventListener("click",e["@clickoutside"],!0)},unbind:function(e){document.removeEventListener("click",e["@clickoutside"],!0)}};function s(e){return e instanceof Date}function o(e){return null!==e&&void 0!==e&&!isNaN(new Date(e).getTime())}function l(e){return Array.isArray(e)&&2===e.length&&o(e[0])&&o(e[1])&&new Date(e[1]).getTime()>=new Date(e[0]).getTime()}function u(e){var t=(e||"").split(":");return t.length>=2?{hours:parseInt(t[0],10),minutes:parseInt(t[1],10)}:null}function c(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"24",n=e.hours,a=(n=(n="24"===t?n:n%12||12)<10?"0"+n:n)+":"+(e.minutes<10?"0"+e.minutes:e.minutes);return"12"===t&&(a+=e.hours>=12?" pm":" am"),a}function d(e,t){try{return r.a.format(new Date(e),t)}catch(e){return""}}var h={zh:{days:["日","一","二","三","四","五","六"],months:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],pickers:["未来7天","未来30天","最近7天","最近30天"],placeholder:{date:"请选择日期",dateRange:"请选择日期范围"}},en:{days:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],pickers:["next 7 days","next 30 days","previous 7 days","previous 30 days"],placeholder:{date:"Select Date",dateRange:"Select Date Range"}},ro:{days:["Lun","Mar","Mie","Joi","Vin","Sâm","Dum"],months:["Ian","Feb","Mar","Apr","Mai","Iun","Iul","Aug","Sep","Oct","Noi","Dec"],pickers:["urmatoarele 7 zile","urmatoarele 30 zile","ultimele 7 zile","ultimele 30 zile"],placeholder:{date:"Selectați Data",dateRange:"Selectați Intervalul De Date"}},fr:{days:["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"],months:["Jan","Fev","Mar","Avr","Mai","Juin","Juil","Aout","Sep","Oct","Nov","Dec"],pickers:["7 jours suivants","30 jours suivants","7 jours précédents","30 jours précédents"],placeholder:{date:"Sélectionnez une date",dateRange:"Sélectionnez une période"}},es:{days:["Dom","Lun","mar","Mie","Jue","Vie","Sab"],months:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],pickers:["próximos 7 días","próximos 30 días","7 días anteriores","30 días anteriores"],placeholder:{date:"Seleccionar fecha",dateRange:"Seleccionar un rango de fechas"}},"pt-br":{days:["Dom","Seg","Ter","Qua","Quin","Sex","Sáb"],months:["Jan","Fev","Mar","Abr","Maio","Jun","Jul","Ago","Set","Out","Nov","Dez"],pickers:["próximos 7 dias","próximos 30 dias","7 dias anteriores"," 30 dias anteriores"],placeholder:{date:"Selecione uma data",dateRange:"Selecione um período"}},ru:{days:["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],months:["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек"],pickers:["след. 7 дней","след. 30 дней","прош. 7 дней","прош. 30 дней"],placeholder:{date:"Выберите дату",dateRange:"Выберите период"}},de:{days:["So","Mo","Di","Mi","Do","Fr","Sa"],months:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],pickers:["nächsten 7 Tage","nächsten 30 Tage","vorigen 7 Tage","vorigen 30 Tage"],placeholder:{date:"Datum auswählen",dateRange:"Zeitraum auswählen"}},it:{days:["Dom","Lun","Mar","Mer","Gio","Ven","Sab"],months:["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],pickers:["successivi 7 giorni","successivi 30 giorni","precedenti 7 giorni","precedenti 30 giorni"],placeholder:{date:"Seleziona una data",dateRange:"Seleziona un intervallo date"}},cs:{days:["Ned","Pon","Úte","Stř","Čtv","Pát","Sob"],months:["Led","Úno","Bře","Dub","Kvě","Čer","Čerc","Srp","Zář","Říj","Lis","Pro"],pickers:["příštích 7 dní","příštích 30 dní","předchozích 7 dní","předchozích 30 dní"],placeholder:{date:"Vyberte datum",dateRange:"Vyberte časové rozmezí"}},sl:{days:["Ned","Pon","Tor","Sre","Čet","Pet","Sob"],months:["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Avg","Sep","Okt","Nov","Dec"],pickers:["naslednjih 7 dni","naslednjih 30 dni","prejšnjih 7 dni","prejšnjih 30 dni"],placeholder:{date:"Izberite datum",dateRange:"Izberite razpon med 2 datumoma"}}},p=h.zh,f={methods:{t:function(e){for(var t=this,n=t.$options.name;t&&(!n||"DatePicker"!==n);)(t=t.$parent)&&(n=t.$options.name);for(var a=t&&t.language||p,r=e.split("."),i=a,s=void 0,o=0,l=r.length;o<l;o++){if(s=i[r[o]],o===l-1)return s;if(!s)return"";i=s}return""}}};var m=n(1),g=n.n(m);function v(e,t,n,a,r,i,s,o){var l,u="function"==typeof e?e.options:e;if(t&&(u.render=t,u.staticRenderFns=n,u._compiled=!0),a&&(u.functional=!0),i&&(u._scopeId="data-v-"+i),s?(l=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),r&&r.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(s)},u._ssrRegister=l):r&&(l=o?function(){r.call(this,this.$root.$options.shadowRoot)}:r),l)if(u.functional){u._injectStyles=l;var c=u.render;u.render=function(e,t){return l.call(t),c(e,t)}}else{var d=u.beforeCreate;u.beforeCreate=d?[].concat(d,l):[l]}return{exports:e,options:u}}var x=v({name:"CalendarPanel",components:{PanelDate:{name:"panelDate",mixins:[f],props:{value:null,startAt:null,endAt:null,dateFormat:{type:String,default:"YYYY-MM-DD"},calendarMonth:{default:(new Date).getMonth()},calendarYear:{default:(new Date).getFullYear()},firstDayOfWeek:{default:7,type:Number,validator:function(e){return e>=1&&e<=7}},disabledDate:{type:Function,default:function(){return!1}}},methods:{selectDate:function(e){var t=e.year,n=e.month,a=e.day,r=new Date(t,n,a);this.disabledDate(r)||this.$emit("select",r)},getDays:function(e){var t=this.t("days"),n=parseInt(e,10);return t.concat(t).slice(n,n+7)},getDates:function(e,t,n){var a=[],r=new Date(e,t);r.setDate(0);for(var i=(r.getDay()+7-n)%7+1,s=r.getDate()-(i-1),o=0;o<i;o++)a.push({year:e,month:t-1,day:s+o});r.setMonth(r.getMonth()+2,0);for(var l=r.getDate(),u=0;u<l;u++)a.push({year:e,month:t,day:1+u});r.setMonth(r.getMonth()+1,1);for(var c=42-(i+l),d=0;d<c;d++)a.push({year:e,month:t+1,day:1+d});return a},getCellClasses:function(e){var t=e.year,n=e.month,a=e.day,r=[],i=new Date(t,n,a).getTime(),s=(new Date).setHours(0,0,0,0),o=this.value&&new Date(this.value).setHours(0,0,0,0),l=this.startAt&&new Date(this.startAt).setHours(0,0,0,0),u=this.endAt&&new Date(this.endAt).setHours(0,0,0,0);return n<this.calendarMonth?r.push("last-month"):n>this.calendarMonth?r.push("next-month"):r.push("cur-month"),i===s&&r.push("today"),this.disabledDate(i)&&r.push("disabled"),o&&(i===o?r.push("actived"):l&&i<=o?r.push("inrange"):u&&i>=o&&r.push("inrange")),r},getCellTitle:function(e){var t=e.year,n=e.month,a=e.day;return d(new Date(t,n,a),this.dateFormat)}},render:function(e){var t=this,n=this.getDays(this.firstDayOfWeek).map(function(t){return e("th",[t])}),a=this.getDates(this.calendarYear,this.calendarMonth,this.firstDayOfWeek),r=Array.apply(null,{length:6}).map(function(n,r){var i=a.slice(7*r,7*r+7).map(function(n){var a={class:t.getCellClasses(n)};return e("td",g()([{class:"cell"},a,{attrs:{title:t.getCellTitle(n)},on:{click:t.selectDate.bind(t,n)}}]),[n.day])});return e("tr",[i])});return e("table",{class:"mx-panel mx-panel-date"},[e("thead",[e("tr",[n])]),e("tbody",[r])])}},PanelYear:{name:"panelYear",props:{value:null,firstYear:Number,disabledYear:Function},methods:{isDisabled:function(e){return!("function"!=typeof this.disabledYear||!this.disabledYear(e))},selectYear:function(e){this.isDisabled(e)||this.$emit("select",e)}},render:function(e){var t=this,n=10*Math.floor(this.firstYear/10),a=this.value&&new Date(this.value).getFullYear(),r=Array.apply(null,{length:10}).map(function(r,i){var s=n+i;return e("span",{class:{cell:!0,actived:a===s,disabled:t.isDisabled(s)},on:{click:t.selectYear.bind(t,s)}},[s])});return e("div",{class:"mx-panel mx-panel-year"},[r])}},PanelMonth:{name:"panelMonth",mixins:[f],props:{value:null,calendarYear:{default:(new Date).getFullYear()},disabledMonth:Function},methods:{isDisabled:function(e){return!("function"!=typeof this.disabledMonth||!this.disabledMonth(e))},selectMonth:function(e){this.isDisabled(e)||this.$emit("select",e)}},render:function(e){var t=this,n=this.t("months"),a=this.value&&new Date(this.value).getFullYear(),r=this.value&&new Date(this.value).getMonth();return n=n.map(function(n,i){return e("span",{class:{cell:!0,actived:a===t.calendarYear&&r===i,disabled:t.isDisabled(i)},on:{click:t.selectMonth.bind(t,i)}},[n])}),e("div",{class:"mx-panel mx-panel-month"},[n])}},PanelTime:{name:"panelTime",props:{timePickerOptions:{type:[Object,Function],default:function(){return null}},minuteStep:{type:Number,default:0,validator:function(e){return e>=0&&e<=60}},value:null,disabledTime:Function},computed:{currentHours:function(){return this.value?new Date(this.value).getHours():0},currentMinutes:function(){return this.value?new Date(this.value).getMinutes():0},currentSeconds:function(){return this.value?new Date(this.value).getSeconds():0}},methods:{stringifyText:function(e){return("00"+e).slice(String(e).length)},selectTime:function(e){"function"==typeof this.disabledTime&&this.disabledTime(e)||this.$emit("select",new Date(e))},getTimeSelectOptions:function(){var e=[],t=this.timePickerOptions;if(!t)return[];if("function"==typeof t)return t()||[];var n=u(t.start),a=u(t.end),r=u(t.step);if(n&&a&&r)for(var i=n.minutes+60*n.hours,s=a.minutes+60*a.hours,o=r.minutes+60*r.hours,l=Math.floor((s-i)/o),d=0;d<=l;d++){var h=i+d*o,p={hours:Math.floor(h/60),minutes:h%60};e.push({value:p,label:c(p)})}return e}},render:function(e){var t=this,n=new Date(this.value),a="function"==typeof this.disabledTime&&this.disabledTime,r=this.getTimeSelectOptions();if(Array.isArray(r)&&r.length)return r=r.map(function(r){var i=r.value.hours,s=r.value.minutes,o=new Date(n).setHours(i,s,0);return e("li",{class:{"mx-time-picker-item":!0,cell:!0,actived:i===t.currentHours&&s===t.currentMinutes,disabled:a&&a(o)},on:{click:t.selectTime.bind(t,o)}},[r.label])}),e("div",{class:"mx-panel mx-panel-time"},[e("ul",{class:"mx-time-list"},[r])]);var i=Array.apply(null,{length:24}).map(function(r,i){var s=new Date(n).setHours(i);return e("li",{class:{cell:!0,actived:i===t.currentHours,disabled:a&&a(s)},on:{click:t.selectTime.bind(t,s)}},[t.stringifyText(i)])}),s=this.minuteStep||1,o=parseInt(60/s),l=Array.apply(null,{length:o}).map(function(r,i){var o=i*s,l=new Date(n).setMinutes(o);return e("li",{class:{cell:!0,actived:o===t.currentMinutes,disabled:a&&a(l)},on:{click:t.selectTime.bind(t,l)}},[t.stringifyText(o)])}),u=Array.apply(null,{length:60}).map(function(r,i){var s=new Date(n).setSeconds(i);return e("li",{class:{cell:!0,actived:i===t.currentSeconds,disabled:a&&a(s)},on:{click:t.selectTime.bind(t,s)}},[t.stringifyText(i)])}),c=[i,l];return 0===this.minuteStep&&c.push(u),c=c.map(function(t){return e("ul",{class:"mx-time-list",style:{width:100/c.length+"%"}},[t])}),e("div",{class:"mx-panel mx-panel-time"},[c])}}},mixins:[f],props:{value:{default:null,validator:function(e){return null===e||o(e)}},startAt:null,endAt:null,visible:{type:Boolean,default:!1},type:{type:String,default:"date"},dateFormat:{type:String,default:"YYYY-MM-DD"},firstDayOfWeek:{default:7,type:Number,validator:function(e){return e>=1&&e<=7}},notBefore:{default:null,validator:function(e){return!e||o(e)}},notAfter:{default:null,validator:function(e){return!e||o(e)}},disabledDays:{type:[Array,Function],default:function(){return[]}},minuteStep:{type:Number,default:0,validator:function(e){return e>=0&&e<=60}},timePickerOptions:{type:[Object,Function],default:function(){return null}}},data:function(){var e=new Date,t=e.getFullYear();return{panel:"DATE",dates:[],calendarMonth:e.getMonth(),calendarYear:t,firstYear:10*Math.floor(t/10)}},computed:{now:{get:function(){return new Date(this.calendarYear,this.calendarMonth).getTime()},set:function(e){var t=new Date(e);this.calendarYear=t.getFullYear(),this.calendarMonth=t.getMonth()}},timeHeader:function(){return"time"===this.type?this.$parent.format:this.value&&d(this.value,this.dateFormat)},yearHeader:function(){return this.firstYear+" ~ "+(this.firstYear+10)},months:function(){return this.t("months")}},watch:{value:{immediate:!0,handler:"updateNow"},visible:{immediate:!0,handler:"init"},panel:{immediate:!0,handler:"handelPanelChange"}},methods:{handelPanelChange:function(e){var t=this;"YEAR"===e?this.firstYear=10*Math.floor(this.calendarYear/10):"TIME"===e&&this.$nextTick(function(){[].concat(function(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}(t.$el.querySelectorAll(".mx-panel-time .mx-time-list"))).forEach(function(e){!function(e,t){if(t){for(var n=[],a=t.offsetParent;a&&e!==a&&e.contains(a);)n.push(a),a=a.offsetParent;var r=t.offsetTop+n.reduce(function(e,t){return e+t.offsetTop},0),i=r+t.offsetHeight,s=e.scrollTop,o=s+e.clientHeight;r<s?e.scrollTop=r:i>o&&(e.scrollTop=i-e.clientHeight)}else e.scrollTop=0}(e,e.querySelector(".actived"))})})},init:function(){var e=this.type;this.panel="month"===e?"MONTH":"year"===e?"YEAR":"time"===e?"TIME":"DATE",this.updateNow(this.value)},updateNow:function(e){this.now=e?new Date(e):new Date},isDisabledTime:function(e,t,n){var a=new Date(e).getTime(),r=this.notBefore&&a<new Date(this.notBefore),i=this.notAfter&&a>new Date(this.notAfter);return t=(t=void 0===t?this.startAt:t)&&a<new Date(t),n=(n=void 0===n?this.endAt:n)&&a>new Date(n),r||i||t||n},isDisabledDate:function(e,t,n){var a=new Date(e).getTime(),r=this.notBefore&&a<new Date(this.notBefore).setHours(0,0,0,0),i=this.notAfter&&a>new Date(this.notAfter).setHours(0,0,0,0);t=(t=void 0===t?this.startAt:t)&&a<new Date(t).setHours(0,0,0,0),n=(n=void 0===n?this.endAt:n)&&a>new Date(n).setHours(0,0,0,0);var s=!1;return Array.isArray(this.disabledDays)?s=this.disabledDays.some(function(e){return new Date(e).setHours(0,0,0,0)===a}):"function"==typeof this.disabledDays&&(s=this.disabledDays(new Date(e))),r||i||s||t||n},isDisabledYear:function(e){var t=new Date(e,this.calendarMonth);return this.isDisabledDate(t)},isDisabledMonth:function(e){var t=new Date(this.calendarYear,e);return this.isDisabledDate(t)},selectDate:function(e){if("datetime"===this.type){var t=new Date(e);return s(this.value)&&t.setHours(this.value.getHours(),this.value.getMinutes(),this.value.getSeconds()),this.isDisabledTime(t)&&(t.setHours(0,0,0,0),this.notBefore&&t.getTime()<new Date(this.notBefore).getTime()&&(t=new Date(this.notBefore)),this.startAt&&t.getTime()<new Date(this.startAt).getTime()&&(t=new Date(this.startAt))),this.$emit("select-time",t),void(this.panel="TIME")}this.$emit("select-date",e)},selectYear:function(e){if(this.changeCalendarYear(e),"year"===this.type.toLowerCase())return this.selectDate(new Date(this.now));this.showPanelMonth()},selectMonth:function(e){if(this.changeCalendarMonth(e),"month"===this.type.toLowerCase())return this.selectDate(new Date(this.now));this.showPanelDate()},selectTime:function(e){this.$emit("select-time",e)},changeCalendarYear:function(e){this.now=new Date(e,this.calendarMonth)},changeCalendarMonth:function(e){this.now=new Date(this.calendarYear,e)},getSibling:function(){var e=this,t=this.$parent.$children.filter(function(t){return t.$options.name===e.$options.name});return t[1^t.indexOf(this)]},handleIconMonth:function(e){var t=this.calendarMonth;this.changeCalendarMonth(t+e),this.$parent.$emit("change-calendar-month",{month:t,flag:e,vm:this,sibling:this.getSibling()})},handleIconYear:function(e){if("YEAR"===this.panel)this.changePanelYears(e);else{var t=this.calendarYear;this.changeCalendarYear(t+e),this.$parent.$emit("change-calendar-year",{year:t,flag:e,vm:this,sibling:this.getSibling()})}},handleBtnYear:function(){this.showPanelYear()},handleBtnMonth:function(){this.showPanelMonth()},handleTimeHeader:function(){"time"!==this.type&&this.showPanelDate()},changePanelYears:function(e){this.firstYear=this.firstYear+10*e},showPanelDate:function(){this.panel="DATE"},showPanelYear:function(){this.panel="YEAR"},showPanelMonth:function(){this.panel="MONTH"}}},function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"mx-calendar"},[n("div",{staticClass:"mx-calendar-header"},[n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"!==e.panel,expression:"panel !== 'TIME'"}],staticClass:"mx-icon-last-year",on:{click:function(t){e.handleIconYear(-1)}}},[e._v("«")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-icon-last-month",on:{click:function(t){e.handleIconMonth(-1)}}},[e._v("‹")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"!==e.panel,expression:"panel !== 'TIME'"}],staticClass:"mx-icon-next-year",on:{click:function(t){e.handleIconYear(1)}}},[e._v("»")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-icon-next-month",on:{click:function(t){e.handleIconMonth(1)}}},[e._v("›")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-current-month",on:{click:e.handleBtnMonth}},[e._v(e._s(e.months[e.calendarMonth]))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel||"MONTH"===e.panel,expression:"panel === 'DATE' || panel === 'MONTH'"}],staticClass:"mx-current-year",on:{click:e.handleBtnYear}},[e._v(e._s(e.calendarYear))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"YEAR"===e.panel,expression:"panel === 'YEAR'"}],staticClass:"mx-current-year"},[e._v(e._s(e.yearHeader))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"===e.panel,expression:"panel === 'TIME'"}],staticClass:"mx-time-header",on:{click:e.handleTimeHeader}},[e._v(e._s(e.timeHeader))])]),e._v(" "),n("div",{staticClass:"mx-calendar-content"},[n("panel-date",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],attrs:{value:e.value,"date-format":e.dateFormat,"calendar-month":e.calendarMonth,"calendar-year":e.calendarYear,"start-at":e.startAt,"end-at":e.endAt,"first-day-of-week":e.firstDayOfWeek,"disabled-date":e.isDisabledDate},on:{select:e.selectDate}}),e._v(" "),n("panel-year",{directives:[{name:"show",rawName:"v-show",value:"YEAR"===e.panel,expression:"panel === 'YEAR'"}],attrs:{value:e.value,"disabled-year":e.isDisabledYear,"first-year":e.firstYear},on:{select:e.selectYear}}),e._v(" "),n("panel-month",{directives:[{name:"show",rawName:"v-show",value:"MONTH"===e.panel,expression:"panel === 'MONTH'"}],attrs:{value:e.value,"disabled-month":e.isDisabledMonth,"calendar-year":e.calendarYear},on:{select:e.selectMonth}}),e._v(" "),n("panel-time",{directives:[{name:"show",rawName:"v-show",value:"TIME"===e.panel,expression:"panel === 'TIME'"}],attrs:{"minute-step":e.minuteStep,"time-picker-options":e.timePickerOptions,value:e.value,"disabled-time":e.isDisabledTime},on:{select:e.selectTime}})],1)])},[],!1,null,null,null).exports,b=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},y=v({fecha:r.a,name:"DatePicker",components:{CalendarPanel:x},mixins:[f],directives:{clickoutside:i},props:{value:null,placeholder:{type:String,default:null},lang:{type:[String,Object],default:"zh"},format:{type:String,default:"YYYY-MM-DD"},dateFormat:{type:String},type:{type:String,default:"date"},range:{type:Boolean,default:!1},rangeSeparator:{type:String,default:"~"},width:{type:[String,Number],default:null},confirmText:{type:String,default:"OK"},confirm:{type:Boolean,default:!1},editable:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},shortcuts:{type:[Boolean,Array],default:!0},inputName:{type:String,default:"date"},inputClass:{type:[String,Array],default:"mx-input"}},data:function(){return{currentValue:this.range?[null,null]:null,userInput:null,popupVisible:!1,position:{}}},watch:{value:{immediate:!0,handler:"handleValueChange"},popupVisible:function(e){e?this.initCalendar():this.userInput=null}},computed:{language:function(){return e=this.lang,"[object Object]"===Object.prototype.toString.call(e)?b({},h.en,this.lang):h[this.lang]||h.en;var e},innerPlaceholder:function(){return"string"==typeof this.placeholder?this.placeholder:this.range?this.t("placeholder.dateRange"):this.t("placeholder.date")},text:function(){return null!==this.userInput?this.userInput:this.range?l(this.value)?this.stringify(this.value[0])+" "+this.rangeSeparator+" "+this.stringify(this.value[1]):"":o(this.value)?this.stringify(this.value):""},computedWidth:function(){return"number"==typeof this.width||"string"==typeof this.width&&/^\d+$/.test(this.width)?this.width+"px":this.width},showClearIcon:function(){return!this.disabled&&this.clearable&&(this.range?l(this.value):o(this.value))},innerType:function(){return String(this.type).toLowerCase()},innerShortcuts:function(){if(Array.isArray(this.shortcuts))return this.shortcuts;if(!1===this.shortcuts)return[];var e=this.t("pickers");return[{text:e[0],onClick:function(e){e.currentValue=[new Date,new Date(Date.now()+6048e5)],e.updateDate(!0)}},{text:e[1],onClick:function(e){e.currentValue=[new Date,new Date(Date.now()+2592e6)],e.updateDate(!0)}},{text:e[2],onClick:function(e){e.currentValue=[new Date(Date.now()-6048e5),new Date],e.updateDate(!0)}},{text:e[3],onClick:function(e){e.currentValue=[new Date(Date.now()-2592e6),new Date],e.updateDate(!0)}}]},innerDateFormat:function(){return this.dateFormat?this.dateFormat:"date"===this.innerType?this.format:this.format.replace(/[Hh]+.*[msSaAZ]|\[.*?\]/g,"").trim()||"YYYY-MM-DD"}},methods:{initCalendar:function(){this.handleValueChange(this.value),this.displayPopup()},stringify:function(e,t){return d(e,t||this.format)},parseDate:function(e,t){return function(e,t){try{return r.a.parse(e,t)}catch(e){return!1}}(e,t||this.format)},dateEqual:function(e,t){return s(e)&&s(t)&&e.getTime()===t.getTime()},rangeEqual:function(e,t){var n=this;return Array.isArray(e)&&Array.isArray(t)&&e.length===t.length&&e.every(function(e,a){return n.dateEqual(e,t[a])})},selectRange:function(e){if("function"==typeof e.onClick)return e.onClick(this);this.currentValue=[new Date(e.start),new Date(e.end)],this.updateDate(!0)},clearDate:function(){var e=this.range?[null,null]:null;this.currentValue=e,this.updateDate(!0)},confirmDate:function(){(this.range?l(this.currentValue):o(this.currentValue))&&this.updateDate(!0),this.$emit("confirm",this.currentValue),this.closePopup()},updateDate:function(){var e=arguments.length>0&&void 0!==arguments[0]&&arguments[0];return!(this.confirm&&!e||this.disabled)&&((this.range?!this.rangeEqual(this.value,this.currentValue):!this.dateEqual(this.value,this.currentValue))&&(this.$emit("input",this.currentValue),this.$emit("change",this.currentValue),!0))},handleValueChange:function(e){this.range?this.currentValue=l(e)?[new Date(e[0]),new Date(e[1])]:[null,null]:this.currentValue=o(e)?new Date(e):null},selectDate:function(e){this.currentValue=e,this.updateDate()&&this.closePopup()},selectStartDate:function(e){this.$set(this.currentValue,0,e),this.currentValue[1]&&this.updateDate()},selectEndDate:function(e){this.$set(this.currentValue,1,e),this.currentValue[0]&&this.updateDate()},selectTime:function(e){this.currentValue=e,this.updateDate()},selectStartTime:function(e){this.selectStartDate(e)},selectEndTime:function(e){this.selectEndDate(e)},showPopup:function(){this.disabled||(this.popupVisible=!0)},closePopup:function(){this.popupVisible=!1},displayPopup:function(){var e=document.documentElement.clientWidth,t=document.documentElement.clientHeight,n=this.$el.getBoundingClientRect(),a=this.$refs.calendar.getBoundingClientRect();this.position={},e-n.left<a.width&&n.right<a.width?this.position.left=1-n.left+"px":n.left+n.width/2<=e/2?this.position.left=0:this.position.right=0,n.top<=a.height+1&&t-n.bottom<=a.height+1?this.position.top=t-n.top-a.height-1+"px":n.top+n.height/2<=t/2?this.position.top="100%":this.position.bottom="100%"},handleInput:function(e){this.userInput=e.target.value},handleChange:function(e){var t=e.target.value;if(this.editable&&null!==this.userInput){var n=this.$children[0],a="date"===n.type?n.isDisabledDate:n.isDisabledTime;if(this.range){var r=t.split(" "+this.rangeSeparator+" ");if(2===r.length){var i=this.parseDate(r[0],this.format),s=this.parseDate(r[1],this.format);if(i&&s&&!a(i,null,s)&&!a(s,i,null))return this.currentValue=[i,s],this.updateDate(!0),void this.closePopup()}}else{var o=this.parseDate(t,this.format);if(o&&!a(o,null,null))return this.currentValue=o,this.updateDate(!0),void this.closePopup()}this.$emit("input-error",t)}}}},function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:e.closePopup,expression:"closePopup"}],staticClass:"mx-datepicker",class:{"mx-datepicker-range":e.range,disabled:e.disabled},style:{width:e.computedWidth}},[n("div",{staticClass:"mx-input-wrapper",on:{click:e.showPopup}},[n("input",{ref:"input",class:e.inputClass,attrs:{type:"text",autocomplete:"off",name:e.inputName,disabled:e.disabled,readonly:!e.editable,placeholder:e.innerPlaceholder},domProps:{value:e.text},on:{input:e.handleInput,change:e.handleChange}}),e._v(" "),n("span",{staticClass:"mx-input-append"},[e._t("calendar-icon",[n("svg",{staticClass:"mx-calendar-icon",attrs:{xmlns:"http://www.w3.org/2000/svg",version:"1.1",viewBox:"0 0 200 200"}},[n("rect",{attrs:{x:"13",y:"29",rx:"14",ry:"14",width:"174",height:"158",fill:"transparent"}}),e._v(" "),n("line",{attrs:{x1:"46",x2:"46",y1:"8",y2:"50"}}),e._v(" "),n("line",{attrs:{x1:"154",x2:"154",y1:"8",y2:"50"}}),e._v(" "),n("line",{attrs:{x1:"13",x2:"187",y1:"70",y2:"70"}}),e._v(" "),n("text",{attrs:{x:"50%",y:"135","font-size":"90","stroke-width":"1","text-anchor":"middle","dominant-baseline":"middle"}},[e._v(e._s((new Date).getDate()))])])])],2),e._v(" "),e.showClearIcon?n("span",{staticClass:"mx-input-append mx-clear-wrapper",on:{click:function(t){return t.stopPropagation(),e.clearDate(t)}}},[e._t("mx-clear-icon",[n("i",{staticClass:"mx-input-icon mx-clear-icon"})])],2):e._e()]),e._v(" "),n("div",{directives:[{name:"show",rawName:"v-show",value:e.popupVisible,expression:"popupVisible"}],ref:"calendar",staticClass:"mx-datepicker-popup",style:e.position},[e._t("header",[e.range&&e.innerShortcuts.length?n("div",{staticClass:"mx-shortcuts-wrapper"},e._l(e.innerShortcuts,function(t,a){return n("button",{key:a,staticClass:"mx-shortcuts",attrs:{type:"button"},on:{click:function(n){e.selectRange(t)}}},[e._v(e._s(t.text))])})):e._e()]),e._v(" "),e.range?n("div",{staticClass:"mx-range-wrapper"},[n("calendar-panel",e._b({staticStyle:{"box-shadow":"1px 0 rgba(0, 0, 0, .1)"},attrs:{type:e.innerType,"date-format":e.innerDateFormat,value:e.currentValue[0],"end-at":e.currentValue[1],"start-at":null,visible:e.popupVisible},on:{"select-date":e.selectStartDate,"select-time":e.selectStartTime}},"calendar-panel",e.$attrs,!1)),e._v(" "),n("calendar-panel",e._b({attrs:{type:e.innerType,"date-format":e.innerDateFormat,value:e.currentValue[1],"start-at":e.currentValue[0],"end-at":null,visible:e.popupVisible},on:{"select-date":e.selectEndDate,"select-time":e.selectEndTime}},"calendar-panel",e.$attrs,!1))],1):n("calendar-panel",e._b({attrs:{type:e.innerType,"date-format":e.innerDateFormat,value:e.currentValue,visible:e.popupVisible},on:{"select-date":e.selectDate,"select-time":e.selectTime}},"calendar-panel",e.$attrs,!1)),e._v(" "),e._t("footer",[e.confirm?n("div",{staticClass:"mx-datepicker-footer"},[n("button",{staticClass:"mx-datepicker-btn mx-datepicker-btn-confirm",attrs:{type:"button"},on:{click:e.confirmDate}},[e._v(e._s(e.confirmText))])]):e._e()],{confirm:e.confirmDate})],2)])},[],!1,null,null,null).exports;n(6);y.install=function(e){e.component(y.name,y)};t.default=y},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var n=this[t];n[2]?e.push("@media "+n[2]+"{"+n[1]+"}"):e.push(n[1])}return e.join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var a={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(a[i]=!0)}for(r=0;r<t.length;r++){var s=t[r];"number"==typeof s[0]&&a[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),e.push(s))}},e}},function(e,t,n){(e.exports=n(4)()).push([e.i,"@charset \"UTF-8\";\n.mx-datepicker {\n  position: relative;\n  display: inline-block;\n  width: 210px;\n  color: #73879c;\n  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif; }\n  .mx-datepicker * {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n  .mx-datepicker.disabled {\n    opacity: 0.7;\n    cursor: not-allowed; }\n\n.mx-datepicker-range {\n  width: 320px; }\n\n.mx-datepicker-popup {\n  position: absolute;\n  margin-top: 1px;\n  margin-bottom: 1px;\n  border: 1px solid #d9d9d9;\n  background-color: #fff;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  z-index: 1000; }\n\n.mx-input-wrapper {\n  position: relative; }\n  .mx-input-wrapper .mx-clear-wrapper {\n    display: none; }\n  .mx-input-wrapper:hover .mx-clear-wrapper {\n    display: block; }\n\n.mx-input {\n  display: inline-block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 30px;\n  padding-left: 10px;\n  font-size: 14px;\n  line-height: 1.4;\n  color: #555;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }\n  .mx-input:disabled, .mx-input.disabled {\n    opacity: 0.7;\n    cursor: not-allowed; }\n  .mx-input:focus {\n    outline: none; }\n\n.mx-input-append {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 30px;\n  height: 100%;\n  padding: 6px;\n  background-color: #fff;\n  background-clip: content-box; }\n\n.mx-input-icon {\n  display: inline-block;\n  width: 100%;\n  height: 100%;\n  font-style: normal;\n  color: #555;\n  text-align: center;\n  cursor: pointer; }\n\n.mx-calendar-icon {\n  width: 100%;\n  height: 100%;\n  color: #555;\n  stroke-width: 8px;\n  stroke: currentColor;\n  fill: currentColor; }\n\n.mx-clear-icon::before {\n  display: inline-block;\n  content: '\\2716';\n  vertical-align: middle; }\n\n.mx-clear-icon::after {\n  content: '';\n  display: inline-block;\n  width: 0;\n  height: 100%;\n  vertical-align: middle; }\n\n.mx-range-wrapper {\n  width: 496px;\n  overflow: hidden; }\n\n.mx-shortcuts-wrapper {\n  text-align: left;\n  padding: 0 12px;\n  line-height: 34px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }\n  .mx-shortcuts-wrapper .mx-shortcuts {\n    background: none;\n    outline: none;\n    border: 0;\n    color: inherit;\n    margin: 0;\n    padding: 0;\n    white-space: nowrap;\n    cursor: pointer; }\n    .mx-shortcuts-wrapper .mx-shortcuts:hover {\n      color: #419dec; }\n    .mx-shortcuts-wrapper .mx-shortcuts:after {\n      content: '|';\n      margin: 0 10px;\n      color: #48576a; }\n\n.mx-datepicker-footer {\n  padding: 4px;\n  clear: both;\n  text-align: right;\n  border-top: 1px solid rgba(0, 0, 0, 0.05); }\n\n.mx-datepicker-btn {\n  font-size: 12px;\n  line-height: 1;\n  padding: 7px 15px;\n  margin: 0 5px;\n  cursor: pointer;\n  background-color: transparent;\n  outline: none;\n  border: none;\n  border-radius: 3px; }\n\n.mx-datepicker-btn-confirm {\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  color: #73879c; }\n  .mx-datepicker-btn-confirm:hover {\n    color: #1284e7;\n    border-color: #1284e7; }\n\n/* 日历组件 */\n.mx-calendar {\n  float: left;\n  color: #73879c;\n  padding: 6px 12px;\n  font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,sans-serif; }\n  .mx-calendar * {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n\n.mx-calendar-header {\n  padding: 0 4px;\n  height: 34px;\n  line-height: 34px;\n  text-align: center;\n  overflow: hidden; }\n  .mx-calendar-header > a {\n    color: inherit;\n    text-decoration: none;\n    cursor: pointer; }\n    .mx-calendar-header > a:hover {\n      color: #419dec; }\n  .mx-icon-last-month, .mx-icon-last-year,\n  .mx-icon-next-month,\n  .mx-icon-next-year {\n    padding: 0 6px;\n    font-size: 20px;\n    line-height: 30px; }\n  .mx-icon-last-month, .mx-icon-last-year {\n    float: left; }\n  \n  .mx-icon-next-month,\n  .mx-icon-next-year {\n    float: right; }\n\n.mx-calendar-content {\n  width: 224px;\n  height: 224px; }\n  .mx-calendar-content .cell {\n    vertical-align: middle;\n    cursor: pointer; }\n    .mx-calendar-content .cell:hover {\n      background-color: #eaf8fe; }\n    .mx-calendar-content .cell.actived {\n      color: #fff;\n      background-color: #1284e7; }\n    .mx-calendar-content .cell.inrange {\n      background-color: #eaf8fe; }\n    .mx-calendar-content .cell.disabled {\n      cursor: not-allowed;\n      color: #ccc;\n      background-color: #f3f3f3; }\n\n.mx-panel {\n  width: 100%;\n  height: 100%;\n  text-align: center; }\n\n.mx-panel-date {\n  table-layout: fixed;\n  border-collapse: collapse;\n  border-spacing: 0; }\n  .mx-panel-date td, .mx-panel-date th {\n    font-size: 12px;\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    overflow: hidden;\n    text-align: center; }\n  .mx-panel-date td.today {\n    color: #2a90e9; }\n  .mx-panel-date td.last-month, .mx-panel-date td.next-month {\n    color: #ddd; }\n\n.mx-panel-year {\n  padding: 7px 0; }\n  .mx-panel-year .cell {\n    display: inline-block;\n    width: 40%;\n    margin: 1px 5%;\n    line-height: 40px; }\n\n.mx-panel-month .cell {\n  display: inline-block;\n  width: 30%;\n  line-height: 40px;\n  margin: 8px 1.5%; }\n\n.mx-time-list {\n  position: relative;\n  float: left;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  width: 100%;\n  height: 100%;\n  border-top: 1px solid rgba(0, 0, 0, 0.05);\n  border-left: 1px solid rgba(0, 0, 0, 0.05);\n  overflow-y: auto;\n  /* 滚动条滑块 */ }\n  .mx-time-list .mx-time-picker-item {\n    display: block;\n    text-align: left;\n    padding-left: 10px; }\n  .mx-time-list:first-child {\n    border-left: 0; }\n  .mx-time-list .cell {\n    width: 100%;\n    font-size: 12px;\n    height: 30px;\n    line-height: 30px; }\n  .mx-time-list::-webkit-scrollbar {\n    width: 8px;\n    height: 8px; }\n  .mx-time-list::-webkit-scrollbar-thumb {\n    background-color: rgba(0, 0, 0, 0.05);\n    border-radius: 10px;\n    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);\n            box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }\n  .mx-time-list:hover::-webkit-scrollbar-thumb {\n    background-color: rgba(0, 0, 0, 0.2); }\n",""])},function(e,t,n){var a=n(5);"string"==typeof a&&(a=[[e.i,a,""]]),a.locals&&(e.exports=a.locals);(0,n(2).default)("511dbeb0",a,!0,{})}])});
+!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.DatePicker=t():e.DatePicker=t()}(window,function(){return function(e){var t={};function n(a){if(t[a])return t[a].exports;var r=t[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:a})},n.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=3)}([function(e,t,n){var a;!function(r){"use strict";var i={},s=/d{1,4}|M{1,4}|YY(?:YY)?|S{1,3}|Do|ZZ|([HhMsDm])\1?|[aA]|"[^"]*"|'[^']*'/g,o=/\d\d?/,l=/[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i,u=/\[([^]*?)\]/gm,c=function(){};function d(e,t){for(var n=[],a=0,r=e.length;a<r;a++)n.push(e[a].substr(0,t));return n}function h(e){return function(t,n,a){var r=a[e].indexOf(n.charAt(0).toUpperCase()+n.substr(1).toLowerCase());~r&&(t.month=r)}}function p(e,t){for(e=String(e),t=t||2;e.length<t;)e="0"+e;return e}var f=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],m=["January","February","March","April","May","June","July","August","September","October","November","December"],g=d(m,3),v=d(f,3);i.i18n={dayNamesShort:v,dayNames:f,monthNamesShort:g,monthNames:m,amPm:["am","pm"],DoFn:function(e){return e+["th","st","nd","rd"][e%10>3?0:(e-e%10!=10)*e%10]}};var x={D:function(e){return e.getDate()},DD:function(e){return p(e.getDate())},Do:function(e,t){return t.DoFn(e.getDate())},d:function(e){return e.getDay()},dd:function(e){return p(e.getDay())},ddd:function(e,t){return t.dayNamesShort[e.getDay()]},dddd:function(e,t){return t.dayNames[e.getDay()]},M:function(e){return e.getMonth()+1},MM:function(e){return p(e.getMonth()+1)},MMM:function(e,t){return t.monthNamesShort[e.getMonth()]},MMMM:function(e,t){return t.monthNames[e.getMonth()]},YY:function(e){return String(e.getFullYear()).substr(2)},YYYY:function(e){return p(e.getFullYear(),4)},h:function(e){return e.getHours()%12||12},hh:function(e){return p(e.getHours()%12||12)},H:function(e){return e.getHours()},HH:function(e){return p(e.getHours())},m:function(e){return e.getMinutes()},mm:function(e){return p(e.getMinutes())},s:function(e){return e.getSeconds()},ss:function(e){return p(e.getSeconds())},S:function(e){return Math.round(e.getMilliseconds()/100)},SS:function(e){return p(Math.round(e.getMilliseconds()/10),2)},SSS:function(e){return p(e.getMilliseconds(),3)},a:function(e,t){return e.getHours()<12?t.amPm[0]:t.amPm[1]},A:function(e,t){return e.getHours()<12?t.amPm[0].toUpperCase():t.amPm[1].toUpperCase()},ZZ:function(e){var t=e.getTimezoneOffset();return(t>0?"-":"+")+p(100*Math.floor(Math.abs(t)/60)+Math.abs(t)%60,4)}},b={D:[o,function(e,t){e.day=t}],Do:[new RegExp(o.source+l.source),function(e,t){e.day=parseInt(t,10)}],M:[o,function(e,t){e.month=t-1}],YY:[o,function(e,t){var n=+(""+(new Date).getFullYear()).substr(0,2);e.year=""+(t>68?n-1:n)+t}],h:[o,function(e,t){e.hour=t}],m:[o,function(e,t){e.minute=t}],s:[o,function(e,t){e.second=t}],YYYY:[/\d{4}/,function(e,t){e.year=t}],S:[/\d/,function(e,t){e.millisecond=100*t}],SS:[/\d{2}/,function(e,t){e.millisecond=10*t}],SSS:[/\d{3}/,function(e,t){e.millisecond=t}],d:[o,c],ddd:[l,c],MMM:[l,h("monthNamesShort")],MMMM:[l,h("monthNames")],a:[l,function(e,t,n){var a=t.toLowerCase();a===n.amPm[0]?e.isPm=!1:a===n.amPm[1]&&(e.isPm=!0)}],ZZ:[/([\+\-]\d\d:?\d\d|Z)/,function(e,t){"Z"===t&&(t="+00:00");var n,a=(t+"").match(/([\+\-]|\d\d)/gi);a&&(n=60*a[1]+parseInt(a[2],10),e.timezoneOffset="+"===a[0]?n:-n)}]};b.dd=b.d,b.dddd=b.ddd,b.DD=b.D,b.mm=b.m,b.hh=b.H=b.HH=b.h,b.MM=b.M,b.ss=b.s,b.A=b.a,i.masks={default:"ddd MMM DD YYYY HH:mm:ss",shortDate:"M/D/YY",mediumDate:"MMM D, YYYY",longDate:"MMMM D, YYYY",fullDate:"dddd, MMMM D, YYYY",shortTime:"HH:mm",mediumTime:"HH:mm:ss",longTime:"HH:mm:ss.SSS"},i.format=function(e,t,n){var a=n||i.i18n;if("number"==typeof e&&(e=new Date(e)),"[object Date]"!==Object.prototype.toString.call(e)||isNaN(e.getTime()))throw new Error("Invalid Date in fecha.format");var r=[];return(t=(t=(t=i.masks[t]||t||i.masks.default).replace(u,function(e,t){return r.push(t),"??"})).replace(s,function(t){return t in x?x[t](e,a):t.slice(1,t.length-1)})).replace(/\?\?/g,function(){return r.shift()})},i.parse=function(e,t,n){var a=n||i.i18n;if("string"!=typeof t)throw new Error("Invalid format in fecha.parse");if(t=i.masks[t]||t,e.length>1e3)return!1;var r=!0,o={};if(t.replace(s,function(t){if(b[t]){var n=b[t],i=e.search(n[0]);~i?e.replace(n[0],function(t){return n[1](o,t,a),e=e.substr(i+t.length),t}):r=!1}return b[t]?"":t.slice(1,t.length-1)}),!r)return!1;var l,u=new Date;return!0===o.isPm&&null!=o.hour&&12!=+o.hour?o.hour=+o.hour+12:!1===o.isPm&&12==+o.hour&&(o.hour=0),null!=o.timezoneOffset?(o.minute=+(o.minute||0)-+o.timezoneOffset,l=new Date(Date.UTC(o.year||u.getFullYear(),o.month||0,o.day||1,o.hour||0,o.minute||0,o.second||0,o.millisecond||0))):l=new Date(o.year||u.getFullYear(),o.month||0,o.day||1,o.hour||0,o.minute||0,o.second||0,o.millisecond||0),l},void 0!==e&&e.exports?e.exports=i:void 0===(a=function(){return i}.call(t,n,t,e))||(e.exports=a)}()},function(e,t){var n=/^(attrs|props|on|nativeOn|class|style|hook)$/;function a(e,t){return function(){e&&e.apply(this,arguments),t&&t.apply(this,arguments)}}e.exports=function(e){return e.reduce(function(e,t){var r,i,s,o,l;for(s in t)if(r=e[s],i=t[s],r&&n.test(s))if("class"===s&&("string"==typeof r&&(l=r,e[s]=r={},r[l]=!0),"string"==typeof i&&(l=i,t[s]=i={},i[l]=!0)),"on"===s||"nativeOn"===s||"hook"===s)for(o in i)r[o]=a(r[o],i[o]);else if(Array.isArray(r))e[s]=r.concat(i);else if(Array.isArray(i))e[s]=[r].concat(i);else for(o in i)r[o]=i[o];else e[s]=t[s];return e},{})}},function(e,t,n){"use strict";function a(e,t){for(var n=[],a={},r=0;r<t.length;r++){var i=t[r],s=i[0],o={id:e+":"+r,css:i[1],media:i[2],sourceMap:i[3]};a[s]?a[s].parts.push(o):n.push(a[s]={id:s,parts:[o]})}return n}n.r(t),n.d(t,"default",function(){return f});var r="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!r)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var i={},s=r&&(document.head||document.getElementsByTagName("head")[0]),o=null,l=0,u=!1,c=function(){},d=null,h="data-vue-ssr-id",p="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function f(e,t,n,r){u=n,d=r||{};var s=a(e,t);return m(s),function(t){for(var n=[],r=0;r<s.length;r++){var o=s[r];(l=i[o.id]).refs--,n.push(l)}t?m(s=a(e,t)):s=[];for(r=0;r<n.length;r++){var l;if(0===(l=n[r]).refs){for(var u=0;u<l.parts.length;u++)l.parts[u]();delete i[l.id]}}}}function m(e){for(var t=0;t<e.length;t++){var n=e[t],a=i[n.id];if(a){a.refs++;for(var r=0;r<a.parts.length;r++)a.parts[r](n.parts[r]);for(;r<n.parts.length;r++)a.parts.push(v(n.parts[r]));a.parts.length>n.parts.length&&(a.parts.length=n.parts.length)}else{var s=[];for(r=0;r<n.parts.length;r++)s.push(v(n.parts[r]));i[n.id]={id:n.id,refs:1,parts:s}}}}function g(){var e=document.createElement("style");return e.type="text/css",s.appendChild(e),e}function v(e){var t,n,a=document.querySelector("style["+h+'~="'+e.id+'"]');if(a){if(u)return c;a.parentNode.removeChild(a)}if(p){var r=l++;a=o||(o=g()),t=y.bind(null,a,r,!1),n=y.bind(null,a,r,!0)}else a=g(),t=function(e,t){var n=t.css,a=t.media,r=t.sourceMap;a&&e.setAttribute("media",a);d.ssrId&&e.setAttribute(h,t.id);r&&(n+="\n/*# sourceURL="+r.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}.bind(null,a),n=function(){a.parentNode.removeChild(a)};return t(e),function(a){if(a){if(a.css===e.css&&a.media===e.media&&a.sourceMap===e.sourceMap)return;t(e=a)}else n()}}var x,b=(x=[],function(e,t){return x[e]=t,x.filter(Boolean).join("\n")});function y(e,t,n,a){var r=n?"":a.css;if(e.styleSheet)e.styleSheet.cssText=b(t,r);else{var i=document.createTextNode(r),s=e.childNodes;s[t]&&e.removeChild(s[t]),s.length?e.insertBefore(i,s[t]):e.appendChild(i)}}},function(e,t,n){"use strict";n.r(t);var a=n(0),r=n.n(a),i={bind:function(e,t,n){e["@clickoutside"]=function(a){!e.contains(a.target)&&t.expression&&n.context[t.expression]&&t.value()},document.addEventListener("click",e["@clickoutside"],!0)},unbind:function(e){document.removeEventListener("click",e["@clickoutside"],!0)}};function s(e){return e instanceof Date}function o(e){return null!==e&&void 0!==e&&!!new Date(e).getTime()}function l(e){return Array.isArray(e)&&2===e.length&&o(e[0])&&o(e[1])&&new Date(e[1]).getTime()>=new Date(e[0]).getTime()}function u(e){var t=(e||"").split(":");return t.length>=2?{hours:parseInt(t[0],10),minutes:parseInt(t[1],10)}:null}function c(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"24",n=e.hours,a=(n=(n="24"===t?n:n%12||12)<10?"0"+n:n)+":"+(e.minutes<10?"0"+e.minutes:e.minutes);return"12"===t&&(a+=e.hours>=12?" pm":" am"),a}var d={zh:{days:["日","一","二","三","四","五","六"],months:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],pickers:["未来7天","未来30天","最近7天","最近30天"],placeholder:{date:"请选择日期",dateRange:"请选择日期范围"}},en:{days:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],pickers:["next 7 days","next 30 days","previous 7 days","previous 30 days"],placeholder:{date:"Select Date",dateRange:"Select Date Range"}},ro:{days:["Lun","Mar","Mie","Joi","Vin","Sâm","Dum"],months:["Ian","Feb","Mar","Apr","Mai","Iun","Iul","Aug","Sep","Oct","Noi","Dec"],pickers:["urmatoarele 7 zile","urmatoarele 30 zile","ultimele 7 zile","ultimele 30 zile"],placeholder:{date:"Selectați Data",dateRange:"Selectați Intervalul De Date"}},fr:{days:["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"],months:["Jan","Fev","Mar","Avr","Mai","Juin","Juil","Aout","Sep","Oct","Nov","Dec"],pickers:["7 jours suivants","30 jours suivants","7 jours précédents","30 jours précédents"],placeholder:{date:"Sélectionnez une date",dateRange:"Sélectionnez une période"}},es:{days:["Dom","Lun","mar","Mie","Jue","Vie","Sab"],months:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],pickers:["próximos 7 días","próximos 30 días","7 días anteriores","30 días anteriores"],placeholder:{date:"Seleccionar fecha",dateRange:"Seleccionar un rango de fechas"}},"pt-br":{days:["Dom","Seg","Ter","Qua","Quin","Sex","Sáb"],months:["Jan","Fev","Mar","Abr","Maio","Jun","Jul","Ago","Set","Out","Nov","Dez"],pickers:["próximos 7 dias","próximos 30 dias","7 dias anteriores"," 30 dias anteriores"],placeholder:{date:"Selecione uma data",dateRange:"Selecione um período"}},ru:{days:["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],months:["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек"],pickers:["след. 7 дней","след. 30 дней","прош. 7 дней","прош. 30 дней"],placeholder:{date:"Выберите дату",dateRange:"Выберите период"}},de:{days:["So","Mo","Di","Mi","Do","Fr","Sa"],months:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],pickers:["nächsten 7 Tage","nächsten 30 Tage","vorigen 7 Tage","vorigen 30 Tage"],placeholder:{date:"Datum auswählen",dateRange:"Zeitraum auswählen"}},it:{days:["Dom","Lun","Mar","Mer","Gio","Ven","Sab"],months:["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],pickers:["successivi 7 giorni","successivi 30 giorni","precedenti 7 giorni","precedenti 30 giorni"],placeholder:{date:"Seleziona una data",dateRange:"Seleziona un intervallo date"}},cs:{days:["Ned","Pon","Úte","Stř","Čtv","Pát","Sob"],months:["Led","Úno","Bře","Dub","Kvě","Čer","Čerc","Srp","Zář","Říj","Lis","Pro"],pickers:["příštích 7 dní","příštích 30 dní","předchozích 7 dní","předchozích 30 dní"],placeholder:{date:"Vyberte datum",dateRange:"Vyberte časové rozmezí"}},sl:{days:["Ned","Pon","Tor","Sre","Čet","Pet","Sob"],months:["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Avg","Sep","Okt","Nov","Dec"],pickers:["naslednjih 7 dni","naslednjih 30 dni","prejšnjih 7 dni","prejšnjih 30 dni"],placeholder:{date:"Izberite datum",dateRange:"Izberite razpon med 2 datumoma"}}},h=d.zh,p={methods:{t:function(e){for(var t=this,n=t.$options.name;t&&(!n||"DatePicker"!==n);)(t=t.$parent)&&(n=t.$options.name);for(var a=t&&t.language||h,r=e.split("."),i=a,s=void 0,o=0,l=r.length;o<l;o++){if(s=i[r[o]],o===l-1)return s;if(!s)return"";i=s}return""}}};var f=n(1),m=n.n(f);function g(e,t,n,a,r,i,s,o){var l,u="function"==typeof e?e.options:e;if(t&&(u.render=t,u.staticRenderFns=n,u._compiled=!0),a&&(u.functional=!0),i&&(u._scopeId="data-v-"+i),s?(l=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),r&&r.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(s)},u._ssrRegister=l):r&&(l=o?function(){r.call(this,this.$root.$options.shadowRoot)}:r),l)if(u.functional){u._injectStyles=l;var c=u.render;u.render=function(e,t){return l.call(t),c(e,t)}}else{var d=u.beforeCreate;u.beforeCreate=d?[].concat(d,l):[l]}return{exports:e,options:u}}var v=g({name:"CalendarPanel",components:{PanelDate:{name:"panelDate",mixins:[p],props:{value:null,startAt:null,endAt:null,calendarMonth:{default:(new Date).getMonth()},calendarYear:{default:(new Date).getFullYear()},firstDayOfWeek:{default:7,type:Number,validator:function(e){return e>=1&&e<=7}},disabledDate:{type:Function,default:function(){return!1}}},methods:{selectDate:function(e){var t=e.year,n=e.month,a=e.day,r=new Date(t,n,a);this.disabledDate(r)||this.$emit("select",r)},getDays:function(e){var t=this.t("days"),n=parseInt(e,10);return t.concat(t).slice(n,n+7)},getDates:function(e,t,n){var a=[],r=new Date(e,t);r.setDate(0);for(var i=(r.getDay()+7-n)%7+1,s=r.getDate()-(i-1),o=0;o<i;o++)a.push({year:e,month:t-1,day:s+o});r.setMonth(r.getMonth()+2,0);for(var l=r.getDate(),u=0;u<l;u++)a.push({year:e,month:t,day:1+u});r.setMonth(r.getMonth()+1,1);for(var c=42-(i+l),d=0;d<c;d++)a.push({year:e,month:t+1,day:1+d});return a},getCellClasses:function(e){var t=e.year,n=e.month,a=e.day,r=[],i=new Date(t,n,a).getTime(),s=(new Date).setHours(0,0,0,0),o=this.value&&new Date(this.value).setHours(0,0,0,0),l=this.startAt&&new Date(this.startAt).setHours(0,0,0,0),u=this.endAt&&new Date(this.endAt).setHours(0,0,0,0);return n<this.calendarMonth?r.push("last-month"):n>this.calendarMonth?r.push("next-month"):r.push("cur-month"),i===s&&r.push("today"),this.disabledDate(i)&&r.push("disabled"),o&&(i===o?r.push("actived"):l&&i<=o?r.push("inrange"):u&&i>=o&&r.push("inrange")),r},getCellTitle:function(e){var t=e.year,n=e.month,a=e.day;return new Date(t,n,a).toLocaleDateString()}},render:function(e){var t=this,n=this.getDays(this.firstDayOfWeek).map(function(t){return e("th",[t])}),a=this.getDates(this.calendarYear,this.calendarMonth,this.firstDayOfWeek),r=Array.apply(null,{length:6}).map(function(n,r){var i=a.slice(7*r,7*r+7).map(function(n){var a={class:t.getCellClasses(n)};return e("td",m()([{class:"cell"},a,{attrs:{title:t.getCellTitle(n)},on:{click:t.selectDate.bind(t,n)}}]),[n.day])});return e("tr",[i])});return e("table",{class:"mx-panel mx-panel-date"},[e("thead",[e("tr",[n])]),e("tbody",[r])])}},PanelYear:{name:"panelYear",props:{value:null,firstYear:Number,disabledYear:Function},methods:{isDisabled:function(e){return!("function"!=typeof this.disabledYear||!this.disabledYear(e))},selectYear:function(e){this.isDisabled(e)||this.$emit("select",e)}},render:function(e){var t=this,n=10*Math.floor(this.firstYear/10),a=this.value&&new Date(this.value).getFullYear(),r=Array.apply(null,{length:10}).map(function(r,i){var s=n+i;return e("span",{class:{cell:!0,actived:a===s,disabled:t.isDisabled(s)},on:{click:t.selectYear.bind(t,s)}},[s])});return e("div",{class:"mx-panel mx-panel-year"},[r])}},PanelMonth:{name:"panelMonth",mixins:[p],props:{value:null,calendarYear:{default:(new Date).getFullYear()},disabledMonth:Function},methods:{isDisabled:function(e){return!("function"!=typeof this.disabledMonth||!this.disabledMonth(e))},selectMonth:function(e){this.isDisabled(e)||this.$emit("select",e)}},render:function(e){var t=this,n=this.t("months"),a=this.value&&new Date(this.value).getFullYear(),r=this.value&&new Date(this.value).getMonth();return n=n.map(function(n,i){return e("span",{class:{cell:!0,actived:a===t.calendarYear&&r===i,disabled:t.isDisabled(i)},on:{click:t.selectMonth.bind(t,i)}},[n])}),e("div",{class:"mx-panel mx-panel-month"},[n])}},PanelTime:{name:"panelTime",props:{timePickerOptions:{type:[Object,Function],default:function(){return null}},minuteStep:{type:Number,default:0,validator:function(e){return e>=0&&e<=60}},value:null,disabledTime:Function},computed:{currentHours:function(){return new Date(this.value).getHours()},currentMinutes:function(){return new Date(this.value).getMinutes()},currentSeconds:function(){return new Date(this.value).getSeconds()}},methods:{stringifyText:function(e){return("00"+e).slice(String(e).length)},selectTime:function(e){"function"==typeof this.disabledTime&&this.disabledTime(e)||this.$emit("select",new Date(e))},getTimeSelectOptions:function(){var e=[],t=this.timePickerOptions;if(!t)return[];if("function"==typeof t)return t()||[];var n=u(t.start),a=u(t.end),r=u(t.step);if(n&&a&&r)for(var i=n.minutes+60*n.hours,s=a.minutes+60*a.hours,o=r.minutes+60*r.hours,l=Math.floor((s-i)/o),d=0;d<=l;d++){var h=i+d*o,p={hours:Math.floor(h/60),minutes:h%60};e.push({value:p,label:c(p)})}return e}},render:function(e){var t=this,n=new Date(this.value),a="function"==typeof this.disabledTime&&this.disabledTime,r=this.getTimeSelectOptions();if(Array.isArray(r)&&r.length)return r=r.map(function(r){var i=r.value.hours,s=r.value.minutes,o=new Date(n).setHours(i,s,0);return e("li",{class:{"mx-time-picker-item":!0,cell:!0,actived:i===t.currentHours&&s===t.currentMinutes,disabled:a&&a(o)},on:{click:t.selectTime.bind(t,o)}},[r.label])}),e("div",{class:"mx-panel mx-panel-time"},[e("ul",{class:"mx-time-list"},[r])]);var i=Array.apply(null,{length:24}).map(function(r,i){var s=new Date(n).setHours(i);return e("li",{class:{cell:!0,actived:i===t.currentHours,disabled:a&&a(s)},on:{click:t.selectTime.bind(t,s)}},[t.stringifyText(i)])}),s=this.minuteStep||1,o=parseInt(60/s),l=Array.apply(null,{length:o}).map(function(r,i){var o=i*s,l=new Date(n).setMinutes(o);return e("li",{class:{cell:!0,actived:o===t.currentMinutes,disabled:a&&a(l)},on:{click:t.selectTime.bind(t,l)}},[t.stringifyText(o)])}),u=Array.apply(null,{length:60}).map(function(r,i){var s=new Date(n).setSeconds(i);return e("li",{class:{cell:!0,actived:i===t.currentSeconds,disabled:a&&a(s)},on:{click:t.selectTime.bind(t,s)}},[t.stringifyText(i)])}),c=[i,l];return 0===this.minuteStep&&c.push(u),c=c.map(function(t){return e("ul",{class:"mx-time-list",style:{width:100/c.length+"%"}},[t])}),e("div",{class:"mx-panel mx-panel-time"},[c])}}},mixins:[p],props:{value:{default:null,validator:function(e){return null===e||o(e)}},startAt:null,endAt:null,visible:{type:Boolean,default:!1},type:{type:String,default:"date"},firstDayOfWeek:{default:7,type:Number,validator:function(e){return e>=1&&e<=7}},notBefore:{default:null,validator:function(e){return!e||o(e)}},notAfter:{default:null,validator:function(e){return!e||o(e)}},disabledDays:{type:[Array,Function],default:function(){return[]}},minuteStep:{type:Number,default:0,validator:function(e){return e>=0&&e<=60}},timePickerOptions:{type:[Object,Function],default:function(){return null}}},data:function(){var e=new Date,t=e.getFullYear();return{panel:"DATE",dates:[],calendarMonth:e.getMonth(),calendarYear:t,firstYear:10*Math.floor(t/10)}},computed:{now:{get:function(){return new Date(this.calendarYear,this.calendarMonth).getTime()},set:function(e){var t=new Date(e);this.calendarYear=t.getFullYear(),this.calendarMonth=t.getMonth()}},timeHeader:function(){return this.value&&new Date(this.value).toLocaleDateString()},yearHeader:function(){return this.firstYear+" ~ "+(this.firstYear+10)},months:function(){return this.t("months")}},watch:{value:{immediate:!0,handler:"updateNow"},visible:{immediate:!0,handler:"init"},panel:{immediate:!0,handler:"handelPanelChange"}},methods:{handelPanelChange:function(e){var t=this;"YEAR"===e?this.firstYear=10*Math.floor(this.calendarYear/10):"TIME"===e&&this.$nextTick(function(){[].concat(function(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}(t.$el.querySelectorAll(".mx-panel-time .mx-time-list"))).forEach(function(e){!function(e,t){if(t){for(var n=[],a=t.offsetParent;a&&e!==a&&e.contains(a);)n.push(a),a=a.offsetParent;var r=t.offsetTop+n.reduce(function(e,t){return e+t.offsetTop},0),i=r+t.offsetHeight,s=e.scrollTop,o=s+e.clientHeight;r<s?e.scrollTop=r:i>o&&(e.scrollTop=i-e.clientHeight)}else e.scrollTop=0}(e,e.querySelector(".actived"))})})},init:function(){"month"===this.type.toLowerCase()?this.panel="MONTH":"year"===this.type.toLowerCase()?this.panel="YEAR":this.panel="DATE",this.updateNow(this.value)},updateNow:function(e){this.now=e?new Date(e):new Date},isDisabledTime:function(e,t,n){var a=new Date(e).getTime(),r=this.notBefore&&a<new Date(this.notBefore),i=this.notAfter&&a>new Date(this.notAfter);return t=(t=void 0===t?this.startAt:t)&&a<new Date(t),n=(n=void 0===n?this.endAt:n)&&a>new Date(n),r||i||t||n},isDisabledDate:function(e,t,n){var a=new Date(e).getTime(),r=this.notBefore&&a<new Date(this.notBefore).setHours(0,0,0,0),i=this.notAfter&&a>new Date(this.notAfter).setHours(0,0,0,0);t=(t=void 0===t?this.startAt:t)&&a<new Date(t).setHours(0,0,0,0),n=(n=void 0===n?this.endAt:n)&&a>new Date(n).setHours(0,0,0,0);var s=!1;return Array.isArray(this.disabledDays)?s=this.disabledDays.some(function(e){return new Date(e).setHours(0,0,0,0)===a}):"function"==typeof this.disabledDays&&(s=this.disabledDays(new Date(e))),r||i||s||t||n},isDisabledYear:function(e){var t=new Date(e,this.calendarMonth);return this.isDisabledDate(t)},isDisabledMonth:function(e){var t=new Date(this.calendarYear,e);return this.isDisabledDate(t)},selectDate:function(e){if("datetime"===this.type){var t=new Date(e);return s(this.value)&&t.setHours(this.value.getHours(),this.value.getMinutes(),this.value.getSeconds()),this.isDisabledTime(t)&&(t.setHours(0,0,0,0),this.notBefore&&t.getTime()<new Date(this.notBefore).getTime()&&(t=new Date(this.notBefore)),this.startAt&&t.getTime()<new Date(this.startAt).getTime()&&(t=new Date(this.startAt))),this.$emit("select-time",t),void(this.panel="TIME")}this.$emit("select-date",e)},selectYear:function(e){if(this.changeCalendarYear(e),"year"===this.type.toLowerCase())return this.selectDate(new Date(this.now));this.showPanelMonth()},selectMonth:function(e){if(this.changeCalendarMonth(e),"month"===this.type.toLowerCase())return this.selectDate(new Date(this.now));this.showPanelDate()},selectTime:function(e){this.$emit("select-time",e)},changeCalendarYear:function(e){this.now=new Date(e,this.calendarMonth)},changeCalendarMonth:function(e){this.now=new Date(this.calendarYear,e)},handleIconMonth:function(e){this.changeCalendarMonth(this.calendarMonth+e)},handleIconYear:function(e){"YEAR"===this.panel?this.changePanelYears(e):this.changeCalendarYear(this.calendarYear+e)},handleBtnYear:function(){this.showPanelYear()},handleBtnMonth:function(){this.showPanelMonth()},changePanelYears:function(e){this.firstYear=this.firstYear+10*e},showPanelDate:function(){this.panel="DATE"},showPanelYear:function(){this.panel="YEAR"},showPanelMonth:function(){this.panel="MONTH"}}},function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"mx-calendar"},[n("div",{staticClass:"mx-calendar-header"},[n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"!==e.panel,expression:"panel !== 'TIME'"}],staticClass:"mx-icon-last-year",on:{click:function(t){e.handleIconYear(-1)}}},[e._v("«")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-icon-last-month",on:{click:function(t){e.handleIconMonth(-1)}}},[e._v("‹")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"!==e.panel,expression:"panel !== 'TIME'"}],staticClass:"mx-icon-next-year",on:{click:function(t){e.handleIconYear(1)}}},[e._v("»")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-icon-next-month",on:{click:function(t){e.handleIconMonth(1)}}},[e._v("›")]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],staticClass:"mx-current-month",on:{click:e.handleBtnMonth}},[e._v(e._s(e.months[e.calendarMonth]))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel||"MONTH"===e.panel,expression:"panel === 'DATE' || panel === 'MONTH'"}],staticClass:"mx-current-year",on:{click:e.handleBtnYear}},[e._v(e._s(e.calendarYear))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"YEAR"===e.panel,expression:"panel === 'YEAR'"}],staticClass:"mx-current-year"},[e._v(e._s(e.yearHeader))]),e._v(" "),n("a",{directives:[{name:"show",rawName:"v-show",value:"TIME"===e.panel,expression:"panel === 'TIME'"}],staticClass:"mx-time-header",on:{click:e.showPanelDate}},[e._v(e._s(e.timeHeader))])]),e._v(" "),n("div",{staticClass:"mx-calendar-content"},[n("panel-date",{directives:[{name:"show",rawName:"v-show",value:"DATE"===e.panel,expression:"panel === 'DATE'"}],attrs:{value:e.value,"calendar-month":e.calendarMonth,"calendar-year":e.calendarYear,"start-at":e.startAt,"end-at":e.endAt,"first-day-of-week":e.firstDayOfWeek,"disabled-date":e.isDisabledDate},on:{select:e.selectDate}}),e._v(" "),n("panel-year",{directives:[{name:"show",rawName:"v-show",value:"YEAR"===e.panel,expression:"panel === 'YEAR'"}],attrs:{value:e.value,"disabled-year":e.isDisabledYear,"first-year":e.firstYear},on:{select:e.selectYear}}),e._v(" "),n("panel-month",{directives:[{name:"show",rawName:"v-show",value:"MONTH"===e.panel,expression:"panel === 'MONTH'"}],attrs:{value:e.value,"disabled-month":e.isDisabledMonth,"calendar-year":e.calendarYear},on:{select:e.selectMonth}}),e._v(" "),n("panel-time",{directives:[{name:"show",rawName:"v-show",value:"TIME"===e.panel,expression:"panel === 'TIME'"}],attrs:{"minute-step":e.minuteStep,"time-picker-options":e.timePickerOptions,value:e.value,"disabled-time":e.isDisabledTime},on:{select:e.selectTime}})],1)])},[],!1,null,null,null).exports,x=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},b=g({fecha:r.a,name:"DatePicker",components:{CalendarPanel:v},mixins:[p],directives:{clickoutside:i},props:{value:null,placeholder:{type:String,default:null},lang:{type:[String,Object],default:"zh"},format:{type:String,default:"YYYY-MM-DD"},range:{type:Boolean,default:!1},rangeSeparator:{type:String,default:"~"},width:{type:[String,Number],default:null},confirmText:{type:String,default:"OK"},confirm:{type:Boolean,default:!1},editable:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},shortcuts:{type:[Boolean,Array],default:!0},inputName:{type:String,default:"date"},inputClass:{type:[String,Array],default:"mx-input"}},data:function(){return{currentValue:this.range?[null,null]:null,userInput:null,popupVisible:!1,position:{}}},watch:{value:{immediate:!0,handler:"handleValueChange"},popupVisible:function(e){e?this.initCalendar():this.userInput=null}},computed:{language:function(){return e=this.lang,"[object Object]"===Object.prototype.toString.call(e)?x({},d.en,this.lang):d[this.lang]||d.en;var e},innerPlaceholder:function(){return"string"==typeof this.placeholder?this.placeholder:this.range?this.t("placeholder.dateRange"):this.t("placeholder.date")},text:function(){return null!==this.userInput?this.userInput:this.range?l(this.value)?this.stringify(this.value[0])+" "+this.rangeSeparator+" "+this.stringify(this.value[1]):"":o(this.value)?this.stringify(this.value):""},computedWidth:function(){return"number"==typeof this.width||"string"==typeof this.width&&/^\d+$/.test(this.width)?this.width+"px":this.width},showClearIcon:function(){return!this.disabled&&this.clearable&&(this.range?l(this.value):o(this.value))},innnerShortcuts:function(){if(Array.isArray(this.shortcuts))return this.shortcuts;if(!1===this.shortcuts)return[];var e=this.t("pickers");return[{text:e[0],onClick:function(e){e.currentValue=[new Date,new Date(Date.now()+6048e5)],e.updateDate(!0)}},{text:e[1],onClick:function(e){e.currentValue=[new Date,new Date(Date.now()+2592e6)],e.updateDate(!0)}},{text:e[2],onClick:function(e){e.currentValue=[new Date(Date.now()-6048e5),new Date],e.updateDate(!0)}},{text:e[3],onClick:function(e){e.currentValue=[new Date(Date.now()-2592e6),new Date],e.updateDate(!0)}}]}},methods:{initCalendar:function(){this.handleValueChange(this.value),this.displayPopup()},stringify:function(e,t){try{return t=t||this.format,r.a.format(new Date(e),t)}catch(e){return""}},parseDate:function(e,t){try{return t=t||this.format,r.a.parse(e,t)}catch(e){return!1}},dateEqual:function(e,t){return s(e)&&s(t)&&e.getTime()===t.getTime()},rangeEqual:function(e,t){var n=this;return Array.isArray(e)&&Array.isArray(t)&&e.length===t.length&&e.every(function(e,a){return n.dateEqual(e,t[a])})},selectRange:function(e){if("function"==typeof e.onClick)return e.onClick(this);this.currentValue=[new Date(e.start),new Date(e.end)],this.updateDate(!0)},clearDate:function(){var e=this.range?[null,null]:null;this.currentValue=e,this.updateDate(!0)},confirmDate:function(){(this.range?l(this.currentValue):o(this.currentValue))&&this.updateDate(!0),this.$emit("confirm",this.currentValue),this.closePopup()},updateDate:function(){var e=arguments.length>0&&void 0!==arguments[0]&&arguments[0];return!(this.confirm&&!e||this.disabled)&&((this.range?!this.rangeEqual(this.value,this.currentValue):!this.dateEqual(this.value,this.currentValue))&&(this.$emit("input",this.currentValue),this.$emit("change",this.currentValue),!0))},handleValueChange:function(e){this.range?this.currentValue=l(e)?[new Date(e[0]),new Date(e[1])]:[null,null]:this.currentValue=o(e)?new Date(e):null},selectDate:function(e){this.currentValue=e,this.updateDate()&&this.closePopup()},selectStartDate:function(e){this.$set(this.currentValue,0,e),this.currentValue[1]&&this.updateDate()},selectEndDate:function(e){this.$set(this.currentValue,1,e),this.currentValue[0]&&this.updateDate()},selectTime:function(e){this.currentValue=e,this.updateDate()},selectStartTime:function(e){this.selectStartDate(e)},selectEndTime:function(e){this.selectEndDate(e)},showPopup:function(){this.disabled||(this.popupVisible=!0)},closePopup:function(){this.popupVisible=!1},displayPopup:function(){var e=document.documentElement.clientWidth,t=document.documentElement.clientHeight,n=this.$el.getBoundingClientRect(),a=this.$refs.calendar.getBoundingClientRect();this.position={},e-n.left<a.width&&n.right<a.width?this.position.left=1-n.left+"px":n.left+n.width/2<=e/2?this.position.left=0:this.position.right=0,n.top<=a.height+1&&t-n.bottom<=a.height+1?this.position.top=t-n.top-a.height-1+"px":n.top+n.height/2<=t/2?this.position.top="100%":this.position.bottom="100%"},handleInput:function(e){this.userInput=e.target.value},handleChange:function(e){var t=e.target.value;if(this.editable&&null!==this.userInput){var n=this.$children[0],a="date"===n.type?n.isDisabledDate:n.isDisabledTime;if(this.range){var r=t.split(" "+this.rangeSeparator+" ");if(2===r.length){var i=this.parseDate(r[0],this.format),s=this.parseDate(r[1],this.format);if(i&&s&&!a(i,null,s)&&!a(s,i,null))return this.currentValue=[i,s],this.updateDate(!0),void this.closePopup()}}else{var o=this.parseDate(t,this.format);if(o&&!a(o,null,null))return this.currentValue=o,this.updateDate(!0),void this.closePopup()}this.$emit("input-error",t)}}}},function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:e.closePopup,expression:"closePopup"}],staticClass:"mx-datepicker",class:{"mx-datepicker-range":e.range,disabled:e.disabled},style:{width:e.computedWidth}},[n("div",{staticClass:"mx-input-wrapper",on:{click:e.showPopup}},[n("input",{ref:"input",class:e.inputClass,attrs:{type:"text",name:e.inputName,disabled:e.disabled,readonly:!e.editable,placeholder:e.innerPlaceholder},domProps:{value:e.text},on:{input:e.handleInput,change:e.handleChange}}),e._v(" "),n("span",{staticClass:"mx-input-append"},[e._t("calendar-icon",[n("svg",{staticClass:"mx-calendar-icon",attrs:{xmlns:"http://www.w3.org/2000/svg",version:"1.1",viewBox:"0 0 200 200"}},[n("rect",{attrs:{x:"13",y:"29",rx:"14",ry:"14",width:"174",height:"158",fill:"transparent"}}),e._v(" "),n("line",{attrs:{x1:"46",x2:"46",y1:"8",y2:"50"}}),e._v(" "),n("line",{attrs:{x1:"154",x2:"154",y1:"8",y2:"50"}}),e._v(" "),n("line",{attrs:{x1:"13",x2:"187",y1:"70",y2:"70"}}),e._v(" "),n("text",{attrs:{x:"50%",y:"135","font-size":"90","stroke-width":"1","text-anchor":"middle","dominant-baseline":"middle"}},[e._v(e._s((new Date).getDate()))])])])],2),e._v(" "),e.showClearIcon?n("span",{staticClass:"mx-input-append mx-clear-wrapper",on:{click:function(t){return t.stopPropagation(),e.clearDate(t)}}},[e._t("mx-clear-icon",[n("i",{staticClass:"mx-input-icon mx-clear-icon"})])],2):e._e()]),e._v(" "),n("div",{directives:[{name:"show",rawName:"v-show",value:e.popupVisible,expression:"popupVisible"}],ref:"calendar",staticClass:"mx-datepicker-popup",style:e.position},[e._t("header",[e.range&&e.innnerShortcuts.length?n("div",{staticClass:"mx-shortcuts-wrapper"},e._l(e.innnerShortcuts,function(t,a){return n("button",{key:a,staticClass:"mx-shortcuts",attrs:{type:"button"},on:{click:function(n){e.selectRange(t)}}},[e._v(e._s(t.text))])})):e._e()]),e._v(" "),e.range?n("div",{staticClass:"mx-range-wrapper"},[n("calendar-panel",e._b({staticStyle:{"box-shadow":"1px 0 rgba(0, 0, 0, .1)"},attrs:{value:e.currentValue[0],"end-at":e.currentValue[1],"start-at":null,visible:e.popupVisible},on:{"select-date":e.selectStartDate,"select-time":e.selectStartTime}},"calendar-panel",e.$attrs,!1)),e._v(" "),n("calendar-panel",e._b({attrs:{value:e.currentValue[1],"start-at":e.currentValue[0],"end-at":null,visible:e.popupVisible},on:{"select-date":e.selectEndDate,"select-time":e.selectEndTime}},"calendar-panel",e.$attrs,!1))],1):n("calendar-panel",e._b({attrs:{value:e.currentValue,visible:e.popupVisible},on:{"select-date":e.selectDate,"select-time":e.selectTime}},"calendar-panel",e.$attrs,!1)),e._v(" "),e._t("footer",[e.confirm?n("div",{staticClass:"mx-datepicker-footer"},[n("button",{staticClass:"mx-datepicker-btn mx-datepicker-btn-confirm",attrs:{type:"button"},on:{click:e.confirmDate}},[e._v(e._s(e.confirmText))])]):e._e()],{confirm:e.confirmDate})],2)])},[],!1,null,null,null).exports;n(6);b.install=function(e){e.component(b.name,b)};t.default=b},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var n=this[t];n[2]?e.push("@media "+n[2]+"{"+n[1]+"}"):e.push(n[1])}return e.join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var a={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(a[i]=!0)}for(r=0;r<t.length;r++){var s=t[r];"number"==typeof s[0]&&a[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),e.push(s))}},e}},function(e,t,n){(e.exports=n(4)()).push([e.i,"@charset \"UTF-8\";\n.mx-datepicker {\n  position: relative;\n  display: inline-block;\n  width: 210px;\n  color: #73879c;\n  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif; }\n  .mx-datepicker * {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n  .mx-datepicker.disabled {\n    opacity: 0.7;\n    cursor: not-allowed; }\n\n.mx-datepicker-range {\n  width: 320px; }\n\n.mx-datepicker-popup {\n  position: absolute;\n  margin-top: 1px;\n  margin-bottom: 1px;\n  border: 1px solid #d9d9d9;\n  background-color: #fff;\n  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  z-index: 1000; }\n\n.mx-input-wrapper {\n  position: relative; }\n  .mx-input-wrapper .mx-clear-wrapper {\n    display: none; }\n  .mx-input-wrapper:hover .mx-clear-wrapper {\n    display: block; }\n\n.mx-input {\n  display: inline-block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 30px;\n  padding-left: 10px;\n  font-size: 14px;\n  line-height: 1.4;\n  color: #555;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }\n  .mx-input:disabled, .mx-input.disabled {\n    opacity: 0.7;\n    cursor: not-allowed; }\n  .mx-input:focus {\n    outline: none; }\n\n.mx-input-append {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 30px;\n  height: 100%;\n  padding: 6px;\n  background-color: #fff;\n  background-clip: content-box; }\n\n.mx-input-icon {\n  display: inline-block;\n  width: 100%;\n  height: 100%;\n  font-style: normal;\n  color: #555;\n  text-align: center;\n  cursor: pointer; }\n\n.mx-calendar-icon {\n  width: 100%;\n  height: 100%;\n  color: #555;\n  stroke-width: 8px;\n  stroke: currentColor;\n  fill: currentColor; }\n\n.mx-clear-icon::before {\n  display: inline-block;\n  content: '\\2716';\n  vertical-align: middle; }\n\n.mx-clear-icon::after {\n  content: '';\n  display: inline-block;\n  width: 0;\n  height: 100%;\n  vertical-align: middle; }\n\n.mx-range-wrapper {\n  width: 496px;\n  overflow: hidden; }\n\n.mx-shortcuts-wrapper {\n  text-align: left;\n  padding: 0 12px;\n  line-height: 34px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }\n  .mx-shortcuts-wrapper .mx-shortcuts {\n    background: none;\n    outline: none;\n    border: 0;\n    color: inherit;\n    margin: 0;\n    padding: 0;\n    white-space: nowrap;\n    cursor: pointer; }\n    .mx-shortcuts-wrapper .mx-shortcuts:hover {\n      color: #419dec; }\n    .mx-shortcuts-wrapper .mx-shortcuts:after {\n      content: '|';\n      margin: 0 10px;\n      color: #48576a; }\n\n.mx-datepicker-footer {\n  padding: 4px;\n  clear: both;\n  text-align: right;\n  border-top: 1px solid rgba(0, 0, 0, 0.05); }\n\n.mx-datepicker-btn {\n  font-size: 12px;\n  line-height: 1;\n  padding: 7px 15px;\n  margin: 0 5px;\n  cursor: pointer;\n  background-color: transparent;\n  outline: none;\n  border: none;\n  border-radius: 3px; }\n\n.mx-datepicker-btn-confirm {\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  color: #73879c; }\n  .mx-datepicker-btn-confirm:hover {\n    color: #1284e7;\n    border-color: #1284e7; }\n\n/* 日历组件 */\n.mx-calendar {\n  float: left;\n  color: #73879c;\n  padding: 6px 12px;\n  font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,sans-serif; }\n  .mx-calendar * {\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box; }\n\n.mx-calendar-header {\n  padding: 0 4px;\n  height: 34px;\n  line-height: 34px;\n  text-align: center;\n  overflow: hidden; }\n  .mx-calendar-header > a {\n    color: inherit;\n    text-decoration: none;\n    cursor: pointer; }\n    .mx-calendar-header > a:hover {\n      color: #419dec; }\n  .mx-icon-last-month, .mx-icon-last-year,\n  .mx-icon-next-month,\n  .mx-icon-next-year {\n    padding: 0 6px;\n    font-size: 20px;\n    line-height: 30px; }\n  .mx-icon-last-month, .mx-icon-last-year {\n    float: left; }\n  \n  .mx-icon-next-month,\n  .mx-icon-next-year {\n    float: right; }\n\n.mx-calendar-content {\n  width: 224px;\n  height: 224px; }\n  .mx-calendar-content .cell {\n    cursor: pointer; }\n    .mx-calendar-content .cell:hover {\n      background-color: #eaf8fe; }\n    .mx-calendar-content .cell.actived {\n      color: #fff;\n      background-color: #1284e7; }\n    .mx-calendar-content .cell.inrange {\n      background-color: #eaf8fe; }\n    .mx-calendar-content .cell.disabled {\n      cursor: not-allowed;\n      color: #ccc;\n      background-color: #f3f3f3; }\n\n.mx-panel {\n  width: 100%;\n  height: 100%;\n  text-align: center; }\n\n.mx-panel-date {\n  table-layout: fixed;\n  border-collapse: collapse;\n  border-spacing: 0; }\n  .mx-panel-date td, .mx-panel-date th {\n    font-size: 12px;\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    overflow: hidden;\n    text-align: center; }\n  .mx-panel-date td.today {\n    color: #2a90e9; }\n  .mx-panel-date td.last-month, .mx-panel-date td.next-month {\n    color: #ddd; }\n\n.mx-panel-year {\n  padding: 7px 0; }\n  .mx-panel-year .cell {\n    display: inline-block;\n    width: 40%;\n    margin: 1px 5%;\n    line-height: 40px; }\n\n.mx-panel-month .cell {\n  display: inline-block;\n  width: 30%;\n  line-height: 40px;\n  margin: 8px 1.5%; }\n\n.mx-time-list {\n  position: relative;\n  float: left;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  width: 100%;\n  height: 100%;\n  border-top: 1px solid rgba(0, 0, 0, 0.05);\n  border-left: 1px solid rgba(0, 0, 0, 0.05);\n  overflow-y: auto;\n  /* 滚动条滑块 */ }\n  .mx-time-list .mx-time-picker-item {\n    display: block;\n    text-align: left;\n    padding-left: 10px; }\n  .mx-time-list:first-child {\n    border-left: 0; }\n  .mx-time-list .cell {\n    width: 100%;\n    font-size: 12px;\n    height: 30px;\n    line-height: 30px; }\n  .mx-time-list::-webkit-scrollbar {\n    width: 8px;\n    height: 8px; }\n  .mx-time-list::-webkit-scrollbar-thumb {\n    background-color: rgba(0, 0, 0, 0.05);\n    border-radius: 10px;\n    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);\n            box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }\n  .mx-time-list:hover::-webkit-scrollbar-thumb {\n    background-color: rgba(0, 0, 0, 0.2); }\n",""])},function(e,t,n){var a=n(5);"string"==typeof a&&(a=[[e.i,a,""]]),a.locals&&(e.exports=a.locals);(0,n(2).default)("511dbeb0",a,!0,{})}])});
 
 /***/ }),
 
@@ -94225,6 +94766,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/jobs/explore-jobs.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/jobs/explore-jobs.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-39d8199c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/jobs/explore-jobs.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\jobs\\explore-jobs.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-39d8199c", Component.options)
+  } else {
+    hotAPI.reload("data-v-39d8199c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/jobs/job-detail.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -95127,6 +95716,15 @@ var routes = [
         navigation: 'customer-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/jobs/my-jobs.vue")
+}, {
+    name: 'Explore_Jobs',
+    path: '/explore-jobs',
+    meta: {
+        title: 'Professional Service Marketplace | My Jobs',
+        bodyClass: 'my-explore-job-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/jobs/explore-jobs.vue")
 }, {
     name: 'job-details',
     path: '/job-details/:id?',
