@@ -1,6 +1,6 @@
 <template>
     <div class="panel-inner">
-        <div class="main-detail-content">
+        <div v-if="Object.keys(records).length" class="main-detail-content">
 
             <div class="provider-detail">
 
