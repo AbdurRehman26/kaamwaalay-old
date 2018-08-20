@@ -50,6 +50,7 @@ class JobController extends ApiResourceController
 
     if($value == 'index'){
 
+        $rules['filter_by_user'] = 'nullable|exists:users,id';
     }
 
     return $rules;
@@ -63,7 +64,8 @@ public function input($value='')
         'id','title','user_id','service_id','country_id','state_id',
         'city_id','title','description','address','apartment','zip_code',
         'images','schedule_at','preference','status','job_type',
-        'filter_by_status', 'filter_by_service', 'keyword','pagination'
+        'filter_by_status', 'filter_by_service', 'keyword','pagination', 'bid_data',
+        'filter_by_user', 'filter_by_service_provider'
     );
 
     if($value == 'store'){

@@ -1,7 +1,7 @@
  <template>	
 	<div>
 		<b-modal id="view-customer-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Job Detail" ok-only ok-title="Close">
-            <alert></alert>
+            <alert v-if="successMessage"></alert>
             <div class="view-details-list">
 
                 <b-row>
@@ -9,34 +9,31 @@
                         <p><strong class="title-head">Job Title</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Carpenters</p>
+                        <p>{{selectedJob.title}}</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Service Provider</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>James</p>
+                        <p>{{selectedJob.service_provider}}</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Urgent Job</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Yes</p>
+                        <p>{{selectedJob.job_type == 'urgent' ? 'Yes' : 'No'}}</p>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p><star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating></p>
+                        <p><star-rating :star-size="20" read-only :increment="0.02" :rating="selectedJob.avg_rating" active-color="#8200ff"></star-rating></p>
                     </b-col>
                 </b-row>
 
@@ -45,7 +42,7 @@
                         <p><strong class="title-head">Service</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>Electrician > AC</p>
+                        <p>{{selectedJob.service != null ? selectedJob.service.title: '-'}}</p>
                     </b-col>
                 </b-row>  
 
@@ -54,7 +51,7 @@
                         <p><strong class="title-head">Project Amount</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>400$</p>
+                        <p>{{selectedJob.job_amount == null ? '-':'$'+selectedJob.job_amount}}</p>
                     </b-col>
                 </b-row>                                
 
@@ -64,7 +61,7 @@
                     </b-col>
                     <b-col cols="12">
                         <div class="form-group">
-                            <p>Jobs might be building a house from the ground up, or simply replacing a doorframe. Carpenters work in all facets of construction, from large industrial jobs to small handyman jobs.</p>
+                            <p>{{selectedJob.description}}</p>
                         </div>
                     </b-col>
                 </b-row>
@@ -79,13 +76,20 @@ import StarRating from 'vue-star-rating';
 
 export default {
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'selectedJob'],
+    data () {
+        return {
+            successMessage: "",
+            selectedJob:{},
+        }
+    },
     
     methods: {
         showModal () {
             this.$refs.myModalRef.show()
         },
         hideModal () {
+            this.loading = false;
             this.$refs.myModalRef.hide()
         },
         onHidden() {
@@ -105,6 +109,9 @@ export default {
             if(!value) {
                 this.hideModal();
             }
+        },
+        selectedJob(value) {
+            this.selectedJob = value;
         }
     },
 }

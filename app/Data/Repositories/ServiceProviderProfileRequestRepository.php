@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Models\Role;
 use Carbon\Carbon;
+use DB;
 
 class ServiceProviderProfileRequestRepository extends AbstractRepository implements RepositoryContract
 {
@@ -49,7 +50,6 @@ public $model;
         if(is_array($whereInModelIds)){
             $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
         }
-
         return $this->findByAll();
     }
 
@@ -58,10 +58,11 @@ public $model;
     {
         $data = parent::findById($id, $refresh, $details, $encode);
         
+
         if($data && $details){
-            
+                
             $criteria = ['service_provider_profile_request_id' => $data->id];
-            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
+            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria, false, $details);
             $data->services = $services['data'];       
             $input['provider_request_data'] = false;
             $input['profile_data'] = true;
@@ -99,9 +100,9 @@ public $model;
 
             $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
                 $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
-            })
-            ->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
-            ->orWhere('users.last_name', 'LIKE', "%{$data['keyword']}%");
+            })->where(function($query)use($data){
+                $query->where(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , "%{$data['keyword']}%");
+            });
         }
 
         if(!empty($data['filter_by_business_type'])){
@@ -117,7 +118,8 @@ public $model;
             })->where('service_provider_services.service_id',$data['filter_by_service'])
             ->select('service_provider_profile_requests.*');
         }
-        
+
+        $data['details'] = ['details' => ['show' => true]];
         return parent::findByAll($pagination, $perPage, $data);
 
     }

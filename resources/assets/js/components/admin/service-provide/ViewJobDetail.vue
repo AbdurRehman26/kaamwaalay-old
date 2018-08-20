@@ -1,89 +1,73 @@
 <template>
   <div class="panel-inner">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-title-strip">
-                    <div class="float-left">
-                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-title-strip">
+                <div class="float-left">
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="customer-detail-title">
-                    <h2 class="page-title">Bobby Rodes</h2>
-                </div>
-                <div class="table-area">
-                    <div class="table-responsive">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                                <th>Job Title</th>
-                                <th>Customer Name</th>
-                                <th class="text-center">Urgent Job</th>
-                                <th class="text-center">Project Amount</th>                          
-                                <th>Customer Rating</th>
-
-                                <th class="text-center">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr v-for="list in listing">
-                                <td>{{ list.jobtitle }}</td>
-                                <td>{{ list.serviceprovider }}</td>
-                                <td class="text-center">{{ list.urgentjob }}</td>
-                                <td class="text-center">${{ list.amount }}</td>                           
-                                <td><star-rating :star-size="20" read-only :rating="2" active-color="#8200ff"></star-rating></td>
-
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i @click="ViewServiceRecord" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="customer-detail-title">
+                <h2 class="page-title">{{serviceProvider.user_detail | fullName }}</h2>
             </div>
+            <div class="table-area">
+                <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Customer Name</th>
+                            <th class="text-center">Urgent Job</th>
+                            <th class="text-center">Project Amount</th>                          
+                            <th>Customer Rating</th>
+
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="record in records">
+                            <td>{{ record.title }}</td>
+                            <td>{{ record.user | fullName }}</td>
+                            <td class="text-center">{{ record | jobType }}</td>
+                            <td class="text-center">${{ record.job_amount }}</td>                           
+                            <td><star-rating :star-size="20" read-only :rating="record.user.average_rating ? record.user.average_rating  : 0" active-color="#8200ff"></star-rating></td>
+
+                            <td class="text-center">
+                                <div class="action-icons">
+                                    <i @click="currentItem = record; servicerecord = true;" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <no-record-found v-show="noRecordFound"></no-record-found>
             </div>
-     <!--    <view-customer-record :showModalProp="customerrecord" @HideModalValue="HideModal"></view-customer-record> -->
-        <view-service-record :showModalProp="servicerecord" @HideModalValue="HideModal"></view-service-record>
-  </div> 
+        </div>
+    </div>
+</div>
+<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+<view-service-record :item="currentItem" :showModalProp="servicerecord" @HideModalValue="HideModal"></view-service-record>
+<vue-common-methods :url="requestSecondaryUrl" @get-records="getSecondaryRecord"></vue-common-methods>
+
+</div> 
 </template>
 <script>
-import StarRating from 'vue-star-rating';
+    import StarRating from 'vue-star-rating';
 
-export default {
-  data () {
-    return {
-        customerrecord: false,
-        servicerecord: false,
-
-        listing: [
-            {
-                jobtitle:'Electrician',
-                serviceprovider: 'Elif',
-                amount: 300,
-                urgentjob: 'Yes',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorem, deserunt accusamus at veniam culpa quia illum tempore consectetur dolor voluptates tempora quis natus libero modi, nesciunt magnam ipsum quod!',
-            },
-            {
-                jobtitle:'Plumber',
-                serviceprovider: 'Anthony',
-                amount: 555,     
-                urgentjob: 'No',       
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
-            },
-            {
-                jobtitle:'Carpenter',
-                serviceprovider: 'Anthony',
-                amount: 1000,    
-                urgentjob: 'Yes',          
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eligendi blanditiis debitis libero laudantium, saepe!',
-            },
-        ],
-
+    export default {
+      data () {
+        return {
+            currentItem : '',
+            customerrecord: false,
+            servicerecord: false,
+            noRecordFound : false,
+            loading : true,
+            records : [],
+            url: 'api/job',
+            serviceProvider : ''
         }
     },
     components: {
@@ -100,7 +84,28 @@ export default {
             this.customerrecord = false;
             this.servicerecord = false;
         },
+        getRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.url = '';
+        },
+        getSecondaryRecord(data){
+            this.serviceProvider = data;
+        }
+    },
+    computed : {
+        requestUrl(){
+            return this.url + '?filter_by_service_provider='+this.$route.params.id;
+        },
+        requestSecondaryUrl(){
+            return 'api/service-provider-profile/'+this.$route.params.id;    
+        }
 
+    },
+    mounted(){
+        this.loading = true;
     }
 }
 </script>

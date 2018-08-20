@@ -147,7 +147,6 @@
                 }
             },
             selectedInquiry(value) {
-                console.log(value, 8899988);
                 this.selectedInquiry = value;
                 this.role = value.role;
                 this.support_question = value.support_question;

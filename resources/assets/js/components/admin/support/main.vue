@@ -168,8 +168,9 @@
 
       self.$http.get(url).then(response => {
         response = response.data.response;
+        console.log(response, 787878);
         self.listing = response.data;
-        self.totalServicesCount = response.inquiry_count;
+        self.totalServicesCount = response.data.inquiry_count;
         
         self.pagination = response.pagination;
 

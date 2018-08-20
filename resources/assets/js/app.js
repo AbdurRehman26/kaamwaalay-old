@@ -3,6 +3,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.moment = require('moment');
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -142,7 +143,7 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
     if (error.response.status === 401 && !originalRequest._retry) { // if the error is 401 and hasent already been retried
                  app.$auth.logout().then(function (Vue) {
                     app.$store.commit('setAuthUser', '')
-                    router.push({ name: 'landing'})
+                    router.push({ name: 'login'})
                    })
     }
    if(error.response.status === 406 || error.response.status === 422){  

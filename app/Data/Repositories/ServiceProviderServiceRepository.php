@@ -16,7 +16,9 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
      * @access public
      *
      **/
-public $model;
+    public $model;
+    
+    const   PER_PAGE = 25;
 
     /**
      *
@@ -41,20 +43,22 @@ public $model;
 
     }
 
-    public function findCollectionByCriteria($criteria , $whereInModelIds = false)
+    public function findCollectionByCriteria($criteria , $whereInModelIds = false, $details = [])
     {
         $this->builder = $this->model->where($criteria);
         if(is_array($whereInModelIds)){
             $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
         }
+ 
+        $details = $details ? ['details' => true] : fasle;
 
-        return $this->findByAll();
+        return $this->findByAll(false, self::PER_PAGE, $details);
     }
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        
+ 
         if($data && $details){
 
             $data->service = app('ServiceRepository')->findById($data->service_id);

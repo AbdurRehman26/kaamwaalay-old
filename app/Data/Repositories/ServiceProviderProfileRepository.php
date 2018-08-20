@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfile;
+use DB;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
@@ -45,9 +46,7 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $input);
 
         if ($data) {
-            if (empty($details)) {
-                $data->user_detail = app('UserRepository')->findById($data->user_id,false,true);
-            }
+            $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
@@ -60,6 +59,11 @@ public $model;
             $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
             $data->urgent_jobs_completed = $urgentJobsCompleted;
+
+
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id];
+            $data->urgent_jobs_created  = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
+
 
             $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $totalRevenue = app('JobBidRepository')->getTotalRevenueCriteria($bidsCriteria);
@@ -90,19 +94,19 @@ public $model;
 
             $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
                 $join->on('users.id', '=', 'service_provider_profiles.user_id');
-            })->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
-            ->orWhere('users.last_name', 'like', "%{$data['keyword']}%")
-            ->select('service_provider_profiles.*')
+            })->where(function($query)use($data){
+                $query->where(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , "%{$data['keyword']}%");
+            })->select('service_provider_profiles.*')
             ->groupBy('service_provider_profiles.user_id');
-
         }
+
         if(!empty($data['filter_by_business_type'])){
-            $this->builder = $this->builder->where('business_type','=',$data['filter_by_business_type']);
+            $this->builder = $this->builder->where('service_provider_profiles.business_type','=',$data['filter_by_business_type']);
         }
         
         if(!empty($data['filter_by_service'])){
 
-            $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
+            $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
                 $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
             })->join('service_provider_services', function($join) use ($data){
                 $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    

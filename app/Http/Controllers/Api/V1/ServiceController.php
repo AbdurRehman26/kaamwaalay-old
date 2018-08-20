@@ -15,10 +15,10 @@ class ServiceController extends ApiResourceController
     const   PER_PAGE = 25;
 
     public function __construct(ServiceRepository $repository){
-       $this->_repository = $repository;
-    }
+     $this->_repository = $repository;
+ }
 
-   public function rules($value=''){
+ public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -31,8 +31,8 @@ class ServiceController extends ApiResourceController
         $rules['is_display_footer_nav']   = 'required|in:0,1';                   
         $rules['images']                  = 'required';       
         $rules['status']                  = 'required|in:0,1';    
-        $rules['is_featured']                  = 'required|in:0,1';    
-        $rules['is_hero_nav']                  = 'required|in:0,1';    
+        $rules['is_featured']                  = 'required|in:0,1';     
+
         //$rules['user_id'] =  'required|exists:users,id';   
     }
 
@@ -46,11 +46,11 @@ class ServiceController extends ApiResourceController
         $rules['status']                  = 'nullable|in:0,1';        
         $rules['user_id']                 =  'required|exists:users,id';
         $rules['title']                   = [
-                                            'required',
-                                            Rule::unique('services')->where(function ($query) {
-                                                $query->where('id','!=', $this->input()['id']);
-                                            }),
-                                            ]; 
+            'required',
+            Rule::unique('services')->where(function ($query) {
+                $query->where('id','!=', $this->input()['id']);
+            }),
+        ]; 
 
     }
 
@@ -80,106 +80,106 @@ class ServiceController extends ApiResourceController
 }
 
 
-    public function input($value=''){
-        $input = request()->only(
-                            'id',
-                            'title',
-                            'images',
-                            'parent_id',
-                            'pagination',
-                            'description',
-                            'is_display_banner',
-                            'is_display_service_nav',
-                            'is_display_footer_nav',
-                            'is_featured',
-                            'is_hero_nav',
-                            'url_prefix',
-                            'parent_service',
-                            'status',
-                            'keyword',
-                            'filter_by_featured',
-                            'zip_code'
-                            );
+public function input($value=''){
+    $input = request()->only(
+        'id',
+        'title',
+        'images',
+        'parent_id',
+        'pagination',
+        'description',
+        'is_display_banner',
+        'is_display_service_nav',
+        'is_display_footer_nav',
+        'is_featured',
+        'is_hero_nav',
+        'url_prefix',
+        'parent_service',
+        'status',
+        'keyword',
+        'filter_by_featured',
+        'zip_code'
+    );
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
     request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
     return $input;
-    }
+}
 
 
     //Update single record
-    public function update(Request $request, $id)
-    {   
-        $request->request->add(['id' => $id]);
-        $input = $this->input(__FUNCTION__);
-        $rules = $this->rules(__FUNCTION__);
-        $messages = $this->messages(__FUNCTION__);
-        $this->validate($request, $rules, $messages);
+public function update(Request $request, $id)
+{   
+    $request->request->add(['id' => $id]);
+    $input = $this->input(__FUNCTION__);
+    $rules = $this->rules(__FUNCTION__);
+    $messages = $this->messages(__FUNCTION__);
+    $this->validate($request, $rules, $messages);
 
-        $data = $this->_repository->update($input);
-        
-        if ($data == 'not_parent') {
-            $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
-        }else{
-            $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
-        }
+    $data = $this->_repository->update($input);
+    
+    if ($data == 'not_parent') {
+        $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
+    }else{
+        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+    }
 
         // HTTP_OK = 200;
-        return response()->json($output, Response::HTTP_OK);
+    return response()->json($output, Response::HTTP_OK);
 
-    }
+}
 
     //Create single record
-    public function store(Request $request)
-    {
+public function store(Request $request)
+{
 
-        $input = $this->input(__FUNCTION__);
-        $rules = $this->rules(__FUNCTION__);
-        $messages = $this->messages(__FUNCTION__);
+    $input = $this->input(__FUNCTION__);
+    $rules = $this->rules(__FUNCTION__);
+    $messages = $this->messages(__FUNCTION__);
 
-        $this->validate($request, $rules, $messages);
+    $this->validate($request, $rules, $messages);
 
-        $data = $this->_repository->create($input);
-        if ($data == 'not_parent') {
-            $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
-        }else{
-            $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
-        }
+    $data = $this->_repository->create($input);
+    if ($data == 'not_parent') {
+        $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
+    }else{
+        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+    }
 
-        
+    
         // HTTP_OK = 200;
 
-        return response()->json($output, Response::HTTP_OK);
+    return response()->json($output, Response::HTTP_OK);
 
-    }
+}
     //Get all records
-    public function index(Request $request)
-    {
-        $rules = $this->rules(__FUNCTION__);
-        $input = $this->input(__FUNCTION__);
+public function index(Request $request)
+{
+    $rules = $this->rules(__FUNCTION__);
+    $input = $this->input(__FUNCTION__);
 
-        $this->validate($request, $rules);
-        
-        $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
+    $this->validate($request, $rules);
+    
+    $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
 
-        $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
+    $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
 
-        $data = $this->_repository->findByAll($pagination, $per_page, $input);
+    $data = $this->_repository->findByAll($pagination, $per_page, $input);
         //$count = $this->_repository->getServiceCount();
-        $output = [
-            'response' => [
-                'data' => $data['data']['data'],
-                'service_count' => $data['record_count'],
-                'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
-                'message' => $this->response_messages(__FUNCTION__),
-            ]
-        ];
+    $output = [
+        'response' => [
+            'data' => $data['data']['data'],
+            'service_count' => $data['record_count'],
+            'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
+            'message' => $this->response_messages(__FUNCTION__),
+        ]
+    ];
 
         // HTTP_OK = 200;
 
-        return response()->json($output, Response::HTTP_OK);
+    return response()->json($output, Response::HTTP_OK);
 
-    }
+}
 
 }

@@ -49,7 +49,7 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
             $record = $record->where($crtieria);
 
         if($startDate && $endDate)
-        $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $record = $record->whereBetween('created_at', [$startDate, $endDate]);
 
         if($aggregate && $aggregate == 'sum'){
             $record = $record->sum($field);   
