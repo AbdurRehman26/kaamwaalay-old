@@ -21,7 +21,7 @@
                                 <button class="btn btn-primary" @click="SignUp">
                                     <span>Get Started</span>
                                 </button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <appstore></appstore>
                     </div>
                     <div class="image-sec">
-                        <img src="/images/front/join-as-pro/customer.jpg">
+                        <img src="/images/front/home/job-search.jpg">
                     </div>
                 </div>
             </div>
