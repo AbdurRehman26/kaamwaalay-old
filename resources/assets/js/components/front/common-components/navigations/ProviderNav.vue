@@ -13,12 +13,12 @@
                     <p class="username">Arsalan Akhtar</p>
                 </div>
             </li>
-            <li>
+            <li class="setting-li">
                 <router-link to="/profile">
                     <i class="icon-cog2 action-icon"></i>
-                </router-link>                
+                </router-link>
             </li>
-            <li>
+            <li class="bell-li">
                 <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
                     <i v-bind:active="tab == true" class="icon-notification action-icon">
                         <span class="badge-count">5</span></i>

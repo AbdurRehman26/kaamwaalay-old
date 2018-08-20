@@ -70316,7 +70316,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("li", [
+        _c("li", { staticClass: "bell-li" }, [
           _c(
             "span",
             {
@@ -70417,17 +70417,31 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "avability-app" }, [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _c("img", {
-          attrs: { src: "/images/front/common-images/app-store.jpg" }
-        })
-      ]),
+      _c(
+        "a",
+        {
+          staticClass: "apple-store-btn",
+          attrs: { href: "javascript:void(0)" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/images/front/common-images/app-store.jpg" }
+          })
+        ]
+      ),
       _vm._v(" "),
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _c("img", {
-          attrs: { src: "/images/front/common-images/google-play.jpg" }
-        })
-      ])
+      _c(
+        "a",
+        {
+          staticClass: "google-store-btn",
+          attrs: { href: "javascript:void(0)" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/images/front/common-images/google-play.jpg" }
+          })
+        ]
+      )
     ])
   }
 ]
@@ -71699,7 +71713,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore" }, [
+    return _c("div", { staticClass: "showmore showmore-link clearfix" }, [
       _c("a", { attrs: { href: "/explore/service_provider" } }, [
         _vm._v("View all services related to electricians "),
         _c("i", { staticClass: "icon-keyboard_arrow_right" })
@@ -72804,6 +72818,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          { staticClass: "setting-li" },
           [
             _c("router-link", { attrs: { to: "/profile" } }, [
               _c("i", { staticClass: "icon-cog2 action-icon" })
@@ -72812,7 +72827,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("li", [
+        _c("li", { staticClass: "bell-li" }, [
           _c(
             "span",
             {
@@ -73301,17 +73316,33 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "avability-app" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/app-store.jpg" }
-                })
-              ]),
+              _c(
+                "a",
+                {
+                  staticClass: "apple-store-btn",
+                  attrs: { href: "javascript:void(0)" }
+                },
+                [
+                  _c("img", {
+                    attrs: { src: "/images/front/common-images/app-store.jpg" }
+                  })
+                ]
+              ),
               _vm._v(" "),
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/google-play.jpg" }
-                })
-              ])
+              _c(
+                "a",
+                {
+                  staticClass: "google-store-btn",
+                  attrs: { href: "javascript:void(0)" }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/images/front/common-images/google-play.jpg"
+                    }
+                  })
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
@@ -96519,7 +96550,28 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.mixin({
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
-    router: __WEBPACK_IMPORTED_MODULE_3__front_routes__["a" /* default */]
+    router: __WEBPACK_IMPORTED_MODULE_3__front_routes__["a" /* default */],
+    methods: {
+        browserfunction: function browserfunction() {
+            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+                jQuery('body').addClass('opera-browser');
+            } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+                jQuery('body').addClass('chrome-browser');
+            } else if (navigator.userAgent.indexOf("Safari") != -1) {
+                jQuery('body').addClass('safari-browser');
+            } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                jQuery('body').addClass('firefox-browser');
+            } else if (navigator.userAgent.indexOf("MSIE") != -1 || !!document.documentMode == true) //IF IE > 10
+                {
+                    jQuery('body').addClass('IE-browser');
+                } else {
+                jQuery('body').addClass('New-browser');
+            }
+        }
+    },
+    mounted: function mounted() {
+        this.browserfunction();
+    }
 });
 
 /*const app = new Vue({

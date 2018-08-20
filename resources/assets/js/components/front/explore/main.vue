@@ -48,7 +48,7 @@
 		        				<h4>{{categoryabc.itemtitle}}</h4>
 		        			</a>
 		        		</div>
-		        		<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+		        		<div class="showmore showmore-link clearfix"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
 
 	        		</div>
 	        	</div>
@@ -82,7 +82,7 @@
 			</div>
 		</div>
 
-		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>		
+		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>
 
     </div>
 </template>

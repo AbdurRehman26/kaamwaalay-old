@@ -155,8 +155,8 @@
 						<h2>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</h2>
 						<p>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</p>
 						<div class="avability-app">
-							<a href="javascript:void(0)"><img src="/images/front/common-images/app-store.jpg"></a>
-							<a href="javascript:void(0)"><img src="/images/front/common-images/google-play.jpg"></a>
+							<a href="javascript:void(0)" class="apple-store-btn"><img src="/images/front/common-images/app-store.jpg"></a>
+							<a href="javascript:void(0)" class="google-store-btn"><img src="/images/front/common-images/google-play.jpg"></a>
 						</div>
 					</div>
 					<div class="image-sec">
