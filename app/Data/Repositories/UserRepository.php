@@ -227,13 +227,15 @@ public $model;
 
     public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL) {
 
+        $model = $this->model;
+        
         if($crtieria)
-            $this->model = $this->model->where($crtieria);
+            $model = $model->where($crtieria);
 
         if($startDate && $endDate)
-            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $model = $model->whereBetween('created_at', [$startDate, $endDate]);
 
-        return  $this->model->count();
+        return  $model->count();
     }
     public function updateField(array $data = []) {
         unset($data['user_id']);
