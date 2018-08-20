@@ -160,7 +160,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $scopes = explode(",",Role::find($user->role_id)->scope);
+        $scopes = (Role::find($user->role_id)->scope)?json_decode(Role::find($user->role_id)->scope):[];
         $user->access_token = $token = $user->createToken('Token Name',$scopes)->accessToken;
         return $user;
     }

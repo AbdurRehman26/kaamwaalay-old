@@ -4,7 +4,7 @@ namespace App\Providers;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-
+use App\Data\Models\Role;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -24,10 +24,19 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::tokensCan([
-            'user.index' => 'User list',
-            'service.index' => 'Service list',
-        ]);
+        $scopes = Role::pluck('scope')->toArray();
+        $data = [];
+        if(!empty($scopes)){
+            foreach ($scopes as $key => $value) {
+                if($value){
+                    $tempArr = json_decode($value);
+                    $data = array_merge($data,$tempArr);
+                }
+                $data = array_unique($data);
+            }
+        }
+
+        Passport::tokensCan($data);
         Passport::routes();
     }
 }
