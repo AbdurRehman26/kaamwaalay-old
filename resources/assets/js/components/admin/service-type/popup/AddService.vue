@@ -19,31 +19,58 @@
 
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group radio-group-row">
+                <label>Is Service Navigation?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio4" value="1" v-model="formData.isDisplayServiceNav">
+                  <label class="form-check-label" for="inlineRadio2">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio3" value="0" v-model="formData.isDisplayServiceNav">
+                  <label class="form-check-label" for="inlineRadio2">No</label>
+              </div>
+          </div>
+      </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group radio-group-row">
+                <label>Is Footer Navigation?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
+                  <label class="form-check-label" for="inlineRadio2">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio3" value="0" v-model="formData.isDisplayBanner">
+                  <label class="form-check-label" for="inlineRadio2">No</label>
+              </div>
+          </div>
+      </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group radio-group-row">
                     <label>Is Featured?</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" v-model="formData.isFeatured">
+                      <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio1" value="1" v-model="formData.isFeatured">
                       <label class="form-check-label" for="inlineRadio1">Yes</label>
                   </div>
                   <div class="form-check form-check-inline">
-                      <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0" v-model="formData.isFeatured">
+                      <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio2" value="0" v-model="formData.isFeatured">
                       <label class="form-check-label" for="inlineRadio1">No</label>
                   </div>
               </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group radio-group-row">
-                <label>Hero Navigation?</label>
+                <label>Display Banner?</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="1" v-model="formData.isHeroNavigation">
+                  <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
                   <label class="form-check-label" for="inlineRadio2">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3" value="0" v-model="formData.isHeroNavigation">
+                  <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio3" value="0" v-model="formData.isDisplayBanner">
                   <label class="form-check-label" for="inlineRadio2">No</label>
               </div>
           </div>
       </div>
+          
   </div>
 
   <div class="form-group">
@@ -94,7 +121,6 @@
                     serviceName: '',
                     serviceDescription: '',
                     isFeatured: 0,
-                    isHeroNavigation: 0,
                     images: [
                     {
                         'name': '', 
@@ -103,9 +129,10 @@
                     ],
                     urlPrefix: '',
                     status: 1,
-                    isDisplayBanner: 1,
-                    isDisplayServiceNav: 1,
-                    isDisplayFooterNav: 1,
+                    isDisplayBanner: 0,
+                    isDisplayServiceNav: 0,
+                    isDisplayFooterNav: 0,
+
                 },
                 emailaddress: 'arsalan@cygnismedia.com',
                 fullname: 'Arsalan Akhtar',
@@ -216,7 +243,6 @@
             data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
             data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
             data.append('is_featured', self.formData.isFeatured);
-            data.append('is_hero_nav', self.formData.isHeroNavigation);
             data.append('url_prefix', self.formData.urlPrefix);
             data.append('parent_id', self.formData.parentId);
             data.append('status', self.formData.status);

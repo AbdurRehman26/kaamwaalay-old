@@ -114,7 +114,7 @@
                                 <p><strong class="title-head">Join Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>May 25 2018</p>
+                                <p>{{records.profile_request ? records.profile_request.formatted_created_at : ''}}</p>
                             </b-col>
                         </b-row>                                 
                         <b-row>
@@ -122,7 +122,7 @@
                                 <p><strong class="title-head">Approval Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>May 31 2018</p>
+                                <p>{{records.profile_request ? records.profile_request.formatted_approved_at : ''}}</p>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
