@@ -92,7 +92,7 @@
                 self.loading = false;
                 self.mainJob = response.data;
                 self.noRecordFound = response.noRecordFound;
-                self.url = '';
+                
 
             },
             getUserRecord(response){

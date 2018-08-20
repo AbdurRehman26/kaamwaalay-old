@@ -125,7 +125,7 @@ getRecords(response){
   self.loading = false;
   self.records = response.data;
   self.noRecordFound = response.noRecordFound;
-  self.url = '';
+  
 },
 updateAccessLevel: function () {
     let self = this;
