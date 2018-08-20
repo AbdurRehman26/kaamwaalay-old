@@ -77223,7 +77223,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "image-sec" }, [
-      _c("img", { attrs: { src: "/images/front/join-as-pro/customer.jpg" } })
+      _c("img", { attrs: { src: "/images/front/home/job-search.jpg" } })
     ])
   },
   function() {
