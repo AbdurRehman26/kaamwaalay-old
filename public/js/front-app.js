@@ -7678,7 +7678,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         items: 2
                     },
                     1000: {
-                        items: 3
+                        items: 4
                     }
                 }
             });
