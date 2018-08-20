@@ -55,7 +55,7 @@
                                 <p><strong class="title-head">Contact</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <a href="tel:+923214325323">{{ records.user_detail ? records.user_detail.phone_number : '' }}</a>
+                                <a :href="records.user_detail | phoneNumber">{{ records.user_detail ? records.user_detail.phone_number : '' }}</a>
                             </b-col>
                         </b-row>                                                                   
                     </div>

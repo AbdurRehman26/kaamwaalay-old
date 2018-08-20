@@ -112,11 +112,16 @@ public $model;
         
         if(!empty($data['filter_by_service'])){
 
-            $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
+            $ids = app('ServiceRepository')->model->where('id' , $data['filter_by_service'])
+            ->orWhere('parent_id', $data['filter_by_service'])
+            ->pluck('id')->toArray();
+
+
+            $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
                 $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
             })->join('service_provider_services', function($join) use ($data){
                 $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
-            })->where('service_provider_services.service_id',$data['filter_by_service'])
+            })->whereIn('service_provider_services.service_id', $ids)
             ->select('service_provider_profiles.*')
             ->groupBy('service_provider_profiles.user_id');
         }
