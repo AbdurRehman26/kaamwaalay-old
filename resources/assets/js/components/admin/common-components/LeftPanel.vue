@@ -7,7 +7,7 @@
                 <ul>
                     <li class=""><router-link to="/admin/dashboard"><i class="icon-speedometer" aria-hidden="true"></i><span>Dashboard</span></router-link></li>
                     <li class=""><router-link to="/admin/service-type"><i class="icon-tools-2" aria-hidden="true"></i><span>Service / Sub Service</span></router-link></li>
-                    <li class=""><router-link to="/admin/customer"><i class="icon-users" aria-hidden="true"></i><span>Customer</span></router-link></li>
+                    <li class=""><router-link to="/admin/customer"><i class="icon-users" aria-hidden="true"></i><span>Customers</span></router-link></li>
                     <li class=""><router-link to="/admin/service-provider"><i class="icon-handshake-o" aria-hidden="true"></i><span>Service Provider</span></router-link></li>
                     <li class=""><router-link to="/admin/service-provider-review"><i class="icon-star_border" aria-hidden="true"></i><span>Service Provider Review</span></router-link></li>
                     <li class=""><router-link to="/admin/jobs"><i class="icon-briefcase" aria-hidden="true"></i><span>Jobs</span></router-link></li>

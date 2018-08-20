@@ -134,7 +134,7 @@
         <div class="col-xs-12 col-md-12 margin-bottom-20px vue-grid-list">
           <div class="graphs vue-grid-item">
               <div class="chart-header grid-head">
-                <h2 class="float-left chart-heading">Top 5 Serivce Provider</h2>
+                <h2 class="float-left chart-heading">Top 5 Service Provider</h2>
               </div>
               <div>
                     <div class="table-area">
