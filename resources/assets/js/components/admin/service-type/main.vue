@@ -198,7 +198,7 @@
       }
 
       self.$http.get(url).then(response => {
-        response = response.data.response.data;
+        response = response.data.response;
         self.listing = response.data;
         if(!self.listing.length) {
           self.showNoRecordFound = true;
