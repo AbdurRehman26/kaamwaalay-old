@@ -9,7 +9,7 @@
                     <b-col cols="2" md="12">
                         <div class="form-group">
                             <label>Overall Service Rating</label>
-                            <star-rating :star-size="20" :rating="3" active-color="#8200ff"></star-rating>    
+                            <star-rating :increment="0.5" :star-size="20" :rating="3" active-color="#8200ff"></star-rating>    
                         </div>
 
                         <div class="form-group">

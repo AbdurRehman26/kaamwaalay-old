@@ -73785,6 +73785,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("star-rating", {
                           attrs: {
+                            increment: 0.5,
                             "star-size": 20,
                             rating: 3,
                             "active-color": "#8200ff"
