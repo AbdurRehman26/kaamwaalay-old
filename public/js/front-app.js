@@ -71700,7 +71700,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "showmore" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+      _c("a", { attrs: { href: "/explore/service_provider" } }, [
         _vm._v("View all services related to electricians "),
         _c("i", { staticClass: "icon-keyboard_arrow_right" })
       ])
@@ -72065,7 +72065,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "showmore" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
+      _c("a", { attrs: { href: "/explore/service_provider" } }, [
         _vm._v("View all services related to electricians "),
         _c("i", { staticClass: "icon-keyboard_arrow_right" })
       ])
@@ -72281,7 +72281,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3" }, [
       _c("div", { staticClass: "footer-logo" }, [
-        _c("a", { attrs: { href: "javascript:;" } }, [
+        _c("a", { attrs: { href: "/" } }, [
           _c("img", { attrs: { src: "images/logo.png" } })
         ])
       ]),
@@ -72344,7 +72344,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Post a job")])
+      _c("a", { attrs: { href: "/job-post" } }, [_vm._v("Post a job")])
     ])
   },
   function() {
@@ -72352,7 +72352,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [
+      _c("a", { attrs: { href: "/sign-up" } }, [
         _vm._v("Sign up as a customers")
       ])
     ])
@@ -72362,7 +72362,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Explore Services")])
+      _c("a", { attrs: { href: "/explore" } }, [_vm._v("Explore Services")])
     ])
   },
   function() {
@@ -72370,7 +72370,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Advice center")])
+      _c("a", { attrs: { href: "/advice-center" } }, [_vm._v("Advice center")])
     ])
   },
   function() {
@@ -72384,7 +72384,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [
+      _c("a", { attrs: { href: "/sign-up" } }, [
         _vm._v("Sign up as a service provider")
       ])
     ])
@@ -72402,7 +72402,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "javascript:;" } }, [
+      _c("a", { attrs: { href: "/advice-center" } }, [
         _vm._v("Frequently asked questions")
       ])
     ])

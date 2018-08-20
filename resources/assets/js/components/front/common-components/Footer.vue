@@ -6,7 +6,7 @@
 					<div class="row">
 						<div class="col-md-3">
 							<div class="footer-logo">
-								<a href="javascript:;">
+								<a href="/">
 									<img src="images/logo.png">
 								</a>
 							</div>
@@ -37,10 +37,10 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Customers</strong></li>
-									<li><a href="javascript:;">Post a job</a></li>
-									<li><a href="javascript:;">Sign up as a customers</a></li>
-									<li><a href="javascript:;">Explore Services</a></li>
-									<li><a href="javascript:;">Advice center</a></li>
+									<li><a href="/job-post">Post a job</a></li>
+									<li><a href="/sign-up">Sign up as a customers</a></li>
+									<li><a href="/explore">Explore Services</a></li>
+									<li><a href="/advice-center">Advice center</a></li>
 									<li><a href="javascript:;" @click="CustomerSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
@@ -49,9 +49,9 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li><a href="javascript:;">Sign up as a service provider</a></li>
+									<li><a href="/sign-up">Sign up as a service provider</a></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
-									<li><a href="javascript:;">Frequently asked questions</a></li>
+									<li><a href="/advice-center">Frequently asked questions</a></li>
 									<li><a href="javascript:;" @click="customersupportpopup">Service provider support</a></li>
 								</ul>
 							</div>
