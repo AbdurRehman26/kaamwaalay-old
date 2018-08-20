@@ -16016,8 +16016,13 @@ body .chat-feedback-message.white-msg:before {
   top: 9px;
 }
 
+.service-provider a.btn i.icon-message {
+  font-size: 20px;
+}
+
 .service-provider a.btn-cancel-job i.icon-folder {
   top: 9px;
+  font-size: 21px;
 }
 
 .fancy-box-mask {
@@ -16218,7 +16223,8 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .notify-dropdown.scrollbar {
-  min-height: 250px;
+  max-height: 338px;
+  min-height: 0;
 }
 
 .notify-dropdown .notify-block {
