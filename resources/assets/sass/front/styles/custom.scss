@@ -2707,4 +2707,14 @@ body{
             }
         }
     }
+    .list-description{
+          h4{
+                font-family:$font_medium;
+          }
+    }
+    .content-sec{
+        h2{
+            font-family:$font_medium;
+        }
+    }
 }

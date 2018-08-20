@@ -16637,6 +16637,14 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
 }
 
+.mac-browser .list-description h4 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .content-sec h2 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .modal-sm {
   max-width: 520px;
 }
