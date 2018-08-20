@@ -4401,26 +4401,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            profileImage: 'images/image-placeholder.jpg',
+            profileImage: 'images/dummy/electrician.jpg',
             persons: [{
                 id: 0,
                 name: 'Ammara Hussain',
@@ -6552,6 +6537,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         CloseDiscussion: function CloseDiscussion() {
             this.isShowing = false;
+        },
+        showProfile: function showProfile() {
+            this.$router.push({ name: 'Explore_Detail' });
         }
     },
     components: {
@@ -6958,7 +6946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowing = false;
         },
         showProfile: function showProfile() {
-            this.$router.push({ name: 'Service_Provider_Detail' });
+            this.$router.push({ name: 'Explore_Detail' });
         }
     },
     components: {
@@ -70601,7 +70589,10 @@ var render = function() {
                                 _vm._v("Posted By "),
                                 _c(
                                   "a",
-                                  { attrs: { href: "javascript:void(0);" } },
+                                  {
+                                    attrs: { href: "javascript:void(0);" },
+                                    on: { click: _vm.showProfile }
+                                  },
                                   [_vm._v(_vm._s(listing.job_poster))]
                                 )
                               ]),
@@ -70820,7 +70811,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "category-section-search" }, [
-      _c("h2", [_vm._v("General Carpentry Jobs in New York, NY")])
+      _c("h1", { staticClass: "m-b-0" }, [
+        _vm._v("General Carpentry Jobs in New York, NY")
+      ])
     ])
   },
   function() {
@@ -71434,7 +71427,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "discussion-panel" }, [
     _c("div", { staticClass: "panel-heading" }, [
-      _c("h3", [_vm._v("Discussion")]),
+      _c("span", {
+        staticClass: "chat-profile-pic",
+        staticStyle: {
+          "background-image": "url('images/dummy/electrician.jpg')"
+        }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
       _vm._v(" "),
       _c("i", {
         staticClass: "icon-close2 close-icon",
@@ -71452,89 +71452,45 @@ var render = function() {
       [
         _c(
           "b-list-group",
-          [
-            _vm._l(_vm.persons, function(person) {
-              return _c(
-                "div",
-                { staticClass: "chat-message" },
-                [
-                  _c("b-list-group-item", [
-                    _c("span", {
-                      staticClass: "profile-pics",
-                      style: {
-                        "background-image": "url(" + _vm.profileImage + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "profile-message" }, [
-                      _c("h5", [
-                        _vm._v(_vm._s(person.name) + " "),
-                        _c("span", { staticClass: "time-date" }, [
-                          _c("i", [_vm._v("May 10,")]),
-                          _vm._v(" 1:12 PM")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(person.desc))])
-                    ])
-                  ])
-                ],
-                1
-              )
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "section-separator" }, [
-              _c("span", [_vm._v("Today")])
-            ]),
-            _vm._v(" "),
-            _c(
+          _vm._l(_vm.persons, function(person) {
+            return _c(
               "div",
-              { staticClass: "today-message" },
-              _vm._l(_vm.persons, function(person) {
-                return _c(
-                  "div",
-                  { staticClass: "chat-message" },
-                  [
-                    _c("b-list-group-item", [
-                      _c("span", {
-                        staticClass: "profile-pics",
-                        style: {
-                          "background-image": "url(" + _vm.profileImage + ")"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "profile-message" }, [
-                        _c("h5", [
-                          _vm._v("Ammara Hussain "),
-                          _c("span", { staticClass: "time-date" }, [
-                            _c("i", [_vm._v("May 10,")]),
-                            _vm._v(" 1:12 PM")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                               Before I begin the report, I'd like to get some ideas from you all. How do you feel about rural sales in your sales districts? I suggest we go round the table first to get all of your input.\n                            "
-                          )
-                        ])
-                      ])
-                    ])
-                  ],
-                  1
-                )
-              })
+              { staticClass: "chat-message" },
+              [
+                _c("b-list-group-item", [
+                  _c("span", {
+                    staticClass: "chat-profile-pic",
+                    style: {
+                      "background-image": "url(" + _vm.profileImage + ")"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "profile-message" }, [
+                    _c("p", [_vm._v(_vm._s(person.desc))])
+                  ])
+                ])
+              ],
+              1
             )
-          ],
-          2
+          })
         )
       ],
       1
     ),
     _vm._v(" "),
-    _vm._m(0)
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "chat-head-heading" }, [
+      _vm._v("C&N Home Solutions\n                "),
+      _c("span", { staticClass: "status online" }, [_vm._v("Available online")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -71546,7 +71502,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "icon-circle secondary-color" }, [
-        _c("i", { staticClass: "icon-comment-icon" })
+        _c("i", { staticClass: "icon-send" })
       ])
     ])
   }
@@ -75953,7 +75909,23 @@ var render = function() {
                                   "div",
                                   { staticClass: "job-status job-poster" },
                                   [
-                                    _vm._m(0, true),
+                                    _c("span", [
+                                      _vm._v("Posted by "),
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: "javascript:void(0);"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.showProfile()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Nathan Alvarez")]
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c("star-rating", {
                                       attrs: {
@@ -76054,7 +76026,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1, true)
+              _vm._m(0, true)
             ]
           ),
           _vm._v(" "),
@@ -76066,7 +76038,7 @@ var render = function() {
                     "div",
                     { staticClass: "provider-information" },
                     [
-                      _vm._m(2, true),
+                      _vm._m(1, true),
                       _vm._v(" "),
                       _c("div", { staticClass: "member-details" }, [
                         _c("p", { staticClass: "location" }, [
@@ -76153,11 +76125,11 @@ var render = function() {
                         ? _c("div", { staticClass: "jobs-post-files" }, [
                             _c("h3", [_vm._v("Customer Information")]),
                             _vm._v(" "),
+                            _vm._m(2, true),
+                            _vm._v(" "),
                             _vm._m(3, true),
                             _vm._v(" "),
-                            _vm._m(4, true),
-                            _vm._v(" "),
-                            _vm._m(5, true)
+                            _vm._m(4, true)
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -76171,7 +76143,7 @@ var render = function() {
                             "div",
                             { staticClass: "chat-feedback" },
                             [
-                              _vm._m(6, true),
+                              _vm._m(5, true),
                               _vm._v(" "),
                               _vm._l(listing.my_bid, function(reviewer) {
                                 return _c(
@@ -76273,7 +76245,7 @@ var render = function() {
                             "div",
                             { staticClass: "chat-feedback" },
                             [
-                              _vm._m(7, true),
+                              _vm._m(6, true),
                               _vm._v(" "),
                               _vm._l(listing.review_details, function(
                                 reviewer
@@ -76509,9 +76481,9 @@ var render = function() {
                 _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
                   _vm.job_detail_right_panel == "awarded"
                     ? _c("div", { staticClass: "service-provider" }, [
-                        _vm._m(8, true),
+                        _vm._m(7, true),
                         _vm._v(" "),
-                        _vm._m(9, true),
+                        _vm._m(8, true),
                         _vm._v(" "),
                         _c(
                           "a",
@@ -76530,7 +76502,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(10, true)
+                        _vm._m(9, true)
                       ])
                     : _vm.job_detail_right_panel == "serviceprovider"
                       ? _c("div", { staticClass: "service-provider" }, [
@@ -76564,7 +76536,7 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(11, true)
+                          _vm._m(10, true)
                         ])
                       : _vm.job_detail_right_panel ==
                           "service-provider-customer-end" ||
@@ -76601,7 +76573,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(12, true)
+                            _vm._m(11, true)
                           ])
                         : _c("div", { staticClass: "service-provider" }, [
                             _c(
@@ -76651,7 +76623,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(13, true)
+                            _vm._m(12, true)
                           ])
                 ])
               ])
@@ -76700,17 +76672,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _vm._v("Posted by "),
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("Nathan Alvarez")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
