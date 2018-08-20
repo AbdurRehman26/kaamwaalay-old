@@ -6552,6 +6552,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         CloseDiscussion: function CloseDiscussion() {
             this.isShowing = false;
+        },
+        showProfile: function showProfile() {
+            this.$router.push({ name: 'Explore_Detail' });
         }
     },
     components: {
@@ -6958,7 +6961,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowing = false;
         },
         showProfile: function showProfile() {
-            this.$router.push({ name: 'Service_Provider_Detail' });
+            this.$router.push({ name: 'Explore_Detail' });
         }
     },
     components: {
@@ -70601,7 +70604,10 @@ var render = function() {
                                 _vm._v("Posted By "),
                                 _c(
                                   "a",
-                                  { attrs: { href: "javascript:void(0);" } },
+                                  {
+                                    attrs: { href: "javascript:void(0);" },
+                                    on: { click: _vm.showProfile }
+                                  },
                                   [_vm._v(_vm._s(listing.job_poster))]
                                 )
                               ]),
@@ -70820,7 +70826,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "category-section-search" }, [
-      _c("h2", [_vm._v("General Carpentry Jobs in New York, NY")])
+      _c("h1", { staticClass: "m-b-0" }, [
+        _vm._v("General Carpentry Jobs in New York, NY")
+      ])
     ])
   },
   function() {

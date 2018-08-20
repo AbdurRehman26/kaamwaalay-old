@@ -398,7 +398,7 @@ export default {
 		    this.isShowing=false;
 		},
 		showProfile(){
-			this.$router.push({name: 'Service_Provider_Detail'});
+			this.$router.push({name: 'Explore_Detail'});
 		}                
 
     },
