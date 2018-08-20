@@ -45,6 +45,7 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
     public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
         $this->builder = $this->builder
                             ->where('type', '=' , $data['type'])
+                            ->whereNotIn('id',[Plan::URGENT, Plan::ACCOUNT_CREATION])
                             ->orderBy('amount', 'ASC')
                             ;   
         return  parent::findByAll($pagination, $perPage);

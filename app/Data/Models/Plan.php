@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Plan extends Model
 {
 	use InsertOnDuplicateKey, SoftDeletes;
+	const URGENT = 1;
+	const ACCOUNT_CREATION = 2;
 }

@@ -90,7 +90,7 @@
             getRecords(response){
                 let self = this;
                 self.loading = false;
-                self.mainJob = response.data;
+                self.records = response.data;
                 self.noRecordFound = response.noRecordFound;
                 
 

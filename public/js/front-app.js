@@ -2761,6 +2761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             self.$http.get(url).then(function (response) {
+
                 response = response.data.response;
 
                 var result = {
@@ -4428,9 +4429,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$http.post('/api/user', self.add_form_info).then(function (response) {
                 self.loading = false;
                 self.successMessage = response.data.message;
-                self.$parent.records.push(response.data.data);
-                self.$parent.getRecords(self.$parent.records);
+                self.$parent.url = "";
                 setTimeout(function () {
+                    self.$parent.url = 'api/user?filter_by_role=1&pagination=true';
                     self.successMessage = '';
                     self.resetModal();
                 }, 5000);
@@ -5712,7 +5713,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 password: '',
                 token: this.token
             },
-            loading: false
+            loading: false,
+            appName: window.appName
         };
     },
 
@@ -65020,7 +65022,14 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "container" }),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "text-center" }, [
+          _c("h2", { staticClass: "auth-title" }, [
+            _vm._v("Welcome to " + _vm._s(_vm.appName) + "\n          "),
+            _c("span", { staticClass: "auth-title-desc" }, [
+              _vm._v("Please create your account password")
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "auth-panel" }, [
           _c(
@@ -65037,7 +65046,14 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("form", [
-                _vm._m(1),
+                _c("div", { staticClass: "form-statement" }, [
+                  _c("p", [
+                    _vm._v(
+                      "You'll need to create a new password to access your " +
+                        _vm._s(_vm.appName)
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c(
@@ -65241,33 +65257,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("h2", { staticClass: "auth-title" }, [
-        _vm._v("Welcome to PSI, Pakistan\n          "),
-        _c("span", { staticClass: "auth-title-desc" }, [
-          _vm._v("Please create your account password")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-statement" }, [
-      _c("p", [
-        _vm._v(
-          "You'll need to create a new password to access your PSI account."
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

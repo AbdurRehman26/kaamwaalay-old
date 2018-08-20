@@ -8,7 +8,7 @@
       </div>
       <div class="container"></div>
       <div class="text-center">
-          <h2 class="auth-title">Welcome to PSI, Pakistan
+          <h2 class="auth-title">Welcome to {{appName}}
             <span class="auth-title-desc" >Please create your account password</span>
           </h2>
       </div>
@@ -17,7 +17,7 @@
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                 <form>
                  <div class="form-statement">
-                  <p>You'll need to create a new password to access your PSI account.</p>
+                  <p>You'll need to create a new password to access your {{appName}}</p>
                 </div>
                     <div class="row">
                         <!-- <div :class="[ 'col-xs-12' , 'col-md-12' , 'form-group' , errorBag.first('email')  ? 'is-invalid' : '']">
@@ -77,6 +77,7 @@ export default{
                     token: this.token
                 },
                 loading : false,
+                appName : window.appName
             }
         },
     methods:{

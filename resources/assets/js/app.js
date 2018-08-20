@@ -44,6 +44,9 @@ let veeCustomMessage = {
                 privacypolicy: {
                     required: 'You must agree the privacy policy before registering!',
                     digits: (field, params) => `length must be ${params[0]}`
+                },
+                password_confirmation: {
+                    confirmed: 'Password does not match.'
                 }
             }
         }

@@ -23,7 +23,10 @@ class CreateJobBidsTable extends Migration {
 			$table->boolean('is_invited')->default(0);
 			$table->integer('user_id')->unsigned()->index();
 			$table->boolean('is_archived')->default(0);
-			$table->enum('status', array('cancelled','pending','completed','invited'))->default('pending');
+			$table->enum('status', array('cancelled','pending','completed','invited','on_the_way'))->default('pending');
+			$table->date('preferred_date')->nullable();
+			$table->time('preferred_time')->nullable();
+
 			$table->timestamps();
 			$table->softDeletes();
 		});
