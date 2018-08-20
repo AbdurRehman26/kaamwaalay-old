@@ -216,10 +216,10 @@ Vue.filter('mainServiceOrChildService', function (value) {
     }
 
     if(value.parent_id){
-        serviceHtml = value.title + ' >> ' + value.parent.title;
+        serviceHtml =   value.parent.title + ' >> ' + value.title ;
     }else{
-
         serviceHtml = value.title;
+
     }
 
     return serviceHtml;
