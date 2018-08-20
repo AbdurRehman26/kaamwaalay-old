@@ -10,15 +10,17 @@
                 </span>
 
                 <!--main nav-->
-                <main-nav v-show="$route.meta.navigation == 'main-nav'"></main-nav>
+                <main-nav v-if="$route.meta.navigation == 'main-nav'" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
-                <customer-nav @profilepopup="ProfilePopup" v-show="$route.meta.navigation == 'customer-nav'"></customer-nav>
+                <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->
-                <provider-nav @profilepopup="ProfilePopup" v-show="$route.meta.navigation == 'provider-nav'"></provider-nav>
+                <provider-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'provider-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
 
             </div>
+            <i class="icon-menu2 menuiconbutton" @click="responsivemenu ^= true"></i>
         </div>
         <change-password-popup @HideModalValue="HideModal" :showModalProp="changepopup"></change-password-popup>
+        <write-review-popup @HideModalValue="HideModal" :showModalProp="writereview"></write-review-popup>    
     </div>
 </template>
 
@@ -28,6 +30,8 @@
             return{
                 logo: 'images/logo.png',
                 changepopup: false,
+                responsivemenu: false,
+                writereview: false,
             }
         },
         methods:{
@@ -36,7 +40,17 @@
             },
             HideModal(){
                 this.changepopup = false;   
-            }
+                this.writereview = false;
+            },
+            responsivebutton(){
+                this.responsivemenu ^= true;
+            },
+            WriteReviewModal(){
+                this.writereview = true;
+            },         
+            ViewBid(){
+                this.$router.push({name: 'job-details'})
+            },
         }
     }
 </script>

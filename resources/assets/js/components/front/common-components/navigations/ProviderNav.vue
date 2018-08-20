@@ -22,10 +22,14 @@
                 <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
                     <i v-bind:active="tab == true" class="icon-notification action-icon">
                         <span class="badge-count">5</span></i>
-                        <notification v-show="isShowing"></notification>
+                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
                     </span>
                 </li>
-                <li><i class="icon-exit action-icon"></i></li>
+                <li>
+                    <router-link to="/" class="no-active">
+                        <i class="icon-exit action-icon"></i>
+                    </router-link>
+                </li>
             </ul>
         </div>
     </template>
@@ -56,7 +60,14 @@
             away: function(){
                 this.isShowing = false;
                 this.tab = false;
-            }
+            },
+            WriteReviewModal(){                
+                this.$emit('WriteReviewModal');
+            },         
+            ViewBid(){
+                /*this.$router.push({name: 'job-details'})*/
+                this.$emit('ViewBid');
+            },              
 
         }
     }
