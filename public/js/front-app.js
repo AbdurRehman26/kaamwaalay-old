@@ -97372,6 +97372,13 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     mounted: function mounted() {
         this.browserfunction();
         this.Macbrowserfunction();
+    },
+
+    watch: {
+        $route: function $route() {
+            this.browserfunction();
+            this.Macbrowserfunction();
+        }
     }
 });
 

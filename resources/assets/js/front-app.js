@@ -60,6 +60,12 @@ const app = new Vue({
         this.browserfunction();
         this.Macbrowserfunction();
     },
+    watch : {
+        $route(){
+            this.browserfunction();
+            this.Macbrowserfunction();
+        }
+    }
 });
 
 
