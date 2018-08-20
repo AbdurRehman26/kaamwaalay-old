@@ -61,7 +61,7 @@
                         <img  :src="record.imagepath" >
                     </span>
                 </td>
-                <td> <a href="javascript:void(0);" @click="detailreview">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
+                <td> <a href="javascript:void(0);" @click="detailreview(record.id)">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
                 <!-- <td> {{ record.email_address }} </td> -->
                 <td> <span v-for="(service , index) in record.services">{{service.service | mainService }} 
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
@@ -75,7 +75,7 @@
                 </td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                    <i @click="detailreview(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                     <!--  <i class="icon-pencil"></i> -->
                 </div>
             </td>
@@ -162,12 +162,9 @@
             this.viewdetails = false;
             this.changeservicestatus = false;   
         },
-        detailreview(){
-            this.$router.push({name: 'Service_Detail_Review'});
+        detailreview(id){
+            this.$router.push({name: 'Service_Detail_Review' , params : {id : id}});
         },
-        profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
-      },
       startLoading(){
         this.loading = true;
     },
@@ -176,7 +173,7 @@
         self.loading = false;
         self.records = response.data;
         self.noRecordFound = response.noRecordFound;
-        self.url = '';
+        
     },
     searchList(){
         let url = 'api/service-provider-profile-request?pagination=true';

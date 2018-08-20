@@ -96,7 +96,7 @@
                                 <p><strong class="title-head">Rating</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <star-rating :star-size="20" read-only :rating="records.user_detail ? records.user_detail.average_rating : 0" active-color="#8200ff"></star-rating>
+                                <star-rating :star-size="20" :increment="0.02" read-only :rating="records.user_detail ? records.user_detail.average_rating : 0" active-color="#8200ff"></star-rating>
                             </b-col>
                         </b-row>                                                                   
                         <b-row>
@@ -114,7 +114,7 @@
                                 <p><strong class="title-head">Join Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>May 25 2018</p>
+                                <p>{{records.profile_request ? records.profile_request.formatted_created_at : ''}}</p>
                             </b-col>
                         </b-row>                                 
                         <b-row>
@@ -122,7 +122,7 @@
                                 <p><strong class="title-head">Approval Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>May 31 2018</p>
+                                <p>{{records.profile_request ? records.profile_request.formatted_approved_at : ''}}</p>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>

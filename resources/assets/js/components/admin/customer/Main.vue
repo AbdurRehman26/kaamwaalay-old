@@ -155,7 +155,6 @@
                 self.loading = false;
                 self.records = response.data;
                 self.noRecordFound = response.noRecordFound;
-                self.url = '';
             },
             searchList(){
                 let url = 'api/user?filter_by_role=3&pagination=true';

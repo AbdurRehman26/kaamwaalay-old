@@ -175,7 +175,7 @@
                     let self = this;
                     self.loading = false;
                     self.record = response.data;
-                    self.url = '';
+                    
                 },
                 biddingdetails(id){
                     console.log(id , '13213');

@@ -14,8 +14,7 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
     	$date = Carbon::now();        
-        Role::insertOnDuplicateKey(array (
-            0 => 
+        Role::insertOnDuplicateKey(array ( 
             array (
                 'id' => 1,
                 'title' => 'Admin',
@@ -23,7 +22,6 @@ class RolesTableSeeder extends Seeder
                 'updated_at' => $date,
                 'deleted_at' => NULL,
             ),
-            1 => 
             array (
                 'id' => 2,
                 'title' => 'Service Provier',
@@ -31,10 +29,16 @@ class RolesTableSeeder extends Seeder
                 'updated_at' => $date,
                 'deleted_at' => NULL,
             ),
-            2 => 
             array (
                 'id' => 3,
                 'title' => 'Customer',
+                'created_at' => $date,
+                'updated_at' => $date,
+                'deleted_at' => NULL,
+            ),
+            array (
+                'id' => 4,
+                'title' => 'Reviewer',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,

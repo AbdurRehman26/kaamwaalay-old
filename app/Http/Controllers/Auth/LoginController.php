@@ -203,18 +203,22 @@ class LoginController extends Controller
             $user = new User();
             $validated = $user->where('activation_key', $input['token'])->first();
             if ($validated) {
-                $data =[
-                  "id" => $validated->id ,
+                $user_details = [
                   "activation_key" => '' ,
                   "status" => User::ACTIVE ,
-                  "activated_at" => Carbon::now() ,
+                  "activated_at" => Carbon::now()
+                ];
+                $data =[
+                  "id" => $validated->id,
+                  "user_details"=>$user_details
+                  
                 ];
                 if($this->_userRepository->update($data)){
-                    return view('layout',['success'=>Lang::get('auth.activateSuccess'),'token'=>$input['token']]);
+                    return view('front-layout',['success'=>Lang::get('auth.activateSuccess'),'token'=>$input['token']]);
                 }
-                return view('layout',['error'=>Lang::get('auth.activateError')]);
+                return view('front-layout',['error'=>Lang::get('auth.activateError')]);
             } else {
-                return view('layout',['error'=>Lang::get('auth.activateError')]);
+                return view('front-layout',['error'=>Lang::get('auth.activateError')]);
             }
             
         }

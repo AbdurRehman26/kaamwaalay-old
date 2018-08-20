@@ -89,7 +89,7 @@
             self.loading = false;
             self.records = response.data;
             self.noRecordFound = response.noRecordFound;
-            self.url = '';
+            
         },
         getSecondaryRecord(data){
             this.serviceProvider = data;
@@ -97,7 +97,7 @@
     },
     computed : {
         requestUrl(){
-            return this.url + '?filter_by_service_provider='+this.$route.params.id;
+            return this.url + '?filter_by_service_provider='+this.$route.params.id+'&pagination=true';
         },
         requestSecondaryUrl(){
             return 'api/service-provider-profile/'+this.$route.params.id;    

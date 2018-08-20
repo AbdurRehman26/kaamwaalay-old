@@ -46,14 +46,6 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $input);
 
         if ($data) {
-            if (!empty($details['user_rating'])) {
-                $details  = ['user_rating' => true];
-            }
-
-            if (!empty($details['provider_request_data'])) {
-                $details  = ['provider_request_data' => true];
-            }
-
             $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
@@ -87,7 +79,13 @@ public $model;
 
             $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
-            $data->services_offered = $subServices;      
+            $data->services_offered = $subServices;
+
+            $crtieria = ['user_id' => $data->user_id, 'status'=>'approved'];
+            $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
+            $data->profile_request = $profile;
+            
+               
         }
         
         return $data;
