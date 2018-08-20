@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(list, index) in listing" v-if="listing.length">
+            <tr v-for="(list, index) in listing" v-if="listing.length && !loadingStart">
               <td>{{(index + 1)}}</th>
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
