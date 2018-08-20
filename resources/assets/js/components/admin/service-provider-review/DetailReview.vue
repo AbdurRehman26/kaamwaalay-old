@@ -1,6 +1,6 @@
 <template>
-<div class="panel-inner">
-            <div class="view-details-list main-detail-content">
+    <div class="panel-inner">
+        <div class="view-details-list main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">
@@ -9,15 +9,15 @@
 
                 <div class="provider-detail">
 
-                        <div class="col-xs-12">
-                            <div class="customer-detail-title">
-                                <h2 class="page-title">Harry John</h2>
-                            </div>
+                    <div class="col-xs-12">
+                        <div class="customer-detail-title">
+                            <h2 class="page-title">{{records.user | fullName}}</h2>
                         </div>
+                    </div>
 
                     <!-- Basic Detail -->
 
-                        <div class="col-xs-12 block-area">
+                    <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
                                 <h4 class="page-title">Basic Detail</h4>
                             </div> -->
@@ -27,7 +27,7 @@
                                         <p><strong class="title-head">First Name</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Harry</p>
+                                        <p>{{records.user ? records.user.first_name : ''}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -35,7 +35,7 @@
                                         <p><strong class="title-head">Last Name</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>John</p>
+                                        <p>{{records.user ? records.user.last_name : ''}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -43,7 +43,7 @@
                                         <p><strong class="title-head">Email Address</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a href="mailto:bobbyrodes@gmail.com">bobbyrodes@gmail.com</a>
+                                        <p href="mailto:bobbyrodes@gmail.com">{{records.user ? records.user.email : ''}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -51,7 +51,7 @@
                                         <p><strong class="title-head">Address</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>4657 Kirk Highway, Geovannyfurt, Missouri, 39185-5150, Pitcairn Islands  </p>
+                                        <p>{{records.user ? records.user.address : ''}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -59,7 +59,7 @@
                                         <p><strong class="title-head">Years of Experience</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>5 Year</p>
+                                        <p>{{records.provider_profile ? records.provider_profile.years_of_experience : ''}}</p>
                                     </b-col>
                                 </b-row>
 
@@ -68,14 +68,14 @@
                                         <p><strong class="title-head">Contact</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a href="tel:+923214325323">+923214325323</a>
+                                        <a href="tel:+923214325323">{{ records.user ? records.user.phone_number : '' }}</a>
                                     </b-col>
                                 </b-row>
                             </div>
                         </div>
 
 
-                    <!-- Profile Detail -->
+                        <!-- Profile Detail -->
 
                         <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
@@ -87,7 +87,7 @@
                                         <p><strong class="title-head">Business or Individual?</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Business</p>
+                                        <p>{{records.provider_profile && records.provider_profile.business_type == 'individual' ? 'I' : 'B'}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -95,7 +95,7 @@
                                         <p><strong class="title-head">Business Name</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Rodes Company</p>
+                                        <p>{{records.provider_profile ? records.provider_profile.business_name : ''}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -103,7 +103,7 @@
                                         <p><strong class="title-head">DUNS Number</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>543351</p>
+                                        <p>{{records.provider_profile ? records.provider_profile.duns_number : ''}}</p>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -111,7 +111,7 @@
                                         <p><strong class="title-head">Review</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <span class="tags pending">Pending</span>
+                                        <span :class="['tags', records.status]">{{records.status}}</span>
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -119,7 +119,7 @@
                                         <p><strong class="title-head">Submited Date</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>May 25 2018</p>
+                                        <p>{{records.formatted_created_at}}</p>    
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -127,7 +127,7 @@
                                         <p><strong class="title-head">Updated Date</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>May 31 2018</p>
+                                        <p>{{records.formatted_updated_at}}</p>    
                                     </b-col>
                                 </b-row>
                                 <b-row>
@@ -135,13 +135,13 @@
                                         <p><strong class="title-head">Reviewed by</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>Admin</p>
+                                        <p>{{records.approved_by_user}}</p>    
                                     </b-col>
                                 </b-row>
                             </div>
                         </div>
 
-                    <!-- Service Detail -->
+                        <!-- Service Detail -->
                         <div class="col-xs-12 block-area">
  <!--                            <div class="customer-detail-title">
                                 <h4 class="page-title">Service Detail</h4>
@@ -194,7 +194,7 @@
                                         <p><strong class="title-head">Profile/business details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value max-text">
-                                        <p>Highly professional work quality. Having 15 years of experience.</p>
+                                        <p>{{records.provider_profile ?  records.provider_profile.business_details : ''}}</p>
                                     </b-col>
                                 </b-row>
 
@@ -227,29 +227,46 @@
 
                             </div>
                         </div>
+                    </div>
                 </div>
+                <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+
             </div>
-    </div>
-</template>
+        </template>
 
-<script>
-import StarRating from 'vue-star-rating';
-export default{
-        data () {
-          return {
-            selected: null,
-              options: [
-                { value: null, text: 'Please select Status' },
-                { value: 'a', text: 'Pending' },
-                { value: 'b', text: 'In-Review' },
-                { value: 'c', text: 'Rejected' },
-                { value: 'd', text: 'Approved' }
-              ]
+        <script>
+            import StarRating from 'vue-star-rating';
+            export default{
+                data () {
+                  return {
+                    selected: null,
+                    options: [
+                    { value: null, text: 'Please select Status' },
+                    { value: 'a', text: 'Pending' },
+                    { value: 'b', text: 'In-Review' },
+                    { value: 'c', text: 'Rejected' },
+                    { value: 'd', text: 'Approved' }
+                    ],
+                    url : 'api/service-provider-profile-request',
+                    records : [],
+                }
+            },
+            computed : {
+                requestUrl(){
+                    return this.url+'/'+this.$route.params.id+'?user_details=true&profile_details=true';
+                }
+            },
+            methods : {
+                getRecords(response){
+                    let self = this;
+                    self.loading = false;
+                    self.records = response.data;
+                    self.noRecordFound = response.noRecordFound;
+                },
+            },
+            components: {
+                StarRating
+            },
         }
-    },
-    components: {
-        StarRating
-    },
-}
 
-</script>
+    </script>

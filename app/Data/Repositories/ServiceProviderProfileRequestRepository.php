@@ -59,9 +59,25 @@ public $model;
         $data = parent::findById($id, $refresh, $details, $encode);
         $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        $data->formatted_updated_at = Carbon::parse($data->updated_at)->format('F j, Y');
+        
 
         if($data && $details){
+
+            if(!empty($details['user_details'])){
+                $data->user = app('UserRepository')->findById($data->user_id,false);
+            }
+
+            if(!empty($details['profile_details'])){
+                $data->provider_profile = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id,false);
+            }
+
+            if(!empty($data->approved_by)){
                 
+                $data->approved_by_user = app('UserRepository')->findById($data->approved_by,false);
+
+            }
+
             $criteria = ['service_provider_profile_request_id' => $data->id];
             $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria, false, $details);
             $data->services = $services['data'];       
@@ -76,7 +92,7 @@ public $model;
     }
 
     public function getSubServices($crtieria) {
-        
+
         $model = $this->model->where($crtieria);
         if ($model != NULL) {
             $model = $model->
@@ -127,7 +143,7 @@ public $model;
 
 
     public function update(array $data = []) {
-        
+
         if ($data['role_id'] == Role::ADMIN) {
             unset($data['role_id']);
             $data['approved_by'] = $data['user_id'];  

@@ -208,7 +208,7 @@ const routes = [
 
     {
         name: 'Service_Detail_Review',
-        path: '/admin/service-provider-review/detail-review',
+        path: '/admin/service-provider-review/detail-review/:id',
         component: require('./components/admin/service-provider-review/DetailReview.vue'),
         meta: {
             title: 'Service provider review',
