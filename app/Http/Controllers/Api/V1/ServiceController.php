@@ -167,10 +167,12 @@ public function index(Request $request)
 
     $data = $this->_repository->findByAll($pagination, $per_page, $input);
         //$count = $this->_repository->getServiceCount();
+    // Urgent fix $data['data'] needs to be fixed by Ali
+
     $output = [
         'response' => [
             'data' => $data['data']['data'],
-            'service_count' => $data['record_count'],
+            'service_count' => $data['data']['service_count'],
             'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
             'message' => $this->response_messages(__FUNCTION__),
         ]
