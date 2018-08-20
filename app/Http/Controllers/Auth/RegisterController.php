@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Data\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
 class RegisterController extends Controller
 {
     /*
@@ -55,7 +57,9 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'role_id' => 'required|exists:roles,id',
+            'role_id' => ['required',
+            Rule::exists('roles','id'),
+            Rule::notIn([Role::ADMIN,Role::REVIEWER])],
             'social_account_id' => 'nullable',
             'social_account_type' => 'nullable|in:facebook',
         ]);
@@ -78,6 +82,7 @@ class RegisterController extends Controller
             'social_account_id' => (!empty($data['social_account_id']))?$data['social_account_id']:null,
             'social_account_type' => (!empty($data['social_account_type']))?$data['social_account_type']:null,
             'activation_key' => Hash::make(Carbon::now()),
+
             'status' => 'pending',
         ]);
     }
