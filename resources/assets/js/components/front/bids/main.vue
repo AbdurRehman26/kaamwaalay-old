@@ -25,14 +25,15 @@
 			</div>
 
 			<div class="job-post-container section-padd sm">
-				<bid-invitation @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'invitebid'"></bid-invitation>
-				<bid-completed @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'completedbid'"></bid-completed>
-				<bid-awarded @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'awardedbid'"></bid-awarded>
-				<bid-archived @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'archivedbid'"></bid-archived>
-				<bid-active @changebid="ChangeBid" @chatmessage="ChatMessage" v-show="bid_selection == 'activebid'"></bid-active>
+				<bid-invitation @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'"></bid-invitation>
+				<bid-completed @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'"></bid-completed>
+				<bid-awarded @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'"></bid-awarded>
+				<bid-archived @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'"></bid-archived>
+				<bid-active @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'"></bid-active>
 			</div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
+            <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
 
         </div>
 
@@ -45,18 +46,19 @@
     export default {
       data () {
         return {
-           bid_selection: 'activebid',
-           bidpopup: false,
-       }
-   },
+         bid_selection: 'activebid',
+         bidpopup: false,
+         isShowing:false,
+     }
+ },
 
-   methods: {
+ methods: {
 
-       AddCustomer() {
-          this.customer = true;
-      },
-      ViewCustomerDetail() {
-        /*this.viewcustomer = true;*/
+    AddCustomer() {
+        this.customer = true;
+    },
+    ViewCustomerDetail() {
+    /*this.viewcustomer = true;*/
         this.$router.push({name: 'customerdetail'});
     },
     changestatuspopup() {
@@ -69,8 +71,14 @@
         this.bidpopup = false;
     },
     servicedetail(){
-       this.$router.push({name: 'job-details'});
-   }
+        this.$router.push({name: 'job-details'});
+    },
+    showchatpanel(){
+        this.isShowing=true;
+    },
+    CloseDiscussion(){
+        this.isShowing=false;
+    }   
 
 },
 components: {
@@ -81,9 +89,9 @@ mounted(){
 
 },
 watch:{
-   bid_selection: function (val){
-      return this.val
-  },
+ bid_selection: function (val){
+  return this.val
+},
 }
 
 }

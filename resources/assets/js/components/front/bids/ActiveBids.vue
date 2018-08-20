@@ -11,7 +11,7 @@
 						<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
 						<div class="job-notification">									
 							<div class="jobs-done">											
-								<span class="job-poster">Posted By <a href="javascript:void(0);">{{ listing.job_poster }}</a></span>		
+								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{ listing.job_poster }}</a></span>		
 								<span class="job-category noborder">{{ listing.job_category }}</span>											
 							</div>	
 						</div>
@@ -130,7 +130,10 @@
 			},
 			servicedetail(){
 				this.$router.push('/job-details/serviceprovider');
-			}
+			},
+			showProfile(){
+				this.$router.push({name: 'Service_Provider_Detail'});
+			},   			
 
 		},
 		components: {
