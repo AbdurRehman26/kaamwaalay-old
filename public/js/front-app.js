@@ -6284,6 +6284,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7825,6 +7867,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__ = __webpack_require__("./node_modules/vue2-datepicker/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67443,11 +67513,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
           _c("div", { staticClass: "service-need" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
                 _c(
@@ -67473,74 +67545,16 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5),
+          _vm._m(6),
           _vm._v(" "),
           _c("div", { staticClass: "verify-account" }, [
-            _vm._m(6),
-            _vm._v(" "),
             _vm._m(7),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _vm._m(8),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group custom-datepicker" },
-                      [
-                        _c("date-picker", {
-                          attrs: {
-                            type: "month",
-                            placeholder: "Select Month",
-                            format: "MM",
-                            lang: "en"
-                          },
-                          model: {
-                            value: _vm.value_month,
-                            callback: function($$v) {
-                              _vm.value_month = $$v
-                            },
-                            expression: "value_month"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group custom-datepicker" },
-                      [
-                        _c("date-picker", {
-                          attrs: {
-                            type: "year",
-                            placeholder: "Select Year",
-                            format: "YYYY",
-                            lang: "en"
-                          },
-                          model: {
-                            value: _vm.value_year,
-                            callback: function($$v) {
-                              _vm.value_year = $$v
-                            },
-                            expression: "value_year"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                ])
-              ])
-            ]),
+            _vm._m(8),
             _vm._v(" "),
             _vm._m(9),
+            _vm._v(" "),
+            _vm._m(10),
             _vm._v(" "),
             _c("div", { staticClass: "job-form-submission" }, [
               _c("div", { staticClass: " " }, [
@@ -67651,6 +67665,33 @@ var staticRenderFns = [
             },
             [_vm._v("+ Add more photos")]
           )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "attach-video-files" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group custom-file" }, [
+            _c("label", [_vm._v("Youtube video ID")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { placeholder: "e.g. BCFuE1tlqwU" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 video-url" }, [
+          _c("p", [
+            _vm._v(
+              "Video id available at the end of youtube video url. https://www.youtube.com/watch?v={VIDEO-ID}"
+            )
+          ])
         ])
       ])
     ])
@@ -67849,18 +67890,94 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "Enter your credit card number",
+              value: "Enter your credit card number"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Enter your credit card number",
-            value: "Enter your credit card number"
-          }
-        })
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group custom-datepicker" }, [
+              _c("select", { staticClass: "form-control" }, [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("Select Month")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("January")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Feburay")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("March")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("April")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("May")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("June")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("July")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("August")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("September")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("October")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("November")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("December")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group custom-datepicker" }, [
+              _c("select", { staticClass: "form-control" }, [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("Select Year")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2010")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2011")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2012")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2013")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2014")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2015")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2016")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2017")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2018")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2019")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2020")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2021")])
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   },
@@ -69447,73 +69564,7 @@ var render = function() {
             _vm._v(" "),
             _vm._m(9),
             _vm._v(" "),
-            _c("div", { staticClass: "account-fee" }, [
-              _vm._m(10),
-              _vm._v(" "),
-              _vm._m(11),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _vm._m(12),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-group custom-datepicker" },
-                        [
-                          _c("date-picker", {
-                            attrs: {
-                              type: "month",
-                              placeholder: "Select Month",
-                              format: "MM",
-                              lang: "en"
-                            },
-                            model: {
-                              value: _vm.value_month,
-                              callback: function($$v) {
-                                _vm.value_month = $$v
-                              },
-                              expression: "value_month"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-group custom-datepicker" },
-                        [
-                          _c("date-picker", {
-                            attrs: {
-                              type: "year",
-                              placeholder: "Select Year",
-                              format: "YYYY",
-                              lang: "en"
-                            },
-                            model: {
-                              value: _vm.value_year,
-                              callback: function($$v) {
-                                _vm.value_year = $$v
-                              },
-                              expression: "value_year"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(13)
-            ]),
+            _vm._m(10),
             _vm._v(" "),
             _c("div", { staticClass: "submit-approval-btn" }, [
               _c(
@@ -69524,7 +69575,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(14)
+            _vm._m(11)
           ])
         ])
       ])
@@ -69866,79 +69917,156 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "verification-alert" }, [
-          _c("p", [
-            _vm._v(
-              "Enter your credit card details to pay service provider account creation fee of "
-            ),
-            _c("span", [_vm._v("$50")]),
-            _vm._v(".")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
-          _vm._v(" "),
-          _c("select", { staticClass: "form-control" }, [
-            _c("option", { attrs: { selected: "", disabled: "" } }, [
-              _vm._v("Select credit card type")
-            ]),
-            _vm._v(" "),
-            _c("option", [_vm._v("VISA")])
+    return _c("div", { staticClass: "account-fee" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "verification-alert" }, [
+            _c("p", [
+              _vm._v(
+                "Enter your credit card details to pay service provider account creation fee of "
+              ),
+              _c("span", [_vm._v("$50")]),
+              _vm._v(".")
+            ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "", placeholder: "Enter card holder name", name: "" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("Select credit card type")
+              ]),
+              _vm._v(" "),
+              _c("option", [_vm._v("VISA")])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "Enter your credit card number" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Security Code (CVV)")]),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "",
+                placeholder: "Enter card holder name",
+                name: ""
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Enter your credit card number"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { placeholder: "Enter your cvv number", type: "", name: "" }
-          })
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group custom-datepicker" }, [
+                _c("select", { staticClass: "form-control" }, [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("Select Month")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("January")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Feburay")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("March")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("April")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("May")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("June")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("July")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("August")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("September")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("October")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("November")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("December")])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group custom-datepicker" }, [
+                _c("select", { staticClass: "form-control" }, [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("Select Year")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2010")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2011")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2012")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2013")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2014")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2015")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2016")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2017")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2018")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2019")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2020")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2021")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Security Code (CVV)")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                placeholder: "Enter your cvv number",
+                type: "",
+                name: ""
+              }
+            })
+          ])
         ])
       ])
     ])
@@ -75766,48 +75894,45 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "featured-places" }, [
-          _c("p", [
+          _c("div", [
             _c("i", { staticClass: "icon-list" }),
             _vm._v(" "),
-            _c("span", [_vm._v("Service Pages")])
-          ]),
-          _c("p", { staticClass: "featured-detail" }, [
-            _vm._v(
-              "Your featured profile will appear almost at the top of service pages related to the services you are offering."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p")
+            _c("span", [_vm._v("Service Pages")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "featured-detail" }, [
+              _vm._v(
+                "Your featured profile will appear almost at the top of service pages related to the services you are offering."
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "featured-places" }, [
-          _c("p", [
+          _c("div", [
             _c("i", { staticClass: "icon-search22" }),
             _vm._v(" "),
-            _c("span", [_vm._v("Search result pages")])
-          ]),
-          _c("p", { staticClass: "featured-detail" }, [
-            _vm._v(
-              "When someone search specific service which you are offering, your profile may appear at the top of the search results."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p")
+            _c("span", [_vm._v("Search result pages")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "featured-detail" }, [
+              _vm._v(
+                "When someone search specific service which you are offering, your profile may appear at the top of the search results."
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "featured-places" }, [
-          _c("p", [
-            _c("i", { staticClass: "icon-list" }),
+          _c("div", { staticClass: "ios-andriod-feature" }, [
+            _c("i", { staticClass: "ios-andriod-app" }),
             _vm._v(" "),
-            _c("span", [_vm._v("Inside iOS & Android Apps")])
-          ]),
-          _c("p", { staticClass: "featured-detail" }, [
-            _vm._v(
-              "Your featured profile appear on PSM’s iPhone and Android apps, on search result and service pages."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p")
+            _c("span", [_vm._v("Inside iOS & Android Apps")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "featured-detail" }, [
+              _vm._v(
+                "Your featured profile appear on PSM’s iPhone and Android apps, on search result and service pages."
+              )
+            ])
+          ])
         ])
       ])
     ])
