@@ -16645,6 +16645,10 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
 }
 
+.mac-browser .testmonial-section .item-list .testmonial-name h3 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .modal-sm {
   max-width: 520px;
 }
