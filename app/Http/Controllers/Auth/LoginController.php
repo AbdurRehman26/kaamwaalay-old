@@ -110,7 +110,7 @@ class LoginController extends Controller
         if ($this->guard()->validate($this->credentials($request))) {
             $user = $this->guard()->getLastAttempted();
             // Make sure the user is active
-            if ($user->status == User::ACTIVE && $this->attemptLogin($request) && $user->role_id == Role::ADMIN) {
+            if ($user->status == User::ACTIVE && $this->attemptLogin($request) && ($user->role_id == Role::ADMIN || $user->role_id == Role::REVIEWER)) {
                 // Send the normal successful login response
                 return $this->sendLoginResponse($request);
             }else if($user->status == User::PENDING){
@@ -118,7 +118,7 @@ class LoginController extends Controller
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
                 return $this->sendPendingLoginResponse($request);
-            } else if($user->role_id != Role::ADMIN){
+            } else if($user->role_id == Role::CUSTOMER || $user->role_id == Role::SERVICE_PROVIDER ){
                 // Increment the failed login attempts and redirect back to the
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
