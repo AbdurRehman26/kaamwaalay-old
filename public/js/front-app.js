@@ -7671,15 +7671,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 nav: true,
                 items: 4,
                 responsive: {
-                    /*                        0:{
-                                                items:1
-                                            },
-                                            600:{
-                                                items:3
-                                            },
-                                            1000:{
-                                                items:5
-                                            }*/
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
                 }
             });
         });
@@ -8424,6 +8424,224 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return result;
 		}
 	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            categoryimage: '/images/front/explore/mds.png',
+
+            jobimage: '/images/front/profile-images/logoimage1.png',
+            reviewerimage: '/images/front/profile-images/personimage1.png',
+
+            joblisting: [{
+                job_title: 'M.D.S Joinery & Glazing',
+                job_feedback: 180,
+                job_perform: 208,
+                job_full_rating: 4,
+                job_location: 'New York, NY',
+                job_member_since: 'Jan, 2018',
+                job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote."
+
+            }]
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        categorylisting: function categorylisting() {
+            this.$router.push({ name: 'Explore_Detail' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            categoryimage: '/images/front/explore/mds.png',
+
+            jobimage: '/images/front/profile-images/logoimage1.png',
+            reviewerimage: '/images/front/profile-images/personimage1.png',
+
+            joblisting: [{
+                job_title: 'M.D.S Joinery & Glazing',
+                job_feedback: 180,
+                job_perform: 208,
+                job_full_rating: 4,
+                job_location: 'New York, NY',
+                job_member_since: 'Jan, 2018',
+                job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote."
+
+            }]
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        categorylisting: function categorylisting() {
+            this.$router.push({ name: 'Explore_Detail' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -69405,6 +69623,93 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-162d8911\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "category-detail" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "content" }, [
+        _vm._m(0, true),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-post-container section-padd sm" }, [
+          _c("div", { staticClass: "container md" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  { staticClass: "provider-information" },
+                  _vm._l(listing.job_description.split("\n"), function(
+                    description
+                  ) {
+                    return _c("div", { staticClass: "post-job-description" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n\t\t\t\t\t\t\t\t\ttempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n\t\t\t\t\t\t\t\t\tquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n\t\t\t\t\t\t\t\t\tconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n\t\t\t\t\t\t\t\t\tcillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n\t\t\t\t\t\t\t\t\tproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "next-project grey-bg elementary-banner section-padd md border-bottom"
+      },
+      [
+        _c("div", { staticClass: "container element-index text-center md" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("div", { staticClass: "category-content text-center" }, [
+              _c("h2", [_vm._v("Terms & Condition")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "elements" }, [
+          _c("img", {
+            staticClass: "top-left",
+            attrs: { src: "/images/front/banner-bg/bg-5.png" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "bottom-right",
+            attrs: { src: "/images/front/banner-bg/bg-2.png" }
+          })
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-162d8911", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1c16f02b\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./node_modules/vue2-typeahead/src/components/TypeAhead.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -73970,6 +74275,93 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-640aadb2", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68f456ad\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "category-detail" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "content" }, [
+        _vm._m(0, true),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-post-container section-padd sm" }, [
+          _c("div", { staticClass: "container md" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  { staticClass: "provider-information" },
+                  _vm._l(listing.job_description.split("\n"), function(
+                    description
+                  ) {
+                    return _c("div", { staticClass: "post-job-description" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n\t\t\t\t\t\t\t\t\ttempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n\t\t\t\t\t\t\t\t\tquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n\t\t\t\t\t\t\t\t\tconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n\t\t\t\t\t\t\t\t\tcillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n\t\t\t\t\t\t\t\t\tproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "next-project grey-bg elementary-banner section-padd md border-bottom"
+      },
+      [
+        _c("div", { staticClass: "container element-index text-center md" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("div", { staticClass: "category-content text-center" }, [
+              _c("h2", [_vm._v("Privacy Policy")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "elements" }, [
+          _c("img", {
+            staticClass: "top-left",
+            attrs: { src: "/images/front/banner-bg/bg-5.png" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "bottom-right",
+            attrs: { src: "/images/front/banner-bg/bg-2.png" }
+          })
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68f456ad", module.exports)
   }
 }
 
@@ -96809,6 +97201,102 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68f456ad\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\static-pages\\PrivacyPolicy.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68f456ad", Component.options)
+  } else {
+    hotAPI.reload("data-v-68f456ad", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/static-pages/TermsCondition.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-162d8911\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\static-pages\\TermsCondition.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-162d8911", Component.options)
+  } else {
+    hotAPI.reload("data-v-162d8911", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/front-app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -97166,7 +97654,7 @@ var routes = [
     component: __webpack_require__("./resources/assets/js/components/front/bids/main.vue")
 },
 
-//Profile Rejection
+// Profile Rejection
 {
     name: 'profile-rejection',
     path: '/profile-rejected',
@@ -97176,6 +97664,27 @@ var routes = [
         navigation: 'provider-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/profile-rejection/main.vue")
+},
+
+// Static Pages
+{
+    name: 'terms-condition',
+    path: '/terms-condition',
+    meta: {
+        title: 'Professional Service Marketplace | Terms Condition',
+        bodyClass: 'terms-condition-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/static-pages/TermsCondition.vue")
+}, {
+    name: 'privacy-policy',
+    path: '/privacy-policy',
+    meta: {
+        title: 'Professional Service Marketplace | Privacy Policy',
+        bodyClass: 'privacy-policy-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue")
 },
 
 /*404*/

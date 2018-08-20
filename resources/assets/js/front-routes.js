@@ -220,7 +220,7 @@ const routes = [
 
 
 
-    //Profile Rejection
+    // Profile Rejection
     {
         name: 'profile-rejection',
         path: '/profile-rejected',
@@ -230,6 +230,30 @@ const routes = [
             navigation: 'provider-nav',
         },
         component: require('./components/front/profile-rejection/main.vue'),
+    },
+
+
+    // Static Pages
+    {
+        name: 'terms-condition',
+        path: '/terms-condition',
+        meta: {
+            title: 'Professional Service Marketplace | Terms Condition',
+            bodyClass: 'terms-condition-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/static-pages/TermsCondition.vue'),
+    },
+
+    {
+        name: 'privacy-policy',
+        path: '/privacy-policy',
+        meta: {
+            title: 'Professional Service Marketplace | Privacy Policy',
+            bodyClass: 'privacy-policy-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/static-pages/PrivacyPolicy.vue'),
     },
 
     /*404*/

@@ -10,6 +10,9 @@ $section-padding-sm:20px 0px;
     &.padding-sm{
         padding:$section-padding-sm;
     }
+    @include tablet{
+        padding: 50px 0px;
+    }
 }
 .section-title {
     text-align: center;
@@ -183,9 +186,10 @@ $section-padding-sm:20px 0px;
                     }
                 }
             }
-        }
+        }            
     }
 }
+
 
 .section-padd{
     padding: 100px 0px;
@@ -197,6 +201,9 @@ $section-padding-sm:20px 0px;
     }
     &.xs{
         padding: 40px 0px 30px 0px;
+    }
+    @include tablet{
+        padding: 50px 0px;
     }
 }
 
@@ -289,11 +296,14 @@ $section-padding-sm:20px 0px;
         flex-shrink: 1.4;
     }
     @include tabletF{
-        flex-direction: column;
+        flex-direction: column-reverse;
         .content-sec{
-            padding-bottom: 20px;
+            padding-top: 30px;
             margin: 0px;
         }
+    }
+    @include tablet{        
+
     }
 }
 
@@ -591,7 +601,7 @@ $section-padding-sm:20px 0px;
 
 .owl-dots{
     text-align:center;
-        margin-top: 60px;
+    margin-top: 60px;
     button{
         display:inline-block;
         width:25px;
@@ -603,6 +613,14 @@ $section-padding-sm:20px 0px;
         outline:none !important;
         &.active{
             background-color:$primary-color-lt !important;
+        }
+    }
+    @include tablet{
+        margin-top: 20px;
+        button{
+            width: 10px;
+            height: 10px;
+            margin: 0px 5px 0;            
         }
     }
 }
@@ -642,6 +660,16 @@ $section-padding-sm:20px 0px;
             @include tabletF{
                 width: 49.3%;
             }
+            @include tablet{
+                width: 100%;
+                margin-bottom: 10px;
+                &:nth-child(1n){
+                    padding-right: 0px;       
+                }
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+            }                        
         }
         .testmonial-img{
             display: block;
@@ -822,6 +850,13 @@ $section-padding-sm:20px 0px;
         }
         .showmore{
             padding-left: 35px;
+            @include Desktop1300{
+                padding-left: 15px;
+            }
+            @include tabletF{
+                float: left;
+                width: 100%;
+            }
             position: relative;
             top: -5px;
         }
@@ -1355,6 +1390,13 @@ $section-padding-sm:20px 0px;
 .how-it-work-list{
     .list-description{
         width:100%;
+    }
+    @include tabletF{
+        .col-md-3{
+            flex: 0 0 49%;
+            max-width: 49%;            
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -2742,5 +2784,14 @@ body{
                  }
             }
         }
+    }
+}
+.services-list{
+    @include tabletF{       
+        .col-sm-4{
+            flex: 0 0 32.666667%;
+            max-width: 32.666667%;
+            margin-bottom: 13px;
+        }        
     }
 }
