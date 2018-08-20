@@ -115,7 +115,7 @@ export default {
                     self.successMessage =  response.data.message
                     self.$parent.url = "";
                     setTimeout(function(){
-                    self.$parent.url = 'api/user?filter_by_role=1&pagination=true';
+                    self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
                         self.successMessage='';
                          self.resetModal();
                     }, 5000);
