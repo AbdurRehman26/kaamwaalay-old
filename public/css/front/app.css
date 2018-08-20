@@ -16700,6 +16700,16 @@ body .chat-feedback-message.white-msg:before {
   }
 }
 
+@media (max-width: 1024px) {
+  .services-list .col-sm-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 32.666667%;
+            flex: 0 0 32.666667%;
+    max-width: 32.666667%;
+    margin-bottom: 13px;
+  }
+}
+
 .mac-browser .featured-categories-home .list-description p {
   font-family: "AkzidenzGroteskBE-Md";
 }
@@ -16728,14 +16738,8 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
 }
 
-@media (max-width: 1024px) {
-  .services-list .col-sm-4 {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 32.666667%;
-            flex: 0 0 32.666667%;
-    max-width: 32.666667%;
-    margin-bottom: 13px;
-  }
+.mac-browser .categories-popup .modal-body .category-search-field h5 {
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .modal-sm {
