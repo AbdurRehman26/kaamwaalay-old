@@ -70,7 +70,7 @@
 
 					<!-- Urgent Row -->
 					<form data-vv-scope="urgent">
-						<div class="urgent-section-row">
+						<div class="urgent-section-row featured-row">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="urgent-detail-title">
@@ -100,6 +100,38 @@
 						</div>
 					</form>
 
+                    <!-- Account creation Row -->
+                    <form data-vv-scope="account_creation">
+                        <div class="urgent-section-row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="urgent-detail-title">
+                                        <h2 class="page-title">Account Creation</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row urgent-setting">    
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Account Creation Fee</label>
+                                        <input class="form-control" placeholder="Enter account creation amount" name="account_creation_amount" v-model="account_creation_amount" v-validate="'required|decimal'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" >
+                                    </div>
+                                </div>
+
+                            </div>
+                            <alert v-if="accountCreationErrorMessage || accountCreationSuccessMessage" :errorMessage="accountCreationErrorMessage" :successMessage="accountCreationSuccessMessage"></alert>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-3">
+                                    <button @click.prevent="validateBeforeSubmit('account_creation')" :class="['btn btn-primary', isAccountCreationUpdating ?'show-spinner' : '']">
+                                        <span>Apply</span>
+                                        <loader></loader>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
 				</div>
 
 			</div>
@@ -124,13 +156,15 @@ export default {
 			urgentErrorMessage:'',
 			accountCreationSuccessMessage:'',
 			accountCreationErrorMessage:'',
-			urgent_amount:'',
+            urgent_amount:'',
+			account_creation_amount:'',
 		}
 	},
 
     mounted() {
         this.getFeaturedList();
         this.view('urgent');
+        this.view('account_creation');
     },
 
 	methods: {
@@ -247,7 +281,7 @@ export default {
                 		self.urgentSuccessMessage = '';
                 	} , 3000);
                 }else{
-                	self.urgentSuccessMessage = 'Record has been updated successfully';
+                	self.accountCreationSuccessMessage = 'Record has been updated successfully';
                 	setTimeout(function () {
                 		self.isAccountCreationUpdating = false;
                 		self.accountCreationSuccessMessage = '';

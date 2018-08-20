@@ -26,11 +26,6 @@ class PlanController extends ApiResourceController
             $rules['amount'] = 'required|numeric|not_in:0';
         }
 
-
-        if($value == 'destroy'){
-
-        }
-
         if($value == 'show'){
             $rules['id'] =  'required|exists:plans,id';
         }
