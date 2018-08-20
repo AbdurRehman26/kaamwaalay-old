@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\SupportInquiry;
+use App\Data\Models\Role;
 use Cache,StdClass;
 use DB;
 
@@ -82,21 +83,26 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
 
     public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
 
+        $this->builder = $this->builder
+        ->leftJoin('users', 'support_inquiries.user_id', '=', 'users.id')
+        //->where('users.role_id', '<>', Role::ADMIN)
+        ;
+
         if(!empty($data['type_id'])){
-            $this->builder = $this->builder
-            ->leftJoin('support_questions', 'support_inquiries.support_question_id', '=', 'support_questions.id')
-            ->where('support_questions.role_id', '=' , $data['type_id'])
-            ;            
+            $this->builder = $this->builder->where('users.role_id', '=' , $data['type_id']);
+            // ->leftJoin('support_questions', 'support_inquiries.support_question_id', '=', 'support_questions.id')
+            // ->where('support_questions.role_id', '=' , $data['type_id'])
+            ;
         }
 
 
         if(!empty($data['keyword'])){
             $this->builder = $this->builder
-            ->select('support_inquiries.id')
-            ->leftJoin('users', 'support_inquiries.user_id', '=', 'users.id')
+            //->select('support_inquiries.id')
+            //->leftJoin('users', 'support_inquiries.user_id', '=', 'users.id')
             ->where(function($query) use ($data) {
-                $query->orWhere('name', 'LIKE', '%'.$data['keyword'].'%');
-                $query->orWhere('support_inquiries.email', 'LIKE', '%'.$data['keyword'].'%');
+              //  $query->orWhere('name', 'LIKE', '%'.$data['keyword'].'%');
+                //$query->orWhere('support_inquiries.email', 'LIKE', '%'.$data['keyword'].'%');
                 $query->orWhere('users.email', 'LIKE', '%'.$data['keyword'].'%');
                 $query->orWhere(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , '%'.$data['keyword'].'%');
                 //$query->orWhere('users.first_name', 'LIKE', '%'.$data['keyword'].'%');
@@ -110,8 +116,10 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
         ->orderBy('support_inquiries.created_at', 'DESC')
         ;
 
-        $modelData['record_count'] = $this->builder->count();
+        $modelData['data'] = [];
+        $count = $this->builder->count();
         $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+        $modelData['data']['inquiry_count'] = $count;
         return $modelData;
         //return  parent::findByAll($pagination, $perPage);
     

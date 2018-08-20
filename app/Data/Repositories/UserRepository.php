@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
 use App\Data\Models\Role;
 use DB;
+use Carbon\Carbon;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -47,9 +48,9 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        
         if($data){
             if (!empty($details['profile_data'])) {
+        
                 if($data->role_id == Role::SERVICE_PROVIDER){
                 // Todo
                     $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
@@ -96,6 +97,9 @@ public $model;
             $data->City = !empty($City->name)?$City->name:'';
             $state = app('StateRepository')->findById($data->state_id);                
             $data->state = !empty($state->name)?$state->name:'';
+
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+
         }
 
         return $data;
@@ -110,8 +114,6 @@ public $model;
 
             $this->builder = $this->builder->where(function($query)use($data){
                 $query->where('email', 'LIKE', "%{$data['keyword']}%");
-                //$query->orWhere('first_name', 'like', "%{$data['keyword']}%");
-                //$query->orWhere('last_name', 'like', "%{$data['keyword']}%");
                 $query->orWhere(DB::raw('concat(first_name," ",last_name)') , 'LIKE' , "%{$data['keyword']}%");
             });
         }
@@ -233,7 +235,7 @@ public $model;
 
         return  $this->model->count();
     }
-    public function changeStatus(array $data = []) {
+    public function updateField(array $data = []) {
         unset($data['user_id']);
        return parent::update($data);
     }

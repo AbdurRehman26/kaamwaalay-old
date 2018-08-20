@@ -16,7 +16,9 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
      * @access public
      *
      **/
-public $model;
+    public $model;
+    
+    const   PER_PAGE = 25;
 
     /**
      *
@@ -47,20 +49,16 @@ public $model;
         if(is_array($whereInModelIds)){
             $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
         }
-        
-        if($details){
-            $details = ['details' => true];
-        }else{
-            $details = ['details' => false];
-        }
+ 
+        $details = $details ? ['details' => true] : fasle;
 
-        return $this->findByAll(false, 10, $details);
+        return $this->findByAll(false, self::PER_PAGE, $details);
     }
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        
+ 
         if($data && $details){
 
             $data->service = app('ServiceRepository')->findById($data->service_id);

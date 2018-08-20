@@ -9,42 +9,28 @@ class CountryController extends ApiResourceController
     public $_repository;
 
     public function __construct(CountryRepository $repository){
-       $this->_repository = $repository;
-   }
+        $this->_repository = $repository;
+    }
 
-   public function rules($value=''){
-    $rules = [];
+    public function rules($value=''){
+        $rules = [];
 
-    if($value == 'store'){
+        if($value == 'show'){
+            $rules['id'] =  'required|exists:countries,id';
+        }
+
+        if($value == 'index'){
+            $rules['pagination']    =  'nullable|boolean';
+        }
+
+        return $rules;
 
     }
 
-    if($value == 'update'){
 
+    public function input($value='')
+    {
+        $input = request()->only('id', 'pagination');
+        return $input;  
     }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-
-    }
-
-    if($value == 'index'){
-
-    }
-
-    return $rules;
-
-}
-
-
-public function input($value='')
-{
-    $input = request()->only('id', 'pagination');
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-    return $input;
-}
 }
