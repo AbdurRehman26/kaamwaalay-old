@@ -4544,6 +4544,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/Notification.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            writereview: false
+        };
+    },
+
+    methods: {
+        WriteReviewModal: function WriteReviewModal() {
+            this.writereview = true;
+        },
+        HideModal: function HideModal() {
+            this.writereview = false;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/PostBidPopup.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4896,13 +4969,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             logo: 'images/logo.png',
             changepopup: false,
-            responsivemenu: false
+            responsivemenu: false,
+            writereview: false
         };
     },
     methods: {
@@ -4911,9 +4986,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         HideModal: function HideModal() {
             this.changepopup = false;
+            this.writereview = false;
         },
         responsivebutton: function responsivebutton() {
             this.responsivemenu ^= true;
+        },
+        WriteReviewModal: function WriteReviewModal() {
+            this.writereview = true;
+        },
+        ViewBid: function ViewBid() {
+            this.$router.push({ name: 'job-details' });
         }
     }
 });
@@ -4992,8 +5074,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         away: function away() {
             this.isShowing = false;
             this.tab = false;
+        },
+        WriteReviewModal: function WriteReviewModal() {
+            this.$emit('WriteReviewModal');
+        },
+        ViewBid: function ViewBid() {
+            /*this.$router.push({name: 'job-details'})*/
+            this.$emit('ViewBid');
         }
-
     }
 });
 
@@ -5070,8 +5158,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         away: function away() {
             this.isShowing = false;
             this.tab = false;
+        },
+        WriteReviewModal: function WriteReviewModal() {
+            this.$emit('WriteReviewModal');
+        },
+        ViewBid: function ViewBid() {
+            /*this.$router.push({name: 'job-details'})*/
+            this.$emit('ViewBid');
         }
-
     }
 });
 
@@ -70364,7 +70458,15 @@ var render = function() {
                     value: _vm.isShowing,
                     expression: "isShowing"
                   }
-                ]
+                ],
+                on: {
+                  ReviewWrite: function($event) {
+                    _vm.WriteReviewModal()
+                  },
+                  ViewBid: function($event) {
+                    _vm.ViewBid()
+                  }
+                }
               })
             ],
             1
@@ -72864,7 +72966,15 @@ var render = function() {
                     value: _vm.isShowing,
                     expression: "isShowing"
                   }
-                ]
+                ],
+                on: {
+                  ReviewWrite: function($event) {
+                    _vm.WriteReviewModal()
+                  },
+                  ViewBid: function($event) {
+                    _vm.ViewBid()
+                  }
+                }
               })
             ],
             1
@@ -74395,88 +74505,128 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      directives: [
-        { name: "show", rawName: "v-show", value: true, expression: "true" }
-      ],
-      staticClass: "notification-block"
-    },
-    [_vm._m(0)]
-  )
+  return _c("div", [
+    _c(
+      "div",
+      {
+        directives: [
+          { name: "show", rawName: "v-show", value: true, expression: "true" }
+        ],
+        staticClass: "notification-block"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "notify-dropdown scrollbar",
+            attrs: { id: "style-2" }
+          },
+          [
+            _c("ul", [
+              _c("li", { staticClass: "notify-list" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "right-notification" }, [
+                  _c("div", { staticClass: "notification-content" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "notification-limit" }, [
+                      _c("span", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:;" },
+                            on: {
+                              click: function($event) {
+                                _vm.$emit("ViewBid")
+                              }
+                            }
+                          },
+                          [_vm._v("View Bid ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", [_vm._v("10 Jan, 2018 at 10:45 am")])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "notify-list" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "right-notification" }, [
+                  _c("div", { staticClass: "notification-content" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "notification-limit" }, [
+                      _c("span", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:;" },
+                            on: {
+                              click: function($event) {
+                                _vm.$emit("ReviewWrite")
+                              }
+                            }
+                          },
+                          [_vm._v("Write Review ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", [_vm._v("10 Jan, 2018 at 10:45 am")])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "notify-dropdown scrollbar", attrs: { id: "style-2" } },
-      [
-        _c("ul", [
-          _c("li", { staticClass: "notify-list" }, [
-            _c("div", { staticClass: "notify-image" }, [
-              _c("img", {
-                attrs: {
-                  src: "images/front/profile-images/personimage6.png",
-                  alt: ""
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "right-notification" }, [
-              _c("div", { staticClass: "notification-content" }, [
-                _c("p", [
-                  _c("strong", [_vm._v("Christopher Ward Joinery Services")]),
-                  _vm._v(" posted a bid on\n                            "),
-                  _c("strong", [_vm._v("Concrete Floor Building")])
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "notification-limit" }, [
-                  _c("span", [
-                    _c("a", { attrs: { href: "javascript:;" } }, [
-                      _vm._v("View Bid ")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("10 Jan, 2018 at 10:45 am")])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "notify-list" }, [
-            _c("div", { staticClass: "notify-image" }, [
-              _c("img", {
-                attrs: { src: "images/front/explore/carpenter1.jpg", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "right-notification" }, [
-              _c("div", { staticClass: "notification-content" }, [
-                _c("p", [
-                  _c("strong", [_vm._v("Christopher Ward Joinery Services")]),
-                  _vm._v(" posted a bid on\n                            "),
-                  _c("strong", [_vm._v("Concrete Floor Building")])
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "notification-limit" }, [
-                  _c("span", [
-                    _c("a", { attrs: { href: "javascript:;" } }, [
-                      _vm._v("Write Review ")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("10 Jan, 2018 at 10:45 am")])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "notify-image" }, [
+      _c("img", {
+        attrs: { src: "images/front/profile-images/personimage6.png", alt: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("strong", [_vm._v("Christopher Ward Joinery Services")]),
+      _vm._v(" posted a bid on\n                                "),
+      _c("strong", [_vm._v("Concrete Floor Building")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "notify-image" }, [
+      _c("img", {
+        attrs: { src: "images/front/explore/carpenter1.jpg", alt: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("strong", [_vm._v("Christopher Ward Joinery Services")]),
+      _vm._v(" posted a bid on\n                                "),
+      _c("strong", [_vm._v("Concrete Floor Building")])
+    ])
   }
 ]
 render._withStripped = true
@@ -74626,14 +74776,30 @@ var render = function() {
             _vm.$route.meta.navigation == "customer-nav"
               ? _c("customer-nav", {
                   attrs: { active: _vm.responsivemenu == true },
-                  on: { profilepopup: _vm.ProfilePopup }
+                  on: {
+                    profilepopup: _vm.ProfilePopup,
+                    WriteReviewModal: function($event) {
+                      _vm.WriteReviewModal()
+                    },
+                    ViewBid: function($event) {
+                      _vm.ViewBid()
+                    }
+                  }
                 })
               : _vm._e(),
             _vm._v(" "),
             _vm.$route.meta.navigation == "provider-nav"
               ? _c("provider-nav", {
                   attrs: { active: _vm.responsivemenu == true },
-                  on: { profilepopup: _vm.ProfilePopup }
+                  on: {
+                    profilepopup: _vm.ProfilePopup,
+                    WriteReviewModal: function($event) {
+                      _vm.WriteReviewModal()
+                    },
+                    ViewBid: function($event) {
+                      _vm.ViewBid()
+                    }
+                  }
                 })
               : _vm._e()
           ],
@@ -74652,6 +74818,11 @@ var render = function() {
       _vm._v(" "),
       _c("change-password-popup", {
         attrs: { showModalProp: _vm.changepopup },
+        on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("write-review-popup", {
+        attrs: { showModalProp: _vm.writereview },
         on: { HideModalValue: _vm.HideModal }
       })
     ],
@@ -95048,7 +95219,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/Notification.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-73af4b19\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/Notification.vue")
 /* template functional */
