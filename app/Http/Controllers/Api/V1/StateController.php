@@ -21,7 +21,7 @@ class StateController extends ApiResourceController
 
         if($value == 'index'){
             $rules['pagination']    =  'nullable|boolean';
-            $rules['country_id']    =  'required|exists:countries,id';
+            $rules['country_id']    =  'nullable|exists:countries,id';
         }
 
         return $rules;
