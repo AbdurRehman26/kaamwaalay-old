@@ -24,9 +24,9 @@
             </div>
             <div class="form-group">
                         <label>Access Level</label>
-                        <select class="form-control"  v-model="add_form_info.access_level" >
-                            <option value="full">Full Access</option>
-                            <option value="reviewOnly">Review Process Only</option>
+                        <select class="form-control"  v-model="add_form_info.role_id" >
+                            <option value="1">Full Access</option>
+                            <option value="4">Review Process Only</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -58,7 +58,6 @@ export default {
             'last_name': '',
             'email': '',
             'role_id': 1,
-            'access_level': 'full',
             'status': 'active',
            },
             loading: false,

@@ -56,10 +56,8 @@ class RegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'role_id' => ['required',
-            Rule::exists('roles','id'),
-            Rule::notIn([Role::ADMIN,Role::REVIEWER])],
+            'password' => 'required|string|min:8|max:25',
+            'role_id' => ['required', Rule::exists('roles','id')->where('can_register', 1)],
             'social_account_id' => 'nullable',
             'social_account_type' => 'nullable|in:facebook',
         ]);
@@ -97,7 +95,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
    
-        $output = ['response' => ['data' => [],'message'=>trans('auth.registered')]];
+        $output = ['response' => ['data' => $user,'message'=>trans('auth.registered')]];
 
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);

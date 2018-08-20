@@ -124,7 +124,9 @@ public $model;
         if(!empty($data['filter_by_role'])){
             $this->builder = $this->builder->where('role_id','=',$data['filter_by_role']);
         }
-
+       if(!empty($data['filter_by_roles'])){
+            $this->builder = $this->builder->whereIn('role_id',$data['filter_by_roles']);
+        }
         if(!empty($data['filter_by_service'])){
 
             $this->builder->leftJoin('jobs', function ($join)  use($data){

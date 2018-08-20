@@ -18,6 +18,7 @@ class RolesTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'title' => 'Admin',
+                'can_register' => 0,
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
@@ -25,6 +26,7 @@ class RolesTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'title' => 'Service Provier',
+                'can_register' => 1,
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
@@ -32,6 +34,7 @@ class RolesTableSeeder extends Seeder
             array (
                 'id' => 3,
                 'title' => 'Customer',
+                'can_register' => 1,
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
@@ -39,6 +42,7 @@ class RolesTableSeeder extends Seeder
             array (
                 'id' => 4,
                 'title' => 'Reviewer',
+                'can_register' => 0,
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
