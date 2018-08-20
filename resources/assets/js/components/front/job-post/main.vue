@@ -94,7 +94,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Address</label>
-								<input type="text" class="form-control" value="4695 Chabot Dr. Suite 200," placeholder="4695 Chabot Dr. Suite 200,">
+								<input type="text" class="form-control" placeholder="Enter your address">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -108,13 +108,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" class="form-control" value="Pleasanton" placeholder="Pleasanton">
+								<input type="text" class="form-control" placeholder="Enter your city">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>State</label>
-								<input type="text" class="form-control" placeholder="CA">
+								<input type="text" class="form-control" placeholder="Enter your state">
 							</div>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Zip Code</label>
-								<input type="text" class="form-control" value="94588">
+								<input type="text" class="form-control" placeholder="Enter your zip code">
 							</div>
 						</div>
 					</div>
@@ -144,6 +144,7 @@
 									<select class="form-control">
 										<option selected="" disabled="">Select credit card type</option>
 										<option>VISA</option>
+										<option>Master</option>
 									</select>
 							</div>
 						</div>

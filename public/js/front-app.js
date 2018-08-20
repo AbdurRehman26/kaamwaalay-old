@@ -6283,6 +6283,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -67735,11 +67736,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "4695 Chabot Dr. Suite 200,",
-                placeholder: "4695 Chabot Dr. Suite 200,"
-              }
+              attrs: { type: "text", placeholder: "Enter your address" }
             })
           ])
         ]),
@@ -67766,11 +67763,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "Pleasanton",
-                placeholder: "Pleasanton"
-              }
+              attrs: { type: "text", placeholder: "Enter your city" }
             })
           ])
         ]),
@@ -67781,7 +67774,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "CA" }
+              attrs: { type: "text", placeholder: "Enter your state" }
             })
           ])
         ])
@@ -67794,7 +67787,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", value: "94588" }
+              attrs: { type: "text", placeholder: "Enter your zip code" }
             })
           ])
         ])
@@ -67833,7 +67826,9 @@ var staticRenderFns = [
               _vm._v("Select credit card type")
             ]),
             _vm._v(" "),
-            _c("option", [_vm._v("VISA")])
+            _c("option", [_vm._v("VISA")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Master")])
           ])
         ])
       ]),
