@@ -14,7 +14,11 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Select Service</label>
-								<input type="text" class="form-control" value="Carpanter - General Carpentry" placeholder="Carpanter - General Carpentry">
+								<!-- <input type="text" class="form-control" placeholder="Select Service Type"> -->
+								<select class="form-control">
+									<option disabled="">Select Service Type</option>
+									<option selected="">Carpenter - General Carpentry</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6">

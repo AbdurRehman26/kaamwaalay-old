@@ -785,6 +785,11 @@ $section-padding-sm:20px 0px;
                     color: $secondary-color;
                     margin-bottom: 16px;
                 }
+                a{
+                    &:hover {
+                        text-decoration:none;
+                    }
+                }
             }
         }
         .showmore{
@@ -2175,7 +2180,7 @@ body{
     position: relative;
     padding-left: 64px;
     margin-bottom: 38px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e0e0e0;
     padding-bottom: 32px !important;
     .job-common-description {
         padding: 0px;  

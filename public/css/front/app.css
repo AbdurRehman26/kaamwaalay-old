@@ -14357,6 +14357,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 16px;
 }
 
+.category-section .category-items .item-list-container .items-list a:hover {
+  text-decoration: none;
+}
+
 .category-section .category-items .showmore {
   padding-left: 35px;
 }
@@ -15881,7 +15885,7 @@ body .chat-feedback-message.white-msg:before {
   position: relative;
   padding-left: 64px;
   margin-bottom: 38px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #e0e0e0;
   padding-bottom: 32px !important;
 }
 

@@ -17,7 +17,7 @@
                                      	<input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
                                      </div>
                                 </div>
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" @click="ServiceProviderPage">
                                     <span>Search</span>
                                 </button>
                             </div>
@@ -420,6 +420,9 @@ export default {
         HideModal(){
             this.categoryval = false;
         },
+        ServiceProviderPage() {
+        	this.$router.push('/explore/service_provider');
+        }
 
     },
 }

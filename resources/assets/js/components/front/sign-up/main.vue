@@ -89,7 +89,7 @@
 
 					</div>
 					<div class="already-signup login">
-						<p>Already a member? <a href="javascript:;">Log In</a></p>
+						<p>Already a member? <a href="/login">Log In</a></p>
 					</div>
 				</div>
 
