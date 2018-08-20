@@ -2856,7 +2856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'An Error occured';
+                self.errorMessage = error.response.data.message[0];
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);
@@ -3510,18 +3510,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['showModalProp', 'statusData', 'options', 'url'],
     data: function data() {
 
         return {
-            selected: null
+            selected: '',
+            loading: false,
+            errorMessage: "",
+            successMessage: "",
+            statusData: {},
+            options: [],
+            data: {}
+
         };
     },
 
 
-    props: ['showModalProp'],
     methods: {
         showModal: function showModal() {
             this.$refs.myModalRef.show();
@@ -3531,6 +3544,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
+        },
+        validateBeforeSubmit: function validateBeforeSubmit(evt) {
+            var _this = this;
+
+            // Prevent modal from closing
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.onSubmit();
+                    _this.errorMessage = '';
+                    return;
+                }
+                _this.errorMessage = _this.errorBag.all()[0];
+            });
+        },
+        onSubmit: function onSubmit() {
+            var self = this;
+
+            self.errorMessage = '';
+            self.successMessage = '';
+
+            var url = self.url;
+            var id = this.statusData.id;
+
+            self.loading = true;
+            self.data = {
+                "id": this.statusData.id,
+                "status": this.selected
+            };
+            self.$http.put(url, self.data).then(function (response) {
+                self.loading = false;
+                self.successMessage = response.data.message;
+                setTimeout(function () {
+                    self.hideModal();
+                    self.onHidden();
+                    self.successMessage = '';
+                    self.$parent.statusData.status = self.selected;
+                }, 5000);
+            }).catch(function (error) {
+                self.loading = false;
+                self.errorMessage = error.response.data.message[0];
+                setTimeout(function () {
+                    self.errorMessage = '';
+                }, 5000);
+            });
         }
     },
 
@@ -3543,6 +3600,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!value) {
                 this.hideModal();
             }
+        },
+        statusData: function statusData(value) {
+            this.statusData = value;
+            this.selected = value.status;
+        },
+        options: function options(value) {
+            this.options = value;
+        },
+        url: function url(value) {
+            this.url = value;
         }
     }
 
@@ -4430,7 +4497,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.successMessage = response.data.message;
                 self.$parent.url = "";
                 setTimeout(function () {
-                    self.$parent.url = 'api/user?filter_by_role=1&pagination=true';
+                    self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
                     self.successMessage = '';
                     self.resetModal();
                 }, 5000);
@@ -64012,27 +64079,104 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Change Status")]),
               _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Status")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Pending")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Active")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Banned")])
-              ])
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selected,
+                      expression: "selected"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selected = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "option",
+                    { attrs: { value: "", selected: "", disabled: "" } },
+                    [_vm._v("Select Status")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.options, function(option) {
+                    return _c("option", { domProps: { value: option.key } }, [
+                      _vm._v(" " + _vm._s(option.value))
+                    ])
+                  })
+                ],
+                2
+              )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c("b-col", { staticClass: "float-left", attrs: { cols: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    class: [
+                      _vm.loading ? "show-spinner" : "",
+                      "btn",
+                      "btn-primary",
+                      "apply-primary-color"
+                    ],
+                    on: {
+                      click: function($event) {
+                        if (
+                          !("button" in $event) &&
+                          _vm._k(
+                            $event.keyCode,
+                            "prevant",
+                            undefined,
+                            $event.key,
+                            undefined
+                          )
+                        ) {
+                          return null
+                        }
+                        _vm.validateBeforeSubmit()
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("Submit")]), _vm._v(" "), _c("loader")],
+                  1
+                )
+              ])
+            ],
+            1
+          )
         ],
         1
       )

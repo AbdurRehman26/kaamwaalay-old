@@ -57,7 +57,7 @@ export default {
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage ='An Error occured';
+                        self.errorMessage =error.response.data.message[0];
                         setTimeout(function(){
                             self.errorMessage=''
                         }, 5000);
