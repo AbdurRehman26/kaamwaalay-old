@@ -3493,6 +3493,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -3650,6 +3653,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -3765,6 +3771,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/awarded');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -3897,6 +3906,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -4045,6 +4057,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -4104,6 +4119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -4111,7 +4127,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             bid_selection: 'activebid',
-            bidpopup: false
+            bidpopup: false,
+            isShowing: false
         };
     },
 
@@ -4135,6 +4152,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         servicedetail: function servicedetail() {
             this.$router.push({ name: 'job-details' });
+        },
+        showchatpanel: function showchatpanel() {
+            this.isShowing = true;
+        },
+        CloseDiscussion: function CloseDiscussion() {
+            this.isShowing = false;
         }
     },
     components: {
@@ -6799,6 +6822,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -6809,6 +6833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             visitjob: false,
             visitpopup: false,
             bidpopup: false,
+            isShowing: false,
             jobimage: '/images/front/explore/concret.png',
             job_detail_right_panel: this.$route.params.id,
             reviewerimage: '/images/front/storage/personimage1.png',
@@ -6915,6 +6940,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.visitjob = false;
             this.visitpopup = false;
             this.bidpopup = false;
+        },
+        showchatpanel: function showchatpanel() {
+            this.isShowing = true;
+        },
+        CloseDiscussion: function CloseDiscussion() {
+            this.isShowing = false;
+        },
+        showProfile: function showProfile() {
+            this.$router.push({ name: 'Service_Provider_Detail' });
         }
     },
     components: {
@@ -67891,9 +67925,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -68996,9 +69039,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -70966,7 +71018,7 @@ var render = function() {
                   expression: "bid_selection == 'invitebid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-completed", {
@@ -70978,7 +71030,7 @@ var render = function() {
                   expression: "bid_selection == 'completedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-awarded", {
@@ -70990,7 +71042,7 @@ var render = function() {
                   expression: "bid_selection == 'awardedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-archived", {
@@ -71002,7 +71054,7 @@ var render = function() {
                   expression: "bid_selection == 'archivedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-active", {
@@ -71014,7 +71066,7 @@ var render = function() {
                   expression: "bid_selection == 'activebid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             })
           ],
           1
@@ -71023,6 +71075,22 @@ var render = function() {
         _c("post-bid-popup", {
           attrs: { showModalProp: _vm.bidpopup },
           on: { HideModalValue: _vm.HideModal }
+        }),
+        _vm._v(" "),
+        _c("chat-panel", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.isShowing,
+              expression: "isShowing"
+            }
+          ],
+          on: {
+            CloseDiscussion: function($event) {
+              _vm.CloseDiscussion()
+            }
+          }
         })
       ],
       1
@@ -71107,9 +71175,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -74024,9 +74101,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -74189,9 +74275,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -76349,6 +76444,11 @@ var render = function() {
                                               staticClass: "btn btn-primary",
                                               attrs: {
                                                 href: "javascript:void(0);"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.showProfile()
+                                                }
                                               }
                                             },
                                             [_vm._v("View Profile")]
@@ -76360,6 +76460,11 @@ var render = function() {
                                               staticClass: "btn btn-primary",
                                               attrs: {
                                                 href: "javascript:void(0);"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.showchatpanel()
+                                                }
                                               }
                                             },
                                             [_vm._v("Chat")]
@@ -76413,9 +76518,24 @@ var render = function() {
                         _vm._v(" "),
                         _vm._m(9, true),
                         _vm._v(" "),
-                        _vm._m(10, true),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { href: "javascript:void(0);" },
+                            on: {
+                              click: function($event) {
+                                _vm.showchatpanel()
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-message" }),
+                            _vm._v(" Chat")
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._m(11, true)
+                        _vm._m(10, true)
                       ])
                     : _vm.job_detail_right_panel == "serviceprovider"
                       ? _c("div", { staticClass: "service-provider" }, [
@@ -76432,9 +76552,24 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(12, true),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { href: "javascript:void(0);" },
+                              on: {
+                                click: function($event) {
+                                  _vm.showchatpanel()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-message" }),
+                              _vm._v(" Chat")
+                            ]
+                          ),
                           _vm._v(" "),
-                          _vm._m(13, true)
+                          _vm._m(11, true)
                         ])
                       : _vm.job_detail_right_panel ==
                           "service-provider-customer-end" ||
@@ -76454,9 +76589,24 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(14, true),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { href: "javascript:void(0);" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.showchatpanel()
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-message" }),
+                                _vm._v(" Chat")
+                              ]
+                            ),
                             _vm._v(" "),
-                            _vm._m(15, true)
+                            _vm._m(12, true)
                           ])
                         : _c("div", { staticClass: "service-provider" }, [
                             _c(
@@ -76506,7 +76656,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(16, true)
+                            _vm._m(13, true)
                           ])
                 ])
               ])
@@ -76531,6 +76681,22 @@ var render = function() {
           _c("post-bid-popup", {
             attrs: { showModalProp: _vm.bidpopup },
             on: { HideModalValue: _vm.HideModal }
+          }),
+          _vm._v(" "),
+          _c("chat-panel", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isShowing,
+                expression: "isShowing"
+              }
+            ],
+            on: {
+              CloseDiscussion: function($event) {
+                _vm.CloseDiscussion()
+              }
+            }
           })
         ],
         1
@@ -76677,19 +76843,6 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
         staticClass: "btn btn-cancel-job disable",
         attrs: { href: "javascript:void(0);" }
       },
@@ -76703,36 +76856,10 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
         staticClass: "btn btn-cancel-job",
         attrs: { href: "javascript:void(0);" }
       },
       [_c("i", { staticClass: "icon-folder" }), _vm._v(" Archive")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
     )
   },
   function() {

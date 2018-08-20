@@ -16214,7 +16214,8 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .notify-dropdown.scrollbar {
-  min-height: 338px;
+  max-height: 338px;
+  min-height: 0;
 }
 
 .notify-dropdown .notify-block {
