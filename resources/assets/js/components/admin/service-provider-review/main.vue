@@ -176,7 +176,7 @@
         self.loading = false;
         self.records = response.data;
         self.noRecordFound = response.noRecordFound;
-        self.url = '';
+        
     },
     searchList(){
         let url = 'api/service-provider-profile-request?pagination=true';

@@ -2523,7 +2523,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.loading = false;
             self.records = response.data;
             self.noRecordFound = response.noRecordFound;
-            self.url = '';
         },
 
         updateAccessLevel: function updateAccessLevel() {
