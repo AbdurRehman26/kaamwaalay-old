@@ -23,6 +23,7 @@ class CreateServiceProviderProfilesTable extends Migration {
 			$table->string('years_of_experience', 50)->nullable();
 			$table->enum('business_type', array('business','individual'));
 			$table->boolean('is_featured')->nullable()->default(0);
+			$table->boolean('is_verified')->nullable()->default(0);
 			$table->timestamps();
 			$table->softDeletes();
 		});
