@@ -1,6 +1,5 @@
 <template>
-
-    <vue-pagination class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination"></vue-pagination>
+    <vue-pagination :loadingStart="loading" class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination"></vue-pagination>
 
 </template>
 
@@ -11,7 +10,9 @@
         data () {
             return {
                 records : [],
-                pagination : ''
+                pagination : '',
+                loading : true,
+                noRecordFound : false
             }  
         },
         mounted(){
@@ -23,20 +24,40 @@
                 let self = this;
 
                 let url = self.url;
-                
+
+                let result = {
+                    data : [],
+                    noRecordFound : false
+                };
+
+                self.$emit('get-records', result);
+
+                self.loading = true;
                 url = self.url;
-                this.$emit('start-loading');
+                self.$emit('start-loading');
 
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
 
                 self.$http.get(url).then(response=>{
-                    response = response.data.response;
 
-                    self.records = response.data;
-                    self.$emit('get-records', self.records);
+                    response = response.data.response;
+                    
+                    let result = {
+                        data : response.data,
+                        noRecordFound : false
+                    };
+
+                    if(!response.data.length){
+                        result.noRecordFound = true;
+                    }
+
+                    self.$emit('get-records', result);
                     self.pagination = response.pagination;
+
+                    self.loading = false;
+
 
 
                 }).catch(error=>{

@@ -1,7 +1,7 @@
  <template>
    <div>
       <b-modal id="view-details-support" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Support Detail">
-        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert> 
+        <!--<alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>--> 
         <div class="view-details-support">
 
             <b-row>
@@ -107,11 +107,11 @@
                     self.successMessage = 'Replied Successfully!'//response.message;
 
                     self.loading = false;
-                    
-                    setTimeout(function () {
-                        self.successMessage = '';
-                        self.hideModal();            
-                    } , 3000);
+                    self.hideModal();
+                    // setTimeout(function () {
+                    //     self.successMessage = '';
+                    //     self.hideModal();            
+                    // } , 3000);
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -147,7 +147,6 @@
                 }
             },
             selectedInquiry(value) {
-                console.log(value, 8899988);
                 this.selectedInquiry = value;
                 this.role = value.role;
                 this.support_question = value.support_question;

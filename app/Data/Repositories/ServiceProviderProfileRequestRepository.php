@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Models\Role;
 use Carbon\Carbon;
+use DB;
 
 class ServiceProviderProfileRequestRepository extends AbstractRepository implements RepositoryContract
 {
@@ -49,7 +50,6 @@ public $model;
         if(is_array($whereInModelIds)){
             $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
         }
-
         return $this->findByAll();
     }
 
@@ -57,11 +57,29 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
+        $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
+        $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        $data->formatted_updated_at = Carbon::parse($data->updated_at)->format('F j, Y');
         
+
         if($data && $details){
-            
+
+            if(!empty($details['user_details'])){
+                $data->user = app('UserRepository')->findById($data->user_id,false);
+            }
+
+            if(!empty($details['profile_details'])){
+                $data->provider_profile = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id,false);
+            }
+
+            if(!empty($data->approved_by)){
+                
+                $data->approved_by_user = app('UserRepository')->findById($data->approved_by,false);
+
+            }
+
             $criteria = ['service_provider_profile_request_id' => $data->id];
-            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria);
+            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria, false, $details);
             $data->services = $services['data'];       
             $input['provider_request_data'] = false;
             $input['profile_data'] = true;
@@ -74,7 +92,7 @@ public $model;
     }
 
     public function getSubServices($crtieria) {
-        
+
         $model = $this->model->where($crtieria);
         if ($model != NULL) {
             $model = $model->
@@ -99,9 +117,9 @@ public $model;
 
             $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
                 $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
-            })
-            ->where('users.first_name', 'LIKE', "%{$data['keyword']}%")
-            ->orWhere('users.last_name', 'LIKE', "%{$data['keyword']}%");
+            })->where(function($query)use($data){
+                $query->where(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , "%{$data['keyword']}%");
+            });
         }
 
         if(!empty($data['filter_by_business_type'])){
@@ -112,19 +130,27 @@ public $model;
         }
 
         if(!empty($data['filter_by_service'])){
+            
+            $ids = app('ServiceRepository')->model->where('id' , $data['filter_by_service'])
+            ->orWhere('parent_id', $data['filter_by_service'])
+            ->pluck('id')->toArray();
+
+
+
             $this->builder = $this->builder->leftJoin('service_provider_services', function ($join)  use($data){
                 $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
-            })->where('service_provider_services.service_id',$data['filter_by_service'])
+            })->whereIn('service_provider_services.service_id', $ids)
             ->select('service_provider_profile_requests.*');
         }
-        
+
+        $data['details'] = ['details' => ['show' => true]];
         return parent::findByAll($pagination, $perPage, $data);
 
     }
 
 
     public function update(array $data = []) {
-        
+
         if ($data['role_id'] == Role::ADMIN) {
             unset($data['role_id']);
             $data['approved_by'] = $data['user_id'];  

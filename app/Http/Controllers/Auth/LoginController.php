@@ -10,7 +10,7 @@ use App\Data\Models\User;
 use App\Data\Models\Role;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Lang;
-use Carbon\carbon;
+use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
@@ -110,7 +110,7 @@ class LoginController extends Controller
         if ($this->guard()->validate($this->credentials($request))) {
             $user = $this->guard()->getLastAttempted();
             // Make sure the user is active
-            if ($user->status == User::ACTIVE && $this->attemptLogin($request) && $user->role_id == Role::ADMIN) {
+            if ($user->status == User::ACTIVE && $this->attemptLogin($request) && ($user->role_id == Role::ADMIN || $user->role_id == Role::REVIEWER)) {
                 // Send the normal successful login response
                 return $this->sendLoginResponse($request);
             }else if($user->status == User::PENDING){
@@ -118,7 +118,7 @@ class LoginController extends Controller
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
                 return $this->sendPendingLoginResponse($request);
-            } else if($user->role_id != Role::ADMIN){
+            } else if($user->role_id == Role::CUSTOMER || $user->role_id == Role::SERVICE_PROVIDER ){
                 // Increment the failed login attempts and redirect back to the
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
@@ -203,20 +203,24 @@ class LoginController extends Controller
             $user = new User();
             $validated = $user->where('activation_key', $input['token'])->first();
             if ($validated) {
-                $data =[
-                  "id" => $validated->id ,
+                $user_details = [
                   "activation_key" => '' ,
                   "status" => User::ACTIVE ,
-                  "activated_at" => Carbon::now() ,
+                  "activated_at" => Carbon::now()
+                ];
+                $data =[
+                  "id" => $validated->id,
+                  "user_details"=>$user_details
+                  
                 ];
                 if($this->_userRepository->update($data)){
-                    return view('layout',['success'=>Lang::get('auth.activateSuccess'),'token'=>$input['token']]);
+                    return view('front-layout',['success'=>Lang::get('auth.activateSuccess'),'token'=>$input['token']]);
                 }
-                return view('layout',['error'=>Lang::get('auth.activateError')]);
+                return view('front-layout',['error'=>Lang::get('auth.activateError')]);
             } else {
-                return view('layout',['error'=>Lang::get('auth.activateError')]);
+                return view('front-layout',['error'=>Lang::get('auth.activateError')]);
             }
-
+            
         }
     }
     protected function sendCheckAdminLoginResponse(Request $request)

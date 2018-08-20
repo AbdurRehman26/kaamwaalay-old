@@ -1,12 +1,12 @@
  <template>
-   <div>
-      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" no-close-on-backdrop no-close-on-esc>                        
+     <div>
+      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-         <div>
+        <div>
             <form action="" method="">
                 <div class="form-group">
-                   <label>Parent Service</label>
-                   <select class="form-control" v-model="formData.parentId">
+                 <label>Parent Service</label>
+                 <select class="form-control" v-model="formData.parentId">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -14,39 +14,66 @@
 
             <div class="form-group">
               <label>Service Name</label>
-              <input type="text" name="service name" v-validate="'required'" class="form-control" placeholder="Enter service name" v-model="formData.serviceName" :class="['form-group' , errorBag.first('service name') ? 'is-invalid' : '']" >
+              <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.serviceName" v-validate="'required'" >
           </div>
 
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group radio-group-row">
-                    <label>Is Featured?</label>
+                    <label>Is Service Navigation?</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" v-model="formData.isFeatured">
+                      <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.isDisplayServiceNav">
                       <label class="form-check-label" for="inlineRadio1">Yes</label>
                   </div>
                   <div class="form-check form-check-inline">
-                      <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0" v-model="formData.isFeatured">
-                      <label class="form-check-label" for="inlineRadio1">No</label>
+                      <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio5" value="0" v-model="formData.isDisplayServiceNav">
+                      <label class="form-check-label" for="inlineRadio5">No</label>
                   </div>
               </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group radio-group-row">
-                <label>Hero Navigation?</label>
+                <label>Is Footer Navigation?</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="1" v-model="formData.isHeroNavigation">
+                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.isDisplayFooterNav">
                   <label class="form-check-label" for="inlineRadio2">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3" value="0" v-model="formData.isHeroNavigation">
-                  <label class="form-check-label" for="inlineRadio2">No</label>
+                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio6" value="0" v-model="formData.isDisplayFooterNav">
+                  <label class="form-check-label" for="inlineRadio6">No</label>
               </div>
           </div>
       </div>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group radio-group-row">
+            <label>Is Featured?</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.isFeatured">
+              <label class="form-check-label" for="inlineRadio3">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.isFeatured">
+              <label class="form-check-label" for="inlineRadio7">No</label>
+          </div>
+      </div>
   </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group radio-group-row">
+        <label>Display Banner?</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
+          <label class="form-check-label" for="inlineRadio4">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+          <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.isDisplayBanner">
+          <label class="form-check-label" for="inlineRadio8">No</label>
+      </div>
+  </div>
+</div>
 
-  <div class="form-group">
+</div>
+
+<div class="form-group">
     <label>Description</label>
     <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.serviceDescription" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
 </div>
@@ -61,7 +88,7 @@
 
 <div class="form-group">
     <label>URL</label>
-    <input type="text" class="form-control" placeholder="Enter url" name="" v-model="formData.urlPrefix" name="url" v-validate="'required|url'" :class="['form-group' , errorBag.first('url') ? 'is-invalid' : '']">
+    <input type="text" placeholder="Enter url" name="" v-model="formData.urlPrefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']">
 </div>
 </form>
 
@@ -94,7 +121,6 @@
                     serviceName: '',
                     serviceDescription: '',
                     isFeatured: 0,
-                    isHeroNavigation: 0,
                     images: [
                     {
                         'name': '', 
@@ -103,9 +129,10 @@
                     ],
                     urlPrefix: '',
                     status: 1,
-                    isDisplayBanner: 1,
-                    isDisplayServiceNav: 1,
-                    isDisplayFooterNav: 1,
+                    isDisplayBanner: 0,
+                    isDisplayServiceNav: 0,
+                    isDisplayFooterNav: 0,
+
                 },
                 emailaddress: 'arsalan@cygnismedia.com',
                 fullname: 'Arsalan Akhtar',
@@ -123,18 +150,17 @@
                     serviceName: '',
                     serviceDescription: '',
                     isFeatured: 0,
-                    isHeroNavigation: 0,
                     images: [
                     {
                         'name': '', 
-                        'original_name': ''
+                        'original_name': '',
                     }
                     ],
                     urlPrefix: '',
                     status: 1,
-                    isDisplayBanner: 1,
-                    isDisplayServiceNav: 1,
-                    isDisplayFooterNav: 1,
+                    isDisplayBanner: 0,
+                    isDisplayServiceNav: 0,
+                    isDisplayFooterNav: 0,
 
                 };
                 setTimeout(function () {
@@ -164,6 +190,7 @@
                 var allServices = this.$store.getters.getAllServices;
                 // filter only services
                 this.services = _.filter(allServices, { parent_id: null});
+                this.errorBag.clear();
             },
             hideModal () {
                 var self = this;
@@ -197,12 +224,33 @@
               var self = this;    
               var image = new Image();
               var reader = new FileReader();
-              self.formData.images[0].original_name = file.name;
               reader.onload = (e) => {
-                self.formData.images[0].name = e.target.result;
                 self.image = e.target.result;
             };
             reader.readAsDataURL(file);
+            this.onUpload(file);
+        },
+        onUpload(file) {
+            var self = this;
+            let url = "api/file/upload";
+
+            var data = new FormData();
+            data.append('key', 'service');
+            data.append('file', file);
+
+            this.$http.post(url, data).then(response => {
+                response = response.data;
+                self.formData.images[0].name = response.name;
+                self.formData.images[0].original_name = response.original_name;
+
+            }).catch(error => {
+                error = error.response.data;
+                let errors = error.errors;
+                _.forEach(errors, function(value, key) {
+                    self.errorMessage =  errors[key][0];
+                    return false;
+                });
+            });
         },
         onSubmit() {
             var self = this;
@@ -216,7 +264,6 @@
             data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
             data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
             data.append('is_featured', self.formData.isFeatured);
-            data.append('is_hero_nav', self.formData.isHeroNavigation);
             data.append('url_prefix', self.formData.urlPrefix);
             data.append('parent_id', self.formData.parentId);
             data.append('status', self.formData.status);
@@ -262,13 +309,14 @@
                 let url = this.url+"/"+this.list.id;
 
                 var data = new FormData();
+                
+                data.append('_method', 'put');
                 data.append('title', self.formData.serviceName);
                 data.append('description', self.formData.serviceDescription);
                 data.append('is_display_banner', self.formData.isDisplayBanner);
                 data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
                 data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
                 data.append('is_featured', self.formData.isFeatured);
-                data.append('is_hero_nav', self.formData.isHeroNavigation);
                 data.append('url_prefix', self.formData.urlPrefix);
                 data.append('parent_id', self.formData.parentId);
                 data.append('status', self.formData.status);
@@ -320,14 +368,13 @@
             },
             isUpdate(value) {
                 this.isUpdate = value;
-                var img = JSON.parse(this.list.images);
+                var img = this.list.images;
                 if(this.isUpdate) {
                     this.formData = {
                         parentId: this.list.parent_id? this.list.parent_id : "",
                         serviceName: this.list.title,
                         serviceDescription: this.list.description,
                         isFeatured: this.list.is_featured,
-                        isHeroNavigation: this.list.is_hero_nav,
                         images: [
                         {
                             'name': img[0].name, 
@@ -340,8 +387,7 @@
                         isDisplayServiceNav: this.list.is_display_service_nav,
                         isDisplayFooterNav: this.list.is_display_footer_nav
                     };
-
-                    this.image = img[0].original_name;
+                    this.image = img[0].upload_url;
                     this.file = img[0].original_name;
                 }
             }

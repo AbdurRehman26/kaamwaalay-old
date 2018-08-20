@@ -57,7 +57,6 @@ const providerStatuses = [
     key :'rejected',
     value : 'Rejected'
 },
-
 {
     key :'banned',
     value : 'Banned'
@@ -76,11 +75,11 @@ const adminStatuses = [
 ];
 const accessLevelField = [
 {
-    key : 'full',
+    key : '1',
     value : 'Full'
 },
 {
-    key : 'reviewOnly',
+    key : '4',
     value : 'Review'
 }
 ];
@@ -105,6 +104,9 @@ Vue.filter('jobStatus', function (value) {
 
 Vue.filter('jobType', function (value) {
 
+    if(!value){
+        return ;
+    }
 
     let obj = _.find(jobTypes, item =>{
         if(item.key == value.job_type){
@@ -115,6 +117,10 @@ Vue.filter('jobType', function (value) {
 });
 
 Vue.filter('userStatus', function (value) {
+    if(!value){
+        return;
+    }
+
 
     let obj = _.find(providerStatuses, item =>{
         if(item.key == value.status){
@@ -128,25 +134,6 @@ Vue.filter('formatDate', function(value) {
     if (value) {
         return moment(String(value)).format('MMMM DD,YYYY')
     }
-});
-
-Vue.filter('adminStatus', function (value) {
-
-    let obj = _.find(adminStatuses, item =>{
-        if(item.key == value.status){
-            return item; 
-        }
-    });
-
-    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
-});
-Vue.filter('accessLevel', function (value) {
-    let obj = _.find(accessLevelField, item =>{
-        if(item.key == value.access_level){
-            return item; 
-        }
-    });
-    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
 });
 
 Vue.filter('fullName', function (value) {
@@ -181,3 +168,60 @@ Vue.filter('childOrParentService', function (value) {
 
     return value.parent.title;
 });
+
+Vue.filter('adminStatus', function (value) {
+
+    let obj = _.find(adminStatuses, item =>{
+        if(item.key == value.status){
+            return item; 
+        }
+    });
+
+    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+
+Vue.filter('accessLevel', function (value) {
+    let obj = _.find(accessLevelField, item =>{
+        if(item.key == value.role_id){
+            return item; 
+        }
+    });
+    return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+
+
+Vue.filter('phoneNumber', function (value) {
+    if(value) {
+        return 'tel:+'+value.phone_number;
+    }
+});
+
+Vue.filter('disableProfileStatusButton', function (value) {
+    if(!value){
+        return false;
+    }
+
+    if(value == 'rejected' ||  value == 'approved') {
+        return true;
+    }
+
+    return false;
+});
+
+Vue.filter('mainServiceOrChildService', function (value) {
+    var serviceHtml = '';
+
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        serviceHtml =   value.parent.title + ' >> ' + value.title ;
+    }else{
+        serviceHtml = value.title;
+
+    }
+
+    return serviceHtml;
+});
+

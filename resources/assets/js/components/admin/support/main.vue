@@ -6,7 +6,8 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-               <SearchField @search="onSearch" :searchValue="search"></SearchField>
+                <label>Search</label>
+                <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
              </div>
            </div>
            <div class="col-xs-12 col-md-3 datepicker-field">
@@ -19,7 +20,7 @@
            </div>
          </div>                           
          <div class="col-xs-12 col-md-2">
-          <button class="btn btn-primary filter-btn-top-space" @click="onApply">
+          <button class="btn btn-primary filter-btn-top-space" @click="onApply" :class="[loading  ? 'show-spinner' : '']">
             <span>Apply</span>
             <loader></loader>
           </button>
@@ -40,8 +41,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="list in listing" v-if="listing.length">
-
+            <tr v-for="list in listing" v-if="listing.length && !loadingStart">
               <td> {{ list.name }} </td>
               <td> {{ list.email }} </td>
               <td> {{ list.role.title }} </td>
@@ -54,6 +54,7 @@
             </tr>
           </tbody>
         </table>
+          <block-spinner v-if="loadingStart"></block-spinner>
           <no-record-found v-if="!listing.length && showNoRecordFound"></no-record-found>
       </div>
     </div>
@@ -68,14 +69,14 @@
     </div>
 
     <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-      <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="2"></b-pagination>
+      <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
     </div>
       <!--<div class="pagination-wrapper float-right">
           <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
         </div>-->
       </div>
     </div>
-    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportdetailpopup" ></support-detail>
+    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportdetailpopup"></support-detail>
   </div>
 </template>
 
@@ -99,6 +100,8 @@
         selectedInquiry: '',
         isUpdate: false,
         roles: {},
+        loading: false,
+        loadingStart: true,
       }
     },
 
@@ -121,16 +124,13 @@
         this.supportdetailpopup = false;
       },
       onApply() {
-
+        this.loading = true;
+        this.loadingStart = true;
         var data = {
           search : this.search,
           filter: this.filter_by_inquiry
         };
         this.getList(data, false);
-        this.search = "";
-      },
-      onSearch(val) {
-        this.search = val;
       },
       SupportDetail(list) {
         this.selectedInquiry = list;
@@ -169,7 +169,7 @@
       }
 
       self.$http.get(url).then(response => {
-        response = response.data.response;
+        response = response.data.response.data;
         self.listing = response.data;
         self.totalServicesCount = response.inquiry_count;
         
@@ -178,6 +178,8 @@
         if (!self.listing.length) {
           self.showNoRecordFound = true;
         }
+        self.loading = false;
+        self.loadingStart = false;
         successCallback(true);
 
       }).catch(error=>{
@@ -209,7 +211,6 @@
   },
 
   mounted(){
-
     this.getList(false, false);
     this.getRoles(false, false);
   },

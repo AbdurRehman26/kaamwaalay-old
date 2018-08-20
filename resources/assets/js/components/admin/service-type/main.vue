@@ -7,7 +7,8 @@
           <div class="row">
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-                <SearchField @search="onSearch" :searchValue="search"></SearchField>
+                <label>Search</label>
+                <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
               </div>
             </div>
             <div class="col-xs-12 col-md-2 datepicker-field">
@@ -21,7 +22,7 @@
              </div>
            </div>                            
            <div class="col-xs-12 col-md-2">
-            <button class="btn btn-primary filter-btn-top-space" @click="onApply">
+            <button class="btn btn-primary filter-btn-top-space" @click="onApply" :class="[loading  ? 'show-spinner' : '']">
               <span>Apply</span>
               <loader></loader>
             </button>
@@ -44,17 +45,15 @@
               <th>Service</th>
               <th>Sub Service</th>
               <th class="text-center">Is Featured</th>
-              <th class="text-center">Hero Navigation</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(list, index) in listing" v-if="listing.length">
+            <tr v-for="(list, index) in listing" v-if="listing.length && !loadingStart">
               <td>{{(index + 1)}}</th>
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
                 <td class="text-center">{{list.is_featured? "YES":"NO"}}</td>
-                <td class="text-center">{{list.is_hero_nav? "YES":"NO"}}</td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i v-b-tooltip.hover title="View Details" @click="ViewDetails(list, index)" class="icon-eye"></i>
@@ -65,6 +64,7 @@
               </tr>
             </tbody>
           </table>
+          <block-spinner v-if="loadingStart"></block-spinner>
           <no-record-found v-if="!listing.length && showNoRecordFound"></no-record-found>
         </div>
       </div>
@@ -109,6 +109,8 @@
        selectedService: '',
        isUpdate: false,
        list: {},
+       loading: false,
+       loadingStart: true,
      }
    },
    watch : {
@@ -127,18 +129,16 @@
   },
   methods: {
     onApply() {
+      this.loadingStart = true;
+      this.loading = true;
       var data = {
         search : this.search,
         filter: this.filter_by_featured
       };
       this.getList(data, false);
-      this.search = "";
     },
     onDelete(itemId) {
       alert(itemId);
-    },
-    onSearch(val) {
-      this.search = val;
     },
     AddService(){
       this.isUpdate = false;
@@ -211,6 +211,8 @@
         if (!self.listing.length) {
           self.showNoRecordFound = true;
         }
+        self.loading = false;
+        self.loadingStart = false;
         successCallback(true);
 
       }).catch(error=>{

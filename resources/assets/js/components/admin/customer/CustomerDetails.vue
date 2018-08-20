@@ -2,22 +2,6 @@
 <div class="panel-inner">
             <div class="main-detail-content">
 
-<!--                 <div class="basic-details">
-                    <div class="provider-image user-img" style="background-image: url(/images/dummy/profile-image.jpg)">
-                    </div>
-                    <h2 class="page-title">Lisa David</h2>
-                    <div class="addition-info">
-                        <ul>
-                            <li><i class="icon-envelope2"></i><a href="mailto:Chester_Kris15@gmail.com">Chester_Kris15@gmail.com</a></li>
-                            <li><i class="icon-address-book"></i><a href="tel:+923214325323">+923214325323</a></li>
-                            <li><i class="icon-credit-card"></i><span>$10000</span></li>
-                            <li><i class="icon-checkmark"></i><span>40</span></li>
-                            <li><i class="icon-user-tie"></i><span>May 25 2018</span></li>
-                        </ul>
-                    </div>
-                </div> -->
-
-
                 <div class="provider-detail">
 
                           <div class="col-xs-12">
@@ -29,9 +13,7 @@
                     <!-- Basic Detail -->
  
                         <div class="col-xs-12 block-area">
-<!--                             <div class="customer-detail-title">
-                                <h4 class="page-title">Basic Detail</h4>
-                            </div> -->
+
                             <div class="view-details-list">
                                 <b-row>
                                     <b-col class="text-right fixed-label">
@@ -105,7 +87,7 @@
                                         <p><strong class="title-head">Avg. Rating</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <star-rating :star-size="20" read-only :rating="customerDetail.avg_rating" active-color="#8200ff"></star-rating>
+                                        <star-rating :star-size="20" :increment="0.02" read-only :rating="customerDetail.avg_rating" active-color="#8200ff"></star-rating>
                                     </b-col>
                                 </b-row>                                                                                                 
                                 <b-row>

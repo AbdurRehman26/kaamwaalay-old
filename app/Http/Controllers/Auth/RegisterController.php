@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Data\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
 class RegisterController extends Controller
 {
     /*
@@ -54,8 +56,8 @@ class RegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'role_id' => 'required|exists:roles,id',
+            'password' => 'required|string|min:8|max:25',
+            'role_id' => ['required', Rule::exists('roles','id')->where('can_register', 1)],
             'social_account_id' => 'nullable',
             'social_account_type' => 'nullable|in:facebook',
         ]);
@@ -78,6 +80,8 @@ class RegisterController extends Controller
             'social_account_id' => (!empty($data['social_account_id']))?$data['social_account_id']:null,
             'social_account_type' => (!empty($data['social_account_type']))?$data['social_account_type']:null,
             'activation_key' => Hash::make(Carbon::now()),
+
+            'status' => 'pending',
         ]);
     }
 
@@ -91,7 +95,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
    
-        $output = ['response' => ['data' => [],'message'=>trans('auth.registered')]];
+        $output = ['response' => ['data' => $user,'message'=>trans('auth.registered')]];
 
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);

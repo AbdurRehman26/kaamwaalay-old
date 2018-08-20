@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Events\NewPasswordSet;
+use App\Data\Models\Role;
+use Illuminate\Validation\Rule;
 use Validator;
 
 class UserController extends ApiResourceController
 {
     public $_repository;
-    const   PER_PAGE = 50;
+    const   PER_PAGE = 25;
     protected $model;
     public function __construct(UserRepository $repository){
      $this->_repository = $repository;
@@ -71,7 +73,7 @@ public function input($value='')
         'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
         'business_details.years_of_experience', 'business_details.business_type',
         
-        'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role','filter_by_service');
+        'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role','filter_by_service','filter_by_roles');
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
@@ -115,13 +117,12 @@ public function changePassword(Request $request)
      */
     public function store(Request $request)
     {
-        $data = $request->only('first_name','last_name', 'email','role_id','access_level','status');
+        $data = $request->only('first_name','last_name', 'email','role_id','role_id','status');
         $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'role_id' => 'required|exists:roles,id|in:1',
-            'access_level' => 'required|in:full,reviewOnly',
+            'role_id' => ['required', Rule::in(Role::ADMIN,Role::REVIEWER)],
             'status' => 'required|in:active,banned',
         ];
 
@@ -142,7 +143,7 @@ public function changePassword(Request $request)
             $code = 200;
             $output = [
                 'data' => $result,
-                'message' => 'Success',
+                'message' => 'Add Admin successfully',
             ];
         }else{
             $code = 406;
@@ -230,12 +231,44 @@ public function changeStatus(Request $request)
              'message' => $validator->messages()->all(),
          ];
      }else{
-        $result = $this->_repository->changeStatus($data);
+        $result = $this->_repository->updateField($data);
         if($result) {
             $code = 200;
             $output = [
                 'data' => 'Status has been updated successfully.',
                 'message' => 'Status has been updated successfully.',
+            ];
+        }else{
+            $code = 406;
+            $output = [
+                'message' => 'An error occurred',
+            ];
+        }
+    }
+    return response()->json($output, $code);
+  }
+  public function changeAccessLevel(Request $request)
+    {
+        $data = $request->only('role_id','id','user_id');
+        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+        $rules = [
+            'role_id' => ['required', Rule::in(Role::ADMIN,Role::REVIEWER)],
+            'id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id'
+        ];
+        $validator = Validator::make($data,$rules);
+        if ($validator->fails()) {
+         $code = 406;
+         $output = [
+             'message' => $validator->messages()->all(),
+         ];
+     }else{
+        $result = $this->_repository->updateField($data);
+        if($result) {
+            $code = 200;
+            $output = [
+                'data' => 'Access level has been updated successfully.',
+                'message' => 'Access level has been updated successfully.',
             ];
         }else{
             $code = 406;

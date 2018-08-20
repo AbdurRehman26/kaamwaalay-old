@@ -12,31 +12,33 @@
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                             <label>By Business/Individual</label>
-                             <select v-model="search.filter_by_business_type" class="form-control">
-                               <option value="">Select</option>
-                               <option value="business">Business</option>
-                               <option value="individual">Individual</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 datepicker-field">
-                      <div class="form-group">
-                       <label>By Type</label>
-                       <select v-model="search.filter_by_service" class="form-control">
-                         <option value="">Select All</option>
-                         <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                     </select>
+                           <label>By Business/Individual</label>
+                           <select v-model="search.filter_by_business_type" class="form-control">
+                             <option value="">Select</option>
+                             <option value="business">Business</option>
+                             <option value="individual">Individual</option>
+                         </select>
+                     </div>
                  </div>
-             </div>
-             <div class="col-xs-12 col-md-2">
-                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                    <span>Apply</span>
-                    <loader></loader>
-                </button>
-            </div>
+                 <div class="col-xs-12 col-md-3 datepicker-field">
+                  <div class="form-group">
+                     <label>By Type</label>
+                     <select v-model="search.filter_by_service" class="form-control">
+                       <option value="">Select All</option>
+                       <option v-for="service in servicesList" :value="service.id">
+                           {{ service  | mainServiceOrChildService}}
+                       </option>
+                   </select>
+               </div>
+           </div>
+           <div class="col-xs-12 col-md-2">
+            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                <span>Apply</span>
+                <loader></loader>
+            </button>
         </div>
     </div>
+</div>
 </div>
 <div class="col-md-12">
     <div class="table-area">
@@ -61,9 +63,9 @@
                         <img  :src="record.imagepath" >
                     </span>
                 </td>
-                <td> <a href="javascript:void(0);" @click="detailreview">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
+                <td> <a href="javascript:void(0);" @click="detailreview(record.id)">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
                 <!-- <td> {{ record.email_address }} </td> -->
-                <td> <span v-for="(service , index) in record.services">{{service.service.title }} 
+                <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
                 <!-- <td> {{ record.contact_number }} </td> -->
@@ -75,7 +77,7 @@
                 </td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                    <i @click="detailreview(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                     <!--  <i class="icon-pencil"></i> -->
                 </div>
             </td>
@@ -135,10 +137,12 @@
     },
     computed : {
         requestUrl(){
+            this.records = [];
+
             return this.url;
         },
         servicesList(){
-            return this.$store.getters.getServicesList;
+            return this.$store.getters.getAllServices;
         },
 
     },
@@ -160,41 +164,35 @@
             this.viewdetails = false;
             this.changeservicestatus = false;   
         },
-        detailreview(){
-            this.$router.push({name: 'Service_Detail_Review'});
+        detailreview(id){
+            this.$router.push({name: 'Service_Detail_Review' , params : {id : id}});
         },
-        profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
-      },
-      startLoading(){
-        this.loading = true;
-    },
-    getRecords(data){
-        let self = this;
-        self.loading = false;
-        self.records = data;
-        self.noRecordFound = false;
+        startLoading(){
+            this.loading = true;
+        },
+        getRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            
+        },
+        searchList(){
+            let url = 'api/service-provider-profile-request?pagination=true';
+            this.url = JSON.parse(JSON.stringify(url));
 
-        if (!self.records.length) {
-            self.noRecordFound = true;
+            Reflect.ownKeys(this.search).forEach(key =>{
+
+                if(key !== '__ob__'){
+                    this.url += '&' + key + '=' + this.search[key];
+                }        
+            });
+
         }
+
     },
-    searchList(){
-        let url = 'api/service-provider-profile-request?pagination=true';
-        this.url = JSON.parse(JSON.stringify(url));
-
-        Reflect.ownKeys(this.search).forEach(key =>{
-
-            if(key !== '__ob__'){
-                this.url += '&' + key + '=' + this.search[key];
-            }        
-        });
-
-    }
-
-},
-components: {
-    StarRating
-},
+    components: {
+        StarRating
+    },
 }
 </script>

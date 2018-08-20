@@ -1,6 +1,6 @@
 <template>
     <div class="panel-inner">
-        <div class="view-job-details main-detail-content">
+        <div v-if="Object.keys(record).length" class="view-job-details main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">
@@ -28,7 +28,11 @@
                                         <p><strong class="title-head">Customer</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">                                        
-                                        <a href="javascript:void(0);">{{record.user | fullName}}</a>
+
+                                        <router-link tag="a" :to="{name: 'customerdetail' , params : {id  : record.user ? record.user.id : 1}}">
+                                            {{ record.user | fullName }}
+                                        </router-link>
+                                        
                                     </b-col>
                                 </b-row>                                                              
                                 <b-row>
@@ -167,8 +171,11 @@
                 StarRating
             },
             methods:{
-                getRecords(data){
-                    this.record = data;
+                getRecords(response){
+                    let self = this;
+                    self.loading = false;
+                    self.record = response.data;
+                    
                 },
                 biddingdetails(id){
                     console.log(id , '13213');

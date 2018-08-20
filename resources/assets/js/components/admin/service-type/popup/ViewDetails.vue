@@ -24,7 +24,7 @@
                         <p><strong class="title-head">Sub-Service</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.title : ""}}</p>
+                        <p>{{selectedService.parent_id? selectedService.title : "-"}}</p>
                     </b-col>
                 </b-row>
 
@@ -42,15 +42,31 @@
                         <p><strong class="title-head">Is Featured?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.parent.is_featured? "YES":"NO"  : selectedService.is_featured? "YES":"NO" }}</p>
+                        <p>{{selectedService.is_featured? "YES":"NO"}}</p>
                     </b-col>
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Is Hero Navigation?</strong></p>
+                        <p><strong class="title-head">Is Display Banner?</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>{{selectedService.parent_id? selectedService.parent.is_hero_nav? "YES":"NO"  : selectedService.is_hero_nav? "YES":"NO" }}</p>
+                        <p>{{selectedService.is_display_banner? "YES":"NO"}}</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Is Display Service Navigation?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>{{selectedService.is_display_service_nav? "YES":"NO"}}</p>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col cols="5" class="">
+                        <p><strong class="title-head">Is Display Footer Navigation?</strong></p>
+                    </b-col>
+                    <b-col cols="7">
+                        <p>{{selectedService.is_display_footer_nav? "YES":"NO"}}</p>
                     </b-col>
                 </b-row>
                        
