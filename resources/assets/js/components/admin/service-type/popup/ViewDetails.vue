@@ -45,7 +45,7 @@
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Display Banner?</strong></p>
+                        <p><strong class="title-head">Display Banner</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p>No</p>
@@ -53,7 +53,7 @@
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Display Service Nav?</strong></p>
+                        <p><strong class="title-head">Display Service Navigation</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p>No</p>
@@ -61,20 +61,13 @@
                 </b-row>
                 <b-row>
                     <b-col cols="5" class="">
-                        <p><strong class="title-head">Display Footer Nav?</strong></p>
+                        <p><strong class="title-head">Display Footer Navigation</strong></p>
                     </b-col>
                     <b-col cols="7">
                         <p>No</p>
                     </b-col>
                 </b-row>
-                <b-row>
-                    <b-col cols="5" class="">
-                        <p><strong class="title-head">Hero Navigation</strong></p>
-                    </b-col>
-                    <b-col cols="7">
-                        <p>Yes</p>
-                    </b-col>
-                </b-row>
+         
                 <b-row>
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Total Service Providers</strong></p>

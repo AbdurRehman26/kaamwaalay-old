@@ -187,8 +187,8 @@
 													<p>{{reviewer.latest_review_description}}</p>
 												</div>
 												<div class="provider-bidding-btn">
-													<a href="javascript:void(0);" class="btn btn-primary">View Profile</a>
-													<a href="javascript:void(0);" class="btn btn-primary">Chat</a>													
+													<a href="javascript:void(0);" @click="showProfile()" class="btn btn-primary">View Profile</a>
+													<a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
 													<a href="javascript:void(0);" @click="AwardJob" v-if="reviewer.job_visited == true" class="btn btn-primary">Award Job</a>
 
 													<a href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
@@ -206,7 +206,7 @@
 							<div class="service-provider" v-if="job_detail_right_panel == 'awarded'">
 								<a href="javascript:void(0);" class="btn btn-primary btn-outline"><i class="icon-trophy"></i> Job Awarded</a>					
 								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-checkmark2"></i> Mark Done</a>					
-								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>					
+								<a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>					
 								<a href="javascript:void(0);" class="btn btn-cancel-job disable"><i class="icon-folder"></i> Archive</a>								
 							</div>
 
@@ -214,25 +214,25 @@
 							<div class="service-provider" v-else-if="job_detail_right_panel == 'serviceprovider'">
 														
 								<a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
-								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
+								<a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
 								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 							</div>
 
 							<div class="service-provider" v-else-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend'">
 														
 								<a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
-								<a href="javascript:void(0);" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
+								<a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
 								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 							</div>							
 
 							<div class="service-provider" v-else>
 								<div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
-									<h3>Find & invite service providers to bid on your job.</h3>
+									<h3>Find &amp; invite service providers to bid on your job.</h3>
 									<p>14 service providers available around you related to concrete flooring.</p>
-									<a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find & Invite</a>				
+									<a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
 								</div>						
 								<a href="javascript:void(0);" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Cancel Job</a>								
+								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 							</div>
 
 							
@@ -244,7 +244,8 @@
 			<award-job-popup @HideModalValue="HideModal" :showModalProp="awardjob"></award-job-popup>
 			<visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 			<go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-			<post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>			
+			<post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
+			<chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>			
 	</div>
 	<!-- <p>{{job_detail_right_panel}}</p> -->
 	</div>
@@ -261,6 +262,7 @@ export default {
     	visitjob: false,
     	visitpopup: false,
     	bidpopup: false,
+    	isShowing:false,
     	jobimage: '/images/front/explore/concret.png',
     	job_detail_right_panel: this.$route.params.id,
     	reviewerimage: '/images/front/storage/personimage1.png',
@@ -388,7 +390,16 @@ export default {
             this.visitjob = false;
             this.visitpopup = false;
             this.bidpopup = false;
-        },        
+        },
+		showchatpanel(){
+		    this.isShowing=true;
+		},
+		CloseDiscussion(){
+		    this.isShowing=false;
+		},
+		showProfile(){
+			this.$router.push({name: 'Explore_Detail'});
+		}                
 
     },
     components: {

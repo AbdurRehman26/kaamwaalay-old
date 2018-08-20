@@ -3190,6 +3190,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //   console.log(this.form);
     //   this.$router.push({ name: 'dashboard'});
     // },
+    MyBids: function MyBids() {
+      this.$router.push('my-bids');
+    }
   }
 });
 
@@ -3493,6 +3496,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -3650,6 +3656,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -3765,6 +3774,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/awarded');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -3897,6 +3909,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -4045,6 +4060,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push('/job-details/serviceprovider');
+		},
+		showProfile: function showProfile() {
+			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
 	components: {
@@ -4104,6 +4122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -4111,7 +4130,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             bid_selection: 'activebid',
-            bidpopup: false
+            bidpopup: false,
+            isShowing: false
         };
     },
 
@@ -4135,6 +4155,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         servicedetail: function servicedetail() {
             this.$router.push({ name: 'job-details' });
+        },
+        showchatpanel: function showchatpanel() {
+            this.isShowing = true;
+        },
+        CloseDiscussion: function CloseDiscussion() {
+            this.isShowing = false;
         }
     },
     components: {
@@ -5401,6 +5427,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		HideModal: function HideModal() {
 			this.categoryval = false;
+		},
+		ServiceProviderPage: function ServiceProviderPage() {
+			this.$router.push('/explore/service_provider');
 		}
 	}
 });
@@ -6250,6 +6279,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6504,6 +6537,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         CloseDiscussion: function CloseDiscussion() {
             this.isShowing = false;
+        },
+        showProfile: function showProfile() {
+            this.$router.push({ name: 'Explore_Detail' });
         }
     },
     components: {
@@ -6784,6 +6820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -6794,6 +6831,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             visitjob: false,
             visitpopup: false,
             bidpopup: false,
+            isShowing: false,
             jobimage: '/images/front/explore/concret.png',
             job_detail_right_panel: this.$route.params.id,
             reviewerimage: '/images/front/storage/personimage1.png',
@@ -6900,6 +6938,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.visitjob = false;
             this.visitpopup = false;
             this.bidpopup = false;
+        },
+        showchatpanel: function showchatpanel() {
+            this.isShowing = true;
+        },
+        CloseDiscussion: function CloseDiscussion() {
+            this.isShowing = false;
+        },
+        showProfile: function showProfile() {
+            this.$router.push({ name: 'Explore_Detail' });
         }
     },
     components: {
@@ -7690,6 +7737,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7697,6 +7745,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             headerBanner: 'images/front/banners/home.jpg'
         };
+    },
+
+    methods: {
+        SignUp: function SignUp() {
+            this.$router.push('explore/service_provider');
+        }
     }
 });
 
@@ -7770,6 +7824,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__ = __webpack_require__("./node_modules/vue2-datepicker/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_datepicker__);
+//
+//
 //
 //
 //
@@ -8169,27 +8225,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-		data: function data() {
-				remind: null;
-				return {
-						tabval: 'firstsec',
-						type: 'customer',
-						mainNav: 'true'
-				};
-		},
+	data: function data() {
+		remind: null;
+		return {
+			tabval: 'firstsec',
+			type: 'customer',
+			mainNav: 'true'
+		};
+	},
 
-		methods: {
-				switchType: function switchType(type) {
-						var result = [];
-						if (this.type === 'customer') {
-								this.$router.push('profile');
-						}
-						if (this.type === 'provider') {
-								this.$router.push('apply-for-review');
-						}
-						return result;
-				}
+	methods: {
+		switchType: function switchType(type) {
+			var result = [];
+			if (this.type === 'customer') {
+				this.$router.push('profile');
+			}
+			if (this.type === 'provider') {
+				this.$router.push('apply-for-review');
+			}
+			return result;
 		}
+	}
 });
 
 /***/ }),
@@ -67529,14 +67585,15 @@ var staticRenderFns = [
           _c("div", { staticClass: "form-group" }, [
             _c("label", [_vm._v("Select Service")]),
             _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "Carpanter - General Carpentry",
-                placeholder: "Carpanter - General Carpentry"
-              }
-            })
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { disabled: "" } }, [
+                _vm._v("Select Service Type")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { selected: "" } }, [
+                _vm._v("Carpenter - General Carpentry")
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -67876,9 +67933,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -68981,9 +69047,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -69310,7 +69385,7 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "profile-form-section" }, [
+      _c("div", { staticClass: "profile-form-section apply-review-sec" }, [
         _c("div", { staticClass: "form-signup" }, [
           _c("form", [
             _c(
@@ -69328,21 +69403,62 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._m(5),
-            _vm._v(" "),
-            _vm._m(6),
+            _c("div", { staticClass: "business-detail" }, [
+              _c("div", { staticClass: "row" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("DUNS Number "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "b-tooltip",
+                              rawName: "v-b-tooltip.hover",
+                              modifiers: { hover: true }
+                            }
+                          ],
+                          staticClass: "duns-help-icon",
+                          attrs: {
+                            title: "This is required for business verification"
+                          }
+                        },
+                        [_c("i", { staticClass: "icon-help" })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "DUNS number for verification (optional)"
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6)
+            ]),
             _vm._v(" "),
             _vm._m(7),
             _vm._v(" "),
+            _vm._m(8),
+            _vm._v(" "),
+            _vm._m(9),
+            _vm._v(" "),
             _c("div", { staticClass: "account-fee" }, [
-              _vm._m(8),
+              _vm._m(10),
               _vm._v(" "),
-              _vm._m(9),
+              _vm._m(11),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _vm._m(10),
+                _vm._m(12),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
@@ -69401,7 +69517,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(11)
+              _vm._m(13)
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "submit-approval-btn" }, [
@@ -69413,7 +69529,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(12)
+            _vm._m(14)
           ])
         ])
       ])
@@ -69465,11 +69581,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control",
-            attrs: {
-              type: "text",
-              value: "Arsalan",
-              placeholder: "Enter your first name"
-            }
+            attrs: { type: "text", placeholder: "Enter your first name" }
           })
         ])
       ]),
@@ -69480,11 +69592,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control",
-            attrs: {
-              type: "text",
-              value: "Akhtar",
-              placeholder: "Enter your last name"
-            }
+            attrs: { type: "text", placeholder: "Enter your last name" }
           })
         ])
       ])
@@ -69503,7 +69611,6 @@ var staticRenderFns = [
             staticClass: "form-control",
             attrs: {
               type: "text",
-              value: "arsalan@cygnismedia.com",
               placeholder: "Enter your first email address"
             }
           })
@@ -69529,76 +69636,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "business-detail" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [
-              _vm._v("Are you an individual or a business?")
-            ]),
-            _vm._v(" "),
-            _c("select", { staticClass: "form-control" }, [
-              _c("option", { attrs: { disabled: "" } }, [
-                _vm._v("Select Business")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { selected: "" } }, [_vm._v("Business")])
-            ])
-          ])
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [
+          _vm._v("Are you an individual or a business?")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("DUNS Number")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                placeholder: "DUNS number for verification (optional)"
-              }
-            })
-          ])
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", { attrs: { disabled: "" } }, [
+            _vm._v("Select Business")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { selected: "" } }, [_vm._v("Business")]),
+          _vm._v(" "),
+          _c("option", { attrs: { selected: "" } }, [_vm._v("Individual")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Business Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "password", placeholder: "Enter business name" }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Business Name")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "password", placeholder: "Enter business name" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("Working since")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "password", placeholder: "e.g. June 2010" }
-            })
-          ])
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Working since")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "password", placeholder: "e.g. June 2010" }
+          })
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "" } }, [_vm._v("About")]),
-            _vm._v(" "),
-            _c("textarea", {
-              staticClass: "form-control",
-              attrs: {
-                rows: "2",
-                placeholder: "Start typing about your business / profile info"
-              }
-            })
-          ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("About")]),
+          _vm._v(" "),
+          _c("textarea", {
+            staticClass: "form-control",
+            attrs: {
+              rows: "2",
+              placeholder: "Start typing about your business / profile info"
+            }
+          })
         ])
       ])
     ])
@@ -69706,11 +69805,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "4695 Chabot Dr. Suite 200,",
-                placeholder: "4695 Chabot Dr. Suite 200,"
-              }
+              attrs: { type: "text", placeholder: "Enter your address" }
             })
           ])
         ]),
@@ -69721,10 +69816,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: {
-                type: "text",
-                placeholder: "Enter apartment, suite, unit (optional)"
-              }
+              attrs: { type: "text", placeholder: "Enter apartment details" }
             })
           ])
         ])
@@ -69737,11 +69829,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: {
-                type: "text",
-                value: "Pleasanton",
-                placeholder: "Pleasanton"
-              }
+              attrs: { type: "text", placeholder: "Enter your city" }
             })
           ])
         ]),
@@ -69751,7 +69839,11 @@ var staticRenderFns = [
             _c("label", [_vm._v("State")]),
             _vm._v(" "),
             _c("select", { staticClass: "form-control" }, [
-              _c("option", { attrs: { selected: "" } }, [_vm._v("CA")]),
+              _c("option", { attrs: { disabled: "", selected: "" } }, [
+                _vm._v("Enter your State")
+              ]),
+              _vm._v(" "),
+              _c("option", [_vm._v("CA")]),
               _vm._v(" "),
               _c("option", [_vm._v("NW")]),
               _vm._v(" "),
@@ -69768,7 +69860,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("input", {
               staticClass: "form-control",
-              attrs: { type: "text", value: "94588" }
+              attrs: { type: "text", placeholder: "Enter your zip code" }
             })
           ])
         ])
@@ -69834,11 +69926,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Enter your credit card number",
-            value: "Enter your credit card number"
-          }
+          attrs: { type: "text", placeholder: "Enter your credit card number" }
         })
       ])
     ])
@@ -70289,7 +70377,7 @@ var staticRenderFns = [
       _c(
         "a",
         {
-          staticClass: "btn btn-primary post-job-btn",
+          staticClass: "btn btn-primary post-job-btn btn-md",
           attrs: { href: "/job-post" }
         },
         [_vm._v("Post a Job")]
@@ -70501,7 +70589,10 @@ var render = function() {
                                 _vm._v("Posted By "),
                                 _c(
                                   "a",
-                                  { attrs: { href: "javascript:void(0);" } },
+                                  {
+                                    attrs: { href: "javascript:void(0);" },
+                                    on: { click: _vm.showProfile }
+                                  },
                                   [_vm._v(_vm._s(listing.job_poster))]
                                 )
                               ]),
@@ -70574,11 +70665,7 @@ var render = function() {
                           "a",
                           {
                             attrs: { href: "javascript:void(0);" },
-                            on: {
-                              click: function($event) {
-                                _vm.$emit("changebid")
-                              }
-                            }
+                            on: { click: _vm.ChangeBid }
                           },
                           [_vm._v("Change Bid")]
                         )
@@ -70724,7 +70811,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "category-section-search" }, [
-      _c("h2", [_vm._v("General Carpentry Jobs in New York, NY")])
+      _c("h1", { staticClass: "m-b-0" }, [
+        _vm._v("General Carpentry Jobs in New York, NY")
+      ])
     ])
   },
   function() {
@@ -70920,7 +71009,7 @@ var render = function() {
                   expression: "bid_selection == 'invitebid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-completed", {
@@ -70932,7 +71021,7 @@ var render = function() {
                   expression: "bid_selection == 'completedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-awarded", {
@@ -70944,7 +71033,7 @@ var render = function() {
                   expression: "bid_selection == 'awardedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-archived", {
@@ -70956,7 +71045,7 @@ var render = function() {
                   expression: "bid_selection == 'archivedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             }),
             _vm._v(" "),
             _c("bid-active", {
@@ -70968,7 +71057,7 @@ var render = function() {
                   expression: "bid_selection == 'activebid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.ChatMessage }
+              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
             })
           ],
           1
@@ -70977,6 +71066,22 @@ var render = function() {
         _c("post-bid-popup", {
           attrs: { showModalProp: _vm.bidpopup },
           on: { HideModalValue: _vm.HideModal }
+        }),
+        _vm._v(" "),
+        _c("chat-panel", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.isShowing,
+              expression: "isShowing"
+            }
+          ],
+          on: {
+            CloseDiscussion: function($event) {
+              _vm.CloseDiscussion()
+            }
+          }
         })
       ],
       1
@@ -71061,9 +71166,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -71426,7 +71540,26 @@ var render = function() {
           _c("div", { staticClass: "content" }, [
             _c("div", { staticClass: "verticle-align" }, [
               _c("div", { staticClass: "inner" }, [
-                _vm._m(0),
+                _c("div", { staticClass: "container element-index" }, [
+                  _c("div", { staticClass: "content-inner md" }, [
+                    _c("h1", { staticClass: "heading-large" }, [
+                      _vm._v(
+                        "Find best skilled service professionals near you."
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: { click: _vm.ServiceProviderPage }
+                      },
+                      [_c("span", [_vm._v("Search")])]
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "element-column-image" }, [
                   _c("img", { attrs: { src: _vm.contentimage } })
@@ -71542,35 +71675,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container element-index" }, [
-      _c("div", { staticClass: "content-inner md" }, [
-        _c("h1", { staticClass: "heading-large" }, [
-          _vm._v("Find best skilled service professionals near you.")
-        ]),
+    return _c("div", { staticClass: "search-filter" }, [
+      _c("input", {
+        staticClass: "form-control lg search-service",
+        attrs: {
+          type: "text",
+          placeholder: "What service do you need?",
+          name: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-zip-code" }, [
+        _c("i", { staticClass: "icon-location" }),
         _vm._v(" "),
-        _c("div", { staticClass: "search-filter" }, [
-          _c("input", {
-            staticClass: "form-control lg search-service",
-            attrs: {
-              type: "text",
-              placeholder: "What service do you need?",
-              name: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "container-zip-code" }, [
-            _c("i", { staticClass: "icon-location" }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control lg zip-code",
-              attrs: { type: "number", placeholder: "Zip code", name: "" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-primary" }, [
-          _c("span", [_vm._v("Search")])
-        ])
+        _c("input", {
+          staticClass: "form-control lg zip-code",
+          attrs: { type: "number", placeholder: "Zip code", name: "" }
+        })
       ])
     ])
   },
@@ -72983,10 +73104,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c(
                 "a",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { href: "javascript:void(0);" }
-                },
+                { staticClass: "btn btn-primary", attrs: { href: "/sign-up" } },
                 [_vm._v("Sign up today")]
               )
             ])
@@ -73550,10 +73668,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "a",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { href: "javascript:void(0);" }
-            },
+            { staticClass: "btn btn-primary", attrs: { href: "/explore" } },
             [_vm._v("Explore Now")]
           )
         ])
@@ -73628,6 +73743,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("star-rating", {
                           attrs: {
+                            increment: 0.5,
                             "star-size": 20,
                             rating: 3,
                             "active-color": "#8200ff"
@@ -73944,9 +74060,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -74109,9 +74234,18 @@ var render = function() {
                 _c("div", { staticClass: "jobs-done" }, [
                   _c("span", { staticClass: "job-poster" }, [
                     _vm._v("Posted By "),
-                    _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                      _vm._v(_vm._s(listing.job_poster))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:void(0);" },
+                        on: {
+                          click: function($event) {
+                            _vm.showProfile()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(listing.job_poster))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "job-category noborder" }, [
@@ -75344,14 +75478,9 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-primary apply-primary-color",
+              staticClass: "btn btn-primary apply-primary-color btn-lg",
               attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.onSubmit($event)
-                }
-              }
+              on: { click: _vm.MyBids }
             },
             [_c("span", [_vm._v("Log In")]), _vm._v(" "), _c("loader")],
             1
@@ -75467,10 +75596,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c(
               "a",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { href: "javascript:void(0);" }
-              },
+              { staticClass: "btn btn-primary", attrs: { href: "/sign-up" } },
               [_vm._v("Get Started")]
             )
           ])
@@ -76269,6 +76395,11 @@ var render = function() {
                                               staticClass: "btn btn-primary",
                                               attrs: {
                                                 href: "javascript:void(0);"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.showProfile()
+                                                }
                                               }
                                             },
                                             [_vm._v("View Profile")]
@@ -76280,6 +76411,11 @@ var render = function() {
                                               staticClass: "btn btn-primary",
                                               attrs: {
                                                 href: "javascript:void(0);"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.showchatpanel()
+                                                }
                                               }
                                             },
                                             [_vm._v("Chat")]
@@ -76333,9 +76469,24 @@ var render = function() {
                         _vm._v(" "),
                         _vm._m(9, true),
                         _vm._v(" "),
-                        _vm._m(10, true),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { href: "javascript:void(0);" },
+                            on: {
+                              click: function($event) {
+                                _vm.showchatpanel()
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-message" }),
+                            _vm._v(" Chat")
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._m(11, true)
+                        _vm._m(10, true)
                       ])
                     : _vm.job_detail_right_panel == "serviceprovider"
                       ? _c("div", { staticClass: "service-provider" }, [
@@ -76352,9 +76503,24 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(12, true),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { href: "javascript:void(0);" },
+                              on: {
+                                click: function($event) {
+                                  _vm.showchatpanel()
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-message" }),
+                              _vm._v(" Chat")
+                            ]
+                          ),
                           _vm._v(" "),
-                          _vm._m(13, true)
+                          _vm._m(11, true)
                         ])
                       : _vm.job_detail_right_panel ==
                           "service-provider-customer-end" ||
@@ -76374,9 +76540,24 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(14, true),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { href: "javascript:void(0);" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.showchatpanel()
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "icon-message" }),
+                                _vm._v(" Chat")
+                              ]
+                            ),
                             _vm._v(" "),
-                            _vm._m(15, true)
+                            _vm._m(12, true)
                           ])
                         : _c("div", { staticClass: "service-provider" }, [
                             _c(
@@ -76426,7 +76607,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(16, true)
+                            _vm._m(13, true)
                           ])
                 ])
               ])
@@ -76451,6 +76632,22 @@ var render = function() {
           _c("post-bid-popup", {
             attrs: { showModalProp: _vm.bidpopup },
             on: { HideModalValue: _vm.HideModal }
+          }),
+          _vm._v(" "),
+          _c("chat-panel", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isShowing,
+                expression: "isShowing"
+              }
+            ],
+            on: {
+              CloseDiscussion: function($event) {
+                _vm.CloseDiscussion()
+              }
+            }
           })
         ],
         1
@@ -76597,19 +76794,6 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
         staticClass: "btn btn-cancel-job disable",
         attrs: { href: "javascript:void(0);" }
       },
@@ -76623,36 +76807,10 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
         staticClass: "btn btn-cancel-job",
         attrs: { href: "javascript:void(0);" }
       },
       [_c("i", { staticClass: "icon-folder" }), _vm._v(" Archive")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [_c("i", { staticClass: "icon-message" }), _vm._v(" Chat")]
     )
   },
   function() {
@@ -76678,7 +76836,7 @@ var staticRenderFns = [
         staticClass: "btn btn-cancel-job",
         attrs: { href: "javascript:void(0);" }
       },
-      [_c("i", { staticClass: "icon-folder" }), _vm._v(" Cancel Job")]
+      [_c("i", { staticClass: "icon-close2" }), _vm._v(" Cancel Job")]
     )
   }
 ]
@@ -76811,7 +76969,34 @@ var render = function() {
           _c("img", { attrs: { src: _vm.headerBanner } })
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "verticle-align" }, [
+            _c("div", { staticClass: "inner" }, [
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "content-inner" }, [
+                  _c("h1", [
+                    _vm._v("Find the right service provider for the job!")
+                  ]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "banner-hd-sub" }, [
+                    _vm._v("Get expert help to get done almost anything.")
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.SignUp }
+                    },
+                    [_c("span", [_vm._v("Get Started")])]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c("featuredCategories"),
@@ -77005,45 +77190,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "verticle-align" }, [
-        _c("div", { staticClass: "inner" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "content-inner" }, [
-              _c("h1", [
-                _vm._v("Find the right service provider for the job!")
-              ]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "banner-hd-sub" }, [
-                _vm._v("Get expert help to get done almost anything.")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "search-filter" }, [
-                _c("input", {
-                  staticClass: "form-control lg search-service",
-                  attrs: {
-                    type: "text",
-                    placeholder: "What service do you need?",
-                    name: ""
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "container-zip-code" }, [
-                  _c("i", { staticClass: "icon-location" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control lg zip-code",
-                    attrs: { type: "number", placeholder: "Zip code", name: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("span", [_vm._v("Get Started")])
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "search-filter" }, [
+      _c("input", {
+        staticClass: "form-control lg search-service",
+        attrs: {
+          type: "text",
+          placeholder: "What service do you need?",
+          name: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-zip-code" }, [
+        _c("i", { staticClass: "icon-location" }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control lg zip-code",
+          attrs: { type: "number", placeholder: "Zip code", name: "" }
+        })
       ])
     ])
   },
@@ -77261,7 +77424,10 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" Create Account\n\t\t\t\t\t\t"), _c("loader")],
+                      [
+                        _vm._v(" Create Account\n\t\t\t\t\t\t\t\t\t"),
+                        _c("loader")
+                      ],
                       1
                     )
                   ]),
@@ -77287,7 +77453,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
           _vm._v(
-            "\n\t\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t\t"
+            "\n\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t"
           ),
           _c("span", [
             _vm._v("Get introduced to the right professional for your jobs")
@@ -77305,9 +77471,7 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "type_service_provider" } }, [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
-          _vm._v(
-            "\n\t\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t\t"
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t"),
           _c("span", [_vm._v("Respond to customer requests and get hired")]),
           _vm._v(" "),
           _c("i", { staticClass: "icon-checkmark2" })
@@ -77419,10 +77583,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "already-signup" }, [
+    return _c("div", { staticClass: "already-signup login" }, [
       _c("p", [
         _vm._v("Already a member? "),
-        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Log in")])
+        _c("a", { attrs: { href: "/login" } }, [_vm._v("Log In")])
       ])
     ])
   }

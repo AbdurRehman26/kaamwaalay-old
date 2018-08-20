@@ -10,7 +10,7 @@
 							<div class="banner-slogan content-inner">
 								<h1>Your next job is just around the corner</h1>
 								<p>There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work.</p>
-								<a href="javascript:void(0);" class="btn btn-primary">Sign up today</a>
+								<a href="/sign-up" class="btn btn-primary">Sign up today</a>
 							</div>
 						</div>
 					</div>

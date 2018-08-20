@@ -25,7 +25,7 @@
             </div>
             <div class="container">
                <div class="category-section-search">
-                <h2>General Carpentry Jobs in New York, NY</h2>
+                <h1 class="m-b-0">General Carpentry Jobs in New York, NY</h1>
             </div>
 
             <div class="job-post-container section-padd sm">
@@ -40,7 +40,7 @@
                                     <h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
                                     <div class="job-notification">
                                         <div class="jobs-done">
-                                            <span class="job-poster">Posted By <a href="javascript:void(0);">{{ listing.job_poster }}</a></span>
+                                            <span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile">{{ listing.job_poster }}</a></span>
                                             <span class="job-category noborder">{{ listing.job_category }}</span>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                 </p>
                                 <p class="offer">
                                     <i class="icon-work-briefcase"></i>
-                                    Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="$emit('changebid')" href="javascript:void(0);">Change Bid</a>
+                                    Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="ChangeBid" href="javascript:void(0);">Change Bid</a>
                                 </p>
 
                                 <p class="member-since">
@@ -219,14 +219,17 @@ HideModal(){
     this.bidpopup = false;
 },
 servicedetail(){
- this.$router.push('/job-details/serviceprovider');
+    this.$router.push('/job-details/serviceprovider');
 },
 showchatpanel(){
     this.isShowing=true;
 },
 CloseDiscussion(){
     this.isShowing=false;
-}
+},
+showProfile(){
+    this.$router.push({name: 'Explore_Detail'});
+},  
 
 },
 components: {

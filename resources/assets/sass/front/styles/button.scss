@@ -92,6 +92,12 @@
             box-shadow:none !important;
         }
     }
+    &.btn-lg {
+        padding: 10px 63px !important;
+    }
+    &.btn-md {
+        padding: 10px 34px !important;
+    }
 }
 
 .sort_btn {
@@ -172,8 +178,8 @@
 .fb-btn {
     position: relative;
     border-bottom: 1px solid $grey-lite;
-    padding-bottom: 13px;
-    margin-bottom: 25px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
 
     a {
         &.btn {
@@ -196,7 +202,7 @@
         background: #fff;
         left: 46%;
         font-family: $font_medium;
-        top: 66px;
+        top: 74px;
         width: 46px;
         text-align: center;
     }
