@@ -1,6 +1,6 @@
 <template>
     <div class="panel-inner">
-        <div class="view-details-list main-detail-content">
+        <div v-if="Object.keys(records).length" class="view-details-list main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">
@@ -135,7 +135,7 @@
                                         <p><strong class="title-head">Reviewed by</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>{{records.approved_by_user}}</p>    
+                                        <p>{{records.approved_by_user | fullName}}</p>    
                                     </b-col>
                                 </b-row>
                             </div>
@@ -194,7 +194,7 @@
                                         <p><strong class="title-head">Status</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <b-form-select v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
+                                        <b-form-select :disabled="true" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
                                     </b-col>
                                     <b-col>
                                        <!--  <button class="btn btn-primary">
@@ -209,7 +209,7 @@
                                         <p><strong class="title-head">Action</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <button class="btn btn-primary">
+                                        <button :disabled="true" class="btn btn-primary">
                                             <span>Apply</span>
                                             <loader></loader>
                                         </button>                                   
