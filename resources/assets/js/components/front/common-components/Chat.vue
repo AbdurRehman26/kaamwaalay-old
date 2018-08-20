@@ -1,43 +1,28 @@
 <template>
     <div class="discussion-panel">
         <div class="panel-heading">
-            <h3>Discussion</h3>
+            <span class="chat-profile-pic" style="background-image: url('images/dummy/electrician.jpg');"></span>
+            <span class="chat-head-heading">C&N Home Solutions
+                <span class="status online">Available online</span>
+            </span>
             <i class="icon-close2 close-icon" @click="$emit('CloseDiscussion')"></i>
         </div>
         <div class="discussion-content scrollbar style-2">
             <b-list-group>
                 <div class="chat-message" v-for="person in persons">
-                <b-list-group-item>
-                    <span class="profile-pics"  :style="{'background-image': 'url(' + profileImage + ')'}"></span>
-                    <div class="profile-message">
-                        <h5>{{person.name}} <span class="time-date"><i>May 10,</i> 1:12 PM</span></h5>
-                        <p>{{person.desc}}</p>
-                    </div>
-                </b-list-group-item>
+                    <b-list-group-item>
+                        <span class="chat-profile-pic"  :style="{'background-image': 'url(' + profileImage + ')'}"></span>
+                        <div class="profile-message">
+<!--                             <h5>{{person.name}} <span class="time-date"><i>May 10,</i> 1:12 PM</span></h5> -->
+                            <p>{{person.desc}}</p>
+                        </div>
+                    </b-list-group-item>
                 </div>
-
-                <div class="section-separator">
-                    <span>Today</span>
-                </div>
-                <div class="today-message">
-                    <div class="chat-message" v-for="person in persons">
-                        <b-list-group-item>
-                            <span class="profile-pics"  :style="{'background-image': 'url(' + profileImage + ')'}"></span>
-                            <div class="profile-message">
-                                <h5>Ammara Hussain <span class="time-date"><i>May 10,</i> 1:12 PM</span></h5>
-                                <p>
-                                   Before I begin the report, I'd like to get some ideas from you all. How do you feel about rural sales in your sales districts? I suggest we go round the table first to get all of your input.
-                                </p>
-                            </div>
-                        </b-list-group-item>
-                    </div>
-                </div>
-
             </b-list-group>
         </div>
         <div class="panel-footer">
             <textarea class="form-control scroll" placeholder="Start typing your message"></textarea>
-            <span class="icon-circle secondary-color"><i class="icon-comment-icon"></i></span>
+            <span class="icon-circle secondary-color"><i class="icon-send"></i></span>
         </div>
     </div>
 </template>
@@ -46,7 +31,7 @@
     export default{
         data () {
             return{
-                profileImage:'images/image-placeholder.jpg',
+                profileImage:'images/dummy/electrician.jpg',
                 persons : [
                     {
                         id : 0,
