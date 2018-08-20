@@ -136,7 +136,7 @@
                 },
                 emailaddress: 'arsalan@cygnismedia.com',
                 fullname: 'Arsalan Akhtar',
-                image: 'images/dummy/user-pic.jpg',
+                image: 'images/dummy/image-placeholder.jpg',
                 file: null,
                 url: 'api/service',
                 loading: false,
