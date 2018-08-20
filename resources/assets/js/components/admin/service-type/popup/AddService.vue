@@ -242,7 +242,6 @@
                 response = response.data;
                 self.formData.images[0].name = response.name;
                 self.formData.images[0].original_name = response.original_name;
-                console.log(self.formData.images[0], 88898989);
 
             }).catch(error => {
                 error = error.response.data;
@@ -310,6 +309,8 @@
                 let url = this.url+"/"+this.list.id;
 
                 var data = new FormData();
+                
+                data.append('_method', 'put');
                 data.append('title', self.formData.serviceName);
                 data.append('description', self.formData.serviceDescription);
                 data.append('is_display_banner', self.formData.isDisplayBanner);
@@ -368,7 +369,6 @@
             isUpdate(value) {
                 this.isUpdate = value;
                 var img = this.list.images;
-                console.log(this.list, 77887);
                 if(this.isUpdate) {
                     this.formData = {
                         parentId: this.list.parent_id? this.list.parent_id : "",
@@ -387,7 +387,6 @@
                         isDisplayServiceNav: this.list.is_display_service_nav,
                         isDisplayFooterNav: this.list.is_display_footer_nav
                     };
-                    console.log(img[0].upload_url, 889898);
                     this.image = img[0].upload_url;
                     this.file = img[0].original_name;
                 }

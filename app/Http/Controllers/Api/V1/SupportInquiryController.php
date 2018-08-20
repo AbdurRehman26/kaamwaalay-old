@@ -32,13 +32,8 @@ class SupportInquiryController extends ApiResourceController
             $rules['is_replied']    =  'nullable|boolean';
         }
 
-
-        if($value == 'destroy'){
-
-        }
-
         if($value == 'show'){
-
+            $rules['id'] =  'required|exists:support_inquiries,id';
         }
 
         if($value == 'index'){
@@ -54,6 +49,7 @@ class SupportInquiryController extends ApiResourceController
     public function input($value='')
     {
         $input = request()->only('id', 'pagination', 'support_question_id', 'name', 'email', 'message', 'type_id', 'keyword', 'is_replied');
+<<<<<<< HEAD
         //$input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
         return $input;
     }
@@ -81,8 +77,17 @@ class SupportInquiryController extends ApiResourceController
         ];
 
         // HTTP_OK = 200;
+=======
+>>>>>>> qa
 
-        return response()->json($output, Response::HTTP_OK);
+        if($value == 'store'){
+            unset($input['keyword']);
+            unset($input['is_replied']);
+            unset($input['pagination']);
+            unset($input['id']);
+        }
 
+        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+        return $input;
     }
 }

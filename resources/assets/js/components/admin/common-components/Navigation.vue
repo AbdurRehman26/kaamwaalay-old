@@ -49,7 +49,7 @@ import { directive as onClickaway } from 'vue-clickaway';
         },
        mounted: function () {
             let self = this;
-            this.getAllServices();
+             this.getAllServices();
             self.user = JSON.parse(self.$store.getters.getAuthUser);
             self.first_name = self.user.first_name;
             self.last_name = self.user.last_name;
@@ -58,7 +58,7 @@ import { directive as onClickaway } from 'vue-clickaway';
         fullName(){
             return this.first_name + ' ' + this.last_name;
             },
-        },
+       },
         methods: {
 
             getAllServices() {

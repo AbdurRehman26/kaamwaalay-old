@@ -64,6 +64,7 @@
               </tr>
             </tbody>
           </table>
+          <block-spinner v-if="loadingStart"></block-spinner>
           <no-record-found v-if="!listing.length && showNoRecordFound"></no-record-found>
         </div>
       </div>
@@ -109,6 +110,7 @@
        isUpdate: false,
        list: {},
        loading: false,
+       loadingStart: true,
      }
    },
    watch : {
@@ -127,7 +129,7 @@
   },
   methods: {
     onApply() {
-
+      this.loadingStart = true;
       this.loading = true;
       var data = {
         search : this.search,
@@ -196,7 +198,7 @@
       }
 
       self.$http.get(url).then(response => {
-        response = response.data.response;
+        response = response.data.response.data;
         self.listing = response.data;
         if(!self.listing.length) {
           self.showNoRecordFound = true;
@@ -210,6 +212,7 @@
           self.showNoRecordFound = true;
         }
         self.loading = false;
+        self.loadingStart = false;
         successCallback(true);
 
       }).catch(error=>{

@@ -11,14 +11,14 @@
                         </div>                     </div>
                         <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                           <label>By Status</label>
-                           <select v-model="search.filter_by_status" class="form-control">
-                             <option value="">Select All</option>
-                             <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-xs-12 col-md-2">
+                             <label>By Status</label>
+                             <select v-model="search.filter_by_status" class="form-control">
+                               <option value="">Select All</option>
+                               <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="col-xs-12 col-md-2">
                     <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                         <span>Apply</span>
                         <loader></loader>
@@ -60,7 +60,7 @@
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
-                <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
+                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -126,7 +126,6 @@
 
         computed : {
             requestUrl(){
-                
                 return this.url;
             }
         },
@@ -151,16 +150,11 @@
                 this.viewcustomer = false;
                 this.changestatus = false;
             },
-            getRecords(data){
+            getRecords(response){
                 let self = this;
                 self.loading = false;
-                self.records = data;
-                self.noRecordFound = false;
-                // console.log(self.records , '12312321');
-                if (!self.records.length) {
-                    self.noRecordFound = true;
-                }
-
+                self.records = response.data;
+                self.noRecordFound = response.noRecordFound;
             },
             searchList(){
                 let url = 'api/user?filter_by_role=3&pagination=true';

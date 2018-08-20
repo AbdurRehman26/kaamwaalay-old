@@ -21,6 +21,7 @@
                        </div>
                    </div>
                    <div class="col-xs-12 col-md-3 datepicker-field">
+
                       <div class="form-group">
                          <label>By Type</label>
                          <select v-model="search.filter_by_service" class="form-control">
@@ -61,7 +62,7 @@
                     <img  :src="record.imagepath" >
                 </span>
             </td>
-            <td> <a href="javascript:void(0);" @click="profileimage">{{ record.user_detail.first_name +' '+ record.user_detail.last_name }}</a> </td>
+            <td> <a href="javascript:void(0);" @click="profileimage(record.id)">{{ record.user_detail.first_name +' '+ record.user_detail.last_name }}</a> </td>
             <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
@@ -69,7 +70,7 @@
             <td><star-rating :star-size="20" read-only :rating="record.user_detail ?  record.user_detail.average_rating : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
-                <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                 <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
             </div>
         </td>
@@ -135,7 +136,7 @@
             return this.url;
         },
         servicesList(){
-                return this.$store.getters.getAllServices;
+            return this.$store.getters.getAllServices;
         },
 
     },
@@ -156,9 +157,8 @@
         changestatuspopup() {
             this.changestatus = true;
         },
-        providerdetailclick() {
-            /*this.providerdetailpopup = true;*/
-            this.$router.push({name: 'Service_Provider_Detail'});
+        providerdetailclick(id) {
+            this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id }});
         },
         HideModal(){
             this.service = false;
@@ -166,43 +166,40 @@
             this.changestatus = false;
             this.providerdetailpopup = false;
         },
-        profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
-      },
-      getRecords(data){
-        let self = this;
-        self.loading = false;
-        self.records = data;
-        self.noRecordFound = false;
+        profileimage(id){
+            this.$router.push({name: 'Service_Provider_Detail' , params : {id : id }});  
+        },
+        getRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            
+        },
+        searchList(){
+            let url = 'api/service-provider-profile?pagination=true';
+            this.url = JSON.parse(JSON.stringify(url));
 
-        if (!self.records.length) {
-            self.noRecordFound = true;
+            Reflect.ownKeys(this.search).forEach(key =>{
+
+                if(key !== '__ob__'){
+                    this.url += '&' + key + '=' + this.search[key];
+                }        
+            });
+
         }
+
+
     },
-    searchList(){
-        let url = 'api/service-provider-profile?pagination=true';
-        this.url = JSON.parse(JSON.stringify(url));
 
-        Reflect.ownKeys(this.search).forEach(key =>{
+    components: {
+        StarRating
+    },
+    mounted(){
 
-            if(key !== '__ob__'){
-                this.url += '&' + key + '=' + this.search[key];
-            }        
-        });
+        this.loading = true;
 
     }
-
-
-},
-
-components: {
-    StarRating
-},
-mounted(){
-
-    this.loading = true;
-
-}
 
 }
 </script>

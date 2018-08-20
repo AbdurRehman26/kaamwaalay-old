@@ -99,7 +99,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             }
 
             $getPlanViews = $this->findById($model->id);
-            if($model->views >= $getPlanViews->plan->quantity ){
+            if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views >= $getPlanViews->plan->quantity ){
                 $model->is_completed = 1;
                 $this->serviceProviderProfileRepo->update(['id'=>$input['service_provider_user_id'],'is_featured'=>0]);
             }
