@@ -127,7 +127,7 @@ public $model;
        if(!empty($data['filter_by_roles'])){
             $this->builder = $this->builder->whereIn('role_id',$data['filter_by_roles']);
         }
-        if(!empty($data['filter_by_service'])){ 
+        if(!empty($data['filter_by_service'])){
 
             $this->builder->leftJoin('jobs', function ($join)  use($data){
                 $join->on('jobs.user_id', '=', 'users.id');
@@ -228,13 +228,15 @@ public $model;
 
     public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL) {
 
+        $model = $this->model;
+        
         if($crtieria)
-            $this->model = $this->model->where($crtieria);
+            $model = $model->where($crtieria);
 
         if($startDate && $endDate)
-            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $model = $model->whereBetween('created_at', [$startDate, $endDate]);
 
-        return  $this->model->count();
+        return  $model->count();
     }
     public function updateField(array $data = []) {
         unset($data['user_id']);

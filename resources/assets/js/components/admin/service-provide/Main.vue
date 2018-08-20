@@ -27,7 +27,7 @@
                    <select v-model="search.filter_by_service" class="form-control">
                      <option value="">Select All</option>
                      <option v-for="service in servicesList" :value="service.id">
-                        {{service | childOrParentService }} {{ service.parent_id ? '>>' : '' }} {{service | mainService}}
+                         {{ service  | mainServiceOrChildService}}
                     </option>
                 </select>
             </div>

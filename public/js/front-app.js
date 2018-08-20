@@ -2761,6 +2761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             self.$http.get(url).then(function (response) {
+
                 response = response.data.response;
 
                 var result = {
@@ -2855,7 +2856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'An Error occured';
+                self.errorMessage = error.response.data.message[0];
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);
@@ -3509,18 +3510,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['showModalProp', 'statusData', 'options', 'url'],
     data: function data() {
 
         return {
-            selected: null
+            selected: '',
+            loading: false,
+            errorMessage: "",
+            successMessage: "",
+            statusData: {},
+            options: [],
+            data: {}
+
         };
     },
 
 
-    props: ['showModalProp'],
     methods: {
         showModal: function showModal() {
             this.$refs.myModalRef.show();
@@ -3530,6 +3544,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
+        },
+        validateBeforeSubmit: function validateBeforeSubmit(evt) {
+            var _this = this;
+
+            // Prevent modal from closing
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.onSubmit();
+                    _this.errorMessage = '';
+                    return;
+                }
+                _this.errorMessage = _this.errorBag.all()[0];
+            });
+        },
+        onSubmit: function onSubmit() {
+            var self = this;
+
+            self.errorMessage = '';
+            self.successMessage = '';
+
+            var url = self.url;
+            var id = this.statusData.id;
+
+            self.loading = true;
+            self.data = {
+                "id": this.statusData.id,
+                "status": this.selected
+            };
+            self.$http.put(url, self.data).then(function (response) {
+                self.loading = false;
+                self.successMessage = response.data.message;
+                setTimeout(function () {
+                    self.hideModal();
+                    self.onHidden();
+                    self.successMessage = '';
+                    self.$parent.statusData.status = self.selected;
+                }, 5000);
+            }).catch(function (error) {
+                self.loading = false;
+                self.errorMessage = error.response.data.message[0];
+                setTimeout(function () {
+                    self.errorMessage = '';
+                }, 5000);
+            });
         }
     },
 
@@ -3542,6 +3600,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!value) {
                 this.hideModal();
             }
+        },
+        statusData: function statusData(value) {
+            this.statusData = value;
+            this.selected = value.status;
+        },
+        options: function options(value) {
+            this.options = value;
+        },
+        url: function url(value) {
+            this.url = value;
         }
     }
 
@@ -5062,16 +5130,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 serviceName: '',
                 serviceDescription: '',
                 isFeatured: 0,
-                isHeroNavigation: 0,
                 images: [{
                     'name': '',
-                    'original_name': ''
+                    'original_name': '',
+                    'upload_url': ''
                 }],
                 urlPrefix: '',
                 status: 1,
-                isDisplayBanner: 1,
-                isDisplayServiceNav: 1,
-                isDisplayFooterNav: 1
+                isDisplayBanner: 0,
+                isDisplayServiceNav: 0,
+                isDisplayFooterNav: 0
 
             };
             setTimeout(function () {
@@ -5134,12 +5202,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var self = this;
             var image = new Image();
             var reader = new FileReader();
-            self.formData.images[0].original_name = file.name;
             reader.onload = function (e) {
-                self.formData.images[0].name = e.target.result;
                 self.image = e.target.result;
             };
             reader.readAsDataURL(file);
+            this.onUpload(file);
+        },
+        onUpload: function onUpload(file) {
+            var self = this;
+            var url = "api/file/upload";
+
+            var data = new FormData();
+            data.append('key', 'service');
+            data.append('file', file);
+
+            this.$http.post(url, data).then(function (response) {
+                response = response.data;
+                self.formData.images[0].name = response.name;
+                self.formData.images[0].original_name = response.original_name;
+            }).catch(function (error) {
+                error = error.response.data;
+                var errors = error.errors;
+                _.forEach(errors, function (value, key) {
+                    self.errorMessage = errors[key][0];
+                    return false;
+                });
+            });
         },
         onSubmit: function onSubmit() {
             var _this2 = this;
@@ -5200,13 +5288,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var url = this.url + "/" + this.list.id;
 
             var data = new FormData();
+
+            data.append('_method', 'put');
             data.append('title', self.formData.serviceName);
             data.append('description', self.formData.serviceDescription);
             data.append('is_display_banner', self.formData.isDisplayBanner);
             data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
             data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
             data.append('is_featured', self.formData.isFeatured);
-            data.append('is_hero_nav', self.formData.isHeroNavigation);
             data.append('url_prefix', self.formData.urlPrefix);
             data.append('parent_id', self.formData.parentId);
             data.append('status', self.formData.status);
@@ -5256,14 +5345,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         isUpdate: function isUpdate(value) {
             this.isUpdate = value;
-            var img = JSON.parse(this.list.images);
+            var img = this.list.images;
             if (this.isUpdate) {
                 this.formData = {
                     parentId: this.list.parent_id ? this.list.parent_id : "",
                     serviceName: this.list.title,
                     serviceDescription: this.list.description,
                     isFeatured: this.list.is_featured,
-                    isHeroNavigation: this.list.is_hero_nav,
                     images: [{
                         'name': img[0].name,
                         'original_name': img[0].original_name
@@ -5274,8 +5362,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     isDisplayServiceNav: this.list.is_display_service_nav,
                     isDisplayFooterNav: this.list.is_display_footer_nav
                 };
-
-                this.image = img[0].original_name;
+                this.image = img[0].upload_url;
                 this.file = img[0].original_name;
             }
         }
@@ -63992,27 +64079,104 @@ var render = function() {
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Change Status")]),
               _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Status")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Pending")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Active")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Banned")])
-              ])
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selected,
+                      expression: "selected"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selected = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "option",
+                    { attrs: { value: "", selected: "", disabled: "" } },
+                    [_vm._v("Select Status")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.options, function(option) {
+                    return _c("option", { domProps: { value: option.key } }, [
+                      _vm._v(" " + _vm._s(option.value))
+                    ])
+                  })
+                ],
+                2
+              )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { attrs: { slot: "modal-footer" }, slot: "modal-footer" },
+            [
+              _c("b-col", { staticClass: "float-left", attrs: { cols: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    class: [
+                      _vm.loading ? "show-spinner" : "",
+                      "btn",
+                      "btn-primary",
+                      "apply-primary-color"
+                    ],
+                    on: {
+                      click: function($event) {
+                        if (
+                          !("button" in $event) &&
+                          _vm._k(
+                            $event.keyCode,
+                            "prevant",
+                            undefined,
+                            $event.key,
+                            undefined
+                          )
+                        ) {
+                          return null
+                        }
+                        _vm.validateBeforeSubmit()
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("Submit")]), _vm._v(" "), _c("loader")],
+                  1
+                )
+              ])
+            ],
+            1
+          )
         ],
         1
       )
@@ -66076,15 +66240,7 @@ var render = function() {
                   _c("b-col", { attrs: { cols: "7" } }, [
                     _c("p", [
                       _vm._v(
-                        _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_featured
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_featured
-                              ? "YES"
-                              : "NO"
-                        )
+                        _vm._s(_vm.selectedService.is_featured ? "YES" : "NO")
                       )
                     ])
                   ])
@@ -66107,13 +66263,7 @@ var render = function() {
                     _c("p", [
                       _vm._v(
                         _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_display_banner
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_display_banner
-                              ? "YES"
-                              : "NO"
+                          _vm.selectedService.is_display_banner ? "YES" : "NO"
                         )
                       )
                     ])
@@ -66137,13 +66287,9 @@ var render = function() {
                     _c("p", [
                       _vm._v(
                         _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_display_service_nav
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_display_service_nav
-                              ? "YES"
-                              : "NO"
+                          _vm.selectedService.is_display_service_nav
+                            ? "YES"
+                            : "NO"
                         )
                       )
                     ])
@@ -66167,13 +66313,9 @@ var render = function() {
                     _c("p", [
                       _vm._v(
                         _vm._s(
-                          _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_display_footer_nav
-                              ? "YES"
-                              : "NO"
-                            : _vm.selectedService.is_display_footer_nav
-                              ? "YES"
-                              : "NO"
+                          _vm.selectedService.is_display_footer_nav
+                            ? "YES"
+                            : "NO"
                         )
                       )
                     ])
@@ -67271,7 +67413,7 @@ var render = function() {
                         attrs: {
                           type: "radio",
                           name: "radioServname",
-                          id: "inlineRadio4",
+                          id: "inlineRadio1",
                           value: "1"
                         },
                         domProps: {
@@ -67288,7 +67430,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio1" }
                         },
                         [_vm._v("Yes")]
                       )
@@ -67309,7 +67451,7 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioServname",
-                          id: "inlineRadio3",
+                          id: "inlineRadio5",
                           value: "0"
                         },
                         domProps: {
@@ -67326,7 +67468,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio5" }
                         },
                         [_vm._v("No")]
                       )
@@ -67344,23 +67486,23 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayBanner,
-                            expression: "formData.isDisplayBanner"
+                            value: _vm.formData.isDisplayFooterNav,
+                            expression: "formData.isDisplayFooterNav"
                           }
                         ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
                           name: "radioFootnav",
-                          id: "inlineRadio4",
+                          id: "inlineRadio2",
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayBanner, "1")
+                          checked: _vm._q(_vm.formData.isDisplayFooterNav, "1")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayBanner", "1")
+                            _vm.$set(_vm.formData, "isDisplayFooterNav", "1")
                           }
                         }
                       }),
@@ -67381,8 +67523,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayBanner,
-                            expression: "formData.isDisplayBanner"
+                            value: _vm.formData.isDisplayFooterNav,
+                            expression: "formData.isDisplayFooterNav"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67390,15 +67532,15 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioFootnav",
-                          id: "inlineRadio3",
+                          id: "inlineRadio6",
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayBanner, "0")
+                          checked: _vm._q(_vm.formData.isDisplayFooterNav, "0")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayBanner", "0")
+                            _vm.$set(_vm.formData, "isDisplayFooterNav", "0")
                           }
                         }
                       }),
@@ -67407,7 +67549,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio6" }
                         },
                         [_vm._v("No")]
                       )
@@ -67433,7 +67575,7 @@ var render = function() {
                         attrs: {
                           type: "radio",
                           name: "radioFeature",
-                          id: "inlineRadio1",
+                          id: "inlineRadio3",
                           value: "1"
                         },
                         domProps: {
@@ -67450,7 +67592,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio1" }
+                          attrs: { for: "inlineRadio3" }
                         },
                         [_vm._v("Yes")]
                       )
@@ -67471,7 +67613,7 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioFeature",
-                          id: "inlineRadio2",
+                          id: "inlineRadio7",
                           value: "0"
                         },
                         domProps: {
@@ -67488,7 +67630,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio1" }
+                          attrs: { for: "inlineRadio7" }
                         },
                         [_vm._v("No")]
                       )
@@ -67531,7 +67673,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio4" }
                         },
                         [_vm._v("Yes")]
                       )
@@ -67552,7 +67694,7 @@ var render = function() {
                           checked: "",
                           type: "radio",
                           name: "radioBanner",
-                          id: "inlineRadio3",
+                          id: "inlineRadio8",
                           value: "0"
                         },
                         domProps: {
@@ -67569,7 +67711,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "form-check-label",
-                          attrs: { for: "inlineRadio2" }
+                          attrs: { for: "inlineRadio8" }
                         },
                         [_vm._v("No")]
                       )

@@ -64,7 +64,7 @@
                 <td class="text-center">
                   <div class="action-icons">
                     <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                    <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                    <i @click="changestatuspopup(record)" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
                 </div>
             </td>
         </tr>
@@ -82,7 +82,7 @@
 
 
 </div>
-<changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus"></changestatuspopup>
+<changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
 <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
 <view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
 </div>
@@ -120,7 +120,20 @@
                 }
                 ],
                 records : [],
-                // record : {},
+                record : {},
+                statusData:'',
+                changeStatusURL: 'api/user/change-status',
+                ChangeStatusesOptions : [
+                {
+                    key : 'active',
+                    value : 'Active'
+                },
+                {
+                    key : 'banned',
+                    value :'Banned'
+                }
+                ],
+                
             }
         },
 
@@ -142,7 +155,8 @@
                 /*this.viewcustomer = true;*/
                 this.$router.push({ name: 'customerdetail', params: { id:id }})
             },
-            changestatuspopup() {
+            changestatuspopup(record) {
+                this.statusData = record;
                 this.changestatus = true;
             },
             HideModal(){

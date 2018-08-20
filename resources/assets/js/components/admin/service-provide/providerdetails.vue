@@ -1,6 +1,6 @@
 <template>
     <div class="panel-inner">
-        <div class="main-detail-content">
+        <div v-if="Object.keys(records).length" class="main-detail-content">
 
             <div class="provider-detail">
 
@@ -189,7 +189,7 @@
                             </b-col>
 
                             <b-col class="calculated-value">
-                                <a href="javascript:void(0);" @click="ServiceJobDetail(records.id)">See All</a>
+                                <a href="javascript:void(0);" @click="ServiceJobDetail(records.user_id)">See All</a>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>

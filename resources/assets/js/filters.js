@@ -196,3 +196,32 @@ Vue.filter('phoneNumber', function (value) {
     }
 });
 
+Vue.filter('disableProfileStatusButton', function (value) {
+    if(!value){
+        return false;
+    }
+
+    if(value == 'rejected' ||  value == 'approved') {
+        return true;
+    }
+
+    return false;
+});
+
+Vue.filter('mainServiceOrChildService', function (value) {
+    var serviceHtml = '';
+
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        serviceHtml =   value.parent.title + ' >> ' + value.title ;
+    }else{
+        serviceHtml = value.title;
+
+    }
+
+    return serviceHtml;
+});
+

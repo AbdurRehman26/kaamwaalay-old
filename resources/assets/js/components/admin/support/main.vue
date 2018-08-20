@@ -42,7 +42,6 @@
           </thead>
           <tbody>
             <tr v-for="list in listing" v-if="listing.length && !loadingStart">
-
               <td> {{ list.name }} </td>
               <td> {{ list.email }} </td>
               <td> {{ list.role.title }} </td>
@@ -55,7 +54,7 @@
             </tr>
           </tbody>
         </table>
-            <block-spinner v-if="loadingStart"></block-spinner>
+          <block-spinner v-if="loadingStart"></block-spinner>
           <no-record-found v-if="!listing.length && showNoRecordFound"></no-record-found>
       </div>
     </div>
