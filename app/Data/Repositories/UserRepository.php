@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
 use App\Data\Models\Role;
 use DB;
+use Carbon\Carbon;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -47,7 +48,7 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        
+        dd($details);
         if($data){
             if (!empty($details['profile_data'])) {
                 if($data->role_id == Role::SERVICE_PROVIDER){
@@ -96,6 +97,9 @@ public $model;
             $data->City = !empty($City->name)?$City->name:'';
             $state = app('StateRepository')->findById($data->state_id);                
             $data->state = !empty($state->name)?$state->name:'';
+
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+
         }
 
         return $data;

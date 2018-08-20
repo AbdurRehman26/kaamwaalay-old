@@ -80,17 +80,20 @@
     },
 
     methods: {
-        getRecords(data){
+        getRecords(response){
             let self = this;
-            self.noRecordFound = false;
-            this.records = data;
-
-            if (!self.records.length) {
-                self.noRecordFound = true;
-            }
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.url = '';
         },
-        getSecondaryRecord(data){
-            this.mainJob = data;
+        getSecondaryRecord(response){
+            let self = this;
+            self.loading = false;
+            self.mainJob = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.url = '';
+            
         }
     }
 }

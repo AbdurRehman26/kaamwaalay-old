@@ -44,11 +44,16 @@ public $model;
 
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  []) {
         $data = parent::findById($id, $refresh, $details, $input);
-        
+
         if ($data) {
             if (!empty($details['user_rating'])) {
                 $details  = ['user_rating' => true];
             }
+
+            if (!empty($details['provider_request_data'])) {
+                $details  = ['provider_request_data' => true];
+            }
+
             $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];

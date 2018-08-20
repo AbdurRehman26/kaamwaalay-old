@@ -2518,13 +2518,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.updateAccessLevel();
         },
-        getRecords: function getRecords(data) {
+        getRecords: function getRecords(response) {
             var self = this;
             self.loading = false;
-            self.records = data;
-            if (!self.records.length) {
-                self.noRecordFound = true;
-            }
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.url = '';
         },
 
         updateAccessLevel: function updateAccessLevel() {
@@ -70147,6 +70146,7 @@ var render = function() {
                           attrs: {
                             "star-size": 20,
                             "read-only": "",
+                            increment: 0.02,
                             rating: _vm.selectedJob.avg_rating,
                             "active-color": "#8200ff"
                           }

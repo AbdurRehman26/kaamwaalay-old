@@ -152,7 +152,7 @@
             startLoading(){
                 this.loading = true;
             },
-            getRecords(data){
+            getRecords(response){
                 let self = this;
                 self.loading = false;
                 self.records = response.data;
