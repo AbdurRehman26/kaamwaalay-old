@@ -13604,6 +13604,10 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "AkzidenzGroteskBE-Regular";
 }
 
+.mac-browser .navigation ul li a {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .main-banner {
   width: 100%;
   height: auto;
