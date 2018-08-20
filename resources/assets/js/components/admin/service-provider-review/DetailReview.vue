@@ -135,7 +135,7 @@
                                         <p><strong class="title-head">Reviewed by</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <p>{{records.approved_by_user}}</p>    
+                                        <p>{{records.approved_by_user | fullName}}</p>    
                                     </b-col>
                                 </b-row>
                             </div>
