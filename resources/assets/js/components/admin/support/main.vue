@@ -41,7 +41,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="list in listing" v-if="listing.length">
+            <tr v-for="list in listing" v-if="listing.length && !loadingStart">
 
               <td> {{ list.name }} </td>
               <td> {{ list.email }} </td>
@@ -55,6 +55,7 @@
             </tr>
           </tbody>
         </table>
+            <block-spinner v-if="loadingStart"></block-spinner>
           <no-record-found v-if="!listing.length && showNoRecordFound"></no-record-found>
       </div>
     </div>
@@ -101,6 +102,7 @@
         isUpdate: false,
         roles: {},
         loading: false,
+        loadingStart: true,
       }
     },
 
@@ -124,6 +126,7 @@
       },
       onApply() {
         this.loading = true;
+        this.loadingStart = true;
         var data = {
           search : this.search,
           filter: this.filter_by_inquiry
@@ -167,10 +170,9 @@
       }
 
       self.$http.get(url).then(response => {
-        response = response.data.response;
-        console.log(response, 787878);
+        response = response.data.response.data;
         self.listing = response.data;
-        self.totalServicesCount = response.data.inquiry_count;
+        self.totalServicesCount = response.inquiry_count;
         
         self.pagination = response.pagination;
 
@@ -178,6 +180,7 @@
           self.showNoRecordFound = true;
         }
         self.loading = false;
+        self.loadingStart = false;
         successCallback(true);
 
       }).catch(error=>{
@@ -209,7 +212,6 @@
   },
 
   mounted(){
-
     this.getList(false, false);
     this.getRoles(false, false);
   },
