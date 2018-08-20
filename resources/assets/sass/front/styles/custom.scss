@@ -709,7 +709,7 @@ $section-padding-sm:20px 0px;
 /*         content: '';
         position: absolute;
         bottom: -15px;
-        left: 47%;        
+        left: 47%;
         border-top: 15px solid #fdfdfd;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent; */
@@ -767,7 +767,7 @@ $section-padding-sm:20px 0px;
             /* width: 33%; */
             width: 33.3%;
             float: left;
-            vertical-align: top;                        
+            vertical-align: top;
             a{
                 text-decoration:none;
             }
@@ -788,9 +788,9 @@ $section-padding-sm:20px 0px;
                 color: $secondary-color;
                 /* font-family: $font_regular; */
                 max-width: 282px;
-                margin-left: auto;                
+                margin-left: auto;
             }
-            &:first-child{                
+            &:first-child{
             }
             @include tabletF{
                 padding-left: 15px;
@@ -1065,7 +1065,7 @@ $section-padding-sm:20px 0px;
         background: #fff;
         text-align: center;
         width: 110px;
-    } 
+    }
 }
 .account-fee {
     position: relative;
@@ -1084,7 +1084,7 @@ $section-padding-sm:20px 0px;
         background: #fff;
         text-align: center;
         width: 140px;
-    } 
+    }
     .verification-alert {
         p {
             color: $grey-Edark;
@@ -1340,16 +1340,16 @@ $section-padding-sm:20px 0px;
 
     .category-content-block{
         width: calc(100% - 80px);
-        padding-left: 22px; 
+        padding-left: 22px;
         position: relative;
         float: left;
-        padding-top: 12px; 
+        padding-top: 12px;
 
         h6{
             font-size:$font-size-base;
             font-family: $font_bold;
-            color: $secondary-color; 
-        } 
+            color: $secondary-color;
+        }
     }
 
 
@@ -1433,12 +1433,12 @@ $section-padding-sm:20px 0px;
                 content: '';
                 border-right: 10px solid #E0E0E0 !important;
                 /* left: -11px !important; */
-                left: -12px !important;            
+                left: -12px !important;
             }
             &:before {
                 content: '';
                 z-index: 9;
-            }                         
+            }
         }
     }
 }
@@ -1459,12 +1459,12 @@ body{
                     content: '';
                     border-right: 10px solid #E0E0E0 !important;
                     /* left: -11px !important; */
-                    left: -12px !important;            
+                    left: -12px !important;
                 }
                 &:before {
                     content: '';
                     z-index: 9;
-                }        
+                }
         }
     }
 }
@@ -1492,7 +1492,7 @@ body{
             &.noborder{
                 &:after{
                     display:none;
-                }                
+                }
             }
         }
         .job-poster{
@@ -1505,7 +1505,7 @@ body{
                 content: '|';
                 position: absolute;
                 right: 0;
-            }                        
+            }
         }
         .job-status{
             display: inline-block;
@@ -1550,7 +1550,7 @@ body{
                 padding-right: 0px;
             }
         }
-    }    
+    }
 
     .post-bid {
         position: absolute;
@@ -1561,7 +1561,7 @@ body{
         padding-right: 0px;
         display: flex;
         .post-bid{
-            position: relative;    
+            position: relative;
         }
         /* .job-notification{
             display: inline-block;
@@ -1599,7 +1599,7 @@ body{
             i.icon-brightness-down{
                 font-size: 21px;
                 position: relative;
-                top: 4px;            
+                top: 4px;
             }
         }
         &.customer-rating{
@@ -1612,7 +1612,7 @@ body{
                 top: -2px;
                 padding-left: 3px;
             }
-        }        
+        }
     }
     i{
         color: $primary-color-md;
@@ -1681,13 +1681,13 @@ body{
             content: '';
             border-right: 10px solid #E0E0E0 !important;
             /* left: -11px !important; */
-            left: -12px !important;            
+            left: -12px !important;
         }
         &:before {
             content: '';
             z-index: 9;
-        }        
-    }    
+        }
+    }
     .feeback-detail, .provider-bidding-btn {
         margin-top: 16px;
         position: relative;
@@ -1710,7 +1710,7 @@ body{
         .ratings{
             position: absolute;
             right: 0;
-            top: -8px;            
+            top: -8px;
         }
     }
 }
@@ -1739,22 +1739,22 @@ body{
     .vue-star-rating{
         display: inline-block !important;
         vertical-align: text-bottom;
-        padding-right: 5px;        
+        padding-right: 5px;
     }
     .review-job{
         padding: 0px 5px;
         font-size: 14px;
-        color: #8200FF;   
+        color: #8200FF;
         &:first-child{
             padding-left: 0px;
             border-right: 1px solid #ccc;
-        }   
+        }
         &:last-child{
             padding-right: 0px;
         }
         &.left-border{
             border-left: 1px solid #ccc;
-        }  
+        }
     }
 }
 
@@ -1794,7 +1794,7 @@ body{
                 border-radius: 100%;
                 position: absolute;
                 top: 13px;
-                bottom: auto;                
+                bottom: auto;
                 display: flex;
                 left: -6px;
                 background-color: $primary-color;
@@ -1820,7 +1820,7 @@ body{
     border-radius: 12px;
     min-height: 382px;
     background-color: #F9F9F9;
-    
+
     h2 {
         font-size: 20px;
         font-family: "AkzidenzGroteskBE-Md";
@@ -1845,7 +1845,7 @@ body{
     h3 {
         font-family:$font_medium;
         font-size: 20px;
-        color: $primary-color-md;    
+        color: $primary-color-md;
         margin-left: 20px;
     }
 }
@@ -1853,7 +1853,7 @@ body{
     position: relative;
     margin-left: 20px;
     margin-top: 28px;
-    
+
     p {
         margin: 0;
     }
@@ -1895,14 +1895,14 @@ body{
         position: relative;
         padding-bottom: 0px;
         padding-top: 20px;
-        overflow: auto;        
+        overflow: auto;
         .view-status {
             display: inline-block;
             float: left;
             border: 1px solid #8200FF;
             border-radius: 12px;
             position: absolute;
-            width: 62px;    
+            width: 62px;
             height: 62px;
             background-color: rgba(221,198,244,0.1);
             span {
@@ -1963,7 +1963,7 @@ body{
     position: relative;
     width: 100%;
     height: 70px;
-    z-index: 99;    
+    z-index: 99;
     .search-fix {
         border-top: 1px solid #E0E0E0;
         border-bottom: 1px solid #E0E0E0;
@@ -2002,7 +2002,7 @@ body{
     font-size: 17px;
     height: 100%;
     display: flex;
-    align-items: center;    
+    align-items: center;
 }
 .advice-topics {
     text-align: center;
@@ -2013,7 +2013,7 @@ body{
     margin: 0 auto;
     width: 100%;
     max-width: 960px;
-    
+
     .nav-tabs {
         border-bottom: transparent;
         width: 100%;
@@ -2021,7 +2021,7 @@ body{
         margin: 0 auto;
         .nav-link {
             border-bottom: 4px solid #E0E0E0;
-            
+
             &:hover{
                 border-top:none;
                 border-left:none;
@@ -2031,12 +2031,12 @@ body{
             &.active {
                 border-color: #fff;
                 border-bottom: 4px solid #8200FF;
-                color: #8200FF;  
+                color: #8200FF;
                 &:hover {
                     // border-color: transparent;
-                }    
+                }
             }
-            
+
         }
         .nav-item {
             a {
@@ -2120,7 +2120,7 @@ body{
     padding-top: 52px;
     span{
         color: $primary-color-md !important;
-    }    
+    }
 }
 .category-section-search{
     text-align: center;
@@ -2131,7 +2131,7 @@ body{
     }
     h2{
 
-    }       
+    }
 }
 
 .text-bold{
@@ -2147,7 +2147,7 @@ body{
     }
     &.canceled{
         background-color: #C04B4B;
-    }        
+    }
 }
 
 .job-main-heading{
@@ -2172,15 +2172,15 @@ body{
             .job-details{
                 padding-top: 19px;
                 text-align: right;
-                p{                    
+                p{
                     display: inline-block;
                     margin-bottom: 0;
                     padding-right: 12px;
                     vertical-align: top;
-                    font-size: $font-size-xxs;      
+                    font-size: $font-size-xxs;
                     &:last-child{
                         padding-right: 0px;
-                    }              
+                    }
                     i{
                         font-size: 18px;
                         &.icon-brightness-down{
@@ -2191,7 +2191,7 @@ body{
                         }
                     }
                 }
-            }            
+            }
         }
     }
 }
@@ -2203,8 +2203,8 @@ body{
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 32px !important;
     .job-common-description {
-        padding: 0px;  
-        padding-bottom: 17px;      
+        padding: 0px;
+        padding-bottom: 17px;
     }
     .chat-feedback-image{
         position: absolute;
@@ -2280,7 +2280,7 @@ body{
             top: 0;
             width: 100%;
             left: 0;
-            height: 100%;            
+            height: 100%;
         }
         a{
             &.btn{
@@ -2291,11 +2291,11 @@ body{
     h3{
         font-size: $font-size-sm;
         position: relative;
-        color: #fff;        
+        color: #fff;
     }
     p{
         position: relative;
-        color: #DDC6F4;               
+        color: #DDC6F4;
     }
     a{
         position: relative;
@@ -2317,11 +2317,11 @@ body{
                 &.icon-checkmark2{
                     font-size: 20px;
                     top: 10px;
-                }                
+                }
                 &.icon-trophy{
                     font-size: 20px;
                 }
-            }            
+            }
         }
         &.btn-cancel-job{
             i.icon-folder{
@@ -2379,12 +2379,12 @@ body{
         margin-right: 24px;
         border-bottom: 4px solid #E0E0E0;
         padding: 0px 20px 7px 20px;
-        font-size: $font-size-xxs;        
+        font-size: $font-size-xxs;
         cursor: pointer;
         p{
             color: #494949;
             margin-bottom: 0px;
-            font-family: $font-bold;                        
+            font-family: $font-bold;
             span{
                 color: #494949 !important;
             }
@@ -2401,7 +2401,7 @@ body{
                 }
             }
         }
-    }    
+    }
 }
 
 .chat-message{
@@ -2418,7 +2418,7 @@ body{
     }
         &:hover,&:focus{
             text-decoration: none !important;
-        }        
+        }
 }
 
 .profile-rejection-box{
@@ -2428,7 +2428,7 @@ body{
     padding: 24px 32px;
     max-width: 469px;
     text-align: center;
-    margin: auto;    
+    margin: auto;
     h2{
         font-size: $font-size-sm;
         margin-bottom: 0px;
@@ -2529,7 +2529,7 @@ body{
             display: inline-block;
             float: left;
             padding-left: 12px;
-           
+
             .notification-content{
                 padding-right: 25px;
                 margin-bottom: 23px;
@@ -2549,13 +2549,13 @@ body{
                     color: $grey-Edark;
                     font-size: $font-size-xxs;
                     position: relative;
-                    
+
                     a{
                         display: inline-block;
                         color: $primary-color-md!important;
                         min-width: auto!important;
                         font-size: $font-size-xxs;
-                        padding-left: 0; 
+                        padding-left: 0;
 
                         &:hover{
                             color: $primary-color-md!important;
@@ -2584,7 +2584,7 @@ body{
         display: inline-block;
         color: $primary-color-md;
         font-size: 26px;
-        padding-right: 20px;        
+        padding-right: 20px;
     }
     p{
         display: inline-block;
