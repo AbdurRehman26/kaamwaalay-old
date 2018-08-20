@@ -218,19 +218,16 @@
         ServiceJobDetail(id) {
             this.$router.push({name: 'viewservicejobdetail', params : {id : id}});
         },
-        getRecords(data){
+        getRecords(response){
             let self = this;
-            self.noRecordFound = false;
-
-            if (!self.records.length) {
-                self.noRecordFound = true;
-            }
-            this.records = data;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
         },
     },
     computed : {
         requestUrl(){
-            return this.url+'/'+this.$route.params.id+'?user_rating=true';
+            return this.url+'/'+this.$route.params.id+'?user_rating=true&profile_data=true&provider_request_data=true';
         },
     },
 

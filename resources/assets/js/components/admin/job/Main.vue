@@ -152,16 +152,12 @@
             startLoading(){
                 this.loading = true;
             },
-            getRecords(data){
+            getRecords(response){
                 let self = this;
                 self.loading = false;
-                self.records = data;
-                self.noRecordFound = false;
-                // console.log(self.records , '12312321');
-                if (!self.records.length) {
-                    self.noRecordFound = true;
-                }
-
+                self.records = response.data;
+                self.noRecordFound = response.noRecordFound;
+                self.url = '';
             },
             searchList(){
                 let url = 'api/job?pagination=true';

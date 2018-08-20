@@ -28,7 +28,7 @@
                                         <p><strong class="title-head">Customer</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">                                        
-                                        
+
                                         <router-link tag="a" :to="{name: 'customerdetail' , params : {id  : record.user ? record.user.id : 1}}">
                                             {{ record.user | fullName }}
                                         </router-link>
@@ -171,8 +171,11 @@
                 StarRating
             },
             methods:{
-                getRecords(data){
-                    this.record = data;
+                getRecords(response){
+                    let self = this;
+                    self.loading = false;
+                    self.record = response.data;
+                    self.url = '';
                 },
                 biddingdetails(id){
                     console.log(id , '13213');

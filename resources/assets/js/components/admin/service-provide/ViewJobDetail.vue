@@ -84,13 +84,12 @@
             this.customerrecord = false;
             this.servicerecord = false;
         },
-        getRecords(data){
+        getRecords(response){
             let self = this;
             self.loading = false;
-            self.records = data;
-            if (!self.records.length) {
-                self.noRecordFound = true;
-            }
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.url = '';
         },
         getSecondaryRecord(data){
             this.serviceProvider = data;

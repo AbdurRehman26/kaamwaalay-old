@@ -60,7 +60,7 @@
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
-                <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
+                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -150,16 +150,12 @@
                 this.viewcustomer = false;
                 this.changestatus = false;
             },
-            getRecords(data){
+            getRecords(response){
                 let self = this;
                 self.loading = false;
-                self.records = data;
-                self.noRecordFound = false;
-                // console.log(self.records , '12312321');
-                if (!self.records.length) {
-                    self.noRecordFound = true;
-                }
-
+                self.records = response.data;
+                self.noRecordFound = response.noRecordFound;
+                self.url = '';
             },
             searchList(){
                 let url = 'api/user?filter_by_role=3&pagination=true';
