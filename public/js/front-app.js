@@ -4799,7 +4799,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         onUpload: function onUpload(file) {
             var self = this;
-            this.loading = true;
             var url = "api/file/upload";
 
             var data = new FormData();
@@ -4934,7 +4933,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         isUpdate: function isUpdate(value) {
             this.isUpdate = value;
-            var img = JSON.parse(this.list.images);
+            var img = this.list.images;
             console.log(this.list, 77887);
             if (this.isUpdate) {
                 this.formData = {
@@ -4952,8 +4951,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     isDisplayServiceNav: this.list.is_display_service_nav,
                     isDisplayFooterNav: this.list.is_display_footer_nav
                 };
-
-                this.image = img[0].original_name;
+                console.log(img[0].upload_url, 889898);
+                this.image = img[0].upload_url;
                 this.file = img[0].original_name;
             }
         }

@@ -42,7 +42,6 @@
           </thead>
           <tbody>
             <tr v-for="list in listing" v-if="listing.length">
-
               <td> {{ list.name }} </td>
               <td> {{ list.email }} </td>
               <td> {{ list.role.title }} </td>

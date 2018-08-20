@@ -4,6 +4,7 @@ namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Service extends Model
 {
@@ -25,11 +26,12 @@ class Service extends Model
 
     public function getImagesAttribute($value){
         $parseImage = json_decode($value);
-
-        if(substr($parseImage->name, 0, 8) == "https://"){
+        $parseImage = json_decode($parseImage);
+        if(substr($parseImage[0]->name, 0, 8) == "https://"){
           return  $value;
         }
-          return $value ? Storage::url(config('uploads.service.folder').'/'.$parseImage->name) : null;
+        $parseImage[0]->upload_url = Storage::url(config('uploads.service.folder').'/'.$parseImage[0]->name);
+          return $parseImage ? $parseImage : null;
     }
 
 }

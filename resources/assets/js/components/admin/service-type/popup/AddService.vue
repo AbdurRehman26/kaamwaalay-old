@@ -232,7 +232,6 @@
         },
         onUpload(file) {
             var self = this;
-            this.loading = true;
             let url = "api/file/upload";
 
             var data = new FormData();
@@ -368,7 +367,7 @@
             },
             isUpdate(value) {
                 this.isUpdate = value;
-                var img = JSON.parse(this.list.images);
+                var img = this.list.images;
                 console.log(this.list, 77887);
                 if(this.isUpdate) {
                     this.formData = {
@@ -388,8 +387,8 @@
                         isDisplayServiceNav: this.list.is_display_service_nav,
                         isDisplayFooterNav: this.list.is_display_footer_nav
                     };
-
-                    this.image = img[0].original_name;
+                    console.log(img[0].upload_url, 889898);
+                    this.image = img[0].upload_url;
                     this.file = img[0].original_name;
                 }
             }
