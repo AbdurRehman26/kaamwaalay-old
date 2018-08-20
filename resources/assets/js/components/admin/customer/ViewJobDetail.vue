@@ -24,16 +24,16 @@
                             <th class="text-center">Project Amount</th>                          
                             <th>Service Provider Rating</th>
 
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(record, index) in records">
-                            <td>{{ record.title }}</td>
-                            <td>{{record.service_provider}}</td>
-                            <td class="text-center"> {{ record |jobType}}</td>
-                            <td class="text-center">{{record.job_amount == null ? '-':'$'+record.job_amount}}  </td>                           
-                            <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
+                                <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="(record, index) in records">
+                                <td>{{ record.title }}</td>
+                                <td>{{record.service_provider}}</td>
+                                <td class="text-center"> {{ record |jobType}}</td>
+                                <td class="text-center">{{record.job_amount == null ? '-':'$'+record.job_amount}}  </td>                           
+                                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
 
                             <td class="text-center">
                                 <div class="action-icons">

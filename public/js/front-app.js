@@ -70146,6 +70146,7 @@ var render = function() {
                           attrs: {
                             "star-size": 20,
                             "read-only": "",
+                            increment: 0.02,
                             rating: _vm.selectedJob.avg_rating,
                             "active-color": "#8200ff"
                           }
