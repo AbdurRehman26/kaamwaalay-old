@@ -16025,6 +16025,15 @@ body .chat-feedback-message.white-msg:before {
   font-size: 20px;
 }
 
+.service-provider a.btn i.icon-checkmark2 {
+  font-size: 20px;
+  top: 10px;
+}
+
+.service-provider a.btn i.icon-trophy {
+  font-size: 20px;
+}
+
 .service-provider a.btn-cancel-job i.icon-folder {
   top: 9px;
   font-size: 21px;
