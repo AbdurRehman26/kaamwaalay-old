@@ -68,7 +68,7 @@
                                         <p><strong class="title-head">Contact</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a href="tel:+923214325323">{{ records.user ? records.user.phone_number : '' }}</a>
+                                        <a :href="records.user | phoneNumber">{{ records.user ? records.user.phone_number : '' }}</a>
                                     </b-col>
                                 </b-row>
                             </div>
@@ -151,42 +151,33 @@
                                     <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Certificates</strong></p>
                                     </b-col>
-                                    <b-col class="calculated-value">
-                                        <a class="underline" href="javascript:void(0);">
-                                            Certificates.docx
+                                    <b-col v-if="records.attachments" class="calculated-value">
+                                        <a v-for="certificate in records.attachments.certificates" class="underline" href="javascript:void(0);">
+                                            {{certificate}}
                                         </a>
                                         <span>,</span>
-                                        <a class="underline" href="javascript:void(0);">
-                                            Certificates2.docx
-                                        </a>
                                     </b-col>
                                 </b-row>
                                 <b-row>
                                     <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Registrations</strong></p>
                                     </b-col>
-                                    <b-col class="calculated-value">
-                                        <a class="underline" href="javascript:void(0);">
+                                    <b-col v-if="records.attachments" class="calculated-value">
+                                        <a v-for="registration in records.attachments.registration"  class="underline" href="javascript:void(0);">
                                             Registrations.docx
                                         </a>
                                         <span>,</span>
-                                        <a class="underline" href="javascript:void(0);">
-                                            Registrations2.docx
-                                        </a>
                                     </b-col>
                                 </b-row>
                                 <b-row>
                                     <b-col  class="text-right fixed-label">
                                         <p><strong class="title-head">Proof of business</strong></p>
                                     </b-col>
-                                    <b-col class="calculated-value">
-                                        <a class="underline" href="javascript:void(0);">
+                                    <b-col v-if="records.attachments" class="calculated-value">
+                                        <a v-for="business in records.attachments.business" class="underline" href="javascript:void(0);">
                                             BusinessProof.docx
                                         </a>
                                         <span>,</span>
-                                        <a class="underline" href="javascript:void(0);">
-                                            BusinessProof2.docx
-                                        </a>
                                     </b-col>
                                 </b-row>
                                 <b-row>
