@@ -13,7 +13,7 @@
 									<div class="col-md-8  p-l-0">
 										<div class="jobs-done"  v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
 											<div class="job-status job-poster">
-												<span>Posted by <a href="javascript:void(0);">Nathan Alvarez</a></span>	
+												<span>Posted by <a href="javascript:void(0);" @click="showProfile()">Nathan Alvarez</a></span>	
 												<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>												
 											</div>												
 											<span class="job-category job-post-category">{{ listing.job_category }}</span>									

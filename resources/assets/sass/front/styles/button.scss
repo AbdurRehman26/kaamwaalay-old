@@ -7,7 +7,9 @@
     min-width: 100px;
     line-height: 22px;
     border-radius:$button-radius;
-
+    @include Desktop1300{
+        padding: 10px 25px;
+    }
     &:hover, &:focus{
         color: $body-bg!important;
         outline: none;
