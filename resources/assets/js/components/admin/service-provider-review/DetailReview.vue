@@ -183,8 +183,8 @@
                                 <p><strong class="title-head">Status</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <b-form-select :disabled="records.status == 'pending' | records.status == 'approved'" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
-                                <textarea  class="calculated-value form-control margin-bottom-20px"></textarea>
+                                <b-form-select :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
+                                <textarea v-if="selected == 'rejected'"  class="calculated-value form-control margin-bottom-20px"></textarea>
                             </b-col>
                         </b-row>
 
@@ -193,7 +193,7 @@
                                 <p><strong class="title-head">Action</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <button :disabled="records.status == 'pending' | records.status == 'approved'" class="btn btn-primary">
+                                <button :disabled="records.status  | disableProfileStatusButton" class="btn btn-primary">
                                     <span>Apply</span>
                                     <loader></loader>
                                 </button>                                   
@@ -217,10 +217,10 @@
             selected: null,
             options: [
             { value: null, text: 'Please select Status' },
-            { value: 'a', text: 'Pending' },
-            { value: 'b', text: 'In-Review' },
-            { value: 'c', text: 'Rejected' },
-            { value: 'd', text: 'Approved' }
+            { value: 'pending', text: 'Pending' },
+            { value: 'in-review', text: 'In-Review' },
+            { value: 'rejected', text: 'Rejected' },
+            { value: 'approved', text: 'Approved' }
             ],
             url : 'api/service-provider-profile-request',
             records : [],
@@ -237,6 +237,16 @@
             self.loading = false;
             self.records = response.data;
             self.noRecordFound = response.noRecordFound;
+        },
+        validateBeforeSubmit() {
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                    this.onSubmit();
+                    this.$emit('error-message', '');
+                    return;
+                }
+                this.$emit('error-message', this.errorBag.all()[0]);
+            });
         },
     },
     components: {
