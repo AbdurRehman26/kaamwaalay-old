@@ -150,16 +150,12 @@
                 this.viewcustomer = false;
                 this.changestatus = false;
             },
-            getRecords(data){
+            getRecords(response){
                 let self = this;
                 self.loading = false;
-                self.records = data;
-                self.noRecordFound = false;
-                // console.log(self.records , '12312321');
-                if (!self.records.length) {
-                    self.noRecordFound = true;
-                }
-
+                self.records = response.data;
+                self.noRecordFound = response.noRecordFound;
+                self.url = '';
             },
             searchList(){
                 let url = 'api/user?filter_by_role=3&pagination=true';

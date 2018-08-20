@@ -30,12 +30,10 @@ Route::group([
     
 });
 
-Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
-Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
-
-
-
 Route::group(['middleware' => ['auth:api']], function () {
+
+    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign'); 
 
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
@@ -76,14 +74,6 @@ Route::group(['middleware' => ['auth:api']], function () {
         'index', 'store', 'show',
     ]);
 
-    Route::resource('city', 'Api\V1\CityController')->only([
-        'index', 'show',
-    ]);
-
-    Route::resource('country', 'Api\V1\CountryController')->only([
-        'index', 'show',
-    ]);
-
     Route::resource('plan', 'Api\V1\PlanController')->only([
         'index', 'show', 'update',
     ]);
@@ -92,20 +82,29 @@ Route::group(['middleware' => ['auth:api']], function () {
         'index', 'show',
     ]);
 
-    Route::resource('state', 'Api\V1\StateController')->only([
-        'index', 'show',
+    //Dashboard Report
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
+
+    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
+        'index', 'store', 'show', 'update',
     ]);
 
-//Dashboard Report
-Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
+    Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
+        'index',
+    ]);
+
 });
 
-Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
-    'index', 'store', 'show', 'update',
+Route::resource('city', 'Api\V1\CityController')->only([
+    'index', 'show',
 ]);
 
-Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
-    'index',
+Route::resource('country', 'Api\V1\CountryController')->only([
+    'index', 'show',
+]);
+
+Route::resource('state', 'Api\V1\StateController')->only([
+    'index', 'show',
 ]);
 
 //Uploading File
