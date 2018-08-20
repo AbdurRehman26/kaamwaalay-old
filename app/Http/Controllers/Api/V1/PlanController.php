@@ -36,7 +36,7 @@ class PlanController extends ApiResourceController
         }
 
         if($value == 'updateOrAddPlans'){
-            $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1';
+            $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1,2';
             $rules['plans_data.*.amount']           = 'required|numeric|not_in:0';
             $rules['plans_data.*.quantity']         = 'required|numeric|not_in:0';
         }
@@ -63,7 +63,7 @@ class PlanController extends ApiResourceController
         
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
-
+        $messages = $this->messages(__FUNCTION__);
         $this->validate($request, $rules);
         
 
@@ -89,6 +89,16 @@ class PlanController extends ApiResourceController
     
         return response()->json($output, $code);
 
+    }
+
+    public function messages($value = '')
+    {
+        $messages = [
+            'amount.not_in' => 'The entered amount is invalid.',
+            'plans_data.*.amount.not_in' => 'The entered amount is invalid.',
+        ];
+        
+        return $messages;
     }
 
 }

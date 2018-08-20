@@ -35,13 +35,13 @@
 									<div class="row">
 										<div class="col-md-5">
 											<div class="form-group">
-												<input class="form-control" placeholder="Enter featured amount" :name="'amount' + index" v-model="data.amount" v-validate="'required|decimal'" :class="[ 'form-group' , errorBag.has('featured.amount' + index)  ? 'is-invalid' : '']" >
+												<input class="form-control form-group" placeholder="Enter featured amount" name="amount" v-model="data.amount" v-validate="'required|decimal|min_value:0.1'" >
 											</div>
 										</div>
 
 										<div class="col-md-5">
 											<div class="form-group">
-												<input class="form-control" placeholder="Enter featured quantity" :name="'quantity' + index" v-model="data.quantity" v-validate="'required|numeric'" :class="[ 'form-group' , errorBag.has('featured.quantity' + index)  ? 'is-invalid' : '']" >
+												<input class="form-control form-group" placeholder="Enter featured quantity" name="quantity" v-model="data.quantity" v-validate="'required|numeric|min_value:1'">
 											</div>
 										</div>
 										<div class="col-md-2">
@@ -83,7 +83,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Urgent Amount</label>
-										<input class="form-control" placeholder="Enter urgent amount" name="urgent_amount" v-model="urgent_amount" v-validate="'required|decimal'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" >
+										<input class="form-control" placeholder="Enter urgent amount" name="urgent amount" v-model="urgent_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" >
 									</div>
 								</div>
 
@@ -115,7 +115,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Account Creation Fee</label>
-                                        <input class="form-control" placeholder="Enter account creation amount" name="account_creation_amount" v-model="account_creation_amount" v-validate="'required|decimal'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" >
+                                        <input class="form-control" placeholder="Enter account creation amount" name="account creation fee" v-model="account_creation_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" >
                                     </div>
                                 </div>
 
@@ -186,11 +186,11 @@ export default {
                     return;
                 }
                 if(scope=='featured'){
-                	this.featuredErrorMessage =  this.errorBag.all()[0];
+                	this.featuredErrorMessage =  this.errorBag.all(scope)[0];
                 }else if(scope=='urgent'){
-                	//this.urgentErrorMessage =  this.errorBag.all()[0];
+                	this.urgentErrorMessage =  this.errorBag.all(scope)[0];
                 }else if(scope=='account_creation'){
-                	//this.accountCreationErrorMessage =  this.errorBag.all()[0];
+                	this.accountCreationErrorMessage =  this.errorBag.all(scope)[0];
                 }
 
                 if(where == 'add-more'){
