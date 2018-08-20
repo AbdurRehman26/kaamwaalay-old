@@ -120,7 +120,7 @@
 		        				<h4>{{categoryabc.itemtitle}}</h4>
 		        			</a>
 		        		</div>
-		        		<div class="showmore"><a href="javascript:void(0);">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+		        		<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
 	        				
 	        		</div>  	        	      		
 	        	</div>
