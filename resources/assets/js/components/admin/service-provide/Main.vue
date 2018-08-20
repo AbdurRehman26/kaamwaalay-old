@@ -12,35 +12,37 @@
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                             <label>By Business/Individual</label>
-                             <select v-model="search.filter_by_business_type" class="form-control">
-                               <option value="">Select</option>
-                               <option value="business">Business</option>
-                               <option value="individual">Individual</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 datepicker-field">
+                           <label>By Business/Individual</label>
+                           <select v-model="search.filter_by_business_type" class="form-control">
+                             <option value="">Select</option>
+                             <option value="business">Business</option>
+                             <option value="individual">Individual</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-xs-12 col-md-3 datepicker-field">
 
-                      <div class="form-group">
-                         <label>By Type</label>
-                         <select v-model="search.filter_by_service" class="form-control">
-                           <option value="">Select All</option>
-                           <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-xs-12 col-md-2">
-                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                    <span>Apply</span>
-                    <loader></loader>
-                </button>
+                  <div class="form-group">
+                   <label>By Type</label>
+                   <select v-model="search.filter_by_service" class="form-control">
+                     <option value="">Select All</option>
+                     <option v-for="service in servicesList" :value="service.id">
+                        {{service | childOrParentService }} {{ service.parent_id ? '>>' : '' }} {{service | mainService}}
+                    </option>
+                </select>
             </div>
+        </div>
+        <div class="col-xs-12 col-md-2">
+            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                <span>Apply</span>
+                <loader></loader>
+            </button>
         </div>
     </div>
 </div>
+</div>
 <div class="col-md-12">
-   <div class="table-area">
+ <div class="table-area">
     <div class="table-responsive">
         <table class="table service-provider-table first-last-col-fix">
           <thead>
