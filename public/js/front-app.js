@@ -4895,12 +4895,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             logo: 'images/logo.png',
-            changepopup: false
+            changepopup: false,
+            responsivemenu: false
         };
     },
     methods: {
@@ -4909,6 +4911,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         HideModal: function HideModal() {
             this.changepopup = false;
+        },
+        responsivebutton: function responsivebutton() {
+            this.responsivemenu ^= true;
         }
     }
 });
@@ -4922,6 +4927,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
+//
+//
+//
+//
 //
 //
 //
@@ -4997,6 +5006,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
+//
+//
+//
+//
 //
 //
 //
@@ -70363,7 +70376,17 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              { staticClass: "no-active", attrs: { to: "/" } },
+              [_c("i", { staticClass: "icon-exit action-icon" })]
+            )
+          ],
+          1
+        )
       ])
     ]
   )
@@ -70383,12 +70406,6 @@ var staticRenderFns = [
         [_vm._v("Post a Job")]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("i", { staticClass: "icon-exit action-icon" })])
   }
 ]
 render._withStripped = true
@@ -72859,19 +72876,22 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              { staticClass: "no-active", attrs: { to: "/" } },
+              [_c("i", { staticClass: "icon-exit action-icon" })]
+            )
+          ],
+          1
+        )
       ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("i", { staticClass: "icon-exit action-icon" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -74602,43 +74622,37 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("main-nav", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.$route.meta.navigation == "main-nav",
-                  expression: "$route.meta.navigation == 'main-nav'"
-                }
-              ]
-            }),
+            _vm.$route.meta.navigation == "main-nav"
+              ? _c("main-nav", {
+                  attrs: { active: _vm.responsivemenu == true }
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("customer-nav", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.$route.meta.navigation == "customer-nav",
-                  expression: "$route.meta.navigation == 'customer-nav'"
-                }
-              ],
-              on: { profilepopup: _vm.ProfilePopup }
-            }),
+            _vm.$route.meta.navigation == "customer-nav"
+              ? _c("customer-nav", {
+                  attrs: { active: _vm.responsivemenu == true },
+                  on: { profilepopup: _vm.ProfilePopup }
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("provider-nav", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.$route.meta.navigation == "provider-nav",
-                  expression: "$route.meta.navigation == 'provider-nav'"
-                }
-              ],
-              on: { profilepopup: _vm.ProfilePopup }
-            })
+            _vm.$route.meta.navigation == "provider-nav"
+              ? _c("provider-nav", {
+                  attrs: { active: _vm.responsivemenu == true },
+                  on: { profilepopup: _vm.ProfilePopup }
+                })
+              : _vm._e()
           ],
           1
-        )
+        ),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "icon-menu2 menuiconbutton",
+          on: {
+            click: function($event) {
+              _vm.responsivemenu ^= true
+            }
+          }
+        })
       ]),
       _vm._v(" "),
       _c("change-password-popup", {

@@ -25,7 +25,11 @@
                         <notification v-show="isShowing"></notification>
                     </span>
                 </li>
-                <li><i class="icon-exit action-icon"></i></li>
+                <li>
+                    <router-link to="/" class="no-active">
+                        <i class="icon-exit action-icon"></i>
+                    </router-link>
+                </li>
             </ul>
         </div>
     </template>

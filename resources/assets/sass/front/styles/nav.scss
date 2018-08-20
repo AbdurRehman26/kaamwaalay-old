@@ -84,6 +84,51 @@ $nav-font:$font-bold;
             font-size:28px;
         }
     }
+    &.main-navigation{
+        @include tabletF{
+            position: absolute;
+            bottom: auto;
+            width: 100%;
+            /* overflow: hidden; */
+            opacity: 0;
+            border-bottom: 1px solid #ccc;            
+            border-top: 0px solid;
+            visibility: hidden;
+            transition: 0.3s ease-in-out;
+            top: 70px;
+            left: 0;
+            background-color: #fff;
+            ul{
+                width: 100%;
+                li{
+                    width: 100%;
+                    margin: 0px;
+                    text-align: center;
+                    a{
+                        padding-left: 0px;
+                        &.router-link-exact-active{
+                            color: $primary-color-md;
+                            &:after{
+                                display: none;
+                            }
+                        }
+                    }
+                    .btn{
+                        display: table;
+                        margin: auto;        
+                        padding: 10px 0px;            
+                    }
+                    .user-login-detail{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        &[active="true"]{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
 
 .left-cog {

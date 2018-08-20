@@ -287,6 +287,13 @@ $section-padding-sm:20px 0px;
         margin-right: 90px;
         flex-shrink: 1.4;
     }
+    @include tabletF{
+        flex-direction: column;
+        .content-sec{
+            padding-bottom: 20px;
+            margin: 0px;
+        }
+    }    
 }
 
     .content-sec{
@@ -624,6 +631,9 @@ $section-padding-sm:20px 0px;
             &:nth-child(2n){
                 padding-right: 0px;
             }
+            @include tabletF{
+                width: 49.3%;
+            }            
         }
         .testmonial-img{
             display: block;
@@ -722,6 +732,9 @@ $section-padding-sm:20px 0px;
 
 .heading-large{
     font-size: $font-size-xxl;
+    @include tabletF{
+        font-size: $font-size-lg;
+    }
 }
 
 .element-column-image {
@@ -764,6 +777,10 @@ $section-padding-sm:20px 0px;
                 background-size: cover;
                 border-radius: 7px;
                 margin-left: auto;
+                @include tabletF{
+                    width: auto;
+                    height: 210px;
+                }                
             }
             h4{
                 padding: 30px 0px;
@@ -774,7 +791,10 @@ $section-padding-sm:20px 0px;
                 margin-left: auto;                
             }
             &:first-child{                
-            }          
+            }
+            @include tabletF{
+                padding-left: 15px;
+            }                      
         }
         .item-list-container{
             padding: 0px;
@@ -2586,3 +2606,20 @@ body{
     }
 }
 
+.no-active{
+    &:after{
+        display: none;
+    }
+}
+
+.menuiconbutton{
+    display: none;
+    @include tabletF{
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 28%;
+        font-size: 31px;
+        color: $primary-color-md;        
+    }
+}
