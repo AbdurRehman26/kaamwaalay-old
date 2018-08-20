@@ -13076,6 +13076,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .footer-links ul li {
   margin-bottom: 16px;
+  margin-right: 10px;
 }
 
 .footer-links ul li a {
@@ -13089,6 +13090,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 .footer-links ul li strong {
   color: #1A1A1A;
+}
+
+.footer-links ul li:last-child {
+  margin-right: 0px;
 }
 
 .footer-links .app-images ul {

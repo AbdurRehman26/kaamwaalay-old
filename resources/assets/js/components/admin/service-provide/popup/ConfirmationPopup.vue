@@ -22,7 +22,7 @@ export default {
             },
             hideModal() {
                 this.$refs.myModalRef.hide();
-                 this.changestatus = false;
+                this.changestatus = false;
             },
             onHidden(){
                 this.$emit('HideModalValue');
