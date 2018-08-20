@@ -195,7 +195,7 @@ $section-padding-sm:20px 0px;
         padding: 57px 0px;
     }
     &.xs{
-        padding: 20px 0px;
+        padding: 40px 0px 30px 0px;
     }
 }
 
@@ -286,6 +286,13 @@ $section-padding-sm:20px 0px;
     .content-sec{
         margin-right: 90px;
         flex-shrink: 1.4;
+    }
+    @include tabletF{
+        flex-direction: column;
+        .content-sec{
+            padding-bottom: 20px;
+            margin: 0px;
+        }
     }
 }
 
@@ -631,6 +638,9 @@ $section-padding-sm:20px 0px;
             &:nth-child(2n){
                 padding-right: 0px;
             }
+            @include tabletF{
+                width: 49.3%;
+            }
         }
         .testmonial-img{
             display: block;
@@ -729,6 +739,9 @@ $section-padding-sm:20px 0px;
 
 .heading-large{
     font-size: $font-size-xxl;
+    @include tabletF{
+        font-size: $font-size-lg;
+    }
 }
 
 .element-column-image {
@@ -771,16 +784,23 @@ $section-padding-sm:20px 0px;
                 background-size: cover;
                 border-radius: 7px;
                 margin-left: auto;
+                @include tabletF{
+                    width: auto;
+                    height: 210px;
+                }
             }
             h4{
-                padding: 30px 0px;
-                font-size: $font-size-xs+3;
+                padding:30px 0px 25px;
+                font-size: $font-size-xs+1;
                 color: $secondary-color;
                 /* font-family: $font_regular; */
                 max-width: 282px;
                 margin-left: auto;
             }
             &:first-child{
+            }
+            @include tabletF{
+                padding-left: 15px;
             }
         }
         .item-list-container{
@@ -801,6 +821,8 @@ $section-padding-sm:20px 0px;
         }
         .showmore{
             padding-left: 35px;
+            position: relative;
+            top: -5px;
         }
     }
     .showmore{
@@ -811,8 +833,11 @@ $section-padding-sm:20px 0px;
             }
         }
         i {
-            font-size: 20px;
+            font-size: 29px;
             vertical-align: text-top;
+            position: relative;
+            top: -2px;
+            left: -5px;
         }
     }
     &:last-child{
@@ -2636,3 +2661,33 @@ body{
     }
 }
 
+.apple-store-btn{
+    img{
+        width:142px;
+        height:auto;
+    }
+}
+.google-store-btn{
+    img{
+        width:162px;
+        height:auto;
+    }
+}
+
+.no-active{
+    &:after{
+        display: none;
+    }
+}
+
+.menuiconbutton{
+    display: none;
+    @include tabletF{
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 28%;
+        font-size: 31px;
+        color: $primary-color-md;
+    }
+}

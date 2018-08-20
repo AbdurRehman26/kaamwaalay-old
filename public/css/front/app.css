@@ -13051,6 +13051,10 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+.mac-browser .btn {
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
 .custom-datepicker label {
   display: block;
 }
@@ -13203,6 +13207,20 @@ input[type=number]::-webkit-outer-spin-button {
   height: 40px;
 }
 
+@media (max-width: 1300px) {
+  .footer-links .app-images img {
+    width: 104px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer-links .app-images img {
+    width: 80px;
+    height: 27px;
+  }
+}
+
 .footer-copyrights p {
   color: #494949;
 }
@@ -13254,6 +13272,10 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
   height: 57px;
   padding: 12px 0 0px;
+}
+
+.navigation ul li.bell-li {
+  margin-left: -2px;
 }
 
 .navigation ul li a {
@@ -13324,6 +13346,61 @@ input[type=number]::-webkit-outer-spin-button {
 
 .navigation .action-icon.icon-cog2 {
   font-size: 28px;
+}
+
+@media (max-width: 1024px) {
+  .navigation.main-navigation {
+    position: absolute;
+    bottom: auto;
+    width: 100%;
+    /* overflow: hidden; */
+    opacity: 0;
+    border-bottom: 1px solid #ccc;
+    border-top: 0px solid;
+    visibility: hidden;
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    top: 70px;
+    left: 0;
+    background-color: #fff;
+  }
+
+  .navigation.main-navigation ul {
+    width: 100%;
+  }
+
+  .navigation.main-navigation ul li {
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+  }
+
+  .navigation.main-navigation ul li a {
+    padding-left: 0px;
+  }
+
+  .navigation.main-navigation ul li a.router-link-exact-active {
+    color: #8200FF;
+  }
+
+  .navigation.main-navigation ul li a.router-link-exact-active:after {
+    display: none;
+  }
+
+  .navigation.main-navigation ul li .btn {
+    display: table;
+    margin: auto;
+    padding: 10px 0px;
+  }
+
+  .navigation.main-navigation ul li .user-login-detail {
+    width: 100%;
+  }
+}
+
+.navigation.main-navigation[active="true"] {
+  opacity: 1;
+  visibility: visible;
 }
 
 .left-cog {
@@ -13544,6 +13621,10 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "AkzidenzGroteskBE-Regular";
 }
 
+.mac-browser .navigation ul li a {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .main-banner {
   width: 100%;
   height: auto;
@@ -13606,6 +13687,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .main-banner.explore-banner .content-inner h1 {
   margin-bottom: 26px;
+}
+
+@media (max-width: 1024px) {
+  .main-banner.explore-banner .content-inner {
+    max-width: 660px;
+  }
 }
 
 .main-banner.explore-banner .splash-design.d-6 {
@@ -13868,7 +13955,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .section-padd.xs {
-  padding: 20px 0px;
+  padding: 40px 0px 30px 0px;
 }
 
 .text-notifer {
@@ -13974,6 +14061,20 @@ input[type=number]::-webkit-outer-spin-button {
   margin-right: 90px;
   -ms-flex-negative: 1.4;
       flex-shrink: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .two-column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .two-column .content-sec {
+    padding-bottom: 20px;
+    margin: 0px;
+  }
 }
 
 .content-sec h2 {
@@ -14274,6 +14375,12 @@ input[type=number]::-webkit-outer-spin-button {
   padding-right: 0px;
 }
 
+@media (max-width: 1024px) {
+  .testmonial-section .item-list .item {
+    width: 49.3%;
+  }
+}
+
 .testmonial-section .item-list .testmonial-img {
   display: block;
   text-align: center;
@@ -14388,6 +14495,12 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 36px;
 }
 
+@media (max-width: 1024px) {
+  .heading-large {
+    font-size: 28px;
+  }
+}
+
 .element-column-image {
   position: absolute;
   top: 0;
@@ -14440,13 +14553,26 @@ input[type=number]::-webkit-outer-spin-button {
   margin-left: auto;
 }
 
+@media (max-width: 1024px) {
+  .category-section .category-items .items .item-image {
+    width: auto;
+    height: 210px;
+  }
+}
+
 .category-section .category-items .items h4 {
-  padding: 30px 0px;
-  font-size: 19px;
+  padding: 30px 0px 25px;
+  font-size: 17px;
   color: #1A1A1A;
   /* font-family: $font_regular; */
   max-width: 282px;
   margin-left: auto;
+}
+
+@media (max-width: 1024px) {
+  .category-section .category-items .items {
+    padding-left: 15px;
+  }
 }
 
 .category-section .category-items .item-list-container {
@@ -14467,6 +14593,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .category-section .category-items .showmore {
   padding-left: 35px;
+  position: relative;
+  top: -5px;
 }
 
 .category-section .showmore a {
@@ -14479,8 +14607,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .category-section .showmore i {
-  font-size: 20px;
+  font-size: 29px;
   vertical-align: text-top;
+  position: relative;
+  top: -2px;
+  left: -5px;
 }
 
 .category-section:last-child {
@@ -16467,6 +16598,35 @@ body .chat-feedback-message.white-msg:before {
 
 .job-post-category:after {
   display: none;
+}
+
+.apple-store-btn img {
+  width: 142px;
+  height: auto;
+}
+
+.google-store-btn img {
+  width: 162px;
+  height: auto;
+}
+
+.no-active:after {
+  display: none;
+}
+
+.menuiconbutton {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .menuiconbutton {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 28%;
+    font-size: 31px;
+    color: #8200FF;
+  }
 }
 
 .modal-sm {

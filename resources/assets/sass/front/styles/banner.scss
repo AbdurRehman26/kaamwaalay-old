@@ -54,7 +54,9 @@
             h1{
                 margin-bottom:26px;
             }
-
+            @include tabletF{
+                max-width: 660px;
+            }
         }
         .splash-design{
             &.d-6{
