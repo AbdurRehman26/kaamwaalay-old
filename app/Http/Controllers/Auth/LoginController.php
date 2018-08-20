@@ -10,7 +10,7 @@ use App\Data\Models\User;
 use App\Data\Models\Role;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Lang;
-use Carbon\carbon;
+use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
@@ -216,7 +216,7 @@ class LoginController extends Controller
             } else {
                 return view('layout',['error'=>Lang::get('auth.activateError')]);
             }
-
+            
         }
     }
     protected function sendCheckAdminLoginResponse(Request $request)
