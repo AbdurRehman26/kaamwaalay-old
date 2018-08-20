@@ -149,6 +149,7 @@ $section-padding-sm:20px 0px;
     h4{
         margin-bottom: 0;
         padding-bottom:12px;
+        font-family:$font_medium;
     }
     p{
         font-size: $font-size-xs;
@@ -2723,6 +2724,22 @@ body{
                 h3{
                     font-family:$font_medium;
                 }
+            }
+        }
+    }
+    .category-section{
+        .category-title{
+            h2{
+                font-family:$font_medium;
+            }
+        }
+    }
+    .category-section{
+        .category-items{
+            .items{
+                 h4{
+                    font-family:$font_medium;
+                 }
             }
         }
     }
