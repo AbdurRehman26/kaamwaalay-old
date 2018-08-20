@@ -44,17 +44,21 @@ const app = new Vue({
             } else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
             {
                 jQuery('body').addClass('IE-browser')
-            }
-            else if (navigator.userAgent.indexOf('Mac OS X') != -1) {
-                $("body").addClass("mac-browser");
-            }
-            else {
+            } else {
                 jQuery('body').addClass('New-browser')
+            }
+        },
+        Macbrowserfunction() {
+            if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+                $("body").addClass("mac-browser");
+            }else{
+                $("body").addClass("window-browser");
             }
         }
     },
     mounted(){
         this.browserfunction();
+        this.Macbrowserfunction();
     },
 });
 
