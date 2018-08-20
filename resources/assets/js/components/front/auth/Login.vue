@@ -28,7 +28,7 @@
        </div>
    </div>
    <div class="col-xs-12 col-md-12">
-    <button type="button" class="btn btn-primary apply-primary-color btn-lg" @click.prevent="onSubmit">
+    <button type="button" class="btn btn-primary apply-primary-color btn-lg" @click="MyBids">
       <span>Log In</span>
       <loader></loader>
   </button>
@@ -89,6 +89,9 @@ methods: {
         //   console.log(this.form);
         //   this.$router.push({ name: 'dashboard'});
         // },
+        MyBids(){
+            this.$router.push('my-bids');
+        }
     },
 }
 </script>
