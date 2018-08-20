@@ -70672,11 +70672,7 @@ var render = function() {
                           "a",
                           {
                             attrs: { href: "javascript:void(0);" },
-                            on: {
-                              click: function($event) {
-                                _vm.$emit("changebid")
-                              }
-                            }
+                            on: { click: _vm.ChangeBid }
                           },
                           [_vm._v("Change Bid")]
                         )

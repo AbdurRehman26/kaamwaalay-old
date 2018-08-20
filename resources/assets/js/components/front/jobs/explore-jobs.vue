@@ -58,7 +58,7 @@
                                 </p>
                                 <p class="offer">
                                     <i class="icon-work-briefcase"></i>
-                                    Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="$emit('changebid')" href="javascript:void(0);">Change Bid</a>
+                                    Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="ChangeBid" href="javascript:void(0);">Change Bid</a>
                                 </p>
 
                                 <p class="member-since">
