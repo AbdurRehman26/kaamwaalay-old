@@ -2460,7 +2460,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             actionConfirmation: false,
             pageTitle: 'Admin',
             noRecordFound: false,
-            url: 'api/user?filter_by_role=1&pagination=true',
+            url: 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true',
             updateUrl: '',
             updateData: {},
             loading: true,
@@ -2506,15 +2506,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         changeAccessLevel: function changeAccessLevel(record) {
             var self = this;
             this.currentRecord = record;
-            if (this.currentRecord.access_level == 'reviewOnly') {
-                this.currentRecord.access_level = 'full';
+            if (this.currentRecord.role_id == 4) {
+                this.currentRecord.role_id = 1;
             } else {
-                this.currentRecord.access_level = 'reviewOnly';
+                this.currentRecord.role_id = 4;
             }
             self.updateUrl = 'api/user/change-access-level';
             self.updateData = {
                 "id": self.currentRecord.id,
-                "access_level": self.currentRecord.access_level
+                "role_id": self.currentRecord.role_id
             };
             this.updateAccessLevel();
         },
@@ -2534,7 +2534,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, 5000);
             }).catch(function (error) {
                 self.loading = false;
-                self.errorMessage = 'An Error occured';
+                self.errorMessage = error.response.data.message[0];
                 setTimeout(function () {
                     self.errorMessage = '';
                 }, 5000);
@@ -4371,7 +4371,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'last_name': '',
                 'email': '',
                 'role_id': 1,
-                'access_level': 'full',
                 'status': 'active'
             },
             loading: false,
@@ -66429,15 +66428,15 @@ var render = function() {
                                     }
                                   },
                                   model: {
-                                    value: _vm.currentRecord.access_level,
+                                    value: _vm.currentRecord.role_id,
                                     callback: function($$v) {
                                       _vm.$set(
                                         _vm.currentRecord,
-                                        "access_level",
+                                        "role_id",
                                         $$v
                                       )
                                     },
-                                    expression: "currentRecord.access_level"
+                                    expression: "currentRecord.role_id"
                                   }
                                 },
                                 [_vm._v(_vm._s(_vm._f("accessLevel")(record)))]
@@ -71121,8 +71120,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.add_form_info.access_level,
-                      expression: "add_form_info.access_level"
+                      value: _vm.add_form_info.role_id,
+                      expression: "add_form_info.role_id"
                     }
                   ],
                   staticClass: "form-control",
@@ -71138,7 +71137,7 @@ var render = function() {
                         })
                       _vm.$set(
                         _vm.add_form_info,
-                        "access_level",
+                        "role_id",
                         $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
@@ -71147,11 +71146,11 @@ var render = function() {
                   }
                 },
                 [
-                  _c("option", { attrs: { value: "full" } }, [
+                  _c("option", { attrs: { value: "1" } }, [
                     _vm._v("Full Access")
                   ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "reviewOnly" } }, [
+                  _c("option", { attrs: { value: "4" } }, [
                     _vm._v("Review Process Only")
                   ])
                 ]

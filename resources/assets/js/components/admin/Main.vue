@@ -31,7 +31,7 @@
               <td>{{record.first_name}}</td>
               <td>{{record.last_name}}</td>
               <td><a href="javascript:;">{{record.email}}</a></td>
-              <td ><a class="" @click="changeAccessLevel(record)" v-model="currentRecord.access_level">{{record | accessLevel}}</a></td>
+              <td ><a class="" @click="changeAccessLevel(record)" v-model="currentRecord.role_id">{{record | accessLevel}}</a></td>
               <td>{{record.created_at.date | formatDate}}</td>
               <td class="text-center statustext">
                 <div class=""><a class="" @click="changeStatus(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
@@ -63,7 +63,7 @@
             actionConfirmation: false,
             pageTitle:'Admin',
             noRecordFound : false,
-            url : 'api/user?filter_by_role=1&pagination=true',
+            url : 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true',
             updateUrl : '',
             updateData : {},
             loading : true,
@@ -108,15 +108,15 @@
   changeAccessLevel(record) {
     let self = this
     this.currentRecord = record
-    if(this.currentRecord.access_level == 'reviewOnly'){
-      this.currentRecord.access_level = 'full'
+    if(this.currentRecord.role_id == 4){
+      this.currentRecord.role_id = 1
   }else{
-      this.currentRecord.access_level = 'reviewOnly'
+      this.currentRecord.role_id = 4
   }
   self.updateUrl = 'api/user/change-access-level'
   self.updateData  = {
       "id" : self.currentRecord.id,
-      "access_level" : self.currentRecord.access_level,
+      "role_id" : self.currentRecord.role_id,
   }   
   this.updateAccessLevel();
 },
@@ -138,7 +138,7 @@ updateAccessLevel: function () {
     })
     .catch(error => {
         self.loading = false
-        self.errorMessage ='An Error occured';
+        self.errorMessage =error.response.data.message[0];
         setTimeout(function(){
             self.errorMessage='';
         }, 5000);

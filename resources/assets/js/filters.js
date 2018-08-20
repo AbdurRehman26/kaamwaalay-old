@@ -75,11 +75,11 @@ const adminStatuses = [
 ];
 const accessLevelField = [
 {
-    key : 'full',
+    key : '1',
     value : 'Full'
 },
 {
-    key : 'reviewOnly',
+    key : '4',
     value : 'Review'
 }
 ];
@@ -181,7 +181,7 @@ Vue.filter('adminStatus', function (value) {
 });
 Vue.filter('accessLevel', function (value) {
     let obj = _.find(accessLevelField, item =>{
-        if(item.key == value.access_level){
+        if(item.key == value.role_id){
             return item; 
         }
     });
