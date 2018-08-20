@@ -44,7 +44,11 @@ const app = new Vue({
             } else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
             {
                 jQuery('body').addClass('IE-browser')
-            } else {
+            }
+            else if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+                $("body").addClass("mac-browser");
+            }
+            else {
                 jQuery('body').addClass('New-browser')
             }
         }
