@@ -2691,3 +2691,39 @@ body{
         color: $primary-color-md;
     }
 }
+
+.mac-browser{
+    .featured-categories-home{
+        .list-description{
+            p{
+                font-family:$font_medium;
+            }
+        }
+    }
+    .Popular-services-slides{
+        li{
+            h6{
+                font-family:$font_medium;
+            }
+        }
+    }
+    .list-description{
+          h4{
+                font-family:$font_medium;
+          }
+    }
+    .content-sec{
+        h2{
+            font-family:$font_medium;
+        }
+    }
+    .testmonial-section{
+        .item-list{
+            .testmonial-name{
+                h3{
+                    font-family:$font_medium;
+                }
+            }
+        }
+    }
+}

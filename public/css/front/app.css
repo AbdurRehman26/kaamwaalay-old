@@ -16629,6 +16629,26 @@ body .chat-feedback-message.white-msg:before {
   }
 }
 
+.mac-browser .featured-categories-home .list-description p {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .Popular-services-slides li h6 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .list-description h4 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .content-sec h2 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .testmonial-section .item-list .testmonial-name h3 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .modal-sm {
   max-width: 520px;
 }
