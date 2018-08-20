@@ -4354,13 +4354,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
 
         return {
-            selected: null
+            selected: null,
+            add_form_info: {
+                'first_name': '',
+                'last_name': '',
+                'email': '',
+                'role_id': 1,
+                'access_level': 'full',
+                'status': 'active'
+            },
+            loading: false,
+            errorMessage: '',
+            successMessage: ''
         };
     },
 
@@ -4375,6 +4393,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onHidden: function onHidden() {
             this.$emit('HideModalValue');
+            this.resetModal();
+        },
+        validateBeforeSubmit: function validateBeforeSubmit() {
+            var _this = this;
+
+            // Prevent modal from closing
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.save();
+                    return;
+                }
+                _this.errorMessage = _this.errorBag.all()[0];
+                return false;
+            });
+        },
+        resetModal: function resetModal() {
+            var self = this;
+            self.add_form_info = {
+                'first_name': '',
+                'last_name': '',
+                'email': '',
+                'role_id': 1,
+                'access_level': 'full',
+                'status': 'active'
+            }, setTimeout(function () {
+                self.errorBag.items = [];
+            }, 100);
+            self.errorMessage = '';
+            self.successMessage = '';
+            self.hideModal();
+        },
+        save: function save() {
+            var self = this;
+            self.loading = true;
+            this.$http.post('/api/user', self.add_form_info).then(function (response) {
+                self.loading = false;
+                self.successMessage = response.data.message;
+                self.$parent.records.push(response.data.data);
+                self.$parent.getRecords(self.$parent.records);
+                setTimeout(function () {
+                    self.successMessage = '';
+                    self.resetModal();
+                }, 5000);
+            }).catch(function (error) {
+                self.loading = false;
+                self.errorMessage = error.response.data.message[0];
+                setTimeout(function () {
+                    self.errorMessage = '';
+                }, 5000);
+            });
         }
     },
 
@@ -70607,87 +70675,314 @@ var render = function() {
             size: "sm",
             title: "Add New User",
             "ok-only": "",
-            "ok-title": "Submit"
+            "ok-title": "Submit",
+            "no-close-on-backdrop": "",
+            "no-close-on-esc": ""
           },
           on: { hidden: _vm.onHidden }
         },
         [
-          _c("alert"),
+          _vm.errorMessage || _vm.successMessage
+            ? _c("alert", {
+                attrs: {
+                  errorMessage: _vm.errorMessage,
+                  successMessage: _vm.successMessage
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("First Name")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Enter first name",
-                  name: ""
-                }
-              })
-            ]),
+            _c(
+              "div",
+              {
+                class: [
+                  "form-group",
+                  _vm.errorBag.first("first_name") ? "is-invalid" : ""
+                ]
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "addForm_first_name" } }, [
+                    _vm._v("First Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.add_form_info.first_name,
+                        expression: "add_form_info.first_name"
+                      },
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "addForm_first_name",
+                      type: "text",
+                      name: "first_name",
+                      "data-vv-as": "first name",
+                      "data-vv-name": "first_name",
+                      placeholder: "Enter your First Name"
+                    },
+                    domProps: { value: _vm.add_form_info.first_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.add_form_info,
+                          "first_name",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Last Name")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Enter last name",
-                  name: ""
-                }
-              })
-            ]),
+            _c(
+              "div",
+              {
+                class: [
+                  "form-group",
+                  _vm.errorBag.first("last_name") ? "is-invalid" : ""
+                ]
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "addForm_last_name" } }, [
+                    _vm._v("Last Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.add_form_info.last_name,
+                        expression: "add_form_info.last_name"
+                      },
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "addForm_last_name",
+                      type: "text",
+                      name: "last_name",
+                      "data-vv-as": "last name",
+                      "data-vv-name": "last_name",
+                      placeholder: "Enter your Last Name"
+                    },
+                    domProps: { value: _vm.add_form_info.last_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.add_form_info,
+                          "last_name",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Email Address")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Enter email address",
-                  name: ""
-                }
-              })
-            ]),
+            _c(
+              "div",
+              {
+                class: [
+                  "form-group",
+                  _vm.errorBag.first("email") ? "is-invalid" : ""
+                ]
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "addForm_email" } }, [
+                    _vm._v("Email")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.add_form_info.email,
+                        expression: "add_form_info.email"
+                      },
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required|email",
+                        expression: "'required|email'"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "addForm_email",
+                      type: "email",
+                      name: "email",
+                      "data-vv-name": "email",
+                      placeholder: "Enter your Email"
+                    },
+                    domProps: { value: _vm.add_form_info.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.add_form_info,
+                          "email",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Access Level")]),
               _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Access Level")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Full Access")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Review Process Only")
-                ])
-              ])
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.add_form_info.access_level,
+                      expression: "add_form_info.access_level"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.add_form_info,
+                        "access_level",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "full" } }, [
+                    _vm._v("Full Access")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "reviewOnly" } }, [
+                    _vm._v("Review Process Only")
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Status")]),
               _vm._v(" "),
-              _c("select", { staticClass: "form-control" }, [
-                _c(
-                  "option",
-                  { attrs: { value: "", selected: "", disabled: "" } },
-                  [_vm._v("Select Status")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Active")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "" } }, [_vm._v("Deactive")])
-              ])
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.add_form_info.status,
+                      expression: "add_form_info.status"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.add_form_info,
+                        "status",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "active" } }, [
+                    _vm._v("Active")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "banned" } }, [
+                    _vm._v("Deactive")
+                  ])
+                ]
+              )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "w-100",
+              attrs: { slot: "modal-footer" },
+              slot: "modal-footer"
+            },
+            [
+              _c(
+                "button",
+                {
+                  class: [
+                    _vm.loading ? "show-spinner" : "",
+                    "btn",
+                    "btn-primary",
+                    "col-sm-3"
+                  ],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.validateBeforeSubmit()
+                    }
+                  }
+                },
+                [_vm._v("Submit\n            "), _c("loader")],
+                1
+              )
+            ]
+          )
         ],
         1
       )

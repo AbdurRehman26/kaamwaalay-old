@@ -15,26 +15,13 @@ class CityController extends ApiResourceController
    public function rules($value=''){
     $rules = [];
 
-    if($value == 'store'){
-
-    }
-
-    if($value == 'update'){
-
-    }
-
-
-    if($value == 'destroy'){
-
-    }
-
     if($value == 'show'){
-
+        $rules['id'] =  'required|numeric|exists:cities,id';
     }
 
     if($value == 'index'){
         $rules['pagination']    =  'nullable|boolean';
-        $rules['state_id']      =  'required|numeric';
+        $rules['state_id'] =  'required|numeric|exists:states,id';
     }
 
     return $rules;
@@ -45,8 +32,6 @@ class CityController extends ApiResourceController
 public function input($value='')
 {
     $input = request()->only('id', 'pagination', 'state_id');
-    
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     return $input;
 }
 }
