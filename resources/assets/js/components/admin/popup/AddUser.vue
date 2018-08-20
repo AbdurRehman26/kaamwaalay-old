@@ -114,9 +114,9 @@ export default {
                 .then(response => {
                     self.loading = false
                     self.successMessage =  response.data.message
-                    self.$parent.records.push(response.data.data)
-                    self.$parent.getRecords(self.$parent.records)
+                    self.$parent.url = "";
                     setTimeout(function(){
+                    self.$parent.url = 'api/user?filter_by_role=1&pagination=true';
                         self.successMessage='';
                          self.resetModal();
                     }, 5000);
