@@ -6391,6 +6391,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8193,6 +8235,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8354,6 +8424,224 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return result;
 		}
 	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            categoryimage: '/images/front/explore/mds.png',
+
+            jobimage: '/images/front/profile-images/logoimage1.png',
+            reviewerimage: '/images/front/profile-images/personimage1.png',
+
+            joblisting: [{
+                job_title: 'M.D.S Joinery & Glazing',
+                job_feedback: 180,
+                job_perform: 208,
+                job_full_rating: 4,
+                job_location: 'New York, NY',
+                job_member_since: 'Jan, 2018',
+                job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote."
+
+            }]
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        categorylisting: function categorylisting() {
+            this.$router.push({ name: 'Explore_Detail' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating__ = __webpack_require__("./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_star_rating__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            categoryimage: '/images/front/explore/mds.png',
+
+            jobimage: '/images/front/profile-images/logoimage1.png',
+            reviewerimage: '/images/front/profile-images/personimage1.png',
+
+            joblisting: [{
+                job_title: 'M.D.S Joinery & Glazing',
+                job_feedback: 180,
+                job_perform: 208,
+                job_full_rating: 4,
+                job_location: 'New York, NY',
+                job_member_since: 'Jan, 2018',
+                job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote."
+
+            }]
+
+        };
+    },
+
+
+    methods: {
+        AddCustomer: function AddCustomer() {
+            this.customer = true;
+        },
+        changestatuspopup: function changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal: function HideModal() {
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        categorylisting: function categorylisting() {
+            this.$router.push({ name: 'Explore_Detail' });
+        }
+    },
+    components: {
+        StarRating: __WEBPACK_IMPORTED_MODULE_0_vue_star_rating___default.a
+    },
+
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -67550,11 +67838,13 @@ var render = function() {
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
           _c("div", { staticClass: "service-need" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
                 _c(
@@ -67580,74 +67870,16 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5),
+          _vm._m(6),
           _vm._v(" "),
           _c("div", { staticClass: "verify-account" }, [
-            _vm._m(6),
-            _vm._v(" "),
             _vm._m(7),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _vm._m(8),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group custom-datepicker" },
-                      [
-                        _c("date-picker", {
-                          attrs: {
-                            type: "month",
-                            placeholder: "Select Month",
-                            format: "MM",
-                            lang: "en"
-                          },
-                          model: {
-                            value: _vm.value_month,
-                            callback: function($$v) {
-                              _vm.value_month = $$v
-                            },
-                            expression: "value_month"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group custom-datepicker" },
-                      [
-                        _c("date-picker", {
-                          attrs: {
-                            type: "year",
-                            placeholder: "Select Year",
-                            format: "YYYY",
-                            lang: "en"
-                          },
-                          model: {
-                            value: _vm.value_year,
-                            callback: function($$v) {
-                              _vm.value_year = $$v
-                            },
-                            expression: "value_year"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                ])
-              ])
-            ]),
+            _vm._m(8),
             _vm._v(" "),
             _vm._m(9),
+            _vm._v(" "),
+            _vm._m(10),
             _vm._v(" "),
             _c("div", { staticClass: "job-form-submission" }, [
               _c("div", { staticClass: " " }, [
@@ -67758,6 +67990,33 @@ var staticRenderFns = [
             },
             [_vm._v("+ Add more photos")]
           )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "attach-video-files" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group custom-file" }, [
+            _c("label", [_vm._v("Youtube video ID")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { placeholder: "e.g. BCFuE1tlqwU" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 video-url" }, [
+          _c("p", [
+            _vm._v(
+              "Video id available at the end of youtube video url. https://www.youtube.com/watch?v={VIDEO-ID}"
+            )
+          ])
         ])
       ])
     ])
@@ -67956,18 +68215,94 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: "Enter your credit card number",
+              value: "Enter your credit card number"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Enter your credit card number",
-            value: "Enter your credit card number"
-          }
-        })
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group custom-datepicker" }, [
+              _c("select", { staticClass: "form-control" }, [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("Select Month")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("January")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Feburay")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("March")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("April")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("May")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("June")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("July")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("August")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("September")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("October")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("November")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("December")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group custom-datepicker" }, [
+              _c("select", { staticClass: "form-control" }, [
+                _c("option", { attrs: { selected: "", disabled: "" } }, [
+                  _vm._v("Select Year")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2010")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2011")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2012")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2013")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2014")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2015")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2016")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2017")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2018")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2019")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2020")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("2021")])
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   },
@@ -69288,6 +69623,93 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-162d8911\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "category-detail" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "content" }, [
+        _vm._m(0, true),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-post-container section-padd sm" }, [
+          _c("div", { staticClass: "container md" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  { staticClass: "provider-information" },
+                  _vm._l(listing.job_description.split("\n"), function(
+                    description
+                  ) {
+                    return _c("div", { staticClass: "post-job-description" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n\t\t\t\t\t\t\t\t\ttempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n\t\t\t\t\t\t\t\t\tquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n\t\t\t\t\t\t\t\t\tconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n\t\t\t\t\t\t\t\t\tcillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n\t\t\t\t\t\t\t\t\tproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "next-project grey-bg elementary-banner section-padd md border-bottom"
+      },
+      [
+        _c("div", { staticClass: "container element-index text-center md" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("div", { staticClass: "category-content text-center" }, [
+              _c("h2", [_vm._v("Terms & Condition")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "elements" }, [
+          _c("img", {
+            staticClass: "top-left",
+            attrs: { src: "/images/front/banner-bg/bg-5.png" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "bottom-right",
+            attrs: { src: "/images/front/banner-bg/bg-2.png" }
+          })
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-162d8911", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1c16f02b\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./node_modules/vue2-typeahead/src/components/TypeAhead.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -69554,73 +69976,7 @@ var render = function() {
             _vm._v(" "),
             _vm._m(9),
             _vm._v(" "),
-            _c("div", { staticClass: "account-fee" }, [
-              _vm._m(10),
-              _vm._v(" "),
-              _vm._m(11),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _vm._m(12),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-group custom-datepicker" },
-                        [
-                          _c("date-picker", {
-                            attrs: {
-                              type: "month",
-                              placeholder: "Select Month",
-                              format: "MM",
-                              lang: "en"
-                            },
-                            model: {
-                              value: _vm.value_month,
-                              callback: function($$v) {
-                                _vm.value_month = $$v
-                              },
-                              expression: "value_month"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-group custom-datepicker" },
-                        [
-                          _c("date-picker", {
-                            attrs: {
-                              type: "year",
-                              placeholder: "Select Year",
-                              format: "YYYY",
-                              lang: "en"
-                            },
-                            model: {
-                              value: _vm.value_year,
-                              callback: function($$v) {
-                                _vm.value_year = $$v
-                              },
-                              expression: "value_year"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(13)
-            ]),
+            _vm._m(10),
             _vm._v(" "),
             _c("div", { staticClass: "submit-approval-btn" }, [
               _c(
@@ -69631,7 +69987,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(14)
+            _vm._m(11)
           ])
         ])
       ])
@@ -69973,79 +70329,156 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "verification-alert" }, [
-          _c("p", [
-            _vm._v(
-              "Enter your credit card details to pay service provider account creation fee of "
-            ),
-            _c("span", [_vm._v("$50")]),
-            _vm._v(".")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
-          _vm._v(" "),
-          _c("select", { staticClass: "form-control" }, [
-            _c("option", { attrs: { selected: "", disabled: "" } }, [
-              _vm._v("Select credit card type")
-            ]),
-            _vm._v(" "),
-            _c("option", [_vm._v("VISA")])
+    return _c("div", { staticClass: "account-fee" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "verification-alert" }, [
+            _c("p", [
+              _vm._v(
+                "Enter your credit card details to pay service provider account creation fee of "
+              ),
+              _c("span", [_vm._v("$50")]),
+              _vm._v(".")
+            ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "", placeholder: "Enter card holder name", name: "" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control" }, [
+              _c("option", { attrs: { selected: "", disabled: "" } }, [
+                _vm._v("Select credit card type")
+              ]),
+              _vm._v(" "),
+              _c("option", [_vm._v("VISA")])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "Enter your credit card number" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Security Code (CVV)")]),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "",
+                placeholder: "Enter card holder name",
+                name: ""
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Number")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Enter your credit card number"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { placeholder: "Enter your cvv number", type: "", name: "" }
-          })
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group custom-datepicker" }, [
+                _c("select", { staticClass: "form-control" }, [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("Select Month")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("January")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Feburay")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("March")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("April")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("May")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("June")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("July")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("August")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("September")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("October")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("November")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("December")])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group custom-datepicker" }, [
+                _c("select", { staticClass: "form-control" }, [
+                  _c("option", { attrs: { selected: "", disabled: "" } }, [
+                    _vm._v("Select Year")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2010")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2011")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2012")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2013")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2014")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2015")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2016")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2017")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2018")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2019")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2020")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("2021")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Security Code (CVV)")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                placeholder: "Enter your cvv number",
+                type: "",
+                name: ""
+              }
+            })
+          ])
         ])
       ])
     ])
@@ -70418,7 +70851,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("li", [
+        _c("li", { staticClass: "bell-li" }, [
           _c(
             "span",
             {
@@ -70531,17 +70964,31 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "avability-app" }, [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _c("img", {
-          attrs: { src: "/images/front/common-images/app-store.jpg" }
-        })
-      ]),
+      _c(
+        "a",
+        {
+          staticClass: "apple-store-btn",
+          attrs: { href: "javascript:void(0)" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/images/front/common-images/app-store.jpg" }
+          })
+        ]
+      ),
       _vm._v(" "),
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _c("img", {
-          attrs: { src: "/images/front/common-images/google-play.jpg" }
-        })
-      ])
+      _c(
+        "a",
+        {
+          staticClass: "google-store-btn",
+          attrs: { href: "javascript:void(0)" }
+        },
+        [
+          _c("img", {
+            attrs: { src: "/images/front/common-images/google-play.jpg" }
+          })
+        ]
+      )
     ])
   }
 ]
@@ -71813,7 +72260,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore" }, [
+    return _c("div", { staticClass: "showmore showmore-link clearfix" }, [
       _c("a", { attrs: { href: "/explore/service_provider" } }, [
         _vm._v("View all services related to electricians "),
         _c("i", { staticClass: "icon-keyboard_arrow_right" })
@@ -72918,6 +73365,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          { staticClass: "setting-li" },
           [
             _c("router-link", { attrs: { to: "/profile" } }, [
               _c("i", { staticClass: "icon-cog2 action-icon" })
@@ -72926,7 +73374,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("li", [
+        _c("li", { staticClass: "bell-li" }, [
           _c(
             "span",
             {
@@ -73426,17 +73874,33 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "avability-app" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/app-store.jpg" }
-                })
-              ]),
+              _c(
+                "a",
+                {
+                  staticClass: "apple-store-btn",
+                  attrs: { href: "javascript:void(0)" }
+                },
+                [
+                  _c("img", {
+                    attrs: { src: "/images/front/common-images/app-store.jpg" }
+                  })
+                ]
+              ),
               _vm._v(" "),
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _c("img", {
-                  attrs: { src: "/images/front/common-images/google-play.jpg" }
-                })
-              ])
+              _c(
+                "a",
+                {
+                  staticClass: "google-store-btn",
+                  attrs: { href: "javascript:void(0)" }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/images/front/common-images/google-play.jpg"
+                    }
+                  })
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
@@ -73811,6 +74275,93 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-640aadb2", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68f456ad\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "category-detail" },
+    _vm._l(_vm.joblisting, function(listing) {
+      return _c("div", { staticClass: "content" }, [
+        _vm._m(0, true),
+        _vm._v(" "),
+        _c("div", { staticClass: "job-post-container section-padd sm" }, [
+          _c("div", { staticClass: "container md" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  { staticClass: "provider-information" },
+                  _vm._l(listing.job_description.split("\n"), function(
+                    description
+                  ) {
+                    return _c("div", { staticClass: "post-job-description" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n\t\t\t\t\t\t\t\t\ttempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n\t\t\t\t\t\t\t\t\tquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n\t\t\t\t\t\t\t\t\tconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n\t\t\t\t\t\t\t\t\tcillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n\t\t\t\t\t\t\t\t\tproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                      ])
+                    ])
+                  })
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "next-project grey-bg elementary-banner section-padd md border-bottom"
+      },
+      [
+        _c("div", { staticClass: "container element-index text-center md" }, [
+          _c("div", { staticClass: "content-sec" }, [
+            _c("div", { staticClass: "category-content text-center" }, [
+              _c("h2", [_vm._v("Privacy Policy")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "elements" }, [
+          _c("img", {
+            staticClass: "top-left",
+            attrs: { src: "/images/front/banner-bg/bg-5.png" }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "bottom-right",
+            attrs: { src: "/images/front/banner-bg/bg-2.png" }
+          })
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68f456ad", module.exports)
   }
 }
 
@@ -75951,48 +76502,45 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "featured-places" }, [
-          _c("p", [
+          _c("div", [
             _c("i", { staticClass: "icon-list" }),
             _vm._v(" "),
-            _c("span", [_vm._v("Service Pages")])
-          ]),
-          _c("p", { staticClass: "featured-detail" }, [
-            _vm._v(
-              "Your featured profile will appear almost at the top of service pages related to the services you are offering."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p")
+            _c("span", [_vm._v("Service Pages")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "featured-detail" }, [
+              _vm._v(
+                "Your featured profile will appear almost at the top of service pages related to the services you are offering."
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "featured-places" }, [
-          _c("p", [
+          _c("div", [
             _c("i", { staticClass: "icon-search22" }),
             _vm._v(" "),
-            _c("span", [_vm._v("Search result pages")])
-          ]),
-          _c("p", { staticClass: "featured-detail" }, [
-            _vm._v(
-              "When someone search specific service which you are offering, your profile may appear at the top of the search results."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p")
+            _c("span", [_vm._v("Search result pages")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "featured-detail" }, [
+              _vm._v(
+                "When someone search specific service which you are offering, your profile may appear at the top of the search results."
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "featured-places" }, [
-          _c("p", [
-            _c("i", { staticClass: "icon-list" }),
+          _c("div", { staticClass: "ios-andriod-feature" }, [
+            _c("i", { staticClass: "ios-andriod-app" }),
             _vm._v(" "),
-            _c("span", [_vm._v("Inside iOS & Android Apps")])
-          ]),
-          _c("p", { staticClass: "featured-detail" }, [
-            _vm._v(
-              "Your featured profile appear on PSM’s iPhone and Android apps, on search result and service pages."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p")
+            _c("span", [_vm._v("Inside iOS & Android Apps")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "featured-detail" }, [
+              _vm._v(
+                "Your featured profile appear on PSM’s iPhone and Android apps, on search result and service pages."
+              )
+            ])
+          ])
         ])
       ])
     ])
@@ -96653,6 +97201,102 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68f456ad\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\static-pages\\PrivacyPolicy.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68f456ad", Component.options)
+  } else {
+    hotAPI.reload("data-v-68f456ad", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/static-pages/TermsCondition.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-162d8911\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/static-pages/TermsCondition.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\static-pages\\TermsCondition.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-162d8911", Component.options)
+  } else {
+    hotAPI.reload("data-v-162d8911", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/front-app.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -96699,7 +97343,36 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.mixin({
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
-    router: __WEBPACK_IMPORTED_MODULE_3__front_routes__["a" /* default */]
+    router: __WEBPACK_IMPORTED_MODULE_3__front_routes__["a" /* default */],
+    methods: {
+        browserfunction: function browserfunction() {
+            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+                jQuery('body').addClass('opera-browser');
+            } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+                jQuery('body').addClass('chrome-browser');
+            } else if (navigator.userAgent.indexOf("Safari") != -1) {
+                jQuery('body').addClass('safari-browser');
+            } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                jQuery('body').addClass('firefox-browser');
+            } else if (navigator.userAgent.indexOf("MSIE") != -1 || !!document.documentMode == true) //IF IE > 10
+                {
+                    jQuery('body').addClass('IE-browser');
+                } else {
+                jQuery('body').addClass('New-browser');
+            }
+        },
+        Macbrowserfunction: function Macbrowserfunction() {
+            if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+                $("body").addClass("mac-browser");
+            } else {
+                $("body").addClass("window-browser");
+            }
+        }
+    },
+    mounted: function mounted() {
+        this.browserfunction();
+        this.Macbrowserfunction();
+    }
 });
 
 /*const app = new Vue({
@@ -96981,7 +97654,7 @@ var routes = [
     component: __webpack_require__("./resources/assets/js/components/front/bids/main.vue")
 },
 
-//Profile Rejection
+// Profile Rejection
 {
     name: 'profile-rejection',
     path: '/profile-rejected',
@@ -96991,6 +97664,27 @@ var routes = [
         navigation: 'provider-nav'
     },
     component: __webpack_require__("./resources/assets/js/components/front/profile-rejection/main.vue")
+},
+
+// Static Pages
+{
+    name: 'terms-condition',
+    path: '/terms-condition',
+    meta: {
+        title: 'Professional Service Marketplace | Terms Condition',
+        bodyClass: 'terms-condition-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/static-pages/TermsCondition.vue")
+}, {
+    name: 'privacy-policy',
+    path: '/privacy-policy',
+    meta: {
+        title: 'Professional Service Marketplace | Privacy Policy',
+        bodyClass: 'privacy-policy-page',
+        navigation: 'provider-nav'
+    },
+    component: __webpack_require__("./resources/assets/js/components/front/static-pages/PrivacyPolicy.vue")
 },
 
 /*404*/

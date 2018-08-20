@@ -16,7 +16,9 @@ $nav-font:$font-bold;
             position: relative;
             height: 57px;
             padding: 12px 0 0px;
-
+            &.bell-li{
+                margin-left: -2px;
+            }
             a{
                 font-size:$nav-font-size;
                 color:$nav-color;
@@ -91,7 +93,7 @@ $nav-font:$font-bold;
             width: 100%;
             /* overflow: hidden; */
             opacity: 0;
-            border-bottom: 1px solid #ccc;            
+            border-bottom: 1px solid #ccc;
             border-top: 0px solid;
             visibility: hidden;
             transition: 0.3s ease-in-out;
@@ -115,8 +117,8 @@ $nav-font:$font-bold;
                     }
                     .btn{
                         display: table;
-                        margin: auto;        
-                        padding: 10px 0px;            
+                        margin: auto;
+                        padding: 10px 0px;
                     }
                     .user-login-detail{
                         width: 100%;
@@ -328,3 +330,15 @@ $nav-font:$font-bold;
 }
 
 
+.mac-browser{
+    .navigation
+    {
+        ul{
+            li{
+                a{
+                    font-family:$font-medium;
+                }
+            }
+        }
+    }
+}

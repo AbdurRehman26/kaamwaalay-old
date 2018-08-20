@@ -12250,6 +12250,7 @@ body .custom-file .custom-file-label {
   font-family: "AkzidenzGroteskBE-Regular";
   color: #B2B2B2;
   overflow: hidden;
+  border-color: #B2B2B2;
 }
 
 body .custom-file-input:focus ~ .custom-file-label {
@@ -13050,6 +13051,10 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+.mac-browser .btn {
+  font-family: "AkzidenzGroteskBE-Regular";
+}
+
 .custom-datepicker label {
   display: block;
 }
@@ -13078,6 +13083,18 @@ input[type=number]::-webkit-outer-spin-button {
   background-position: 50%;
   background-repeat: no-repeat;
   stroke: none;
+}
+
+.mx-calendar-content .cell.actived {
+  background-color: #8200FF !important;
+}
+
+.mx-calendar-content .cell:hover {
+  background-color: #eee5f7 !important;
+}
+
+.mx-panel-date td.today {
+  color: #8200FF !important;
 }
 
 .header {
@@ -13255,6 +13272,10 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
   height: 57px;
   padding: 12px 0 0px;
+}
+
+.navigation ul li.bell-li {
+  margin-left: -2px;
 }
 
 .navigation ul li a {
@@ -13598,6 +13619,10 @@ input[type=number]::-webkit-outer-spin-button {
   color: #fff;
   line-height: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.mac-browser .navigation ul li a {
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .main-banner {
@@ -14230,6 +14255,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin-left: 12px;
 }
 
+.featured-categories-home .services-list a:hover {
+  text-decoration: none;
+}
+
 .section-local-work {
   padding-bottom: 60px;
 }
@@ -14571,8 +14600,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .category-section .category-items .items h4 {
-  padding: 30px 0px;
-  font-size: 19px;
+  padding: 30px 0px 25px;
+  font-size: 17px;
   color: #1A1A1A;
   /* font-family: $font_regular; */
   max-width: 282px;
@@ -14603,6 +14632,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .category-section .category-items .showmore {
   padding-left: 35px;
+  position: relative;
+  top: -5px;
 }
 
 @media (max-width: 1300px) {
@@ -14628,8 +14659,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .category-section .showmore i {
-  font-size: 20px;
+  font-size: 29px;
   vertical-align: text-top;
+  position: relative;
+  top: -2px;
+  left: -5px;
 }
 
 .category-section:last-child {
@@ -14956,6 +14990,34 @@ input[type=number]::-webkit-outer-spin-button {
   left: 40%;
   font-family: "AkzidenzGroteskBE-Md";
   text-align: center;
+}
+
+.attach-video-files {
+  position: relative;
+  padding-top: 40px;
+  margin-bottom: 40px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.attach-video-files:after {
+  position: absolute;
+  content: 'ATTACH VIDEO';
+  text-transform: uppercase;
+  top: -8px;
+  background: #fff;
+  width: 150px;
+  color: #494949;
+  font-size: 14px;
+  left: 40%;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+}
+
+.attach-video-files .video-url p {
+  font-size: 14px;
+  color: #494949;
+  margin: 0;
+  margin-top: 22px;
 }
 
 .service-need {
@@ -15725,7 +15787,7 @@ body .chat-feedback-message.white-msg:before {
   display: -ms-flexbox;
   display: flex;
   left: -6px;
-  background-color: #6004BA;
+  background-color: #8200FF;
 }
 
 /* == Featured Profile sass start == */
@@ -15794,15 +15856,27 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
   font-size: 16px;
   color: #1a1a1a;
-  padding-left: 15px;
-  position: absolute;
-  left: 25px;
-  top: -3px;
+  padding-left: 12px;
+  vertical-align: super;
 }
 
 .featured-places p.featured-detail {
   padding-left: 40px;
   font-size: 14px;
+}
+
+.featured-places i.ios-andriod-app {
+  background-image: url("/images/front/svg/mobile-icon.svg");
+  width: 26px;
+  height: 30px;
+  background-size: 100% auto;
+  display: inline-block;
+  background-repeat: no-repeat;
+  vertical-align: sub;
+}
+
+.featured-places .ios-andriod-feature span {
+  padding: 5px;
 }
 
 .campaigns {
@@ -16495,7 +16569,7 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .notify-dropdown.scrollbar {
-  max-height: 338px;
+  max-height: 378px;
   min-height: 0;
 }
 
@@ -16588,6 +16662,16 @@ body .chat-feedback-message.white-msg:before {
   display: none;
 }
 
+.apple-store-btn img {
+  width: 142px;
+  height: auto;
+}
+
+.google-store-btn img {
+  width: 162px;
+  height: auto;
+}
+
 .no-active:after {
   display: none;
 }
@@ -16605,6 +16689,26 @@ body .chat-feedback-message.white-msg:before {
     font-size: 31px;
     color: #8200FF;
   }
+}
+
+.mac-browser .featured-categories-home .list-description p {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .Popular-services-slides li h6 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .list-description h4 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .content-sec h2 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .testmonial-section .item-list .testmonial-name h3 {
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 @media (max-width: 1024px) {

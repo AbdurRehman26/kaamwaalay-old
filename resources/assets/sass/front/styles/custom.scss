@@ -524,6 +524,13 @@ $section-padding-sm:20px 0px;
             margin-left:12px;
         }
     }
+    .services-list {
+        a{
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }
 
 .section-local-work
@@ -808,11 +815,11 @@ $section-padding-sm:20px 0px;
                 @include tabletF{
                     width: auto;
                     height: 210px;
-                }                
+                }
             }
             h4{
-                padding: 30px 0px;
-                font-size: $font-size-xs+3;
+                padding:30px 0px 25px;
+                font-size: $font-size-xs+1;
                 color: $secondary-color;
                 /* font-family: $font_regular; */
                 max-width: 282px;
@@ -822,7 +829,7 @@ $section-padding-sm:20px 0px;
             }
             @include tabletF{
                 padding-left: 15px;
-            }                      
+            }
         }
         .item-list-container{
             padding: 0px;
@@ -849,6 +856,8 @@ $section-padding-sm:20px 0px;
                 float: left;
                 width: 100%;
             }
+            position: relative;
+            top: -5px;
         }
     }
     .showmore{
@@ -859,8 +868,11 @@ $section-padding-sm:20px 0px;
             }
         }
         i {
-            font-size: 20px;
+            font-size: 29px;
             vertical-align: text-top;
+            position: relative;
+            top: -2px;
+            left: -5px;
         }
     }
     &:last-child{
@@ -1178,6 +1190,36 @@ $section-padding-sm:20px 0px;
 
     }
 }
+
+.attach-video-files {
+    position: relative;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        position: absolute;
+        content:'ATTACH VIDEO';
+        text-transform: uppercase;
+        top: -8px;
+        background: #fff;
+        width: 150px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 40%;
+        font-family: $font_medium;
+        text-align: center;
+
+    }
+    .video-url {
+        p {
+            font-size: 14px;
+            color: #494949;
+            margin: 0;
+            margin-top: 22px;
+        }
+    }
+}
+
 .service-need {
     position: relative;
     padding-top: 25px;
@@ -1839,7 +1881,7 @@ body{
                 bottom: auto;
                 display: flex;
                 left: -6px;
-                background-color: $primary-color;
+                background-color: $primary-color-md;
             }
         }
     }
@@ -1909,10 +1951,8 @@ body{
         font-family:$font_medium;
         font-size: 16px;
         color: #1a1a1a;
-        padding-left: 15px;
-        position: absolute;
-        left: 25px;
-        top: -3px;
+        padding-left: 12px;
+        vertical-align: super;
     }
 
     p {
@@ -1921,7 +1961,22 @@ body{
             font-size: 14px;
         }
     }
-
+    i {
+        &.ios-andriod-app {
+            background-image: url('/images/front/svg/mobile-icon.svg');
+            width: 26px;
+            height: 30px;
+            background-size: 100% auto;
+            display: inline-block;
+            background-repeat: no-repeat;
+            vertical-align: sub;
+        }
+    }
+    .ios-andriod-feature {
+        span {
+            padding: 5px;
+        }
+    }
 }
 .campaigns {
     margin: 70px 0;
@@ -2551,7 +2606,7 @@ body{
         background-color: #fff;
 
         &.scrollbar {
-            max-height: 338px;
+            max-height: 378px;
             min-height: 0;
         }
         .notify-block {
@@ -2648,6 +2703,19 @@ body{
     }
 }
 
+.apple-store-btn{
+    img{
+        width:142px;
+        height:auto;
+    }
+}
+.google-store-btn{
+    img{
+        width:162px;
+        height:auto;
+    }
+}
+
 .no-active{
     &:after{
         display: none;
@@ -2662,7 +2730,43 @@ body{
         right: 10px;
         top: 28%;
         font-size: 31px;
-        color: $primary-color-md;        
+        color: $primary-color-md;
+    }
+}
+
+.mac-browser{
+    .featured-categories-home{
+        .list-description{
+            p{
+                font-family:$font_medium;
+            }
+        }
+    }
+    .Popular-services-slides{
+        li{
+            h6{
+                font-family:$font_medium;
+            }
+        }
+    }
+    .list-description{
+          h4{
+                font-family:$font_medium;
+          }
+    }
+    .content-sec{
+        h2{
+            font-family:$font_medium;
+        }
+    }
+    .testmonial-section{
+        .item-list{
+            .testmonial-name{
+                h3{
+                    font-family:$font_medium;
+                }
+            }
+        }
     }
 }
 .services-list{

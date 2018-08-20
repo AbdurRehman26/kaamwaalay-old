@@ -31,6 +31,35 @@ Vue.mixin({
 const app = new Vue({
     el: '#app',
     router,
+    methods:{
+        browserfunction() {
+            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+                jQuery('body').addClass('opera-browser')
+            } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+                jQuery('body').addClass('chrome-browser')
+            } else if (navigator.userAgent.indexOf("Safari") != -1) {
+                jQuery('body').addClass('safari-browser')
+            } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                jQuery('body').addClass('firefox-browser')
+            } else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
+            {
+                jQuery('body').addClass('IE-browser')
+            } else {
+                jQuery('body').addClass('New-browser')
+            }
+        },
+        Macbrowserfunction() {
+            if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+                $("body").addClass("mac-browser");
+            }else{
+                $("body").addClass("window-browser");
+            }
+        }
+    },
+    mounted(){
+        this.browserfunction();
+        this.Macbrowserfunction();
+    },
 });
 
 
