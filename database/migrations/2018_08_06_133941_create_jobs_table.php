@@ -26,10 +26,13 @@ class CreateJobsTable extends Migration {
 			$table->string('apartment')->nullable();
 			$table->string('zip_code');
 			$table->json('images', 65535)->nullable();
+			$table->json('videos', 65535)->nullable();
 			$table->dateTime('schedule_at')->nullable();
 			$table->enum('preference', array('with_in_a_week','few_weeks','choose_date','any_time'))->default('choose_date');
 			$table->enum('status', array('awarded','initiated','in_bidding','completed','cancelled'))->default('in_bidding');
 			$table->enum('job_type', array('normal','urgent'))->default('normal');
+			$table->decimal('min_amount', 10,2)->nullable();
+			$table->decimal('max_amount', 10,2)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

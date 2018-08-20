@@ -493,7 +493,7 @@ export default{
                         "bullet": "round",
                         "fillAlphas": 0.13,
                         "id": "AmGraph-1",
-                        "title": "Data Label",
+                        "title": "Count",
                         "valueField": "value"
                     }
                     ],
@@ -577,7 +577,7 @@ export default{
                         "bullet": "round",
                         "fillAlphas": 0.13,
                         "id": "AmGraph-1",
-                        "title": "Data Label",
+                        "title": "Count",
                         "valueField": "value"
                     }
                     ],
@@ -724,7 +724,7 @@ export default{
                         "bullet": "round",
                         "fillAlphas": 0.13,
                         "id": "AmGraph-1",
-                        "title": "Data Label",
+                        "title": "Count",
                         "valueField": "value"
                     }
                     ],
