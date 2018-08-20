@@ -55,24 +55,24 @@
 					<div class="featured-profile-section">
 						<h3>Your featured profile may appear on a variety of places, including:</h3>
 						<div class="featured-places">
-							<p><i class="icon-list"></i>
+							<div><i class="icon-list"></i>
 								<span>Service Pages</span>
 								<p class="featured-detail">Your featured profile will appear almost at the top of service pages related to the services you are offering.</p>
-							</p>
+							</div>
 						</div>
 
 						<div class="featured-places">
-							<p><i class="icon-search22"></i>
+							<div><i class="icon-search22"></i>
 								<span>Search result pages</span>
 								<p class="featured-detail">When someone search specific service which you are offering, your profile may appear at the top of the search results.</p>
-							</p>
+							</div>
 						</div>
 
 						<div class="featured-places">
-							<p><i class="icon-list"></i>
+							<div class="ios-andriod-feature"><i class="ios-andriod-app"></i>
 								<span>Inside iOS &amp; Android Apps</span>
 								<p class="featured-detail">Your featured profile appear on PSM’s iPhone and Android apps, on search result and service pages.</p>
-							</p>
+							</div>
 						</div>
 
 					</div>

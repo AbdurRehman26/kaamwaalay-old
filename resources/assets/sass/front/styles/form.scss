@@ -101,6 +101,7 @@ body{
             font-family: $font_regular;
             color: $grey-medium;
             overflow: hidden;
+            border-color:$grey-medium;
         }
     }
     .custom-file-input:focus ~ .custom-file-label{

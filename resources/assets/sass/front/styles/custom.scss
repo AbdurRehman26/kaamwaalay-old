@@ -514,6 +514,13 @@ $section-padding-sm:20px 0px;
             margin-left:12px;
         }
     }
+    .services-list {
+        a{
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }
 
 .section-local-work
@@ -1148,6 +1155,36 @@ $section-padding-sm:20px 0px;
 
     }
 }
+
+.attach-video-files {
+    position: relative;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    border-top: 1px solid $grey-lite;
+    &:after {
+        position: absolute;
+        content:'ATTACH VIDEO';
+        text-transform: uppercase;
+        top: -8px;
+        background: #fff;
+        width: 150px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 40%;
+        font-family: $font_medium;
+        text-align: center;
+
+    }
+    .video-url {
+        p {
+            font-size: 14px;
+            color: #494949;
+            margin: 0;
+            margin-top: 22px;
+        }
+    }
+}
+
 .service-need {
     position: relative;
     padding-top: 25px;
@@ -1802,7 +1839,7 @@ body{
                 bottom: auto;
                 display: flex;
                 left: -6px;
-                background-color: $primary-color;
+                background-color: $primary-color-md;
             }
         }
     }
@@ -1872,10 +1909,8 @@ body{
         font-family:$font_medium;
         font-size: 16px;
         color: #1a1a1a;
-        padding-left: 15px;
-        position: absolute;
-        left: 25px;
-        top: -3px;
+        padding-left: 12px;
+        vertical-align: super;
     }
 
     p {
@@ -1884,7 +1919,22 @@ body{
             font-size: 14px;
         }
     }
-
+    i {
+        &.ios-andriod-app {
+            background-image: url('/images/front/svg/mobile-icon.svg');
+            width: 26px;
+            height: 30px;
+            background-size: 100% auto;
+            display: inline-block;
+            background-repeat: no-repeat;
+            vertical-align: sub;
+        }
+    }
+    .ios-andriod-feature {
+        span {
+            padding: 5px;
+        }
+    }
 }
 .campaigns {
     margin: 70px 0;
@@ -2514,7 +2564,7 @@ body{
         background-color: #fff;
 
         &.scrollbar {
-            max-height: 338px;
+            max-height: 378px;
             min-height: 0;
         }
         .notify-block {
@@ -2646,6 +2696,13 @@ body{
     .featured-categories-home{
         .list-description{
             p{
+                font-family:$font_medium;
+            }
+        }
+    }
+    .Popular-services-slides{
+        li{
+            h6{
                 font-family:$font_medium;
             }
         }
