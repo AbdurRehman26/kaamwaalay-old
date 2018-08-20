@@ -76,9 +76,9 @@
                                         <i @click="providerdetailclick" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                                         <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
 
-                                        <i @click="ConfirmationPopup" v-if="list.check == true" v-b-tooltip.hover title="Select Confirmation" class="icon-check"></i>
+                                        <i @click="ConfirmationPopup" v-if="list.check == true" v-b-tooltip.hover title="Confirm Verification" class="icon-check"></i>
 
-                                        <i @click="ConfirmationPopup" v-else v-b-tooltip.hover title="Un-select Confirmation" class="icon-close2"></i>
+                                        <i @click="ConfirmationPopup" v-else v-b-tooltip.hover title="Disconfirm Verification" class="icon-close2"></i>
 
                                       </div>
                                     </td>

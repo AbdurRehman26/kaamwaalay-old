@@ -35281,6 +35281,10 @@ input[type=number]::-webkit-outer-spin-button {
   width: 150px;
 }
 
+.label-with-200 {
+  width: 200px;
+}
+
 .main-nav {
   position: relative;
   height: 56px;

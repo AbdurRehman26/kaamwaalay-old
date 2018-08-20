@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-modal id="status-user-change" centered @hidden="onHidden" title-tag="h4" cancel-variant="danger" ok-variant="primary" ref="myModalRef" size="sm" title="Confirmation" ok-title="Yes" cancel-title="No">
+        <b-modal id="status-user-confirm" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Confirmation" ok-title="Yes" ok-only>
         <alert></alert>
             <div>
                 <p>Are you sure you want to comfirm this action?</p>
