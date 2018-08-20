@@ -75961,7 +75961,23 @@ var render = function() {
                                   "div",
                                   { staticClass: "job-status job-poster" },
                                   [
-                                    _vm._m(0, true),
+                                    _c("span", [
+                                      _vm._v("Posted by "),
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: "javascript:void(0);"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.showProfile()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Nathan Alvarez")]
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c("star-rating", {
                                       attrs: {
@@ -76062,7 +76078,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1, true)
+              _vm._m(0, true)
             ]
           ),
           _vm._v(" "),
@@ -76074,7 +76090,7 @@ var render = function() {
                     "div",
                     { staticClass: "provider-information" },
                     [
-                      _vm._m(2, true),
+                      _vm._m(1, true),
                       _vm._v(" "),
                       _c("div", { staticClass: "member-details" }, [
                         _c("p", { staticClass: "location" }, [
@@ -76161,11 +76177,11 @@ var render = function() {
                         ? _c("div", { staticClass: "jobs-post-files" }, [
                             _c("h3", [_vm._v("Customer Information")]),
                             _vm._v(" "),
+                            _vm._m(2, true),
+                            _vm._v(" "),
                             _vm._m(3, true),
                             _vm._v(" "),
-                            _vm._m(4, true),
-                            _vm._v(" "),
-                            _vm._m(5, true)
+                            _vm._m(4, true)
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -76179,7 +76195,7 @@ var render = function() {
                             "div",
                             { staticClass: "chat-feedback" },
                             [
-                              _vm._m(6, true),
+                              _vm._m(5, true),
                               _vm._v(" "),
                               _vm._l(listing.my_bid, function(reviewer) {
                                 return _c(
@@ -76281,7 +76297,7 @@ var render = function() {
                             "div",
                             { staticClass: "chat-feedback" },
                             [
-                              _vm._m(7, true),
+                              _vm._m(6, true),
                               _vm._v(" "),
                               _vm._l(listing.review_details, function(
                                 reviewer
@@ -76517,9 +76533,9 @@ var render = function() {
                 _c("div", { staticClass: "col-md-3 p-l-0 p-r-0" }, [
                   _vm.job_detail_right_panel == "awarded"
                     ? _c("div", { staticClass: "service-provider" }, [
-                        _vm._m(8, true),
+                        _vm._m(7, true),
                         _vm._v(" "),
-                        _vm._m(9, true),
+                        _vm._m(8, true),
                         _vm._v(" "),
                         _c(
                           "a",
@@ -76538,7 +76554,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(10, true)
+                        _vm._m(9, true)
                       ])
                     : _vm.job_detail_right_panel == "serviceprovider"
                       ? _c("div", { staticClass: "service-provider" }, [
@@ -76572,7 +76588,7 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(11, true)
+                          _vm._m(10, true)
                         ])
                       : _vm.job_detail_right_panel ==
                           "service-provider-customer-end" ||
@@ -76609,7 +76625,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(12, true)
+                            _vm._m(11, true)
                           ])
                         : _c("div", { staticClass: "service-provider" }, [
                             _c(
@@ -76659,7 +76675,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(13, true)
+                            _vm._m(12, true)
                           ])
                 ])
               ])
@@ -76708,17 +76724,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _vm._v("Posted by "),
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("Nathan Alvarez")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
