@@ -5564,11 +5564,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.successMessage = 'Replied Successfully!'; //response.message;
 
                 self.loading = false;
-
-                setTimeout(function () {
-                    self.successMessage = '';
-                    self.hideModal();
-                }, 3000);
+                self.hideModal();
+                // setTimeout(function () {
+                //     self.successMessage = '';
+                //     self.hideModal();            
+                // } , 3000);
 
                 setTimeout(function () {
                     Vue.nextTick(function () {
