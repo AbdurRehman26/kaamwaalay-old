@@ -179,6 +179,7 @@ Vue.filter('adminStatus', function (value) {
 
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
 });
+
 Vue.filter('accessLevel', function (value) {
     let obj = _.find(accessLevelField, item =>{
         if(item.key == value.access_level){
@@ -187,3 +188,11 @@ Vue.filter('accessLevel', function (value) {
     });
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
 });
+
+
+Vue.filter('phoneNumber', function (value) {
+    if(value) {
+        return 'tel:+'+value.phone_number;
+    }
+});
+

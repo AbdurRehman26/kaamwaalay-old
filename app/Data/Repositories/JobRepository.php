@@ -63,8 +63,12 @@ public $model;
         }
         
         if(!empty($input['filter_by_service'])){
-            if($input['filter_by_service'])
-                $this->builder = $this->builder->where('service_id', '=', $input['filter_by_service']);            
+
+            $ids = app('ServiceRepository')->model->where('id' , $input['filter_by_service'])
+            ->orWhere('parent_id', $input['filter_by_service'])
+            ->pluck('id')->toArray();
+
+            $this->builder = $this->builder->whereIn('service_id', $ids);            
         }
 
         if(!empty($input['filter_by_user'])){
@@ -72,7 +76,7 @@ public $model;
         }
 
         if(!empty($input['filter_by_service_provider'])){
-            
+
             $this->builder = $this->builder->leftJoin('job_bids', function ($join)  use($input){
                 $join->on('jobs.id', '=', 'job_bids.job_id');
             })->where([
@@ -93,7 +97,7 @@ public $model;
     {
         $data = parent::findById($id, $refresh, $details, $encode);
         if($data){
-        
+
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->service = app('ServiceRepository')->findById($data->service_id);
 
@@ -130,7 +134,7 @@ public $model;
                 $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                 $servicerProvider = app('JobBidRepository')->getJobServiceProvider($bidsCriteria);
                 $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
-                                          $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
+                $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                 
                 
             }
@@ -147,7 +151,7 @@ public $model;
             $this->model = $this->model->where($crtieria);
 
         if($startDate && $endDate)
-        $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
 
         return  $this->model->count();
     }

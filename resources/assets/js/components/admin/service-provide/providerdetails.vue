@@ -55,7 +55,7 @@
                                 <p><strong class="title-head">Contact</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <a href="tel:+923214325323">{{ records.user_detail ? records.user_detail.phone_number : '' }}</a>
+                                <a :href="records.user_detail | phoneNumber">{{ records.user_detail ? records.user_detail.phone_number : '' }}</a>
                             </b-col>
                         </b-row>                                                                   
                     </div>
@@ -96,7 +96,7 @@
                                 <p><strong class="title-head">Rating</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <star-rating :star-size="20" read-only :rating="records.user_detail ? records.user_detail.average_rating : 0" active-color="#8200ff"></star-rating>
+                                <star-rating :star-size="20" :increment="0.02" read-only :rating="records.user_detail ? records.user_detail.average_rating : 0" active-color="#8200ff"></star-rating>
                             </b-col>
                         </b-row>                                                                   
                         <b-row>

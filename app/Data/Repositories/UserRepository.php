@@ -113,8 +113,7 @@ public $model;
         if (!empty($data['keyword'])) {
 
             $this->builder = $this->builder->where(function($query)use($data){
-                $query->where('email', 'LIKE', "%{$data['keyword']}%");
-                $query->orWhere(DB::raw('concat(first_name," ",last_name)') , 'LIKE' , "%{$data['keyword']}%");
+                $query->where(DB::raw('concat(first_name," ",last_name)') , 'LIKE' , "%{$data['keyword']}%");
             });
         }
 
