@@ -41,6 +41,7 @@
                 }
 
                 self.$http.get(url).then(response=>{
+
                     response = response.data.response;
                     
                     let result = {

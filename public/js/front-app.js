@@ -2761,6 +2761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             self.$http.get(url).then(function (response) {
+
                 response = response.data.response;
 
                 var result = {
