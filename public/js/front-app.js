@@ -4999,6 +4999,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -5015,16 +5042,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             serviceName: '',
             serviceDescription: '',
             isFeatured: 0,
-            isHeroNavigation: 0,
             images: [{
                 'name': '',
                 'original_name': ''
             }],
             urlPrefix: '',
             status: 1,
-            isDisplayBanner: 1,
-            isDisplayServiceNav: 1,
-            isDisplayFooterNav: 1
+            isDisplayBanner: 0,
+            isDisplayServiceNav: 0,
+            isDisplayFooterNav: 0
+
         }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/user-pic.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _ref;
     },
 
@@ -5129,7 +5156,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
             data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
             data.append('is_featured', self.formData.isFeatured);
-            data.append('is_hero_nav', self.formData.isHeroNavigation);
             data.append('url_prefix', self.formData.urlPrefix);
             data.append('parent_id', self.formData.parentId);
             data.append('status', self.formData.status);
@@ -5264,6 +5290,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5521,11 +5563,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.successMessage = 'Replied Successfully!'; //response.message;
 
                 self.loading = false;
-
-                setTimeout(function () {
-                    self.successMessage = '';
-                    self.hideModal();
-                }, 3000);
+                self.hideModal();
+                // setTimeout(function () {
+                //     self.successMessage = '';
+                //     self.hideModal();            
+                // } , 3000);
 
                 setTimeout(function () {
                     Vue.nextTick(function () {
@@ -65997,7 +66039,7 @@ var render = function() {
                         _vm._s(
                           _vm.selectedService.parent_id
                             ? _vm.selectedService.title
-                            : ""
+                            : "-"
                         )
                       )
                     ])
@@ -66068,7 +66110,7 @@ var render = function() {
                   _c("b-col", { attrs: { cols: "5" } }, [
                     _c("p", [
                       _c("strong", { staticClass: "title-head" }, [
-                        _vm._v("Is Hero Navigation?")
+                        _vm._v("Is Display Banner?")
                       ])
                     ])
                   ]),
@@ -66078,10 +66120,70 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.selectedService.parent_id
-                            ? _vm.selectedService.parent.is_hero_nav
+                            ? _vm.selectedService.parent.is_display_banner
                               ? "YES"
                               : "NO"
-                            : _vm.selectedService.is_hero_nav
+                            : _vm.selectedService.is_display_banner
+                              ? "YES"
+                              : "NO"
+                        )
+                      )
+                    ])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Is Display Service Navigation?")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.parent.is_display_service_nav
+                              ? "YES"
+                              : "NO"
+                            : _vm.selectedService.is_display_service_nav
+                              ? "YES"
+                              : "NO"
+                        )
+                      )
+                    ])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                [
+                  _c("b-col", { attrs: { cols: "5" } }, [
+                    _c("p", [
+                      _c("strong", { staticClass: "title-head" }, [
+                        _vm._v("Is Display Footer Navigation?")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col", { attrs: { cols: "7" } }, [
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.selectedService.parent_id
+                            ? _vm.selectedService.parent.is_display_footer_nav
+                              ? "YES"
+                              : "NO"
+                            : _vm.selectedService.is_display_footer_nav
                               ? "YES"
                               : "NO"
                         )
@@ -67165,6 +67267,168 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
+                    _c("label", [_vm._v("Is Service Navigation?")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isDisplayServiceNav,
+                            expression: "formData.isDisplayServiceNav"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "radioServname",
+                          id: "inlineRadio4",
+                          value: "1"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isDisplayServiceNav, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isDisplayServiceNav", "1")
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio2" }
+                        },
+                        [_vm._v("Yes")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isDisplayServiceNav,
+                            expression: "formData.isDisplayServiceNav"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          checked: "",
+                          type: "radio",
+                          name: "radioServname",
+                          id: "inlineRadio3",
+                          value: "0"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isDisplayServiceNav, "0")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isDisplayServiceNav", "0")
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio2" }
+                        },
+                        [_vm._v("No")]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                  _c("div", { staticClass: "form-group radio-group-row" }, [
+                    _c("label", [_vm._v("Is Footer Navigation?")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isDisplayBanner,
+                            expression: "formData.isDisplayBanner"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "radioFootnav",
+                          id: "inlineRadio4",
+                          value: "1"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isDisplayBanner, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isDisplayBanner", "1")
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio2" }
+                        },
+                        [_vm._v("Yes")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check form-check-inline" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formData.isDisplayBanner,
+                            expression: "formData.isDisplayBanner"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          checked: "",
+                          type: "radio",
+                          name: "radioFootnav",
+                          id: "inlineRadio3",
+                          value: "0"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.formData.isDisplayBanner, "0")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.$set(_vm.formData, "isDisplayBanner", "0")
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "inlineRadio2" }
+                        },
+                        [_vm._v("No")]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                  _c("div", { staticClass: "form-group radio-group-row" }, [
                     _c("label", [_vm._v("Is Featured?")]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
@@ -67180,7 +67444,7 @@ var render = function() {
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
-                          name: "inlineRadioOptions",
+                          name: "radioFeature",
                           id: "inlineRadio1",
                           value: "1"
                         },
@@ -67218,7 +67482,7 @@ var render = function() {
                         attrs: {
                           checked: "",
                           type: "radio",
-                          name: "inlineRadioOptions",
+                          name: "radioFeature",
                           id: "inlineRadio2",
                           value: "0"
                         },
@@ -67246,7 +67510,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Hero Navigation?")]),
+                    _c("label", [_vm._v("Display Banner?")]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67254,23 +67518,23 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isHeroNavigation,
-                            expression: "formData.isHeroNavigation"
+                            value: _vm.formData.isDisplayBanner,
+                            expression: "formData.isDisplayBanner"
                           }
                         ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
-                          name: "inlineRadioOptions2",
+                          name: "radioBanner",
                           id: "inlineRadio4",
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isHeroNavigation, "1")
+                          checked: _vm._q(_vm.formData.isDisplayBanner, "1")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isHeroNavigation", "1")
+                            _vm.$set(_vm.formData, "isDisplayBanner", "1")
                           }
                         }
                       }),
@@ -67291,24 +67555,24 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isHeroNavigation,
-                            expression: "formData.isHeroNavigation"
+                            value: _vm.formData.isDisplayBanner,
+                            expression: "formData.isDisplayBanner"
                           }
                         ],
                         staticClass: "form-check-input",
                         attrs: {
                           checked: "",
                           type: "radio",
-                          name: "inlineRadioOptions2",
+                          name: "radioBanner",
                           id: "inlineRadio3",
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isHeroNavigation, "0")
+                          checked: _vm._q(_vm.formData.isDisplayBanner, "0")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isHeroNavigation", "0")
+                            _vm.$set(_vm.formData, "isDisplayBanner", "0")
                           }
                         }
                       }),
