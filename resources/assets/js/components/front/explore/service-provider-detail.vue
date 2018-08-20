@@ -54,7 +54,7 @@
 										<p>{{ description }}</p>
 									</div>
 
-									<div class="chat-feedback"">
+									<div class="chat-feedback">
 										<div class="text-notifer">
 											<h3>Feedback & Reviews</h3>	
 										</div>
