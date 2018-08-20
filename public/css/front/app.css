@@ -16572,6 +16572,10 @@ body .chat-feedback-message.white-msg:before {
   }
 }
 
+.mac-browser .featured-categories-home .list-description p {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .modal-sm {
   max-width: 520px;
 }

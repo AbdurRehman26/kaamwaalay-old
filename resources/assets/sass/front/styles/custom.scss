@@ -2641,3 +2641,13 @@ body{
         color: $primary-color-md;
     }
 }
+
+.mac-browser{
+    .featured-categories-home{
+        .list-description{
+            p{
+                font-family:$font_medium;
+            }
+        }
+    }
+}
