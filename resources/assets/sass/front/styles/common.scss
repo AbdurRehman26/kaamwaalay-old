@@ -26,6 +26,9 @@ body {
     &.md{
         max-width:960px;
     }
+    @include Desktop1300{
+        padding: 0px 30px;
+    }
 }
 
 .modal-open {
