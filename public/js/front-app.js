@@ -2732,7 +2732,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             records: [],
             pagination: '',
-            loading: true
+            loading: true,
+            noRecordFound: false
         };
     },
     mounted: function mounted() {
@@ -2745,6 +2746,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
 
             var url = self.url;
+
+            var result = {
+                data: [],
+                noRecordFound: false
+            };
+
+            self.$emit('get-records', result);
+
             self.loading = true;
             url = self.url;
             self.$emit('start-loading');
@@ -2756,8 +2765,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.$http.get(url).then(function (response) {
                 response = response.data.response;
 
-                self.records = response.data;
-                self.$emit('get-records', self.records);
+                var result = {
+                    data: response.data,
+                    noRecordFound: false
+                };
+
+                if (!response.data.length) {
+                    result.noRecordFound = true;
+                }
+
+                self.$emit('get-records', result);
                 self.pagination = response.pagination;
 
                 self.loading = false;

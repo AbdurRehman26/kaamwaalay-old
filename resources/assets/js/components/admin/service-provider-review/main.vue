@@ -174,12 +174,9 @@
     getRecords(data){
         let self = this;
         self.loading = false;
-        self.records = data;
-        self.noRecordFound = false;
-
-        if (!self.records.length) {
-            self.noRecordFound = true;
-        }
+        self.records = response.data;
+        self.noRecordFound = response.noRecordFound;
+        self.url = '';
     },
     searchList(){
         let url = 'api/service-provider-profile-request?pagination=true';

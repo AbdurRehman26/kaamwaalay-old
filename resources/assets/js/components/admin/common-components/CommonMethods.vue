@@ -11,7 +11,8 @@
             return {
                 records : [],
                 pagination : '',
-                loading : true
+                loading : true,
+                noRecordFound : false
             }  
         },
         mounted(){
@@ -23,6 +24,14 @@
                 let self = this;
 
                 let url = self.url;
+
+                let result = {
+                    data : [],
+                    noRecordFound : false
+                };
+
+                self.$emit('get-records', result);
+
                 self.loading = true;
                 url = self.url;
                 self.$emit('start-loading');
@@ -34,8 +43,16 @@
                 self.$http.get(url).then(response=>{
                     response = response.data.response;
                     
-                    self.records = response.data;
-                    self.$emit('get-records', self.records);
+                    let result = {
+                        data : response.data,
+                        noRecordFound : false
+                    };
+
+                    if(!response.data.length){
+                        result.noRecordFound = true;
+                    }
+
+                    self.$emit('get-records', result);
                     self.pagination = response.pagination;
 
                     self.loading = false;
