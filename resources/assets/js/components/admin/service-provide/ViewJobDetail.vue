@@ -97,7 +97,7 @@
     },
     computed : {
         requestUrl(){
-            return this.url + '?filter_by_service_provider='+this.$route.params.id;
+            return this.url + '?filter_by_service_provider='+this.$route.params.id+'&pagination=true';
         },
         requestSecondaryUrl(){
             return 'api/service-provider-profile/'+this.$route.params.id;    

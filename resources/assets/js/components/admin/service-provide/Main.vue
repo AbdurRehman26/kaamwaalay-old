@@ -67,7 +67,7 @@
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
             <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
-            <td><star-rating :star-size="20" read-only :rating="record.user_detail ?  record.user_detail.average_rating : 0" active-color="#8200ff"></star-rating></td>
+            <td><star-rating :star-size="20" read-only :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
                 <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -107,7 +107,7 @@
                 filter_by_business_type : '',
                 filter_by_service : ''
             },
-            url : 'api/service-provider-profile?pagination=true',
+            url : 'api/service-provider-profile?pagination=true&user_detail=true',
             loading : true,
             statuses : [
             {
