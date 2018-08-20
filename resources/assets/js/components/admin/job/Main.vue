@@ -12,31 +12,31 @@
                     </div>
                     <div class="col-xs-12 col-md-3 datepicker-field">
                       <div class="form-group">
-                         <label>By Type</label>
-                         <select v-model="search.filter_by_service" class="form-control">
-                           <option value="">Select All</option>
-                           <option v-for="service in servicesList" :value="service.id">
-                               {{service | childOrParentService }} {{ service.parent_id ? '>>' : '' }} {{service | mainService}}
-                           </option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-xs-12 col-md-3 datepicker-field">
-                  <div class="form-group">
-                     <label>By Job Status</label>
-                     <select v-model="search.filter_by_status" class="form-control">
-                       <option value="">Select All</option>
-                       <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
-                   </select>
-               </div>
-           </div>                            
-           <div class="col-xs-12 col-md-2">
-            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                <span>Apply</span>
-                <loader></loader>
-            </button>
-        </div>
+                       <label>By Type</label>
+                       <select v-model="search.filter_by_service" class="form-control">
+                         <option value="">Select All</option>
+                         <option v-for="service in servicesList" :value="service.id">
+                            {{ service  | mainServiceOrChildService}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3 datepicker-field">
+              <div class="form-group">
+               <label>By Job Status</label>
+               <select v-model="search.filter_by_status" class="form-control">
+                 <option value="">Select All</option>
+                 <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
+             </select>
+         </div>
+     </div>                            
+     <div class="col-xs-12 col-md-2">
+        <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+            <span>Apply</span>
+            <loader></loader>
+        </button>
     </div>
+</div>
 </div>
 </div>
 

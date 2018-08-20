@@ -208,4 +208,20 @@ Vue.filter('disableProfileStatusButton', function (value) {
     return false;
 });
 
+Vue.filter('mainServiceOrChildService', function (value) {
+    var serviceHtml = '';
+
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        serviceHtml =   value.parent.title + ' >> ' + value.title ;
+    }else{
+        serviceHtml = value.title;
+
+    }
+
+    return serviceHtml;
+});
 

@@ -27,6 +27,9 @@ class Service extends Model
     public function getImagesAttribute($value){
         $parseImage = json_decode($value);
         
+        // No code working after this line was added please fix this @Ali 
+        //$parseImage = json_decode($parseImage);
+
         if(substr($parseImage[0]->name, 0, 8) == "https://"){
           return  $value;
         }
