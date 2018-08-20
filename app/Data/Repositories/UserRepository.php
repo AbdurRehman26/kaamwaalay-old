@@ -48,9 +48,9 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        dd($details);
         if($data){
             if (!empty($details['profile_data'])) {
+        
                 if($data->role_id == Role::SERVICE_PROVIDER){
                 // Todo
                     $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id' , $id,false,true);                
