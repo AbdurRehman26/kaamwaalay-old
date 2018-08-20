@@ -57,7 +57,8 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        
+        $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
+        $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
 
         if($data && $details){
                 

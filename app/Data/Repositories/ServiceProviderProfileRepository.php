@@ -79,7 +79,13 @@ public $model;
 
             $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
-            $data->services_offered = $subServices;      
+            $data->services_offered = $subServices;
+
+            $crtieria = ['user_id' => $data->user_id, 'status'=>'approved'];
+            $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
+            $data->profile_request = $profile;
+            
+               
         }
         
         return $data;
