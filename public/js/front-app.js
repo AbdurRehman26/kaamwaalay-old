@@ -4401,26 +4401,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            profileImage: 'images/image-placeholder.jpg',
+            profileImage: 'images/dummy/electrician.jpg',
             persons: [{
                 id: 0,
                 name: 'Ammara Hussain',
@@ -71442,7 +71427,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "discussion-panel" }, [
     _c("div", { staticClass: "panel-heading" }, [
-      _c("h3", [_vm._v("Discussion")]),
+      _c("span", {
+        staticClass: "chat-profile-pic",
+        staticStyle: {
+          "background-image": "url('images/dummy/electrician.jpg')"
+        }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
       _vm._v(" "),
       _c("i", {
         staticClass: "icon-close2 close-icon",
@@ -71460,89 +71452,45 @@ var render = function() {
       [
         _c(
           "b-list-group",
-          [
-            _vm._l(_vm.persons, function(person) {
-              return _c(
-                "div",
-                { staticClass: "chat-message" },
-                [
-                  _c("b-list-group-item", [
-                    _c("span", {
-                      staticClass: "profile-pics",
-                      style: {
-                        "background-image": "url(" + _vm.profileImage + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "profile-message" }, [
-                      _c("h5", [
-                        _vm._v(_vm._s(person.name) + " "),
-                        _c("span", { staticClass: "time-date" }, [
-                          _c("i", [_vm._v("May 10,")]),
-                          _vm._v(" 1:12 PM")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(person.desc))])
-                    ])
-                  ])
-                ],
-                1
-              )
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "section-separator" }, [
-              _c("span", [_vm._v("Today")])
-            ]),
-            _vm._v(" "),
-            _c(
+          _vm._l(_vm.persons, function(person) {
+            return _c(
               "div",
-              { staticClass: "today-message" },
-              _vm._l(_vm.persons, function(person) {
-                return _c(
-                  "div",
-                  { staticClass: "chat-message" },
-                  [
-                    _c("b-list-group-item", [
-                      _c("span", {
-                        staticClass: "profile-pics",
-                        style: {
-                          "background-image": "url(" + _vm.profileImage + ")"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "profile-message" }, [
-                        _c("h5", [
-                          _vm._v("Ammara Hussain "),
-                          _c("span", { staticClass: "time-date" }, [
-                            _c("i", [_vm._v("May 10,")]),
-                            _vm._v(" 1:12 PM")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                               Before I begin the report, I'd like to get some ideas from you all. How do you feel about rural sales in your sales districts? I suggest we go round the table first to get all of your input.\n                            "
-                          )
-                        ])
-                      ])
-                    ])
-                  ],
-                  1
-                )
-              })
+              { staticClass: "chat-message" },
+              [
+                _c("b-list-group-item", [
+                  _c("span", {
+                    staticClass: "chat-profile-pic",
+                    style: {
+                      "background-image": "url(" + _vm.profileImage + ")"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "profile-message" }, [
+                    _c("p", [_vm._v(_vm._s(person.desc))])
+                  ])
+                ])
+              ],
+              1
             )
-          ],
-          2
+          })
         )
       ],
       1
     ),
     _vm._v(" "),
-    _vm._m(0)
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "chat-head-heading" }, [
+      _vm._v("C&N Home Solutions\n                "),
+      _c("span", { staticClass: "status online" }, [_vm._v("Available online")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -71554,7 +71502,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "icon-circle secondary-color" }, [
-        _c("i", { staticClass: "icon-comment-icon" })
+        _c("i", { staticClass: "icon-send" })
       ])
     ])
   }
