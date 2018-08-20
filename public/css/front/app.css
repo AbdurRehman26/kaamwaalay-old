@@ -13536,6 +13536,7 @@ input[type=number]::-webkit-outer-spin-button {
   height: auto;
   position: relative;
   background-size: cover;
+  background-color: #E0E0E0;
 }
 
 .main-banner .main-img {
@@ -14344,7 +14345,7 @@ input[type=number]::-webkit-outer-spin-button {
   /*         content: '';
         position: absolute;
         bottom: -15px;
-        left: 47%;        
+        left: 47%;
         border-top: 15px solid #fdfdfd;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent; */
