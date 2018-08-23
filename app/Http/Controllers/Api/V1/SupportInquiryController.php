@@ -77,9 +77,6 @@ class SupportInquiryController extends ApiResourceController
         ];
 
         // HTTP_OK = 200;
-=======
->>>>>>> qa
-
         if($value == 'store'){
             unset($input['keyword']);
             unset($input['is_replied']);
