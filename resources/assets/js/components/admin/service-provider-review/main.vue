@@ -73,7 +73,8 @@
                                     </td>
                                     <td class="text-center">
                                       <div class="action-icons">
-                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
+                                        <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                                        <!-- <i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i> -->
                                           <!--  <i class="icon-pencil"></i> -->
                                       </div>
                                     </td>

@@ -57,7 +57,7 @@ const routes = [
         component: require('./components/admin/service-type/main.vue'),
         meta: {
             title: 'PSM | Service Type',
-            pagetitle:'Service Types',
+            pagetitle:'Services / Sub Services',
             icon:'icon-tools-2'
         }
     },
@@ -169,8 +169,8 @@ const routes = [
         path: '/admin/service-provider-review',
         component: require('./components/admin/service-provider-review/main.vue'),
         meta: {
-            title: 'PSM | Service provider review',
-            pagetitle:'Service Provider Review',
+            title: 'PSM | Service Provider Review',
+            pagetitle:'Service Providers Review',
             icon:'icon-star_border'
         }
     },
@@ -207,7 +207,7 @@ const routes = [
         component: require('./components/admin/general-setting/main.vue'),
         meta: {
             title: 'PSM | General Setting',
-            pagetitle:'General Setting',
+            pagetitle:'General Settings',
             icon:'icon-settings'
         }
     },
@@ -220,7 +220,7 @@ const routes = [
         component: require('./components/admin/payment/main.vue'),
         meta: {
             title: 'PSM | Payment',
-            pagetitle:'Payment',
+            pagetitle:'Payment Activities',
             icon:'icon-credit-card'
         }
     },
