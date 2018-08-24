@@ -27,7 +27,7 @@ class Service extends Model
     public function getImagesAttribute($value){
         $parseImage = json_decode($value); 
 
-        if(empty($parseImage[0])){
+        if(empty($parseImage[0]->name)){
             return NULL;
         }
 
