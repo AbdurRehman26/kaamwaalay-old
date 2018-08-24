@@ -12638,7 +12638,7 @@ input[type=number]::-webkit-outer-spin-button {
   position: absolute;
   top: 14px;
   right: 24px;
-  font-size: 26px;
+  font-size: 20px;
   color: #7D7D7D;
   cursor: pointer;
 }
@@ -12657,7 +12657,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .discussion-panel .discussion-content .list-group .list-group-item {
-  padding: 0 0 32px 0;
+  padding: 7px 0 32px 0;
   border: none;
 }
 
@@ -12801,6 +12801,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .chat-head-heading span.offline:before {
   background: #E0E0E0;
+}
+
+.chat-last-seen {
+  position: absolute;
+  right: 11px;
+  bottom: 6px;
+  font-size: 13px;
+  color: #7D7D7D;
 }
 
 .btn {

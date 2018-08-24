@@ -20,7 +20,7 @@
             </div>
          </div>
          <div class="col-xs-12 col-md-12">
-            <button type="button" class="btn btn-primary apply-primary-color" @click.prevent="onSubmit">
+            <button type="button" class="btn btn-primary " @click.prevent="onSubmit">
               <span>Log In</span>
               <loader></loader>
             </button>
