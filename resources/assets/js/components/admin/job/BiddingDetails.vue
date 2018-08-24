@@ -91,7 +91,6 @@
             let self = this;
             self.loading = false;
             self.mainJob = response.data;
-            self.noRecordFound = response.noRecordFound;
             
             
         }
