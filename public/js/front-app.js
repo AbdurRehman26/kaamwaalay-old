@@ -3307,6 +3307,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var self = this;
         this.getAllServices();
+        self.setRoleList();
+        self.setPaymentTypeList();
         self.user = JSON.parse(self.$store.getters.getAuthUser);
         self.first_name = self.user.first_name;
         self.last_name = self.user.last_name;
@@ -3343,8 +3345,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         away: function away() {
             this.isShowing = false;
             this.tab = false;
+        },
+        setRoleList: function setRoleList() {
+            var data = [{
+                id: 2,
+                title: 'Service Provider'
+            }, {
+                id: 3,
+                title: 'Customer'
+            }];
+            this.$store.commit('setRoleList', data);
+        },
+        setPaymentTypeList: function setPaymentTypeList() {
+            var data = [{
+                id: 'urgent',
+                title: 'Urgent'
+            }, {
+                id: 'featured',
+                title: 'Featured'
+            }, {
+                id: 'account creation',
+                title: 'Account Creation'
+            }];
+            this.$store.commit('setPaymentTypeList', data);
         }
-
     }
 });
 
@@ -69742,7 +69766,7 @@ var render = function() {
             "title-tag": "h4",
             "ok-variant": "primary",
             size: "sm",
-            title: "",
+            title: "Confirmation",
             "ok-only": "",
             "ok-title": "Submit",
             "no-close-on-backdrop": "",

@@ -92,6 +92,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         'index',
     ]);
 
+    //Payment Listing
+    Route::get('payment', 'Api\V1\PaymentController@index');
+
 });
 
 Route::resource('city', 'Api\V1\CityController')->only([
