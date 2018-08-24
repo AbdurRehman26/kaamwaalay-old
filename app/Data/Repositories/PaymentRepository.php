@@ -106,6 +106,7 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
             if($data->pay_by)
                 $data->full_name = $data->pay_by->first_name. ' ' .$data->pay_by->last_name;
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            $data->type = ucfirst($data->type);
         }
 
         return $data;

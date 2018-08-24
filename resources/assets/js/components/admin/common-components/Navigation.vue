@@ -116,7 +116,7 @@ import { directive as onClickaway } from 'vue-clickaway';
                     title:'Featured'
                 },
                 {
-                    id:'account_creation',
+                    id:'account creation',
                     title:'Account Creation'
                 }
                 ];

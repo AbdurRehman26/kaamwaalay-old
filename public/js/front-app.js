@@ -3365,7 +3365,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: 'featured',
                 title: 'Featured'
             }, {
-                id: 'account_creation',
+                id: 'account creation',
                 title: 'Account Creation'
             }];
             this.$store.commit('setPaymentTypeList', data);
