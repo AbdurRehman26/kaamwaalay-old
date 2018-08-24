@@ -41,6 +41,7 @@ public $model;
     {
         $this->model = $model;
         $this->builder = $model;
+        $this->roleRepo = app('RoleRepository');
 
     }
 
@@ -91,7 +92,7 @@ public $model;
                 
                 
             }
-            $country = app('CountryRepository')->findById($data->country_id);                
+            $country = app('CountryRepository')->findById($data->country_id);             
             $data->country = !empty($country->name) ? $country->name : '';
             $City = app('CityRepository')->findById($data->city_id);                
             $data->City = !empty($City->name)?$City->name:'';
@@ -99,6 +100,10 @@ public $model;
             $data->state = !empty($state->name)?$state->name:'';
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+
+            if (!empty($details['role'])) {
+                $data->role = $this->roleRepo->findById($data->role_id);
+            }
 
         }
 
