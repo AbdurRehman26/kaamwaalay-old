@@ -2924,12 +2924,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
 			advice_center: 'customer',
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+			SupportReview: false,
 
 			text1: "After posting your job, you'll receive bids from professionals ready to help. You can initiate chat with professionals to discuss further. We’ll let you know with text or email notifications whenever a service provider sends you a new message.",
 			text2: " When you receive an email notification about a new message or bid from a service provider, click the Reply button in the body of the email (instead of replying in your email inbox)",
@@ -2939,6 +2941,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	mounted: function mounted() {
 		this.message = this.text1 + '\n' + this.text2;
+	},
+
+	methods: {
+		SupportReviewPopup: function SupportReviewPopup() {
+			this.SupportReview = true;
+		},
+		HideModal: function HideModal() {
+			this.SupportReview = false;
+		}
 	}
 });
 
@@ -70623,7 +70634,29 @@ var render = function() {
             _c("div", { staticClass: "content" }, [
               _c("div", { staticClass: "verticle-align" }, [
                 _c("div", { staticClass: "inner" }, [
-                  _vm._m(2),
+                  _c("div", { staticClass: "container element-index" }, [
+                    _c("div", { staticClass: "need-help-text text-center" }, [
+                      _c("h1", { staticClass: "heading-large" }, [
+                        _vm._v("Need more help?")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Have an idea or suggestion to improve Professional Service Marketplace? Let us know. "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { href: "javascript:;" },
+                          on: { click: _vm.SupportReviewPopup }
+                        },
+                        [_vm._v("Contact Us")]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "element-column-image" }, [
                     _c("img", { attrs: { src: _vm.contentimage } })
@@ -70643,7 +70676,12 @@ var render = function() {
             ])
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c("customer-support-popup", {
+        attrs: { showModalProp: _vm.SupportReview },
+        on: { HideModalValue: _vm.HideModal }
+      })
     ],
     1
   )
@@ -70670,28 +70708,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [_c("strong", [_vm._v("Browse topics for:")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container element-index" }, [
-      _c("div", { staticClass: "need-help-text text-center" }, [
-        _c("h1", { staticClass: "heading-large" }, [_vm._v("Need more help?")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Have an idea or suggestion to improve Professional Service Marketplace? Let us know. "
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "btn btn-primary", attrs: { href: "javascript:;" } },
-          [_vm._v("Contact Us")]
-        )
-      ])
-    ])
   }
 ]
 render._withStripped = true

@@ -56,7 +56,7 @@
 	                            <div class="need-help-text text-center">
 	                                <h1 class="heading-large">Need more help?</h1>   
 	                                <p>Have an idea or suggestion to improve Professional Service Marketplace? Let us know. </p>
-	                                <a href="javascript:;" class="btn btn-primary">Contact Us</a>	
+	                                <a href="javascript:;" class="btn btn-primary" @click="SupportReviewPopup">Contact Us</a>	
 	                            </div>
 	                        </div>
 	                        <div class="element-column-image">
@@ -70,6 +70,7 @@
 	            </div>
 	        </div>
     	</div>
+    	<customer-support-popup @HideModalValue="HideModal" :showModalProp="SupportReview"></customer-support-popup>
 	</div>
 </template>
 
@@ -79,6 +80,7 @@
 			return {
 				advice_center: 'customer',
 				bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+				SupportReview: false,
 				
 				text1:"After posting your job, you'll receive bids from professionals ready to help. You can initiate chat with professionals to discuss further. We’ll let you know with text or email notifications whenever a service provider sends you a new message.",
 				text2:" When you receive an email notification about a new message or bid from a service provider, click the Reply button in the body of the email (instead of replying in your email inbox)",
@@ -88,6 +90,14 @@
 		},
 		mounted (){
 			this.message = this.text1 + '\n' + this.text2;
+		},
+		methods: {
+			SupportReviewPopup() {
+				this.SupportReview = true;
+			},
+	        HideModal(){
+		        this.SupportReview = false;
+		    },
 		}
 	}
 </script>
