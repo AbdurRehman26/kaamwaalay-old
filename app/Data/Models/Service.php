@@ -27,9 +27,14 @@ class Service extends Model
     public function getImagesAttribute($value){
         $parseImage = json_decode($value); 
 
+        if(empty($parseImage[0])){
+            return NULL;
+        }
+
         if(substr($parseImage[0]->name, 0, 8) == "https://"){
           return  $value;
         }
+        
         $parseImage[0]->upload_url = Storage::url(config('uploads.service.folder').'/'.$parseImage[0]->name);
           return $parseImage ? $parseImage : null;
     }
