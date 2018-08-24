@@ -3533,7 +3533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         };
     },
-
+    mounted: function mounted() {},
 
     methods: {
         showModal: function showModal() {
@@ -3563,7 +3563,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             self.errorMessage = '';
             self.successMessage = '';
-
             var url = self.url;
             var id = this.statusData.id;
 

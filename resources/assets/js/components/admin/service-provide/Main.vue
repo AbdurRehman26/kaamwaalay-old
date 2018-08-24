@@ -28,11 +28,11 @@
                      <option value="">Select All</option>
                      <option v-for="service in servicesList" :value="service.id">
                          {{ service  | mainServiceOrChildService}}
-                    </option>
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-2">
+                     </option>
+                 </select>
+             </div>
+         </div>
+         <div class="col-xs-12 col-md-2">
             <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                 <span>Apply</span>
                 <loader></loader>
@@ -73,7 +73,7 @@
             <td class="text-center">
               <div class="action-icons">
                 <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                <i @click="changestatuspopup(record)" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
             </div>
         </td>
     </tr>
@@ -91,7 +91,9 @@
 
 </div>
 <service-provider-detail @HideModalValue="HideModal" :showModalProp="providerdetailpopup"></service-provider-detail>
-<change-status-provider @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-provider>
+
+<changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
+
 <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
 <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
 </div>
@@ -131,6 +133,17 @@
             changeProviderStatus: false,
             changestatus:false,
             providerdetailpopup:false,
+            ChangeStatusesOptions : [
+            {
+                key : 'active',
+                value : 'Active'
+            },
+            {
+                key : 'banned',
+                value :'Banned'
+            }
+            ],
+            changeStatusURL: 'api/user/change-status',
         }
     },
     computed : {
@@ -156,7 +169,8 @@
         ViewDetails() {
             this.viewdetails = true;
         },
-        changestatuspopup() {
+        changestatuspopup(record) {
+            this.statusData = record.user_detail;
             this.changestatus = true;
         },
         providerdetailclick(id) {
