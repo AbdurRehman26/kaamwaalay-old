@@ -7900,6 +7900,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         SignUp: function SignUp() {
             this.$router.push('explore/service_provider');
+        },
+        JoinUsPro: function JoinUsPro() {
+            this.$router.push('/join-as-pro');
         }
     }
 });
@@ -70067,10 +70070,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control",
-            attrs: {
-              type: "text",
-              placeholder: "Enter your first email address"
-            }
+            attrs: { type: "text", placeholder: "Enter your email address" }
           })
         ])
       ]),
@@ -72392,7 +72392,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "btn btn-primary post-bid",
-                      attrs: { href: "javascript:void(0);" }
+                      attrs: { href: "/job-post" }
                     },
                     [_vm._v("Post Job & Invite to Bid")]
                   )
@@ -74006,7 +74006,7 @@ var render = function() {
                         "a",
                         {
                           staticClass: "btn btn-primary",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/job-post" }
                         },
                         [_vm._v("Post Job & Invite to Bid")]
                       ),
@@ -74400,9 +74400,9 @@ var render = function() {
             "div",
             [
               _c("p", [
-                _vm._v(
-                  "Write review and provide your feedback on Leaking water pipe job performed by "
-                ),
+                _vm._v("Write review and provide your feedback on "),
+                _c("strong", [_vm._v("Leaking water pipe job")]),
+                _vm._v("  performed by "),
                 _c("strong", [_vm._v("A-General Plumbing & Sewer Service.")])
               ]),
               _vm._v(" "),
@@ -75709,7 +75709,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "form-detail" }, [
       _c("p", [
         _vm._v(
-          "Make sure all the information you entered is accuate before submitting."
+          "Please make sure all the information you entered is accuate before submitting."
         )
       ])
     ])
@@ -76102,7 +76102,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "password",
-                          placeholder: "Create new password",
+                          placeholder: "Enter new password",
                           name: ""
                         }
                       })
@@ -77903,7 +77903,32 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(4),
+      _c("div", { staticClass: "section ready-to-meet" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "two-column" }, [
+            _c("div", { staticClass: "content-sec" }, [
+              _c("h2", [_vm._v("Proud of your work? Join us.")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.JoinUsPro }
+                },
+                [_c("span", [_vm._v("Join Us")])]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(4)
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -77979,28 +78004,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section ready-to-meet" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "two-column" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("h2", [_vm._v("Proud of your work? Join us.")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. "
-              )
-            ]),
-            _vm._v(" "),
-            _c("button", { staticClass: "btn btn-primary" }, [
-              _c("span", [_vm._v("Join Us")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "image-sec" }, [
-            _c("img", { attrs: { src: "/images/front/home/join-us.jpg" } })
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "image-sec" }, [
+      _c("img", { attrs: { src: "/images/front/home/join-us.jpg" } })
     ])
   }
 ]
@@ -78273,10 +78278,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control",
-            attrs: {
-              type: "text",
-              placeholder: "Enter your first email address"
-            }
+            attrs: { type: "text", placeholder: "Enter your email address" }
           })
         ])
       ]),
@@ -78289,7 +78291,7 @@ var staticRenderFns = [
             staticClass: "form-control",
             attrs: {
               type: "password",
-              placeholder: "Enter your account password"
+              placeholder: "Create your account password"
             }
           })
         ])

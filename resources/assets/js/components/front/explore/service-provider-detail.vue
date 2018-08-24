@@ -14,7 +14,7 @@
 								<span class="review-job left-border">{{listing.job_perform}} Jobs performed</span>
 							</div>
 							<div class="service-detail">
-								<a href="javascript:void(0);" class="btn btn-primary">Post Job & Invite to Bid</a>
+								<a href="/job-post" class="btn btn-primary">Post Job &amp; Invite to Bid</a>
 								<a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a>
 							</div>	
 						</div>

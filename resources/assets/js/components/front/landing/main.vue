@@ -120,7 +120,7 @@
                     <div class="content-sec">
                         <h2>Proud of your work? Join us.</h2>
                         <p>We keep it simple and straight forward. Demonstrate your skills and experience to customers with a winning profile, receive email alert and push notifications for jobs posted near you within your service area. If you are business or service provider you can sign up today by creating a service provider account. </p>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" @click="JoinUsPro">
                             <span>Join Us</span>
                         </button>
                     </div>
@@ -150,6 +150,9 @@ export default {
     methods: {
         SignUp() {
             this.$router.push('explore/service_provider');
+        },
+        JoinUsPro() {
+            this.$router.push('/join-as-pro');
         },
     }
 }
