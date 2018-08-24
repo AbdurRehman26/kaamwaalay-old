@@ -3,48 +3,37 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\PaymentRepository;
+use App\Data\Models\Role;
 
 class PaymentController extends ApiResourceController
 {
     public $_repository;
 
     public function __construct(PaymentRepository $repository){
-       $this->_repository = $repository;
-   }
+        $this->_repository = $repository;
+    }
 
-   public function rules($value=''){
-    $rules = [];
+    public function rules($value=''){
+        $rules = [];
 
-    if($value == 'store'){
+        if($value == 'index'){
+            if($value == 'index'){
+                $rules['pagination']        =   'nullable|boolean';
+                $rules['filter_by_pay_by']  =   'nullable|in:'.Role::SERVICE_PROVIDER.','.Role::CUSTOMER;
+                $rules['filter_by_type']    =   'nullable|in:urgent,featured,account_creation';
+                $rules['keyword']           =   'nullable|string';
+            }
+
+        }
+
+        return $rules;
 
     }
 
-    if($value == 'update'){
 
+    public function input($value='')
+    {
+        $input = request()->only('id', 'pagination', 'filter_by_pay_by', 'filter_by_type', 'keyword');
+        return $input;
     }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-
-    }
-
-    if($value == 'index'){
-
-    }
-
-    return $rules;
-
-}
-
-
-public function input($value='')
-{
-    $input = request()->only('id', 'title');
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-    return $input;
-}
 }
