@@ -63,8 +63,8 @@
             showModalValue : false,
             url : 'api/job-bid',
             records : [],
-            mainJob : ''
-
+            mainJob : '',
+            noRecordFound : ''
         }
     },
     components: {
