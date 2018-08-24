@@ -64,13 +64,13 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="">Email Address</label>
-											<input type="text" class="form-control" placeholder="Enter your first email address">
+											<input type="text" class="form-control" placeholder="Enter your email address">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="">Password</label>
-											<input type="password" class="form-control" placeholder="Enter your account password">
+											<input type="password" class="form-control" placeholder="Create your account password">
 										</div>
 									</div>
 								</div>

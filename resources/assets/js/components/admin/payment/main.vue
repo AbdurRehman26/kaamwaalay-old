@@ -19,6 +19,16 @@
                                      <option>Featured</option>
                                    </select>
                               </div>
+                            </div>
+                            <div class="col-xs-12 col-md-3 datepicker-field">
+                              <div class="form-group">
+                                   <label>Filter By</label>
+                                   <select class="form-control">
+                                     <option>Select All</option>
+                                     <option>Customer</option>
+                                     <option>Service provider</option>
+                                   </select>
+                              </div>
                             </div>                          
                             <div class="col-xs-12 col-md-2">
                                 <button class="btn btn-primary filter-btn-top-space">
@@ -37,6 +47,7 @@
                             <table class="table last-col-fix">
                               <thead>
                                 <tr>
+                                  <th>Name</th>
                                   <th>Pay By</th>
                                   <th>Date</th>
                                   <th>Amount</th>
@@ -46,6 +57,7 @@
                               </thead>
                               <tbody>
                                 <tr v-for="list in listing">
+                                  <td>{{list.name}}</td>
                                   <td>{{list.payby}}</td>
                                   <td>{{list.date}}</td>
                                   <td>${{list.amount}}</td>
@@ -80,6 +92,7 @@ export default {
     return {
         listing: [
             {
+                name:'Mick',
                 payby:'Customer',
                 date:'May, 20 2017',
                 amount:20,
@@ -87,6 +100,7 @@ export default {
                 status: 'Active',
             },
             {
+                name:'Rock',
                 payby:'Service Provider',
                 date:'May, 20 2017',
                 amount:52,

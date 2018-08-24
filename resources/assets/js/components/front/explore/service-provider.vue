@@ -60,7 +60,7 @@
 									<span class="review-job" v-else>{{ listing.job_perform }} Jobs performed</span>
 								</div>	
 							</div>
-							<a href="javascript:void(0);" class="btn btn-primary post-bid">Post Job & Invite to Bid</a>
+							<a href="/job-post" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
 						</div>
 
 						<div class="member-details">

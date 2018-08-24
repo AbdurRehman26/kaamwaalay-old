@@ -14,7 +14,7 @@
                     <b-col cols="2" md="6">
                         <div class="form-group">
                              <label>New Password</label>
-                            <input type="password" class="form-control" placeholder="Create new password" name="">
+                            <input type="password" class="form-control" placeholder="Enter new password" name="">
                         </div>
                     </b-col> 
                     <b-col cols="2" md="6">
