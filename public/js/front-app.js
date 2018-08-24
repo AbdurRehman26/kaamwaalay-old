@@ -2681,9 +2681,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.response.message;
                 setTimeout(function () {
+                    self.loading = false;
                     self.successMessage = '';
                     self.hideModal();
                 }, 5000);
