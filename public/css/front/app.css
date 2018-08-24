@@ -12423,6 +12423,14 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.mac-browser .custom-radio label {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser label {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
 .alert {
   /* height:$alert-height; */
   height: auto;
@@ -13748,6 +13756,12 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 20px 0px;
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 0px;
+  }
+}
+
 .section-title {
   text-align: center;
   padding-bottom: 70px;
@@ -13910,6 +13924,7 @@ input[type=number]::-webkit-outer-spin-button {
 .list-description h4 {
   margin-bottom: 0;
   padding-bottom: 12px;
+  font-family: "AkzidenzGroteskBE-Md";
 }
 
 .list-description p {
@@ -13956,6 +13971,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .section-padd.xs {
   padding: 40px 0px 30px 0px;
+}
+
+@media (max-width: 768px) {
+  .section-padd {
+    padding: 50px 0px;
+  }
 }
 
 .text-notifer {
@@ -14066,13 +14087,13 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 1024px) {
   .two-column {
     -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .two-column .content-sec {
-    padding-bottom: 20px;
+    padding-top: 30px;
     margin: 0px;
   }
 }
@@ -14337,6 +14358,18 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #DDC6F4 !important;
 }
 
+@media (max-width: 768px) {
+  .owl-dots {
+    margin-top: 20px;
+  }
+
+  .owl-dots button {
+    width: 10px;
+    height: 10px;
+    margin: 0px 5px 0;
+  }
+}
+
 .slide-blts {
   width: 100%;
   display: block;
@@ -14378,6 +14411,21 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 1024px) {
   .testmonial-section .item-list .item {
     width: 49.3%;
+  }
+}
+
+@media (max-width: 768px) {
+  .testmonial-section .item-list .item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .testmonial-section .item-list .item:nth-child(1n) {
+    padding-right: 0px;
+  }
+
+  .testmonial-section .item-list .item:last-child {
+    margin-bottom: 0px;
   }
 }
 
@@ -14595,6 +14643,19 @@ input[type=number]::-webkit-outer-spin-button {
   padding-left: 35px;
   position: relative;
   top: -5px;
+}
+
+@media (max-width: 1300px) {
+  .category-section .category-items .showmore {
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .category-section .category-items .showmore {
+    float: left;
+    width: 100%;
+  }
 }
 
 .category-section .showmore a {
@@ -15148,6 +15209,16 @@ input[type=number]::-webkit-outer-spin-button {
 
 .how-it-work-list .list-description {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .how-it-work-list .col-md-3 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 49%;
+            flex: 0 0 49%;
+    max-width: 49%;
+    margin-bottom: 20px;
+  }
 }
 
 .ready-to-meet p {
@@ -16629,6 +16700,16 @@ body .chat-feedback-message.white-msg:before {
   }
 }
 
+@media (max-width: 1024px) {
+  .services-list .col-sm-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 32.666667%;
+            flex: 0 0 32.666667%;
+    max-width: 32.666667%;
+    margin-bottom: 13px;
+  }
+}
+
 .mac-browser .featured-categories-home .list-description p {
   font-family: "AkzidenzGroteskBE-Md";
 }
@@ -16646,6 +16727,26 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .mac-browser .testmonial-section .item-list .testmonial-name h3 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .category-section .category-title h2 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .category-section .category-items .items h4 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .categories-popup .modal-body .category-search-field h5 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .job-common-description h3 {
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.mac-browser .chat-feedback .text-notifer p {
   font-family: "AkzidenzGroteskBE-Md";
 }
 
