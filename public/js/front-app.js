@@ -3285,7 +3285,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5678,9 +5677,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -65343,21 +65339,7 @@ var render = function() {
                         _c("loader")
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "contact-us" }, [
-                      _c("p", [
-                        _vm._v("Need help? "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "javascript:;" },
-                            on: { click: _vm.ContactExpire }
-                          },
-                          [_vm._v("Contact Us")]
-                        )
-                      ])
-                    ])
+                    )
                   ])
                 ])
               ])
@@ -71554,11 +71536,6 @@ var render = function() {
         ],
         1
       ),
-      _vm._v(" "),
-      _c("update-profile", {
-        attrs: { showModalProp: _vm.showModalValue },
-        on: { HideModalValue: _vm.HideModal }
-      }),
       _vm._v(" "),
       _c("change-pass-popup", {
         attrs: { showModalProp: _vm.changepass },

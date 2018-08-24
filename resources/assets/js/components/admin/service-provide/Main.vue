@@ -144,6 +144,7 @@
             }
             ],
             changeStatusURL: 'api/user/change-status',
+            statusData : []
         }
     },
     computed : {

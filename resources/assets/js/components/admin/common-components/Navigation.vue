@@ -24,7 +24,6 @@
                     <span class="responsive-btn"></span>
                 </div>
             </b-navbar>
-        <update-profile @HideModalValue="HideModal" :showModalProp="showModalValue"></update-profile>
         <change-pass-popup @HideModalValue="HideModal" :showModalProp="changepass"></change-pass-popup>
 </div>
 </template>
