@@ -15,10 +15,10 @@ class ServiceController extends ApiResourceController
     const   PER_PAGE = 25;
 
     public function __construct(ServiceRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -45,6 +45,7 @@ class ServiceController extends ApiResourceController
         $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
         $rules['status']                  = 'nullable|in:0,1';        
         $rules['user_id']                 =  'required|exists:users,id';
+        $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
         $rules['title']                   = [
             'required',
             Rule::unique('services')->where(function ($query) {

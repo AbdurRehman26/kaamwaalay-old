@@ -40232,7 +40232,7 @@ i[active="true"] {
         &:nth-child(2){
             padding-left: 45px;
         }
-    } */
+        } */
 }
 
 .data-field .checkbox-field {
@@ -40853,7 +40853,7 @@ i[active="true"] {
 
 /* .dropdown-menu{
     top: 2px !important;
-} */
+    } */
 
 .bootstrap-colorpicker .color-pallet {
   position: absolute;
@@ -40929,12 +40929,12 @@ i[active="true"] {
 
 .nextstep .btn {
   /*         min-width: auto;
-        padding: 6px 20px 10px 14px; */
+padding: 6px 20px 10px 14px; */
 }
 
 /*===
     action icons
-===*/
+    ===*/
 
 .list-action i {
   color: #838383;
@@ -41659,5 +41659,9 @@ a.underline {
 i.disabled {
   pointer-events: none;
   opacity: 0.4;
+}
+
+.label-with-200 {
+  width: 200px;
 }
 

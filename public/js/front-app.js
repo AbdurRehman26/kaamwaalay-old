@@ -5147,6 +5147,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     methods: {
         resetFormFields: function resetFormFields() {
             var self = this;
+            self.image = 'images/dummy/image-placeholder.jpg';
+            self.file = null;
             this.formData = {
                 parent_id: '',
                 title: '',
@@ -5165,9 +5167,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             };
             setTimeout(function () {
                 Vue.nextTick(function () {
+                    self.errorMessage = '';
+                    self.successMessage = '';
                     self.errorBag.clear();
                 });
-            }, 10);
+            }, 100);
         },
         validateBeforeSubmit: function validateBeforeSubmit() {
             var _this = this;
@@ -5204,6 +5208,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         onFileChange: function onFileChange(e) {
             var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
             var files = e.target.files || e.dataTransfer.files;
+            console.log(e.target, 'e.target');
             this.errorMessage = "";
             if (!supportedType.includes(files[0].type)) {
                 this.errorBag.add({
@@ -5219,6 +5224,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             if (!files.length) return;
             this.createImage(files[0]);
+            e.target.files = null;
+            e.target.value = '';
         },
         createImage: function createImage(file) {
             var self = this;
@@ -5365,6 +5372,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.image = img[0].upload_url;
                 this.file = img[0].original_name;
             }
+        }
+    },
+    computed: {
+        imageValue: function imageValue() {
+            return this.image;
         }
     }
 });
@@ -67377,9 +67389,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Is Service Navigation?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Is Service Navigation?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67472,9 +67486,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Is Footer Navigation?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Is Footer Navigation?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67559,9 +67575,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Is Featured?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Is Featured?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67640,9 +67658,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Display Banner?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Display Banner?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67797,7 +67817,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "uploded-picture" }, [
-                    _c("img", { attrs: { src: _vm.image } })
+                    _c("img", { attrs: { src: _vm.imageValue } })
                   ])
                 ],
                 1
