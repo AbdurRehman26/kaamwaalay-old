@@ -7096,7 +7096,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowing = false;
         },
         showProfile: function showProfile() {
-            this.$router.push({ name: 'Explore_Detail' });
+            this.$router.push('explore/service_provider/service_provider_detail');
         }
     },
     components: {
