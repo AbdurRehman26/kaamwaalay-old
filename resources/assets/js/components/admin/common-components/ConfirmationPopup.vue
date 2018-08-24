@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
+        <b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Confirmation" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
             <div>
                 <p>Are you sure you want to perform this action?</p>

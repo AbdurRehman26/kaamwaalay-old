@@ -35262,8 +35262,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: #d9534f;
 }
 
-textarea[aria-invalid='true'],
-input[aria-invalid='true'] {
+.general-setting input[aria-invalid='true'] {
   border-color: #d9534f;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -41665,5 +41664,10 @@ a.underline {
   line-height: 0;
   position: relative;
   top: -1px;
+}
+
+i.disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }
 

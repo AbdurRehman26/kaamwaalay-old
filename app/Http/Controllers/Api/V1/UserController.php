@@ -104,7 +104,7 @@ public function changePassword(Request $request)
         }
     } else {
         return response()->json([
-            'message' => 'Old password is not valid.',
+            'message' => 'The Old password is incorrect.',
         ], 406);
     }
 }

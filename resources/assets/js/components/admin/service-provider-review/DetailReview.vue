@@ -200,7 +200,7 @@
                             :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary']" :disabled="records.status  | disableProfileStatusButton">
                             <span>Apply</span>
                             <loader></loader>
-                        </button>                                   
+                        </button>                       
                     </b-col>
                 </b-row>
 

@@ -2681,9 +2681,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.response.message;
                 setTimeout(function () {
+                    self.loading = false;
                     self.successMessage = '';
                     self.hideModal();
                 }, 5000);
@@ -3285,7 +3285,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3557,7 +3556,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         };
     },
-
+    mounted: function mounted() {},
 
     methods: {
         showModal: function showModal() {
@@ -3587,7 +3586,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             self.errorMessage = '';
             self.successMessage = '';
-
             var url = self.url;
             var id = this.statusData.id;
 
@@ -4517,11 +4515,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.post('/api/user', self.add_form_info).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.message;
                 self.$parent.url = "";
                 setTimeout(function () {
                     self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
+                    self.loading = false;
                     self.successMessage = '';
                     self.resetModal();
                 }, 5000);
@@ -5703,9 +5701,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -65368,21 +65363,7 @@ var render = function() {
                         _c("loader")
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "contact-us" }, [
-                      _c("p", [
-                        _vm._v("Need help? "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "javascript:;" },
-                            on: { click: _vm.ContactExpire }
-                          },
-                          [_vm._v("Contact Us")]
-                        )
-                      ])
-                    ])
+                    )
                   ])
                 ])
               ])
@@ -69785,7 +69766,7 @@ var render = function() {
             "title-tag": "h4",
             "ok-variant": "primary",
             size: "sm",
-            title: "",
+            title: "Confirmation",
             "ok-only": "",
             "ok-title": "Submit",
             "no-close-on-backdrop": "",
@@ -71579,11 +71560,6 @@ var render = function() {
         ],
         1
       ),
-      _vm._v(" "),
-      _c("update-profile", {
-        attrs: { showModalProp: _vm.showModalValue },
-        on: { HideModalValue: _vm.HideModal }
-      }),
       _vm._v(" "),
       _c("change-pass-popup", {
         attrs: { showModalProp: _vm.changepass },
