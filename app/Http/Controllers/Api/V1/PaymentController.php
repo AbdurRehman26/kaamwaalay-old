@@ -20,7 +20,7 @@ class PaymentController extends ApiResourceController
             if($value == 'index'){
                 $rules['pagination']        =   'nullable|boolean';
                 $rules['filter_by_pay_by']  =   'nullable|in:'.Role::SERVICE_PROVIDER.','.Role::CUSTOMER;
-                $rules['filter_by_type']    =   'nullable|in:urgent,featured,account_creation';
+                $rules['filter_by_type']    =   'nullable|in:urgent,featured,account creation';
                 $rules['keyword']           =   'nullable|string';
             }
 
