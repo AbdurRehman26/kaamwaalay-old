@@ -281,12 +281,15 @@ input[type=number]::-webkit-outer-spin-button {
    border-color: #d9534f;
 }
 
-// textarea[aria-invalid='true'] , input[aria-invalid='true'] {
 
-//     border-color:$danger-bg;
-//     box-shadow:none;
-//     background-image:url('../images/alert-icon.svg');
-//     background-repeat: no-repeat;
-//     background-size: 21px auto;
-//     background-position: 98% 53%;
-// }
+.general-setting{
+    input[aria-invalid='true'] {
+
+        border-color:$danger-bg;
+        box-shadow:none;
+        background-image:url('../images/alert-icon.svg');
+        background-repeat: no-repeat;
+        background-size: 21px auto;
+        background-position: 98% 53%;
+    }    
+}
