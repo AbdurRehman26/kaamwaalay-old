@@ -4401,6 +4401,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -72027,7 +72028,11 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "profile-message" }, [
-                    _c("p", [_vm._v(_vm._s(person.desc))])
+                    _c("p", [_vm._v(_vm._s(person.desc))]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "chat-last-seen" }, [
+                      _vm._v("5 minutes ago")
+                    ])
                   ])
                 ])
               ],

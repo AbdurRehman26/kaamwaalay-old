@@ -15,6 +15,7 @@
                         <div class="profile-message">
 <!--                             <h5>{{person.name}} <span class="time-date"><i>May 10,</i> 1:12 PM</span></h5> -->
                             <p>{{person.desc}}</p>
+                            <span class="chat-last-seen">5 minutes ago</span>
                         </div>
                     </b-list-group-item>
                 </div>
