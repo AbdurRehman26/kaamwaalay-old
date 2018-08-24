@@ -5105,41 +5105,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             successMessage: '',
             services: []
         }, _defineProperty(_ref, 'errorMessage', ''), _defineProperty(_ref, 'successMessage', ''), _defineProperty(_ref, 'formData', {
-            parentId: '',
-            serviceName: '',
-            serviceDescription: '',
-            isFeatured: 0,
+            parent_id: '',
+            title: '',
+            description: '',
+            is_featured: 0,
             images: [{
-                'name': '',
-                'original_name': ''
+                name: '',
+                original_name: ''
             }],
-            urlPrefix: '',
+            url_prefix: '',
             status: 1,
-            isDisplayBanner: 0,
-            isDisplayServiceNav: 0,
-            isDisplayFooterNav: 0
+            is_display_banner: 0,
+            is_display_service_nav: 0,
+            is_display_footer_nav: 0
 
-        }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/user-pic.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _ref;
+        }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/image-placeholder.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _ref;
     },
 
     methods: {
         resetFormFields: function resetFormFields() {
             var self = this;
             this.formData = {
-                parentId: '',
-                serviceName: '',
-                serviceDescription: '',
-                isFeatured: 0,
+                parent_id: '',
+                title: '',
+                description: '',
+                is_featured: 0,
                 images: [{
-                    'name': '',
-                    'original_name': '',
-                    'upload_url': ''
+                    name: '',
+                    original_name: ''
                 }],
-                urlPrefix: '',
+                url_prefix: '',
                 status: 1,
-                isDisplayBanner: 0,
-                isDisplayServiceNav: 0,
-                isDisplayFooterNav: 0
+                is_display_banner: 0,
+                is_display_service_nav: 0,
+                is_display_footer_nav: 0
 
             };
             setTimeout(function () {
@@ -5170,6 +5169,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var allServices = this.$store.getters.getAllServices;
             // filter only services
             this.services = _.filter(allServices, { parent_id: null });
+            this.errorBag.clear();
         },
         hideModal: function hideModal() {
             var self = this;
@@ -5236,17 +5236,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.loading = true;
             var url = this.url;
 
-            var data = new FormData();
-            data.append('title', self.formData.serviceName);
-            data.append('description', self.formData.serviceDescription);
-            data.append('is_display_banner', self.formData.isDisplayBanner);
-            data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
-            data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
-            data.append('is_featured', self.formData.isFeatured);
-            data.append('url_prefix', self.formData.urlPrefix);
-            data.append('parent_id', self.formData.parentId);
-            data.append('status', self.formData.status);
-            data.append('images', JSON.stringify(self.formData.images));
+            var data = this.formData;
 
             this.$http.post(url, data).then(function (response) {
                 response = response.data.response;
@@ -5287,20 +5277,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.loading = true;
             var url = this.url + "/" + this.list.id;
 
-            var data = new FormData();
-
-            data.append('_method', 'put');
-            data.append('title', self.formData.serviceName);
-            data.append('description', self.formData.serviceDescription);
-            data.append('is_display_banner', self.formData.isDisplayBanner);
-            data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
-            data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
-            data.append('is_featured', self.formData.isFeatured);
-            data.append('url_prefix', self.formData.urlPrefix);
-            data.append('parent_id', self.formData.parentId);
-            data.append('status', self.formData.status);
-            data.append('images', JSON.stringify(self.formData.images));
-            this.$http.post(url, data).then(function (response) {
+            var data = this.formData;
+            this.$http.put(url, data).then(function (response) {
                 response = response.data.response;
                 self.successMessage = response.message; //'Updated Successfully';
 
@@ -5348,19 +5326,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var img = this.list.images;
             if (this.isUpdate) {
                 this.formData = {
-                    parentId: this.list.parent_id ? this.list.parent_id : "",
-                    serviceName: this.list.title,
-                    serviceDescription: this.list.description,
-                    isFeatured: this.list.is_featured,
+                    parent_id: this.list.parent_id ? this.list.parent_id : "",
+                    title: this.list.title,
+                    description: this.list.description,
+                    is_featured: this.list.is_featured,
                     images: [{
-                        'name': img[0].name,
-                        'original_name': img[0].original_name
+                        name: img[0].name,
+                        original_name: img[0].original_name
                     }],
-                    urlPrefix: this.list.url_prefix,
+                    url_prefix: this.list.url_prefix,
                     status: this.list.status,
-                    isDisplayBanner: this.list.is_display_banner,
-                    isDisplayServiceNav: this.list.is_display_service_nav,
-                    isDisplayFooterNav: this.list.is_display_footer_nav
+                    is_display_banner: this.list.is_display_banner,
+                    is_display_service_nav: this.list.is_display_service_nav,
+                    is_display_footer_nav: this.list.is_display_footer_nav
                 };
                 this.image = img[0].upload_url;
                 this.file = img[0].original_name;
@@ -67286,7 +67264,7 @@ var render = function() {
             "title-tag": "h4",
             "ok-variant": "primary",
             size: "md",
-            title: "Add new Service",
+            title: _vm.isUpdate ? "Update Service" : "Add new Service",
             "no-close-on-backdrop": "",
             "no-close-on-esc": ""
           },
@@ -67314,8 +67292,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formData.parentId,
-                        expression: "formData.parentId"
+                        value: _vm.formData.parent_id,
+                        expression: "formData.parent_id"
                       }
                     ],
                     staticClass: "form-control",
@@ -67331,7 +67309,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.formData,
-                          "parentId",
+                          "parent_id",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -67360,21 +67338,20 @@ var render = function() {
                 _c("input", {
                   directives: [
                     {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.formData.title,
+                      expression: "formData.title"
+                    },
+                    {
                       name: "validate",
                       rawName: "v-validate",
                       value: "required",
                       expression: "'required'"
-                    },
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.formData.serviceName,
-                      expression: "formData.serviceName"
                     }
                   ],
-                  staticClass: "form-control",
                   class: [
-                    "form-group",
+                    "form-control",
                     _vm.errorBag.first("service name") ? "is-invalid" : ""
                   ],
                   attrs: {
@@ -67382,13 +67359,13 @@ var render = function() {
                     name: "service name",
                     placeholder: "Enter service name"
                   },
-                  domProps: { value: _vm.formData.serviceName },
+                  domProps: { value: _vm.formData.title },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.formData, "serviceName", $event.target.value)
+                      _vm.$set(_vm.formData, "title", $event.target.value)
                     }
                   }
                 })
@@ -67405,8 +67382,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayServiceNav,
-                            expression: "formData.isDisplayServiceNav"
+                            value: _vm.formData.is_display_service_nav,
+                            expression: "formData.is_display_service_nav"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67417,11 +67394,18 @@ var render = function() {
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayServiceNav, "1")
+                          checked: _vm._q(
+                            _vm.formData.is_display_service_nav,
+                            "1"
+                          )
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayServiceNav", "1")
+                            _vm.$set(
+                              _vm.formData,
+                              "is_display_service_nav",
+                              "1"
+                            )
                           }
                         }
                       }),
@@ -67442,8 +67426,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayServiceNav,
-                            expression: "formData.isDisplayServiceNav"
+                            value: _vm.formData.is_display_service_nav,
+                            expression: "formData.is_display_service_nav"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67455,11 +67439,18 @@ var render = function() {
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayServiceNav, "0")
+                          checked: _vm._q(
+                            _vm.formData.is_display_service_nav,
+                            "0"
+                          )
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayServiceNav", "0")
+                            _vm.$set(
+                              _vm.formData,
+                              "is_display_service_nav",
+                              "0"
+                            )
                           }
                         }
                       }),
@@ -67486,8 +67477,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayFooterNav,
-                            expression: "formData.isDisplayFooterNav"
+                            value: _vm.formData.is_display_footer_nav,
+                            expression: "formData.is_display_footer_nav"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67498,11 +67489,14 @@ var render = function() {
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayFooterNav, "1")
+                          checked: _vm._q(
+                            _vm.formData.is_display_footer_nav,
+                            "1"
+                          )
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayFooterNav", "1")
+                            _vm.$set(_vm.formData, "is_display_footer_nav", "1")
                           }
                         }
                       }),
@@ -67523,8 +67517,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayFooterNav,
-                            expression: "formData.isDisplayFooterNav"
+                            value: _vm.formData.is_display_footer_nav,
+                            expression: "formData.is_display_footer_nav"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67536,11 +67530,14 @@ var render = function() {
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayFooterNav, "0")
+                          checked: _vm._q(
+                            _vm.formData.is_display_footer_nav,
+                            "0"
+                          )
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayFooterNav", "0")
+                            _vm.$set(_vm.formData, "is_display_footer_nav", "0")
                           }
                         }
                       }),
@@ -67567,8 +67564,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isFeatured,
-                            expression: "formData.isFeatured"
+                            value: _vm.formData.is_featured,
+                            expression: "formData.is_featured"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67579,11 +67576,11 @@ var render = function() {
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isFeatured, "1")
+                          checked: _vm._q(_vm.formData.is_featured, "1")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isFeatured", "1")
+                            _vm.$set(_vm.formData, "is_featured", "1")
                           }
                         }
                       }),
@@ -67604,8 +67601,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isFeatured,
-                            expression: "formData.isFeatured"
+                            value: _vm.formData.is_featured,
+                            expression: "formData.is_featured"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67617,11 +67614,11 @@ var render = function() {
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isFeatured, "0")
+                          checked: _vm._q(_vm.formData.is_featured, "0")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isFeatured", "0")
+                            _vm.$set(_vm.formData, "is_featured", "0")
                           }
                         }
                       }),
@@ -67648,8 +67645,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayBanner,
-                            expression: "formData.isDisplayBanner"
+                            value: _vm.formData.is_display_banner,
+                            expression: "formData.is_display_banner"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67660,11 +67657,11 @@ var render = function() {
                           value: "1"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayBanner, "1")
+                          checked: _vm._q(_vm.formData.is_display_banner, "1")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayBanner", "1")
+                            _vm.$set(_vm.formData, "is_display_banner", "1")
                           }
                         }
                       }),
@@ -67685,8 +67682,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formData.isDisplayBanner,
-                            expression: "formData.isDisplayBanner"
+                            value: _vm.formData.is_display_banner,
+                            expression: "formData.is_display_banner"
                           }
                         ],
                         staticClass: "form-check-input",
@@ -67698,11 +67695,11 @@ var render = function() {
                           value: "0"
                         },
                         domProps: {
-                          checked: _vm._q(_vm.formData.isDisplayBanner, "0")
+                          checked: _vm._q(_vm.formData.is_display_banner, "0")
                         },
                         on: {
                           change: function($event) {
-                            _vm.$set(_vm.formData, "isDisplayBanner", "0")
+                            _vm.$set(_vm.formData, "is_display_banner", "0")
                           }
                         }
                       }),
@@ -67728,8 +67725,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.formData.serviceDescription,
-                      expression: "formData.serviceDescription"
+                      value: _vm.formData.description,
+                      expression: "formData.description"
                     },
                     {
                       name: "validate",
@@ -67748,17 +67745,13 @@ var render = function() {
                     placeholder: "Enter description",
                     name: "description"
                   },
-                  domProps: { value: _vm.formData.serviceDescription },
+                  domProps: { value: _vm.formData.description },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(
-                        _vm.formData,
-                        "serviceDescription",
-                        $event.target.value
-                      )
+                      _vm.$set(_vm.formData, "description", $event.target.value)
                     }
                   }
                 })
@@ -67813,8 +67806,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.formData.urlPrefix,
-                      expression: "formData.urlPrefix"
+                      value: _vm.formData.url_prefix,
+                      expression: "formData.url_prefix"
                     },
                     {
                       name: "validate",
@@ -67823,9 +67816,8 @@ var render = function() {
                       expression: "'required|url'"
                     }
                   ],
-                  staticClass: "form-control",
                   class: [
-                    "form-group",
+                    "form-control",
                     _vm.errorBag.first("url") ? "is-invalid" : ""
                   ],
                   attrs: {
@@ -67834,13 +67826,13 @@ var render = function() {
                     name: "",
                     name: "url"
                   },
-                  domProps: { value: _vm.formData.urlPrefix },
+                  domProps: { value: _vm.formData.url_prefix },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.formData, "urlPrefix", $event.target.value)
+                      _vm.$set(_vm.formData, "url_prefix", $event.target.value)
                     }
                   }
                 })

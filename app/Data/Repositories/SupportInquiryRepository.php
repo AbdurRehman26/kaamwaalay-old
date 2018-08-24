@@ -95,7 +95,6 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
             ;
         }
 
-
         if(!empty($data['keyword'])){
             $this->builder = $this->builder
             //->select('support_inquiries.id')
@@ -105,8 +104,10 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
                 //$query->orWhere('support_inquiries.email', 'LIKE', '%'.$data['keyword'].'%');
                 $query->orWhere('users.email', 'LIKE', '%'.$data['keyword'].'%');
                 $query->orWhere(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , '%'.$data['keyword'].'%');
+
                 //$query->orWhere('users.first_name', 'LIKE', '%'.$data['keyword'].'%');
                 //$query->orWhere('users.last_name', 'LIKE', '%'.$data['keyword'].'%');
+
             })
             ;            
         }

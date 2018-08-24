@@ -24,6 +24,7 @@
         "amcharts3": "github:amcharts/amcharts3",
         "babel-loader": "^7.1.5",
         "bootstrap-sass": "^3.3.7",
+        "bootstrap-slider": "^10.2.0",
         "bootstrap-vue": "^2.0.0-rc.11",
         "material-icons": "^0.2.3",
         "moment": "^2.22.2",

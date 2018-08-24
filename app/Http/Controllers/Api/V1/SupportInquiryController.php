@@ -49,7 +49,7 @@ class SupportInquiryController extends ApiResourceController
     public function input($value='')
     {
         $input = request()->only('id', 'pagination', 'support_question_id', 'name', 'email', 'message', 'type_id', 'keyword', 'is_replied');
-<<<<<<< HEAD
+
         //$input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
         return $input;
     }
@@ -77,9 +77,6 @@ class SupportInquiryController extends ApiResourceController
         ];
 
         // HTTP_OK = 200;
-=======
->>>>>>> qa
-
         if($value == 'store'){
             unset($input['keyword']);
             unset($input['is_replied']);

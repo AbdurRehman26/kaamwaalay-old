@@ -77,7 +77,8 @@
                 </td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="detailreview(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                    <i @click="detailreview(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <!-- <i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i> -->
                     <!--  <i class="icon-pencil"></i> -->
                 </div>
             </td>
@@ -93,7 +94,7 @@
 
 <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
-<change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
+<!-- <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user> -->
 <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
 <view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
 <service-provider-review @HideModalValue="HideModal" :showModalProp="changeservicestatus"></service-provider-review>
