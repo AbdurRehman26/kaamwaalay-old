@@ -224,9 +224,7 @@
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
-                e.target.files = null;
-                e.target.value = '';
-
+                
             },
             createImage(file) {
                 var self = this;    
@@ -271,10 +269,9 @@
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
 
-                    self.loading = false;
-                    
                     setTimeout(function () {
                         self.successMessage = '';
+                        self.loading = false; 
                         self.hideModal();  
                         self.resetFormFields(); 
                         self.$emit('call-list');             
@@ -310,14 +307,14 @@
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
-
-                    self.loading = false;
                     
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');
+                        self.loading = false; 
+             
                     } , 3000);
 
                     setTimeout(function () {
