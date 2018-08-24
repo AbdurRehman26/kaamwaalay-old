@@ -2681,9 +2681,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.response.message;
                 setTimeout(function () {
+                    self.loading = false;
                     self.successMessage = '';
                     self.hideModal();
                 }, 5000);
@@ -4515,11 +4515,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.post('/api/user', self.add_form_info).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.message;
                 self.$parent.url = "";
                 setTimeout(function () {
                     self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
+                    self.loading = false;
                     self.successMessage = '';
                     self.resetModal();
                 }, 5000);

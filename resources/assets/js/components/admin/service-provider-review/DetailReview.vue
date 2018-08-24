@@ -182,8 +182,8 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Status</strong></p>
                             </b-col>
-                            <b-col class="calculated-value">
-                                <b-form-select :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
+                            <b-col class="calculated-value general-setting">
+                                <b-form-select v-validate="'required'" :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
                                 <textarea v-model="reason" name="reason" v-validate="'required'" 
                                 v-if="selected == 'rejected' && records.status != 'rejected' && records.status != 'approved'"  
                                 class="calculated-value form-control margin-bottom-20px">
@@ -222,7 +222,6 @@
             options: [
             { value: null, text: 'Please select Status' },
             { value: 'pending', text: 'Pending' },
-            { value: 'in-review', text: 'In-Review' },
             { value: 'rejected', text: 'Rejected' },
             { value: 'approved', text: 'Approved' }
             ],

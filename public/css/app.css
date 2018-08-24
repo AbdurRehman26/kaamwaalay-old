@@ -31203,7 +31203,6 @@ a.text-dark:focus {
 
 .icon-alert:before {
   content: "\E91A";
-  color: #d9534f;
 }
 
 .icon-explorer-icon:before {
@@ -31314,7 +31313,6 @@ a.text-dark:focus {
 
 .icon-check2:before {
   content: "\E92A";
-  color: #00699e;
 }
 
 .icon-analyze-icon:before {
@@ -35260,6 +35258,18 @@ input[type=number]::-webkit-outer-spin-button {
 
 .vdp-datepicker.is-invalid input {
   border-color: #d9534f;
+}
+
+.general-setting textarea[aria-invalid='true'],
+.general-setting input[aria-invalid='true'],
+.general-setting select[aria-invalid='true'] {
+  border-color: #d9534f;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-image: url(/images/alert-icon.svg?09b6055c6e034afa1fc5b2d995574a77);
+  background-repeat: no-repeat;
+  background-size: 21px auto;
+  background-position: 98% 53%;
 }
 
 .main-nav {
