@@ -69784,7 +69784,7 @@ var render = function() {
             "title-tag": "h4",
             "ok-variant": "primary",
             size: "sm",
-            title: "",
+            title: "Confirmation",
             "ok-only": "",
             "ok-title": "Submit",
             "no-close-on-backdrop": "",
