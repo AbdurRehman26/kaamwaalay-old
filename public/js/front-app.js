@@ -2769,6 +2769,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     noRecordFound: false
                 };
 
+                console.log(response.data, response.data.length, 'length of the data and data');
+
                 if (!response.data.length) {
                     result.noRecordFound = true;
                 }
