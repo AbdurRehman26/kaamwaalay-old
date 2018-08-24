@@ -25,7 +25,9 @@ export default new Vuex.Store({
         barQueryArr : {},
         tabularQueryArr : {},
         scatterQueryArr : {},
-        servicesList : []
+        servicesList : [],
+        roles : [],
+        paymentTypes : [],
     },
 
     // You can use it as a state getter function (probably the best solution)
@@ -81,6 +83,12 @@ export default new Vuex.Store({
         getAllServices(state){
             return     state.allServices;
         },
+        getRoleList(state){
+            return     state.roles;
+        },
+        getPaymentTypeList(state){
+            return     state.paymentTypes;
+        },
     },
 
     // Mutation for when you use it as state property
@@ -130,6 +138,12 @@ export default new Vuex.Store({
         },
         setAllServices(state, data){
             state.allServices = data;
+        },
+        setRoleList(state, data){
+            state.roles = data;
+        },
+        setPaymentTypeList(state, data){
+            state.paymentTypes = data;
         },
     },
 });

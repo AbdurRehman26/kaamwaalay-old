@@ -5,6 +5,8 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Payment;
+use Carbon\Carbon;
+use DB;
 
 class PaymentRepository extends AbstractRepository implements RepositoryContract
 {
@@ -38,6 +40,7 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
     {
         $this->model = $model;
         $this->builder = $model;
+        $this->userRepo = app('UserRepository');
 
     }
 
@@ -58,5 +61,53 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         }
 
         return  $record;
+    }
+
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+
+        $this->builder = $this->builder
+        ->leftJoin('users', 'payments.pay_by', '=', 'users.id')
+        ;
+
+        if(!empty($data['filter_by_pay_by'])){
+            $this->builder = $this->builder->where('users.role_id', '=' , $data['filter_by_pay_by']);
+            ;
+        }
+
+        if(!empty($data['filter_by_type'])){
+            $this->builder = $this->builder->where('payments.type', '=' , $data['filter_by_type']);
+            ;
+        }
+
+        if(!empty($data['keyword'])){
+            $this->builder = $this->builder
+            ->where(function($query) use ($data) {
+                $query->orWhere(DB::raw('CONCAT(users.first_name," ",users.last_name)') , 'LIKE' , '%'.$data['keyword'].'%');
+            })
+            ;            
+        }
+
+        $this->builder = $this->builder
+        ->select('payments.id')
+        ->orderBy('payments.created_at', 'DESC')
+        ;
+
+        return  parent::findByAll($pagination, $perPage);
+    
+    }
+
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        if($data){
+            $details = ['role' => true];
+            $data->full_name = '';
+            $data->pay_by = $this->userRepo->findById($data->pay_by, false, $details);
+            if($data->pay_by)
+                $data->full_name = $data->pay_by->first_name. ' ' .$data->pay_by->last_name;
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        }
+
+        return $data;
     }
 }

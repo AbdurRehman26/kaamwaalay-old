@@ -50,6 +50,8 @@ import { directive as onClickaway } from 'vue-clickaway';
        mounted: function () {
             let self = this;
              this.getAllServices();
+             self.setRoleList();
+             self.setPaymentTypeList();
             self.user = JSON.parse(self.$store.getters.getAuthUser);
             self.first_name = self.user.first_name;
             self.last_name = self.user.last_name;
@@ -89,7 +91,37 @@ import { directive as onClickaway } from 'vue-clickaway';
             away: function(){
                 this.isShowing = false;
                 this.tab = false;
-            }
+            },
+            setRoleList() {
+                let data = [
+                {
+                    id:2,
+                    title:'Service Provider'
+                },
+                {
+                    id:3,
+                    title:'Customer'
+                }
+                ];
+                this.$store.commit('setRoleList' , data);
+            },
+            setPaymentTypeList() {
+                let data = [
+                {
+                    id:'urgent',
+                    title:'Urgent'
+                },
+                {
+                    id:'featured',
+                    title:'Featured'
+                },
+                {
+                    id:'account_creation',
+                    title:'Account Creation'
+                }
+                ];
+                this.$store.commit('setPaymentTypeList' , data);
+            },
 
         }
     }

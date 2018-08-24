@@ -56,7 +56,7 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
     {
         $data = [];
         $date = Carbon::now();
-        $ids = [];
+        $ids = [Plan::URGENT, Plan::ACCOUNT_CREATION];
         if(count($input['plans_data'])){
             foreach ($input['plans_data'] as $key => $value) {
                 
@@ -70,7 +70,7 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
                 $data[] =   $value;
                 $ids[] = $value['id'];
             }
-
+            
             if(count($ids)){
                 $ids = array_filter($ids);
                 $this->model->where('type', '=', 'service')->whereNotIn('id', $ids)->delete();
