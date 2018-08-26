@@ -49,6 +49,8 @@
                         noRecordFound : false
                     };
 
+                    console.log(response.data , response.data.length  , 'length of the data and data');
+
                     if(!response.data.length){
                         result.noRecordFound = true;
                     }

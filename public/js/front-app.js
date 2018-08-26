@@ -2681,9 +2681,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.put('api/auth/change/password/', this.userData).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.response.message;
                 setTimeout(function () {
+                    self.loading = false;
                     self.successMessage = '';
                     self.hideModal();
                 }, 5000);
@@ -2768,6 +2768,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     data: response.data,
                     noRecordFound: false
                 };
+
+                console.log(response.data, response.data.length, 'length of the data and data');
 
                 if (!response.data.length) {
                     result.noRecordFound = true;
@@ -3285,7 +3287,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3308,6 +3309,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var self = this;
         this.getAllServices();
+        self.setRoleList();
+        self.setPaymentTypeList();
         self.user = JSON.parse(self.$store.getters.getAuthUser);
         self.first_name = self.user.first_name;
         self.last_name = self.user.last_name;
@@ -3344,8 +3347,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         away: function away() {
             this.isShowing = false;
             this.tab = false;
+        },
+        setRoleList: function setRoleList() {
+            var data = [{
+                id: 2,
+                title: 'Service Provider'
+            }, {
+                id: 3,
+                title: 'Customer'
+            }];
+            this.$store.commit('setRoleList', data);
+        },
+        setPaymentTypeList: function setPaymentTypeList() {
+            var data = [{
+                id: 'urgent',
+                title: 'Urgent'
+            }, {
+                id: 'featured',
+                title: 'Featured'
+            }, {
+                id: 'account creation',
+                title: 'Account Creation'
+            }];
+            this.$store.commit('setPaymentTypeList', data);
         }
-
     }
 });
 
@@ -3533,7 +3558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         };
     },
-
+    mounted: function mounted() {},
 
     methods: {
         showModal: function showModal() {
@@ -3563,7 +3588,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             self.errorMessage = '';
             self.successMessage = '';
-
             var url = self.url;
             var id = this.statusData.id;
 
@@ -4493,11 +4517,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             self.loading = true;
             this.$http.post('/api/user', self.add_form_info).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.message;
                 self.$parent.url = "";
                 setTimeout(function () {
                     self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
+                    self.loading = false;
                     self.successMessage = '';
                     self.resetModal();
                 }, 5000);
@@ -5125,6 +5149,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     methods: {
         resetFormFields: function resetFormFields() {
             var self = this;
+            self.image = 'images/dummy/image-placeholder.jpg';
+            self.file = null;
             this.formData = {
                 parent_id: '',
                 title: '',
@@ -5143,9 +5169,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             };
             setTimeout(function () {
                 Vue.nextTick(function () {
+                    self.errorMessage = '';
+                    self.successMessage = '';
                     self.errorBag.clear();
                 });
-            }, 10);
+            }, 100);
         },
         validateBeforeSubmit: function validateBeforeSubmit() {
             var _this = this;
@@ -5182,6 +5210,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         onFileChange: function onFileChange(e) {
             var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
             var files = e.target.files || e.dataTransfer.files;
+            console.log(e.target, 'e.target');
             this.errorMessage = "";
             if (!supportedType.includes(files[0].type)) {
                 this.errorBag.add({
@@ -5242,10 +5271,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 response = response.data.response;
                 self.successMessage = response.message; //'Updated Successfully';
 
-                self.loading = false;
-
                 setTimeout(function () {
                     self.successMessage = '';
+                    self.loading = false;
                     self.hideModal();
                     self.resetFormFields();
                     self.$emit('call-list');
@@ -5282,13 +5310,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 response = response.data.response;
                 self.successMessage = response.message; //'Updated Successfully';
 
-                self.loading = false;
-
                 setTimeout(function () {
                     self.successMessage = '';
                     self.hideModal();
                     self.resetFormFields();
                     self.$emit('call-list');
+                    self.loading = false;
                 }, 3000);
 
                 setTimeout(function () {
@@ -5343,6 +5370,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.image = img[0].upload_url;
                 this.file = img[0].original_name;
             }
+        }
+    },
+    computed: {
+        imageValue: function imageValue() {
+            return this.image;
         }
     }
 });
@@ -5679,9 +5711,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -65344,21 +65373,7 @@ var render = function() {
                         _c("loader")
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "contact-us" }, [
-                      _c("p", [
-                        _vm._v("Need help? "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "javascript:;" },
-                            on: { click: _vm.ContactExpire }
-                          },
-                          [_vm._v("Contact Us")]
-                        )
-                      ])
-                    ])
+                    )
                   ])
                 ])
               ])
@@ -67372,9 +67387,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Is Service Navigation?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Is Service Navigation?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67467,9 +67484,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Is Footer Navigation?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Is Footer Navigation?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67554,9 +67573,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Is Featured?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Is Featured?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67635,9 +67656,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-6" }, [
+                _c("div", { staticClass: "col-xs-12 col-sm-6 col-md-12" }, [
                   _c("div", { staticClass: "form-group radio-group-row" }, [
-                    _c("label", [_vm._v("Display Banner?")]),
+                    _c("label", { staticClass: "label-with-200" }, [
+                      _vm._v("Display Banner?")
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check form-check-inline" }, [
                       _c("input", {
@@ -67792,7 +67815,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "uploded-picture" }, [
-                    _c("img", { attrs: { src: _vm.image } })
+                    _c("img", { attrs: { src: _vm.imageValue } })
                   ])
                 ],
                 1
@@ -69761,7 +69784,7 @@ var render = function() {
             "title-tag": "h4",
             "ok-variant": "primary",
             size: "sm",
-            title: "",
+            title: "Confirmation",
             "ok-only": "",
             "ok-title": "Submit",
             "no-close-on-backdrop": "",
@@ -71555,11 +71578,6 @@ var render = function() {
         ],
         1
       ),
-      _vm._v(" "),
-      _c("update-profile", {
-        attrs: { showModalProp: _vm.showModalValue },
-        on: { HideModalValue: _vm.HideModal }
-      }),
       _vm._v(" "),
       _c("change-pass-popup", {
         attrs: { showModalProp: _vm.changepass },

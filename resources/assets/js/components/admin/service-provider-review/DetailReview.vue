@@ -182,31 +182,35 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Status</strong></p>
                             </b-col>
-                            <b-col class="calculated-value">
-                                <b-form-select :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
-                                <textarea v-if="selected == 'rejected'"  class="calculated-value form-control margin-bottom-20px"></textarea>
-                            </b-col>
-                        </b-row>
+                            <b-col class="calculated-value general-setting">
+                                <b-form-select v-validate="'required'" :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
+                                <textarea v-model="reason" name="reason" v-validate="'required'" 
+                                v-if="selected == 'rejected' && records.status != 'rejected' && records.status != 'approved'"  
+                                class="calculated-value form-control margin-bottom-20px">
+                            </textarea>
+                        </b-col>
+                    </b-row>
 
-                        <b-row>
-                            <b-col  class="text-right fixed-label">
-                                <p><strong class="title-head">Action</strong></p>
-                            </b-col>
-                            <b-col class="calculated-value">
-                                <button :disabled="records.status  | disableProfileStatusButton" class="btn btn-primary">
-                                    <span>Apply</span>
-                                    <loader></loader>
-                                </button>                                   
-                            </b-col>
-                        </b-row>
+                    <b-row>
+                        <b-col  class="text-right fixed-label">
+                            <p><strong class="title-head">Action</strong></p>
+                        </b-col>
+                        <b-col class="calculated-value">
+                            <button @click.prevent="validateBeforeSubmit();"
+                            :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary']" :disabled="records.status  | disableProfileStatusButton">
+                            <span>Apply</span>
+                            <loader></loader>
+                        </button>                       
+                    </b-col>
+                </b-row>
 
-                    </div>
-                </div>
             </div>
         </div>
-        <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-
     </div>
+</div>
+<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+
+</div>
 </template>
 
 <script>
@@ -218,12 +222,15 @@
             options: [
             { value: null, text: 'Please select Status' },
             { value: 'pending', text: 'Pending' },
-            { value: 'in-review', text: 'In-Review' },
             { value: 'rejected', text: 'Rejected' },
             { value: 'approved', text: 'Approved' }
             ],
             url : 'api/service-provider-profile-request',
             records : [],
+            errorMessage : '',
+            successMessage : '',
+            loading : false,
+            reason : ''
         }
     },
     computed : {
@@ -232,26 +239,48 @@
         }
     },
     methods : {
-        getRecords(response){
-            let self = this;
-            self.loading = false;
-            self.records = response.data;
-            self.noRecordFound = response.noRecordFound;
-        },
-        validateBeforeSubmit() {
-            this.$validator.validateAll().then((result) => {
-                if (result) {
-                    this.onSubmit();
-                    this.$emit('error-message', '');
-                    return;
-                }
-                this.$emit('error-message', this.errorBag.all()[0]);
-            });
-        },
+     validateBeforeSubmit() {
+        let self = this;
+        self.errorMessage = '';
+        self.$validator.validateAll().then((result) => {
+           if (result) {
+              self.onSubmit();
+              self.errorMessage =  '';
+              return;
+          }
+          self.errorMessage =  self.errorBag.all()[0];
+      });
     },
-    components: {
-        StarRating
-    },
+    onSubmit(){
+        let self = this;
+        self.loading = true;
+        let url = self.url + '/' + this.$route.params.id;
+        let data = {
+            status : self.selected,
+            reason : self.reason
+        };
+
+        self.$http.put(url , data).then(response=>{
+           self.loading = false;
+           response = response.data.response;
+           self.records.status = response.data.status;
+
+       }).catch(error=>{
+        console.log('error' , error);
+
+    });
+
+   }, 
+   getRecords(response){
+    let self = this;
+    self.loading = false;
+    self.records = response.data;
+    self.noRecordFound = response.noRecordFound;
+},
+},
+components: {
+    StarRating
+},
 }
 
 </script>

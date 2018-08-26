@@ -45,9 +45,6 @@
                                 <span>Create</span>
                                 <loader></loader>
                             </button>
-                             <div class="contact-us">
-                                <p>Need help? <a href="javascript:;" @click="ContactExpire">Contact Us</a></p>
-                            </div>
                         </div>
                     </div>
                 </form>

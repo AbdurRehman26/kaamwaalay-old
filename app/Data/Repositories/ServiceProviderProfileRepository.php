@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfile;
 use DB;
+use Carbon\Carbon;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
@@ -85,6 +86,8 @@ public $model;
             $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
             $data->profile_request = $profile;
             
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        
                
         }
         

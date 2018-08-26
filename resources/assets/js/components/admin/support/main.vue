@@ -37,6 +37,7 @@
               <th>Full Name</th>
               <th>Email Address</th>
               <th>Type</th>
+              <th>Reply Clicked</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@
               <td> {{ list.name }} </td>
               <td> {{ list.email }} </td>
               <td> {{ list.role.title }} </td>
+              <td> {{ (list.is_replied)? 'Yes' : 'No' }} </td>
               <td class="text-center">
                 <div class="action-icons">
                   <i @click="SupportDetail(list)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>

@@ -63,8 +63,8 @@
             showModalValue : false,
             url : 'api/job-bid',
             records : [],
-            mainJob : ''
-
+            mainJob : '',
+            noRecordFound : ''
         }
     },
     components: {
@@ -91,7 +91,6 @@
             let self = this;
             self.loading = false;
             self.mainJob = response.data;
-            self.noRecordFound = response.noRecordFound;
             
             
         }

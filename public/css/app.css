@@ -31203,7 +31203,6 @@ a.text-dark:focus {
 
 .icon-alert:before {
   content: "\E91A";
-  color: #d9534f;
 }
 
 .icon-explorer-icon:before {
@@ -31314,7 +31313,6 @@ a.text-dark:focus {
 
 .icon-check2:before {
   content: "\E92A";
-  color: #00699e;
 }
 
 .icon-analyze-icon:before {
@@ -35262,7 +35260,9 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: #d9534f;
 }
 
-input[aria-invalid='true'] {
+.general-setting textarea[aria-invalid='true'],
+.general-setting input[aria-invalid='true'],
+.general-setting select[aria-invalid='true'] {
   border-color: #d9534f;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -40242,7 +40242,7 @@ i[active="true"] {
         &:nth-child(2){
             padding-left: 45px;
         }
-    } */
+        } */
 }
 
 .data-field .checkbox-field {
@@ -40863,7 +40863,7 @@ i[active="true"] {
 
 /* .dropdown-menu{
     top: 2px !important;
-} */
+    } */
 
 .bootstrap-colorpicker .color-pallet {
   position: absolute;
@@ -40939,12 +40939,12 @@ i[active="true"] {
 
 .nextstep .btn {
   /*         min-width: auto;
-        padding: 6px 20px 10px 14px; */
+padding: 6px 20px 10px 14px; */
 }
 
 /*===
     action icons
-===*/
+    ===*/
 
 .list-action i {
   color: #838383;
@@ -41664,5 +41664,14 @@ a.underline {
   line-height: 0;
   position: relative;
   top: -1px;
+}
+
+i.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.label-with-200 {
+  width: 200px;
 }
 
