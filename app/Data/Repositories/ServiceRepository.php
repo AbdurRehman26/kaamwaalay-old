@@ -125,11 +125,12 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         if (!empty($data['keyword'])) {
             
-            $this->builder = $this->builder->where(function($query) use($data){
+            $ids = $this->builder->where(function($query) use($data){
                 $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
                 //$query->orWhere('services.description', 'like', "%{$data['keyword']}%");
             
-            });
+            })->pluck('id')->toArray();
+            $this->builder->whereIn('id', $ids)->whereIn('parent_id', $ids, 'or');
         }
         if(isset($data['filter_by_featured'])){
             $this->builder = $this->builder->where('is_featured','=', $data['filter_by_featured']);
