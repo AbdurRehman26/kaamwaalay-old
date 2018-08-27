@@ -47,7 +47,7 @@ class ServiceController extends ApiResourceController
         $rules['user_id']                 =  'required|exists:users,id';
         $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
         $rules['title']                   = [
-            'required',
+            'nullable|required',
             Rule::unique('services')->where(function ($query) {
                 $query->where('id','!=', $this->input()['id']);
             }),
@@ -111,7 +111,7 @@ public function input($value=''){
 
     //Update single record
 public function update(Request $request, $id)
-{   
+{ 
     $request->request->add(['id' => $id]);
     $input = $this->input(__FUNCTION__);
     $rules = $this->rules(__FUNCTION__);

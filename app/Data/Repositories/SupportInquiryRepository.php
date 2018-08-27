@@ -84,7 +84,7 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
     public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
 
         $this->builder = $this->builder
-        ->leftJoin('users', 'support_inquiries.user_id', '=', 'users.id')
+        ->leftJoin('users', 'support_inquiries.user_id', '=', 'users.id');
         //->where('users.role_id', '<>', Role::ADMIN)
         ;
 
@@ -116,10 +116,10 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
         ->select('support_inquiries.id')
         ->orderBy('support_inquiries.created_at', 'DESC')
         ;
-
         $modelData['data'] = [];
         $count = $this->builder->count();
         $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+
         $modelData['data']['inquiry_count'] = $count;
         return $modelData;
         //return  parent::findByAll($pagination, $perPage);

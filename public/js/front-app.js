@@ -3539,14 +3539,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['showModalProp', 'statusData', 'options', 'url'],
     data: function data() {
-
         return {
             selected: '',
             loading: false,
             errorMessage: "",
             successMessage: "",
-            statusData: {},
-            options: [],
             data: {}
 
         };
@@ -3590,18 +3587,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 "status": this.selected
             };
             self.$http.put(url, self.data).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.message;
+                if (!response.data.message) {
+                    self.successMessage = response.data.response.message;
+                }
                 setTimeout(function () {
+                    self.loading = false;
                     self.hideModal();
                     self.onHidden();
                     self.successMessage = '';
                     self.$parent.statusData.status = self.selected;
                 }, 5000);
             }).catch(function (error) {
-                self.loading = false;
                 self.errorMessage = error.response.data.message[0];
                 setTimeout(function () {
+                    self.loading = false;
                     self.errorMessage = '';
                 }, 5000);
             });
@@ -5262,7 +5262,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
     props: ['showModalProp', 'isUpdate', 'list'],
     data: function data() {
         var _ref;
@@ -5271,7 +5270,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             errorMessage: '',
             successMessage: '',
             services: []
-        }, _defineProperty(_ref, 'errorMessage', ''), _defineProperty(_ref, 'successMessage', ''), _defineProperty(_ref, 'formData', {
+        }, _defineProperty(_ref, 'errorMessage', ''), _defineProperty(_ref, 'successMessage', ''), _defineProperty(_ref, 'imageText', 'Click here to upload image'), _defineProperty(_ref, 'formData', {
             parent_id: '',
             title: '',
             description: '',
@@ -5286,14 +5285,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             is_display_service_nav: 0,
             is_display_footer_nav: 0
 
-        }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/image-placeholder.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _ref;
+        }), _defineProperty(_ref, 'emailaddress', 'arsalan@cygnismedia.com'), _defineProperty(_ref, 'fullname', 'Arsalan Akhtar'), _defineProperty(_ref, 'image', 'images/dummy/image-placeholder.jpg'), _defineProperty(_ref, 'file', null), _defineProperty(_ref, 'url', 'api/service'), _defineProperty(_ref, 'loading', false), _defineProperty(_ref, 'isFileUpload', null), _ref;
     },
 
     methods: {
         resetFormFields: function resetFormFields() {
             var self = this;
-            self.image = 'images/dummy/image-placeholder.jpg';
-            self.file = null;
+            this.image = 'images/dummy/image-placeholder.jpg';
+            this.file = null;
+            this.$refs.fileinput.reset();
             this.formData = {
                 parent_id: '',
                 title: '',
@@ -5323,6 +5323,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             var self = this;
             this.$validator.validateAll().then(function (result) {
+
+                if (!self.file) {
+                    self.isFileUpload = false;
+                }
                 if (result && !_this.errorBag.all().length) {
                     if (_this.isUpdate) {
                         _this.onUpdate();
@@ -5330,12 +5334,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                         _this.onSubmit();
                     }
                     _this.errorMessage = '';
+                    self.isFileUpload = null;
                     return;
                 }
                 _this.errorMessage = _this.errorBag.all()[0];
             });
         },
         showModal: function showModal() {
+
+            this.imageText = 'Click here to upload image';
             this.$refs.myModalRef.show();
             var allServices = this.$store.getters.getAllServices;
             // filter only services
@@ -5353,7 +5360,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         onFileChange: function onFileChange(e) {
             var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
             var files = e.target.files || e.dataTransfer.files;
-            console.log(e.target, 'e.target');
             this.errorMessage = "";
             if (!supportedType.includes(files[0].type)) {
                 this.errorBag.add({
@@ -5363,10 +5369,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     id: 6
                 });
                 this.errorMessage = this.errorBag.all()[0];
+                self.isFileUpload = false;
                 return;
             }
             this.errorBag.clear();
-
+            this.isFileUpload = null;
             if (!files.length) return;
             this.createImage(files[0]);
         },
@@ -5395,6 +5402,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }).catch(function (error) {
                 error = error.response.data;
                 var errors = error.errors;
+                self.isFileUpload = false;
                 _.forEach(errors, function (value, key) {
                     self.errorMessage = errors[key][0];
                     return false;
@@ -5474,6 +5482,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                         self.errorMessage = "The Service Name has alreary been taken.";
                         return false;
                     }
+                    if (key == "parent_id") {
+                        self.errorMessage = "This service is already a parent service.";
+                        return false;
+                    }
                     self.errorMessage = errors[key][0];
                     return false;
                 });
@@ -5512,6 +5524,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 };
                 this.image = img[0].upload_url;
                 this.file = img[0].original_name;
+                this.imageText = this.file;
             }
         }
     },
@@ -69140,7 +69153,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("12")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.selectedService.service_prodider_count))
+                    ])
                   ])
                 ],
                 1
@@ -69158,7 +69173,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("12")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.selectedService.job_init_count))
+                    ])
                   ])
                 ],
                 1
@@ -69176,7 +69193,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("12")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.selectedService.job_finished_count))
+                    ])
                   ])
                 ],
                 1
@@ -70665,13 +70684,15 @@ var render = function() {
                         expression: "'required'"
                       }
                     ],
+                    ref: "fileinput",
                     class: [
                       "form-group",
                       _vm.errorBag.first("upload image") ? "is-invalid" : ""
                     ],
                     attrs: {
+                      state: _vm.isFileUpload,
                       accept: "image/jpeg, image/png, image/jpg",
-                      placeholder: "Click here to upload image",
+                      placeholder: _vm.imageText,
                       name: "upload image"
                     },
                     on: { change: _vm.onFileChange },

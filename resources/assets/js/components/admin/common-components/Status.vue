@@ -28,14 +28,11 @@
     export default {
         props : ['showModalProp','statusData','options','url'],
         data () {
-
             return {
                 selected: '',
                 loading: false,
                 errorMessage: "",
                 successMessage: "",
-                statusData:{},
-                options:[],
                 data: {},
 
             }
@@ -77,9 +74,12 @@
               "status" : this.selected,
           }
           self.$http.put(url,self.data).then(response => {
-            self.loading = false;
             self.successMessage = response.data.message;
+            if(!response.data.message) {
+                self.successMessage = response.data.response.message;
+            }
             setTimeout(function() {
+                self.loading = false;
                 self.hideModal();
                 self.onHidden();
                 self.successMessage = '';
@@ -87,9 +87,9 @@
             }, 5000);
 
         }).catch(error => {
-            self.loading = false
             self.errorMessage =error.response.data.message[0];
             setTimeout(function(){
+                self.loading = false;
                 self.errorMessage=''
             }, 5000);
 
