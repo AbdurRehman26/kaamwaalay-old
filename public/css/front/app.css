@@ -13475,10 +13475,35 @@ input[type=number]::-webkit-outer-spin-button {
 
   .navigation.main-navigation ul li .post-job-btn {
     top: 0;
+    margin-bottom: 18px;
   }
 
   .navigation.main-navigation ul li:last-child {
     padding-top: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navigation ul li {
+    padding: 0px 0px !important;
+  }
+
+  .navigation ul li a {
+    padding: 13px 0px;
+  }
+
+  .navigation ul li a.router-link-active {
+    background-color: #8200FF;
+    color: #fff !important;
+  }
+
+  .navigation ul li a.router-link-active:after {
+    display: none;
+  }
+
+  .navigation ul li a.router-link-active:hover,
+  .navigation ul li a.router-link-active:focus {
+    color: #fff !important;
   }
 }
 
@@ -14158,6 +14183,12 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 768px) {
   .section-padd {
     padding: 50px 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-padd {
+    padding: 30px 0px 15px 0px !important;
   }
 }
 
@@ -15743,6 +15774,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .job-post-list {
+    background-color: rgba(221, 198, 244, 0.1);
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
     padding: 25px 12px 20px 12px;
   }
 
@@ -15752,12 +15786,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .job-post-list .job-post-details .job-image {
-    width: 110px;
-    height: 110px;
+    width: 50px;
+    height: 50px;
     position: relative;
     display: block;
     margin-right: auto;
-    margin-bottom: 17px;
+    margin-bottom: 3px;
   }
 }
 
@@ -15943,6 +15977,11 @@ body .chat-feedback-message.white-msg:before {
     position: absolute;
     top: 0;
     right: -10px;
+  }
+
+  .job-common-description .jobs-rating .vue-star-rating span.vue-star-rating-star svg {
+    width: 13px;
+    height: 24px;
   }
 }
 
@@ -16156,9 +16195,10 @@ body .chat-feedback-message.white-msg:before {
 
 @media (max-width: 767px) {
   .chat-feedback .chat-feedback-message {
-    width: 100%;
+    width: calc(100% - 51px);
     margin-top: 8px;
-    margin-left: 0;
+    padding: 10px 10px;
+    margin-left: 10px;
   }
 
   .chat-feedback .chat-feedback-message p {
@@ -16170,6 +16210,11 @@ body .chat-feedback-message.white-msg:before {
   .chat-feedback .chat-feedback-message .provider-bidding-btn .feedback-personal-info {
     padding-right: 20px;
     font-size: 10px;
+  }
+
+  .chat-feedback .chat-feedback-image {
+    width: 35px;
+    height: 35px;
   }
 }
 

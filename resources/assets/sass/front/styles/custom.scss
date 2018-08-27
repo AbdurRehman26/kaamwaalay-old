@@ -255,6 +255,9 @@ $section-padding-sm:20px 0px;
     @include tablet{
         padding: 50px 0px;
     }
+    @include mobile{
+        padding: 30px 0px 15px 0px !important;
+    }    
 }
 
 .text-notifer{
@@ -1716,17 +1719,20 @@ $section-padding-sm:20px 0px;
         }
     }
     @include mobile{
+        background-color: rgba(221, 198, 244, 0.1);
+        border: 1px solid #E0E0E0;
+        border-radius: 12px;        
         padding: 25px 12px 20px 12px;
         .job-post-details{
             /* padding-left: 40px; */
             padding-left: 0px;
             .job-image{
-                width: 110px;
-                height: 110px;
+                width: 50px;
+                height: 50px;
                 position: relative;
                 display: block;
                 margin-right: auto;
-                margin-bottom: 17px;           
+                margin-bottom: 3px;
             }
         }
     }
@@ -1892,6 +1898,12 @@ body{
                 right: -10px;            
            }
         }
+        .jobs-rating{
+            .vue-star-rating span.vue-star-rating-star svg{
+                width: 13px;
+                height: 24px;
+            }
+        }
     }
 }
 .go-back{
@@ -2054,9 +2066,10 @@ body{
     }
     @include mobile{
         .chat-feedback-message{
-            width: 100%;
+            width: calc(100% - 51px);
             margin-top: 8px;
-            margin-left: 0;
+            padding: 10px 10px;
+            margin-left: 10px;
             p{
                 font-size: 11px;
                 line-height: 18px;                
@@ -2067,6 +2080,10 @@ body{
                     font-size: 10px;
                 }
             }
+        }
+        .chat-feedback-image{
+            width: 35px;
+            height: 35px;
         }   
     }
 }

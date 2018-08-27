@@ -140,9 +140,30 @@ $nav-font:$font-bold;
                     }
                     .post-job-btn{
                         top: 0;
+                        margin-bottom: 18px;
                     }
                     &:last-child{
                         padding-top: 0px;
+                    }
+                }
+            }
+        }
+    }
+    @include mobile{
+        ul{
+            li{
+                padding: 0px 0px !important;
+                a{
+                    padding: 13px 0px;
+                    &.router-link-active{
+                        background-color: $primary-color-md;
+                        color: #fff !important;
+                        &:after{
+                            display: none;   
+                        }
+                        &:hover, &:focus{
+                            color: #fff !important;
+                        }
                     }
                 }
             }
