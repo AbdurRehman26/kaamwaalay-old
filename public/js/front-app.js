@@ -3539,14 +3539,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['showModalProp', 'statusData', 'options', 'url'],
     data: function data() {
-
         return {
             selected: '',
             loading: false,
             errorMessage: "",
             successMessage: "",
-            statusData: {},
-            options: [],
             data: {}
 
         };
@@ -3590,18 +3587,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 "status": this.selected
             };
             self.$http.put(url, self.data).then(function (response) {
-                self.loading = false;
                 self.successMessage = response.data.message;
+                if (!response.data.message) {
+                    self.successMessage = response.data.response.message;
+                }
                 setTimeout(function () {
+                    self.loading = false;
                     self.hideModal();
                     self.onHidden();
                     self.successMessage = '';
                     self.$parent.statusData.status = self.selected;
                 }, 5000);
             }).catch(function (error) {
-                self.loading = false;
                 self.errorMessage = error.response.data.message[0];
                 setTimeout(function () {
+                    self.loading = false;
                     self.errorMessage = '';
                 }, 5000);
             });

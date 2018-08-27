@@ -18,6 +18,7 @@ class User extends Authenticatable
     const ACTIVE = 'active';
     const PENDING = 'pending';
     const IN_ACTIVE = 'deactived';
+    const GLOBAL_ADMIN = 1;
     protected $perPage = 10;
     public function getProfileImageAttribute($value){
         if(substr($value, 0, 8) == "https://"){

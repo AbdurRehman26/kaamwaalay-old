@@ -58,7 +58,7 @@
                   <div class="action-icons">
                     <i v-b-tooltip.hover title="View Details" @click="ViewDetails(list, index)" class="icon-eye"></i>
                     <i v-b-tooltip.hover title="Edit Details" class="icon-pencil" @click="updateService(list)"></i>
-                    <i v-b-tooltip.hover title="Delete" @click="ActionDelete(list)" class="icon-delete"></i>
+                    <i @click="changestatuspopup(list)" :class="[list.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                   </div>
                 </td>
               </tr>
@@ -86,7 +86,7 @@
 </div>
 <add-service @HideModalValue="HideModal" :showModalProp="service" @call-list="getList(false, false)" :isUpdate="isUpdate" :list="list"></add-service>
 <view-details @HideModalValue="HideModal" :showModalProp="viewdetails" :selectedService="selectedService"></view-details>
-<delete-popup @HideModalValue="HideModal" :showModalProp="actiondelete" :item="selectedService" :url="url" @call-list="getList(false, false)"></delete-popup>
+<changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions" :url="statusUrl" ></changestatuspopup>
 </div>
 </template>
 
@@ -111,9 +111,22 @@
        list: {},
        loading: false,
        loadingStart: true,
-     }
-   },
-   watch : {
+       changestatus: false,
+       statusData:'',
+       statusUrl: 'api/service',
+       ChangeStatusesOptions : [
+       {
+        key : 0,
+        value : 'Inactive'
+      },
+      {
+        key : 1,
+        value :'Active'
+      }
+      ],
+    }
+  },
+  watch : {
     currentPage(pageNumber){
 
       var data = {
@@ -128,6 +141,12 @@
     }
   },
   methods: {
+
+    changestatuspopup(list) {
+      this.statusUrl = 'api/service/'+list.id;
+      this.statusData = list;
+      this.changestatus = true;
+    },
     onApply() {
       this.loadingStart = true;
       this.loading = true;
@@ -136,9 +155,6 @@
         filter: this.filter_by_featured
       };
       this.getList(data, false);
-    },
-    onDelete(itemId) {
-      alert(itemId);
     },
     AddService(){
       this.isUpdate = false;
@@ -154,15 +170,12 @@
       this.selectedService = list;
       this.viewdetails = true;
     },
-    ActionDelete(list) {
-      this.selectedService = list;
-      this.actiondelete = true;
-    },
     HideModal(){
       this.service = false;
       this.viewdetails = false;
       this.actiondelete = false;
       this.isUpdate = false;
+      this.changestatus = false;
       this.list = {};
     },
     getResponse(response) {
