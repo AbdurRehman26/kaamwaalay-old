@@ -69138,7 +69138,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("12")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.selectedService.service_prodider_count))
+                    ])
                   ])
                 ],
                 1
@@ -69156,7 +69158,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("12")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.selectedService.job_init_count))
+                    ])
                   ])
                 ],
                 1
@@ -69174,7 +69178,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("b-col", { attrs: { cols: "7" } }, [
-                    _c("p", [_vm._v("12")])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.selectedService.job_finished_count))
+                    ])
                   ])
                 ],
                 1

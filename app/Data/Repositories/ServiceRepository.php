@@ -16,7 +16,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -38,6 +38,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     {
         $this->model = $model;
         $this->builder = $model;
+        $this->jobRepo = app('JobRepository');
+        $this->serviceProviderRepo = app('ServiceProviderServiceRepository');
 
     }
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  []) {
@@ -49,8 +51,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 
             }else{
 
-            $data->parent = '';
+                $data->parent = '';
             }
+            $jobInitCriteria = ['status' => ['initiated'], 'service_id' => $data->id];
+            $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
+
+            $jobFinishedCriteria = ['status' => ['completed'], 'service_id' => $data->id];
+            $data->job_finished_count = $this->jobRepo->getTotalCountByCriteria($jobFinishedCriteria);
+
+            $serviceProdiderCriteria = ['service_id' => $data->id];
+            $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
         }
         
         return $data;
@@ -99,60 +109,59 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         $this->builder = $this->model->orderBy('created_at','desc');
 
         //select * from `psm`.`services` as p1 left join `psm`.`services` p2 on p1.id = p2.parent_id where p1.parent_id is null order by p1.id
-       
+
         /*$this->builder = $this->builder
                     ->leftJoin('services AS s2', 'id', '=', 's2.parent_id')
                     ->whereNull('parent_id')
                     ->orderBy('id');*/
 
-        if (!empty($data['zip_code'])) {
-            $this->builder = $this->builder->
-            leftJoin('service_provider_services', function ($join)  use($data) {
-                $join->on('service_provider_services.service_id', '=', 'services.id');
-            })->
-            leftJoin('service_provider_profile_requests', function ($join)  use($data) {
-                $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_services.id');
-            })->
-            leftJoin('users', function ($join)  use($data) {
-                $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
-            })
-            ->where('service_provider_profile_requests.status','approved')
-            ->where('users.role_id',Role::SERVICE_PROVIDER)
-            ->where('users.zip_code',$data['zip_code'])
-            ->select(['services.id']);
-        }
+                    if (!empty($data['zip_code'])) {
+                        $this->builder = $this->builder->
+                        leftJoin('service_provider_services', function ($join)  use($data) {
+                            $join->on('service_provider_services.service_id', '=', 'services.id');
+                        })->
+                        leftJoin('service_provider_profile_requests', function ($join)  use($data) {
+                            $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_services.id');
+                        })->
+                        leftJoin('users', function ($join)  use($data) {
+                            $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+                        })
+                        ->where('service_provider_profile_requests.status','approved')
+                        ->where('users.role_id',Role::SERVICE_PROVIDER)
+                        ->where('users.zip_code',$data['zip_code'])
+                        ->select(['services.id']);
+                    }
+                    if (!empty($data['keyword'])) {
 
-        if (!empty($data['keyword'])) {
-            
             // $this->builder = $this->builder->where(function($query) use($data){
             //     $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
             //     //$query->orWhere('services.description', 'like', "%{$data['keyword']}%");
-            
+
             // });
-            $ids = $this->builder->where(function($query) use($data){
-                $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
+                        $ids = $this->builder->where(function($query) use($data){
+                            $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
                 //$query->orWhere('services.description', 'like', "%{$data['keyword']}%");
-            
-            })->pluck('id')->toArray();
-            $this->builder->whereIn('id', $ids)->whereIn('parent_id', $ids, 'or');
-        }
-        if(isset($data['filter_by_featured'])){
-            $this->builder = $this->builder->where('is_featured','=',$data['filter_by_featured']);
-        }
-        $modelData['data'] = [];
-        $count = $this->builder->count();
-        $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
-        $modelData['data']['service_count'] = $count;
-        return $modelData;
-    }
+
+                        })->pluck('id')->toArray();
+                        $this->builder->whereIn('id', $ids)->whereIn('parent_id', $ids, 'or');
+                    }
+                    if(isset($data['filter_by_featured'])){
+                        $this->builder = $this->builder->where('is_featured','=',$data['filter_by_featured']);
+                    }
+                    $modelData['data'] = [];
+                    $count = $this->builder->count();
+                    $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+                    $modelData['data']['service_count'] = $count;
+                    return $modelData;
+                }
 
 
-    public function deleteById($id) {
-        $model = $this->model->find($id);
-        if($model->parent_id == NULL) {
-            $sub_model = $this->model->where('parent_id', '=', $id)->delete();
-        }
-        $this->cache()->flush();
+                public function deleteById($id) {
+                    $model = $this->model->find($id);
+                    if($model->parent_id == NULL) {
+                        $sub_model = $this->model->where('parent_id', '=', $id)->delete();
+                    }
+                    $this->cache()->flush();
         //Cache::tags(['Service'])->flush();
         // if($sub_model != NULL) {
         //     foreach ($sub_model as $model) {
@@ -161,11 +170,11 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         //         $model->delete();
         //     }
         // }
-        if($model != NULL) {
+                    if($model != NULL) {
             //Cache::forget($this->_cacheKey.$id);
             //Cache::forget($this->_cacheTotalKey);
-            return $model->delete();
-        }
-        return false;
-    }
-}
+                        return $model->delete();
+                    }
+                    return false;
+                }
+            }

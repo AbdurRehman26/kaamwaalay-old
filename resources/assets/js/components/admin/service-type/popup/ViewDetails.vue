@@ -73,7 +73,7 @@
                     <p><strong class="title-head">Total Service Providers</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>12</p>
+                    <p>{{selectedService.service_prodider_count}}</p>
                 </b-col>
             </b-row>
             <b-row>
@@ -81,7 +81,7 @@
                     <p><strong class="title-head">Total Jobs Initiated</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>12</p>
+                    <p>{{selectedService.job_init_count}}</p>
                 </b-col>
             </b-row>
             <b-row>
@@ -89,7 +89,7 @@
                     <p><strong class="title-head">Total Jobs Finished</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>12</p>
+                    <p>{{selectedService.job_finished_count}}</p>
                 </b-col>
             </b-row>
             <b-row>
