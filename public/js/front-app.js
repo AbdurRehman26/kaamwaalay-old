@@ -69487,7 +69487,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("confirmation-popup", {
+        _c("confirmation-popup-admin", {
           attrs: {
             showModalProp: _vm.actionConfirmation,
             url: _vm.updateUrl,
@@ -93617,6 +93617,7 @@ Vue.component('change-status-provider', __webpack_require__("./resources/assets/
 Vue.component('service-provider-detail', __webpack_require__("./resources/assets/js/components/admin/service-provide/popup/ServiceProviderDetail.vue"));
 Vue.component('view-service-record', __webpack_require__("./resources/assets/js/components/admin/service-provide/popup/ViewServiceRecord.vue"));
 Vue.component('confirmation-popup', __webpack_require__("./resources/assets/js/components/admin/service-provide/popup/ConfirmationPopup.vue"));
+Vue.component('confirmation-popup-admin', __webpack_require__("./resources/assets/js/components/admin/common-components/ConfirmationPopup.vue"));
 
 // service-provide-review-popup
 Vue.component('service-provider-review', __webpack_require__("./resources/assets/js/components/admin/service-provider-review/popup/ChangeStatus.vue"));

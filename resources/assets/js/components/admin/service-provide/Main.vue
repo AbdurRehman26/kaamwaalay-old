@@ -75,7 +75,7 @@
                 <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                 <i @click="changestatuspopup(record)" 
                 v-if="$store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status != 'pending'" 
-                v-b-tooltip.hover title="Change Status" class="icon-pencil">
+                v-b-tooltip.hover title="Change Status" class="icon-cog2">
             </i>
         </div>
     </td>

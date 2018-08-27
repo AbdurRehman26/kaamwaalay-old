@@ -54,7 +54,8 @@ Vue.component('view-details',require('./components/admin/service-type/popup/View
 Vue.component('change-status-provider',require('./components/admin/service-provide/popup/ChangeStatus.vue'));
 Vue.component('service-provider-detail',require('./components/admin/service-provide/popup/ServiceProviderDetail.vue'));
 Vue.component('view-service-record',require('./components/admin/service-provide/popup/ViewServiceRecord.vue'));
-Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue'));
+Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 
+Vue.component('confirmation-popup-admin',require('./components/admin/common-components/ConfirmationPopup.vue'));
 
 
 // service-provide-review-popup
