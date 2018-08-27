@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function __construct(UserRepository $repository)
     {
       $this->_userRepository  = $repository;
-       // $this->middleware('guest')->except('logout');
+      $this->middleware('guest')->except('logout');
     }
     /**
      * Handle a login request to the application.
@@ -160,7 +160,8 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $user->access_token = $token = $user->createToken('Token Name')->accessToken;
+        $scopes = (Role::find($user->role_id)->scope)?json_decode(Role::find($user->role_id)->scope):[];
+        $user->access_token = $token = $user->createToken('Token Name',$scopes)->accessToken;
         return $user;
     }
     /**

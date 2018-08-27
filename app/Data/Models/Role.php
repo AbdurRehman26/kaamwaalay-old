@@ -14,4 +14,8 @@ class Role extends Model
     const CUSTOMER = 3;
 	const REVIEWER = 4;
 
+    protected $casts = [
+        'scope' => 'array'
+    ];
+
 }
