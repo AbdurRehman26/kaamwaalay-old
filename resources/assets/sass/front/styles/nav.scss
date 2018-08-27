@@ -131,6 +131,7 @@ $nav-font:$font-bold;
             visibility: visible;
         }
         @include mobile{
+            top: 48px;
             ul{
                 li{
                     height: auto;
@@ -140,7 +141,8 @@ $nav-font:$font-bold;
                     }
                     .post-job-btn{
                         top: 0;
-                        margin-bottom: 18px;
+                        /* margin-bottom: 18px; */
+                        margin-bottom: 10px;
                     }
                     &:last-child{
                         padding-top: 0px;
@@ -154,7 +156,8 @@ $nav-font:$font-bold;
             li{
                 padding: 0px 0px !important;
                 a{
-                    padding: 13px 0px;
+                    padding: 8px 0px;
+                    font-size: 14px;                    
                     &.router-link-active{
                         background-color: $primary-color-md;
                         color: #fff !important;

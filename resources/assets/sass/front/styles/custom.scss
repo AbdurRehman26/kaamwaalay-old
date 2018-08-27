@@ -3031,6 +3031,10 @@ body{
         font-size: 31px;
         color: $primary-color-md;
     }
+    @include mobile{
+        top: 33%;
+        font-size: 22px;
+    }
 }
 
 .services-list{

@@ -13147,6 +13147,16 @@ input[type=number]::-webkit-outer-spin-button {
   top: 1px;
 }
 
+@media (max-width: 767px) {
+  .header .inner {
+    height: 48px;
+  }
+
+  .header .logo {
+    max-width: 144px;
+  }
+}
+
 .footer-section {
   border-top: 1px solid #E0E0E0;
 }
@@ -13464,6 +13474,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 767px) {
+  .navigation.main-navigation {
+    top: 48px;
+  }
+
   .navigation.main-navigation ul li {
     height: auto;
     padding: 13px 0px;
@@ -13475,7 +13489,8 @@ input[type=number]::-webkit-outer-spin-button {
 
   .navigation.main-navigation ul li .post-job-btn {
     top: 0;
-    margin-bottom: 18px;
+    /* margin-bottom: 18px; */
+    margin-bottom: 10px;
   }
 
   .navigation.main-navigation ul li:last-child {
@@ -13489,7 +13504,8 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .navigation ul li a {
-    padding: 13px 0px;
+    padding: 8px 0px;
+    font-size: 14px;
   }
 
   .navigation ul li a.router-link-active {
@@ -17222,6 +17238,13 @@ body .chat-feedback-message.white-msg:before {
     top: 28%;
     font-size: 31px;
     color: #8200FF;
+  }
+}
+
+@media (max-width: 767px) {
+  .menuiconbutton {
+    top: 33%;
+    font-size: 22px;
   }
 }
 
