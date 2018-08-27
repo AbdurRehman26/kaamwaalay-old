@@ -14003,6 +14003,32 @@ input[type=number]::-webkit-outer-spin-button {
   right: 78px;
 }
 
+@media (max-width: 767px) {
+  .splash-design.md {
+    max-width: 132px;
+    height: 68px;
+  }
+
+  .splash-design.lg {
+    max-width: 180px;
+    height: 44px;
+  }
+
+  .splash-design.sm {
+    max-width: 79px;
+    height: 29px;
+  }
+
+  .splash-design.d-5 {
+    height: 42px !important;
+  }
+
+  .splash-design.d-1 {
+    max-width: 223px !important;
+    height: 57px !important;
+  }
+}
+
 /*===
     list icons
 ===*/
@@ -14105,6 +14131,12 @@ input[type=number]::-webkit-outer-spin-button {
 .services.two-column .services-list ul li:nth-last-child(2),
 .services.two-column .services-list ul li:last-child(1) {
   padding-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+  .services .services-list ul li {
+    width: 100% !important;
+  }
 }
 
 .section-padd {
@@ -14311,6 +14343,23 @@ input[type=number]::-webkit-outer-spin-button {
 
   .content-sec h1 {
     font-size: 20px;
+  }
+
+  .content-sec .category-image {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .content-sec .category-content,
+  .content-sec .job-content {
+    width: 100%;
+  }
+
+  .content-sec .category-content h2,
+  .content-sec .job-content h2 {
+    font-size: 20px;
+    margin-bottom: 0px;
+    padding-bottom: 2px;
   }
 }
 
@@ -14694,6 +14743,36 @@ input[type=number]::-webkit-outer-spin-button {
           align-items: center;
 }
 
+@media (max-width: 767px) {
+  .search-filter {
+    margin-bottom: 18px !important;
+  }
+
+  .search-filter input {
+    height: 34px !important;
+    line-height: 15px;
+    font-size: 12px !important;
+    padding: 0px 10px;
+  }
+
+  .search-filter input.search-service {
+    width: calc(100% - 31%);
+  }
+
+  .search-filter .container-zip-code {
+    width: 29%;
+  }
+
+  .search-filter .container-zip-code input {
+    font-size: 12px;
+    padding-left: 30px;
+  }
+
+  .search-filter .container-zip-code i {
+    font-size: 17px;
+  }
+}
+
 .testmonial-block {
   background-color: #fff;
   padding: 32px;
@@ -14794,6 +14873,17 @@ input[type=number]::-webkit-outer-spin-button {
 
 .category-section .category-title h2 {
   font-size: 28px;
+}
+
+@media (max-width: 767px) {
+  .category-section .category-title {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .category-section .category-title h2 {
+    font-size: 20px;
+  }
 }
 
 .category-section .category-items {
@@ -14897,6 +14987,47 @@ input[type=number]::-webkit-outer-spin-button {
 
 .category-section:last-child {
   padding-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+  .category-section .category-items {
+    width: 100%;
+  }
+
+  .category-section .category-items .items {
+    padding-left: 0px;
+    width: 100%;
+  }
+
+  .category-section .category-items .items .item-image {
+    height: 230px;
+    background-position: 50% 50%;
+  }
+
+  .category-section .category-items .items h4 {
+    width: 100%;
+    max-width: none;
+    text-align: left;
+    padding: 19px 0px 19px;
+    margin-bottom: 0;
+  }
+
+  .category-section .category-items .showmore {
+    padding-left: 0px;
+  }
+
+  .category-section .category-items .showmore a {
+    font-size: 13px;
+  }
+
+  .category-section .category-items .showmore a i {
+    font-size: 20px;
+  }
+
+  .category-section .item-list-container {
+    -webkit-column-count: 2 !important;
+            column-count: 2 !important;
+  }
 }
 
 .profile-head {
@@ -15610,6 +15741,26 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: 9;
 }
 
+@media (max-width: 767px) {
+  .job-post-list {
+    padding: 25px 12px 20px 12px;
+  }
+
+  .job-post-list .job-post-details {
+    /* padding-left: 40px; */
+    padding-left: 0px;
+  }
+
+  .job-post-list .job-post-details .job-image {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    display: block;
+    margin-right: auto;
+    margin-bottom: 17px;
+  }
+}
+
 .flexable {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15753,6 +15904,48 @@ body .chat-feedback-message.white-msg:before {
   text-align: right;
 }
 
+@media (max-width: 767px) {
+  .job-common-description {
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .job-common-description .jobs-done {
+    padding-left: 0px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+  }
+
+  .job-common-description .jobs-done span {
+    display: block;
+    width: 100%;
+  }
+
+  .job-common-description .jobs-done .review-job {
+    padding: 0px 0px;
+    float: left;
+  }
+
+  .job-common-description .jobs-done .review-job:first-child {
+    border-right: 0px solid;
+  }
+
+  .job-common-description .post-bid {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  .job-common-description h3 {
+    font-size: 14px;
+  }
+
+  .job-common-description span i.icon-checked {
+    position: absolute;
+    top: 0;
+    right: -10px;
+  }
+}
+
 .go-back {
   color: #7D7D7D !important;
   font-size: 14px;
@@ -15822,6 +16015,22 @@ body .chat-feedback-message.white-msg:before {
   color: #8200FF;
 }
 
+@media (max-width: 767px) {
+  .member-details p,
+  .job-details p {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .member-details p.member-since,
+  .member-details p.service-requirment,
+  .job-details p.member-since,
+  .job-details p.service-requirment {
+    float: none !important;
+  }
+}
+
 .post-job-description {
   padding-top: 24px;
 }
@@ -15831,6 +16040,16 @@ body .chat-feedback-message.white-msg:before {
   font-size: 16px;
   color: #1A1A1A;
   line-height: 24px;
+}
+
+@media (max-width: 767px) {
+  .post-job-description {
+    padding-top: 6px;
+  }
+
+  .post-job-description p {
+    font-size: 12px;
+  }
 }
 
 .chat-feedback .text-notifer {
@@ -15933,6 +16152,25 @@ body .chat-feedback-message.white-msg:before {
   position: absolute;
   right: 0;
   top: -8px;
+}
+
+@media (max-width: 767px) {
+  .chat-feedback .chat-feedback-message {
+    width: 100%;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .chat-feedback .chat-feedback-message p {
+    font-size: 11px;
+    line-height: 18px;
+  }
+
+  .chat-feedback .chat-feedback-message .feeback-detail .feedback-personal-info,
+  .chat-feedback .chat-feedback-message .provider-bidding-btn .feedback-personal-info {
+    padding-right: 20px;
+    font-size: 10px;
+  }
 }
 
 .get-started-section h1 {
