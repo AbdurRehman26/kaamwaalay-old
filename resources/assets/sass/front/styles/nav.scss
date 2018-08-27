@@ -130,6 +130,23 @@ $nav-font:$font-bold;
             opacity: 1;
             visibility: visible;
         }
+        @include mobile{
+            ul{
+                li{
+                    height: auto;
+                    padding: 13px 0px;
+                    a{
+                        padding-right: 0px;
+                    }
+                    .post-job-btn{
+                        top: 0;
+                    }
+                    &:last-child{
+                        padding-top: 0px;
+                    }
+                }
+            }
+        }
     }
 }
 

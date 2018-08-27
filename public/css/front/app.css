@@ -13463,6 +13463,25 @@ input[type=number]::-webkit-outer-spin-button {
   visibility: visible;
 }
 
+@media (max-width: 767px) {
+  .navigation.main-navigation ul li {
+    height: auto;
+    padding: 13px 0px;
+  }
+
+  .navigation.main-navigation ul li a {
+    padding-right: 0px;
+  }
+
+  .navigation.main-navigation ul li .post-job-btn {
+    top: 0;
+  }
+
+  .navigation.main-navigation ul li:last-child {
+    padding-top: 0px;
+  }
+}
+
 .left-cog {
   text-align: right;
   position: relative;
@@ -13701,6 +13720,16 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  .main-banner .main-img:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
 .main-banner .content {
   left: 0;
   right: 0;
@@ -13751,7 +13780,7 @@ input[type=number]::-webkit-outer-spin-button {
   .main-banner.home-banner h5,
   .main-banner.explore-banner h5 {
     font-size: 13px;
-    margin-bottom: 15px;
+    margin-bottom: 4px;
   }
 
   .main-banner.home-banner .form-control.lg,
@@ -14475,6 +14504,32 @@ input[type=number]::-webkit-outer-spin-button {
 
 .Popular-services-slides .owl-nav {
   display: none;
+}
+
+@media (max-width: 767px) {
+  .Popular-services-slides li .box-img {
+    width: 170px;
+    margin: auto;
+    margin-bottom: 26px;
+  }
+
+  .Popular-services-slides li h6 {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .Popular-services-slides li p {
+    text-align: center;
+    font-size: 13px;
+    position: relative;
+    margin-bottom: 0px;
+  }
+
+  .Popular-services-slides li p i {
+    position: absolute;
+    left: 0;
+  }
 }
 
 .owl-dots {
