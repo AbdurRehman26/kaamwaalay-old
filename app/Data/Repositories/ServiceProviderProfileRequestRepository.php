@@ -8,6 +8,7 @@ use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Models\Role;
 use Carbon\Carbon;
 use DB;
+use App\Events\ServiceProviderStatusEvent;
 
 class ServiceProviderProfileRequestRepository extends AbstractRepository implements RepositoryContract
 {
@@ -157,10 +158,14 @@ public $model;
             unset($data['user_id']);
             if ($data['status'] == 'approved') {
                 $data['approved_at'] = Carbon::now();
-                
+                                
             }
-            return parent::update($data);
+
+            $data =  parent::update($data);
             
+            $user = app('UserRepository')->model->find($data->user_id);
+            event(new ServiceProviderStatusEvent($user, $data->status));
+            return $data;
         }
         return false;
 

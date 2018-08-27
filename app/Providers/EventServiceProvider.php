@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NewPasswordSet' => [
             'App\Listeners\SendNewPassword',
         ],
+        'App\Events\ServiceProviderStatusEvent' => [
+            'App\Listeners\ServiceProviderStatusListener',
+        ],
     ];
 
     /**

@@ -34,4 +34,4 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 /*Front Route*/
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
-Route::get('/', 'FrontController@index')->where('any', '.*');
+Route::get('/', 'FrontController@index')->where('any', '.*')->name('front-login');

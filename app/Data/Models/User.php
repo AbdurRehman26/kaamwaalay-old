@@ -10,6 +10,7 @@ use Laravel\Passport\HasApiTokens;
 use App\Notifications\ActivationNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
+use App\Notifications\SendServiceProviderStatusNotification;
 use Storage;
 
 class User extends Authenticatable
@@ -23,9 +24,9 @@ class User extends Authenticatable
     public function getProfileImageAttribute($value){
         if(substr($value, 0, 8) == "https://"){
           return  $value;
-        }
-          return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
-    }
+      }
+      return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
+  }
     /**
      * The attributes that are mass assignable.
      *
@@ -60,12 +61,16 @@ class User extends Authenticatable
     }
     public function sendPasswordLinkByAdmin()
     {
-       $this->notify(new SendEmailPasswordNotification());
-    }
-   public static function generatePassword()
-    {
+     $this->notify(new SendEmailPasswordNotification());
+ }
+ public static function generatePassword()
+ {
       // Generate random string and encrypt it. 
-      return bcrypt(str_random(35));
-    }
+  return bcrypt(str_random(35));
+}
 
+public function sendChangeStatusNotification($status)
+{
+   $this->notify(new  SendServiceProviderStatusNotification($status));
+}
 }

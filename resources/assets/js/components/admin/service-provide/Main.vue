@@ -23,7 +23,7 @@
                    <div class="col-xs-12 col-md-3 datepicker-field">
 
                       <div class="form-group">
-                         <label>By Type</label>
+                         <label>By Service Type</label>
                          <select v-model="search.filter_by_service" class="form-control">
                            <option value="">Select All</option>
                            <option v-for="service in servicesList" :value="service.id">
