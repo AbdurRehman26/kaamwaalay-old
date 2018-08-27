@@ -18,10 +18,10 @@ class UserController extends ApiResourceController
     const   PER_PAGE = 25;
     protected $model;
     public function __construct(UserRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -128,11 +128,11 @@ public function changePassword(Request $request)
 
         $validator = Validator::make($data,$rules);
         if ($validator->fails()) {
-         $code = 406;
-         $output = [
-             'message' => $validator->messages()->all(),
-         ];
-     }else{
+           $code = 406;
+           $output = [
+               'message' => $validator->messages()->all(),
+           ];
+       }else{
             //generate a password for the new users
         $pw = User::generatePassword();
         $data['password'] = $pw;
@@ -167,15 +167,15 @@ public function socialLogin(Request $request)
     ];
     $user = $this->_repository->findByAttribute('social_account_id',$request->social_account_id);
     if(!$user){
-     $rules['email'] = 'required|string|email|max:255|unique:users';
- }
- $validator = Validator::make($data,$rules);
- if ($validator->fails()) {
-     $code = 406;
-     $output = [
-         'message' => $validator->messages()->all(),
-     ];
- }else{
+       $rules['email'] = 'required|string|email|max:255|unique:users';
+   }
+   $validator = Validator::make($data,$rules);
+   if ($validator->fails()) {
+       $code = 406;
+       $output = [
+           'message' => $validator->messages()->all(),
+       ];
+   }else{
     if($user){
       $data['id'] = $user->id; 
       $result = $this->_repository->update($data);
@@ -214,70 +214,90 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
+
 public function changeStatus(Request $request)
-    {
-        $data = $request->only('status','id','user_id');
-        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-        request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
-        $rules = [
-            'status' => 'required|in:active,banned',
-            'id' => 'required|exists:users,id',
-            'user_id' => 'required|exists:users,id'
+{
+    $data = $request->only('status','id','user_id');
+    $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+    
+    $rules = [
+        'status' => 'required|in:active,banned',
+        'id' => [
+            'required',
+            Rule::exists('users')->where(function ($query) {
+                $query->where('status', '!=', User::PENDING);
+            }),
+            'not_in:'.$data['user_id']
+        ],
+        'user_id' => 'required|exists:users,id'
+    ];
+
+    $validator = Validator::make($data,$rules);
+    
+    if ($validator->fails()) {
+       $code = 406;
+       $output = [
+           'message' => $validator->messages()->all(),
+       ];
+
+   }else{
+
+    $result = $this->_repository->updateField($data);
+    if($result) {
+
+        $code = 200;
+        $output = [
+            'data' => 'Status has been updated successfully.',
+            'message' => 'Status has been updated successfully.',
         ];
-        $validator = Validator::make($data,$rules);
-        if ($validator->fails()) {
-         $code = 406;
-         $output = [
-             'message' => $validator->messages()->all(),
-         ];
-     }else{
-        $result = $this->_repository->updateField($data);
-        if($result) {
-            $code = 200;
-            $output = [
-                'data' => 'Status has been updated successfully.',
-                'message' => 'Status has been updated successfully.',
-            ];
-        }else{
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
-        }
-    }
-    return response()->json($output, $code);
-  }
-  public function changeAccessLevel(Request $request)
-    {
-        $data = $request->only('role_id','id','user_id');
-        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-        $rules = [
-            'role_id' => ['required', Rule::in(Role::ADMIN,Role::REVIEWER)],
-            'id' => 'required|exists:users,id',
-            'user_id' => 'required|exists:users,id'
+
+    }else{
+
+        $code = 406;
+        $output = [
+            'message' => 'An error occurred',
         ];
-        $validator = Validator::make($data,$rules);
-        if ($validator->fails()) {
-         $code = 406;
-         $output = [
-             'message' => $validator->messages()->all(),
-         ];
-     }else{
-        $result = $this->_repository->updateField($data);
-        if($result) {
-            $code = 200;
-            $output = [
-                'data' => 'Access level has been updated successfully.',
-                'message' => 'Access level has been updated successfully.',
-            ];
-        }else{
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
-        }
+
     }
-    return response()->json($output, $code);
-  }
+}
+
+return response()->json($output, $code);
+
+}
+
+public function changeAccessLevel(Request $request)
+{
+    $data = $request->only('role_id','id','user_id');
+    $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $rules = [
+        'role_id' => ['required', Rule::in(Role::ADMIN,Role::REVIEWER)],
+        'id' => 'required|exists:users,id',
+        'user_id' => 'required|exists:users,id'
+    ];
+    $validator = Validator::make($data,$rules);
+    if ($validator->fails()) {
+       $code = 406;
+       $output = [
+           'message' => $validator->messages()->all(),
+       ];
+   }else{
+    $result = $this->_repository->updateField($data);
+    if($result) {
+        $code = 200;
+        $output = [
+            'data' => 'Access level has been updated successfully.',
+            'message' => 'Access level has been updated successfully.',
+        ];
+    }else{
+        $code = 406;
+        $output = [
+            'message' => 'An error occurred',
+        ];
+    }
+}
+return response()->json($output, $code);
+}
 
 }
