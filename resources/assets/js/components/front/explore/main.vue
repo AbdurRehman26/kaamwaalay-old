@@ -17,7 +17,7 @@
                                      	<input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
                                      </div>
                                 </div>
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" @click="ServiceProviderPage">
                                     <span>Search</span>
                                 </button>
                             </div>
@@ -48,7 +48,7 @@
 		        				<h4>{{categoryabc.itemtitle}}</h4>
 		        			</a>
 		        		</div>
-		        		<div class="showmore"><a href="javascript:void(0);">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+		        		<div class="showmore showmore-link clearfix"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
 
 	        		</div>
 	        	</div>
@@ -82,7 +82,7 @@
 			</div>
 		</div>
 
-		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>		
+		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>
 
     </div>
 </template>
@@ -420,6 +420,9 @@ export default {
         HideModal(){
             this.categoryval = false;
         },
+        ServiceProviderPage() {
+        	this.$router.push('/explore/service_provider');
+        }
 
     },
 }

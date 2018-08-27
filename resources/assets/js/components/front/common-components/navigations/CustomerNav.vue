@@ -1,0 +1,75 @@
+<template>
+    <!-- custom heder -->
+    <div class="navigation main-navigation customer-navigation">
+        <ul class="float-left">
+            <li><router-link to="/explore">Explore</router-link></li>
+            <li><router-link to="/my-jobs">My Jobs</router-link></li>
+            <li><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
+            <li>
+                <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
+                    <span class="user-img" @click="ShowModal">
+                        <img src="/images/dummy/user-pic.jpg" alt="">
+                    </span>
+                    <p class="username">Arsalan Akhtar</p>
+                </div>
+            </li>
+            <li>
+                <router-link to="/profile">
+                    <i class="icon-cog2 action-icon"></i>
+                </router-link>
+            </li>
+            <li class="bell-li">
+                <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
+                    <i v-bind:active="tab == true" class="icon-notification action-icon">
+                        <span class="badge-count">5</span></i>
+                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
+                    </span>
+                </li>
+                <li>
+                    <router-link to="/" class="no-active">
+                        <i class="icon-exit action-icon"></i>
+                    </router-link>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+        import { directive as onClickaway } from 'vue-clickaway';
+        export default{
+            data () {
+              return {
+                isShowing:false,
+                showModalValue : false,
+                tab: false,
+                tabmenu: false,
+            }
+        },
+        directives: {
+            onClickaway: onClickaway,
+        },
+        methods: {
+            ShowModal(){
+                this.showModalValue = true;
+            },
+            HideModal(){
+                this.showModalValue = false;
+            },
+            Showactive(){
+                this.tab ^= true;
+            },
+            away: function(){
+                this.isShowing = false;
+                this.tab = false;
+            },
+            WriteReviewModal(){                
+                this.$emit('WriteReviewModal');
+            },         
+            ViewBid(){
+                /*this.$router.push({name: 'job-details'})*/
+                this.$emit('ViewBid');
+            },           
+
+        }
+    }
+</script>

@@ -2578,7 +2578,7 @@ a.underline {
 }
 
 .add-more-featured {
-    margin-top: 0;
+    margin-top: 34px;
     margin-bottom: 20px;
     a {
         text-decoration: underline;
@@ -2650,6 +2650,12 @@ a.underline {
     .deactive{
         color: $greyD !important;
     }
+    .fullaccess{
+        color: $primary !important;
+    }
+    .review{
+        color: $greyD !important;
+    }
 }
 
 .general-setting {
@@ -2706,7 +2712,6 @@ i{
      opacity: 0.4;
  }
 }
-
 
 .label-with-200 {
     width: 200px;

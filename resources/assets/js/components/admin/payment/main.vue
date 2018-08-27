@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-xs-12 col-md-3 datepicker-field">
                                 <div class="form-group">
-                                    <label>By Pay By</label>
+                                    <label>By Pay</label>
                                     <select v-model="search.filter_by_pay_by" class="form-control">
                                         <option value="">Select All</option>
                                         <option v-for="role in roleList" :value="role.id">{{ role.title}}</option>

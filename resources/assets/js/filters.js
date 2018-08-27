@@ -132,7 +132,7 @@ Vue.filter('userStatus', function (value) {
 
 Vue.filter('formatDate', function(value) {
     if (value) {
-        return moment(String(value)).format('MMMM DD,YYYY')
+        return moment(String(value)).format('MMMM DD, YYYY')
     }
 });
 

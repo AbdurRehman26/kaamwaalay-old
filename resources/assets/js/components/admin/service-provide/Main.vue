@@ -21,7 +21,6 @@
                      </div>
                  </div>
                  <div class="col-xs-12 col-md-3 datepicker-field">
-
                   <div class="form-group">
                    <label>By Type</label>
                    <select v-model="search.filter_by_service" class="form-control">
@@ -73,7 +72,7 @@
             <td class="text-center">
               <div class="action-icons">
                 <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                <i @click="changestatuspopup(record)" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                <i @click="changestatuspopup(record)" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
             </div>
         </td>
     </tr>
@@ -177,11 +176,15 @@
         providerdetailclick(id) {
             this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id }});
         },
+        ConfirmationPopup() {
+            this.confirmationpopup = true;
+        },
         HideModal(){
             this.service = false;
             this.viewdetails = false;
             this.changestatus = false;
             this.providerdetailpopup = false;
+            this.confirmationpopup = false;
         },
         profileimage(id){
             this.$router.push({name: 'Service_Provider_Detail' , params : {id : id }});  

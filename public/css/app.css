@@ -34222,6 +34222,21 @@ body .ag-theme-balham .ag-header {
   text-decoration: underline;
 }
 
+.btn.btn-danger {
+  background: #d9534f;
+  border-color: #d9534f;
+  color: #fff;
+}
+
+.btn.btn-danger:focus,
+.btn.btn-danger:visited,
+.btn.btn-danger:active {
+  background: #d9534f !important;
+  border-color: #d9534f !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 .sort_btn {
   margin-bottom: 9px;
   display: table;
@@ -35270,6 +35285,18 @@ input[type=number]::-webkit-outer-spin-button {
   background-repeat: no-repeat;
   background-size: 21px auto;
   background-position: 98% 53%;
+}
+
+.label-with-120 {
+  width: 120px;
+}
+
+.label-with-150 {
+  width: 150px;
+}
+
+.label-with-200 {
+  width: 200px;
 }
 
 .main-nav {
@@ -41537,7 +41564,7 @@ a.underline {
 }
 
 .add-more-featured {
-  margin-top: 0;
+  margin-top: 34px;
   margin-bottom: 20px;
 }
 
@@ -41622,6 +41649,14 @@ a.underline {
 }
 
 .statustext .deactive {
+  color: #838383 !important;
+}
+
+.statustext .fullaccess {
+  color: #007bff !important;
+}
+
+.statustext .review {
   color: #838383 !important;
 }
 

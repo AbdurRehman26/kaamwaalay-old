@@ -106,7 +106,7 @@
 					</div>
 
 					<div class="form-detail">
-						<p>Make sure all the information you entered is accuate before submitting.</p>
+						<p>Please make sure all the information you entered is accuate before submitting.</p>
 					</div>
 				</form>
 			</div>

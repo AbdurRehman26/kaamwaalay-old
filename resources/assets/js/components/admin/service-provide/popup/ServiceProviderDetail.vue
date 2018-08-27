@@ -45,14 +45,6 @@
                         <p>No</p>
                     </b-col>
                 </b-row>
-                <b-row>
-                    <b-col cols="5" class="">
-                        <p><strong class="title-head">Hero Navigation</strong></p>
-                    </b-col>
-                    <b-col cols="7">
-                        <p>Yes</p>
-                    </b-col>
-                </b-row>
 
                 <b-row>
                     <b-col cols="5" class="">
