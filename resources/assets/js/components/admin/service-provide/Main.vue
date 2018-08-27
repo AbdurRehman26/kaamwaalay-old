@@ -12,24 +12,31 @@
                       </div>
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                           <label>By Business/Individual</label>
-                           <select v-model="search.filter_by_business_type" class="form-control">
-                             <option value="">Select</option>
-                             <option value="business">Business</option>
-                             <option value="individual">Individual</option>
-                         </select>
-                     </div>
-                 </div>
-                 <div class="col-xs-12 col-md-3 datepicker-field">
+                             <label>By Business/Individual</label>
+                             <select v-model="search.filter_by_business_type" class="form-control">
+                               <option value="">Select</option>
+                               <option value="business">Business</option>
+                               <option value="individual">Individual</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="col-xs-12 col-md-3 datepicker-field">
 
-                  <div class="form-group">
-                   <label>By Type</label>
-                   <select v-model="search.filter_by_service" class="form-control">
-                     <option value="">Select All</option>
-                     <option v-for="service in servicesList" :value="service.id">
-                         {{ service  | mainServiceOrChildService}}
-                    </option>
-                </select>
+                      <div class="form-group">
+                         <label>By Service Type</label>
+                         <select v-model="search.filter_by_service" class="form-control">
+                           <option value="">Select All</option>
+                           <option v-for="service in servicesList" :value="service.id">
+                               {{ service  | mainServiceOrChildService}}
+                           </option>
+                       </select>
+                   </div>
+               </div>
+               <div class="col-xs-12 col-md-2">
+                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                    <span>Apply</span>
+                    <loader></loader>
+                </button>
             </div>
         </div>
         <div class="col-xs-12 col-md-2">
@@ -73,10 +80,13 @@
             <td class="text-center">
               <div class="action-icons">
                 <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                <i @click="changestatuspopup" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
-            </div>
-        </td>
-    </tr>
+                <i :disabled="true"  @click="changestatuspopup(record)" 
+                v-if="$store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status != 'pending'" 
+                v-b-tooltip.hover title="Change Status" class="icon-pencil">
+            </i>
+        </div>
+    </td>
+</tr>
 </tbody>
 </table>
 <no-record-found v-show="noRecordFound"></no-record-found>

@@ -3235,8 +3235,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -71022,9 +71020,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("router-link", { staticClass: "logo", attrs: { to: "/" } }, [
-    _c("img", { attrs: { src: _vm.logo } })
-  ])
+  return _c("img", { attrs: { src: _vm.logo } })
 }
 var staticRenderFns = []
 render._withStripped = true
