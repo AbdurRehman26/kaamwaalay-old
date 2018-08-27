@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Laravel\Passport\Http\Middleware\CheckForAnyScope as BaseMiddleware;
+use Illuminate\Auth\AuthenticationException;
 
 class CheckScopes extends BaseMiddleware
 {
@@ -17,17 +18,18 @@ class CheckScopes extends BaseMiddleware
     public function handle($request, $next, ...$scopes)
     {
 
-        $scope = $request->route()->getName();
-        $op = explode(".", $scope);
-        $op = $op[sizeof($op)-1];
-
-        $scopeArray = array();
-
+     $scope = $request->route()->getName();
      if($scope){
-        if(sizeof($scopeArray)) {
-            return parent::handle($request, $next, ...$scopeArray);
+        if (! $request->user() || ! $request->user()->token()) {
+            throw new AuthenticationException;
         }
-        return parent::handle($request, $next, $scope);
+        if (! $request->user()->tokenCan($scope)) {
+            $code = 422;
+            $output = [
+                'message' => 'Invalid scope(s) provided.',
+            ];
+         return response()->json($output, $code);
+        }
     }
     return $next($request);
 }

@@ -37,8 +37,8 @@ Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaig
 
 Route::group(['middleware' => ['auth:api','scopes']], function () {
 
-    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel');
-    Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
+    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
+    Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
     ]);
@@ -97,7 +97,10 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
     ]);
 
 //Dashboard Report
-Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
+Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
+//Uploading File
+Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
+Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 });
 
 Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
@@ -108,6 +111,3 @@ Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
     'index',
 ]);
 
-//Uploading File
-Route::post('file/upload', 'Api\V1\FileController@upload');
-Route::post('file/remove', 'Api\V1\FileController@remove');

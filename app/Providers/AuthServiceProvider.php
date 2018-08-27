@@ -29,13 +29,12 @@ class AuthServiceProvider extends ServiceProvider
         if(!empty($scopes)){
             foreach ($scopes as $key => $value) {
                 if($value){
-                    $tempArr = json_decode($value);
-                    $data = array_merge($data,$tempArr);
+                    $tempArr = $value;
+                    $data = array_merge($data,array_combine($tempArr, $tempArr));
                 }
                 $data = array_unique($data);
             }
         }
-
         Passport::tokensCan($data);
         Passport::routes();
     }
