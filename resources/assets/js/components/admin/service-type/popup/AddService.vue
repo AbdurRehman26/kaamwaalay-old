@@ -80,7 +80,7 @@
 
 <div class="form-group">
     <label>Upload Image</label>
-    <b-form-file @change="onFileChange" v-model="file" accept="image/jpeg, image/png, image/jpg" placeholder="Click here to upload image" name="upload image" v-validate="'required'"  :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']"></b-form-file>
+    <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image" v-validate="'required'" :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']" ></b-form-file>
     <div class="uploded-picture">
         <img :src="imageValue" />
     </div>
@@ -107,7 +107,6 @@
 
 <script>
     export default {
-
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
@@ -116,6 +115,7 @@
                 services: [],
                 errorMessage: '',
                 successMessage: '',
+                imageText: 'Click here to upload image',
                 formData: {
                     parent_id: '',
                     title: '',
@@ -140,13 +140,15 @@
                 file: null,
                 url: 'api/service',
                 loading: false,
+                isFileUpload: null,
             }
         },
         methods: {
             resetFormFields() {
-                var self = this;
-                self.image = 'images/dummy/image-placeholder.jpg';
-                self.file = null;
+                let self = this;
+                this.image = 'images/dummy/image-placeholder.jpg';
+                this.file = null;
+                this.$refs.fileinput.reset();
                 this.formData = {
                     parent_id: '',
                     title: '',
@@ -177,6 +179,10 @@
             validateBeforeSubmit() {
                 var self = this;
                 this.$validator.validateAll().then((result) => {
+
+                    if(!self.file) {
+                        self.isFileUpload = false;
+                    }
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -184,12 +190,15 @@
                             this.onSubmit();
                         }
                         this.errorMessage = '';
+                        self.isFileUpload = null;
                         return;
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },  
             showModal () {
+
+                this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
                 // filter only services
@@ -207,7 +216,6 @@
             onFileChange(e) {
                 var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
                 var files = e.target.files || e.dataTransfer.files;
-                console.log(e.target , 'e.target');
                 this.errorMessage = "";
                 if(!supportedType.includes(files[0].type)) {
                     this.errorBag.add({
@@ -217,10 +225,11 @@
                       id: 6,
                   });
                     this.errorMessage = this.errorBag.all()[0];
+                    self.isFileUpload = false;
                     return;
                 }
                 this.errorBag.clear();
-
+                this.isFileUpload = null;
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
@@ -252,6 +261,7 @@
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
+                    self.isFileUpload = false;
                     _.forEach(errors, function(value, key) {
                         self.errorMessage =  errors[key][0];
                         return false;
@@ -332,6 +342,10 @@
                             self.errorMessage =  "The Service Name has alreary been taken.";    
                             return false;
                         }
+                        if(key == "parent_id") {
+                            self.errorMessage =  "Already a parent service.";    
+                            return false;
+                        }
                         self.errorMessage =  errors[key][0];
                         return false;
                     });
@@ -372,6 +386,7 @@
                     };
                     this.image = img[0].upload_url;
                     this.file = img[0].original_name;
+                    this.imageText = this.file;
                 }
             }
         },

@@ -111,7 +111,7 @@ public function input($value=''){
 
     //Update single record
 public function update(Request $request, $id)
-{   
+{ 
     $request->request->add(['id' => $id]);
     $input = $this->input(__FUNCTION__);
     $rules = $this->rules(__FUNCTION__);
