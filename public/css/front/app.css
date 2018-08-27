@@ -12417,6 +12417,24 @@ textarea {
   display: block;
 }
 
+.custcheckbox input {
+  width: 24px;
+}
+
+.custcheckbox p {
+  margin-top: 3px !important;
+  margin-bottom: 0px;
+}
+
+.custom-control-label::after {
+  top: 5px !important;
+  left: -1px !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #8200FF !important;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -13148,8 +13166,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 767px) {
+  .header {
+    height: 51px;
+  }
+
   .header .inner {
-    height: 48px;
+    height: 51px;
   }
 
   .header .logo {
@@ -13769,6 +13791,11 @@ input[type=number]::-webkit-outer-spin-button {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.6);
   }
+
+  .main-banner .main-img img {
+    width: 150%;
+    max-width: none;
+  }
 }
 
 .main-banner .content {
@@ -13847,10 +13874,17 @@ input[type=number]::-webkit-outer-spin-button {
 
   .main-banner.home-banner .btn,
   .main-banner.explore-banner .btn {
-    padding: 3px 13px;
+    padding: 5px 13px;
     height: 30px;
-    font-size: 10px;
+    font-size: 14px !important;
     min-width: 80px;
+  }
+
+  .main-banner.home-banner p,
+  .main-banner.explore-banner p {
+    font-size: 12px !important;
+    margin-bottom: 11px !important;
+    line-height: 20px !important;
   }
 }
 
@@ -13872,13 +13906,20 @@ input[type=number]::-webkit-outer-spin-button {
   left: 30%;
 }
 
+@media (max-width: 767px) {
+  .main-banner.explore-banner .main-img img {
+    width: 150%;
+    max-width: none;
+    height: 235px;
+  }
+
+  .main-banner.explore-banner .element-column-image {
+    display: none;
+  }
+}
+
 .main-banner .banner-slogan {
   height: 100%;
-  /*         min-height: 600px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center; */
 }
 
 .main-banner .banner-slogan h2 {
@@ -14294,6 +14335,16 @@ input[type=number]::-webkit-outer-spin-button {
 .elementary-banner .element-index {
   position: relative;
   z-index: 99;
+}
+
+@media (max-width: 767px) {
+  .elementary-banner .elements .top-left {
+    max-width: 125px !important;
+  }
+
+  .elementary-banner .elements .width-max {
+    max-width: 160px !important;
+  }
 }
 
 .two-column {
@@ -15075,6 +15126,11 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-column-count: 2 !important;
             column-count: 2 !important;
   }
+
+  .category-section .item-list-container .items-list p {
+    font-size: 13px !important;
+    margin-bottom: 9px !important;
+  }
 }
 
 .profile-head {
@@ -15626,6 +15682,14 @@ input[type=number]::-webkit-outer-spin-button {
             flex: 0 0 100%;
     max-width: 100%;
     margin-bottom: 20px;
+  }
+
+  .how-it-work-list .col-sm-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 50px;
   }
 }
 

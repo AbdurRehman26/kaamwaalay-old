@@ -262,6 +262,23 @@ textarea{
     }
 }
 
+.custcheckbox{
+    input {
+        width: 24px;
+    }
+    p{
+        margin-top: 3px !important;
+        margin-bottom: 0px;
+    }
+}
+
+.custom-control-label::after{
+    top: 5px !important;
+    left: -1px !important;
+}
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
+    background-color: $primary-color-md !important;
+}
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

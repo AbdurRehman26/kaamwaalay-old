@@ -5008,6 +5008,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         ViewBid: function ViewBid() {
             this.$router.push({ name: 'job-details' });
+        },
+        closemenu: function closemenu() {
+            this.responsivemenu = false;
         }
     }
 });
@@ -8416,6 +8419,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -8423,7 +8428,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			tabval: 'firstsec',
 			type: 'customer',
-			mainNav: 'true'
+			mainNav: 'true',
+			status: 'not_accepted'
 		};
 	},
 
@@ -72820,11 +72826,27 @@ var render = function() {
                   _c("ul", [
                     _vm._m(6),
                     _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c("router-link", { attrs: { to: "/sign-up" } }, [
+                          _vm._v("Sign up as a service provider")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _vm._m(7),
                     _vm._v(" "),
-                    _vm._m(8),
-                    _vm._v(" "),
-                    _vm._m(9),
+                    _c(
+                      "li",
+                      [
+                        _c("router-link", { attrs: { to: "/advice-center" } }, [
+                          _vm._v("Frequently asked questions")
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("li", [
                       _c(
@@ -72840,11 +72862,39 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(10)
+              _vm._m(8)
             ])
           ]),
           _vm._v(" "),
-          _vm._m(11)
+          _c("div", { staticClass: "footer-copyrights" }, [
+            _c("div", { staticClass: "section-padding-sm clearfix" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "float-right terms-links" }, [
+                _c("ul", [
+                  _c(
+                    "li",
+                    [
+                      _c("router-link", { attrs: { to: "/terms-condition" } }, [
+                        _vm._v("Terms & Conditions")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c("router-link", { attrs: { to: "/privacy-policy" } }, [
+                        _vm._v("Privacy Policy")
+                      ])
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -72966,27 +73016,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "/sign-up" } }, [
-        _vm._v("Sign up as a service provider")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
       _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Completed Jobs")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "/advice-center" } }, [
-        _vm._v("Frequently asked questions")
-      ])
     ])
   },
   function() {
@@ -73037,29 +73067,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-copyrights" }, [
-      _c("div", { staticClass: "section-padding-sm clearfix" }, [
-        _c("div", { staticClass: "float-left" }, [
-          _c("p", [
-            _vm._v("Copyright © 2018 Professional Service Marketplace, Inc. ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "float-right terms-links" }, [
-          _c("ul", [
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:;" } }, [
-                _vm._v("Terms & Conditions")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "javascript:;" } }, [
-                _vm._v("Privacy Policy")
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "float-left" }, [
+      _c("p", [
+        _vm._v("Copyright © 2018 Professional Service Marketplace, Inc. ")
       ])
     ])
   }
@@ -73488,12 +73498,26 @@ var render = function() {
     _c("ul", [
       _c(
         "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.$emit("clickmenu")
+            }
+          }
+        },
         [_c("router-link", { attrs: { to: "/explore" } }, [_vm._v("Explore")])],
         1
       ),
       _vm._v(" "),
       _c(
         "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.$emit("clickmenu")
+            }
+          }
+        },
         [
           _c("router-link", { attrs: { to: "/join-as-pro" } }, [
             _vm._v("Join as a Pro")
@@ -73504,37 +73528,54 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.$emit("clickmenu")
+            }
+          }
+        },
         [_c("router-link", { attrs: { to: "/login" } }, [_vm._v("Login")])],
         1
       ),
       _vm._v(" "),
       _c(
         "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.$emit("clickmenu")
+            }
+          }
+        },
         [_c("router-link", { attrs: { to: "/sign-up" } }, [_vm._v("Sign up")])],
         1
       ),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.$emit("clickmenu")
+            }
+          }
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary post-job-btn",
+              attrs: { href: "/job-post" }
+            },
+            [_vm._v("Post a Job")]
+          )
+        ]
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary post-job-btn",
-          attrs: { href: "/job-post" }
-        },
-        [_vm._v("Post a Job")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -75341,7 +75382,12 @@ var render = function() {
             _vm._v(" "),
             _vm.$route.meta.navigation == "main-nav"
               ? _c("main-nav", {
-                  attrs: { active: _vm.responsivemenu == true }
+                  attrs: { active: _vm.responsivemenu == true },
+                  on: {
+                    clickmenu: function($event) {
+                      _vm.closemenu()
+                    }
+                  }
                 })
               : _vm._e(),
             _vm._v(" "),
@@ -78172,6 +78218,53 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(4),
                   _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-detail form-group" },
+                    [
+                      _c(
+                        "b-form-checkbox",
+                        {
+                          staticClass: "custcheckbox",
+                          attrs: {
+                            id: "checkbox1",
+                            value: "accepted",
+                            "unchecked-value": "not_accepted"
+                          },
+                          model: {
+                            value: _vm.status,
+                            callback: function($$v) {
+                              _vm.status = $$v
+                            },
+                            expression: "status"
+                          }
+                        },
+                        [
+                          _c(
+                            "p",
+                            [
+                              _vm._v("I agree to the "),
+                              _c(
+                                "router-link",
+                                { attrs: { to: "/terms-condition" } },
+                                [_vm._v("Terms of Use")]
+                              ),
+                              _vm._v(" and "),
+                              _c(
+                                "router-link",
+                                { attrs: { to: "/privacy-policy" } },
+                                [_vm._v("Privacy Policy")]
+                              ),
+                              _vm._v(".")
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _c("div", { staticClass: "create-account-btn" }, [
                     _c(
                       "button",
@@ -78189,14 +78282,12 @@ var render = function() {
                       ],
                       1
                     )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(5)
+                  ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(6)
+            _vm._m(5)
           ]
         )
       ])
@@ -78316,22 +78407,6 @@ var staticRenderFns = [
             }
           })
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-detail" }, [
-      _c("p", [
-        _vm._v(
-          "By clicking Create Account or Sign Up with Facebook you agree to the "
-        ),
-        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Terms of Use")]),
-        _vm._v(" and "),
-        _c("a", { attrs: { href: "javascript" } }, [_vm._v("Privacy Policy")]),
-        _vm._v(".")
       ])
     ])
   },

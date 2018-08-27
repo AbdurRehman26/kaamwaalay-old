@@ -10,7 +10,7 @@
                 </span>
 
                 <!--main nav-->
-                <main-nav v-if="$route.meta.navigation == 'main-nav'" v-bind:active="responsivemenu == true"></main-nav>
+                <main-nav v-if="$route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
                 <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->
@@ -51,6 +51,9 @@
             ViewBid(){
                 this.$router.push({name: 'job-details'})
             },
-        }
+            closemenu(){
+              this.responsivemenu = false;
+            }
+        },   
     }
 </script>

@@ -25,8 +25,9 @@ $header-padding:13px 0px;
         top: 1px;
     }
     @include mobile{
+        height: 51px;
         .inner{
-            height: 48px;
+            height: 51px;
         }
         .logo{
             max-width: 144px;

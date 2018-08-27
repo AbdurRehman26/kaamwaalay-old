@@ -75,14 +75,16 @@
 									</div>
 								</div>
 
+								<div class="form-detail form-group">
+									  <b-form-checkbox id="checkbox1" v-model="status" value="accepted" unchecked-value="not_accepted" class="custcheckbox">
+									    <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>
+									    </b-form-checkbox>									
+								</div>
+
 								<div class="create-account-btn">
 									<button  class="btn btn-primary account-type-btn" @click='switchType(type)' > Create Account
 										<loader></loader>
 									</button>
-								</div>
-
-								<div class="form-detail">
-									<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
 								</div>
 							</div>
 						</div>
@@ -107,6 +109,7 @@
 				tabval: 'firstsec',
 				type:'customer',
 				mainNav:'true',
+				status:  'not_accepted'
 			}
 		},
 		methods: {
