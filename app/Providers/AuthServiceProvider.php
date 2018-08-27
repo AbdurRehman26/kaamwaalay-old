@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        $scopes = Role::pluck('scope')->toArray();
+        /*$scopes = Role::pluck('scope')->toArray();
         $data = [];
         if(!empty($scopes)){
             foreach ($scopes as $key => $value) {
@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
                 $data = array_unique($data);
             }
         }
-        Passport::tokensCan($data);
+        Passport::tokensCan($data);*/
         Passport::routes();
     }
 }
