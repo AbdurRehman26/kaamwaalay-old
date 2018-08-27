@@ -1,6 +1,6 @@
-<template>	
+<template>
 	<div>
-		<b-modal id="status-user-change" centered @hidden="onHidden"  title-tag="h4" ok-variant="secondary" ref="myModalRef" size="sm" title="Change User Status" ok-only ok-title="Submit">
+		<b-modal id="status-user-change" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change User Status" ok-only ok-title="Submit">
         <alert></alert>
 		    <div>
 		        <label>Account Status</label>
@@ -32,7 +32,7 @@ export default {
             },
             onHidden(){
                 this.$emit('HideModalValue');
-            },        
+            },
         },
 
     watch:{

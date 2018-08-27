@@ -4,7 +4,7 @@
             <div class="services-list">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-2" v-for="category in categories">
-                        <a href="javascript:;">
+                        <a href="javascript:;" @click="changecategorypopup">
                             <div class="list-icon sm white">
                                 <div class="inner"><img :src="category.image"></div>
                             </div>
@@ -16,13 +16,26 @@
                 </div>
             </div>
         </div>
+
+        <category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>        
     </div>
 </template>
 
 <script type="text/javascript">
     export default {
+        methods: {
+            changecategorypopup() {
+                this.categoryval = true;
+            },
+            HideModal(){
+                this.categoryval = false;
+            },
+
+        },
+        
         data(){
             return{
+                categoryval: false,
                 //featured categories
                 categories: [
                     {

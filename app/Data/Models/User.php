@@ -15,7 +15,6 @@ use Storage;
 class User extends Authenticatable
 {
 	use InsertOnDuplicateKey,HasApiTokens, Notifiable;
-    const GLOBAL_ADMIN = 1;
     const ACTIVE = 'active';
     const PENDING = 'pending';
     const IN_ACTIVE = 'deactived';

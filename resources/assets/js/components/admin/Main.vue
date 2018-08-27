@@ -21,8 +21,8 @@
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Email Address</th>
-                  <th>Access Level</th>
                   <th>Join Date</th>
+                  <th>Access Level</th>
                   <th class="text-center">Status</th>
               </tr>
           </thead>
@@ -31,8 +31,8 @@
               <td>{{record.first_name}}</td>
               <td>{{record.last_name}}</td>
               <td><a href="javascript:;">{{record.email}}</a></td>
-              <td ><a class="" @click="changeAccessLevel(record)" v-model="currentRecord.role_id">{{record | accessLevel}}</a></td>
               <td>{{record.created_at.date | formatDate}}</td>
+              <td class="statustext"><a class="active" @click="changeAccessLevel(record)" v-model="currentRecord.role_id">{{record | accessLevel}}</a></td>
               <td class="text-center statustext">
                 <div class=""><a class="" @click="changeStatus(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
             </td>
@@ -81,13 +81,6 @@
     methods: {
         ShowModalUser(){
             this.showModalValue = true;
-        },
-        StatusChange(){
-            this.changestatus = true;
-        },
-        HideModal(){
-            this.showModalValue = false;
-            this.changestatus = false;
         },
         changeStatus(record){
            this.actionConfirmation = true;
