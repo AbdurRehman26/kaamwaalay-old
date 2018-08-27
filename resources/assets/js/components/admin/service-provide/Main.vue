@@ -39,12 +39,6 @@
                 </button>
             </div>
         </div>
-        <div class="col-xs-12 col-md-2">
-            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                <span>Apply</span>
-                <loader></loader>
-            </button>
-        </div>
     </div>
 </div>
 </div>
@@ -99,7 +93,6 @@
 <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
 
-</div>
 <service-provider-detail @HideModalValue="HideModal" :showModalProp="providerdetailpopup"></service-provider-detail>
 <change-status-provider @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-provider>
 <add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
