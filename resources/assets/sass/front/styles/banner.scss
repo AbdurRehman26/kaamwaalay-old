@@ -47,6 +47,37 @@
                 width: 28%
             }
         }
+        @include mobile{
+            h1{
+                font-size: 20px;
+                margin-bottom: 9px !important;
+            }
+            h5{
+                font-size: 13px;
+                margin-bottom: 15px;
+            }
+            .form-control.lg{
+                height: 29px;
+                font-size: 10px;                
+            }
+            .search-filter {
+                margin-bottom: 10px;
+                .container-zip-code{
+                    i{
+                        font-size: 14px;
+                    }
+                }
+                input.zip-code{
+                    padding-left: 26px;
+                }
+            }
+            .btn{
+                padding: 3px 13px;
+                height: 30px;
+                font-size: 10px;
+                min-width: 80px;             
+            }            
+        }
     }
     &.explore-banner{
         .content-inner{

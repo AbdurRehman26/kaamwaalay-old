@@ -10,6 +10,12 @@
     @include Desktop1300{
         padding: 10px 25px;
     }
+    @include mobile{
+        height: 39px;
+        font-size: 13px;
+        padding: 10px 15px;
+        line-height: 17px;
+    }
     &:hover, &:focus{
         color: $body-bg!important;
         outline: none;

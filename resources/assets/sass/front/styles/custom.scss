@@ -30,6 +30,16 @@ $section-padding-sm:20px 0px;
         margin-bottom: 0;
         font-size: $font-size-sm;
     }
+    @include mobile{
+        padding-bottom: 30px;
+        h2{
+            font-size: 21px;
+            margin-bottom: 0px;            
+        }
+        p{
+            font-size: 15px;  
+        }
+    }
 }
 
 .white-bg{
@@ -158,6 +168,15 @@ $section-padding-sm:20px 0px;
         font-size: $font-size-xs;
         color: $secondary-color;
         margin-bottom: 0;
+    }
+    @include mobile{
+        h4{
+            font-size: 18px;
+        }
+        p{
+            line-height: 21px;
+            font-size: 14px;
+        }
     }
 }
 
@@ -344,6 +363,21 @@ $section-padding-sm:20px 0px;
                 line-height: 19px;
                 color: $secondary-color;
                 margin-bottom: 20px;
+            }
+        }
+        @include mobile{
+            h2{
+                font-size: 17px;
+                margin-bottom: 16px;
+                line-height: 28px;                
+            }
+            p{
+                font-size: 14px !important;
+                line-height: 21px !important;
+                margin-bottom: 19px !important;
+            }
+            h1{
+                font-size: 20px;
             }
         }
     }
@@ -686,6 +720,16 @@ $section-padding-sm:20px 0px;
             }
         }
     }
+    @include mobile{
+        .testmonial-img{
+            width: 60px !important;
+            height: 60px !important;            
+            margin-top: 27px !important;
+        }
+        h3{
+            font-size: 14px; 
+        }
+    }
 }
 
 .search-filter{
@@ -760,6 +804,16 @@ $section-padding-sm:20px 0px;
         height: 29px;
         background-size: contain;
         background-repeat: no-repeat;
+    }
+    @include mobile{
+        font-size: 14px;
+        margin-bottom: 0px;
+        line-height: 20px;
+        p{
+            font-size: 13px;
+            margin-bottom: 0px;
+            line-height: 20px;            
+        }
     }
 }
 .grey-bg{
@@ -1398,6 +1452,13 @@ $section-padding-sm:20px 0px;
             margin-bottom: 20px;
         }
     }
+    @include mobile{
+        .col-md-3{
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+    }    
 }
 
 .ready-to-meet
@@ -2709,12 +2770,22 @@ body{
         width:142px;
         height:auto;
     }
+    @include mobile{
+        img{
+            width: 106px;
+        }        
+    }
 }
 .google-store-btn{
     img{
         width:162px;
         height:auto;
     }
+    @include mobile{
+        img{
+            width: 115px;;
+        }        
+    }    
 }
 
 .no-active{
@@ -2742,6 +2813,13 @@ body{
             max-width: 32.666667%;
             margin-bottom: 13px;
         }
+    }
+    @include mobile{
+        .col-sm-4{
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 13px;
+        }        
     }
 }
 

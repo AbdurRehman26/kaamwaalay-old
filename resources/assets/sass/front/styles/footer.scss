@@ -81,10 +81,40 @@
 		    }		    	    		    
 		}
 	}
+	@include mobile{
+		ul{
+			padding-left: 0px;
+			margin-bottom: 30px;
+			li{
+				margin-bottom: 10px;
+				a{
+					font-size: 13px;
+				}
+			}
+		}
+	}
 }
 .footer-copyrights {
 	p {
 		color: $grey-Edark;
+	}
+	@include mobile{
+		.float-left{
+		    float: none !important;
+		    text-align: center;			
+		    p{
+		    	font-size: 12px;
+		    }
+		}
+		.float-right{
+		    float: none !important;
+		    text-align: center;	
+		    &.terms-links{
+		    	a{
+		    		font-size: 12px;
+		    	}
+		    }			
+		}
 	}
 }
 .terms-links {
