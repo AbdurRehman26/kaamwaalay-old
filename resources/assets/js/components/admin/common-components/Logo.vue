@@ -1,5 +1,7 @@
 <template>
+    <router-link class="logo" to="/">
         <img :src="logo">
+    </router-link>
 </template>
 
 <script>
@@ -11,3 +13,11 @@ export default {
     }
 }
 </script>
+
+<style scoped type="text/css">
+.logo{
+    text-decoration: none;
+    pointer-events: none;
+}
+
+</style>
