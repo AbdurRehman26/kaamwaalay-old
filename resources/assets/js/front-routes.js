@@ -70,7 +70,8 @@ const routes = [
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service_provider',
+        path: '/explore/service_provider/:serviceId',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',

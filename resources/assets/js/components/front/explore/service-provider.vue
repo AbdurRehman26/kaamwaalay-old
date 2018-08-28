@@ -6,7 +6,7 @@
 					<div class="category-image" v-bind:style="{'background-image': 'url('+ categoryimage +')',}"></div>
 
 					<div class="category-content">
-						<h2>General carpentry</h2>
+						<h2>General carpentry {{service}}</h2>
 						<p>Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile.</p>
 						<p><strong>Are you looking to find a carpenter for hire?</strong> Then, we can help. When you post a job you will receive custom bids from local carpenters!</p>
 					</div>
@@ -141,8 +141,10 @@
 import StarRating from 'vue-star-rating';
 
 export default {
+	props: ['serviceId'],
   data () {
     return {
+    	service: '',
     	categoryimage: '/images/front/explore/carpenter1.jpg',
 
     	jobimage: '/images/front/profile-images/logoimage1.png',
@@ -286,6 +288,17 @@ export default {
         },
         servicedetail(){
         	this.$router.push({name: 'Service_Provider_Detail'});
+        },
+        getService() {
+        	let self = this;
+        	let id = this.serviceId;
+			console.log(this.serviceId, 8898989898);
+	        this.searchUrl  = 'search/explore/'+id;
+			this.$http.get(this.searchUrl).then(response => {
+				response = response.data.response;
+				this.service = response.data;
+			}).catch(error=>{
+			});
         }
 
     },
@@ -294,7 +307,12 @@ export default {
     },
 
     mounted(){
-
+    	this.getService();
+    },
+    watch: {
+    	serviceId(val) {
+    		this.serviceId = val;
+    	}
     }
 
 }

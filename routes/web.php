@@ -14,12 +14,14 @@ Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
 });
+
 Route::get('/password/set/{token}/{email}', function(){
     return view('admin-layout');
 })->where('id', '.*')->name('password.reset');
 Route::get('/', function () {
     return view('layout');
 });
+Route::resource('search/explore', 'Api\V1\SearchController');
 
 
 /*Route::get('/{any}', function(){
@@ -35,5 +37,3 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 /*Front Route*/
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
 Route::get('/', 'FrontController@index')->where('any', '.*')->name('front-login');
-
-Route::resource('search/explore', 'SearchController');

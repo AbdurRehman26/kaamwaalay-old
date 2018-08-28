@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceRepository;
 use App\Data\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;

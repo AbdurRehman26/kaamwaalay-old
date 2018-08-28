@@ -11,13 +11,15 @@
 							<div class="content-inner md">
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
-									<multiselect v-model="value" :options="options"  placeholder="What service do you need?" name="" track-by="name" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind"></multiselect>
+									<div :class="{ 'invalid': isInvalid }">
+										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="name" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :internal-search="false" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind" name="search" @close="onTouch"></multiselect>
+									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
-										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-mode="zipCode" name="">
+										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required'">
 									</div>
 								</div>
-								<button class="btn btn-primary" @click="ServiceProviderPage">
+								<button class="btn btn-primary" @click="validateBeforeSubmit">
 									<span>Search</span>
 								</button>
 							</div>
@@ -88,14 +90,19 @@
 </template>
 
 <script>
+
+  import _ from 'lodash';
 	export default {
 		data () {
 			return {
-				value: '',
+				searchValue: [],
 				isLoading: false,
 				searchUrl: 'api/service',
 				options: [],
 				zipCode: '',
+				errorMessage: '',
+				isTouched: false,
+				invalidSearch: true,
 				bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 				contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 				categoryval: false,
@@ -419,23 +426,35 @@
 		},
 		methods: {
 
+		    onTouch () {
+		      this.isTouched = true
+		    },
+            validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.ServiceProviderPage();
+                        this.errorMessage = "";
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            },  
 		    limitText (count) {
 		      return `and ${count} other services`
 		    },
-			asyncFind (query) {
+			asyncFind: _.debounce(function(query) {
 				let self = this;
 				console.log(query);
 		        this.searchUrl  = 'api/service?keyword='+query;
 				this.isLoading = true;
 				this.$http.get(this.searchUrl).then(response => {
 					response = response.data.response;
-					console.log(response, 889898);
 					self.options = response.data;
 					self.isLoading = false;
 
 				}).catch(error=>{
 				});
-			},
+			}, 1000),
 			changecategorypopup() {
 				this.categoryval = true;
 			},
@@ -444,10 +463,24 @@
 				this.categoryval = false;
 			},
 			ServiceProviderPage() {
-				console.log(this.value, 5555);
+				this.isTouched = false;
+				if(this.searchValue.length === 0) {
+					this.isTouched = true;
+					return;
+				}
+				this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id }})
 				//this.$router.push('/explore/service_provider');
 			}
 
+		},
+		watch: {
+
+		},
+
+		computed: {
+		    isInvalid () {
+		      return this.isTouched && this.searchValue.length === 0
+		    }
 		},
 	}
 </script>
