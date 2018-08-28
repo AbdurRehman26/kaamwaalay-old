@@ -7,80 +7,83 @@
 
         <div class="profile-form-section">
 
-         <div class="form-signup">
+           <div class="form-signup">
             <form>
-               <div class="personal-detail">
-                  <div class="row">
-                     <div class="browse-btn">
-                        <div class="form-group">
-                           <label class="file-upload-label">Browse Photo</label>
-                           <input class="form-control file-upload-input" type="file">
+             <div class="personal-detail">
+              <div class="row">
+               <div class="browse-btn">
+                <div class="form-group">
+                 <label class="file-upload-label">Browse Photo</label>
 
-<!--                             <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image" v-validate="'required'" :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']" ></b-form-file>
- -->
-                       </div>
-                   </div>
-               </div>
+                 <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" 
+                 v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" 
+                 name="upload image" v-validate="'required'" 
+                 :class="['form-control','file-upload-input', 'form-group' , errorBag.first('upload image') ? 'is-invalid' : '']">
+             </b-form-file>
 
-               <!-- Alert Tag -->
-               <alert :successMessage="successMessage" :errorMessage="errorMessage"></alert>
-               <!-- Alert Tag -->
+         </div>
+     </div>
+ </div>
 
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="">First Name</label>
-                        <input type="text" class="form-control" name="first_name" v-model="record.first_name" value="Arsalan" placeholder="Enter your first name">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                 <div class="form-group">
-                    <label for="">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" v-model="record.last_name" value="Akhtar" placeholder="Enter your last name">
-                </div>
-            </div>
-        </div>
+ <!-- Alert Tag -->
+ <alert :successMessage="successMessage" :errorMessage="errorMessage"></alert>
+ <!-- Alert Tag -->
 
-        <div class="row">
-          <div class="col-md-6">
-             <div class="form-group">
-                <label for="">Email Address</label>
-                <input type="text" class="form-control" name="email" v-model="record.email" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
-            </div>
-        </div>
-        <div class="col-md-6">
-         <div class="form-group">
-            <label for="">Contact Number</label>
-            <input type="password" class="form-control" name="phone_number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
-        </div>
-    </div>
+ <div class="row">
+  <div class="col-md-6">
+   <div class="form-group">
+    <label for="">First Name</label>
+    <input type="text" class="form-control" name="first_name" v-model="record.first_name" value="Arsalan" placeholder="Enter your first name">
 </div>
 </div>
-<div class="home-detail">
-   <div class="row">
-      <div class="col-md-6">
-         <div class="form-group">
-            <label for="">Address</label>
-            <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
-        </div>
-    </div>
-    <div class="col-md-6">
-     <div class="form-group">
-        <label for="">Apartment, suite, unit</label>
-        <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your last name">
-    </div>
+<div class="col-md-6">
+   <div class="form-group">
+    <label for="">Last Name</label>
+    <input type="text" class="form-control" name="last_name" v-model="record.last_name" value="Akhtar" placeholder="Enter your last name">
+</div>
 </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
-     <div class="form-group">
-        <label for="">City</label>
-        <input type="password" class="form-control" name="city" v-model="record.city" placeholder="Enter your city name">
-    </div>
+   <div class="form-group">
+    <label for="">Email Address</label>
+    <input type="text" class="form-control" name="email" v-model="record.email" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
+</div>
 </div>
 <div class="col-md-6">
- <div class="form-group">
+   <div class="form-group">
+    <label for="">Contact Number</label>
+    <input type="password" class="form-control" name="phone_number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
+</div>
+</div>
+</div>
+</div>
+<div class="home-detail">
+ <div class="row">
+  <div class="col-md-6">
+   <div class="form-group">
+    <label for="">Address</label>
+    <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
+</div>
+</div>
+<div class="col-md-6">
+   <div class="form-group">
+    <label for="">Apartment, suite, unit</label>
+    <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your last name">
+</div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+   <div class="form-group">
+    <label for="">City</label>
+    <input type="password" class="form-control" name="city" v-model="record.city" placeholder="Enter your city name">
+</div>
+</div>
+<div class="col-md-6">
+   <div class="form-group">
     <label for="">State</label>
     <select class="form-control" name="state" v-model="record.state">
       <option value="">Select State</option>
@@ -93,18 +96,18 @@
 <div class="row">
 
   <div class="col-md-6">
-     <div class="form-group">
-        <label for="">Zip Code</label>
-        <input type="password" class="form-control" name="zip_code" v-model="record.zip_code" placeholder="Enter your zip code">
-    </div>
+   <div class="form-group">
+    <label for="">Zip Code</label>
+    <input type="password" class="form-control" name="zip_code" v-model="record.zip_code" placeholder="Enter your zip code">
+</div>
 </div>
 </div>
 </div>
 
 <div class="create-account-btn">
   <button class="btn btn-primary">Update Profile
-     <loader></loader>
- </button>
+   <loader></loader>
+</button>
 </div>
 
 <div class="form-detail">
@@ -130,7 +133,9 @@
                 showNoRecordFound : false,
                 search : '',
                 stateUrl : 'api/state',
-                states : []
+                states : [],
+                file: null,
+                
             }
         },
         mounted(){
@@ -140,6 +145,9 @@
             requestUrl(){
                 return this.url;
             },
+            imageValue(){
+                
+            }
         },
         methods: {
             getResponse(response){
@@ -197,6 +205,60 @@
                     this.loading = false;
                 });
 
+            },
+            onFileChange(e) {
+                var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
+                var files = e.target.files || e.dataTransfer.files;
+                this.errorMessage = "";
+                if(!supportedType.includes(files[0].type)) {
+                    this.errorBag.add({
+                      field: 'upload image',
+                      msg: 'The file must be an image.',
+                      rule: 'image',
+                      id: 6,
+                  });
+                    this.errorMessage = this.errorBag.all()[0];
+                    self.isFileUpload = false;
+                    return;
+                }
+                this.errorBag.clear();
+                this.isFileUpload = null;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+                
+            },
+            createImage(file) {
+                var self = this;    
+                var image = new Image();
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    self.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.onUpload(file);
+            },
+            onUpload(file) {
+                var self = this;
+                let url = "api/file/upload";
+
+                var data = new FormData;
+                data.append('key', 'user');
+                data.append('file', file);
+
+                this.$http.post(url, data).then(response => {
+                    response = response.data;
+                    self.record.profile_images = response.name;
+
+                }).catch(error => {
+                    error = error.response.data;
+                    let errors = error.errors;
+                    self.isFileUpload = false;
+                    _.forEach(errors, function(value, key) {
+                        self.errorMessage =  errors[key][0];
+                        return false;
+                    });
+                });
             },
         }        
     }

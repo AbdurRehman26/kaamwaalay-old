@@ -115,8 +115,8 @@ const app = new Vue({
     store,
     mounted () {
         this.$Progress.finish();
-        this.checkscroll();
-        this.browserfunction();
+        // this.checkscroll();
+        // this.browserfunction();
     },
     created () {
         this.$Progress.start()
