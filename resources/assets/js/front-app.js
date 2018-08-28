@@ -24,7 +24,9 @@ import fancyBox from 'vue-fancybox';
 import VueAxios from 'vue-axios'
 import VueAuthenticate from 'vue-authenticate'
 import axios from 'axios'
+import router from './front-routes';
 import VeeValidate from 'vee-validate'
+import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js'
 Vue.use(VueRouter);
