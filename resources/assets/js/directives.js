@@ -3,10 +3,10 @@ Vue.directive('can', {
   bind: function (el, binding, vnode) {
     let user = JSON.parse(localStorage.getItem('user'));
         var permissionValue = binding.value + '.' + binding.arg  ;
-           if(user.role_id == 4)
-            {
-                commentNode(el, vnode)
-            }
+           /*if(user.role_id == 4)
+            {*/
+             //   commentNode(el, vnode)
+           // }
 }
 });
 
