@@ -20,6 +20,6 @@
             <router-view></router-view>
             <front-footer></front-footer>
         </div>
-        <script src="{{ asset('js/front-app.js') }}"></script>
+        <script src="{{ mix('js/front-app.js') }}"></script>
     </body>
 </html>

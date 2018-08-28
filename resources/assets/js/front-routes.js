@@ -1,4 +1,4 @@
-// Front Route components
+    // Route components
 import VueRouter from 'vue-router'
 
 const routes = [
@@ -63,7 +63,6 @@ const routes = [
             title: 'Professional Service Marketplace | Explore',
             bodyClass: 'explore_page',
             navigation: 'main-nav',
-            requiresAuth: true,
         },
         component: require('./components/front/explore/main.vue'),
     },
@@ -112,6 +111,7 @@ const routes = [
             title: 'Professional Service Marketplace | Profile',
             bodyClass: 'profile-page',
             navigation: 'customer-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/profile/main.vue'),
     },
@@ -267,14 +267,31 @@ const routes = [
             bodyClass: 'not-found-page',
         },
     },
-    ]
-
+]
 
 
 // Create the router instance
 const router = new VueRouter({
     mode: 'history',
-    routes // short for `routes: routes`
+    routes, // short for `routes: routes`
+    app,
+})
+const admin = 1;
+const title = document.title
+router.beforeEach((to, from, next) => {
+    let user;
+    if(router.app.$store.getters.getAuthUser != 'undefined'){
+      user = JSON.parse(router.app.$store.getters.getAuthUser);
+    }
+    document.title = (title + ' | ' + to.meta.title)
+    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+        next({name: 'login'});
+    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+        next({name: 'main_page'});
+    } else {
+        next();
+    }
+
 })
 
 export default router

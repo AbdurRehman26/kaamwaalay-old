@@ -95,7 +95,7 @@ public $model;
             $country = app('CountryRepository')->findById($data->country_id);             
             $data->country = !empty($country->name) ? $country->name : '';
             $City = app('CityRepository')->findById($data->city_id);                
-            $data->City = !empty($City->name)?$City->name:'';
+            $data->city = !empty($City->name)?$City->name:'';
             $state = app('StateRepository')->findById($data->state_id);                
             $data->state = !empty($state->name)?$state->name:'';
 

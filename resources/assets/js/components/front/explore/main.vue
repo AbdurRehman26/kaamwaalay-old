@@ -11,10 +11,10 @@
 							<div class="content-inner md">
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
-									<multiselect v-model="value" :options="options"  placeholder="What service do you need?" name="" track-by="name" label="name" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind"></multiselect>
+									<multiselect v-model="value" :options="options"  placeholder="What service do you need?" name="" track-by="name" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind"></multiselect>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
-										<input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
+										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-mode="zipCode" name="">
 									</div>
 								</div>
 								<button class="btn btn-primary" @click="ServiceProviderPage">
@@ -94,13 +94,8 @@
 				value: '',
 				isLoading: false,
 				searchUrl: 'api/service',
-				options: [
-				{ name: 'Vue.js', language: 'JavaScript' },
-				{ name: 'Rails', language: 'Ruby' },
-				{ name: 'Sinatra', language: 'Ruby' },
-				{ name: 'Laravel', language: 'PHP', $isDisabled: true },
-				{ name: 'Phoenix', language: 'Elixir' }
-				],
+				options: [],
+				zipCode: '',
 				bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 				contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 				categoryval: false,
@@ -435,6 +430,7 @@
 				this.$http.get(this.searchUrl).then(response => {
 					response = response.data.response;
 					console.log(response, 889898);
+					self.options = response.data;
 					self.isLoading = false;
 
 				}).catch(error=>{
@@ -448,7 +444,8 @@
 				this.categoryval = false;
 			},
 			ServiceProviderPage() {
-				this.$router.push('/explore/service_provider');
+				console.log(this.value, 5555);
+				//this.$router.push('/explore/service_provider');
 			}
 
 		},
