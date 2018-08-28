@@ -34,6 +34,7 @@ class RolesTableSeeder extends Seeder
                                 "service-provider-profile.show",
                                 "service-provider-profile-request.index",
                                 "service-provider-profile-request.show",
+                                "service-provider-profile-request.update",
                                 "campaign.index",
                                 "campaign.store",
                                 "campaign.show",
@@ -58,6 +59,7 @@ class RolesTableSeeder extends Seeder
                                 "job-bid.update",
                                 "job-bid.store",
                                 "support-inquiry.index",
+                                'support-inquiry.update',
                                 "support-question.index",
                                 "job-bid.store"
                             )),
