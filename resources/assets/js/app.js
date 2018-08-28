@@ -9,9 +9,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
 import BootstrapVue from 'bootstrap-vue';
-import VueAxios from 'vue-axios'
-import VueAuthenticate from 'vue-authenticate'
-import axios from 'axios'
+import VueAxios from 'vue-axios';
+import VueAuthenticate from 'vue-authenticate';
+import axios from 'axios';
 import router from './routes';
 import VeeValidate from 'vee-validate'
 import InfiniteLoading from 'vue-infinite-loading'

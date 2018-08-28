@@ -10,8 +10,11 @@ import vbclass from 'vue-body-class';
 import router from './front-routes';
 import BootstrapVue from 'bootstrap-vue';
 import fancyBox from 'vue-fancybox';
+import Multiselect from 'vue-multiselect';
+
 
 Vue.use(VueRouter);
+Vue.component('multiselect', Multiselect);
 Vue.use(BootstrapVue);
 Vue.use( vbclass, router );
 

@@ -63,6 +63,7 @@ const routes = [
             title: 'Professional Service Marketplace | Explore',
             bodyClass: 'explore_page',
             navigation: 'main-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/explore/main.vue'),
     },
