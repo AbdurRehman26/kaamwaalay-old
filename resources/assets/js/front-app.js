@@ -10,11 +10,32 @@ import vbclass from 'vue-body-class';
 import router from './front-routes';
 import BootstrapVue from 'bootstrap-vue';
 import fancyBox from 'vue-fancybox';
-
+import VueAxios from 'vue-axios'
+import VueAuthenticate from 'vue-authenticate'
+import axios from 'axios'
+import VeeValidate from 'vee-validate'
+import Vuex from 'vuex';
+import store from './store.js'
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use( vbclass, router );
-
+Vue.use(VueAxios, axios)
+Vue.use(VueAuthenticate, {
+    tokenName: 'access_token',
+    baseUrl: '/',
+    loginUrl: '/api/auth/login',
+    registerUrl: '/api/auth/register',
+    logoutUrl: '/api/auth/logout',
+    storageType: 'cookieStorage',
+    providers: {
+        // Define OAuth providers config
+        oauth2: {
+            name: 'oauth2',
+            url: 'Token/Exchange',
+        }
+    }
+})
+Vue.use(Vuex);
 // Require components tags
 require('./components-tags');
 require('./front-components-tags');
@@ -28,10 +49,33 @@ Vue.mixin({
    }
  }
 });
-
+let veeCustomMessage = {
+        en: {
+            custom: {
+                agree: {
+                    required: 'You must agree to the terms and conditions before registering!',
+                    digits: (field, params) => `length must be ${params[0]}`
+                },
+                privacypolicy: {
+                    required: 'You must agree the privacy policy before registering!',
+                    digits: (field, params) => `length must be ${params[0]}`
+                },
+                password_confirmation: {
+                    confirmed: 'Password does not match.'
+                }
+            }
+        }
+    };
+const config = {
+    errorBagName: 'errorBag', // change if property conflicts.
+    dictionary:  veeCustomMessage,
+    events: 'input' 
+};
+Vue.use(VeeValidate,config);
 const app = new Vue({
     el: '#app',
     router,
+    store,
     methods:{
         browserfunction() {
             if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
