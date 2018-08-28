@@ -3,13 +3,14 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="javascript:;" class="btn btn-facebook" @click="openFbLoginDialog">
-                    <span class="icon-facebook-official"></span>Sign up with Facebook</a>
+                    <span class="icon-facebook-official"></span>{{text}}</a>
                 </div>
             </div>
         </div>                      
     </template>
 <script>
 export default {
+     props : ['text'],
   data () {
     remind: null;
     return {
@@ -54,7 +55,7 @@ export default {
                     self.$auth.setToken(response.data.data)
                     self.$store.commit('setAuthUser', response.data.data);
                     if(!self.$auth.isAuthenticated()){
-                        if(self.$parent.type == 'customer'){
+                        if(response.data.data.role_id == 3){
                             self.$router.push({ name: 'customer_profile'});
                         }else{
                             self.$router.push({ name: 'provider_profile'});
@@ -62,7 +63,7 @@ export default {
                   }else{
                     setTimeout(function(){
                         self.loading = false
-                        if(self.$parent.type == 'customer'){
+                        if(response.data.data.role_id == 3){
                             self.$router.push({ name: 'customer_profile'});
                         }else{
                             self.$router.push({ name: 'provider_profile'});

@@ -279,19 +279,19 @@ const router = new VueRouter({
 const admin = 1;
 const title = document.title
 router.beforeEach((to, from, next) => {
-    let user;
+ /*   let user;
     if(router.app.$store.getters.getAuthUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthUser);
     }
     document.title = (title + ' | ' + to.meta.title)
-    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+    if (!router.app.$auth.isAuthenticated()) {
         next({name: 'login'});
-    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-        next({name: 'main_page'});
+    } else if (router.app.$auth.isAuthenticated()) {
+        next({name: 'my-bid'});
     } else {
         next();
-    }
-
+    }*/
+       next();
 })
 
 export default router
