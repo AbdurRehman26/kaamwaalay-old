@@ -8,7 +8,7 @@
         <div class="profile-form-section">
 
            <div class="form-signup">
-            <form>
+            <form @submit.prevent="validateBeforeSubmit" novalidate="">
              <div class="personal-detail">
               <div class="row">
                <div class="browse-btn">
@@ -16,8 +16,8 @@
                  <label class="file-upload-label">Browse Photo</label>
 
                  <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" 
-                 v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" 
-                 name="upload image" v-validate="'required'" 
+                 v-model="file" accept="image/jpeg, image/png, image/jpg" 
+                 name="upload image" 
                  :class="['form-control','file-upload-input', 'form-group' , errorBag.first('upload image') ? 'is-invalid' : '']">
              </b-form-file>
 
@@ -26,20 +26,24 @@
  </div>
 
  <!-- Alert Tag -->
- <alert :successMessage="successMessage" :errorMessage="errorMessage"></alert>
+ <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
  <!-- Alert Tag -->
 
  <div class="row">
   <div class="col-md-6">
    <div class="form-group">
     <label for="">First Name</label>
-    <input type="text" class="form-control" name="first_name" v-model="record.first_name" value="Arsalan" placeholder="Enter your first name">
+    <input type="text" v-validate="'required'" class="form-control"
+    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
+    placeholder="Enter your first name">
 </div>
 </div>
 <div class="col-md-6">
    <div class="form-group">
     <label for="">Last Name</label>
-    <input type="text" class="form-control" name="last_name" v-model="record.last_name" value="Akhtar" placeholder="Enter your last name">
+    <input type="text" v-validate="'required'" class="form-control"
+    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
+    placeholder="Enter your last name">
 </div>
 </div>
 </div>
@@ -48,7 +52,7 @@
   <div class="col-md-6">
    <div class="form-group">
     <label for="">Email Address</label>
-    <input type="text" class="form-control" name="email" v-model="record.email" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
+    <input type="text" :disabled="true" class="form-control" name="email" v-model="record.email" placeholder="Enter your first email address">
 </div>
 </div>
 <div class="col-md-6">
@@ -76,21 +80,28 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
-   <div class="form-group">
-    <label for="">City</label>
-    <input type="password" class="form-control" name="city" v-model="record.city" placeholder="Enter your city name">
+
+    <div class="col-md-6">
+       <div class="form-group">
+        <label for="">State</label>
+        <select @change="onStateChange" class="form-control" name="state" v-model="record.state_id">
+          <option :value="null">Select State</option>
+          <option v-for="state in states" :value="state.id">{{state.name}}</option>
+      </select>
+  </div>
 </div>
-</div>
+
 <div class="col-md-6">
    <div class="form-group">
-    <label for="">State</label>
-    <select class="form-control" name="state" v-model="record.state">
-      <option value="">Select State</option>
-      <option v-for="state in states" :value="state.id">{{state.name}}</option>
+    <label for="">City</label>
+    <select class="form-control" name="state" v-model="record.city_id">
+      <option :value="null">Select City</option>
+      <option v-for="city in cities" :value="city.id">{{city.name}}</option>
   </select>
 </div>
 </div>
+
+
 </div>
 
 <div class="row">
@@ -98,14 +109,14 @@
   <div class="col-md-6">
    <div class="form-group">
     <label for="">Zip Code</label>
-    <input type="password" class="form-control" name="zip_code" v-model="record.zip_code" placeholder="Enter your zip code">
+    <input type="text" class="form-control" name="zip_code" v-model="record.zip_code" placeholder="Enter your zip code">
 </div>
 </div>
 </div>
 </div>
 
 <div class="create-account-btn">
-  <button class="btn btn-primary">Update Profile
+  <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">Update Profile
    <loader></loader>
 </button>
 </div>
@@ -119,6 +130,7 @@
 </div>
 <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
 <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+<vue-common-methods v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -133,9 +145,12 @@
                 showNoRecordFound : false,
                 search : '',
                 stateUrl : 'api/state',
+                cityUrl : '',
                 states : [],
                 file: null,
-                
+                loading : false,
+                isFileUpload : false,
+                cities : []
             }
         },
         mounted(){
@@ -145,47 +160,64 @@
             requestUrl(){
                 return this.url;
             },
+            requestCityUrl(){
+                return this.cityUrl;
+            },
             imageValue(){
-                
+
             }
         },
         methods: {
+            onStateChange(){
+                this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+            },
             getResponse(response){
                 let self = this;
                 self.loading = false;
                 self.record = response.data;
+
+                if(self.record.state_id){  
+                    this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                }
+
             },
             getStateResponse(response){
                 let self = this;
                 self.loading = false;
                 self.states = response.data;
             },
+            getCityResponse(response){
+                let self = this;
+                self.cities = response.data;
+            },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
+                    console.log(result , 12321)
                     if (result) {
                         this.onSubmit();
-                        this.$emit('error-message', '');
+                        this.errorMessage = '';
                         return;
                     }
-                    this.$emit('error-message', this.errorBag.all()[0]);
+                    console.log(result , this.errorBag.all());
+                    this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
                 let self = this;
-                let data = self.loginForm;
+                let data = {
+                    user_details : this.record
+                };
+
                 self.loading = true;
-                let url = self.url;
-                self.$http.post(url, data).then(response => {
-                    response = response.body;
-                    self.$auth.setToken(response.access_token, response.expires_in + Date.now());
+                let url = 'api/user/'+this.record.id;
 
-                    self.$emit('success-message', "You are successfully logged in. Please wait");
+                self.$http.put(url, data).then(response => {
+                    response = response.data.response;
+
+                    self.successMessage = response.message;
                     setTimeout(function () {
-                        self.$emit('success-message', "");
-                        self.$store.commit('setIsAuthenticated', true);
+                        self.successMessage = '';
                         self.loading = false;
-                        self.$router.push('/dashboard');
-
                     }, 2000);
 
                 }).catch(error => {

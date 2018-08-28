@@ -95,7 +95,6 @@ const options = {
 }
 
 // Require components tags
-require('./components-tags');
 require('./front-components-tags');
 
 Vue.mixin({

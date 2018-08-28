@@ -68,7 +68,7 @@ public function input($value='')
         'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
         'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
         'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id',
-        'user_details.status',
+        'user_details.status', 'user_details.state_id',
         
         'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
         'business_details.years_of_experience', 'business_details.business_type',
@@ -317,6 +317,18 @@ public function getAuthUser(Request $request)
 
     return response()->json($output, $code);
 
+}
+
+
+public function response_messages($value = '')
+{
+    $messages = [
+        'store' => 'User created successfully.',
+        'update' => 'User updated successfully.',
+        'destroy' => 'User deleted successfully.',
+    ];
+
+    return !empty($messages[$value]) ? $messages[$value] : 'Success.';
 }
 
 }
