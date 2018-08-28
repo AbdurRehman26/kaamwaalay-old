@@ -15,7 +15,7 @@
              <label>By Type</label>
              <select class="form-control" v-model="filter_by_inquiry">
                <option value="all" selected="">Select All</option>
-               <option v-for="role in roles" :value="role.id">{{role.title}}</option>
+               <option v-for="role in roles" :value="role.id" v-if="role.id != 4">{{role.title}}</option>
              </select>
            </div>
          </div>                           
