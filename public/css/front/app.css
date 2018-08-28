@@ -13524,7 +13524,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .navigation.main-navigation {
-    top: 48px;
+    top: 51px;
   }
 
   .navigation.main-navigation ul li {
@@ -13795,6 +13795,54 @@ input[type=number]::-webkit-outer-spin-button {
   color: #fff;
   line-height: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
+}
+
+.profilesession li {
+  padding-top: 0 !important;
+  height: 44px !important;
+}
+
+.profilesession li a {
+  min-width: 0 !important;
+}
+
+@media (max-width: 767px) {
+  .profilesession li {
+    display: inline-block !important;
+    width: auto !important;
+    margin-bottom: 0px !important;
+  }
+
+  .profilesession li.account-li {
+    width: 200px !important;
+    display: inline-block !important;
+    float: left !important;
+    margin-bottom: 0px !important;
+    height: auto !important;
+  }
+
+  .profilesession li a.router-link-exact-active {
+    background-color: transparent !important;
+  }
+
+  .profilesession li.account-info-keys {
+    float: right;
+    margin-right: 15px !important;
+    margin-bottom: 0px !important;
+    margin-top: -6px !important;
+  }
+
+  .profilesession li.account-info-keys li {
+    height: auto !important;
+    margin-bottom: 0px !important;
+    padding: 0px 5px !important;
+  }
+
+  .profilesession .notify-dropdown {
+    right: -59px;
+    width: 400px;
+    max-width: 400px;
+  }
 }
 
 .mac-browser .navigation ul li a {
@@ -17530,6 +17578,37 @@ body .chat-feedback-message.white-msg:before {
 
   .sign-up-info .custom-radio.boxed label {
     margin-bottom: 0px !important;
+  }
+
+  .next-project .vue-star-rating {
+    display: block !important;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .next-project span.review-job {
+    padding-left: 0;
+  }
+
+  .next-project span.review-job.review-job.left-border {
+    padding-left: 5px;
+  }
+
+  .next-project .service-detail .go-back {
+    float: right;
+    padding-right: 0;
+  }
+
+  .service-avaliable {
+    padding-top: 30px;
+  }
+
+  .p-r-0 {
+    padding-right: 15px !important;
+  }
+
+  .p-l-0 {
+    padding-left: 15px !important;
   }
 }
 

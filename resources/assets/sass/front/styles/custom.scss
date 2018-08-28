@@ -3233,4 +3233,32 @@ body{
             }            
         }
     }
+    .next-project{
+        .vue-star-rating{
+            display: block !important;
+            margin-bottom: 12px;
+            padding: 0;
+        }
+        span.review-job{
+            padding-left: 0;
+            &.review-job.left-border{
+                padding-left: 5px;
+            }
+        }
+        .service-detail{
+            .go-back{
+                float: right;
+                padding-right: 0;                
+            }
+        }
+    }
+    .service-avaliable{
+        padding-top: 30px;
+    }
+    .p-r-0{
+        padding-right: 15px !important;
+    }
+    .p-l-0{
+        padding-left: 15px !important;   
+    }    
 }

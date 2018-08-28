@@ -131,7 +131,7 @@ $nav-font:$font-bold;
             visibility: visible;
         }
         @include mobile{
-            top: 48px;
+            top: 51px;
             ul{
                 li{
                     height: auto;
@@ -374,6 +374,49 @@ $nav-font:$font-bold;
     color: #fff;
     line-height: 14px;
     font-family:$font-regular;
+}
+
+.profilesession{
+    li {
+        padding-top: 0 !important;
+        height: 44px !important;
+        a{
+            min-width: 0 !important;
+        }
+    }
+    @include mobile{
+        li{
+            display: inline-block !important;
+            width: auto !important;
+            margin-bottom: 0px !important;
+            &.account-li{
+                width: 200px !important;
+                display: inline-block !important; 
+                float: left !important;     
+                margin-bottom: 0px !important;
+                height: auto !important;                          
+            }
+             a.router-link-exact-active{
+                background-color: transparent !important;
+             }
+            &.account-info-keys {
+                float: right;
+                margin-right: 15px !important;
+                margin-bottom: 0px !important;
+                margin-top: -6px !important;
+                li{
+                    height: auto !important;
+                    margin-bottom: 0px !important;
+                    padding: 0px 5px !important;                    
+                }             
+            }
+        }
+        .notify-dropdown{
+            right: -59px;
+            width: 400px;
+            max-width: 400px;
+        }
+    }
 }
 
 

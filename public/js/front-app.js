@@ -5060,6 +5060,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5109,6 +5117,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__("./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70838,108 +70854,123 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("li", [
-          _c(
-            "div",
-            {
-              staticClass: "user-login-detail float-left pointer",
-              on: {
-                click: function($event) {
-                  _vm.$emit("profilepopup")
-                }
-              }
-            },
-            [
+          _c("ul", { staticClass: "profilesession" }, [
+            _c("li", { staticClass: "account-li" }, [
               _c(
-                "span",
-                { staticClass: "user-img", on: { click: _vm.ShowModal } },
-                [
-                  _c("img", {
-                    attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: "/profile" } }, [
-              _c("i", { staticClass: "icon-cog2 action-icon" })
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("li", { staticClass: "bell-li" }, [
-          _c(
-            "span",
-            {
-              directives: [
+                "div",
                 {
-                  name: "on-clickaway",
-                  rawName: "v-on-clickaway",
-                  value: _vm.away,
-                  expression: "away"
-                }
-              ],
-              staticClass: "notify-block",
-              on: {
-                click: [
-                  function($event) {
-                    _vm.isShowing ^= true
-                  },
-                  _vm.Showactive
-                ]
-              }
-            },
-            [
-              _c(
-                "i",
-                {
-                  staticClass: "icon-notification action-icon",
-                  attrs: { active: _vm.tab == true }
+                  staticClass: "user-login-detail float-left pointer",
+                  on: {
+                    click: function($event) {
+                      _vm.$emit("profilepopup")
+                    }
+                  }
                 },
-                [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
-              ),
-              _vm._v(" "),
-              _c("notification", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.isShowing,
-                    expression: "isShowing"
-                  }
-                ],
-                on: {
-                  ReviewWrite: function($event) {
-                    _vm.WriteReviewModal()
-                  },
-                  ViewBid: function($event) {
-                    _vm.ViewBid()
-                  }
-                }
-              })
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c(
-              "router-link",
-              { staticClass: "no-active", attrs: { to: "/" } },
-              [_c("i", { staticClass: "icon-exit action-icon" })]
-            )
-          ],
-          1
-        )
+                [
+                  _c(
+                    "span",
+                    { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                    [
+                      _c("img", {
+                        attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "username" }, [
+                    _vm._v("Arsalan Akhtar")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "account-info-keys" }, [
+              _c("ul", [
+                _c(
+                  "li",
+                  { staticClass: "setting-li" },
+                  [
+                    _c("router-link", { attrs: { to: "/profile" } }, [
+                      _c("i", { staticClass: "icon-cog2 action-icon" })
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("li", { staticClass: "bell-li" }, [
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "on-clickaway",
+                          rawName: "v-on-clickaway",
+                          value: _vm.away,
+                          expression: "away"
+                        }
+                      ],
+                      staticClass: "notify-block",
+                      on: {
+                        click: [
+                          function($event) {
+                            _vm.isShowing ^= true
+                          },
+                          _vm.Showactive
+                        ]
+                      }
+                    },
+                    [
+                      _c(
+                        "i",
+                        {
+                          staticClass: "icon-notification action-icon",
+                          attrs: { active: _vm.tab == true }
+                        },
+                        [
+                          _c("span", { staticClass: "badge-count" }, [
+                            _vm._v("5")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("notification", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.isShowing,
+                            expression: "isShowing"
+                          }
+                        ],
+                        on: {
+                          ReviewWrite: function($event) {
+                            _vm.WriteReviewModal()
+                          },
+                          ViewBid: function($event) {
+                            _vm.ViewBid()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "no-active", attrs: { to: "/" } },
+                      [_c("i", { staticClass: "icon-exit action-icon" })]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ])
       ])
     ]
   )
@@ -73368,109 +73399,123 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("li", [
-          _c(
-            "div",
-            {
-              staticClass: "user-login-detail float-left pointer",
-              on: {
-                click: function($event) {
-                  _vm.$emit("profilepopup")
-                }
-              }
-            },
-            [
+          _c("ul", { staticClass: "profilesession" }, [
+            _c("li", { staticClass: "account-li" }, [
               _c(
-                "span",
-                { staticClass: "user-img", on: { click: _vm.ShowModal } },
-                [
-                  _c("img", {
-                    attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "username" }, [_vm._v("Arsalan Akhtar")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "setting-li" },
-          [
-            _c("router-link", { attrs: { to: "/profile" } }, [
-              _c("i", { staticClass: "icon-cog2 action-icon" })
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("li", { staticClass: "bell-li" }, [
-          _c(
-            "span",
-            {
-              directives: [
+                "div",
                 {
-                  name: "on-clickaway",
-                  rawName: "v-on-clickaway",
-                  value: _vm.away,
-                  expression: "away"
-                }
-              ],
-              staticClass: "notify-block",
-              on: {
-                click: [
-                  function($event) {
-                    _vm.isShowing ^= true
-                  },
-                  _vm.Showactive
-                ]
-              }
-            },
-            [
-              _c(
-                "i",
-                {
-                  staticClass: "icon-notification action-icon",
-                  attrs: { active: _vm.tab == true }
+                  staticClass: "user-login-detail float-left pointer",
+                  on: {
+                    click: function($event) {
+                      _vm.$emit("profilepopup")
+                    }
+                  }
                 },
-                [_c("span", { staticClass: "badge-count" }, [_vm._v("5")])]
-              ),
-              _vm._v(" "),
-              _c("notification", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.isShowing,
-                    expression: "isShowing"
-                  }
-                ],
-                on: {
-                  ReviewWrite: function($event) {
-                    _vm.WriteReviewModal()
-                  },
-                  ViewBid: function($event) {
-                    _vm.ViewBid()
-                  }
-                }
-              })
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c(
-              "router-link",
-              { staticClass: "no-active", attrs: { to: "/" } },
-              [_c("i", { staticClass: "icon-exit action-icon" })]
-            )
-          ],
-          1
-        )
+                [
+                  _c(
+                    "span",
+                    { staticClass: "user-img", on: { click: _vm.ShowModal } },
+                    [
+                      _c("img", {
+                        attrs: { src: "/images/dummy/user-pic.jpg", alt: "" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "username" }, [
+                    _vm._v("Arsalan Akhtar")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "account-info-keys" }, [
+              _c("ul", [
+                _c(
+                  "li",
+                  { staticClass: "setting-li" },
+                  [
+                    _c("router-link", { attrs: { to: "/profile" } }, [
+                      _c("i", { staticClass: "icon-cog2 action-icon" })
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("li", { staticClass: "bell-li" }, [
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "on-clickaway",
+                          rawName: "v-on-clickaway",
+                          value: _vm.away,
+                          expression: "away"
+                        }
+                      ],
+                      staticClass: "notify-block",
+                      on: {
+                        click: [
+                          function($event) {
+                            _vm.isShowing ^= true
+                          },
+                          _vm.Showactive
+                        ]
+                      }
+                    },
+                    [
+                      _c(
+                        "i",
+                        {
+                          staticClass: "icon-notification action-icon",
+                          attrs: { active: _vm.tab == true }
+                        },
+                        [
+                          _c("span", { staticClass: "badge-count" }, [
+                            _vm._v("5")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("notification", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.isShowing,
+                            expression: "isShowing"
+                          }
+                        ],
+                        on: {
+                          ReviewWrite: function($event) {
+                            _vm.WriteReviewModal()
+                          },
+                          ViewBid: function($event) {
+                            _vm.ViewBid()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "no-active", attrs: { to: "/" } },
+                      [_c("i", { staticClass: "icon-exit action-icon" })]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ])
       ])
     ]
   )
@@ -76146,7 +76191,7 @@ var render = function() {
                 "b-row",
                 { staticClass: "justify-content-md-center" },
                 [
-                  _c("b-col", { attrs: { cols: "1", md: "12" } }, [
+                  _c("b-col", { attrs: { md: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", [_vm._v("Old Password")]),
                       _vm._v(" "),
@@ -76161,7 +76206,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                  _c("b-col", { attrs: { md: "6" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", [_vm._v("New Password")]),
                       _vm._v(" "),
@@ -76176,7 +76221,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                  _c("b-col", { attrs: { md: "6" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", [_vm._v("Confirm Password")]),
                       _vm._v(" "),

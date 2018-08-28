@@ -6,30 +6,38 @@
             <li><router-link to="/my-jobs">My Jobs</router-link></li>
             <li><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
-                <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
-                    <span class="user-img" @click="ShowModal">
-                        <img src="/images/dummy/user-pic.jpg" alt="">
-                    </span>
-                    <p class="username">Arsalan Akhtar</p>
-                </div>
+                <ul class="profilesession">
+                   <li class="account-li">
+                        <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
+                            <span class="user-img" @click="ShowModal">
+                                <img src="/images/dummy/user-pic.jpg" alt="">
+                            </span>
+                            <p class="username">Arsalan Akhtar</p>
+                        </div>
+                    </li>
+                    <li class="account-info-keys">
+                        <ul>
+                            <li class="setting-li">
+                                <router-link to="/profile">
+                                    <i class="icon-cog2 action-icon"></i>
+                                </router-link>
+                            </li>
+                            <li class="bell-li">
+                                <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
+                                    <i v-bind:active="tab == true" class="icon-notification action-icon">
+                                        <span class="badge-count">5</span></i>
+                                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
+                                    </span>
+                                </li>
+                                <li>
+                                    <router-link to="/" class="no-active">
+                                        <i class="icon-exit action-icon"></i>
+                                    </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
-            <li>
-                <router-link to="/profile">
-                    <i class="icon-cog2 action-icon"></i>
-                </router-link>
-            </li>
-            <li class="bell-li">
-                <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
-                    <i v-bind:active="tab == true" class="icon-notification action-icon">
-                        <span class="badge-count">5</span></i>
-                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
-                    </span>
-                </li>
-                <li>
-                    <router-link to="/" class="no-active">
-                        <i class="icon-exit action-icon"></i>
-                    </router-link>
-                </li>
             </ul>
         </div>
     </template>
