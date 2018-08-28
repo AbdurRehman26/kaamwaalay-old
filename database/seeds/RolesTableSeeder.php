@@ -27,6 +27,8 @@ class RolesTableSeeder extends Seeder
                                 "change.access_level",
                                 "job.index",
                                 "job.show",
+                                "job.store",
+                                "job.update",
                                 "service.store",
                                 "service.show",
                                 "service.update",
