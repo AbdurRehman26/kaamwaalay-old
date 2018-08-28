@@ -36,57 +36,50 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="sign-up-form service-provider-form">
-					<div class="fb-btn">
-						<div class="row">
-							<div class="col-md-12">
-								<a href="javascript:;" class="btn btn-facebook">
-									<span class="icon-facebook-official"></span>Sign up with Facebook</a>
-								</div>
-							</div>
-						</div>
-						<div class="form-signup">
+					<facebook-component></facebook-component>
+					<div class="form-signup">
+						<form  @submit.prevent="validateBeforeSubmit"  novalidate="">
+							<alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
 							<div>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-xs-12 col-md-6" :class="[errorBag.first('first_name') ? 'is-invalid' : '']">
 										<div class="form-group">
-											<label for="">First Name</label>
-											<input type="text" class="form-control" placeholder="Enter your first name">
-										</div>
-									</div>
-									<div class="col-md-6">
+											<label for="register_first_name">First Name</label>
+											<input id="register_first_name" type="text" v-model="register_info.first_name" v-validate="'required'"  name="first_name" data-vv-name="first_name" data-vv-as="First Name" class="form-control" placeholder="Enter your First Name" :class="[errorBag.first('first_name') ? 'is-invalid' : '']">
+										</div> 
+									</div> 
+									<div class="col-xs-12 col-md-6" :class="[errorBag.first('last_name') ? 'is-invalid' : '']">
 										<div class="form-group">
-											<label for="">Last Name</label>
-											<input type="text" class="form-control" placeholder="Enter your last name">
+											<label for="register_last_name">Last Name</label>
+											<input id="register_last_name" type="text" v-model="register_info.last_name" v-validate="'required'"  name="last_name" data-vv-name="last_name" data-vv-as="Last Name" class="form-control" placeholder="Enter your Last Name" :class="[errorBag.first('last_name') ? 'is-invalid' : '']">
 										</div>
 									</div>
 								</div>
 
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-xs-12 col-md-6" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
 										<div class="form-group">
-											<label for="">Email Address</label>
-											<input type="text" class="form-control" placeholder="Enter your email address">
+											<label for="register_email">Email Address</label>
+											<input id="register_email" type="email" v-model="register_info.email" v-validate="'required|email'"  name="register_email" class="form-control"  data-vv-name="register_email" data-vv-as="Email" placeholder="Enter your email address" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-xs-12 col-md-6" :class="[errorBag.first('password') ? 'is-invalid' : '']" novalidate="">
 										<div class="form-group">
-											<label for="">Password</label>
-											<input type="password" class="form-control" placeholder="Create your account password">
+											<label>Password</label>
+											<input type="password" v-model="register_info.password" v-validate="'required|min:8'" data-vv-as="Password" name="password" class="form-control"  data-vv-name="password" placeholder="Create your account password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
 										</div>
 									</div>
 								</div>
 
 								<div class="create-account-btn">
-									<button  class="btn btn-primary account-type-btn" @click='switchType(type)' > Create Account
-										<loader></loader>
-									</button>
+									<button class="btn btn-primary account-type-btn" :class="[loading  ? 'show-spinner' : '']"><span>Create Account</span><loader></loader></button>
 								</div>
-
 								<div class="form-detail">
 									<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
 								</div>
 							</div>
-						</div>
+						</form>
+					</div>
 
 					</div>
 					<div class="already-signup login">
@@ -99,29 +92,91 @@
 
 		</div>
 	</template>
-
-	<script>
-	export default {
-		data () {
-			remind: null;
-			return {
-				tabval: 'firstsec',
-				type:'customer',
-				mainNav:'true',
-			}
-		},
-		methods: {
-			switchType: function(type) {
+<script>
+export default {
+  data () {
+  	remind: null;
+    return {
+    	tabval: 'firstsec',
+    	tabval: 'firstsec',
+		type:'customer',
+		mainNav:'true',
+		loading:false,
+		errorMessage: '',
+        successMessage: '',
+        register_info: {
+                    'first_name': '',
+                    'last_name': '',
+                    'email': '',
+                    'password': '',
+                    'role': '',
+                },
+                agree  : false,
+                loading: false,
+    	}
+  	},
+  	 mounted() {
+        this.$auth.options.loginUrl = '/api/auth/login'
+      },
+  	methods:{
+  		switchType: function(type) {
 				var result = [];
 				if ((this.type) === 'customer') {
 					this.$router.push('profile');
-
 				}
 				if ((this.type) === 'provider') {
 					this.$router.push('apply-for-review');
 				}
 				return result;
-			},
-		}
-	}
-	</script>
+		},
+		 register: function () {
+                let self = this;
+                this.loading = true
+                 if(self.type == 'customer'){
+                     self.register_info.role_id = 3;
+	               }else{
+	                    self.register_info.role_id = 2;
+	               }
+                this.$auth.register(this.register_info).then(function (response) {
+                    self.loading = false
+                    self.successMessage = response.data.response.message;
+                    self.resetModal();
+                    setTimeout(function(){
+                        self.successMessage='';
+                    }, 5000);
+                }).catch(error => {
+                    this.loading = false
+                    self.errorMessage = error.response.data.errors.email[0];
+                        setTimeout(function(){
+                            self.errorMessage='';
+                            this.loading = false
+                        }, 5000);
+                })
+            },
+            validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.register();
+                        this.errorMessage = '';
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            },
+             resetModal () {
+                let self = this;
+                self.register_info = {
+                    'first_name': '',
+                    'last_name': '',
+                    'email': '',
+                    'password': '',
+                    'role': '',
+                },
+                self.agree = false,
+                setTimeout(function () {
+                      self.errorBag.items = [];
+                }, 100);
+            },
+  	},
+}
+</script>
