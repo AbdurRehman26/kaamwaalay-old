@@ -12309,6 +12309,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -97146,6 +97148,103 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
+                        _c("div", { staticClass: "form-detail form-group" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "custcheckbox custom-control custom-checkbox custom-control-inline"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.agree,
+                                    expression: "agree"
+                                  }
+                                ],
+                                staticClass: "custom-control-input",
+                                class: [
+                                  _vm.errorBag.first("agree")
+                                    ? "is-invalid"
+                                    : ""
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  value: "accepted",
+                                  "unchecked-value": "not_accepted",
+                                  "data-vv-name": "agree",
+                                  name: "agree"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(_vm.agree)
+                                    ? _vm._i(_vm.agree, "accepted") > -1
+                                    : _vm.agree
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.agree,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = "accepted",
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          (_vm.agree = $$a.concat([$$v]))
+                                      } else {
+                                        $$i > -1 &&
+                                          (_vm.agree = $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1)))
+                                      }
+                                    } else {
+                                      _vm.agree = $$c
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "custom-control-label",
+                                  attrs: { for: "checkbox1" }
+                                },
+                                [
+                                  _c(
+                                    "p",
+                                    [
+                                      _vm._v("I agree to the "),
+                                      _c(
+                                        "router-link",
+                                        { attrs: { to: "/terms-condition" } },
+                                        [_vm._v("Terms of Use")]
+                                      ),
+                                      _vm._v(" and "),
+                                      _c(
+                                        "router-link",
+                                        { attrs: { to: "/privacy-policy" } },
+                                        [_vm._v("Privacy Policy")]
+                                      ),
+                                      _vm._v(".")
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
                         _c("div", { staticClass: "create-account-btn" }, [
                           _c(
                             "button",
@@ -97159,9 +97258,7 @@ var render = function() {
                             ],
                             1
                           )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2)
+                        ])
                       ])
                     ],
                     1
@@ -97171,7 +97268,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(2)
           ]
         )
       ])
@@ -97187,7 +97284,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
           _vm._v(
-            "\n\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t"
+            "\n\t\t\t\t\t\t\t\tI want to hire a service provider\n\t\t\t\t\t\t\t\t"
           ),
           _c("span", [
             _vm._v("Get introduced to the right professional for your jobs")
@@ -97205,27 +97302,13 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "type_service_provider" } }, [
       _c("div", { staticClass: "verticle-align" }, [
         _c("div", { staticClass: "inner" }, [
-          _vm._v("\n\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t"),
+          _vm._v(
+            "\n\t\t\t\t\t\t\t\tI want to grow my business\n\t\t\t\t\t\t\t\t"
+          ),
           _c("span", [_vm._v("Respond to customer requests and get hired")]),
           _vm._v(" "),
           _c("i", { staticClass: "icon-checkmark2" })
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-detail" }, [
-      _c("p", [
-        _vm._v(
-          "By clicking Create Account or Sign Up with Facebook you agree to the "
-        ),
-        _c("a", { attrs: { href: "javascript:;" } }, [_vm._v("Terms of Use")]),
-        _vm._v(" and "),
-        _c("a", { attrs: { href: "javascript" } }, [_vm._v("Privacy Policy")]),
-        _vm._v(".")
       ])
     ])
   },

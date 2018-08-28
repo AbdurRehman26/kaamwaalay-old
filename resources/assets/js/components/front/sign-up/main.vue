@@ -70,12 +70,14 @@
 										</div>
 									</div>
 								</div>
-
+		                       <div class="form-detail form-group">
+                                <div class="custcheckbox custom-control custom-checkbox custom-control-inline">
+									  <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree" :class="[errorBag.first('agree') ? 'is-invalid' : '']">
+									   <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>								
+								</div>
+							</div>
 								<div class="create-account-btn">
 									<button class="btn btn-primary account-type-btn" :class="[loading  ? 'show-spinner' : '']"><span>Create Account</span><loader></loader></button>
-								</div>
-								<div class="form-detail">
-									<p>By clicking Create Account or Sign Up with Facebook you agree to the <a href="javascript:;">Terms of Use</a> and <a href="javascript">Privacy Policy</a>.</p>
 								</div>
 							</div>
 						</form>
