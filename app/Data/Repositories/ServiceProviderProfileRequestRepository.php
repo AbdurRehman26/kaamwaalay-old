@@ -59,35 +59,41 @@ public $model;
     {
         $data = parent::findById($id, $refresh, $details, $encode);
 
-        if($data && $details){
+        if($data){
+            
             $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->formatted_updated_at = Carbon::parse($data->updated_at)->format('F j, Y');
-
-
-            if(!empty($details['user_details'])){
-                $data->user = app('UserRepository')->findById($data->user_id,false);
-            }
-
-            if(!empty($details['profile_details'])){
-                $data->provider_profile = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id,false);
-            }
-
+            
             if(!empty($data->approved_by)){
 
                 $data->approved_by_user = app('UserRepository')->findById($data->approved_by,false);
 
             }
 
-            $criteria = ['service_provider_profile_request_id' => $data->id];
-            $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria, false, $details);
-            $data->services = $services['data'];       
-            $input['provider_request_data'] = false;
-            $input['profile_data'] = true;
-            $serviceProviderProfile = app('UserRepository')->findById($data->user_id,false,$input);
-            $data->service_provider_profile= $serviceProviderProfile;
             
+            if($details){
+
+
+                if(!empty($details['user_details'])){
+                    $data->user = app('UserRepository')->findById($data->user_id,false);
+                }
+
+                if(!empty($details['profile_details'])){
+                    $data->provider_profile = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id,false);
+                }
+
+                $criteria = ['service_provider_profile_request_id' => $data->id];
+                $services = app('ServiceProviderServiceRepository')->findCollectionByCriteria($criteria, false, $details);
+                $data->services = $services['data'];       
+                $input['provider_request_data'] = false;
+                $input['profile_data'] = true;
+                $serviceProviderProfile = app('UserRepository')->findById($data->user_id,false,$input);
+                $data->service_provider_profile= $serviceProviderProfile;
+                
+            }
         }
+
 
         return $data;
     }
