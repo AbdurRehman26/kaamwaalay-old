@@ -11,7 +11,7 @@
                 <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
               </div>
             </div>
-            <div class="col-xs-12 col-md-2 datepicker-field">
+            <!--<div class="col-xs-12 col-md-2 datepicker-field">
               <div class="form-group">
                <label>Is Featured</label>
                <select class="form-control" v-model="filter_by_featured">
@@ -20,7 +20,7 @@
                  <option value="0">No</option>
                </select>
              </div>
-           </div>                            
+           </div> -->                           
            <div class="col-xs-12 col-md-2">
             <button class="btn btn-primary filter-btn-top-space" @click="onApply" :class="[loading  ? 'show-spinner' : '']">
               <span>Apply</span>
@@ -44,7 +44,7 @@
               <th>Id</th>
               <th>Service</th>
               <th>Sub Service</th>
-              <th class="text-center">Is Featured</th>
+              <th class="text-center">Status</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
@@ -53,7 +53,9 @@
               <td>{{(index + 1)}}</th>
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
-                <td class="text-center">{{list.is_featured? "YES":"NO"}}</td>
+                <td class="text-center"><span class="tags" :class="[list.status? 'completed':'banned']">
+                        {{list.status? "ACTIVE":"INACTIVE"}}
+                    </span></td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i v-b-tooltip.hover title="View Details" @click="ViewDetails(list, index)" class="icon-eye"></i>

@@ -71,6 +71,7 @@ public $model;
     }
 
     public function create(array $data = []) {
+        
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
 

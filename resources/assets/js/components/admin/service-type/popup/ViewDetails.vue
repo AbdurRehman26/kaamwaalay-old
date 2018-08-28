@@ -35,17 +35,17 @@
                     <p>{{selectedService.parent_id? selectedService.parent.url_prefix : selectedService.url_prefix}}</p>
                 </b-col>
             </b-row>
-            <b-row>
+            <!--<b-row>
                 <b-col cols="5" class="">
                     <p><strong class="title-head">Is Featured?</strong></p>
                 </b-col>
                 <b-col cols="7">
                     <p>{{selectedService.is_featured? "YES":"NO"}}</p>
                 </b-col>
-            </b-row>
+            </b-row>-->
             <b-row>
                 <b-col cols="5" class="">
-                    <p><strong class="title-head">Display Banner</strong></p>
+                    <p><strong class="title-head">Home Page Banner</strong></p>
                 </b-col>
                 <b-col cols="7">
                     <p>{{selectedService.is_display_banner? "YES":"NO"}}</p>
@@ -53,20 +53,20 @@
             </b-row>
             <b-row>
                 <b-col cols="5" class="">
-                    <p><strong class="title-head">Display Service Navigation</strong></p>
+                    <p><strong class="title-head">Explore Banner</strong></p>
                 </b-col>
                 <b-col cols="7">
                     <p>{{selectedService.is_display_service_nav? "YES":"NO"}}</p>
                 </b-col>
             </b-row>
-            <b-row>
+            <!--<b-row>
                 <b-col cols="5" class="">
                     <p><strong class="title-head">Display Footer Navigation</strong></p>
                 </b-col>
                 <b-col cols="7">
                     <p>{{selectedService.is_display_footer_nav? "YES":"NO"}}</p>
                 </b-col>
-            </b-row>
+            </b-row>-->
 
             <b-row>
                 <b-col cols="5" class="">
