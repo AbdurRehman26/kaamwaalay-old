@@ -58,6 +58,9 @@ class SupportInquiryController extends ApiResourceController
             unset($input['id']);
         }
         
+        if($value == 'update'){
+            unset($input['user_id']);
+        }
         return $input;
     }
 

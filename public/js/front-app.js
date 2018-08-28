@@ -6066,14 +6066,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         logout: function logout() {
             var this_ = this;
-            if (this.$auth.isAuthenticated()) {
-                this.$auth.logout().then(function (Vue) {
-                    this_.$store.commit('setAuthUser', '');
-                    this_.$router.push({ name: 'login' });
-                });
-            } else {
+            this.$auth.logout().then(function (Vue) {
+                this_.$store.commit('setAuthUser', '');
                 this_.$router.push({ name: 'login' });
-            }
+            });
         }
     }
 });
