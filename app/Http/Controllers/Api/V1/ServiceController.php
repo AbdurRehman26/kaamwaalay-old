@@ -44,7 +44,7 @@ class ServiceController extends ApiResourceController
         $rules['is_display_service_nav']  = 'nullable|in:0,1';                       
         $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
         $rules['status']                  = 'nullable|in:0,1';        
-        $rules['user_id']                 =  'required|exists:users,id';
+        $rules['user_id']                 =  'nullable|exists:users,id';
         $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
         $rules['title']                   = [
             'nullable',

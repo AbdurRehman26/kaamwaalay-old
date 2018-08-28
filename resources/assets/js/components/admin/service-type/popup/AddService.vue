@@ -17,7 +17,7 @@
               <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
           </div>
           <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <!--<div class="col-xs-12 col-sm-6 col-md-12">
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Is Featured?</label>
                 <div class="form-check form-check-inline">
@@ -29,10 +29,10 @@
                   <label class="form-check-label" for="inlineRadio7">No</label>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="col-xs-12 col-sm-6 col-md-12">
               <div class="form-group radio-group-row">
-                <label class="label-with-200">Display Banner?</label>
+                <label class="label-with-200">Home Page Banner</label>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
                   <label class="form-check-label" for="inlineRadio4">Yes</label>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="form-group radio-group-row">
-                    <label class="label-with-200">Display Service Navigation</label>
+                    <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.is_display_service_nav">
                       <label class="form-check-label" for="inlineRadio1">Yes</label>
@@ -56,7 +56,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-12">
+          <!--<div class="col-xs-12 col-sm-6 col-md-12">
             <div class="form-group radio-group-row">
                 <label class="label-with-200">Display Footer Navigation</label>
                 <div class="form-check form-check-inline">
@@ -68,7 +68,7 @@
                   <label class="form-check-label" for="inlineRadio6">No</label>
               </div>
           </div>
-      </div>
+      </div>-->
 
 </div>
 

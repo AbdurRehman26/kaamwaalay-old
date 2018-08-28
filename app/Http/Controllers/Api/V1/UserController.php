@@ -18,10 +18,10 @@ class UserController extends ApiResourceController
     const   PER_PAGE = 25;
     protected $model;
     public function __construct(UserRepository $repository){
-       $this->_repository = $repository;
-   }
+     $this->_repository = $repository;
+ }
 
-   public function rules($value=''){
+ public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -128,11 +128,11 @@ public function changePassword(Request $request)
 
         $validator = Validator::make($data,$rules);
         if ($validator->fails()) {
-           $code = 406;
-           $output = [
-               'message' => $validator->messages()->all(),
-           ];
-       }else{
+         $code = 406;
+         $output = [
+             'message' => $validator->messages()->all(),
+         ];
+     }else{
             //generate a password for the new users
         $pw = User::generatePassword();
         $data['password'] = $pw;
@@ -167,26 +167,30 @@ public function socialLogin(Request $request)
     ];
     $user = $this->_repository->findByAttribute('social_account_id',$request->social_account_id);
     if(!$user){
-       $rules['email'] = 'required|string|email|max:255|unique:users';
-   }
-   $validator = Validator::make($data,$rules);
-   if ($validator->fails()) {
-       $code = 406;
-       $output = [
-           'message' => $validator->messages()->all(),
-       ];
-   }else{
+     $rules['email'] = 'required|string|email|max:255|unique:users';
+ }
+ $validator = Validator::make($data,$rules);
+ if ($validator->fails()) {
+     $code = 406;
+     $output = [
+         'message' => $validator->messages()->all(),
+     ];
+ }else{
     if($user){
-      $data['id'] = $user->id; 
-      $result = $this->_repository->update($data);
+      $userData['user_details'] = $data; 
+      $userData['id'] = $user->id; 
+      $result = $this->_repository->update($userData);
   }else{
       $data['status']  = 'active';   
       $result = $this->_repository->create($data);
   }
   if($result) {
+    $user = User::find($user->id);
+    $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+    $user->access_token = $token = $user->createToken('Token Name',$scopes)->accessToken;
     $code = 200;
     $output = [
-        'data' => $result,
+        'data' => $user,
         'message' => 'Success',
     ];
 }else{
@@ -237,12 +241,12 @@ public function changeStatus(Request $request)
     $validator = Validator::make($data,$rules);
     
     if ($validator->fails()) {
-       $code = 406;
-       $output = [
-           'message' => $validator->messages()->all(),
-       ];
+     $code = 406;
+     $output = [
+         'message' => $validator->messages()->all(),
+     ];
 
-   }else{
+ }else{
 
     $result = $this->_repository->updateField($data);
     if($result) {
@@ -278,11 +282,11 @@ public function changeAccessLevel(Request $request)
     ];
     $validator = Validator::make($data,$rules);
     if ($validator->fails()) {
-       $code = 406;
-       $output = [
-           'message' => $validator->messages()->all(),
-       ];
-   }else{
+     $code = 406;
+     $output = [
+         'message' => $validator->messages()->all(),
+     ];
+ }else{
     $result = $this->_repository->updateField($data);
     if($result) {
         $code = 200;
@@ -298,6 +302,25 @@ public function changeAccessLevel(Request $request)
     }
 }
 return response()->json($output, $code);
+}
+
+
+public function getAuthUser(Request $request)
+{
+    $user_id = $request->user()->id;
+
+    $data = $this->_repository->findById($user_id);
+
+    $output = [
+        'response' => [
+            'data' => $data,
+        ]
+    ];
+    $code = 200;
+        // HTTP_OK = 200;
+
+    return response()->json($output, $code);
+
 }
 
 }
