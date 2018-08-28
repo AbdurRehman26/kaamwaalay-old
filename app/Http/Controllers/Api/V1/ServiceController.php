@@ -52,7 +52,6 @@ class ServiceController extends ApiResourceController
                 $query->where('id','!=', $this->input()['id']);
             }),
         ]; 
-
     }
 
 

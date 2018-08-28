@@ -131,6 +131,12 @@ public $model;
                         ->where('users.zip_code',$data['zip_code'])
                         ->select(['services.id']);
                     }
+
+                    if(isset($data['filter_by_featured'])){
+                        
+                        $this->builder = $this->builder->where('is_featured','=',(int)$data['filter_by_featured']);
+
+                    }
                     if (!empty($data['keyword'])) {
 
             // $this->builder = $this->builder->where(function($query) use($data){
@@ -140,14 +146,30 @@ public $model;
             // });
                         $ids = $this->builder->where(function($query) use($data){
                             $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
-                //$query->orWhere('services.description', 'like', "%{$data['keyword']}%");
-
                         })->pluck('id')->toArray();
-                        $this->builder->whereIn('id', $ids)->whereIn('parent_id', $ids, 'or');
+                        if(!$ids && isset($data['filter_by_featured'])) {
+
+                            $ids = $this->model->where(function($query) use($data){
+                                $query->where('services.title', 'LIKE', "%{$data['keyword']}%");
+                            })->pluck('id')->toArray();
+
+                            $this->builder = $this->model->whereIn('services.parent_id', $ids)->where('is_featured','=',(int)$data['filter_by_featured'])->orderBy('created_at','desc');
+                        } else {
+                            $this->builder = $this->builder->whereIn('services.id', $ids)->whereIn('services.parent_id', $ids, 'or');
+
+                            if(isset($data['filter_by_featured'])){
+                                
+                                $this->builder = $this->builder->where('is_featured','=',(int)$data['filter_by_featured']);
+
+                            }
+                        }
+                        // $this->builder = $this->builder->where(function($query) use($ids){
+                        //     $query->whereIn('services.id', $ids);
+                        //     $query->whereIn('services.parent_id', $ids, 'or');
+                        // });
+                        
                     }
-                    if(isset($data['filter_by_featured'])){
-                        $this->builder = $this->builder->where('is_featured','=',$data['filter_by_featured']);
-                    }
+
                     $modelData['data'] = [];
                     $count = $this->builder->count();
                     $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
