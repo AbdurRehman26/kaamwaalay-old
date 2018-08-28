@@ -177,16 +177,20 @@ public function socialLogin(Request $request)
      ];
  }else{
     if($user){
-      $data['id'] = $user->id; 
-      $result = $this->_repository->update($data);
+      $userData['user_details'] = $data; 
+      $userData['id'] = $user->id; 
+      $result = $this->_repository->update($userData);
   }else{
       $data['status']  = 'active';   
       $result = $this->_repository->create($data);
   }
   if($result) {
+    $user = User::find($user->id);
+    $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+    $user->access_token = $token = $user->createToken('Token Name',$scopes)->accessToken;
     $code = 200;
     $output = [
-        'data' => $result,
+        'data' => $user,
         'message' => 'Success',
     ];
 }else{

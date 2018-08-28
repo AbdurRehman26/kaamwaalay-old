@@ -111,8 +111,37 @@ Vue.mixin({
 
 const app = new Vue({
     el: '#app',
-    router,
+    router: router,
     store,
+    methods:{
+        //if scroll exist add class else remove class
+        checkscroll(){
+          setTimeout(function(){
+              if(jQuery('body').height() > jQuery(window).height()){
+                    jQuery('body').addClass('handle-scroll');
+                }else{
+                    jQuery('body').removeClass('handle-scroll');
+                }
+          },1500);
+        },
+        //add differnt classes acording to browser
+        browserfunction() {
+            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+                jQuery('body').addClass('opera-browser')
+            } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+                jQuery('body').addClass('chrome-browser')
+            } else if (navigator.userAgent.indexOf("Safari") != -1) {
+                jQuery('body').addClass('safari-browser')
+            } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                jQuery('body').addClass('firefox-browser')
+            } else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
+            {
+                jQuery('body').addClass('IE-browser')
+            } else {
+                jQuery('body').addClass('New-browser')
+            }
+        }
+    },
     mounted () {
         this.$Progress.finish();
         this.checkscroll();
