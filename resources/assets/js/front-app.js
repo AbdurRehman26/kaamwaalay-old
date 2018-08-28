@@ -17,6 +17,7 @@ Vue.use( vbclass, router );
 
 // Require components tags
 require('./components-tags');
+require('./front-components-tags');
 
 Vue.mixin({
  data: function() {
