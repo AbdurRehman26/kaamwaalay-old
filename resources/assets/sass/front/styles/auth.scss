@@ -30,6 +30,10 @@ h2 {
     &.auth-title {
         margin-bottom: 35px;
         font-size: 36px;
+        @include mobile{
+            margin-bottom: 16px;
+            font-size: 20px;            
+        }
     }
 }
 .front-auth {

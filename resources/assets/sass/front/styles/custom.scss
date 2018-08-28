@@ -489,6 +489,11 @@ $section-padding-sm:20px 0px;
         font-family:$font_medium;
         text-align: center;
         left: 39%;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;            
+        }
     }
 }
 .business-form {
@@ -505,6 +510,11 @@ $section-padding-sm:20px 0px;
         font-family:$font_medium;
         text-align: center;
         left: 35%;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;            
+        }        
     }
 }
 .create-account-btn {
@@ -1387,7 +1397,13 @@ $section-padding-sm:20px 0px;
         left: 40%;
         font-family: $font_medium;
         text-align: center;
-
+        @include mobile{
+            width: 154px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }
     }
 }
 
@@ -1408,7 +1424,13 @@ $section-padding-sm:20px 0px;
         left: 40%;
         font-family: $font_medium;
         text-align: center;
-
+        @include mobile{
+            width: 154px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }
     }
     .video-url {
         p {
@@ -1437,7 +1459,13 @@ $section-padding-sm:20px 0px;
         left: 33%;
         font-family: $font_medium;
         text-align: center;
-
+        @include mobile{
+            width: 220px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }
     }
     p {
         font-size: 14px;
@@ -1463,6 +1491,13 @@ $section-padding-sm:20px 0px;
         left: 38%;
         font-family: $font_medium;
         text-align: center;
+        @include mobile{
+            width: 190px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }        
     }
 }
 .job-form-submission {
@@ -1492,6 +1527,13 @@ $section-padding-sm:20px 0px;
         left: 38%;
         font-family: $font_medium;
         text-align: center;
+        @include mobile{
+            width: 190px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }        
     }
     .verification-alert {
         p {
@@ -1824,6 +1866,24 @@ body{
         .job-status{
             display: inline-block;
         }
+        @include mobile{
+            .jobs-done{
+                margin-top: 0px !important;
+                padding-top: 0px !important;
+                margin-bottom: 0px !important;             
+                span{
+                    &:after{
+                        display: none;
+                    }
+                }
+                .job-status{
+                    span{
+                        margin-left: 0px;
+                        margin-top: 6px;
+                    }
+                }
+            }
+        }
     }
 
 .job-common-description{
@@ -1890,6 +1950,7 @@ body{
         .jobs-done{
             padding-left: 0px;
             margin-top: 11px;
+            width: 100%;
             margin-bottom: 11px;
             span{
                 display: block;
@@ -1912,9 +1973,9 @@ body{
         }
         span{
            i.icon-checked{
-                position: absolute;
+                position: relative;
                 top: 0;
-                right: -10px;            
+                right: 0px;
            }
         }
         .jobs-rating{
@@ -1923,6 +1984,21 @@ body{
                 height: 24px;
             }
         }
+        &.job-perform{
+            flex-direction: column;
+        }
+        .job-bid-btn{
+            text-align: left !important;
+            padding-left: 0;
+            margin-top: 15px;
+            a{
+                margin-bottom: 9px;
+                height: 31px;
+                font-size: 13px;
+                padding: 8px 14px;
+                line-height: 13px;
+            }
+        }        
     }
 }
 .go-back{
@@ -2103,6 +2179,17 @@ body{
         .chat-feedback-image{
             width: 35px;
             height: 35px;
+        }
+        .feeback-detail{
+            .ratings{
+                position: relative;
+                right: 0;
+                top: 0px;
+                .vue-star-rating span.vue-star-rating-star svg{
+                    width: 13px;
+                    height: 24px;                    
+                }                
+            }
         }   
     }
 }
@@ -3053,6 +3140,7 @@ body{
     @include mobile{
         top: 33%;
         font-size: 22px;
+        right: 20px;
     }
 }
 
@@ -3132,5 +3220,17 @@ body{
     }
     .chat-feedback .text-notifer p{
         font-family:$font_medium;
+    }
+}
+
+
+@include mobile{
+    .sign-up-info{
+        .custom-radio.boxed {
+            margin-bottom: 13px !important;
+            label{
+                margin-bottom: 0px !important;
+            }            
+        }
     }
 }

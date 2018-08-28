@@ -6,7 +6,7 @@
                 <p>Write review and provide your feedback on <strong>Leaking water pipe job</strong>  performed by <strong>A-General Plumbing &amp; Sewer Service.</strong></p>
                 
                 <b-row class="justify-content-md-center">
-                    <b-col cols="2" md="12">
+                    <b-col md="12" sm="12">
                         <div class="form-group">
                             <label>Overall Service Rating</label>
                             <star-rating :increment="0.5" :star-size="20" :rating="3" active-color="#8200ff"></star-rating>    

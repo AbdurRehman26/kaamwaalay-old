@@ -102,6 +102,9 @@
     }
     &.btn-lg {
         padding: 10px 63px !important;
+        @include mobile{
+            padding: 10px 25px !important;
+        }
     }
     &.btn-md {
         padding: 10px 34px !important;

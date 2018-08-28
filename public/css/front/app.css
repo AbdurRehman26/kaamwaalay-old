@@ -11100,6 +11100,12 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  .container {
+    padding: 0px 15px;
+  }
+}
+
 .modal-open {
   overflow: auto;
   padding-right: 0px !important;
@@ -12023,6 +12029,13 @@ h2.auth-title {
   font-size: 36px;
 }
 
+@media (max-width: 767px) {
+  h2.auth-title {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+}
+
 .front-auth .already-signup {
   margin-top: 40px;
 }
@@ -12187,6 +12200,13 @@ body .form-control {
 body .form-control.lg {
   height: 48px;
   font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  body .form-control.lg {
+    height: 37px;
+    font-size: 15px;
+  }
 }
 
 body .form-control:focus {
@@ -12979,6 +12999,13 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 10px 63px !important;
 }
 
+@media (max-width: 767px) {
+  .btn.btn-lg,
+  .btn-group-lg > .btn {
+    padding: 10px 25px !important;
+  }
+}
+
 .btn.btn-md {
   padding: 10px 34px !important;
 }
@@ -13512,6 +13539,7 @@ input[type=number]::-webkit-outer-spin-button {
   .navigation.main-navigation ul li .post-job-btn {
     top: 0;
     /* margin-bottom: 18px; */
+    line-height: 24px;
     margin-bottom: 10px;
   }
 
@@ -13523,10 +13551,12 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 767px) {
   .navigation ul li {
     padding: 0px 0px !important;
+    margin-bottom: 9px !important;
   }
 
   .navigation ul li a {
-    padding: 8px 0px;
+    /* padding: 8px 0px; */
+    padding: 6px 0px 6px 0px !important;
     font-size: 14px;
   }
 
@@ -13542,6 +13572,10 @@ input[type=number]::-webkit-outer-spin-button {
   .navigation ul li a.router-link-active:hover,
   .navigation ul li a.router-link-active:focus {
     color: #fff !important;
+  }
+
+  .navigation ul li a.router-link-active.no-active {
+    background-color: transparent !important;
   }
 }
 
@@ -14515,6 +14549,14 @@ input[type=number]::-webkit-outer-spin-button {
   left: 39%;
 }
 
+@media (max-width: 767px) {
+  .service-provider-form:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
 .business-form {
   position: relative;
   margin-bottom: 40px;
@@ -14531,6 +14573,14 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "AkzidenzGroteskBE-Md";
   text-align: center;
   left: 35%;
+}
+
+@media (max-width: 767px) {
+  .business-form:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 .create-account-btn {
@@ -15455,6 +15505,16 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+@media (max-width: 767px) {
+  .attach-job-files:after {
+    width: 154px;
+    right: 0;
+    top: -11px;
+    left: 0;
+    margin: auto;
+  }
+}
+
 .attach-video-files {
   position: relative;
   padding-top: 40px;
@@ -15474,6 +15534,16 @@ input[type=number]::-webkit-outer-spin-button {
   left: 40%;
   font-family: "AkzidenzGroteskBE-Md";
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .attach-video-files:after {
+    width: 154px;
+    right: 0;
+    top: -11px;
+    left: 0;
+    margin: auto;
+  }
 }
 
 .attach-video-files .video-url p {
@@ -15504,6 +15574,16 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+@media (max-width: 767px) {
+  .service-need:after {
+    width: 220px;
+    right: 0;
+    top: -11px;
+    left: 0;
+    margin: auto;
+  }
+}
+
 .service-need p {
   font-size: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
@@ -15530,6 +15610,16 @@ input[type=number]::-webkit-outer-spin-button {
   left: 38%;
   font-family: "AkzidenzGroteskBE-Md";
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .service-location:after {
+    width: 190px;
+    right: 0;
+    top: -11px;
+    left: 0;
+    margin: auto;
+  }
 }
 
 .job-form-submission button {
@@ -15561,6 +15651,16 @@ input[type=number]::-webkit-outer-spin-button {
   left: 38%;
   font-family: "AkzidenzGroteskBE-Md";
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .verify-account:after {
+    width: 190px;
+    right: 0;
+    top: -11px;
+    left: 0;
+    margin: auto;
+  }
 }
 
 .verify-account .verification-alert p {
@@ -15948,6 +16048,23 @@ body .chat-feedback-message.white-msg:before {
   display: inline-block;
 }
 
+@media (max-width: 767px) {
+  .job-notification .jobs-done {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .job-notification .jobs-done span:after {
+    display: none;
+  }
+
+  .job-notification .jobs-done .job-status span {
+    margin-left: 0px;
+    margin-top: 6px;
+  }
+}
+
 .job-common-description {
   position: relative;
   padding-right: 250px;
@@ -16027,6 +16144,7 @@ body .chat-feedback-message.white-msg:before {
   .job-common-description .jobs-done {
     padding-left: 0px;
     margin-top: 11px;
+    width: 100%;
     margin-bottom: 11px;
   }
 
@@ -16054,14 +16172,35 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .job-common-description span i.icon-checked {
-    position: absolute;
+    position: relative;
     top: 0;
-    right: -10px;
+    right: 0px;
   }
 
   .job-common-description .jobs-rating .vue-star-rating span.vue-star-rating-star svg {
     width: 13px;
     height: 24px;
+  }
+
+  .job-common-description.job-perform {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .job-common-description .job-bid-btn {
+    text-align: left !important;
+    padding-left: 0;
+    margin-top: 15px;
+  }
+
+  .job-common-description .job-bid-btn a {
+    margin-bottom: 9px;
+    height: 31px;
+    font-size: 13px;
+    padding: 8px 14px;
+    line-height: 13px;
   }
 }
 
@@ -16295,6 +16434,17 @@ body .chat-feedback-message.white-msg:before {
   .chat-feedback .chat-feedback-image {
     width: 35px;
     height: 35px;
+  }
+
+  .chat-feedback .feeback-detail .ratings {
+    position: relative;
+    right: 0;
+    top: 0px;
+  }
+
+  .chat-feedback .feeback-detail .ratings .vue-star-rating span.vue-star-rating-star svg {
+    width: 13px;
+    height: 24px;
   }
 }
 
@@ -17309,6 +17459,7 @@ body .chat-feedback-message.white-msg:before {
   .menuiconbutton {
     top: 33%;
     font-size: 22px;
+    right: 20px;
   }
 }
 
@@ -17370,6 +17521,16 @@ body .chat-feedback-message.white-msg:before {
 
 .mac-browser .chat-feedback .text-notifer p {
   font-family: "AkzidenzGroteskBE-Md";
+}
+
+@media (max-width: 767px) {
+  .sign-up-info .custom-radio.boxed {
+    margin-bottom: 13px !important;
+  }
+
+  .sign-up-info .custom-radio.boxed label {
+    margin-bottom: 0px !important;
+  }
 }
 
 .modal-sm {
@@ -17467,6 +17628,13 @@ body .chat-feedback-message.white-msg:before {
 
 .modal-content {
   border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 90%;
+    margin: auto;
+  }
 }
 
 .data-approval footer .btn-link {

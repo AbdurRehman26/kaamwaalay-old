@@ -74472,7 +74472,7 @@ var render = function() {
                 "b-row",
                 { staticClass: "justify-content-md-center" },
                 [
-                  _c("b-col", { attrs: { cols: "2", md: "12" } }, [
+                  _c("b-col", { attrs: { md: "12", sm: "12" } }, [
                     _c(
                       "div",
                       { staticClass: "form-group" },

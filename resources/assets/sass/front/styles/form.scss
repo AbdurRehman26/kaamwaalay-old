@@ -38,6 +38,10 @@ body{
         &.lg{
             height:$input-height-lg;
             font-size:$input-font-size-lg;
+            @include mobile{
+                height: 37px;
+                font-size: 15px;                
+            }
         }
         &:focus{
             box-shadow:none;
