@@ -15,6 +15,9 @@
                         <div class="form-group">
                            <label class="file-upload-label">Browse Photo</label>
                            <input class="form-control file-upload-input" type="file">
+
+<!--                             <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image" v-validate="'required'" :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']" ></b-form-file>
+ -->
                        </div>
                    </div>
                </div>
