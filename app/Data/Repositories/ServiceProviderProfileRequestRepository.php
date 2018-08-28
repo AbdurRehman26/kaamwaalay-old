@@ -58,12 +58,12 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
-        $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-        $data->formatted_updated_at = Carbon::parse($data->updated_at)->format('F j, Y');
-        
 
         if($data && $details){
+            $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            $data->formatted_updated_at = Carbon::parse($data->updated_at)->format('F j, Y');
+
 
             if(!empty($details['user_details'])){
                 $data->user = app('UserRepository')->findById($data->user_id,false);
@@ -74,7 +74,7 @@ public $model;
             }
 
             if(!empty($data->approved_by)){
-                
+
                 $data->approved_by_user = app('UserRepository')->findById($data->approved_by,false);
 
             }
@@ -131,7 +131,7 @@ public $model;
         }
 
         if(!empty($data['filter_by_service'])){
-            
+
             $ids = app('ServiceRepository')->model->where('id' , $data['filter_by_service'])
             ->orWhere('parent_id', $data['filter_by_service'])
             ->pluck('id')->toArray();
@@ -140,9 +140,11 @@ public $model;
 
             $this->builder = $this->builder->leftJoin('service_provider_services', function ($join)  use($data){
                 $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
-            })->whereIn('service_provider_services.service_id', $ids)
-            ->select('service_provider_profile_requests.*');
+            })->whereIn('service_provider_services.service_id', $ids);
         }
+
+        $this->builder = $this->builder->select('service_provider_profile_requests.*');
+
 
         $data['details'] = ['details' => ['show' => true]];
         return parent::findByAll($pagination, $perPage, $data);
@@ -158,7 +160,7 @@ public $model;
             unset($data['user_id']);
             if ($data['status'] == 'approved') {
                 $data['approved_at'] = Carbon::now();
-                                
+
             }
 
             $data =  parent::update($data);
