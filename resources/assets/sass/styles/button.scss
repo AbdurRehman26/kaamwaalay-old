@@ -52,6 +52,17 @@
             text-decoration: underline;
         }
     }
+    &.btn-danger{
+        background:#d9534f;
+        border-color: #d9534f;
+        color: #fff;
+
+        &:focus,&:visited,&:active{
+            background:#d9534f !important;
+            border-color:#d9534f !important;
+            box-shadow:none !important;
+        }
+    }
 }
 
 .sort_btn {

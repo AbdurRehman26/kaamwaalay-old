@@ -105,8 +105,7 @@ public $model;
                 $join->on('users.id', '=', 'service_provider_profiles.user_id');
             })->where(function($query)use($data){
                 $query->where(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , "%{$data['keyword']}%");
-            })->select('service_provider_profiles.*')
-            ->groupBy('service_provider_profiles.user_id');
+            })->groupBy('service_provider_profiles.user_id');
         }
 
         if(!empty($data['filter_by_business_type'])){
@@ -129,6 +128,8 @@ public $model;
             ->groupBy('service_provider_profiles.user_id');
         }
 
+        $this->builder = $this->builder->select('service_provider_profiles.*');
+        
         return parent::findByAll($pagination, $perPage, $data);
 
     }
@@ -158,4 +159,5 @@ public $model;
             }
             return $model;
         }
+
     }

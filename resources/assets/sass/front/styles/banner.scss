@@ -3,6 +3,7 @@
     height:auto;
     position:relative;
     background-size: cover;
+    background-color:$grey-lite;
     .main-img{
         width:100%;
         img{
@@ -53,7 +54,9 @@
             h1{
                 margin-bottom:26px;
             }
-
+            @include tabletF{
+                max-width: 660px;
+            }
         }
         .splash-design{
             &.d-6{

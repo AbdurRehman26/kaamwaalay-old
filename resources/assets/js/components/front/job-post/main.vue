@@ -14,7 +14,11 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Select Service</label>
-								<input type="text" class="form-control" value="Carpanter - General Carpentry" placeholder="Carpanter - General Carpentry">
+								<!-- <input type="text" class="form-control" placeholder="Select Service Type"> -->
+								<select class="form-control">
+									<option disabled="">Select Service Type</option>
+									<option selected="">Carpenter - General Carpentry</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -46,6 +50,20 @@
 					</div>
 				</div>
 
+				<div class="attach-video-files">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group custom-file">
+								<label>Youtube video ID</label>
+								<input class="form-control" placeholder="e.g. BCFuE1tlqwU">
+							</div>
+						</div>
+						<div class="col-md-6 video-url">
+							<p>Video id available at the end of youtube video url. https://www.youtube.com/watch?v={VIDEO-ID}</p>
+						</div>
+					</div>
+				</div>
+
 				<div class="service-need">
 					<div class="row ">
 						<div class="col-md-12">
@@ -53,7 +71,7 @@
 						</div>
 						<div class="boxed">
 							<div class="col-md-6">
-								<input type="radio" id="normal" name="need" value="Normal job">
+								<input type="radio" id="normal" name="need" value="Normal job" checked="">
 	  							<label for="normal">No, Normal job</label>
 							</div>
 							<div class="col-md-6">
@@ -90,7 +108,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Address</label>
-								<input type="text" class="form-control" value="4695 Chabot Dr. Suite 200," placeholder="4695 Chabot Dr. Suite 200,">
+								<input type="text" class="form-control" placeholder="Enter your address">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -104,13 +122,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" class="form-control" value="Pleasanton" placeholder="Pleasanton">
+								<input type="text" class="form-control" placeholder="Enter your city">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>State</label>
-								<input type="text" class="form-control" placeholder="CA">
+								<input type="text" class="form-control" placeholder="Enter your state">
 							</div>
 						</div>
 					</div>
@@ -118,7 +136,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Zip Code</label>
-								<input type="text" class="form-control" value="94588">
+								<input type="text" class="form-control" placeholder="Enter your zip code">
 							</div>
 						</div>
 					</div>
@@ -140,6 +158,7 @@
 									<select class="form-control">
 										<option selected="" disabled="">Select credit card type</option>
 										<option>VISA</option>
+										<option>Master</option>
 									</select>
 							</div>
 						</div>
@@ -162,12 +181,40 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group custom-datepicker">
-										<date-picker v-model="value_month" type="month" placeholder="Select Month" format="MM" lang="en"></date-picker>
+										<select class="form-control">
+											<option selected="" disabled="">Select Month</option>
+											<option>January</option>
+											<option>Feburay</option>
+											<option>March</option>
+											<option>April</option>
+											<option>May</option>
+											<option>June</option>
+											<option>July</option>
+											<option>August</option>
+											<option>September</option>
+											<option>October</option>
+											<option>November</option>
+											<option>December</option>
+										</select>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group custom-datepicker">
-										<date-picker v-model="value_year" type="year" placeholder="Select Year" format="YYYY" lang="en"></date-picker>
+										<select class="form-control">
+											<option selected="" disabled="">Select Year</option>
+											<option>2010</option>
+											<option>2011</option>
+											<option>2012</option>
+											<option>2013</option>
+											<option>2014</option>
+											<option>2015</option>
+											<option>2016</option>
+											<option>2017</option>
+											<option>2018</option>
+											<option>2019</option>
+											<option>2020</option>
+											<option>2021</option>
+										</select>
 									</div>
 								</div>
 							</div>

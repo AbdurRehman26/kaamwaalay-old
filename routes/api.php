@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group([
-    'prefix' => 'auth'
+    'prefix' => 'auth','scopes'
 ], function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('login/admin', 'Auth\LoginController@adminLogin');
@@ -29,14 +29,13 @@ Route::group([
     
     
 });
+Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
+Route::group(['middleware' => ['auth:api','scopes']], function () {
 
-Route::group(['middleware' => ['auth:api']], function () {
-
-    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
-    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign'); 
-
-    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel');
-    Route::put('user/change-status', 'Api\V1\UserController@changeStatus');
+    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
+    Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
+    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
     ]);
@@ -51,10 +50,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::resource('job-message', 'Api\V1\JobMessageController')->except([
         'edit','create','destory'
-    ]);
-
-    Route::resource('service', 'Api\V1\ServiceController')->except([
-        'edit','create'
     ]);
 
     Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
@@ -91,11 +86,18 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
         'index',
     ]);
-
     //Payment Listing
     Route::get('payment', 'Api\V1\PaymentController@index');
-
+//Dashboard Report
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
+//Uploading File
+    Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
+    Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 });
+
+Route::resource('service', 'Api\V1\ServiceController')->except([
+    'edit','create'
+]);
 
 Route::resource('city', 'Api\V1\CityController')->only([
     'index', 'show',
@@ -109,6 +111,3 @@ Route::resource('state', 'Api\V1\StateController')->only([
     'index', 'show',
 ]);
 
-//Uploading File
-Route::post('file/upload', 'Api\V1\FileController@upload');
-Route::post('file/remove', 'Api\V1\FileController@remove');

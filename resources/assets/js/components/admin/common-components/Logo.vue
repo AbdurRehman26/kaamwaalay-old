@@ -13,3 +13,11 @@ export default {
     }
 }
 </script>
+
+<style scoped type="text/css">
+.logo{
+    text-decoration: none;
+    pointer-events: none;
+}
+
+</style>

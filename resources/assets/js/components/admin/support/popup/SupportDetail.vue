@@ -108,6 +108,7 @@
 
                     self.loading = false;
                     self.hideModal();
+                    self.$emit('refreshList');
                     // setTimeout(function () {
                     //     self.successMessage = '';
                     //     self.hideModal();            
