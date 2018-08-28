@@ -2,6 +2,8 @@
     export default{
         data(){
             return{
+                successMessage : '',
+                errorMessage : '',
                 records : [],
                 url : 'api/dashboard_reports',
                 showNoRecordFound : false,

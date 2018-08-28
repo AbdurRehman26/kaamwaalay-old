@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
 
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
-    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('auth.user');
+    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
     ]);
@@ -93,10 +93,10 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
     //Payment Listing
     Route::get('payment', 'Api\V1\PaymentController@index');
 //Dashboard Report
-Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
 //Uploading File
-Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
-Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
+    Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
+    Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 });
 
 Route::resource('city', 'Api\V1\CityController')->only([

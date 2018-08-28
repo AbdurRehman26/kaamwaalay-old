@@ -7,82 +7,81 @@
 
         <div class="profile-form-section">
 
-           <div class="form-signup">
+         <div class="form-signup">
             <form>
-             <div class="personal-detail">
-              <div class="row">
-               <div class="browse-btn">
-                <div class="form-group">
-                 <label class="file-upload-label">Browse Photo</label>
-                 <input class="form-control file-upload-input" type="file">
-             </div>
-         </div>
-     </div>
+               <div class="personal-detail">
+                  <div class="row">
+                     <div class="browse-btn">
+                        <div class="form-group">
+                           <label class="file-upload-label">Browse Photo</label>
+                           <input class="form-control file-upload-input" type="file">
+                       </div>
+                   </div>
+               </div>
 
-     <!-- Alert Tag -->
-     <alert></alert>
-     <!-- Alert Tag -->
+               <!-- Alert Tag -->
+               <alert :successMessage="successMessage" :errorMessage="errorMessage"></alert>
+               <!-- Alert Tag -->
 
-     <div class="row">
-      <div class="col-md-6">
-       <div class="form-group">
-        <label for="">First Name</label>
-        <input type="text" class="form-control" value="Arsalan" placeholder="Enter your first name">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="">First Name</label>
+                        <input type="text" class="form-control" name="first_name" v-model="record.first_name" value="Arsalan" placeholder="Enter your first name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                 <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" v-model="record.last_name" value="Akhtar" placeholder="Enter your last name">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+             <div class="form-group">
+                <label for="">Email Address</label>
+                <input type="text" class="form-control" name="email" v-model="record.email" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
+            </div>
+        </div>
+        <div class="col-md-6">
+         <div class="form-group">
+            <label for="">Contact Number</label>
+            <input type="password" class="form-control" name="phone_number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
+        </div>
     </div>
-</div>
-<div class="col-md-6">
-   <div class="form-group">
-    <label for="">Last Name</label>
-    <input type="text" class="form-control" value="Akhtar" placeholder="Enter your last name">
-</div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-   <div class="form-group">
-    <label for="">Email Address</label>
-    <input type="text" class="form-control" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
-</div>
-</div>
-<div class="col-md-6">
-   <div class="form-group">
-    <label for="">Contact Number</label>
-    <input type="password" class="form-control" placeholder="Enter your mobile or landline number">
-</div>
-</div>
 </div>
 </div>
 <div class="home-detail">
- <div class="row">
-  <div class="col-md-6">
-   <div class="form-group">
-    <label for="">Address</label>
-    <input type="text" class="form-control" placeholder="Enter your street address">
-</div>
-</div>
-<div class="col-md-6">
-   <div class="form-group">
-    <label for="">Apartment, suite, unit</label>
-    <input type="text" class="form-control" placeholder="Enter your last name">
-</div>
+   <div class="row">
+      <div class="col-md-6">
+         <div class="form-group">
+            <label for="">Address</label>
+            <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
+        </div>
+    </div>
+    <div class="col-md-6">
+     <div class="form-group">
+        <label for="">Apartment, suite, unit</label>
+        <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your last name">
+    </div>
 </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
-   <div class="form-group">
-    <label for="">City</label>
-    <input type="password" class="form-control" placeholder="Enter your city name">
-</div>
+     <div class="form-group">
+        <label for="">City</label>
+        <input type="password" class="form-control" name="city" v-model="record.city" placeholder="Enter your city name">
+    </div>
 </div>
 <div class="col-md-6">
-   <div class="form-group">
+ <div class="form-group">
     <label for="">State</label>
-    <select class="form-control">
-      <option selected="" disabled="">Select State</option>
-      <option>New York</option>
-      <option>California</option>
+    <select class="form-control" name="state" v-model="record.state">
+      <option value="">Select State</option>
+      <option v-for="state in states" :value="state.id">{{state.name}}</option>
   </select>
 </div>
 </div>
@@ -91,18 +90,18 @@
 <div class="row">
 
   <div class="col-md-6">
-   <div class="form-group">
-    <label for="">Zip Code</label>
-    <input type="password" class="form-control" placeholder="Enter your zip code">
-</div>
+     <div class="form-group">
+        <label for="">Zip Code</label>
+        <input type="password" class="form-control" name="zip_code" v-model="record.zip_code" placeholder="Enter your zip code">
+    </div>
 </div>
 </div>
 </div>
 
 <div class="create-account-btn">
   <button class="btn btn-primary">Update Profile
-   <loader></loader>
-</button>
+     <loader></loader>
+ </button>
 </div>
 
 <div class="form-detail">
@@ -112,7 +111,8 @@
 </div>
 
 </div>
-<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+<vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
+<vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -120,10 +120,14 @@
     export default{
         data(){
             return{
-                records : [],
+                successMessage : '',
+                errorMessage : '',
+                record : [],
                 url : 'api/user/me',
                 showNoRecordFound : false,
                 search : '',
+                stateUrl : 'api/state',
+                states : []
             }
         },
         mounted(){
@@ -135,6 +139,16 @@
             },
         },
         methods: {
+            getResponse(response){
+                let self = this;
+                self.loading = false;
+                self.record = response.data;
+            },
+            getStateResponse(response){
+                let self = this;
+                self.loading = false;
+                self.states = response.data;
+            },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
@@ -181,45 +195,6 @@
                 });
 
             },
-            getList(data , page){
-                let self = this;
-                self.noRecordFound = false;
-                let url = self.url;
-
-                if(typeof(page) == 'undefined' || !page){                        
-                    self.records = [];
-                }
-
-                if((typeof(data) !== 'undefined' && data)){
-
-                    var query  = '?pagination=true&keyword='+this.search.name+'&workspace_id='+this.search.workspace_id+'&status='+this.search.status;
-                    url = 'user/search'+query;
-
-                }else{
-
-                    var query  = '?pagination=true';
-                    url = url+query;
-                }
-
-                if(typeof(page) !== 'undefined' && page){
-                    url += '&page='+page;   
-                }
-
-                self.$http.get(url).then(response=>{
-                    response = response.data.response;
-
-                    self.records = response.data;
-                    self.pagination = response.pagination;
-
-                    if (!self.records.length) {
-                        self.showNoRecordFound = true;
-                    }
-
-
-                }).catch(error=>{
-                    console.log(error , 'error in response');
-                });
-            },
-        },            
+        }        
     }
 </script>
