@@ -67,3 +67,6 @@ Vue.component('service-provider', require('./components/front/advice-center/Serv
 Vue.component('facebook-component',require('./components/front/common-components/facebookComponent.vue'));
 
 
+
+Vue.component('vue-pagination',require('./components/admin/common-components/Pagination.vue'));
+Vue.component('vue-common-methods',require('./components/admin/common-components/CommonMethods.vue'));
