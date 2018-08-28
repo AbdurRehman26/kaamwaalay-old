@@ -9638,6 +9638,236 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile/main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            records: [],
+            url: 'api/user/me',
+            showNoRecordFound: false,
+            search: ''
+        };
+    },
+    mounted: function mounted() {
+        this.getList();
+    },
+
+    computed: {
+        requestUrl: function requestUrl() {
+            return this.url;
+        }
+    },
+    methods: {
+        validateBeforeSubmit: function validateBeforeSubmit() {
+            var _this = this;
+
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this.onSubmit();
+                    _this.$emit('error-message', '');
+                    return;
+                }
+                _this.$emit('error-message', _this.errorBag.all()[0]);
+            });
+        },
+        onSubmit: function onSubmit() {
+            var _this2 = this;
+
+            var self = this;
+            var data = self.loginForm;
+            self.loading = true;
+            var url = self.url;
+            self.$http.post(url, data).then(function (response) {
+                response = response.body;
+                self.$auth.setToken(response.access_token, response.expires_in + Date.now());
+
+                self.$emit('success-message', "You are successfully logged in. Please wait");
+                setTimeout(function () {
+                    self.$emit('success-message', "");
+                    self.$store.commit('setIsAuthenticated', true);
+                    self.loading = false;
+                    self.$router.push('/dashboard');
+                }, 2000);
+            }).catch(function (error) {
+                var message = error.body.message;
+                var error = error.body.error;
+
+                if (error == 'invalid_credentials') {
+                    message = 'Invalid email address or password';
+                }
+
+                setTimeout(function () {
+                    self.$emit('error-message', "");
+                }, 2000);
+
+                _this2.$emit('error-message', message);
+                _this2.loading = false;
+            });
+        },
+        getList: function getList(data, page) {
+            var self = this;
+            self.noRecordFound = false;
+            var url = self.url;
+
+            if (typeof page == 'undefined' || !page) {
+                self.records = [];
+            }
+
+            if (typeof data !== 'undefined' && data) {
+
+                var query = '?pagination=true&keyword=' + this.search.name + '&workspace_id=' + this.search.workspace_id + '&status=' + this.search.status;
+                url = 'user/search' + query;
+            } else {
+
+                var query = '?pagination=true';
+                url = url + query;
+            }
+
+            if (typeof page !== 'undefined' && page) {
+                url += '&page=' + page;
+            }
+
+            self.$http.get(url).then(function (response) {
+                response = response.data.response;
+
+                self.records = response.data;
+                self.pagination = response.pagination;
+
+                if (!self.records.length) {
+                    self.showNoRecordFound = true;
+                }
+            }).catch(function (error) {
+                console.log(error, 'error in response');
+            });
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/sign-up/main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73583,7 +73813,7 @@ var render = function() {
               _c(
                 "button",
                 { staticClass: "btn btn-primary" },
-                [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
+                [_vm._v("Update Profile\n   "), _c("loader")],
                 1
               )
             ]),
@@ -73591,8 +73821,14 @@ var render = function() {
             _vm._m(5)
           ])
         ])
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c("vue-common-methods", {
+        attrs: { url: _vm.requestUrl },
+        on: { "get-records": _vm.getRecords }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -96861,7 +97097,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/profile/main.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7e400a14\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/profile/main.vue")
 /* template functional */

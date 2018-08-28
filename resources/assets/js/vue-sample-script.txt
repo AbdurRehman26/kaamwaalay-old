@@ -2,17 +2,17 @@
     export default{
         data(){
             return{
-            records : [],
-            url : 'api/dashboard_reports',
-            showNoRecordFound : false,
-            search : '',
-          }
+                records : [],
+                url : 'api/dashboard_reports',
+                showNoRecordFound : false,
+                search : '',
+            }
         },
         mounted(){
             this.getList();
         },
         methods: {
-        validateBeforeSubmit() {
+            validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.onSubmit();
@@ -97,7 +97,6 @@
                     console.log(error , 'error in response');
                 });
             },
-                },            
-        }
+        },            
     }
 </script>

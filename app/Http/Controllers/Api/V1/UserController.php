@@ -300,4 +300,10 @@ public function changeAccessLevel(Request $request)
 return response()->json($output, $code);
 }
 
+
+public function getAuthUser(Request $request)
+{
+    dd($request);
+}
+
 }
