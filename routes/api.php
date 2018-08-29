@@ -56,10 +56,6 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
         'edit','create','destory'
     ]);
 
-    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-        'edit','create','destory','store','update'
-    ]);
-
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
         'edit','create','destory','store'
     ]);
@@ -95,6 +91,10 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
     Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 });
 
+Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+    'edit','create','destory','store','update'
+]);
+    
 Route::resource('service', 'Api\V1\ServiceController')->except([
     'edit','create'
 ]);

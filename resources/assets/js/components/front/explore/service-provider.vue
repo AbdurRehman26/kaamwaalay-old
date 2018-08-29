@@ -4,10 +4,10 @@
 			<div class="container element-index text-center md">
 				<div class="content-sec">
 					<div class="category-image" v-bind:style="{'background-image': 'url('+ categoryimage +')',}"></div>
-
 					<div class="category-content">
-						<h2>General carpentry {{service}}</h2>
-						<p>Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile.</p>
+						<h1>{{zip}}</h1>
+						<h2>{{service.title}}</h2>
+						<p>{{service.description}}</p>
 						<p><strong>Are you looking to find a carpenter for hire?</strong> Then, we can help. When you post a job you will receive custom bids from local carpenters!</p>
 					</div>
 				</div>
@@ -22,9 +22,9 @@
 			<div class="container md">
 				<div class="row">
 					<div class="col-md-10 p-r-0">
-			            <div class="search-filter m-b-0">
-			                <input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
-			                <div class="container-zip-code">
+						<div class="search-filter m-b-0">
+							<input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
+							<div class="container-zip-code">
 								<i class="icon-location"></i>
 								<input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
 							</div>
@@ -89,8 +89,8 @@
 									<div class="feeback-detail">
 										<p class="feedback-personal-info">
 											<a href="javascript:void(0);">{{listing.latest_reviewer_name}}</a>
-											 posted on 
-											 <strong>{{listing.latest_review_post_date}}</strong>
+											posted on 
+											<strong>{{listing.latest_review_post_date}}</strong>
 										</p>
 										<i class="icon-quotes-right3"></i>
 									</div>
@@ -105,215 +105,237 @@
 			</div>			
 		</div>
 
-        <div class="featured-categories section-padd sm  elementary-banner p-t-130">
-        	<div class="container element-index">
+		<div class="featured-categories section-padd sm  elementary-banner p-t-130">
+			<div class="container element-index">
 
-	        	<div class="category-section" v-for="maincategory in category">
-	        		<div class="category-title">
-	        			<h2>{{ maincategory.title }}</h2>	        			
-	        		</div>	        		
-	        		<div class="category-items">
+				<div class="category-section" v-for="maincategory in category">
+					<div class="category-title">
+						<h2>{{ maincategory.title }}</h2>	        			
+					</div>	        		
+					<div class="category-items">
 
-	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
-	        				<a href="javascript:void(0);">
-		        			<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
-		        				<h4>{{categoryabc.itemtitle}}</h4>
-		        			</a>
-		        		</div>
-		        		<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
-	        				
-	        		</div>  	        	      		
-	        	</div>
+						<div class="items" v-for="categoryabc in maincategory.categoryitems">
+							<a href="javascript:void(0);">
+								<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
+								<h4>{{categoryabc.itemtitle}}</h4>
+							</a>
+						</div>
+						<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+
+					</div>  	        	      		
+				</div>
 
 
-        	</div>
+			</div>
 			<div class="elements">
 				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
-        </div>
+		</div>
 
+	<div class="clearfix"></div>
+		<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getProviderRecords"></vue-common-methods>
+	</div>
 	</div>
 </template>
 
 
 <script>
-import StarRating from 'vue-star-rating';
+	import StarRating from 'vue-star-rating';
 
-export default {
-	props: ['serviceId'],
-  data () {
-    return {
-    	service: '',
-    	categoryimage: '/images/front/explore/carpenter1.jpg',
+	export default {
+		props: ['serviceId', 'zip'],
+		data () {
+			return {
+            	loading : true,
+				noRecordFound : false,
+				records : [],
+				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true',
+				service: '',
+				categoryimage: '/images/front/explore/carpenter1.jpg',
 
-    	jobimage: '/images/front/profile-images/logoimage1.png',
-    	reviewerimage: '/images/front/profile-images/personimage1.png',
+				jobimage: '/images/front/profile-images/logoimage1.png',
+				reviewerimage: '/images/front/profile-images/personimage1.png',
 
-    	joblisting:[
+				joblisting:[
 
-	    	{
-	    		job_title_image: '/images/front/profile-images/logoimage1.png',
-	    		job_title: 'CHS US Carpenter and Roofing',
-	    		job_feedback: 261,
-	    		job_perform: 270,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage1.png',
-	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-	    		latest_reviewer_name: 'Shirley Webb',
-	    		latest_review_post_date: 'August, 2018',
-
-	    	},
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/logoimage2.png',
-	    		job_title: 'M.D.S Joinery & Glazing',
-	    		job_feedback: 180,
-	    		job_perform: 208,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Feb, 2018',
-	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage2.png',
-	    		latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
-	    		latest_reviewer_name: 'Keith McCoy',
-	    		latest_review_post_date: 'August, 2018',
-
-	    	},
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/personimage6.png',
-	    		job_title: 'Christopher Ward Joinery Services',
-	    		job_feedback: 164,
-	    		job_perform: 174,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage7.png',
-	    		latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
-	    		latest_reviewer_name: 'Ashley Bel',
-	    		latest_review_post_date: 'September, 2018',
-
-	    	},	
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/personimage3.png',
-	    		job_title: 'C&N Home Solutions',
-	    		job_feedback: 124,
-	    		job_perform: 148,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage4.png',
-	    		latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-	    		latest_reviewer_name: 'Lauren Gomez',
-	    		latest_review_post_date: 'March, 2018',
-
-	    	},	
-
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/personimage5.png',
-	    		job_title: 'C M H Maintenance',
-	    		job_feedback: 0,
-	    		job_perform: 0,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-	    		review_details: false,
-	    		latest_review_image: '/images/front/profile-images/personimage4.png',
-	    		latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-	    		latest_reviewer_name: 'Lauren Gomez',
-	    		latest_review_post_date: 'March, 2018',
-
-	    	},		    	
-
-	    		    	    		    	
-
-    	],
-
-		category:[
-
-		{
-
-			title:'Related services',
-			categoryitems:[
 				{
-					itemimage: '/images/front/explore/carpenter1.jpg',
-					itemtitle: 'Wooden partition service'
+					job_title_image: '/images/front/profile-images/logoimage1.png',
+					job_title: 'CHS US Carpenter and Roofing',
+					job_feedback: 261,
+					job_perform: 270,
+					job_location: 'New York, NY',
+					job_member_since: 'Jan, 2018',
+					job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
+					review_details: true,
+					latest_review_image: '/images/front/profile-images/personimage1.png',
+					latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
+					latest_reviewer_name: 'Shirley Webb',
+					latest_review_post_date: 'August, 2018',
+
 				},
 
 				{
-					itemimage: '/images/front/explore/carpenter2.jpg',
-					itemtitle: 'Furniture repair & Installation',
+					job_title_image: '/images/front/profile-images/logoimage2.png',
+					job_title: 'M.D.S Joinery & Glazing',
+					job_feedback: 180,
+					job_perform: 208,
+					job_location: 'New York, NY',
+					job_member_since: 'Feb, 2018',
+					job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
+					review_details: true,
+					latest_review_image: '/images/front/profile-images/personimage2.png',
+					latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
+					latest_reviewer_name: 'Keith McCoy',
+					latest_review_post_date: 'August, 2018',
+
 				},
 
 				{
-					itemimage: '/images/front/explore/carpenter3.jpg',
-					itemtitle: 'Wooden deck building & repair',
-				},
+					job_title_image: '/images/front/profile-images/personimage6.png',
+					job_title: 'Christopher Ward Joinery Services',
+					job_feedback: 164,
+					job_perform: 174,
+					job_location: 'New York, NY',
+					job_member_since: 'Jan, 2018',
+					job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
+					review_details: true,
+					latest_review_image: '/images/front/profile-images/personimage7.png',
+					latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
+					latest_reviewer_name: 'Ashley Bel',
+					latest_review_post_date: 'September, 2018',
 
-			],
+				},	
 
-		},			
+				{
+					job_title_image: '/images/front/profile-images/personimage3.png',
+					job_title: 'C&N Home Solutions',
+					job_feedback: 124,
+					job_perform: 148,
+					job_location: 'New York, NY',
+					job_member_since: 'Jan, 2018',
+					job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+					review_details: true,
+					latest_review_image: '/images/front/profile-images/personimage4.png',
+					latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+					latest_reviewer_name: 'Lauren Gomez',
+					latest_review_post_date: 'March, 2018',
 
-	
-		],    	
+				},	
 
 
-    	}
-  	},
+				{
+					job_title_image: '/images/front/profile-images/personimage5.png',
+					job_title: 'C M H Maintenance',
+					job_feedback: 0,
+					job_perform: 0,
+					job_location: 'New York, NY',
+					job_member_since: 'Jan, 2018',
+					job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
+					review_details: false,
+					latest_review_image: '/images/front/profile-images/personimage4.png',
+					latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
+					latest_reviewer_name: 'Lauren Gomez',
+					latest_review_post_date: 'March, 2018',
 
-    methods: {
+				},		    	
 
-    	AddCustomer() {
-    		this.customer = true;
-    	},
-        ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
-            this.$router.push({name: 'customerdetail'});
-        },
-        changestatuspopup() {
-            this.changestatus = true;
-        },
-        HideModal(){
-            this.customer = false;
-            this.viewcustomer = false;
-            this.changestatus = false;
-        },
-        servicedetail(){
-        	this.$router.push({name: 'Service_Provider_Detail'});
-        },
-        getService() {
-        	let self = this;
-        	let id = this.serviceId;
-			console.log(this.serviceId, 8898989898);
-	        this.searchUrl  = 'search/explore/'+id;
-			this.$http.get(this.searchUrl).then(response => {
-				response = response.data.response;
-				this.service = response.data;
-			}).catch(error=>{
-			});
-        }
+				],
 
-    },
-    components: {
-        StarRating
-    },
+				category:[
 
-    mounted(){
-    	this.getService();
-    },
-    watch: {
-    	serviceId(val) {
-    		this.serviceId = val;
-    	}
-    }
+				{
 
-}
+					title:'Related services',
+					categoryitems:[
+					{
+						itemimage: '/images/front/explore/carpenter1.jpg',
+						itemtitle: 'Wooden partition service'
+					},
+
+					{
+						itemimage: '/images/front/explore/carpenter2.jpg',
+						itemtitle: 'Furniture repair & Installation',
+					},
+
+					{
+						itemimage: '/images/front/explore/carpenter3.jpg',
+						itemtitle: 'Wooden deck building & repair',
+					},
+
+					],
+
+				},			
+
+
+				],    	
+
+
+			}
+		},
+
+	    computed : {
+	        requestUrl(){
+	            return this.serviceProviderUrl;
+	        }
+	    },
+		methods: {
+			startLoading(){
+	            this.loading = true;
+	        },
+			AddCustomer() {
+				this.customer = true;
+			},
+			ViewCustomerDetail() {
+				/*this.viewcustomer = true;*/
+				this.$router.push({name: 'customerdetail'});
+			},
+			changestatuspopup() {
+				this.changestatus = true;
+			},
+			HideModal(){
+				this.customer = false;
+				this.viewcustomer = false;
+				this.changestatus = false;
+			},
+			servicedetail(){
+				this.$router.push({name: 'Service_Provider_Detail'});
+			},
+			getService() {
+				let self = this;
+				let id = this.serviceId;
+				console.log(this.serviceId, 8898989898);
+				this.searchUrl  = 'search/explore/'+id;
+				this.$http.get(this.searchUrl).then(response => {
+					response = response.data.response;
+					this.service = response.data;
+					this.categoryimage = this.service.images[0].upload_url
+				}).catch(error=>{
+				});
+			},
+	        getProviderRecords(response){
+	            let self = this;
+	            self.loading = false;
+	            self.records = response.data;
+	            self.noRecordFound = response.noRecordFound;
+	            
+	        },
+
+		},
+		components: {
+			StarRating
+		},
+
+		watch: {
+			serviceId(val) {
+				this.serviceId = val;
+			}
+		},
+		mounted(){
+			this.getService();
+			this.loading = true;
+			this.serviceProviderUrl = this.serviceProviderUrl+'&filter_by_service='+this.serviceId+'&zip='+this.zip;
+		},
+
+	}
 </script>

@@ -468,7 +468,7 @@
 					this.isTouched = true;
 					return;
 				}
-				this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id }})
+				this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }})
 				//this.$router.push('/explore/service_provider');
 			}
 

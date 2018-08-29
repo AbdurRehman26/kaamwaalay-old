@@ -45,7 +45,6 @@ public $model;
 
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  []) {
         $data = parent::findById($id, $refresh, $details, $input);
-
         if ($data) {
             $data->user_detail = app('UserRepository')->findById($data->user_id,false,$details);
 
@@ -73,6 +72,15 @@ public $model;
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
             $data->avg_rating = $avgRating;
+// findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+            $reviewCriteria = ['user_id' => $data->user_id];
+            $review = app('UserRatingRepository')->findByCriteria($reviewCriteria, false, false, false, false, false);
+            $data->reviewedBy = [];
+            if($review) {
+                $data->reviewedBy['review'] = $review;
+                $reviewedUser = app('UserRepository')->findById($review->rated_by);
+                $data->reviewedBy['user_detail'] = $reviewedUser;
+            }
 
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $totalFeedbackCount = app('UserRatingRepository')->getTotalFeedbackCriteria($avgCriteria, false);
@@ -95,10 +103,15 @@ public $model;
     }
 
 
-    public function findByAll($pagination = false,$perPage = 10, $data = []){       
-
+    public function findByAll($pagination = false,$perPage = 10, $data = []){
         $this->builder = $this->model->orderBy('created_at','desc');
-
+        if(!empty($data['zip'])) {
+            $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
+                $join->on('users.id', '=', 'service_provider_profiles.user_id');
+            })->where(function($query)use($data){
+                $query->where('users.zip_code', '=', $data['zip']);
+            })->groupBy('service_provider_profiles.user_id');
+        }
         if (!empty($data['keyword'])) {
 
             $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
@@ -129,8 +142,8 @@ public $model;
         }
 
         $this->builder = $this->builder->select('service_provider_profiles.*');
-        
-        return parent::findByAll($pagination, $perPage, $data);
+        $record = parent::findByAll($pagination, $perPage, $data);
+        return $record;
 
     }
 
