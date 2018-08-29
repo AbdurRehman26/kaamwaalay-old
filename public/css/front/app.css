@@ -17926,6 +17926,8 @@ body .chat-feedback-message.white-msg:before {
 
   .job-main-heading .content-sec .job-image {
     margin-right: 0px;
+    width: 180px;
+    height: 180px;
   }
 
   .job-main-heading .content-sec .job-content {
