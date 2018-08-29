@@ -38,5 +38,28 @@ class UsersTableSeeder extends Seeder
         ];
         
         User::insertOnDuplicateKey($userData);
+    
+        $customerData = [
+            'id' => 2,
+            'first_name' => 'Mr',
+            'last_name' => 'Customer',
+            'email' => 'hassaanCustomer@cygnismedia.com',
+            'password' => Hash::make('cygnismedia'),
+            'role_id' => Role::Customer,
+            'access_level' => 'full',
+            'country_id' => NULL,
+            'state_id' => NULL,
+            'city_id' => NULL,
+            'status' => 'active',
+            'activation_key' => Hash::make('cygnismedia'),
+            'activated_at' => $date,
+            'remember_token' => Hash::make('cygnismedia'),
+            'created_at' => $date,
+            'updated_at' => $date,
+            'deleted_at' => NULL,
+        ];
+
+        User::insertOnDuplicateKey($userData);
+    
     }
 }

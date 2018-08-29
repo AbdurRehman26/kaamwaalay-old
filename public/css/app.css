@@ -41710,3 +41710,7 @@ i.disabled {
   width: 200px;
 }
 
+.infinite-status-prompt {
+  display: none !important;
+}
+

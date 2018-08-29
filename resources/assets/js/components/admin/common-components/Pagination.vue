@@ -42,8 +42,12 @@
         watch :{
             loadingStart(value){
             },
-            pagination(){
+            pagination(value){
+                if(value){
+                    if(value.current == value.next){
 
+                    }
+                }
             }
         },
         methods: {
@@ -52,34 +56,35 @@
                 this.$emit('page-changed', pageNumber);
             },
             infiniteHandler($state) {
-            let self = this;
+                let self = this;
 
-            if(!self.pagination){
+                if(!self.pagination){
 
-                self.$parent.getList(false);
-
-            }else{
-
-                if(self.pagination && self.pagination.current != self.pagination.next){
-
-                    self.$parent.getList(false , self.pagination.next , function (response) {
-
+                    self.$parent.getList(false , function (response) {
                         setTimeout(function () {
+                            console.log('12312321' , '22222');
                             $state.loaded();
                         } , 2000);
-
                     });
-                    
+
                 }else{
-                    $state.complete();
-                    setTimeout(function () {
-                        $state.reset();
-                    }, 3000);
+                    if(self.pagination && self.pagination.current != self.pagination.next){
+
+                        self.$parent.getList(false , self.pagination.next , function (response) {
+
+                            setTimeout(function () {
+                                $state.loaded();
+                            } , 2000);
+
+                        });
+
+                    }else{
+                        $state.complete();
+                    }
+
                 }
 
-            }
-
-        },
+            },
         }
     }
 </script>

@@ -20,7 +20,7 @@
             }
         },
         methods: {
-            getList(page){
+            getList(page, successCallback = false){
 
                 let self = this;
 
@@ -61,6 +61,7 @@
                     self.loading = false;
 
 
+                    successCallback(true);
 
                 }).catch(error=>{
                     self.loading = false;
