@@ -4,7 +4,6 @@
 
 			<div class="col-md-12">
 				<div class="general-setting">
-
 					<!-- Featured Row -->
 
 					<div class="featured-row">
@@ -66,7 +65,6 @@
 							</div>
 						</form>
 					</div>
-					<!-- Featured Row End -->
 
 					<!-- Urgent Row -->
 					<form data-vv-scope="urgent">
@@ -74,19 +72,17 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="urgent-detail-title">
-										<h2 class="page-title">Urgent</h2>
+										<h2 class="page-title">Urgent Job</h2>
 									</div>
 								</div>
 							</div>
-
 							<div class="row urgent-setting">	
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Urgent Amount</label>
+										<label>Urgent Amount ($)</label>
 										<input class="form-control" placeholder="Enter urgent amount" name="urgent amount" v-model="urgent_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" >
 									</div>
 								</div>
-
 							</div>
 							<alert v-if="urgentErrorMessage || urgentSuccessMessage" :errorMessage="urgentErrorMessage" :successMessage="urgentSuccessMessage"></alert>
 							<div class="row">

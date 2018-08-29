@@ -114,7 +114,7 @@
                                 <p><strong class="title-head">Join Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>{{records.profile_request ? records.profile_request.formatted_created_at : ''}}</p>
+                                <p>{{records.formatted_created_at}}</p>
                             </b-col>
                         </b-row>                                 
                         <b-row>

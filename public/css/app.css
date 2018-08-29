@@ -31203,7 +31203,6 @@ a.text-dark:focus {
 
 .icon-alert:before {
   content: "\E91A";
-  color: #d9534f;
 }
 
 .icon-explorer-icon:before {
@@ -31314,7 +31313,6 @@ a.text-dark:focus {
 
 .icon-check2:before {
   content: "\E92A";
-  color: #00699e;
 }
 
 .icon-analyze-icon:before {
@@ -34224,6 +34222,21 @@ body .ag-theme-balham .ag-header {
   text-decoration: underline;
 }
 
+.btn.btn-danger {
+  background: #d9534f;
+  border-color: #d9534f;
+  color: #fff;
+}
+
+.btn.btn-danger:focus,
+.btn.btn-danger:visited,
+.btn.btn-danger:active {
+  background: #d9534f !important;
+  border-color: #d9534f !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 .sort_btn {
   margin-bottom: 9px;
   display: table;
@@ -35262,7 +35275,9 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: #d9534f;
 }
 
-.general-setting input[aria-invalid='true'] {
+.general-setting textarea[aria-invalid='true'],
+.general-setting input[aria-invalid='true'],
+.general-setting select[aria-invalid='true'] {
   border-color: #d9534f;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -35270,6 +35285,18 @@ input[type=number]::-webkit-outer-spin-button {
   background-repeat: no-repeat;
   background-size: 21px auto;
   background-position: 98% 53%;
+}
+
+.label-with-120 {
+  width: 120px;
+}
+
+.label-with-150 {
+  width: 150px;
+}
+
+.label-with-200 {
+  width: 200px;
 }
 
 .main-nav {
@@ -40242,7 +40269,7 @@ i[active="true"] {
         &:nth-child(2){
             padding-left: 45px;
         }
-    } */
+        } */
 }
 
 .data-field .checkbox-field {
@@ -40863,7 +40890,7 @@ i[active="true"] {
 
 /* .dropdown-menu{
     top: 2px !important;
-} */
+    } */
 
 .bootstrap-colorpicker .color-pallet {
   position: absolute;
@@ -40939,12 +40966,12 @@ i[active="true"] {
 
 .nextstep .btn {
   /*         min-width: auto;
-        padding: 6px 20px 10px 14px; */
+padding: 6px 20px 10px 14px; */
 }
 
 /*===
     action icons
-===*/
+    ===*/
 
 .list-action i {
   color: #838383;
@@ -41537,7 +41564,7 @@ a.underline {
 }
 
 .add-more-featured {
-  margin-top: 0;
+  margin-top: 34px;
   margin-bottom: 20px;
 }
 
@@ -41625,6 +41652,14 @@ a.underline {
   color: #838383 !important;
 }
 
+.statustext .fullaccess {
+  color: #007bff !important;
+}
+
+.statustext .review {
+  color: #838383 !important;
+}
+
 .general-setting .customer-detail-title h2.page-title {
   font-size: 18px;
 }
@@ -41669,5 +41704,9 @@ a.underline {
 i.disabled {
   pointer-events: none;
   opacity: 0.4;
+}
+
+.label-with-200 {
+  width: 200px;
 }
 

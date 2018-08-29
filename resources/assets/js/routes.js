@@ -68,7 +68,7 @@ const routes = [
         component: require('./components/admin/service-type/main.vue'),
         meta: {
             title: 'Service Type',
-            pagetitle:'Service Types',
+            pagetitle:'Services / Sub Services',
             icon:'icon-tools-2',
             requiresAuth: true,
             forAdmin :true,
@@ -199,10 +199,10 @@ const routes = [
         component: require('./components/admin/service-provider-review/main.vue'),
         meta: {
             title: 'Service provider review',
-            pagetitle:'Service Provider Review',
+            pagetitle:'Service Providers Review',
             icon:'icon-star_border',
             requiresAuth: true,
-            forAdmin :true,
+            forReviewer :true,
         }
     },
 
@@ -215,7 +215,7 @@ const routes = [
             pagetitle:'Service Provider Detail Review',
             icon:'icon-search',
             requiresAuth: true,
-            forAdmin :true,
+            forReviewer :true,
         }
     },
 
@@ -242,7 +242,7 @@ const routes = [
         component: require('./components/admin/general-setting/main.vue'),
         meta: {
             title: 'General Setting',
-            pagetitle:'General Setting',
+            pagetitle:'General Settings',
             icon:'icon-settings',
             requiresAuth: true,
             forAdmin :true,
@@ -257,7 +257,7 @@ const routes = [
         component: require('./components/admin/payment/main.vue'),
         meta: {
             title: 'Payment',
-            pagetitle:'Payment',
+            pagetitle:'Payment Activities',
             icon:'icon-credit-card',
             requiresAuth: true,
             forAdmin :true,
@@ -320,6 +320,7 @@ const router = new VueRouter({
     app,
 })
 const admin = 1;
+const reviewer = 4;
 const title = document.title
 router.beforeEach((to, from, next) => {
     let user;
@@ -330,13 +331,24 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
         next({name: 'login'});
     } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-        next({name: 'dashboard'});
+        if(user  && user.role_id == admin){
+          next({name: 'dashboard'});
+        } else if(user  && user.role_id == reviewer){
+          next({name: 'Service_Provider_Review'});
+        }
     } else {
         next();
     }
-
     if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
         if(user  && user.role_id == admin){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
+    if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
+        if(user  && (user.role_id == reviewer ||user.role_id == admin)){
             next();
         } 
         else{

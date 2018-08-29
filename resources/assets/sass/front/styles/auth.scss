@@ -102,10 +102,15 @@ h2 {
 
 .forgot-password-text{
     float: right;
-    color: $primary-color;
+    color: $primary-color-md;
     cursor: pointer;
+    font-size: 14px;
     text-decoration:underline;
-
+    position: absolute;
+    right: 0;
+    top: 24px;
+    z-index: 9;
+    
     @include mobile{
         margin-bottom: 20px;
     }
@@ -116,7 +121,8 @@ h2 {
     position:absolute;
     top:0;
     right:0;
-    color: $primary-color;
+    color: $primary-color-md;
+    font-size: 14px;
     cursor:pointer;
     font-family: $font_regular;
 }

@@ -283,7 +283,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .general-setting{
-    input[aria-invalid='true'] {
+    textarea[aria-invalid='true'], input[aria-invalid='true'], select[aria-invalid='true'] {
 
         border-color:$danger-bg;
         box-shadow:none;
@@ -292,4 +292,13 @@ input[type=number]::-webkit-outer-spin-button {
         background-size: 21px auto;
         background-position: 98% 53%;
     }    
+}
+.label-with-120{
+    width:120px;
+}
+.label-with-150{
+    width:150px;
+}
+.label-with-200{
+    width:200px;
 }

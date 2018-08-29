@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderProfile;
 use DB;
+use Carbon\Carbon;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
@@ -85,6 +86,8 @@ public $model;
             $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
             $data->profile_request = $profile;
             
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        
                
         }
         
@@ -102,8 +105,7 @@ public $model;
                 $join->on('users.id', '=', 'service_provider_profiles.user_id');
             })->where(function($query)use($data){
                 $query->where(DB::raw('concat(users.first_name," ",users.last_name)') , 'LIKE' , "%{$data['keyword']}%");
-            })->select('service_provider_profiles.*')
-            ->groupBy('service_provider_profiles.user_id');
+            })->groupBy('service_provider_profiles.user_id');
         }
 
         if(!empty($data['filter_by_business_type'])){
@@ -126,6 +128,8 @@ public $model;
             ->groupBy('service_provider_profiles.user_id');
         }
 
+        $this->builder = $this->builder->select('service_provider_profiles.*');
+        
         return parent::findByAll($pagination, $perPage, $data);
 
     }
@@ -155,4 +159,5 @@ public $model;
             }
             return $model;
         }
+
     }

@@ -17,13 +17,26 @@ Vue.component('logo', require('./components/admin/common-components/Logo.vue'));
 Vue.component('no-record-found', require('./components/admin/common-components/NoRecords.vue'));
 Vue.component('search', require('./components/admin/common-components/Search.vue'));
 Vue.component('loader', require('./components/admin/common-components/Loader.vue'));
-Vue.component('alert', require('./components/front/common-components/Alert.vue'));
+Vue.component('alert', require('./components/admin/common-components/Alert.vue'));
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
+Vue.component('change-password-popup', require('./components/front/common-components/ChangePassPopup.vue'));
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue'));
 Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue'));
+Vue.component('award-job-popup',require('./components/front/common-components/AwardJobPopup.vue'));
+Vue.component('visit-request-popup',require('./components/front/common-components/VisitRequestPopup.vue'));
+Vue.component('post-bid-popup',require('./components/front/common-components/PostBidPopup.vue'));
+Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));
+Vue.component('go-to-visit-popup',require('./components/front/common-components/GoToVisitPopup.vue'));
+Vue.component('write-review-popup',require('./components/front/common-components/writeReviewPopup.vue'));
+Vue.component('profile-rejection',require('./components/front/common-components/ProfileRejection.vue'));
+Vue.component('notification',require('./components/front/common-components/Notification.vue'));
+Vue.component('chat-panel', require('./components/front/common-components/Chat.vue'));
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
+Vue.component('main-nav',require('./components/front/common-components/navigations/MainNav.vue'));
+Vue.component('customer-nav',require('./components/front/common-components/navigations/CustomerNav.vue'));
+Vue.component('provider-nav',require('./components/front/common-components/navigations/ProviderNav.vue'));
 
 // Footer
 Vue.component('front-footer',require('./components/front/common-components/footer.vue'));
@@ -38,3 +51,24 @@ Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue')
 Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 
 
+
+//my-bids
+Vue.component('bid-invitation', require('./components/front/bids/Invitations.vue'));
+Vue.component('bid-completed', require('./components/front/bids/Completed.vue'));
+Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
+Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
+Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));
+
+// Advice Center
+Vue.component('customer', require('./components/front/advice-center/Customer.vue'));
+Vue.component('service-provider', require('./components/front/advice-center/ServiceProvider.vue'));
+
+// facebook 
+Vue.component('facebook-component',require('./components/front/common-components/facebookComponent.vue'));
+/*logout*/
+Vue.component('logout-component',require('./components/auth/LogoutComponent.vue'));
+
+
+
+Vue.component('vue-pagination',require('./components/admin/common-components/Pagination.vue'));
+Vue.component('vue-common-methods',require('./components/admin/common-components/CommonMethods.vue'));

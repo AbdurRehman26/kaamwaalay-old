@@ -27,3 +27,20 @@
 	}
 
 }
+.mx-calendar-content {
+	.cell {
+		&.actived {
+			background-color: #8200FF !important;
+		} 
+		&:hover {
+			background-color: #eee5f7 !important;
+		}
+	}
+}
+.mx-panel-date {
+	td {
+		&.today {
+			color:#8200FF !important;
+		}
+	}
+}

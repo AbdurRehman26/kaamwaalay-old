@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function __construct(UserRepository $repository)
     {
       $this->_userRepository  = $repository;
-       // $this->middleware('guest')->except('logout');
+      $this->middleware('guest')->except('logout');
     }
     /**
      * Handle a login request to the application.
@@ -69,7 +69,7 @@ class LoginController extends Controller
             $user = $this->guard()->getLastAttempted();
 
             // Make sure the user is active
-            if ($user->status == User::ACTIVE && $this->attemptLogin($request)) {
+            if ($user->status == User::ACTIVE && $this->attemptLogin($request) && ($user->role_id == Role::SERVICE_PROVIDER || $user->role_id == Role::CUSTOMER)) {
                 // Send the normal successful login response
                 return $this->sendLoginResponse($request);
             }else if($user->status == User::PENDING){
@@ -77,6 +77,11 @@ class LoginController extends Controller
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
                 return $this->sendPendingLoginResponse($request);
+            } else if($user->role_id == Role::ADMIN || $user->role_id == Role::REVIEWER ){
+                // Increment the failed login attempts and redirect back to the
+                // login form with an error message.
+                $this->incrementLoginAttempts($request);
+                return $this->sendCheckAdminLoginResponse($request);
             } else {
                 // Increment the failed login attempts and redirect back to the
                 // login form with an error message.
@@ -160,7 +165,8 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $user->access_token = $token = $user->createToken('Token Name')->accessToken;
+        $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+        $user->access_token = $token = $user->createToken('Token Name',$scopes)->accessToken;
         return $user;
     }
     /**

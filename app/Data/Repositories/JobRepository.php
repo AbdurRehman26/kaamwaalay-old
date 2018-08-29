@@ -148,12 +148,12 @@ public $model;
     public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL) {
 
         if($crtieria)
-            $this->model = $this->model->where($crtieria);
+            $count = $this->model->where($crtieria);
 
         if($startDate && $endDate)
-            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $count = $count->whereBetween('created_at', [$startDate, $endDate]);
 
-        return  $this->model->count();
+        return  $count->count();
     }
 
 }

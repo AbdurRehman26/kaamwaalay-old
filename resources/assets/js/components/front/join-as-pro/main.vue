@@ -10,7 +10,7 @@
 							<div class="banner-slogan content-inner">
 								<h1>Your next job is just around the corner</h1>
 								<p>There’s plenty of local work but finding it is easier said than done. On Professional Service Marketplace, you set a custom working area so every lead you receive is exactly where you want to work.</p>
-								<a href="javascript:void(0);" class="btn btn-primary">Sign up today</a>
+								<a href="/sign-up" class="btn btn-primary">Sign up today</a>
 							</div>
 						</div>
 					</div>
@@ -143,8 +143,8 @@
 						<h2>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</h2>
 						<p>Ready to meet your next favorite customer? Whether you’re a new business or just new to PSM, we’re excited to help you grow.</p>
 						<div class="avability-app">
-							<a href="javascript:void(0)"><img src="/images/front/common-images/app-store.jpg"></a>
-							<a href="javascript:void(0)"><img src="/images/front/common-images/google-play.jpg"></a>
+							<a href="javascript:void(0)" class="apple-store-btn"><img src="/images/front/common-images/app-store.jpg"></a>
+							<a href="javascript:void(0)" class="google-store-btn"><img src="/images/front/common-images/google-play.jpg"></a>
 						</div>
 					</div>
 					<div class="image-sec">

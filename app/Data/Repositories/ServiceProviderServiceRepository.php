@@ -68,5 +68,14 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
         return $data;
     }
 
+     public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL) {
 
+        if($crtieria)
+            $this->model = $this->model->where($crtieria);
+
+        if($startDate && $endDate)
+            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+
+        return  $this->model->count();
+    }
 }

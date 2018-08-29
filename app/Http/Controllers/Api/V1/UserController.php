@@ -68,7 +68,7 @@ public function input($value='')
         'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
         'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
         'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id',
-        'user_details.status',
+        'user_details.status', 'user_details.state_id',
         
         'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
         'business_details.years_of_experience', 'business_details.business_type',
@@ -177,16 +177,21 @@ public function socialLogin(Request $request)
      ];
  }else{
     if($user){
-      $data['id'] = $user->id; 
-      $result = $this->_repository->update($data);
+      unset($data['role_id']);
+      $userData['user_details'] = $data; 
+      $userData['id'] = $user->id; 
+      $result = $this->_repository->update($userData);
   }else{
       $data['status']  = 'active';   
       $result = $this->_repository->create($data);
   }
   if($result) {
+    $user = User::find($user->id);
+    $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+    $user->access_token = $token = $user->createToken('Token Name',$scopes)->accessToken;
     $code = 200;
     $output = [
-        'data' => $result,
+        'data' => $user,
         'message' => 'Success',
     ];
 }else{
@@ -214,70 +219,121 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
+
 public function changeStatus(Request $request)
-    {
-        $data = $request->only('status','id','user_id');
-        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-        request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
-        $rules = [
-            'status' => 'required|in:active,banned',
-            'id' => 'required|exists:users,id',
-            'user_id' => 'required|exists:users,id'
+{
+    $data = $request->only('status','id','user_id');
+    $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+    
+    $rules = [
+        'status' => 'required|in:active,banned',
+        'id' => [
+            'required',
+            Rule::exists('users')->where(function ($query) {
+                $query->where('status', '!=', User::PENDING);
+            }),
+            'not_in:'.$data['user_id']
+        ],
+        'user_id' => 'required|exists:users,id'
+    ];
+
+    $validator = Validator::make($data,$rules);
+    
+    if ($validator->fails()) {
+     $code = 406;
+     $output = [
+         'message' => $validator->messages()->all(),
+     ];
+
+ }else{
+
+    $result = $this->_repository->updateField($data);
+    if($result) {
+
+        $code = 200;
+        $output = [
+            'data' => 'Status has been updated successfully.',
+            'message' => 'Status has been updated successfully.',
         ];
-        $validator = Validator::make($data,$rules);
-        if ($validator->fails()) {
-         $code = 406;
-         $output = [
-             'message' => $validator->messages()->all(),
-         ];
-     }else{
-        $result = $this->_repository->updateField($data);
-        if($result) {
-            $code = 200;
-            $output = [
-                'data' => 'Status has been updated successfully.',
-                'message' => 'Status has been updated successfully.',
-            ];
-        }else{
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
-        }
-    }
-    return response()->json($output, $code);
-  }
-  public function changeAccessLevel(Request $request)
-    {
-        $data = $request->only('role_id','id','user_id');
-        $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-        $rules = [
-            'role_id' => ['required', Rule::in(Role::ADMIN,Role::REVIEWER)],
-            'id' => 'required|exists:users,id',
-            'user_id' => 'required|exists:users,id'
+
+    }else{
+
+        $code = 406;
+        $output = [
+            'message' => 'An error occurred',
         ];
-        $validator = Validator::make($data,$rules);
-        if ($validator->fails()) {
-         $code = 406;
-         $output = [
-             'message' => $validator->messages()->all(),
-         ];
-     }else{
-        $result = $this->_repository->updateField($data);
-        if($result) {
-            $code = 200;
-            $output = [
-                'data' => 'Access level has been updated successfully.',
-                'message' => 'Access level has been updated successfully.',
-            ];
-        }else{
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
-        }
+
     }
+}
+
+return response()->json($output, $code);
+
+}
+
+public function changeAccessLevel(Request $request)
+{
+    $data = $request->only('role_id','id','user_id');
+    $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $rules = [
+        'role_id' => ['required', Rule::in(Role::ADMIN,Role::REVIEWER)],
+        'id' => 'required|exists:users,id',
+        'user_id' => 'required|exists:users,id'
+    ];
+    $validator = Validator::make($data,$rules);
+    if ($validator->fails()) {
+     $code = 406;
+     $output = [
+         'message' => $validator->messages()->all(),
+     ];
+ }else{
+    $result = $this->_repository->updateField($data);
+    if($result) {
+        $code = 200;
+        $output = [
+            'data' => 'Access level has been updated successfully.',
+            'message' => 'Access level has been updated successfully.',
+        ];
+    }else{
+        $code = 406;
+        $output = [
+            'message' => 'An error occurred',
+        ];
+    }
+}
+return response()->json($output, $code);
+}
+
+
+public function getAuthUser(Request $request)
+{
+    $user_id = $request->user()->id;
+
+    $data = $this->_repository->findById($user_id);
+
+    $output = [
+        'response' => [
+            'data' => $data,
+        ]
+    ];
+    $code = 200;
+        // HTTP_OK = 200;
+
     return response()->json($output, $code);
-  }
+
+}
+
+
+public function response_messages($value = '')
+{
+    $messages = [
+        'store' => 'User created successfully.',
+        'update' => 'User updated successfully.',
+        'destroy' => 'User deleted successfully.',
+    ];
+
+    return !empty($messages[$value]) ? $messages[$value] : 'Success.';
+}
 
 }

@@ -1,12 +1,12 @@
  <template>
-   <div>
+     <div>
       <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
         <div>
             <form action="" method="">
                 <div class="form-group">
-                   <label>Parent Service</label>
-                   <select class="form-control" v-model="formData.parent_id">
+                 <label>Parent Service</label>
+                 <select class="form-control" v-model="formData.parent_id">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -16,11 +16,36 @@
               <label>Service Name</label>
               <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
           </div>
-
           <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <!--<div class="col-xs-12 col-sm-6 col-md-12">
+              <div class="form-group radio-group-row">
+                <label class="label-with-200">Is Featured?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.is_featured">
+                  <label class="form-check-label" for="inlineRadio3">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.is_featured">
+                  <label class="form-check-label" for="inlineRadio7">No</label>
+                </div>
+              </div>
+            </div>-->
+            <div class="col-xs-12 col-sm-6 col-md-12">
+              <div class="form-group radio-group-row">
+                <label class="label-with-200">Home Page Banner</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="inlineRadio4">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="inlineRadio8">No</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12">
                 <div class="form-group radio-group-row">
-                    <label>Is Service Navigation?</label>
+                    <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.is_display_service_nav">
                       <label class="form-check-label" for="inlineRadio1">Yes</label>
@@ -31,9 +56,9 @@
                   </div>
               </div>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
+          <!--<div class="col-xs-12 col-sm-6 col-md-12">
             <div class="form-group radio-group-row">
-                <label>Is Footer Navigation?</label>
+                <label class="label-with-200">Display Footer Navigation</label>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.is_display_footer_nav">
                   <label class="form-check-label" for="inlineRadio2">Yes</label>
@@ -43,33 +68,7 @@
                   <label class="form-check-label" for="inlineRadio6">No</label>
               </div>
           </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group radio-group-row">
-            <label>Is Featured?</label>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.is_featured">
-              <label class="form-check-label" for="inlineRadio3">Yes</label>
-          </div>
-          <div class="form-check form-check-inline">
-              <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.is_featured">
-              <label class="form-check-label" for="inlineRadio7">No</label>
-          </div>
-      </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-6">
-    <div class="form-group radio-group-row">
-        <label>Display Banner?</label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
-          <label class="form-check-label" for="inlineRadio4">Yes</label>
-      </div>
-      <div class="form-check form-check-inline">
-          <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.is_display_banner">
-          <label class="form-check-label" for="inlineRadio8">No</label>
-      </div>
-  </div>
-</div>
+      </div>-->
 
 </div>
 
@@ -80,9 +79,9 @@
 
 <div class="form-group">
     <label>Upload Image</label>
-    <b-form-file @change="onFileChange" v-model="file" accept="image/jpeg, image/png, image/jpg" placeholder="Click here to upload image" name="upload image" v-validate="'required'"  :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']"></b-form-file>
+    <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image" v-validate="'required'" :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']" ></b-form-file>
     <div class="uploded-picture">
-        <img :src="image" />
+        <img :src="imageValue" />
     </div>
 </div>
 
@@ -107,7 +106,6 @@
 
 <script>
     export default {
-
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
@@ -116,6 +114,7 @@
                 services: [],
                 errorMessage: '',
                 successMessage: '',
+                imageText: 'Click here to upload image',
                 formData: {
                     parent_id: '',
                     title: '',
@@ -140,11 +139,15 @@
                 file: null,
                 url: 'api/service',
                 loading: false,
+                isFileUpload: null,
             }
         },
         methods: {
             resetFormFields() {
-                var self = this;
+                let self = this;
+                this.image = 'images/dummy/image-placeholder.jpg';
+                this.file = null;
+                this.$refs.fileinput.reset();
                 this.formData = {
                     parent_id: '',
                     title: '',
@@ -165,14 +168,20 @@
                 };
                 setTimeout(function () {
                     Vue.nextTick(() => {
+                        self.errorMessage = '';
+                        self.successMessage = '';
                         self.errorBag.clear()
                     })
 
-                }, 10);
+                }, 100);
             },
             validateBeforeSubmit() {
                 var self = this;
                 this.$validator.validateAll().then((result) => {
+
+                    if(!self.file) {
+                        self.isFileUpload = false;
+                    }
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -180,12 +189,15 @@
                             this.onSubmit();
                         }
                         this.errorMessage = '';
+                        self.isFileUpload = null;
                         return;
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },  
             showModal () {
+
+                this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
                 // filter only services
@@ -212,61 +224,63 @@
                       id: 6,
                   });
                     this.errorMessage = this.errorBag.all()[0];
+                    self.isFileUpload = false;
                     return;
                 }
                 this.errorBag.clear();
-
+                this.isFileUpload = null;
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
+                
             },
             createImage(file) {
-              var self = this;    
-              var image = new Image();
-              var reader = new FileReader();
-              reader.onload = (e) => {
-                self.image = e.target.result;
-              };
-            reader.readAsDataURL(file);
-            this.onUpload(file);
-        },
-        onUpload(file) {
-            var self = this;
-            let url = "api/file/upload";
+                var self = this;    
+                var image = new Image();
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    self.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.onUpload(file);
+            },
+            onUpload(file) {
+                var self = this;
+                let url = "api/file/upload";
 
-            var data = new FormData;
-            data.append('key', 'service');
-            data.append('file', file);
+                var data = new FormData;
+                data.append('key', 'service');
+                data.append('file', file);
 
-            this.$http.post(url, data).then(response => {
-                response = response.data;
-                self.formData.images[0].name = response.name;
-                self.formData.images[0].original_name = response.original_name;
+                this.$http.post(url, data).then(response => {
+                    response = response.data;
+                    self.formData.images[0].name = response.name;
+                    self.formData.images[0].original_name = response.original_name;
 
-            }).catch(error => {
-                error = error.response.data;
-                let errors = error.errors;
-                _.forEach(errors, function(value, key) {
-                    self.errorMessage =  errors[key][0];
-                    return false;
+                }).catch(error => {
+                    error = error.response.data;
+                    let errors = error.errors;
+                    self.isFileUpload = false;
+                    _.forEach(errors, function(value, key) {
+                        self.errorMessage =  errors[key][0];
+                        return false;
+                    });
                 });
-            });
-        },
-        onSubmit() {
-            var self = this;
-            this.loading = true;
-            let url = this.url;
+            },
+            onSubmit() {
+                var self = this;
+                this.loading = true;
+                let url = this.url;
 
-            var data = this.formData;
+                var data = this.formData;
 
-            this.$http.post(url, data).then(response => {
-                response = response.data.response;
+                this.$http.post(url, data).then(response => {
+                    response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
 
-                    self.loading = false;
-                    
                     setTimeout(function () {
                         self.successMessage = '';
+                        self.loading = false; 
                         self.hideModal();  
                         self.resetFormFields(); 
                         self.$emit('call-list');             
@@ -302,14 +316,14 @@
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
-
-                    self.loading = false;
                     
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');
+                        self.loading = false; 
+             
                     } , 3000);
 
                     setTimeout(function () {
@@ -325,6 +339,10 @@
                     _.forEach(errors, function(value, key) {
                         if(key == "title") {
                             self.errorMessage =  "The Service Name has alreary been taken.";    
+                            return false;
+                        }
+                        if(key == "parent_id") {
+                            self.errorMessage =  "This service is already a parent service.";    
                             return false;
                         }
                         self.errorMessage =  errors[key][0];
@@ -367,8 +385,14 @@
                     };
                     this.image = img[0].upload_url;
                     this.file = img[0].original_name;
+                    this.imageText = this.file;
                 }
             }
         },
+        computed : {
+            imageValue(){
+                return this.image;
+            }
+        }
     }
 </script>

@@ -51,7 +51,7 @@
                   <th>Service Type</th>
                   <th>Service Sub-type</th>
                   <th>Job Status</th>
-                  <th class="text-center">Actions</th>
+                  <th class="text-center">Action</th>
               </tr>
           </thead>
           <tbody>
