@@ -12610,6 +12610,7 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
     top: 0;
     height: 100%;
+    z-index: 999;
   }
 }
 
@@ -16044,10 +16045,27 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 23px;
 }
 
+@media (max-width: 767px) {
+  .category-selected .category-image-block {
+    width: 130px;
+    height: 70px;
+  }
+
+  .category-selected h4 {
+    font-size: 16px;
+  }
+}
+
 .category-search-field h5 {
   margin-bottom: 0px;
   padding: 20px 0;
   font-size: 20px;
+}
+
+@media (max-width: 767px) {
+  .category-search-field {
+    font-size: 13px;
+  }
 }
 
 .zip-code-field {
@@ -17264,7 +17282,7 @@ body .chat-feedback-message.white-msg:before {
 
 @media (max-width: 767px) {
   .jobs-post-files .gallery-item {
-    width: 44%;
+    width: 43%;
     margin-right: 20px;
     margin-bottom: 18px;
     height: auto;
@@ -17886,6 +17904,14 @@ body .chat-feedback-message.white-msg:before {
     font-size: 17px;
   }
 
+  .job-status.job-poster:after {
+    display: none;
+  }
+
+  .job-detail-page .post-job-description p {
+    font-size: 13px;
+  }
+
   .job-post-container.section-padd.sm {
     padding-top: 20px !important;
   }
@@ -17956,7 +17982,8 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .job-main-heading .content-sec .job-content .job-notification.flexable .job-details p {
-    margin-bottom: 0px !important;
+    margin-bottom: 5px !important;
+    padding-right: 0 !important;
   }
 
   .job-main-heading .content-sec .job-content .job-notification.flexable .job-details p.service-requirment {

@@ -1797,6 +1797,16 @@ $section-padding-sm:20px 0px;
         color: #7D7D7D;
         font-size: 23px;
     }
+    @include mobile{
+        .category-image-block{
+            width: 130px;
+            height: 70px;            
+        }
+        h4{
+            font-size: 16px;
+        }
+        
+    }    
 }
 
 .category-search-field{
@@ -1804,6 +1814,9 @@ $section-padding-sm:20px 0px;
         margin-bottom: 0px;
         padding: 20px 0;
         font-size: $font-size-sm;
+    }
+    @include mobile{
+        font-size: 13px;
     }
 }
 
@@ -2879,7 +2892,7 @@ body{
     }
     @include mobile{
         .gallery-item{
-            width: 44%;
+            width: 43%;
             margin-right: 20px;
             margin-bottom: 18px;
             height: auto;            
@@ -3475,6 +3488,19 @@ body{
             font-size: 17px;
         }
     }
+    .job-status.job-poster{
+        &:after{
+            display: none;
+        }
+    }
+    .job-detail-page{
+        .post-job-description{
+            p{
+                font-size: 13px; 
+            }
+        }
+    }
+
     .job-post-container.section-padd.sm {
         padding-top: 20px !important;
     }    
@@ -3532,8 +3558,9 @@ body{
                         }
                         .job-details{
                             text-align: left;
-                            p{
-                                margin-bottom: 0px !important;
+                            p{                                
+                                margin-bottom: 5px !important;
+                                padding-right: 0 !important;
                                 &.service-requirment{
                                     top: -2px;
                                 }
