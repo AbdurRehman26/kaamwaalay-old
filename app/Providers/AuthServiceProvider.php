@@ -24,18 +24,24 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        $scopes = Role::pluck('scope')->toArray();
-        $data = [];
-        if(!empty($scopes)){
-            foreach ($scopes as $key => $value) {
-                if($value){
-                    $tempArr = $value;
-                    $data = array_merge($data,array_combine($tempArr, $tempArr));
+        
+        try{
+            $scopes = Role::pluck('scope')->toArray();
+            $data = [];
+            if(!empty($scopes)){
+                foreach ($scopes as $key => $value) {
+                    if($value){
+                        $tempArr = $value;
+                        $data = array_merge($data,array_combine($tempArr, $tempArr));
+                    }
+                    $data = array_unique($data);
                 }
-                $data = array_unique($data);
             }
+            Passport::tokensCan($data);
+        }catch(\Exception $e){
+
         }
-        Passport::tokensCan($data);
+        
         Passport::routes();
     }
 }
