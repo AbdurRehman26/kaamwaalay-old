@@ -15,6 +15,15 @@
             var errorMessage = '<?php echo isset($error) ? $error : ''; ?>';
             var resetEmail = '<?php echo isset($email) ? $email : ''; ?>';
         </script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+        <script>
+          var OneSignal = window.OneSignal || [];
+          OneSignal.push(function() {
+            OneSignal.init({
+              appId: "db247e22-687c-406d-8e2e-418732d1ac97",
+          });
+        });
+    </script>
         @yield('after-base-js')
     </head>
     <body>

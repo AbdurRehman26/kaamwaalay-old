@@ -5,11 +5,12 @@ namespace App\Data\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 
 class Service extends Model
 {
     //
-    use SoftDeletes;
+    use SoftDeletes,Notifiable;
     /**
      * The attributes that should be cast to native types.
      *
@@ -42,5 +43,11 @@ class Service extends Model
 
 
     }
+ public function routeNotificationForOneSignal()
+    {
 
+       \Log::info('routeNotificationForOneSignal');
+        //return 'a16dfd5c-d05a-4b73-87e9-c4fb2a14609e';
+        return ['tags' => ['key' => 'role_id', 'relation' => '=', 'value' => '3'],['operator'=> 'OR'],['key' => 'role_id', 'relation' => '=', 'value' => '2']];
+    }
 }

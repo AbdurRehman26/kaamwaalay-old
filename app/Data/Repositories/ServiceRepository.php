@@ -75,13 +75,14 @@ public $model;
         if (!empty($data['parent_id'])) {
 
             $parentExist = Service::where('id','=',$data['parent_id'])->whereNull('parent_id')->count();
-
             if ($parentExist) {
+                $this->model->notify(new \App\Notifications\ServiceNotification($data));
                 return parent::create($data);
             }else{
                 return 'not_parent';
             }
         }else{
+             $this->model->notify(new \App\Notifications\ServiceNotification($data));
             return parent::create($data);
         }
     }
