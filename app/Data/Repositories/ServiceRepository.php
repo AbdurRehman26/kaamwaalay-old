@@ -169,8 +169,19 @@ public $model;
                         // });
                         
                     }
-
                     $modelData['data'] = [];
+                    if (!empty($data['service_category'])) {
+                        if($data['service_category'] == 'All') {
+                            $services = $this->model->orderBy('created_at', 'desc')->whereNull('parent_id')->get();
+                            foreach ($services as $key => $value) {
+                                $subservice = $this->getAllServicesByCategory($value->id, true, 3);
+                                $services[$key]->subservices = $subservice;
+                            }
+                            $modelData['data']['data'] = $services;
+                            $modelData['data']['service_count'] = sizeof($services);
+                            return $modelData;
+                        }
+                    }
                     $count = $this->builder->count();
                     $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
                     $modelData['data']['service_count'] = $count;
@@ -198,5 +209,12 @@ public $model;
                         return $model->delete();
                     }
                     return false;
+                }
+                public function getAllServicesByCategory($servicesId, $pagination = false, $perPage = 10, $data = []) {
+
+                    if($servicesId)
+                        $this->builder = $this->model->where('parent_id', '=', $servicesId);
+
+                    return  parent::findByAll($pagination, $perPage, $data);
                 }
             }
