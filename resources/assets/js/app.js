@@ -96,7 +96,7 @@ const options = {
 
 // Require components tags
 require('./components-tags');
-
+require('./directives')
 Vue.mixin({
  data: function() {
    return {
