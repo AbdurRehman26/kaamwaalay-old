@@ -79,7 +79,7 @@ export default {
 }
 window.fbAsyncInit = function() {
       FB.init({
-        appId            : '212566316088719',//todo dynamic 
+        appId            : process.env.MIX_FACEBOOK_APP_ID,//todo dynamic 
         autoLogAppEvents : true,
         xfbml            : true,
         version          : 'v3.1'
