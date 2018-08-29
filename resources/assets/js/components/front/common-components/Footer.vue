@@ -52,7 +52,7 @@
 									<li><a href="/sign-up">Sign up as a service provider</a></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
 									<li><a href="/advice-center">Frequently asked questions</a></li>
-									<li><a href="javascript:;" @click="customersupportpopup">Service provider support</a></li>
+									<li><a href="javascript:;" @click="CustomerSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobRepository;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class JobController extends ApiResourceController
 {
@@ -64,8 +65,8 @@ public function input($value='')
         'id','title','user_id','service_id','country_id','state_id',
         'city_id','title','description','address','apartment','zip_code',
         'images','schedule_at','preference','status','job_type',
-        'filter_by_status', 'filter_by_service', 'keyword','pagination', 'bid_data',
-        'filter_by_user', 'filter_by_service_provider'
+        'filter_by_status', 'filter_by_service', 'keyword','pagination',
+        'filter_by_user', 'filter_by_service_provider', 'filter_by_me'
     );
 
     if($value == 'store'){
@@ -78,6 +79,31 @@ public function input($value='')
     return $input;
 }
 
+
+public function getJobStats(Request $request)
+{
+    $criteria = ['user_id' => request()->user()->id , 'status' => 'completed'];
+
+    $completed = $this->_repository->getTotalCountByCriteria($criteria);
+
+    $criteria = ['user_id' => request()->user()->id , 'status' => 'in_bidding'];
+    
+    $orCriteria = [
+        ['user_id' => request()->user()->id , 'status' => 'initiated'],
+        ['user_id' => request()->user()->id , 'status' => 'awarded']
+    ];
+
+    $active = $this->_repository->getTotalCountByCriteria($criteria , null , null, $orCriteria);
+
+    $data = ['completed' => $completed , 'active' => $active];
+
+    $output = ['response' => ['data' => $data]];
+
+    $code  = 200;
+
+    return response()->json($output, $code);
+
+}
 
 public function response_messages($value = '')
 {

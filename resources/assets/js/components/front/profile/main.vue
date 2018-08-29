@@ -216,24 +216,12 @@
 
                     self.successMessage = response.message;
                     setTimeout(function () {
+                        self.$router.push({ name : 'my_jobs'});
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);
 
                 }).catch(error => {
-                    var message = error.body.message;
-                    var error = error.body.error;
-
-                    if (error == 'invalid_credentials') {
-                        message = 'Invalid email address or password';
-                    }
-
-                    setTimeout(function () {
-                        self.$emit('error-message', "");
-                    }, 2000);
-
-
-                    this.$emit('error-message', message);
                     this.loading = false;
                 });
 
@@ -280,7 +268,7 @@
 
                 this.$http.post(url, data).then(response => {
                     response = response.data;
-                    self.record.profile_images = response.name;
+                    self.record.profile_image = response.name;
 
                 }).catch(error => {
                     error = error.response.data;

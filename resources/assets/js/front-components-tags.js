@@ -72,3 +72,4 @@ Vue.component('logout-component',require('./components/auth/LogoutComponent.vue'
 
 Vue.component('vue-pagination',require('./components/admin/common-components/Pagination.vue'));
 Vue.component('vue-common-methods',require('./components/admin/common-components/CommonMethods.vue'));
+Vue.component('block-spinner', require('./components/admin/common-components/BlockSpinner.vue'));

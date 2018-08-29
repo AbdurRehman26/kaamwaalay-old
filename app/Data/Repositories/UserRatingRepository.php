@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\UserRating;
+use Carbon\Carbon;
 
 class UserRatingRepository extends AbstractRepository implements RepositoryContract
 {
@@ -16,7 +17,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
      * @access public
      *
      **/
-    public $model;
+public $model;
 
     /**
      *
@@ -52,14 +53,15 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
             }
         }
 
+        $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
         return $data;
     }
     
     public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
         $this->builder = $this->builder
-                            ->where('user_id', '=' , $data['user_id'])
-                            ->orderBy('rating', 'DESC')
-                            ;      
+        ->where('user_id', '=' , $data['user_id'])
+        ->orderBy('rating', 'DESC')
+        ;      
         return  parent::findByAll($pagination, $perPage);
 
     }
@@ -98,16 +100,16 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
         return false;
     }
     public function getTotalFeedbackCriteria($crtieria, $whereIn = false) {
-            
-            $model = $this->model->where($crtieria);
-            if($whereIn){
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
-            }
 
-            if ($model != NULL) {
-                $model = $model->count();
-                return $model;
-            }
-            return false;
+        $model = $this->model->where($crtieria);
+        if($whereIn){
+            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+        }
+
+        if ($model != NULL) {
+            $model = $model->count();
+            return $model;
+        }
+        return false;
     }
 }
