@@ -53,13 +53,12 @@ public $model;
 
                 $data->parent = '';
             }
-            $jobInitCriteria = ['status' => ['initiated'], 'service_id' => $data->id];
+            $jobInitCriteria = ['status' => 'initiated', 'service_id' => $data->id];
             $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
-
-            $jobFinishedCriteria = ['status' => ['completed'], 'service_id' => $data->id];
+            $jobFinishedCriteria = ['status' => 'completed', 'service_id' => $data->id];
             $data->job_finished_count = $this->jobRepo->getTotalCountByCriteria($jobFinishedCriteria);
 
-            $serviceProdiderCriteria = ['service_id' => $data->id];
+            $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
         }
         
@@ -87,6 +86,7 @@ public $model;
         }
     }
     public function update(array $data = []) {
+        
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
             $parentExist = Service::where('id','=',$data['id'])->whereNull('parent_id')->count();
