@@ -90,11 +90,11 @@ public $model;
         
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
-            $parentExist = Service::where('id','=',$data['id'])->where('id','=',$data['parent_id'])->whereNull('parent_id')->count();
+            $parentExist = Service::where('id','=',$data['id'])->whereNull('parent_id')->count();
             if ($parentExist) {
-                return parent::update($data);
-            }else{
                 return 'not_parent';
+            }else{
+                return parent::update($data);
             }
             
         }else{
