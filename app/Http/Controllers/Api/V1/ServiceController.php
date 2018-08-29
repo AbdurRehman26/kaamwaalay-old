@@ -44,7 +44,6 @@ class ServiceController extends ApiResourceController
         $rules['is_display_service_nav']  = 'nullable|in:0,1';                       
         $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
         $rules['status']                  = 'nullable|in:0,1';        
-        $rules['user_id']                 =  'nullable|exists:users,id';
         $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
         $rules['title']                   = [
             'nullable',
@@ -121,6 +120,8 @@ public function update(Request $request, $id)
     
     if ($data == 'not_parent') {
         $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
+
+        return response()->json($output, 422);
     }else{
         $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
     }

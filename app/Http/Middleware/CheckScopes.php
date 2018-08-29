@@ -18,7 +18,6 @@ class CheckScopes extends BaseMiddleware
     public function handle($request, $next, ...$scopes)
     {
 
-        return $next($request);
      $scope = $request->route()->getName();
      if($scope){
         if (! $request->user() || ! $request->user()->token()) {

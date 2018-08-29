@@ -185,6 +185,7 @@ public $model;
                         $sub_model = $this->model->where('parent_id', '=', $id)->delete();
                     }
                     $this->cache()->flush();
+
         //Cache::tags(['Service'])->flush();
         // if($sub_model != NULL) {
         //     foreach ($sub_model as $model) {

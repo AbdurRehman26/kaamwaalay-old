@@ -177,6 +177,7 @@ public function socialLogin(Request $request)
      ];
  }else{
     if($user){
+      unset($data['role_id']);
       $userData['user_details'] = $data; 
       $userData['id'] = $user->id; 
       $result = $this->_repository->update($userData);
