@@ -216,6 +216,12 @@
         top: 74px;
         width: 46px;
         text-align: center;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+            margin-top: -4px;
+        }
     }
 }
 

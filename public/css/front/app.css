@@ -12044,6 +12044,18 @@ h2.auth-title {
   font-family: "AkzidenzGroteskBE-Md";
 }
 
+@media (max-width: 767px) {
+  .front-auth {
+    height: auto;
+    padding: 0px 0px 20px 0px;
+  }
+
+  .front-auth .already-signup {
+    margin-top: 22px;
+    font-size: 16px;
+  }
+}
+
 .auth-logo-wrapper {
   position: absolute;
   top: 0;
@@ -13119,6 +13131,15 @@ input[type=number]::-webkit-outer-spin-button {
   top: 74px;
   width: 46px;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .fb-btn:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: -4px;
+  }
 }
 
 .mac-browser .btn {
@@ -15188,6 +15209,7 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 767px) {
   .category-section .category-items {
     width: 100%;
+    padding: 4px 40px 40px 40px;
   }
 
   .category-section .category-items .items {
@@ -15960,42 +15982,30 @@ input[type=number]::-webkit-outer-spin-button {
   left: 0;
 }
 
-.job-post-list:hover,
-.job-post-list:focus,
-.job-post-list:active {
+.job-post-list.featured {
   background-color: rgba(221, 198, 244, 0.1);
   border: 1px solid #E0E0E0;
   border-radius: 12px;
 }
 
-.job-post-list:hover .chat-feedback-message,
-.job-post-list:focus .chat-feedback-message,
-.job-post-list:active .chat-feedback-message {
+.job-post-list.featured .chat-feedback-message {
   background-color: #fff;
 }
 
-.job-post-list:hover .chat-feedback-message:after,
-.job-post-list:hover .chat-feedback-message:before,
-.job-post-list:focus .chat-feedback-message:after,
-.job-post-list:focus .chat-feedback-message:before,
-.job-post-list:active .chat-feedback-message:after,
-.job-post-list:active .chat-feedback-message:before {
+.job-post-list.featured .chat-feedback-message:after,
+.job-post-list.featured .chat-feedback-message:before {
   content: '';
   border-right: 10px solid #fff !important;
 }
 
-.job-post-list:hover .chat-feedback-message:after,
-.job-post-list:focus .chat-feedback-message:after,
-.job-post-list:active .chat-feedback-message:after {
+.job-post-list.featured .chat-feedback-message:after {
   content: '';
   border-right: 10px solid #E0E0E0 !important;
   /* left: -11px !important; */
   left: -12px !important;
 }
 
-.job-post-list:hover .chat-feedback-message:before,
-.job-post-list:focus .chat-feedback-message:before,
-.job-post-list:active .chat-feedback-message:before {
+.job-post-list.featured .chat-feedback-message:before {
   content: '';
   z-index: 9;
 }
@@ -16131,6 +16141,15 @@ body .chat-feedback-message.white-msg:before {
 
 .job-common-description i {
   color: #6004BA;
+}
+
+.job-common-description i.icon-info {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.job-common-description i.icon-info img {
+  width: 15px;
 }
 
 .job-common-description .jobs-rating .vue-star-rating {
@@ -16292,6 +16311,8 @@ body .chat-feedback-message.white-msg:before {
 .member-details p.service-requirment,
 .job-details p.service-requirment {
   padding-top: 3px;
+  position: relative;
+  top: -8px;
 }
 
 .member-details p.service-requirment i.icon-brightness-down,
@@ -17258,6 +17279,20 @@ body .chat-feedback-message.white-msg:before {
   color: #8200FF !important;
 }
 
+@media (max-width: 767px) {
+  .bidding-navigation ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .bidding-navigation ul li {
+    margin-right: 0px;
+    margin-bottom: 26px;
+  }
+}
+
 .chat-message i {
   font-size: 32px;
   vertical-align: middle;
@@ -17574,6 +17609,8 @@ body .chat-feedback-message.white-msg:before {
 @media (max-width: 767px) {
   .sign-up-info .custom-radio.boxed {
     margin-bottom: 13px !important;
+    width: 88%;
+    margin: auto;
   }
 
   .sign-up-info .custom-radio.boxed label {
@@ -17610,6 +17647,53 @@ body .chat-feedback-message.white-msg:before {
   .p-l-0 {
     padding-left: 15px !important;
   }
+
+  .category-section {
+    padding-bottom: 20px;
+  }
+
+  .other-categories .category-section {
+    padding-bottom: 20px;
+  }
+
+  .other-categories .category-section .category-items {
+    padding: 0px !important;
+  }
+
+  .already-signup.login {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+}
+
+.tags.inbidding {
+  background-color: #ff8500 !important;
+}
+
+.tags.awarded {
+  background-color: #4b9dc0 !important;
+}
+
+.tags.archived {
+  background-color: #838383 !important;
+}
+
+.tags.initiated {
+  background-color: #ffb300 !important;
+}
+
+.tags.pending {
+  background-color: #ffc107 !important;
+}
+
+.tags.review,
+.tags.in-review {
+  background-color: #17a2b8 !important;
+}
+
+.tags.banned,
+.tags.rejected {
+  background-color: #d9534f !important;
 }
 
 .modal-sm {
@@ -17659,6 +17743,15 @@ body .chat-feedback-message.white-msg:before {
 
 .modal-body .category-selected {
   padding-bottom: 29px;
+}
+
+.modal-body .category-selected.info {
+  padding-bottom: 0;
+  margin-bottom: 24px;
+}
+
+.modal-body .category-selected.info .category-content-block {
+  padding-left: 0px;
 }
 
 .modal-body .btn-link {

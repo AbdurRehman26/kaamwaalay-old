@@ -43,6 +43,14 @@ h2 {
             font-family: $font_medium;
         }
     }
+    @include mobile{
+        height: auto;
+        padding: 0px 0px 20px 0px;
+        .already-signup{
+            margin-top: 22px;
+            font-size: 16px;
+        }
+    }
 }
 .auth-logo-wrapper{
     position:absolute;

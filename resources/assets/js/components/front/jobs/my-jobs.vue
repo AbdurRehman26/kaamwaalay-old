@@ -15,7 +15,7 @@
 
 							<div class="job-common-description job-perform">
 								<div class="col-md-6 p-l-0">
-									<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
+									<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
 									<div class="job-notification">									
 										<div class="jobs-done">
 											<span class="job-category">{{ listing.job_category }}</span>		
@@ -98,6 +98,7 @@
 			</div>
 		</div>
 		<write-review-popup @HideModalValue="HideModal" :showModalProp="writereview"></write-review-popup>
+		<info-popup  @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
 	</div>
 </template>
 
@@ -111,7 +112,7 @@ export default {
     	writereview: false,
     	jobimage: '/images/front/profile-images/logoimage1.png',
     	reviewerimage: '/images/front/profile-images/personimage1.png',
-
+    	infoval: false,
     	joblisting:[
 
 	    	{
@@ -233,8 +234,12 @@ export default {
         WriteReview(){
         	this.writereview = true;
         },
+        showinfo() {
+            this.infoval = true;
+        },        
         HideModal(){
             this.writereview = false;
+            this.infoval = false;
         },
         servicedetail(){
         	this.$router.push({name: 'job-details'});

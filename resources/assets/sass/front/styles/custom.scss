@@ -1053,6 +1053,7 @@ $section-padding-sm:20px 0px;
     @include mobile{
         .category-items{
             width: 100%;
+            padding: 4px 40px 40px 40px;
             .items{
                 padding-left: 0px;
                 width: 100%;
@@ -1757,7 +1758,7 @@ $section-padding-sm:20px 0px;
             left: 0;
         }
     }
-    &:hover,&:focus,&:active{
+    &.featured{
         background-color: rgba(221,198,244,0.1);
         border: 1px solid #E0E0E0;
         border-radius: 12px;
@@ -1901,6 +1902,13 @@ body{
     }
     i{
         color: $primary-color;
+        &.icon-info{
+            margin-left: 10px;
+            display: inline-block;
+            img{
+                width: 15px;
+            }
+        }
     }
     .jobs-rating{
         .vue-star-rating{
@@ -2026,6 +2034,8 @@ body{
         }
         &.service-requirment{
             padding-top: 3px;
+            position: relative;
+            top: -8px;            
             i.icon-brightness-down{
                 font-size: 21px;
                 position: relative;
@@ -2894,6 +2904,15 @@ body{
             }
         }
     }
+    @include mobile{
+        ul{
+            flex-direction: column;
+            li{
+                margin-right: 0px;
+                margin-bottom: 26px;
+            }
+        }
+    }
 }
 
 .chat-message{
@@ -3228,6 +3247,8 @@ body{
     .sign-up-info{
         .custom-radio.boxed {
             margin-bottom: 13px !important;
+            width: 88%;
+            margin: auto;
             label{
                 margin-bottom: 0px !important;
             }            
@@ -3260,5 +3281,44 @@ body{
     }
     .p-l-0{
         padding-left: 15px !important;   
-    }    
+    }
+    .category-section{
+        padding-bottom: 20px;
+    }
+    .other-categories{
+        .category-section{
+            padding-bottom: 20px;
+            .category-items{
+                padding: 0px !important;
+            }
+        }
+    }
+    .already-signup.login {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }            
+}
+
+.tags{
+    &.inbidding{
+        background-color: $status-inbidding !important;
+    }
+    &.awarded{
+        background-color: $status-awarded !important;
+    }
+    &.archived{
+        background-color: $greyD !important;
+    }
+    &.initiated{
+        background-color:$status-initiated !important;
+    }
+    &.pending{
+        background-color:$status-pending !important;
+    }
+    &.review,&.in-review{
+        background-color:$status-review !important;
+    }
+    &.banned,&.rejected{
+        background-color:$status-danger !important;
+    }
 }

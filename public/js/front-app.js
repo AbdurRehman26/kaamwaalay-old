@@ -2390,64 +2390,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    props: ['showModalProp'],
-    methods: {
-        showModal: function showModal() {
-            this.$refs.myModalRef.show();
-        },
-        hideModal: function hideModal() {
-            this.$refs.myModalRef.hide();
-        },
-        onHidden: function onHidden() {
-            this.$emit('HideModalValue');
-        }
-    },
-    watch: {
-        showModalProp: function showModalProp(value) {
-
-            if (value) {
-                this.showModal();
-            }
-            if (!value) {
-                this.hideModal();
-            }
-        }
-    }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/Logo.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4134,6 +4076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -4142,7 +4085,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             bid_selection: 'activebid',
             bidpopup: false,
-            isShowing: false
+            isShowing: false,
+            infoval: false
         };
     },
 
@@ -4161,8 +4105,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ChangeBid: function ChangeBid() {
             this.bidpopup = true;
         },
+        showinfo: function showinfo() {
+            this.infoval = true;
+        },
         HideModal: function HideModal() {
             this.bidpopup = false;
+            this.infoval = false;
         },
         servicedetail: function servicedetail() {
             this.$router.push({ name: 'job-details' });
@@ -4541,6 +4489,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('HideModalValue');
         }
     },
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/InfoPopup.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp'],
+
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        },
+        categorydetail: function categorydetail() {
+            this.$router.push({ name: 'Explore_Detail' });
+        }
+    },
+
     watch: {
         showModalProp: function showModalProp(value) {
 
@@ -5943,7 +5948,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			jobimage: '/images/front/profile-images/logoimage1.png',
 			reviewerimage: '/images/front/profile-images/personimage1.png',
-
+			infoval: false,
 			joblisting: [{
 				job_title_image: '/images/front/profile-images/logoimage1.png',
 				job_title: 'CHS US Carpenter and Roofing',
@@ -6047,7 +6052,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		changestatuspopup: function changestatuspopup() {
 			this.changestatus = true;
 		},
+		showinfo: function showinfo() {
+			this.infoval = true;
+		},
 		HideModal: function HideModal() {
+			this.infoval = false;
 			this.customer = false;
 			this.viewcustomer = false;
 			this.changestatus = false;
@@ -6602,6 +6611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -6611,6 +6621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             bid_selection: 'activebid',
             bidpopup: false,
             isShowing: false,
+            infoval: false,
             joblisting: [{
                 job_title_image: '/images/front/profile-images/bidimage1.png',
                 job_title: 'Concrete Floor Building',
@@ -6707,8 +6718,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ChangeBid: function ChangeBid() {
             this.bidpopup = true;
         },
+        showinfo: function showinfo() {
+            this.infoval = true;
+        },
         HideModal: function HideModal() {
             this.bidpopup = false;
+            this.infoval = false;
         },
         servicedetail: function servicedetail() {
             this.$router.push('/job-details/serviceprovider');
@@ -7251,6 +7266,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -7261,7 +7277,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												writereview: false,
 												jobimage: '/images/front/profile-images/logoimage1.png',
 												reviewerimage: '/images/front/profile-images/personimage1.png',
-
+												infoval: false,
 												joblisting: [{
 																job_title_image: '/images/front/profile-images/logoimage1.png',
 																job_title: 'CHS US Carpenter and Roofing',
@@ -7368,8 +7384,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 								WriteReview: function WriteReview() {
 												this.writereview = true;
 								},
+								showinfo: function showinfo() {
+												this.infoval = true;
+								},
 								HideModal: function HideModal() {
 												this.writereview = false;
+												this.infoval = false;
 								},
 								servicedetail: function servicedetail() {
 												this.$router.push({ name: 'job-details' });
@@ -68401,7 +68421,21 @@ var render = function() {
                 [_vm._v(_vm._s(listing.job_title))]
               ),
               _vm._v(" "),
-              _vm._m(0, true),
+              _c("span", [
+                _c("i", { staticClass: "icon-checked" }),
+                _c(
+                  "i",
+                  {
+                    staticClass: "icon-info pointer",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("showinformation")
+                      }
+                    }
+                  },
+                  [_c("img", { attrs: { src: "/images/front/svg/info.svg" } })]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "job-notification" }, [
                 _c("div", { staticClass: "jobs-done" }, [
@@ -68527,14 +68561,7 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -69515,7 +69542,21 @@ var render = function() {
                 [_vm._v(_vm._s(listing.job_title))]
               ),
               _vm._v(" "),
-              _vm._m(0, true),
+              _c("span", [
+                _c("i", { staticClass: "icon-checked" }),
+                _c(
+                  "i",
+                  {
+                    staticClass: "icon-info pointer",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("showinformation")
+                      }
+                    }
+                  },
+                  [_c("img", { attrs: { src: "/images/front/svg/info.svg" } })]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "job-notification" }, [
                 _c("div", { staticClass: "jobs-done" }, [
@@ -69641,14 +69682,7 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -70819,6 +70853,75 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2f4796e0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/InfoPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "popup categories-popup" },
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "visit-request",
+            centered: "",
+            "hide-header": "false",
+            "hide-footer": "false",
+            "title-tag": "h4",
+            "ok-variant": "primary",
+            size: "sm",
+            title: "Parent Service Detail",
+            "ok-only": "",
+            "ok-title": "Yes, award job"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c("div", { staticClass: "category-selected info" }, [
+            _c("i", {
+              staticClass: "icon-close2",
+              on: { click: _vm.onHidden }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "category-content-block" }, [
+              _c("h3", [_vm._v("Lorem Ipsum")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "category-search-field" }, [
+            _c("p", [
+              _vm._v(
+                "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+              )
+            ])
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2f4796e0", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-30fdf4aa\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/navigations/CustomerNav.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -71196,7 +71299,21 @@ var render = function() {
                             [_vm._v(_vm._s(listing.job_title))]
                           ),
                           _vm._v(" "),
-                          _vm._m(2, true),
+                          _c("span", [
+                            _c("i", { staticClass: "icon-checked" }),
+                            _c(
+                              "i",
+                              {
+                                staticClass: "icon-info pointer",
+                                on: { click: _vm.showinfo }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: { src: "/images/front/svg/info.svg" }
+                                })
+                              ]
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job-notification" }, [
                             _c("div", { staticClass: "jobs-done" }, [
@@ -71356,6 +71473,11 @@ var render = function() {
             _vm.CloseDiscussion()
           }
         }
+      }),
+      _vm._v(" "),
+      _c("info-popup", {
+        attrs: { showModalProp: _vm.infoval },
+        on: { HideModalValue: _vm.HideModal }
       })
     ],
     1
@@ -71430,12 +71552,6 @@ var staticRenderFns = [
         _vm._v("General Carpentry Jobs in New York, NY")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
   }
 ]
 render._withStripped = true
@@ -71624,7 +71740,13 @@ var render = function() {
                   expression: "bid_selection == 'invitebid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
+              on: {
+                changebid: _vm.ChangeBid,
+                showinformation: function($event) {
+                  _vm.showinfo()
+                },
+                chatmessage: _vm.showchatpanel
+              }
             }),
             _vm._v(" "),
             _c("bid-completed", {
@@ -71636,7 +71758,13 @@ var render = function() {
                   expression: "bid_selection == 'completedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
+              on: {
+                changebid: _vm.ChangeBid,
+                showinformation: function($event) {
+                  _vm.showinfo()
+                },
+                chatmessage: _vm.showchatpanel
+              }
             }),
             _vm._v(" "),
             _c("bid-awarded", {
@@ -71648,7 +71776,13 @@ var render = function() {
                   expression: "bid_selection == 'awardedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
+              on: {
+                changebid: _vm.ChangeBid,
+                showinformation: function($event) {
+                  _vm.showinfo()
+                },
+                chatmessage: _vm.showchatpanel
+              }
             }),
             _vm._v(" "),
             _c("bid-archived", {
@@ -71660,7 +71794,13 @@ var render = function() {
                   expression: "bid_selection == 'archivedbid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
+              on: {
+                changebid: _vm.ChangeBid,
+                showinformation: function($event) {
+                  _vm.showinfo()
+                },
+                chatmessage: _vm.showchatpanel
+              }
             }),
             _vm._v(" "),
             _c("bid-active", {
@@ -71672,7 +71812,13 @@ var render = function() {
                   expression: "bid_selection == 'activebid'"
                 }
               ],
-              on: { changebid: _vm.ChangeBid, chatmessage: _vm.showchatpanel }
+              on: {
+                changebid: _vm.ChangeBid,
+                showinformation: function($event) {
+                  _vm.showinfo()
+                },
+                chatmessage: _vm.showchatpanel
+              }
             })
           ],
           1
@@ -71697,6 +71843,11 @@ var render = function() {
               _vm.CloseDiscussion()
             }
           }
+        }),
+        _vm._v(" "),
+        _c("info-popup", {
+          attrs: { showModalProp: _vm.infoval },
+          on: { HideModalValue: _vm.HideModal }
         })
       ],
       1
@@ -71775,7 +71926,21 @@ var render = function() {
                 [_vm._v(_vm._s(listing.job_title))]
               ),
               _vm._v(" "),
-              _vm._m(0, true),
+              _c("span", [
+                _c("i", { staticClass: "icon-checked" }),
+                _c(
+                  "i",
+                  {
+                    staticClass: "icon-info pointer",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("showinformation")
+                      }
+                    }
+                  },
+                  [_c("img", { attrs: { src: "/images/front/svg/info.svg" } })]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "job-notification" }, [
                 _c("div", { staticClass: "jobs-done" }, [
@@ -71901,14 +72066,7 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -72360,215 +72518,252 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "category-detail" }, [
-    _c(
-      "div",
-      { staticClass: "next-project grey-bg elementary-banner section-padd md" },
-      [
-        _c("div", { staticClass: "container element-index text-center md" }, [
-          _c("div", { staticClass: "content-sec" }, [
-            _c("div", {
-              staticClass: "category-image",
-              style: { "background-image": "url(" + _vm.categoryimage + ")" }
-            }),
-            _vm._v(" "),
-            _vm._m(0)
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ]
-    ),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _c("div", { staticClass: "job-post-container section-padd sm" }, [
+  return _c(
+    "div",
+    { staticClass: "category-detail" },
+    [
       _c(
         "div",
-        { staticClass: "container md" },
+        {
+          staticClass: "next-project grey-bg elementary-banner section-padd md"
+        },
         [
-          _vm._m(3),
+          _c("div", { staticClass: "container element-index text-center md" }, [
+            _c("div", { staticClass: "content-sec" }, [
+              _c("div", {
+                staticClass: "category-image",
+                style: { "background-image": "url(" + _vm.categoryimage + ")" }
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]),
           _vm._v(" "),
-          _vm._l(_vm.joblisting, function(listing) {
-            return _c("div", { staticClass: "job-post-list" }, [
-              _c("div", { staticClass: "job-post-details" }, [
-                _c("div", {
-                  staticClass: "job-image pointer",
-                  style: {
-                    "background-image": "url(" + listing.job_title_image + ")"
-                  },
-                  on: { click: _vm.servicedetail }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "job-common-description" }, [
-                  _c(
-                    "h3",
-                    {
-                      staticClass: "pointer",
-                      on: { click: _vm.servicedetail }
+          _vm._m(1)
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "job-post-container section-padd sm" }, [
+        _c(
+          "div",
+          { staticClass: "container md" },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._l(_vm.joblisting, function(listing) {
+              return _c("div", { staticClass: "job-post-list" }, [
+                _c("div", { staticClass: "job-post-details" }, [
+                  _c("div", {
+                    staticClass: "job-image pointer",
+                    style: {
+                      "background-image": "url(" + listing.job_title_image + ")"
                     },
-                    [_vm._v(_vm._s(listing.job_title))]
-                  ),
+                    on: { click: _vm.servicedetail }
+                  }),
                   _vm._v(" "),
-                  _vm._m(4, true),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "jobs-rating" },
-                    [
-                      _c("star-rating", {
-                        attrs: {
-                          "star-size": 20,
-                          "read-only": "",
-                          rating: 4,
-                          "active-color": "#8200ff"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "jobs-done" }, [
-                        _c("span", { staticClass: "review-job" }, [
-                          _vm._v(
-                            _vm._s(listing.job_feedback) + " Feedback reviews"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        listing.job_perform == 0
-                          ? _c("span", { staticClass: "review-job" }, [
-                              _vm._v("No Jobs performed")
-                            ])
-                          : _c("span", { staticClass: "review-job" }, [
-                              _vm._v(
-                                _vm._s(listing.job_perform) + " Jobs performed"
-                              )
-                            ])
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary post-bid",
-                      attrs: { href: "/job-post" }
-                    },
-                    [_vm._v("Post Job & Invite to Bid")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "member-details" }, [
-                  _c("p", { staticClass: "location" }, [
-                    _c("i", { staticClass: "icon-location" }),
-                    _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
-                    _c("strong", [_vm._v(_vm._s(listing.job_location))])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "member-since" }, [
-                    _c("i", { staticClass: "icon-calendar-daily" }),
-                    _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
-                    _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "post-job-description" }, [
-                  _c("p", [_vm._v(_vm._s(listing.job_description))])
-                ]),
-                _vm._v(" "),
-                listing.review_details == true
-                  ? _c("div", { staticClass: "chat-feedback" }, [
-                      _vm._m(5, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "chat-feedback-column" }, [
-                        _c("div", {
-                          staticClass: "chat-feedback-image",
-                          style: {
-                            "background-image":
-                              "url(" + listing.latest_review_image + ")"
+                  _c("div", { staticClass: "job-common-description" }, [
+                    _c(
+                      "h3",
+                      {
+                        staticClass: "pointer",
+                        on: { click: _vm.servicedetail }
+                      },
+                      [_vm._v(_vm._s(listing.job_title))]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [
+                      _c("i", { staticClass: "icon-checked" }),
+                      _c(
+                        "i",
+                        {
+                          staticClass: "icon-info pointer",
+                          on: { click: _vm.showinfo }
+                        },
+                        [
+                          _c("img", {
+                            attrs: { src: "/images/front/svg/info.svg" }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "jobs-rating" },
+                      [
+                        _c("star-rating", {
+                          attrs: {
+                            "star-size": 20,
+                            "read-only": "",
+                            rating: 4,
+                            "active-color": "#8200ff"
                           }
                         }),
                         _vm._v(" "),
-                        _c("div", { staticClass: "chat-feedback-message" }, [
-                          _c("p", [
-                            _vm._v(_vm._s(listing.latest_review_description))
+                        _c("div", { staticClass: "jobs-done" }, [
+                          _c("span", { staticClass: "review-job" }, [
+                            _vm._v(
+                              _vm._s(listing.job_feedback) + " Feedback reviews"
+                            )
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "feeback-detail" }, [
-                            _c("p", { staticClass: "feedback-personal-info" }, [
-                              _c(
-                                "a",
-                                { attrs: { href: "javascript:void(0);" } },
-                                [_vm._v(_vm._s(listing.latest_reviewer_name))]
-                              ),
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
-                              ),
-                              _c("strong", [
-                                _vm._v(_vm._s(listing.latest_review_post_date))
+                          listing.job_perform == 0
+                            ? _c("span", { staticClass: "review-job" }, [
+                                _vm._v("No Jobs performed")
                               ])
+                            : _c("span", { staticClass: "review-job" }, [
+                                _vm._v(
+                                  _vm._s(listing.job_perform) +
+                                    " Jobs performed"
+                                )
+                              ])
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary post-bid",
+                        attrs: { href: "/job-post" }
+                      },
+                      [_vm._v("Post Job & Invite to Bid")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "member-details" }, [
+                    _c("p", { staticClass: "location" }, [
+                      _c("i", { staticClass: "icon-location" }),
+                      _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
+                      _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "member-since" }, [
+                      _c("i", { staticClass: "icon-calendar-daily" }),
+                      _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
+                      _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "post-job-description" }, [
+                    _c("p", [_vm._v(_vm._s(listing.job_description))])
+                  ]),
+                  _vm._v(" "),
+                  listing.review_details == true
+                    ? _c("div", { staticClass: "chat-feedback" }, [
+                        _vm._m(4, true),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "chat-feedback-column" }, [
+                          _c("div", {
+                            staticClass: "chat-feedback-image",
+                            style: {
+                              "background-image":
+                                "url(" + listing.latest_review_image + ")"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "chat-feedback-message" }, [
+                            _c("p", [
+                              _vm._v(_vm._s(listing.latest_review_description))
                             ]),
                             _vm._v(" "),
-                            _c("i", { staticClass: "icon-quotes-right3" })
+                            _c("div", { staticClass: "feeback-detail" }, [
+                              _c(
+                                "p",
+                                { staticClass: "feedback-personal-info" },
+                                [
+                                  _c(
+                                    "a",
+                                    { attrs: { href: "javascript:void(0);" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(listing.latest_reviewer_name)
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
+                                  ),
+                                  _c("strong", [
+                                    _vm._v(
+                                      _vm._s(listing.latest_review_post_date)
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("i", { staticClass: "icon-quotes-right3" })
+                            ])
                           ])
                         ])
                       ])
-                    ])
-                  : _vm._e()
+                    : _vm._e()
+                ])
               ])
-            ])
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "featured-categories section-padd sm  elementary-banner p-t-130"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "container element-index" },
-          _vm._l(_vm.category, function(maincategory) {
-            return _c("div", { staticClass: "category-section" }, [
-              _c("div", { staticClass: "category-title" }, [
-                _c("h2", [_vm._v(_vm._s(maincategory.title))])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "category-items" },
-                [
-                  _vm._l(maincategory.categoryitems, function(categoryabc) {
-                    return _c("div", { staticClass: "items" }, [
-                      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-                        _c("div", {
-                          staticClass: "item-image",
-                          style: {
-                            "background-image":
-                              "url(" + categoryabc.itemimage + ")"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "featured-categories section-padd sm  elementary-banner p-t-130"
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "container element-index" },
+            _vm._l(_vm.category, function(maincategory) {
+              return _c("div", { staticClass: "category-section" }, [
+                _c("div", { staticClass: "category-title" }, [
+                  _c("h2", [_vm._v(_vm._s(maincategory.title))])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "category-items" },
+                  [
+                    _vm._l(maincategory.categoryitems, function(categoryabc) {
+                      return _c("div", { staticClass: "items" }, [
+                        _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                          _c("div", {
+                            staticClass: "item-image",
+                            style: {
+                              "background-image":
+                                "url(" + categoryabc.itemimage + ")"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(_vm._s(categoryabc.itemtitle))])
+                        ])
                       ])
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _vm._m(6, true)
-                ],
-                2
-              )
-            ])
-          })
-        ),
-        _vm._v(" "),
-        _vm._m(7)
-      ]
-    )
-  ])
+                    }),
+                    _vm._v(" "),
+                    _vm._m(5, true)
+                  ],
+                  2
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _vm._m(6)
+        ]
+      ),
+      _vm._v(" "),
+      _c("info-popup", {
+        attrs: { showModalProp: _vm.infoval },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -72664,12 +72859,6 @@ var staticRenderFns = [
         _vm._v("14 General carpentry service professionals found near you")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
   },
   function() {
     var _vm = this
@@ -73111,94 +73300,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-540ccc29", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-55dbc233\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-modal",
-        {
-          ref: "myModalRef",
-          attrs: {
-            id: "change-pass",
-            centered: "",
-            "title-tag": "h4",
-            "ok-variant": "primary",
-            size: "sm",
-            title: "Change Password",
-            "ok-only": "",
-            "ok-title": "Submit"
-          },
-          on: { hidden: _vm.onHidden }
-        },
-        [
-          _c("alert"),
-          _vm._v(" "),
-          _c("div", [
-            _c("label", [_vm._v("Old Password")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "password",
-                  placeholder: "Enter old password",
-                  name: ""
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", [_vm._v("New Password")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "password",
-                  placeholder: "Create new password",
-                  name: ""
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", [_vm._v("Confirm Password")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group mb-0" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "password",
-                  placeholder: "Re-type new password",
-                  name: ""
-                }
-              })
-            ])
-          ])
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-55dbc233", module.exports)
   }
 }
 
@@ -74837,7 +74938,21 @@ var render = function() {
                 [_vm._v(_vm._s(listing.job_title))]
               ),
               _vm._v(" "),
-              _vm._m(0, true),
+              _c("span", [
+                _c("i", { staticClass: "icon-checked" }),
+                _c(
+                  "i",
+                  {
+                    staticClass: "icon-info pointer",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("showinformation")
+                      }
+                    }
+                  },
+                  [_c("img", { attrs: { src: "/images/front/svg/info.svg" } })]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "job-notification" }, [
                 _c("div", { staticClass: "jobs-done" }, [
@@ -74963,14 +75078,7 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -75011,7 +75119,21 @@ var render = function() {
                 [_vm._v(_vm._s(listing.job_title))]
               ),
               _vm._v(" "),
-              _vm._m(0, true),
+              _c("span", [
+                _c("i", { staticClass: "icon-checked" }),
+                _c(
+                  "i",
+                  {
+                    staticClass: "icon-info pointer",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("showinformation")
+                      }
+                    }
+                  },
+                  [_c("img", { attrs: { src: "/images/front/svg/info.svg" } })]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "job-notification" }, [
                 _c("div", { staticClass: "jobs-done" }, [
@@ -75137,14 +75259,7 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -75881,7 +75996,21 @@ var render = function() {
                           [_vm._v(_vm._s(listing.job_title))]
                         ),
                         _vm._v(" "),
-                        _vm._m(1, true),
+                        _c("span", [
+                          _c("i", { staticClass: "icon-checked" }),
+                          _c(
+                            "i",
+                            {
+                              staticClass: "icon-info pointer",
+                              on: { click: _vm.showinfo }
+                            },
+                            [
+                              _c("img", {
+                                attrs: { src: "/images/front/svg/info.svg" }
+                              })
+                            ]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "job-notification" }, [
                           _c("div", { staticClass: "jobs-done" }, [
@@ -75996,7 +76125,7 @@ var render = function() {
                   _vm._v(" "),
                   listing.review_details == true
                     ? _c("div", { staticClass: "chat-feedback" }, [
-                        _vm._m(2, true),
+                        _vm._m(1, true),
                         _vm._v(" "),
                         _c("div", { staticClass: "chat-feedback-column" }, [
                           _c("div", {
@@ -76067,6 +76196,11 @@ var render = function() {
       _c("write-review-popup", {
         attrs: { showModalProp: _vm.writereview },
         on: { HideModalValue: _vm.HideModal }
+      }),
+      _vm._v(" "),
+      _c("info-popup", {
+        attrs: { showModalProp: _vm.infoval },
+        on: { HideModalValue: _vm.HideModal }
       })
     ],
     1
@@ -76092,12 +76226,6 @@ var staticRenderFns = [
         _vm._v(" jobs.")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "icon-checked" })])
   },
   function() {
     var _vm = this
@@ -94656,54 +94784,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/admin/common-components/ChangePassPopup.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/admin/common-components/ChangePassPopup.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-55dbc233\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/admin/common-components/ChangePassPopup.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\admin\\common-components\\ChangePassPopup.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-55dbc233", Component.options)
-  } else {
-    hotAPI.reload("data-v-55dbc233", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ "./resources/assets/js/components/admin/common-components/Loader.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -95893,6 +95973,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-3a28fc32", Component.options)
   } else {
     hotAPI.reload("data-v-3a28fc32", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/front/common-components/InfoPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/InfoPopup.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2f4796e0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/InfoPopup.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\InfoPopup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2f4796e0", Component.options)
+  } else {
+    hotAPI.reload("data-v-2f4796e0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -97551,7 +97679,7 @@ Vue.component('no-record-found', __webpack_require__("./resources/assets/js/comp
 Vue.component('search', __webpack_require__("./resources/assets/js/components/admin/common-components/Search.vue"));
 Vue.component('loader', __webpack_require__("./resources/assets/js/components/admin/common-components/Loader.vue"));
 Vue.component('alert', __webpack_require__("./resources/assets/js/components/front/common-components/Alert.vue"));
-Vue.component('change-password-popup', __webpack_require__("./resources/assets/js/components/admin/common-components/ChangePassPopup.vue"));
+Vue.component('info-popup', __webpack_require__("./resources/assets/js/components/front/common-components/InfoPopup.vue"));
 Vue.component('change-password-popup', __webpack_require__("./resources/assets/js/components/front/common-components/ChangePassPopup.vue"));
 Vue.component('testmonial-sec', __webpack_require__("./resources/assets/js/components/front/common-components/TestmonialSec.vue"));
 Vue.component('category-popup', __webpack_require__("./resources/assets/js/components/front/common-components/CateogyPopup.vue"));
