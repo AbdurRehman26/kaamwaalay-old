@@ -13560,7 +13560,7 @@ input[type=number]::-webkit-outer-spin-button {
   .navigation.main-navigation ul li .post-job-btn {
     top: 0;
     /* margin-bottom: 18px; */
-    line-height: 24px;
+    line-height: 17px;
     margin-bottom: 10px;
   }
 
@@ -15329,6 +15329,12 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: 'icomoon';
 }
 
+@media (max-width: 767px) {
+  .profile-form-section .personal-detail .profile-image-placeholder {
+    top: -29%;
+  }
+}
+
 .profile-form-section .personal-detail:after {
   content: 'HOME ADDRESS';
   position: absolute;
@@ -15341,6 +15347,14 @@ input[type=number]::-webkit-outer-spin-button {
   width: 160px;
   left: 40%;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .profile-form-section .personal-detail:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 .profile-form-section .form-detail p {
@@ -15440,6 +15454,12 @@ input[type=number]::-webkit-outer-spin-button {
   background-image: url(/images/front/svg/sp-grey.svg);
 }
 
+@media (max-width: 767px) {
+  .personal-provider-detail .profile-image-placeholder {
+    top: -31%;
+  }
+}
+
 .business-detail {
   position: relative;
   padding-top: 30px;
@@ -15459,6 +15479,14 @@ input[type=number]::-webkit-outer-spin-button {
   background: #fff;
   text-align: center;
   width: 164px;
+}
+
+@media (max-width: 767px) {
+  .business-detail:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 .business-detail .duns-help-icon .icon-help {
@@ -15490,6 +15518,20 @@ input[type=number]::-webkit-outer-spin-button {
   width: 164px;
 }
 
+@media (max-width: 767px) {
+  .service-offered:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-offered .add-photos {
+    margin-top: 0px !important;
+  }
+}
+
 .business-proof {
   position: relative;
   padding-top: 30px;
@@ -15511,6 +15553,14 @@ input[type=number]::-webkit-outer-spin-button {
   width: 195px;
 }
 
+@media (max-width: 767px) {
+  .business-proof:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
 .business-proof p {
   font-size: 14px;
   color: #494949;
@@ -15518,6 +15568,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .business-proof ul li {
   list-style: disc;
+}
+
+@media (max-width: 767px) {
+  .business-proof .add-photos {
+    margin-top: 0px !important;
+  }
 }
 
 .provider-address {
@@ -15541,6 +15597,14 @@ input[type=number]::-webkit-outer-spin-button {
   width: 110px;
 }
 
+@media (max-width: 767px) {
+  .provider-address:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
 .account-fee {
   position: relative;
   padding-top: 30px;
@@ -15560,6 +15624,14 @@ input[type=number]::-webkit-outer-spin-button {
   background: #fff;
   text-align: center;
   width: 140px;
+}
+
+@media (max-width: 767px) {
+  .account-fee:after {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
 .account-fee .verification-alert p {
@@ -16059,7 +16131,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .job-post-list {
-    background-color: rgba(221, 198, 244, 0.1);
+    /* background-color: rgba(221, 198, 244, 0.1); */
     border: 1px solid #E0E0E0;
     border-radius: 12px;
     padding: 25px 12px 20px 12px;
@@ -16270,6 +16342,7 @@ body .chat-feedback-message.white-msg:before {
   .job-common-description .jobs-done .review-job {
     padding: 0px 0px;
     float: left;
+    font-size: 12px;
   }
 
   .job-common-description .jobs-done .review-job:first-child {
@@ -16279,6 +16352,10 @@ body .chat-feedback-message.white-msg:before {
   .job-common-description .post-bid {
     position: relative;
     margin-bottom: 25px;
+    height: auto !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    line-height: 11px !important;
   }
 
   .job-common-description h3 {
@@ -16292,8 +16369,9 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .job-common-description .jobs-rating .vue-star-rating span.vue-star-rating-star svg {
-    width: 13px;
-    height: 24px;
+    font-size: 12px;
+    width: 18px;
+    height: 14px;
   }
 
   .job-common-description.job-perform {
@@ -16394,6 +16472,7 @@ body .chat-feedback-message.white-msg:before {
   .job-details p {
     display: block;
     margin-bottom: 5px;
+    padding-left: 0px !important;
     font-size: 12px;
   }
 
@@ -16561,6 +16640,22 @@ body .chat-feedback-message.white-msg:before {
   .chat-feedback .feeback-detail .ratings .vue-star-rating span.vue-star-rating-star svg {
     width: 13px;
     height: 24px;
+  }
+
+  .chat-feedback .job-bidding {
+    padding-left: 47px;
+  }
+
+  .chat-feedback .job-bidding .provider-bidding-btn a {
+    font-size: 14px !important;
+    margin-left: 0px !important;
+    margin-right: 4px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .chat-feedback .job-bidding .proposal-message {
+    font-size: 13px;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -17167,6 +17262,15 @@ body .chat-feedback-message.white-msg:before {
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  .jobs-post-files .gallery-item {
+    width: 44%;
+    margin-right: 20px;
+    margin-bottom: 18px;
+    height: auto;
+  }
+}
+
 .service-provider .service-providers-invite {
   padding: 21px 25px;
   background-size: cover;
@@ -17521,6 +17625,12 @@ body .chat-feedback-message.white-msg:before {
   top: 0;
 }
 
+@media (max-width: 767px) {
+  .notify-dropdown .right-notification .notification-limit span + span:before {
+    display: none;
+  }
+}
+
 .coustomer-info-line i {
   display: inline-block;
   color: #8200FF;
@@ -17653,7 +17763,54 @@ body .chat-feedback-message.white-msg:before {
   font-family: "AkzidenzGroteskBE-Md";
 }
 
+.tags.inbidding {
+  background-color: #ff8500 !important;
+}
+
+.tags.awarded {
+  background-color: #4b9dc0 !important;
+}
+
+.tags.archived {
+  background-color: #838383 !important;
+}
+
+.tags.initiated {
+  background-color: #ffb300 !important;
+}
+
+.tags.pending {
+  background-color: #ffc107 !important;
+}
+
+.tags.review,
+.tags.in-review {
+  background-color: #17a2b8 !important;
+}
+
+.tags.banned,
+.tags.rejected {
+  background-color: #d9534f !important;
+}
+
 @media (max-width: 767px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .bidding-sec h2 {
+    padding-bottom: 25px;
+  }
+
+  .my-job-indication,
+  .bidding-sec {
+    padding-top: 20px;
+  }
+
   .sign-up-info .custom-radio.boxed {
     margin-bottom: 13px !important;
     width: 88%;
@@ -17662,6 +17819,12 @@ body .chat-feedback-message.white-msg:before {
 
   .sign-up-info .custom-radio.boxed label {
     margin-bottom: 0px !important;
+  }
+
+  .job-details .customer-rating .vue-star-rating > span.vue-star-rating-star svg {
+    font-size: 12px;
+    width: 18px;
+    height: 14px;
   }
 
   .next-project .vue-star-rating {
@@ -17707,40 +17870,96 @@ body .chat-feedback-message.white-msg:before {
     padding: 0px !important;
   }
 
+  .search-fixture {
+    height: auto;
+  }
+
+  .search-fixture .search-fix {
+    position: relative;
+  }
+
+  .category-section-search {
+    padding-top: 17px;
+  }
+
+  .category-section-search h1 {
+    font-size: 17px;
+  }
+
+  .job-post-container.section-padd.sm {
+    padding-top: 20px !important;
+  }
+
+  .chat-message {
+    padding-left: 0 !important;
+  }
+
+  .chat-message i {
+    margin-right: 0;
+  }
+
+  .wrapper-sm h1 {
+    margin: 0px 0 20px 0;
+    text-align: center;
+  }
+
   .already-signup.login {
     margin-bottom: 20px;
     font-size: 16px;
   }
-}
 
-.tags.inbidding {
-  background-color: #ff8500 !important;
-}
+  .my-job-lising-content .job-common-description .p-l-0,
+  .my-job-lising-content .job-common-description .p-r-0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 
-.tags.awarded {
-  background-color: #4b9dc0 !important;
-}
+  .provider-information {
+    padding-right: 0px;
+  }
 
-.tags.archived {
-  background-color: #838383 !important;
-}
+  .my-job-indication p,
+  .bidding-sec p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
 
-.tags.initiated {
-  background-color: #ffb300 !important;
-}
+  .job-main-heading .content-sec .job-image {
+    margin-right: 0px;
+  }
 
-.tags.pending {
-  background-color: #ffc107 !important;
-}
+  .job-main-heading .content-sec .job-content {
+    width: 100%;
+  }
 
-.tags.review,
-.tags.in-review {
-  background-color: #17a2b8 !important;
-}
+  .job-main-heading .content-sec .job-content h2 {
+    text-align: center;
+  }
 
-.tags.banned,
-.tags.rejected {
-  background-color: #d9534f !important;
+  .job-main-heading .content-sec .job-content .job-notification.flexable {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .job-main-heading .content-sec .job-content .job-notification.flexable .col-md-8,
+  .job-main-heading .content-sec .job-content .job-notification.flexable .col-md-6 {
+    width: 100%;
+    padding: 0px !important;
+  }
+
+  .job-main-heading .content-sec .job-content .job-notification.flexable .job-details {
+    text-align: left;
+  }
+
+  .job-main-heading .content-sec .job-content .job-notification.flexable .job-details p {
+    margin-bottom: 0px !important;
+  }
+
+  .job-main-heading .content-sec .job-content .job-notification.flexable .job-details p.service-requirment {
+    top: -2px;
+  }
 }
 
 .modal-sm {

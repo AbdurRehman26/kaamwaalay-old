@@ -71089,6 +71089,13 @@ var render = function() {
       _c("ul", { staticClass: "float-left" }, [
         _c(
           "li",
+          {
+            on: {
+              click: function($event) {
+                _vm.$emit("clickmenu")
+              }
+            }
+          },
           [
             _c("router-link", { attrs: { to: "/explore" } }, [
               _vm._v("Explore")
@@ -71099,6 +71106,13 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          {
+            on: {
+              click: function($event) {
+                _vm.$emit("clickmenu")
+              }
+            }
+          },
           [
             _c("router-link", { attrs: { to: "/my-jobs" } }, [
               _vm._v("My Jobs")
@@ -71107,7 +71121,26 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                _vm.$emit("clickmenu")
+              }
+            }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary post-job-btn btn-md",
+                attrs: { href: "/job-post" }
+              },
+              [_vm._v("Post a Job")]
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("li", [
           _c("ul", { staticClass: "profilesession" }, [
@@ -71144,7 +71177,14 @@ var render = function() {
               _c("ul", [
                 _c(
                   "li",
-                  { staticClass: "setting-li" },
+                  {
+                    staticClass: "setting-li",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("clickmenu")
+                      }
+                    }
+                  },
                   [
                     _c("router-link", { attrs: { to: "/profile" } }, [
                       _c("i", { staticClass: "icon-cog2 action-icon" })
@@ -71214,6 +71254,13 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("clickmenu")
+                      }
+                    }
+                  },
                   [
                     _c(
                       "router-link",
@@ -71231,23 +71278,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary post-job-btn btn-md",
-          attrs: { href: "/job-post" }
-        },
-        [_vm._v("Post a Job")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -73624,6 +73655,13 @@ var render = function() {
       _c("ul", { staticClass: "float-left" }, [
         _c(
           "li",
+          {
+            on: {
+              click: function($event) {
+                _vm.$emit("clickmenu")
+              }
+            }
+          },
           [
             _c("router-link", { attrs: { to: "/explore-jobs" } }, [
               _vm._v("Explore Jobs ")
@@ -73634,6 +73672,13 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          {
+            on: {
+              click: function($event) {
+                _vm.$emit("clickmenu")
+              }
+            }
+          },
           [
             _c("router-link", { attrs: { to: "/my-bids" } }, [
               _vm._v("My Bids")
@@ -73644,6 +73689,13 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          {
+            on: {
+              click: function($event) {
+                _vm.$emit("clickmenu")
+              }
+            }
+          },
           [
             _c("router-link", { attrs: { to: "/featured-profile" } }, [
               _vm._v("Featured Profile")
@@ -73687,7 +73739,14 @@ var render = function() {
               _c("ul", [
                 _c(
                   "li",
-                  { staticClass: "setting-li" },
+                  {
+                    staticClass: "setting-li",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("clickmenu")
+                      }
+                    }
+                  },
                   [
                     _c("router-link", { attrs: { to: "/profile" } }, [
                       _c("i", { staticClass: "icon-cog2 action-icon" })
@@ -73757,6 +73816,13 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("clickmenu")
+                      }
+                    }
+                  },
                   [
                     _c(
                       "router-link",
@@ -73864,7 +73930,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-primary post-job-btn",
+              staticClass: "btn btn-primary post-job-btn btn-md",
               attrs: { href: "/job-post" }
             },
             [_vm._v("Post a Job")]
@@ -75709,6 +75775,9 @@ var render = function() {
                   attrs: { active: _vm.responsivemenu == true },
                   on: {
                     profilepopup: _vm.ProfilePopup,
+                    clickmenu: function($event) {
+                      _vm.closemenu()
+                    },
                     WriteReviewModal: function($event) {
                       _vm.WriteReviewModal()
                     },
@@ -75724,6 +75793,9 @@ var render = function() {
                   attrs: { active: _vm.responsivemenu == true },
                   on: {
                     profilepopup: _vm.ProfilePopup,
+                    clickmenu: function($event) {
+                      _vm.closemenu()
+                    },
                     WriteReviewModal: function($event) {
                       _vm.WriteReviewModal()
                     },

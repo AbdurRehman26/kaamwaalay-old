@@ -2,9 +2,9 @@
     <!-- provider header -->
     <div class="navigation main-navigation provider-navigation">
         <ul class="float-left">
-            <li><router-link to="/explore-jobs">Explore Jobs </router-link></li>
-            <li><router-link to="/my-bids">My Bids</router-link></li>
-            <li><router-link to="/featured-profile">Featured Profile</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/explore-jobs">Explore Jobs </router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/my-bids">My Bids</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/featured-profile">Featured Profile</router-link></li>
             <li>
                 <ul class="profilesession">
                    <li class="account-li">
@@ -17,7 +17,7 @@
                     </li>
                     <li class="account-info-keys">
                         <ul>
-                            <li class="setting-li">
+                            <li @click="$emit('clickmenu')" class="setting-li">
                                 <router-link to="/profile">
                                     <i class="icon-cog2 action-icon"></i>
                                 </router-link>
@@ -29,7 +29,7 @@
                                         <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
                                     </span>
                                 </li>
-                                <li>
+                                <li @click="$emit('clickmenu')">
                                     <router-link to="/" class="no-active">
                                         <i class="icon-exit action-icon"></i>
                                     </router-link>
