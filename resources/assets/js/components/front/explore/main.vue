@@ -12,7 +12,7 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="name" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :internal-search="false" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind" name="search" @close="onTouch"></multiselect>
+										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind" name="search" ></multiselect>
 									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
@@ -95,7 +95,7 @@
 	export default {
 		data () {
 			return {
-				searchValue: [],
+				searchValue: '',
 				isLoading: false,
 				searchUrl: 'api/service',
 				options: [],
@@ -464,7 +464,7 @@
 			},
 			ServiceProviderPage() {
 				this.isTouched = false;
-				if(this.searchValue.length === 0) {
+				if(!this.searchValue) {
 					this.isTouched = true;
 					return;
 				}
@@ -479,7 +479,7 @@
 
 		computed: {
 		    isInvalid () {
-		      return this.isTouched && this.searchValue.length === 0
+		      return this.isTouched && !this.searchValue
 		    }
 		},
 	}

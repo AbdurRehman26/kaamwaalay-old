@@ -46,7 +46,8 @@
                     
                     let result = {
                         data : response.data,
-                        noRecordFound : false
+                        noRecordFound : false,
+                        pagination: response.pagination
                     };
 
                     console.log(response.data , response.data.length  , 'length of the data and data');

@@ -75,8 +75,9 @@ public $model;
 // findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
             $reviewCriteria = ['user_id' => $data->user_id];
             $review = app('UserRatingRepository')->findByCriteria($reviewCriteria, false, false, false, false, false);
-            $data->reviewedBy = [];
+            $data->reviewedBy = null;
             if($review) {
+                $review->formatted_created_at = Carbon::parse($review->created_at)->format('F j, Y');
                 $data->reviewedBy['review'] = $review;
                 $reviewedUser = app('UserRepository')->findById($review->rated_by);
                 $data->reviewedBy['user_detail'] = $reviewedUser;
@@ -92,6 +93,9 @@ public $model;
 
             $crtieria = ['user_id' => $data->user_id, 'status'=>'approved'];
             $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
+            if($profile){
+                $profile->formatted_created_at = Carbon::parse($profile->approved_at)->format('F j, Y');
+            }
             $data->profile_request = $profile;
             
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
