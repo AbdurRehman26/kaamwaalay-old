@@ -1126,7 +1126,7 @@ $section-padding-sm:20px 0px;
     background-color: #FFFFFF;
     margin-top: 90px;
 
-    &:after {
+/*     &:after {
         position: absolute;
         content: "\E90F";
         top: -60px;
@@ -1141,12 +1141,33 @@ $section-padding-sm:20px 0px;
         border-radius: 100%;
         background: #f9f9f9;
         line-height: 103px;
-    }
+    } */
     .personal-detail {
         position: relative;
         margin-bottom: 30px;
         padding-bottom: 23px;
         border-bottom: 1px solid $grey-lite;
+        .profile-image-placeholder{
+            position: absolute;
+            top: -49%;
+            overflow: hidden;
+            font-size: 57px;    
+            color: #7d7d7d;
+            border: 1px solid #E0E0E0;
+            height: 110px;
+            width: 110px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            border-radius: 100%;
+            background: #f9f9f9;
+            line-height: 103px;      
+            &:after{
+                content: "\E90F";
+                font-family: 'icomoon';            
+            }      
+        }
         &:after {
             content:'HOME ADDRESS';
             position: absolute;
@@ -1170,7 +1191,7 @@ $section-padding-sm:20px 0px;
     }
 }
 .apply-review-sec {
-    &:after {
+/*     &:after {
     position: absolute;
     left: 43.5%;
     top: -60px;
@@ -1189,7 +1210,7 @@ $section-padding-sm:20px 0px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 100% 48%;
-    }
+    } */
 }
 .browse-btn {
     position: relative;
@@ -1229,6 +1250,28 @@ $section-padding-sm:20px 0px;
 
 .personal-provider-detail {
     padding-bottom: 20px;
+    position: relative;
+        .profile-image-placeholder{
+            position: absolute;
+            top: -52%;
+            overflow: hidden;
+            font-size: 57px;
+            color: #7d7d7d;
+            border: 1px solid #E0E0E0;
+            height: 110px;
+            width: 110px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-size: 60% !important;
+            text-align: center;
+            border-radius: 100%;
+            background: #f9f9f9;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            line-height: 103px;
+            background-image: url(/images/front/svg/sp-grey.svg);
+        }    
 }
 
 .business-detail {
