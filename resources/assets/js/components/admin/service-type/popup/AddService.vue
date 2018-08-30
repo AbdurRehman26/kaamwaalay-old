@@ -159,7 +159,7 @@
             onUrlBlur(e) {
 
                 var sufix = $(e.target).val();
-                this.formData.url_prefix = this.defaultUrlPrefix +'/'+ sufix;
+                this.formData.url_prefix = this.defaultUrlPrefix + sufix;
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
