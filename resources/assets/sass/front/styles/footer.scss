@@ -39,6 +39,16 @@
 	i.icon-facebook {
 		margin-left: 4px;
 	}
+	@include mobile{
+		ul{
+			text-align: center;
+			li{
+				a{
+					margin-left: 0px;
+				}
+			}
+		}
+	}
 }
 
 .footer-links {
@@ -88,7 +98,7 @@
 	@include mobile{
 		ul{
 			padding-left: 0px;
-			margin-bottom: 30px;
+			margin-bottom: 10px;
 			li{
 				margin-bottom: 10px;
 				a{

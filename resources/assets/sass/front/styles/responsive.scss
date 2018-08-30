@@ -437,6 +437,9 @@
             }
         }
     }
+    .jobs-post-files{
+        padding-top: 20px;
+    }
     .job-main-details.detail-page{
         .job-details {
             padding-top: 10px !important;
@@ -457,6 +460,9 @@
                 }
                 .job-common-description{
                     padding-bottom: 2px;
+                    h3{
+                        padding-bottom: 9px;
+                    }
                 }
                 .provider-bidding-btn{
                     a{

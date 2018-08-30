@@ -346,6 +346,12 @@ $section-padding-sm:20px 0px;
             .width-max{
                 max-width: 160px !important;   
             }            
+            .bottom-left{
+                max-width: 112px !important;
+            }
+            .bottom-right{
+                max-width: 101px !important;
+            }
         }
     }    
 }
@@ -2117,11 +2123,15 @@ body{
             position: absolute;
             top: -54px;
             padding-left: 60px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;            
             span{
                 display: block;
             }
             h3{
                 font-size: 15px;
+                white-space: pre;
             }
             i{
                 font-size: 20px;

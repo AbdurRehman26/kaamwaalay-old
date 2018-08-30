@@ -13281,6 +13281,16 @@ input[type=number]::-webkit-outer-spin-button {
   margin-left: 4px;
 }
 
+@media (max-width: 767px) {
+  .social-icons ul {
+    text-align: center;
+  }
+
+  .social-icons ul li a {
+    margin-left: 0px;
+  }
+}
+
 .footer-links ul li {
   margin-bottom: 16px;
   margin-right: 10px;
@@ -13340,7 +13350,7 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 767px) {
   .footer-links ul {
     padding-left: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
   .footer-links ul li {
@@ -14468,6 +14478,14 @@ input[type=number]::-webkit-outer-spin-button {
 
   .elementary-banner .elements .width-max {
     max-width: 160px !important;
+  }
+
+  .elementary-banner .elements .bottom-left {
+    max-width: 112px !important;
+  }
+
+  .elementary-banner .elements .bottom-right {
+    max-width: 101px !important;
   }
 }
 
@@ -16434,6 +16452,9 @@ body .chat-feedback-message.white-msg:before {
     position: absolute;
     top: -54px;
     padding-left: 60px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .job-common-description .job-main-title span {
@@ -16442,6 +16463,7 @@ body .chat-feedback-message.white-msg:before {
 
   .job-common-description .job-main-title h3 {
     font-size: 15px;
+    white-space: pre;
   }
 
   .job-common-description .job-main-title i {
@@ -18331,6 +18353,10 @@ body .chat-feedback-message.white-msg:before {
     margin-bottom: 10px !important;
   }
 
+  .jobs-post-files {
+    padding-top: 20px;
+  }
+
   .job-main-details.detail-page .job-details {
     padding-top: 10px !important;
     margin-bottom: 0;
@@ -18350,6 +18376,10 @@ body .chat-feedback-message.white-msg:before {
 
   .job-main-details.detail-page .chat-feedback .job-bidding .job-common-description {
     padding-bottom: 2px;
+  }
+
+  .job-main-details.detail-page .chat-feedback .job-bidding .job-common-description h3 {
+    padding-bottom: 9px;
   }
 
   .job-main-details.detail-page .chat-feedback .job-bidding .provider-bidding-btn a {
