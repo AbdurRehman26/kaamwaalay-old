@@ -26,8 +26,8 @@ export default {
                 errorMessage: '',
                 successMessage: '',
                 loading: false,
-                url : '',
-                data : {}
+                requestUrl : '',
+                requestData : {}
             }  
         },
         methods: {
@@ -43,14 +43,14 @@ export default {
             },submit(){
                 let self = this
                 self.loading = true
-                self.$http.put(self.url,self.data)
+                self.$http.put(self.requestUrl,self.requestData)
                     .then(response => {
                             self.successMessage= response.data.message
-                            self.$parent.currentRecord.status = self.data.status
+                            self.$parent.currentRecord.status = self.requestData.status
                             setTimeout(function(){
                                 self.successMessage=''
                                 self.loading = false
-                                self.$parent.currentRecord.status = self.data.status
+                                self.$parent.currentRecord.status = self.requestData.status
                                 self.$parent.actionConfirmation = false
                                 self.hideModal()
                             }, 5000);
@@ -77,10 +77,10 @@ export default {
 
         },
         url(value){
-            this.url = value
+            this.requestUrl = value
         },
         data(value){
-            this.data = value
+            this.requestData = value
         }
     },
 }
