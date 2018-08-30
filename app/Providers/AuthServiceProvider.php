@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         
-        try{
+        if (!\App::runningInConsole()) {
             $scopes = Role::pluck('scope')->toArray();
             $data = [];
             if(!empty($scopes)){
@@ -38,8 +38,6 @@ class AuthServiceProvider extends ServiceProvider
                 }
             }
             Passport::tokensCan($data);
-        }catch(\Exception $e){
-
         }
         
         Passport::routes();
