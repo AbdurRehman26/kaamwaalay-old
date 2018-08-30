@@ -18133,6 +18133,65 @@ body .chat-feedback-message.white-msg:before {
   .campaigns .camp-views .view-status-detail .views-percentage li {
     margin-right: 13px;
   }
+
+  .service-provider {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .service-provider a.btn {
+    margin-left: 7px;
+    margin-top: 0px;
+  }
+
+  .service-provider a.btn:first-child {
+    margin-left: 0;
+  }
+
+  .service-provider a.btn i {
+    left: 9px;
+    top: 11px;
+  }
+
+  .service-provider a.btn i.icon-message {
+    top: 8px;
+  }
+
+  .service-provider a.btn i.icon-folder {
+    top: 9px;
+    font-size: 18px;
+  }
+
+  .jobs-post-files iframe {
+    width: 100%;
+    height: 200px;
+  }
+
+  .job-main-details.detail-page .job-details {
+    padding-top: 10px !important;
+    margin-bottom: 0;
+  }
+
+  .chat-feedback-column.job-bidding:last-child {
+    margin-bottom: 16px;
+    padding-bottom: 0px !important;
+  }
+
+  .chat-feedback-column.job-bidding .bit-offered {
+    font-size: 13px;
+    padding-top: 11px;
+  }
+
+  .chat-feedback-column.job-bidding .proposal-message {
+    padding-top: 5px;
+    font-size: 14px;
+  }
+
+  .chat-feedback-column.job-bidding .job-common-description h3 {
+    font-size: 16px;
+    top: 5px;
+  }
 }
 
 .modal-sm {
