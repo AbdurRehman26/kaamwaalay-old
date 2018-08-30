@@ -34,15 +34,17 @@
 }
 
 .left-cog.profile-block{
-    width: 180px;
+    /*width: 180px;*/
+    width: 300px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     .profile-username {
         .username{
             font-weight: 700;
             padding-left: 12px;
-            max-width: 73px;
+            /*max-width: 73px;*/
+            max-width: 183px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
