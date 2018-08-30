@@ -37,7 +37,9 @@
 
                             <div class="job-common-description job-perform">
                                 <div class="col-md-6 p-l-0">
-                                    <h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+                                    <div class="job-main-title">
+                                        <h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+                                    </div>
                                     <div class="job-notification">
                                         <div class="jobs-done">
                                             <span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile">{{ listing.job_poster }}</a></span>

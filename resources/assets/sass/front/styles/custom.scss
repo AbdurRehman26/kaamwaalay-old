@@ -3627,12 +3627,32 @@ body{
             }
         }        
     }
+    .post-bid-form{
+        .modal-content {
+            width: 100%;
+        }
+    }    
     ul.profilesession {
         float: left;
         width: 100%;
         border-top: 1px solid #ccc;
         padding-top: 19px;
     }
+    .job-common-description.job-perform{
+        .chat-message{
+            i{
+                padding: inherit;
+                position: relative;
+                top: -5px;                
+            }
+        }
+    }
+    .my-job-lising-content{
+         .job-details {
+            margin-bottom: 0;
+        }        
+    }
+
     .profile-budget{
         h2{
             font-size: 16px;

@@ -6614,6 +6614,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -69434,6 +69436,7 @@ var render = function() {
         "b-modal",
         {
           ref: "myModalRef",
+          staticClass: "post-bid-form",
           attrs: {
             id: "post-bid",
             centered: "",
@@ -69465,7 +69468,7 @@ var render = function() {
                 "b-row",
                 { staticClass: "justify-content-md-center" },
                 [
-                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                  _c("b-col", { attrs: { md: "6" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", [_vm._v("Bid Amount")]),
                       _vm._v(" "),
@@ -69476,7 +69479,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                  _c("b-col", { attrs: { md: "6" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", [_vm._v(" ")]),
                       _vm._v(" "),
@@ -69498,11 +69501,11 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "1", md: "12" } }, [
+                  _c("b-col", { attrs: { md: "12" } }, [
                     _c("h6", { staticClass: "text-center" }, [_vm._v("OR")])
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "1", md: "12" } }, [
+                  _c("b-col", { attrs: { md: "12" } }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("div", { staticClass: "custom-circle-radio" }, [
                         _c("input", {
@@ -69535,7 +69538,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                  _c("b-col", { attrs: { md: "6" } }, [
                     _c(
                       "div",
                       { staticClass: "form-group custom-datepicker" },
@@ -69563,7 +69566,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "2", md: "6" } }, [
+                  _c("b-col", { attrs: { md: "6" } }, [
                     _c(
                       "div",
                       {
@@ -69593,7 +69596,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("b-col", { attrs: { cols: "1", md: "12" } }, [
+                  _c("b-col", { attrs: { md: "12" } }, [
                     _c("label", [_vm._v("Proposal Statement")]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -71476,29 +71479,31 @@ var render = function() {
                       { staticClass: "job-common-description job-perform" },
                       [
                         _c("div", { staticClass: "col-md-6 p-l-0" }, [
-                          _c(
-                            "h3",
-                            {
-                              staticClass: "pointer",
-                              on: { click: _vm.servicedetail }
-                            },
-                            [_vm._v(_vm._s(listing.job_title))]
-                          ),
-                          _vm._v(" "),
-                          _c("span", [
-                            _c("i", { staticClass: "icon-checked" }),
+                          _c("div", { staticClass: "job-main-title" }, [
                             _c(
-                              "i",
+                              "h3",
                               {
-                                staticClass: "icon-info pointer",
-                                on: { click: _vm.showinfo }
+                                staticClass: "pointer",
+                                on: { click: _vm.servicedetail }
                               },
-                              [
-                                _c("img", {
-                                  attrs: { src: "/images/front/svg/info.svg" }
-                                })
-                              ]
-                            )
+                              [_vm._v(_vm._s(listing.job_title))]
+                            ),
+                            _vm._v(" "),
+                            _c("span", [
+                              _c("i", { staticClass: "icon-checked" }),
+                              _c(
+                                "i",
+                                {
+                                  staticClass: "icon-info pointer",
+                                  on: { click: _vm.showinfo }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/images/front/svg/info.svg" }
+                                  })
+                                ]
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "job-notification" }, [
