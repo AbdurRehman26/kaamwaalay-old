@@ -384,6 +384,7 @@
             isUpdate(value) {
                 this.isUpdate = value;
                 var img = this.list.images;
+                console.log(img, 99887765);
                 if(this.isUpdate) {
                     this.formData = {
                         parent_id: this.list.parent_id? this.list.parent_id : "",
@@ -392,8 +393,8 @@
                         is_featured: this.list.is_featured,
                         images: [
                         {
-                            name: img[0].name, 
-                            original_name: img[0].original_name
+                            name: img? img[0].name : '', 
+                            original_name: img? img[0].original_name :''
                         }
                         ],
                         url_prefix: this.list.url_prefix,
@@ -403,8 +404,8 @@
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
                     this.isChangePrefix = this.list.url_prefix;
-                    this.image = img[0].upload_url? img[0].upload_url : this.image;
-                    this.file = img[0].original_name;
+                    this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
+                    this.file = img? img[0].original_name : '';
                     this.imageText = this.file;
                     this.onChangeParentService();
                 }
