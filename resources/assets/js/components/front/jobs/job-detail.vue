@@ -1,6 +1,6 @@
 
 <template>
-	<div class="job-main-details">
+	<div class="job-main-details detail-page">
 		<div class="content" v-for="listing in joblisting">
 			<div class="job-main-heading grey-bg elementary-banner section-padd xs border-bottom">
 				<div class="container element-index text-center md">

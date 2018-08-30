@@ -409,9 +409,9 @@ $section-padding-sm:20px 0px;
         }
         @include mobile{
             h2{
-                font-size: 17px;
+                font-size: 14px;
                 margin-bottom: 16px;
-                line-height: 28px;                
+                line-height: 23px;                
             }
             p{
                 font-size: 14px !important;
@@ -1805,7 +1805,9 @@ $section-padding-sm:20px 0px;
         h4{
             font-size: 16px;
         }
-        
+        h3{
+            font-size: 18px;   
+        }        
     }    
 }
 
@@ -1816,7 +1818,15 @@ $section-padding-sm:20px 0px;
         font-size: $font-size-sm;
     }
     @include mobile{
-        font-size: 13px;
+        h5{
+            font-size: 14px;
+            margin: 13px 0 9px 0 !important;
+            line-height: 16px;
+        }
+        p{
+            font-size: 14px;
+            margin-bottom: 0px;
+        }        
     }
 }
 
@@ -2069,7 +2079,7 @@ body{
             .review-job{
                 padding: 0px 0px;
                 float: left;
-                font-size: 12px;
+                font-size: 13px;
                 &:first-child{
                     border-right: 0px solid;
                 }              
@@ -2102,6 +2112,23 @@ body{
         }
         &.job-perform{
             flex-direction: column;
+        }
+        .job-main-title{
+            position: absolute;
+            top: -54px;
+            padding-left: 60px;
+            span{
+                display: block;
+            }
+            h3{
+                font-size: 15px;
+            }
+            i{
+                font-size: 20px;
+            }   
+            img{
+                width: 18px !important;
+            }         
         }
         .job-bid-btn{
             text-align: left !important;
@@ -2170,7 +2197,12 @@ body{
             display: block;
             margin-bottom: 5px;
             padding-left: 0px !important;
-            font-size: 12px;
+            /* font-size: 12px; */
+            font-size: 13px;
+            i{
+                font-size: 18px;
+                margin-right: 9px;
+            }
             &.member-since, &.service-requirment{
                 float: none !important;
             }
@@ -2189,7 +2221,8 @@ body{
     @include mobile{
         padding-top: 6px;
         p{
-            font-size: 12px;
+            font-size: 14px;
+            line-height: 18px;
         }
     }
 }
@@ -2285,13 +2318,15 @@ body{
             padding: 10px 10px;
             margin-left: 10px;
             p{
-                font-size: 11px;
+                font-size: 13px;
                 line-height: 18px;                
             }
             .feeback-detail, .provider-bidding-btn {
                 .feedback-personal-info{
-                    padding-right: 20px;   
-                    font-size: 10px;
+                    padding-right: 0px;   
+                    /* font-size: 10px; */
+                    width: calc(100% - 63px);
+                    font-size: 12px;
                 }
             }
         }
@@ -2301,9 +2336,9 @@ body{
         }
         .feeback-detail{
             .ratings{
-                position: relative;
+                position: absolute;
                 right: 0;
-                top: 0px;
+                top: -6px;
                 .vue-star-rating span.vue-star-rating-star svg{
                     width: 13px;
                     height: 24px;                    
@@ -3259,19 +3294,25 @@ body{
         height:auto;
     }
     @include mobile{
+        width: 42%;
+        display: inline-block;
         img{
-            width: 106px;
+            /* width: 106px; */
+            width: 100%;
         }        
     }
 }
-.google-store-btn{
+.google-store-btn{    
     img{
         width:162px;
         height:auto;
     }
     @include mobile{
+        width: 47%;
+        display: inline-block;        
         img{
-            width: 115px;;
+            /* width: 115px; */
+            width: 100%;
         }        
     }    
 }
@@ -3515,7 +3556,7 @@ body{
             margin: 0px 0 20px 0;
             text-align: center;
         }        
-    }    
+    }        
     .already-signup.login {
         margin-bottom: 20px;
         font-size: 16px;
@@ -3566,6 +3607,74 @@ body{
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    .detail-page{
+        .member-details{
+            p {
+                display: inline-block;
+                padding-right: 20px;
+            }            
+        }
+        .post-job-description{
+            p{
+                font-size: 14px;
+                line-height: 23px;                
+            }
+        }        
+    }
+    ul.profilesession {
+        float: left;
+        width: 100%;
+        border-top: 1px solid #ccc;
+        padding-top: 19px;
+    }
+    .profile-budget{
+        h2{
+            font-size: 16px;
+        }
+        label{
+            font-size: 14px;
+        }
+        .patment-detail{
+            font-size: 13px;
+        }
+    }
+    .featured-profile{
+        padding-bottom: 40px;
+        h3{
+            font-size: 16px;
+        }
+        .featured-places{
+            span{
+                font-size: 14px;
+            }
+            p{
+                &.featured-detail{
+                    font-size: 13px;
+                    line-height: 18px;                    
+                }
+            }
+        }
+    }
+    .campaigns{
+        margin: 30px 0;
+        .camp-views{
+            .view-status-detail{
+                width: calc(100% - 74px);
+                span{
+                    font-size: 14px;
+                }
+                .calender-date{
+                    font-size: 13px;
+                }
+                .views-percentage{
+                    li{
+                        margin-right: 13px;
                     }
                 }
             }

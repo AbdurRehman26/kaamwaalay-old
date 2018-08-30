@@ -5938,6 +5938,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -72748,29 +72750,31 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "job-common-description" }, [
-                    _c(
-                      "h3",
-                      {
-                        staticClass: "pointer",
-                        on: { click: _vm.servicedetail }
-                      },
-                      [_vm._v(_vm._s(listing.job_title))]
-                    ),
-                    _vm._v(" "),
-                    _c("span", [
-                      _c("i", { staticClass: "icon-checked" }),
+                    _c("div", { staticClass: "job-main-title" }, [
                       _c(
-                        "i",
+                        "h3",
                         {
-                          staticClass: "icon-info pointer",
-                          on: { click: _vm.showinfo }
+                          staticClass: "pointer",
+                          on: { click: _vm.servicedetail }
                         },
-                        [
-                          _c("img", {
-                            attrs: { src: "/images/front/svg/info.svg" }
-                          })
-                        ]
-                      )
+                        [_vm._v(_vm._s(listing.job_title))]
+                      ),
+                      _vm._v(" "),
+                      _c("span", [
+                        _c("i", { staticClass: "icon-checked" }),
+                        _c(
+                          "i",
+                          {
+                            staticClass: "icon-info pointer",
+                            on: { click: _vm.showinfo }
+                          },
+                          [
+                            _c("img", {
+                              attrs: { src: "/images/front/svg/info.svg" }
+                            })
+                          ]
+                        )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c(
@@ -74375,7 +74379,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "category-detail" },
+    { staticClass: "category-detail detail-page" },
     _vm._l(_vm.joblisting, function(listing) {
       return _c("div", { staticClass: "content" }, [
         _c(
@@ -77067,7 +77071,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "job-main-details" },
+    { staticClass: "job-main-details detail-page" },
     _vm._l(_vm.joblisting, function(listing) {
       return _c(
         "div",

@@ -13216,15 +13216,18 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .header {
-    height: 51px;
+    /* height: 51px; */
+    height: 65px;
   }
 
   .header .inner {
-    height: 51px;
+    height: 65px;
+    /* height: 51px; */
   }
 
   .header .logo {
-    max-width: 144px;
+    /* max-width: 144px; */
+    max-width: 194px;
   }
 }
 
@@ -13546,7 +13549,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .navigation.main-navigation {
-    top: 51px;
+    /* top: 51px; */
+    top: 65px;
   }
 
   .navigation.main-navigation ul li {
@@ -14532,9 +14536,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .content-sec h2 {
-    font-size: 17px;
+    font-size: 14px;
     margin-bottom: 16px;
-    line-height: 28px;
+    line-height: 23px;
   }
 
   .content-sec p {
@@ -16054,6 +16058,10 @@ input[type=number]::-webkit-outer-spin-button {
   .category-selected h4 {
     font-size: 16px;
   }
+
+  .category-selected h3 {
+    font-size: 18px;
+  }
 }
 
 .category-search-field h5 {
@@ -16063,8 +16071,15 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 767px) {
-  .category-search-field {
-    font-size: 13px;
+  .category-search-field h5 {
+    font-size: 14px;
+    margin: 13px 0 9px 0 !important;
+    line-height: 16px;
+  }
+
+  .category-search-field p {
+    font-size: 14px;
+    margin-bottom: 0px;
   }
 }
 
@@ -16360,7 +16375,7 @@ body .chat-feedback-message.white-msg:before {
   .job-common-description .jobs-done .review-job {
     padding: 0px 0px;
     float: left;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .job-common-description .jobs-done .review-job:first-child {
@@ -16397,6 +16412,28 @@ body .chat-feedback-message.white-msg:before {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+
+  .job-common-description .job-main-title {
+    position: absolute;
+    top: -54px;
+    padding-left: 60px;
+  }
+
+  .job-common-description .job-main-title span {
+    display: block;
+  }
+
+  .job-common-description .job-main-title h3 {
+    font-size: 15px;
+  }
+
+  .job-common-description .job-main-title i {
+    font-size: 20px;
+  }
+
+  .job-common-description .job-main-title img {
+    width: 18px !important;
   }
 
   .job-common-description .job-bid-btn {
@@ -16491,7 +16528,14 @@ body .chat-feedback-message.white-msg:before {
     display: block;
     margin-bottom: 5px;
     padding-left: 0px !important;
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-size: 13px;
+  }
+
+  .member-details p i,
+  .job-details p i {
+    font-size: 18px;
+    margin-right: 9px;
   }
 
   .member-details p.member-since,
@@ -16519,7 +16563,8 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .post-job-description p {
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 18px;
   }
 }
 
@@ -16634,14 +16679,16 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .chat-feedback .chat-feedback-message p {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 18px;
   }
 
   .chat-feedback .chat-feedback-message .feeback-detail .feedback-personal-info,
   .chat-feedback .chat-feedback-message .provider-bidding-btn .feedback-personal-info {
-    padding-right: 20px;
-    font-size: 10px;
+    padding-right: 0px;
+    /* font-size: 10px; */
+    width: calc(100% - 63px);
+    font-size: 12px;
   }
 
   .chat-feedback .chat-feedback-image {
@@ -16650,9 +16697,9 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .chat-feedback .feeback-detail .ratings {
-    position: relative;
+    position: absolute;
     right: 0;
-    top: 0px;
+    top: -6px;
   }
 
   .chat-feedback .feeback-detail .ratings .vue-star-rating span.vue-star-rating-star svg {
@@ -17678,8 +17725,14 @@ body .chat-feedback-message.white-msg:before {
 }
 
 @media (max-width: 767px) {
+  .apple-store-btn {
+    width: 42%;
+    display: inline-block;
+  }
+
   .apple-store-btn img {
-    width: 106px;
+    /* width: 106px; */
+    width: 100%;
   }
 }
 
@@ -17689,8 +17742,14 @@ body .chat-feedback-message.white-msg:before {
 }
 
 @media (max-width: 767px) {
+  .google-store-btn {
+    width: 47%;
+    display: inline-block;
+  }
+
   .google-store-btn img {
-    width: 115px;
+    /* width: 115px; */
+    width: 100%;
   }
 }
 
@@ -17988,6 +18047,72 @@ body .chat-feedback-message.white-msg:before {
 
   .job-main-heading .content-sec .job-content .job-notification.flexable .job-details p.service-requirment {
     top: -2px;
+  }
+
+  .detail-page .member-details p {
+    display: inline-block;
+    padding-right: 20px;
+  }
+
+  .detail-page .post-job-description p {
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+  ul.profilesession {
+    float: left;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    padding-top: 19px;
+  }
+
+  .profile-budget h2 {
+    font-size: 16px;
+  }
+
+  .profile-budget label {
+    font-size: 14px;
+  }
+
+  .profile-budget .patment-detail {
+    font-size: 13px;
+  }
+
+  .featured-profile {
+    padding-bottom: 40px;
+  }
+
+  .featured-profile h3 {
+    font-size: 16px;
+  }
+
+  .featured-profile .featured-places span {
+    font-size: 14px;
+  }
+
+  .featured-profile .featured-places p.featured-detail {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .campaigns {
+    margin: 30px 0;
+  }
+
+  .campaigns .camp-views .view-status-detail {
+    width: calc(100% - 74px);
+  }
+
+  .campaigns .camp-views .view-status-detail span {
+    font-size: 14px;
+  }
+
+  .campaigns .camp-views .view-status-detail .calender-date {
+    font-size: 13px;
+  }
+
+  .campaigns .camp-views .view-status-detail .views-percentage li {
+    margin-right: 13px;
   }
 }
 

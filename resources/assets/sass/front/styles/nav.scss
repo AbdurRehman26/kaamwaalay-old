@@ -131,7 +131,8 @@ $nav-font:$font-bold;
             visibility: visible;
         }
         @include mobile{
-            top: 51px;
+            /* top: 51px; */
+            top: 65px;
             ul{
                 li{
                     height: auto;
