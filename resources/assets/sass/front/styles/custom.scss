@@ -2719,6 +2719,10 @@ body{
         a.btn {
             height: 64px;
             line-height: 38px;
+            p{
+                margin-bottom: 0px;
+                line-height: inherit;
+            }
         }
     }
     .card-header {

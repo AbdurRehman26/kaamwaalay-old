@@ -67216,9 +67216,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to sign up and use professional service marketplace? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to sign up and use professional service marketplace?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67279,9 +67282,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to message service providers using professional service marketplace? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to message service providers using professional service marketplace?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67341,9 +67347,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to download Professional service marketplace mobile app? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to download Professional service marketplace mobile app?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67403,7 +67412,8 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to post a new job? "),
+                      _c("p", [_vm._v("How to post a new job?")]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67463,7 +67473,8 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to add photos to my job request? "),
+                      _c("p", [_vm._v("How to add photos to my job request?")]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67523,7 +67534,10 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to change my job details later on? "),
+                      _c("p", [
+                        _vm._v("How to change my job details later on?")
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67583,7 +67597,10 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How and where to view bids on my job? "),
+                      _c("p", [
+                        _vm._v("How and where to view bids on my job?")
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67643,7 +67660,10 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to award a job to service provider? "),
+                      _c("p", [
+                        _vm._v("How to award a job to service provider?")
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67703,9 +67723,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to remove my job if I don’t need that work anymore? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to remove my job if I don’t need that work anymore?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -67765,7 +67788,8 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to post urgent job requests? "),
+                      _c("p", [_vm._v("How to post urgent job requests?")]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -68822,9 +68846,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to sign up and use professional service marketplace? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to sign up and use professional service marketplace?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -68885,9 +68912,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to message service providers using professional service marketplace? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to message service providers using professional service marketplace?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -68947,9 +68977,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to download Professional service marketplace mobile app? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to download Professional service marketplace mobile app?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69009,7 +69042,8 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to post a new job? "),
+                      _c("p", [_vm._v("How to post a new job?")]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69069,7 +69103,8 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to add photos to my job request? "),
+                      _c("p", [_vm._v("How to add photos to my job request?")]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69129,7 +69164,10 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to change my job details later on? "),
+                      _c("p", [
+                        _vm._v("How to change my job details later on?")
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69189,7 +69227,10 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How and where to view bids on my job? "),
+                      _c("p", [
+                        _vm._v("How and where to view bids on my job?")
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69249,7 +69290,10 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to award a job to service provider? "),
+                      _c("p", [
+                        _vm._v("How to award a job to service provider?")
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69309,9 +69353,12 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v(
-                        "How to remove my job if I don’t need that work anymore? "
-                      ),
+                      _c("p", [
+                        _vm._v(
+                          "How to remove my job if I don’t need that work anymore?"
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])
@@ -69371,7 +69418,8 @@ var render = function() {
                       attrs: { block: "", href: "#", variant: "grey" }
                     },
                     [
-                      _vm._v("How to post urgent job requests? "),
+                      _c("p", [_vm._v("How to post urgent job requests?")]),
+                      _vm._v(" "),
                       _c("span", { staticClass: "switch-icon-caret" }, [
                         _c("i", { staticClass: "icon-triangle-up" })
                       ])

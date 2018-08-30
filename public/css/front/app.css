@@ -17106,6 +17106,11 @@ body .chat-feedback-message.white-msg:before {
   line-height: 38px;
 }
 
+.advice-tabs .card a.btn p {
+  margin-bottom: 0px;
+  line-height: inherit;
+}
+
 .advice-tabs .card-header {
   padding: 0;
   margin-bottom: 0;
@@ -18257,6 +18262,33 @@ body .chat-feedback-message.white-msg:before {
     display: inline-block;
     width: auto;
     padding: 0px 6px;
+  }
+
+  .advice-tabs {
+    padding: 0px 15px;
+  }
+
+  .advice-tabs li.nav-item {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .advice-tabs li.nav-item a {
+    width: 300px;
+    margin: auto !important;
+  }
+
+  .advice-tabs li.nav-item:last-child {
+    margin-bottom: 0px;
+  }
+
+  .advice-tabs .card a.btn {
+    padding-right: 43px;
+  }
+
+  .advice-tabs .card a.btn p {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .detail-page.category-detail .category-content {

@@ -375,7 +375,32 @@
                 }
             }
         }
-    }    
+    }
+    .advice-tabs{
+        padding: 0px 15px;
+         li{
+            &.nav-item {
+                width: 100%;
+                margin-bottom: 15px;
+                a{
+                    width: 300px;
+                    margin: auto !important;
+                }
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+            }
+         }
+         .card{
+             a.btn{
+                padding-right: 43px;
+                p{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+             }
+         }
+    }        
     .detail-page{
         &.category-detail{
             .category-content{
