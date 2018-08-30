@@ -174,7 +174,8 @@ public $model;
                         if($data['service_category'] == 'All') {
                             $services = $this->model->orderBy('created_at', 'desc')->whereNull('parent_id')->get();
                             foreach ($services as $key => $value) {
-                                $subservice = $this->getAllServicesByCategory($value->id, true, 3);
+                                // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
+                                 $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->get();
                                 $services[$key]->subservices = $subservice;
                             }
                             $modelData['data']['data'] = $services;

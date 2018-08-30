@@ -48,7 +48,7 @@ public function input($value='')
     $input = request()->only(
                         'id', 'pagination', 'keyword',
                         'filter_by_business_type', 'filter_by_service',
-                        'user_rating', 'zip'
+                        'user_rating', 'zip', 'filter_by_featured', 'is_approved'
                         );
     
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;

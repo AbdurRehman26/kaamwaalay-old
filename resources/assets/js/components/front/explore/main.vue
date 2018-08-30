@@ -37,20 +37,29 @@
 
 		<div class="featured-categories section">
 			<div class="container">
-
-				<div class="category-section" v-for="service in getFiveServices">
+				<div class="category-section" v-for="service in getExploreServices">
 					<div class="category-title">
 						<h2>{{service.title}}</h2>
 					</div>
 					<div class="category-items">
 
-						<div class="items" v-for="subservice in service.subservices.data">
-							<a @click="changecategorypopup" href="javascript:void(0);">
+						<div class="items" v-for="subservice in service.subservices">
+							<a @click="changecategorypopup(subservice)" href="javascript:void(0);">
 								<div class="item-image" v-bind:style="{'background-image': 'url('+ subservice.images[0].upload_url +')',}"></div>
 								<h4>{{subservice.title}}</h4>
 							</a>
 						</div>
-						<div class="showmore showmore-link clearfix"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+						<div class="showmore showmore-link clearfix">
+							<a href="javascript::void(0)"  @click="showCollapse" >View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a>
+							<div>
+							  <!-- element to collapse -->
+							  <b-collapse id="collapse2" ref="service.title">
+							    <b-card>
+							      I am collapsable content!
+							    </b-card>
+							  </b-collapse>
+							</div>
+						</div>
 
 					</div>
 				</div>
@@ -58,23 +67,35 @@
 
 			</div>
 		</div>
-
-
-		<div class="other-categories section-grey section elementary-banner" v-if="getRemaining4Services.length">
+		<div class="other-categories section-grey section elementary-banner">
 			<div class="container element-index">
-				<div class="category-section"  v-for="othercategory in getRemaining4Services">
+				<div class="category-section"  v-for="isnotexplorecategory in getRemainingWithServices">
 					<div class="category-title">
-						<h2>{{othercategory.title}}</h2>
+						<h2>{{isnotexplorecategory.title}}</h2>
 					</div>
 					<div class="category-items">
 						<ul class="item-list-container">
-							<li class="items-list" v-for="othercategorySubservice in othercategory.subservices.data">
+							<li class="items-list" v-for="othercategorySubservice in isnotexplorecategory.subservices.data">
 								<a href="javascript:void(0);">
 									<p>{{othercategorySubservice.title}}</p>
 								</a>
 							</li>
 						</ul>
 
+					</div>
+				</div>
+				<div class="category-section">
+					<div class="category-title">
+						<h2>Others</h2>
+					</div>
+					<div class="category-items">
+						<ul class="item-list-container">
+							<li class="items-list" v-for="othercategory in getOtherServices">
+								<a href="javascript:void(0);">
+									<p>{{othercategory.title}}</p>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -84,7 +105,7 @@
 			</div>
 		</div>
 
-		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval"></category-popup>
+		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
 
 	</div>
 </template>
@@ -95,6 +116,7 @@ import _ from 'lodash';
 export default {
 	data () {
 		return {
+			selectedService: '',
 			allServices: [],
 			searchValue: '',
 			isLoading: false,
@@ -107,208 +129,18 @@ export default {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 			categoryval: false,
-
-			othercategory:[
-
-			{
-				title:'Crafts',
-				categoryitems:[
-
-				{
-					name: 'Custom Airbrushing',
-				},
-				{
-					name: 'Illustrating',
-				},
-
-				{
-					name: 'Scrapbooking',
-				},
-				{
-					name: 'Embroidery',
-				},
-				{
-					name: 'Portrait Artistry',
-				},
-				{
-					name: 'Songwriting',
-				},
-				{
-					name: 'Engraving',
-				},
-				{
-					name: 'Powder Coating',
-				},
-
-				],
-			},
-			{
-				title:'Legal',
-				categoryitems:[
-
-				{
-					name: 'Consumer Attorney',
-				},
-				{
-					name: 'Contracts Attorney',
-				},
-
-				{
-					name: 'Corporate Law Attorney',
-				},
-				{
-					name: 'Court Interpreting',
-				},
-				{
-					name: 'Disability Attorney',
-				},
-				{
-					name: 'Estate Attorney',
-				},
-				{
-					name: 'Immigration Attorney',
-				},
-				{
-					name: 'Intellectual Property Attorney',
-				},
-				{
-					name: 'International Law Attorney',
-				},
-				{
-					name: 'Labor and Employment Attorney',
-				},
-				{
-					name: 'Legal Document Preparation',
-				},
-				{
-					name: 'Mediation',
-				},
-				{
-					name: 'Personal Injury Attorney',
-				},
-				{
-					name: 'Process Serving',
-				},
-				{
-					name: 'Tax Attorney',
-				},
-
-
-				],
-			},
-
-			{
-				title:'Photography',
-				categoryitems:[
-
-				{
-					name: 'Aerial Photography',
-				},
-				{
-					name: 'Boudoir Photography',
-				},
-
-				{
-					name: 'Commercial Photography',
-				},
-				{
-					name: 'Engagement Photography',
-				},
-				{
-					name: 'Nature Photography',
-				},
-				{
-					name: 'Pet Photography',
-				},
-				{
-					name: 'Portrait Photography',
-				},
-				{
-					name: 'Sports Photography',
-				},
-				{
-					name: 'Video Editing',
-				},
-
-				],
-			},
-
-			{
-				title:'Business',
-				categoryitems:[
-
-				{
-					name: 'Accounting',
-				},
-				{
-					name: 'Business Consulting',
-				},
-
-				{
-					name: 'Data Recovery Service',
-				},
-				{
-					name: 'Individual Tax Preparation',
-				},
-				{
-					name: 'Marketing',
-				},
-				{
-					name: 'Payroll Services',
-				},
-				{
-					name: 'Personal Financial Planning',
-				},
-				{
-					name: 'Real Estate Agent Services',
-				},
-
-				],
-			},
-
-			{
-				title:'Others',
-				categoryitems:[
-
-				{
-					name: 'Translation',
-				},
-				{
-					name: 'UI Design',
-				},
-
-				{
-					name: 'Public Relations',
-				},
-				{
-					name: 'Grass cutting',
-				},
-				{
-					name: 'Yard Work',
-				},
-				{
-					name: 'Replant Seedlings',
-				},
-				{
-					name: 'Pick Up & Delivery',
-				},
-				{
-					name: 'Pet Care',
-				},
-
-				],
-
-			},
-
-			],
-
-
-
 		}
 	},
 	methods: {
+		showCollapse() {
+			alert("kaka");
+		},
 		onTouch () {
 			this.isTouched = true
+		},
+		onSelectCategory(val) {
+			this.HideModal();
+			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.selectedService.id, zip : val }});
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
@@ -336,7 +168,8 @@ export default {
 			}).catch(error=>{
 			});
 		}, 1000),
-		changecategorypopup() {
+		changecategorypopup(service) {
+			this.selectedService = service;
 			this.categoryval = true;
 		},
 
@@ -349,7 +182,7 @@ export default {
 				this.isTouched = true;
 				return;
 			}
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }})
+			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }});
 			//this.$router.push('/explore/service_provider');
 		},
 		getList(data , page , successCallback) {
@@ -385,7 +218,6 @@ export default {
 		    	if(!self.allServices.length) {
 		    		self.showNoRecordFound = true;
 		    	}
-		    	var serviceArray = _.filter(self.allServices, {parent_id: null});
 		    	self.totalServicesCount = response.service_count;
 
 		    	self.pagination = response.pagination;
@@ -408,31 +240,44 @@ watch: {
 },
 
 computed: {
-	getFiveServices () {
+	getExploreServices () {
 		var result = _.map(this.allServices, function(value, key) {
-			  		if(value.subservices.data.length) {
+			  		if(value.subservices.length && value.is_display_service_nav) {
 				  		return value;
 			  		}
 				});
 		result = _.without(result, undefined);
-		if(result.length > 2) {
-			result = result.slice(0,2);
-		}
+		// if(result.length > 2) {
+		// 	result = result.slice(0,2);
+		// }
 		return result;
 	},
-	getRemaining4Services () {
+	getRemainingWithServices () {
 		var result = _.map(this.allServices, function(value, key) {
-			  		if(value.subservices.data.length) {
+			  		if(value.subservices.length && !value.is_display_service_nav) {
 				  		return value;
 			  		}
 				});
 		result = _.without(result, undefined);
-
-		if(result.length > 3) {
-			result = result.slice(3,5);
-		}else {
-			result = result.slice(3);
-		}
+		// if(result.length > 3) {
+		// 	result = result.slice(3,5);
+		// }else {
+		// 	result = result.slice(3);
+		// }
+		return result;
+	},
+	getOtherServices () {
+		var result = _.map(this.allServices, function(value, key) {
+			  		if(!value.subservices.length) {
+				  		return value;
+			  		}
+				});
+		result = _.without(result, undefined);
+		// if(result.length > 3) {
+		// 	result = result.slice(3,5);
+		// }else {
+		// 	result = result.slice(3);
+		// }
 		return result;
 	},
 	isInvalid () {

@@ -129,6 +129,7 @@ public $model;
             $this->builder = $this->builder->where('service_provider_profiles.business_type','=',$data['filter_by_business_type']);
         }
         
+
         if(!empty($data['filter_by_service'])){
 
             $ids = app('ServiceRepository')->model->where('id' , $data['filter_by_service'])
@@ -144,7 +145,14 @@ public $model;
             ->select('service_provider_profiles.*')
             ->groupBy('service_provider_profiles.user_id');
         }
-
+        if(!empty($data['is_approved'])) {
+            $is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
+            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $is_approved);
+        }
+        
+        if(!empty($data['filter_by_featured'])){
+            $this->builder = $this->builder->where('service_provider_profiles.is_featured','=',$data['filter_by_featured']);
+        }
         $this->builder = $this->builder->select('service_provider_profiles.*');
         $record = parent::findByAll($pagination, $perPage, $data);
         return $record;
