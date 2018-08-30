@@ -43,21 +43,26 @@
 					</div>
 					<div class="category-items">
 
-						<div class="items" v-for="subservice in service.subservices">
+						<div class="items" v-for="subservice in getSubServices(service.subservices)">
 							<a @click="changecategorypopup(subservice)" href="javascript:void(0);">
 								<div class="item-image" v-bind:style="{'background-image': 'url('+ subservice.images[0].upload_url +')',}"></div>
 								<h4>{{subservice.title}}</h4>
 							</a>
 						</div>
 						<div class="showmore showmore-link clearfix">
-							<a href="javascript::void(0)"  @click="showCollapse" >View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a>
 							<div>
 							  <!-- element to collapse -->
-							  <b-collapse id="collapse2" ref="service.title">
+							  <b-collapse :id="service.title">
 							    <b-card>
-							      I am collapsable content!
+							      <div class="items" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
+									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
+										<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>
+										<h4>{{remainingSubServices.title}}</h4>
+									</a>
+								</div>
 							    </b-card>
 							  </b-collapse>
+							  <a href="javascript::void(0)" class="showCollapse" @click.prevent="onToggleCollapse($event, service.title)" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a>
 							</div>
 						</div>
 
@@ -132,8 +137,18 @@ export default {
 		}
 	},
 	methods: {
-		showCollapse() {
-			alert("kaka");
+		onToggleCollapse(e, val) {
+			var elem = $('#'+val);
+			if($(elem).css("display") == "none" ) {
+				$(elem).show();
+				$(e.target).text("Hide all services related to electricians ");
+			}else {
+				$(elem).hide();
+				$(e.target).text("View all services related to electricians ");
+			}
+		},
+		onHideCollapse(val) {
+			$('#'+val).hide();
 		},
 		onTouch () {
 			this.isTouched = true
@@ -230,6 +245,20 @@ export default {
 		    	}
 
 		    });
+	},
+
+	getSubServices (subservices) {
+		if(subservices.length > 3) {
+			subservices = subservices.slice(0,3);
+		}
+		return subservices;
+	},
+	getRemainingSubServices (subservices) {
+		if(subservices.length > 3) {
+			subservices = subservices.slice(3);
+			return subservices;
+		}
+		return [];
 	},
 },
 mounted(){
