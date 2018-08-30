@@ -86,7 +86,7 @@
 </div>
 
 <div class="form-group">
-    <label>URL</label>
+    <label>URL Suffix</label>
     <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
   @focus.prevent="onUrlFocus"
   @blur.prevent="onUrlBlur">
