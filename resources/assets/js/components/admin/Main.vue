@@ -47,7 +47,7 @@
 <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 </div>
 <confirmation-popup-admin :showModalProp="actionConfirmation" :url='updateUrl' :data='updateData'></confirmation-popup-admin>
-<add-new-user :showModalProp="showModalValue"></add-new-user>
+<add-new-user @HideModalValue="showModalValue = false;" :showModalProp="showModalValue"></add-new-user>
 </div>
 </div>
 </template>
