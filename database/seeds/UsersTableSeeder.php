@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
         $i =2;
         $roles = [Role::CUSTOMER,Role::SERVICE_PROVIDER,Role::REVIEWER];
 
-        foreach (range(1,50) as $index) {
+        foreach (range(1,150) as $index) {
             $data[]=[
                 'id' => $i,
                 'first_name' => $faker->firstName,
@@ -63,15 +63,9 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => $date,
                 'deleted_at' => NULL,
             ];
-            $this->info('user'.$i);
             $i++;
         } 
         User::insertOnDuplicateKey($data);
 
-    }
-    public function info($string)
-    {
-        \Log::info($this->signature . ' - ' . $string);
-        print_r($string.PHP_EOL);
     }
 }

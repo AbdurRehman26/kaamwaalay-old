@@ -111,7 +111,6 @@ Vue.filter('jobStatus', function (value) {
             return item; 
         }
     });
-    console.log(obj , '22222');
     return obj.value.replace(/\s/g, '').trim();
 });
 

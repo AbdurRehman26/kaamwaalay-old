@@ -60,8 +60,6 @@
 
                     self.loading = false;
 
-                    console.log(typeof successCallback , 'this is type of successCallback');
-
                     if(typeof successCallback !== 'undefined'){
                         successCallback(true);
                     }
