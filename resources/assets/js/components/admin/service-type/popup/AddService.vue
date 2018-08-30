@@ -6,7 +6,7 @@
             <form action="" method="">
                 <div class="form-group">
                  <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parent_id">
+                 <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>-->
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Home Page Banner</label>
                 <div class="form-check form-check-inline">
@@ -43,7 +43,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
                 <div class="form-group radio-group-row">
                     <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
@@ -79,7 +79,7 @@
 
 <div class="form-group">
     <label>Upload Image</label>
-    <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image" v-validate="'required'" :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']" ></b-form-file>
+    <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
     <div class="uploded-picture">
         <img :src="imageValue" />
     </div>
@@ -87,7 +87,9 @@
 
 <div class="form-group">
     <label>URL</label>
-    <input type="text" placeholder="Enter url" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']">
+    <input type="text" placeholder="Enter url" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+  @focus.prevent="onUrlFocus"
+  @blur.prevent="onUrlBlur">
 </div>
 </form>
 
@@ -109,6 +111,7 @@
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
+                showRadios: true,
                 errorMessage : '',
                 successMessage : '',
                 services: [],
@@ -126,7 +129,7 @@
                         original_name: ''
                     }
                     ],
-                    url_prefix: '',
+                    url_prefix: this.defaultUrlPrefix,
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
@@ -139,10 +142,32 @@
                 file: null,
                 url: 'api/service',
                 loading: false,
-                isFileUpload: null,
+                defaultUrlLength: this.defaultUrlPrefixLength,
+                isChangePrefix: '',
             }
         },
+        mounted() {
+            this.formData.url_prefix = this.defaultUrlPrefix;
+        },
         methods: {
+            onUrlFocus(e) {
+                var sufix = $(e.target).val();
+                var prefixLength = this.defaultUrlPrefixLength;
+                var str = sufix.substr(prefixLength);
+                this.formData.url_prefix = str;
+            },
+            onUrlBlur(e) {
+
+                var sufix = $(e.target).val();
+                this.formData.url_prefix = this.defaultUrlPrefix +'/'+ sufix;
+            },
+            onChangeParentService() {
+                if(this.formData.parent_id) {
+                    this.showRadios = false;
+                }else {
+                    this.showRadios = true;
+                }
+            },
             resetFormFields() {
                 let self = this;
                 this.image = 'images/dummy/image-placeholder.jpg';
@@ -159,13 +184,14 @@
                         original_name: ''
                     }
                     ],
-                    url_prefix: '',
+                    url_prefix: this.$store.getters.getServiceUrlPrefix,
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
                     is_display_footer_nav: 0,
 
                 };
+                this.onChangeParentService();
                 setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorMessage = '';
@@ -179,9 +205,6 @@
                 var self = this;
                 this.$validator.validateAll().then((result) => {
 
-                    if(!self.file) {
-                        self.isFileUpload = false;
-                    }
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -189,7 +212,6 @@
                             this.onSubmit();
                         }
                         this.errorMessage = '';
-                        self.isFileUpload = null;
                         return;
                     }
                     this.errorMessage = this.errorBag.all()[0];
@@ -199,14 +221,15 @@
 
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
+                this.resetFormFields();
                 var allServices = this.$store.getters.getAllServices;
-                // filter only services
+                // filter only parent services
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
             },
             hideModal () {
                 var self = this;
-                this.resetFormFields(); 
+                this.resetFormFields();
                 this.$refs.myModalRef.hide();
             },
             onHidden() {
@@ -224,11 +247,9 @@
                       id: 6,
                   });
                     this.errorMessage = this.errorBag.all()[0];
-                    self.isFileUpload = false;
                     return;
                 }
                 this.errorBag.clear();
-                this.isFileUpload = null;
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
@@ -260,7 +281,6 @@
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
-                    self.isFileUpload = false;
                     _.forEach(errors, function(value, key) {
                         self.errorMessage =  errors[key][0];
                         return false;
@@ -283,7 +303,7 @@
                         self.loading = false; 
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');         
                     } , 3000);
 
                     setTimeout(function () {
@@ -323,7 +343,6 @@
                         self.resetFormFields(); 
                         self.$emit('call-list');
                         self.loading = false; 
-             
                     } , 3000);
 
                     setTimeout(function () {
@@ -383,15 +402,25 @@
                         is_display_service_nav: this.list.is_display_service_nav,
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
-                    this.image = img[0].upload_url;
+                    this.isChangePrefix = this.list.url_prefix;
+                    this.image = img[0].upload_url? img[0].upload_url : this.image;
                     this.file = img[0].original_name;
                     this.imageText = this.file;
+                    this.onChangeParentService();
                 }
             }
         },
         computed : {
             imageValue(){
                 return this.image;
+            },
+            defaultUrlPrefix() {
+                var url = this.$store.getters.getServiceUrlPrefix;
+                return this.isChangePrefix? this.isChangePrefix : url;
+            },
+            defaultUrlPrefixLength() {
+                var length = this.$store.getters.getServiceUrlPrefix.length;
+                return this.isChangePrefix? this.isChangePrefix.length : length;
             }
         }
     }

@@ -3,9 +3,11 @@
 namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
-{
+{   
+    use softDeletes;
         /**
      * The attributes that should be cast to native types.
      *

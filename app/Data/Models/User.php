@@ -15,18 +15,19 @@ use Storage;
 
 class User extends Authenticatable
 {
-	use InsertOnDuplicateKey,HasApiTokens, Notifiable;
+    use InsertOnDuplicateKey,HasApiTokens, Notifiable;
     const ACTIVE = 'active';
     const PENDING = 'pending';
     const IN_ACTIVE = 'deactived';
     const GLOBAL_ADMIN = 1;
     protected $perPage = 10;
-    public function getProfileImageAttribute($value){
-        if(substr($value, 0, 8) == "https://"){
-          return  $value;
-      }
-      return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
-  }
+    public function getProfileImageAttribute($value)
+    {
+        if(substr($value, 0, 8) == "https://") {
+            return  $value;
+        }
+        return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -47,7 +48,7 @@ class User extends Authenticatable
     /**
      * Send the activation notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function sendActivationEmail()
@@ -61,16 +62,16 @@ class User extends Authenticatable
     }
     public function sendPasswordLinkByAdmin()
     {
-     $this->notify(new SendEmailPasswordNotification());
- }
- public static function generatePassword()
- {
-      // Generate random string and encrypt it. 
-  return bcrypt(str_random(35));
-}
+        $this->notify(new SendEmailPasswordNotification());
+    }
+    public static function generatePassword()
+    {
+         // Generate random string and encrypt it. 
+        return bcrypt(str_random(35));
+    }
 
-public function sendChangeStatusNotification($status)
-{
-   $this->notify(new  SendServiceProviderStatusNotification($status));
-}
+    public function sendChangeStatusNotification($status)
+    {
+        $this->notify(new  SendServiceProviderStatusNotification($status));
+    }
 }

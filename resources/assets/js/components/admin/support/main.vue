@@ -66,12 +66,12 @@
 
   <div class="col-xs-12 col-md-12">
 
-    <div class="total-record float-left" v-if="totalServicesCount">
-      <p><strong>Total records: <span>{{totalServicesCount}}</span></strong></p>
+    <div class="total-record float-left" v-if="pagination.total">
+      <p><strong>Total records: <span>{{pagination.total}}</span></strong></p>
     </div>
 
-    <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-      <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
+    <div class="pagination-wrapper float-right" v-if="pagination.total">
+      <b-pagination size="md" :total-rows="pagination.total" v-model="currentPage" :per-page="25"></b-pagination>
     </div>
       <!--<div class="pagination-wrapper float-right">
           <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
@@ -87,7 +87,6 @@
     data () {
       return {
         supportdetailpopup: false,
-        totalServicesCount: 0,
         service: false,
         viewdetails: false,
         actiondelete: false,
@@ -117,9 +116,6 @@
         this.getList(data, pageNumber);
 
       },
-      totalServicesCount(count) {
-        this.totalServicesCount = count;
-      }
     },
     methods: {
       HideModal(){
@@ -171,9 +167,8 @@
       }
 
       self.$http.get(url).then(response => {
-        response = response.data.response.data;
+        response = response.data.response;
         self.listing = response.data;
-        self.totalServicesCount = response.inquiry_count;
         
         self.pagination = response.pagination;
 

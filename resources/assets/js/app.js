@@ -144,7 +144,9 @@ const app = new Vue({
     },
     mounted () {
         this.$Progress.finish();
-        this.checkscroll();
+        // this.checkscroll();
+        // this.browserfunction();
+        /*this.checkscroll();*/
         this.browserfunction();
     },
     created () {

@@ -19,6 +19,7 @@ Vue.component('search', require('./components/admin/common-components/Search.vue
 Vue.component('loader', require('./components/admin/common-components/Loader.vue'));
 Vue.component('alert', require('./components/admin/common-components/Alert.vue'));
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
+Vue.component('info-popup', require('./components/front/common-components/InfoPopup.vue'));
 Vue.component('change-password-popup', require('./components/front/common-components/ChangePassPopup.vue'));
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue'));
 Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue'));
@@ -69,3 +70,7 @@ Vue.component('facebook-component',require('./components/front/common-components
 Vue.component('logout-component',require('./components/auth/LogoutComponent.vue'));
 
 
+
+Vue.component('vue-pagination',require('./components/admin/common-components/Pagination.vue'));
+Vue.component('vue-common-methods',require('./components/admin/common-components/CommonMethods.vue'));
+Vue.component('block-spinner', require('./components/admin/common-components/BlockSpinner.vue'));

@@ -9,27 +9,23 @@ use App\Data\Models\Country;
 
 class StateRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of State Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: State-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
     protected $_cacheKey = 'State';
@@ -42,17 +38,17 @@ class StateRepository extends AbstractRepository implements RepositoryContract
 
     }
 
-    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] )
+    {
 
         $countryId = Country::USA;
-        if(!empty($data['country_id'])){
+        if(!empty($data['country_id'])) {
             $countryId = $data['country_id'];
         }
 
         $this->builder = $this->model
-                            ->where('country_id', '=' , $countryId)
-                            ->orderBy('name', 'ASC')
-                            ;
+            ->where('country_id', '=', $countryId)
+            ->orderBy('name', 'ASC');
    
         return  parent::findByAll($pagination, $perPage);
     

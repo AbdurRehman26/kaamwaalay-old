@@ -47,31 +47,34 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make(
+            $data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:25',
-            'role_id' => ['required', Rule::exists('roles','id')->where('can_register', 1)],
+            'role_id' => ['required', Rule::exists('roles', 'id')->where('can_register', 1)],
             'social_account_id' => 'nullable',
             'social_account_type' => 'nullable|in:facebook',
-        ]);
+            ]
+        );
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        return User::create(
+            [
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -82,14 +85,15 @@ class RegisterController extends Controller
             'activation_key' => Hash::make(Carbon::now()),
 
             'status' => 'pending',
-        ]);
+            ]
+        );
     }
 
     /**
      * The user has been registered.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param  \Illuminate\Http\Request $request
+     * @param  mixed                    $user
      * @return mixed
      */
     protected function registered(Request $request, $user)

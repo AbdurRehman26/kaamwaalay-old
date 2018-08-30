@@ -8,18 +8,20 @@ class StateController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(StateRepository $repository){
+    public function __construct(StateRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'show'){
+        if($value == 'show') {
             $rules['id'] =  'required|exists:states,id';
         }
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['country_id']    =  'nullable|exists:countries,id';
         }

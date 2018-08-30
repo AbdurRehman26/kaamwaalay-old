@@ -25,8 +25,10 @@ class ZipCodeRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('ZipCodeRepository', function () {
-            return new ZipCodeRepository(new ZipCode);
-        });
+        $this->app->bind(
+            'ZipCodeRepository', function () {
+                return new ZipCodeRepository(new ZipCode);
+            }
+        );
     }
 }

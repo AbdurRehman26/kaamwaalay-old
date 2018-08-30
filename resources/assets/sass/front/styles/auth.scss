@@ -30,6 +30,10 @@ h2 {
     &.auth-title {
         margin-bottom: 35px;
         font-size: 36px;
+        @include mobile{
+            margin-bottom: 16px;
+            font-size: 20px;            
+        }
     }
 }
 .front-auth {
@@ -37,6 +41,14 @@ h2 {
         margin-top: 40px; 
         p {
             font-family: $font_medium;
+        }
+    }
+    @include mobile{
+        height: auto;
+        padding: 0px 0px 20px 0px;
+        .already-signup{
+            margin-top: 22px;
+            font-size: 16px;
         }
     }
 }

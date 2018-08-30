@@ -10,28 +10,30 @@ class PlanController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(PlanRepository $repository){
+    public function __construct(PlanRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'update'){
+        if($value == 'update') {
             $rules['id'] =  'required|in:1,2|exists:plans,id';
             $rules['amount'] = 'required|numeric|not_in:0';
         }
 
-        if($value == 'show'){
+        if($value == 'show') {
             $rules['id'] =  'required|exists:plans,id';
         }
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['type']          =  'required|in:service,job';
         }
 
-        if($value == 'updateOrAddPlans'){
+        if($value == 'updateOrAddPlans') {
             $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1,2';
             $rules['plans_data.*.amount']           = 'required|numeric|not_in:0';
             $rules['plans_data.*.quantity']         = 'required|numeric|not_in:0';
@@ -46,7 +48,7 @@ class PlanController extends ApiResourceController
         $input = request()->only('id', 'pagination', 'type', 'plans_data', 'amount');
         $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
 
-        if($value == 'update'){
+        if($value == 'update') {
             unset($input['user_id']);
             unset($input['type']);
         }
@@ -71,7 +73,7 @@ class PlanController extends ApiResourceController
         $code = Response::HTTP_NOT_ACCEPTABLE;
 
         $response = $this->_repository->updateOrAddPlans($input);
-        if($response){
+        if($response) {
             $code = Response::HTTP_OK;
             $output = ['response' => 
                         [

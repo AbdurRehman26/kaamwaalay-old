@@ -10,26 +10,28 @@ class CampaignController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(CampaignRepository $repository){
+    public function __construct(CampaignRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'store'){
+        if($value == 'store') {
             $rules['plan_id'] =  'required|numeric|exists:plans,id';
         }
 
-        if($value == 'show'){
+        if($value == 'show') {
             $rules['id'] =  'required|exists:campaigns,id';
         }
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
         }
 
-        if($value == 'updateCampaign'){
+        if($value == 'updateCampaign') {
             $rules['service_provider_user_id'] =  'required|numeric|exists:users,id';
             $rules['type']          =  'required|in:view,click';
         }
@@ -63,7 +65,7 @@ class CampaignController extends ApiResourceController
         $code = Response::HTTP_NOT_ACCEPTABLE;
 
         $response = $this->_repository->updateCampaign($input);
-        if($response){
+        if($response) {
             $code = Response::HTTP_OK;
             $output = ['response' => 
                         [

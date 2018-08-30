@@ -25,8 +25,10 @@ class CampaignRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('CampaignRepository', function () {
-            return new CampaignRepository(new Campaign);
-        });
+        $this->app->bind(
+            'CampaignRepository', function () {
+                return new CampaignRepository(new Campaign);
+            }
+        );
     }
 }

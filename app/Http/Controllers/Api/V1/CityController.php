@@ -8,30 +8,32 @@ class CityController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(CityRepository $repository){
-       $this->_repository = $repository;
-   }
-
-   public function rules($value=''){
-    $rules = [];
-
-    if($value == 'show'){
-        $rules['id'] =  'required|numeric|exists:cities,id';
+    public function __construct(CityRepository $repository)
+    {
+        $this->_repository = $repository;
     }
 
-    if($value == 'index'){
-        $rules['pagination']    =  'nullable|boolean';
-        $rules['state_id'] =  'required|numeric|exists:states,id';
+    public function rules($value='')
+    {
+        $rules = [];
+
+        if($value == 'show') {
+              $rules['id'] =  'required|numeric|exists:cities,id';
+        }
+
+        if($value == 'index') {
+              $rules['pagination']    =  'nullable|boolean';
+              $rules['state_id'] =  'required|numeric|exists:states,id';
+        }
+
+        return $rules;
+
     }
 
-    return $rules;
 
-}
-
-
-public function input($value='')
-{
-    $input = request()->only('id', 'pagination', 'state_id');
-    return $input;
-}
+    public function input($value='')
+    {
+        $input = request()->only('id', 'pagination', 'state_id');
+        return $input;
+    }
 }

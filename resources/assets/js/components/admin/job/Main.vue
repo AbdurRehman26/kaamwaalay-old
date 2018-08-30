@@ -57,7 +57,7 @@
           <tbody>
 
             <tr v-for="record in records">
-                <td> {{ record.title }} </td>
+                <td width="40%"> {{ record.title }} </td>
                 <td> <a href="javascript:void(0);" @click="profileimage(record.user.id)">{{ record.user.first_name }}</a> </td>
                 <td> {{ record.service | mainService }} </td>
                 <td> {{ record.service | childOrParentService }} </td>
@@ -162,8 +162,10 @@
                 
             },
             searchList(){
-                let url = 'api/job?pagination=true';
-                this.url = JSON.parse(JSON.stringify(url));
+                
+                let newDate  = new Date().getMilliseconds();
+
+                this.url = 'api/job?pagination=true&time='+newDate;
 
                 Reflect.ownKeys(this.search).forEach(key =>{
 

@@ -8,3 +8,78 @@ Route::group([
     Route::put('change/password', 'Api\V1\UserController@changePassword');
     Route::post('logout', 'Auth\LoginController@logout');
 });
+
+Route::group(['middleware' => ['scopes']], function () {
+
+    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
+    Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
+    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
+    Route::resource('user', 'Api\V1\UserController')->except([
+        'edit','destory','create'
+    ]);
+
+    Route::resource('job-bid', 'Api\V1\JobBidController')->except([
+        'edit','create','destory'
+    ]);
+
+    Route::get('job/stats', 'Api\V1\JobController@getJobStats')->name('job.stats');
+    Route::resource('job', 'Api\V1\JobController')->except([
+        'edit','create','destory'
+    ]);
+
+    Route::resource('job-message', 'Api\V1\JobMessageController')->except([
+        'edit','create','destory'
+    ]);
+
+    Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
+        'edit','create','destory'
+    ]);
+
+    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+        'edit','create','destory','store','update'
+    ]);
+
+    Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
+        'edit','create','destory','store'
+    ]);
+
+    Route::resource('campaign', 'Api\V1\CampaignController')->only([
+        'index', 'store', 'show',
+    ]);
+
+    Route::resource('plan', 'Api\V1\PlanController')->only([
+        'index', 'show', 'update',
+    ]);
+
+    Route::resource('role', 'Api\V1\RoleController')->only([
+        'index', 'show',
+    ]);
+
+    //Dashboard Report
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
+
+    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
+        'index', 'store', 'show', 'update',
+    ]);
+
+    Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
+        'index',
+    ]);
+
+    //Payment Listing
+    Route::get('payment', 'Api\V1\PaymentController@index');
+
+    //Dashboard Report
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
+
+    //Uploading File
+    Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
+    Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
+
+    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
+
+    Route::resource('service', 'Api\V1\ServiceController')->except([
+        'edit','create'
+    ]);
+});

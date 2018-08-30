@@ -75,12 +75,12 @@
   <div class="row">
     <div class="col-xs-12 col-md-12">
 
-      <div class="total-record float-left" v-if="totalServicesCount">
-        <p><strong>Total records: <span>{{totalServicesCount}}</span></strong></p>
+      <div class="total-record float-left" v-if="pagination.total">
+        <p><strong>Total records: <span>{{pagination.total}}</span></strong></p>
       </div>
 
-      <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-        <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
+      <div class="pagination-wrapper float-right" v-if="pagination.total">
+        <b-pagination size="md" :total-rows="pagination.total" v-model="currentPage" :per-page="25"></b-pagination>
       </div>
     </div>
   </div>
@@ -96,7 +96,6 @@
   export default {
     data () {
       return {
-       totalServicesCount: 0,
        service: false,
        viewdetails: false,
        actiondelete: false,
@@ -138,9 +137,6 @@
       this.getList(data, pageNumber);
 
     },
-    totalServicesCount(count) {
-      this.totalServicesCount = count;
-    }
   },
   methods: {
 
@@ -222,7 +218,6 @@
           self.showNoRecordFound = true;
         }
         var serviceArray = _.filter(self.listing, {parent_id: null});
-        self.totalServicesCount = response.service_count;
         
         self.pagination = response.pagination;
 

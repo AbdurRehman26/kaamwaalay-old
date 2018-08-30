@@ -6,16 +6,18 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddScopeColumnRolesTable extends Migration
 {
-   /**
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
-             $table->json('scope')->nullable()->after('title');
-        });
+        Schema::table(
+            'roles', function (Blueprint $table) {
+                $table->json('scope')->nullable()->after('title');
+            }
+        );
     }
 
     /**
@@ -25,8 +27,10 @@ class AddScopeColumnRolesTable extends Migration
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
-           $table->dropColumn('scope');
-        });
+        Schema::table(
+            'roles', function (Blueprint $table) {
+                $table->dropColumn('scope');
+            }
+        );
     }
 }

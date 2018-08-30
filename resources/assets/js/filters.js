@@ -84,6 +84,19 @@ const accessLevelField = [
 }
 ];
 
+
+const jobPreferences = [
+{
+    key : 'with_in_a_week',
+    value : 'with in a week'
+},
+{
+    key : 'few_weeks',
+    value : 'in next few days'
+},
+];
+
+
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
         return ;
@@ -98,7 +111,6 @@ Vue.filter('jobStatus', function (value) {
             return item; 
         }
     });
-
     return obj.value.replace(/\s/g, '').trim();
 });
 
@@ -225,3 +237,16 @@ Vue.filter('mainServiceOrChildService', function (value) {
     return serviceHtml;
 });
 
+Vue.filter('jobPreference', function (value) {
+
+    let obj = _.find(jobPreferences, item =>{
+        if(item.key == value){
+            return item; 
+        }
+    });
+
+    if(!obj){
+        return '';
+    }
+    return obj.value;
+});
