@@ -49,10 +49,10 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li><a href="/sign-up">Sign up as a service provider</a></li>
+									<li><router-link to="/sign-up">Sign up as a service provider</router-link></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
-									<li><a href="/advice-center">Frequently asked questions</a></li>
-									<li><a href="javascript:;" @click="CustomerSupportPopup">Service provider support</a></li>
+									<li><router-link to="/advice-center">Frequently asked questions</router-link></li>
+									<li><a href="javascript:;" @click="customersupportpopup">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,8 +91,8 @@
 						</div>
 						<div class="float-right terms-links">
 							<ul>
-								<li><a href="javascript:;">Terms &amp; Conditions</a></li>
-								<li><a href="javascript:;">Privacy Policy</a></li>
+								<li><router-link to="/terms-condition">Terms &amp; Conditions</router-link></li>
+								<li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
 							</ul>
 						</div>
 					</div>

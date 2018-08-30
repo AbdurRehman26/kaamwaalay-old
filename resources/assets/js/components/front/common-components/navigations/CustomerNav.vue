@@ -2,10 +2,11 @@
     <!-- custom heder -->
     <div class="navigation main-navigation customer-navigation">
         <ul class="float-left">
-            <li><router-link to="/explore">Explore</router-link></li>
-            <li><router-link to="/my-jobs">My Jobs</router-link></li>
-            <li><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
+            <li @click="$emit('clickmenu')"><router-link to="/explore">Explore</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/my-jobs">My Jobs</router-link></li>
+            <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
+
                 <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
                         <img src="" alt="">

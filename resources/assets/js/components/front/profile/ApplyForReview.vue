@@ -10,6 +10,9 @@
 			<div class="form-signup">
 				<form>
 					<div class="personal-provider-detail">
+						<div class="profile-image-placeholder">
+							<img :src="profileimage">
+						</div>						
 						<div class="row">
 							<div class="browse-btn">
 								<div class="form-group">
@@ -294,12 +297,13 @@ export default {
   components: { DatePicker },
   data() {
     return {
-   	value: '',
-   	value_month:'',
-   	value_year:'',
-    time1: '',
-    time2: '',
-    time3: '',
+	   	value: '',
+	   	value_month:'',
+	   	value_year:'',
+	    time1: '',
+	    time2: '',
+	    time3: '',
+	    profileimage: '',
       shortcuts: [
         {
           text: 'Today',

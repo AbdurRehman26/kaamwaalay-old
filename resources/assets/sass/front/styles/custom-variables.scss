@@ -22,6 +22,9 @@ $success-border:#28a745;
 $danger-bg:#d9534f;
 $danger-color:#d9534f;
 $danger-border:#d9534f;
+$greyL: #F5F5F5;
+$greyM: #d9d9d9;
+$greyD: #838383;
 $warning-bg:#ffc107;
 $warning-color:#fff;
 $warning-border:#ffc107;
@@ -35,6 +38,21 @@ $font-size-md:24px;
 $font-size-sm:20px;
 $font-size-xs:16px;
 $font-size-xxs:14px;
+
+
+//status colors
+$status-active:$success-bg;
+$status-success:$success-bg;
+$status-danger:$danger-bg;
+$status-pending:$warning-bg;
+$status-review:#17a2b8;
+$status-approved:$success-bg;
+$status-rejected:$danger-bg;
+$status-banned:$danger-bg;
+$status-archived:$greyM;
+$status-inbidding:#ff8500;
+$status-awarded:#4b9dc0;
+$status-initiated:#ffb300;
 
 //forms
 $label-size:$font-size-xxs;
