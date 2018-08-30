@@ -16497,7 +16497,7 @@ body .chat-feedback-message.white-msg:before {
 .job-details p.service-requirment {
   padding-top: 3px;
   position: relative;
-  top: -8px;
+  top: 0px;
 }
 
 .member-details p.service-requirment i.icon-brightness-down,
@@ -18244,6 +18244,27 @@ body .chat-feedback-message.white-msg:before {
   .service-provider .service-providers-invite {
     padding: 21px 15px 27px 15px;
     margin-bottom: 20px;
+  }
+
+  .job-post-list.category-service-provider .jobs-done {
+    display: inline-block;
+    width: auto;
+    margin-top: 12px;
+    margin-bottom: 9px;
+  }
+
+  .job-post-list.category-service-provider .jobs-done span {
+    display: inline-block;
+    width: auto;
+    padding: 0px 6px;
+  }
+
+  .detail-page.category-detail .category-content {
+    text-align: center;
+  }
+
+  .detail-page.category-detail .category-content .service-detail {
+    text-align: left;
   }
 
   .jobs-post-files iframe {

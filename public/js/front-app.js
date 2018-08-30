@@ -72746,158 +72746,174 @@ var render = function() {
             _vm._m(3),
             _vm._v(" "),
             _vm._l(_vm.joblisting, function(listing) {
-              return _c("div", { staticClass: "job-post-list" }, [
-                _c("div", { staticClass: "job-post-details" }, [
-                  _c("div", {
-                    staticClass: "job-image pointer",
-                    style: {
-                      "background-image": "url(" + listing.job_title_image + ")"
-                    },
-                    on: { click: _vm.servicedetail }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "job-common-description" }, [
-                    _c("div", { staticClass: "job-main-title" }, [
-                      _c(
-                        "h3",
-                        {
-                          staticClass: "pointer",
-                          on: { click: _vm.servicedetail }
-                        },
-                        [_vm._v(_vm._s(listing.job_title))]
-                      ),
-                      _vm._v(" "),
-                      _c("span", [
-                        _c("i", { staticClass: "icon-checked" }),
-                        _c(
-                          "i",
-                          {
-                            staticClass: "icon-info pointer",
-                            on: { click: _vm.showinfo }
-                          },
-                          [
-                            _c("img", {
-                              attrs: { src: "/images/front/svg/info.svg" }
-                            })
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "jobs-rating" },
-                      [
-                        _c("star-rating", {
-                          attrs: {
-                            "star-size": 20,
-                            "read-only": "",
-                            rating: 4,
-                            "active-color": "#8200ff"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "jobs-done" }, [
-                          _c("span", { staticClass: "review-job" }, [
-                            _vm._v(
-                              _vm._s(listing.job_feedback) + " Feedback reviews"
-                            )
-                          ]),
-                          _vm._v(" "),
-                          listing.job_perform == 0
-                            ? _c("span", { staticClass: "review-job" }, [
-                                _vm._v("No Jobs performed")
-                              ])
-                            : _c("span", { staticClass: "review-job" }, [
-                                _vm._v(
-                                  _vm._s(listing.job_perform) +
-                                    " Jobs performed"
-                                )
-                              ])
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-primary post-bid",
-                        attrs: { href: "/job-post" }
+              return _c(
+                "div",
+                { staticClass: "job-post-list category-service-provider" },
+                [
+                  _c("div", { staticClass: "job-post-details" }, [
+                    _c("div", {
+                      staticClass: "job-image pointer",
+                      style: {
+                        "background-image":
+                          "url(" + listing.job_title_image + ")"
                       },
-                      [_vm._v("Post Job & Invite to Bid")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "member-details" }, [
-                    _c("p", { staticClass: "location" }, [
-                      _c("i", { staticClass: "icon-location" }),
-                      _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
-                      _c("strong", [_vm._v(_vm._s(listing.job_location))])
-                    ]),
+                      on: { click: _vm.servicedetail }
+                    }),
                     _vm._v(" "),
-                    _c("p", { staticClass: "member-since" }, [
-                      _c("i", { staticClass: "icon-calendar-daily" }),
-                      _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
-                      _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "post-job-description" }, [
-                    _c("p", [_vm._v(_vm._s(listing.job_description))])
-                  ]),
-                  _vm._v(" "),
-                  listing.review_details == true
-                    ? _c("div", { staticClass: "chat-feedback" }, [
-                        _vm._m(4, true),
+                    _c("div", { staticClass: "job-common-description" }, [
+                      _c("div", { staticClass: "job-main-title" }, [
+                        _c(
+                          "h3",
+                          {
+                            staticClass: "pointer",
+                            on: { click: _vm.servicedetail }
+                          },
+                          [_vm._v(_vm._s(listing.job_title))]
+                        ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "chat-feedback-column" }, [
-                          _c("div", {
-                            staticClass: "chat-feedback-image",
-                            style: {
-                              "background-image":
-                                "url(" + listing.latest_review_image + ")"
+                        _c("span", [
+                          _c("i", { staticClass: "icon-checked" }),
+                          _c(
+                            "i",
+                            {
+                              staticClass: "icon-info pointer",
+                              on: { click: _vm.showinfo }
+                            },
+                            [
+                              _c("img", {
+                                attrs: { src: "/images/front/svg/info.svg" }
+                              })
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "jobs-rating" },
+                        [
+                          _c("star-rating", {
+                            attrs: {
+                              "star-size": 20,
+                              "read-only": "",
+                              rating: 4,
+                              "active-color": "#8200ff"
                             }
                           }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "chat-feedback-message" }, [
-                            _c("p", [
-                              _vm._v(_vm._s(listing.latest_review_description))
+                          _c("div", { staticClass: "jobs-done" }, [
+                            _c("span", { staticClass: "review-job" }, [
+                              _vm._v(
+                                _vm._s(listing.job_feedback) +
+                                  " Feedback reviews"
+                              )
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "feeback-detail" }, [
-                              _c(
-                                "p",
-                                { staticClass: "feedback-personal-info" },
-                                [
+                            listing.job_perform == 0
+                              ? _c("span", { staticClass: "review-job" }, [
+                                  _vm._v("No Jobs performed")
+                                ])
+                              : _c("span", { staticClass: "review-job" }, [
+                                  _vm._v(
+                                    _vm._s(listing.job_perform) +
+                                      " Jobs performed"
+                                  )
+                                ])
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary post-bid",
+                          attrs: { href: "/job-post" }
+                        },
+                        [_vm._v("Post Job & Invite to Bid")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "member-details" }, [
+                      _c("p", { staticClass: "location" }, [
+                        _c("i", { staticClass: "icon-location" }),
+                        _vm._v(" \n\t\t\t\t\t\t\t\tLocation "),
+                        _c("strong", [_vm._v(_vm._s(listing.job_location))])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "member-since" }, [
+                        _c("i", { staticClass: "icon-calendar-daily" }),
+                        _vm._v("\n\t\t\t\t\t\t\t\tMember since "),
+                        _c("strong", [_vm._v(_vm._s(listing.job_member_since))])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "post-job-description" }, [
+                      _c("p", [_vm._v(_vm._s(listing.job_description))])
+                    ]),
+                    _vm._v(" "),
+                    listing.review_details == true
+                      ? _c("div", { staticClass: "chat-feedback" }, [
+                          _vm._m(4, true),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "chat-feedback-column" }, [
+                            _c("div", {
+                              staticClass: "chat-feedback-image",
+                              style: {
+                                "background-image":
+                                  "url(" + listing.latest_review_image + ")"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "chat-feedback-message" },
+                              [
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(listing.latest_review_description)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "feeback-detail" }, [
                                   _c(
-                                    "a",
-                                    { attrs: { href: "javascript:void(0);" } },
+                                    "p",
+                                    { staticClass: "feedback-personal-info" },
                                     [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0);" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(listing.latest_reviewer_name)
+                                          )
+                                        ]
+                                      ),
                                       _vm._v(
-                                        _vm._s(listing.latest_reviewer_name)
-                                      )
+                                        "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
+                                      ),
+                                      _c("strong", [
+                                        _vm._v(
+                                          _vm._s(
+                                            listing.latest_review_post_date
+                                          )
+                                        )
+                                      ])
                                     ]
                                   ),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\t posted on \n\t\t\t\t\t\t\t\t\t\t\t "
-                                  ),
-                                  _c("strong", [
-                                    _vm._v(
-                                      _vm._s(listing.latest_review_post_date)
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("i", { staticClass: "icon-quotes-right3" })
-                            ])
+                                  _vm._v(" "),
+                                  _c("i", { staticClass: "icon-quotes-right3" })
+                                ])
+                              ]
+                            )
                           ])
                         ])
-                      ])
-                    : _vm._e()
-                ])
-              ])
+                      : _vm._e()
+                  ])
+                ]
+              )
             })
           ],
           2

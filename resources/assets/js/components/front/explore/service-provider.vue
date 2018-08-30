@@ -45,7 +45,7 @@
 					<p>14 General carpentry service professionals found near you</p>
 				</div>
 
-				<div class="job-post-list" v-for="listing in joblisting">
+				<div class="job-post-list category-service-provider" v-for="listing in joblisting">
 					<div class="job-post-details">
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
 

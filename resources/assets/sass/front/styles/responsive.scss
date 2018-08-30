@@ -361,6 +361,31 @@
             margin-bottom: 20px;
         }        
     }
+    .job-post-list{
+        &.category-service-provider{
+            .jobs-done {
+                display: inline-block;
+                width: auto;
+                margin-top: 12px;
+                margin-bottom: 9px;                
+                span{
+                    display: inline-block;
+                    width: auto;
+                    padding: 0px 6px;
+                }
+            }
+        }
+    }    
+    .detail-page{
+        &.category-detail{
+            .category-content{
+                text-align: center;
+                .service-detail{
+                    text-align: left;
+                }
+            }
+        }
+    }
     .jobs-post-files{
         iframe {
             width: 100%;
