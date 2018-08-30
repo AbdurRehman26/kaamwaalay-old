@@ -83,7 +83,7 @@
                   }else{
                     setTimeout(function(){
                         this.loading = false
-                        this_.$router.push({ name: 'dashboard'})
+                        location.reload();
                       }, 5000);
                   }
                  },
