@@ -94,10 +94,6 @@
 
 <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
-<!-- <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user> -->
-<add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
-<view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-<service-provider-review @HideModalValue="HideModal" :showModalProp="changeservicestatus"></service-provider-review>
 </div>
 </div>
 </template>

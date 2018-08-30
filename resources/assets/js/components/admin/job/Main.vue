@@ -162,8 +162,10 @@
                 
             },
             searchList(){
-                let url = 'api/job?pagination=true';
-                this.url = JSON.parse(JSON.stringify(url));
+                
+                let newDate  = new Date().getMilliseconds();
+
+                this.url = 'api/job?pagination=true&time='+newDate;
 
                 Reflect.ownKeys(this.search).forEach(key =>{
 
