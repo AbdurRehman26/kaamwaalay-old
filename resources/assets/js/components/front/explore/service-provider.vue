@@ -139,7 +139,7 @@
 		</div>
 
 	<div class="clearfix"></div>
-		<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getProviderRecords"></vue-common-methods>
+		<vue-common-methods :url="requestUrl" @get-records="getProviderRecords"></vue-common-methods>
 	</div>
 	</div>
 </template>
@@ -286,7 +286,7 @@
 					this.service = response.data;
 					this.categoryimage = this.service.images[0].upload_url;
 					this.btnLoading = false;
-					this.serviceProviderUrl = 'api/service-provider-profile?pagination=true&filter_by_featured=1&is_user_approved=true&user_detail=true&filter_by_service='+this.serviceId+'&zip='+this.zip;
+					this.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&filter_by_service='+this.serviceId+'&zip='+this.zip;
 				}).catch(error=>{
 				});
 			},
