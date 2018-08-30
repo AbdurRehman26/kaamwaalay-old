@@ -13897,6 +13897,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 767px) {
+  .main-banner .main-img {
+    overflow: hidden;
+  }
+
   .main-banner .main-img:before {
     content: '';
     position: absolute;
@@ -18315,6 +18319,39 @@ body .chat-feedback-message.white-msg:before {
   .job-main-details.detail-page .job-details {
     padding-top: 10px !important;
     margin-bottom: 0;
+  }
+
+  .job-main-details.detail-page .job-notification .jobs-done {
+    text-align: center;
+  }
+
+  .job-main-details.detail-page .chat-feedback .chat-feedback-column {
+    padding-left: 43px;
+  }
+
+  .job-main-details.detail-page .chat-feedback .job-bidding .chat-feedback-image {
+    top: 9px;
+  }
+
+  .job-main-details.detail-page .chat-feedback .jobs-rating .jobs-done {
+    display: inline-block;
+    width: auto;
+    margin-top: 5px;
+    margin-bottom: 4px;
+  }
+
+  .job-main-details.detail-page .chat-feedback .jobs-rating .jobs-done span {
+    display: inline-block;
+    width: auto;
+  }
+
+  .job-main-details.detail-page .chat-feedback .jobs-rating .jobs-done span.review-job {
+    padding: 0px 2px;
+    font-size: 12px;
+  }
+
+  .job-main-details.detail-page .chat-feedback .jobs-rating .vue-star-rating span.vue-star-rating-star svg {
+    width: 16px;
   }
 
   .job-proposal .provider-bidding-btn {

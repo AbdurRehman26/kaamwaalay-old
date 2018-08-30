@@ -433,7 +433,45 @@
         .job-details {
             padding-top: 10px !important;
             margin-bottom: 0;
-        }        
+        }
+        .job-notification{
+            .jobs-done{
+                text-align: center;
+            }        
+        }
+        .chat-feedback{
+            .chat-feedback-column{
+                padding-left: 43px;
+            }
+            .job-bidding{
+                .chat-feedback-image{
+                    top: 9px;
+                }
+            }
+            .jobs-rating{
+                .jobs-done{
+                    display: inline-block;
+                    width: auto;
+                    margin-top: 5px;
+                    margin-bottom: 4px;
+                    span{
+                        display: inline-block;
+                        width: auto;
+                        &.review-job{
+                            padding: 0px 2px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .vue-star-rating{
+                    span.vue-star-rating-star{
+                        svg{
+                            width: 16px;
+                        }
+                    }
+                }
+            }
+        }
     }
     .job-proposal{
         .provider-bidding-btn{

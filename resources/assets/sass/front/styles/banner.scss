@@ -10,6 +10,7 @@
             width:100%;
         }
         @include mobile{
+            overflow: hidden;
             &:before{
                 content: '';
                 position: absolute;
