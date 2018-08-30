@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(SupportQuestionsTableSeeder::class);
+        $this->call(PlansTableSeeder::class);
+        
+        $this->call(ServiceTableSeeder::class);
+        $this->call(JobTableSeeder::class);
+
         \Artisan::call('passport:install');
     }
 }

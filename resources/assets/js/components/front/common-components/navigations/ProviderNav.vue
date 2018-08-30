@@ -2,10 +2,11 @@
     <!-- provider header -->
     <div class="navigation main-navigation provider-navigation">
         <ul class="float-left">
-            <li><router-link to="/explore-jobs">Explore Jobs </router-link></li>
-            <li><router-link to="/my-bids">My Bids</router-link></li>
-            <li><router-link to="/featured-profile">Featured Profile</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/explore-jobs">Explore Jobs </router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/my-bids">My Bids</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/featured-profile">Featured Profile</router-link></li>
             <li>
+
                 <div class="user-login-detail float-left pointer"  @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
                         <img src="" alt="">
@@ -28,6 +29,7 @@
                 <li>
                      <logout-component></logout-component> 
                 </li>
+
             </ul>
         </div>
     </template>

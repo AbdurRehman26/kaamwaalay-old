@@ -10,6 +10,12 @@
     @include Desktop1300{
         padding: 10px 25px;
     }
+    @include mobile{
+        height: 39px;
+        font-size: 13px;
+        padding: 10px 15px;
+        line-height: 17px;
+    }
     &:hover, &:focus{
         color: $body-bg!important;
         outline: none;
@@ -96,6 +102,9 @@
     }
     &.btn-lg {
         padding: 10px 63px !important;
+        @include mobile{
+            padding: 10px 25px !important;
+        }
     }
     &.btn-md {
         padding: 10px 34px !important;
@@ -208,6 +217,12 @@
         top: 74px;
         width: 46px;
         text-align: center;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+            margin-top: -4px;
+        }
     }
 }
 

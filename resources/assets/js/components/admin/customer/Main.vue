@@ -60,7 +60,7 @@
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
-                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
+                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
@@ -171,9 +171,11 @@
                 self.noRecordFound = response.noRecordFound;
             },
             searchList(){
-                let url = 'api/user?filter_by_role=3&pagination=true';
-                this.url = JSON.parse(JSON.stringify(url));
+                
+                let newDate  = new Date().getMilliseconds();
 
+                this.url = 'api/user?filter_by_role=3&pagination=true&time='+newDate;
+                
                 Reflect.ownKeys(this.search).forEach(key =>{
 
                     if(key !== '__ob__'){

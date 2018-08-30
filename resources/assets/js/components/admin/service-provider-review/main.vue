@@ -94,10 +94,6 @@
 
 <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
-<!-- <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user> -->
-<add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
-<view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-<service-provider-review @HideModalValue="HideModal" :showModalProp="changeservicestatus"></service-provider-review>
 </div>
 </div>
 </template>
@@ -138,8 +134,6 @@
     },
     computed : {
         requestUrl(){
-            this.records = [];
-
             return this.url;
         },
         servicesList(){
@@ -179,9 +173,10 @@
             
         },
         searchList(){
-            let url = 'api/service-provider-profile-request?pagination=true';
-            this.url = JSON.parse(JSON.stringify(url));
+            let newDate  = new Date().getMilliseconds();
 
+            this.url = 'api/service-provider-profile-request?pagination=true&time='+newDate;
+            
             Reflect.ownKeys(this.search).forEach(key =>{
 
                 if(key !== '__ob__'){

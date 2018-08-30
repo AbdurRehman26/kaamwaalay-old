@@ -51,6 +51,11 @@ public $model;
 
         $this->builder = $this->model->orderBy('id' , 'desc');
         
+        if(!empty($input['filter_by_me'])){
+            $input['filter_by_user'] = request()->user()->id;            
+        }
+
+
         if (!empty($input['keyword'])) {
 
             $this->builder = $this->builder->where(function($query)use($input){
@@ -85,7 +90,6 @@ public $model;
             ])->select('jobs.*');
         }
 
-
         $data = parent::findByAll($pagination, $perPage, $input);
 
         return $data;   
@@ -96,24 +100,33 @@ public $model;
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
+
         if($data){
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->service = app('ServiceRepository')->findById($data->service_id);
 
+            if($data->schedule_at && $data->preference == 'choose_date'){
+                $data->formatted_schedule_at = Carbon::parse($data->schedule_at)->format('F j, Y');
+            }
 
-            if(!empty($details['bid_data'])){
+            // Copied from user
+            $country = app('CountryRepository')->findById($data->country_id);             
+            $data->country = !empty($country->name) ? $country->name : '';
+            $City = app('CityRepository')->findById($data->city_id);                
+            $data->city = !empty($City->name)?$City->name:'';
+            $state = app('StateRepository')->findById($data->state_id);                
+            $data->state = !empty($state->name)?$state->name:'';
 
-                $bidsCriteria = ['job_id' => $data->id];
-                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
-                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
+            $bidsCriteria = ['job_id' => $data->id];
+            $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+            $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
 
-                $bidsCriteria['is_awarded'] = 1;
-                $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+            $bidsCriteria['is_awarded'] = 1;
+            $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
-                if($awardedBid){
-                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
-                }
+            if($awardedBid){
+                $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
             }
 
             $ratingCriteria = ['user_id' => $data->user_id];
@@ -136,7 +149,11 @@ public $model;
                 $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
                 $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                 
-                
+                if($data->status == 'completed'){
+                    $data->review_details = app('UserRatingRepository')->findByAttribute('job_id' , $data->id);
+                }
+
+
             }
 
         }
@@ -145,15 +162,26 @@ public $model;
     }
 
 
-    public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL) {
+    public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL , $orCrtieria = []) {
 
-        if($crtieria)
-            $count = $this->model->where($crtieria);
+        if($crtieria){
 
-        if($startDate && $endDate)
-            $count = $count->whereBetween('created_at', [$startDate, $endDate]);
+            $this->model = $this->model->where($crtieria);
+        }
 
-        return  $count->count();
+        // or Criteria must be an array 
+        if($crtieria && $orCrtieria){
+            foreach ($orCrtieria as $key => $where) {
+                $this->model  = $this->model->orWhere($where);
+            }
+        }
+
+
+        if($startDate && $endDate){
+            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        return  $this->model->count();
     }
 
 }
