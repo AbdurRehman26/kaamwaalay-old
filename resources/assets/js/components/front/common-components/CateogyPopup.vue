@@ -14,7 +14,7 @@
                         <i class="icon-location"></i>
                         <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
                     </div>
-                    <a href="javascript:void();" @click="validateBeforeSubmit" class="btn btn-primary m-t-24">Continue</a>
+                    <a href="javascript:void(0);" @click="validateBeforeSubmit" class="btn btn-primary m-t-24">Continue</a>
                 </div>
 	    </b-modal>
 	</div>
@@ -32,7 +32,6 @@ export default {
         }
     },
     methods: {
-
         validateBeforeSubmit() {
             this.$validator.validateAll().then((result) => {
                 if (result) {

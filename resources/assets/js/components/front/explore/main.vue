@@ -147,9 +147,6 @@ export default {
 				$(e.target).text("View all services related to electricians ");
 			}
 		},
-		onHideCollapse(val) {
-			$('#'+val).hide();
-		},
 		onTouch () {
 			this.isTouched = true
 		},
@@ -187,7 +184,6 @@ export default {
 			this.selectedService = service;
 			this.categoryval = true;
 		},
-
 		HideModal(){
 			this.categoryval = false;
 		},
