@@ -84,14 +84,14 @@
                 self.onHidden();
                 self.successMessage = '';
                 self.$parent.statusData.status = self.selected;
-            }, 5000);
+            }, 2000);
 
         }).catch(error => {
             self.errorMessage =error.response.data.message[0];
             setTimeout(function(){
                 self.loading = false;
                 self.errorMessage=''
-            }, 5000);
+            }, 2000);
 
 
         });

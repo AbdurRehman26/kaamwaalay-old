@@ -20,7 +20,7 @@
             }
         },
         methods: {
-            getList(page, successCallback = false){
+            getList(page, successCallback){
 
                 let self = this;
 
@@ -60,8 +60,12 @@
 
                     self.loading = false;
 
+                    console.log(typeof successCallback , 'this is type of successCallback');
 
-                    successCallback(true);
+                    if(typeof successCallback !== 'undefined'){
+                        successCallback(true);
+                    }
+
 
                 }).catch(error=>{
                     self.loading = false;
