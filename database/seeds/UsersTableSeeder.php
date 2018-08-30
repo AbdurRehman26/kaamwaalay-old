@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'Customer',
             'email' => 'hassaanCustomer@cygnismedia.com',
             'password' => Hash::make('cygnismedia'),
-            'role_id' => Role::Customer,
+            'role_id' => Role::CUSTOMER,
             'access_level' => 'full',
             'country_id' => NULL,
             'state_id' => NULL,
