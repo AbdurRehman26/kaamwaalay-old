@@ -13,9 +13,11 @@
 						<div class="job-post-details">
 							<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
 
-							<div class="job-common-description job-perform">
+							<div class="job-common-description job-perform my-job-listing">
 								<div class="col-md-6 p-l-0">
-									<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+									<div class="job-main-title">
+										<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+									</div>
 									<div class="job-notification">									
 										<div class="jobs-done">
 											<span class="job-category">{{ listing.job_category }}</span>		
