@@ -14222,7 +14222,7 @@ input[type=number]::-webkit-outer-spin-button {
 @media (max-width: 767px) {
   .splash-design.md {
     max-width: 132px;
-    height: 68px;
+    height: 38px;
   }
 
   .splash-design.lg {
