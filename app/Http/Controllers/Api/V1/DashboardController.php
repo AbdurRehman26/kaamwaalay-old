@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use \Validator;
 
-class DashboardController {
+class DashboardController
+{
     
     public $_repository;
 
-    public function __construct(DashboardRepository $repository){
+    public function __construct(DashboardRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
@@ -35,20 +37,20 @@ class DashboardController {
             // if validation passes
         } else {
             $code = 200;
-            if($input['type'] == 'stats'){
+            if($input['type'] == 'stats') {
                 $output = $this->_repository->stats($input);
-            }else if($input['type'] == 'customer_signup' || $input['type'] == 'service_provider_signup'){
+            }else if($input['type'] == 'customer_signup' || $input['type'] == 'service_provider_signup') {
                 $output = $this->_repository->signUpsOverTime($input);
-            }else if($input['type'] == 'job_service_type'){
+            }else if($input['type'] == 'job_service_type') {
                 $output = $this->_repository->jobServiceType($input);
-            }else if($input['type'] == 'pr_over_time'){
+            }else if($input['type'] == 'pr_over_time') {
                 $output = $this->_repository->PrOverTime($input);
-            }else if($input['type'] == 'pr_type'){
+            }else if($input['type'] == 'pr_type') {
                 $output = $this->_repository->PrType($input);
-            }else if($input['type'] == 'top_service_provider'){
+            }else if($input['type'] == 'top_service_provider') {
                 $output = $this->_repository->topServiceProvider($input);
                 
-            }else if($input['type'] == 'top_customer'){
+            }else if($input['type'] == 'top_customer') {
                 $output = $this->_repository->topCustomer($input);                
             }
             

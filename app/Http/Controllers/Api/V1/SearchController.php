@@ -13,19 +13,21 @@ class SearchController extends ApiResourceController
     public $_repository;
     const   PER_PAGE = 25;
 
-    public function __construct(SearchRepository $repository){
+    public function __construct(SearchRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
     
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'show'){
+        if($value == 'show') {
             $rules['id'] =  'required|numeric|exists:services,id';
         }
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['state_id'] =  'required|numeric|exists:states,id';
         }

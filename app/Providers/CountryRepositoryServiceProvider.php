@@ -25,8 +25,10 @@ class CountryRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('CountryRepository', function () {
-            return new CountryRepository(new Country);
-        });
+        $this->app->bind(
+            'CountryRepository', function () {
+                return new CountryRepository(new Country);
+            }
+        );
     }
 }

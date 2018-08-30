@@ -25,8 +25,10 @@ class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProv
      */
     public function register()
     {
-        $this->app->bind('ServiceProviderProfileRequestRepository', function () {
-            return new ServiceProviderProfileRequestRepository(new ServiceProviderProfileRequest);
-        });
+        $this->app->bind(
+            'ServiceProviderProfileRequestRepository', function () {
+                return new ServiceProviderProfileRequestRepository(new ServiceProviderProfileRequest);
+            }
+        );
     }
 }

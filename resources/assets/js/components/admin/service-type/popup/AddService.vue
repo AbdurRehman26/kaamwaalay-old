@@ -156,6 +156,7 @@
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
                 this.$refs.fileinput.reset();
+                this.isFileUpload = null;
                 this.formData = {
                     parent_id: '',
                     title: '',
@@ -174,6 +175,7 @@
                     is_display_footer_nav: 0,
 
                 };
+                this.onChangeParentService();
                 setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorMessage = '';
@@ -214,7 +216,7 @@
             },
             hideModal () {
                 var self = this;
-                this.resetFormFields(); 
+                this.resetFormFields();
                 this.$refs.myModalRef.hide();
             },
             onHidden() {
@@ -291,7 +293,7 @@
                         self.loading = false; 
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');         
                     } , 3000);
 
                     setTimeout(function () {
@@ -331,7 +333,6 @@
                         self.resetFormFields(); 
                         self.$emit('call-list');
                         self.loading = false; 
-             
                     } , 3000);
 
                     setTimeout(function () {
