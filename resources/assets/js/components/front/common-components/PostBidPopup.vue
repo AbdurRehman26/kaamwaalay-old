@@ -1,17 +1,17 @@
 <template>  
     <div>
-        <b-modal id="post-bid" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" ok-only ok-title="Submit">
+        <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" ok-only ok-title="Submit">
         <alert></alert>
             <div>
                 <p>Post a bid on <strong>Concrete Floor Building</strong> job posted by <a href="javascript:void;">Nathan Alvarez</a></p>
                 <b-row class="justify-content-md-center">
-                    <b-col cols="2" md="6">
+                    <b-col md="6">
                         <div class="form-group">
                             <label>Bid Amount</label>
                             <input type="number" name="" class="form-control" />
                         </div>
                     </b-col> 
-                    <b-col cols="2" md="6">
+                    <b-col md="6">
                         <div class="form-group">
                             <label>&nbsp;</label>
                             <select class="form-control">
@@ -19,10 +19,10 @@
                             </select>
                         </div>
                     </b-col>
-                    <b-col cols="1" md="12">
+                    <b-col md="12">
                         <h6 class="text-center">OR</h6>
                     </b-col>
-                     <b-col cols="1" md="12">
+                     <b-col md="12">
                         <div class="form-group">
                             <div class="custom-circle-radio">
                                 <input type="radio" id="further_discussion" name="radio-group" checked>
@@ -35,19 +35,19 @@
                             </div>
                         </div>
                     </b-col>
-                    <b-col cols="2" md="6">
+                    <b-col md="6">
                         <div class="form-group custom-datepicker">
                             <label>Preferred date and time of visit</label>
                             <date-picker v-model="value" type="date" format="DD-MM-YYYY" lang="en"></date-picker>
                         </div>
                     </b-col>
-                    <b-col cols="2" md="6">
+                    <b-col md="6">
                         <div class="form-group custom-datepicker custom-timepicker">
                             <label>&nbsp;</label>
                             <date-picker v-model="value12" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time"></date-picker>
                         </div>
                     </b-col>
-                     <b-col cols="1" md="12">
+                     <b-col md="12">
                          <label>Proposal Statement</label>
                         <div class="form-group">
                             <textarea class="form-control" placeholder="Start typing your proposal statement" name="" rows="5"></textarea>

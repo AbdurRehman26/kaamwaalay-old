@@ -46,9 +46,8 @@
 <div class="clearfix"></div>
 <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 </div>
-<confirmation-popup-admin @HideModalValue="HideModal" :showModalProp="actionConfirmation" :url='updateUrl' :data='updateData'></confirmation-popup-admin>
-<add-new-user @HideModalValue="HideModal" :showModalProp="showModalValue"></add-new-user>
-<change-status-user @HideModalValue="HideModal" :showModalProp="changestatus"></change-status-user>
+<confirmation-popup-admin :showModalProp="actionConfirmation" :url='updateUrl' :data='updateData'></confirmation-popup-admin>
+<add-new-user @HideModalValue="showModalValue = false;" :showModalProp="showModalValue"></add-new-user>
 </div>
 </div>
 </template>

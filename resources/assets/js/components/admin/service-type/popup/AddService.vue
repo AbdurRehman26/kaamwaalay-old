@@ -6,7 +6,7 @@
             <form action="" method="">
                 <div class="form-group">
                  <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parent_id">
+                 <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -17,7 +17,7 @@
               <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
           </div>
           <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <!--<div class="col-xs-12 col-sm-6 col-md-12">
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Is Featured?</label>
                 <div class="form-check form-check-inline">
@@ -29,10 +29,10 @@
                   <label class="form-check-label" for="inlineRadio7">No</label>
                 </div>
               </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            </div>-->
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
               <div class="form-group radio-group-row">
-                <label class="label-with-200">Display Banner?</label>
+                <label class="label-with-200">Home Page Banner</label>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
                   <label class="form-check-label" for="inlineRadio4">Yes</label>
@@ -43,9 +43,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
                 <div class="form-group radio-group-row">
-                    <label class="label-with-200">Display Service Navigation</label>
+                    <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.is_display_service_nav">
                       <label class="form-check-label" for="inlineRadio1">Yes</label>
@@ -56,7 +56,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-12">
+          <!--<div class="col-xs-12 col-sm-6 col-md-12">
             <div class="form-group radio-group-row">
                 <label class="label-with-200">Display Footer Navigation</label>
                 <div class="form-check form-check-inline">
@@ -68,7 +68,7 @@
                   <label class="form-check-label" for="inlineRadio6">No</label>
               </div>
           </div>
-      </div>
+      </div>-->
 
 </div>
 
@@ -109,6 +109,7 @@
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
+                showRadios: true,
                 errorMessage : '',
                 successMessage : '',
                 services: [],
@@ -143,11 +144,19 @@
             }
         },
         methods: {
+            onChangeParentService() {
+                if(this.formData.parent_id) {
+                    this.showRadios = false;
+                }else {
+                    this.showRadios = true;
+                }
+            },
             resetFormFields() {
                 let self = this;
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
                 this.$refs.fileinput.reset();
+                this.isFileUpload = null;
                 this.formData = {
                     parent_id: '',
                     title: '',
@@ -166,6 +175,7 @@
                     is_display_footer_nav: 0,
 
                 };
+                this.onChangeParentService();
                 setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorMessage = '';
@@ -206,7 +216,7 @@
             },
             hideModal () {
                 var self = this;
-                this.resetFormFields(); 
+                this.resetFormFields();
                 this.$refs.myModalRef.hide();
             },
             onHidden() {
@@ -283,7 +293,7 @@
                         self.loading = false; 
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');         
                     } , 3000);
 
                     setTimeout(function () {
@@ -323,7 +333,6 @@
                         self.resetFormFields(); 
                         self.$emit('call-list');
                         self.loading = false; 
-             
                     } , 3000);
 
                     setTimeout(function () {
@@ -386,6 +395,7 @@
                     this.image = img[0].upload_url;
                     this.file = img[0].original_name;
                     this.imageText = this.file;
+                    this.onChangeParentService();
                 }
             }
         },

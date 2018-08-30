@@ -2,15 +2,16 @@
     <!-- custom heder -->
     <div class="navigation main-navigation customer-navigation">
         <ul class="float-left">
-            <li><router-link to="/explore">Explore</router-link></li>
-            <li><router-link to="/my-jobs">My Jobs</router-link></li>
-            <li><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
+            <li @click="$emit('clickmenu')"><router-link to="/explore">Explore</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link to="/my-jobs">My Jobs</router-link></li>
+            <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
+
                 <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
-                        <img src="/images/dummy/user-pic.jpg" alt="">
+                        <img src="" alt="">
                     </span>
-                    <p class="username">Arsalan Akhtar</p>
+                    <p class="username">{{fullName}}</p>
                 </div>
             </li>
             <li>
@@ -26,9 +27,7 @@
                     </span>
                 </li>
                 <li>
-                    <router-link to="/" class="no-active">
-                        <i class="icon-exit action-icon"></i>
-                    </router-link>
+                  <logout-component></logout-component> 
                 </li>
             </ul>
         </div>
@@ -43,10 +42,24 @@
                 showModalValue : false,
                 tab: false,
                 tabmenu: false,
+                first_name : '',
+                last_name : '',
+                user:{}
             }
         },
         directives: {
             onClickaway: onClickaway,
+        },
+        mounted: function () {
+            let self = this;
+            self.user = JSON.parse(self.$store.getters.getAuthUser);
+            self.first_name = self.user.first_name;
+            self.last_name = self.user.last_name;
+        },
+        computed : {
+            fullName(){
+                return this.first_name + ' ' + this.last_name;
+            },
         },
         methods: {
             ShowModal(){

@@ -1,7 +1,7 @@
     // Route components
-import VueRouter from 'vue-router'
+    import VueRouter from 'vue-router'
 
-const routes = [
+    const routes = [
 
     // Login page
 
@@ -137,6 +137,7 @@ const routes = [
             title: 'Professional Service Marketplace | Job Post',
             bodyClass: 'job-post-page',
             navigation: 'customer-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/job-post/main.vue'),
     },
@@ -158,12 +159,13 @@ const routes = [
     //jobs pages
 
     {
-        name: 'My Jobs',
+        name: 'my_jobs',
         path: '/my-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
             bodyClass: 'my-job-post-page',
             navigation: 'customer-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/jobs/my-jobs.vue'),
     },
@@ -268,7 +270,7 @@ const routes = [
             bodyClass: 'not-found-page',
         },
     },
-]
+    ]
 
 
 // Create the router instance
@@ -277,22 +279,26 @@ const router = new VueRouter({
     routes, // short for `routes: routes`
     app,
 })
-const admin = 1;
+const customer = 3;
 const title = document.title
 router.beforeEach((to, from, next) => {
     let user;
     if(router.app.$store.getters.getAuthUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthUser);
-    }
-    document.title = (title + ' | ' + to.meta.title)
-    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
-        next({name: 'login'});
-    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-        next({name: 'main_page'});
-    } else {
-        next();
-    }
+  }
 
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+    next({name: 'login'});
+} else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+    if(user  && user.role_id == customer){
+      next({name: 'my_jobs'});
+  }
+} else {
+    next();
+}
+
+next();
 })
 
 export default router

@@ -78,7 +78,7 @@
         </div>-->
       </div>
     </div>
-    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportdetailpopup"></support-detail>
+    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportdetailpopup" @refreshList="getList(false, false)"></support-detail>
   </div>
 </template>
 

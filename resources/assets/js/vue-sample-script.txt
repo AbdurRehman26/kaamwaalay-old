@@ -18,10 +18,10 @@
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.onSubmit();
-                        this.$emit('error-message', '');
+                        this.errorMessage = '';
                         return;
                     }
-                    this.$emit('error-message', this.errorBag.all()[0]);
+                    this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
@@ -31,15 +31,11 @@
                 let url = self.url;
                 self.$http.post(url, data).then(response => {
                     response = response.body;
-                    self.$auth.setToken(response.access_token, response.expires_in + Date.now());
 
-                    self.$emit('success-message', "You are successfully logged in. Please wait");
+                    self.successMessage = "You are successfully logged in. Please wait";
                     setTimeout(function () {
-                        self.$emit('success-message', "");
-                        self.$store.commit('setIsAuthenticated', true);
+                        self.successMessage = '';
                         self.loading = false;
-                        self.$router.push('/dashboard');
-
                     }, 2000);
 
                 }).catch(error => {

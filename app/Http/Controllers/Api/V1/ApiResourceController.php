@@ -93,6 +93,7 @@ abstract class ApiResourceController extends Controller
     //Update single record
     public function update(Request $request, $id)
     {   
+        
         $request->request->add(['id' => $id]);
         
         $input = $this->input(__FUNCTION__);
