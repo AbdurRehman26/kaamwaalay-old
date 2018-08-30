@@ -113,7 +113,8 @@ public $model;
 
 
     public function findByAll($pagination = false,$perPage = 10, $data = []){       
-        $this->builder = $this->model->where('id', '<>', User::GLOBAL_ADMIN)->orderBy('users.created_at','desc');
+        
+        $this->builder = $this->model->orderBy('users.created_at','desc');
 
         if (!empty($data['keyword'])) {
 
