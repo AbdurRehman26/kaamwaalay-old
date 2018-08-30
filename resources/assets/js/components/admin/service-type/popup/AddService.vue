@@ -87,7 +87,7 @@
 
 <div class="form-group">
     <label>URL</label>
-    <input type="text" placeholder="Enter url" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
   @focus.prevent="onUrlFocus"
   @blur.prevent="onUrlBlur">
 </div>
@@ -384,7 +384,6 @@
             isUpdate(value) {
                 this.isUpdate = value;
                 var img = this.list.images;
-                console.log(img, 99887765);
                 if(this.isUpdate) {
                     this.formData = {
                         parent_id: this.list.parent_id? this.list.parent_id : "",
