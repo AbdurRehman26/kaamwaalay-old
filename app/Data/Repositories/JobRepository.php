@@ -9,27 +9,23 @@ use Carbon\Carbon;
 
 class JobRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of Job Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
-public $model;
+    public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: Job-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
     protected $_cacheKey = 'Job';
@@ -42,52 +38,60 @@ public $model;
 
     }
 
-    public function update(array $data = []) {
+    public function update(array $data = [])
+    {
         $data = parent::update($data);
         return $data;
     }
 
-    public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
+    public function findByAll($pagination = false, $perPage = 10, array $input = [] )
+    {
 
-        $this->builder = $this->model->orderBy('id' , 'desc');
+        $this->builder = $this->model->orderBy('id', 'desc');
         
-        if(!empty($input['filter_by_me'])){
+        if(!empty($input['filter_by_me'])) {
             $input['filter_by_user'] = request()->user()->id;            
         }
 
 
         if (!empty($input['keyword'])) {
 
-            $this->builder = $this->builder->where(function($query)use($input){
-                $query->where('title', 'LIKE', "%{$input['keyword']}%");
-            });
+            $this->builder = $this->builder->where(
+                function ($query) use ($input) {
+                    $query->where('title', 'LIKE', "%{$input['keyword']}%");
+                }
+            );
         }
 
-        if(!empty($input['filter_by_status'])){
+        if(!empty($input['filter_by_status'])) {
             $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
         }
         
-        if(!empty($input['filter_by_service'])){
+        if(!empty($input['filter_by_service'])) {
 
-            $ids = app('ServiceRepository')->model->where('id' , $input['filter_by_service'])
-            ->orWhere('parent_id', $input['filter_by_service'])
-            ->pluck('id')->toArray();
+            $ids = app('ServiceRepository')->model->where('id', $input['filter_by_service'])
+                ->orWhere('parent_id', $input['filter_by_service'])
+                ->pluck('id')->toArray();
 
             $this->builder = $this->builder->whereIn('service_id', $ids);            
         }
 
-        if(!empty($input['filter_by_user'])){
+        if(!empty($input['filter_by_user'])) {
             $this->builder = $this->builder->where('user_id', '=', $input['filter_by_user']);            
         }
 
-        if(!empty($input['filter_by_service_provider'])){
+        if(!empty($input['filter_by_service_provider'])) {
 
-            $this->builder = $this->builder->leftJoin('job_bids', function ($join)  use($input){
-                $join->on('jobs.id', '=', 'job_bids.job_id');
-            })->where([
-                [ 'job_bids.user_id', $input['filter_by_service_provider']],
-                [ 'job_bids.is_awarded', 1]
-            ])->select('jobs.*');
+            $this->builder = $this->builder->leftJoin(
+                'job_bids', function ($join) use ($input) {
+                    $join->on('jobs.id', '=', 'job_bids.job_id');
+                }
+            )->where(
+                [
+                    [ 'job_bids.user_id', $input['filter_by_service_provider']],
+                    [ 'job_bids.is_awarded', 1]
+                    ]
+            )->select('jobs.*');
         }
 
         $data = parent::findByAll($pagination, $perPage, $input);
@@ -101,12 +105,12 @@ public $model;
     {
         $data = parent::findById($id, $refresh, $details, $encode);
 
-        if($data){
+        if($data) {
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->service = app('ServiceRepository')->findById($data->service_id);
 
-            if($data->schedule_at && $data->preference == 'choose_date'){
+            if($data->schedule_at && $data->preference == 'choose_date') {
                 $data->formatted_schedule_at = Carbon::parse($data->schedule_at)->format('F j, Y');
             }
 
@@ -125,7 +129,7 @@ public $model;
             $bidsCriteria['is_awarded'] = 1;
             $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
-            if($awardedBid){
+            if($awardedBid) {
                 $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
             }
 
@@ -149,8 +153,8 @@ public $model;
                 $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
                 $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                 
-                if($data->status == 'completed'){
-                    $data->review_details = app('UserRatingRepository')->findByAttribute('job_id' , $data->id);
+                if($data->status == 'completed') {
+                    $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
                 }
 
 
@@ -162,22 +166,23 @@ public $model;
     }
 
 
-    public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL , $orCrtieria = []) {
+    public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null , $orCrtieria = [])
+    {
 
-        if($crtieria){
+        if($crtieria) {
 
             $this->model = $this->model->where($crtieria);
         }
 
         // or Criteria must be an array 
-        if($crtieria && $orCrtieria){
+        if($crtieria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
                 $this->model  = $this->model->orWhere($where);
             }
         }
 
 
-        if($startDate && $endDate){
+        if($startDate && $endDate) {
             $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
         }
 

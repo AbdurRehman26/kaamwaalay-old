@@ -25,8 +25,10 @@ class TestimonialRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('TestimonialRepository', function () {
-            return new TestimonialRepository(new Testimonial);
-        });
+        $this->app->bind(
+            'TestimonialRepository', function () {
+                return new TestimonialRepository(new Testimonial);
+            }
+        );
     }
 }

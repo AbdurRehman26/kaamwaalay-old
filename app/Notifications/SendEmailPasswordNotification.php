@@ -24,7 +24,7 @@ class SendEmailPasswordNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -35,26 +35,30 @@ class SendEmailPasswordNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         // Generate a new reset password token
-      $token = app('auth.password.broker')->createToken($notifiable);
-      $url = url(route('password.reset',[
+        $token = app('auth.password.broker')->createToken($notifiable);
+        $url = url(
+            route(
+                'password.reset', [
                 'token' =>$token,
                 'email' =>$notifiable->email,
-            ] , false));
+                ], false
+            )
+        );
         return (new MailMessage)
-                    ->subject(Lang::getFromJson('Set a password'))
-                    ->markdown('email.user-new-password', ['url' => $url]);
+            ->subject(Lang::getFromJson('Set a password'))
+            ->markdown('email.user-new-password', ['url' => $url]);
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)

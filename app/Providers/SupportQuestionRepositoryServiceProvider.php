@@ -25,8 +25,10 @@ class SupportQuestionRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('SupportQuestionRepository', function () {
-            return new SupportQuestionRepository(new SupportQuestion);
-        });
+        $this->app->bind(
+            'SupportQuestionRepository', function () {
+                return new SupportQuestionRepository(new SupportQuestion);
+            }
+        );
     }
 }

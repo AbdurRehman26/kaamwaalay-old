@@ -19,17 +19,19 @@ class Service extends Model
         'images' => 'array',
     ];
 
-    public function subServices(){
+    public function subServices()
+    {
         return $this->hasMany('App\Data\Models\Service', 'parent_id');
     }
 
-    public function getImagesAttribute($value){
+    public function getImagesAttribute($value)
+    {
         
         $parseImage = json_decode($value);
 
-        if(!empty($parseImage[0]->name)){
+        if(!empty($parseImage[0]->name)) {
 
-            if(substr($parseImage[0]->name, 0, 8) == "https://"){
+            if(substr($parseImage[0]->name, 0, 8) == "https://") {
                 return  $value;
             }
 
@@ -37,7 +39,7 @@ class Service extends Model
 
         }
 
-        return $parseImage ? $parseImage : NULL;       
+        return $parseImage ? $parseImage : null;       
 
 
 
