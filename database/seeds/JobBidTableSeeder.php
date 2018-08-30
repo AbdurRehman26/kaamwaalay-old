@@ -18,7 +18,7 @@ class JobBidTableSeeder extends Seeder
 
         $data = [];
 
-        $totalJobs = 10;
+        $totalJobs = 1500;
 
         $totalCustomers = 150;
 
