@@ -35336,14 +35336,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .left-cog.profile-block {
-  /*width: 180px;*/
-  width: 300px;
+  width: 180px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -35352,8 +35351,7 @@ input[type=number]::-webkit-outer-spin-button {
 .left-cog.profile-block .profile-username .username {
   font-weight: 700;
   padding-left: 12px;
-  /*max-width: 73px;*/
-  max-width: 183px;
+  max-width: 73px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -41710,9 +41708,5 @@ i.disabled {
 
 .label-with-200 {
   width: 200px;
-}
-
-.infinite-status-prompt {
-  display: none !important;
 }
 
