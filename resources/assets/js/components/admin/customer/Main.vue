@@ -171,9 +171,11 @@
                 self.noRecordFound = response.noRecordFound;
             },
             searchList(){
-                let url = 'api/user?filter_by_role=3&pagination=true';
-                this.url = JSON.parse(JSON.stringify(url));
+                
+                let newDate  = new Date().getMilliseconds();
 
+                this.url = 'api/user?filter_by_role=3&pagination=true&time='+newDate;
+                
                 Reflect.ownKeys(this.search).forEach(key =>{
 
                     if(key !== '__ob__'){

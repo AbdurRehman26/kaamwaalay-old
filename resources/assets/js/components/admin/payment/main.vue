@@ -107,8 +107,10 @@ export default {
 
         },
         searchList(){
-            let url = 'api/payment?pagination=true';
-            this.url = JSON.parse(JSON.stringify(url));
+            let newDate  = new Date().getMilliseconds();
+
+            this.url = 'api/payment?pagination=true&time='+newDate;
+            
             Reflect.ownKeys(this.search).forEach(key =>{
                 if(key !== '__ob__'){
                     this.url += '&' + key + '=' + this.search[key];
