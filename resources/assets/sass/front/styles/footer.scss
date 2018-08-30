@@ -78,6 +78,10 @@
 		    @include tabletF{
 			    width: 80px;
 			    height: 27px;
+		    }
+		    @include mobile{
+		    	width: 153px !important;
+    			height: 49px !important;
 		    }		    	    		    
 		}
 	}
