@@ -6,7 +6,7 @@
             <form action="" method="">
                 <div class="form-group">
                  <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parent_id">
+                 <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>-->
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Home Page Banner</label>
                 <div class="form-check form-check-inline">
@@ -43,7 +43,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
                 <div class="form-group radio-group-row">
                     <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
@@ -109,6 +109,7 @@
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
+                showRadios: true,
                 errorMessage : '',
                 successMessage : '',
                 services: [],
@@ -143,6 +144,13 @@
             }
         },
         methods: {
+            onChangeParentService() {
+                if(this.formData.parent_id) {
+                    this.showRadios = false;
+                }else {
+                    this.showRadios = true;
+                }
+            },
             resetFormFields() {
                 let self = this;
                 this.image = 'images/dummy/image-placeholder.jpg';
@@ -386,6 +394,7 @@
                     this.image = img[0].upload_url;
                     this.file = img[0].original_name;
                     this.imageText = this.file;
+                    this.onChangeParentService();
                 }
             }
         },
