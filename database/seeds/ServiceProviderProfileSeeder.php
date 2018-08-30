@@ -27,13 +27,14 @@ class ServiceProviderProfileSeeder extends Seeder
         $getUsers = $users->where('role_id','=',Role::SERVICE_PROVIDER)->get();
         $data = [];
         $i =1;
-        $business_type = ['business', 'individual'];
+        $businessTypes = ['business', 'individual'];
         foreach ($getUsers as $getUser) {
             $data[]=[
                 'id' => $i,
                 'user_id' => $getUser->id,
                 'business_name' =>$faker->Company,
                 'business_details' =>$faker->Address,
+                'business_type' =>$businessTypes[array_rand($businessTypes)],
                 'duns_number' =>rand(),
                 'years_of_experience' =>$formatteddate,
                 'is_featured' => 0,
