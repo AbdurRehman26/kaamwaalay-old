@@ -2,6 +2,7 @@
 	<div class="section padding-sm profile-form wrapper-sm">
 		<div class="profile-head">
 			<h1>Complete your profile</h1>
+
             <p>To build safety on PSM, it's critical that all customers complete this step. All information provided below will be kept secure.</p>
         </div>
 
@@ -10,33 +11,36 @@
            <div class="form-signup">
             <form @submit.prevent="validateBeforeSubmit" novalidate="">
              <div class="personal-detail">
-              <div class="row">
-               <div class="browse-btn">
-                <div class="form-group">
-                 <label class="file-upload-label">Browse Photo</label>
+                <div class="profile-image-placeholder">
+                    <img :src="profileimage">
+                </div>
+                <div class="row">
+                   <div class="browse-btn">
+                    <div class="form-group">
+                     <label class="file-upload-label">Browse Photo</label>
 
-                 <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" 
-                 v-model="file" accept="image/jpeg, image/png, image/jpg" 
-                 name="upload image" 
-                 :class="['form-control','file-upload-input', 'form-group' , errorBag.first('upload image') ? 'is-invalid' : '']">
-             </b-form-file>
+                     <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" 
+                     v-model="file" accept="image/jpeg, image/png, image/jpg" 
+                     name="upload image" 
+                     :class="['form-control','file-upload-input', 'form-group' , errorBag.first('upload image') ? 'is-invalid' : '']">
+                 </b-form-file>
 
+             </div>
          </div>
      </div>
- </div>
 
- <!-- Alert Tag -->
- <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
- <!-- Alert Tag -->
+     <!-- Alert Tag -->
+     <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+     <!-- Alert Tag -->
 
- <div class="row">
-  <div class="col-md-6">
-   <div class="form-group">
-    <label for="">First Name</label>
-    <input type="text" v-validate="'required'" class="form-control"
-    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
-    placeholder="Enter your first name">
-</div>
+     <div class="row">
+      <div class="col-md-6">
+       <div class="form-group">
+        <label for="">First Name</label>
+        <input type="text" v-validate="'required'" class="form-control"
+        name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
+        placeholder="Enter your first name">
+    </div>
 </div>
 <div class="col-md-6">
    <div class="form-group">
@@ -216,24 +220,12 @@
 
                     self.successMessage = response.message;
                     setTimeout(function () {
+                        self.$router.push({ name : 'my_jobs'});
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);
 
                 }).catch(error => {
-                    var message = error.body.message;
-                    var error = error.body.error;
-
-                    if (error == 'invalid_credentials') {
-                        message = 'Invalid email address or password';
-                    }
-
-                    setTimeout(function () {
-                        self.$emit('error-message', "");
-                    }, 2000);
-
-
-                    this.$emit('error-message', message);
                     this.loading = false;
                 });
 
@@ -280,7 +272,7 @@
 
                 this.$http.post(url, data).then(response => {
                     response = response.data;
-                    self.record.profile_images = response.name;
+                    self.record.profile_image = response.name;
 
                 }).catch(error => {
                     error = error.response.data;

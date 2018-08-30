@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
         'edit','create','destory'
     ]);
 
+    Route::get('job/stats', 'Api\V1\JobController@getJobStats')->name('job.stats');
     Route::resource('job', 'Api\V1\JobController')->except([
         'edit','create','destory'
     ]);

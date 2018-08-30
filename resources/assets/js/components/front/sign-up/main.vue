@@ -70,115 +70,116 @@
 										</div>
 									</div>
 								</div>
-		                       <div class="form-detail form-group">
+                               <div class="form-detail form-group">
                                 <div class="custcheckbox custom-control custom-checkbox custom-control-inline">
-									  <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree" :class="[errorBag.first('agree') ? 'is-invalid' : '']">
-									   <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>								
-								</div>
-							</div>
-								<div class="create-account-btn">
-									<button class="btn btn-primary account-type-btn" :class="[loading  ? 'show-spinner' : '']"><span>Create Account</span><loader></loader></button>
-								</div>
-							</div>
-						</form>
-					</div>
+                                 <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree" :class="[errorBag.first('agree') ? 'is-invalid' : '']">
+                                 <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>								
+                             </div>
+                         </div>
+                         <div class="create-account-btn">
+                           <button class="btn btn-primary account-type-btn" :class="[loading  ? 'show-spinner' : '']"><span>Create Account</span><loader></loader></button>
+                       </div>
+                   </div>
+               </form>
+           </div>
 
-					</div>
-					<div class="already-signup login">
-						<p>Already a member? <a href="/login">Log In</a></p>
-					</div>
-				</div>
+       </div>
+       <div class="already-signup login">
+          <p>Already a member? <a href="/login">Log In</a></p>
+      </div>
+  </div>
 
-			</div>
+</div>
 
 
-		</div>
-	</template>
+</div>
+</template>
 <script>
-export default {
-  data () {
-  	remind: null;
-    return {
-    	tabval: 'firstsec',
-    	tabval: 'firstsec',
-		type:'customer',
-		mainNav:'true',
-		loading:false,
-		errorMessage: '',
-        successMessage: '',
-        register_info: {
-                    'first_name': '',
-                    'last_name': '',
-                    'email': '',
-                    'password': '',
-                    'role': '',
-                },
-                agree  : false,
-                loading: false,
-    	}
-  	},
-  	 mounted() {
-        this.$auth.options.loginUrl = '/api/auth/login'
-      },
-  	methods:{
-  		switchType: function(type) {
-				var result = [];
-				if ((this.type) === 'customer') {
-					this.$router.push('profile');
-				}
-				if ((this.type) === 'provider') {
-					this.$router.push('apply-for-review');
-				}
-				return result;
-		},
-		 register: function () {
-                let self = this;
-                this.loading = true
-                 if(self.type == 'customer'){
-                     self.register_info.role_id = 3;
-	               }else{
-	                    self.register_info.role_id = 2;
-	               }
-                this.$auth.register(this.register_info).then(function (response) {
-                    self.loading = false
-                    self.successMessage = response.data.response.message;
-                    self.resetModal();
-                    setTimeout(function(){
-                        self.successMessage='';
-                    }, 5000);
-                }).catch(error => {
-                    this.loading = false
-                    self.errorMessage = error.response.data.errors.email[0];
-                        setTimeout(function(){
-                            self.errorMessage='';
-                            this.loading = false
-                        }, 5000);
-                })
-            },
-            validateBeforeSubmit() {
-                this.$validator.validateAll().then((result) => {
-                    if (result) {
-                        this.register();
-                        this.errorMessage = '';
-                        return;
-                    }
-                    this.errorMessage = this.errorBag.all()[0];
-                });
-            },
-             resetModal () {
-                let self = this;
-                self.register_info = {
-                    'first_name': '',
-                    'last_name': '',
-                    'email': '',
-                    'password': '',
-                    'role': '',
-                },
-                self.agree = false,
-                setTimeout(function () {
-                      self.errorBag.items = [];
-                }, 100);
-            },
-  	},
+    export default {
+      data () {
+         remind: null;
+         return {
+           tabval: 'firstsec',
+           tabval: 'firstsec',
+           type:'customer',
+           mainNav:'true',
+           loading:false,
+           errorMessage: '',
+           successMessage: '',
+           register_info: {
+            'first_name': '',
+            'last_name': '',
+            'email': '',
+            'password': '',
+            'role': '',
+        },
+        agree  : false,
+        loading: false,
+    }
+},
+mounted() {
+    this.$auth.options.loginUrl = '/api/auth/login'
+},
+methods:{
+    switchType: function(type) {
+
+        var result = [];
+        if ((this.type) === 'customer') {
+           this.$router.push('profile');
+       }
+       if ((this.type) === 'provider') {
+           this.$router.push('apply-for-review');
+       }
+       return result;
+   },
+   register: function () {
+    let self = this;
+    this.loading = true
+    if(self.type == 'customer'){
+       self.register_info.role_id = 3;
+   }else{
+       self.register_info.role_id = 2;
+   }
+   this.$auth.register(this.register_info).then(function (response) {
+    self.loading = false
+    self.successMessage = response.data.response.message;
+    self.resetModal();
+    setTimeout(function(){
+        self.successMessage='';
+    }, 5000);
+}).catch(error => {
+    this.loading = false
+    self.errorMessage = error.response.data.errors.email[0];
+    setTimeout(function(){
+        self.errorMessage='';
+        this.loading = false
+    }, 5000);
+})
+},
+validateBeforeSubmit() {
+    this.$validator.validateAll().then((result) => {
+        if (result) {
+            this.register();
+            this.errorMessage = '';
+            return;
+        }
+        this.errorMessage = this.errorBag.all()[0];
+    });
+},
+resetModal () {
+    let self = this;
+    self.register_info = {
+        'first_name': '',
+        'last_name': '',
+        'email': '',
+        'password': '',
+        'role': '',
+    },
+    self.agree = false,
+    setTimeout(function () {
+      self.errorBag.items = [];
+  }, 100);
+},
+},
 }
 </script>

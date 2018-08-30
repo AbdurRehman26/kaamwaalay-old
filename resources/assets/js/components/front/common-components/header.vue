@@ -10,11 +10,11 @@
                 </span>
 
                 <!--main nav-->
-                <main-nav v-if="$route.meta.navigation == 'main-nav'" v-bind:active="responsivemenu == true"></main-nav>
+                <main-nav v-if="$route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
-                <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
+                <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->
-                <provider-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'provider-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
+                <provider-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'provider-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
 
             </div>
             <i class="icon-menu2 menuiconbutton" @click="responsivemenu ^= true"></i>
@@ -51,6 +51,9 @@
             ViewBid(){
                 this.$router.push({name: 'job-details'})
             },
-        }
+            closemenu(){
+              this.responsivemenu = false;
+            }
+        },   
     }
 </script>

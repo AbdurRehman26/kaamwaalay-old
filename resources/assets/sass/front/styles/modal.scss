@@ -43,6 +43,13 @@
 
     .category-selected{
         padding-bottom: 29px;
+        &.info{
+            padding-bottom: 0;
+            margin-bottom: 24px;            
+            .category-content-block{
+                padding-left: 0px;
+            }
+        }
     }
 
     .btn-link{
@@ -90,6 +97,10 @@
 
 .modal-content{
     border-radius: 20px;
+    @include mobile{
+        width: 90%;
+        margin: auto;
+    }
 }
 
 .data-approval{
