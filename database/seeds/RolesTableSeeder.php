@@ -105,6 +105,8 @@ class RolesTableSeeder extends Seeder
                     "service.show",
                     "service-provider-profile.index",
                     "service-provider-profile-request.index",
+                    "service-provider-profile-request.show",
+                    "service-provider-profile-request.update",
                 )),
                 'created_at' => $date,
                 'updated_at' => $date,
