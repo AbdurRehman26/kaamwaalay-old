@@ -174,7 +174,7 @@
             this.changestatus = true;
         },
         providerdetailclick(id) {
-            this.$router.push({name: 'Service_Provider_Detail' , params : {id  : id }});
+            this.$router.push({name: 'service.provider.detail' , params : {id  : id }});
         },
         ConfirmationPopup() {
             this.confirmationpopup = true;
@@ -187,7 +187,7 @@
             this.confirmationpopup = false;
         },
         profileimage(id){
-            this.$router.push({name: 'Service_Provider_Detail' , params : {id : id }});  
+            this.$router.push({name: 'service.provider.detail' , params : {id : id }});  
         },
         getRecords(response){
             let self = this;

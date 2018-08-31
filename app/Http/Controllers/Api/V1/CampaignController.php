@@ -43,14 +43,15 @@ class CampaignController extends ApiResourceController
 
     public function input($value='')
     {
+        
         if($value == 'index'){
             $input = request()->only('pagination');
-            $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+            $input['user_id'] = request()->user()->id;
         }
 
         if($value == 'store'){
             $input = request()->only('plan_id');
-            $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+            $input['user_id'] = request()->user()->id;
         }
 
         if($value == 'show'){

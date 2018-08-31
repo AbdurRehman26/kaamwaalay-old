@@ -179,14 +179,14 @@
                 this.customer = false;
             },
             ViewDetails(id){
-                this.$router.push({name: 'mainjobdetail' , params : { id : id}});
+                this.$router.push({name: 'main.job.detail' , params : { id : id}});
             },
 
             AddService(){
                 this.changeProviderStatus = true;
             },
             profileimage(id){
-              this.$router.push({name: 'customerdetail' , params : {id  : id}});  
+              this.$router.push({name: 'customer.detail' , params : {id  : id}});  
           },        
 
       },

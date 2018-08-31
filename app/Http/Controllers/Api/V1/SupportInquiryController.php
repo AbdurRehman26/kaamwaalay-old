@@ -57,7 +57,7 @@ class SupportInquiryController extends ApiResourceController
 
         if($value == 'store'){
             $input = request()->only('support_question_id', 'message');
-            $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+            $input['user_id'] = request()->user()->id;
         }
 
         if($value == 'show'){
@@ -67,7 +67,6 @@ class SupportInquiryController extends ApiResourceController
         if($value == 'update'){
             $input = request()->only('id', 'is_replied');
         }
-
 
         return $input;
     }
