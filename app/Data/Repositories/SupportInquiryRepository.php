@@ -63,18 +63,20 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
                         $data->role  =  $roleData;    
                     }                    
                 }
-                if($data->user_id) {
-                    $userData = $this->userRepo->findById($data->user_id);
-                    if($userData) {
-                        $data->name     = $userData->first_name.' '.$userData->last_name;
-                        $data->email    = $userData->email;
-                    }
-                }
                 Cache::forever($this->_cacheKey.$id, $data);
             } else {
                 return null;
             }
         }
+
+        if(!empty($data->user_id)) {
+            $userData = $this->userRepo->findById($data->user_id);
+            if($userData) {
+                $data->name     = $userData->first_name.' '.$userData->last_name;
+                $data->email    = $userData->email;
+            }
+        }
+
         return $data;
     }
 

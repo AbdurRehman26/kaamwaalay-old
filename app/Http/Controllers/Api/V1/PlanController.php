@@ -45,12 +45,21 @@ class PlanController extends ApiResourceController
 
     public function input($value='')
     {
-        $input = request()->only('id', 'pagination', 'type', 'plans_data', 'amount');
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+
+        if($value == 'index'){
+            $input = request()->only('pagination', 'type');
+        }
+
+        if($value == 'show'){
+            $input = request()->only('id');
+        }
 
         if($value == 'update') {
-            unset($input['user_id']);
-            unset($input['type']);
+            $input = request()->only('id', 'amount');
+        }
+
+        if($value == 'updateOrAddPlans'){
+            $input = request()->only('plans_data');
         }
 
         return $input;
