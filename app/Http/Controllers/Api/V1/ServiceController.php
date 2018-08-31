@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends ApiResourceController
 {
@@ -30,8 +31,7 @@ class ServiceController extends ApiResourceController
               $rules['description']            = 'required';               
               $rules['is_display_banner']       = 'required|in:0,1';                   
               $rules['is_display_service_nav']  = 'required|in:0,1';                       
-              $rules['is_display_footer_nav']   = 'required|in:0,1';                   
-              $rules['images']                  = 'required';       
+              $rules['is_display_footer_nav']   = 'required|in:0,1';     
               $rules['status']                  = 'required|in:0,1';    
               $rules['is_featured']                  = 'required|in:0,1';     
 
@@ -177,8 +177,8 @@ class ServiceController extends ApiResourceController
 
         $output = [
         'response' => [
-            'data' => $data['data']['data'],
-            'service_count' => $data['data']['service_count'],
+            'data' => $data['data'],
+            'url_prefix' => Storage::url(config('uploads.service.url.folder').'/'),
             'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
             'message' => $this->response_messages(__FUNCTION__),
         ]

@@ -4,8 +4,10 @@ namespace App\Data\Repositories;
 
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
+use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
+
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
     /**
@@ -41,7 +43,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  [])
     {
         $data = parent::findById($id, $refresh, $details, $input);
-
         if ($data) {
             if($data->parent_id != null) {
                 $data->parent = $this->findById($data->parent_id);
@@ -57,6 +58,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
+            $data->url_prefix = $data->url_prefix? $data->url_prefix : Storage::url(config('uploads.service.url.folder').'/');
         }
         
         return $data;
@@ -108,13 +110,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     {       
 
         $this->builder = $this->model->orderBy('created_at', 'desc');
-
-        //select * from `psm`.`services` as p1 left join `psm`.`services` p2 on p1.id = p2.parent_id where p1.parent_id is null order by p1.id
-
-        /*$this->builder = $this->builder
-                    ->leftJoin('services AS s2', 'id', '=', 's2.parent_id')
-                    ->whereNull('parent_id')
-                    ->orderBy('id');*/
 
         if (!empty($data['zip_code'])) {
             $this->builder = $this->builder
@@ -181,11 +176,11 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                         
         }
 
-                    $modelData['data'] = [];
-                    $count = $this->builder->count();
-                    $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
-                    $modelData['data']['service_count'] = $count;
-                    return $modelData;
+                    //$modelData['data'] = [];
+                    //$count = $this->builder->count();
+                    //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+                    //$modelData['data']['service_count'] = $count;
+                    return parent::findByAll($pagination, $perPage, $data);
     }
 
 
