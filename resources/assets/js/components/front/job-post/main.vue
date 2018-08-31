@@ -87,14 +87,14 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Preference</label>
-								<select class="form-control">
-									<option selected="" disabled="">Choose Date</option>
+								<select class="form-control" v-model="choosedate">
+									<option value="choosedate" selected="" disabled="">Choose Date</option>
 									<option>In a few days</option>
 									<option>Within this week</option>
 									<option>Next week</option>
 									<option>2 weeks</option>
 									<option>1 month</option>
-									<option>Custom</option>
+									<option value="custom">Custom</option>
 								</select>
 							</div>
 						</div>
@@ -105,6 +105,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="row" v-if="choosedate == 'custom'">
+						<div class="col-md-6">
+							<div class="form-group custom-datepicker">
+								<label>Custom Date</label>
+									<date-picker v-model="customdate" format="DD-MM-YYYY" lang="en"></date-picker>
+							</div>
+						</div>
+					</div>					
 				</div>
 
 				<div class="service-location">
@@ -255,6 +263,7 @@ export default {
   data() {
     return {
    	value: '',
+   	customdate: '',
    	value_month:'',
    	value_year:'',
     time1: '',
@@ -272,7 +281,8 @@ export default {
         start: '00:00',
         step: '00:30',
         end: '23:30'
-      }
+      },
+      choosedate: 'choosedate',
     }
   },
   methods:{

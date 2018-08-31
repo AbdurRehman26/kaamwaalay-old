@@ -4,9 +4,9 @@
             <div class="container">
 
                 <span class="logo">
-                    <router-link class="logo" to="/">
+                    <a href="javascript:void(0);" @click.prevent="scroll()">
                         <img :src="logo">
-                    </router-link>
+                    </a>
                 </span>
 
                 <!--main nav-->
@@ -51,6 +51,10 @@
             ViewBid(){
                 window.scrollTo(0,0);
                 this.$router.push({name: 'job-details'})
+            },
+            scroll(){
+                this.router.push('/');
+                window.scrollTo(0,0);
             },
             closemenu(){
               this.responsivemenu = false;

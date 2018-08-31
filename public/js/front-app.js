@@ -5083,6 +5083,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.scrollTo(0, 0);
             this.$router.push({ name: 'job-details' });
         },
+        scroll: function scroll() {
+            this.router.push('/');
+            window.scrollTo(0, 0);
+        },
         closemenu: function closemenu() {
             this.responsivemenu = false;
         }
@@ -6590,6 +6594,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6600,6 +6612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     return {
       value: '',
+      customdate: '',
       value_month: '',
       value_year: '',
       time1: '',
@@ -6615,7 +6628,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         start: '00:00',
         step: '00:30',
         end: '23:30'
-      }
+      },
+      choosedate: 'choosedate'
     };
   },
 
@@ -68391,7 +68405,68 @@ var render = function() {
             _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(5),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Preference")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.choosedate,
+                          expression: "choosedate"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.choosedate = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        {
+                          attrs: {
+                            value: "choosedate",
+                            selected: "",
+                            disabled: ""
+                          }
+                        },
+                        [_vm._v("Choose Date")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("In a few days")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Within this week")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Next week")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("2 weeks")]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("1 month")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "custom" } }, [
+                        _vm._v("Custom")
+                      ])
+                    ]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
                 _c(
@@ -68414,19 +68489,45 @@ var render = function() {
                   1
                 )
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _vm.choosedate == "custom"
+              ? _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group custom-datepicker" },
+                      [
+                        _c("label", [_vm._v("Custom Date")]),
+                        _vm._v(" "),
+                        _c("date-picker", {
+                          attrs: { format: "DD-MM-YYYY", lang: "en" },
+                          model: {
+                            value: _vm.customdate,
+                            callback: function($$v) {
+                              _vm.customdate = $$v
+                            },
+                            expression: "customdate"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
-          _vm._m(6),
+          _vm._m(5),
           _vm._v(" "),
           _c("div", { staticClass: "verify-account" }, [
+            _vm._m(6),
+            _vm._v(" "),
             _vm._m(7),
             _vm._v(" "),
             _vm._m(8),
             _vm._v(" "),
             _vm._m(9),
-            _vm._v(" "),
-            _vm._m(10),
             _vm._v(" "),
             _c("div", { staticClass: "job-form-submission" }, [
               _c("div", { staticClass: " " }, [
@@ -68619,34 +68720,6 @@ var staticRenderFns = [
           ),
           _c("strong", [_vm._v("$2")]),
           _vm._v(" fee for urgent job.")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Preference")]),
-        _vm._v(" "),
-        _c("select", { staticClass: "form-control" }, [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("Choose Date")
-          ]),
-          _vm._v(" "),
-          _c("option", [_vm._v("In a few days")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Within this week")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Next week")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("2 weeks")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("1 month")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Custom")])
         ])
       ])
     ])
@@ -76394,16 +76467,21 @@ var render = function() {
           "div",
           { staticClass: "container" },
           [
-            _c(
-              "span",
-              { staticClass: "logo" },
-              [
-                _c("router-link", { staticClass: "logo", attrs: { to: "/" } }, [
-                  _c("img", { attrs: { src: _vm.logo } })
-                ])
-              ],
-              1
-            ),
+            _c("span", { staticClass: "logo" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0);" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.scroll()
+                    }
+                  }
+                },
+                [_c("img", { attrs: { src: _vm.logo } })]
+              )
+            ]),
             _vm._v(" "),
             _vm.$route.meta.navigation == "main-nav"
               ? _c("main-nav", {
