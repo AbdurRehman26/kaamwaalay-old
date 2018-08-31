@@ -161,14 +161,15 @@ class UserController extends ApiResourceController
     }
     public function socialLogin(Request $request)
     {
-        $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'social_account_id', 'social_account_type', 'profile_pic');
+        $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'social_account_id', 'social_account_type', 'profile_pic','from_sign_up');
         $rules = [
-        'first_name' => 'required|string|max:255',
-        'last_name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255',
-        'role_id' => 'required|exists:roles,id',
-        'social_account_id' => 'required',
-        'social_account_type' => 'required|in:facebook',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'role_id' => 'required|exists:roles,id',
+            'social_account_id' => 'required',
+            'social_account_type' => 'required|in:facebook',
+            'from_sign_up' => 'boolean',
         ];
         $user = $this->_repository->findByAttribute('social_account_id', $request->social_account_id);
         if(!$user) {
@@ -182,13 +183,17 @@ class UserController extends ApiResourceController
             ];
         }else{
             if($user) {
-                unset($data['role_id']);
+                if(!$data['from_sign_up']){
+                   unset($data['role_id']);
+                }
+                unset($data['from_sign_up']);
                 $userData['user_details'] = $data; 
                 $userData['id'] = $user->id; 
                 $result = $this->_repository->update($userData);
                 $userId = $user->id;
             }else{
-                  $data['status']  = 'active';   
+                  $data['status']  = 'active'; 
+                  unset($data['from_sign_up']); 
                   $result = $this->_repository->create($data);
                   $userId = $result->id;
             }
