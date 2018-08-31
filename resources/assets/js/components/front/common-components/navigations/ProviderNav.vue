@@ -2,9 +2,9 @@
     <!-- provider header -->
     <div class="navigation main-navigation provider-navigation">
         <ul class="float-left">
-            <li @click="$emit('clickmenu')"><router-link to="/explore-jobs">Explore Jobs </router-link></li>
-            <li @click="$emit('clickmenu')"><router-link to="/my-bids">My Bids</router-link></li>
-            <li @click="$emit('clickmenu')"><router-link to="/featured-profile">Featured Profile</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/explore-jobs">Explore Jobs </router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-bids">My Bids</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/featured-profile">Featured Profile</router-link></li>
             <li>
                 <ul class="profilesession">
                    <li class="account-li">
@@ -75,7 +75,10 @@
             ViewBid(){
                 /*this.$router.push({name: 'job-details'})*/
                 this.$emit('ViewBid');
-            },              
+            },
+            scrollToTop() {
+                window.scrollTo(0,0);
+            },                          
 
         }
     }

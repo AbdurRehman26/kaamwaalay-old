@@ -2,8 +2,8 @@
     <!-- custom heder -->
     <div class="navigation main-navigation customer-navigation">
         <ul class="float-left">
-            <li @click="$emit('clickmenu')"><router-link to="/explore">Explore</router-link></li>
-            <li @click="$emit('clickmenu')"><router-link to="/my-jobs">My Jobs</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/explore">Explore</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-jobs">My Jobs</router-link></li>
             <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
                 <ul class="profilesession">
@@ -18,7 +18,7 @@
                     <li class="account-info-keys">
                         <ul>
                             <li @click="$emit('clickmenu')" class="setting-li">
-                                <router-link to="/profile">
+                                <router-link @click.native="scrollToTop()" to="/profile">
                                     <i class="icon-cog2 action-icon"></i>
                                 </router-link>
                             </li>
@@ -30,7 +30,7 @@
                                     </span>
                                 </li>
                                 <li @click="$emit('clickmenu')" >
-                                    <router-link to="/" class="no-active">
+                                    <router-link @click.native="scrollToTop()" to="/" class="no-active">
                                         <i class="icon-exit action-icon"></i>
                                     </router-link>
                             </li>
@@ -65,7 +65,7 @@
             },
             Showactive(){
                 this.tab ^= true;
-            },
+            },                    
             away: function(){
                 this.isShowing = false;
                 this.tab = false;
@@ -76,7 +76,10 @@
             ViewBid(){
                 /*this.$router.push({name: 'job-details'})*/
                 this.$emit('ViewBid');
-            },           
+            },
+            scrollToTop() {
+                window.scrollTo(0,0);
+            },                       
 
         }
     }

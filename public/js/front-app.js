@@ -5155,6 +5155,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ViewBid: function ViewBid() {
             /*this.$router.push({name: 'job-details'})*/
             this.$emit('ViewBid');
+        },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
         }
     }
 });
@@ -5247,6 +5250,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ViewBid: function ViewBid() {
             /*this.$router.push({name: 'job-details'})*/
             this.$emit('ViewBid');
+        },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
         }
     }
 });
@@ -71423,9 +71429,18 @@ var render = function() {
             }
           },
           [
-            _c("router-link", { attrs: { to: "/explore" } }, [
-              _vm._v("Explore")
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: { to: "/explore" },
+                nativeOn: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("Explore")]
+            )
           ],
           1
         ),
@@ -71440,9 +71455,18 @@ var render = function() {
             }
           },
           [
-            _c("router-link", { attrs: { to: "/my-jobs" } }, [
-              _vm._v("My Jobs")
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: { to: "/my-jobs" },
+                nativeOn: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("My Jobs")]
+            )
           ],
           1
         ),
@@ -71512,9 +71536,18 @@ var render = function() {
                     }
                   },
                   [
-                    _c("router-link", { attrs: { to: "/profile" } }, [
-                      _c("i", { staticClass: "icon-cog2 action-icon" })
-                    ])
+                    _c(
+                      "router-link",
+                      {
+                        attrs: { to: "/profile" },
+                        nativeOn: {
+                          click: function($event) {
+                            _vm.scrollToTop()
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "icon-cog2 action-icon" })]
+                    )
                   ],
                   1
                 ),
@@ -71590,7 +71623,15 @@ var render = function() {
                   [
                     _c(
                       "router-link",
-                      { staticClass: "no-active", attrs: { to: "/" } },
+                      {
+                        staticClass: "no-active",
+                        attrs: { to: "/" },
+                        nativeOn: {
+                          click: function($event) {
+                            _vm.scrollToTop()
+                          }
+                        }
+                      },
                       [_c("i", { staticClass: "icon-exit action-icon" })]
                     )
                   ],
@@ -73904,13 +73945,13 @@ var staticRenderFns = [
         _c("div", { staticClass: "float-right terms-links" }, [
           _c("ul", [
             _c("li", [
-              _c("a", { attrs: { herf: "/terms-condition" } }, [
+              _c("a", { attrs: { href: "/terms-condition" } }, [
                 _vm._v("Terms & Conditions")
               ])
             ]),
             _vm._v(" "),
             _c("li", [
-              _c("a", { attrs: { herf: "/privacy-policy" } }, [
+              _c("a", { attrs: { href: "/privacy-policy" } }, [
                 _vm._v("Privacy Policy")
               ])
             ])
@@ -74105,9 +74146,18 @@ var render = function() {
             }
           },
           [
-            _c("router-link", { attrs: { to: "/explore-jobs" } }, [
-              _vm._v("Explore Jobs ")
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: { to: "/explore-jobs" },
+                nativeOn: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("Explore Jobs ")]
+            )
           ],
           1
         ),
@@ -74122,9 +74172,18 @@ var render = function() {
             }
           },
           [
-            _c("router-link", { attrs: { to: "/my-bids" } }, [
-              _vm._v("My Bids")
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: { to: "/my-bids" },
+                nativeOn: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("My Bids")]
+            )
           ],
           1
         ),
@@ -74139,9 +74198,18 @@ var render = function() {
             }
           },
           [
-            _c("router-link", { attrs: { to: "/featured-profile" } }, [
-              _vm._v("Featured Profile")
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: { to: "/featured-profile" },
+                nativeOn: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("Featured Profile")]
+            )
           ],
           1
         ),

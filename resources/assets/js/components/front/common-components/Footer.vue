@@ -91,8 +91,8 @@
 						</div>
 						<div class="float-right terms-links">
 							<ul>
-								<li><a herf="/terms-condition">Terms &amp; Conditions</a></li>
-								<li><a herf="/privacy-policy">Privacy Policy</a></li>
+								<li><a href="/terms-condition">Terms &amp; Conditions</a></li>
+								<li><a href="/privacy-policy">Privacy Policy</a></li>
 							</ul>
 						</div>
 					</div>
