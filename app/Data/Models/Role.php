@@ -11,6 +11,11 @@ class Role extends Model
 
 	const ADMIN = 1;
 	const SERVICE_PROVIDER = 2;
-	const CUSTOMER = 3;
+    const CUSTOMER = 3;
+	const REVIEWER = 4;
+
+    protected $casts = [
+        'scope' => 'array'
+    ];
 
 }

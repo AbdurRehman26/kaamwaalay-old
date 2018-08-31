@@ -43,6 +43,8 @@ Vue.component('left-panel', require('./components/admin/common-components/LeftPa
 Vue.component('user', require('./components/admin/Main.vue'));
 Vue.component('add-new-user',require('./components/admin/popup/AddUser.vue'));
 Vue.component('change-status-user',require('./components/admin/popup/ChangeStatus.vue'));
+Vue.component('confirmation',require('./components/admin/popup/Confirmation.vue'));
+Vue.component('confirmation-access',require('./components/admin/popup/ChangeAccess.vue'));
 
 // Service-Type
 Vue.component('add-service',require('./components/admin/service-type/popup/AddService.vue'));
@@ -52,6 +54,8 @@ Vue.component('view-details',require('./components/admin/service-type/popup/View
 Vue.component('change-status-provider',require('./components/admin/service-provide/popup/ChangeStatus.vue'));
 Vue.component('service-provider-detail',require('./components/admin/service-provide/popup/ServiceProviderDetail.vue'));
 Vue.component('view-service-record',require('./components/admin/service-provide/popup/ViewServiceRecord.vue'));
+Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 
+Vue.component('confirmation-popup-admin',require('./components/admin/common-components/ConfirmationPopup.vue'));
 
 
 // service-provide-review-popup

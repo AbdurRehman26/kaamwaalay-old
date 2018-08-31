@@ -15,11 +15,13 @@
                        <label>By Type</label>
                        <select v-model="search.filter_by_service" class="form-control">
                          <option value="">Select All</option>
-                         <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
-                     </select>
-                 </div>
-             </div>
-             <div class="col-xs-12 col-md-3 datepicker-field">
+                         <option v-for="service in servicesList" :value="service.id">
+                            {{ service  | mainServiceOrChildService}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
                <label>By Job Status</label>
                <select v-model="search.filter_by_status" class="form-control">
@@ -49,7 +51,7 @@
                   <th>Service Type</th>
                   <th>Service Sub-type</th>
                   <th>Job Status</th>
-                  <th class="text-center">Actions</th>
+                  <th class="text-center">Action</th>
               </tr>
           </thead>
           <tbody>
@@ -160,8 +162,10 @@
                 
             },
             searchList(){
-                let url = 'api/job?pagination=true';
-                this.url = JSON.parse(JSON.stringify(url));
+                
+                let newDate  = new Date().getMilliseconds();
+
+                this.url = 'api/job?pagination=true&time='+newDate;
 
                 Reflect.ownKeys(this.search).forEach(key =>{
 

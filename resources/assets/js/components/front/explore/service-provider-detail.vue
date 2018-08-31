@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail">
+	<div class="category-detail detail-page">
 		<div class="content" v-for="listing in joblisting">
 			<div class="next-project grey-bg elementary-banner section-padd md border-bottom">
 				<div class="container element-index text-center md">
@@ -14,7 +14,7 @@
 								<span class="review-job left-border">{{listing.job_perform}} Jobs performed</span>
 							</div>
 							<div class="service-detail">
-								<a href="javascript:void(0);" class="btn btn-primary">Post Job & Invite to Bid</a>
+								<a href="/job-post" class="btn btn-primary">Post Job &amp; Invite to Bid</a>
 								<a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a>
 							</div>	
 						</div>
@@ -50,11 +50,11 @@
 										</p>
 									</div>
 
-									<div class="post-job-description">
-										<p>{{ listing.job_description }}</p>
+									<div class="post-job-description" v-for="description in listing.job_description.split('\n')">
+										<p>{{ description }}</p>
 									</div>
 
-									<div class="chat-feedback"">
+									<div class="chat-feedback">
 										<div class="text-notifer">
 											<h3>Feedback & Reviews</h3>	
 										</div>
@@ -115,8 +115,8 @@ export default {
     return {
     	categoryimage: '/images/front/explore/mds.png',
 
-    	jobimage: '/images/front/storage/logoimage1.png',
-    	reviewerimage: '/images/front/storage/personimage1.png',
+    	jobimage: '/images/front/profile-images/logoimage1.png',
+    	reviewerimage: '/images/front/profile-images/personimage1.png',
 
     	joblisting:[
 
@@ -127,7 +127,7 @@ export default {
 	    		job_full_rating: 4,
 	    		job_location: 'New York, NY',
 	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\r\n-  I offer a friendly, honest and punctual service \r\n-  Installation of timber and UPVC Windows & Doors. \r\n-  UPVC door/window Lock repairs & replacements. \r\n-  Also repair/replacing broken and misted double/single glazing. \r\n-  Made to measure Gates, Fencing and Decking. \r\n-  General Maintenance repairs etc. \r\n-  My work is carried out to high standards and resonably priced! \r\n-  No job too small. \r\n-  Get in touch for a quote.",
+	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote.",
 
 	    		servicesavaliable:[
 
@@ -152,7 +152,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage1.png',
+			    		latest_review_image: '/images/front/profile-images/personimage1.png',
 			    		latest_review_description: 'Matt installed a new fence at our school and I am more than pleased, he was punctual, polite and did the work quickly and I would offer him other work without hesitation.',
 			    		list_ratings: 5,
 			    		latest_reviewer_name: 'Lauren Gomez',
@@ -161,7 +161,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage2.png',
+			    		latest_review_image: '/images/front/profile-images/personimage2.png',
 			    		latest_review_description: 'Matt did a great job. Took him about 10 minutes to get the door down to size and re-hang it. Room looks a lot better now. Thank you!',
 			    		list_ratings: 4,
 			    		latest_reviewer_name: 'Paul Payne',
@@ -170,7 +170,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage3.png',
+			    		latest_review_image: '/images/front/profile-images/personimage3.png',
 			    		latest_review_description: 'Matt came exactly when he said, fixed the problem with my window with no fuss and at a good price. Very good bloke and would highly recommend!',
 			    		list_ratings: 3,
 			    		latest_reviewer_name: 'William Willis',
@@ -179,7 +179,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage4.png',
+			    		latest_review_image: '/images/front/profile-images/personimage4.png',
 			    		latest_review_description: 'Matt did an amazing job.I was happy with every part of the service he provided. He turned up at the agreed time for the estimate and returned promptly at the agreed time and date to complete the job, which was very affordable.',
 			    		list_ratings: 4,
 			    		latest_reviewer_name: 'Brian Howell',
@@ -188,7 +188,7 @@ export default {
 
 		    		{
 
-			    		latest_review_image: '/images/front/storage/personimage5.png',
+			    		latest_review_image: '/images/front/profile-images/personimage5.png',
 			    		latest_review_description: 'I would highly recommend Matt. He fitted a loft hatch and ladder for us, fitted new handles and locks to our windows and also child safety catches to all our windows upstairs. He was very professional and punctual and we were happy with the work undertaken, which he did very quickly.',
 			    		list_ratings: 5,
 			    		latest_reviewer_name: 'Timothy Schultz',

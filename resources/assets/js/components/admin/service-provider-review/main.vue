@@ -25,7 +25,9 @@
                      <label>By Type</label>
                      <select v-model="search.filter_by_service" class="form-control">
                        <option value="">Select All</option>
-                       <option v-for="service in servicesList" :value="service.id">{{service.title}}</option>
+                       <option v-for="service in servicesList" :value="service.id">
+                           {{ service  | mainServiceOrChildService}}
+                       </option>
                    </select>
                </div>
            </div>
@@ -61,9 +63,9 @@
                         <img  :src="record.imagepath" >
                     </span>
                 </td>
-                <td> <a href="javascript:void(0);" @click="detailreview">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
+                <td> <a href="javascript:void(0);" @click="detailreview(record.id)">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
                 <!-- <td> {{ record.email_address }} </td> -->
-                <td> <span v-for="(service , index) in record.services">{{service.service | mainService }} 
+                <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
                 <!-- <td> {{ record.contact_number }} </td> -->
@@ -75,7 +77,8 @@
                 </td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="detailreview" v-b-tooltip.hover title="View Details" class="icon-eye"></i><i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i>
+                    <i @click="detailreview(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <!-- <i @click="ChangeProviderStatus" v-b-tooltip.hover title="Change Status" class="icon-pencil"></i> -->
                     <!--  <i class="icon-pencil"></i> -->
                 </div>
             </td>
@@ -91,10 +94,6 @@
 
 <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
-<change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
-<add-service @HideModalValue="HideModal" :showModalProp="service"></add-service>
-<view-details @HideModalValue="HideModal" :showModalProp="viewdetails"></view-details>
-<service-provider-review @HideModalValue="HideModal" :showModalProp="changeservicestatus"></service-provider-review>
 </div>
 </div>
 </template>
@@ -135,8 +134,6 @@
     },
     computed : {
         requestUrl(){
-            this.records = [];
-
             return this.url;
         },
         servicesList(){
@@ -162,38 +159,36 @@
             this.viewdetails = false;
             this.changeservicestatus = false;   
         },
-        detailreview(){
-            this.$router.push({name: 'Service_Detail_Review'});
+        detailreview(id){
+            this.$router.push({name: 'Service_Detail_Review' , params : {id : id}});
         },
-        profileimage(){
-          this.$router.push({name: 'Service_Provider_Detail'});  
-      },
-      startLoading(){
-        this.loading = true;
+        startLoading(){
+            this.loading = true;
+        },
+        getRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            
+        },
+        searchList(){
+            let newDate  = new Date().getMilliseconds();
+
+            this.url = 'api/service-provider-profile-request?pagination=true&time='+newDate;
+            
+            Reflect.ownKeys(this.search).forEach(key =>{
+
+                if(key !== '__ob__'){
+                    this.url += '&' + key + '=' + this.search[key];
+                }        
+            });
+
+        }
+
     },
-    getRecords(response){
-        let self = this;
-        self.loading = false;
-        self.records = response.data;
-        self.noRecordFound = response.noRecordFound;
-        
+    components: {
+        StarRating
     },
-    searchList(){
-        let url = 'api/service-provider-profile-request?pagination=true';
-        this.url = JSON.parse(JSON.stringify(url));
-
-        Reflect.ownKeys(this.search).forEach(key =>{
-
-            if(key !== '__ob__'){
-                this.url += '&' + key + '=' + this.search[key];
-            }        
-        });
-
-    }
-
-},
-components: {
-    StarRating
-},
 }
 </script>

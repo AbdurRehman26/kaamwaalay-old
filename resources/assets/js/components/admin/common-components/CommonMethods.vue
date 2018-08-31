@@ -1,12 +1,11 @@
 <template>
-    <vue-pagination :loadingStart="loading" class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination"></vue-pagination>
-
+    <vue-pagination :infiniteLoad="infiniteLoad" :loadingStart="loading" class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination"></vue-pagination>
 </template>
 
 
 <script>
     export default {
-        props : ['url', 'search'],
+        props : ['url', 'search' , 'infiniteLoad'],
         data () {
             return {
                 records : [],
@@ -16,10 +15,12 @@
             }  
         },
         mounted(){
-            this.getList(false);
+            if(!this.infiniteLoad){
+                this.getList(false);
+            }
         },
         methods: {
-            getList(page){
+            getList(page, successCallback){
 
                 let self = this;
 
@@ -41,12 +42,14 @@
                 }
 
                 self.$http.get(url).then(response=>{
+
                     response = response.data.response;
                     
                     let result = {
                         data : response.data,
                         noRecordFound : false
                     };
+
 
                     if(!response.data.length){
                         result.noRecordFound = true;
@@ -57,6 +60,9 @@
 
                     self.loading = false;
 
+                    if(typeof successCallback !== 'undefined'){
+                        successCallback(true);
+                    }
 
 
                 }).catch(error=>{

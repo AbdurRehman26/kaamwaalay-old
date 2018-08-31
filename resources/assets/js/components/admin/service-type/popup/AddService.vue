@@ -1,12 +1,12 @@
  <template>
      <div>
-      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Add new Service" no-close-on-backdrop no-close-on-esc>                        
+      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
         <div>
             <form action="" method="">
                 <div class="form-group">
                  <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parentId">
+                 <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
                     <option value="" selected="">None</option>
                     <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
@@ -14,81 +14,82 @@
 
             <div class="form-group">
               <label>Service Name</label>
-              <input type="text" name="service name" v-validate="'required'" class="form-control" placeholder="Enter service name" v-model="formData.serviceName" :class="['form-group' , errorBag.first('service name') ? 'is-invalid' : '']" >
+              <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
           </div>
-
           <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <!--<div class="col-xs-12 col-sm-6 col-md-12">
+              <div class="form-group radio-group-row">
+                <label class="label-with-200">Is Featured?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.is_featured">
+                  <label class="form-check-label" for="inlineRadio3">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.is_featured">
+                  <label class="form-check-label" for="inlineRadio7">No</label>
+                </div>
+              </div>
+            </div>-->
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
+              <div class="form-group radio-group-row">
+                <label class="label-with-200">Home Page Banner</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="inlineRadio4">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="inlineRadio8">No</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
                 <div class="form-group radio-group-row">
-                    <label>Is Service Navigation?</label>
+                    <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.isDisplayServiceNav">
+                      <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.is_display_service_nav">
                       <label class="form-check-label" for="inlineRadio1">Yes</label>
                   </div>
                   <div class="form-check form-check-inline">
-                      <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio5" value="0" v-model="formData.isDisplayServiceNav">
+                      <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio5" value="0" v-model="formData.is_display_service_nav">
                       <label class="form-check-label" for="inlineRadio5">No</label>
                   </div>
               </div>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
+          <!--<div class="col-xs-12 col-sm-6 col-md-12">
             <div class="form-group radio-group-row">
-                <label>Is Footer Navigation?</label>
+                <label class="label-with-200">Display Footer Navigation</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.isDisplayFooterNav">
+                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.is_display_footer_nav">
                   <label class="form-check-label" for="inlineRadio2">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio6" value="0" v-model="formData.isDisplayFooterNav">
+                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio6" value="0" v-model="formData.is_display_footer_nav">
                   <label class="form-check-label" for="inlineRadio6">No</label>
               </div>
           </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group radio-group-row">
-            <label>Is Featured?</label>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.isFeatured">
-              <label class="form-check-label" for="inlineRadio3">Yes</label>
-          </div>
-          <div class="form-check form-check-inline">
-              <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.isFeatured">
-              <label class="form-check-label" for="inlineRadio7">No</label>
-          </div>
-      </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-6">
-    <div class="form-group radio-group-row">
-        <label>Display Banner?</label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.isDisplayBanner">
-          <label class="form-check-label" for="inlineRadio4">Yes</label>
-      </div>
-      <div class="form-check form-check-inline">
-          <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.isDisplayBanner">
-          <label class="form-check-label" for="inlineRadio8">No</label>
-      </div>
-  </div>
-</div>
+      </div>-->
 
 </div>
 
 <div class="form-group">
     <label>Description</label>
-    <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.serviceDescription" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
+    <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.description" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
 </div>
 
 <div class="form-group">
     <label>Upload Image</label>
-    <b-form-file @change="onFileChange" v-model="file" accept="image/jpeg, image/png, image/jpg" placeholder="Click here to upload image" name="upload image" v-validate="'required'"  :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']"></b-form-file>
+    <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
     <div class="uploded-picture">
-        <img :src="image" />
+        <img :src="imageValue" />
     </div>
 </div>
 
 <div class="form-group">
-    <label>URL</label>
-    <input type="text" class="form-control" placeholder="Enter url" name="" v-model="formData.urlPrefix" name="url" v-validate="'required|url'" :class="['form-group' , errorBag.first('url') ? 'is-invalid' : '']">
+    <label>URL Suffix</label>
+    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+  @focus.prevent="onUrlFocus"
+  @blur.prevent="onUrlBlur">
 </div>
 </form>
 
@@ -107,73 +108,123 @@
 
 <script>
     export default {
-
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
+                showRadios: true,
                 errorMessage : '',
                 successMessage : '',
                 services: [],
                 errorMessage: '',
                 successMessage: '',
+                imageText: 'Click here to upload image',
                 formData: {
-                    parentId: '',
-                    serviceName: '',
-                    serviceDescription: '',
-                    isFeatured: 0,
+                    parent_id: '',
+                    title: '',
+                    description: '',
+                    is_featured: 0,
                     images: [
                     {
-                        'name': '', 
-                        'original_name': ''
+                        name: '', 
+                        original_name: ''
                     }
                     ],
-                    urlPrefix: '',
+                    url_prefix: this.defaultUrlPrefix,
                     status: 1,
-                    isDisplayBanner: 0,
-                    isDisplayServiceNav: 0,
-                    isDisplayFooterNav: 0,
+                    is_display_banner: 0,
+                    is_display_service_nav: 0,
+                    is_display_footer_nav: 0,
 
                 },
                 emailaddress: 'arsalan@cygnismedia.com',
                 fullname: 'Arsalan Akhtar',
-                image: 'images/dummy/user-pic.jpg',
+                image: 'images/dummy/image-placeholder.jpg',
                 file: null,
                 url: 'api/service',
                 loading: false,
+                defaultUrlLength: this.defaultUrlPrefixLength,
+                isChangePrefix: '',
             }
         },
+        mounted() {
+        },
         methods: {
+            onUrlFocus(e) {
+                var sufix = $(e.target).val();
+                var prefixLength = this.defaultUrlPrefixLength;
+                var str = sufix.substr(prefixLength);
+                this.formData.url_prefix = str;
+            },
+            onUrlBlur(e) {
+                var sufix = $(e.target).val();
+                this.formData.url_prefix = this.defaultUrlPrefix + sufix;
+            },
+            onChangeParentService() {
+                if(this.formData.parent_id) {
+                    if(this.isUpdate) { 
+                        var prefix = this.list.url_prefix;
+                        console.log(prefix, 11);
+                    }else {
+                        var service = _.filter(this.services, { id: this.formData.parent_id});
+                        var prefix = service[0].url_prefix;
+                        console.log(prefix, 22);
+                    }
+                    if(prefix.substr(prefix.length - 1) != "/") {
+                        prefix = prefix + "/";
+                    }                        
+                    this.formData.url_prefix = prefix;
+                    this.isChangePrefix = prefix;
+                    this.showRadios = false;
+                }else {
+                    if(this.isUpdate) { 
+                        var prefix = this.list.url_prefix;
+                        console.log(prefix, 44);
+                    }else {
+                        var prefix = this.$store.getters.getServiceUrlPrefix;
+                        console.log(prefix, 55);
+                    }
+                    this.formData.url_prefix = prefix;
+                    console.log(this.formData.url_prefix, 33);
+                    this.isChangePrefix = prefix;
+                    this.showRadios = true;
+                }
+            },
             resetFormFields() {
-                var self = this;
+                let self = this;
+                this.image = 'images/dummy/image-placeholder.jpg';
+                this.file = null;
+                this.$refs.fileinput.reset();
                 this.formData = {
-                    parentId: '',
-                    serviceName: '',
-                    serviceDescription: '',
-                    isFeatured: 0,
+                    parent_id: '',
+                    title: '',
+                    description: '',
+                    is_featured: 0,
                     images: [
                     {
-                        'name': '', 
-                        'original_name': '',
-                        'upload_url': '',
+                        name: '', 
+                        original_name: ''
                     }
                     ],
-                    urlPrefix: '',
+                    url_prefix: this.$store.getters.getServiceUrlPrefix,
                     status: 1,
-                    isDisplayBanner: 0,
-                    isDisplayServiceNav: 0,
-                    isDisplayFooterNav: 0,
+                    is_display_banner: 0,
+                    is_display_service_nav: 0,
+                    is_display_footer_nav: 0,
 
                 };
                 setTimeout(function () {
                     Vue.nextTick(() => {
-                        self.errorBag.clear()
+                        self.errorMessage = '';
+                        self.successMessage = '';
+                        self.errorBag.clear();
+                        self.formData.url_prefix = self.$store.getters.getServiceUrlPrefix;
                     })
-
-                }, 10);
+                }, 100);
             },
             validateBeforeSubmit() {
                 var self = this;
                 this.$validator.validateAll().then((result) => {
+
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -187,14 +238,16 @@
                 });
             },  
             showModal () {
+                this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
-                // filter only services
+                // filter only parent services
                 this.services = _.filter(allServices, { parent_id: null});
+                this.errorBag.clear();
             },
             hideModal () {
                 var self = this;
-                this.resetFormFields(); 
+                this.resetFormFields();
                 this.$refs.myModalRef.hide();
             },
             onHidden() {
@@ -215,71 +268,60 @@
                     return;
                 }
                 this.errorBag.clear();
-
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
+                
             },
             createImage(file) {
-              var self = this;    
-              var image = new Image();
-              var reader = new FileReader();
-              reader.onload = (e) => {
-                self.image = e.target.result;
-            };
-            reader.readAsDataURL(file);
-            this.onUpload(file);
-        },
-        onUpload(file) {
-            var self = this;
-            let url = "api/file/upload";
+                var self = this;    
+                var image = new Image();
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    self.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.onUpload(file);
+            },
+            onUpload(file) {
+                var self = this;
+                let url = "api/file/upload";
 
-            var data = new FormData();
-            data.append('key', 'service');
-            data.append('file', file);
+                var data = new FormData;
+                data.append('key', 'service');
+                data.append('file', file);
 
-            this.$http.post(url, data).then(response => {
-                response = response.data;
-                self.formData.images[0].name = response.name;
-                self.formData.images[0].original_name = response.original_name;
+                this.$http.post(url, data).then(response => {
+                    response = response.data;
+                    self.formData.images[0].name = response.name;
+                    self.formData.images[0].original_name = response.original_name;
 
-            }).catch(error => {
-                error = error.response.data;
-                let errors = error.errors;
-                _.forEach(errors, function(value, key) {
-                    self.errorMessage =  errors[key][0];
-                    return false;
+                }).catch(error => {
+                    error = error.response.data;
+                    let errors = error.errors;
+                    _.forEach(errors, function(value, key) {
+                        self.errorMessage =  errors[key][0];
+                        return false;
+                    });
                 });
-            });
-        },
-        onSubmit() {
-            var self = this;
-            this.loading = true;
-            let url = this.url;
+            },
+            onSubmit() {
+                var self = this;
+                this.loading = true;
+                let url = this.url;
 
-            var data = new FormData();
-            data.append('title', self.formData.serviceName);
-            data.append('description', self.formData.serviceDescription);
-            data.append('is_display_banner', self.formData.isDisplayBanner);
-            data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
-            data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
-            data.append('is_featured', self.formData.isFeatured);
-            data.append('url_prefix', self.formData.urlPrefix);
-            data.append('parent_id', self.formData.parentId);
-            data.append('status', self.formData.status);
-            data.append('images', JSON.stringify(self.formData.images));
+                var data = this.formData;
 
-            this.$http.post(url, data).then(response => {
-                response = response.data.response;
+                this.$http.post(url, data).then(response => {
+                    response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
 
-                    self.loading = false;
-                    
                     setTimeout(function () {
                         self.successMessage = '';
+                        self.loading = false; 
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');         
                     } , 3000);
 
                     setTimeout(function () {
@@ -305,33 +347,34 @@
             },
             onUpdate() {
                 var self = this;
+                var suffix = this.formData.url_prefix;
+                var prefixLength = this.defaultUrlPrefixLength;
+                var str = suffix.substr(prefixLength);
+                this.formData.url_prefix = str;
+                if(!str) {
+                    this.errorBag.add({
+                        field: 'url',
+                        msg: 'The url suffix is required.',
+                        rule: 'required',
+                        id: 7,
+                    });
+                    this.errorMessage = this.errorBag.all()[0];
+                    return;
+                }
+                
                 this.loading = true;
                 let url = this.url+"/"+this.list.id;
-
-                var data = new FormData();
-                
-                data.append('_method', 'put');
-                data.append('title', self.formData.serviceName);
-                data.append('description', self.formData.serviceDescription);
-                data.append('is_display_banner', self.formData.isDisplayBanner);
-                data.append('is_display_service_nav', self.formData.isDisplayServiceNav);
-                data.append('is_display_footer_nav', self.formData.isDisplayFooterNav);
-                data.append('is_featured', self.formData.isFeatured);
-                data.append('url_prefix', self.formData.urlPrefix);
-                data.append('parent_id', self.formData.parentId);
-                data.append('status', self.formData.status);
-                data.append('images', JSON.stringify(self.formData.images));
-                this.$http.post(url, data).then(response => {
+                var data = this.formData;
+                this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
-
-                    self.loading = false;
                     
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
                         self.resetFormFields(); 
-                        self.$emit('call-list');             
+                        self.$emit('call-list');
+                        self.loading = false; 
                     } , 3000);
 
                     setTimeout(function () {
@@ -349,6 +392,10 @@
                             self.errorMessage =  "The Service Name has alreary been taken.";    
                             return false;
                         }
+                        if(key == "parent_id") {
+                            self.errorMessage =  "This service is already a parent service.";    
+                            return false;
+                        }
                         self.errorMessage =  errors[key][0];
                         return false;
                     });
@@ -358,6 +405,9 @@
         },
 
         watch: {
+            'formData.url_prefix': function(val) {
+                this.formData.url_prefix = val;
+            },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
@@ -371,26 +421,41 @@
                 var img = this.list.images;
                 if(this.isUpdate) {
                     this.formData = {
-                        parentId: this.list.parent_id? this.list.parent_id : "",
-                        serviceName: this.list.title,
-                        serviceDescription: this.list.description,
-                        isFeatured: this.list.is_featured,
+                        parent_id: this.list.parent_id? this.list.parent_id : "",
+                        title: this.list.title,
+                        description: this.list.description,
+                        is_featured: this.list.is_featured,
                         images: [
                         {
-                            'name': img[0].name, 
-                            'original_name': img[0].original_name
+                            name: img? img[0].name : '', 
+                            original_name: img? img[0].original_name :''
                         }
                         ],
-                        urlPrefix: this.list.url_prefix,
+                        url_prefix: this.list.url_prefix,
                         status: this.list.status,
-                        isDisplayBanner: this.list.is_display_banner,
-                        isDisplayServiceNav: this.list.is_display_service_nav,
-                        isDisplayFooterNav: this.list.is_display_footer_nav
+                        is_display_banner: this.list.is_display_banner,
+                        is_display_service_nav: this.list.is_display_service_nav,
+                        is_display_footer_nav: this.list.is_display_footer_nav
                     };
-                    this.image = img[0].upload_url;
-                    this.file = img[0].original_name;
+                    this.isChangePrefix = this.list.url_prefix;
+                    this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
+                    this.file = img? img[0].original_name : '';
+                    this.imageText = this.file;
                 }
             }
         },
+        computed : {
+            imageValue(){
+                return this.image;
+            },
+            defaultUrlPrefix() {
+                var url = this.$store.getters.getServiceUrlPrefix;
+                return this.isChangePrefix? this.isChangePrefix : url;
+            },
+            defaultUrlPrefixLength() {
+                var length = this.$store.getters.getServiceUrlPrefix.length;
+                return this.isChangePrefix? this.isChangePrefix.length : length;
+            },
+        }
     }
 </script>

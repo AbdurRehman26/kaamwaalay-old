@@ -25,8 +25,10 @@ class JobMessageRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('JobMessageRepository', function () {
-            return new JobMessageRepository(new JobMessage);
-        });
+        $this->app->bind(
+            'JobMessageRepository', function () {
+                return new JobMessageRepository(new JobMessage);
+            }
+        );
     }
 }

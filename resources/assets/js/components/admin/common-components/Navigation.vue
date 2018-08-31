@@ -24,7 +24,6 @@
                     <span class="responsive-btn"></span>
                 </div>
             </b-navbar>
-        <update-profile @HideModalValue="HideModal" :showModalProp="showModalValue"></update-profile>
         <change-pass-popup @HideModalValue="HideModal" :showModalProp="changepass"></change-pass-popup>
 </div>
 </template>
@@ -50,6 +49,8 @@ import { directive as onClickaway } from 'vue-clickaway';
        mounted: function () {
             let self = this;
              this.getAllServices();
+             self.setRoleList();
+             self.setPaymentTypeList();
             self.user = JSON.parse(self.$store.getters.getAuthUser);
             self.first_name = self.user.first_name;
             self.last_name = self.user.last_name;
@@ -68,6 +69,7 @@ import { directive as onClickaway } from 'vue-clickaway';
                 self.$http.get(url).then(response=>{
                     response = response.data.response;
                     self.$store.commit('setAllServices' , response.data);
+                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
 
 
@@ -89,7 +91,37 @@ import { directive as onClickaway } from 'vue-clickaway';
             away: function(){
                 this.isShowing = false;
                 this.tab = false;
-            }
+            },
+            setRoleList() {
+                let data = [
+                {
+                    id:2,
+                    title:'Service Provider'
+                },
+                {
+                    id:3,
+                    title:'Customer'
+                }
+                ];
+                this.$store.commit('setRoleList' , data);
+            },
+            setPaymentTypeList() {
+                let data = [
+                {
+                    id:'urgent',
+                    title:'Urgent'
+                },
+                {
+                    id:'featured',
+                    title:'Featured'
+                },
+                {
+                    id:'account creation',
+                    title:'Account Creation'
+                }
+                ];
+                this.$store.commit('setPaymentTypeList' , data);
+            },
 
         }
     }

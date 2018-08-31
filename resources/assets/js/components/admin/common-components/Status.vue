@@ -1,57 +1,125 @@
  <template>
     <div>
         <b-modal id="add-new-user" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change Status" ok-only ok-title="Submit">
-            <alert></alert>
-                <div>
-                    <div class="form-group">
-                        <label>Change Status</label>
-                        <select class="form-control">
-                            <option value="" selected="" disabled="">Select Status</option>
-                            <option value="">Pending</option>
-                            <option value="">Active</option>
-                            <option value="">Banned</option>
-                        </select>
-                    </div>
+            <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
+            <div>
+                <div class="form-group">
+                    <label>Change Status</label>
+                    <select class="form-control" v-model="selected">
+                        <option value="" selected="" disabled="">Select Status</option>
+                        <option  v-for="option in options" :value="option.key"> {{option.value}}</option>
+                    </select>
                 </div>
+            </div>
+            <div slot="modal-footer" class="">
+                <b-col class="float-left" cols="6">
+                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();">
+                        <span>Submit</span> 
+                        <loader></loader>
+                    </button>
+                </b-col>
+            </div>
         </b-modal>
     </div>
 </template>
 
 <script>
 
-export default {
-    data () {
+    export default {
+        props : ['showModalProp','statusData','options','url'],
+        data () {
+            return {
+                selected: '',
+                loading: false,
+                errorMessage: "",
+                successMessage: "",
+                data: {},
 
-    return {
-            selected: null,
-        }
-    },
-
-    props : ['showModalProp'],
+            }
+        },
+        mounted(){
+        },
         methods: {
-        showModal() {
-            this.$refs.myModalRef.show()
+            showModal() {
+                this.$refs.myModalRef.show()
+            },
+            hideModal() {
+                this.$refs.myModalRef.hide()
+            },
+            onHidden(){
+                this.$emit('HideModalValue');
+            },
+            validateBeforeSubmit (evt) {
+            // Prevent modal from closing
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                    this.onSubmit()
+                    this.errorMessage ='';
+                    return;
+                }
+                this.errorMessage = this.errorBag.all()[0];
+            });
         },
-        hideModal() {
-            this.$refs.myModalRef.hide()
-        },
-        onHidden(){
-            this.$emit('HideModalValue');
-        },
-    },
+        onSubmit() {
+            let self = this;
 
-    watch: {
-        showModalProp(value){
+            self.errorMessage = '';
+            self.successMessage = '';
+            let url = self.url;
+            let id = this.statusData.id;
 
-            if(value){
-                this.showModal();
+            self.loading = true;
+            self.data  = {
+              "id" : this.statusData.id,
+              "status" : this.selected,
+          }
+          self.$http.put(url,self.data).then(response => {
+            self.successMessage = response.data.message;
+            if(!response.data.message) {
+                self.successMessage = response.data.response.message;
             }
-            if(!value){
-                this.hideModal();
-            }
+            setTimeout(function() {
+                self.loading = false;
+                self.hideModal();
+                self.onHidden();
+                self.successMessage = '';
+                self.$parent.statusData.status = self.selected;
+            }, 2000);
 
+        }).catch(error => {
+            self.errorMessage =error.response.data.message[0];
+            setTimeout(function(){
+                self.loading = false;
+                self.errorMessage=''
+            }, 2000);
+
+
+        });
+    }
+},
+
+watch: {
+    showModalProp(value){
+
+        if(value){
+            this.showModal();
         }
+        if(!value){
+            this.hideModal();
+        }
+
     },
+    statusData(value){
+        this.statusData = value;
+        this.selected = value.status;
+    },
+    options(value){
+        this.options = value;
+    },
+    url(value) {
+        this.url = value;
+    }
+},
 
 }
 

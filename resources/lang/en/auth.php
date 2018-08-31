@@ -20,5 +20,6 @@ return [
     'activateError' => 'You have already activate your account. Please contact us if you have any queries.',
     'pending' => 'Your account verification is pending, please check your email for the activation link we sent and follow the instructions to enable your account.',
     'adminLogin' => 'These credentials do not match our records.',
+    'blocked' => 'Your account is inactive. Please contact us for further details.',
 
 ];

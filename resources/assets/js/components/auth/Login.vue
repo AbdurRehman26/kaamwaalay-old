@@ -21,7 +21,7 @@
             </div>
          </div>
          <div class="col-xs-12 col-md-12">
-          <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+          <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary']">
             <span>Log In</span> 
             <loader></loader>
           </button>
@@ -83,7 +83,7 @@
                   }else{
                     setTimeout(function(){
                         this.loading = false
-                        this_.$router.push({ name: 'dashboard'})
+                        location.reload();
                       }, 5000);
                   }
                  },

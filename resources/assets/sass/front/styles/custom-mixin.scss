@@ -4,6 +4,7 @@ $tablet-width: 768px;
 $tablet-landscape-width:1140px;
 $tablet-full-width: 1024px;
 $window-small-width: 1280px;
+$Desktop1300:1300px;
 $Desktop1380:1400px;
 $Desktop1440:1500px;
 
@@ -51,6 +52,12 @@ $Desktop1440:1500px;
 
 @mixin Desktop1440{
   @media (max-width: #{$Desktop1440}) {
+    @content;
+  }
+}
+
+@mixin Desktop1300{
+  @media (max-width: #{$Desktop1300}) {
     @content;
   }
 }

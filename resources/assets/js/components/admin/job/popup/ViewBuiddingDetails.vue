@@ -18,7 +18,7 @@
                         <p><strong class="title-head">Bid Amount</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p>${{currentItem.amount}}</p>
+                        <p>{{currentItem.amount ? '$' : '-'}} {{currentItem.amount}}</p>
                     </b-col>
                 </b-row>
 

@@ -5,11 +5,14 @@
 				<p>To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure.</p>
 		</div>
 
-		<div class="profile-form-section">
+		<div class="profile-form-section apply-review-sec">
 
 			<div class="form-signup">
 				<form>
 					<div class="personal-provider-detail">
+						<div class="profile-image-placeholder">
+							<img :src="profileimage">
+						</div>						
 						<div class="row">
 							<div class="browse-btn">
 								<div class="form-group">
@@ -27,13 +30,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">First Name</label>
-									<input type="text" class="form-control" value="Arsalan" placeholder="Enter your first name">
+									<input type="text" class="form-control" placeholder="Enter your first name">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Last Name</label>
-									<input type="text" class="form-control" value="Akhtar" placeholder="Enter your last name">
+									<input type="text" class="form-control" placeholder="Enter your last name">
 							</div>
 						</div>
 					</div>
@@ -42,7 +45,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Email Address</label>
-									<input type="text" class="form-control" value="arsalan@cygnismedia.com" placeholder="Enter your first email address">
+									<input type="text" class="form-control" placeholder="Enter your email address">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -62,12 +65,13 @@
 									<select class="form-control">
 										<option disabled="">Select Business</option>
 										<option selected="">Business</option>
+										<option selected="">Individual</option>
 									</select>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">DUNS Number</label>
+								<label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
 									<input type="text" class="form-control" placeholder="DUNS number for verification (optional)">
 							</div>
 						</div>
@@ -145,13 +149,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Address</label>
-								<input type="text" class="form-control" value="4695 Chabot Dr. Suite 200," placeholder="4695 Chabot Dr. Suite 200,">
+								<input type="text" class="form-control" placeholder="Enter your address">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Apartment, suite, unit</label>
-								<input type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
+								<input type="text" class="form-control" placeholder="Enter apartment details">
 							</div>
 						</div>
 					</div>
@@ -159,14 +163,15 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" class="form-control" value="Pleasanton" placeholder="Pleasanton">
+								<input type="text" class="form-control" placeholder="Enter your city">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>State</label>
 								<select class="form-control">
-									<option selected="">CA</option>
+									<option disabled="" selected="">Enter your State</option>
+									<option>CA</option>
 									<option>NW</option>
 									<option>TX</option>
 								</select>
@@ -177,7 +182,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Zip Code</label>
-								<input type="text" class="form-control" value="94588">
+								<input type="text" class="form-control" placeholder="Enter your zip code">
 							</div>
 						</div>
 					</div>
@@ -212,7 +217,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Credit Card Number</label>
-									<input type="text" class="form-control" placeholder="Enter your credit card number" value="Enter your credit card number">
+									<input type="text" class="form-control" placeholder="Enter your credit card number">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -220,12 +225,40 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group custom-datepicker">
-										<date-picker v-model="value_month" type="month" placeholder="Select Month" format="MM" lang="en"></date-picker>
+										<select class="form-control">
+											<option selected="" disabled="">Select Month</option>
+											<option>January</option>
+											<option>Feburay</option>
+											<option>March</option>
+											<option>April</option>
+											<option>May</option>
+											<option>June</option>
+											<option>July</option>
+											<option>August</option>
+											<option>September</option>
+											<option>October</option>
+											<option>November</option>
+											<option>December</option>
+										</select>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group custom-datepicker">
-										<date-picker v-model="value_year" type="year" placeholder="Select Year" format="YYYY" lang="en"></date-picker>
+										<select class="form-control">
+											<option selected="" disabled="">Select Year</option>
+											<option>2010</option>
+											<option>2011</option>
+											<option>2012</option>
+											<option>2013</option>
+											<option>2014</option>
+											<option>2015</option>
+											<option>2016</option>
+											<option>2017</option>
+											<option>2018</option>
+											<option>2019</option>
+											<option>2020</option>
+											<option>2021</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -264,12 +297,13 @@ export default {
   components: { DatePicker },
   data() {
     return {
-   	value: '',
-   	value_month:'',
-   	value_year:'',
-    time1: '',
-    time2: '',
-    time3: '',
+	   	value: '',
+	   	value_month:'',
+	   	value_year:'',
+	    time1: '',
+	    time2: '',
+	    time3: '',
+	    profileimage: '',
       shortcuts: [
         {
           text: 'Today',

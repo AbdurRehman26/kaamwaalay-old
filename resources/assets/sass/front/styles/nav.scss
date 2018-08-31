@@ -13,6 +13,12 @@ $nav-font:$font-bold;
             vertical-align: middle;
             display: inline-block;
             margin: 0 16px;
+            position: relative;
+            height: 57px;
+            padding: 12px 0 0px;
+            &.bell-li{
+                margin-left: -2px;
+            }
             a{
                 font-size:$nav-font-size;
                 color:$nav-color;
@@ -21,9 +27,10 @@ $nav-font:$font-bold;
                 padding-left: 16px;
                 padding-right: 16px;
                 text-decoration:none !important;
+                display:block;
                 &:hover{
                     text-decoration:underline;
-                    color:$nav-color !important;
+/*                     color:$nav-color !important; */
                 }
                 &.router-link-active{
                     &:after{
@@ -33,7 +40,19 @@ $nav-font:$font-bold;
                         height: 4px;
                         width: 100%;
                         left: 0;
-                        bottom: -24px;
+                        right:0;
+                        margin:0 auto;
+                        bottom:0px;
+                    }
+                }
+                &.btn{
+                    &:hover{
+                        color:#fff;
+                    }
+                    span{
+                        &:hover{
+                            color:#fff;
+                        }
                     }
                 }
             }
@@ -49,11 +68,115 @@ $nav-font:$font-bold;
                 }
                 }
             }
+            .post-job-btn{
+                top: -12px;
+                position: relative;
+                font-family: $font_medium;
+            }
         }
     .action-icon{
         font-size: 24px;
         vertical-align: middle;
         color:$grey-dark;
+        cursor:pointer;
+        position: relative;
+        top: -2px;
+        &.icon-cog2{
+            font-size:28px;
+        }
+    }
+    &.main-navigation{
+        @include tabletF{
+            position: absolute;
+            bottom: auto;
+            width: 100%;
+            /* overflow: hidden; */
+            opacity: 0;
+            border-bottom: 1px solid #ccc;
+            border-top: 0px solid;
+            visibility: hidden;
+            transition: 0.3s ease-in-out;
+            top: 70px;
+            left: 0;
+            background-color: #fff;
+            ul{
+                width: 100%;
+                li{
+                    width: 100%;
+                    margin: 0px;
+                    text-align: center;
+                    a{
+                        padding-left: 0px;
+                        &.router-link-exact-active{
+                            color: $primary-color-md;
+                            &:after{
+                                display: none;
+                            }
+                        }
+                    }
+                    .btn{
+                        display: table;
+                        margin: auto;
+                        padding: 10px 0px;
+                    }
+                    .user-login-detail{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        &[active="true"]{
+            opacity: 1;
+            visibility: visible;
+        }
+        @include mobile{
+            /* top: 51px; */
+            top: 65px;
+            ul{
+                li{
+                    height: auto;
+                    padding: 13px 0px;
+                    a{
+                        padding-right: 0px;
+                    }
+                    .post-job-btn{
+                        top: 0;
+                        /* margin-bottom: 18px; */
+                        line-height: 17px;
+                        margin-bottom: 10px;
+                    }
+                    &:last-child{
+                        padding-top: 0px;
+                    }
+                }
+            }
+        }
+    }
+    @include mobile{
+        ul{
+            li{
+                padding: 0px 0px !important;
+                margin-bottom: 9px !important;
+                a{
+                    /* padding: 8px 0px; */
+                    padding: 6px 0px 6px 0px !important;
+                    font-size: 14px;                    
+                    &.router-link-active{
+                        background-color: $primary-color-md;
+                        color: #fff !important;
+                        &:after{
+                            display: none;   
+                        }
+                        &:hover, &:focus{
+                            color: #fff !important;
+                        }
+                        &.no-active{
+                            background-color: transparent !important;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -214,6 +337,7 @@ $nav-font:$font-bold;
 }
 
 .user-login-detail{
+    margin-top: -7px;
     .username{
         display: inline-block;
         vertical-align: middle;
@@ -231,4 +355,80 @@ $nav-font:$font-bold;
         color:#fff !important;
     }
 }
+.notify-block {
+    position: relative;
+}
 
+.badge-count{
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background: $primary-color;
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: -7px;
+    border: solid 2px #fff;
+    text-align: center;
+    font-size: 10px;
+    color: #fff;
+    line-height: 14px;
+    font-family:$font-regular;
+}
+
+.profilesession{
+    li {
+        padding-top: 0 !important;
+        height: 44px !important;
+        a{
+            min-width: 0 !important;
+        }
+    }
+    @include mobile{
+        li{
+            display: inline-block !important;
+            width: auto !important;
+            margin-bottom: 0px !important;
+            &.account-li{
+                width: 200px !important;
+                display: inline-block !important; 
+                float: left !important;     
+                margin-bottom: 0px !important;
+                height: auto !important;                          
+            }
+             a.router-link-exact-active{
+                background-color: transparent !important;
+             }
+            &.account-info-keys {
+                float: right;
+                margin-right: 15px !important;
+                margin-bottom: 0px !important;
+                margin-top: -6px !important;
+                li{
+                    height: auto !important;
+                    margin-bottom: 0px !important;
+                    padding: 0px 5px !important;                    
+                }             
+            }
+        }
+        .notify-dropdown{
+            right: -59px;
+            width: 400px;
+            max-width: 400px;
+        }
+    }
+}
+
+
+.mac-browser{
+    .navigation
+    {
+        ul{
+            li{
+                a{
+                    font-family:$font-medium;
+                }
+            }
+        }
+    }
+}

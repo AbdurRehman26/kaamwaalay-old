@@ -24,14 +24,25 @@ class Service extends Model
         return $this->hasMany('App\Data\Models\Service', 'parent_id');
     }
 
-    public function getImagesAttribute($value){
+    public function getImagesAttribute($value)
+    {
+        
         $parseImage = json_decode($value);
-        $parseImage = json_decode($parseImage);
-        if(substr($parseImage[0]->name, 0, 8) == "https://"){
-          return  $value;
+
+        if(!empty($parseImage[0]->name)) {
+
+            if(substr($parseImage[0]->name, 0, 8) == "https://") {
+                return  $value;
+            }
+
+            $parseImage[0]->upload_url = Storage::url(config('uploads.service.folder').'/'.$parseImage[0]->name);
+
         }
-        $parseImage[0]->upload_url = Storage::url(config('uploads.service.folder').'/'.$parseImage[0]->name);
-          return $parseImage ? $parseImage : null;
+
+        return $parseImage ? $parseImage : null;       
+
+
+
     }
 
 }

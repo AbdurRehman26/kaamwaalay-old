@@ -75,14 +75,27 @@ const adminStatuses = [
 ];
 const accessLevelField = [
 {
-    key : 'full',
+    key : '1',
     value : 'Full'
 },
 {
-    key : 'reviewOnly',
+    key : '4',
     value : 'Review'
 }
 ];
+
+
+const jobPreferences = [
+{
+    key : 'with_in_a_week',
+    value : 'with in a week'
+},
+{
+    key : 'few_weeks',
+    value : 'in next few days'
+},
+];
+
 
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
@@ -98,7 +111,6 @@ Vue.filter('jobStatus', function (value) {
             return item; 
         }
     });
-
     return obj.value.replace(/\s/g, '').trim();
 });
 
@@ -132,7 +144,7 @@ Vue.filter('userStatus', function (value) {
 
 Vue.filter('formatDate', function(value) {
     if (value) {
-        return moment(String(value)).format('MMMM DD,YYYY')
+        return moment(String(value)).format('MMMM DD, YYYY')
     }
 });
 
@@ -179,11 +191,62 @@ Vue.filter('adminStatus', function (value) {
 
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
 });
+
 Vue.filter('accessLevel', function (value) {
     let obj = _.find(accessLevelField, item =>{
-        if(item.key == value.access_level){
+        if(item.key == value.role_id){
             return item; 
         }
     });
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
+});
+
+
+Vue.filter('phoneNumber', function (value) {
+    if(value) {
+        return 'tel:+'+value.phone_number;
+    }
+});
+
+Vue.filter('disableProfileStatusButton', function (value) {
+    if(!value){
+        return false;
+    }
+
+    if(value == 'rejected' ||  value == 'approved') {
+        return true;
+    }
+
+    return false;
+});
+
+Vue.filter('mainServiceOrChildService', function (value) {
+    var serviceHtml = '';
+
+    if(!value){
+        return ;
+    }
+
+    if(value.parent_id){
+        serviceHtml =   value.parent.title + ' >> ' + value.title ;
+    }else{
+        serviceHtml = value.title;
+
+    }
+
+    return serviceHtml;
+});
+
+Vue.filter('jobPreference', function (value) {
+
+    let obj = _.find(jobPreferences, item =>{
+        if(item.key == value){
+            return item; 
+        }
+    });
+
+    if(!obj){
+        return '';
+    }
+    return obj.value;
 });

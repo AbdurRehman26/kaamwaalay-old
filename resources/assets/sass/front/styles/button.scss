@@ -7,7 +7,15 @@
     min-width: 100px;
     line-height: 22px;
     border-radius:$button-radius;
-
+    @include Desktop1300{
+        padding: 10px 25px;
+    }
+    @include mobile{
+        height: 39px;
+        font-size: 13px;
+        padding: 10px 15px;
+        line-height: 17px;
+    }
     &:hover, &:focus{
         color: $body-bg!important;
         outline: none;
@@ -23,6 +31,18 @@
             box-shadow:none !important;
         }
     }
+    &.btn-outline{
+        background-color: transparent !important;
+        color: $primary-color-md !important;
+        &:hover, &:focus{
+            background-color: transparent !important;
+            color: $primary-color-md !important;
+        }
+    }
+    &.btn.disable {
+        opacity: 0.4;
+        pointer-events: none;
+    }
     &.btn-secondary-color{
         color: $secondary-color;
         font-family: $font_regular;
@@ -33,6 +53,9 @@
             color: #848484 !important;
             text-decoration: underline;
         }
+    }
+    &.btn-cancel-job{
+        background-color: #7D7D7D;
     }
     &.btn-secondary{
         background:$secondary-color;
@@ -53,6 +76,38 @@
             color: #8200ff !important;
             text-decoration: underline;
         }
+    }
+    &.btn-grey{
+        background-color: #F9F9F9;
+        color: #1A1A1A !important;
+        border: 1px solid #E0E0E0;
+
+        &:focus,&:visited,&:active,&:hover{
+            color: #1A1A1A !important;
+            background-color:F9F9F9!important;
+            border-color:#E0E0E0 !important;
+            box-shadow:none !important;
+        }
+    }
+    &.btn-facebook {
+        background: #3B579D!important;
+        border-color:#3B579D!important;
+        color: #fff;
+
+        &:focus,&:visited,&:active{
+            background:#3B579D!important;
+            border-color:#3B579D!important;
+            box-shadow:none !important;
+        }
+    }
+    &.btn-lg {
+        padding: 10px 63px !important;
+        @include mobile{
+            padding: 10px 25px !important;
+        }
+    }
+    &.btn-md {
+        padding: 10px 34px !important;
     }
 }
 
@@ -133,6 +188,9 @@
 }
 .fb-btn {
     position: relative;
+    border-bottom: 1px solid $grey-lite;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
     a {
         &.btn {
                 width: 100%;
@@ -147,5 +205,29 @@
             font-size: 21px;
             margin-left: -30px;
         }
+    }
+    &:after {
+        content: 'OR';
+        color: $grey-Edark;
+        position: absolute;
+        font-size: 14px;
+        background: #fff;
+        left: 46%;
+        font-family: $font_medium;
+        top: 74px;
+        width: 46px;
+        text-align: center;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+            margin-top: -4px;
+        }
+    }
+}
+
+.mac-browser{
+    .btn{
+        font-family:$font-regular;
     }
 }

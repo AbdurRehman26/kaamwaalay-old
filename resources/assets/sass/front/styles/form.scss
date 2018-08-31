@@ -38,6 +38,10 @@ body{
         &.lg{
             height:$input-height-lg;
             font-size:$input-font-size-lg;
+            @include mobile{
+                height: 37px;
+                font-size: 15px;                
+            }
         }
         &:focus{
             box-shadow:none;
@@ -101,6 +105,7 @@ body{
             font-family: $font_regular;
             color: $grey-medium;
             overflow: hidden;
+            border-color:$grey-medium;
         }
     }
     .custom-file-input:focus ~ .custom-file-label{
@@ -261,9 +266,37 @@ textarea{
     }
 }
 
+.custcheckbox{
+    input {
+        width: 24px;
+    }
+    p{
+        margin-top: 3px !important;
+        margin-bottom: 0px;
+    }
+}
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+.custom-control-label::after{
+    top: 5px !important;
+    left: -1px !important;
+}
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
+    background-color: $primary-color-md !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.mac-browser{
+    .custom-radio{
+        label{
+            font-family:$font-medium;
+        }
+    }
+    label{
+        font-family:$font-medium;
+    }
 }

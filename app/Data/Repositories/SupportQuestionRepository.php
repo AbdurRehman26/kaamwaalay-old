@@ -8,27 +8,23 @@ use App\Data\Models\SupportQuestion;
 
 class SupportQuestionRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of SupportQuestion Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: SupportQuestion-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
     protected $_cacheKey = 'SupportQuestion';
@@ -41,11 +37,11 @@ class SupportQuestionRepository extends AbstractRepository implements Repository
 
     }
 
-    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] )
+    {
         $this->builder = $this->model
-                            ->where('role_id', '=' , $data['role_id'])
-                            ->orderBy('question', 'ASC')
-                            ;   
+            ->where('role_id', '=', $data['role_id'])
+            ->orderBy('question', 'ASC');   
         return  parent::findByAll($pagination, $perPage);
     
     }

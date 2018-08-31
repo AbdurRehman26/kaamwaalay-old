@@ -36,7 +36,7 @@
                     <p><strong class="title-head">Question</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>{{support_question.question}}</p>
+                    <p>{{supportQuestion.question}}</p>
                 </b-col>
             </b-row>
 
@@ -73,7 +73,7 @@
                 errorMessage : '',
                 successMessage : '',
                 role: {},
-                support_question: {},
+                supportQuestion: {},
                 url: 'api/support-inquiry',
                 loading: false
             }
@@ -104,14 +104,10 @@
 
                 this.$http.post(url, data).then(response => {
                     response = response.data.response;
-                    self.successMessage = 'Replied Successfully!'//response.message;
-
+                    self.successMessage = 'Replied Successfully!';
                     self.loading = false;
                     self.hideModal();
-                    // setTimeout(function () {
-                    //     self.successMessage = '';
-                    //     self.hideModal();            
-                    // } , 3000);
+                    self.$emit('refreshList');
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -138,7 +134,6 @@
 
         watch: {
             showModalProp(value) {
-
                 if(value) {
                     this.showModal();
                 }
@@ -149,7 +144,7 @@
             selectedInquiry(value) {
                 this.selectedInquiry = value;
                 this.role = value.role;
-                this.support_question = value.support_question;
+                this.supportQuestion = value.supportQuestion;
             }
         },
     }
