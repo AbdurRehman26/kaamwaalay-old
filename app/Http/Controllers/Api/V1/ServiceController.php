@@ -34,6 +34,7 @@ class ServiceController extends ApiResourceController
               $rules['is_display_footer_nav']   = 'required|in:0,1';     
               $rules['status']                  = 'required|in:0,1';    
               $rules['is_featured']                  = 'required|in:0,1';     
+              $rules['url_prefix']                  = 'required|unique:services,url_prefix';     
 
               //$rules['user_id'] =  'required|exists:users,id';   
         }

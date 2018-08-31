@@ -87,7 +87,7 @@
 
 <div class="form-group">
     <label>URL Suffix</label>
-    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
   @focus.prevent="onUrlFocus"
   @blur.prevent="onUrlBlur">
 </div>
@@ -223,8 +223,32 @@
             },
             validateBeforeSubmit() {
                 var self = this;
+                var tempSuffix = this.formData.url_prefix;
+                var str = this.getSuffix;
+                var regex = /^[0-9A-Za-z\s\-]+$/;
+                this.errorBag.clear();
+                if(str.length == 0) {
+                    this.errorBag.add({
+                        field: 'url',
+                        msg: 'The url suffix is required.',
+                        rule: 'required',
+                        id: 7,
+                    });
+                    this.formData.url_prefix = "";
+                    this.errorMessage = this.errorBag.all()[0];
+                } if(!regex.test(str)) {
+                    this.errorBag.add({
+                        field: 'url',
+                        msg: 'The url suffix is invalid. Please use only letter, numbers & hyphens.',
+                        id: 7,
+                    });
+                    this.errorMessage = this.errorBag.all()[0];
+                }else {
+                    this.errorBag.clear();
+                    this.errorMessage = "";
+                    this.formData.url_prefix = tempSuffix;
+                }
                 this.$validator.validateAll().then((result) => {
-
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -236,6 +260,7 @@
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
+
             },  
             showModal () {
                 this.imageText = 'Click here to upload image';
@@ -310,6 +335,7 @@
                 this.loading = true;
                 let url = this.url;
 
+                this.formData.url_prefix = this.getSuffix;
                 var data = this.formData;
 
                 this.$http.post(url, data).then(response => {
@@ -347,23 +373,10 @@
             },
             onUpdate() {
                 var self = this;
-                var suffix = this.formData.url_prefix;
-                var prefixLength = this.defaultUrlPrefixLength;
-                var str = suffix.substr(prefixLength);
                 this.formData.url_prefix = str;
-                if(!str) {
-                    this.errorBag.add({
-                        field: 'url',
-                        msg: 'The url suffix is required.',
-                        rule: 'required',
-                        id: 7,
-                    });
-                    this.errorMessage = this.errorBag.all()[0];
-                    return;
-                }
-                
                 this.loading = true;
                 let url = this.url+"/"+this.list.id;
+                this.formData.url_prefix = this.getSuffix;
                 var data = this.formData;
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
@@ -445,6 +458,11 @@
             }
         },
         computed : {
+            getSuffix() {
+                var suffix = this.formData.url_prefix? this.formData.url_prefix : '';
+                var prefixLength = this.defaultUrlPrefixLength;
+                return suffix.substr(prefixLength);
+            },
             imageValue(){
                 return this.image;
             },
