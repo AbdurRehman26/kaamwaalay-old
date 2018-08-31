@@ -100,10 +100,7 @@ class RolesTableSeeder extends Seeder
                 'id' => 4,
                 'title' => 'Reviewer',
                 'can_register' => 0,
-                'scope' => json_encode(array("user.index",
-                    "service.index",
-                    "service.show",
-                    "service-provider-profile.index",
+                'scope' => json_encode(array(
                     "service-provider-profile-request.index",
                     "service-provider-profile-request.show",
                     "service-provider-profile-request.update",
