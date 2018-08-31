@@ -25,8 +25,10 @@ class CityRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('CityRepository', function () {
-            return new CityRepository(new City);
-        });
+        $this->app->bind(
+            'CityRepository', function () {
+                return new CityRepository(new City);
+            }
+        );
     }
 }

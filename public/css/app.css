@@ -34084,7 +34084,7 @@ body .ag-theme-balham .ag-header {
 }
 
 .table.first-last-col-fix thead tr th:first-child {
-  width: 100px;
+  /*width:100px;*/
 }
 
 .table.first-last-col-fix thead tr th:last-child {

@@ -41,7 +41,6 @@
         <table class="table first-last-col-fix">
           <thead>
             <tr>
-              <th>Id</th>
               <th>Service</th>
               <th>Sub Service</th>
               <th class="text-center">Status</th>
@@ -50,7 +49,6 @@
           </thead>
           <tbody>
             <tr v-for="(list, index) in listing" v-if="listing.length && !loadingStart">
-              <td>{{(index + 1)}}</th>
                 <td>{{list.parent_id? list.parent.title: list.title}}</td>
                 <td>{{list.parent_id? list.title : list.parent.title }}</td>
                 <td class="text-center"><span class="tags" :class="[list.status? 'completed':'banned']">
@@ -75,12 +73,12 @@
   <div class="row">
     <div class="col-xs-12 col-md-12">
 
-      <div class="total-record float-left" v-if="totalServicesCount">
-        <p><strong>Total records: <span>{{totalServicesCount}}</span></strong></p>
+      <div class="total-record float-left" v-if="pagination.total">
+        <p><strong>Total records: <span>{{pagination.total}}</span></strong></p>
       </div>
 
-      <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-        <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
+      <div class="pagination-wrapper float-right" v-if="pagination.total">
+        <b-pagination size="md" :total-rows="pagination.total" v-model="currentPage" :per-page="25"></b-pagination>
       </div>
     </div>
   </div>
@@ -96,7 +94,6 @@
   export default {
     data () {
       return {
-       totalServicesCount: 0,
        service: false,
        viewdetails: false,
        actiondelete: false,
@@ -138,9 +135,6 @@
       this.getList(data, pageNumber);
 
     },
-    totalServicesCount(count) {
-      this.totalServicesCount = count;
-    }
   },
   methods: {
 
@@ -222,7 +216,6 @@
           self.showNoRecordFound = true;
         }
         var serviceArray = _.filter(self.listing, {parent_id: null});
-        self.totalServicesCount = response.service_count;
         
         self.pagination = response.pagination;
 

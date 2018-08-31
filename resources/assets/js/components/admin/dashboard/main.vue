@@ -357,7 +357,6 @@ methods: {
     };
     self.$http.get(self.url, {params: params}).then(response=>{
         let data = response.data;
-        console.log(data, type, data.length)
         if(type == 'stats'){
           self.stats = data;
       }

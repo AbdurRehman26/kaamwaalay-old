@@ -8,27 +8,23 @@ use App\Data\Models\City;
 
 class CityRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of City Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: City-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
     protected $_cacheKey = 'City';
@@ -41,12 +37,12 @@ class CityRepository extends AbstractRepository implements RepositoryContract
 
     }
 
-    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] )
+    {
 
         $this->builder = $this->model
-                            ->where('state_id', '=' , $data['state_id'])
-                            ->orderBy('name', 'ASC')
-                            ;
+            ->where('state_id', '=', $data['state_id'])
+            ->orderBy('name', 'ASC');
    
         return  parent::findByAll($pagination, $perPage);
     

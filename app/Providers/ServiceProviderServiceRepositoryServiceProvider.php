@@ -25,8 +25,10 @@ class ServiceProviderServiceRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('ServiceProviderServiceRepository', function () {
-            return new ServiceProviderServiceRepository(new ServiceProviderService);
-        });
+        $this->app->bind(
+            'ServiceProviderServiceRepository', function () {
+                return new ServiceProviderServiceRepository(new ServiceProviderService);
+            }
+        );
     }
 }

@@ -8,14 +8,16 @@ class SupportQuestionController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(SupportQuestionRepository $repository){
+    public function __construct(SupportQuestionRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['role_id']      =  'required|numeric|exists:roles,id';
         }

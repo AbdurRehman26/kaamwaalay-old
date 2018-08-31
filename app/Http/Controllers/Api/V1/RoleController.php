@@ -8,43 +8,45 @@ class RoleController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(RoleRepository $repository){
-       $this->_repository = $repository;
-   }
+    public function __construct(RoleRepository $repository)
+    {
+        $this->_repository = $repository;
+    }
 
-   public function rules($value=''){
-    $rules = [];
+    public function rules($value='')
+    {
+        $rules = [];
 
-    if($value == 'store'){
+        if($value == 'store') {
+
+        }
+
+        if($value == 'update') {
+
+        }
+
+
+        if($value == 'destroy') {
+
+        }
+
+        if($value == 'show') {
+              $rules['id'] =  'required|exists:roles,id';
+        }
+
+        if($value == 'index') {
+              $rules['pagination']    =  'nullable|boolean';
+        }
+
+        return $rules;
 
     }
 
-    if($value == 'update'){
 
+    public function input($value='')
+    {
+        $input = request()->only('id', 'pagination');
+        //$input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+        return $input;
     }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-        $rules['id'] =  'required|exists:roles,id';
-    }
-
-    if($value == 'index'){
-        $rules['pagination']    =  'nullable|boolean';
-    }
-
-    return $rules;
-
-}
-
-
-public function input($value='')
-{
-    $input = request()->only('id', 'pagination');
-    //$input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-    return $input;
-}
 }

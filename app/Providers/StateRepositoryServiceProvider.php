@@ -25,8 +25,10 @@ class StateRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('StateRepository', function () {
-            return new StateRepository(new State);
-        });
+        $this->app->bind(
+            'StateRepository', function () {
+                return new StateRepository(new State);
+            }
+        );
     }
 }

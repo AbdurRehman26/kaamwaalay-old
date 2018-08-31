@@ -79,15 +79,17 @@
 
 <div class="form-group">
     <label>Upload Image</label>
-    <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image" v-validate="'required'" :class="['form-group' , errorBag.first('upload image') ? 'is-invalid' : '']" ></b-form-file>
+    <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
     <div class="uploded-picture">
         <img :src="imageValue" />
     </div>
 </div>
 
 <div class="form-group">
-    <label>URL</label>
-    <input type="text" placeholder="Enter url" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']">
+    <label>URL Suffix</label>
+    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+  @focus.prevent="onUrlFocus"
+  @blur.prevent="onUrlBlur">
 </div>
 </form>
 
@@ -127,7 +129,7 @@
                         original_name: ''
                     }
                     ],
-                    url_prefix: '',
+                    url_prefix: this.defaultUrlPrefix,
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
@@ -140,14 +142,53 @@
                 file: null,
                 url: 'api/service',
                 loading: false,
-                isFileUpload: null,
+                defaultUrlLength: this.defaultUrlPrefixLength,
+                isChangePrefix: '',
             }
         },
+        mounted() {
+        },
         methods: {
+            onUrlFocus(e) {
+                var sufix = $(e.target).val();
+                var prefixLength = this.defaultUrlPrefixLength;
+                var str = sufix.substr(prefixLength);
+                this.formData.url_prefix = str;
+            },
+            onUrlBlur(e) {
+                var sufix = $(e.target).val();
+                this.formData.url_prefix = this.defaultUrlPrefix + sufix;
+            },
             onChangeParentService() {
+                if(this.isUpdate) { 
+                    if(this.formData.parent_id) {
+                        var service = _.filter(this.services, { id: this.formData.parent_id});
+                        var prefix = service[0].url_prefix;
+                        if(prefix.substr(prefix.length - 1) != "/") {
+                            prefix = prefix + "/";
+                        }
+                        this.formData.url_prefix = prefix;
+                        this.isChangePrefix = prefix;
+                        this.showRadios = false;
+                    }else {
+                        this.formData.url_prefix = this.$store.getters.getServiceUrlPrefix;
+                        this.isChangePrefix = this.$store.getters.getServiceUrlPrefix;
+                        this.showRadios = true;
+                    }
+                }
                 if(this.formData.parent_id) {
+
+                    var service = _.filter(this.services, { id: this.formData.parent_id});
+                    var prefix = service[0].url_prefix;
+                    if(prefix.substr(prefix.length - 1) != "/") {
+                        prefix = prefix + "/";
+                    }
+                    this.formData.url_prefix = prefix;
+                    this.isChangePrefix = prefix;
                     this.showRadios = false;
                 }else {
+                    this.formData.url_prefix = this.$store.getters.getServiceUrlPrefix;
+                    this.isChangePrefix = this.$store.getters.getServiceUrlPrefix;
                     this.showRadios = true;
                 }
             },
@@ -156,7 +197,6 @@
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
                 this.$refs.fileinput.reset();
-                this.isFileUpload = null;
                 this.formData = {
                     parent_id: '',
                     title: '',
@@ -168,30 +208,26 @@
                         original_name: ''
                     }
                     ],
-                    url_prefix: '',
+                    url_prefix: this.$store.getters.getServiceUrlPrefix,
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
                     is_display_footer_nav: 0,
 
                 };
-                this.onChangeParentService();
                 setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorMessage = '';
                         self.successMessage = '';
-                        self.errorBag.clear()
+                        self.errorBag.clear();
+                        self.formData.url_prefix = self.$store.getters.getServiceUrlPrefix;
                     })
-
                 }, 100);
             },
             validateBeforeSubmit() {
                 var self = this;
                 this.$validator.validateAll().then((result) => {
 
-                    if(!self.file) {
-                        self.isFileUpload = false;
-                    }
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -199,7 +235,6 @@
                             this.onSubmit();
                         }
                         this.errorMessage = '';
-                        self.isFileUpload = null;
                         return;
                     }
                     this.errorMessage = this.errorBag.all()[0];
@@ -209,8 +244,10 @@
 
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
+                this.resetFormFields();
+                this.onChangeParentService();
                 var allServices = this.$store.getters.getAllServices;
-                // filter only services
+                // filter only parent services
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
             },
@@ -234,11 +271,9 @@
                       id: 6,
                   });
                     this.errorMessage = this.errorBag.all()[0];
-                    self.isFileUpload = false;
                     return;
                 }
                 this.errorBag.clear();
-                this.isFileUpload = null;
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
@@ -270,7 +305,6 @@
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
-                    self.isFileUpload = false;
                     _.forEach(errors, function(value, key) {
                         self.errorMessage =  errors[key][0];
                         return false;
@@ -382,8 +416,8 @@
                         is_featured: this.list.is_featured,
                         images: [
                         {
-                            name: img[0].name, 
-                            original_name: img[0].original_name
+                            name: img? img[0].name : '', 
+                            original_name: img? img[0].original_name :''
                         }
                         ],
                         url_prefix: this.list.url_prefix,
@@ -392,8 +426,9 @@
                         is_display_service_nav: this.list.is_display_service_nav,
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
-                    this.image = img[0].upload_url;
-                    this.file = img[0].original_name;
+                    this.isChangePrefix = this.list.url_prefix;
+                    this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
+                    this.file = img? img[0].original_name : '';
                     this.imageText = this.file;
                     this.onChangeParentService();
                 }
@@ -402,6 +437,14 @@
         computed : {
             imageValue(){
                 return this.image;
+            },
+            defaultUrlPrefix() {
+                var url = this.$store.getters.getServiceUrlPrefix;
+                return this.isChangePrefix? this.isChangePrefix : url;
+            },
+            defaultUrlPrefixLength() {
+                var length = this.$store.getters.getServiceUrlPrefix.length;
+                return this.isChangePrefix? this.isChangePrefix.length : length;
             }
         }
     }

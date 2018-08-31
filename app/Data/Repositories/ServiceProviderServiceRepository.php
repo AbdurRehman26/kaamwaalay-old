@@ -8,29 +8,25 @@ use App\Data\Models\ServiceProviderService;
 
 class ServiceProviderServiceRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of ServiceProviderService Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
     
     const   PER_PAGE = 25;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: ServiceProviderService-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
     protected $_cacheKey = 'ServiceProviderService';
@@ -46,8 +42,8 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
     public function findCollectionByCriteria($criteria , $whereInModelIds = false, $details = [])
     {
         $this->builder = $this->model->where($criteria);
-        if(is_array($whereInModelIds)){
-            $this->builder = $this->builder->whereIn('id' , $whereInModelIds);
+        if(is_array($whereInModelIds)) {
+            $this->builder = $this->builder->whereIn('id', $whereInModelIds);
         }
  
         $details = $details ? ['details' => true] : fasle;
@@ -59,7 +55,7 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
     {
         $data = parent::findById($id, $refresh, $details, $encode);
  
-        if($data && $details){
+        if($data && $details) {
 
             $data->service = app('ServiceRepository')->findById($data->service_id);
             
@@ -68,13 +64,16 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
         return $data;
     }
 
-     public function getTotalCountByCriteria($crtieria = [], $startDate = NULL, $endDate = NULL) {
+    public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null)
+    {
 
-        if($crtieria)
+        if($crtieria) {
             $count = $this->model->where($crtieria);
+        }
 
-        if($startDate && $endDate)
+        if($startDate && $endDate) {
             $count = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+        }
 
         return  $count->count();
     }

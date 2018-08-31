@@ -10,26 +10,22 @@ use App\Helper\Helper;
 class DashboardRepository
 {
     /**
-     *
      * These will hold the instance of Dashboard Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: Dashboard-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
     public function __construct()
@@ -70,26 +66,24 @@ class DashboardRepository
         $data['data']   = [];
 
         $roleId = Role::CUSTOMER;
-        if($input['type'] == 'service_provider_signup'){
+        if($input['type'] == 'service_provider_signup') {
             $roleId = Role::SERVICE_PROVIDER;
         }
 
         $result = $this->userRepo->model
-                    ->select(
-                        DB::raw('COUNT(id) as value'),
-                        DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
-
-                    )
-                    ->where('role_id', '=', $roleId)
-                    ->whereBetween('created_at', [$startDate, $endDate])
-                    ->groupBy('date')
-                    ->get()
-                    ->toArray()
-                    ;
+            ->select(
+                DB::raw('COUNT(id) as value'),
+                DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
+            )
+            ->where('role_id', '=', $roleId)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('date')
+            ->get()
+            ->toArray();
 
         
         
-        if(!empty($result)){
+        if(!empty($result)) {
 
             $totalValues  = Helper::getDateRange($startDate, $endDate, 'P1D', 'Y-m-d');
             $records = collect($result);
@@ -105,9 +99,11 @@ class DashboardRepository
                 }
             }
 
-            usort($result, function ($a, $b) {
-                return  strtotime($a['date']) -  strtotime($b['date']);
-            });
+            usort(
+                $result, function ($a, $b) {
+                    return  strtotime($a['date']) -  strtotime($b['date']);
+                }
+            );
         }
 
         return $result;
@@ -120,21 +116,21 @@ class DashboardRepository
 
 
         $result = $this->jobRepo->model
-        ->leftJoin('services', function ($joins) {
-            $joins->on('services.id', '=', 'jobs.id');
-        })
+            ->leftJoin(
+                'services', function ($joins) {
+                    $joins->on('services.id', '=', 'jobs.id');
+                }
+            )
         ->select(
             'services.title as title',
             DB::raw('COUNT(jobs.id) as value')
-
         )
         ->whereBetween('jobs.created_at', [$startDate, $endDate])
         ->groupBy('services.id')
         ->limit(10)
-        ->orderBy('services.title','ASC')
+        ->orderBy('services.title', 'ASC')
         ->get()
-        ->toArray()
-        ;
+        ->toArray();
 
         return $result;
     }
@@ -147,20 +143,18 @@ class DashboardRepository
 
 
         $result = $this->paymentRepo->model
-                    ->select(
-                        DB::raw('SUM(amount) as value'),
-                        DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
-
-                    )
-                    ->whereBetween('created_at', [$startDate, $endDate])
-                    ->groupBy('date')
-                    ->get()
-                    ->toArray()
-                    ;
+            ->select(
+                DB::raw('SUM(amount) as value'),
+                DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
+            )
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('date')
+            ->get()
+            ->toArray();
 
         
         
-        if(!empty($result)){
+        if(!empty($result)) {
 
             $totalValues  = Helper::getDateRange($startDate, $endDate, 'P1D', 'Y-m-d');
             $records = collect($result);
@@ -176,9 +170,11 @@ class DashboardRepository
                 }
             }
 
-            usort($result, function ($a, $b) {
-                return  strtotime($a['date']) -  strtotime($b['date']);
-            });
+            usort(
+                $result, function ($a, $b) {
+                    return  strtotime($a['date']) -  strtotime($b['date']);
+                }
+            );
         }
 
         return $result;
@@ -191,16 +187,14 @@ class DashboardRepository
 
 
         $result = $this->paymentRepo->model
-        ->select(
-            'type',
-            DB::raw('SUM(amount) as value')
-
-        )
-        ->whereBetween('created_at', [$startDate, $endDate])
-        ->groupBy('type')
-        ->get()
-        ->toArray()
-        ;
+            ->select(
+                'type',
+                DB::raw('SUM(amount) as value')
+            )
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('type')
+            ->get()
+            ->toArray();
 
         return $result;
     }
@@ -212,16 +206,22 @@ class DashboardRepository
         $endDate        = Carbon::parse($input['end_date'])->modify('23:59:59');
 
         $result = $this->userRepo->model
-        ->leftJoin('user_ratings', function ($joins) {
-            $joins->on('user_ratings.user_id', '=', 'users.id');
-        })
-        ->leftJoin('job_bids', function ($joins) {
-            $joins->on('job_bids.user_id', '=', 'users.id')
-            ->where('job_bids.status', '=', $this->jobBidRepo->model::COMPLETED);
-        })
-        ->leftJoin('service_provider_profiles', function ($joins) {
-            $joins->on('service_provider_profiles.user_id', '=', 'users.id');
-        })
+            ->leftJoin(
+                'user_ratings', function ($joins) {
+                    $joins->on('user_ratings.user_id', '=', 'users.id');
+                }
+            )
+        ->leftJoin(
+            'job_bids', function ($joins) {
+                $joins->on('job_bids.user_id', '=', 'users.id')
+                    ->where('job_bids.status', '=', $this->jobBidRepo->model::COMPLETED);
+            }
+        )
+        ->leftJoin(
+            'service_provider_profiles', function ($joins) {
+                $joins->on('service_provider_profiles.user_id', '=', 'users.id');
+            }
+        )
         ->whereBetween('users.created_at', [$startDate, $endDate])
         ->where('role_id', '=', Role::SERVICE_PROVIDER)
         ->select(
@@ -232,15 +232,13 @@ class DashboardRepository
             DB::raw('COUNT(DISTINCT job_bids.id) as job_completed'),
             'duns_number',
             'business_type'
-
         )
         ->groupBy('users.id')
         ->limit(5)
-        ->orderBy('job_completed','DESC')
-        ->orderBy('rating','DESC')
+        ->orderBy('job_completed', 'DESC')
+        ->orderBy('rating', 'DESC')
         ->get()
-        ->toArray()
-        ;
+        ->toArray();
 
         return $result;
     }
@@ -252,13 +250,17 @@ class DashboardRepository
         $data = [];
 
         $result = $this->userRepo->model
-        ->leftJoin('user_ratings', function ($joins) {
-            $joins->on('user_ratings.user_id', '=', 'users.id');
-        })
-        ->leftJoin('jobs', function ($joins) {
-            $joins->on('jobs.user_id', '=', 'users.id')
-            ->where('jobs.status', '=', $this->jobRepo->model::COMPLETED);
-        })
+            ->leftJoin(
+                'user_ratings', function ($joins) {
+                    $joins->on('user_ratings.user_id', '=', 'users.id');
+                }
+            )
+        ->leftJoin(
+            'jobs', function ($joins) {
+                $joins->on('jobs.user_id', '=', 'users.id')
+                    ->where('jobs.status', '=', $this->jobRepo->model::COMPLETED);
+            }
+        )
         ->whereBetween('users.created_at', [$startDate, $endDate])
         ->where('role_id', '=', Role::CUSTOMER)
         ->select(
@@ -267,15 +269,13 @@ class DashboardRepository
             DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
             DB::raw('AVG(rating) as rating'),
             DB::raw('COUNT(jobs.id) as job_completed')
-
         )
         ->groupBy('users.id')
         ->limit(5)
-        ->orderBy('job_completed','DESC')
-        ->orderBy('rating','DESC')
+        ->orderBy('job_completed', 'DESC')
+        ->orderBy('rating', 'DESC')
         ->get()
-        ->toArray()
-        ;
+        ->toArray();
 
         return $result;
     }

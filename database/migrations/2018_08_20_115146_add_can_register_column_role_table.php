@@ -13,9 +13,11 @@ class AddCanRegisterColumnRoleTable extends Migration
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->boolean('can_register')->nullable()->default(0)->after('title');
-        });
+        Schema::table(
+            'roles', function (Blueprint $table) {
+                $table->boolean('can_register')->nullable()->default(0)->after('title');
+            }
+        );
     }
 
     /**
@@ -25,8 +27,10 @@ class AddCanRegisterColumnRoleTable extends Migration
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn('can_register');
-        });
+        Schema::table(
+            'roles', function (Blueprint $table) {
+                $table->dropColumn('can_register');
+            }
+        );
     }
 }

@@ -9,15 +9,17 @@ class PaymentController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(PaymentRepository $repository){
+    public function __construct(PaymentRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'index'){
-            if($value == 'index'){
+        if($value == 'index') {
+            if($value == 'index') {
                 $rules['pagination']        =   'nullable|boolean';
                 $rules['filter_by_pay_by']  =   'nullable|in:'.Role::SERVICE_PROVIDER.','.Role::CUSTOMER;
                 $rules['filter_by_type']    =   'nullable|in:urgent,featured,account creation';

@@ -28,12 +28,16 @@ export default new Vuex.Store({
         servicesList : [],
         roles : [],
         paymentTypes : [],
+        urlPrefix: '',
     },
 
     // You can use it as a state getter function (probably the best solution)
     getters: {
         getServicesList(state){
                 return state.servicesList;
+        },
+        getServiceUrlPrefix(state){
+                return state.urlPrefix;
         },
         getStep2StatsData(state){
             return state.step2StatsData;
@@ -93,6 +97,9 @@ export default new Vuex.Store({
 
     // Mutation for when you use it as state property
     mutations: {
+        setServiceUrlPrefix(state , data){
+            state.urlPrefix = data;
+        },
         setServicesList(state , data){
             state.servicesList = data;
         },
