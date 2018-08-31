@@ -32,7 +32,7 @@
               <td>{{record.last_name}}</td>
               <td><a href="javascript:;">{{record.email}}</a></td>
               <td>{{record.created_at.date | formatDate}}</td>
-              <td class="statustext"><a class="active" @click="changeAccessLevel(record)" v-model="currentRecord.role_id">{{record | accessLevel}}</a></td>
+              <td class="statustext"><a class="active" @click="changeAccessLevel(record)" v-model="currentRecord.role_id" :class="{'disabled': user_id == record.id}">{{(record.role)?record.role.title:''}}</a></td>
               <td class="text-center statustext">
                 <div class=""><a class="" @click="changeStatus(record)" v-model="currentRecord.status"  :class="{'deactive': record.status !='active','active': record.status =='active','disabled': user_id == record.id}">{{record | adminStatus}}</a></div>
             </td>
