@@ -484,7 +484,7 @@ $section-padding-sm:20px 0px;
 .service-provider-form {
     position: relative;
     margin-bottom: 40px;
-    &:after {
+ /*    &:after {
         content: 'CUSTOMER SIGN UP';
         position: absolute;
         background: #fff;
@@ -500,7 +500,7 @@ $section-padding-sm:20px 0px;
             right: 0;
             margin: auto;            
         }
-    }
+    } */
 }
 .business-form {
     position: relative;
@@ -3454,6 +3454,34 @@ body{
     }
     &.banned,&.rejected{
         background-color:$status-danger !important;
+    }
+}
+
+.custom-text{
+    position: absolute;
+    background: #fff;
+    width: 217px;
+    top: -10px;
+    font-size: 14px;
+    color: #494949;
+    font-family: "AkzidenzGroteskBE-Md";
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.app-images.custom-appicon{
+    padding: 0px 50px;
+    ul{
+        padding: 0px;
+    }
+    li {
+        width: 49%;
+        display: inline-block;
+        &.apple{
+            width: 44%;
+        }
     }
 }
 

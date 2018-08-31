@@ -29,7 +29,7 @@
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<textarea class="form-control" rows="4">Start typing job details</textarea>
+								<textarea class="form-control" rows="4" placeholder="Start typing job details"></textarea>
 							</div>
 						</div>
 					</div>
@@ -89,8 +89,12 @@
 								<label>Preference</label>
 								<select class="form-control">
 									<option selected="" disabled="">Choose Date</option>
-									<option>May 20, 2017</option>
-									<option>May 22, 2017</option>
+									<option>In a few days</option>
+									<option>Within this week</option>
+									<option>Next week</option>
+									<option>2 weeks</option>
+									<option>1 month</option>
+									<option>Custom</option>
 								</select>
 							</div>
 						</div>
@@ -173,7 +177,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Credit Card Number</label>
-									<input type="text" class="form-control" placeholder="Enter your credit card number" value="Enter your credit card number">
+									<input type="text" class="form-control" placeholder="Enter your credit card number">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -230,7 +234,7 @@
 					</div>
 					<div class="job-form-submission">
 						<div class=" ">
-							<button class="btn btn-primary">Create Job
+							<button @click="job()" class="btn btn-primary">Create Job
 								<loader></loader>
 						</button>
 						</div>
@@ -270,6 +274,11 @@ export default {
         end: '23:30'
       }
     }
+  },
+  methods:{
+  	job(){
+  		this.$router.push({name: 'My Jobs'});
+  	}
   }
 }
 </script>

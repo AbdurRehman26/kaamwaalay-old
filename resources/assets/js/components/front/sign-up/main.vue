@@ -4,8 +4,8 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-6">
 				<div class="custom-radio boxed m-b-30">
-					<input  v-model="type" value="customer" type="radio" name="accountType" id="type_hire_provider">
-					<label for="type_hire_provider">
+					<input v-model="type" value="customer" type="radio" name="accountType" id="type_hire_provider">
+					<label for="type_hire_provider" @click="signuptext = 'CUSTOMER SIGN UP'">
 						<div class="verticle-align">
 							<div class="inner">
 								I want to hire a service provider
@@ -18,8 +18,8 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-sm-6">
 				<div class="custom-radio boxed">
-					<input  v-model="type" value="provider" type="radio" name="accountType" id="type_service_provider" >
-					<label for="type_service_provider">
+					<input v-model="type" value="provider" type="radio" name="accountType" id="type_service_provider" >
+					<label for="type_service_provider" @click="signuptext = 'SERVICE PROVIDER SIGN UP'">
 						<div class="verticle-align">
 							<div class="inner">
 								I want to grow my business
@@ -35,6 +35,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="sign-up-form service-provider-form">
+					<p class="custom-text">{{signuptext}}</p>
 					<div class="fb-btn">
 						<div class="row">
 							<div class="col-md-12">
@@ -109,21 +110,24 @@
 				tabval: 'firstsec',
 				type:'customer',
 				mainNav:'true',
-				status:  'not_accepted'
+				status:  'not_accepted',
+				signuptext: 'CUSTOMER SIGN UP',
 			}
 		},
 		methods: {
 			switchType: function(type) {
 				var result = [];
 				if ((this.type) === 'customer') {
-					this.$router.push('profile');
+					this.signuptext = 'CUSTOMER SIGN UP';
+					this.$router.push('profile');					
 
 				}
 				if ((this.type) === 'provider') {
+					this.signuptext = 'Service Provider Signup';					
 					this.$router.push('apply-for-review');
 				}
 				return result;
 			},
-		}
+		},
 	}
 	</script>

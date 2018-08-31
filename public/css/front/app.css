@@ -13363,8 +13363,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .footer-links .app-images img {
-  width: 140px;
-  height: 48px;
+  /* width: 140px;
+		    height: 48px; */
+  width: 120px;
+  height: 41px;
 }
 
 .footer-copyrights p {
@@ -14642,27 +14644,23 @@ input[type=number]::-webkit-outer-spin-button {
 .service-provider-form {
   position: relative;
   margin-bottom: 40px;
-}
-
-.service-provider-form:after {
-  content: 'CUSTOMER SIGN UP';
-  position: absolute;
-  background: #fff;
-  width: 187px;
-  top: -10px;
-  font-size: 14px;
-  color: #494949;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-  left: 39%;
-}
-
-@media (max-width: 767px) {
-  .service-provider-form:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /*    &:after {
+        content: 'CUSTOMER SIGN UP';
+        position: absolute;
+        background: #fff;
+        width: 187px;
+        top: -10px;
+        font-size: 14px;
+        color: $grey-Edark;
+        font-family:$font_medium;
+        text-align: center;
+        left: 39%;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;            
+        }
+    } */
 }
 
 .business-form {
@@ -17913,6 +17911,50 @@ body .chat-feedback-message.white-msg:before {
   background-color: #d9534f !important;
 }
 
+.custom-text {
+  position: absolute;
+  background: #fff;
+  width: 217px;
+  top: -10px;
+  font-size: 14px;
+  color: #494949;
+  font-family: "AkzidenzGroteskBE-Md";
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.app-images.custom-appicon {
+  padding: 0px 50px;
+}
+
+.app-images.custom-appicon ul {
+  padding: 0px;
+}
+
+.app-images.custom-appicon li {
+  width: 49%;
+  display: inline-block;
+}
+
+.app-images.custom-appicon li.apple {
+  width: 44%;
+}
+
+@media (max-width: 768px) {
+  .footer-section .col-md-3 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .footer-section .col-md-3 .footer-links ul {
+    padding-left: 0px;
+  }
+}
+
 @media (max-width: 767px) {
   h1 {
     font-size: 20px;
@@ -17947,6 +17989,14 @@ body .chat-feedback-message.white-msg:before {
     height: 14px;
   }
 
+  .featured-categories-home .services-list a {
+    width: 100%;
+  }
+
+  .featured-categories-home .services-list .list-description p {
+    margin-left: 0px;
+  }
+
   .next-project .vue-star-rating {
     display: block !important;
     margin-bottom: 12px;
@@ -17964,6 +18014,13 @@ body .chat-feedback-message.white-msg:before {
   .next-project .service-detail .go-back {
     float: right;
     padding-right: 0;
+  }
+
+  .footer-section .col-md-3 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
   }
 
   .service-avaliable {
@@ -18305,6 +18362,16 @@ body .chat-feedback-message.white-msg:before {
     padding: 0px 6px;
   }
 
+  .job-post-list.category-service-provider .job-common-description .jobs-rating .vue-star-rating span.vue-star-rating-star svg {
+    width: 13px;
+    height: 12px;
+  }
+
+  .job-post-list.category-service-provider .job-common-description .jobs-rating .jobs-done .review-job {
+    font-size: 12px;
+    padding: 0px 3px;
+  }
+
   .advice-tabs {
     padding: 0px 15px;
   }
@@ -18355,6 +18422,14 @@ body .chat-feedback-message.white-msg:before {
 
   .jobs-post-files {
     padding-top: 20px;
+  }
+
+  .write-review-popup .modal-dialog {
+    height: 100%;
+  }
+
+  .write-review-popup .modal-dialog .modal-content {
+    width: 100%;
   }
 
   .job-main-details.detail-page .job-details {

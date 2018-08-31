@@ -1,3 +1,17 @@
+@include tablet{
+    .footer-section{
+        .col-md-3{
+            flex: 0 0 50%;
+            max-width: 50%;      
+            .footer-links{
+                ul{
+                    padding-left: 0px;
+                }
+            }      
+        }
+    }
+}
+
 @include mobile{
     h1{
         font-size: 20px;
@@ -32,6 +46,18 @@
             }
         }    
     }
+    .featured-categories-home{
+        .services-list{
+            a{
+                width: 100%;
+            }
+            .list-description{
+                 p {
+                    margin-left: 0px;
+                }
+            }            
+        }        
+    }    
     .next-project{
         .vue-star-rating{
             display: block !important;
@@ -51,6 +77,12 @@
             }
         }
     }
+    .footer-section{
+        .col-md-3{
+            flex: 0 0 100%;
+            max-width: 100%;            
+        }
+    }    
     .service-avaliable{
         padding-top: 30px;
     }
@@ -382,6 +414,22 @@
                     padding: 0px 6px;
                 }
             }
+            .job-common-description{
+                .jobs-rating{
+                    .vue-star-rating{
+                        span.vue-star-rating-star svg{
+                            width: 13px;
+                            height: 12px;                            
+                        }
+                    }
+                    .jobs-done{
+                        .review-job{
+                            font-size: 12px;
+                            padding: 0px 3px;
+                        }
+                    }
+                }
+            }
         }
     }
     .advice-tabs{
@@ -440,6 +488,14 @@
     .jobs-post-files{
         padding-top: 20px;
     }
+    .write-review-popup{
+        .modal-dialog {
+            height: 100%;
+            .modal-content{
+                width: 100%;
+            }
+        }
+    }    
     .job-main-details.detail-page{
         .job-details {
             padding-top: 10px !important;

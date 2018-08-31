@@ -38,10 +38,10 @@
 								<ul>
 									<li><strong>Customers</strong></li>
 									<li><a href="/job-post">Post a job</a></li>
-									<li><a href="/sign-up">Sign up as a customers</a></li>
+									<li><a href="/sign-up">Sign up as a customer</a></li>
 									<li><a href="/explore">Explore Services</a></li>
 									<li><a href="/advice-center">Advice center</a></li>
-									<li><a href="javascript:;" @click="CustomerSupportPopup">Customer support</a></li>
+									<li><a href="javascript:;" @click="CustomerSupportPopup()">Customer support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -51,8 +51,8 @@
 									<li><strong>Service Providers</strong></li>
 									<li><router-link to="/sign-up">Sign up as a service provider</router-link></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
-									<li><router-link to="/advice-center">Frequently asked questions</router-link></li>
-									<li><a href="javascript:;" @click="customersupportpopup">Service provider support</a></li>
+									<li><router-link to="/advice-center">Advice center</router-link></li>
+									<li><a href="javascript:;" @click="CustomerSupportPopup()">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,8 +91,8 @@
 						</div>
 						<div class="float-right terms-links">
 							<ul>
-								<li><router-link to="/terms-condition">Terms &amp; Conditions</router-link></li>
-								<li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
+								<li><a herf="/terms-condition">Terms &amp; Conditions</a></li>
+								<li><a herf="/privacy-policy">Privacy Policy</a></li>
 							</ul>
 						</div>
 					</div>
