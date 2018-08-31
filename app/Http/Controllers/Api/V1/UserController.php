@@ -186,12 +186,14 @@ class UserController extends ApiResourceController
                 $userData['user_details'] = $data; 
                 $userData['id'] = $user->id; 
                 $result = $this->_repository->update($userData);
+                $userId = $user->id;
             }else{
                   $data['status']  = 'active';   
                   $result = $this->_repository->create($data);
+                  $userId = $result->id;
             }
             if($result) {
-                $user = User::find($user->id);
+                $user = User::find($userId);
                 $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
                 $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
                 $code = 200;
