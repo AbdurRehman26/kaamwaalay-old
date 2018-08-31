@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
         Role::insertOnDuplicateKey(array ( 
             array (
                 'id' => 1,
-                'title' => 'Admin',
+                'title' => 'Full',
                 'can_register' => 0,
                 'scope' => json_encode([
                     "user.index",
@@ -110,7 +110,7 @@ class RolesTableSeeder extends Seeder
             ),
             array (
                 'id' => 4,
-                'title' => 'Reviewer',
+                'title' => 'Service Provider Review',
                 'can_register' => 0,
                 'scope' => json_encode([
                     "service-provider-profile-request.index",
