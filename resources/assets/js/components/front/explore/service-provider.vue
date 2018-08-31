@@ -277,6 +277,7 @@ export default {
         ViewCustomerDetail() {
             /*this.viewcustomer = true;*/
             this.$router.push({name: 'customerdetail'});
+            window.scrollTo(0,0);
         },
         changestatuspopup() {
             this.changestatus = true;
@@ -292,8 +293,9 @@ export default {
             this.viewcustomer = false;
             this.changestatus = false;
         },
-        servicedetail(){
+        servicedetail(){        	
         	this.$router.push({name: 'Service_Provider_Detail'});
+        	window.scrollTo(0,0);
         }
 
     },

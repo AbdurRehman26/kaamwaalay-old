@@ -85,9 +85,11 @@
 			ViewCustomerDetail() {
 				/*this.viewcustomer = true;*/
 				/*this.$router.push({name: 'customerdetail'});*/
+				window.scrollTo(0,0);
 				this.$router.push('/job-details/awarded');
 			},
 			changestatuspopup() {
+				window.scrollTo(0,0);
 				this.changestatus = true;
 			},
 			HideModal(){
@@ -96,9 +98,11 @@
 				this.changestatus = false;
 			},
 			servicedetail(){
+				window.scrollTo(0,0);
 				this.$router.push('/job-details/awarded');
 			},
 			showProfile(){
+				window.scrollTo(0,0);
 				this.$router.push({name: 'Service_Provider_Detail'});
 			},   			
 

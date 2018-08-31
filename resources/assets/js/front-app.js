@@ -54,7 +54,7 @@ const app = new Vue({
             }else{
                 $("body").addClass("window-browser");
             }
-        }
+        },
     },
     mounted(){
         this.browserfunction();

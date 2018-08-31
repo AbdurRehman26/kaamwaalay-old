@@ -61,6 +61,7 @@
     },
     ViewCustomerDetail() {
     /*this.viewcustomer = true;*/
+        window.scrollTo(0,0);
         this.$router.push({name: 'customerdetail'});
     },
     changestatuspopup() {
@@ -77,6 +78,7 @@
         this.infoval = false;
     },
     servicedetail(){
+        window.scrollTo(0,0);
         this.$router.push({name: 'job-details'});
     },
     showchatpanel(){

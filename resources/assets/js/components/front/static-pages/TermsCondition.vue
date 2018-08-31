@@ -5,7 +5,7 @@
 				<div class="container element-index text-center md">
 					<div class="content-sec">
 						<div class="category-content text-center">
-							<h2>Terms &amp; Condition</h2>								
+							<h2>Terms &amp; Conditions</h2>								
 						</div>
 					</div>
 				</div> 

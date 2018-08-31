@@ -277,6 +277,7 @@ export default {
   },
   methods:{
   	job(){
+  		window.scrollTo(0,0);
   		this.$router.push({name: 'My Jobs'});
   	}
   }

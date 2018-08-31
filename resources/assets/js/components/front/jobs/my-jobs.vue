@@ -231,6 +231,7 @@ export default {
     	},
         ViewCustomerDetail() {
             /*this.viewcustomer = true;*/
+            window.scrollTo(0,0);
             this.$router.push({name: 'customerdetail'});
         },
         WriteReview(){
@@ -244,6 +245,7 @@ export default {
             this.infoval = false;
         },
         servicedetail(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'job-details'});
         }
 

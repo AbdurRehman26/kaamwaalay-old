@@ -368,9 +368,11 @@ export default {
         	alert(this.$route.params.id);
         },
         FindInvite(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'Explore_Detail'});
         },
         Modify(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'Job-Post'});
         },        
         VisitPopup(){
@@ -398,6 +400,7 @@ export default {
 		    this.isShowing=false;
 		},
 		showProfile(){
+			window.scrollTo(0,0);
 			this.$router.push('explore/service_provider/service_provider_detail');
 		}                
 

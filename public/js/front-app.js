@@ -3439,6 +3439,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'customerdetail' });
 		},
 		changestatuspopup: function changestatuspopup() {
@@ -3450,9 +3451,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.changestatus = false;
 		},
 		servicedetail: function servicedetail() {
+			window.scrollTo(0, 0);
 			this.$router.push('/job-details/serviceprovider');
 		},
 		showProfile: function showProfile() {
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
@@ -3601,6 +3604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'customerdetail' });
 		},
 		changestatuspopup: function changestatuspopup() {
@@ -3612,9 +3616,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.changestatus = false;
 		},
 		servicedetail: function servicedetail() {
+			window.scrollTo(0, 0);
 			this.$router.push('/job-details/serviceprovider');
 		},
 		showProfile: function showProfile() {
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
@@ -3721,9 +3727,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
 			/*this.$router.push({name: 'customerdetail'});*/
+			window.scrollTo(0, 0);
 			this.$router.push('/job-details/awarded');
 		},
 		changestatuspopup: function changestatuspopup() {
+			window.scrollTo(0, 0);
 			this.changestatus = true;
 		},
 		HideModal: function HideModal() {
@@ -3732,9 +3740,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.changestatus = false;
 		},
 		servicedetail: function servicedetail() {
+			window.scrollTo(0, 0);
 			this.$router.push('/job-details/awarded');
 		},
 		showProfile: function showProfile() {
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
@@ -3858,6 +3868,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'customerdetail' });
 		},
 		changestatuspopup: function changestatuspopup() {
@@ -3869,9 +3880,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.changestatus = false;
 		},
 		servicedetail: function servicedetail() {
+			window.scrollTo(0, 0);
 			this.$router.push('/job-details/serviceprovider');
 		},
 		showProfile: function showProfile() {
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
@@ -4011,6 +4024,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'customerdetail' });
 		},
 		changestatuspopup: function changestatuspopup() {
@@ -4022,9 +4036,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.changestatus = false;
 		},
 		servicedetail: function servicedetail() {
+			window.scrollTo(0, 0);
 			this.$router.push('/job-details/serviceprovider');
 		},
 		showProfile: function showProfile() {
+			window.scrollTo(0, 0);
 			this.$router.push({ name: 'Service_Provider_Detail' });
 		}
 	},
@@ -4107,6 +4123,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         ViewCustomerDetail: function ViewCustomerDetail() {
             /*this.viewcustomer = true;*/
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'customerdetail' });
         },
         changestatuspopup: function changestatuspopup() {
@@ -4123,6 +4140,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.infoval = false;
         },
         servicedetail: function servicedetail() {
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'job-details' });
         },
         showchatpanel: function showchatpanel() {
@@ -4250,7 +4268,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('HideModalValue');
         },
         categorydetail: function categorydetail() {
+            this.scrollToTop();
             this.$router.push({ name: 'Explore_Detail' });
+        },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
         }
     },
 
@@ -5058,6 +5080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.writereview = true;
         },
         ViewBid: function ViewBid() {
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'job-details' });
         },
         closemenu: function closemenu() {
@@ -5156,6 +5179,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             /*this.$router.push({name: 'job-details'})*/
             this.$emit('ViewBid');
         },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/navigations/MainNav.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+
+    methods: {
         scrollToTop: function scrollToTop() {
             window.scrollTo(0, 0);
         }
@@ -5832,6 +5888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						this.changestatus = false;
 				},
 				categorylisting: function categorylisting() {
+						window.scrollTo(0, 0);
 						this.$router.push({ name: 'Explore_Detail' });
 				}
 		},
@@ -6102,6 +6159,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		ViewCustomerDetail: function ViewCustomerDetail() {
 			/*this.viewcustomer = true;*/
 			this.$router.push({ name: 'customerdetail' });
+			window.scrollTo(0, 0);
 		},
 		changestatuspopup: function changestatuspopup() {
 			this.changestatus = true;
@@ -6117,6 +6175,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		servicedetail: function servicedetail() {
 			this.$router.push({ name: 'Service_Provider_Detail' });
+			window.scrollTo(0, 0);
 		}
 	},
 	components: {
@@ -6562,6 +6621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     job: function job() {
+      window.scrollTo(0, 0);
       this.$router.push({ name: 'My Jobs' });
     }
   }
@@ -6776,6 +6836,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         ViewCustomerDetail: function ViewCustomerDetail() {
             /*this.viewcustomer = true;*/
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'customerdetail' });
         },
         changestatuspopup: function changestatuspopup() {
@@ -6792,6 +6853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.infoval = false;
         },
         servicedetail: function servicedetail() {
+            window.scrollTo(0, 0);
             this.$router.push('/job-details/serviceprovider');
         },
         showchatpanel: function showchatpanel() {
@@ -6801,6 +6863,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowing = false;
         },
         showProfile: function showProfile() {
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'Explore_Detail' });
         }
     },
@@ -7178,9 +7241,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             alert(this.$route.params.id);
         },
         FindInvite: function FindInvite() {
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'Explore_Detail' });
         },
         Modify: function Modify() {
+            window.scrollTo(0, 0);
             this.$router.push({ name: 'Job-Post' });
         },
         VisitPopup: function VisitPopup() {
@@ -7208,6 +7273,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowing = false;
         },
         showProfile: function showProfile() {
+            window.scrollTo(0, 0);
             this.$router.push('explore/service_provider/service_provider_detail');
         }
     },
@@ -7447,6 +7513,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 								},
 								ViewCustomerDetail: function ViewCustomerDetail() {
 												/*this.viewcustomer = true;*/
+												window.scrollTo(0, 0);
 												this.$router.push({ name: 'customerdetail' });
 								},
 								WriteReview: function WriteReview() {
@@ -7460,6 +7527,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												this.infoval = false;
 								},
 								servicedetail: function servicedetail() {
+												window.scrollTo(0, 0);
 												this.$router.push({ name: 'job-details' });
 								}
 				},
@@ -8721,16 +8789,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      profileimage: ''
-    };
-  },
+	data: function data() {
+		return {
+			profileimage: ''
+		};
+	},
 
 
-  methods: {},
+	methods: {
+		myjobs: function myjobs() {
+			window.scrollTo(0, 0);
+			this.$router.push({ name: 'Job-Post' });
+		}
+	},
 
-  watch: {}
+	watch: {}
 
 });
 
@@ -8863,10 +8936,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var result = [];
 			if (this.type === 'customer') {
 				this.signuptext = 'CUSTOMER SIGN UP';
+				window.scrollTo(0, 0);
 				this.$router.push('profile');
 			}
 			if (this.type === 'provider') {
 				this.signuptext = 'Service Provider Signup';
+				window.scrollTo(0, 0);
 				this.$router.push('apply-for-review');
 			}
 			return result;
@@ -70220,7 +70295,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "container element-index text-center md" }, [
           _c("div", { staticClass: "content-sec" }, [
             _c("div", { staticClass: "category-content text-center" }, [
-              _c("h2", [_vm._v("Terms & Condition")])
+              _c("h2", [_vm._v("Terms & Conditions")])
             ])
           ])
         ]),
@@ -74380,23 +74455,19 @@ var render = function() {
             }
           }
         },
-        [_c("router-link", { attrs: { to: "/explore" } }, [_vm._v("Explore")])],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          on: {
-            click: function($event) {
-              _vm.$emit("clickmenu")
-            }
-          }
-        },
         [
-          _c("router-link", { attrs: { to: "/join-as-pro" } }, [
-            _vm._v("Join as a Pro")
-          ])
+          _c(
+            "router-link",
+            {
+              attrs: { to: "/explore" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.scrollToTop()
+                }
+              }
+            },
+            [_vm._v("Explore")]
+          )
         ],
         1
       ),
@@ -74410,7 +74481,20 @@ var render = function() {
             }
           }
         },
-        [_c("router-link", { attrs: { to: "/login" } }, [_vm._v("Login")])],
+        [
+          _c(
+            "router-link",
+            {
+              attrs: { to: "/join-as-pro" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.scrollToTop()
+                }
+              }
+            },
+            [_vm._v("Join as a Pro")]
+          )
+        ],
         1
       ),
       _vm._v(" "),
@@ -74423,7 +74507,46 @@ var render = function() {
             }
           }
         },
-        [_c("router-link", { attrs: { to: "/sign-up" } }, [_vm._v("Sign up")])],
+        [
+          _c(
+            "router-link",
+            {
+              attrs: { to: "/login" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.scrollToTop()
+                }
+              }
+            },
+            [_vm._v("Login")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          on: {
+            click: function($event) {
+              _vm.$emit("clickmenu")
+            }
+          }
+        },
+        [
+          _c(
+            "router-link",
+            {
+              attrs: { to: "/sign-up" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.scrollToTop()
+                }
+              }
+            },
+            [_vm._v("Sign up")]
+          )
+        ],
         1
       ),
       _vm._v(" "),
@@ -76609,7 +76732,14 @@ var render = function() {
             _c("div", { staticClass: "create-account-btn" }, [
               _c(
                 "button",
-                { staticClass: "btn btn-primary" },
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      _vm.myjobs()
+                    }
+                  }
+                },
                 [_vm._v("Update Profile\n\t\t\t\t\t\t"), _c("loader")],
                 1
               )
@@ -97321,7 +97451,7 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/navigations/MainNav.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5ed750ef\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/navigations/MainNav.vue")
 /* template functional */

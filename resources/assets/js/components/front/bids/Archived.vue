@@ -136,6 +136,7 @@
 			},
 			ViewCustomerDetail() {
 				/*this.viewcustomer = true;*/
+				window.scrollTo(0,0);
 				this.$router.push({name: 'customerdetail'});
 			},
 			changestatuspopup() {
@@ -147,9 +148,11 @@
 				this.changestatus = false;
 			},
 			servicedetail(){
+				window.scrollTo(0,0);
 				this.$router.push('/job-details/serviceprovider');
 			},
 			showProfile(){
+				window.scrollTo(0,0);
 				this.$router.push({name: 'Service_Provider_Detail'});
 			},			
 

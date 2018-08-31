@@ -103,7 +103,7 @@
 				</div>
 
 					<div class="create-account-btn">
-						<button class="btn btn-primary">Update Profile
+						<button class="btn btn-primary" @click="myjobs()">Update Profile
 							<loader></loader>
 						</button>
 					</div>
@@ -130,7 +130,10 @@
 },
 
 methods: {
-
+	myjobs(){
+		window.scrollTo(0,0);
+		this.$router.push({name: 'Job-Post'});
+	}
 },
 
 watch:{

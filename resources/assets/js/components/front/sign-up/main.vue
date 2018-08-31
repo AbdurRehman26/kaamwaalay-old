@@ -119,11 +119,13 @@
 				var result = [];
 				if ((this.type) === 'customer') {
 					this.signuptext = 'CUSTOMER SIGN UP';
+					window.scrollTo(0,0);
 					this.$router.push('profile');					
 
 				}
 				if ((this.type) === 'provider') {
-					this.signuptext = 'Service Provider Signup';					
+					this.signuptext = 'Service Provider Signup';
+					window.scrollTo(0,0);					
 					this.$router.push('apply-for-review');
 				}
 				return result;

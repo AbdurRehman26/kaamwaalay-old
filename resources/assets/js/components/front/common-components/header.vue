@@ -49,6 +49,7 @@
                 this.writereview = true;
             },         
             ViewBid(){
+                window.scrollTo(0,0);
                 this.$router.push({name: 'job-details'})
             },
             closemenu(){
