@@ -175,8 +175,7 @@
                     
                 },
                 biddingdetails(id){
-                    console.log(id , '13213');
-                    this.$router.push({name: 'BiddingDetails', params : {jobId : id}});
+                    this.$router.push({name: 'bidding.details', params : {jobId : id}});
                 },
                 open (e) {            
                     fancyBox(e.target, this.imageList);

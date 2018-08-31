@@ -211,6 +211,9 @@
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
                 // filter only services
+
+                console.log(allServices , '22222');
+
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
             },

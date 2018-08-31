@@ -57,8 +57,6 @@ class ServiceController extends ApiResourceController
     if($value == 'destroy'){
 
         $rules['id'] =  'required|exists:services,id';
-        $rules['user_id'] =  'required|exists:users,id';
-        
 
     }
 
@@ -100,8 +98,7 @@ public function input($value=''){
         'zip_code'
     );
 
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
-    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+    $input['user_id'] = request()->user()->id;
 
     return $input;
 }
@@ -123,7 +120,7 @@ public function update(Request $request, $id)
 
         return response()->json($output, 422);
     }else{
-        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
     }
 
         // HTTP_OK = 200;
@@ -145,7 +142,7 @@ public function store(Request $request)
     if ($data == 'not_parent') {
         $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
     }else{
-        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
     }
 
     
@@ -175,7 +172,7 @@ public function index(Request $request)
             'data' => $data['data']['data'],
             'service_count' => $data['data']['service_count'],
             'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
-            'message' => $this->response_messages(__FUNCTION__),
+            'message' => $this->responseMessages(__FUNCTION__),
         ]
     ];
 

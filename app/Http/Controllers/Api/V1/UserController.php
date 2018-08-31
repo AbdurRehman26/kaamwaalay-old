@@ -24,10 +24,6 @@ class UserController extends ApiResourceController
    public function rules($value=''){
     $rules = [];
 
-    if($value == 'store'){
-        $rules['user_id'] = 'required|exists:users,id';
-    }
-
     if($value == 'update'){
 
         $rules['id'] =  'required|exists:users,id';
@@ -41,19 +37,6 @@ class UserController extends ApiResourceController
         $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
         $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
         
-    }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-
-    }
-
-    if($value == 'index'){
-
     }
 
     return $rules;
@@ -75,8 +58,7 @@ public function input($value='')
         
         'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role','filter_by_service','filter_by_roles');
 
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+    $input['user_id'] = request()->user()->id;
     
     if($value == 'update'){
         unset($input['user_details']['email']);
@@ -325,7 +307,7 @@ public function getAuthUser(Request $request)
 }
 
 
-public function response_messages($value = '')
+public function responseMessages($value = '')
 {
     $messages = [
         'store' => 'User created successfully.',

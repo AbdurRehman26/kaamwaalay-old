@@ -15,23 +15,6 @@ class ServiceProviderProfileController extends ApiResourceController
    public function rules($value=''){
     $rules = [];
 
-    if($value == 'store'){
-
-    }
-
-    if($value == 'update'){
-
-    }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-
-    }
-
     if($value == 'index'){
         $rules['pagination'] =  'nullable|boolean';
         $rules['keyword']    = 'nullable|string';
@@ -51,7 +34,7 @@ public function input($value='')
                         'user_rating'
                         );
     
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $input['user_id'] = request()->user()->id;
     return $input;
 }
 }

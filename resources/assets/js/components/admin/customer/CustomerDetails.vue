@@ -181,7 +181,7 @@ export default{
     methods:{
         viewjob(id){
             
-            this.$router.push({name: 'customerjobdetail',params: { id:id }});
+            this.$router.push({name: 'customer.job.detail',params: { id:id }});
         },
         getSingle(){
             // alert('single')

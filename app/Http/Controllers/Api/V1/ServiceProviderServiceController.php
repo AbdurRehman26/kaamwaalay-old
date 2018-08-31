@@ -15,27 +15,6 @@ class ServiceProviderServiceController extends ApiResourceController
    public function rules($value=''){
     $rules = [];
 
-    if($value == 'store'){
-
-    }
-
-    if($value == 'update'){
-
-    }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-
-    }
-
-    if($value == 'index'){
-
-    }
-
     return $rules;
 
 }
@@ -44,7 +23,7 @@ class ServiceProviderServiceController extends ApiResourceController
 public function input($value='')
 {
     $input = request()->only('id', 'title');
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+    $input['user_id'] = request()->user()->id;
     return $input;
 }
 }
