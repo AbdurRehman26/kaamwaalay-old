@@ -147,7 +147,6 @@
             }
         },
         mounted() {
-            this.formData.url_prefix = this.defaultUrlPrefix;
         },
         methods: {
             onUrlFocus(e) {
@@ -157,14 +156,39 @@
                 this.formData.url_prefix = str;
             },
             onUrlBlur(e) {
-
                 var sufix = $(e.target).val();
                 this.formData.url_prefix = this.defaultUrlPrefix + sufix;
             },
             onChangeParentService() {
+                if(this.isUpdate) { 
+                    if(this.formData.parent_id) {
+                        var service = _.filter(this.services, { id: this.formData.parent_id});
+                        var prefix = service[0].url_prefix;
+                        if(prefix.substr(prefix.length - 1) != "/") {
+                            prefix = prefix + "/";
+                        }
+                        this.formData.url_prefix = prefix;
+                        this.isChangePrefix = prefix;
+                        this.showRadios = false;
+                    }else {
+                        this.formData.url_prefix = this.$store.getters.getServiceUrlPrefix;
+                        this.isChangePrefix = this.$store.getters.getServiceUrlPrefix;
+                        this.showRadios = true;
+                    }
+                }
                 if(this.formData.parent_id) {
+
+                    var service = _.filter(this.services, { id: this.formData.parent_id});
+                    var prefix = service[0].url_prefix;
+                    if(prefix.substr(prefix.length - 1) != "/") {
+                        prefix = prefix + "/";
+                    }
+                    this.formData.url_prefix = prefix;
+                    this.isChangePrefix = prefix;
                     this.showRadios = false;
                 }else {
+                    this.formData.url_prefix = this.$store.getters.getServiceUrlPrefix;
+                    this.isChangePrefix = this.$store.getters.getServiceUrlPrefix;
                     this.showRadios = true;
                 }
             },
@@ -191,14 +215,13 @@
                     is_display_footer_nav: 0,
 
                 };
-                this.onChangeParentService();
                 setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorMessage = '';
                         self.successMessage = '';
-                        self.errorBag.clear()
+                        self.errorBag.clear();
+                        self.formData.url_prefix = self.$store.getters.getServiceUrlPrefix;
                     })
-
                 }, 100);
             },
             validateBeforeSubmit() {
@@ -222,6 +245,7 @@
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 this.resetFormFields();
+                this.onChangeParentService();
                 var allServices = this.$store.getters.getAllServices;
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
