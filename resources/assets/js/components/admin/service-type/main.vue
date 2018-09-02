@@ -10,17 +10,7 @@
                 <label>Search</label>
                 <input type="text" placeholder="Search" v-model="search" @keyup.enter="onApply">
               </div>
-            </div>
-            <!--<div class="col-xs-12 col-md-2 datepicker-field">
-              <div class="form-group">
-               <label>Is Featured</label>
-               <select class="form-control" v-model="filter_by_featured">
-                 <option value="both" selected="">Both</option>
-                 <option value="1" >Yes</option>
-                 <option value="0">No</option>
-               </select>
-             </div>
-           </div> -->                           
+            </div>                         
            <div class="col-xs-12 col-md-2">
             <button class="btn btn-primary filter-btn-top-space" @click="onApply" :class="[loading  ? 'show-spinner' : '']">
               <span>Apply</span>
