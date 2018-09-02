@@ -7,23 +7,23 @@ use Illuminate\Validation\Rule;
 
 class JobMessageController extends ApiResourceController
 {
-    public $_repository;
+  public $_repository;
 
-    public function __construct(JobMessageRepository $repository)
-    {
-        $this->_repository = $repository;
+  public function __construct(JobMessageRepository $repository)
+  {
+    $this->_repository = $repository;
+  }
+
+  public function rules($value='')
+  {
+    $rules = [];
+
+    if($value == 'store') {
+      $rules['job_id'] =  'required|exists:jobs,id';
+      $rules['job_bid_id'] =  'required|exists:job_bids,id';
     }
 
-    public function rules($value='')
-    {
-        $rules = [];
-
-        if($value == 'store') {
-          $rules['job_id'] =  'required|exists:jobs,id';
-          $rules['job_bid_id'] =  'required|exists:job_bids,id';
-      }
-
-      return $rules;
+    return $rules;
 
   }
 
@@ -34,7 +34,15 @@ class JobMessageController extends ApiResourceController
     
     $input['sender_id'] = request()->user()->id;
     
+    if($value == 'store'){
+
+      unset(
+        $input['id']
+      );
+
+    }
+
     return $input;
-}
+  }
 
 }
