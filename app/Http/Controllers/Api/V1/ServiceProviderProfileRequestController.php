@@ -45,6 +45,16 @@ class ServiceProviderProfileRequestController extends ApiResourceController
     $input['user_id'] = request()->user()->id;
     $input['role_id'] = request()->user()->role_id;
 
+
+    if($value == 'update'){
+
+        unset(
+            $input['keyword'], $input['filter_by_business_type'], $input['pagination'], $input['filter_by_service'],
+            $input['user_details'], $input['profile_details']
+        );
+
+    }
+
     return $input;
 }
 }
