@@ -44,5 +44,9 @@ class Service extends Model
 
 
     }
+    public function getUrlPrefixAttribute($value)
+    {
+           return Storage::url(config('uploads.service.url.folder').'/'.$value);
+    }
 
 }

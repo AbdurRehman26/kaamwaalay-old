@@ -87,7 +87,7 @@
 
 <div class="form-group">
     <label>URL Suffix</label>
-    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required|url'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_prefix" name="url" v-validate="'required'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
   @focus.prevent="onUrlFocus"
   @blur.prevent="onUrlBlur">
 </div>
@@ -147,7 +147,6 @@
             }
         },
         mounted() {
-            this.formData.url_prefix = this.defaultUrlPrefix;
         },
         methods: {
             onUrlFocus(e) {
@@ -157,14 +156,36 @@
                 this.formData.url_prefix = str;
             },
             onUrlBlur(e) {
-
                 var sufix = $(e.target).val();
                 this.formData.url_prefix = this.defaultUrlPrefix + sufix;
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
+                    if(this.isUpdate) { 
+                        var prefix = this.list.url_prefix;
+                        console.log(prefix, 11);
+                    }else {
+                        var service = _.filter(this.services, { id: this.formData.parent_id});
+                        var prefix = service[0].url_prefix;
+                        console.log(prefix, 22);
+                    }
+                    if(prefix.substr(prefix.length - 1) != "/") {
+                        prefix = prefix + "/";
+                    }                        
+                    this.formData.url_prefix = prefix;
+                    this.isChangePrefix = prefix;
                     this.showRadios = false;
                 }else {
+                    if(this.isUpdate) { 
+                        var prefix = this.list.url_prefix;
+                        console.log(prefix, 44);
+                    }else {
+                        var prefix = this.$store.getters.getServiceUrlPrefix;
+                        console.log(prefix, 55);
+                    }
+                    this.formData.url_prefix = prefix;
+                    console.log(this.formData.url_prefix, 33);
+                    this.isChangePrefix = prefix;
                     this.showRadios = true;
                 }
             },
@@ -191,20 +212,43 @@
                     is_display_footer_nav: 0,
 
                 };
-                this.onChangeParentService();
                 setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorMessage = '';
                         self.successMessage = '';
-                        self.errorBag.clear()
+                        self.errorBag.clear();
+                        self.formData.url_prefix = self.$store.getters.getServiceUrlPrefix;
                     })
-
                 }, 100);
             },
             validateBeforeSubmit() {
                 var self = this;
+                var tempSuffix = this.formData.url_prefix;
+                var str = this.getSuffix;
+                var regex = /^[0-9A-Za-z\s\-]+$/;
+                this.errorBag.clear();
+                if(str.length == 0) {
+                    this.errorBag.add({
+                        field: 'url',
+                        msg: 'The url suffix is required.',
+                        rule: 'required',
+                        id: 7,
+                    });
+                    this.formData.url_prefix = "";
+                    this.errorMessage = this.errorBag.all()[0];
+                } if(!regex.test(str)) {
+                    this.errorBag.add({
+                        field: 'url',
+                        msg: 'The url suffix is invalid. Please use only letter, numbers & hyphens.',
+                        id: 7,
+                    });
+                    this.errorMessage = this.errorBag.all()[0];
+                }else {
+                    this.errorBag.clear();
+                    this.errorMessage = "";
+                    this.formData.url_prefix = tempSuffix;
+                }
                 this.$validator.validateAll().then((result) => {
-
                     if (result && !this.errorBag.all().length) {
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -216,12 +260,11 @@
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
+
             },  
             showModal () {
-
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
-                this.resetFormFields();
                 var allServices = this.$store.getters.getAllServices;
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
@@ -291,6 +334,7 @@
                 this.loading = true;
                 let url = this.url;
 
+                this.formData.url_prefix = this.getSuffix;
                 var data = this.formData;
 
                 this.$http.post(url, data).then(response => {
@@ -328,9 +372,10 @@
             },
             onUpdate() {
                 var self = this;
+                this.formData.url_prefix = str;
                 this.loading = true;
                 let url = this.url+"/"+this.list.id;
-
+                this.formData.url_prefix = this.getSuffix;
                 var data = this.formData;
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
@@ -372,6 +417,9 @@
         },
 
         watch: {
+            'formData.url_prefix': function(val) {
+                this.formData.url_prefix = val;
+            },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
@@ -405,11 +453,15 @@
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file;
-                    this.onChangeParentService();
                 }
             }
         },
         computed : {
+            getSuffix() {
+                var suffix = this.formData.url_prefix? this.formData.url_prefix : '';
+                var prefixLength = this.defaultUrlPrefixLength;
+                return suffix.substr(prefixLength);
+            },
             imageValue(){
                 return this.image;
             },
@@ -420,7 +472,7 @@
             defaultUrlPrefixLength() {
                 var length = this.$store.getters.getServiceUrlPrefix.length;
                 return this.isChangePrefix? this.isChangePrefix.length : length;
-            }
+            },
         }
     }
 </script>
