@@ -223,7 +223,6 @@
                 this.$refs.myModalRef.show();
                 this.resetFormFields();
                 var allServices = this.$store.getters.getAllServices;
-                // filter only parent services
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
             },

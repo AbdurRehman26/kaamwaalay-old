@@ -216,7 +216,7 @@
     },    
     methods: {
         ServiceJobDetail(id) {
-            this.$router.push({name: 'viewservicejobdetail', params : {id : id}});
+            this.$router.push({name: 'view.service.job.detail', params : {id : id}});
         },
         getRecords(response){
             let self = this;

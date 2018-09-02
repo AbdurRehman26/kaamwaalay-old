@@ -36,7 +36,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="sign-up-form service-provider-form">
-					<facebook-component :text = "'Sign up with Facebook'"></facebook-component>
+					<facebook-component :text = "'Sign up with Facebook'" :fromSignUp="'true'"></facebook-component>
 					<div class="form-signup">
 						<form  @submit.prevent="validateBeforeSubmit"  novalidate="">
 							<alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>

@@ -1,16 +1,46 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+import store from './store.js'
+const app = new Vue({
+    router: router,
+    store
+});
+// Create the router instance
+const router = new VueRouter({
+    mode: 'history',
+    app,
+})
 Vue.directive('can', {
+
   bind: function (el, binding, vnode) {
-    let user = JSON.parse(localStorage.getItem('user'));
-        var permissionValue = binding.value + '.' + binding.arg  ;
-           /*if(user.role_id == 4)
-            {*/
-             //   commentNode(el, vnode)
-           // }
+    let user
+    var permissionValue = binding.value;
+    if(app.$store != 'undefined'){
+      user = JSON.parse(app.$store.getters.getAuthUser);
+      var allPermissions = user.scopes;
+      if(allPermissions){       
+        if(!allPermissions.includes(permissionValue))
+        {
+            commentNode(el, vnode);
+        }
+    }
+}
+},
+update: function (el, binding, vnode) {
+    let user
+    var permissionValue = binding.value;
+    if(app.$store != 'undefined'){
+      user = JSON.parse(app.$store.getters.getAuthUser);
+      var allPermissions = user.scopes;
+      if(allPermissions){       
+        if(!allPermissions.includes(permissionValue))
+        {
+            commentNode(el, vnode);
+        }
+    }
+}
 }
 });
-
-
 /**
  * Create comment node
  *

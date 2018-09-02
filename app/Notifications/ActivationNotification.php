@@ -54,7 +54,7 @@ class ActivationNotification extends Notification
         }
         $url = url(
             route(
-                'activate', [
+                'user.activate', [
                 'token' => $notifiable->activation_key,
                 ]
             )

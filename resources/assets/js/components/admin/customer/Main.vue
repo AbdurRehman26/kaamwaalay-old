@@ -153,7 +153,7 @@
             ViewCustomerDetail(id) {
 
                 /*this.viewcustomer = true;*/
-                this.$router.push({ name: 'customerdetail', params: { id:id }})
+                this.$router.push({ name: 'customer.detail', params: { id:id }})
             },
             changestatuspopup(record) {
                 this.statusData = record;

@@ -19,44 +19,22 @@ class JobMessageController extends ApiResourceController
         $rules = [];
 
         if($value == 'store') {
-              $rules['job_id'] =  'required|exists:jobs,id';
-              $rules['job_bid_id'] =  'required|exists:job_bids,id';
-        }
+          $rules['job_id'] =  'required|exists:jobs,id';
+          $rules['job_bid_id'] =  'required|exists:job_bids,id';
+      }
 
-        if($value == 'update') {
+      return $rules;
 
-        }
-
-
-        if($value == 'destroy') {
-
-        }
-
-        if($value == 'show') {
-
-        }
-
-        if($value == 'index') {
-
-        }
-
-        return $rules;
-
-    }
+  }
 
 
-    public function input($value='')
-    {
-        $input = request()->only('id', 'text', 'job_id', 'job_bid_id');
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-        $input['sender_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+  public function input($value='')
+  {
+    $input = request()->only('id', 'text', 'job_id', 'job_bid_id');
     
-
-        if($value == 'store') {
-            unset($input['user_id']);
-        }
-
-        return $input;
-    }
+    $input['sender_id'] = request()->user()->id;
+    
+    return $input;
+}
 
 }
