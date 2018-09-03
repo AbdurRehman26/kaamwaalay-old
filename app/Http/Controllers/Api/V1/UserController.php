@@ -60,10 +60,11 @@ class UserController extends ApiResourceController
     );
 
     $input['user_id'] = request()->user()->id;
-    
+     
     if($value == 'update') {
-        unset($input['user_details']['email']);
+        unset($input['user_details']['email'], 'pagination', 'filter_by_role', 'filter_by_service', 'filter_by_roles', 'keyword');
     }
+
 
     return $input;
 }
@@ -198,22 +199,6 @@ public function socialLogin(Request $request)
 return response()->json($output, $code);
 }
 
-
-public function messages($value = '')
-{
-    $messages = [
-        'user_details.first_name.required' => 'The first name field is required.',
-        'user_details.last_name.required' => 'The last name field is required.',
-        'user_details.email.required' => 'The email field is required.',
-        'user_details.phone_number.required' => 'The phone number field is required.',
-        'business_details.business_type.in' => 'The business details type is invalid',
-        'service_details.*.id.exists' => 'The service profile request id is invalid',
-        'service_details.*.service_id.exists' => 'The service id is invalid'
-    ];
-
-    return !empty($messages) ? $messages : [];
-}
-
 public function changeStatus(Request $request)
 {
     $data = $request->only('status', 'id', 'user_id');
@@ -332,5 +317,21 @@ public function responseMessages($value = '')
 
     return !empty($messages[$value]) ? $messages[$value] : 'Success.';
 }
+
+public function messages($value = '')
+{
+    $messages = [
+        'user_details.first_name.required' => 'The first name field is required.',
+        'user_details.last_name.required' => 'The last name field is required.',
+        'user_details.email.required' => 'The email field is required.',
+        'user_details.phone_number.required' => 'The phone number field is required.',
+        'business_details.business_type.in' => 'The business details type is invalid',
+        'service_details.*.id.exists' => 'The service profile request id is invalid',
+        'service_details.*.service_id.exists' => 'The service id is invalid'
+    ];
+
+    return !empty($messages) ? $messages : [];
+}
+
 
 }
