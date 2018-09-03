@@ -8,7 +8,7 @@
       </div>
       <div class="container"></div>
       <div class="text-center">
-          <h2 class="auth-title">Welcome to PSI, Pakistan
+          <h2 class="auth-title">Welcome to PSM, Pakistan
             <span class="auth-title-desc" >Please create your account password</span>
           </h2>
       </div>
@@ -17,7 +17,7 @@
           <div class="new-password-form auth-forms active" >
             <form>
             <div class="form-statement">
-              <p>You'll need to create a new password to access your PSI account.</p>
+              <p>You'll need to create a new password to access your PSM account.</p>
             </div>
                <div class="row">
 <!--                  <div class="col-xs-12 col-md-12 non-editable ">
