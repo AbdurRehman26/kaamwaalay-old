@@ -56,15 +56,15 @@
                         <img  :src="record.profile_image" >
                     </span>
                 </td>
-                <td><a href="javascript:void(0);" @click="ViewCustomerDetail(record.id)">{{record.first_name}} {{record.last_name}}</a></td>
+                <td><a href="javascript:void(0);" @click="viewCustomerDetail(record.id)">{{record.first_name}} {{record.last_name}}</a></td>
                 <!-- <td>{{list.email}} </td> -->
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
                 <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="ViewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                    <i @click="changestatuspopup(record)" :class="[record.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
+                    <i @click="viewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <i @click="changeStatusPopup(record)" :class="[record.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                 </div>
             </td>
         </tr>
@@ -82,9 +82,7 @@
 
 
 </div>
-<changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
-<customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
-<view-customer-details @HideModalValue="HideModal" :showModalProp="viewcustomer"></view-customer-details>
+<changestatuspopup @HideModalValue="hideModal" :showModalProp="changeStatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusUrl" ></changestatuspopup>
 </div>
 </template>
 
@@ -101,8 +99,7 @@
                 },
                 service: false,
                 customer: false,
-                changestatus:false,
-                viewcustomer: false,
+                changeStatus:false,
                 url : 'api/user?filter_by_role=3&pagination=true',
                 loading : true,
                 statuses : [
@@ -122,7 +119,7 @@
                 records : [],
                 record : {},
                 statusData:'',
-                changeStatusURL: 'api/user/change-status',
+                changeStatusUrl: 'api/user/change-status',
                 ChangeStatusesOptions : [
                 {
                     key : 'active',
@@ -147,22 +144,18 @@
             startLoading(){
                 this.loading = true;
             },
-            AddCustomer() {
-                this.customer = true;
-            },
-            ViewCustomerDetail(id) {
+            viewCustomerDetail(id) {
 
                 /*this.viewcustomer = true;*/
                 this.$router.push({ name: 'customer.detail', params: { id:id }})
             },
-            changestatuspopup(record) {
+            changeStatusPopup(record) {
                 this.statusData = record;
-                this.changestatus = true;
+                this.changeStatus = true;
             },
-            HideModal(){
+            hideModal(){
                 this.customer = false;
-                this.viewcustomer = false;
-                this.changestatus = false;
+                this.changeStatus = false;
             },
             getRecords(response){
                 let self = this;
