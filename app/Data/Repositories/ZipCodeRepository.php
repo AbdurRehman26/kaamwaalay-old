@@ -27,8 +27,8 @@ class ZipCodeRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'ZipCode';
-    protected $_cacheTotalKey = 'total-ZipCode';
+    protected $_cacheKey = 'zip-code';
+    protected $_cacheTotalKey = 'total-zip-code';
 
     public function __construct(ZipCode $model)
     {

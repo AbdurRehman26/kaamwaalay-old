@@ -27,8 +27,8 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
      * @access protected
      **/
 
-    protected $_cacheKey = 'JobMessage';
-    protected $_cacheTotalKey = 'total-JobMessage';
+    protected $_cacheKey = 'job-message';
+    protected $_cacheTotalKey = 'total-job-message';
 
     public function __construct(JobMessage $model)
     {

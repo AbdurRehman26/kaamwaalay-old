@@ -28,8 +28,8 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
      * @access protected
      **/
 
-    protected $_cacheKey = 'UserRating';
-    protected $_cacheTotalKey = 'total-UserRating';
+    protected $_cacheKey = 'user-rating';
+    protected $_cacheTotalKey = 'total-user-rating';
 
     public function __construct(UserRating $model)
     {

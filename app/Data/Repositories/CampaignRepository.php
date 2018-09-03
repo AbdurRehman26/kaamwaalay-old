@@ -27,8 +27,8 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
      * @access protected
      **/
 
-    protected $_cacheKey = 'Campaign';
-    protected $_cacheTotalKey = 'total-Campaign';
+    protected $_cacheKey = 'campaign';
+    protected $_cacheTotalKey = 'total-campaign';
 
     public function __construct(Campaign $model)
     {

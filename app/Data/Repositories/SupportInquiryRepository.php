@@ -30,8 +30,8 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
      * @access protected
      **/
 
-    protected $_cacheKey = 'SupportInquiry';
-    protected $_cacheTotalKey = 'total-SupportInquiry';
+    protected $_cacheKey = 'support-inquiry';
+    protected $_cacheTotalKey = 'total-support-inquiry';
 
     public function __construct(SupportInquiry $model)
     {

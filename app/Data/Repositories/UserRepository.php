@@ -30,8 +30,8 @@ class UserRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'User';
-    protected $_cacheTotalKey = 'total-User';
+    protected $_cacheKey = 'user';
+    protected $_cacheTotalKey = 'total-user';
 
     public function __construct(User $model)
     {

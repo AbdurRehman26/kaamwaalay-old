@@ -29,8 +29,8 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'Payment';
-    protected $_cacheTotalKey = 'total-Payment';
+    protected $_cacheKey = 'payment';
+    protected $_cacheTotalKey = 'total-payment';
 
     public function __construct(Payment $model)
     {

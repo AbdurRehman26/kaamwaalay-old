@@ -28,8 +28,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'Job';
-    protected $_cacheTotalKey = 'total-Job';
+    protected $_cacheKey = 'job';
+    protected $_cacheTotalKey = 'total-job';
 
     public function __construct(Job $model)
     {
