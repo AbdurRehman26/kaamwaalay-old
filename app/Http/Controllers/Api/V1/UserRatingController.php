@@ -48,7 +48,7 @@ class UserRatingController extends ApiResourceController
 
         if($value == 'store'){
             $input = request()->only('rating', 'message', 'job_id', 'user_service_id', 'user_id');
-            $input['rated_by'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+            $input['rated_by'] = request()->user()->id;
         }
 
         if($value == 'show'){

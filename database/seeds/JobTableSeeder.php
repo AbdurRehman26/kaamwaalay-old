@@ -19,13 +19,20 @@ class JobTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
         
-        $numberOfJobs = 5000;
+        $numberOfJobs = 2000;
 
         $data = [];
 
         $jobType = ['normal' , 'urgent'];
 
+        $randomValues = [0, 0, 0, 0, 0, 1];
+
+        $jobBiddingStatuses = ['in_bidding', 'in_bidding', 'in_bidding', 'in_bidding', 'in_bidding', 'cancelled'];
+        
         for ($i=1; $i < $numberOfJobs; $i++) { 
+
+
+            $isArchived = $randomValues[array_rand($randomValues)];
 
             $user = app('UserRepository')->model->where('role_id' , Role::CUSTOMER)->inRandomOrder()->first();
             $service = app('ServiceRepository')->model->inRandomOrder()->first();
@@ -58,11 +65,13 @@ class JobTableSeeder extends Seeder
                     'country_id' => $country_id,
                     'state_id' => $state->id,
                     'city_id' => $city ? $city->id : null,
-                    'job_type' => $jobType[array_rand($jobType)],
-                    'preference' => $preference, 
                     'schedule_at' => $scheduled_at,
+                    'preference' => $preference, 
+                    'job_type' => $jobType[array_rand($jobType)],
+                    'status' => $jobBiddingStatuses[array_rand($jobBiddingStatuses)],
                     'min_amount' => $min_amount[array_rand($min_amount)],
-                    'max_amount' => $max_amount[array_rand($max_amount)]
+                    'max_amount' => $max_amount[array_rand($max_amount)],
+                    'is_archived' => $isArchived,
                 ];
 
             }
