@@ -13,7 +13,26 @@ class DatabaseSeeder extends Seeder
     {
         // Guest User Calls
 
+        $this->call(CountriesTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+        $this->call(ZipCodesTableSeeder::class);
 
+        $this->call(RolesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        
+        $this->call(SupportQuestionsTableSeeder::class);
+        $this->call(PlansTableSeeder::class);
+
+        // Service and Service Provider 
+
+        $this->call(ServiceTableSeeder::class);
+        $this->call(ServiceProviderProfileSeeder::class);
+
+        // Job Seeder  
+
+        $this->call(JobTableSeeder::class);
+        $this->call(JobBidTableSeeder::class);
         $this->call(PaymentTableSeeder::class);
 
 
