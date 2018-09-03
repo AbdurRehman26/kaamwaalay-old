@@ -13,16 +13,16 @@ class DatabaseSeeder extends Seeder
     {
         // Guest User Calls
 
-        $this->call(CountriesTableSeeder::class);
-        $this->call(StatesTableSeeder::class);
-        $this->call(CitiesTableSeeder::class);
-        $this->call(ZipCodesTableSeeder::class);
+        //$this->call(CountriesTableSeeder::class);
+       // $this->call(StatesTableSeeder::class);
+       // $this->call(CitiesTableSeeder::class);
+       // $this->call(ZipCodesTableSeeder::class);
 
-        $this->call(RolesTableSeeder::class);
+      //  $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         
-        $this->call(SupportQuestionsTableSeeder::class);
-        $this->call(PlansTableSeeder::class);
+       // $this->call(SupportQuestionsTableSeeder::class);
+       // $this->call(PlansTableSeeder::class);
 
         // Service and Service Provider 
 
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         // Job Seeder  
 
-        $this->call(PaymentTableSeeder::class);
+      //  $this->call(PaymentTableSeeder::class);
 
 
         \Artisan::call('passport:install');
