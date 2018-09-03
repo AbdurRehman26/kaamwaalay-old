@@ -5,11 +5,12 @@ namespace App\Data\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Yadakhov\InsertOnDuplicateKey;
 
 class Service extends Model
 {
     //
-    use SoftDeletes;
+    use SoftDeletes, InsertOnDuplicateKey;
     /**
      * The attributes that should be cast to native types.
      *

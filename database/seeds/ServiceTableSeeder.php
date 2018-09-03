@@ -51,7 +51,7 @@ class ServiceTableSeeder extends Seeder
                 ];
             }
 
-            app("ServiceRepository")->model->insert($data);
+            app("ServiceRepository")->model->insertIgnore($data);
 
         }
     }
