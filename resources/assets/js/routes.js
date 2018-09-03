@@ -35,14 +35,14 @@ const routes = [
 
 
 
-    /* Login page */
+    /* create password page */
 
     {
         name: 'create.password',
         path: '/admin/create-password',
         meta: {
-            title: 'Create Password',
-            bodyClass: 'login-page',
+            title: 'Set Password',
+            bodyClass: 'create-password-page',
             noHeader: true,
             forAdmin :true,
 
@@ -50,7 +50,7 @@ const routes = [
         component: require('./components/auth/CreatePassword.vue'),
     },
     {
-            path: '/password/set/:token/:email',
+            path: '/admin/password/set/:token/:email',
             component: require('./components/auth/CreatePassword.vue'),
              meta: {
                 title: 'Create Password',

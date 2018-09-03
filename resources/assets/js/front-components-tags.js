@@ -1,6 +1,6 @@
 // Adding components
 Vue.component('login', require('./components/front/auth/Login.vue'));
-Vue.component('forgot', require('./components/front/auth/Forgot.vue'));
+Vue.component('forgot', require('./components/auth/Forgot.vue'));
 Vue.component('reset-password', require('./components/front/auth/ResetPassword.vue'));
 Vue.component('create-password', require('./components/front/auth/CreatePassword.vue'));
 

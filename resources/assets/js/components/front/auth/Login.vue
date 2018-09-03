@@ -28,72 +28,7 @@
                     </div>
                 </div>
             </form>
-    <!-- <form>
-      
-            <div class="row">
-               <div class="col-xs-12 col-md-12">
-                <div class="form-group">
-                  <label>Email Address</label>
-                  <input type="email" name="email" class="form-control" placeholder="Enter your email address">
-              </div>
-          </div>
-          <div class="col-xs-12 col-md-12">
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Enter your account password">
-          </div>
-      </div>
-      <div class="col-xs-12 col-md-12">
-        <div class="form-group">
-           <span class="forgot-password-text" @click.prevent="$emit('show-login')">Forgot Password?</span>
-       </div>
-   </div>
-   <div class="col-xs-12 col-md-12">
-    <button type="button" class="btn btn-primary apply-primary-color btn-lg" @click="MyBids">
-      <span>Log In</span>
-      <loader></loader>
-  </button>
 </div>
-</div>
-
-</form> -->
-
-</div>
-
-        <!--
-  <div class="login-form auth-forms active">
-    <b-form novalidate @submit.prevent="onSubmit" v-if="show">
-      <b-form-group id="exampleInputGroup1"
-                    label="Email Address:"
-                    label-for="exampleInput1"
-                    description="">
-        <b-form-input id="login_email"
-                      type="email"
-                      v-model="loginForm.email"
-                      placeholder="Enter email">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleInputGroup2"
-                    label="Password:"
-                    label-for="exampleInput2">
-        <b-form-input id="login_password"
-                      type="password"
-                      v-model="loginForm.name"
-                      placeholder="Enter password">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="loginForm.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Remember me</b-form-checkbox>
-          <span class="forgot-password-text" @click.prevent="$emit('show-login')">Forgot Password?</span>
-        </b-form-checkbox-group>
-      </b-form-group>
-      <b-button type="submit" variant="primary" >Log In
-      <loader></loader>
-      </b-button>
-    </b-form>
-</div> -->
-
 </template>
 
 <script>
@@ -127,23 +62,22 @@ export default {
             }
         },
 methods: {
-        // onSubmit() {
-        //   console.log(this.form);
-        //   this.$router.push({ name: 'dashboard'});
-        // },
         MyBids(){
-            this.$router.push('my-bids');
+            this_.$router.push({ name: 'my-bids'})
         },
         login: function () {
-          var this_ = this;
-          this.loading = true
-          window.successMessage = ""
-          if(!this.$auth.isAuthenticated()){
-                      //this.$http.put('api/auth/login/admin', this.userData)
+                  var this_ = this;
+                  this.loading = true
+                  window.successMessage = ""
+                 if(!this.$auth.isAuthenticated()){
                       this.$auth.login(this.login_info).then(function (response) {
                         self.loading = false
                         this_.$store.commit('setAuthUser', response.data.response.data[0]);
-                        this_.$router.push({ name: 'my-bid'})
+                        if(response.data.response.data[0].role_id == 2){
+                          this_.$router.push({ name: 'my-bids'})
+                        }else{
+                          this_.$router.push({ name: 'my-jobs'})  
+                        }
                       }).catch(error => {
                         this.loading = false
                         this_.errorMessage  =error.response.data.errors.email[0];
@@ -153,9 +87,14 @@ methods: {
                         }, 5000);
                       })
                     }else{
+                      let user = JSON.parse(self.$store.getters.getAuthUser);  
                       setTimeout(function(){
                         this.loading = false
-                        this_.$router.push({ name: 'my-bid'})
+                        if(user.role_id == 2){
+                          this_.$router.push({ name: 'my-bids'})
+                        }else{
+                          this_.$router.push({ name: 'my-jobs'})  
+                        }
                       }, 5000);
                     }
                   },
@@ -172,5 +111,3 @@ methods: {
     },
 }
 </script>
-
-<!-- b-form-1.vue -->

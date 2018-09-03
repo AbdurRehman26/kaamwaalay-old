@@ -17,8 +17,8 @@
         component: require('./components/front/auth/main.vue'),
     },
     {
-        name: 'reset-password',
-        path: '/reset-password',
+        name: 'password.reset',
+        path: '/password/reset/:token/:email',
         meta: {
             title: 'PSM | reset-password',
             bodyClass: 'reset-password-page',
@@ -158,7 +158,7 @@
     //jobs pages
 
     {
-        name: 'my_jobs',
+        name: 'my-jobs',
         path: '/my-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
@@ -209,7 +209,7 @@
 
     //bidding page
     {
-        name: 'my-bid',
+        name: 'my-bids',
         path: '/my-bids',
         meta: {
             title: 'Professional Service Marketplace | My Bids',
