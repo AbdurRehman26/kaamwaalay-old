@@ -102,8 +102,10 @@
     this.currentRecord = record
     if(this.currentRecord.role_id == 4){
       this.currentRecord.role_id = 1
+      this.currentRecord.role.title = 'Full'
   }else{
       this.currentRecord.role_id = 4
+      this.currentRecord.role.title = 'Service Provider Review'
   }
   self.updateUrl = 'api/user/change-access-level'
   self.updateData  = {

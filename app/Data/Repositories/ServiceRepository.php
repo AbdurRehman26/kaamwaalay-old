@@ -56,10 +56,9 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
             $jobFinishedCriteria = ['status' => 'completed', 'service_id' => $data->id];
             $data->job_finished_count = $this->jobRepo->getTotalCountByCriteria($jobFinishedCriteria);
-
+            
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
-            $data->url_prefix = $data->url_prefix? $data->url_prefix : Storage::url(config('uploads.service.url.folder').'/');
         }
         
         return $data;
@@ -89,7 +88,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     }
     public function update(array $data = [])
     {
-        
+        $record = [];
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
             $parentExist = Service::where('id', '=', $data['id'])->whereNull('parent_id')->count();
@@ -100,6 +99,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             }
             
         }else{
+            if($data['status'] == 0) {
+                $criteria = ['service_id' => (int)$data['id']];
+                $record['error'] = 1;
+                $record['jobs_count'] = $this->jobRepo->getTotalCountByCriteria($criteria);
+                $serviceProviderCriteria = ['service_id' => (int)$data['id']];
+                $record['service_provider_count'] = $this->serviceProviderRepo->getTotalCountByCriteria($criteria);
+                if($record['jobs_count'] || $record['service_provider_count']) {
+                    return (object)$record;
+                }   
+            }
             return parent::update($data);
         }
 

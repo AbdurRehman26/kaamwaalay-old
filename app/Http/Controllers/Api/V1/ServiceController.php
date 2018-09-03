@@ -34,6 +34,7 @@ class ServiceController extends ApiResourceController
               $rules['is_display_footer_nav']   = 'required|in:0,1';     
               $rules['status']                  = 'required|in:0,1';    
               $rules['is_featured']                  = 'required|in:0,1';     
+              $rules['url_prefix']                  = 'required|unique:services,url_prefix';     
 
               //$rules['user_id'] =  'required|exists:users,id';   
         }
@@ -119,7 +120,11 @@ class ServiceController extends ApiResourceController
         $this->validate($request, $rules, $messages);
 
         $data = $this->_repository->update($input);
-    
+        if(isset($data->error) && $data->error) {
+            $output = ['response' => ['data' => $data, 'message' => 'It doesn\'t seem possible to change the current status of this service.']];
+
+            return response()->json($output, 422);
+        }
         if ($data == 'not_parent') {
             $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
 

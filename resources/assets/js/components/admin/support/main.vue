@@ -78,7 +78,7 @@
         </div>-->
       </div>
     </div>
-    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportdetailpopup" @refreshList="getList(false, false)"></support-detail>
+    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportDetailPopup" @refreshList="getList(false, false)"></support-detail>
   </div>
 </template>
 
@@ -86,11 +86,8 @@
   export default {
     data () {
       return {
-        supportdetailpopup: false,
+        supportDetailPopup: false,
         service: false,
-        viewdetails: false,
-        actiondelete: false,
-        viewcustomer: false,
         currentPage: 1,
         listing: [],
         search : '',
@@ -108,7 +105,6 @@
 
     watch : {
       currentPage(pageNumber){
-
         var data = {
           search : this.search,
           filter: this.filter_by_inquiry
@@ -119,7 +115,7 @@
     },
     methods: {
       HideModal(){
-        this.supportdetailpopup = false;
+        this.supportDetailPopup = false;
       },
       onApply() {
         this.loading = true;
@@ -132,7 +128,7 @@
       },
       SupportDetail(list) {
         this.selectedInquiry = list;
-        this.supportdetailpopup = true;
+        this.supportDetailPopup = true;
       },
       getResponse(response) {
         return ['Helo', "kakak"];//response.data.items
