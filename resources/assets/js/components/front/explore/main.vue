@@ -53,7 +53,7 @@
 						<div class="showmore showmore-link clearfix">
 							<div>
 							  <!-- element to collapse -->
-							  <b-collapse :id="service.id">
+							  <b-collapse :id="''+service.id">
 							    <b-card>
 							      <div class="items" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
 									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
@@ -63,7 +63,7 @@
 								</div>
 							    </b-card>
 							  </b-collapse>
-							  <a href="javascript::void(0)" class="showCollapse" @click.prevent="onToggleCollapse($event, service.id)" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians<i class="icon-keyboard_arrow_right"></i></a>
+							  <a href="javascript::void(0)" class="showCollapse" @click.prevent="onToggleCollapse($event, ''+service.id)" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians<i class="icon-keyboard_arrow_right"></i></a>
 							</div>
 						</div>
 
@@ -156,6 +156,7 @@ export default {
 			this.isTouched = true
 		},
 		onSelectCategory(val) {
+			sessionStorage.setItem("zip", val);
 			this.HideModal();
 			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.selectedService.id, zip : val }});
 		},
@@ -187,7 +188,11 @@ export default {
 		}, 1000),
 		changecategorypopup(service) {
 			this.selectedService = service;
-			this.categoryval = true;
+			if(sessionStorage['zip']) {
+				this.onSelectCategory(sessionStorage['zip']);
+			}else {
+				this.categoryval = true;	
+			}
 		},
 		HideModal(){
 			this.categoryval = false;
@@ -198,6 +203,7 @@ export default {
 				this.isTouched = true;
 				return;
 			}
+			sessionStorage.setItem('zip', this.zipCode);
 			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }});
 			//this.$router.push('/explore/service_provider');
 		},

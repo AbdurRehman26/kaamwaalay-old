@@ -1,10 +1,6 @@
  <template>	
 	<div class="popup categories-popup">
 		<b-modal id="" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
-<<<<<<< HEAD
-=======
-            <!--<alert></alert>-->
->>>>>>> a3344653e2b71078edd9917b1f403b8e8125974b
 		    	<div class="category-selected">
                     <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue)+')'}">
                     </div>
@@ -73,8 +69,13 @@ export default {
             }
         },
         selectedValue(value) {
-            console.log(value, 88999943);
             this.selectedValue = value;
+        },
+        zip(val) {
+            if(val.length > 5) {
+                val = val.substr(0, 5);
+            }
+            this.zip = val; 
         }
     },
 }
