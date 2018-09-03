@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Data\Models\Role;
 
 class ResetPassword extends Notification
 {
@@ -54,9 +55,14 @@ class ResetPassword extends Notification
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
+        if($notifiable->role_id == Role::ADMIN || $notifiable->role_id == Role::REVIEWER ){
+          $url = 'admin.password.reset';
+        }else{
+          $url = 'password.reset';
+        }
         $url = url(
             route(
-                'password.reset', [
+                 $url, [
                 'token' =>$this->token,
                 'email' =>$notifiable->email,
                 ], false

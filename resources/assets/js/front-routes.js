@@ -17,8 +17,8 @@
         component: require('./components/front/auth/main.vue'),
     },
     {
-        name: 'reset-password',
-        path: '/reset-password',
+        name: 'password.reset',
+        path: '/password/reset/:token/:email',
         meta: {
             title: 'PSM | reset-password',
             bodyClass: 'reset-password-page',

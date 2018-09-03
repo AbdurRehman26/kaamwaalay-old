@@ -14,9 +14,12 @@ Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
 });
-Route::get('/password/set/{token}/{email}', function(){
-    return view('admin-layout');
+Route::get('/password/reset/{token}/{email}', function(){
+    return view('front-layout');
 })->where('id', '.*')->name('password.reset');
+Route::get('/admin/password/set/{token}/{email}', function(){
+    return view('admin-layout');
+})->where('id', '.*')->name('admin.password.reset');
 Route::get('/', function () {
     return view('layout');
 });

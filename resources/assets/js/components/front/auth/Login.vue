@@ -28,38 +28,7 @@
                     </div>
                 </div>
             </form>
-    <!-- <form>
-      
-            <div class="row">
-               <div class="col-xs-12 col-md-12">
-                <div class="form-group">
-                  <label>Email Address</label>
-                  <input type="email" name="email" class="form-control" placeholder="Enter your email address">
-              </div>
-          </div>
-          <div class="col-xs-12 col-md-12">
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Enter your account password">
-          </div>
-      </div>
-      <div class="col-xs-12 col-md-12">
-        <div class="form-group">
-           <span class="forgot-password-text" @click.prevent="$emit('show-login')">Forgot Password?</span>
-       </div>
-   </div>
-   <div class="col-xs-12 col-md-12">
-    <button type="button" class="btn btn-primary apply-primary-color btn-lg" @click="MyBids">
-      <span>Log In</span>
-      <loader></loader>
-  </button>
 </div>
-</div>
-
-</form> -->
-
-</div>
-
 </template>
 
 <script>
@@ -93,23 +62,22 @@ export default {
             }
         },
 methods: {
-        // onSubmit() {
-        //   console.log(this.form);
-        //   this.$router.push({ name: 'dashboard'});
-        // },
         MyBids(){
             this.$router.push('my.bids');
         },
         login: function () {
-          var this_ = this;
-          this.loading = true
-          window.successMessage = ""
-          if(!this.$auth.isAuthenticated()){
-                      //this.$http.put('api/auth/login/admin', this.userData)
+                  var this_ = this;
+                  this.loading = true
+                  window.successMessage = ""
+                 if(!this.$auth.isAuthenticated()){
                       this.$auth.login(this.login_info).then(function (response) {
                         self.loading = false
                         this_.$store.commit('setAuthUser', response.data.response.data[0]);
-                        this_.$router.push({ name: 'my.bids'})
+                        if(response.data.response.data[0].role_id == 2){
+                          this_.$router.push({ name: 'my.bids'})
+                        }else{
+                          this_.$router.push({ name: 'my.jobs'})  
+                        }
                       }).catch(error => {
                         this.loading = false
                         this_.errorMessage  =error.response.data.errors.email[0];
@@ -119,9 +87,14 @@ methods: {
                         }, 5000);
                       })
                     }else{
+                      let user = JSON.parse(self.$store.getters.getAuthUser);  
                       setTimeout(function(){
                         this.loading = false
-                        this_.$router.push({ name: 'my.bids'})
+                        if(user.role_id == 2){
+                          this_.$router.push({ name: 'my.bids'})
+                        }else{
+                          this_.$router.push({ name: 'my.jobs'})  
+                        }
                       }, 5000);
                     }
                   },
@@ -138,5 +111,3 @@ methods: {
     },
 }
 </script>
-
-<!-- b-form-1.vue -->
