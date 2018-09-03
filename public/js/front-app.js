@@ -4828,6 +4828,104 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/UrgentJobPopup.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['showModalProp'],
+    methods: {
+        showModal: function showModal() {
+            this.$refs.myModalRef.show();
+        },
+        hideModal: function hideModal() {
+            this.$refs.myModalRef.hide();
+        },
+        onHidden: function onHidden() {
+            this.$emit('HideModalValue');
+        }
+    },
+    watch: {
+        showModalProp: function showModalProp(value) {
+
+            if (value) {
+                this.showModal();
+            }
+            if (!value) {
+                this.hideModal();
+            }
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/VisitRequestPopup.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6656,48 +6754,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -6710,6 +6766,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       value: '',
       customdate: '',
       value_month: '',
+      categoryval: false,
       value_year: '',
       time1: '',
       time2: '',
@@ -6733,6 +6790,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     job: function job() {
       window.scrollTo(0, 0);
       this.$router.push({ name: 'My Jobs' });
+    },
+    urgentjob: function urgentjob() {
+      this.categoryval = true;
+    },
+    HideModal: function HideModal() {
+      this.categoryval = false;
     }
   }
 });
@@ -9074,6 +9137,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.$router.push('apply-for-review');
 			}
 			return result;
+		},
+		scrolltop: function scrolltop() {
+			window.scrollTo(0, 0);
 		}
 	}
 });
@@ -68501,178 +68567,208 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper-sm" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "post-job-form" }, [
-      _c(
-        "form",
-        [
-          _c("alert"),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _c("div", { staticClass: "service-need" }, [
-            _vm._m(4),
+  return _c(
+    "div",
+    { staticClass: "wrapper-sm" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "post-job-form" }, [
+        _c(
+          "form",
+          [
+            _c("alert"),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Preference")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.choosedate,
-                          expression: "choosedate"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.choosedate = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "option",
-                        {
-                          attrs: {
-                            value: "choosedate",
-                            selected: "",
-                            disabled: ""
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "service-need" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Preference")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.choosedate,
+                            expression: "choosedate"
                           }
-                        },
-                        [_vm._v("Choose Date")]
-                      ),
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.choosedate = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "option",
+                          {
+                            attrs: {
+                              value: "choosedate",
+                              selected: "",
+                              disabled: ""
+                            }
+                          },
+                          [_vm._v("Choose Date")]
+                        ),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("In a few days")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Within this week")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Next week")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("2 weeks")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("1 month")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "custom" } }, [
+                          _vm._v("Custom")
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group custom-datepicker" },
+                    [
+                      _c("label", [_vm._v("Select Date")]),
                       _vm._v(" "),
-                      _c("option", [_vm._v("In a few days")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Within this week")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("Next week")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("2 weeks")]),
-                      _vm._v(" "),
-                      _c("option", [_vm._v("1 month")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "custom" } }, [
-                        _vm._v("Custom")
-                      ])
-                    ]
+                      _c("date-picker", {
+                        attrs: { format: "DD-MM-YYYY", lang: "en" },
+                        model: {
+                          value: _vm.value,
+                          callback: function($$v) {
+                            _vm.value = $$v
+                          },
+                          expression: "value"
+                        }
+                      })
+                    ],
+                    1
                   )
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "div",
-                  { staticClass: "form-group custom-datepicker" },
-                  [
-                    _c("label", [_vm._v("Select Date")]),
-                    _vm._v(" "),
-                    _c("date-picker", {
-                      attrs: { format: "DD-MM-YYYY", lang: "en" },
-                      model: {
-                        value: _vm.value,
-                        callback: function($$v) {
-                          _vm.value = $$v
-                        },
-                        expression: "value"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ])
+              _vm.choosedate == "custom"
+                ? _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group custom-datepicker" },
+                        [
+                          _c("label", [_vm._v("Custom Date")]),
+                          _vm._v(" "),
+                          _c("date-picker", {
+                            attrs: { format: "DD-MM-YYYY", lang: "en" },
+                            model: {
+                              value: _vm.customdate,
+                              callback: function($$v) {
+                                _vm.customdate = $$v
+                              },
+                              expression: "customdate"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
-            _vm.choosedate == "custom"
-              ? _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group custom-datepicker" },
-                      [
-                        _c("label", [_vm._v("Custom Date")]),
-                        _vm._v(" "),
-                        _c("date-picker", {
-                          attrs: { format: "DD-MM-YYYY", lang: "en" },
-                          model: {
-                            value: _vm.customdate,
-                            callback: function($$v) {
-                              _vm.customdate = $$v
-                            },
-                            expression: "customdate"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _vm._m(5),
-          _vm._v(" "),
-          _c("div", { staticClass: "verify-account" }, [
-            _vm._m(6),
+            _vm._m(5),
             _vm._v(" "),
-            _vm._m(7),
-            _vm._v(" "),
-            _vm._m(8),
-            _vm._v(" "),
-            _vm._m(9),
-            _vm._v(" "),
-            _c("div", { staticClass: "job-form-submission" }, [
-              _c("div", { staticClass: " " }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        _vm.job()
+            _c("div", { staticClass: "verify-account" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v(" ")]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "add-photos filter-btn-top-space",
+                      attrs: { href: "javascript:void(0);" },
+                      on: {
+                        click: function($event) {
+                          _vm.urgentjob()
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Create Job\n\t\t\t\t\t\t\t"), _c("loader")],
-                  1
-                )
+                    },
+                    [_vm._v(" + Urgent/Feature Job")]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Please make sure all the information you entered is accurate before submitting."
-                )
+              _vm._m(8),
+              _vm._v(" "),
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "job-form-submission" }, [
+                _c("div", { staticClass: " " }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: {
+                        click: function($event) {
+                          _vm.job()
+                        }
+                      }
+                    },
+                    [_vm._v("Create Job\n\t\t\t\t\t\t\t"), _c("loader")],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Please make sure all the information you entered is accurate before submitting."
+                  )
+                ])
               ])
             ])
-          ])
-        ],
-        1
-      )
-    ])
-  ])
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("urgent-job", {
+        attrs: { showModalProp: _vm.categoryval },
+        on: { HideModalValue: _vm.HideModal }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -68931,31 +69027,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Credit Card Type")]),
+        _vm._v(" "),
+        _c("select", { staticClass: "form-control" }, [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("Select credit card type")
+          ]),
           _vm._v(" "),
-          _c("select", { staticClass: "form-control" }, [
-            _c("option", { attrs: { selected: "", disabled: "" } }, [
-              _vm._v("Select credit card type")
-            ]),
-            _vm._v(" "),
-            _c("option", [_vm._v("VISA")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Master")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Card Holder Name")]),
+          _c("option", [_vm._v("VISA")]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "", placeholder: "Enter card holder name", name: "" }
-          })
+          _c("option", [_vm._v("Master")])
         ])
       ])
     ])
@@ -68979,79 +69062,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("label", { attrs: { for: "" } }, [_vm._v("Expiry Date")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group custom-datepicker" }, [
-              _c("select", { staticClass: "form-control" }, [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("Select Month")
-                ]),
-                _vm._v(" "),
-                _c("option", [_vm._v("January")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("Feburay")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("March")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("April")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("May")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("June")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("July")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("August")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("September")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("October")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("November")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("December")])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group custom-datepicker" }, [
-              _c("select", { staticClass: "form-control" }, [
-                _c("option", { attrs: { selected: "", disabled: "" } }, [
-                  _vm._v("Select Year")
-                ]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2010")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2011")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2012")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2013")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2014")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2015")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2016")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2017")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2018")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2019")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2020")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("2021")])
-              ])
-            ])
-          ])
-        ])
-      ])
+      _c("div", { staticClass: "col-md-6" })
     ])
   },
   function() {
@@ -79160,6 +79171,169 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-a560f1a6", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-aee59904\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/UrgentJobPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "urgent-job",
+            centered: "",
+            "title-tag": "h4",
+            "ok-variant": "primary",
+            size: "sm",
+            title: "Urgent/Featured Job",
+            "ok-only": "",
+            "ok-title": "Submit"
+          },
+          on: { hidden: _vm.onHidden }
+        },
+        [
+          _c("alert"),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c(
+                "b-row",
+                { staticClass: "justify-content-md-center" },
+                [
+                  _c("b-col", { attrs: { md: "12" } }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Card Holder Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "name",
+                          placeholder: "Enter card holder name",
+                          name: ""
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("label", { attrs: { for: "" } }, [
+                      _vm._v("Expiry Date")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group custom-datepicker" },
+                          [
+                            _c("select", { staticClass: "form-control" }, [
+                              _c(
+                                "option",
+                                { attrs: { selected: "", disabled: "" } },
+                                [_vm._v("Select Month")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("January")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("Feburay")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("March")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("April")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("May")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("June")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("July")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("August")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("September")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("October")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("November")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("December")])
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group custom-datepicker" },
+                          [
+                            _c("select", { staticClass: "form-control" }, [
+                              _c(
+                                "option",
+                                { attrs: { selected: "", disabled: "" } },
+                                [_vm._v("Select Year")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2010")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2011")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2012")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2013")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2014")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2015")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2016")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2017")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2018")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2019")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2020")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("2021")])
+                            ])
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aee59904", module.exports)
   }
 }
 
@@ -97587,6 +97761,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/front/common-components/UrgentJobPopup.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/front/common-components/UrgentJobPopup.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-aee59904\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/front/common-components/UrgentJobPopup.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\front\\common-components\\UrgentJobPopup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aee59904", Component.options)
+  } else {
+    hotAPI.reload("data-v-aee59904", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/front/common-components/VisitRequestPopup.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -99145,6 +99367,7 @@ Vue.component('category-popup', __webpack_require__("./resources/assets/js/compo
 Vue.component('award-job-popup', __webpack_require__("./resources/assets/js/components/front/common-components/AwardJobPopup.vue"));
 Vue.component('visit-request-popup', __webpack_require__("./resources/assets/js/components/front/common-components/VisitRequestPopup.vue"));
 Vue.component('post-bid-popup', __webpack_require__("./resources/assets/js/components/front/common-components/PostBidPopup.vue"));
+Vue.component('urgent-job', __webpack_require__("./resources/assets/js/components/front/common-components/UrgentJobPopup.vue"));
 Vue.component('customer-support-popup', __webpack_require__("./resources/assets/js/components/front/common-components/CustomerSupportPopup.vue"));
 Vue.component('go-to-visit-popup', __webpack_require__("./resources/assets/js/components/front/common-components/GoToVisitPopup.vue"));
 Vue.component('write-review-popup', __webpack_require__("./resources/assets/js/components/front/common-components/writeReviewPopup.vue"));

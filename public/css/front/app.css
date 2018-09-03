@@ -13326,17 +13326,17 @@ input[type=number]::-webkit-outer-spin-button {
   height: 40px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1500px) {
   .footer-links .app-images img {
-    width: 104px;
-    height: 38px;
+    width: 104px !important;
+    height: 38px !important;
   }
 }
 
 @media (max-width: 1024px) {
   .footer-links .app-images img {
-    width: 80px;
-    height: 27px;
+    width: 80px !important;
+    height: 27px !important;
   }
 }
 

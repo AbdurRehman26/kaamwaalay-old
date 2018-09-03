@@ -25,6 +25,7 @@ Vue.component('category-popup',require('./components/front/common-components/Cat
 Vue.component('award-job-popup',require('./components/front/common-components/AwardJobPopup.vue'));
 Vue.component('visit-request-popup',require('./components/front/common-components/VisitRequestPopup.vue'));
 Vue.component('post-bid-popup',require('./components/front/common-components/PostBidPopup.vue'));
+Vue.component('urgent-job',require('./components/front/common-components/UrgentJobPopup.vue'));
 Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));
 Vue.component('go-to-visit-popup',require('./components/front/common-components/GoToVisitPopup.vue'));
 Vue.component('write-review-popup',require('./components/front/common-components/writeReviewPopup.vue'));

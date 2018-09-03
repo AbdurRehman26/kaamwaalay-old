@@ -81,13 +81,13 @@
 		img {
 			width: 120px;
 		    height: 40px;
-		    @include Desktop1300{
-			    width: 104px;
-			    height: 38px;
-		    }
+		    @include Desktop1440{
+			    width: 104px !important;
+			    height: 38px !important;
+		    }		    
 		    @include tabletF{
-			    width: 80px;
-			    height: 27px;
+			    width: 80px !important;
+			    height: 27px !important;
 		    }
 		    @include mobile{
 		    	width: 153px !important;

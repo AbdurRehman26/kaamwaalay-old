@@ -130,6 +130,9 @@
 				}
 				return result;
 			},
+			scrolltop(){
+				window.scrollTo(0,0);
+			}
 		},
 	}
 	</script>
