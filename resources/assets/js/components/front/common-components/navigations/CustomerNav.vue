@@ -9,7 +9,7 @@
 
                 <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
-                        <img src="" alt="">
+                        <img :src="imageValue" alt="">
                     </span>
                     <p class="username">{{fullName}}</p>
                 </div>
@@ -50,16 +50,16 @@
         directives: {
             onClickaway: onClickaway,
         },
-        mounted: function () {
-            let self = this;
-            self.user = JSON.parse(self.$store.getters.getAuthUser);
-            self.first_name = self.user.first_name;
-            self.last_name = self.user.last_name;
-        },
         computed : {
-            fullName(){
-                return this.first_name + ' ' + this.last_name;
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
             },
+            fullName(){
+                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
+            },
+            imageValue(){
+                return this.userDetails ? this.userDetails.profileImage : ''
+            }
         },
         methods: {
             ShowModal(){

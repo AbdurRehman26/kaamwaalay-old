@@ -45,6 +45,7 @@ class ServiceTableSeeder extends Seeder
 
             foreach ($services as $key => $service) {
                 $data [] = [
+                    'id' => $key,
                     'title' => $service,
                     'description' => $faker->Text,
                 ];
