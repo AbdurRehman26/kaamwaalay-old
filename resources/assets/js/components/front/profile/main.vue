@@ -184,15 +184,14 @@
                 if(self.record.state_id){  
                     this.cityUrl = 'api/city?state_id=' + this.record.state_id;
                 }
-                console.log(self.record ,' 222');
                 self.profileImage = self.record.profileImage;
-
 
             },
             getStateResponse(response){
                 let self = this;
                 self.loading = false;
                 self.states = response.data;
+
             },
             getCityResponse(response){
                 let self = this;
@@ -222,9 +221,11 @@
                 self.$http.put(url, data).then(response => {
                     response = response.data.response;
 
+                    this.$store.commit('setAuthUser', response.data);
                     self.successMessage = response.message;
+
                     setTimeout(function () {
-                        self.$router.push({ name : 'my.jobs'});
+                        // self.$router.push({ name : 'my.jobs'});
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);

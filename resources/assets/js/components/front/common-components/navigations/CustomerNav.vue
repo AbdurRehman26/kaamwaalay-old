@@ -50,18 +50,15 @@
         directives: {
             onClickaway: onClickaway,
         },
-        mounted: function () {
-            let self = this;
-            self.user = JSON.parse(self.$store.getters.getAuthUser);
-            self.first_name = self.user.first_name;
-            self.last_name = self.user.last_name;
-        },
         computed : {
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
+            },
             fullName(){
-                return this.first_name + ' ' + this.last_name;
+                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
             },
             imageValue(){
-                return this.user ? this.user.profile_image : ''
+                return this.userDetails ? this.userDetails.profileImage : ''
             }
         },
         methods: {
