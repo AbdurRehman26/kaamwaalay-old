@@ -108,6 +108,7 @@ $nav-font:$font-bold;
                     text-align: center;
                     a{
                         padding-left: 0px;
+                        padding-right: 0px;
                         &.router-link-exact-active{
                             color: $primary-color-md;
                             &:after{

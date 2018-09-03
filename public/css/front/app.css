@@ -13545,6 +13545,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   .navigation.main-navigation ul li a {
     padding-left: 0px;
+    padding-right: 0px;
   }
 
   .navigation.main-navigation ul li a.router-link-exact-active {
@@ -18345,6 +18346,16 @@ body .chat-feedback-message.white-msg:before {
 
   .bidding-sec h2 {
     padding-bottom: 25px;
+  }
+
+  .job-post-page .profile-head,
+  .featured-profile-page .profile-head {
+    margin-top: 20px;
+  }
+
+  .job-post-page .profile-head h1,
+  .featured-profile-page .profile-head h1 {
+    margin: 0px 0 10px 0;
   }
 
   .my-job-indication,
