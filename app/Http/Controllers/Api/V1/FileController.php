@@ -115,7 +115,7 @@ class FileController extends Controller
             }
 
             $response['name'] = $file->hashName();
-            $response['upload_url'] = Storage::url($config['folder'] . $file->hashName());
+            $response['upload_url'] = Storage::url($config['folder'] . '/' . $file->hashName());
 
             return $this->prepareUploadSuccessfulResponse($response, $file);
         }
