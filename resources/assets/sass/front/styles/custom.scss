@@ -389,6 +389,9 @@ $section-padding-sm:20px 0px;
             padding-right: 0px;
         }
         .content-sec{
+            h2{
+                font-size: 27px;
+            }
             p{
                 font-size: 20px;
                 line-height: 29px;
@@ -446,9 +449,9 @@ $section-padding-sm:20px 0px;
         }
         @include mobile{
             h2{
-                font-size: 14px;
-                margin-bottom: 16px;
-                line-height: 23px;                
+                font-size: 17px !important;
+                margin-bottom: 16px !important;
+                line-height: 23px !important;                
             }
             p{
                 font-size: 14px !important;
@@ -532,6 +535,67 @@ $section-padding-sm:20px 0px;
             margin: auto;            
         }
     } */
+}
+.featurecategory{
+    width: 100%;
+    display: flex;
+    @include tabletF{
+        display: block;
+        .item{
+            display: inline-block;
+        }
+    }
+    @include mobile{
+        display: block;
+        position: relative;
+        .item{            
+            padding: 0px 80px 0px 100px;
+            .list-icon.sm{
+                margin-right: 13px;
+            }
+        }
+        .owl-nav{
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            button.owl-next{
+                position: absolute;
+                right: 13px;
+                font-size: 38px;
+                visibility: hidden;
+                &:after{
+                    content: "\f105";
+                    font-family: icomoon;
+                    visibility: visible;
+                    color: $primary-color-md;
+                }
+                span{
+                    display: none;
+                }                
+            }
+            button.owl-prev{
+                position: absolute;
+                left: 13px;                
+                font-size: 38px;
+                visibility: hidden;
+                &:after{
+                    content: "\f104";
+                    font-family: icomoon;
+                    visibility: visible;
+                    color: $primary-color-md;
+                }
+                span{
+                    display: none;
+                }                
+            }
+            .item{
+                margin-bottom: 0 !important;
+            }            
+        }
+        .owl-dots{
+            margin-top: 0px;
+        }
+    }
 }
 .business-form {
     position: relative;
@@ -2157,7 +2221,14 @@ body{
                         font-size: 12px !important;
                         padding: 8px 12px !important;
                         line-height: 11px !important;            
-                    }                
+                }
+                &.chat-message{
+                    vertical-align: baseline;
+                    i{
+                        vertical-align: bottom;
+                        margin-right: 0px;
+                    }
+                }                
             }            
         }
         .jobs-done{

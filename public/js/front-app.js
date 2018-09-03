@@ -7884,6 +7884,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
@@ -7919,6 +7922,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 heading: 'Gardeners'
             }]
         };
+    },
+    mounted: function mounted() {
+        __webpack_require__("./node_modules/jquery/dist/jquery.js");
+        __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
+        $(document).ready(function () {
+            if ($(window).width() < 600) {
+                $('.featurecategory').owlCarousel({
+                    margin: 40,
+                    nav: true,
+                    items: 1,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true
+                });
+            }
+        });
     }
 });
 
@@ -74454,32 +74473,38 @@ var render = function() {
     [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "services-list" }, [
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(_vm.categories, function(category) {
-              return _c("div", { staticClass: "col-xs-12 col-sm-4 col-md-2" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "javascript:;" },
-                    on: { click: _vm.changecategorypopup }
-                  },
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "featurecategory owl-carousel owl-theme" },
+              _vm._l(_vm.categories, function(category) {
+                return _c(
+                  "div",
+                  { staticClass: "col-xs-12 col-sm-4 col-md-2 item" },
                   [
-                    _c("div", { staticClass: "list-icon sm white" }, [
-                      _c("div", { staticClass: "inner" }, [
-                        _c("img", { attrs: { src: category.image } })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-description" }, [
-                      _c("p", [_vm._v(_vm._s(category.heading))])
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "javascript:;" },
+                        on: { click: _vm.changecategorypopup }
+                      },
+                      [
+                        _c("div", { staticClass: "list-icon sm white" }, [
+                          _c("div", { staticClass: "inner" }, [
+                            _c("img", { attrs: { src: category.image } })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "list-description" }, [
+                          _c("p", [_vm._v(_vm._s(category.heading))])
+                        ])
+                      ]
+                    )
                   ]
                 )
-              ])
-            })
-          )
+              })
+            )
+          ])
         ])
       ]),
       _vm._v(" "),

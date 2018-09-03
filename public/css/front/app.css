@@ -13895,6 +13895,45 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+@media (max-width: 1024px) {
+  .profilesession li {
+    display: inline-block !important;
+    width: auto !important;
+    margin-bottom: 0px !important;
+  }
+
+  .profilesession li.account-li {
+    width: 200px !important;
+    display: inline-block !important;
+    float: left !important;
+    margin-bottom: 0px !important;
+    height: auto !important;
+  }
+
+  .profilesession li a.router-link-exact-active {
+    background-color: transparent !important;
+  }
+
+  .profilesession li.account-info-keys {
+    float: right;
+    margin-right: 15px !important;
+    margin-bottom: 0px !important;
+    margin-top: -6px !important;
+  }
+
+  .profilesession li.account-info-keys li {
+    height: auto !important;
+    margin-bottom: 0px !important;
+    padding: 0px 5px !important;
+  }
+
+  .profilesession .notify-dropdown {
+    right: -59px;
+    width: 400px;
+    max-width: 400px;
+  }
+}
+
 .mac-browser .navigation ul li a {
   font-family: "AkzidenzGroteskBE-Md";
 }
@@ -14549,6 +14588,10 @@ input[type=number]::-webkit-outer-spin-button {
     padding-right: 0px;
   }
 
+  .two-column .content-sec h2 {
+    font-size: 27px;
+  }
+
   .two-column .content-sec p {
     font-size: 20px;
     line-height: 29px;
@@ -14619,9 +14662,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 767px) {
   .content-sec h2 {
-    font-size: 14px;
-    margin-bottom: 16px;
-    line-height: 23px;
+    font-size: 17px !important;
+    margin-bottom: 16px !important;
+    line-height: 23px !important;
   }
 
   .content-sec p {
@@ -14708,6 +14751,88 @@ input[type=number]::-webkit-outer-spin-button {
             margin: auto;            
         }
     } */
+}
+
+.featurecategory {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .featurecategory {
+    display: block;
+  }
+
+  .featurecategory .item {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 767px) {
+  .featurecategory {
+    display: block;
+    position: relative;
+  }
+
+  .featurecategory .item {
+    padding: 0px 80px 0px 100px;
+  }
+
+  .featurecategory .item .list-icon.sm {
+    margin-right: 13px;
+  }
+
+  .featurecategory .owl-nav {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+  }
+
+  .featurecategory .owl-nav button.owl-next {
+    position: absolute;
+    right: 13px;
+    font-size: 38px;
+    visibility: hidden;
+  }
+
+  .featurecategory .owl-nav button.owl-next:after {
+    content: "\F105";
+    font-family: icomoon;
+    visibility: visible;
+    color: #8200FF;
+  }
+
+  .featurecategory .owl-nav button.owl-next span {
+    display: none;
+  }
+
+  .featurecategory .owl-nav button.owl-prev {
+    position: absolute;
+    left: 13px;
+    font-size: 38px;
+    visibility: hidden;
+  }
+
+  .featurecategory .owl-nav button.owl-prev:after {
+    content: "\F104";
+    font-family: icomoon;
+    visibility: visible;
+    color: #8200FF;
+  }
+
+  .featurecategory .owl-nav button.owl-prev span {
+    display: none;
+  }
+
+  .featurecategory .owl-nav .item {
+    margin-bottom: 0 !important;
+  }
+
+  .featurecategory .owl-dots {
+    margin-top: 0px;
+  }
 }
 
 .business-form {
@@ -16506,6 +16631,15 @@ body .chat-feedback-message.white-msg:before {
     line-height: 11px !important;
   }
 
+  .job-common-description .job-bid-btn a.chat-message {
+    vertical-align: baseline;
+  }
+
+  .job-common-description .job-bid-btn a.chat-message i {
+    vertical-align: bottom;
+    margin-right: 0px;
+  }
+
   .job-common-description .jobs-done .job-category {
     width: calc(100% - 112px);
     overflow: hidden;
@@ -18126,6 +18260,10 @@ body .chat-feedback-message.white-msg:before {
     padding: 8px 0px 32px 0px;
   }
 
+  .featured-categories-home {
+    padding: 10px 0px 10px 0px;
+  }
+
   .my-job-indication,
   .bidding-sec {
     padding-top: 30px;
@@ -18145,6 +18283,41 @@ body .chat-feedback-message.white-msg:before {
 
   .wrapper-sm h1 {
     margin: 10px 0 30px 0;
+  }
+
+  .job-notification.flexable .col-md-6.p-r-0 {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+  }
+
+  .job-notification .job-poster:after {
+    display: none;
+  }
+
+  .search-filter input.search-service {
+    width: calc(100% - 31%);
+  }
+
+  .search-filter .container-zip-code {
+    width: 30%;
+  }
+
+  .member-details p.offer,
+  .job-details p.offer {
+    padding-left: 37px;
+  }
+
+  .bidding-navigation ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .bidding-navigation ul li {
+    margin-right: 0px;
+    margin-bottom: 25px;
   }
 }
 
@@ -18619,7 +18792,7 @@ body .chat-feedback-message.white-msg:before {
   }
 
   .featured-categories-home .list-description {
-    text-align: center;
+    text-align: left;
   }
 
   .how-it-work .icon img {
