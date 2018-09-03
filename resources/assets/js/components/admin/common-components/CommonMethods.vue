@@ -47,7 +47,8 @@
                     
                     let result = {
                         data : response.data,
-                        noRecordFound : false
+                        noRecordFound : false,
+                        pagination : response.pagination
                     };
 
 

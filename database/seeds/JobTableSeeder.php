@@ -19,7 +19,7 @@ class JobTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
         
-        $numberOfJobs = 1500;
+        $numberOfJobs = 5000;
 
         $data = [];
 

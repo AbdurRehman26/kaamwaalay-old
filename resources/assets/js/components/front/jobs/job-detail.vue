@@ -157,19 +157,19 @@
 
 <div class="chat-feedback" v-else>
   <div class="text-notifer">
-   <h3>Bids Received ({{ jobBids.pagination }})</h3>	
+   <h3>Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>	
 </div>
-<div class="chat-feedback-column job-bidding" v-for="reviewer in record.review_details">
-   <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ reviewer.latest_review_image +')',}"></div>
+<div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
+   <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user ? bid.user.profile_image : '' +')',}"></div>
    <div class="job-common-description">
-    <h3 class="pointer">{{record.job_title}}</h3>
+    <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
     <div class="jobs-rating">
-     <star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>
+     <star-rating :star-size="20" read-only :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
      <div class="jobs-done">
-      <span class="review-job">{{ reviewer.job_feedback }} Feedback reviews</span>				
+      <span class="review-job">{{ bid.total_feedback_count ? bid.total_feedback_count : 0 }} Feedback review(s)</span>				
 
-      <span class="review-job" v-if="reviewer.job_perform == 0">No Jobs performed</span>
-      <span class="review-job" v-else>{{ reviewer.job_perform }} Jobs performed</span>
+      <span class="review-job" v-if="!bid.finished_jobs">No Jobs performed</span>
+      <span class="review-job" v-else>{{ bid.finished_jobs }} Job(s) performed</span>
   </div>	
 </div>											
 </div>										
@@ -177,22 +177,22 @@
     <div class="bit-offered">
      <span><i class="icon-work-briefcase"></i> Offer: 
       <strong>
-       {{reviewer.job_bid_amount}}		
+       {{bid.amount}}		
    </strong>
 </span>
 <span class="pull-right"><i class="icon-calendar-daily"></i> Date:
   <strong>
-   {{reviewer.job_bid_data}}
+   {{bid.formatted_created_at}}
 </strong>
 </span>
 </div>
 <div class="proposal-message">
- <p>{{reviewer.latest_review_description}}</p>
+ <p>{{bid.description}}</p>
 </div>
 <div class="provider-bidding-btn">
  <a href="javascript:void(0);" @click="showProfile()" class="btn btn-primary">View Profile</a>
  <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
- <a href="javascript:void(0);" @click="AwardJob" v-if="reviewer.job_visited == true" class="btn btn-primary">Award Job</a>
+ <a href="javascript:void(0);" @click="AwardJob" v-if="bid.job_visited == true" class="btn btn-primary">Award Job</a>
 
  <a href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 </div>
@@ -252,7 +252,7 @@
 </div>
 
 <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-<vue-common-methods :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
+<vue-common-methods :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -291,7 +291,8 @@
             this.record = response.data;
         },
         getBidsResponse(response){
-            this.jobBids = response.data;
+            this.jobBids = response;
+            console.log(this.jobBids , '232322332');
         },
         open (e) {            
             fancyBox(e.target, this.imageList);

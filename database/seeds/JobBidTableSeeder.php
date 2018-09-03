@@ -18,11 +18,11 @@ class JobBidTableSeeder extends Seeder
 
         $data = [];
 
-        $totalJobs = 1500;
+        $totalJobs = 5000;
 
         $totalCustomers = 150;
 
-        $totalBids = 5;
+        $totalBids = 15;
 
         $jobs = app('JobRepository')->model->limit($totalJobs)->get();
 
