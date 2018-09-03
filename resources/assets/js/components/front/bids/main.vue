@@ -25,15 +25,16 @@
 			</div>
 
 			<div class="job-post-container section-padd sm">
-				<bid-invitation @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'"></bid-invitation>
-				<bid-completed @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'"></bid-completed>
-				<bid-awarded @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'"></bid-awarded>
-				<bid-archived @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'"></bid-archived>
-				<bid-active @changebid="ChangeBid" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'"></bid-active>
+				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'"></bid-invitation>
+				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'"></bid-completed>
+				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'"></bid-awarded>
+				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'"></bid-archived>
+				<bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'"></bid-active>
 			</div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
             <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
+            <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
 
         </div>
 
@@ -49,6 +50,7 @@
          bid_selection: 'activebid',
          bidpopup: false,
          isShowing:false,
+         infoval:false,
      }
  },
 
@@ -59,6 +61,7 @@
     },
     ViewCustomerDetail() {
     /*this.viewcustomer = true;*/
+        window.scrollTo(0,0);
         this.$router.push({name: 'customerdetail'});
     },
     changestatuspopup() {
@@ -67,10 +70,15 @@
     ChangeBid(){
         this.bidpopup = true;
     },
+    showinfo() {
+        this.infoval = true;
+    },    
     HideModal(){
         this.bidpopup = false;
+        this.infoval = false;
     },
     servicedetail(){
+        window.scrollTo(0,0);
         this.$router.push({name: 'job-details'});
     },
     showchatpanel(){

@@ -45,12 +45,14 @@
 					<p>14 General carpentry service professionals found near you</p>
 				</div>
 
-				<div class="job-post-list" v-for="listing in joblisting">
+				<div class="job-post-list category-service-provider" v-for="listing in joblisting">
 					<div class="job-post-details">
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
 
 						<div class="job-common-description">
-							<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
+							<div class="job-main-title">
+								<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+							</div>
 							<div class="jobs-rating">
 								<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>
 								<div class="jobs-done">
@@ -132,7 +134,7 @@
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
         </div>
-
+        <info-popup  @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
 	</div>
 </template>
 
@@ -147,7 +149,7 @@ export default {
 
     	jobimage: '/images/front/profile-images/logoimage1.png',
     	reviewerimage: '/images/front/profile-images/personimage1.png',
-
+    	infoval: false,
     	joblisting:[
 
 	    	{
@@ -275,17 +277,25 @@ export default {
         ViewCustomerDetail() {
             /*this.viewcustomer = true;*/
             this.$router.push({name: 'customerdetail'});
+            window.scrollTo(0,0);
         },
         changestatuspopup() {
             this.changestatus = true;
         },
+
+        showinfo() {
+            this.infoval = true;
+        },
+
         HideModal(){
+            this.infoval = false;        	
             this.customer = false;
             this.viewcustomer = false;
             this.changestatus = false;
         },
-        servicedetail(){
+        servicedetail(){        	
         	this.$router.push({name: 'Service_Provider_Detail'});
+        	window.scrollTo(0,0);
         }
 
     },

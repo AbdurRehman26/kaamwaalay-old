@@ -1,6 +1,6 @@
 
 <template>
-	<div class="job-main-details">
+	<div class="job-main-details detail-page">
 		<div class="content" v-for="listing in joblisting">
 			<div class="job-main-heading grey-bg elementary-banner section-padd xs border-bottom">
 				<div class="container element-index text-center md">
@@ -215,14 +215,14 @@
 														
 								<a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
 								<a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
-								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+								<a href="job-details/serviceprovidercustomerend" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 							</div>
 
 							<div class="service-provider" v-else-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend'">
 														
 								<a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
 								<a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
-								<a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+								<a href="/job-details/awarded" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 							</div>							
 
 							<div class="service-provider" v-else>
@@ -368,9 +368,11 @@ export default {
         	alert(this.$route.params.id);
         },
         FindInvite(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'Explore_Detail'});
         },
         Modify(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'Job-Post'});
         },        
         VisitPopup(){
@@ -398,6 +400,7 @@ export default {
 		    this.isShowing=false;
 		},
 		showProfile(){
+			window.scrollTo(0,0);
 			this.$router.push('explore/service_provider/service_provider_detail');
 		}                
 

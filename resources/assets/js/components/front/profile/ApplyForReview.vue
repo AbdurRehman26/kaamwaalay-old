@@ -10,6 +10,9 @@
 			<div class="form-signup">
 				<form>
 					<div class="personal-provider-detail">
+						<div class="profile-image-placeholder">
+							<img :src="profileimage">
+						</div>						
 						<div class="row">
 							<div class="browse-btn">
 								<div class="form-group">
@@ -60,9 +63,9 @@
 							<div class="form-group">
 								<label for="">Are you an individual or a business?</label>
 									<select class="form-control">
-										<option disabled="">Select Business</option>
-										<option selected="">Business</option>
-										<option selected="">Individual</option>
+										<option disabled="" selected="">Select Business</option>
+										<option>Business</option>
+										<option>Individual</option>
 									</select>
 							</div>
 						</div>
@@ -271,7 +274,7 @@
 					</div>
 				</div>
 				
-					<div class="submit-approval-btn">
+					<div class="submit-approval-btn" @click="profileredirct()">
 						<button class="btn btn-primary">Submit for Apporoval
 							<loader></loader>
 						</button>
@@ -294,12 +297,13 @@ export default {
   components: { DatePicker },
   data() {
     return {
-   	value: '',
-   	value_month:'',
-   	value_year:'',
-    time1: '',
-    time2: '',
-    time3: '',
+	   	value: '',
+	   	value_month:'',
+	   	value_year:'',
+	    time1: '',
+	    time2: '',
+	    time3: '',
+	    profileimage: '',
       shortcuts: [
         {
           text: 'Today',
@@ -314,6 +318,11 @@ export default {
         end: '23:30'
       }
     }
+  },
+  methods: {
+        profileredirct(){
+            this.$router.push({name: 'not-approved'});
+        }   	
   }
 }
 </script>

@@ -4,17 +4,17 @@
             <div class="container">
 
                 <span class="logo">
-                    <router-link class="logo" to="/">
+                    <a href="javascript:void(0);" @click.prevent="scroll()">
                         <img :src="logo">
-                    </router-link>
+                    </a>
                 </span>
 
                 <!--main nav-->
-                <main-nav v-if="$route.meta.navigation == 'main-nav'" v-bind:active="responsivemenu == true"></main-nav>
+                <main-nav v-if="$route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
-                <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
+                <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->
-                <provider-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'provider-nav'" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
+                <provider-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'provider-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
 
             </div>
             <i class="icon-menu2 menuiconbutton" @click="responsivemenu ^= true"></i>
@@ -49,8 +49,17 @@
                 this.writereview = true;
             },         
             ViewBid(){
+                window.scrollTo(0,0);
                 this.$router.push({name: 'job-details'})
             },
-        }
+            scroll(){
+                this.$router.push({name: 'main_page'});
+                this.responsivemenu = false;
+                window.scrollTo(0,0);
+            },
+            closemenu(){
+              this.responsivemenu = false;
+            }
+        },   
     }
 </script>

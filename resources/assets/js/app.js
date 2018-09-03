@@ -64,7 +64,7 @@ const app = new Vue({
     router,
     mounted () {
         this.$Progress.finish();
-        this.checkscroll();
+        /*this.checkscroll();*/
         this.browserfunction();
     },
     created () {

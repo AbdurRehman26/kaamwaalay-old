@@ -10,6 +10,9 @@
 			<div class="form-signup">
 				<form>
 					<div class="personal-detail">
+						<div class="profile-image-placeholder">
+							<img :src="profileimage">
+						</div>
 						<div class="row">
 							<div class="browse-btn">
 								<div class="form-group">
@@ -100,7 +103,7 @@
 				</div>
 
 					<div class="create-account-btn">
-						<button class="btn btn-primary">Update Profile
+						<button class="btn btn-primary" @click="myjobs()">Update Profile
 							<loader></loader>
 						</button>
 					</div>
@@ -115,3 +118,28 @@
 
 	</div>
 </template>
+
+
+<script>
+
+    export default {
+      data () {
+        return {
+			profileimage: '',
+    }
+},
+
+methods: {
+	myjobs(){
+		window.scrollTo(0,0);
+		this.$router.push({name: 'Job-Post'});
+	}
+},
+
+watch:{
+
+}
+
+}
+</script>
+

@@ -37,7 +37,9 @@
 
                             <div class="job-common-description job-perform">
                                 <div class="col-md-6 p-l-0">
-                                    <h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i></span>
+                                    <div class="job-main-title">
+                                        <h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+                                    </div>
                                     <div class="job-notification">
                                         <div class="jobs-done">
                                             <span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile">{{ listing.job_poster }}</a></span>
@@ -94,6 +96,7 @@
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
         </div>
         <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
+        <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
     </div>
 </template>
 
@@ -106,6 +109,7 @@
          bid_selection: 'activebid',
          bidpopup: false,
          isShowing:false,
+         infoval:false,
          joblisting:[
 
          {
@@ -202,34 +206,41 @@
 
 methods: {
 
- AddCustomer() {
-  this.customer = true;
-},
-ViewCustomerDetail() {
-    /*this.viewcustomer = true;*/
-    this.$router.push({name: 'customerdetail'});
-},
-changestatuspopup() {
-    this.changestatus = true;
-},
-ChangeBid(){
-    this.bidpopup = true;
-},
-HideModal(){
-    this.bidpopup = false;
-},
-servicedetail(){
-    this.$router.push('/job-details/serviceprovider');
-},
-showchatpanel(){
-    this.isShowing=true;
-},
-CloseDiscussion(){
-    this.isShowing=false;
-},
-showProfile(){
-    this.$router.push({name: 'Explore_Detail'});
-},  
+     AddCustomer() {
+      this.customer = true;
+    },
+    ViewCustomerDetail() {
+        /*this.viewcustomer = true;*/
+        window.scrollTo(0,0);
+        this.$router.push({name: 'customerdetail'});
+    },
+    changestatuspopup() {
+        this.changestatus = true;
+    },
+    ChangeBid(){
+        this.bidpopup = true;
+    },
+    showinfo() {
+        this.infoval = true;
+    },        
+    HideModal(){
+        this.bidpopup = false;
+        this.infoval = false;
+    },
+    servicedetail(){
+        window.scrollTo(0,0);
+        this.$router.push('/job-details/serviceprovider');
+    },
+    showchatpanel(){
+        this.isShowing=true;
+    },
+    CloseDiscussion(){
+        this.isShowing=false;
+    },
+    showProfile(){
+        window.scrollTo(0,0);
+        this.$router.push({name: 'Explore_Detail'});
+    },  
 
 },
 components: {

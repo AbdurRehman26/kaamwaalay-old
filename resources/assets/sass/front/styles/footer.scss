@@ -39,6 +39,16 @@
 	i.icon-facebook {
 		margin-left: 4px;
 	}
+	@include mobile{
+		ul{
+			text-align: center;
+			li{
+				a{
+					margin-left: 0px;
+				}
+			}
+		}
+	}
 }
 
 .footer-links {
@@ -71,20 +81,63 @@
 		img {
 			width: 120px;
 		    height: 40px;
-		    @include Desktop1300{
-			    width: 104px;
-			    height: 38px;
-		    }
+		    @include Desktop1440{
+			    width: 104px !important;
+			    height: 38px !important;
+		    }		    
 		    @include tabletF{
-			    width: 80px;
-			    height: 27px;
+			    width: 80px !important;
+			    height: 27px !important;
+		    }
+		    @include mobile{
+		    	width: 153px !important;
+    			height: 49px !important;
 		    }		    	    		    
+		}
+	}
+	@include mobile{
+		ul{
+			padding-left: 0px;
+			margin-bottom: 10px;
+			li{
+				margin-bottom: 10px;
+				a{
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	.app-images{
+		img{
+		    /* width: 140px;
+		    height: 48px; */			
+ 			width: 120px;
+    		height: 41px;
+
 		}
 	}
 }
 .footer-copyrights {
 	p {
 		color: $grey-Edark;
+	}
+	@include mobile{
+		.float-left{
+		    float: none !important;
+		    text-align: center;			
+		    p{
+		    	font-size: 12px;
+		    }
+		}
+		.float-right{
+		    float: none !important;
+		    text-align: center;	
+		    &.terms-links{
+		    	a{
+		    		font-size: 12px;
+		    	}
+		    }			
+		}
 	}
 }
 .terms-links {

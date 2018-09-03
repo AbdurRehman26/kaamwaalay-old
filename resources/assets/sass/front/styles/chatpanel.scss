@@ -18,6 +18,7 @@
         width: 100%;
         top: 0;
         height: 100%;
+        z-index: 999;
     }
 
     h5{
@@ -111,8 +112,8 @@
         padding:20px 0 20px 27px;
 
         .list-group{
-             position: absolute;
-             bottom: 0;
+             /* position: absolute;
+             bottom: 0; */
 
              .list-group-item{
                 padding: 7px 0 32px 0;

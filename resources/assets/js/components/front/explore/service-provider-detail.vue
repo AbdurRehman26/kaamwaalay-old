@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail">
+	<div class="category-detail detail-page">
 		<div class="content" v-for="listing in joblisting">
 			<div class="next-project grey-bg elementary-banner section-padd md border-bottom">
 				<div class="container element-index text-center md">
@@ -222,6 +222,7 @@ export default {
             this.changestatus = false;
         },
         categorylisting(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'Explore_Detail'});	
         }
 
