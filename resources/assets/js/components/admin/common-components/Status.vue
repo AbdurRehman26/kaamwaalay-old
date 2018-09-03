@@ -92,8 +92,6 @@
                 self.loading = false;
                 self.errorMessage=''
             }, 2000);
-
-
         });
     }
 },
