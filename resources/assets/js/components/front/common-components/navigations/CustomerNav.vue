@@ -9,7 +9,7 @@
 
                 <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
-                        <img src="" alt="">
+                        <img :src="imageValue" alt="">
                     </span>
                     <p class="username">{{fullName}}</p>
                 </div>
@@ -60,6 +60,9 @@
             fullName(){
                 return this.first_name + ' ' + this.last_name;
             },
+            imageValue(){
+                return this.user ? this.user.profile_image : ''
+            }
         },
         methods: {
             ShowModal(){

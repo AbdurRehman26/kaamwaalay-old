@@ -12,7 +12,7 @@
             <form @submit.prevent="validateBeforeSubmit" novalidate="">
              <div class="personal-detail">
                 <div class="profile-image-placeholder">
-                    <img :src="profileimage">
+                    <img :src="imageValue">
                 </div>
                 <div class="row">
                    <div class="browse-btn">
@@ -154,7 +154,8 @@
                 file: null,
                 loading : false,
                 isFileUpload : false,
-                cities : []
+                cities : [],
+                profileImage : ''
             }
         },
         mounted(){
@@ -168,7 +169,7 @@
                 return this.cityUrl;
             },
             imageValue(){
-
+                return this.profileImage;
             }
         },
         methods: {
@@ -183,6 +184,9 @@
                 if(self.record.state_id){  
                     this.cityUrl = 'api/city?state_id=' + this.record.state_id;
                 }
+                console.log(self.record ,' 222');
+                self.profileImage = self.record.profileImage;
+
 
             },
             getStateResponse(response){
@@ -273,7 +277,7 @@
                 this.$http.post(url, data).then(response => {
                     response = response.data;
                     self.record.profile_image = response.name;
-
+                    self.profileImage = response.upload_url;
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;

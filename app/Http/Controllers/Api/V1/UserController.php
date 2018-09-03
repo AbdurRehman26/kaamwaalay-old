@@ -34,7 +34,6 @@ class UserController extends ApiResourceController
           $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
           $rules['user_details.profile_image']     = 'nullable|string';
           $rules['business_details.business_type']     = 'nullable|in:business,individual';
-          $rules['user_id'] = 'required|exists:users,id';
           
           $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
           $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
@@ -62,7 +61,12 @@ class UserController extends ApiResourceController
     $input['user_id'] = request()->user()->id;
      
     if($value == 'update') {
-        unset($input['user_details']['email'], 'pagination', 'filter_by_role', 'filter_by_service', 'filter_by_roles', 'keyword');
+        
+        unset(
+            $input['user_details']['email'], $input['pagination'], $input['filter_by_role'], 
+            $input['filter_by_service'], $input['filter_by_roles'], $input['keyword']
+        );
+
     }
 
 
