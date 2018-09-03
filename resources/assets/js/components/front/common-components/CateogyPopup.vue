@@ -1,7 +1,7 @@
  <template>	
 	<div class="popup categories-popup">
 		<b-modal id="" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
-            <alert></alert>
+            <!--<alert></alert>-->
 		    	<div class="category-selected">
                     <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue)+')'}">
                     </div>
