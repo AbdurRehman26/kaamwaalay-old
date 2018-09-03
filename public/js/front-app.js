@@ -5012,6 +5012,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         HideModal: function HideModal() {
             this.customersupport = false;
+        },
+        scroll: function scroll() {
+            window.scrollTo(0, 0);
         }
     },
 
@@ -73835,13 +73838,73 @@ var render = function() {
                   _c("ul", [
                     _vm._m(1),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _c(
+                      "li",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.scroll()
+                          }
+                        }
+                      },
+                      [
+                        _c("router-link", { attrs: { to: "/job-post" } }, [
+                          _vm._v("Post a job")
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _c(
+                      "li",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.scroll()
+                          }
+                        }
+                      },
+                      [
+                        _c("router-link", { attrs: { to: "/sign-up" } }, [
+                          _vm._v("Sign up as a customer")
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _c(
+                      "li",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.scroll()
+                          }
+                        }
+                      },
+                      [
+                        _c("router-link", { attrs: { to: "/explore" } }, [
+                          _vm._v("Explore Services")
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _vm._m(5),
+                    _c(
+                      "li",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.scroll()
+                          }
+                        }
+                      },
+                      [
+                        _c("router-link", { attrs: { to: "/advice-center" } }, [
+                          _vm._v("Advice center")
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("li", [
                       _c(
@@ -73864,10 +73927,17 @@ var render = function() {
               _c("div", { staticClass: "col-md-3" }, [
                 _c("div", { staticClass: "footer-links" }, [
                   _c("ul", [
-                    _vm._m(6),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "li",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.scroll()
+                          }
+                        }
+                      },
                       [
                         _c("router-link", { attrs: { to: "/sign-up" } }, [
                           _vm._v("Sign up as a service provider")
@@ -73876,10 +73946,17 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(7),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c(
                       "li",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.scroll()
+                          }
+                        }
+                      },
                       [
                         _c("router-link", { attrs: { to: "/advice-center" } }, [
                           _vm._v("Advice center")
@@ -73906,11 +73983,53 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(8)
+              _vm._m(4)
             ])
           ]),
           _vm._v(" "),
-          _vm._m(9)
+          _c("div", { staticClass: "footer-copyrights" }, [
+            _c("div", { staticClass: "section-padding-sm clearfix" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "float-right terms-links" }, [
+                _c("ul", [
+                  _c(
+                    "li",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.scroll()
+                        }
+                      }
+                    },
+                    [
+                      _c("router-link", { attrs: { to: "/terms-condition" } }, [
+                        _vm._v("Terms & Conditions")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.scroll()
+                        }
+                      }
+                    },
+                    [
+                      _c("router-link", { attrs: { to: "/privacy-policy" } }, [
+                        _vm._v("Privacy Policy")
+                      ])
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -73991,40 +74110,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "/job-post" } }, [_vm._v("Post a job")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "/sign-up" } }, [
-        _vm._v("Sign up as a customer")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "/explore" } }, [_vm._v("Explore Services")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "/advice-center" } }, [_vm._v("Advice center")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("li", [_c("strong", [_vm._v("Service Providers")])])
   },
   function() {
@@ -74083,29 +74168,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-copyrights" }, [
-      _c("div", { staticClass: "section-padding-sm clearfix" }, [
-        _c("div", { staticClass: "float-left" }, [
-          _c("p", [
-            _vm._v("Copyright © 2018 Professional Service Marketplace, Inc. ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "float-right terms-links" }, [
-          _c("ul", [
-            _c("li", [
-              _c("a", { attrs: { href: "/terms-condition" } }, [
-                _vm._v("Terms & Conditions")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "/privacy-policy" } }, [
-                _vm._v("Privacy Policy")
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "float-left" }, [
+      _c("p", [
+        _vm._v("Copyright © 2018 Professional Service Marketplace, Inc. ")
       ])
     ])
   }

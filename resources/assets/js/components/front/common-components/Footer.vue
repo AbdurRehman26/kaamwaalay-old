@@ -37,10 +37,10 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Customers</strong></li>
-									<li><a href="/job-post">Post a job</a></li>
-									<li><a href="/sign-up">Sign up as a customer</a></li>
-									<li><a href="/explore">Explore Services</a></li>
-									<li><a href="/advice-center">Advice center</a></li>
+									<li @click="scroll()"><router-link to="/job-post">Post a job</router-link></li>
+									<li @click="scroll()"><router-link to="/sign-up">Sign up as a customer</router-link></li>
+									<li @click="scroll()"><router-link to="/explore">Explore Services</router-link></li>
+									<li @click="scroll()"><router-link to="/advice-center">Advice center</router-link></li>
 									<li><a href="javascript:;" @click="CustomerSupportPopup()">Customer support</a></li>
 								</ul>
 							</div>
@@ -49,9 +49,9 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li><router-link to="/sign-up">Sign up as a service provider</router-link></li>
+									<li @click="scroll()"><router-link to="/sign-up">Sign up as a service provider</router-link></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
-									<li><router-link to="/advice-center">Advice center</router-link></li>
+									<li @click="scroll()"><router-link to="/advice-center">Advice center</router-link></li>
 									<li><a href="javascript:;" @click="CustomerSupportPopup()">Service provider support</a></li>
 								</ul>
 							</div>
@@ -91,8 +91,8 @@
 						</div>
 						<div class="float-right terms-links">
 							<ul>
-								<li><a href="/terms-condition">Terms &amp; Conditions</a></li>
-								<li><a href="/privacy-policy">Privacy Policy</a></li>
+								<li @click="scroll()"><router-link to="/terms-condition">Terms &amp; Conditions</router-link></li>
+								<li @click="scroll()"><router-link to="/privacy-policy">Privacy Policy</router-link></li>
 							</ul>
 						</div>
 					</div>
@@ -114,6 +114,9 @@
             HideModal(){
                 this.customersupport = false;
             },
+            scroll(){
+                window.scrollTo(0,0);
+            },            
 
         },
         
