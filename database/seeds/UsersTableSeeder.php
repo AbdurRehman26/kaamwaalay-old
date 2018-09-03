@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
         $i =2;
         $roles = [Role::CUSTOMER,Role::SERVICE_PROVIDER,Role::REVIEWER];
 
-        foreach (range(1,150) as $index) {
+        foreach (range(1,50000) as $index) {
             $data[]=[
                 'id' => $i,
                 'first_name' => $faker->firstName,
