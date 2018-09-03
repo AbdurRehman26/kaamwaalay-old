@@ -158,7 +158,7 @@
     //jobs pages
 
     {
-        name: 'my_jobs',
+        name: 'my.jobs',
         path: '/my-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
@@ -183,12 +183,13 @@
 
 
     {
-        name: 'job-details',
-        path: '/job-details/:id?',
+        name: 'job.details',
+        path: '/job-details/:id',
         meta: {
             title: 'Professional Service Marketplace | Job Details',
             bodyClass: 'job-detail-page',
             navigation: 'customer-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/jobs/job-detail.vue'),
     },
@@ -209,7 +210,7 @@
 
     //bidding page
     {
-        name: 'my-bid',
+        name: 'my.bids',
         path: '/my-bids',
         meta: {
             title: 'Professional Service Marketplace | My Bids',
@@ -291,7 +292,7 @@ router.beforeEach((to, from, next) => {
     next({name: 'login'});
 } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
-      next({name: 'my_jobs'});
+      next({name: 'my.jobs'});
   }
 } else {
     next();

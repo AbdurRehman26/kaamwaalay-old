@@ -60,40 +60,6 @@
 
 </div>
 
-        <!--
-  <div class="login-form auth-forms active">
-    <b-form novalidate @submit.prevent="onSubmit" v-if="show">
-      <b-form-group id="exampleInputGroup1"
-                    label="Email Address:"
-                    label-for="exampleInput1"
-                    description="">
-        <b-form-input id="login_email"
-                      type="email"
-                      v-model="loginForm.email"
-                      placeholder="Enter email">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleInputGroup2"
-                    label="Password:"
-                    label-for="exampleInput2">
-        <b-form-input id="login_password"
-                      type="password"
-                      v-model="loginForm.name"
-                      placeholder="Enter password">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="loginForm.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Remember me</b-form-checkbox>
-          <span class="forgot-password-text" @click.prevent="$emit('show-login')">Forgot Password?</span>
-        </b-form-checkbox-group>
-      </b-form-group>
-      <b-button type="submit" variant="primary" >Log In
-      <loader></loader>
-      </b-button>
-    </b-form>
-</div> -->
-
 </template>
 
 <script>
@@ -132,7 +98,7 @@ methods: {
         //   this.$router.push({ name: 'dashboard'});
         // },
         MyBids(){
-            this.$router.push('my-bids');
+            this.$router.push('my.bids');
         },
         login: function () {
           var this_ = this;
@@ -143,7 +109,7 @@ methods: {
                       this.$auth.login(this.login_info).then(function (response) {
                         self.loading = false
                         this_.$store.commit('setAuthUser', response.data.response.data[0]);
-                        this_.$router.push({ name: 'my-bid'})
+                        this_.$router.push({ name: 'my.bids'})
                       }).catch(error => {
                         this.loading = false
                         this_.errorMessage  =error.response.data.errors.email[0];
@@ -155,7 +121,7 @@ methods: {
                     }else{
                       setTimeout(function(){
                         this.loading = false
-                        this_.$router.push({ name: 'my-bid'})
+                        this_.$router.push({ name: 'my.bids'})
                       }, 5000);
                     }
                   },

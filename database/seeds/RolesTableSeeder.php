@@ -98,6 +98,7 @@ class RolesTableSeeder extends Seeder
                     "file.upload",
                     "file.remove",
                     "job.stats",
+                    "job-bid.index",
                     "job-bid.store",
                     "job-bid.update",
                     "update.campaign",

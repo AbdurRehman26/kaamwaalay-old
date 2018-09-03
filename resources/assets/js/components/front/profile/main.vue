@@ -196,7 +196,7 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-                    console.log(result , 12321)
+                    
                     if (result) {
                         this.onSubmit();
                         this.errorMessage = '';
@@ -220,7 +220,7 @@
 
                     self.successMessage = response.message;
                     setTimeout(function () {
-                        self.$router.push({ name : 'my_jobs'});
+                        self.$router.push({ name : 'my.jobs'});
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);
