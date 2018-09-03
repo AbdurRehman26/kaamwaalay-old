@@ -1059,7 +1059,7 @@ $section-padding-sm:20px 0px;
     @include mobile{
         .category-items{
             width: 100%;
-            padding: 4px 40px 40px 40px;
+            padding: 0px 0px 40px 0px;
             .items{
                 padding-left: 0px;
                 width: 100%;
@@ -3510,6 +3510,17 @@ body{
     }
     .category-items{
         width: 100% !important;
+    }
+    @include mobile{
+        border: 0px !important;
+        padding-left: 0px;
+        width: 100%;            
+        .category-items{
+            padding: 0px;
+        }
+        .item-list-container{
+            column-count: 1 !important;
+        }        
     }
 }
 
