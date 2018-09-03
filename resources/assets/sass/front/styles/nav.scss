@@ -385,7 +385,7 @@ $nav-font:$font-bold;
             min-width: 0 !important;
         }
     }
-    @include mobile{
+    @include tabletportrait{
         li{
             display: inline-block !important;
             width: auto !important;

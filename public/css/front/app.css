@@ -13856,7 +13856,7 @@ input[type=number]::-webkit-outer-spin-button {
   min-width: 0 !important;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) and (min-width: 768px) {
   .profilesession li {
     display: inline-block !important;
     width: auto !important;
@@ -14510,15 +14510,62 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 1024px) {
   .two-column {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+
+  .two-column .content-sec {
+    padding-top: 30px;
+    margin: 0px;
+  }
+
+  .two-column .content-sec h2 {
+    font-size: 22px;
+    margin-bottom: 22px;
+    line-height: 31px;
+  }
+
+  .two-column .content-sec p {
+    font-size: 17px;
+    line-height: 25px;
+  }
+
+  .two-column .image-sec {
+    padding-right: 52px;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+  .two-column {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
   }
 
-  .two-column .content-sec {
-    padding-top: 30px;
-    margin: 0px;
+  .two-column .image-sec {
+    padding-right: 0px;
+  }
+
+  .two-column .content-sec p {
+    font-size: 20px;
+    line-height: 29px;
+    margin-bottom: 37px;
+  }
+}
+
+@media (max-width: 767px) {
+  .two-column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+
+  .two-column .image-sec {
+    padding-right: 0px;
   }
 }
 
@@ -15243,10 +15290,25 @@ input[type=number]::-webkit-outer-spin-button {
   padding-bottom: 0px;
 }
 
+@media (max-width: 992px) and (min-width: 768px) {
+  .category-section {
+    padding-bottom: 25px;
+  }
+
+  .category-section .category-title {
+    width: 100%;
+    padding-bottom: 25px;
+  }
+
+  .category-section .category-items {
+    width: 100%;
+  }
+}
+
 @media (max-width: 767px) {
   .category-section .category-items {
     width: 100%;
-    padding: 0px 0px 40px 0px;
+    padding: 0px 0px 10px 0px;
   }
 
   .category-section .category-items .items {
@@ -15310,7 +15372,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 50px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) and (min-width: 768px) {
   .job-post-page .profile-head,
   .featured-profile-page .profile-head {
     margin-top: 20px;
@@ -16302,6 +16364,23 @@ body .chat-feedback-message.white-msg:before {
   display: inline-block;
 }
 
+@media (max-width: 992px) and (min-width: 768px) {
+  .job-notification .jobs-done {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .job-notification .jobs-done span:after {
+    display: none;
+  }
+
+  .job-notification .jobs-done .job-status span {
+    margin-left: 0px;
+    margin-top: 6px;
+  }
+}
+
 @media (max-width: 767px) {
   .job-notification .jobs-done {
     margin-top: 0px !important;
@@ -16396,6 +16475,42 @@ body .chat-feedback-message.white-msg:before {
 
 .job-common-description.job-perform .job-bid-btn {
   text-align: right;
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+  .job-common-description {
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+
+  .job-common-description .job-bid-btn {
+    text-align: right !important;
+    padding-left: 0;
+    margin-top: 15px;
+  }
+
+  .job-common-description .job-bid-btn a {
+    margin-bottom: 9px;
+    height: 31px;
+    font-size: 13px;
+    padding: 8px 14px;
+    line-height: 13px;
+  }
+
+  .job-common-description .job-bid-btn a.post-bid {
+    position: relative;
+    margin-bottom: 25px;
+    height: auto !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    line-height: 11px !important;
+  }
+
+  .job-common-description .jobs-done .job-category {
+    width: calc(100% - 112px);
+    overflow: hidden;
+    vertical-align: -webkit-baseline-middle;
+  }
 }
 
 @media (max-width: 767px) {
@@ -17978,6 +18093,13 @@ body .chat-feedback-message.white-msg:before {
   width: 100% !important;
 }
 
+@media (max-width: 992px) and (min-width: 768px) {
+  .related-service-category .item-list-container {
+    -webkit-column-count: 3 !important;
+            column-count: 3 !important;
+  }
+}
+
 @media (max-width: 767px) {
   .related-service-category {
     border: 0px !important;
@@ -17992,6 +18114,37 @@ body .chat-feedback-message.white-msg:before {
   .related-service-category .item-list-container {
     -webkit-column-count: 1 !important;
             column-count: 1 !important;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+  .section {
+    padding: 50px 0px;
+  }
+
+  .job-post-list {
+    padding: 8px 0px 32px 0px;
+  }
+
+  .my-job-indication,
+  .bidding-sec {
+    padding-top: 30px;
+  }
+
+  .section-padd.sm {
+    padding: 30px 0px;
+  }
+
+  .testmonial-block p {
+    font-size: 18px;
+  }
+
+  .section.padding-sm {
+    padding: 20px 20px;
+  }
+
+  .wrapper-sm h1 {
+    margin: 10px 0 30px 0;
   }
 }
 

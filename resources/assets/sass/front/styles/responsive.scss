@@ -1,3 +1,31 @@
+@include tabletportrait{
+    .section{
+        padding: 50px 0px;
+    }
+    .job-post-list{
+        padding: 8px 0px 32px 0px;
+    }
+    .my-job-indication, .bidding-sec{
+        padding-top: 30px;
+    }
+    .section-padd.sm{
+        padding: 30px 0px;
+    }
+    .testmonial-block{
+        p{
+            font-size: 18px;
+        }
+    }
+    .section.padding-sm{
+        padding: 20px 20px;
+    }
+    .wrapper-sm{
+        h1{
+            margin: 10px 0 30px 0;
+        }
+    }    
+}
+
 @include tablet{
     .footer-section{
         .col-md-3{
