@@ -151,9 +151,9 @@
         },
         methods: {
             onUrlFocus(e) {
-                var sufix = $(e.target).val();
+                var suffix = $(e.target).val();
                 var prefixLength = this.defaultUrlPrefixLength;
-                var str = sufix.substr(prefixLength);
+                var str = suffix.substr(prefixLength);
                 this.formData.url_suffix = str;
             },
             onUrlBlur(e) {
@@ -163,11 +163,11 @@
                 var url = this.$store.getters.getServiceUrlPrefix;
                 if(this.isUpdate) {
                     if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_prefix? this.list.parent.url_prefix + '/' : '');
+                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
                     }
                 }else {
                     if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_prefix;
+                        url = url + this.formData.parent_id.url_suffix;
                     }
                 }
                 this.formData.url_suffix = url + sufix;
@@ -204,7 +204,7 @@
                         original_name: ''
                     }
                     ],
-                    url_prefix: this.$store.getters.getServiceUrlPrefix,
+                    url_suffix: this.$store.getters.getServiceUrlPrefix,
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
@@ -337,7 +337,7 @@
                 var data = Object.assign({}, this.formData);
                 var temp = this.formData.url_suffix;
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_prefix = this.url_suffix;
+                data.url_suffix = this.url_suffix;
                 this.$http.post(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
@@ -377,7 +377,7 @@
                 //this.formData.url_suffix = this.getSuffix;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_prefix = this.url_suffix;
+                data.url_suffix = this.url_suffix;
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
@@ -443,14 +443,14 @@
                             original_name: img? img[0].original_name :''
                         }
                         ],
-                        url_prefix: '',
+                        url_suffix: '',
                         status: this.list.status,
                         is_display_banner: this.list.is_display_banner,
                         is_display_service_nav: this.list.is_display_service_nav,
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
                     this.formData.url_suffix = this.defaultUrlPrefix;
-                    this.isChangePrefix = this.list.url_prefix;
+                    this.isChangePrefix = this.list.url_suffix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file;
@@ -470,13 +470,13 @@
                 var url = this.$store.getters.getServiceUrlPrefix;
                 if(this.isUpdate) {
                     if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_prefix? this.list.parent.url_prefix + '/' : '') + this.list.url_prefix;
+                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '') + this.list.url_suffix;
                     }else {
-                        url = url + this.list.url_prefix;
+                        url = url + this.list.url_suffix;
                     }
                 }else {
                     if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_prefix;
+                        url = url + this.formData.parent_id.url_suffix;
                     }
                 }
                 return url;
@@ -485,11 +485,11 @@
                 var url = this.$store.getters.getServiceUrlPrefix;
                 if(this.isUpdate) {
                     if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_prefix? this.list.parent.url_prefix + '/' : '');
+                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
                     }
                 }else {
                     if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_prefix;
+                        url = url + this.formData.parent_id.url_suffix;
                     }
                 }
                 return url.length;
