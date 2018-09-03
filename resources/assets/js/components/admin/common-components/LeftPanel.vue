@@ -6,7 +6,7 @@
             <nav class="main-nav">
                 <ul>
                     <li class="" v-can="'dashboard'"><router-link to="/admin/dashboard"><i class="icon-speedometer" aria-hidden="true"></i><span>Dashboard</span></router-link></li>
-                    <li class="" v-can="'services.index'"><router-link to="/admin/service-type"><i class="icon-tools-2" aria-hidden="true"></i><span>Services / Sub Services</span></router-link></li>
+                    <li class="" v-can="'service.index'"><router-link to="/admin/service-type"><i class="icon-tools-2" aria-hidden="true"></i><span>Services / Sub Services</span></router-link></li>
                     <li class="" v-can="'user.index'"><router-link to="/admin/customer"><i class="icon-users" aria-hidden="true"></i><span>Customers</span></router-link></li>
                     <li class="" v-can="'service-provider-profile.index'"><router-link to="/admin/service-provider"><i class="icon-handshake-o" aria-hidden="true"></i><span>Service Providers</span></router-link></li>
                     <li class="" v-can="'service-provider-profile-request.index'"><router-link to="/admin/service-provider-review"><i class="icon-star_border" aria-hidden="true"></i><span>Service Providers Review</span></router-link></li>
