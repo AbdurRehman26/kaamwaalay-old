@@ -27,7 +27,16 @@
         },
         component: require('./components/front/auth/ResetPassword.vue'),
     },
-
+    {
+            path: '/user/activate',
+            component: require('./components/front/auth/main.vue'),
+             meta: {
+                title: 'PSM | Login',
+                bodyClass: 'login-page',
+                noHeader: true,
+                navigation: 'main-nav',
+            },
+    },
     // Home
 
     {
