@@ -23,7 +23,6 @@
             getList(page, successCallback){
 
                 let self = this;
-
                 let url = self.url;
 
                 let result = {
@@ -40,7 +39,6 @@
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
-
                 self.$http.get(url).then(response=>{
 
                     response = response.data.response;
@@ -75,7 +73,8 @@
             },
         },
         watch:{
-            url(){
+            url(val){
+                this.url = val;
                 this.getList();
             }
         }

@@ -12,7 +12,9 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind" name="search" ></multiselect>
+										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" >
+											<span slot="noResult">No Service found. Consider changing the search query.</span>
+										</multiselect>
 									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
@@ -42,27 +44,26 @@
 						<h2>{{service.title}}</h2>
 					</div>
 					<div class="category-items">
-
 						<div class="items" v-for="subservice in getSubServices(service.subservices)">
 							<a @click="changecategorypopup(subservice)" href="javascript:void(0);">
-								<div class="item-image" v-bind:style="{'background-image': 'url('+ subservice.images[0].upload_url +')',}"></div>
+								<div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images) +')',}"></div>
 								<h4>{{subservice.title}}</h4>
 							</a>
 						</div>
 						<div class="showmore showmore-link clearfix">
 							<div>
 							  <!-- element to collapse -->
-							  <b-collapse :id="service.title">
+							  <b-collapse :id="service.id">
 							    <b-card>
 							      <div class="items" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
 									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
-										<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>
+										<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
 										<h4>{{remainingSubServices.title}}</h4>
 									</a>
 								</div>
 							    </b-card>
 							  </b-collapse>
-							  <a href="javascript::void(0)" class="showCollapse" @click.prevent="onToggleCollapse($event, service.title)" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a>
+							  <a href="javascript::void(0)" class="showCollapse" @click.prevent="onToggleCollapse($event, service.id)" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians<i class="icon-keyboard_arrow_right"></i></a>
 							</div>
 						</div>
 
@@ -137,13 +138,17 @@ export default {
 		}
 	},
 	methods: {
+
+        getImage(img) {
+        	return img? img[0].upload_url : 'images/dummy/image-placeholder.jpg';
+        },
 		onToggleCollapse(e, val) {
 			var elem = $('#'+val);
 			if($(elem).css("display") == "none" ) {
-				$(elem).show();
+				$(elem).show("slow");
 				$(e.target).text("Hide all services related to electricians ");
 			}else {
-				$(elem).hide();
+				$(elem).hide("slow");
 				$(e.target).text("View all services related to electricians ");
 			}
 		},

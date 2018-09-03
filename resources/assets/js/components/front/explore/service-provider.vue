@@ -3,7 +3,7 @@
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
-					<div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(categoryimage) +')',}"></div>
+					<div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(service.images? service.images[0].upload_url : null) +')',}"></div>
 					<div class="category-content">
 						<h2>{{service.title}}</h2>
 						<p>{{service.description}}</p>
@@ -22,8 +22,10 @@
 				<div class="row">
 					<div class="col-md-10 p-r-0">
 						<div class="search-filter m-b-0">
-							<div :class="{ 'invalid': isInvalid }">
-								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :internal-search="false" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" :show-no-results="false"  @search-change="asyncFind" name="search" @close="onTouch"></multiselect>
+							<div :class="{'invalid': isInvalid }">
+								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch">
+									<span slot="noResult">No Service found. Consider changing the search query.</span>
+								</multiselect>
 							</div>
 							<div class="container-zip-code">
 								<i class="icon-location"></i>
@@ -31,7 +33,7 @@
 							</div>
 						</div>			
 					</div>
-					<div class="col-md-2 p-r-0">				
+					<div class="col-md-2 p-r-0">			
 						<button class="btn btn-primary" @click="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
 							<span>Search</span>
             				<loader></loader>
@@ -110,6 +112,7 @@
 			</div>			
 		</div>
 
+		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
 		<div class="featured-categories section-padd sm  elementary-banner p-t-130">
 			<div class="container element-index">
 
@@ -129,17 +132,12 @@
 
 					</div>  	        	      		
 				</div>
-
-
 			</div>
 			<div class="elements">
 				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
 		</div>
-
-	<div class="clearfix"></div>
-		<vue-common-methods :url="requestUrl" @get-records="getProviderRecords"></vue-common-methods>
 	</div>
 	</div>
 </template>
@@ -163,7 +161,7 @@
 				noRecordFound : false,
 				pagination: [],
 				records : [],
-				serviceProviderUrl : null,//'api/service-provider-profile?pagination=true&user_detail=true&filter_by_service='+this.serviceId+'&zip='+this.zip,
+				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&filter_by_service='+this.serviceId+'&zip='+this.zip,
 				service: '',
 				categoryimage: '/images/front/explore/carpenter1.jpg',
 
@@ -239,7 +237,6 @@
 		    },
 			asyncFind: _.debounce(function(query) {
 				let self = this;
-				console.log(query);
 		        this.searchUrl  = 'api/service?keyword='+query;
 				this.isLoading = true;
 				this.$http.get(this.searchUrl).then(response => {
@@ -251,7 +248,6 @@
 				});
 			}, 1000),
 	        getImage(img) {
-
 	        	return img? img : 'images/dummy/image-placeholder.jpg';
 	        },
 			startLoading(){
@@ -279,22 +275,23 @@
 				let self = this;
 				let id = this.serviceId;
 				this.btnLoading = true;
-				console.log(this.serviceId, 8898989898);
 				this.searchUrl  = 'search/explore/'+id;
-				this.$http.get(this.searchUrl).then(response => {
-					response = response.data.response;
-					this.service = response.data;
-					this.categoryimage = this.service.images[0].upload_url;
-					this.btnLoading = false;
-					this.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&filter_by_service='+this.serviceId+'&zip='+this.zip;
-				}).catch(error=>{
-				});
+				self.$http.get(this.searchUrl).then(response => {
+			    	response = response.data.response;
+					self.service = response.data;
+					self.categoryimage = self.getImage(self.service.images);
+					self.btnLoading = false;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&filter_by_service='+self.serviceId+'&zip='+self.zip;
+			    }).catch(error=>{
+			    	if(error.status == 403) {
+			    		self.pagination = false;
+			    	}
+			    });
 			},
 	        getProviderRecords(response){
 	            let self = this;
 	            self.loading = false;
 	            self.records = response.data;
-	            console.log(self.records, 1235555555);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
 	        },

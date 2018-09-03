@@ -47,6 +47,10 @@ class ServiceTableSeeder extends Seeder
                 $data [] = [
                     'title' => $service,
                     'description' => $faker->Text,
+                    'is_display_banner' => 1,
+                    'is_display_service_nav' => 1,
+                    'is_display_footer_nav' => 1,
+                    'is_featured' => 1,
                 ];
             }
 

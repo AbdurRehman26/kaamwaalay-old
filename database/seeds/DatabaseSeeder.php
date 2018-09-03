@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceTableSeeder::class);
         $this->call(JobTableSeeder::class);
         $this->call(ServiceProviderProfileSeeder::class);
+        $this->call(UserRatingTableSeeder::class);
         \Artisan::call('passport:install');
     }
 }
