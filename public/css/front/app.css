@@ -17954,6 +17954,30 @@ body .chat-feedback-message.white-msg:before {
   width: 44%;
 }
 
+.related-service-category {
+  border: 0px !important;
+  padding-left: 31px;
+}
+
+.related-service-category .collapse {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.related-service-category p {
+  font-size: 15px !important;
+  margin-bottom: 9px !important;
+}
+
+.related-service-category .item-list-container {
+  -webkit-column-count: 4 !important;
+          column-count: 4 !important;
+  margin-bottom: 0 !important;
+}
+
+.related-service-category .category-items {
+  width: 100% !important;
+}
+
 @media (max-width: 768px) {
   .footer-section .col-md-3 {
     -webkit-box-flex: 0;

@@ -5484,6 +5484,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -5503,6 +5520,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}, {
 					itemimage: '/images/front/explore/electrician3.jpg',
 					itemtitle: 'Heating system repair'
+				}],
+				relatedcategory: [{
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				}, {
+					relatedcategorytitle: 'Air conditioning repair'
+				}, {
+					relatedcategorytitle: 'Heating system repair'
+				}, {
+					relatedcategorytitle: 'Wiring'
+				}, {
+					relatedcategorytitle: 'Mobile Repairing'
+				}, {
+					relatedcategorytitle: 'Home Wiring'
+				}, {
+					relatedcategorytitle: 'Industrial Electrician'
 				}]
 
 			}, {
@@ -5517,6 +5549,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}, {
 					itemimage: '/images/front/explore/carpenter3.jpg',
 					itemtitle: 'Wooden deck building & repair'
+				}],
+				relatedcategory: [{
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				}, {
+					relatedcategorytitle: 'Air conditioning repair'
+				}, {
+					relatedcategorytitle: 'Heating system repair'
+				}, {
+					relatedcategorytitle: 'Wiring'
+				}, {
+					relatedcategorytitle: 'Mobile Repairing'
+				}, {
+					relatedcategorytitle: 'Home Wiring'
+				}, {
+					relatedcategorytitle: 'Industrial Electrician'
 				}]
 
 			}, {
@@ -5531,6 +5578,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}, {
 					itemimage: '/images/front/explore/cleaning3.jpg',
 					itemtitle: 'Exterior Cleaners'
+				}],
+				relatedcategory: [{
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				}, {
+					relatedcategorytitle: 'Air conditioning repair'
+				}, {
+					relatedcategorytitle: 'Heating system repair'
+				}, {
+					relatedcategorytitle: 'Wiring'
+				}, {
+					relatedcategorytitle: 'Mobile Repairing'
+				}, {
+					relatedcategorytitle: 'Home Wiring'
+				}, {
+					relatedcategorytitle: 'Industrial Electrician'
 				}]
 
 			}, {
@@ -5545,6 +5607,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}, {
 					itemimage: '/images/front/explore/painter3.jpg',
 					itemtitle: 'Deck Staining'
+				}],
+				relatedcategory: [{
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				}, {
+					relatedcategorytitle: 'Air conditioning repair'
+				}, {
+					relatedcategorytitle: 'Heating system repair'
+				}, {
+					relatedcategorytitle: 'Wiring'
+				}, {
+					relatedcategorytitle: 'Mobile Repairing'
+				}, {
+					relatedcategorytitle: 'Home Wiring'
+				}, {
+					relatedcategorytitle: 'Industrial Electrician'
 				}]
 
 			}, {
@@ -5559,6 +5636,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}, {
 					itemimage: '/images/front/explore/mover3.jpg',
 					itemtitle: 'Furniture Moving & Heavy Lifting'
+				}],
+				relatedcategory: [{
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				}, {
+					relatedcategorytitle: 'Air conditioning repair'
+				}, {
+					relatedcategorytitle: 'Heating system repair'
+				}, {
+					relatedcategorytitle: 'Wiring'
+				}, {
+					relatedcategorytitle: 'Mobile Repairing'
+				}, {
+					relatedcategorytitle: 'Home Wiring'
+				}, {
+					relatedcategorytitle: 'Industrial Electrician'
 				}]
 
 			}],
@@ -73103,7 +73195,91 @@ var render = function() {
                     ])
                   }),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _c(
+                    "div",
+                    { staticClass: "showmore showmore-link clearfix" },
+                    [
+                      _c(
+                        "a",
+                        {
+                          directives: [
+                            {
+                              name: "b-toggle",
+                              rawName: "v-b-toggle",
+                              value: maincategory.title,
+                              expression: "maincategory.title"
+                            }
+                          ],
+                          attrs: { href: "javascript:void(0);" }
+                        },
+                        [
+                          _vm._v(
+                            "View all services related to " +
+                              _vm._s(maincategory.title) +
+                              " "
+                          ),
+                          _c("i", { staticClass: "icon-keyboard_arrow_right" })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "related-service-category",
+                      attrs: { "no-body": "" }
+                    },
+                    [
+                      _c(
+                        "b-collapse",
+                        {
+                          attrs: {
+                            id: maincategory.title,
+                            accordion: "my-accordion",
+                            role: "tabpanel"
+                          }
+                        },
+                        [
+                          _c("b-card-body", [
+                            _c("div", { staticClass: "category-items" }, [
+                              _c(
+                                "ul",
+                                { staticClass: "item-list-container" },
+                                _vm._l(maincategory.relatedcategory, function(
+                                  category
+                                ) {
+                                  return _c(
+                                    "li",
+                                    { staticClass: "items-list" },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0);" }
+                                        },
+                                        [
+                                          _c("p", [
+                                            _vm._v(
+                                              _vm._s(
+                                                category.relatedcategorytitle
+                                              )
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                })
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 2
               )
@@ -73146,7 +73322,7 @@ var render = function() {
             })
           ),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(1)
         ]
       ),
       _vm._v(" "),
@@ -73180,17 +73356,6 @@ var staticRenderFns = [
           staticClass: "form-control lg zip-code",
           attrs: { type: "number", placeholder: "Zip code", name: "" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "showmore showmore-link clearfix" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _vm._v("View all services related to electricians "),
-        _c("i", { staticClass: "icon-keyboard_arrow_right" })
       ])
     ])
   },
