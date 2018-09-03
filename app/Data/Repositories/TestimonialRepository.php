@@ -27,8 +27,8 @@ class TestimonialRepository extends AbstractRepository implements RepositoryCont
      * @access protected
      **/
 
-    protected $_cacheKey = 'Testimonial';
-    protected $_cacheTotalKey = 'total-Testimonial';
+    protected $_cacheKey = 'testimonial';
+    protected $_cacheTotalKey = 'total-testimonial';
 
     public function __construct(Testimonial $model)
     {

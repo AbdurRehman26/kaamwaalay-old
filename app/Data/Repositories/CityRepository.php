@@ -27,8 +27,8 @@ class CityRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'City';
-    protected $_cacheTotalKey = 'total-City';
+    protected $_cacheKey = 'city';
+    protected $_cacheTotalKey = 'total-city';
 
     public function __construct(City $model)
     {

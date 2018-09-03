@@ -29,8 +29,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
      * @access protected
      **/
 
-    protected $_cacheKey = 'ServiceProviderProfile';
-    protected $_cacheTotalKey = 'total-ServiceProviderProfile';
+    protected $_cacheKey = 'service-provider-profile';
+    protected $_cacheTotalKey = 'total-service-provider-profile';
 
     public function __construct(ServiceProviderProfile $model)
     {

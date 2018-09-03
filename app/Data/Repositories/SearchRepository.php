@@ -27,8 +27,8 @@ class SearchRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
     protected $cacheTag = true;
-    protected $_cacheKey = 'Service';
-    protected $_cacheTotalKey = 'total-Service';
+    protected $_cacheKey = 'service';
+    protected $_cacheTotalKey = 'total-service';
 
     public function __construct(Service $model)
     {

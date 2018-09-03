@@ -28,8 +28,8 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'Plan';
-    protected $_cacheTotalKey = 'total-Plan';
+    protected $_cacheKey = 'plan';
+    protected $_cacheTotalKey = 'total-plan';
 
     public function __construct(Plan $model)
     {

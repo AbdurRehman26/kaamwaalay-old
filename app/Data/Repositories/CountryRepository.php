@@ -27,8 +27,8 @@ class CountryRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'Country';
-    protected $_cacheTotalKey = 'total-Country';
+    protected $_cacheKey = 'country';
+    protected $_cacheTotalKey = 'total-country';
 
     public function __construct(Country $model)
     {

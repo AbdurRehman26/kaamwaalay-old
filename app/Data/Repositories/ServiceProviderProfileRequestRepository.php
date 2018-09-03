@@ -31,8 +31,8 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
      * @access protected
      **/
 
-    protected $_cacheKey = 'ServiceProviderProfileRequest';
-    protected $_cacheTotalKey = 'total-ServiceProviderProfileRequest';
+    protected $_cacheKey = 'service-provider-profile-request';
+    protected $_cacheTotalKey = 'total-service-provider-profile-request';
 
     public function __construct(ServiceProviderProfileRequest $model)
     {
