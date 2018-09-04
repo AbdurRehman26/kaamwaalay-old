@@ -4,7 +4,6 @@ namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Data\Models\SupportQuestion;
-use App\Notifications\SupportInquiry;
 
 class SupportInquiry extends Model
 {

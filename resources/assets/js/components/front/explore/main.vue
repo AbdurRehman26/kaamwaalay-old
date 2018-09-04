@@ -235,8 +235,6 @@ export default {
 		    self.$http.get(url).then(response => {
 		    	response = response.data.response;
 		    	self.allServices = response.data;
-		    	console.log(self.allServices, 3333333);
-
 		    	if(!self.allServices.length) {
 		    		self.showNoRecordFound = true;
 		    	}

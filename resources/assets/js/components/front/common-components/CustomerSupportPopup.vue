@@ -51,13 +51,10 @@
             getSupportQuestions() {
                 let self = this;
                 this.user = JSON.parse(this.$store.getters.getAuthUser);
-                console.log(this.user.id, 444444444);
-                console.log(this.user, 444444444);
                 let supportUrl = 'api/support-question?role_id=' + this.user.role_id;
                 self.$http.get(supportUrl).then(response => {
                     response = response.data.response;
                     self.supportQuestions = response.data;
-                    console.log(response.data, 2233);
                     self.$store.commit('setSupportQuestions' , response.data);
                 }).catch(error => {
                     var response = error.response.data.response;
@@ -112,7 +109,6 @@
                 self.errorMessage = '';
                 self.successMessage = '';
                 let supportInquiryUrl = 'api/support-inquiry';
-                console.log(this.selectedQuestion.id, 999);
                 var data = {
                     support_question_id: this.selectedQuestion.id,
                     message: this.message,
@@ -124,14 +120,13 @@
               self.loading = true;
               self.$http.post(supportInquiryUrl, data).then(response => {
                 response = response.data.response;
-                self.successMessage = "Your message has been submitted successfully.";//response.message;
+                self.successMessage = "Your inquiry has been submitted successfully.";//response.message;
                 
                 setTimeout(function() {
                     self.loading = false;
                     self.hideModal();
                     self.onHidden();
                     self.successMessage = '';
-                    
                 }, 2000);
 
             }).catch(error => {
