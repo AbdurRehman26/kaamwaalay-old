@@ -39,6 +39,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
             'deleted_at' => NULL,
+            'profile_image' => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/328820/profile/profile-512.jpg?1',
         ];
         $i =2;
 
@@ -55,7 +56,7 @@ class UsersTableSeeder extends Seeder
 
         $roles = [Role::CUSTOMER,Role::SERVICE_PROVIDER,Role::REVIEWER];
 
-        foreach (range(1,500) as $index) {
+        foreach (range(1,150) as $index) {
             $data[]=[
                 'id' => $i,
                 'first_name' => $faker->firstName,
@@ -67,7 +68,6 @@ class UsersTableSeeder extends Seeder
                 'country_id' => NULL,
                 'state_id' => NULL,
                 'city_id' => NULL,
-                'profile_image' => $imagesArray[array_rand($imagesArray)],
                 'status' => 'active',
                 'activation_key' => bcrypt('cygnismedia'),
                 'activated_at' => $date,
@@ -75,6 +75,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
+                'profile_image' => $imagesArray[array_rand($imagesArray)],
             ];
             $i++;
         } 
