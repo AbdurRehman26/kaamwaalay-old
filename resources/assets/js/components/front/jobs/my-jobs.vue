@@ -12,7 +12,7 @@
 
                      <div class="job-post-list" v-for="record in records">
                       <div class="job-post-details">
-                       <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ record.user.profile_image +')',}"></div>
+                       <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')',}"></div>
 
                        <div class="job-common-description job-perform">
                         <div class="col-md-6 p-l-0">
@@ -21,7 +21,7 @@
                          <!-- <span><i class="icon-checked"></i></span> -->
                          <div class="job-notification">									
                           <div class="jobs-done">
-                             <span class="job-category">{{ record.service | mainServiceOrChildService }}</span>		
+                             <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>		
                              <div class="job-status">
                                 <span class="tags" :class="[record.status.replace(/\s\_/g, '').replace('_' , '')]">
                                     {{ record | jobStatus }}
