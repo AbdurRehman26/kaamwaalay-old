@@ -1,6 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/front/app.css": "/css/front/app.css",
-    "/js/front-app.js": "/js/front-app.js"
+    "/js/app.js": "/js/app.js?id=4a8ab314027544376488",
+    "/css/app.css": "/css/app.css?id=caabbc4a919353a2507c",
+    "/css/front/app.css": "/css/front/app.css?id=90c3f03f46420074feab",
+    "/js/front-app.js": "/js/front-app.js?id=da8b04f09b6bb8492b15"
 }

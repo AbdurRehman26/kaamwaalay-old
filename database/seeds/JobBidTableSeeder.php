@@ -28,11 +28,11 @@ class JobBidTableSeeder extends Seeder
 
         $jobs = app('JobRepository')->model->limit($totalJobs)->get();
 
-        $customers = app('UserRepository')->model->where('role_id' , Role::CUSTOMER)->inRandomOrder()->limit($totalCustomers)->pluck('id')->toArray();
+        $customers = app('UserRepository')->model->where('role_id' , Role::SERVICE_PROVIDER)->inRandomOrder()->limit($totalCustomers)->pluck('id')->toArray();
 
         // to reduce the possibility of archive happening
 
-        $jobBidStatuses = ['pending', 'pending', 'completed'];
+        $jobBidStatuses = ['pending', 'pending', 'pending', 'pending', 'pending', 'pending', 'completed'];
 
 
         foreach ($jobs as $key => $job) {
@@ -54,27 +54,21 @@ class JobBidTableSeeder extends Seeder
                 $isInvited = $randomValues[array_rand($randomValues)];
 
                 $status = 'pending';
-            
+                
                 if($isAwarded){
                     
                     // unsetting the last value so it wont make any other bid awared ( Boom )
                     
                     unset($randomValues[sizeof($randomValues)-1]);
-
                     // updating the job to be awarded  ( there is a small hitch . each time seeder runs it will reset jobs' status)
                     
                     $status = $jobBidStatuses[array_rand($jobBidStatuses)];
                     $jobStatus = $status  == 'pending' ? 'awarded' : 'completed';
 
                     $updateData = ['id' => $job->id, 'status'=> $jobStatus];
-
+                    
                     app('JobRepository')->update($updateData);
                     
-                    if($jobStatus == 'completed'){
-                        $breakLoop = true;
-                        continue;
-                    }    
-
                 }
 
 
@@ -97,6 +91,13 @@ class JobBidTableSeeder extends Seeder
                 }
 
                 $data[] = $bidData;
+
+                if($jobStatus == 'completed'){
+                    $breakLoop = true;
+                    continue;
+                }    
+
+
             }
 
         }
