@@ -23,7 +23,7 @@ abstract class ApiResourceController extends Controller
     //Get all records
     public function index(Request $request)
     {
-
+        
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
 
@@ -54,7 +54,6 @@ abstract class ApiResourceController extends Controller
     public function show(Request $request,$id)
     {
         $request->request->add(['id' => $id]);
-
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
         

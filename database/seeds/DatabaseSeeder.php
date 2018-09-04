@@ -28,11 +28,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ServiceTableSeeder::class);
         $this->call(ServiceProviderProfileSeeder::class);
-
-
-      //  $this->call(PaymentTableSeeder::class);
-
-
+        //  $this->call(PaymentTableSeeder::class);
+        $this->call(UserRatingTableSeeder::class);
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');
     }

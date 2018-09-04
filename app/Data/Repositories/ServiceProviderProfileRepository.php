@@ -42,7 +42,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  [])
     {
         $data = parent::findById($id, $refresh, $details, $input);
-
         if ($data) {
             $data->user_detail = app('UserRepository')->findById($data->user_id, false, $details);
 
@@ -70,6 +69,16 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
             $data->avg_rating = $avgRating;
+// findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+            $reviewCriteria = ['user_id' => $data->user_id];
+            $review = app('UserRatingRepository')->findByCriteria($reviewCriteria, false, false, false, false, false);
+            $data->reviewedBy = null;
+            if($review) {
+                $review->formatted_created_at = Carbon::parse($review->created_at)->format('F j, Y');
+                $data->reviewedBy['review'] = $review;
+                $reviewedUser = app('UserRepository')->findById($review->rated_by);
+                $data->reviewedBy['user_detail'] = $reviewedUser;
+            }
 
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $totalFeedbackCount = app('UserRatingRepository')->getTotalFeedbackCriteria($avgCriteria, false);
@@ -81,6 +90,9 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $crtieria = ['user_id' => $data->user_id, 'status'=>'approved'];
             $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
+            if($profile){
+                $profile->formatted_created_at = Carbon::parse($profile->approved_at)->format('F j, Y');
+            }
             $data->profile_request = $profile;
             
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
@@ -92,10 +104,16 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
     }
 
 
-    public function findByAll($pagination = false,$perPage = 10, $data = [])
-    {       
 
-        $this->builder = $this->model->orderBy('created_at', 'desc');
+    public function findByAll($pagination = false,$perPage = 10, $data = []){
+        $this->builder = $this->model->orderBy('created_at','desc');
+        if(!empty($data['zip'])) {
+            $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
+                $join->on('users.id', '=', 'service_provider_profiles.user_id');
+            })->where(function($query)use($data){
+                $query->where('users.zip_code', '=', $data['zip']);
+            })->groupBy('service_provider_profiles.user_id');
+        }
 
         if (!empty($data['keyword'])) {
 
@@ -113,30 +131,35 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['filter_by_business_type'])) {
             $this->builder = $this->builder->where('service_provider_profiles.business_type', '=', $data['filter_by_business_type']);
         }
-        
-        if(!empty($data['filter_by_service'])) {
+       
 
-            $ids = app('ServiceRepository')->model->where('id', $data['filter_by_service'])
-                ->orWhere('parent_id', $data['filter_by_service'])
-                ->pluck('id')->toArray();
+        if(!empty($data['filter_by_service'])){
+
+            $ids = app('ServiceRepository')->model->where('id' , $data['filter_by_service'])
+            ->orWhere('parent_id', $data['filter_by_service'])
+            ->pluck('id')->toArray();
 
 
-            $this->builder = $this->builder->leftJoin(
-                'service_provider_profile_requests', function ($join) use ($data, $ids) {
-                    $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
-                }
-            )->join(
-                'service_provider_services', function ($join) use ($data) {
-                        $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
-                }
-            )->whereIn('service_provider_services.service_id', $ids)
+            $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
+                $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
+            })->join('service_provider_services', function($join) use ($data){
+                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
+            })->whereIn('service_provider_services.service_id', $ids)
+
             ->select('service_provider_profiles.*')
             ->groupBy('service_provider_profiles.user_id');
         }
-
-        $this->builder = $this->builder->select('service_provider_profiles.*');
+        if(!empty($data['is_approved'])) {
+            $is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
+            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $is_approved);
+        }
         
-        return parent::findByAll($pagination, $perPage, $data);
+        if(!empty($data['filter_by_featured'])){
+            $this->builder = $this->builder->where('service_provider_profiles.is_featured','=',$data['filter_by_featured']);
+        }
+        $this->builder = $this->builder->select('service_provider_profiles.*');
+        $record = parent::findByAll($pagination, $perPage, $data);
+        return $record;
 
     }
 

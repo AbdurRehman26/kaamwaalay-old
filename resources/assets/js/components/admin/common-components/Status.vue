@@ -94,10 +94,8 @@
             }
             setTimeout(function(){
                 self.loading = false;
-                self.errorMessage=''
+                self.errorMessage = '';
             }, 3000);
-
-
         });
     }
 },

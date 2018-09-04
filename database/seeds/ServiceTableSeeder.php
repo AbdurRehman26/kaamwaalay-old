@@ -163,6 +163,9 @@ class ServiceTableSeeder extends Seeder
                     'description' => $faker->Text,
                     'parent_id' => array_search($parentService, $services),
                     'is_featured' => $isFeatured[array_rand($isFeatured)]
+                    'is_display_banner' => 1,
+                    'is_display_service_nav' => 1,
+                    'is_display_footer_nav' => 1,
                 ];
                 $key += 1;
             }

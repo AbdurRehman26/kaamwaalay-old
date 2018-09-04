@@ -35,10 +35,6 @@ Route::group(['middleware' => ['scopes']], function () {
         'index','store','show'
     ]);
 
-    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-        'edit','create','destory','store','update'
-    ]);
-
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
         'edit','create','destory','store'
     ]);
@@ -73,10 +69,6 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
     Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 
-    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans')->name('plan.update.or.add');
-    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign')->name("update.campaign");
-
-    Route::resource('service', 'Api\V1\ServiceController')->except([
-        'edit','create'
-    ]);
+    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
 });

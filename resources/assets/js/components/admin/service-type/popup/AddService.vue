@@ -394,8 +394,6 @@
                             self.errorBag.clear()
                         })
                     }, 10);
-
-
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;

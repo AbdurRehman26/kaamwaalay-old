@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceRepository;
 use App\Data\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
@@ -82,33 +81,33 @@ class ServiceController extends ApiResourceController
     }
 
 
-    public function input($value='')
-    {
-        $input = request()->only(
-            'id',
-            'title',
-            'images',
-            'parent_id',
-            'pagination',
-            'description',
-            'is_display_banner',
-            'is_display_service_nav',
-            'is_display_footer_nav',
-            'is_featured',
-            'is_hero_nav',
-            'url_prefix',
-            'parent_service',
-            'status',
-            'keyword',
-            'filter_by_featured',
-            'zip_code'
-        );
+public function input($value=''){
+    $input = request()->only(
+        'id',
+        'title',
+        'images',
+        'parent_id',
+        'pagination',
+        'description',
+        'is_display_banner',
+        'is_display_service_nav',
+        'is_display_footer_nav',
+        'is_featured',
+        'is_hero_nav',
+        'url_prefix',
+        'parent_service',
+        'status',
+        'keyword',
+        'filter_by_featured',
+        'zip_code',
+        'service_category'
+    );
 
-    $input['user_id'] = request()->user()->id;
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
-        return $input;
-    }
-
+    return $input;
+}
 
     //Update single record
     public function update(Request $request, $id)

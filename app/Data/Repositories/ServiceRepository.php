@@ -174,23 +174,36 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 $this->builder = $this->builder->whereIn('services.id', $ids)->whereIn('services.parent_id', $ids, 'or');
 
                 if(isset($data['filter_by_featured'])) {
-                                
-                    $this->builder = $this->builder->where('is_featured', '=', (int)$data['filter_by_featured']);
+
+                    $this->builder = $this->builder->where('is_featured','=',(int)$data['filter_by_featured']);
 
                 }
             }
-            // $this->builder = $this->builder->where(function($query) use($ids){
-            //     $query->whereIn('services.id', $ids);
-            //     $query->whereIn('services.parent_id', $ids, 'or');
-            // });
+                        // $this->builder = $this->builder->where(function($query) use($ids){
+                        //     $query->whereIn('services.id', $ids);
+                        //     $query->whereIn('services.parent_id', $ids, 'or');
+                        // });
                         
         }
-
-                    //$modelData['data'] = [];
-                    //$count = $this->builder->count();
-                    //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
-                    //$modelData['data']['service_count'] = $count;
-                    return parent::findByAll($pagination, $perPage, $data);
+        $modelData['data'] = [];
+        if (!empty($data['service_category'])) {
+            if($data['service_category'] == 'All') {
+                $services = $this->model->orderBy('created_at', 'desc')->whereNull('parent_id')->get();
+                foreach ($services as $key => $value) {
+                    // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
+                     $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->get();
+                    $services[$key]->subservices = $subservice;
+                }
+                $modelData['data'] = $services;
+                //$modelData['data']['service_count'] = sizeof($services);
+                return $modelData;
+            }
+        }
+        //$modelData['data'] = [];
+        //$count = $this->builder->count();
+        //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+        //$modelData['data']['service_count'] = $count;
+        return parent::findByAll($pagination, $perPage, $data);
     }
 
 
@@ -217,4 +230,13 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         }
         return false;
     }
+    public function getAllServicesByCategory($servicesId, $pagination = false, $perPage = 10, $data = []) {
+
+        if($servicesId) {
+            $this->builder = $this->model->where('parent_id', '=', $servicesId);
+        }
+
+        return  parent::findByAll($pagination, $perPage, $data);
+    }
 }
+
