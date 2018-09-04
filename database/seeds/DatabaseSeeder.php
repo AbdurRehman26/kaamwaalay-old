@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceProviderProfileSeeder::class);
 
         $this->call(JobTableSeeder::class);
-        // $this->call(JobBidTableSeeder::class);
+        $this->call(JobBidTableSeeder::class);
 
         // These seeders will be commented
         $this->call(UserRatingTableSeeder::class);
