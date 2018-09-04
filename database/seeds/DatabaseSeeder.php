@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JobTableSeeder::class);
         $this->call(JobBidTableSeeder::class);
 
+        $this->call(UserRatingTableSeeder::class);
+
         $this->call(PaymentTableSeeder::class);
 
 
