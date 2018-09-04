@@ -16100,6 +16100,15 @@ input[type=number]::-webkit-outer-spin-button {
   color: #8200FF;
 }
 
+.verify-account.nobar {
+  border-top: 0px solid #E0E0E0;
+  padding-top: 0px;
+}
+
+.verify-account.nobar:after {
+  display: none;
+}
+
 .custom-file {
   position: relative;
   display: inline-block;

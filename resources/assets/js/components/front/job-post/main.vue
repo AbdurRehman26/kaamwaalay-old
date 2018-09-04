@@ -75,8 +75,11 @@
 	  							<label for="normal">No, Normal job</label>
 							</div>
 							<div class="col-md-6">
-								  <input type="radio" id="urgent" name="need" value="Urgent job">
+								  <input type="radio" id="urgent" name="need" value="Urgent job" @click="urgentjob()">
 	  							  <label for="urgent">Yes, Urgent job</label>
+							</div>
+							<div class="" v-if="need == 'Urgent job'">
+								<h1>asdas</h1>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -175,8 +178,24 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="">&nbsp;</label>
-							<a href="javascript:void(0);" class="add-photos filter-btn-top-space" @click="urgentjob();"> + Urgent/Feature Job</a>
+	                        <div class="form-group custom-datepicker">
+	                        	<label for="">&nbsp;</label>
+	                            <select class="form-control">
+	                                <option selected="" disabled="">Select Month</option>
+	                                <option>January</option>
+	                                <option>Feburay</option>
+	                                <option>March</option>
+	                                <option>April</option>
+	                                <option>May</option>
+	                                <option>June</option>
+	                                <option>July</option>
+	                                <option>August</option>
+	                                <option>September</option>
+	                                <option>October</option>
+	                                <option>November</option>
+	                                <option>December</option>
+	                            </select>
+	                        </div>
 						</div>
 					</div>
 					<div class="row">
@@ -187,6 +206,24 @@
 							</div>
 						</div>
 						<div class="col-md-6">							
+		                    <div class="form-group custom-datepicker">
+		                    	<label for="">&nbsp;</label>
+		                        <select class="form-control">
+		                            <option selected="" disabled="">Select Year</option>
+		                            <option>2010</option>
+		                            <option>2011</option>
+		                            <option>2012</option>
+		                            <option>2013</option>
+		                            <option>2014</option>
+		                            <option>2015</option>
+		                            <option>2016</option>
+		                            <option>2017</option>
+		                            <option>2018</option>
+		                            <option>2019</option>
+		                            <option>2020</option>
+		                            <option>2021</option>
+		                        </select>
+		                    </div>													
 						</div>
 					</div>
 					<div class="row">
@@ -228,6 +265,7 @@ export default {
     time1: '',
     time2: '',
     time3: '',
+    jobdes: '',
       shortcuts: [
         {
           text: 'Today',

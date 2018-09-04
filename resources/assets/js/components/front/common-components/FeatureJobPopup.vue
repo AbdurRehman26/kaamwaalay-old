@@ -1,6 +1,6 @@
 <template>	
 	<div>
-		<b-modal id="urgent-job" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Urgent Job" ok-only ok-title="Submit">
+		<b-modal id="urgent-job" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Feature Profile" ok-only ok-title="Submit">
         <alert></alert>
 		    <div>
 

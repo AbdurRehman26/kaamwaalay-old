@@ -1755,6 +1755,13 @@ $section-padding-sm:20px 0px;
             color: $primary-color-md;
         }
     }
+    &.nobar{
+        border-top: 0px solid #E0E0E0;
+        padding-top: 0px;
+        &:after {
+            display: none;
+        }
+    }
 }
 .custom-file {
     position: relative;
