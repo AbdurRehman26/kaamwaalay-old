@@ -218,15 +218,17 @@
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
-    <a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+		<a href="job-details/serviceprovidercustomerend" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 </div>
+
 
 <div class="service-provider" v-else-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend'">
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
-    <a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+		<a href="/job-details/awarded" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 </div>							
+
 
 <div class="service-provider" v-else>
     <div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
@@ -298,9 +300,11 @@
             fancyBox(e.target, this.imageList);
         },
         FindInvite(){
+        	window.scrollTo(0,0);
          this.$router.push({name: 'Explore_Detail'});
      },
      Modify(){
+        	window.scrollTo(0,0);
          this.$router.push({name: 'Job-Post'});
      },        
      VisitPopup(){
@@ -326,8 +330,9 @@ showchatpanel(){
 },
 CloseDiscussion(){
   this.isShowing=false;
-},
-showProfile(){
+		},
+		showProfile(){
+			window.scrollTo(0,0);
    this.$router.push('explore/service_provider/service_provider_detail');
 }                
 

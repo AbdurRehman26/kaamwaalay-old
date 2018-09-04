@@ -48,7 +48,24 @@
 								<h4>{{categoryabc.itemtitle}}</h4>
 							</a>
 						</div>
-						<div class="showmore showmore-link clearfix"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+		        		<div class="showmore showmore-link clearfix"><a v-b-toggle="maincategory.title" href="javascript:void(0);">View all services related to {{ maincategory.title }} <i class="icon-keyboard_arrow_right"></i></a></div>
+						<b-card no-body class="related-service-category">
+
+							<b-collapse :id="maincategory.title" accordion="my-accordion" role="tabpanel">
+								<b-card-body>
+					        		<div class="category-items">
+					        			<ul class="item-list-container">
+						        			<li class="items-list" v-for="category in maincategory.relatedcategory">
+						        				<a href="javascript:void(0);">
+							        				<p>{{category.relatedcategorytitle}}</p>
+							        			</a>
+							        		</li>
+										</ul>
+					        		</div>					        											
+								</b-card-body>
+							</b-collapse>
+						</b-card>
+
 
 					</div>
 				</div>
@@ -121,6 +138,33 @@
 					},
 
 					],
+			relatedcategory:[
+				{					
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				},
+
+				{
+					relatedcategorytitle: 'Air conditioning repair',
+				},
+
+				{
+					relatedcategorytitle: 'Heating system repair',
+				},
+				{
+					relatedcategorytitle: 'Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Mobile Repairing',
+				},
+				{
+					relatedcategorytitle: 'Home Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Industrial Electrician',
+				},											
+			],
 
 				},
 
@@ -143,6 +187,33 @@
 						itemtitle: 'Wooden deck building & repair',
 					},
 					],
+			relatedcategory:[
+				{					
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				},
+
+				{
+					relatedcategorytitle: 'Air conditioning repair',
+				},
+
+				{
+					relatedcategorytitle: 'Heating system repair',
+				},
+				{
+					relatedcategorytitle: 'Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Mobile Repairing',
+				},
+				{
+					relatedcategorytitle: 'Home Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Industrial Electrician',
+				},											
+			],			
 
 
 				},
@@ -166,6 +237,33 @@
 						itemtitle: 'Exterior Cleaners',
 					},
 					],
+			relatedcategory:[
+				{					
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				},
+
+				{
+					relatedcategorytitle: 'Air conditioning repair',
+				},
+
+				{
+					relatedcategorytitle: 'Heating system repair',
+				},
+				{
+					relatedcategorytitle: 'Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Mobile Repairing',
+				},
+				{
+					relatedcategorytitle: 'Home Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Industrial Electrician',
+				},											
+			],			
 
 
 				},
@@ -190,6 +288,33 @@
 						itemtitle: 'Deck Staining',
 					},
 					],
+			relatedcategory:[
+				{					
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				},
+
+				{
+					relatedcategorytitle: 'Air conditioning repair',
+				},
+
+				{
+					relatedcategorytitle: 'Heating system repair',
+				},
+				{
+					relatedcategorytitle: 'Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Mobile Repairing',
+				},
+				{
+					relatedcategorytitle: 'Home Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Industrial Electrician',
+				},											
+			],			
 
 				},
 
@@ -212,6 +337,33 @@
 						itemtitle: 'Furniture Moving & Heavy Lifting',
 					},
 					],
+			relatedcategory:[
+				{					
+					relatedcategorytitle: 'Electrical and Wiring Repair'
+				},
+
+				{
+					relatedcategorytitle: 'Air conditioning repair',
+				},
+
+				{
+					relatedcategorytitle: 'Heating system repair',
+				},
+				{
+					relatedcategorytitle: 'Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Mobile Repairing',
+				},
+				{
+					relatedcategorytitle: 'Home Wiring',
+				},
+
+				{
+					relatedcategorytitle: 'Industrial Electrician',
+				},											
+			],			
 
 				},
 

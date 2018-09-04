@@ -211,7 +211,7 @@
         meta: {
             title: 'Professional Service Marketplace | Advice Center',
             bodyClass: 'advice-center-page',
-            navigation: 'customer-nav',
+            navigation: 'main-nav',
         },
         component: require('./components/front/advice-center/main.vue'),
     },
@@ -243,6 +243,28 @@
         component: require('./components/front/profile-rejection/main.vue'),
     },
 
+    {
+        name: 'not-approved',
+        path: '/not-approved',
+        meta: {
+            title: 'Professional Service Marketplace | Profile Rejected',
+            bodyClass: 'profile-rejection-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/profile-rejection/not-approved.vue'),
+    },    
+
+    {
+        name: 'not-review',
+        path: '/not-review',
+        meta: {
+            title: 'Professional Service Marketplace | Profile Rejected',
+            bodyClass: 'profile-rejection-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/profile-rejection/profile-yet.vue'),
+    },        
+
 
     // Static Pages
     {
@@ -251,7 +273,7 @@
         meta: {
             title: 'Professional Service Marketplace | Terms Condition',
             bodyClass: 'terms-condition-page',
-            navigation: 'provider-nav',
+            navigation: 'main-nav',
         },
         component: require('./components/front/static-pages/TermsCondition.vue'),
     },
@@ -262,7 +284,7 @@
         meta: {
             title: 'Professional Service Marketplace | Privacy Policy',
             bodyClass: 'privacy-policy-page',
-            navigation: 'provider-nav',
+            navigation: 'main-nav',
         },
         component: require('./components/front/static-pages/PrivacyPolicy.vue'),
     },

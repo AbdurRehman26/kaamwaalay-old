@@ -42,7 +42,7 @@
 							</div>
 							
 							<div class="col-md-3">
-								<button class="btn btn-primary payment-continue">
+								<button class="btn btn-primary payment-continue" @click="featurejob()">
 									Continue
 									<loader></loader>
 								</button>
@@ -100,7 +100,7 @@
 			</div>	
 		</div>
 
-
+		<feature-job @HideModalValue="HideModal" :showModalProp="categoryval"></feature-job>
 
 
 	</div>
@@ -116,6 +116,7 @@ export default {
    	value: '',
    	value_month:'',
    	value_year:'',
+   	categoryval: false,
     time1: '',
     time2: '',
     time3: '',
@@ -133,6 +134,19 @@ export default {
         end: '23:30'
       }
     }
-  }
+  },
+  methods:{
+  	job(){
+  		window.scrollTo(0,0);
+  		this.$router.push({name: 'My Jobs'});
+  	},
+    featurejob() {
+        this.categoryval = true;
+    },
+    HideModal(){
+        this.categoryval = false;
+    },
+
+  }  
 }
 </script>

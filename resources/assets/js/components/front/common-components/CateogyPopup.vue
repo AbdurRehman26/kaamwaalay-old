@@ -36,8 +36,12 @@ export default {
             this.$emit('HideModalValue');
         },
         categorydetail(){
+            this.scrollToTop();
             this.$router.push({name: 'Explore_Detail'});
-        }
+        },
+        scrollToTop() {
+            window.scrollTo(0,0);
+        },        
     },
 
     watch: {
