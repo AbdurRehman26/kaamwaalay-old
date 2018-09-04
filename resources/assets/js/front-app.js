@@ -29,6 +29,7 @@ import VeeValidate from 'vee-validate'
 import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js'
+import VueStripeCheckout from 'vue-stripe-checkout';
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
 Vue.use(BootstrapVue);
@@ -57,8 +58,20 @@ Vue.use(VueAuthenticate, {
         }
     }
 })
-Vue.use(Vuex);
-
+Vue.use(Vuex); 
+// base/global options
+// these options can be overridden 
+// by the options in the .open(options) 
+// function.
+const stripeOptions = {
+  key: 'pk_test_ix9VLy3CYcuwWxz1UkMipKun',
+  image: '',
+  locale: 'auto',
+  currency: 'PHP',
+  billingAddress: false,
+  panelLabel: 'Subscribe {{amount}}'
+}
+Vue.use(VueStripeCheckout, stripeOptions);
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
