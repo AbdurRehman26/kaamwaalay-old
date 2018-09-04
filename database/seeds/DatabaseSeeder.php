@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
       
         $this->call(ServiceProviderProfileSeeder::class);
 
+
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');
     }
