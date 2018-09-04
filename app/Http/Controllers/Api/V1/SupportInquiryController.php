@@ -52,7 +52,7 @@ class SupportInquiryController extends ApiResourceController
     {
 
         if($value == 'index'){
-            $input = request()->only('pagination', 'type_id');
+            $input = request()->only('pagination', 'type_id', 'keyword');
         }
 
         if($value == 'store'){
