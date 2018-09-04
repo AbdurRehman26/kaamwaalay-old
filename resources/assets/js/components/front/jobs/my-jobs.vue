@@ -23,7 +23,7 @@
                           <div class="jobs-done">
                              <span class="job-category">{{ record.service | mainServiceOrChildService }}</span>		
                              <div class="job-status">
-                                <span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">
+                                <span class="tags" :class="[record.status.replace(/\s\_/g, '').replace('_' , '')]">
                                     {{ record | jobStatus }}
                                 </span>	
                             </div>
