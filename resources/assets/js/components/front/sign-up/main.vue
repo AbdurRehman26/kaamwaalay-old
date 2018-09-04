@@ -6,7 +6,7 @@
 			<div class="col-xs-12 col-sm-6 col-sm-6">
 				<div class="custom-radio boxed m-b-30">
 					<input  v-model="type" value="customer" type="radio" name="accountType" id="type_hire_provider">
-					<label for="type_hire_provider">
+					<label for="type_hire_provider" @click="signuptext = 'CUSTOMER SIGN UP'">
 						<div class="verticle-align">
 							<div class="inner">
 								I want to hire a service provider
@@ -20,7 +20,7 @@
 			<div class="col-xs-12 col-sm-6 col-sm-6">
 				<div class="custom-radio boxed">
 					<input  v-model="type" value="provider" type="radio" name="accountType" id="type_service_provider" >
-					<label for="type_service_provider">
+					<label for="type_service_provider" @click="signuptext = 'SERVICE PROVIDER SIGN UP'">
 						<div class="verticle-align">
 							<div class="inner">
 								I want to grow my business
@@ -36,6 +36,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="sign-up-form service-provider-form">
+         <p class="custom-text">{{signuptext}}</p>
 					<facebook-component :text = "'Sign up with Facebook'" :fromSignUp="'true'"></facebook-component>
 					<div class="form-signup">
 						<form  @submit.prevent="validateBeforeSubmit"  novalidate="">
@@ -112,11 +113,13 @@
             'email': '',
             'password': '',
             'role': '',
-        },
+			  },
+        status:  'not_accepted',
+        signuptext: 'CUSTOMER SIGN UP',
         agree  : false,
         loading: false,
-    }
-},
+        }
+        },
 mounted() {
     this.$auth.options.loginUrl = '/api/auth/login'
 },
@@ -125,9 +128,13 @@ methods:{
 
         var result = [];
         if ((this.type) === 'customer') {
+					this.signuptext = 'CUSTOMER SIGN UP';
+					window.scrollTo(0,0);
            this.$router.push('profile');
        }
        if ((this.type) === 'provider') {
+					this.signuptext = 'Service Provider Signup';
+					window.scrollTo(0,0);					
            this.$router.push('apply-for-review');
        }
        return result;
@@ -166,6 +173,10 @@ validateBeforeSubmit() {
         this.errorMessage = this.errorBag.all()[0];
     });
 },
+  scrolltop(){
+        window.scrollTo(0,0);
+   },
+
 resetModal () {
     let self = this;
     self.register_info = {

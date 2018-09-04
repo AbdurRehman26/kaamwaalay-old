@@ -10,6 +10,7 @@
             width:100%;
         }
         @include mobile{
+            overflow: hidden;
             &:before{
                 content: '';
                 position: absolute;
@@ -66,7 +67,7 @@
                 margin-bottom: 9px !important;
             }
             h5{
-                font-size: 13px;
+                font-size: 15px;
                 margin-bottom: 4px;
             }
             .form-control.lg{
@@ -91,7 +92,7 @@
                 min-width: 80px;             
             }
             p{
-                font-size: 12px !important;
+                font-size: 14px !important;
                 margin-bottom: 11px !important;
                 line-height: 20px !important;                
             }            

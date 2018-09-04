@@ -45,7 +45,7 @@
 					<p>14 General carpentry service professionals found near you</p>
 				</div>
 
-				<div class="job-post-list" v-for="listing in joblisting">
+				<div class="job-post-list category-service-provider" v-for="listing in joblisting">
 					<div class="job-post-details">
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
 
@@ -277,6 +277,7 @@ export default {
         ViewCustomerDetail() {
             /*this.viewcustomer = true;*/
             this.$router.push({name: 'customerdetail'});
+            window.scrollTo(0,0);
         },
         changestatuspopup() {
             this.changestatus = true;
@@ -292,8 +293,9 @@ export default {
             this.viewcustomer = false;
             this.changestatus = false;
         },
-        servicedetail(){
+        servicedetail(){        	
         	this.$router.push({name: 'Service_Provider_Detail'});
+        	window.scrollTo(0,0);
         }
 
     },
