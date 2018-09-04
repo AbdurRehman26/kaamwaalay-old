@@ -40,7 +40,7 @@
 									<li><a href="/sign-up">Sign up as a customers</a></li>
 									<li><a href="/explore">Explore Services</a></li>
 									<li><a href="/advice-center">Advice center</a></li>
-									<li><a href="javascript:;" @click="CustomerSupportPopup">Customer support</a></li>
+									<li><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -51,7 +51,7 @@
 									<li><router-link to="/sign-up">Sign up as a service provider</router-link></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
 									<li><router-link to="/advice-center">Frequently asked questions</router-link></li>
-									<li><a href="javascript:;" @click="customersupportpopup">Service provider support</a></li>
+									<li><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -99,26 +99,28 @@
 			</div>
 		</div>
 
-		<customer-support-popup @HideModalValue="HideModal" :showModalProp="customersupport"></customer-support-popup>
+		<customer-support-popup @HideModalValue="HideModal" :showModalProp="supportPopup"></customer-support-popup>
 
 	</div>
 </template>
 
 <script type="text/javascript">
     export default {
+    	mounted() {
+    	},
         methods: {
-            CustomerSupportPopup() {
-                this.customersupport = true;
+            showSupportPopup() {
+                this.supportPopup = true;
             },
             HideModal(){
-                this.customersupport = false;
+                this.supportPopup = false;
             },
 
         },
         
         data(){
             return{
-                customersupport: false,
+                supportPopup: false,
             }
         }
     }

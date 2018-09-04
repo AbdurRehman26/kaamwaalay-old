@@ -75,13 +75,6 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
     //Dashboard Report
     Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
 
-    Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
-        'index', 'store', 'show', 'update',
-    ]);
-
-    Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
-        'index',
-    ]);
     //Payment Listing
     Route::get('payment', 'Api\V1\PaymentController@index');
 //Dashboard Report
@@ -90,6 +83,14 @@ Route::group(['middleware' => ['auth:api','scopes']], function () {
     Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
     Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 });
+
+Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
+    'index', 'store', 'show', 'update',
+]);
+    
+Route::resource('support-question', 'Api\V1\SupportQuestionController')->only([
+    'index',
+]);
 
 Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
     'edit','create','destory','store','update'
