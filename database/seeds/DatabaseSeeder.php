@@ -34,7 +34,6 @@ class DatabaseSeeder extends Seeder
 
         // These seeders will be commented
         $this->call(UserRatingTableSeeder::class);
-
         $this->call(PaymentTableSeeder::class);
 
 

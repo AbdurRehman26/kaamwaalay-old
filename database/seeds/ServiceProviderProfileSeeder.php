@@ -43,27 +43,20 @@ class ServiceProviderProfileSeeder extends Seeder
                 'updated_at' => $date,
                 'deleted_at' => NULL,
             ];
+           $serviceProviderData[]=[
+                'id' => $i,
+                'user_id' =>$getUser->id,
+                'approved_at' => $date,
+                'created_at' => $date,
+                'updated_at' => $date,
+                'deleted_at' => NULL,
+            ];
             $this->info('service-provider-profile'.$i);
+            $this->info('service-provider-request'.$i);
             $i++;
         } 
         ServiceProviderProfile::insertOnDuplicateKey($data);
-       
-        $serviceProviderData = [];
-        $serviceProviders = new ServiceProviderProfile();
-        $getServiceProviders = $serviceProviders->pluck('user_id')->toArray();
-        foreach ($getServiceProviders as $getServiceProvider) {
-           $serviceProviderData[]=[
-            'id' => $i,
-            'user_id' => $getServiceProvider,
-            'approved_at' => $date,
-            'created_at' => $date,
-            'updated_at' => $date,
-            'deleted_at' => NULL,
-        ];
-        $this->info('service-provider-request'.$i);
-        $i++;
-       }
-    ServiceProviderProfileRequest::insertOnDuplicateKey($serviceProviderData);
+        ServiceProviderProfileRequest::insertOnDuplicateKey($serviceProviderData);
     
      $serviceProviderServiceData = [];
      $serviceProviderRequests = new ServiceProviderProfileRequest();
