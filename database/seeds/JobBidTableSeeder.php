@@ -58,9 +58,9 @@ class JobBidTableSeeder extends Seeder
                 $status = 'pending';
                 
                 if($isAwarded){
-                    
+
                     // unsetting the last value so it wont make any other bid awared ( Boom )
-                    
+
                     unset($randomValues[sizeof($randomValues)-1]);
                     // updating the job to be awarded  ( there is a small hitch . each time seeder runs it will reset jobs' status)
                     
@@ -96,10 +96,12 @@ class JobBidTableSeeder extends Seeder
 
                 $data[] = $bidData;
 
-                if($jobStatus == 'completed'){
-                    $breakLoop = true;
-                    continue;
-                }    
+                if(!empty($jobStatus)){
+                    if($jobStatus == 'completed'){
+                        $breakLoop = true;
+                        continue;
+                    }            
+                }
 
 
             }
