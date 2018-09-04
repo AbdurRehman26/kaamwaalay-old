@@ -2,13 +2,13 @@
 
 	<div class="container md">
 
-		<div class="job-post-list" v-for="listing in joblisting">
+		<div class="job-post-list" v-for="record in records">
 			<div class="job-post-details">
-				<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
+				<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record) +')',}"></div>
 
 				<div class="job-common-description job-perform">
 					<div class="col-md-6 p-l-0">
-						<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="$emit('showinformation')"><img src="/images/front/svg/info.svg"></i></span>
+						<h3 class="pointer" @click="servicedetail">{{record.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="$emit('showinformation')"><img src="/images/front/svg/info.svg"></i></span>
 						<div class="job-notification">									
 							<div class="jobs-done">											
 								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{ listing.job_poster }}</a></span>		
@@ -69,7 +69,7 @@
 	export default {
 		data () {
 			return {
-				requestUrl: 'api/job-bid',
+				requestUrl: 'api/job-bid?pagination=true',
 				records : [],
 				joblisting:[
 
@@ -95,7 +95,9 @@
 		},
 
 		methods: {
-
+			getImage(record) {
+				return record.profile_image? record.profile_image : 'images/dummy/image-placeholder.jpg';
+			},
 			AddCustomer() {
 				this.customer = true;
 			},

@@ -113,7 +113,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        $details = ['user_rating' => true];
+        $details = ['user_rating' => true, 'job_details' => true];
 
         $data->user = app('UserRepository')->findById($data->user_id, false, $details);
         $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);

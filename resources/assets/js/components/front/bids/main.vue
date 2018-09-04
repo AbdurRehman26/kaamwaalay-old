@@ -47,7 +47,7 @@
     export default {
       data () {
         return {
-         bid_selection: 'activebid',
+         bid_selection: 'invitebid',
          bidpopup: false,
          isShowing:false,
          infoval:false,     }

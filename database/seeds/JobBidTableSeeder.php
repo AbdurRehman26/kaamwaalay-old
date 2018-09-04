@@ -63,7 +63,6 @@ class JobBidTableSeeder extends Seeder
 
                     app('JobRepository')->update($updateData);
                 
-
                 }
 
 
