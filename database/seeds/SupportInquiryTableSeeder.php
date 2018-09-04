@@ -16,7 +16,7 @@ class SupportInquiryTableSeeder extends Seeder
     {
         $numberOfRandomQuestions = 20;
         
-        echo "\nUsers and support questions must be preset in database to run this seeder." 
+        echo "\nUsers and support questions must be preset in database to run this seeder.";
 
         $ids = app('SupportQuestionRepository')->model->inRandomOrder()
         ->limit($numberOfRandomQuestions)->pluck('id')->toArray();
