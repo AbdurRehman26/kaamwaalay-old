@@ -58,7 +58,7 @@
 
 			</div>
 		</div>
-
+		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
 	</div>			
 
 </template>
@@ -69,7 +69,8 @@
 	export default {
 		data () {
 			return {
-
+				requestUrl: 'api/job-bid',
+				records : [],
 				joblisting:[
 
 				{
@@ -115,7 +116,14 @@
 			},
 			showProfile(){
 				this.$router.push({name: 'Service_Provider_Detail'});
-			},			
+			},		
+	        getProviderRecords(response){
+	            let self = this;
+	            self.loading = false;
+	            self.records = response.data;
+	            self.noRecordFound = response.noRecordFound;
+	            self.pagination = response.pagination;
+	        },	
 
 		},
 		components: {

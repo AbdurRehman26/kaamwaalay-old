@@ -50,8 +50,7 @@
          bid_selection: 'activebid',
          bidpopup: false,
          isShowing:false,
-         infoval:false,
-     }
+         infoval:false,     }
  },
 
  methods: {

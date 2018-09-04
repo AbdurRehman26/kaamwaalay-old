@@ -80,6 +80,7 @@ class RolesTableSeeder extends Seeder
                     "support-inquiry.store",
                     "support-question.index",
                     "support-question.store",
+                    "job-bid.index",
                 ]), 
                 'created_at' => $date,
                 'updated_at' => $date,

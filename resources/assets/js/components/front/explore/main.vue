@@ -69,8 +69,6 @@
 
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 		<div class="other-categories section-grey section elementary-banner">
