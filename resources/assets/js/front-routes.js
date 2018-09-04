@@ -140,7 +140,7 @@
     // Job Post
 
     {
-        name: 'Job-Post',
+        name: 'job.create',
         path: '/job-post',
         meta: {
             title: 'Professional Service Marketplace | Job Post',
