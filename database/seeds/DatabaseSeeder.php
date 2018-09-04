@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // Guest User Calls
 
-      /*  $this->call(CountriesTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
         $this->call(ZipCodesTableSeeder::class);
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
         // These seeders will be commented
         $this->call(UserRatingTableSeeder::class);
-        $this->call(PaymentTableSeeder::class);*/
+        $this->call(PaymentTableSeeder::class);
 
         $this->call(SupportInquiryTableSeeder::class);
 
