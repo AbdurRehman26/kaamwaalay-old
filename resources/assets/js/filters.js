@@ -8,7 +8,7 @@ const jobStatuses = [
 },
 {
     key : 'cancelled',
-    value : 'Archived'
+    value : 'Cancelled'
 },
 {
     key : 'completed',
@@ -100,6 +100,10 @@ const jobPreferences = [
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
         return ;
+    }
+
+    if(value.is_archived){
+        return 'archived';
     }
 
     if(!Object.keys(value).length){

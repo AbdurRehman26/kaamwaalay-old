@@ -39,11 +39,10 @@
                      </p>
                  </div>
                  <div class="job-details" v-else>
-                     <p class="awarded" v-if="record.awarded_to == true">
+                     <p class="awarded">
                         <i class="icon-checkmark2"></i> 
-                        {{ record.awarded_to ? 'job awarded to : ' : 'job not awarded yet'}} {{ record.awarded_to }}
-                    </p>								
-                    <p class="service-requirment">
+                        {{ record.awarded_to ? 'job awarded to : ' : 'job not awarded yet'}}
+                        {{ record.awarded_to ? record.awarded_to.first_name : ''}}
                         <i class="icon-brightness-down"></i>
                         Service required 
                         <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
@@ -163,7 +162,6 @@
  </div>
  <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
 
-    {{bid.user.id}} {{bid.user.first_name}}
      <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user.profileImage +')'}"></div>
      <div class="job-common-description">
         <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
@@ -176,7 +174,7 @@
               <span class="review-job" v-else>{{ bid.finished_jobs }} Job(s) performed</span>
           </div>	
       </div>											
-  </div>										
+  </div>
   <div class="job-proposal">
     <div class="bit-offered">
        <span><i class="icon-work-briefcase"></i> Offer: 
@@ -194,11 +192,11 @@
    <p>{{bid.description}}</p>
 </div>
 <div class="provider-bidding-btn">
-   <a href="javascript:void(0);" @click="showProfile()" class="btn btn-primary">View Profile</a>
+   <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
    <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
-   <a href="javascript:void(0);" @click="AwardJob" v-if="bid.job_visited == true" class="btn btn-primary">Award Job</a>
+   <a v-if="!jobAwared" href="javascript:void(0);" @click="AwardJob" class="btn btn-primary">Award Job</a>
 
-   <a href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
+   <a v-if="!jobAwared" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 </div>
 </div>
 </div>
@@ -292,6 +290,9 @@
     computed : {
         jobImage(){
             return this.record && this.record.user ? this.record.user.profileImage : '';
+        },
+        jobAwared(){
+            return this.record.awarded_to;
         }
     },
     methods: {
@@ -335,8 +336,8 @@ showchatpanel(){
 CloseDiscussion(){
   this.isShowing=false;
 },
-showProfile(){
- this.$router.push('explore/service_provider/service_provider_detail');
+showProfile(id){
+ this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
 }                
 
 },
