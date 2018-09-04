@@ -26,9 +26,9 @@ class UserRatingTableSeeder extends Seeder
 
 
         if(!empty($jobBids)){
-
+            $data = [];
             foreach ($jobBids as $key => $bid) {
-                $data [] = [
+                $data[] = [
                     'job_id' => $bid->job_id,
                     'user_id' => $bid->service_provider_user_id,
                     'rated_by' => $bid->user_id,

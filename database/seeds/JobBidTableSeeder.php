@@ -36,10 +36,17 @@ class JobBidTableSeeder extends Seeder
 
 
         foreach ($jobs as $key => $job) {
+
+            $breakLoop = false;
             
             $randomValues = [0, 0, 0, 0, 0, 1];
 
             for ($i = 0 ; $i < $totalBids; $i++) {
+
+                if($breakLoop){
+                    continue;
+                }
+
 
                 $isAwarded = $randomValues[array_rand($randomValues)];
                 $isArchived = $randomValues[array_rand($randomValues)];
@@ -62,7 +69,11 @@ class JobBidTableSeeder extends Seeder
                     $updateData = ['id' => $job->id, 'status'=> $jobStatus];
 
                     app('JobRepository')->update($updateData);
-                
+                    
+                    if($jobStatus == 'completed'){
+                        $breakLoop = true;
+                        continue;
+                    }    
 
                 }
 
