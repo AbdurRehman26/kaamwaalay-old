@@ -60,9 +60,6 @@
                     var response = error.response.data.response;
                 });
             },
-            onSubmit() {
-                alert("submit");
-            },
             showModal() {
                 this.$refs.myModalRef.show();
                 this.supportQuestions = this.$store.getters.getSupportQuestions;
