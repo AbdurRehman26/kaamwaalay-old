@@ -29,13 +29,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceTableSeeder::class);
         $this->call(ServiceProviderProfileSeeder::class);
 
-
-      //  $this->call(PaymentTableSeeder::class);
-
-        $this->call(JobTableSeeder::class);
         $this->call(JobBidTableSeeder::class);
 
+        // These seeders will be commented
         $this->call(UserRatingTableSeeder::class);
+        $this->call(JobTableSeeder::class);
 
         $this->call(PaymentTableSeeder::class);
 
