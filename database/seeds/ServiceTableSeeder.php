@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
+use Carbon\Carbon;
 
 class ServiceTableSeeder extends Seeder
 {
@@ -16,6 +17,9 @@ class ServiceTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         
         $data = [];
+
+
+        $now = Carbon::now()->toDateTimeString();
 
         $services = [
             'Home Cleaning',
@@ -151,7 +155,9 @@ class ServiceTableSeeder extends Seeder
                 'title' => $service,
                 'description' => $faker->Text,
                 'parent_id' => null,
-                'is_featured' => $isFeatured[array_rand($isFeatured)]
+                'is_featured' => $isFeatured[array_rand($isFeatured)],
+                'created_at' => $now,
+                'updated_at' => $now
             ];
         }
         foreach ($subServices as $parentService => $subService) {
@@ -161,14 +167,16 @@ class ServiceTableSeeder extends Seeder
                     'id' => (int) $key+1,
                     'title' => $value,
                     'description' => $faker->Text,
-                    'parent_id' => array_search($parentService, $services),
-                    'is_featured' => $isFeatured[array_rand($isFeatured)]
+                    'parent_id' => array_search($parentService, $services)+1,
+                    'is_featured' => $isFeatured[array_rand($isFeatured)],
+                    'created_at' => $now,
+                    'updated_at' => $now
                 ];
                 $key += 1;
             }
 
         }
- 
+
         app("ServiceRepository")->model->insertOnDuplicateKey($data);
 
     }

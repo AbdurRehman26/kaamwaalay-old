@@ -15,8 +15,8 @@ class JobTableSeeder extends Seeder
     public function run()
     {
 
-
-
+        $now = Carbon::now()->toDateTimeString();
+        
         $faker = Faker\Factory::create();
         
         $numberOfJobs = 200;
@@ -72,6 +72,9 @@ class JobTableSeeder extends Seeder
                     'min_amount' => $min_amount[array_rand($min_amount)],
                     'max_amount' => $max_amount[array_rand($max_amount)],
                     'is_archived' => $isArchived,
+                    'created_at' => $now,
+                    'updated_at' => $now
+
                 ];
 
             }

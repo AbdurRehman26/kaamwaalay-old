@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory;
+use Carbon\Carbon;
 
 class UserRatingTableSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class UserRatingTableSeeder extends Seeder
         echo "\nThis Seeder requires Jobs and Job Bids to be present in data base.\n"; 
 
         $faker = Faker\Factory::create();
+        $now = Carbon::now()->toDateTimeString();
 
 
         $jobBids = app('JobBidRepository')->model->join('jobs' , 'jobs.id' , 'job_bids.job_id')->where('is_awarded' , 1)->where('job_bids.status' , 'completed')
@@ -35,6 +37,9 @@ class UserRatingTableSeeder extends Seeder
                     'rating' => $ratings[array_rand($ratings)],
                     'status' => 'approved',
                     'message' => $faker->Text,
+                    'created_at' => $now,
+                    'updated_at' => $now
+
                 ];
 
             }

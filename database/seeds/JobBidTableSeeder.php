@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Data\Models\Role;
 use Faker\Factory;
+use Carbon\Carbon;
 
 class JobBidTableSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class JobBidTableSeeder extends Seeder
      */
     public function run()
     {
+        $now = Carbon::now()->toDateTimeString();
 
         echo "\nThis Seeder requires Jobs to be present in data base.\n"; 
 
@@ -65,8 +67,8 @@ class JobBidTableSeeder extends Seeder
                     $status = $jobBidStatuses[array_rand($jobBidStatuses)];
                     $jobStatus = $status  == 'pending' ? 'awarded' : 'completed';
 
-                    $updateData = ['id' => $job->id, 'status'=> $jobStatus];
-                    
+                    $updateData = ['id' => $job->id, 'status'=> $jobStatus, 'updated_at' => $now];
+
                     app('JobRepository')->update($updateData);
                     
                 }
@@ -83,7 +85,9 @@ class JobBidTableSeeder extends Seeder
                     'is_archived' => $isArchived,
                     'is_invited' => $isInvited,
                     'user_id' => $customers[array_rand($customers)],
-                    'status' => $status
+                    'status' => $status,
+                    'created_at' => $now,
+                    'updated_at' => $now
                 ];
 
                 if($isTbd){
