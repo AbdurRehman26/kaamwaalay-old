@@ -81,7 +81,8 @@
       </div>
   </div>	
 </div>
-<feature-job @HideModalValue="HideModal" :showModalProp="categoryval"></feature-job>
+<!-- <feature-job @HideModalValue="HideModal" :showModalProp="categoryval"></feature-job> -->
+<card-element @HideModalValue="HideModal" :showModalProp="categoryval"></card-element>
 
 
 </div>
@@ -184,9 +185,9 @@ validateBeforeSubmit() {
             },
   save () {
                 let self = this;
-                self.loading = true
-                this.checkout();
-                //this.featurejob();
+                //self.loading = true
+                //this.checkout();
+                this.featurejob();
              /*   this.$http.post('/api/plan', self.add_form_info)
                 .then(response => {
                     self.successMessage =  response.data.message
@@ -206,7 +207,7 @@ validateBeforeSubmit() {
                         }, 5000);
                 })*/
             },
-          checkout() {
+       /*   checkout() {
           // this.$checkout.close() 
           // is also available.
           this.$checkout.open({
@@ -221,7 +222,7 @@ validateBeforeSubmit() {
               // I don't really care. 
           } 
       });
-      }
+      }*/
 },  
 mounted() {
     this.getPlansList()

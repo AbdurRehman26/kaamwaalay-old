@@ -12,10 +12,11 @@ use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
 use App\Notifications\SendServiceProviderStatusNotification;
 use Storage;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use InsertOnDuplicateKey,HasApiTokens, Notifiable;
+    use InsertOnDuplicateKey,HasApiTokens, Notifiable, Billable;
     const ACTIVE = 'active';
     const PENDING = 'pending';
     const IN_ACTIVE = 'deactived';

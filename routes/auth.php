@@ -64,8 +64,10 @@ Route::group(['middleware' => ['scopes']], function () {
     ]);
 
     //Payment Listing
-    Route::get('payment', 'Api\V1\PaymentController@index')->name('payment.index');
-
+    //Route::get('payment', 'Api\V1\PaymentController@index')->name('payment.index');
+    Route::resource('payment', 'Api\V1\PaymentController')->except([
+       'edit','create','destory'
+    ]);
     //Dashboard Report
     Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
 

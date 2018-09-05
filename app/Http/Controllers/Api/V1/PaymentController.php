@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\PaymentRepository;
 use App\Data\Models\Role;
+use Illuminate\Http\Request;
+use Validator;
 
 class PaymentController extends ApiResourceController
 {
@@ -38,4 +40,41 @@ class PaymentController extends ApiResourceController
         $input = request()->only('id', 'pagination', 'filter_by_pay_by', 'filter_by_type', 'keyword');
         return $input;
     }
+
+      /**
+         * Store a newly created resource in storage.
+         *
+         * @param  \Illuminate\Http\Request $request
+         * @return \Illuminate\Http\Response
+         */
+      public function store(Request $request)
+      {
+        $data = $request->only('stripe_token');
+        $data['user_id'] = request()->user()->id;
+        $rules = [
+            'stripe_token' => 'required',
+        ];
+
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) {
+            $code = 406;
+            $output = [
+             'message' => $validator->messages()->all(),
+         ];
+     }else{
+        $result = $this->_repository->create($data);
+        if($result) {
+          $code = 200;
+          $output = [
+            'data' => $result,
+            'message' => 'Payment has been made successfully',
+        ];
+    }else{
+      $code = 406;
+      $output = [
+        'message' => 'An error occurred',
+    ];
+}
+}
+}
 }

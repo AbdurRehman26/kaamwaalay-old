@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Payment;
+use App\Data\Models\User;
 use Carbon\Carbon;
 use DB;
 
@@ -110,5 +111,27 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         }
 
         return $data;
+    }
+
+    public function create(array $data = [])
+    {
+        $user = User::find($data['user_id']);
+        $stripeToken = $data['stripe_token'];
+        return  $user->newSubscription('main', 'plan_DXg2Sso3f23PVP')->create($stripeToken);
+
+
+        /*unset($data['user_id']);
+        if (!empty($data['parent_id'])) {
+
+            $parentExist = Service::where('id', '=', $data['parent_id'])->whereNull('parent_id')->count();
+
+            if ($parentExist) {
+                return parent::create($data);
+            }else{
+                return 'not_parent';
+            }
+        }else{
+            return parent::create($data);
+        }*/
     }
 }

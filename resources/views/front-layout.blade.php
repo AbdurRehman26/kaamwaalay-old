@@ -23,6 +23,7 @@
             <router-view></router-view>
             <front-footer></front-footer>
         </div>
+        <script src="https://js.stripe.com/v3/"></script>
         <script src="{{ mix('js/front-app.js') }}"></script>
     </body>
 </html>
