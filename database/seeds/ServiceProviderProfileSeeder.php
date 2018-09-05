@@ -22,13 +22,20 @@ class ServiceProviderProfileSeeder extends Seeder
     {
         $date = Carbon::now();
         $faker = Faker::create();
-        $formatteddate = $date->format('F Y');
+        $formattedData = $date->format('F Y');
         $users = new User();
         $getUsers = $users->where('role_id','=',Role::SERVICE_PROVIDER)->get();
         $data = [];
         $i =1;
+
+        $admin = User::where('role_id', Role::ADMIN)->first();
+
         $businessTypes = ['business', 'individual'];
         foreach ($getUsers as $getUser) {
+            $providerStatuses = ['pending', 'pending', 'pending', 'approved', 'rejected'];
+
+            $status = $providerStatuses[array_rand($providerStatuses)];
+
             $data[]=[
                 'id' => $i,
                 'user_id' => $getUser->id,
@@ -36,19 +43,23 @@ class ServiceProviderProfileSeeder extends Seeder
                 'business_details' =>$faker->Address,
                 'business_type' =>$businessTypes[array_rand($businessTypes)],
                 'duns_number' =>rand(),
-                'years_of_experience' =>$formatteddate,
+                'years_of_experience' =>$formattedData,
                 'is_featured' => 0,
                 'is_verified' => 0,
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
             ];
-           $serviceProviderData[]=[
+
+            $serviceProviderData[]=[
                 'id' => $i,
                 'user_id' =>$getUser->id,
                 'approved_at' => $date,
                 'created_at' => $date,
                 'updated_at' => $date,
+                'status' => $status,
+                'approved_by' => $status? $admin->id : NULL,
+                'approved_at' => $status? $date : NULL,
                 'deleted_at' => NULL,
             ];
             $this->info('service-provider-profile'.$i);

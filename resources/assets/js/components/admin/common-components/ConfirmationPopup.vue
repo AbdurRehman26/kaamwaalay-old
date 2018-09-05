@@ -53,14 +53,14 @@ export default {
                                 self.$parent.currentRecord.status = self.requestData.status
                                 self.$parent.actionConfirmation = false
                                 self.hideModal()
-                            }, 5000);
+                            }, 2000);
                     })
                     .catch(error => {
                         self.loading = false
                         self.errorMessage =error.response.data.message[0];
                         setTimeout(function(){
                             self.errorMessage=''
-                        }, 5000);
+                        }, 2000);
                     })
             },
         },

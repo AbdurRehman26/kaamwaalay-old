@@ -8,7 +8,7 @@ const jobStatuses = [
 },
 {
     key : 'cancelled',
-    value : 'Archived'
+    value : 'Cancelled'
 },
 {
     key : 'completed',
@@ -100,6 +100,10 @@ const jobPreferences = [
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
         return ;
+    }
+
+    if(value.is_archived){
+        return 'archived';
     }
 
     if(!Object.keys(value).length){
@@ -220,7 +224,7 @@ Vue.filter('disableProfileStatusButton', function (value) {
     return false;
 });
 
-Vue.filter('mainServiceOrChildService', function (value) {
+Vue.filter('mainServiceOrChildService', function (value, sign) {
     var serviceHtml = '';
 
     if(!value){
@@ -228,7 +232,12 @@ Vue.filter('mainServiceOrChildService', function (value) {
     }
 
     if(value.parent_id){
-        serviceHtml =   value.parent.title + ' >> ' + value.title ;
+    
+        var signValue = typeof(sign) !== 'undefined' ? sign : '>>';
+        
+        serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title ;
+  
+
     }else{
         serviceHtml = value.title;
 
@@ -250,3 +259,7 @@ Vue.filter('jobPreference', function (value) {
     }
     return obj.value;
 });
+
+Vue.filter('userImage' , function (value) {
+    console.log(value , 21312321);
+})

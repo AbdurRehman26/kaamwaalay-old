@@ -71,7 +71,11 @@
                      this.$auth.login(this.login_info).then(function (response) {
                       self.loading = false
                       this_.$store.commit('setAuthUser', response.data.response.data[0]);
-                      this_.$router.push({ name: 'dashboard'})
+                      if(response.data.response.data[0].role_id == 1){
+                       this_.$router.push({ name: 'dashboard'})
+                      }else{
+                       this_.$router.push({ name: 'service.provider.review'})
+                      }
                     }).catch(error => {
                       this.loading = false
                       this_.errorMessage  =error.response.data.errors.email[0];

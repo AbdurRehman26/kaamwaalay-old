@@ -58,7 +58,7 @@
                     <p><strong class="title-head">Project Amount</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>{{ currentItem.job_amount }}$</p>
+                    <p> {{ currentItem.job_amount ? '$ ' : '-' }} {{ currentItem.job_amount }}</p>
                 </b-col>
             </b-row>                                
 
