@@ -30,6 +30,10 @@ h2 {
     &.auth-title {
         margin-bottom: 35px;
         font-size: 36px;
+        @include mobile{
+            margin-bottom: 16px;
+            font-size: 20px;            
+        }
     }
 }
 .front-auth {
@@ -37,6 +41,14 @@ h2 {
         margin-top: 40px; 
         p {
             font-family: $font_medium;
+        }
+    }
+    @include mobile{
+        height: auto;
+        padding: 0px 0px 20px 0px;
+        .already-signup{
+            margin-top: 22px;
+            font-size: 16px;
         }
     }
 }
@@ -102,10 +114,15 @@ h2 {
 
 .forgot-password-text{
     float: right;
-    color: $primary-color;
+    color: $primary-color-md;
     cursor: pointer;
+    font-size: 14px;
     text-decoration:underline;
-
+    position: absolute;
+    right: 0;
+    top: 24px;
+    z-index: 9;
+    
     @include mobile{
         margin-bottom: 20px;
     }
@@ -116,7 +133,8 @@ h2 {
     position:absolute;
     top:0;
     right:0;
-    color: $primary-color;
+    color: $primary-color-md;
+    font-size: 14px;
     cursor:pointer;
     font-family: $font_regular;
 }

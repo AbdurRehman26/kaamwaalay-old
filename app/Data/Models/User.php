@@ -10,20 +10,23 @@ use Laravel\Passport\HasApiTokens;
 use App\Notifications\ActivationNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
+use App\Notifications\SendServiceProviderStatusNotification;
 use Storage;
 
 class User extends Authenticatable
 {
-	use InsertOnDuplicateKey,HasApiTokens, Notifiable;
+    use InsertOnDuplicateKey,HasApiTokens, Notifiable;
     const ACTIVE = 'active';
     const PENDING = 'pending';
     const IN_ACTIVE = 'deactived';
+    const GLOBAL_ADMIN = 1;
     protected $perPage = 10;
-    public function getProfileImageAttribute($value){
-        if(substr($value, 0, 8) == "https://"){
-          return  $value;
+    public function getProfileImageAttribute($value)
+    {
+        if(substr($value, 0, 8) == "https://") {
+            return  $value;
         }
-          return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
+        return $value;
     }
     /**
      * The attributes that are mass assignable.
@@ -45,7 +48,7 @@ class User extends Authenticatable
     /**
      * Send the activation notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function sendActivationEmail()
@@ -59,12 +62,16 @@ class User extends Authenticatable
     }
     public function sendPasswordLinkByAdmin()
     {
-       $this->notify(new SendEmailPasswordNotification());
+        $this->notify(new SendEmailPasswordNotification());
     }
-   public static function generatePassword()
+    public static function generatePassword()
     {
-      // Generate random string and encrypt it. 
-      return bcrypt(str_random(35));
+         // Generate random string and encrypt it. 
+        return bcrypt(str_random(35));
     }
 
+    public function sendChangeStatusNotification($status)
+    {
+        $this->notify(new  SendServiceProviderStatusNotification($status));
+    }
 }

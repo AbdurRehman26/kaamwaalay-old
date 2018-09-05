@@ -25,8 +25,10 @@ class UserAgentRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('UserAgentRepository', function () {
-            return new UserAgentRepository(new UserAgent);
-        });
+        $this->app->bind(
+            'UserAgentRepository', function () {
+                return new UserAgentRepository(new UserAgent);
+            }
+        );
     }
 }

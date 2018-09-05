@@ -14,6 +14,7 @@
              var successMessage = '<?php echo isset($success) ? $success : ''; ?>';
              var errorMessage = '<?php echo isset($error) ? $error : ''; ?>';
              var resetEmail = '<?php echo isset($email) ? $email : ''; ?>';
+             var appName = '<?php echo config('app.app_name'); ?>';
         </script>
         @yield('after-base-js')
     </head>
@@ -27,6 +28,6 @@
                <vue-progress-bar></vue-progress-bar>
             </div>
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

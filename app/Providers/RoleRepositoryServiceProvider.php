@@ -25,8 +25,10 @@ class RoleRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('RoleRepository', function () {
-            return new RoleRepository(new Role);
-        });
+        $this->app->bind(
+            'RoleRepository', function () {
+                return new RoleRepository(new Role);
+            }
+        );
     }
 }

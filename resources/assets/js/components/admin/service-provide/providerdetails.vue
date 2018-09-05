@@ -1,6 +1,6 @@
 <template>
     <div class="panel-inner">
-        <div class="main-detail-content">
+        <div v-if="Object.keys(records).length" class="main-detail-content">
 
             <div class="provider-detail">
 
@@ -55,7 +55,7 @@
                                 <p><strong class="title-head">Contact</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <a href="tel:+923214325323">{{ records.user_detail ? records.user_detail.phone_number : '' }}</a>
+                                <a :href="records.user_detail | phoneNumber">{{ records.user_detail ? records.user_detail.phone_number : '' }}</a>
                             </b-col>
                         </b-row>                                                                   
                     </div>
@@ -96,7 +96,7 @@
                                 <p><strong class="title-head">Rating</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <star-rating :star-size="20" read-only :rating="records.user_detail ? records.user_detail.average_rating : 0" active-color="#8200ff"></star-rating>
+                                <star-rating :star-size="20" :increment="0.02" read-only :rating="records.user_detail ? parseInt(records.user_detail.average_rating) : 0" active-color="#8200ff"></star-rating>
                             </b-col>
                         </b-row>                                                                   
                         <b-row>
@@ -114,7 +114,7 @@
                                 <p><strong class="title-head">Join Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>May 25 2018</p>
+                                <p>{{records.formatted_created_at}}</p>
                             </b-col>
                         </b-row>                                 
                         <b-row>
@@ -122,7 +122,7 @@
                                 <p><strong class="title-head">Approval Date</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>May 31 2018</p>
+                                <p>{{records.profile_request ? records.profile_request.formatted_approved_at : ''}}</p>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
@@ -189,7 +189,7 @@
                             </b-col>
 
                             <b-col class="calculated-value">
-                                <a href="javascript:void(0);" @click="ServiceJobDetail(records.id)">See All</a>
+                                <a href="javascript:void(0);" @click="ServiceJobDetail(records.user_id)">See All</a>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
@@ -216,7 +216,7 @@
     },    
     methods: {
         ServiceJobDetail(id) {
-            this.$router.push({name: 'viewservicejobdetail', params : {id : id}});
+            this.$router.push({name: 'view.service.job.detail', params : {id : id}});
         },
         getRecords(response){
             let self = this;

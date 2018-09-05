@@ -18,7 +18,6 @@ class JobBidController extends ApiResourceController
 
     if($value == 'store'){
 
-        $rules['user_id'] = 'required|exists:users,id';
         $rules['amount'] =  'required_without:is_tbd';    
         $rules['is_tbd'] =  'required_without:amount';    
         $rules['job_id'] = [
@@ -49,20 +48,7 @@ class JobBidController extends ApiResourceController
 
 
     }
-
-
-    if($value == 'destroy'){
-
-    }
-
-    if($value == 'show'){
-
-    }
-
-    if($value == 'index'){
-
-    }
-
+    
     return $rules;
 
 }
@@ -80,12 +66,17 @@ public function input($value='')
         unset($input['amount']);
     }
 
-    if($value == 'store'){
-        unset($input['status']);
+    if($value == 'store' || $value == 'update'){
+
+        unset(
+            $input['status'], $input['filter_by_status'], $input['filter_by_job_id'], $input['pagination']
+        );
+
     }
 
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : 1;
-    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : 1]);
+
+    $input['user_id'] = request()->user()->id;
+
     return $input;
 }
 

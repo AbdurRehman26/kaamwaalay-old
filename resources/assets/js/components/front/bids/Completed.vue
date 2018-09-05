@@ -1,0 +1,135 @@
+<template>
+
+	<div class="container md">
+
+		<div class="job-post-list" v-for="listing in joblisting">
+			<div class="job-post-details">
+				<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
+
+				<div class="job-common-description job-perform">
+					<div class="col-md-6 p-l-0">
+						<div class="job-main-title">
+							<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="$emit('showinformation')"><img src="/images/front/svg/info.svg"></i></span>
+						</div>
+						<div class="job-notification">									
+							<div class="jobs-done">											
+								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{ listing.job_poster }}</a></span>		
+								<span class="job-category noborder">{{ listing.job_category }}</span>											
+							</div>	
+						</div>
+					</div>
+					<div class="col-md-6 job-bid-btn p-r-0">
+						<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>						
+						<a href="javascript:void(0);" @click="servicedetail" class="btn btn-primary post-bid">View Details</a>
+					</div>
+				</div>
+
+				<div class="member-details">
+					<p class="location">
+						<i class="icon-location"></i> 
+						Location <strong>{{ listing.job_location }}</strong>
+					</p>
+					<p class="offer">
+						<i class="icon-work-briefcase"></i> 
+						Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="$emit('changebid')" href="javascript:void(0);">Change Bid</a>
+					</p>
+
+					<p class="member-since">
+						<i class="icon-calendar-daily"></i>
+						Post Date <strong>{{ listing.job_post_date }}</strong>
+					</p>
+				</div>
+
+				<div class="post-job-description">
+					<p>{{ listing.job_description }}</p>
+				</div>
+
+
+				<div class="job-details">
+					<p class="customer-rating">									
+						<strong>Customer rating:</strong>
+						<star-rating :star-size="20" read-only :rating="[listing.list_ratings]" active-color="#8200ff"></star-rating>
+					</p>								
+					<p class="service-requirment">
+						<i class="icon-brightness-down"></i>
+						Service required 
+						<strong v-if="listing.job_service == 'urgent'" class="urgent">{{ listing.job_service }}</strong>
+						<strong v-else>{{ listing.job_service }}</strong>
+					</p>
+				</div>				
+
+			</div>
+		</div>
+
+	</div>			
+
+</template>
+
+<script>
+	import StarRating from 'vue-star-rating';
+
+	export default {
+		data () {
+			return {
+				joblisting:[],
+
+			}
+		},
+
+		methods: {
+
+			AddCustomer() {
+				this.customer = true;
+			},
+			ViewCustomerDetail() {
+				/*this.viewcustomer = true;*/
+				window.scrollTo(0,0);
+				this.$router.push({name: 'customerdetail'});
+			},
+			changestatuspopup() {
+				this.changestatus = true;
+			},
+			HideModal(){
+				this.customer = false;
+				this.viewcustomer = false;
+				this.changestatus = false;
+			},
+			servicedetail(){
+				window.scrollTo(0,0);
+				this.$router.push('/job-details/serviceprovider');
+			},
+			showProfile(){
+				window.scrollTo(0,0);
+				this.$router.push({name: 'Service_Provider_Detail'});
+			},			
+
+		},
+		components: {
+			StarRating
+		},
+
+		mounted(){
+			for (var i = 10 - 1; i >= 0; i--) {
+				var listing = {
+					job_title_image: '/images/front/profile-images/bidimage2.png',
+					job_title: 'Leaking water pipe',
+					job_category: 'Construction - Concrete Flooring',
+					job_poster: 'Lisa Burns',
+					job_status: 'Active',
+					job_perform: 270,
+					job_service: 'urgent',
+					job_location: 'New York, NY',
+					chat_message: true,
+					job_offer: 'TBH',
+					job_post_date: '24 Jan, 2018',
+					job_description: 'Old water pipe to garden tap leaking so we have an unwanted water feature. The leak is underground from Old steel pipes. This was a branch of the previous main supply to the house. Job capping off old supply to house and repairing/capping off the leaking supply to garden tap.',
+					list_ratings: 4,
+
+				};
+				this.joblisting.push(listing);
+			}
+
+		},
+
+	}
+</script>

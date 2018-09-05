@@ -11,6 +11,9 @@
         <link rel="shortcut icon" type="image/png" href="{{asset('images/favicon.png')}}" /> @yield('before-base-js')
         <script type="text/javascript">
             if (window.devicePixelRatio > 1) { document.cookie = 'HTTP_IS_RETINA=1;path=/'; }
+            var successMessage = '<?php echo isset($success) ? $success : ''; ?>';
+            var errorMessage = '<?php echo isset($error) ? $error : ''; ?>';
+            var resetEmail = '<?php echo isset($email) ? $email : ''; ?>';
         </script>
         @yield('after-base-js')
     </head>
@@ -20,6 +23,6 @@
             <router-view></router-view>
             <front-footer></front-footer>
         </div>
-        <script src="{{ asset('js/front-app.js') }}"></script>
+        <script src="{{ mix('js/front-app.js') }}"></script>
     </body>
 </html>

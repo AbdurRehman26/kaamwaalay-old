@@ -24,9 +24,9 @@
             </div>
             <div class="form-group">
                         <label>Access Level</label>
-                        <select class="form-control"  v-model="add_form_info.access_level" >
-                            <option value="full">Full Access</option>
-                            <option value="reviewOnly">Review Process Only</option>
+                        <select class="form-control"  v-model="add_form_info.role_id" >
+                            <option value="1">Full Access</option>
+                            <option value="4">Review Process Only</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -58,7 +58,6 @@ export default {
             'last_name': '',
             'email': '',
             'role_id': 1,
-            'access_level': 'full',
             'status': 'active',
            },
             loading: false,
@@ -112,11 +111,11 @@ export default {
                 self.loading = true
                 this.$http.post('/api/user', self.add_form_info)
                 .then(response => {
-                    self.loading = false
                     self.successMessage =  response.data.message
-                    self.$parent.records.push(response.data.data)
-                    self.$parent.getRecords(self.$parent.records)
+                    self.$parent.url = "";
                     setTimeout(function(){
+                    self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
+                        self.loading = false
                         self.successMessage='';
                          self.resetModal();
                     }, 5000);

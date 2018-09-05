@@ -14,7 +14,11 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Select Service</label>
-								<input type="text" class="form-control" value="Carpanter - General Carpentry" placeholder="Carpanter - General Carpentry">
+								<!-- <input type="text" class="form-control" placeholder="Select Service Type"> -->
+								<select class="form-control">
+									<option disabled="">Select Service Type</option>
+									<option selected="">Carpenter - General Carpentry</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -25,7 +29,7 @@
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<textarea class="form-control" rows="4">Start typing job details</textarea>
+								<textarea class="form-control" rows="4" placeholder="Start typing job details"></textarea>
 							</div>
 						</div>
 					</div>
@@ -46,6 +50,20 @@
 					</div>
 				</div>
 
+				<div class="attach-video-files">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group custom-file">
+								<label>Youtube video ID</label>
+								<input class="form-control" placeholder="e.g. BCFuE1tlqwU">
+							</div>
+						</div>
+						<div class="col-md-6 video-url">
+							<p>Video id available at the end of youtube video url. https://www.youtube.com/watch?v={VIDEO-ID}</p>
+						</div>
+					</div>
+				</div>
+
 				<div class="service-need">
 					<div class="row ">
 						<div class="col-md-12">
@@ -53,12 +71,15 @@
 						</div>
 						<div class="boxed">
 							<div class="col-md-6">
-								<input type="radio" id="normal" name="need" value="Normal job">
+								<input type="radio" id="normal" name="need" value="Normal job" checked="">
 	  							<label for="normal">No, Normal job</label>
 							</div>
 							<div class="col-md-6">
-								  <input type="radio" id="urgent" name="need" value="Urgent job">
+								  <input type="radio" id="urgent" name="need" value="Urgent job" @click="urgentjob()">
 	  							  <label for="urgent">Yes, Urgent job</label>
+							</div>
+							<div class="" v-if="need == 'Urgent job'">
+								<h1>asdas</h1>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -69,10 +90,14 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Preference</label>
-								<select class="form-control">
-									<option selected="" disabled="">Choose Date</option>
-									<option>May 20, 2017</option>
-									<option>May 22, 2017</option>
+								<select class="form-control" v-model="choosedate">
+									<option value="choosedate" selected="" disabled="">Choose Date</option>
+									<option>In a few days</option>
+									<option>Within this week</option>
+									<option>Next week</option>
+									<option>2 weeks</option>
+									<option>1 month</option>
+									<option value="custom">Custom</option>
 								</select>
 							</div>
 						</div>
@@ -83,6 +108,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="row" v-if="choosedate == 'custom'">
+						<div class="col-md-6">
+							<div class="form-group custom-datepicker">
+								<label>Custom Date</label>
+									<date-picker v-model="customdate" format="DD-MM-YYYY" lang="en"></date-picker>
+							</div>
+						</div>
+					</div>					
 				</div>
 
 				<div class="service-location">
@@ -90,7 +123,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Address</label>
-								<input type="text" class="form-control" value="4695 Chabot Dr. Suite 200," placeholder="4695 Chabot Dr. Suite 200,">
+								<input type="text" class="form-control" placeholder="Enter your address">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -104,13 +137,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" class="form-control" value="Pleasanton" placeholder="Pleasanton">
+								<input type="text" class="form-control" placeholder="Enter your city">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>State</label>
-								<input type="text" class="form-control" placeholder="CA">
+								<input type="text" class="form-control" placeholder="Enter your state">
 							</div>
 						</div>
 					</div>
@@ -118,7 +151,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Zip Code</label>
-								<input type="text" class="form-control" value="94588">
+								<input type="text" class="form-control" placeholder="Enter your zip code">
 							</div>
 						</div>
 					</div>
@@ -140,37 +173,57 @@
 									<select class="form-control">
 										<option selected="" disabled="">Select credit card type</option>
 										<option>VISA</option>
+										<option>Master</option>
 									</select>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="form-group">
-								<label for="">Card Holder Name</label>
-									<input type="" class="form-control" placeholder="Enter card holder name" name="">
-							</div>
+	                        <div class="form-group custom-datepicker">
+	                        	<label for="">&nbsp;</label>
+	                            <select class="form-control">
+	                                <option selected="" disabled="">Select Month</option>
+	                                <option>January</option>
+	                                <option>Feburay</option>
+	                                <option>March</option>
+	                                <option>April</option>
+	                                <option>May</option>
+	                                <option>June</option>
+	                                <option>July</option>
+	                                <option>August</option>
+	                                <option>September</option>
+	                                <option>October</option>
+	                                <option>November</option>
+	                                <option>December</option>
+	                            </select>
+	                        </div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Credit Card Number</label>
-									<input type="text" class="form-control" placeholder="Enter your credit card number" value="Enter your credit card number">
+									<input type="text" class="form-control" placeholder="Enter your credit card number">
 							</div>
 						</div>
-						<div class="col-md-6">
-							<label for="">Expiry Date</label>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group custom-datepicker">
-										<date-picker v-model="value_month" type="month" placeholder="Select Month" format="MM" lang="en"></date-picker>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group custom-datepicker">
-										<date-picker v-model="value_year" type="year" placeholder="Select Year" format="YYYY" lang="en"></date-picker>
-									</div>
-								</div>
-							</div>
+						<div class="col-md-6">							
+		                    <div class="form-group custom-datepicker">
+		                    	<label for="">&nbsp;</label>
+		                        <select class="form-control">
+		                            <option selected="" disabled="">Select Year</option>
+		                            <option>2010</option>
+		                            <option>2011</option>
+		                            <option>2012</option>
+		                            <option>2013</option>
+		                            <option>2014</option>
+		                            <option>2015</option>
+		                            <option>2016</option>
+		                            <option>2017</option>
+		                            <option>2018</option>
+		                            <option>2019</option>
+		                            <option>2020</option>
+		                            <option>2021</option>
+		                        </select>
+		                    </div>													
 						</div>
 					</div>
 					<div class="row">
@@ -183,7 +236,7 @@
 					</div>
 					<div class="job-form-submission">
 						<div class=" ">
-							<button class="btn btn-primary">Create Job
+							<button @click="job()" class="btn btn-primary">Create Job
 								<loader></loader>
 						</button>
 						</div>
@@ -193,6 +246,7 @@
 
 			</form>
 		</div>
+		<urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job>
 	</div>
 </template>
 
@@ -204,11 +258,14 @@ export default {
   data() {
     return {
    	value: '',
+   	customdate: '',
    	value_month:'',
+   	categoryval: false,
    	value_year:'',
     time1: '',
     time2: '',
     time3: '',
+    jobdes: '',
       shortcuts: [
         {
           text: 'Today',
@@ -221,8 +278,22 @@ export default {
         start: '00:00',
         step: '00:30',
         end: '23:30'
-      }
+      },
+      choosedate: 'choosedate',
     }
+  },
+  methods:{
+  	job(){
+  		window.scrollTo(0,0);
+  		this.$router.push({name: 'My Jobs'});
+  	},
+    urgentjob() {
+        this.categoryval = true;
+    },
+    HideModal(){
+        this.categoryval = false;
+    },
+
   }
 }
 </script>

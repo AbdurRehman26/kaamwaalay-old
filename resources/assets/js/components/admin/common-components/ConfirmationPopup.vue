@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
+        <b-modal id="delete-popup" centered @hidden="onHidden"  title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Confirmation" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
             <div>
                 <p>Are you sure you want to perform this action?</p>
@@ -26,8 +26,8 @@ export default {
                 errorMessage: '',
                 successMessage: '',
                 loading: false,
-                url : '',
-                data : {}
+                requestUrl : '',
+                requestData : {}
             }  
         },
         methods: {
@@ -43,21 +43,21 @@ export default {
             },submit(){
                 let self = this
                 self.loading = true
-                self.$http.put(self.url,self.data)
+                self.$http.put(self.requestUrl,self.requestData)
                     .then(response => {
                             self.successMessage= response.data.message
-                            self.$parent.currentRecord.status = self.data.status
+                            self.$parent.currentRecord.status = self.requestData.status
                             setTimeout(function(){
                                 self.successMessage=''
                                 self.loading = false
-                                self.$parent.currentRecord.status = self.data.status
+                                self.$parent.currentRecord.status = self.requestData.status
                                 self.$parent.actionConfirmation = false
                                 self.hideModal()
                             }, 5000);
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage ='An Error occured';
+                        self.errorMessage =error.response.data.message[0];
                         setTimeout(function(){
                             self.errorMessage=''
                         }, 5000);
@@ -77,10 +77,10 @@ export default {
 
         },
         url(value){
-            this.url = value
+            this.requestUrl = value
         },
         data(value){
-            this.data = value
+            this.requestData = value
         }
     },
 }

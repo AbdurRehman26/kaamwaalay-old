@@ -35,14 +35,14 @@ const routes = [
 
 
 
-    /* Login page */
+    /* create password page */
 
     {
-        name: 'createpassword',
+        name: 'create.password',
         path: '/admin/create-password',
         meta: {
-            title: 'Create Password',
-            bodyClass: 'login-page',
+            title: 'Set Password',
+            bodyClass: 'create-password-page',
             noHeader: true,
             forAdmin :true,
 
@@ -50,7 +50,7 @@ const routes = [
         component: require('./components/auth/CreatePassword.vue'),
     },
     {
-            path: '/password/set/:token/:email',
+            path: '/admin/password/set/:token/:email',
             component: require('./components/auth/CreatePassword.vue'),
              meta: {
                 title: 'Create Password',
@@ -63,12 +63,12 @@ const routes = [
     /* Service Type */
 
     {
-        name: 'servicetype',
+        name: 'service.type',
         path: '/admin/service-type',
         component: require('./components/admin/service-type/main.vue'),
         meta: {
             title: 'Service Type',
-            pagetitle:'Service Types',
+            pagetitle:'Services / Sub Services',
             icon:'icon-tools-2',
             requiresAuth: true,
             forAdmin :true,
@@ -91,8 +91,8 @@ const routes = [
 
     },
     {
-        name: 'customerdetail',
-        path: '/admin/customer/customer_detail/:id',
+        name: 'customer.detail',
+        path: '/admin/customer/customer-detail/:id',
         component: require('./components/admin/customer/CustomerDetails.vue'),
         meta: {
             title: 'Customer Detail' ,
@@ -104,8 +104,8 @@ const routes = [
 
     },
     {
-        name: 'customerjobdetail',
-        path: '/admin/customer/viewjobdetail/:id',
+        name: 'customer.job.detail',
+        path: '/admin/customer/view-job-detail/:id',
         component: require('./components/admin/customer/ViewJobDetail.vue'),
         meta: {
             title: 'View Job Detail',
@@ -119,7 +119,7 @@ const routes = [
     /* Service Provider */
 
     {
-        name: 'serviceprovider',
+        name: 'service.provider',
         path: '/admin/service-provider',
         component: require('./components/admin/service-provide/main.vue'),
         meta: {
@@ -132,8 +132,8 @@ const routes = [
     },
 
     {
-        name: 'viewservicejobdetail',
-        path: '/admin/service-provider/viewjobdetail/:id',
+        name: 'view.service.job.detail',
+        path: '/admin/service-provider/view-job-detail/:id',
         component: require('./components/admin/service-provide/ViewJobDetail.vue'),
         meta: {
             title: 'View Jobs',
@@ -147,7 +147,7 @@ const routes = [
     /* Job */
 
     {
-        name: 'jobdetail',
+        name: 'job.detail',
         path: '/admin/jobs',
         component: require('./components/admin/job/Main.vue'),
         meta: {
@@ -162,8 +162,8 @@ const routes = [
     // Job detail Section
 
     {
-        name: 'mainjobdetail',
-        path: '/admin/jobs/viewjobdetail/:id',
+        name: 'main.job.detail',
+        path: '/admin/jobs/view-job-detail/:id',
         component: require('./components/admin/job/JobDetails.vue'),
         meta: {
             title: 'Job Details',
@@ -176,8 +176,8 @@ const routes = [
     },
 
     {
-        name: 'BiddingDetails',
-        path: '/admin/jobs/biddingdetails/:jobId',
+        name: 'bidding.details',
+        path: '/admin/jobs/bidding-details/:jobId',
         component: require('./components/admin/job/BiddingDetails.vue'),
         meta: {
             title: 'Bidding Details',
@@ -194,35 +194,35 @@ const routes = [
 
 
     {
-        name: 'Service_Provider_Review',
+        name: 'service.provider.review',
         path: '/admin/service-provider-review',
         component: require('./components/admin/service-provider-review/main.vue'),
         meta: {
             title: 'Service provider review',
-            pagetitle:'Service Provider Review',
+            pagetitle:'Service Providers Review',
             icon:'icon-star_border',
             requiresAuth: true,
-            forAdmin :true,
+            forReviewer :true,
         }
     },
 
     {
-        name: 'Service_Detail_Review',
-        path: '/admin/service-provider-review/detail-review',
+        name: 'service.detail.review',
+        path: '/admin/service-provider-review/detail-review/:id',
         component: require('./components/admin/service-provider-review/DetailReview.vue'),
         meta: {
             title: 'Service provider review',
             pagetitle:'Service Provider Detail Review',
             icon:'icon-search',
             requiresAuth: true,
-            forAdmin :true,
+            forReviewer :true,
         }
     },
 
     // Service provider detail
 
     {
-        name: 'Service_Provider_Detail',
+        name: 'service.provider.detail',
         path: '/admin/service-provider/service-provider-detail/:id',
         component: require('./components/admin/service-provide/providerdetails.vue'),
         meta: {
@@ -237,12 +237,12 @@ const routes = [
     // General Setting
 
     {
-        name: 'General_Setting',
+        name: 'general.setting',
         path: '/admin/general-setting',
         component: require('./components/admin/general-setting/main.vue'),
         meta: {
             title: 'General Setting',
-            pagetitle:'General Setting',
+            pagetitle:'General Settings',
             icon:'icon-settings',
             requiresAuth: true,
             forAdmin :true,
@@ -252,12 +252,12 @@ const routes = [
     // Payment
 
     {
-        name: 'Payment',
+        name: 'payment',
         path: '/admin/payment',
         component: require('./components/admin/payment/main.vue'),
         meta: {
             title: 'Payment',
-            pagetitle:'Payment',
+            pagetitle:'Payment Activities',
             icon:'icon-credit-card',
             requiresAuth: true,
             forAdmin :true,
@@ -267,7 +267,7 @@ const routes = [
     // Support
 
     {
-        name: 'Support',
+        name: 'support',
         path: '/admin/support',
         component: require('./components/admin/support/main.vue'),
         meta: {
@@ -297,7 +297,7 @@ const routes = [
     /* Admin Panel */
 
     {
-        name: 'User Listed',
+        name: 'user.listing',
         path: '/admin/admin-listing',
         meta: {
             title: 'Admin Listed',
@@ -320,6 +320,7 @@ const router = new VueRouter({
     app,
 })
 const admin = 1;
+const reviewer = 4;
 const title = document.title
 router.beforeEach((to, from, next) => {
     let user;
@@ -330,13 +331,24 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
         next({name: 'login'});
     } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-        next({name: 'dashboard'});
+        if(user  && user.role_id == admin){
+          next({name: 'dashboard'});
+        } else if(user  && user.role_id == reviewer){
+          next({name: 'Service_Provider_Review'});
+        }
     } else {
         next();
     }
-
     if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
         if(user  && user.role_id == admin){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
+    if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
+        if(user  && (user.role_id == reviewer ||user.role_id == admin)){
             next();
         } 
         else{

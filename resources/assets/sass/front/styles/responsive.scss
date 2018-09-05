@@ -1,0 +1,674 @@
+@include tabletportrait{
+    .section{
+        padding: 50px 0px;
+    }
+    .job-post-list{
+        padding: 8px 0px 32px 0px;
+    }
+    .featured-categories-home{
+        padding: 10px 0px 10px 0px;
+    }
+    .my-job-indication, .bidding-sec{
+        padding-top: 30px;
+    }
+    .section-padd.sm{
+        padding: 30px 0px;
+    }
+    .testmonial-block{
+        p{
+            font-size: 18px;
+        }
+    }
+    .section.padding-sm{
+        padding: 20px 20px;
+    }
+    .wrapper-sm{
+        h1{
+            margin: 10px 0 30px 0;
+        }
+    }
+    .job-notification{
+        &.flexable{
+            .col-md-6.p-r-0{
+                flex: unset;
+            }
+        }
+        .job-poster{
+            &:after{
+                display: none;
+            }
+        }
+    }
+    .search-filter{
+        input.search-service{
+            width: calc(100% - 31%);
+        }
+        .container-zip-code{
+            width: 30%;
+        }
+    }
+    .member-details,.job-details{
+        p{
+            &.offer{
+                padding-left: 37px;
+            }
+        }
+    }
+    .bidding-navigation{
+        ul{
+            flex-direction: column;
+            li{
+                margin-right: 0px;
+                margin-bottom: 25px;
+            }
+        }
+    }
+}
+
+@include tablet{
+    .footer-section{
+        .col-md-3{
+            flex: 0 0 50%;
+            max-width: 50%;      
+            .footer-links{
+                ul{
+                    padding-left: 0px;
+                }
+            }      
+        }
+    }
+}
+
+@include mobile{
+    h1{
+        font-size: 20px;
+    }
+    h2{
+        font-size: 18px;
+    }    
+    .bidding-sec{
+        h2{
+            padding-bottom: 25px;
+        }
+    }
+    .job-post-page, .featured-profile-page{
+        .profile-head{
+            margin-top: 20px;
+            h1{
+                margin: 0px 0 10px 0;
+            }
+        }
+    }    
+    .my-job-indication, .bidding-sec{
+        padding-top: 20px;
+    }
+    .sign-up-info{
+        .custom-radio.boxed {
+            margin-bottom: 13px !important;
+            width: 88%;
+            margin: auto;
+            label{
+                margin-bottom: 0px !important;
+            }            
+        }
+    }
+    .job-details{
+        .customer-rating{
+            .vue-star-rating > span.vue-star-rating-star svg {
+                font-size: 12px;
+                width: 18px;
+                height: 14px;
+            }
+        }    
+    }
+    .featured-categories-home{
+        .services-list{
+            a{
+                width: 100%;
+            }
+            .list-description{
+                 p {
+                    margin-left: 0px;
+                }
+            }            
+        }        
+    }    
+    .next-project{
+        .vue-star-rating{
+            display: block !important;
+            margin-bottom: 12px;
+            padding: 0;
+        }
+        span.review-job{
+            padding-left: 0;
+            &.review-job.left-border{
+                padding-left: 5px;
+            }
+        }
+        .service-detail{
+            .go-back{
+                float: right;
+                padding-right: 0;                
+            }
+        }
+    }
+    .footer-section{
+        .col-md-3{
+            flex: 0 0 100%;
+            max-width: 100%;            
+        }
+    }    
+    .service-avaliable{
+        padding-top: 30px;
+    }
+    .p-r-0{
+        padding-right: 15px !important;
+    }
+    .p-l-0{
+        padding-left: 15px !important;   
+    }
+    .category-section{
+        padding-bottom: 20px;
+    }
+    .other-categories{
+        .category-section{
+            padding-bottom: 20px;
+            .category-items{
+                padding: 0px !important;
+            }
+        }
+    }
+    .search-fixture{
+        height: auto;
+        .search-fix{
+            position: relative;
+        }
+    }
+    .category-section-search{
+        padding-top: 17px;
+        h1{
+            font-size: 17px;
+        }
+    }
+    .job-status.job-poster{
+        &:after{
+            display: none;
+        }
+    }
+    .job-detail-page{
+        .post-job-description{
+            p{
+                font-size: 13px; 
+            }
+        }
+    }
+
+    .job-post-container.section-padd.sm {
+        padding-top: 20px !important;
+    }    
+    .chat-message{
+        padding-left: 0 !important;
+        i{
+            margin-right: 0;
+        }
+    }
+    .wrapper-sm{
+        h1 {
+            margin: 0px 0 20px 0;
+            text-align: center;
+        }        
+    }        
+    .already-signup.login {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    .my-job-lising-content{
+        .job-common-description{
+            .p-l-0,.p-r-0{
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+            &.job-perform{
+                .chat-message{
+                    i{
+                        padding: 0;
+                        margin-right: 0px;
+                    }
+                }
+            }
+        }
+    }
+    .provider-information{
+        padding-right: 0px;
+    }
+    .my-job-indication, .bidding-sec{
+        p{
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+    }
+    .job-main-heading{
+        .content-sec{
+            .job-image{
+                margin-right: 0px;
+                width: 180px;
+                height: 180px;                
+            }
+            .job-content{
+                width: 100%;
+                h2{
+                    text-align: center;
+                }
+                .job-notification{
+                    &.flexable{
+                        flex-direction: column;
+                        .col-md-8, .col-md-6{
+                            width: 100%;
+                            padding: 0px !important;
+                        }
+                        .job-details{
+                            text-align: left;
+                            p{                                
+                                margin-bottom: 5px !important;
+                                padding-right: 0 !important;
+                                &.service-requirment{
+                                    top: -2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .detail-page{
+        .member-details{
+            p {
+                display: inline-block;
+                padding-right: 20px;
+            }            
+        }
+        .post-job-description{
+            p{
+                font-size: 14px;
+                line-height: 23px;   
+                &.member-since{
+                    position: absolute;
+                    right: 0;                    
+                }             
+            }
+        }        
+    }
+    .jobs-post-files{
+        h3{
+            font-size: 16px;
+            margin-bottom: 14px;
+        }
+        .coustomer-info-line{
+            position: relative;
+            i{
+                position: absolute;
+                left: 0;
+            }
+            p{
+                padding-left: 35px;
+                font-size: 14px;
+                a{
+                    display: inline-block;
+                }
+            }
+        }        
+    }
+    .my-job-listing{
+        .job-notification{
+            .jobs-done{
+                position: relative;
+                .job-category{
+                    padding-right: 90px;
+                }
+                .job-status{
+                    position: absolute;
+                    right: 0px;
+                    top: 0;
+                    .tags{
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }    
+    }
+
+    .post-bid-form{
+        .modal{
+            padding: 0px !important;
+        }
+        .modal-content {
+            width: 100%;
+        }
+    }
+    label{
+        &.nolabel {
+            display: none;
+        }
+    }        
+    ul.profilesession {
+        float: left;
+        width: 100%;
+        border-top: 1px solid #ccc;
+        padding-top: 19px;
+    }
+    .job-common-description.job-perform{
+        .chat-message{
+            i{
+                padding: inherit;
+                position: relative;
+                top: -5px;                
+            }
+        }
+    }
+    .my-job-lising-content{
+         .job-details {
+            margin-bottom: 0;
+        }        
+    }
+
+    .profile-budget{
+        h2{
+            font-size: 16px;
+        }
+        label{
+            font-size: 14px;
+        }
+        .patment-detail{
+            font-size: 13px;
+        }
+    }
+    .profilesession{
+        .notify-dropdown {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            position: fixed;
+            max-height: none;
+            left: 0;
+            padding-left: 0;
+            top: 0;
+            z-index: 9;
+            border-radius: 0;
+        }
+        .notification-content{
+            text-align: left;
+        }
+    }
+    .modal-title{
+        font-size: 18px;
+    }   
+    .modal-body{
+        p {
+                font-size: 13px !important;
+                margin: 0 0 16px 0 !important;
+                line-height: 21px !important;
+        }
+        label{
+            font-size: 13px;
+        }        
+    }     
+    .featured-profile{
+        padding-bottom: 40px;
+        h3{
+            font-size: 16px;
+        }
+        .featured-places{
+            span{
+                font-size: 14px;
+            }
+            p{
+                &.featured-detail{
+                    font-size: 13px;
+                    line-height: 18px;                    
+                }
+            }
+        }
+    }
+    .campaigns{
+        margin: 30px 0;
+        .camp-views{
+            .view-status-detail{
+                width: calc(100% - 74px);
+                span{
+                    font-size: 14px;
+                }
+                .calender-date{
+                    font-size: 13px;
+                }
+                .views-percentage{
+                    li{
+                        margin-right: 13px;
+                    }
+                }
+            }
+        }
+    }
+    .service-provider{        
+        a.btn{
+            padding-left: 25px;
+            display: table;
+            width: 200px;
+            margin: 0px auto 10px auto !important;
+            &:last-child{
+                margin-bottom: 0 !important;
+            }            
+            i{
+                left: 9px;
+                top: 11px;
+                &.icon-message{
+                    top: 8px;
+                }
+                &.icon-folder{
+                    top: 9px;
+                    font-size: 18px;                    
+                }                
+            }
+        }
+        .service-providers-invite {
+            padding: 21px 15px 27px 15px;
+            margin-bottom: 20px;
+        }        
+    }
+    .job-post-list{
+        &.category-service-provider{
+            .jobs-done {
+                display: inline-block;
+                width: auto;
+                margin-top: 12px;
+                margin-bottom: 9px;                
+                span{
+                    display: inline-block;
+                    width: auto;
+                    padding: 0px 6px;
+                }
+            }
+            .job-common-description{
+                .jobs-rating{
+                    .vue-star-rating{
+                        span.vue-star-rating-star svg{
+                            width: 13px;
+                            height: 12px;                            
+                        }
+                    }
+                    .jobs-done{
+                        .review-job{
+                            font-size: 12px;
+                            padding: 0px 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .advice-tabs{
+        padding: 0px 15px;
+         li{
+            &.nav-item {
+                width: 100%;
+                margin-bottom: 15px;
+                a{
+                    width: 300px;
+                    margin: auto !important;
+                }
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+            }
+         }
+         .card{
+             a.btn{
+                padding-right: 43px;
+                p{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+             }
+         }
+    }        
+    .detail-page{
+        &.category-detail{
+            .category-content{
+                text-align: center;
+                .service-detail{
+                    text-align: left;
+                }
+            }
+        }
+    }
+    .jobs-post-files{
+        iframe {
+            width: 100%;
+            height: 200px;
+        }        
+    }
+    .featured-categories-home{
+        .list-description {
+            text-align: left;
+        }
+    }
+    .how-it-work{
+        .icon{
+            img{
+                margin-bottom: 10px !important;
+            }
+        }
+    }
+    .jobs-post-files{
+        padding-top: 20px;
+    }
+    .write-review-popup{
+        .modal-dialog {
+            height: 100%;
+            .modal-content{
+                width: 100%;
+            }
+        }
+    }    
+    .job-main-details.detail-page{
+        .job-details {
+            padding-top: 10px !important;
+            margin-bottom: 0;
+        }
+        .job-notification{
+            .jobs-done{
+                text-align: center;
+            }        
+        }
+        .chat-feedback{
+            .chat-feedback-column{
+                padding-left: 43px;
+            }
+            .job-bidding{
+                .chat-feedback-image{
+                    top: 9px;
+                }
+                .job-common-description{
+                    padding-bottom: 2px;
+                    h3{
+                        padding-bottom: 9px;
+                    }
+                }
+                .provider-bidding-btn{
+                    a{
+                        min-width: 64px;
+                        padding: 10px 11px;
+                    }
+                }
+            }
+            .jobs-rating{
+                .jobs-done{
+                    display: inline-block;
+                    width: auto;
+                    margin-top: 5px;
+                    margin-bottom: 4px;
+                    span{
+                        display: inline-block;
+                        width: auto;
+                        &.review-job{
+                            padding: 0px 2px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .vue-star-rating{
+                    span.vue-star-rating-star{
+                        svg{
+                            width: 11px;
+                            height: 15px;
+                        }
+                    }
+                }
+            }
+        }
+        .member-details, .job-details{
+            p{
+                i{
+                    margin-right: 0px;
+                }
+            }
+        }
+        .member-details{
+            padding-top: 6px;
+            p{
+                padding-right: 12px;
+                &:last-child{
+                    padding-right: 0px;
+                }
+            }
+        }
+    }
+    .job-proposal{
+        .provider-bidding-btn{
+            padding-top: 0px;
+        }    
+    }
+    .chat-feedback-column{
+        &.job-bidding {
+            &:last-child{
+                margin-bottom: 16px;
+                padding-bottom: 0px !important;
+            }
+            .bit-offered {
+                font-size: 13px;
+                padding-top: 11px;
+            } 
+            .proposal-message{
+                padding-top: 5px;
+                font-size: 14px;
+            }
+            .job-common-description{
+                 h3{
+                    font-size: 16px;
+                    top: 5px;
+                }
+            }                       
+        }
+    }
+}

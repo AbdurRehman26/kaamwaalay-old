@@ -1,6 +1,6 @@
  <template>	
-	<div class="popup">
-		<b-modal id="" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" title="Parent Service Detail" ok-only ok-title="Continue">
+	<div class="popup categories-popup">
+		<b-modal id="" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
             <alert></alert>
 		    	<div class="category-selected">
                     <div class="category-image-block" style="background-image:url(/images/front/explore/carpenter1.jpg);">
@@ -36,8 +36,12 @@ export default {
             this.$emit('HideModalValue');
         },
         categorydetail(){
+            this.scrollToTop();
             this.$router.push({name: 'Explore_Detail'});
-        }
+        },
+        scrollToTop() {
+            window.scrollTo(0,0);
+        },        
     },
 
     watch: {

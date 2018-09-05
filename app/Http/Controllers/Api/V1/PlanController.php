@@ -10,29 +10,31 @@ class PlanController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(PlanRepository $repository){
+    public function __construct(PlanRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'update'){
-            $rules['id'] =  'required|exists:plans,id';
+        if($value == 'update') {
+            $rules['id'] =  'required|in:1,2|exists:plans,id';
             $rules['amount'] = 'required|numeric|not_in:0';
         }
 
-        if($value == 'show'){
+        if($value == 'show') {
             $rules['id'] =  'required|exists:plans,id';
         }
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['type']          =  'required|in:service,job';
         }
 
-        if($value == 'updateOrAddPlans'){
-            $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1';
+        if($value == 'updateOrAddPlans') {
+            $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1,2';
             $rules['plans_data.*.amount']           = 'required|numeric|not_in:0';
             $rules['plans_data.*.quantity']         = 'required|numeric|not_in:0';
         }
@@ -43,11 +45,21 @@ class PlanController extends ApiResourceController
 
     public function input($value='')
     {
-        $input = request()->only('id', 'pagination', 'type', 'plans_data', 'amount');
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
 
-        if($value == 'update'){
-            unset($input['user_id']);
+        if($value == 'index'){
+            $input = request()->only('pagination', 'type');
+        }
+
+        if($value == 'show'){
+            $input = request()->only('id');
+        }
+
+        if($value == 'update') {
+            $input = request()->only('id', 'amount');
+        }
+
+        if($value == 'updateOrAddPlans'){
+            $input = request()->only('plans_data');
         }
 
         return $input;
@@ -58,7 +70,7 @@ class PlanController extends ApiResourceController
         
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
-
+        $messages = $this->messages(__FUNCTION__);
         $this->validate($request, $rules);
         
 
@@ -70,7 +82,7 @@ class PlanController extends ApiResourceController
         $code = Response::HTTP_NOT_ACCEPTABLE;
 
         $response = $this->_repository->updateOrAddPlans($input);
-        if($response){
+        if($response) {
             $code = Response::HTTP_OK;
             $output = ['response' => 
                         [
@@ -84,6 +96,16 @@ class PlanController extends ApiResourceController
     
         return response()->json($output, $code);
 
+    }
+
+    public function messages($value = '')
+    {
+        $messages = [
+            'amount.not_in' => 'The entered amount is invalid.',
+            'plans_data.*.amount.not_in' => 'The entered amount is invalid.',
+        ];
+        
+        return $messages;
     }
 
 }

@@ -27,6 +27,16 @@ class PlansTableSeeder extends Seeder
             ),
             array (
                 'id' => 2,
+                'name' => 'Account Creation',
+                'amount' => 2,
+                'quantity' => NULL,
+                'type' => 'service',
+                'created_at' => $date,
+                'updated_at' => $date,
+                'deleted_at' => NULL,
+            ),
+            array (
+                'id' => 3,
                 'name' => 'Featured Profile',
                 'amount' => 10,
                 'quantity' => 100,
@@ -36,7 +46,7 @@ class PlansTableSeeder extends Seeder
                 'deleted_at' => NULL,
             ),
             array (
-                'id' => 3,
+                'id' => 4,
                 'name' => 'Featured Profile',
                 'amount' => 15,
                 'quantity' => 200,
@@ -46,7 +56,7 @@ class PlansTableSeeder extends Seeder
                 'deleted_at' => NULL,
             ),
             array (
-                'id' => 4,
+                'id' => 5,
                 'name' => 'Featured Profile',
                 'amount' => 25,
                 'quantity' => 500,

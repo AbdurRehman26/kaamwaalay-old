@@ -1,6 +1,6 @@
 <template>
     <div class="panel-inner">
-        <div class="view-job-details main-detail-content">
+        <div v-if="Object.keys(record).length" class="view-job-details main-detail-content">
 
                 <!-- <div class="provider-image user-img">
                     <img src="">
@@ -117,9 +117,6 @@
                         <!-- Bidding Detail -->
 
                         <div class="col-xs-12 block-area">
- <!--                            <div class="customer-detail-title">
-                                <h4 class="page-title">Service Detail</h4>
-                            </div> -->
                             <div class="view-details-list">
                                 <b-row>
                                     <b-col class="text-right fixed-label">
@@ -175,11 +172,10 @@
                     let self = this;
                     self.loading = false;
                     self.record = response.data;
-                    self.url = '';
+                    
                 },
                 biddingdetails(id){
-                    console.log(id , '13213');
-                    this.$router.push({name: 'BiddingDetails', params : {jobId : id}});
+                    this.$router.push({name: 'bidding.details', params : {jobId : id}});
                 },
                 open (e) {            
                     fancyBox(e.target, this.imageList);

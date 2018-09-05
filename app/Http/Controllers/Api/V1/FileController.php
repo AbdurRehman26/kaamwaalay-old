@@ -11,21 +11,23 @@ class FileController extends Controller
 {
     private $uploaderConfig;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->uploaderConfig = config('uploader');
     }
 
-    public function remove(Request $request){
+    public function remove(Request $request)
+    {
         $validator = Validator::make($request->all(), [ 'file_name' => 'required' ]);
         if ($validator->fails()) {
             return response()->json(['error'=>'Required file_name is missing.']);
         }else{
             $orignalFileName = config('uploads.user-photos.folder').$request->get('file_name');
             $thumbFileName = config('uploads.user-photos.thumb.folder').$request->get('file_name');
-            if(Storage::exists($orignalFileName)){
+            if(Storage::exists($orignalFileName)) {
                 Storage::delete($orignalFileName);
             }
-            if(Storage::exists($thumbFileName)){
+            if(Storage::exists($thumbFileName)) {
                 Storage::delete($thumbFileName);
             }
             return response()->json(['status'=>true,'message'=>'Files has been removed successfully.']);
@@ -41,9 +43,11 @@ class FileController extends Controller
 
             $field = isset($config['field']) ? $config['field'] : 'file';
 
-            $this->validate($request, [
+            $this->validate(
+                $request, [
                 $field => $config['rules'],
-            ]);
+                ]
+            );
 
             $response = [];
 
@@ -54,9 +58,11 @@ class FileController extends Controller
 
                 $conf = $this->mergeConfigWithDefault($config['thumb']);
 
-                $manager = new ImageManager([
+                $manager = new ImageManager(
+                    [
                     'driver' => $conf['driver'],
-                ]);
+                    ]
+                );
 
                 $image = $manager->make($file);
 
@@ -69,36 +75,36 @@ class FileController extends Controller
                     $method($image, $conf);
                 } else {
                     switch($method) {
-                        default:
-                            $args = [$conf['width'], $conf['height'], null, $conf['anchor']];
-                            break;
-                        case 'fit':
-                            $args = [$conf['width'], $conf['height']];
-                            $args[] = function ($constraint) {
-                                        $constraint->aspectRatio();
-                                        $constraint->upsize();
-                                      };
-                            break;
-                        case 'resize':
-                            $args = [$conf['width'], $conf['height']];
-                            $args[] = function ($constraint) {
-                                        $constraint->aspectRatio();
-                                        $constraint->upsize();
-                                      };
-                            break;
-                        case 'heighten':
-                            $args = [$conf['height']];
-                            break;
-                        case 'widen':
-                            $args = [$conf['widen']];
-                            break;
-                        case 'resizeCanvas':
-                            $args = [$conf['width'], $conf['height']];
+                    default:
+                        $args = [$conf['width'], $conf['height'], null, $conf['anchor']];
+                        break;
+                    case 'fit':
+                        $args = [$conf['width'], $conf['height']];
+                        $args[] = function ($constraint) {
+                                    $constraint->aspectRatio();
+                                    $constraint->upsize();
+                        };
+                        break;
+                    case 'resize':
+                        $args = [$conf['width'], $conf['height']];
+                        $args[] = function ($constraint) {
+                                    $constraint->aspectRatio();
+                                    $constraint->upsize();
+                        };
+                        break;
+                    case 'heighten':
+                        $args = [$conf['height']];
+                        break;
+                    case 'widen':
+                        $args = [$conf['widen']];
+                        break;
+                    case 'resizeCanvas':
+                        $args = [$conf['width'], $conf['height']];
 
-                            if (isset($conf['anchor'])) {
-                                $args[] = $conf['anchor'];
-                            }
-                            break;
+                        if (isset($conf['anchor'])) {
+                            $args[] = $conf['anchor'];
+                        }
+                        break;
                     };
 
                     call_user_func_array([$image, $method], $args);
@@ -109,7 +115,7 @@ class FileController extends Controller
             }
 
             $response['name'] = $file->hashName();
-            $response['upload_url'] = Storage::url($config['folder'] . $file->hashName());
+            $response['upload_url'] = Storage::url($config['folder'] . '/' . $file->hashName());
 
             return $this->prepareUploadSuccessfulResponse($response, $file);
         }
@@ -118,20 +124,24 @@ class FileController extends Controller
 
     private function mergeConfigWithDefault(array $config)
     {
-        return array_merge([
+        return array_merge(
+            [
             'anchor' => 'center',
             'driver' => 'imagick',
             'method' => 'resize',
             'anchor' => 'top',
-        ], $config);
+            ], $config
+        );
     }
 
     private function prepareUploadSuccessfulResponse(array $response, $file)
     {
-        return array_merge($response, [
+        return array_merge(
+            $response, [
             'type' => 'upload',
             'success' => true,
             'original_name' => $file->getClientOriginalName(),
-        ]);
+            ]
+        );
     }
 }

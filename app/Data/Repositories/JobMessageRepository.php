@@ -8,31 +8,27 @@ use App\Data\Models\JobMessage;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of JobMessage Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
-public $model;
+    public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: JobMessage-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
-    protected $_cacheKey = 'JobMessage';
-    protected $_cacheTotalKey = 'total-JobMessage';
+    protected $_cacheKey = 'job-message';
+    protected $_cacheTotalKey = 'total-job-message';
 
     public function __construct(JobMessage $model)
     {
@@ -41,7 +37,8 @@ public $model;
 
     }
 
-    public function create(array $data = []){
+    public function create(array $data = [])
+    {
         $input = $data;
 
         $job = app('JobRepository')->findById($data['job_id']);
@@ -52,11 +49,12 @@ public $model;
     }
 
 
-    public function findByAll($pagination = false, $perPage = 10, array $input = [] ) {
+    public function findByAll($pagination = false, $perPage = 10, array $input = [] )
+    {
 
-        $this->builder = $this->model->orderBy('id' , 'desc');
+        $this->builder = $this->model->orderBy('id', 'desc');
 
-        if(empty($input['job_bid_id'])){
+        if(empty($input['job_bid_id'])) {
             return false;
         }
         $this->builder = $this->builder->where('job_bid_id', '=', $input['job_bid_id']);            

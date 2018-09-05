@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Data\Models\Role;
 
 class ResetPassword extends Notification
 {
@@ -35,7 +36,7 @@ class ResetPassword extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -46,26 +47,35 @@ class ResetPassword extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-      if (static::$toMailCallback) {
+        if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
-        $url = url(route('password.reset',[
+        if($notifiable->role_id == Role::ADMIN || $notifiable->role_id == Role::REVIEWER ){
+          $url = 'admin.password.reset';
+        }else{
+          $url = 'password.reset';
+        }
+        $url = url(
+            route(
+                 $url, [
                 'token' =>$this->token,
                 'email' =>$notifiable->email,
-            ] , false));
+                ], false
+            )
+        );
         return (new MailMessage)
-             ->subject(Lang::getFromJson('Reset Password'))
-             ->markdown('email.user-reset-password', ['url' => $url]);
+            ->subject(Lang::getFromJson('Reset Password'))
+            ->markdown('email.user-reset-password', ['url' => $url]);
     }
     /**
      * Set a callback that should be used when building the notification mail message.
      *
-     * @param  \Closure  $callback
+     * @param  \Closure $callback
      * @return void
      */
     public static function toMailUsing($callback)
