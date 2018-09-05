@@ -76,9 +76,9 @@ class ResetPasswordController extends Controller
     protected function resetPassword($user, $password)
     {
         $status = $user->status;
-        if($user->status != User::IN_ACTIVE){
+       /* if($user->status != User::IN_ACTIVE){
             $status  = User::ACTIVE;
-        }
+        }*/
         $user->password = Hash::make($password);
         $user->setRememberToken(Str::random(60));
         $user->save();

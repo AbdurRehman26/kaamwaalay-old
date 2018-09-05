@@ -41,7 +41,6 @@ class ServiceTableSeeder extends Seeder
             'Home Cleaning' => [
                 'Apartment Cleaning',
                 'HouseKeeping',
-                'Home Cleaning',
                 'Maid Service',
                 'Move Out Cleaning',
                 'Vacation Rental Cleaning',
@@ -69,11 +68,9 @@ class ServiceTableSeeder extends Seeder
                 'Air Conditioner Installation',
                 'Handy Helper',
                 'Interior Painting',
-                'TV Mounting',
                 'Air Conditioner Uninstall',
                 'Handy Service',
                 'Knobs Installation',
-                'Furniture Assembly',
                 'Hanging Pictures & Shelves',
                 'Locks Installation',
             ],
@@ -110,13 +107,11 @@ class ServiceTableSeeder extends Seeder
                 'Hanging Pictures & Shelves',
                 'Light Fixtures',
                 'Moving Help',
-                'Window Treatments',
                 'Interior Painting',
                 'Move in Cleaning',
                 'Storage',
                 'Knobs Installation',
                 'Move Out Cleaning',
-                'TV Mounting',
             ],
             'Smart Home' => [
                 'Smart Device Installation',
@@ -131,7 +126,6 @@ class ServiceTableSeeder extends Seeder
                 'Window Blind Treatment',
                 'Window Shade Installation',
                 'Windwo Curtain Installation',
-                'Windows Treatment ',
                 'Window Drapery Installation',
             ],
             'Outdoor' => [
@@ -154,30 +148,44 @@ class ServiceTableSeeder extends Seeder
                 'id' => (int) $key+1,
                 'title' => $service,
                 'description' => $faker->Text,
+                'url_suffix' =>  strtolower(str_replace(' ', '-', $service)),
                 'parent_id' => null,
                 'is_featured' => $isFeatured[array_rand($isFeatured)],
                 'created_at' => $now,
                 'updated_at' => $now
             ];
         }
-        foreach ($subServices as $parentService => $subService) {
+        app("ServiceRepository")->model->insertOnDuplicateKey($data);
+
+        $key = 13;
+
+        foreach ($subServices as $parentServiceKey => $subService) {
+
+            $data = [];
+            $parentService = app('ServiceRepository')->findByAttribute('title' , $parentServiceKey);
+            
+            if(empty($parentService)){
+                continue;
+            }
+
 
             foreach ($subService as $value) {
+
                 $data [] = [
-                    'id' => (int) $key+1,
+                    'id' => (int) $key,
                     'title' => $value,
+                    'url_suffix' =>  strtolower(str_replace(' ', '-', $service)),
                     'description' => $faker->Text,
-                    'parent_id' => array_search($parentService, $services)+1,
+                    'parent_id' => $parentService->id,
                     'is_featured' => $isFeatured[array_rand($isFeatured)],
                     'created_at' => $now,
                     'updated_at' => $now
                 ];
                 $key += 1;
             }
-
+            app("ServiceRepository")->model->insertOnDuplicateKey($data);
         }
 
-        app("ServiceRepository")->model->insertOnDuplicateKey($data);
 
     }
 }

@@ -334,7 +334,7 @@ router.beforeEach((to, from, next) => {
         if(user  && user.role_id == admin){
           next({name: 'dashboard'});
         } else if(user  && user.role_id == reviewer){
-          next({name: 'Service_Provider_Review'});
+          next({name: 'service.provider.review'});
         }
     } else {
         next();

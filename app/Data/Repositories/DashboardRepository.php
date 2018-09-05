@@ -118,7 +118,7 @@ class DashboardRepository
         $result = $this->jobRepo->model
             ->leftJoin(
                 'services', function ($joins) {
-                    $joins->on('services.id', '=', 'jobs.id');
+                    $joins->on('services.id', '=', 'jobs.service_id');
                 }
             )
         ->select(

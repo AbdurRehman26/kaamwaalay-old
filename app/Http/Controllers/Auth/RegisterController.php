@@ -56,7 +56,7 @@ class RegisterController extends Controller
             $data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/',
             'password' => 'required|string|min:8|max:25',
             'role_id' => ['required', Rule::exists('roles', 'id')->where('can_register', 1)],
             'social_account_id' => 'nullable',
