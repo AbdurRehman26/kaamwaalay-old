@@ -23,7 +23,9 @@
                         <div class="jobs-done" v-else>
                             <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                             <div class="job-status">
-                                <span class="tags" :class="[record.status ?  record.status.replace(/\s/g, '').toLowerCase().trim() : '']">{{ record.status }}</span>	
+                                <span class="tags" :class="[record.status ?  record.status.replace(/\s/g, '').replace('_', '').toLowerCase().trim() : '']">
+                                {{ record | jobStatus }}
+                            </span>	
                             </div>											
                         </div>	
                     </div>		
@@ -90,16 +92,16 @@
               <p>{{ record.description }}</p>
           </div>
 
-          <div v-if="record.images" class="jobs-post-files">
+          <div v-if="record.jobImages" class="jobs-post-files">
               <h3>Related Photos</h3>
-              <div class="gallery-item" v-if="record" v-for="(n, index) in record.images" :data-index="index" v-bind:style="{'background-image':'url('+n.url+')',}">
-                <img @click="open($event)" :src="n.url" />
+              <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
+                <img @click="open($event)" :src="image" />
             </div>
         </div>
 
         <div class="jobs-post-files" v-if="record.videos">
           <h3>Related Videos</h3>
-          <iframe width="1280" height="365" :src="record.videos[0]" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
 
       <div class="jobs-post-files" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded'">
@@ -306,7 +308,8 @@
             console.log(this.jobBids , '232322332');
         },
         open (e) {            
-            fancyBox(e.target, this.imageList);
+            console.log(this.record ,23123);
+            fancyBox(e.target, this.record.jobImages);
         },
         FindInvite(){
            this.$router.push({name: 'Explore_Detail'});
