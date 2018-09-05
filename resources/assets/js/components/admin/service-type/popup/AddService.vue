@@ -451,10 +451,11 @@
                         is_display_service_nav: this.list.is_display_service_nav,
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
+                    this.showRadios = this.formData.parent_id? false : true;
                     this.isChangePrefix = this.list.url_suffix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
-                    this.imageText = this.file;
+                    this.imageText = this.file? this.file : "Click here to upload image.";
                 }
             }
         },

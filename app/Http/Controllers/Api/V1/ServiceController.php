@@ -44,7 +44,8 @@ class ServiceController extends ApiResourceController
         
               $rules['id']                      =  'required|exists:services,id';
               $rules['is_display_banner']       = 'nullable|in:0,1';                   
-              $rules['is_display_service_nav']  = 'nullable|in:0,1';                       
+              $rules['is_display_service_nav']  = 'nullable|in:0,1';
+              $rules['url_suffix']                  = 'required|unique:services,url_suffix';     
               $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
               $rules['status']                  = 'nullable|in:0,1';        
               $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
@@ -96,7 +97,7 @@ class ServiceController extends ApiResourceController
             'is_display_footer_nav',
             'is_featured',
             'is_hero_nav',
-            'url_prefix',
+            'url_suffix',
             'parent_service',
             'status',
             'keyword',
