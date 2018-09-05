@@ -109,52 +109,52 @@
                     </div>
                 </div>
             </div>				
-</div>
-
-<div class="service-location">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Address</label>
-                <input v-validate="'required'" name="address" 
-                :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
-            </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Apartment, suite, unit</label>
-                <input v-model="formData.apartment" type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
 
-        <div class="col-md-6">
-           <div class="form-group">
-            <label for="">State</label>
-            <select @change="onStateChange" class="form-control" name="state" v-model="formData.state_id">
-              <option value="">Select State</option>
-              <option v-for="state in states" :value="state.id">{{state.name}}</option>
-          </select>
+        <div class="service-location">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input v-validate="'required'" name="address" 
+                        :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Apartment, suite, unit</label>
+                        <input v-model="formData.apartment" type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                 <div class="form-group">
+                    <label for="">State</label>
+                    <select @change="onStateChange" class="form-control" name="state" v-model="formData.state_id">
+                      <option value="">Select State</option>
+                      <option v-for="state in states" :value="state.id">{{state.name}}</option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="col-md-6">
+             <div class="form-group">
+                <label for="">City</label>
+                <select class="form-control" name="city" v-model="formData.city_id">
+                  <option value="">Select City</option>
+                  <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+              </select>
+          </div>
       </div>
+
+
   </div>
 
-  <div class="col-md-6">
-   <div class="form-group">
-    <label for="">City</label>
-    <select class="form-control" name="city" v-model="formData.city_id">
-      <option value="">Select City</option>
-      <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-  </select>
-</div>
-</div>
 
-
-</div>
-
-
-<div class="row">
+  <div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label>Zip Code</label>
@@ -245,7 +245,8 @@
         <div class="job-form-submission">
             <div class="">
 
-                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">Create Job
+                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
+                    {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
                     <loader></loader>
                 </button>
 
@@ -257,6 +258,8 @@
 </form>
 </div>
 <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+<vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
+
 <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job>
@@ -328,8 +331,18 @@
             requestCityUrl(){
                 return this.cityUrl;
             },
+            requestJobUrl () {
+                return this.url + '/' + this.$route.params.id;
+            }
+        },
+        mounted () {
         },
         methods:{
+            getJobResponse(response){
+                this.formData = response.data;
+                this.onStateChange();
+
+            },
             getStateResponse(response){
                 let self = this;
                 self.loading = false;
@@ -364,9 +377,17 @@
                 let data = this.formData;
 
                 self.loading = true;
+
                 let url = self.url;
 
-                self.$http.post(url, data).then(response => {
+                if(this.$route.params.id){
+                    url += '/' + this.$route.params.id;    
+                    let urlRequest = self.$http.put(url , data);
+                }else{
+                    let urlRequest = self.$http.post(url, data);
+                }
+
+                urlRequest.then(response => {
                     response = response.data.response;
 
                     self.successMessage = response.message;

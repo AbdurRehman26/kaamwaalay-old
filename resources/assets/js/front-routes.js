@@ -152,6 +152,20 @@
         component: require('./components/front/job-post/main.vue'),
     },
 
+    // Job Post
+
+    {
+        name: 'job.view',
+        path: '/job-post/:id',
+        meta: {
+            title: 'Professional Service Marketplace | Job Post',
+            bodyClass: 'job-post-page',
+            navigation: 'customer-nav',
+            requiresAuth: true,
+        },
+        component: require('./components/front/job-post/main.vue'),
+    },
+
     // Featured Profile
 
     {

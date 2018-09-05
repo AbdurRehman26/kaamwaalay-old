@@ -217,7 +217,7 @@
 </div>
 
 
-<div class="service-provider" v-else-if="job_detail_right_panel == 'serviceprovider'">
+<div class="service-provider" v-if="false">
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
@@ -225,7 +225,7 @@
 </div>
 
 
-<div class="service-provider" v-else>
+<div class="service-provider" v-if="false">
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
@@ -298,7 +298,7 @@
             return this.record.awarded_to;
         },
         canInvite(){
-            return this.record.awarded_to  || this.jobBids.length;
+            return !this.record.awarded_to  || !this.jobBids.length;
         }
     },
     methods: {
@@ -307,17 +307,15 @@
         },
         getBidsResponse(response){
             this.jobBids = response;
-            console.log(this.jobBids , '232322332');
         },
         open (e) {            
-            console.log(this.record ,23123);
             fancyBox(e.target, this.record.jobImages);
         },
         FindInvite(){
            this.$router.push({name: 'Explore_Detail'});
        },
        Modify(){
-           this.$router.push({name: 'Job-Post'});
+           this.$router.push({name: 'job.view' , params : { id : this.record.id }});
        },        
        VisitPopup(){
            this.visitpopup = true;
