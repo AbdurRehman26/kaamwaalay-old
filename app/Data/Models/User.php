@@ -26,7 +26,7 @@ class User extends Authenticatable
         if(substr($value, 0, 8) == "https://") {
             return  $value;
         }
-        return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
+        return $value;
     }
     /**
      * The attributes that are mass assignable.

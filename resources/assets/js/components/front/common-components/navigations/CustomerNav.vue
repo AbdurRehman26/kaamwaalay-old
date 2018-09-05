@@ -2,20 +2,22 @@
     <!-- custom heder -->
     <div class="navigation main-navigation customer-navigation">
         <ul class="float-left">
-            <li @click="$emit('clickmenu')"><router-link to="/explore">Explore</router-link></li>
-            <li @click="$emit('clickmenu')"><router-link to="/my-jobs">My Jobs</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/explore">Explore</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-jobs">My Jobs</router-link></li>
             <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
 
                 <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
                     <span class="user-img" @click="ShowModal">
-                        <img src="" alt="">
+                        <img :src="imageValue" alt="">
                     </span>
                     <p class="username">{{fullName}}</p>
                 </div>
             </li>
-            <li>
-                <router-link to="/profile">
+                    <li class="account-info-keys">
+                        <ul>
+                            <li @click="$emit('clickmenu')" class="setting-li">
+                                <router-link @click.native="scrollToTop()" to="/profile">
                     <i class="icon-cog2 action-icon"></i>
                 </router-link>
             </li>
@@ -26,8 +28,14 @@
                         <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
                     </span>
                 </li>
-                <li>
-                  <logout-component></logout-component> 
+                            <li @click="$emit('clickmenu')" >
+                                    <router-link @click.native="scrollToTop()" to="/" class="no-active">
+                                       <logout-component></logout-component> 
+                                    </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 </li>
             </ul>
         </div>
@@ -50,16 +58,16 @@
         directives: {
             onClickaway: onClickaway,
         },
-        mounted: function () {
-            let self = this;
-            self.user = JSON.parse(self.$store.getters.getAuthUser);
-            self.first_name = self.user.first_name;
-            self.last_name = self.user.last_name;
-        },
         computed : {
-            fullName(){
-                return this.first_name + ' ' + this.last_name;
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
             },
+            fullName(){
+                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
+            },
+            imageValue(){
+                return this.userDetails ? this.userDetails.profileImage : ''
+            }
         },
         methods: {
             ShowModal(){
@@ -82,6 +90,9 @@
                 /*this.$router.push({name: 'job-details'})*/
                 this.$emit('ViewBid');
             },           
+            scrollToTop() {
+                window.scrollTo(0,0);
+            },                       
 
         }
     }

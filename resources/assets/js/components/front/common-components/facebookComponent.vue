@@ -10,7 +10,7 @@
     </template>
 <script>
 export default {
-     props : ['text'],
+     props : ['text','fromSignUp'],
   data () {
     remind: null;
     return {
@@ -33,6 +33,7 @@ export default {
               self.facebookLoginData.last_name = profile.last_name;
               self.facebookLoginData.email = profile.email;
               self.facebookLoginData.profile_image = profile.picture.data.url;
+              self.facebookLoginData.from_sign_up = (self.fromSignUp)?true:false;
               if(self.$parent.type == 'customer'){
                      self.facebookLoginData.role_id = 3;
                }else{
@@ -44,13 +45,21 @@ export default {
           } else if (response.status === 'not_authorized') {
            // the user is logged in to Facebook, 
            // but has not authenticated your app
+           self.errorMessage = response.status
+           setTimeout(function(){
+            self.errorMessage = ""          
+           }, 1000);
           } else {
           // the user isn't logged in to Facebook.
+            self.errorMessage = "unauthenticated"
+             setTimeout(function(){
+              self.errorMessage = ""          
+             }, 1000);
           }
         },
         socialLogin () {
                 let self = this;
-                this.$http.post('/social/login', self.facebookLoginData)
+                this.$http.post('/login/social', self.facebookLoginData)
                 .then(response => {
                     self.$auth.setToken(response.data.data)
                     self.$store.commit('setAuthUser', response.data.data);
@@ -68,7 +77,7 @@ export default {
                         }else{
                             self.$router.push({ name: 'provider_profile'});
                         }
-                    }, 5000);
+                    }, 1000);
                   }
                 })
                 .catch(error => {

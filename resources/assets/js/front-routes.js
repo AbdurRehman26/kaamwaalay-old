@@ -17,8 +17,8 @@
         component: require('./components/front/auth/main.vue'),
     },
     {
-        name: 'reset-password',
-        path: '/reset-password',
+        name: 'password.reset',
+        path: '/password/reset/:token/:email',
         meta: {
             title: 'PSM | reset-password',
             bodyClass: 'reset-password-page',
@@ -27,7 +27,16 @@
         },
         component: require('./components/front/auth/ResetPassword.vue'),
     },
-
+    {
+            path: '/user/activate',
+            component: require('./components/front/auth/main.vue'),
+             meta: {
+                title: 'PSM | Login',
+                bodyClass: 'login-page',
+                noHeader: true,
+                navigation: 'main-nav',
+            },
+    },
     // Home
 
     {
@@ -158,7 +167,7 @@
     //jobs pages
 
     {
-        name: 'my_jobs',
+        name: 'my.jobs',
         path: '/my-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
@@ -183,12 +192,13 @@
 
 
     {
-        name: 'job-details',
-        path: '/job-details/:id?',
+        name: 'job.details',
+        path: '/job-details/:id',
         meta: {
             title: 'Professional Service Marketplace | Job Details',
             bodyClass: 'job-detail-page',
             navigation: 'customer-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/jobs/job-detail.vue'),
     },
@@ -201,7 +211,7 @@
         meta: {
             title: 'Professional Service Marketplace | Advice Center',
             bodyClass: 'advice-center-page',
-            navigation: 'customer-nav',
+            navigation: 'main-nav',
         },
         component: require('./components/front/advice-center/main.vue'),
     },
@@ -209,7 +219,7 @@
 
     //bidding page
     {
-        name: 'my-bid',
+        name: 'my.bids',
         path: '/my-bids',
         meta: {
             title: 'Professional Service Marketplace | My Bids',
@@ -233,6 +243,28 @@
         component: require('./components/front/profile-rejection/main.vue'),
     },
 
+    {
+        name: 'not-approved',
+        path: '/not-approved',
+        meta: {
+            title: 'Professional Service Marketplace | Profile Rejected',
+            bodyClass: 'profile-rejection-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/profile-rejection/not-approved.vue'),
+    },    
+
+    {
+        name: 'not-review',
+        path: '/not-review',
+        meta: {
+            title: 'Professional Service Marketplace | Profile Rejected',
+            bodyClass: 'profile-rejection-page',
+            navigation: 'provider-nav',
+        },
+        component: require('./components/front/profile-rejection/profile-yet.vue'),
+    },        
+
 
     // Static Pages
     {
@@ -241,7 +273,7 @@
         meta: {
             title: 'Professional Service Marketplace | Terms Condition',
             bodyClass: 'terms-condition-page',
-            navigation: 'provider-nav',
+            navigation: 'main-nav',
         },
         component: require('./components/front/static-pages/TermsCondition.vue'),
     },
@@ -252,7 +284,7 @@
         meta: {
             title: 'Professional Service Marketplace | Privacy Policy',
             bodyClass: 'privacy-policy-page',
-            navigation: 'provider-nav',
+            navigation: 'main-nav',
         },
         component: require('./components/front/static-pages/PrivacyPolicy.vue'),
     },
@@ -291,7 +323,7 @@ router.beforeEach((to, from, next) => {
     next({name: 'login'});
 } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
-      next({name: 'my_jobs'});
+      next({name: 'my.jobs'});
   }
 } else {
     next();

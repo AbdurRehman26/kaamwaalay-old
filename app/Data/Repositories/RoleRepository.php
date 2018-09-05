@@ -27,8 +27,8 @@ class RoleRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'Role';
-    protected $_cacheTotalKey = 'total-Role';
+    protected $_cacheKey = 'role';
+    protected $_cacheTotalKey = 'total-role';
 
     public function __construct(Role $model)
     {

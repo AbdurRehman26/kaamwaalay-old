@@ -24,6 +24,9 @@ return [
         /*'zip' => [
             'folder' => 'service/zip/',
         ],*/
+        'url' => [
+            'folder' => 'service'
+        ]
     ],
     'user' => [
         'folder' => 'user/orignal',

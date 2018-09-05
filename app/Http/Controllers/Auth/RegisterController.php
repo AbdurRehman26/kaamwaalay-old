@@ -83,7 +83,6 @@ class RegisterController extends Controller
             'social_account_id' => (!empty($data['social_account_id']))?$data['social_account_id']:null,
             'social_account_type' => (!empty($data['social_account_type']))?$data['social_account_type']:null,
             'activation_key' => Hash::make(Carbon::now()),
-
             'status' => 'pending',
             ]
         );

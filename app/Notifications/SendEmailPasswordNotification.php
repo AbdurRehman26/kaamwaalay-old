@@ -44,7 +44,7 @@ class SendEmailPasswordNotification extends Notification
         $token = app('auth.password.broker')->createToken($notifiable);
         $url = url(
             route(
-                'password.reset', [
+                'admin.password.reset', [
                 'token' =>$token,
                 'email' =>$notifiable->email,
                 ], false

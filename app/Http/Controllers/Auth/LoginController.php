@@ -231,7 +231,8 @@ class LoginController extends Controller
             } else {
                 return view('front-layout', ['error'=>Lang::get('auth.activateError')]);
             }
-            
+        } else {
+                return view('front-layout', ['error'=>Lang::get('auth.activateTokenException')]);
         }
     }
     protected function sendCheckAdminLoginResponse(Request $request)

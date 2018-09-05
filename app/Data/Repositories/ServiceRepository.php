@@ -4,8 +4,10 @@ namespace App\Data\Repositories;
 
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
+use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
+
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
     /**
@@ -27,8 +29,9 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
     protected $cacheTag = true;
-    protected $_cacheKey = 'Service';
-    protected $_cacheTotalKey = 'total-Service';
+    
+    protected $_cacheKey = 'service';
+    protected $_cacheTotalKey = 'total-service';
 
     public function __construct(Service $model)
     {
@@ -41,7 +44,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     public function findById($id, $refresh = false, $details = false, $encode = true, $input =  [])
     {
         $data = parent::findById($id, $refresh, $details, $input);
-
         if ($data) {
             if($data->parent_id != null) {
                 $data->parent = $this->findById($data->parent_id);
@@ -54,7 +56,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
             $jobFinishedCriteria = ['status' => 'completed', 'service_id' => $data->id];
             $data->job_finished_count = $this->jobRepo->getTotalCountByCriteria($jobFinishedCriteria);
-
+            
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
         }
@@ -86,7 +88,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     }
     public function update(array $data = [])
     {
-        
+        $record = [];
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
             $parentExist = Service::where('id', '=', $data['id'])->whereNull('parent_id')->count();
@@ -97,6 +99,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             }
             
         }else{
+            if($data['status'] == 0) {
+                $criteria = ['service_id' => (int)$data['id']];
+                $record['error'] = 1;
+                $record['jobs_count'] = $this->jobRepo->getTotalCountByCriteria($criteria);
+                $serviceProviderCriteria = ['service_id' => (int)$data['id']];
+                $record['service_provider_count'] = $this->serviceProviderRepo->getTotalCountByCriteria($criteria);
+                if($record['jobs_count'] || $record['service_provider_count']) {
+                    return (object)$record;
+                }   
+            }
             return parent::update($data);
         }
 
@@ -108,13 +120,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     {       
 
         $this->builder = $this->model->orderBy('created_at', 'desc');
-
-        //select * from `psm`.`services` as p1 left join `psm`.`services` p2 on p1.id = p2.parent_id where p1.parent_id is null order by p1.id
-
-        /*$this->builder = $this->builder
-                    ->leftJoin('services AS s2', 'id', '=', 's2.parent_id')
-                    ->whereNull('parent_id')
-                    ->orderBy('id');*/
 
         if (!empty($data['zip_code'])) {
             $this->builder = $this->builder
@@ -181,11 +186,11 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                         
         }
 
-                    $modelData['data'] = [];
-                    $count = $this->builder->count();
-                    $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
-                    $modelData['data']['service_count'] = $count;
-                    return $modelData;
+                    //$modelData['data'] = [];
+                    //$count = $this->builder->count();
+                    //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+                    //$modelData['data']['service_count'] = $count;
+                    return parent::findByAll($pagination, $perPage, $data);
     }
 
 

@@ -14,9 +14,12 @@ Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
 });
-Route::get('/password/set/{token}/{email}', function(){
-    return view('admin-layout');
+Route::get('/password/reset/{token}/{email}', function(){
+    return view('front-layout');
 })->where('id', '.*')->name('password.reset');
+Route::get('/admin/password/set/{token}/{email}', function(){
+    return view('admin-layout');
+})->where('id', '.*')->name('admin.password.reset');
 Route::get('/', function () {
     return view('layout');
 });
@@ -25,8 +28,8 @@ Route::get('/', function () {
 /*Route::get('/{any}', function(){
     return view('layout');
 })->where('any', '.*');*/
-Route::post('social/login', 'Api\V1\UserController@socialLogin')->name('socialLogin');
-Route::get('activate', 'Auth\LoginController@activateUser')->name('activate');
+Route::post('login/social', 'Api\V1\UserController@socialLogin')->name('social.login');
+Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.activate');
 
 /*Admin Route*/
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
@@ -34,6 +37,5 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 /*Front Route*/
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
-Route::get('/', 'FrontController@index')->where('any', '.*')->name('front-login');
-
+Route::get('/', 'FrontController@index')->where('any', '.*')->name('front.login');
 Route::resource('search/explore', 'SearchController');

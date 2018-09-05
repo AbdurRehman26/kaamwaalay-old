@@ -27,8 +27,8 @@ class SupportQuestionRepository extends AbstractRepository implements Repository
      * @access protected
      **/
 
-    protected $_cacheKey = 'SupportQuestion';
-    protected $_cacheTotalKey = 'total-SupportQuestion';
+    protected $_cacheKey = 'support-question';
+    protected $_cacheTotalKey = 'total-support-question';
 
     public function __construct(SupportQuestion $model)
     {

@@ -1,6 +1,6 @@
 <template>  
     <div>
-        <b-modal id="write-review" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Write Review" ok-only ok-title="Submit">
+        <b-modal class="write-review-popup" id="write-review" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Write Review" ok-only ok-title="Submit">
         <alert></alert>
             <div>
                 <p>Write review and provide your feedback on <strong>Leaking water pipe job</strong>  performed by <strong>A-General Plumbing &amp; Sewer Service.</strong></p>

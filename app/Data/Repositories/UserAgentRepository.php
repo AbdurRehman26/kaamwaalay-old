@@ -27,8 +27,8 @@ class UserAgentRepository extends AbstractRepository implements RepositoryContra
      * @access protected
      **/
 
-    protected $_cacheKey = 'UserAgent';
-    protected $_cacheTotalKey = 'total-UserAgent';
+    protected $_cacheKey = 'user-agent';
+    protected $_cacheTotalKey = 'total-user-agent';
 
     public function __construct(UserAgent $model)
     {

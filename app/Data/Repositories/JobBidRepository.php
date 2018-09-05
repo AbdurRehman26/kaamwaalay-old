@@ -29,8 +29,8 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'JobBid';
-    protected $_cacheTotalKey = 'total-JobBid';
+    protected $_cacheKey = 'job-bid';
+    protected $_cacheTotalKey = 'total-job-bid';
 
     public function __construct(JobBid $model)
     {

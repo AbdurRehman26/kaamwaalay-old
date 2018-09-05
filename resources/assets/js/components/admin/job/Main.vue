@@ -57,7 +57,7 @@
           <tbody>
 
             <tr v-for="record in records">
-                <td width="40%"> {{ record.title }} </td>
+                <td> {{ record.title }} </td>
                 <td> <a href="javascript:void(0);" @click="profileimage(record.user.id)">{{ record.user.first_name }}</a> </td>
                 <td> {{ record.service | mainService }} </td>
                 <td> {{ record.service | childOrParentService }} </td>
@@ -179,14 +179,14 @@
                 this.customer = false;
             },
             ViewDetails(id){
-                this.$router.push({name: 'mainjobdetail' , params : { id : id}});
+                this.$router.push({name: 'main.job.detail' , params : { id : id}});
             },
 
             AddService(){
                 this.changeProviderStatus = true;
             },
             profileimage(id){
-              this.$router.push({name: 'customerdetail' , params : {id  : id}});  
+              this.$router.push({name: 'customer.detail' , params : {id  : id}});  
           },        
 
       },

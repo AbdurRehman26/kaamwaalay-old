@@ -87,11 +87,15 @@
             }, 2000);
 
         }).catch(error => {
-            self.errorMessage =error.response.data.message[0];
+            var response = error.response.data.response;
+            //self.errorMessage = response.message[0];
+            if(response.data.error) {
+                self.errorMessage = response.message + "There are " + (response.data.service_provider_count? response.data.service_provider_count + " service provider(s) & " : "") + (response.data.jobs_count? response.data.jobs_count + " job(s) associated with this service." : "");   
+            }
             setTimeout(function(){
                 self.loading = false;
                 self.errorMessage=''
-            }, 2000);
+            }, 3000);
 
 
         });

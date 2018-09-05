@@ -18,6 +18,7 @@ return [
     'registered' => 'You have registered successfully, please check your email to activate your account.',
     'activateSuccess' => 'Your account has been activated successfully. You can now login.',
     'activateError' => 'You have already activate your account. Please contact us if you have any queries.',
+    'activateTokenException' => 'Invalid token provided.',
     'pending' => 'Your account verification is pending, please check your email for the activation link we sent and follow the instructions to enable your account.',
     'adminLogin' => 'These credentials do not match our records.',
     'blocked' => 'Your account is inactive. Please contact us for further details.',

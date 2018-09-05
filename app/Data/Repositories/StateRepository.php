@@ -28,8 +28,8 @@ class StateRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'State';
-    protected $_cacheTotalKey = 'total-State';
+    protected $_cacheKey = 'state';
+    protected $_cacheTotalKey = 'total-state';
 
     public function __construct(State $model)
     {

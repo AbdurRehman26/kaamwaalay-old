@@ -7,56 +7,42 @@ use Illuminate\Validation\Rule;
 
 class JobMessageController extends ApiResourceController
 {
-    public $_repository;
+  public $_repository;
 
-    public function __construct(JobMessageRepository $repository)
-    {
-        $this->_repository = $repository;
+  public function __construct(JobMessageRepository $repository)
+  {
+    $this->_repository = $repository;
+  }
+
+  public function rules($value='')
+  {
+    $rules = [];
+
+    if($value == 'store') {
+      $rules['job_id'] =  'required|exists:jobs,id';
+      $rules['job_bid_id'] =  'required|exists:job_bids,id';
     }
 
-    public function rules($value='')
-    {
-        $rules = [];
+    return $rules;
 
-        if($value == 'store') {
-              $rules['job_id'] =  'required|exists:jobs,id';
-              $rules['job_bid_id'] =  'required|exists:job_bids,id';
-        }
-
-        if($value == 'update') {
-
-        }
+  }
 
 
-        if($value == 'destroy') {
-
-        }
-
-        if($value == 'show') {
-
-        }
-
-        if($value == 'index') {
-
-        }
-
-        return $rules;
-
-    }
-
-
-    public function input($value='')
-    {
-        $input = request()->only('id', 'text', 'job_id', 'job_bid_id');
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-        $input['sender_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
+  public function input($value='')
+  {
+    $input = request()->only('id', 'text', 'job_id', 'job_bid_id');
     
+    $input['sender_id'] = request()->user()->id;
+    
+    if($value == 'store'){
 
-        if($value == 'store') {
-            unset($input['user_id']);
-        }
+      unset(
+        $input['id']
+      );
 
-        return $input;
     }
+
+    return $input;
+  }
 
 }

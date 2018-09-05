@@ -28,8 +28,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
 
-    protected $_cacheKey = 'Job';
-    protected $_cacheTotalKey = 'total-Job';
+    protected $_cacheKey = 'job';
+    protected $_cacheTotalKey = 'total-job';
 
     public function __construct(Job $model)
     {
@@ -106,15 +106,26 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         $data = parent::findById($id, $refresh, $details, $encode);
 
         if($data) {
+            
+            if($details){
 
-            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            $ratingCriteria = ['user_id' => $data->user_id];
+            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+
+            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
+            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+            $data->avg_rating = $avgRating;
+                
+            }
+
+
             $data->service = app('ServiceRepository')->findById($data->service_id);
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
 
             if($data->schedule_at && $data->preference == 'choose_date') {
                 $data->formatted_schedule_at = Carbon::parse($data->schedule_at)->format('F j, Y');
             }
 
-            // Copied from user
             $country = app('CountryRepository')->findById($data->country_id);             
             $data->country = !empty($country->name) ? $country->name : '';
             $City = app('CityRepository')->findById($data->city_id);                
@@ -133,15 +144,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
             }
 
-            $ratingCriteria = ['user_id' => $data->user_id];
-            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
-
-            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
-            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-            $data->avg_rating = $avgRating;
-            
             $details = ['user_rating' => true];
             $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+
+
+            // Copied from user
 
             if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
                 $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
@@ -177,7 +184,9 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         // or Criteria must be an array 
         if($crtieria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
-                $this->model  = $this->model->orWhere($where);
+                $this->model  = $this->model->orWhere(function($query) use ($where) {
+                    $query->where($where);
+                });
             }
         }
 

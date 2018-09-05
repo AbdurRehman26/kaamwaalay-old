@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends ApiResourceController
 {
@@ -30,10 +31,10 @@ class ServiceController extends ApiResourceController
               $rules['description']            = 'required';               
               $rules['is_display_banner']       = 'required|in:0,1';                   
               $rules['is_display_service_nav']  = 'required|in:0,1';                       
-              $rules['is_display_footer_nav']   = 'required|in:0,1';                   
-              $rules['images']                  = 'required';       
+              $rules['is_display_footer_nav']   = 'required|in:0,1';     
               $rules['status']                  = 'required|in:0,1';    
               $rules['is_featured']                  = 'required|in:0,1';     
+              $rules['url_prefix']                  = 'required|unique:services,url_prefix';     
 
               //$rules['user_id'] =  'required|exists:users,id';   
         }
@@ -61,8 +62,6 @@ class ServiceController extends ApiResourceController
         if($value == 'destroy') {
 
               $rules['id'] =  'required|exists:services,id';
-              $rules['user_id'] =  'required|exists:users,id';
-        
 
         }
 
@@ -105,8 +104,7 @@ class ServiceController extends ApiResourceController
             'zip_code'
         );
 
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
-        request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+    $input['user_id'] = request()->user()->id;
 
         return $input;
     }
@@ -122,13 +120,17 @@ class ServiceController extends ApiResourceController
         $this->validate($request, $rules, $messages);
 
         $data = $this->_repository->update($input);
-    
+        if(isset($data->error) && $data->error) {
+            $output = ['response' => ['data' => $data, 'message' => 'It doesn\'t seem possible to change the current status of this service.']];
+
+            return response()->json($output, 422);
+        }
         if ($data == 'not_parent') {
             $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
 
             return response()->json($output, 422);
         }else{
-            $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
         }
 
         // HTTP_OK = 200;
@@ -150,7 +152,7 @@ class ServiceController extends ApiResourceController
         if ($data == 'not_parent') {
             $output = ['errors' => ['parent_id' => ['The parent id does not match']] , 'message' => 'The given data was invalid'];
         }else{
-            $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
         }
 
     
@@ -177,10 +179,10 @@ class ServiceController extends ApiResourceController
 
         $output = [
         'response' => [
-            'data' => $data['data']['data'],
-            'service_count' => $data['data']['service_count'],
+            'data' => $data['data'],
+            'url_prefix' => Storage::url(config('uploads.service.url.folder').'/'),
             'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
-            'message' => $this->response_messages(__FUNCTION__),
+            'message' => $this->responseMessages(__FUNCTION__),
         ]
         ];
 

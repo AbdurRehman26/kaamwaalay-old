@@ -30,8 +30,8 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
      * @access protected
      **/
 
-    protected $_cacheKey = 'SupportInquiry';
-    protected $_cacheTotalKey = 'total-SupportInquiry';
+    protected $_cacheKey = 'support-inquiry';
+    protected $_cacheTotalKey = 'total-support-inquiry';
 
     public function __construct(SupportInquiry $model)
     {
@@ -63,18 +63,20 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
                         $data->role  =  $roleData;    
                     }                    
                 }
-                if($data->user_id) {
-                    $userData = $this->userRepo->findById($data->user_id);
-                    if($userData) {
-                        $data->name     = $userData->first_name.' '.$userData->last_name;
-                        $data->email    = $userData->email;
-                    }
-                }
                 Cache::forever($this->_cacheKey.$id, $data);
             } else {
                 return null;
             }
         }
+
+        if(!empty($data->user_id)) {
+            $userData = $this->userRepo->findById($data->user_id);
+            if($userData) {
+                $data->name     = $userData->first_name.' '.$userData->last_name;
+                $data->email    = $userData->email;
+            }
+        }
+
         return $data;
     }
 
@@ -114,12 +116,12 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
         $this->builder = $this->builder
             ->select('support_inquiries.id')
             ->orderBy('support_inquiries.created_at', 'DESC');
-        $modelData['data'] = [];
-        $count = $this->builder->count();
-        $modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+        //$modelData['data'] = [];
+        //$count = $this->builder->count();
+        //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
 
-        $modelData['data']['inquiry_count'] = $count;
-        return $modelData;
+        //$modelData['data']['inquiry_count'] = $count;
+        return parent::findByAll($pagination, $perPage, $data);
         //return  parent::findByAll($pagination, $perPage);
     
     }

@@ -17,19 +17,6 @@ class RoleController extends ApiResourceController
     {
         $rules = [];
 
-        if($value == 'store') {
-
-        }
-
-        if($value == 'update') {
-
-        }
-
-
-        if($value == 'destroy') {
-
-        }
-
         if($value == 'show') {
               $rules['id'] =  'required|exists:roles,id';
         }
@@ -46,7 +33,6 @@ class RoleController extends ApiResourceController
     public function input($value='')
     {
         $input = request()->only('id', 'pagination');
-        //$input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
         return $input;
     }
 }

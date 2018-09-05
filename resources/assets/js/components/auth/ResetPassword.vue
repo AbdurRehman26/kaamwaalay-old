@@ -8,7 +8,7 @@
       </div>
       <div class="container"></div>
       <div class="text-center">
-          <h2 class="auth-title">Welcome to PSI, Pakistan
+          <h2 class="auth-title">Welcome to PSM, Pakistan
             <span class="auth-title-desc" >Reset your password</span>
           </h2>
       </div>
