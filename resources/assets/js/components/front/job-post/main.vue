@@ -371,12 +371,15 @@
 
                     self.successMessage = response.message;
 
+                    self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
+
                     setTimeout(function () {
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);
 
                 }).catch(error => {
+                    console.log(error , 'error in job posting');
                     self.loading = false;
                 });
 
