@@ -41,6 +41,7 @@ class SupportInquiryController extends ApiResourceController
         if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['type_id']       =  'nullable|in:'.Role::SERVICE_PROVIDER.','.Role::CUSTOMER;
+            $rules['keyword']       =  'nullable|string';
         }
 
         return $rules;
@@ -52,7 +53,7 @@ class SupportInquiryController extends ApiResourceController
     {
 
         if($value == 'index'){
-            $input = request()->only('pagination', 'type_id');
+            $input = request()->only('pagination', 'type_id', 'keyword');
         }
 
         if($value == 'store'){
