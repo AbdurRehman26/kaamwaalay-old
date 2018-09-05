@@ -193,6 +193,7 @@
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
                 this.$refs.fileinput.reset();
+                this.showRadios = true;
                 this.formData = {
                     parent_id: '',
                     title: '',
@@ -447,6 +448,8 @@
                         is_display_service_nav: this.list.is_display_service_nav,
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
+
+                    this.showRadios = this.formData.parent_id? false : true;
                     this.formData.url_suffix = this.defaultUrlPrefix;
                     this.isChangePrefix = this.list.url_suffix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;

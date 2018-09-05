@@ -33,7 +33,7 @@ class ServiceController extends ApiResourceController
               $rules['is_display_footer_nav']   = 'required|in:0,1';     
               $rules['status']                  = 'required|in:0,1';    
               $rules['is_featured']                  = 'required|in:0,1';     
-              $rules['url_prefix']                  = 'required|unique:services,url_prefix';     
+              $rules['url_suffix']                  = 'required|unique:services,url_suffix';     
 
               //$rules['user_id'] =  'required|exists:users,id';   
         }
@@ -94,7 +94,7 @@ public function input($value=''){
         'is_display_footer_nav',
         'is_featured',
         'is_hero_nav',
-        'url_prefix',
+        'url_suffix',
         'parent_service',
         'status',
         'keyword',
