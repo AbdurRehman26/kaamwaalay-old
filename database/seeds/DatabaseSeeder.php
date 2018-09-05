@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
 
         // Service and Service Provider 
 
-        // $this->call(ServiceTableSeeder::class);
+        $this->call(ServiceTableSeeder::class);
         // $this->call(ServiceProviderProfileSeeder::class);
 
         // Job bid and rating commented
