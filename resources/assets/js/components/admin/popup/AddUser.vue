@@ -19,7 +19,7 @@
             <div :class="[  'form-group' , errorBag.first('email')  ? 'is-invalid' : '']">
                 <div class="form-group">
                     <label for="addForm_email">Email</label>
-                    <input id="addForm_email" type="email" v-model="add_form_info.email" v-validate="'required|email'"  name="email" class="form-control"  data-vv-name="email"  placeholder="Enter your Email">
+                    <input id="addForm_email" type="email" v-model="add_form_info.email" v-validate="{ required: true,email: true, regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/ }"  name="email" class="form-control"  data-vv-name="email"  placeholder="Enter your Email">
                 </div>
             </div>
             <div class="form-group">
