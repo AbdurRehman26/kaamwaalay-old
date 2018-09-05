@@ -3,12 +3,11 @@
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
-					<div class="category-image" v-bind:style="{'background-image': 'url('+ categoryimage +')',}"></div>
-
+					<div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(service.images? service.images[0].upload_url : null) +')',}"></div>
 					<div class="category-content">
-						<h2>General carpentry</h2>
-						<p>Carpenters perform a wide array of tasks and generally work with wood. However, some carpenters also train to work with concrete, metal, plastic, and tile.</p>
-						<p><strong>Are you looking to find a carpenter for hire?</strong> Then, we can help. When you post a job you will receive custom bids from local carpenters!</p>
+						<h2>{{service.title}}</h2>
+						<p>{{service.description}}</p>
+						<p><strong>Are you looking to find a {{service.title}} for hire?</strong> Then, we can help. When you post a job you will receive custom bids from local {{service.title}}!</p>
 					</div>
 				</div>
 			</div> 
@@ -23,43 +22,49 @@
 				<div class="row">
 					<div class="col-md-10 p-r-0">
 			            <div class="search-filter m-b-0">
-			                <input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
+							<div class="custom-multi multifull" :class="{'invalid': isInvalid }">
+								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch">
+									<span slot="noResult">No Service found. Consider changing the search query.</span>
+								</multiselect>
+							</div>
 			                <div class="container-zip-code">
 								<i class="icon-location"></i>
-								<input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
+								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
 							</div>
 						</div>			
 					</div>
 					<div class="col-md-2 p-r-0">
-						<a href="javscript:void(0);" class="btn btn-primary width-100">Search</a>
+						<button class="btn btn-primary" @click="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+							<span>Search</span>
+            				<loader></loader>
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 
-		<div class="job-post-container section-padd sm">
+         <no-record-found v-if="noRecordFound"></no-record-found>
+		<div class="job-post-container section-padd sm" v-if="!noRecordFound">
 			<div class="container md">
 
 				<div class="text-notifer">
-					<p>14 General carpentry service professionals found near you</p>
+					<p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
 				</div>
-
-				<div class="job-post-list category-service-provider" v-for="listing in joblisting">
+				<div class="job-post-list" v-for="record in records" v-if="record.profile_request">
 					<div class="job-post-details">
-						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ listing.job_title_image +')',}"></div>
-
+						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
 						<div class="job-common-description">
-							<div class="job-main-title">
-								<h3 class="pointer" @click="servicedetail">{{listing.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
-							</div>
+							<h3 class="pointer" @click="servicedetail">{{record.business_name}}</h3> 
+							<span v-if="record.profile_request && record.profile_request.status == 'approved'"><i class="icon-checked"></i></span>
+							
 							<div class="jobs-rating">
-								<star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>
+								<star-rating :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
 								<div class="jobs-done">
-									<span class="review-job">{{ listing.job_feedback }} Feedback reviews</span>				
+									<span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>				
 
-									<span class="review-job" v-if="listing.job_perform == 0">No Jobs performed</span>
-									<span class="review-job" v-else>{{ listing.job_perform }} Jobs performed</span>
+									<span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
+									<span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
 								</div>	
 							</div>
 							<a href="/job-post" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
@@ -68,31 +73,31 @@
 						<div class="member-details">
 							<p class="location">
 								<i class="icon-location"></i> 
-								Location <strong>{{ listing.job_location }}</strong>
+								Location <strong>{{ record.user_detail.city }}</strong>
 							</p>
 							<p class="member-since">
 								<i class="icon-calendar-daily"></i>
-								Member since <strong>{{ listing.job_member_since }}</strong>
+								Member since <strong>{{record.profile_request.formatted_created_at }}</strong>
 							</p>
 						</div>
 
 						<div class="post-job-description">
-							<p>{{ listing.job_description }}</p>
+							<p>{{ record.business_details }}</p>
 						</div>
 
-						<div class="chat-feedback" v-if="listing.review_details == true">
+						<div class="chat-feedback" v-if="record.reviewedBy">
 							<div class="text-notifer">
 								<p>Latest feedback & review</p>	
 							</div>
 							<div class="chat-feedback-column">
-								<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ listing.latest_review_image +')',}"></div>
+								<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profile_image) +')',}"></div>
 								<div class="chat-feedback-message">
-									<p>{{listing.latest_review_description}}</p>
+									<p>{{record.reviewedBy.review.message}}</p>
 									<div class="feeback-detail">
 										<p class="feedback-personal-info">
-											<a href="javascript:void(0);">{{listing.latest_reviewer_name}}</a>
+											<a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
 											 posted on 
-											 <strong>{{listing.latest_review_post_date}}</strong>
+											<strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
 										</p>
 										<i class="icon-quotes-right3"></i>
 									</div>
@@ -103,10 +108,10 @@
 
 					</div>
 				</div>
-
 			</div>			
 		</div>
 
+		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
         <div class="featured-categories section-padd sm  elementary-banner p-t-130">
         	<div class="container element-index">
 
@@ -126,117 +131,42 @@
 	        				
 	        		</div>  	        	      		
 	        	</div>
-
-
         	</div>
 			<div class="elements">
 				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
         </div>
-        <info-popup  @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
+	</div>
 	</div>
 </template>
 
 
 <script>
-import StarRating from 'vue-star-rating';
+	import StarRating from 'vue-star-rating';
 
-export default {
+	export default {
+		props: ['serviceId', 'zip'],
   data () {
     return {
+				max: 6,
+				noRecordFound: false,
+				btnLoading: false,
+				options: [],
+				zipCode: '',
+				isTouched: false,
+				searchValue: '',
+				isLoading: false,
+            	loading : false,
+				noRecordFound : false,
+				pagination: '',
+				records : [],
+				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&is_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
+				service: '',
     	categoryimage: '/images/front/explore/carpenter1.jpg',
 
     	jobimage: '/images/front/profile-images/logoimage1.png',
     	reviewerimage: '/images/front/profile-images/personimage1.png',
-    	infoval: false,
-    	joblisting:[
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/logoimage1.png',
-	    		job_title: 'CHS US Carpenter and Roofing',
-	    		job_feedback: 261,
-	    		job_perform: 270,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: 'In brief CHS US supply a full home reno service including carpentry service.We specialise in stairs repair and the supply and fit of firedoors satisfy the revelant authorities All visits for quotation are free With many successful years in the trade customer satisfaction...',
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage1.png',
-	    		latest_review_description: 'I found Frank Mangan of CHS US Carpentry on this site and chose him because of the feedback I reviewed. I was not disappointed. He has done an excellent job. His work is high quality and he is conscientious. He is good at keeping in touch and sticks to times and dates when working. I therefore have no hesitation in recommending him to future clients.',
-	    		latest_reviewer_name: 'Shirley Webb',
-	    		latest_review_post_date: 'August, 2018',
-
-	    	},
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/logoimage2.png',
-	    		job_title: 'M.D.S Joinery & Glazing',
-	    		job_feedback: 180,
-	    		job_perform: 208,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Feb, 2018',
-	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary...",
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage2.png',
-	    		latest_review_description: 'Very good. Matt arrived when agreed, did a good job and was good value - I would certainly use MDS again and have no concerns recommending him.',
-	    		latest_reviewer_name: 'Keith McCoy',
-	    		latest_review_post_date: 'August, 2018',
-
-	    	},
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/personimage6.png',
-	    		job_title: 'Christopher Ward Joinery Services',
-	    		job_feedback: 164,
-	    		job_perform: 174,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Hi, I'm a traditional time served staircase joiner, I completed a five year apprenticeship at a company in Lancashire that has been going for over 175 years, the company I worked for and the men I served under taught me good old fashioned values, and if a job is worth doing...",
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage7.png',
-	    		latest_review_description: 'Excellent service, work carried out as quoted and to a very high standard. Stairs were extremely noisy and creaking, they are now virtually silent . Excellent work and a thoroughly nice guy.',
-	    		latest_reviewer_name: 'Ashley Bel',
-	    		latest_review_post_date: 'September, 2018',
-
-	    	},	
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/personimage3.png',
-	    		job_title: 'C&N Home Solutions',
-	    		job_feedback: 124,
-	    		job_perform: 148,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-	    		review_details: true,
-	    		latest_review_image: '/images/front/profile-images/personimage4.png',
-	    		latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-	    		latest_reviewer_name: 'Lauren Gomez',
-	    		latest_review_post_date: 'March, 2018',
-
-	    	},	
-
-
-	    	{
-	    		job_title_image: '/images/front/profile-images/personimage5.png',
-	    		job_title: 'C M H Maintenance',
-	    		job_feedback: 0,
-	    		job_perform: 0,
-	    		job_location: 'New York, NY',
-	    		job_member_since: 'Jan, 2018',
-	    		job_description: "Offering the service that we would expect to receive ourselves, starting with a free no obligation quote. Our qualified team of time served loft fitters, joiners, decorators & electricians will ensure to explain the process of the work carried out as well as tidying any mess...",
-	    		review_details: false,
-	    		latest_review_image: '/images/front/profile-images/personimage4.png',
-	    		latest_review_description: 'Very friendly and easy to deal with, they came in quite a short time and completed the job very fast. Happy with the result.',
-	    		latest_reviewer_name: 'Lauren Gomez',
-	    		latest_review_post_date: 'March, 2018',
-
-	    	},		    	
-
-	    		    	    		    	
-
-    	],
-
 		category:[
 
 		{
@@ -269,8 +199,60 @@ export default {
     	}
   	},
 
+	    computed : {
+	        requestUrl(){
+	            return this.serviceProviderUrl;
+	        },
+		    isInvalid () {
+		      return this.isTouched && !this.searchValue
+		    }
+	    },
     methods: {
+		    limitText (count) {
+		      return `and ${count} other services`
+		    },
+            validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.ServiceProviderPage();
+                        this.errorMessage = "";
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            },  
 
+			ServiceProviderPage() {
+				this.isTouched = false;
+				if(!this.searchValue) {
+					this.isTouched = true;
+					return;
+				}
+				this.serviceId = this.searchValue.id;
+				this.zip = this.zipCode;
+				this.getService(); 
+			},
+			onTouch () {
+		      this.isTouched = true
+		    },
+			asyncFind: _.debounce(function(query) {
+				let self = this;
+		        this.searchUrl  = 'api/service?keyword='+query;
+				this.isLoading = true;
+				this.$http.get(this.searchUrl).then(response => {
+					response = response.data.response;
+					self.options = response.data;
+					self.isLoading = false;
+
+				}).catch(error=>{
+				});
+			}, 1000),
+	        getImage(img) {
+	        	return img? img : 'images/dummy/image-placeholder.jpg';
+	        },
+			startLoading(){
+	            this.loading = true;
+	        },
     	AddCustomer() {
     		this.customer = true;
     	},
@@ -282,13 +264,7 @@ export default {
         changestatuspopup() {
             this.changestatus = true;
         },
-
-        showinfo() {
-            this.infoval = true;
-        },
-
         HideModal(){
-            this.infoval = false;        	
             this.customer = false;
             this.viewcustomer = false;
             this.changestatus = false;
@@ -296,16 +272,57 @@ export default {
         servicedetail(){        	
         	this.$router.push({name: 'Service_Provider_Detail'});
         	window.scrollTo(0,0);
-        }
+			},
+			getService() {
+				let self = this;
+				let id = this.serviceId;
+				this.btnLoading = true;
+				this.searchUrl  = 'search/explore/'+id;
+				self.$http.get(this.searchUrl).then(response => {
+			    	response = response.data.response;
+					self.service = response.data;
+					self.searchValue = self.service;
+					self.categoryimage = self.getImage(self.service.images);
+					self.btnLoading = false;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&is_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
+			    }).catch(error=>{
+			    	if(error.status == 403) {
+			    		self.pagination = false;
+        			}
+			    });
+			},
+	        getProviderRecords(response){
+	            let self = this;
+	            self.loading = false;
+	            self.records = response.data;
+	            self.noRecordFound = response.noRecordFound;
+	            self.pagination = response.pagination;
+	        },
 
     },
     components: {
         StarRating
     },
 
+		watch: {
+			serviceId(val) {
+				if(val.length > 3) {
+					val = val.substr(0, 3);
+				}
+				this.serviceId = val;
+			},
+			zipCode(val) {
+				if(val.length > 5) {
+					val = val.substr(0, 5);
+				}
+				this.zipCode = val; 
+			}
+		},
     mounted(){
+			this.zipCode = this.zip;
+			this.getService();
+		},
 
     }
-
-}
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

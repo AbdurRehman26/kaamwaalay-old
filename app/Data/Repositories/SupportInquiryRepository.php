@@ -94,8 +94,7 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
             // ->where('support_questions.role_id', '=' , $data['type_id'])
             ;
         }
-
-        if(!empty($data['keyword'])) {
+        if(isset($data['keyword'])) {
             $this->builder = $this->builder
             //->select('support_inquiries.id')
             //->leftJoin('users', 'support_inquiries.user_id', '=', 'users.id')

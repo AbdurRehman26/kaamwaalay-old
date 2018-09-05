@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceRepository;
 use App\Data\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
@@ -34,7 +33,7 @@ class ServiceController extends ApiResourceController
               $rules['is_display_footer_nav']   = 'required|in:0,1';     
               $rules['status']                  = 'required|in:0,1';    
               $rules['is_featured']                  = 'required|in:0,1';     
-              $rules['url_prefix']                  = 'required|unique:services,url_prefix';     
+              $rules['url_suffix']                  = 'required|unique:services,url_suffix';     
 
               //$rules['user_id'] =  'required|exists:users,id';   
         }
@@ -44,7 +43,8 @@ class ServiceController extends ApiResourceController
         
               $rules['id']                      =  'required|exists:services,id';
               $rules['is_display_banner']       = 'nullable|in:0,1';                   
-              $rules['is_display_service_nav']  = 'nullable|in:0,1';                       
+              $rules['is_display_service_nav']  = 'nullable|in:0,1';
+              $rules['url_suffix']                  = 'required|unique:services,url_suffix';     
               $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
               $rules['status']                  = 'nullable|in:0,1';        
               $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
@@ -82,8 +82,7 @@ class ServiceController extends ApiResourceController
     }
 
 
-    public function input($value='')
-    {
+public function input($value=''){
         $input = request()->only(
             'id',
             'title',
@@ -96,19 +95,20 @@ class ServiceController extends ApiResourceController
             'is_display_footer_nav',
             'is_featured',
             'is_hero_nav',
-            'url_prefix',
+            'url_suffix',
             'parent_service',
             'status',
             'keyword',
             'filter_by_featured',
-            'zip_code'
+        'zip_code',
+        'service_category'
         );
 
-    $input['user_id'] = request()->user()->id;
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
         return $input;
-    }
-
+}
 
     //Update single record
     public function update(Request $request, $id)

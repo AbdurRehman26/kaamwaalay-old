@@ -104,66 +104,59 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-
         if($data) {
-            
-            if($details){
-
-            $ratingCriteria = ['user_id' => $data->user_id];
-            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
-
-            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
-            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-            $data->avg_rating = $avgRating;
-                
-            }
-
-
-            $data->service = app('ServiceRepository')->findById($data->service_id);
-            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-
-            if($data->schedule_at && $data->preference == 'choose_date') {
-                $data->formatted_schedule_at = Carbon::parse($data->schedule_at)->format('F j, Y');
-            }
-
-            $country = app('CountryRepository')->findById($data->country_id);             
-            $data->country = !empty($country->name) ? $country->name : '';
-            $City = app('CityRepository')->findById($data->city_id);                
-            $data->city = !empty($City->name)?$City->name:'';
-            $state = app('StateRepository')->findById($data->state_id);                
-            $data->state = !empty($state->name)?$state->name:'';
-
-            $bidsCriteria = ['job_id' => $data->id];
-            $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
-            $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
-
-            $bidsCriteria['is_awarded'] = 1;
-            $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
-
-            if($awardedBid) {
-                $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
-            }
-
             $details = ['user_rating' => true];
             $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+            if(empty($details['job_details'])) {
+                $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+                $data->service = app('ServiceRepository')->findById($data->service_id);
 
-
-            // Copied from user
-
-            if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
-                $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
-                $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
-                $data->job_amount = $jobAmount;
-
-                $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
-                $servicerProvider = app('JobBidRepository')->getJobServiceProvider($bidsCriteria);
-                $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
-                $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
-                
-                if($data->status == 'completed') {
-                    $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
+                if($data->schedule_at && $data->preference == 'choose_date') {
+                    $data->formatted_schedule_at = Carbon::parse($data->schedule_at)->format('F j, Y');
                 }
 
+                // Copied from user
+                $country = app('CountryRepository')->findById($data->country_id);             
+                $data->country = !empty($country->name) ? $country->name : '';
+                $City = app('CityRepository')->findById($data->city_id);                
+                $data->city = !empty($City->name)?$City->name:'';
+                $state = app('StateRepository')->findById($data->state_id);                
+                $data->state = !empty($state->name)?$state->name:'';
+                $bidsCriteria = ['job_id' => $data->id];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
+
+                $bidsCriteria['is_awarded'] = 1;
+                $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+
+                if($awardedBid) {
+                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+                }
+
+                $ratingCriteria = ['user_id' => $data->user_id];
+                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+
+                $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
+                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
+                $data->avg_rating = $avgRating;
+
+                if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
+                    dd("llala");
+                    $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
+                    $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
+                    $data->job_amount = $jobAmount;
+
+                    $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
+                    $servicerProvider = app('JobBidRepository')->getJobServiceProvider($bidsCriteria);
+                    $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
+                    $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
+                    
+                    if($data->status == 'completed') {
+                        $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
+                    }
+
+
+                }
 
             }
 
@@ -184,9 +177,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         // or Criteria must be an array 
         if($crtieria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
-                $this->model  = $this->model->orWhere(function($query) use ($where) {
-                    $query->where($where);
-                });
+                $this->model  = $this->model->orWhere($where);
             }
         }
 
