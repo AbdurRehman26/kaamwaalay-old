@@ -29,7 +29,7 @@
                                     </b-col>
                                     <b-col class="calculated-value">                                        
 
-                                        <router-link tag="a" :to="{name: 'customerdetail' , params : {id  : record.user ? record.user.id : 1}}">
+                                        <router-link tag="a" :to="{name: 'customer.detail' , params : {id  : record.user ? record.user.id : 1}}">
                                             {{ record.user | fullName }}
                                         </router-link>
                                         

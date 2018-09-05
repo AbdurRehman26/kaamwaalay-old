@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
         
         $state_id = $states[array_rand($states)];
 
-        $city_id = $cities[self::myfunction($cities , 'state_id', $state_id)]['id'];
+        $city_id = $cities[self::getCityId($cities , 'state_id', $state_id)]['id'];
 
         $data = [];
         $data[] =[
@@ -74,14 +74,16 @@ class UsersTableSeeder extends Seeder
 
         $roles = [Role::CUSTOMER,Role::SERVICE_PROVIDER,Role::REVIEWER];
 
+        $data = [];
+
         foreach (range(1, 150) as $index) {
 
             $state_id = $states[array_rand($states)];
 
-            $city_id = $cities[self::myfunction($cities , 'state_id', $state_id)]['id'];
+            $city_id = $cities[self::getCityId($cities , 'state_id', $state_id)]['id'];
 
+            $data[] = [
 
-            $data[]=[
                 'id' => $i,
                 'first_name' => $faker->firstName,
                 'last_name' =>$faker->LastName,
@@ -94,8 +96,8 @@ class UsersTableSeeder extends Seeder
                 'phone_number' => $faker->PhoneNumber,
                 'state_id' => $state_id,
                 'city_id' => $city_id,
-                'zip_code' => $zipCodes[array_rand($zipCodes)],
                 'status' => 'active',
+                'zip_code' => $zipCodes[array_rand($zipCodes)],
                 'activation_key' => bcrypt('cygnismedia'),
                 'activated_at' => $date,
                 'remember_token' => bcrypt('cygnismedia'),
@@ -110,7 +112,7 @@ class UsersTableSeeder extends Seeder
 
     }
 
-    function myfunction($products, $field, $value)
+    function getCityId($products, $field, $value)
     {
        foreach($products as $key => $product)
        {

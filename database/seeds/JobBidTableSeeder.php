@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Data\Models\Role;
+use App\Data\Models\User;
 use Faker\Factory;
 use Carbon\Carbon;
 
@@ -30,7 +31,8 @@ class JobBidTableSeeder extends Seeder
 
         $jobs = app('JobRepository')->model->limit($totalJobs)->get();
 
-        $customers = app('UserRepository')->model->where('role_id' , Role::SERVICE_PROVIDER)->inRandomOrder()->limit($totalCustomers)->pluck('id')->toArray();
+        $customers = app('UserRepository')->model->where('role_id' , Role::SERVICE_PROVIDER)
+                    where('status' , '!=', User::ACTIVE)->inRandomOrder()->limit($totalCustomers)->pluck('id')->toArray();
 
         // to reduce the possibility of archive happening
 
