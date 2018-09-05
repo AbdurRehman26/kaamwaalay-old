@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 
 class UsersTableSeeder extends Seeder
 {
-    
+
     protected $signature = 'user-table-seed';
 
     /**
@@ -20,19 +20,37 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create();
         $date = Carbon::now();
+
+        $country_id = 237;
+
+        $numOfStates = 2;
+
+        $zipCodes = app('ZipCodeRepository')->model->inRandomOrder()->pluck('zip_code')->toArray();
+        
+        $states = app('StateRepository')->model->inRandomOrder()->limit($numOfStates)->pluck('id')->toArray();
+        
+        $cities = app('CityRepository')->model->whereIn('state_id' , $states)->get()->toArray();
+        
+        $state_id = $states[array_rand($states)];
+
+        $city_id = $cities[self::myfunction($cities , 'state_id', $state_id)]['id'];
+
         $data = [];
         $data[] =[
             'id' => 1,
             'first_name' => 'Admin',
             'last_name' => 'User',
             'email' => 'hassaan.zia@cygnismedia.com',
+            'address' => $faker->Address,
             'password' => bcrypt('cygnismedia'),
             'role_id' => Role::ADMIN,
             'access_level' => 'full',
-            'country_id' => NULL,
-            'state_id' => NULL,
-            'city_id' => NULL,
+            'country_id' => $country_id,
+            'phone_number' => $faker->PhoneNumber,
+            'state_id' => $state_id,
+            'city_id' => $city_id,
             'status' => 'active',
+            'zip_code' => $zipCodes[array_rand($zipCodes)],
             'activation_key' => bcrypt('cygnismedia'),
             'activated_at' => $date,
             'remember_token' => bcrypt('cygnismedia'),
@@ -56,18 +74,27 @@ class UsersTableSeeder extends Seeder
 
         $roles = [Role::CUSTOMER,Role::SERVICE_PROVIDER,Role::REVIEWER];
 
-        foreach (range(1,150) as $index) {
+        foreach (range(1, 150) as $index) {
+
+            $state_id = $states[array_rand($states)];
+
+            $city_id = $cities[self::myfunction($cities , 'state_id', $state_id)]['id'];
+
+
             $data[]=[
                 'id' => $i,
                 'first_name' => $faker->firstName,
                 'last_name' =>$faker->LastName,
                 'email' => $faker->email,
+                'address' => $faker->Address,
                 'password' => bcrypt('cygnismedia'),
                 'role_id' => $roles[array_rand($roles)],
                 'access_level' => 'full',
-                'country_id' => NULL,
-                'state_id' => NULL,
-                'city_id' => NULL,
+                'country_id' => $country_id,
+                'phone_number' => $faker->PhoneNumber,
+                'state_id' => $state_id,
+                'city_id' => $city_id,
+                'zip_code' => $zipCodes[array_rand($zipCodes)],
                 'status' => 'active',
                 'activation_key' => bcrypt('cygnismedia'),
                 'activated_at' => $date,
@@ -82,4 +109,15 @@ class UsersTableSeeder extends Seeder
         User::insertOnDuplicateKey($data);
 
     }
+
+    function myfunction($products, $field, $value)
+    {
+       foreach($products as $key => $product)
+       {
+          if ( $product[$field] === $value )
+             return $key;
+     }
+     return false;
+ }
+
 }
