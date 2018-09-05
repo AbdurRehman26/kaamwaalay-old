@@ -157,11 +157,12 @@ class ServiceTableSeeder extends Seeder
         }
         app("ServiceRepository")->model->insertOnDuplicateKey($data);
 
-        $data = [];
+        $key = 13;
 
-        foreach ($subServices as $parentService => $subService) {
+        foreach ($subServices as $parentServiceKey => $subService) {
 
-            $parentService = app('ServiceRepository')->findByAttribute('title' , $parentService);
+            $data = [];
+            $parentService = app('ServiceRepository')->findByAttribute('title' , $parentServiceKey);
             
             if(empty($parentService)){
                 continue;
@@ -169,8 +170,9 @@ class ServiceTableSeeder extends Seeder
 
 
             foreach ($subService as $value) {
+
                 $data [] = [
-                    'id' => (int) $key+1,
+                    'id' => (int) $key,
                     'title' => $value,
                     'url_suffix' =>  strtolower(str_replace(' ', '-', $service)),
                     'description' => $faker->Text,
@@ -181,10 +183,9 @@ class ServiceTableSeeder extends Seeder
                 ];
                 $key += 1;
             }
-
+            app("ServiceRepository")->model->insertOnDuplicateKey($data);
         }
 
-        app("ServiceRepository")->model->insertOnDuplicateKey($data);
 
     }
 }

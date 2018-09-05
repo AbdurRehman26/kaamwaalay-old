@@ -32,7 +32,7 @@ class ServiceProviderProfileSeeder extends Seeder
 
         $businessTypes = ['business', 'individual'];
         foreach ($getUsers as $getUser) {
-            $providerStatuses = ['pending', 'pending', 'pending', 'approved', 'rejected'];
+            $providerStatuses = ['pending', 'approved', 'rejected'];
 
             $status = $providerStatuses[array_rand($providerStatuses)];
 
@@ -58,8 +58,8 @@ class ServiceProviderProfileSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date,
                 'status' => $status,
-                'approved_by' => $status? $admin->id : NULL,
-                'approved_at' => $status? $date : NULL,
+                'approved_by' => $status != 'pending' ?  $admin['id'] : NULL,
+                'approved_at' => $status != 'pending' ? $date : NULL,
                 'deleted_at' => NULL,
             ];
             $this->info('service-provider-profile'.$i);
@@ -68,13 +68,13 @@ class ServiceProviderProfileSeeder extends Seeder
         } 
         ServiceProviderProfile::insertOnDuplicateKey($data);
         ServiceProviderProfileRequest::insertOnDuplicateKey($serviceProviderData);
-    
-     $serviceProviderServiceData = [];
-     $serviceProviderRequests = new ServiceProviderProfileRequest();
-     $serviceProviderRequests = $serviceProviderRequests->pluck('id')->toArray();
+        
+        $serviceProviderServiceData = [];
+        $serviceProviderRequests = new ServiceProviderProfileRequest();
+        $serviceProviderRequests = $serviceProviderRequests->pluck('id')->toArray();
         foreach ($serviceProviderRequests as $serviceProviderRequest) {
-           $service = app('ServiceRepository')->model->inRandomOrder()->first();
-           $serviceProviderServiceData[]=[
+         $service = app('ServiceRepository')->model->inRandomOrder()->first();
+         $serviceProviderServiceData[]=[
             'id' => $i,
             'service_provider_profile_request_id' => $serviceProviderRequest,
             'service_id' => $service->id,
@@ -84,7 +84,7 @@ class ServiceProviderProfileSeeder extends Seeder
         ];
         $this->info('service-provider-services'.$i);
         $i++;
-       }
+    }
     ServiceProviderService::insertOnDuplicateKey($serviceProviderServiceData);
 }
 public function info($string)

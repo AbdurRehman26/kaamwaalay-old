@@ -35,7 +35,6 @@ class UsersTableSeeder extends Seeder
 
         $city_id = $cities[self::getCityId($cities , 'state_id', $state_id)]['id'];
 
-        $data = [];
         $data[] =[
             'id' => 1,
             'first_name' => 'Admin',
@@ -60,6 +59,8 @@ class UsersTableSeeder extends Seeder
             'profile_image' => 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/328820/profile/profile-512.jpg?1',
         ];
         $i =2;
+
+        User::insertOnDuplicateKey($data);
 
         $imagesArray = [
             'https://s3-us-west-2.amazonaws.com/s.cdpn.io/328820/profile/profile-512.jpg?1',

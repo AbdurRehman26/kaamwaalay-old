@@ -69,7 +69,7 @@
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
                 
-                <td> {{ record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
+                <td> {{ record.service_provider_profile && record.service_provider_profile.business_details &&  record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
                 <td>
                     <span class="tags" :class="[record.status]">
                         {{ record.status }}
