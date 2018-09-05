@@ -84,9 +84,6 @@
                             <input type="radio" id="urgent" name="need" value="Urgent job" @click="urgentjob()">
                             <label for="urgent">Yes, Urgent job</label>
                         </div>
-                        <div class="">
-                            <h1>asdas</h1>
-                        </div>
                     </div>
                     <div class="col-md-12">
                         <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>$2</strong> fee for urgent job.</p>
@@ -108,18 +105,10 @@
                 <div v-if="formData.preference == 'choose_date'" class="col-md-6">
                     <div class="form-group custom-datepicker">
                         <label>Select Date</label>
-                        <date-picker v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
+                        <date-picker v-validate="'required'" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
                     </div>
                 </div>
-            </div>
-<!-- <div class="row" v-if="choosedate == 'custom'">
-<div class="col-md-6">
-<div class="form-group custom-datepicker">
-<label>Custom Date</label>
-<date-picker v-model="formData.title" format="DD-MM-YYYY" lang="en"></date-picker>
-</div>
-</div>
-</div> -->					
+            </div>				
 </div>
 
 <div class="service-location">
