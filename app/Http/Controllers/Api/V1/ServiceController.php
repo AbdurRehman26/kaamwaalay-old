@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceRepository;
 use App\Data\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
@@ -83,8 +82,7 @@ class ServiceController extends ApiResourceController
     }
 
 
-    public function input($value='')
-    {
+public function input($value=''){
         $input = request()->only(
             'id',
             'title',
@@ -102,14 +100,15 @@ class ServiceController extends ApiResourceController
             'status',
             'keyword',
             'filter_by_featured',
-            'zip_code'
+        'zip_code',
+        'service_category'
         );
 
-    $input['user_id'] = request()->user()->id;
+    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
+    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
         return $input;
-    }
-
+}
 
     //Update single record
     public function update(Request $request, $id)

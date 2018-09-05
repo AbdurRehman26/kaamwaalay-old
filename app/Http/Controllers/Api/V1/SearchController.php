@@ -42,9 +42,5 @@ class SearchController extends ApiResourceController
         $input = request()->only('id', 'pagination', 'state_id');
         return $input;
     }
-    public function show(Request $request,$id)
-    {
-        dd("ppop");
-    }
 
 }
