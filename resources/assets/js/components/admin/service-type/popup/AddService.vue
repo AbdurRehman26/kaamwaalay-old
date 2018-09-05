@@ -8,7 +8,7 @@
                  <label>Parent Service</label>
                  <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
                     <option value="" selected="">None</option>
-                    <option :value="service" v-for="service in services">{{service.title}}</option>
+                    <option :value="service.id" v-for="service in services">{{service.title}}</option>
                 </select>
             </div>
 
@@ -144,46 +144,47 @@
                 loading: false,
                 defaultUrlLength: this.defaultUrlPrefixLength,
                 isChangePrefix: '',
-                url_suffix: '',
             }
         },
         mounted() {
         },
         methods: {
             onUrlFocus(e) {
-                var suffix = $(e.target).val();
+                var sufix = $(e.target).val();
                 var prefixLength = this.defaultUrlPrefixLength;
-                var str = suffix.substr(prefixLength);
+                var str = sufix.substr(prefixLength);
                 this.formData.url_suffix = str;
             },
             onUrlBlur(e) {
                 var sufix = $(e.target).val();
-                this.url_suffix = sufix;
-
-                var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
-                this.formData.url_suffix = url + sufix;
+                this.formData.url_suffix = this.defaultUrlPrefix + sufix;
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
-                    var prefix = this.defaultUrlPrefix;                     
+                    if(this.isUpdate) { 
+                        var prefix = this.list.url_suffix;
+                        console.log(prefix, 11);
+                    }else {
+                        var service = _.filter(this.services, { id: this.formData.parent_id});
+                        var prefix = service[0].url_suffix;
+                        console.log(prefix, 22);
+                    }
+                    if(prefix.substr(prefix.length - 1) != "/") {
+                        prefix = prefix + "/";
+                    }                        
                     this.formData.url_suffix = prefix;
                     this.isChangePrefix = prefix;
                     this.showRadios = false;
                 }else {
-                    var prefix = this.$store.getters.getServiceUrlPrefix;
                     if(this.isUpdate) { 
-                        prefix = this.defaultUrlPrefix;
+                        var prefix = this.list.url_suffix;
+                        console.log(prefix, 44);
+                    }else {
+                        var prefix = this.$store.getters.getServiceUrlPrefix;
+                        console.log(prefix, 55);
                     }
                     this.formData.url_suffix = prefix;
+                    console.log(this.formData.url_suffix, 33);
                     this.isChangePrefix = prefix;
                     this.showRadios = true;
                 }
@@ -192,6 +193,7 @@
                 let self = this;
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
+                this.showRadios = true;
                 this.$refs.fileinput.reset();
                 this.formData = {
                     parent_id: '',
@@ -224,7 +226,7 @@
                 var self = this;
                 var tempSuffix = this.formData.url_suffix;
                 var str = this.getSuffix;
-                var regex = /^[0-9A-Za-z\s\-\/]+$/;
+                var regex = /^[0-9A-Za-z\s\-]+$/;
                 this.errorBag.clear();
                 if(str.length == 0) {
                     this.errorBag.add({
@@ -265,9 +267,9 @@
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
+                // filter only parent services
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
-                this.formData.url_suffix = this.$store.getters.getServiceUrlPrefix;
             },
             hideModal () {
                 var self = this;
@@ -331,16 +333,16 @@
             },
             onSubmit() {
                 var self = this;
-                //this.loading = true;
+                this.loading = true;
                 let url = this.url;
 
-                var data = Object.assign({}, this.formData);
-                var temp = this.formData.url_suffix;
-                data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.url_suffix;
+                this.formData.url_suffix = this.getSuffix;
+                var data = this.formData;
+
                 this.$http.post(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
+
                     setTimeout(function () {
                         self.successMessage = '';
                         self.loading = false; 
@@ -372,15 +374,15 @@
             },
             onUpdate() {
                 var self = this;
+                this.formData.url_suffix = str;
                 this.loading = true;
                 let url = this.url+"/"+this.list.id;
-                //this.formData.url_suffix = this.getSuffix;
-                var data = Object.assign({}, this.formData);
-                data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.url_suffix;
+                this.formData.url_suffix = this.getSuffix;
+                var data = this.formData;
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
+                    
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
@@ -433,7 +435,7 @@
                 var img = this.list.images;
                 if(this.isUpdate) {
                     this.formData = {
-                        parent_id: this.list.parent? this.list.parent : "",
+                        parent_id: this.list.parent_id? this.list.parent_id : "",
                         title: this.list.title,
                         description: this.list.description,
                         is_featured: this.list.is_featured,
@@ -443,13 +445,12 @@
                             original_name: img? img[0].original_name :''
                         }
                         ],
-                        url_suffix: '',
+                        url_suffix: this.list.url_suffix,
                         status: this.list.status,
                         is_display_banner: this.list.is_display_banner,
                         is_display_service_nav: this.list.is_display_service_nav,
                         is_display_footer_nav: this.list.is_display_footer_nav
                     };
-                    this.formData.url_suffix = this.defaultUrlPrefix;
                     this.isChangePrefix = this.list.url_suffix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
@@ -468,31 +469,11 @@
             },
             defaultUrlPrefix() {
                 var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '') + this.list.url_suffix;
-                    }else {
-                        url = url + this.list.url_suffix;
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
-                return url;
+                return this.isChangePrefix? this.isChangePrefix : url;
             },
             defaultUrlPrefixLength() {
-                var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
-                return url.length;
+                var length = this.$store.getters.getServiceUrlPrefix.length;
+                return this.isChangePrefix? this.isChangePrefix.length : length;
             },
         }
     }
