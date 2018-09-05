@@ -156,6 +156,7 @@
                 this.formData.url_suffix = str;
             },
             onUrlBlur(e) {
+                
                 var sufix = $(e.target).val();
                 this.formData.url_suffix = this.defaultUrlPrefix + sufix;
             },
