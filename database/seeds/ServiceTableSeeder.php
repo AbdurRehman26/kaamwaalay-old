@@ -172,10 +172,10 @@ class ServiceTableSeeder extends Seeder
             foreach ($subService as $value) {
 
                 $data [] = [
-                    'id' => (int) $key,
+                    'id' => $key,
                     'title' => $value,
                     'description' => $faker->Text,
-                    'parent_id' => array_search($parentService, $services),
+                    'parent_id' => $parentService->id,
                     'is_featured' => $isFeatured[array_rand($isFeatured)],
                     'is_display_banner' => 1,
                     'is_display_service_nav' => 1,

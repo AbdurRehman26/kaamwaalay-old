@@ -379,12 +379,13 @@
                 self.loading = true;
 
                 let url = self.url;
+                let urlRequest = '';
 
                 if(this.$route.params.id){
                     url += '/' + this.$route.params.id;    
-                    let urlRequest = self.$http.put(url , data);
+                    urlRequest =  self.$http.put(url , data)
                 }else{
-                    let urlRequest = self.$http.post(url, data);
+                    urlRequest = self.$http.post(url, data);
                 }
 
                 urlRequest.then(response => {
