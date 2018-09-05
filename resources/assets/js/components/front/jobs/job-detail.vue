@@ -1,4 +1,3 @@
-
 <template>
 	<div class="job-main-details detail-page">
 		<div class="content">
@@ -226,7 +225,7 @@
 </div>
 
 
-<div class="service-provider" v-else-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend'">
+<div class="service-provider" v-else>
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
@@ -234,7 +233,7 @@
 </div>							
 
 
-<div class="service-provider" v-else>
+<div class="service-provider" v-if="canInvite">
     <div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
        <h3>Find &amp; invite service providers to bid on your job.</h3>
        <p>14 service providers available around you related to concrete flooring.</p>
@@ -297,6 +296,9 @@
         },
         jobAwared(){
             return this.record.awarded_to;
+        },
+        canInvite(){
+            return this.record.awarded_to  || this.jobBids.length;
         }
     },
     methods: {
