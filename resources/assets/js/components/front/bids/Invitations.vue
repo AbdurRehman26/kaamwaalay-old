@@ -4,20 +4,20 @@
 
 		<div class="job-post-list" v-for="record in records">
 			<div class="job-post-details">
-				<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record) +')',}"></div>
+				<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(getJobUser(record)) +')',}"></div>
 
 				<div class="job-common-description job-perform">
 					<div class="col-md-6 p-l-0">
-						<h3 class="pointer" @click="servicedetail">{{record.job_title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="$emit('showinformation')"><img src="/images/front/svg/info.svg"></i></span>
+						<h3 class="pointer" @click="servicedetail">{{record.job.title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="$emit('showinformation')"><img src="/images/front/svg/info.svg"></i></span>
 						<div class="job-notification">									
 							<div class="jobs-done">											
-								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{ listing.job_poster }}</a></span>		
-								<span class="job-category noborder">{{ listing.job_category }}</span>											
+								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{getUserName(getJobUser(record))}}</a></span>		
+								<span class="job-category noborder">{{ getJobCategory(record.job) }}</span>											
 							</div>	
 						</div>
 					</div>
 					<div class="col-md-6 job-bid-btn p-r-0">
-						<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: listing.chat_message === false}"><i class="icon-message"></i></a>						
+						<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: chat_message === false}"><i class="icon-message"></i></a>						
 						<a href="javascript:void(0);" @click="servicedetail" class="btn btn-primary post-bid">View Details</a>
 					</div>
 				</div>
@@ -25,37 +25,35 @@
 				<div class="member-details">
 					<p class="location">
 						<i class="icon-location"></i> 
-						Location <strong>{{ listing.job_location }}</strong>
+						Location <strong>{{ record.job.state }}</strong>
 					</p>
 					<p class="offer">
 						<i class="icon-work-briefcase"></i> 
-						Offer: <strong>{{ listing.job_offer }}</strong> - <a @click="$emit('changebid')" href="javascript:void(0);">Change Bid</a>
+						Offer: <strong>{{ getJobAmount(record.amount) }}</strong> - <a @click="$emit('changebid')" href="javascript:void(0);">Change Bid</a>
 					</p>
 
 					<p class="member-since">
 						<i class="icon-calendar-daily"></i>
-						Post Date <strong>{{ listing.job_post_date }}</strong>
+						Post Date <strong>{{ record.formatted_created_at }}</strong>
 					</p>
 				</div>
 
 				<div class="post-job-description">
-					<p>{{ listing.job_description }}</p>
+					<p>{{ record.description }}</p>
 				</div>
-
 
 				<div class="job-details">
 					<p class="customer-rating">									
 						<strong>Customer rating:</strong>
-						<star-rating :star-size="20" read-only :rating="[listing.list_ratings]" active-color="#8200ff"></star-rating>
+						<star-rating :star-size="20" read-only :rating="getRating(getJobUser(record))" active-color="#8200ff"></star-rating>
 					</p>								
 					<p class="service-requirment">
 						<i class="icon-brightness-down"></i>
 						Service required 
-						<strong v-if="listing.job_service == 'urgent'" class="urgent">{{ listing.job_service }}</strong>
-						<strong v-else>{{ listing.job_service }}</strong>
+						<strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
+						<strong v-else>{{ record.preferred_date }}</strong>
 					</p>
 				</div>				
-
 			</div>
 		</div>
 		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
@@ -69,10 +67,10 @@
 	export default {
 		data () {
 			return {
-				requestUrl: 'api/job-bid?pagination=true',
+				user: '',
 				records : [],
+				chat_message: false,
 				joblisting:[
-
 				{
 					job_title_image: '/images/front/profile-images/bidimage1.png',
 					job_title: 'Concrete Floor Building',
@@ -95,6 +93,35 @@
 		},
 
 		methods: {
+			formatMoney(val, c, d, t) {
+			    var n = val, 
+			    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+			    d = d == undefined ? "." : d, 
+			    t = t == undefined ? "," : t, 
+			    s = n < 0 ? "-" : "", 
+			    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+			    j = (j = i.length) > 3 ? j % 3 : 0;
+			   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+			},
+			getRating(record) {
+				return parseInt(record.avg_rating);
+			},
+			getJobAmount(amount) {
+				return '$' + this.formatMoney(amount, 2, '.', ',');
+			},
+			getJobCategory(job) {
+				var category = "";
+				if(job.service.parent_id) {
+					category = category + job.service.parent.title + " - ";
+				}
+				return category + job.service.title;
+			},
+			getJobUser(record) {
+				return record.job.user;
+			},
+			getUserName(record) {
+				return record.first_name + " " + record.last_name;
+			},
 			getImage(record) {
 				return record.profile_image? record.profile_image : 'images/dummy/image-placeholder.jpg';
 			},
@@ -123,6 +150,8 @@
 	            let self = this;
 	            self.loading = false;
 	            self.records = response.data;
+	            console.log(response.data, 889900);
+	            this.$emit("recordCount", response.pagination? response.pagination.total : 0);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
 	        },	
@@ -131,9 +160,14 @@
 		components: {
 			StarRating
 		},
-
+		computed: {
+			requestUrl() {
+				return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_completed=invited&filter_by_awarded=0&filter_by_active_bids=0&user_id=' + this.user.id;
+			}
+		},
 		mounted(){
-
+			window.scrollTo(0,0);
+			this.user = JSON.parse(this.$store.getters.getAuthUser);
 		}
 
 	}

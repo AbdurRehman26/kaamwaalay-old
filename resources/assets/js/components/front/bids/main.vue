@@ -6,7 +6,7 @@
 				<div class="bidding-navigation">
 					<ul>
 						<li @click="bid_selection = 'invitebid'" :class="{ active: bid_selection === 'invitebid' }">
-							<p>INVITATIONS <span>(1)</span></p>						
+							<p>INVITATIONS <span>{{invitationCount? "(" + invitationCount + ")" : ""}}</span></p>						
 						</li>
 						<li @click="bid_selection = 'activebid'" :class="{ active: bid_selection === 'activebid' }">
 							<p>ACTIVE BIDS <span>(2)</span></p>							
@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="job-post-container section-padd sm">
-				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'"></bid-invitation>
+				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'" @recordCount="setiInvitationCount" ></bid-invitation>
 				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'"></bid-completed>
 				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'"></bid-awarded>
 				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'"></bid-archived>
@@ -50,11 +50,15 @@
          bid_selection: 'invitebid',
          bidpopup: false,
          isShowing:false,
-         infoval:false,     }
+         infoval:false,
+         invitationCount: 0,    
+     }
  },
 
  methods: {
-
+    setiInvitationCount(count) {
+        this.invitationCount = count;
+    },
     AddCustomer() {
         this.customer = true;
     },
