@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="add-new-user" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Add New User" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
+		<b-modal id="add-new-user" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Add New Admin" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
             
          <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
          <div>
@@ -25,8 +25,8 @@
             <div class="form-group">
                         <label>Access Level</label>
                         <select class="form-control"  v-model="add_form_info.role_id" >
-                            <option value="1">Full Access</option>
-                            <option value="4">Review Process Only</option>
+                            <option value="1">Full</option>
+                            <option value="4">Service Provider Review</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -118,14 +118,14 @@ export default {
                         self.loading = false
                         self.successMessage='';
                          self.resetModal();
-                    }, 5000);
+                    }, 2000);
                 })
                 .catch(error => {
                         self.loading = false
                         self.errorMessage = error.response.data.message[0]
                         setTimeout(function(){
                             self.errorMessage=''
-                        }, 5000);
+                        }, 2000);
                 })
             },
     },

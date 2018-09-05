@@ -76,7 +76,7 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans')->name('plan.update.or.add');
     Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign')->name("update.campaign");
 
+});
     Route::resource('service', 'Api\V1\ServiceController')->except([
         'edit','create'
     ]);
-});
