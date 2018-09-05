@@ -27,7 +27,7 @@ class JobBidTableSeeder extends Seeder
 
         $totalCustomers = 150;
 
-        $totalBids = 5;
+        $totalBids = 3;
 
         $jobs = app('JobRepository')->model->limit($totalJobs)->get();
 
