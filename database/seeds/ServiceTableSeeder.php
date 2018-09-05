@@ -154,25 +154,36 @@ class ServiceTableSeeder extends Seeder
                 'is_featured' => $isFeatured[array_rand($isFeatured)]
             ];
         }
-        foreach ($subServices as $parentService => $subService) {
+
+        app("ServiceRepository")->model->insertOnDuplicateKey($data);
+
+        $key = 13;
+
+        foreach ($subServices as $parentServiceKey => $subService) {
+
+            $data = [];
+            $parentService = app('ServiceRepository')->findByAttribute('title' , $parentServiceKey);
+            
+            if(empty($parentService)){
+                continue;
+            }
+
 
             foreach ($subService as $value) {
+
                 $data [] = [
-                    'id' => (int) $key+1,
+                    'id' => (int) $key,
                     'title' => $value,
                     'description' => $faker->Text,
                     'parent_id' => array_search($parentService, $services),
-                    'is_featured' => $isFeatured[array_rand($isFeatured)]
+                    'is_featured' => $isFeatured[array_rand($isFeatured)],
                     'is_display_banner' => 1,
                     'is_display_service_nav' => 1,
                     'is_display_footer_nav' => 1,
                 ];
                 $key += 1;
             }
-
+            app("ServiceRepository")->model->insertOnDuplicateKey($data);
         }
- 
-        app("ServiceRepository")->model->insertOnDuplicateKey($data);
-
     }
 }
