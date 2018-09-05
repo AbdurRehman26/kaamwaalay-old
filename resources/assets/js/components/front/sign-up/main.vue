@@ -61,7 +61,7 @@
 									<div class="col-xs-12 col-md-6" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
 										<div class="form-group">
 											<label for="register_email">Email Address</label>
-											<input id="register_email" type="email" v-model="register_info.email" v-validate="'required|email'"  name="register_email" class="form-control"  data-vv-name="register_email" data-vv-as="Email" placeholder="Enter your email address" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
+											<input id="register_email" type="email" v-model="register_info.email" v-validate="{ required: true,email: true, regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/ }"  name="register_email" class="form-control"  data-vv-name="register_email" data-vv-as="Email" placeholder="Enter your email address" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
 										</div>
 									</div>
 									<div class="col-xs-12 col-md-6" :class="[errorBag.first('password') ? 'is-invalid' : '']" novalidate="">
@@ -73,7 +73,7 @@
 								</div>
                                <div class="form-detail form-group">
                                 <div class="custcheckbox custom-control custom-checkbox custom-control-inline">
-                                 <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree" :class="[errorBag.first('agree') ? 'is-invalid' : '']">
+                                 <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree">
                                  <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>								
                              </div>
                          </div>

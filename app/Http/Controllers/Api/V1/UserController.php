@@ -113,7 +113,7 @@ public function changePassword(Request $request)
         $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/',
             'role_id' => ['required', Rule::in(Role::ADMIN, Role::REVIEWER)],
             'status' => 'required|in:active,banned',
         ];
