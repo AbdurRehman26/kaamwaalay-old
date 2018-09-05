@@ -141,7 +141,6 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $data->avg_rating = $avgRating;
 
                 if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
-                    dd("llala");
                     $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                     $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
                     $data->job_amount = $jobAmount;
