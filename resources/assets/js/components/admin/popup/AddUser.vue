@@ -82,6 +82,7 @@ export default {
                 // Prevent modal from closing
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        this.errorMessage = ''
                         this.save();
                         return;
                     }
