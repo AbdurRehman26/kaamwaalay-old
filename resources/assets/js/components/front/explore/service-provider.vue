@@ -56,7 +56,7 @@
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
 						<div class="job-common-description">
 							<h3 class="pointer" @click="servicedetail">{{record.business_name}}</h3> 
-							<span v-if="record.profile_request && record.profile_request.status == 'approved'"><i class="icon-checked"></i></span>
+							<span v-if="record.is_verified"><i class="icon-checked"></i></span>
 							
 							<div class="jobs-rating">
 								<star-rating :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
@@ -158,10 +158,9 @@
 				searchValue: '',
 				isLoading: false,
             	loading : false,
-				noRecordFound : false,
 				pagination: '',
 				records : [],
-				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&is_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
+				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
 				service: '',
     	categoryimage: '/images/front/explore/carpenter1.jpg',
 
@@ -284,7 +283,7 @@
 					self.searchValue = self.service;
 					self.categoryimage = self.getImage(self.service.images);
 					self.btnLoading = false;
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&is_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
 			    }).catch(error=>{
 			    	if(error.status == 403) {
 			    		self.pagination = false;

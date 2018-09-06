@@ -66,7 +66,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
     public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
     {
         $model = $this->model->newInstance()
-            ->where($crtieria);
+            ->where($crtieria)->orderBy('created_at', 'DESC');
 
         if($count) {
             return $model->count();
