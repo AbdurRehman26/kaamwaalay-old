@@ -28,10 +28,10 @@ class JobController extends ApiResourceController
 
         if($value == 'update'){
             $rules['id'] =  'required|exists:jobs,id,user_id,'.$this->input()['user_id'];
-            $rules['service_id'] = 'required|exists:services,id';
-            $rules['state_id'] = 'required|exists:states,id';
-            $rules['country_id'] = 'required|exists:countries,id';
-            $rules['city_id'] = 'required|exists:cities,id';
+            $rules['service_id'] = 'exists:services,id';
+            $rules['state_id'] = 'exists:states,id';
+            $rules['country_id'] = 'exists:countries,id';
+            $rules['city_id'] = 'exists:cities,id';
         }
         return $rules;
 
@@ -46,7 +46,8 @@ class JobController extends ApiResourceController
             'city_id', 'title', 'description', 'address', 'apartment', 'zip_code', 
             'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
-            'filter_by_user', 'filter_by_service_provider', 'filter_by_me'
+            'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
+            'details'
         );
 
         $input['user_id'] = request()->user()->id;
@@ -54,11 +55,15 @@ class JobController extends ApiResourceController
         if($value == 'store' || $value == 'update'){
 
             unset(
-                $input['status'], $input['filter_by_service'], $input['keyword'],
+                $input['filter_by_service'], $input['keyword'], $input['details'],
                 $input['filter_by_status'], $input['filter_by_status'], $input['filter_by_status'],
                 $input['filter_by_user'], $input['filter_by_service_provider'], $input['filter_by_me']
             );
 
+        }
+
+        if($value == 'store'){
+            unset($input['status']);
         }
 
 

@@ -22,7 +22,8 @@
                                 <div class="jobs-done" v-else>
                                     <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                                     <div class="job-status">
-                                        <span class="tags" :class="[record.status ?  record.status.replace(/\s/g, '').replace('_', '').toLowerCase().trim() : '']">
+                                        <span class="tags"
+                                        :class="[record.status ?  record.status.replace(/\s/g, '').replace('_', '').replace('cancelled' , 'rejected').toLowerCase().trim() : '']">
                                             {{ record | jobStatus }}
                                         </span>	
                                     </div>											
@@ -42,8 +43,8 @@
                                 <div class="job-details" v-else>
                                     <p class="awarded">
                                         <i class="icon-checkmark2"></i> 
-                                        {{ record.awarded_to ? 'job awarded to : ' : 'job not awarded yet'}}
-                                        {{ record.awarded_to ? record.awarded_to.first_name : ''}}
+                                        {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
+                                        {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}
                                         <i class="icon-brightness-down"></i>
                                         Service required 
                                         <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
@@ -245,12 +246,12 @@
                                 <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
                             </div>
 
-                            <button v-if="jobCompletedByBidder" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                            <button v-if="showMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                                 <span>Mark Job Complete</span> <loader></loader>
                             </button>
 
-                            <a href="javascript:void(0);" v-if="!jobAwarded" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-                            <a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
+                            <a href="javascript:void(0);" v-if="canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+                            <a href="javascript:void(0);" v-if="canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
                         </div>
 
 
@@ -259,14 +260,14 @@
 
             </div>			
         </div>
-        <award-job-popup @bid-updated="bidUpdated" :job="record" :bidder="bidder" @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
+        <award-job-popup @bid-updated="reSendCall" :job="record" :bidder="bidder" @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
         <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
         <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
         <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
         <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>			
     </div>
 
-    <vue-common-methods :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
+    <vue-common-methods @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
     <vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
@@ -314,23 +315,32 @@
                     return !this.record.awarded_to  && !this.jobBids.data.length;
                 }
             },
-            jobCompletedByBidder(){
-                return this.record.awardedBid;
+            showMarkJobComplete(){
+                return this.record.awardedBid && this.record.status !== 'completed';
             },
             submitFormData(){
                 let data = {
                     status : 'completed',
-                    id : this.record
+                    id : this.record ? this.record.id : ''
                 };
                 return data;
+            },
+            canCancelJob(){
+                return this.record.status != 'completed' && this.record.status !== 'cancelled';
+            },
+            canModifyJob(){
+                return !this.record.awarded_to && this.record.status !== 'cancelled';
             }
         },
         methods: {
-            bidUpdated(){
-
+            formSubmitted(){
+                this.reSendCall();
+            },
+            reSendCall(){
                 let self = this;
                 self.forceValue = true;
                 setTimeout(function () {
+                    self.loading = false;
                     self.forceValue = false;
                 }, 3000);
 

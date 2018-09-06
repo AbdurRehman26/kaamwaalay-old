@@ -98,6 +98,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
+
         $data = parent::findById($id, $refresh, $details, $encode);
         if($data) {
 
@@ -134,7 +135,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
                 if($awardedBid) {
                     $data->awardedBid = $awardedBid;
-                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+                    $details = ['profile_data' => true];
+                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id, false, $details);
                 }
 
                 $ratingCriteria = ['user_id' => $data->user_id];

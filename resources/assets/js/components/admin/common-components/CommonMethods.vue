@@ -99,7 +99,6 @@
 
                 
                 urlRequest.then(response => {
-                    console.log(response);
                     self.$emit('form-submitted', response);
 
                 }).catch(error => {
