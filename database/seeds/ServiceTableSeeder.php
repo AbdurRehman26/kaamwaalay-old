@@ -109,7 +109,6 @@ class ServiceTableSeeder extends Seeder
                 'Moving Help',
                 'Interior Painting',
                 'Move in Cleaning',
-                'Storage',
                 'Knobs Installation',
                 'Move Out Cleaning',
             ],

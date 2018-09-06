@@ -199,9 +199,9 @@
 <div class="provider-bidding-btn">
 
    <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-   <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
-   <a v-if="!jobAwared && !bid.is_tbd" href="javascript:void(0);" @click="AwardJob" class="btn btn-primary">Award Job</a>
-   <a v-if="!jobAwared && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
+   <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat {{ awardJob  }}</a>													
+   <a v-if="!jobAwarded && !bid.is_tbd" href="javascript:void(0);" @click.prevent="awardJob = true;" class="btn btn-primary">Award Job</a>
+   <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 
 </div>
 </div>
@@ -254,7 +254,7 @@
 
 </div>			
 </div>
-<award-job-popup @HideModalValue="HideModal" :showModalProp="awardjob"></award-job-popup>
+<award-job-popup @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -276,7 +276,7 @@
         return {
             record : [],
             jobBids : '',
-            awardjob: false,
+            awardJob: false,
             visitjob: false,
             visitpopup: false,
             bidpopup: false,
@@ -291,15 +291,14 @@
             { width: 900, height: 675, url: '/images/dummy/jobfileimage3.png' },
             ],
             requestUrl : 'api/job/'+this.$route.params.id,
-            requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
-
+            requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id
         }
     },
     computed : {
         jobImage(){
             return this.record && this.record.user ? this.record.user.profileImage : '';
         },
-        jobAwared(){
+        jobAwarded(){
             return this.record.awarded_to;
         },
         canInvite(){
@@ -329,9 +328,6 @@
        VisitPopup(){
            this.visitpopup = true;
        },
-       AwardJob(){
-           this.awardjob = true;
-       },
        VisitApproval(){
          this.visitjob = true;
      },
@@ -339,7 +335,7 @@
        this.bidpopup = true;
    },
    HideModal(){
-    this.awardjob = false;
+    this.awardJob = false;
     this.visitjob = false;
     this.visitpopup = false;
     this.bidpopup = false;

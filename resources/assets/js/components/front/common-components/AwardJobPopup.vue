@@ -9,7 +9,7 @@
                     <i @click="onHidden" class="icon-close2"></i>
                 </div>
                 <div class="category-search-field">
-                    <h5>Are you sure you want to award this job to C&N Home Solutions?</h5>
+                    <h5>Are you sure you want to award this job to {{ bidder }}?</h5>
                     <a href="javascript:void();" class="btn btn-primary">Yes, award job</a>
                     <a href="javascript:void();" class="btn btn-link" @click="hideModal">Cancel</a>
                 </div>
@@ -20,7 +20,7 @@
 <script>
 export default {
 
-    props: ['showModalProp'],
+    props: ['showModalProp', 'bidder'],
     
     methods: {
         showModal () {
