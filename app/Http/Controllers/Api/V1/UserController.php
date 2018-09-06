@@ -95,7 +95,7 @@ public function changePassword(Request $request)
     } else {
         return response()->json(
             [
-                'message' => 'The Old password is incorrect.',
+                'message' => 'The old password is incorrect.',
             ], 406
         );
     }

@@ -150,7 +150,6 @@
 	            let self = this;
 	            self.loading = false;
 	            self.records = response.data;
-	            console.log(response.data, 889900);
 	            this.$emit("recordCount", response.pagination? response.pagination.total : 0);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
@@ -162,7 +161,8 @@
 		},
 		computed: {
 			requestUrl() {
-				return 'api/job-bid?pagination=true';//&filter_by_invitation=1&filter_by_archived=0&filter_by_status=invited&filter_by_awarded=0;
+				return null;
+				//return 'api/job-bid?pagination=true';//&filter_by_invitation=1&filter_by_archived=0&filter_by_status=invited&filter_by_awarded=0;
 			}
 		},
 		mounted(){
