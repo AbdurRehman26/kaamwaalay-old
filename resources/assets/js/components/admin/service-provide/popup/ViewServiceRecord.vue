@@ -1,4 +1,4 @@
- <template>	
+<template>	
    <div>
       <b-modal id="view-service-record" hide-footer centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Service Job Detail" ok-only ok-title="Close">
 

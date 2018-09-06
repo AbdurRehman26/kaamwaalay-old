@@ -39,12 +39,6 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
     }
 
-    public function update(array $data = [])
-    {
-        $data = parent::update($data);
-        return $data;
-    }
-
     public function findByAll($pagination = false, $perPage = 10, array $input = [] )
     {
 
@@ -139,6 +133,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
                 if($awardedBid) {
+                    $data->awardedBid = $awardedBid;
                     $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
                 }
 
