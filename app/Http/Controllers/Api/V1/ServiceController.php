@@ -44,7 +44,11 @@ class ServiceController extends ApiResourceController
               $rules['id']                      =  'required|exists:services,id';
               $rules['is_display_banner']       = 'nullable|in:0,1';                   
               $rules['is_display_service_nav']  = 'nullable|in:0,1';
-              $rules['url_suffix']                  = 'required|unique:services,url_suffix';     
+              $rules['url_suffix']                  = ['nullable', Rule::unique('services')->where(
+                    function ($query) {
+                        $query->where('id', '!=', $this->input()['id']);
+                    }
+                )];     
               $rules['is_display_footer_nav']   = 'nullable|in:0,1';           
               $rules['status']                  = 'nullable|in:0,1';        
               $rules['parent_id']               = 'nullable|exists:services,id|not_in:'.$this->input()['id'];           
@@ -118,7 +122,7 @@ public function input($value=''){
         $rules = $this->rules(__FUNCTION__);
         $messages = $this->messages(__FUNCTION__);
         $this->validate($request, $rules, $messages);
-
+        
         $data = $this->_repository->update($input);
         if(isset($data->error) && $data->error) {
             $output = ['response' => ['data' => $data, 'message' => 'It doesn\'t seem possible to change the current status of this service.']];

@@ -162,7 +162,7 @@
 		},
 		computed: {
 			requestUrl() {
-				return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_completed=invited&filter_by_awarded=0&filter_by_active_bids=0&user_id=' + this.user.id;
+				return 'api/job-bid?pagination=true';//&filter_by_invitation=1&filter_by_archived=0&filter_by_status=invited&filter_by_awarded=0;
 			}
 		},
 		mounted(){

@@ -115,9 +115,9 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
                 $this->builder = $this->builder->where('is_awarded', '=', $input['filter_by_awarded']);            
             }               
             if(!empty($input['filter_by_active_bids'])) {
-                $this->builder = $this->builder->where('is_tbd', '=', $input['filter_by_active_bids']);            
-            }            
 
+                $this->builder = $this->builder->where('status', '=', 'pending');
+            }            
             $data = parent::findByAll($pagination, $perPage, $input);
             return $data;
 

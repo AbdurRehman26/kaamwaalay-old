@@ -78,7 +78,7 @@
         </div>-->
       </div>
     </div>
-    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportDetailPopup" @refreshList="getList(false, false)"></support-detail>
+    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportDetailPopup" @refreshList="getList(false, currentPage)"></support-detail>
   </div>
 </template>
 
@@ -138,7 +138,6 @@
         let self = this;
         self.showNoRecordFound = false;
         let url = self.url;
-
         if(typeof(page) == 'undefined' || !page){                        
           self.records = [];
         }

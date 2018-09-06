@@ -227,29 +227,32 @@
                 var str = this.getSuffix;
                 var regex = /^[0-9A-Za-z\s\-\/]+$/;
                 this.errorBag.clear();
-                if(str.length == 0) {
-                    this.errorBag.add({
-                        field: 'url',
-                        msg: 'The url suffix is required.',
-                        rule: 'required',
-                        id: 7,
-                    });
-                    this.formData.url_suffix = "";
-                    this.errorMessage = this.errorBag.all()[0];
-                } if(!regex.test(str)) {
-                    this.errorBag.add({
-                        field: 'url',
-                        msg: 'The url suffix is invalid. Please use only letter, numbers & hyphens.',
-                        id: 7,
-                    });
-                    this.errorMessage = this.errorBag.all()[0];
-                }else {
-                    this.errorBag.clear();
-                    this.errorMessage = "";
-                    this.formData.url_suffix = tempSuffix;
-                }
+                
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
+                        if(str.length == 0) {
+                            this.errorBag.add({
+                                field: 'url',
+                                msg: 'The url suffix is required.',
+                                rule: 'required',
+                                id: 7,
+                            });
+                            this.formData.url_suffix = "";
+                            this.errorMessage = this.errorBag.all()[0];
+                            return;
+                        } if(!regex.test(str)) {
+                            this.errorBag.add({
+                                field: 'url',
+                                msg: 'The url suffix is invalid. Please use only letter, numbers & hyphens.',
+                                id: 7,
+                            });
+                            this.errorMessage = this.errorBag.all()[0];
+                            return;
+                        }else {
+                            this.errorBag.clear();
+                            this.errorMessage = "";
+                            this.formData.url_suffix = tempSuffix;
+                        }
                         if(this.isUpdate) {
                             this.onUpdate();
                         }else {
@@ -348,7 +351,7 @@
                         self.hideModal();  
                         self.resetFormFields(); 
                         self.$emit('call-list');         
-                    } , 3000);
+                    } , 2000);
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -388,7 +391,7 @@
                         self.resetFormFields(); 
                         self.$emit('call-list');
                         self.loading = false; 
-                    } , 3000);
+                    } , 2000);
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -452,9 +455,10 @@
                     this.showRadios = this.formData.parent_id? false : true;
                     this.formData.url_suffix = this.defaultUrlPrefix;
                     this.isChangePrefix = this.list.url_suffix;
+                    this.url_suffix = this.defaultUrlPrefix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
-                    this.imageText = this.file;
+                    this.imageText = this.file? this.file : 'Click here to upload image.';
                 }
             }
         },
