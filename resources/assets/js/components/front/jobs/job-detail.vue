@@ -266,7 +266,6 @@
         <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>			
     </div>
 
-    {{submit}} 12312312321312232132132221
     <vue-common-methods :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
     <vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
@@ -301,10 +300,6 @@
                 requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
                 loading : false,
                 submit : false,
-                submitFormData : {
-                    status : 'completed',
-                    id : this.record.id
-                }
             }
         },
         computed : {
@@ -321,6 +316,13 @@
             },
             jobCompletedByBidder(){
                 return this.record.awardedBid;
+            },
+            submitFormData(){
+                let data = {
+                    status : 'completed',
+                    id : this.record
+                };
+                return data;
             }
         },
         methods: {
