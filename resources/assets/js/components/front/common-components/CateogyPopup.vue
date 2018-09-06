@@ -59,7 +59,6 @@ export default {
             this.$router.push({name: 'Explore_Detail'});
         },
         scrollToTop() {
-            window.scrollTo(0,0);
             this.$emit('onSubmit', this.zip);
         },        
     },
@@ -77,6 +76,7 @@ export default {
             this.selectedValue = value;
         },
         zip(val) {
+            console.log(val,88);
             if(val.length > 5) {
                 val = val.substr(0, 5);
             }
