@@ -71,8 +71,6 @@ import { directive as onClickaway } from 'vue-clickaway';
                     self.$store.commit('setAllServices' , response.data);
                     self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
-
-
                 });
             },
             ShowModal(){

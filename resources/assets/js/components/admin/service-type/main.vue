@@ -189,9 +189,6 @@
       self.$http.get(url).then(response => {
         response = response.data.response;
         self.listing = response.data;
-        if(!data && !page) {
-          self.$store.commit('setAllServices' , response.data);
-        }
         if(!self.listing.length) {
           self.showNoRecordFound = true;
         }
