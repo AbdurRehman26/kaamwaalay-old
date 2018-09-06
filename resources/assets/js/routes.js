@@ -109,7 +109,7 @@ const routes = [
         component: require('./components/admin/customer/ViewJobDetail.vue'),
         meta: {
             title: 'View Job Detail',
-            pagetitle:'Customer Job detail Section',
+            pagetitle:'Customer Job detail',
             icon:'icon-users',
             requiresAuth: true,
             forAdmin :true,
@@ -159,7 +159,7 @@ const routes = [
         }
     },
 
-    // Job detail Section
+    // Job detail
 
     {
         name: 'main.job.detail',

@@ -15,7 +15,7 @@
                           <div class="jobs-done"  v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
                              <div class="job-status job-poster">
                                 <span>Posted by <a href="javascript:void(0);" @click="showProfile()">Nathan Alvarez</a></span>	
-                                <star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>												
+                                <!-- <star-rating :star-size="20" read-only :rating="4" active-color="#8200ff"></star-rating>												 -->
                             </div>												
                             <span class="job-category job-post-category">{{ record.service ? record.service.title : '' }}</span>									
                         </div>											
@@ -23,8 +23,8 @@
                             <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                             <div class="job-status">
                                 <span class="tags" :class="[record.status ?  record.status.replace(/\s/g, '').replace('_', '').toLowerCase().trim() : '']">
-                                {{ record | jobStatus }}
-                            </span>	
+                                    {{ record | jobStatus }}
+                                </span>	
                             </div>											
                         </div>	
                     </div>		
@@ -167,7 +167,7 @@
      <div class="job-common-description">
         <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
         <div class="jobs-rating">
-           <star-rating :star-size="20" read-only :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
+           <star-rating :star-size="20" read-only :rating="bid.user ? parseInt(bid.user.average_rating) : 0" active-color="#8200ff"></star-rating>
            <div class="jobs-done">
               <span class="review-job">{{ bid.total_feedback_count ? bid.total_feedback_count : 0 }} Feedback review(s)</span>				
 
@@ -199,8 +199,9 @@
 <div class="provider-bidding-btn">
 
    <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-   <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat {{ awardJob  }}</a>													
-   <a v-if="!jobAwarded && !bid.is_tbd" href="javascript:void(0);" @click.prevent="awardJob = true;" class="btn btn-primary">Award Job</a>
+   <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
+   <a v-if="!jobAwarded && !bid.is_tbd" href="javascript:void(0);" 
+   @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary">Award Job</a>
    <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 
 </div>
@@ -226,7 +227,7 @@
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
-		<a href="job-details/serviceprovidercustomerend" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+    <a href="job-details/serviceprovidercustomerend" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 </div>
 
 
@@ -234,7 +235,7 @@
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
-		<a href="/job-details/awarded" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
+    <a href="/job-details/awarded" class="btn btn-cancel-job"><i class="icon-folder"></i> Archive</a>								
 </div>							
 
 
@@ -244,7 +245,7 @@
        <p>14 service providers available around you related to concrete flooring.</p>
        <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
    </div>						
-   <a href="javascript:void(0);" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+   <a href="javascript:void(0);" v-if="!jobAwarded" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
    <a href="javascript:void(0);" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 </div>
 
@@ -254,15 +255,15 @@
 
 </div>			
 </div>
-<award-job-popup @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
+<award-job-popup @bid-updated="bidUpdated" :job="record" :bidder="bidder" @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
 <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>			
 </div>
 
-<vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-<vue-common-methods :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
+<vue-common-methods :force="forceValue" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
+<vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -274,6 +275,8 @@
     export default {
       data () {
         return {
+            forceValue : false,
+            bidder : '',
             record : [],
             jobBids : '',
             awardJob: false,
@@ -284,7 +287,6 @@
             jobimage: '/images/front/explore/concret.png',
             job_detail_right_panel: this.$route.params.id,
             reviewerimage: '/images/front/storage/personimage1.png',
-
             imageList: [
             { width: 900, height: 675, url: '/images/dummy/jobfileimage1.png' },
             { width: 900, height: 675, url: '/images/dummy/jobfileimage2.png' },
@@ -302,14 +304,21 @@
             return this.record.awarded_to;
         },
         canInvite(){
-
             if(this.jobBids){
                 return !this.record.awarded_to  && !this.jobBids.data.length;
             }
-
         }
     },
     methods: {
+        bidUpdated(){
+
+            let self = this;
+            self.forceValue = true;
+            setTimeout(function () {
+                self.forceValue = false;
+            }, 3000);
+
+        },
         getResponse(response){
             this.record = response.data;
         },

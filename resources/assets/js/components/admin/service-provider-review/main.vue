@@ -26,7 +26,7 @@
                   <div class="form-group">
                      <label>By Business/Individual</label>
                      <select v-model="search.filter_by_business_type" class="form-control">
-                       <option value="">Select</option>
+                       <option value="">Select All</option>
                        <option value="business">Business</option>
                        <option value="individual">Individual</option>
                    </select>
