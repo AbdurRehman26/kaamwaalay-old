@@ -30,34 +30,34 @@
 										</div>
 									</div>
 								</div>	
-								<div class="col-xs-12 col-md-12 featured-setting-row" v-for="(data, index) in featuredList">
+								<div class="col-xs-12 col-md-12 featured-setting-row" v-if="!data.remove" v-for="(data, index) in featuredList">
 									<div class="row">
-										<div class="col-md-5">
+                                      	<div class="col-md-5">
 											<div class="form-group">
-												<input class="form-control form-group" placeholder="Enter featured amount" name="amount" v-model="data.amount" v-validate="'required|decimal|min_value:0.1'" >
+												<input class="form-control form-group" placeholder="Enter featured amount" name="amount" v-model="data.amount" v-validate="'required|decimal|min_value:0.1'" :disabled="data.disabled">
 											</div>
 										</div>
 
 										<div class="col-md-5">
 											<div class="form-group">
-												<input class="form-control form-group" placeholder="Enter featured quantity" name="quantity" v-model="data.quantity" v-validate="'required|numeric|min_value:1'">
+												<input class="form-control form-group" placeholder="Enter featured quantity" name="quantity" v-model="data.quantity" v-validate="'required|numeric|min_value:1'" :disabled="data.disabled">
 											</div>
 										</div>
 										<div class="col-md-2">
-											<a href="javascript:;" @click="remove(index)" v-if="index">- remove</a>		
+											<a href="javascript:;" @click="remove(index)">- remove</a>		
 										</div>										
 									</div>
 								</div>
 
 								<div class="col-md-2 col-md-2 filter-btn-top-space add-more-featured">
-									<a href="javascript:;" @click="validateBeforeSubmit('featured', 'add-more')">+ Add more</a>
+									<a href="javascript:;" @click="validateBeforeSubmit('featured', 'add-more')">+ Add</a>
 								</div>
 
 							</div>
 							<alert v-if="featuredErrorMessage || featuredSuccessMessage" :errorMessage="featuredErrorMessage" :successMessage="featuredSuccessMessage"></alert>
 							<div class="row">
 								<div class="col-xs-12 col-md-3">
-									<button @click.prevent="validateBeforeSubmit('featured', 'featured-update')" :class="['btn btn-primary', isFeaturedUpdating ?'show-spinner' : '']">
+									<button v-show="featuredList.length != 0" @click.prevent="validateBeforeSubmit('featured', 'featured-update')" :class="['btn btn-primary', isFeaturedUpdating ?'show-spinner' : '']">
 										<span>Apply</span>
 										<loader></loader>
 									</button>
@@ -141,7 +141,7 @@
 export default {
 	data () {
 		return {
-			url:'api/plan/',
+			url:'api/plan',
 			featuredSuccessMessage:'',
 			featuredErrorMessage:'',
 			featuredList:[],
@@ -198,11 +198,17 @@ export default {
             this.featuredList.push({
             	'id': null,
             	'amount': '',
-            	'quantity': ''
+                'quantity': '',
+                'type': 'service',
+                'product': 'featured_profile',
+                'disabled': false,
+            	'remove': false,
             });
         },
         remove(index) {
-            this.featuredList.splice(index,1);
+            let currentPlan = this.featuredList[index]
+            currentPlan.remove = true
+            //this.featuredList.splice(index,1);
         },
         getFeaturedList (){
             let self = this;
@@ -218,7 +224,12 @@ export default {
                 		self.featuredList.push({
                 			'id': value.id,
                 			'amount': value.amount,
-                			'quantity': value.quantity
+                			'quantity': value.quantity,
+                            'type': value.type,
+                            'product': value.product,
+                            'disabled': true,
+                            'remove': false,
+
                 		});
                 	});
 
@@ -226,7 +237,12 @@ export default {
 			        self.featuredList.push({
 			            'id': null,
 			            'amount': '',
-			            'quantity': ''
+			            'quantity': '',
+                        'type': 'service',
+                        'product': 'featured_profile',
+                        'disabled': false,
+                        'remove': false,
+
 			        });
                 }
             }).catch(error=>{
@@ -235,22 +251,51 @@ export default {
         updateFeaturedList(){
             let self = this;
             self.isFeaturedUpdating = true;
-            self.$http.post(self.url+'update-or-add-plans', {'plans_data': self.featuredList}).then(response => {
-                self.featuredSuccessMessage = 'Records have been updated successfully';
-                setTimeout(function () {
-                    self.featuredSuccessMessage = '';
-                } , 3000);
-                self.isFeaturedUpdating = false;
+             _.forEach(self.featuredList, function(value, key) {
+                if(value.remove){
+                 if(value.id){
+                    self.$http.delete(self.url+'/'+value.id).then(response => {
+                    self.featuredSuccessMessage = response.data.message;
+                    setTimeout(function () {
+                        self.featuredSuccessMessage = '';
+                    } , 3000);
+                    self.isFeaturedUpdating = false;
 
-            }).catch(error=>{
-                let errors = error.response.data.errors;
-                self.isFeaturedUpdating = false;
-                _.forEach(errors, function(value, key) {
-                    self.featuredErrorMessage =  errors[key][0];
-                    return false;
-                });
+                }).catch(error=>{
+                    let errors = error.response.data.errors;
+                    self.isFeaturedUpdating = false;
+                    _.forEach(errors, function(value, key) {
+                        self.featuredErrorMessage =  errors[key][0];
+                        return false;
+                    });
 
-            });
+                }); 
+                } 
+                }else{
+                if(!value.disabled){
+                 self.$http.post(self.url, value).then(response => {
+                    self.featuredSuccessMessage = response.data.message;
+                    setTimeout(function () {
+                        self.featuredSuccessMessage = '';
+                    } , 3000);
+                    self.isFeaturedUpdating = false;
+                    self.featuredList[key].disabled = true
+                    self.featuredList[key].remove = false
+                    self.featuredList[key].id = response.data.response.data.id
+
+                }).catch(error=>{
+                    let errors = error.response.data.errors;
+                    self.isFeaturedUpdating = false;
+                    _.forEach(errors, function(value, key) {
+                        self.featuredErrorMessage =  errors[key][0];
+                        return false;
+                    });
+
+                }); 
+                }   
+            }
+         
+        });
         },
         update(scope){
             let self = this;

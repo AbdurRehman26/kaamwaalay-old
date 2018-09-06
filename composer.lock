@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e0db900fc5e79d0be4eacd294b78d9e",
+    "content-hash": "401644cf7cfffeb3e7a630cc407bf03e",
     "packages": [
         {
             "name": "cygnis-php/abstraction",

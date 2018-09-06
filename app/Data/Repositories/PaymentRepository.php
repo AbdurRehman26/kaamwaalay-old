@@ -117,8 +117,13 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
     {
         $user = User::find($data['user_id']);
         $stripeToken = $data['stripe_token'];
-        return  $user->newSubscription('main', 'plan_DXg2Sso3f23PVP')->create($stripeToken);
-
+        //return  $user->charge(100);
+         try{
+              $user->newSubscription('main', 'plan_DXg2Sso3f23PVP')->create($stripeToken);
+              return 'success';
+          } catch (\Stripe\Error\InvalidRequest $e) {
+              return $e->getMessage();
+          }
 
         /*unset($data['user_id']);
         if (!empty($data['parent_id'])) {

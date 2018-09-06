@@ -15,6 +15,7 @@
         "cygnis-php/abstraction": "dev-master",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.6.*",
         "laravel/passport": "^6.0",

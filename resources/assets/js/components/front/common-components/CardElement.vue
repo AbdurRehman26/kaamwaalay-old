@@ -110,15 +110,14 @@ export default {
                     self.successMessage =  response.data.message
                     self.$parent.url = "";
                     setTimeout(function(){
-                    self.$parent.url = 'api/user?filter_by_roles[]=1&filter_by_roles[]=4&pagination=true';
                         self.loading = false
                         self.successMessage='';
-                         self.hideModal()
+                        self.hideModal()
                     }, 2000);
                 })
                 .catch(error => {
                         self.loading = false
-                        self.errorMessage = error.response.data.message[0]
+                        self.errorMessage = error.response.data.message
                         setTimeout(function(){
                             self.errorMessage=''
                         }, 2000);

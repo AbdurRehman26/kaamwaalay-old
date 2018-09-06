@@ -59,11 +59,11 @@ class PaymentController extends ApiResourceController
         if ($validator->fails()) {
             $code = 406;
             $output = [
-             'message' => $validator->messages()->all(),
-         ];
-     }else{
+               'message' => $validator->messages()->all(),
+           ];
+    }else{
         $result = $this->_repository->create($data);
-        if($result) {
+        if($result == 'success') {
           $code = 200;
           $output = [
             'data' => $result,
@@ -72,9 +72,10 @@ class PaymentController extends ApiResourceController
     }else{
       $code = 406;
       $output = [
-        'message' => 'An error occurred',
+        'message' => $result,
     ];
-}
-}
-}
+    }
+   }
+   return response()->json($output, $code);
+ }
 }

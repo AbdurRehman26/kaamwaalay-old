@@ -47,8 +47,8 @@ Route::group(['middleware' => ['scopes']], function () {
         'index', 'store', 'show',
     ]);
 
-    Route::resource('plan', 'Api\V1\PlanController')->only([
-        'index', 'show', 'update',
+    Route::resource('plan', 'Api\V1\PlanController')->except([
+        'edit','create'
     ]);
 
     Route::resource('role', 'Api\V1\RoleController')->only([

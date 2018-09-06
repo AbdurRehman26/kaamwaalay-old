@@ -33,6 +33,8 @@ return [
         'model' => App\Data\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+        'url' => env('STRIPE_URL'),
+        'currency' => env('STRIPE_CURRENCY'),
     ],
 
 ];
