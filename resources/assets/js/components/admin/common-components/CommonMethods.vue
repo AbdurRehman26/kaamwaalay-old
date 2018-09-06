@@ -5,7 +5,7 @@
 
 <script>
     export default {
-        props : ['url', 'search' , 'infiniteLoad'],
+        props : ['url', 'search' , 'infiniteLoad', 'force'],
         data () {
             return {
                 records : [],
@@ -75,6 +75,11 @@
             url(val){
                 this.url = val;
                 this.getList();
+            },
+            force(value){
+                if(value){
+                    this.getList();
+                }
             }
         }
     }

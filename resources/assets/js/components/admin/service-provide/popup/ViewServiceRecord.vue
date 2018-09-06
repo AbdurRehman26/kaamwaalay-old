@@ -1,6 +1,6 @@
  <template>	
    <div>
-      <b-modal id="view-service-record" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Service Detail" ok-only ok-title="Close">
+      <b-modal id="view-service-record" hide-footer centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Service Job Detail" ok-only ok-title="Close">
 
         <div class="view-details-list">
 
@@ -66,7 +66,7 @@
                 <b-col cols="5" class="">
                     <p><strong class="title-head">Description</strong></p>
                 </b-col>
-                <b-col cols="12">
+                <b-col cols="7">
                     <div class="form-group">
                         <p>{{currentItem.description}}</p>
                     </div>
