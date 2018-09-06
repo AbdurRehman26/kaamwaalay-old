@@ -48,7 +48,7 @@
 		<div class="job-post-container section-padd sm" v-if="!noRecordFound">
 			<div class="container md">
 
-				<div class="text-notifer">
+				<div class="text-notifer" v-if="pagination">
 					<p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
 				</div>
 				<div class="job-post-list" v-for="record in records" v-if="record.profile_request">
