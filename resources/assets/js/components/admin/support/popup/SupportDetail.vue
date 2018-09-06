@@ -144,7 +144,7 @@
             selectedInquiry(value) {
                 this.selectedInquiry = value;
                 this.role = value.role;
-                this.supportQuestion = value.support_question;
+                this.supportQuestion =  value.support_question;
             }
         },
     }
