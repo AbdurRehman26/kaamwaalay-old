@@ -179,8 +179,11 @@
   <div class="job-proposal">
     <div class="bit-offered">
        <span><i class="icon-work-briefcase"></i> Offer: 
-          <strong>
-             {{bid.amount}}		
+          <strong v-if="!bid.is_tbd">
+             {{bid.amount}}     
+         </strong>
+         <strong v-if="bid.is_tbd">
+             To be decided		
          </strong>
      </span>
      <span class="pull-right"><i class="icon-calendar-daily"></i> Date:
@@ -192,12 +195,14 @@
 <div class="proposal-message">
    <p>{{bid.description}}</p>
 </div>
+
 <div class="provider-bidding-btn">
+
    <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
    <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
-   <a v-if="!jobAwared" href="javascript:void(0);" @click="AwardJob" class="btn btn-primary">Award Job</a>
+   <a v-if="!jobAwared && !bid.is_tbd" href="javascript:void(0);" @click="AwardJob" class="btn btn-primary">Award Job</a>
+   <a v-if="!jobAwared && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 
-   <a v-if="!jobAwared" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 </div>
 </div>
 </div>
@@ -233,8 +238,8 @@
 </div>							
 
 
-<div class="service-provider" v-if="canInvite">
-    <div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
+<div class="service-provider">
+    <div v-if="canInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
        <h3>Find &amp; invite service providers to bid on your job.</h3>
        <p>14 service providers available around you related to concrete flooring.</p>
        <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
@@ -298,7 +303,11 @@
             return this.record.awarded_to;
         },
         canInvite(){
-            return !this.record.awarded_to  || !this.jobBids.length;
+
+            if(this.jobBids){
+                return !this.record.awarded_to  && !this.jobBids.data.length;
+            }
+
         }
     },
     methods: {
