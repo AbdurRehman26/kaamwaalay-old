@@ -21,10 +21,10 @@
             </b-row>
             <b-row>
                 <b-col cols="5" class="">
-                    <p><strong class="title-head">URL Prefix</strong></p>
+                    <p><strong class="title-head">URL Suffix</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>{{selectedService.parent_id? selectedService.parent.url_prefix : selectedService.url_prefix}}</p>
+                    <p>{{selectedService.parent_id? selectedService.parent.url_suffix : selectedService.url_suffix}}</p>
                 </b-col>
             </b-row>
             <b-row>

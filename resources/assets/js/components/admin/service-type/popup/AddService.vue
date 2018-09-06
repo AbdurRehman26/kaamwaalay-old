@@ -348,7 +348,7 @@
                         self.hideModal();  
                         self.resetFormFields(); 
                         self.$emit('call-list');         
-                    } , 3000);
+                    } , 2000);
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -388,7 +388,7 @@
                         self.resetFormFields(); 
                         self.$emit('call-list');
                         self.loading = false; 
-                    } , 3000);
+                    } , 2000);
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -452,9 +452,10 @@
                     this.showRadios = this.formData.parent_id? false : true;
                     this.formData.url_suffix = this.defaultUrlPrefix;
                     this.isChangePrefix = this.list.url_suffix;
+                    this.url_suffix = this.isChangePrefix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
-                    this.imageText = this.file;
+                    this.imageText = this.file? this.file : 'Click here to upload image.';
                 }
             }
         },

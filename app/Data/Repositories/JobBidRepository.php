@@ -74,6 +74,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
 
     public function findByAll($pagination = false, $perPage = 10, array $input = [] )
     {
+        
         $this->builder = $this->model->orderBy('id', 'desc');
         if(!empty($input['user_id'])) {
             $this->builder = $this->builder->where('user_id', '=', $input['user_id']);
@@ -123,7 +124,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
           //       }
           //   );
         }            
-
+        dd("koko");
         $data = parent::findByAll($pagination, $perPage, $input);
 
         return $data;

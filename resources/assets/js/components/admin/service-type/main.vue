@@ -72,7 +72,7 @@
   </div>
 </div>
 </div>
-<add-service @HideModalValue="hideModal" :showModalProp="service" @call-list="getList(false, false)" :isUpdate="isUpdate" :list="list"></add-service>
+<add-service @HideModalValue="hideModal" :showModalProp="service" @call-list="getList(false, currentPage)" :isUpdate="isUpdate" :list="list"></add-service>
 <view-details @HideModalValue="hideModal" :showModalProp="viewDetails" :selectedService="selectedService"></view-details>
 <changestatuspopup @HideModalValue="hideModal" :showModalProp="changeStatus" :statusData="statusData" :options="changeStatusOptions" :url="statusUrl" ></changestatuspopup>
 </div>
@@ -163,7 +163,6 @@
       let self = this;
       self.showNoRecordFound = false;
       let url = self.url;
-
       if(typeof(page) == 'undefined' || !page){                        
         self.records = [];
       }
