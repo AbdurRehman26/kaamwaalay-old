@@ -56,7 +56,7 @@
 				</div>				
 			</div>
 		</div>
-		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
+		<vue-common-methods :url="url" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
 	</div>			
 
 </template>
@@ -65,8 +65,10 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
+		props: ['show'],
 		data () {
 			return {
+				url: 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_status=invited&filter_by_awarded=0',
 				user: '',
 				records : [],
 				chat_message: false,
@@ -168,6 +170,16 @@
 		mounted(){
 			window.scrollTo(0,0);
 			this.user = JSON.parse(this.$store.getters.getAuthUser);
+		},
+		watch: {
+			show(val) {
+				if(val) {
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_status=invited&filter_by_awarded=0';
+				}else {
+					//this.url = null;
+					self.pagination = false;
+				}
+			}
 		}
 
 	}

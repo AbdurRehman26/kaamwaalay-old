@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="job-post-container section-padd sm">
-				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" ></bid-invitation>
+				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation>
 				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount"></bid-completed>
 				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount"></bid-awarded>
 				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount"></bid-archived>
