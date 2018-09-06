@@ -174,7 +174,7 @@ class ServiceTableSeeder extends Seeder
                 $data [] = [
                     'id' => (int) $key,
                     'title' => $value,
-                    'url_suffix' =>  strtolower(str_replace(' ', '-', $parentService->title)),
+                    'url_suffix' =>  strtolower(str_replace(' ', '-', $value)),
                     'description' => $faker->Text,
                     'parent_id' => $parentService->id,
                     'is_featured' => $isFeatured[array_rand($isFeatured)],
