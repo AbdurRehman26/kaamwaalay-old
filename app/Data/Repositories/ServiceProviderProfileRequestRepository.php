@@ -171,7 +171,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
     public function update(array $data = [])
     {
 
-        if ($data['role_id'] == Role::ADMIN) {
+        if ($data['role_id'] == Role::ADMIN | $data['role_id'] == Role::REVIEWER) {
             unset($data['role_id']);
             $data['approved_by'] = $data['user_id'];  
             unset($data['user_id']);
@@ -186,7 +186,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             event(new ServiceProviderStatusEvent($user, $data->status));
             return $data;
         }
-        return false;
+        return $data;
 
 
     }
