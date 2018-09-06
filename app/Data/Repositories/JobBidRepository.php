@@ -75,9 +75,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
     public function findByAll($pagination = false, $perPage = 10, array $input = [] )
     {
         $this->builder = $this->model->orderBy('id', 'desc');
-        if(!empty($input['user_id'])) {
-            $this->builder = $this->builder->where('user_id', '=', $input['user_id']);
-        }
+        
         if(!empty($input['filter_by_status'])) {
 
             if($input['filter_by_status'] == 'awarded') {
@@ -98,11 +96,10 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
             }
 
         }
-
         if(!empty($input['filter_by_job_id'])) {
-            $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);            
-                
+            $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);
         }            
+
         if(!empty($input['filter_by_invitation'])) {
             $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);            
                 
@@ -122,7 +119,6 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
         }            
 
         $data = parent::findByAll($pagination, $perPage, $input);
-
         return $data;
 
     }
@@ -131,13 +127,16 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        $details = ['user_rating' => true, 'job_details' => true];
+        
+        $details = ['user_rating' => true];
 
         $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+        
         $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
 
         if($data) {
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            
             if(!empty($details['job_details'])) {
                 $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
             }

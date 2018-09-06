@@ -1,4 +1,3 @@
-
 <template>
 	<div class="job-main-details detail-page">
 		<div class="content">
@@ -23,7 +22,9 @@
                         <div class="jobs-done" v-else>
                             <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                             <div class="job-status">
-                                <span class="tags" :class="[record.status ?  record.status.replace(/\s/g, '').toLowerCase().trim() : '']">{{ record.status }}</span>	
+                                <span class="tags" :class="[record.status ?  record.status.replace(/\s/g, '').replace('_', '').toLowerCase().trim() : '']">
+                                {{ record | jobStatus }}
+                            </span>	
                             </div>											
                         </div>	
                     </div>		
@@ -90,16 +91,16 @@
               <p>{{ record.description }}</p>
           </div>
 
-          <div v-if="record.images" class="jobs-post-files">
+          <div v-if="record.jobImages" class="jobs-post-files">
               <h3>Related Photos</h3>
-              <div class="gallery-item" v-if="record" v-for="(n, index) in record.images" :data-index="index" v-bind:style="{'background-image':'url('+n.url+')',}">
-                <img @click="open($event)" :src="n.url" />
+              <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
+                <img @click="open($event)" :src="image" />
             </div>
         </div>
 
         <div class="jobs-post-files" v-if="record.videos">
           <h3>Related Videos</h3>
-          <iframe width="1280" height="365" :src="record.videos[0]" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
 
       <div class="jobs-post-files" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded'">
@@ -178,8 +179,11 @@
   <div class="job-proposal">
     <div class="bit-offered">
        <span><i class="icon-work-briefcase"></i> Offer: 
-          <strong>
-             {{bid.amount}}		
+          <strong v-if="!bid.is_tbd">
+             {{bid.amount}}     
+         </strong>
+         <strong v-if="bid.is_tbd">
+             To be decided		
          </strong>
      </span>
      <span class="pull-right"><i class="icon-calendar-daily"></i> Date:
@@ -191,12 +195,14 @@
 <div class="proposal-message">
    <p>{{bid.description}}</p>
 </div>
-<div class="provider-bidding-btn">
-   <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-   <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
-   <a v-if="!jobAwared" href="javascript:void(0);" @click="AwardJob" class="btn btn-primary">Award Job</a>
 
-   <a v-if="!jobAwared" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
+<div class="provider-bidding-btn">
+
+   <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+   <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat {{ awardJob  }}</a>													
+   <a v-if="!jobAwarded && !bid.is_tbd" href="javascript:void(0);" @click.prevent="awardJob = true;" class="btn btn-primary">Award Job</a>
+   <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
+
 </div>
 </div>
 </div>
@@ -216,7 +222,7 @@
 </div>
 
 
-<div class="service-provider" v-else-if="job_detail_right_panel == 'serviceprovider'">
+<div class="service-provider" v-if="false">
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
@@ -224,7 +230,7 @@
 </div>
 
 
-<div class="service-provider" v-else-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend'">
+<div class="service-provider" v-if="false">
 
     <a href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>	
     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary"><i class="icon-message"></i> Chat</a>	
@@ -232,8 +238,8 @@
 </div>							
 
 
-<div class="service-provider" v-else>
-    <div class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
+<div class="service-provider">
+    <div v-if="canInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
        <h3>Find &amp; invite service providers to bid on your job.</h3>
        <p>14 service providers available around you related to concrete flooring.</p>
        <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
@@ -248,7 +254,7 @@
 
 </div>			
 </div>
-<award-job-popup @HideModalValue="HideModal" :showModalProp="awardjob"></award-job-popup>
+<award-job-popup @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -270,7 +276,7 @@
         return {
             record : [],
             jobBids : '',
-            awardjob: false,
+            awardJob: false,
             visitjob: false,
             visitpopup: false,
             bidpopup: false,
@@ -285,16 +291,22 @@
             { width: 900, height: 675, url: '/images/dummy/jobfileimage3.png' },
             ],
             requestUrl : 'api/job/'+this.$route.params.id,
-            requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
-
+            requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id
         }
     },
     computed : {
         jobImage(){
             return this.record && this.record.user ? this.record.user.profileImage : '';
         },
-        jobAwared(){
+        jobAwarded(){
             return this.record.awarded_to;
+        },
+        canInvite(){
+
+            if(this.jobBids){
+                return !this.record.awarded_to  && !this.jobBids.data.length;
+            }
+
         }
     },
     methods: {
@@ -303,22 +315,18 @@
         },
         getBidsResponse(response){
             this.jobBids = response;
-            console.log(this.jobBids , '232322332');
         },
         open (e) {            
-            fancyBox(e.target, this.imageList);
+            fancyBox(e.target, this.record.jobImages);
         },
         FindInvite(){
            this.$router.push({name: 'Explore_Detail'});
        },
        Modify(){
-           this.$router.push({name: 'Job-Post'});
+           this.$router.push({name: 'job.view' , params : { id : this.record.id }});
        },        
        VisitPopup(){
            this.visitpopup = true;
-       },
-       AwardJob(){
-           this.awardjob = true;
        },
        VisitApproval(){
          this.visitjob = true;
@@ -327,7 +335,7 @@
        this.bidpopup = true;
    },
    HideModal(){
-    this.awardjob = false;
+    this.awardJob = false;
     this.visitjob = false;
     this.visitpopup = false;
     this.bidpopup = false;

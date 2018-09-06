@@ -109,7 +109,8 @@ class UsersTableSeeder extends Seeder
             ];
             $i++;
         } 
-        User::insertOnDuplicateKey($data);
+
+        User::insertOnDuplicateKey($data, ['first_name', 'last_name', 'updated_at']);
 
     }
 

@@ -260,6 +260,8 @@ Vue.filter('jobPreference', function (value) {
     return obj.value;
 });
 
-Vue.filter('userImage' , function (value) {
-    console.log(value , 21312321);
+Vue.filter('appendYoutubeUrl' , function (value) {
+    return 'https://www.youtube.com/embed/' + value;
 })
+
+

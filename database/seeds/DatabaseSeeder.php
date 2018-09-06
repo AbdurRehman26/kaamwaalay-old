@@ -27,16 +27,18 @@ class DatabaseSeeder extends Seeder
         // Service and Service Provider 
 
         $this->call(ServiceTableSeeder::class);
-        $this->call(ServiceProviderProfileSeeder::class);
+        // $this->call(ServiceProviderProfileSeeder::class);
 
+        // Job bid and rating commented
+        
         $this->call(JobTableSeeder::class);
         $this->call(JobBidTableSeeder::class);
 
         // These seeders will be commented
-        $this->call(UserRatingTableSeeder::class);
+        // $this->call(UserRatingTableSeeder::class);
         $this->call(PaymentTableSeeder::class);
 
-        $this->call(SupportInquiryTableSeeder::class);
+        // $this->call(SupportInquiryTableSeeder::class);
 
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');

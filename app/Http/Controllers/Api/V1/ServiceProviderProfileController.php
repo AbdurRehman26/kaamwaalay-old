@@ -31,13 +31,15 @@ class ServiceProviderProfileController extends ApiResourceController
   public function input($value='')
   {
     $input = request()->only(
-            'id', 'pagination', 'keyword',
-            'filter_by_business_type', 'filter_by_service',
-            'user_rating', 'zip', 'filter_by_featured', 'is_approved'
-            );
+        'id', 'pagination', 'keyword',
+        'filter_by_business_type', 'filter_by_service',
+        'user_rating', 'zip', 'filter_by_featured', 'is_approved'
+    );
 
-    
-    $input['user_id'] = request()->user()->id;
-    return $input;
+    if (request()->user()) {
+      $input['user_id'] = request()->user()->id;
+  }
+  
+  return $input;
 }
 }
