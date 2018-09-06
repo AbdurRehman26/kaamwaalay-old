@@ -124,7 +124,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
           //       }
           //   );
         }            
-        dd("koko");
+        $input['details'] = $input['filter_by_job_detail'];
         $data = parent::findByAll($pagination, $perPage, $input);
 
         return $data;
@@ -135,14 +135,15 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
         $data = parent::findById($id, $refresh, $details, $encode);
-        $details = ['user_rating' => true, 'job_details' => true];
+        $job_details = $details;
+        $details = ['user_rating' => true];
 
         $data->user = app('UserRepository')->findById($data->user_id, false, $details);
         $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
 
         if($data) {
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            if(!empty($details['job_details'])) {
+            if($job_details) {
                 $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
             }
                 
