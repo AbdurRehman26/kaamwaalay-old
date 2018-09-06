@@ -5,7 +5,16 @@
 
 <script>
     export default {
-        props : ['url', 'search' , 'infiniteLoad', 'force'],
+        props : [
+        'url',
+        'search',
+        'infiniteLoad',
+        'force',
+        'formData',
+        'submit',
+        'submitUrl',
+        'hideLoader'
+        ],
         data () {
             return {
                 records : [],
@@ -32,7 +41,10 @@
 
                 self.$emit('get-records', result);
 
-                self.loading = true;
+                if(!this.hideLoader){
+                    self.loading = true;
+                }
+
                 url = self.url;
                 self.$emit('start-loading');
 
@@ -70,6 +82,41 @@
                     console.log(error , 'error');
                 });
             },
+            submitForm(successCallback) {
+                let self = this;
+                
+                let url = self.submitUrl;
+                let data = this.formData;
+
+                let urlRequest = '';
+                console.log(data , url);
+                if(!this.updateForm){
+                    urlRequest = self.$http.put(url , data)
+                }else{
+                    urlRequest = self.$http.post(url , data);
+                }
+                console.log(urlRequest , '21312321');
+
+                
+                urlRequest.then(response => {
+                    console.log(response);
+                    self.$emit('form-submitted', response);
+
+                }).catch(error => {
+
+                console.log(error , '21321312');
+                    
+                    if(typeof(successCallback) !== 'undefined'){
+                        return successCallback(true);
+                    }
+
+                    console.log(error , 'error in job posting');
+                    self.$emit('form-error', error);
+
+
+                });
+
+            },
         },
         watch:{
             url(val){
@@ -79,6 +126,12 @@
             force(value){
                 if(value){
                     this.getList();
+                }
+            },
+            submit(value){
+                console.log(value , 12321321321);
+                if(value){
+                    this.submitForm();
                 }
             }
         }
