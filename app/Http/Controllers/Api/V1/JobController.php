@@ -47,7 +47,7 @@ class JobController extends ApiResourceController
             'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
-            'details'
+            'details', 'is_archived'
         );
 
         $input['user_id'] = request()->user()->id;
@@ -63,7 +63,7 @@ class JobController extends ApiResourceController
         }
 
         if($value == 'store'){
-            unset($input['status']);
+            unset($input['status'], $input['is_archived']);
         }
 
 

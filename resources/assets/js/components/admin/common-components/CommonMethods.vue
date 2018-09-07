@@ -19,7 +19,7 @@
             return {
                 records : [],
                 pagination : '',
-                loading : true,
+                loading : false,
                 noRecordFound : false
             }  
         },
@@ -40,17 +40,19 @@
                 };
 
                 self.$emit('get-records', result);
-
+                
                 if(!this.hideLoader){
                     self.loading = true;
                 }
 
                 url = self.url;
+
                 self.$emit('start-loading');
 
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
+
                 self.$http.get(url).then(response=>{
 
                     response = response.data.response;
@@ -68,6 +70,7 @@
                     }
 
                     self.$emit('get-records', result);
+
                     self.pagination = response.pagination;
 
                     self.loading = false;
@@ -89,13 +92,12 @@
                 let data = this.formData;
 
                 let urlRequest = '';
-                console.log(data , url);
+
                 if(!this.updateForm){
                     urlRequest = self.$http.put(url , data)
                 }else{
                     urlRequest = self.$http.post(url , data);
                 }
-                console.log(urlRequest , '21312321');
 
                 
                 urlRequest.then(response => {
@@ -103,7 +105,6 @@
 
                 }).catch(error => {
 
-                console.log(error , '21321312');
                     
                     if(typeof(successCallback) !== 'undefined'){
                         return successCallback(true);
