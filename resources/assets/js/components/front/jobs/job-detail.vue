@@ -274,7 +274,10 @@
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
 <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>			
+
+<write-review-popup></write-review-popup>
 </div>
+
 
 <vue-common-methods @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
 <vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
@@ -340,6 +343,10 @@
       methods: {
         formSubmitted(){
             this.reSendCall();
+
+
+
+
         },
         reSendCall(){
             let self = this;
