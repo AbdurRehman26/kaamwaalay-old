@@ -14,8 +14,8 @@
 								</div>
 							</div>
 						</div>
-						<form data-vv-scope="featured">
-							<div class="row featured-setting" >
+						<form>
+							<div class="row featured-setting featured-row" >
 								<div class="col-xs-12 col-md-12">
 									<div class="row">
 										<div class="col-xs-12 col-md-5">
@@ -30,75 +30,54 @@
 										</div>
 									</div>
 								</div>	
-								<div class="col-xs-12 col-md-12 featured-setting-row" v-for="(data, index) in featuredList">
+								<div class="col-xs-12 col-md-12 featured-setting-row" v-if="!data.remove && data.type=='service' && data.product=='featured_profile'" v-for="(data, index) in list">
 									<div class="row">
-										<div class="col-md-5">
+                                      	<div class="col-md-5">
 											<div class="form-group">
-												<input class="form-control form-group" placeholder="Enter featured amount" name="amount" v-model="data.amount" v-validate="'required|decimal|min_value:0.1'" >
+												<input class="form-control form-group" data-vv-scope="featured" placeholder="Enter featured amount" name="amount" v-model="data.amount" v-validate="'required|decimal|min_value:0.1'" :disabled="data.disabled">
 											</div>
 										</div>
 
 										<div class="col-md-5">
 											<div class="form-group">
-												<input class="form-control form-group" placeholder="Enter featured quantity" name="quantity" v-model="data.quantity" v-validate="'required|numeric|min_value:1'">
+												<input class="form-control form-group" data-vv-scope="featured" placeholder="Enter featured quantity" name="quantity" v-model="data.quantity" v-validate="'required|numeric|min_value:1'" :disabled="data.disabled">
 											</div>
 										</div>
 										<div class="col-md-2">
-											<a href="javascript:;" @click="remove(index)" v-if="index">- remove</a>		
+											<a href="javascript:;" @click="remove(index)">- remove</a>		
 										</div>										
 									</div>
 								</div>
 
 								<div class="col-md-2 col-md-2 filter-btn-top-space add-more-featured">
-									<a href="javascript:;" @click="validateBeforeSubmit('featured', 'add-more')">+ Add more</a>
+									<a href="javascript:;" @click="validateBeforeSubmit('featured', 'add-more')">+ Add</a>
 								</div>
 
 							</div>
-							<alert v-if="featuredErrorMessage || featuredSuccessMessage" :errorMessage="featuredErrorMessage" :successMessage="featuredSuccessMessage"></alert>
-							<div class="row">
-								<div class="col-xs-12 col-md-3">
-									<button @click.prevent="validateBeforeSubmit('featured', 'featured-update')" :class="['btn btn-primary', isFeaturedUpdating ?'show-spinner' : '']">
-										<span>Apply</span>
-										<loader></loader>
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-
-					<!-- Urgent Row -->
-					<form data-vv-scope="urgent">
-						<div class="urgent-section-row featured-row">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="urgent-detail-title">
-										<h2 class="page-title">Urgent Job</h2>
-									</div>
-								</div>
-							</div>
-							<div class="row urgent-setting">	
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Urgent Amount ($)</label>
-										<input class="form-control" placeholder="Enter urgent amount" name="urgent amount" v-model="urgent_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" >
-									</div>
-								</div>
-							</div>
-							<alert v-if="urgentErrorMessage || urgentSuccessMessage" :errorMessage="urgentErrorMessage" :successMessage="urgentSuccessMessage"></alert>
-							<div class="row">
-								<div class="col-xs-12 col-md-3">
-									<button @click.prevent="validateBeforeSubmit('urgent')" :class="['btn btn-primary', isUrgentUpdating ?'show-spinner' : '']">
-										<span>Apply</span>
-										<loader></loader>
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
-
-                    <!-- Account creation Row -->
-                    <form data-vv-scope="account_creation">
-                        <div class="urgent-section-row">
+                     <!-- Urgent Row -->
+                        <div class="urgent-section-row featured-row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="urgent-detail-title">
+                                        <h2 class="page-title">Urgent Job</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row urgent-setting">    
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Urgent Amount ($)</label>
+                                        <div class="display-flex" v-if="urgent_job_disable && !data.remove && data.type=='job' && data.product=='urgent_job'" v-for="(data, index) in list">
+                                            <input  data-vv-scope="urgent" class="form-control" placeholder="Enter urgent amount" name="urgent amount" v-model="urgent_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" :disabled="data.disabled">
+                                            <a v-if="urgent_job_disable" href="javascript:void(0);" class="btn btn-primary" @click='editUrgentJob(data)'><i class="icon-edit field-edit"></i> Edit</a>
+                                        </div>
+                                            <input v-if="!urgent_job_disable" class="form-control" placeholder="Enter urgent amount" name="urgent amount" data-vv-scope="urgent" v-model="urgent_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- Account creation Row -->
+                       <div class="urgent-section-row featured-row">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="urgent-detail-title">
@@ -111,23 +90,27 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Account Creation Fee</label>
-                                        <input class="form-control" placeholder="Enter account creation amount" name="account creation fee" v-model="account_creation_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" >
+                                        <div class="display-flex" v-if="account_creation_disable && !data.remove && data.type=='service' && data.product=='account_creation'" v-for="(data, index) in list">
+                                            <input  data-vv-scope="account_creation" class="form-control" placeholder="Enter account creation amount" name="account creation fee" v-model="account_creation_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" :disabled="data.disabled">
+                                            <a  href="javascript:void(0);" class="btn btn-primary" @click='editAccountCreation(data)'><i class="icon-edit field-edit"></i> Edit</a>
+                                        </div>
+                                            <input v-if="!account_creation_disable"  class="form-control" placeholder="Enter account creation amount" name="account creation fee"  data-vv-scope="account_creation" v-model="account_creation_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" >
                                     </div>
                                 </div>
 
                             </div>
-                            <alert v-if="accountCreationErrorMessage || accountCreationSuccessMessage" :errorMessage="accountCreationErrorMessage" :successMessage="accountCreationSuccessMessage"></alert>
-                            <div class="row">
-                                <div class="col-xs-12 col-md-3">
-                                    <button @click.prevent="validateBeforeSubmit('account_creation')" :class="['btn btn-primary', isAccountCreationUpdating ?'show-spinner' : '']">
-                                        <span>Apply</span>
-                                        <loader></loader>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
-                    </form>
-
+							<alert v-if="featuredErrorMessage || featuredSuccessMessage" :errorMessage="featuredErrorMessage" :successMessage="featuredSuccessMessage"></alert>
+							<div class="row">
+								<div class="col-xs-12 col-md-3">
+									<button v-show="list.length != 0" @click.prevent="validateBeforeSubmit('featured', 'featured-update')" :class="['btn btn-primary', isFeaturedUpdating ?'show-spinner' : '']">
+										<span>Apply</span>
+										<loader></loader>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>`
 				</div>
 
 			</div>
@@ -141,10 +124,10 @@
 export default {
 	data () {
 		return {
-			url:'api/plan/',
+			url:'api/plan',
 			featuredSuccessMessage:'',
 			featuredErrorMessage:'',
-			featuredList:[],
+			list:[],
 			isFeaturedUpdating:false,
 			isUrgentUpdating:false,
 			isAccountCreationUpdating:false,
@@ -152,18 +135,65 @@ export default {
 			urgentErrorMessage:'',
 			accountCreationSuccessMessage:'',
 			accountCreationErrorMessage:'',
-            urgent_amount:'',
-			account_creation_amount:'',
+            urgent_amount:0,
+            urgent_job_disable:false,
+            account_creation_amount:0,
+			account_creation_disable:false,
 		}
 	},
-
+    watch: {
+        account_creation_amount(value) {
+            if(value != 0 && !this.account_creation_disable){
+               let accountCreationObject = _.find(this.list, (o) => o.product == 'account_creation');
+               if(accountCreationObject){
+                   _.remove(this.list, function(n) {
+                      return n.product == 'account_creation'
+                  }) 
+               }
+                this.list.push({
+                    'id': (accountCreationObject)?accountCreationObject.id:null,
+                    'amount': value,
+                    'quantity': null,
+                    'type': 'service',
+                    'product': 'account_creation',
+                    'disabled': false,
+                    'remove': false,
+                });
+            }
+        },
+        urgent_amount(value) {
+            if(value != 0 && !this.urgent_job_disable){
+                   let urgentJobObject = _.find(this.list, (o) => o.product == 'urgent_job');
+                   if(urgentJobObject){
+                     _.remove(this.list, function(n) {
+                      return n.product == 'urgent_job'
+                  }) 
+                 }
+                this.list.push({
+                    'id': (urgentJobObject)?urgentJobObject.id:null,
+                    'amount': value,
+                    'quantity': null,
+                    'type': 'job',
+                    'product': 'urgent_job',
+                    'disabled': false,
+                    'remove': false,
+                });
+            }
+        }
+    },
     mounted() {
-        this.getFeaturedList();
-        this.view('urgent');
-        this.view('account_creation');
+        this.getlist();
     },
 
 	methods: {
+        editAccountCreation(data){
+           this.account_creation_disable = false
+           data.disable = false
+        },
+        editUrgentJob(data){
+           this.urgent_job_disable = false
+           data.disable = false
+        },
         validateBeforeSubmit(scope, where){
             this.$validator.validateAll(scope).then((result) => {
                 if (result) {
@@ -171,7 +201,7 @@ export default {
                     this.urgentErrorMessage =  '';
                     this.accountCreationErrorMessage =  '';
                     if(scope == 'featured' && where == 'featured-update'){
-                        this.updateFeaturedList();
+                        this.updatelist();
                     }else if(scope == 'featured' && where == 'add-more'){
                         this.addMore();
                     }else if(scope == 'urgent'){
@@ -195,146 +225,137 @@ export default {
             });
         },
         addMore() {
-            this.featuredList.push({
+            this.list.push({
             	'id': null,
             	'amount': '',
-            	'quantity': ''
+                'quantity': '',
+                'type': 'service',
+                'product': 'featured_profile',
+                'disabled': false,
+            	'remove': false,
             });
         },
         remove(index) {
-            this.featuredList.splice(index,1);
+            let currentPlan = this.list[index]
+            currentPlan.remove = true
+            //this.list.splice(index,1);
         },
-        getFeaturedList (){
+        getlist (){
             let self = this;
             var params = {
             	pagination: false,
-                type: 'service',
             };
             self.$http.get(self.url, {params: params}).then(response=>{
                 response = response.data.response;
-                //self.featuredList = response.data;
+                //self.list = response.data;
                 if(response.data.length){
                 	_.forEach(response.data, function(value, key) {
-                		self.featuredList.push({
+                        if(value.type == 'service' && value.product == 'account_creation'){
+                            self.account_creation_amount = value.amount
+                            self.account_creation_disable = true
+                        } 
+                         if(value.type == 'job' && value.product == 'urgent_job'){
+                            self.urgent_amount = value.amount
+                            self.urgent_job_disable = true
+                        }
+                		self.list.push({
                 			'id': value.id,
                 			'amount': value.amount,
-                			'quantity': value.quantity
+                			'quantity': value.quantity,
+                            'type': value.type,
+                            'product': value.product,
+                            'disabled': true,
+                            'remove': false,
+
                 		});
                 	});
 
                 }else{
-			        self.featuredList.push({
+			        self.list.push({
 			            'id': null,
 			            'amount': '',
-			            'quantity': ''
+			            'quantity': '',
+                        'type': 'service',
+                        'product': 'featured_profile',
+                        'disabled': false,
+                        'remove': false,
+
 			        });
                 }
             }).catch(error=>{
             });
         },
-        updateFeaturedList(){
+        updatelist(){
             let self = this;
             self.isFeaturedUpdating = true;
-            self.$http.post(self.url+'update-or-add-plans', {'plans_data': self.featuredList}).then(response => {
-                self.featuredSuccessMessage = 'Records have been updated successfully';
-                setTimeout(function () {
-                    self.featuredSuccessMessage = '';
-                } , 3000);
-                self.isFeaturedUpdating = false;
+             _.forEach(self.list, function(value, key) {
+                if(value.remove){
+                 if(value.id){
+                    self.$http.delete(self.url+'/'+value.id).then(response => {
+                    self.featuredSuccessMessage = response.data.message;
+                    setTimeout(function () {
+                        self.featuredSuccessMessage = '';
+                    } , 3000);
+                    self.isFeaturedUpdating = false;
+                    self.account_creation_disable = true
+                    self.urgent_job_disable = true
 
-            }).catch(error=>{
-                let errors = error.response.data.errors;
-                self.isFeaturedUpdating = false;
-                _.forEach(errors, function(value, key) {
-                    self.featuredErrorMessage =  errors[key][0];
-                    return false;
-                });
+                }).catch(error=>{
+                    let errors = error.response.data.errors;
+                    self.isFeaturedUpdating = false;
+                    _.forEach(errors, function(value, key) {
+                        self.featuredErrorMessage =  errors[key][0];
+                        return false;
+                    });
+                    self.account_creation_disable = true
+                    self.urgent_job_disable = true
 
-            });
-        },
-        update(scope){
-            let self = this;
-            self.loading = true;
-            let id = 0;
-            let amount = 0;
-            if(scope=='urgent'){
-            	self.isUrgentUpdating = true;
-            	id = 1;
-            	amount= self.urgent_amount;
-            }else{
-            	self.isAccountCreationUpdating = true;
-            	id = 2;
-            	amount= self.account_creation_amount;
-            }
-
-            self.$http.put(self.url + id, {'amount':amount}).then(response => {
-                self.loading = false;
-
-                if(scope=='urgent'){
-                	self.urgentSuccessMessage = 'Record has been updated successfully';
-                	setTimeout(function () {
-                		self.isUrgentUpdating = false;
-                		self.urgentSuccessMessage = '';
-                	} , 3000);
-                }else{
-                	self.accountCreationSuccessMessage = 'Record has been updated successfully';
-                	setTimeout(function () {
-                		self.isAccountCreationUpdating = false;
-                		self.accountCreationSuccessMessage = '';
-                	} , 3000);                
+                }); 
+                } else{
+                    self.featuredSuccessMessage = 'Record has been updated';
+                   setTimeout(function () {
+                        self.featuredSuccessMessage = '';
+                    } , 3000);
+                    self.isFeaturedUpdating = false; 
+                    self.account_creation_disable = true
+                    self.urgent_job_disable = true
                 }
-
-            }).catch(error => {
-                self.isUrgentUpdating = false;
-                self.isAccountCreationUpdating = false;
-                self.loading = false;
-                let errors = error.response.data.errors;
-                _.forEach(errors, function(value, key) {
-                    if(scope=='urgent'){
-						self.urgentErrorMessage =  errors[key][0];
-                    }else{
-						self.accountCreationErrorMessage =  errors[key][0];
-                    }
-
-                    return false;
-                });
-            });
-        },
-        view(scope){
-            let self = this;
-            self.loading = true;
-            let id = 0;
-            if(scope=='urgent'){
-            	id = 1;
-            	self.urgent_amount = 0;
-            }else{
-            	id = 2;
-            	self.account_creation_amount = 0;
-            }
-
-            self.$http.get(self.url + id).then(response => {
-            	response = response.data.response;
-                self.loading = false;
-
-                if(scope=='urgent'){
-                	self.urgent_amount = response.data.amount;
                 }else{
-					self.account_creation_amount = response.data.amount;   
+                if(!value.disabled){
+                 self.$http.post(self.url, value).then(response => {
+                    self.featuredSuccessMessage = response.data.message;
+                    setTimeout(function () {
+                        self.featuredSuccessMessage = '';
+                    } , 3000);
+                    self.isFeaturedUpdating = false;
+                    self.list[key].disabled = true
+                    self.list[key].remove = false
+                    self.list[key].id = response.data.response.data.id
+                    self.account_creation_disable = true
+                    self.urgent_job_disable = true
+
+                }).catch(error=>{
+                    let errors = error.response.data.errors;
+                    self.isFeaturedUpdating = false;
+                    _.forEach(errors, function(value, key) {
+                        self.featuredErrorMessage =  errors[key][0];
+                        return false;
+                    });
+                    self.account_creation_disable = true
+                    self.urgent_job_disable = true
+                }); 
+                }  else{
+                    self.featuredSuccessMessage = 'Record has been updated';
+                   setTimeout(function () {
+                        self.featuredSuccessMessage = '';
+                    } , 3000);
+                    self.isFeaturedUpdating = false; 
+                    self.account_creation_disable = true
+                    self.urgent_job_disable = true
                 }
-
-            }).catch(error => {
-                self.loading = false;
-                let errors = error.response.data.errors;
-                _.forEach(errors, function(value, key) {
-                    if(scope=='urgent'){
-						self.urgentErrorMessage =  errors[key][0];
-                    }else{
-						self.accountCreationErrorMessage =  errors[key][0];
-                    }
-
-                    return false;
-                });
-            });
+            }
+         
+        });
         },
 	}
 }

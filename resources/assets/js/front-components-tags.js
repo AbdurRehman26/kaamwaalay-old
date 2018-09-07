@@ -17,6 +17,9 @@ Vue.component('logo', require('./components/admin/common-components/Logo.vue'));
 Vue.component('no-record-found', require('./components/admin/common-components/NoRecords.vue'));
 Vue.component('search', require('./components/admin/common-components/Search.vue'));
 Vue.component('loader', require('./components/admin/common-components/Loader.vue'));
+Vue.component('page-loader', require('./components/admin/common-components/PageLoader.vue'));
+Vue.component('mid-loader', require('./components/admin/common-components/MediumLoader.vue'));
+Vue.component('spinner-loader', require('./components/admin/common-components/SpinnerLoader.vue'));
 Vue.component('alert', require('./components/admin/common-components/Alert.vue'));
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
 // Vue.component('info-popup', require('./components/front/common-components/InfoPopup.vue'));
@@ -79,3 +82,5 @@ Vue.component('block-spinner', require('./components/admin/common-components/Blo
 
 
 Vue.component('file-upload-component', require('./components/admin/common-components/FileUpload.vue'));
+// stripe checkout component
+Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));

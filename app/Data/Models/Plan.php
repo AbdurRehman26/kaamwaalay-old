@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plan extends Model
 {
-	use InsertOnDuplicateKey, SoftDeletes;
+	use SoftDeletes,InsertOnDuplicateKey;
 	const URGENT = 1;
 	const ACCOUNT_CREATION = 2;
 }

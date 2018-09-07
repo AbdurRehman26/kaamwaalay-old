@@ -7,7 +7,16 @@ use App\Data\Models\Plan;
 
 class Campaign extends Model
 {
-	public function plan()
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'plan_id','user_id'
+    ];
+	
+    public function plan()
 	{
 		return $this->belongsTo(Plan::class);
 	}
