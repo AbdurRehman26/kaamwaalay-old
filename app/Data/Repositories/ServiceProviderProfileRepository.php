@@ -158,6 +158,15 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['filter_by_featured'])){
             $this->builder = $this->builder->where('service_provider_profiles.is_featured','=',$data['filter_by_featured']);
         }
+
+        if($data['filter_by_featured'] == "1" || $data['is_verified'] == "1") {
+            $this->builder = $this->builder
+               ->select(DB::raw('(count(jobs.user_id) * avg(user_ratings.rating)), *'))
+                ->leftJoin('jobs', 'service_provider_profiles.user_id', '=', 'jobs.user_id')
+                ->leftJoin('user_ratings', 'service_provider_profiles.user_id', '=', 'user_ratings.user_id')
+                ->orWhere('jobs.status', '=', 'completed')->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) DESC');
+                //DB::raw('count(*) as user_count, status')
+        }
         $this->builder = $this->builder->select('service_provider_profiles.*');
         $record = parent::findByAll($pagination, $perPage, $data);
         return $record;
