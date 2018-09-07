@@ -170,9 +170,7 @@ public function socialLogin(Request $request)
         ];
     }else{
         if($user) {
-            if(!$data['from_sign_up']){
-               unset($data['role_id']);
-           }
+           unset($data['role_id']);
            unset($data['from_sign_up']);
            $userData['user_details'] = $data; 
            $userData['id'] = $user->id; 
