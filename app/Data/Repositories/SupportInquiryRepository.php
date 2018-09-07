@@ -44,6 +44,7 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
+
         $data = Cache::get($this->_cacheKey.$id);
 
         if ($data == null || $refresh == true) {
@@ -54,11 +55,11 @@ class SupportInquiryRepository extends AbstractRepository implements RepositoryC
                 foreach ($query->getAttributes() as $column => $value) {
                     $data->{$column} = $query->{$column};
                 }
-
+                $userData = $this->userRepo->findById($data->user_id);
                 $data->support_question = $query->support_question;
                 $data->role = new StdClass;
                 if($data->support_question) {
-                    $roleData = $this->roleRepo->findById($data->support_question->role_id);
+                    $roleData = $this->roleRepo->findById($userData->role_id);
                     if($roleData) {
                         $data->role  =  $roleData;    
                     }                    

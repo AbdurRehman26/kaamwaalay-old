@@ -94,7 +94,6 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
                 $this->builder = $this->builder->where('is_archived', '=', 1);            
                     
             }else{
-
                 $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
             }
 
@@ -102,18 +101,19 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
 
         if(!empty($input['filter_by_job_id'])) {
             $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);            
-                
-        }            
+        }           
         if(!empty($input['filter_by_invitation'])) {
             $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);            
                 
         }   
-        if(!empty($input['filter_by_archived'])) {
+        if(!empty($input['filter_by_archived']) || isset($input['filter_by_archived'])) {
             $this->builder = $this->builder->where('is_archived', '=', $input['filter_by_archived']);            
-                
         }                  
-        if(!empty($input['filter_by_awarded'])) {
+        if(!empty($input['filter_by_awarded']) || isset($input['filter_by_awarded'])) {
             $this->builder = $this->builder->where('is_awarded', '=', $input['filter_by_awarded']);            
+        }                 
+        if(!empty($input['is_status'])) {
+            $this->builder = $this->builder->where('status', '=', $input['is_status']);            
         }               
         if(!empty($input['filter_by_active_bids'])) {
 
@@ -121,14 +121,20 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where(
                 function ($query) {
                     $query->where('status', '=', 'pending');
-                    $query->orWhere('status', '=', 'on_the_way');
+                    $query->orWhere('status', '=', 'in_the_way');
                     $query->orWhere('status', '=', 'initiated');
                 }
             );
         }            
-        $input['details'] = $input['filter_by_job_detail'];
+        if(!empty($input['filter_by_job_detail'])) {
+            $input['details'] = $input['filter_by_job_detail'];
+        }
+
         $data = parent::findByAll($pagination, $perPage, $input);
 
+        if(!empty($input['count_only'])) {
+            $data['data'] = sizeof($data['data']);
+        }
         return $data;
 
     }

@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
 use Carbon\Carbon;
+use Storage;
 
 class JobRepository extends AbstractRepository implements RepositoryContract
 {
@@ -38,12 +39,6 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
     }
 
-    public function update(array $data = [])
-    {
-        $data = parent::update($data);
-        return $data;
-    }
-
     public function findByAll($pagination = false, $perPage = 10, array $input = [] )
     {
 
@@ -70,8 +65,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         if(!empty($input['filter_by_service'])) {
 
             $ids = app('ServiceRepository')->model->where('id', $input['filter_by_service'])
-                ->orWhere('parent_id', $input['filter_by_service'])
-                ->pluck('id')->toArray();
+            ->orWhere('parent_id', $input['filter_by_service'])
+            ->pluck('id')->toArray();
 
             $this->builder = $this->builder->whereIn('service_id', $ids);            
         }
@@ -90,7 +85,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 [
                     [ 'job_bids.user_id', $input['filter_by_service_provider']],
                     [ 'job_bids.is_awarded', 1]
-                    ]
+                ]
             )->select('jobs.*');
         }
 
@@ -103,11 +98,21 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
+
         $data = parent::findById($id, $refresh, $details, $encode);
         if($data) {
+
             $details = ['user_rating' => true];
             $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+            
             if(empty($details['job_details'])) {
+
+                if(!empty($data->images)){
+                    foreach ($data->images as $key => $image) {
+                        $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                    }
+                }
+                
                 $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
                 $data->service = app('ServiceRepository')->findById($data->service_id);
 
@@ -125,12 +130,13 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $bidsCriteria = ['job_id' => $data->id];
                 $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
                 $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
-
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
                 if($awardedBid) {
-                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id);
+                    $data->awardedBid = $awardedBid;
+                    $details = ['profile_data' => true];
+                    $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id, false, $details);
                 }
 
                 $ratingCriteria = ['user_id' => $data->user_id];
@@ -141,6 +147,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $data->avg_rating = $avgRating;
 
                 if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
+                    
                     $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                     $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
                     $data->job_amount = $jobAmount;

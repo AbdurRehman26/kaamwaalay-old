@@ -104,6 +104,8 @@ class RolesTableSeeder extends Seeder
                     "job-bid.index",
                     "job-bid.store",
                     "job-bid.update",
+                    "service.index",
+                    "support-inquiry.store",
                     "update.campaign",
                     "user-rating.store",
                     "support-inquiry.store",

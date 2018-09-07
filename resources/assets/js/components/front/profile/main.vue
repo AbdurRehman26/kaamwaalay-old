@@ -149,13 +149,13 @@
                 url : 'api/user/me',
                 showNoRecordFound : false,
                 search : '',
+                loading : false,
+                isFileUpload : false,
+                cities : [],
                 stateUrl : 'api/state',
                 cityUrl : '',
                 states : [],
                 file: null,
-                loading : false,
-                isFileUpload : false,
-                cities : [],
                 profileImage : ''
             }
         },

@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceTableSeeder::class);
         $this->call(ServiceProviderProfileSeeder::class);
 
+        // Job bid and rating commented
+        
         $this->call(JobTableSeeder::class);
         $this->call(JobBidTableSeeder::class);
 

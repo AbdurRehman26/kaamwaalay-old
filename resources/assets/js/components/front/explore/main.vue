@@ -80,7 +80,7 @@
 					<div class="category-items">
 						<ul class="item-list-container">
 							<li class="items-list" v-for="othercategorySubservice in isnotexplorecategory.subservices.data">
-								<a href="javascript:void(0);">
+								<a href="javascript:void(0);" @click.prevent="changecategorypopup(othercategorySubservice)">
 									<p>{{othercategorySubservice.title}}</p>
 								</a>
 							</li>
@@ -95,7 +95,7 @@
 					<div class="category-items">
 						<ul class="item-list-container">
 							<li class="items-list" v-for="othercategory in getOtherServices">
-								<a href="javascript:void(0);">
+								<a @click.prevent="changecategorypopup(othercategory)" href="javascript:void(0);">
 									<p>{{othercategory.title}}</p>
 								</a>
 							</li>
@@ -310,6 +310,7 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
+		console.log(result, 990066);
 		// if(result.length > 3) {
 		// 	result = result.slice(3,5);
 		// }else {

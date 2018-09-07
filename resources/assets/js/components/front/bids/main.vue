@@ -26,10 +26,10 @@
 
 			<div class="job-post-container section-padd sm">
 				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation>
-				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount"></bid-completed>
-				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount"></bid-awarded>
-				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount"></bid-archived>
-				<bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" ></bid-active>
+				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount" :show="(bid_selection == 'completedbid')" :count="completedCount"></bid-completed>
+				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount" :show="(bid_selection == 'awardedbid')" :count="awardedCount"></bid-awarded>
+				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount" :show="(bid_selection == 'archivedbid')" :count="archivedCount"></bid-archived>
+				<bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" :show="(bid_selection == 'activebid')" :count="activeBidCount"></bid-active>
 			</div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -47,7 +47,7 @@
     export default {
       data () {
         return {
-         bid_selection: 'invitebid',
+         bid_selection: '',
          bidpopup: false,
          isShowing:false,
          infoval:false,
@@ -105,7 +105,73 @@
     },
     CloseDiscussion(){
         this.isShowing=false;
-    }   
+    },
+    getActiveBidsCount() {
+        var activeBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&count_only=true';
+        this.getListCount(activeBidUrl, false, (record) => {
+            this.activeBidCount = record.count;
+        });
+    },
+    getAwardedBidsCount() {
+        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=1&count_only=true';
+        this.getListCount(awardedBidUrl, false, (record) => {
+            this.awardedCount = record.count;
+        });
+    },
+    getCompletedBidsCount() {
+        var completedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_status=completed&filter_by_awarded=1&count_only=true';
+        this.getListCount(completedBidUrl, false, (record) => {
+            this.completedCount = record.count;
+        });
+    },
+    getArchivedBidsCount() {
+        var archivedBidUrl = 'api/job-bid?&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=1&count_only=true';
+        this.getListCount(archivedBidUrl, false, (record) => {
+            this.archivedCount = record.count;
+        });
+    },
+    getListCount(url, page, successCallback){
+
+        let self = this;
+
+        let result = {
+            count : 0,
+            noRecordFound : false
+        };
+
+
+        if(typeof(page) !== 'undefined' && page){
+            url += '&page='+page;   
+        }
+
+        self.$http.get(url).then(response=>{
+
+            response = response.data.response;
+            
+            let result = {
+                count : response.data,
+                noRecordFound : false,
+                pagination : response.pagination
+
+            };
+
+
+            if(!response.data.length){
+                result.noRecordFound = true;
+            }
+
+            self.pagination = response.pagination;
+
+            if(typeof successCallback !== 'undefined'){
+                successCallback(result);
+            }
+
+        }).catch(error=>{
+            console.log(error , 'error');
+        });
+
+    },
+
 
 },
 components: {
@@ -113,13 +179,25 @@ components: {
 },
 
 mounted(){
-
+    this.getActiveBidsCount();
+    this.getAwardedBidsCount();
+    this.getCompletedBidsCount();
+    this.getArchivedBidsCount();
+    this.bid_selection = 'invitebid';
 },
 watch:{
- bid_selection: function (val){
-  return this.val
+    bid_selection: function (val){
+    return this.val
 },
 }
 
 }
+/*
+filter_by_job_detail=true
+filter_by_invitation=1
+filter_by_archived=0
+is_status=invited
+filter_by_awarded=0
+filter_by_active_bids=true
+*/
 </script>
