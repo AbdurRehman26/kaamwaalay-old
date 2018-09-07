@@ -340,8 +340,8 @@
                 return this.record.awarded_to;
             },
             canInvite(){
-                if(this.jobBids && this.record.length){
-                    return !this.record.awarded_to  && !this.jobBids.data.length;
+                if(this.jobBids && Object.keys(this.record).length){
+                    return !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
                 }
                 return false;
             },
@@ -349,14 +349,13 @@
                 return this.record.awardedBid && this.record.status !== 'completed' && this.record.awardedBid.status == 'completed';
             },
             canCancelJob(){
-                if(this.record.legnth){
-                    return this.record.status != 'completed' && this.record.status !== 'cancelled';
+                if(Object.keys(this.record).length){
+                    return !this.record.awarded_to && this.record.status != 'completed' && this.record.status !== 'cancelled';
                 }
                 return false;
             },
             canModifyJob(){
-                if(this.record.length){
-
+                if(Object.keys(this.record).length){
                     return !this.record.awarded_to && this.record.status !== 'cancelled';
                 }
                 return false;

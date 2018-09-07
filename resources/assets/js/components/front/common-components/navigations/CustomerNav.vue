@@ -14,26 +14,26 @@
                     <p class="username">{{fullName}}</p>
                 </div>
             </li>
-    
-                    <li class="setting-li">
-                        <router-link @click.native="scrollToTop()" to="/profile">
-                            <i class="icon-cog2 action-icon"></i>
-                        </router-link>
-                    </li>
-                    <li class="bell-li">
-                        <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
-                            <i v-bind:active="tab == true" class="icon-notification action-icon">
-                                <span class="badge-count">5</span></i>
-                                <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
-                            </span>
-                        </li>
-                        <li>
-                             <logout-component></logout-component>
-                     </li>
-             
-         </ul>
-     </li>
- </ul>
+
+            <li class="setting-li">
+                <router-link @click.native="scrollToTop()" to="/profile">
+                    <i class="icon-cog2 action-icon"></i>
+                </router-link>
+            </li>
+            <li class="bell-li">
+                <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
+                    <i v-bind:active="tab == true" class="icon-notification action-icon">
+                        <span class="badge-count">5</span></i>
+                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
+                    </span>
+                </li>
+                <li>
+                   <logout-component></logout-component>
+               </li>
+
+           </ul>
+       </li>
+   </ul>
 </div>
 </template>
 
@@ -41,22 +41,22 @@
     import { directive as onClickaway } from 'vue-clickaway';
     export default{
         mounted (){
-           this.getAllServices();
-       },
-       data () {
-          return {
-            isShowing:false,
-            showModalValue : false,
-            tab: false,
-            tabmenu: false,
-            first_name : '',
-            last_name : '',
-            user:{}
-        }
-    },
-    directives: {
-        onClickaway: onClickaway,
-    },
+         this.getAllServices();
+     },
+     data () {
+      return {
+        isShowing:false,
+        showModalValue : false,
+        tab: false,
+        tabmenu: false,
+        first_name : '',
+        last_name : '',
+        user:{}
+    }
+},
+directives: {
+    onClickaway: onClickaway,
+},
     computed : {
         userDetails(){
             return JSON.parse(this.$store.getters.getAuthUser);
@@ -72,46 +72,37 @@
         }
     },
     methods: {
-        changePassword(){
+     changePassword(){
             if(this.socialAccountId == null){
               this.$emit('profilepopup')
             }
-        },ShowModal(){
-            this.showModalValue = true;
         },
-        HideModal(){
-            this.showModalValue = false;
-        },
-        Showactive(){
-            this.tab ^= true;
-        },
-        away: function(){
-            this.isShowing = false;
-            this.tab = false;
-        },
-        WriteReviewModal(){                
-            this.$emit('WriteReviewModal');
-        },         
-        ViewBid(){
-            /*this.$router.push({name: 'job-details'})*/
-            this.$emit('ViewBid');
-        },           
-        scrollToTop() {
-            window.scrollTo(0,0);
-        },                       
-        getAllServices() {
-            let self = this;
-            let url = 'api/service';
-
-            self.$http.get(url).then(response=>{
-                response = response.data.response;
-                self.$store.commit('setAllServices' , response.data);
-                self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
-            }).catch(error=>{
+    away: function(){
+        this.isShowing = false;
+        this.tab = false;
+    },
+    WriteReviewModal(){                
+        this.$emit('WriteReviewModal');
+    },         
+    ViewBid(){
+        /*this.$router.push({name: 'job-details'})*/
+        this.$emit('ViewBid');
+    },           
+    scrollToTop() {
+        window.scrollTo(0,0);
+    },                       
+    getAllServices() {
+        let self = this;
+        let url = 'api/service';
+        self.$http.get(url).then(response=>{
+            response = response.data.response;
+            self.$store.commit('setAllServices' , response.data);
+            self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
+        }).catch(error=>{
 
 
-            });
-        },
-    }
+        });
+    },
+}
 }
 </script>

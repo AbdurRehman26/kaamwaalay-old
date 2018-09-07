@@ -1,6 +1,6 @@
  <template> 
     <div class="popup categories-popup">
-        <b-modal id="award-job" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Yes, award job">
+        <b-modal id="award-job" centered hide-footer hide-header @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Yes, award job">
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
 
             <div class="category-selected">

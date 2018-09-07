@@ -4,8 +4,8 @@
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
             <div>
                 <p>Write review and provide your feedback on 
-                    <strong>{{job.title}}</strong>  performed by 
-                    <strong>{{job.awarded_to &&  job.awarded_to.business_details ? job.awarded_to.business_details.business_name : ''}}</strong>
+                    <strong>{{job ? job.title : ''}}</strong>  performed by 
+                    <strong>{{job && job.awarded_to &&  job.awarded_to.business_details ? job.awarded_to.business_details.business_name : ''}}</strong>
                 </p>
                 
                 <b-row class="justify-content-md-center">
@@ -56,6 +56,7 @@
                 loading : false,
                 errorMessage : false,
                 successMessage : false,
+
             }
         },
         methods: {

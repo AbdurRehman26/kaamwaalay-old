@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label class="nolabel">&nbsp;</label>
                             <select class="form-control">
-                              <option v-model="selected">Minimum</option>
+                              <option>Minimum</option>
                             </select>
                         </div>
                     </b-col>
