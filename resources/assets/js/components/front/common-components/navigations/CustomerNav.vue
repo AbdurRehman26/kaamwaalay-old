@@ -7,7 +7,7 @@
             <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
 
-                <div class="user-login-detail float-left pointer" @click="$emit('profilepopup')">
+                <div class="user-login-detail float-left pointer" @click="changePassword">
                     <span class="user-img" @click="ShowModal">
                         <img :src="imageValue" alt="">
                     </span>
@@ -64,12 +64,19 @@
         fullName(){
             return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
         },
+        socialAccountId(){
+            return this.userDetails ? this.userDetails.social_account_id : '';
+        },
         imageValue(){
             return this.userDetails ? this.userDetails.profileImage : ''
         }
     },
     methods: {
-        ShowModal(){
+        changePassword(){
+            if(this.socialAccountId == null){
+              this.$emit('profilepopup')
+            }
+        },ShowModal(){
             this.showModalValue = true;
         },
         HideModal(){
