@@ -111,7 +111,7 @@
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
-                            self.errorBag.clear()
+                            self.errorBag.clear();
                         })
                     }, 10);
 

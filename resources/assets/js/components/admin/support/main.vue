@@ -126,7 +126,7 @@
         };
         this.getList(data, false);
       },
-      getRefreshList() {
+      getRefreshList(record) {
         this.loading = true;
         this.loadingStart = true;
         var data = {
@@ -139,10 +139,6 @@
         this.selectedInquiry = list;
         this.supportDetailPopup = true;
       },
-      getResponse(response) {
-        return ['Helo', "kakak"];//response.data.items
-      },
-
       getList(data , page , successCallback){
         let self = this;
         self.showNoRecordFound = false;
@@ -169,7 +165,6 @@
       if(typeof(page) !== 'undefined' && page){
         url += '&page='+page;   
       }
-      alert("lala");
       self.$http.get(url).then(response => {
         response = response.data.response;
         self.listing = response.data;

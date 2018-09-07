@@ -284,7 +284,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
             return false;
         }
 
-        public function update($data =[])
+        public function update(array $data =[])
         {
             unset($data['user_id']);
 
