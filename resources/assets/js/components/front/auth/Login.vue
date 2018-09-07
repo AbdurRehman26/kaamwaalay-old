@@ -75,10 +75,19 @@ methods: {
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
             this_.$store.commit('setAuthUser', response.data.response.data[0]);
-            if(response.data.response.data[0].role_id == 2){
-              this_.$router.push({ name: 'my.bids'})
+          if(response.data.response.data[0].role_id == 2){
+              if(response.data.response.data[0].is_profile_completed == 0 ){
+                 this_.$router.push({ name: 'provider_profile'})
+             }else{ 
+                 this_.$router.push({ name: 'my.bids'})
+             }
+
           }else{
-              this_.$router.push({ name: 'my.jobs'})  
+              if(response.data.response.data[0].is_profile_completed == 0 ){
+                 this_.$router.push({ name: 'customer_profile'})
+             }else{ 
+                 this_.$router.push({ name: 'my.jobs'})
+             }         
           }
       }).catch(error => {
         this.loading = false
@@ -93,11 +102,17 @@ methods: {
 
     setTimeout(function(){
         if(user.role_id == 2){
-
-            this_.$router.push({ name: 'my.bids'})
-
+           if(response.data.response.data[0].is_profile_completed == 0 ){
+             this_.$router.push({ name: 'provider_profile'})
+         }else{ 
+             this_.$router.push({ name: 'my.bids'})
+         }
         }else{
-          this_.$router.push({ name: 'my.jobs'})  
+           if(response.data.response.data[0].is_profile_completed == 0 ){
+             this_.$router.push({ name: 'customer_profile'})
+         }else{ 
+             this_.$router.push({ name: 'my.jobs'})
+         }   
       }
 
       this.loading = falsel;
