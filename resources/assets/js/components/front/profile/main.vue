@@ -125,6 +125,7 @@
                     <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">Update Profile
                         <loader></loader>
                     </button>
+
                 </div>
 
                 <div class="form-detail">
@@ -161,7 +162,6 @@
             }
         },
         mounted(){
-            this.getList();
         },
         computed : {
             requestUrl(){
@@ -228,10 +228,10 @@
                     self.successMessage = response.message;
 
                     setTimeout(function () {
-// self.$router.push({ name : 'my.jobs'});
-self.successMessage = '';
-self.loading = false;
-}, 2000);
+                        self.$router.push({ name : 'my.jobs'});
+                        self.successMessage = '';
+                        self.loading = false;
+                    }, 2000);
 
                 }).catch(error => {
                     this.loading = false;
