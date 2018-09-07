@@ -19,7 +19,7 @@ class UserRatingController extends ApiResourceController
 
         if($value == 'store') {
             $rules['job_id']        =  'required|numeric|exists:jobs,id';
-            $rules['message']       =  'required|alpha_num';
+            $rules['message']       =  'required';
             $rules['rating']        =  'required|numeric|max:5';
             $rules['user_service_id'] =  'numeric|exists:service_provider_services,id';
             $rules['user_id']        =  'required|numeric|exists:users,id';

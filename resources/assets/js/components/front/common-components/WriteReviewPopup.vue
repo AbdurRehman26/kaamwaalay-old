@@ -31,7 +31,7 @@
         </div>
 
 
-        <vue-common-methods @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :submit="submit">
+        <vue-common-methods @form-error="formError" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :submit="submit">
         </vue-common-methods>
 
 
@@ -73,7 +73,10 @@
                     self.hideModal();
                     self.loading = false;
                 }, 2000);
-
+            },
+            formError(error){
+                console.log(error);
+                this.errorMessage = error;
             },
             showModal() {
                 this.$refs.myModalRef.show()

@@ -208,12 +208,14 @@
                         this.errorMessage = '';
                         return;
                     }
-                    console.log(result , this.errorBag.all());
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
                 let self = this;
+                
+                this.record.is_profile_completed = 1;
+
                 let data = {
                     user_details : this.record
                 };

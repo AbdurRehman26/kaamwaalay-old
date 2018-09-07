@@ -214,7 +214,7 @@
                                     
                                     <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
                                     
-                                    <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && jobAwarded.id == bid.user_id" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                    <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>                             
 
@@ -365,11 +365,14 @@
           }
       },
       methods: {
-        formSubmitted(){
+        formSubmitted(response){
 
             this.reSendCall();
-
-            this.showReviewForm = true;
+            
+            if(!response.is_archived && response.status == 'completed')
+            {
+                this.showReviewForm = true;
+            }
 
 
         },

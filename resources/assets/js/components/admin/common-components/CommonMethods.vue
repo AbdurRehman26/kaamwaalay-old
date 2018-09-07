@@ -83,7 +83,7 @@
 
                 }).catch(error=>{
                     self.loading = false;
-                    console.log(error , 'error');
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@getList');
                 });
             },
             submitForm(successCallback) {
@@ -102,7 +102,7 @@
 
                 
                 urlRequest.then(response => {
-                    self.$emit('form-submitted', response);
+                    self.$emit('form-submitted', response.data.response);
 
                 }).catch(error => {
 
@@ -111,7 +111,7 @@
                         return successCallback(true);
                     }
 
-                    console.log(error , 'error in job posting');
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@submitForm');
                     self.$emit('form-error', error);
 
 
