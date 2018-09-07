@@ -58,6 +58,9 @@ Route::group(['middleware' => ['scopes']], function () {
         'index',
     ]);
 
+    Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
+        'edit','create','destory'
+    ]);
     //Payment Listing
     Route::get('payment', 'Api\V1\PaymentController@index')->name('payment.index');
 

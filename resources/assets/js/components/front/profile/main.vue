@@ -62,7 +62,7 @@
 <div class="col-md-6">
    <div class="form-group">
     <label for="">Contact Number</label>
-    <input type="password" class="form-control" name="phone_number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
+    <input type="text" class="form-control" name="phone_number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
 </div>
 </div>
 </div>

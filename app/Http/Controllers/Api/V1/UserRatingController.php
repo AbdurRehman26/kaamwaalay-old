@@ -21,7 +21,7 @@ class UserRatingController extends ApiResourceController
             $rules['job_id']        =  'required|numeric|exists:jobs,id';
             $rules['message']       =  'required|alpha_num';
             $rules['rating']        =  'required|numeric|max:5';
-            $rules['user_service_id']        =  'required|numeric|exists:service_provider_services,id';
+            $rules['user_service_id'] =  'numeric|exists:service_provider_services,id';
             $rules['user_id']        =  'required|numeric|exists:users,id';
         }
 
@@ -43,19 +43,19 @@ class UserRatingController extends ApiResourceController
     {
 
        if($value == 'index'){
-            $input = request()->only('pagination', 'user_id');
-        }
-
-        if($value == 'store'){
-            $input = request()->only('rating', 'message', 'job_id', 'user_service_id', 'user_id');
-            $input['rated_by'] = request()->user()->id;
-        }
-
-        if($value == 'show'){
-            $input = request()->only('id');
-        }
-
-        return $input;
+        $input = request()->only('pagination', 'user_id');
     }
+
+    if($value == 'store'){
+        $input = request()->only('rating', 'message', 'job_id', 'user_service_id', 'user_id', 'status');
+        $input['rated_by'] = request()->user()->id;
+    }
+
+    if($value == 'show'){
+        $input = request()->only('id');
+    }
+
+    return $input;
+}
 
 }

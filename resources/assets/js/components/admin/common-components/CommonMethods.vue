@@ -93,7 +93,7 @@
 
                 let urlRequest = '';
 
-                if(!this.updateForm){
+                if(this.updateForm){
                     urlRequest = self.$http.put(url , data)
                 }else{
                     urlRequest = self.$http.post(url , data);

@@ -43,6 +43,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
     {
         $data = parent::findById($id, $refresh, $details, $input);
         if ($data) {
+
             $data->user_detail = app('UserRepository')->findById($data->user_id, false, $details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];

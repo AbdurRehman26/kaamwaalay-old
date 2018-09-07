@@ -63,7 +63,7 @@
                 <td> {{ record.service | childOrParentService }} </td>
                 <td>
                     <span v-if="!record.is_archived" class="tags" 
-                    :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
+                    :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'rejected')]">
                     {{ record | jobStatus }}
                 </span> 
 

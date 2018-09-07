@@ -139,15 +139,13 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id, false, $details);
                 }
 
-                $ratingCriteria = ['user_id' => $data->user_id];
-                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+                $ratingCriteria = ['rated_by' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
+                
+                $data->job_rating = app('UserRatingRepository')->getAvgRatingCriteria($ratingCriteria, false);
 
-                $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
-                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-                $data->avg_rating = $avgRating;
 
                 if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
-                    
+
                     $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                     $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
                     $data->job_amount = $jobAmount;

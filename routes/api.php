@@ -48,7 +48,3 @@ Route::resource('country', 'Api\V1\CountryController')->only([
 Route::resource('state', 'Api\V1\StateController')->only([
     'index', 'show',
 ]);
-
-Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-    'edit','create','destory'
-]);

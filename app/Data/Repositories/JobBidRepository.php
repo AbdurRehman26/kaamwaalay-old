@@ -141,8 +141,6 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
                     $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
                 }
                 
-                $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
-                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
             }
 
             return $data;

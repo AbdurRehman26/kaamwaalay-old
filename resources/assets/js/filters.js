@@ -94,6 +94,10 @@ const jobPreferences = [
     key : 'few_weeks',
     value : 'in next few days'
 },
+{
+    key : 'normal',
+    value : 'normal'
+}
 ];
 
 
