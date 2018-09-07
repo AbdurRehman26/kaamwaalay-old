@@ -174,25 +174,28 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
     public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null , $orCrtieria = [])
     {
+        $this->builder = $this->model->newInstance();
 
         if($crtieria) {
 
-            $this->model = $this->model->where($crtieria);
+            $this->builder = $this->builder->where($crtieria);
         }
 
         // or Criteria must be an array 
         if($crtieria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
-                $this->model  = $this->model->orWhere($where);
+                $this->builder  = $this->builder->orWhere(function ($query) use ($where) {
+                    $query->where($where);
+                });
             }
         }
 
 
         if($startDate && $endDate) {
-            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $this->builder = $this->builder->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        return  $this->model->count();
+        return  $this->builder->count();
     }
 
 }
