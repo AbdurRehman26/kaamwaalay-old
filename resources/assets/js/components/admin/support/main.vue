@@ -169,7 +169,6 @@
       if(typeof(page) !== 'undefined' && page){
         url += '&page='+page;   
       }
-      alert("lala");
       self.$http.get(url).then(response => {
         response = response.data.response;
         self.listing = response.data;
