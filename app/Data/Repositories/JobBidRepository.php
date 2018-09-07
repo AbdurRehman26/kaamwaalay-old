@@ -117,12 +117,14 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
         }               
         if(!empty($input['filter_by_active_bids'])) {
 
-            $this->builder = $this->builder->where('status', '=', 'pending');
-          // $this->builder = $this->builder->where(
-          //       function ($query) {
-          //           $query->where('status', '=', 'pending');
-          //       }
-          //   );
+            //$this->builder = $this->builder->where('status', '=', 'pending');
+            $this->builder = $this->builder->where(
+                function ($query) {
+                    $query->where('status', '=', 'pending');
+                    $query->orWhere('status', '=', 'on_the_way');
+                    $query->orWhere('status', '=', 'initiated');
+                }
+            );
         }            
         $input['details'] = $input['filter_by_job_detail'];
         $data = parent::findByAll($pagination, $perPage, $input);

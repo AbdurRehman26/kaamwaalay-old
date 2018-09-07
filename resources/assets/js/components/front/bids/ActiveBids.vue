@@ -14,7 +14,7 @@
 								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{getUserName(getJobUser(record))}}</a></span>		
 								<span class="job-category noborder">{{ getJobCategory(record.job) }}</span>											
 							</div>	
-						</div>
+						</div>	
 					</div>
 					<div class="col-md-6 job-bid-btn p-r-0">
 						<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: chat_message === false}"><i class="icon-message"></i></a>						
@@ -162,8 +162,8 @@
 		},
 		computed: {
 			requestUrl() {
-				//return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&user_id=' + this.user.id;
-				return null;
+				return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&user_id=' + this.user.id;
+				//return null;
 			}
 		},
 		mounted(){
