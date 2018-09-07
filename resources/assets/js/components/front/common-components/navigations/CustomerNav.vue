@@ -14,9 +14,8 @@
                     <p class="username">{{fullName}}</p>
                 </div>
             </li>
-            <li class="account-info-keys">
-                <ul>
-                    <li @click="$emit('clickmenu')" class="setting-li">
+    
+                    <li class="setting-li">
                         <router-link @click.native="scrollToTop()" to="/profile">
                             <i class="icon-cog2 action-icon"></i>
                         </router-link>
@@ -28,13 +27,10 @@
                                 <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
                             </span>
                         </li>
-                        <li @click="$emit('clickmenu')" >
-                            <router-link @click.native="scrollToTop()" to="/" class="no-active">
-                             <logout-component></logout-component> 
-                         </router-link>
+                        <li>
+                             <logout-component></logout-component>
                      </li>
-                 </ul>
-             </li>
+             
          </ul>
      </li>
  </ul>
