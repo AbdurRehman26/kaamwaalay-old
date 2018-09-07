@@ -30,7 +30,8 @@ class PlanController extends ApiResourceController
 
         if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
-            $rules['type']          =  'required|in:service,job';
+            $rules['type']          =  'nullable|in:service,job';
+            $rules['product']    = 'nullable|in:featured_profile,account_creation';
         }
 
         if($value == 'updateOrAddPlans') {
@@ -41,8 +42,8 @@ class PlanController extends ApiResourceController
 
         if($value == 'store') {
             $rules['amount']     = 'required|numeric|not_in:0';
-            $rules['quantity']   = 'required|numeric|not_in:0';
             $rules['type']       = 'required|in:job,service';
+            $rules['id']         = 'nullable|exists:plans,id';
        }
 
        if($value == 'destroy') {
@@ -57,7 +58,7 @@ class PlanController extends ApiResourceController
     {
 
         if($value == 'index'){
-            $input = request()->only('pagination', 'type');
+            $input = request()->only('pagination', 'type','product');
         }
 
         if($value == 'show'){
@@ -73,7 +74,7 @@ class PlanController extends ApiResourceController
         }
 
         if($value == 'store') {
-            $input = request()->only('product','amount','quantity','type');
+            $input = request()->only('id','product','amount','quantity','type');
         }
 
         if($value == 'destroy') {
@@ -132,6 +133,11 @@ class PlanController extends ApiResourceController
         $input = $this->input(__FUNCTION__);
           if( $input['type'] == 'job'){
               $rules['product']    = 'required|in:urgent_job';
+          }else{
+              $rules['product']    = 'required|in:featured_profile,account_creation';
+          } 
+          if(($input['type'] == 'job' && $input['product'] == 'urgent_job') || ($input['type'] == 'service' && $input['product'] == 'account_creation')){
+                $rules['quantity']   = 'nullable';
           }else{
               $rules['product']    = 'required|in:featured_profile,account_creation';
           }

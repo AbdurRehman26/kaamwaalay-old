@@ -9,8 +9,6 @@
       @change='complete = $event.complete'
       /> -->
       <div>
-
-
         <div class="verify-account nobar">
           <div class="row">
             <div class="col-md-6">
@@ -52,8 +50,6 @@
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
     <div slot="modal-footer" class="w-100">
@@ -68,7 +64,7 @@
 import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
 
 export default {
-  props : ['showModalProp','stripe', 'options' ],
+  props : ['showModalProp','stripe', 'options','planId' ,'fromFeaturedProfile'],
   data () {
     return {
       complete: false,
@@ -105,13 +101,20 @@ export default {
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
       this.loading = true
       createToken().then(data => {
-      self.$http.post('/api/payment', {'stripe_token': data.token.id})
+      let params =  {
+            'stripe_token': data.token.id,
+            'plan_id': this.planId
+        }
+      self.$http.post('/api/payment',params)
                 .then(response => {
                     self.successMessage =  response.data.message
                     self.$parent.url = "";
                     setTimeout(function(){
                         self.loading = false
                         self.successMessage='';
+                        if(self.fromFeaturedProfile){
+                          self.$parent.getCampaignList()
+                        }
                         self.hideModal()
                     }, 2000);
                 })

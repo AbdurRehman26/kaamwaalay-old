@@ -117,26 +117,17 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
     {
         $user = User::find($data['user_id']);
         $stripeToken = $data['stripe_token'];
-        //return  $user->charge(100);
+        $planId = $data['plan_id'];
          try{
-              $user->newSubscription('main', 'plan_DXg2Sso3f23PVP')->create($stripeToken);
+              $user->newSubscription('', $planId)->create($stripeToken);
+              $campaignModel = app('CampaignRepository')->model;
+              $campaignData = [];
+              $campaignData['plan_id'] = $planId;
+              $campaignData['user_id'] = $data['user_id'];
+              $campaignModel->create($campaignData);
               return 'success';
           } catch (\Stripe\Error\InvalidRequest $e) {
               return $e->getMessage();
           }
-
-        /*unset($data['user_id']);
-        if (!empty($data['parent_id'])) {
-
-            $parentExist = Service::where('id', '=', $data['parent_id'])->whereNull('parent_id')->count();
-
-            if ($parentExist) {
-                return parent::create($data);
-            }else{
-                return 'not_parent';
-            }
-        }else{
-            return parent::create($data);
-        }*/
     }
 }

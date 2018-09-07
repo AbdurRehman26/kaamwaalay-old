@@ -22,7 +22,8 @@
                          </p>	
                      </div>
                  </div>
-                 <div class="col-md-3">
+                 <no-record-found v-if="showPlanFound"></no-record-found>
+                 <div v-if="!showPlanFound" class="col-md-3">
                     <button  @click.prevent="validateBeforeSubmit();" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'payment-continue' ]">
                      Continue
                      <loader></loader>
@@ -76,14 +77,13 @@
       <ul class="views-percentage">
           <li>Actual views: <span>{{campaign.views}}</span></li>
           <li>Clicks: <span>{{campaign.clicks}}</span></li>
-          <li>CTR: <span>{{((campaign.clicks/campaign.views)*100)}}%</span></li>
+          <li>CTR: <span>{{(campaign.clicks != 0)?((campaign.clicks/campaign.views)*100):0}}%</span></li>
       </ul>
   </div>
 </div>	
+<no-record-found v-if="showCampaignFound"></no-record-found>
 </div>
-<card-element @HideModalValue="HideModal" :showModalProp="showCardPopup"></card-element>
-
-
+<card-element @HideModalValue="HideModal" :showModalProp="showCardPopup" :planId='selectedPlan' :fromFeaturedProfile="'true'"></card-element>
 </div>
 </template>
 
@@ -104,6 +104,8 @@ export default {
         loading: false,
         errorMessage: '',
         successMessage: '',
+        showCampaignFound: '',
+        showPlanFound: '',
         user: {},
 }
 },
@@ -120,17 +122,18 @@ HideModal(){
 },
 getPlansList (){
     let self = this;
-    self.showNoRecordFound = false;
+    self.showPlanFound = false;
     self.loading = true;
     let url = 'api/plan';
     let params = {
         pagination: false,
         type: 'service',
+        product: 'featured_profile',
     };
     self.$http.get(url, {params: params}).then(response=>{
         self.plans = response.data.response.data;
         if (!self.plans.length) {
-            self.showNoRecordFound = true;
+            self.showPlanFound = true;
         }
         self.loading = false;
     }).catch(error=>{
@@ -138,7 +141,7 @@ getPlansList (){
 },
 getCampaignList (){
     let self = this;
-    self.showNoRecordFound = false;
+    self.showCampaignFound = false;
     self.user = JSON.parse(self.$store.getters.getAuthUser)
     self.loading = true;
     let url = 'api/campaign';
@@ -149,7 +152,7 @@ getCampaignList (){
     self.$http.get(url, {params: params}).then(response=>{
         self.campaigns = response.data.response.data;
         if (!self.campaigns.length) {
-            self.showNoRecordFound = true;
+            self.showCampaignFound = true;
         }
         self.loading = false;
     }).catch(error=>{

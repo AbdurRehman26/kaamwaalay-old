@@ -46,10 +46,14 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
 
     public function findByAll($pagination = false, $perPage = 10, array $data = [] )
     {
-        $this->builder = $this->builder
-            ->where('type', '=', $data['type'])
-            ->whereNotIn('id', [Plan::URGENT, Plan::ACCOUNT_CREATION])
-            ->orderBy('amount', 'ASC');   
+        $this->builder = $this->builder;
+        if(!empty($data['type'])){
+        $this->builder =   $this->builder->where('type', '=', $data['type']);
+        }
+        if(!empty($data['product'])){
+        $this->builder =   $this->builder->where('product', '=', $data['product']);
+        }
+         $this->builder=  $this->builder->orderBy('amount', 'ASC'); 
         return  parent::findByAll($pagination, $perPage);
     
     }
@@ -89,6 +93,10 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = [])
     {
+        if(!empty($data['id']) && ($data['type'] == 'service' &&  $data['product'] == 'account_creation') || ($data['type'] == 'job' &&  $data['product'] == 'urgent_job')){
+            parent::deleteById($data['id']);
+        }
+        unset($data['id']);
         $record = parent::create($data);
         // for stripe cent to dollar
         $data['amount'] = (int) $data['amount']*100;

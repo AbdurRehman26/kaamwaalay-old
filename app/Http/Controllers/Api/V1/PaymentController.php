@@ -49,10 +49,11 @@ class PaymentController extends ApiResourceController
          */
       public function store(Request $request)
       {
-        $data = $request->only('stripe_token');
+        $data = $request->only('stripe_token','plan_id');
         $data['user_id'] = request()->user()->id;
         $rules = [
             'stripe_token' => 'required',
+            'plan_id' => 'required|exists:plans,id',
         ];
 
         $validator = Validator::make($data, $rules);
