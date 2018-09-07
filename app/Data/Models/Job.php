@@ -17,6 +17,7 @@ class Job extends Model
      */
     protected $casts = [
         'images' => 'array',
+        'videos' => 'array'
     ];
 
 	const AWARDED 		= 'awarded';

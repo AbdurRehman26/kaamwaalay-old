@@ -38,7 +38,7 @@
 <div class="col-6">
     <div class="widget-box">
       <div class="colmn">
-        <h3>Total Service Providers Sign ups</h3>
+        <h3>Total Service Providers Sign up</h3>
         <h2>{{stats.total_service_provider_signup}}</h2>
     </div>
 </div>

@@ -32,7 +32,7 @@
                             <td>{{ record.title }}</td>
                             <td>{{ record.user | fullName }}</td>
                             <td class="text-center">{{ record | jobType }}</td>
-                            <td class="text-center">${{ record.job_amount }}</td>                           
+                            <td class="text-center"> {{ record.job_amount ? '$' : '-' }} {{record.job_amount ? record.job_amount + ' ' : ' ' }}</td>                           
                             <td><star-rating :star-size="20" read-only :rating="record.user.average_rating ? record.user.average_rating  : 0" active-color="#8200ff"></star-rating></td>
 
                             <td class="text-center">
@@ -48,7 +48,7 @@
         </div>
     </div>
 </div>
-<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 <view-service-record :item="currentItem" :showModalProp="servicerecord" @HideModalValue="HideModal"></view-service-record>
 <vue-common-methods :url="requestSecondaryUrl" @get-records="getSecondaryRecord"></vue-common-methods>
 

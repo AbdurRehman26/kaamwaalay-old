@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="view-bidding-detail" title-tag="h4" centered ref="myModalRef" size="md" title=" Bidding Detail" ok-only ok-title="Cancel" cancel-variant="primary" @hidden="onHidden">
+		<b-modal id="view-bidding-detail" hide-footer title-tag="h4" centered ref="myModalRef" size="md" title=" Bidding Detail" @hidden="onHidden">
             
             <div class="view-details-list">
 
@@ -36,7 +36,7 @@
                     <b-col cols="5" class="">
                         <p><strong class="title-head">Bid Statement</strong></p>
                     </b-col>
-                    <b-col cols="12">
+                    <b-col cols="7">
                         <div class="form-group">
                             <p>{{currentItem.description}}</p>
                         </div>

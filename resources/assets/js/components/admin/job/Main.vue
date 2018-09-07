@@ -12,10 +12,10 @@
                     </div>
                     <div class="col-xs-12 col-md-3 datepicker-field">
                       <div class="form-group">
-                       <label>By Type</label>
-                       <select v-model="search.filter_by_service" class="form-control">
-                         <option value="">Select All</option>
-                         <option v-for="service in servicesList" :value="service.id">
+                         <label>By Type</label>
+                         <select v-model="search.filter_by_service" class="form-control">
+                           <option value="">Select All</option>
+                           <option v-for="service in servicesList" :value="service.id">
                             {{ service  | mainServiceOrChildService}}
                         </option>
                     </select>
@@ -23,14 +23,14 @@
             </div>
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-               <label>By Job Status</label>
-               <select v-model="search.filter_by_status" class="form-control">
-                 <option value="">Select All</option>
-                 <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
-             </select>
-         </div>
-     </div>                            
-     <div class="col-xs-12 col-md-2">
+                 <label>By Job Status</label>
+                 <select v-model="search.filter_by_status" class="form-control">
+                   <option value="">Select All</option>
+                   <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
+               </select>
+           </div>
+       </div>                            
+       <div class="col-xs-12 col-md-2">
         <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
             <span>Apply</span>
             <loader></loader>
@@ -62,10 +62,15 @@
                 <td> {{ record.service | mainService }} </td>
                 <td> {{ record.service | childOrParentService }} </td>
                 <td>
-                    <span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">
-                        {{ record | jobStatus }}
-                    </span>
-                </td>
+                    <span v-if="!record.is_archived" class="tags" 
+                    :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
+                    {{ record | jobStatus }}
+                </span> 
+
+                <span v-else class="tags" :class="['archived']">
+                    {{ record | jobStatus }}
+                </span>
+            </td>
                 <td class="text-center">
                   <div class="action-icons">
                     <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails(record.id)"></i>
@@ -162,7 +167,7 @@
                 
             },
             searchList(){
-                
+
                 let newDate  = new Date().getMilliseconds();
 
                 this.url = 'api/job?pagination=true&time='+newDate;

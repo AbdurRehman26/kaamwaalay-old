@@ -12,21 +12,26 @@
 
                      <div class="job-post-list" v-for="record in records">
                       <div class="job-post-details">
-                       <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ record.user.profile_image +')',}"></div>
+                       <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')',}"></div>
 
-							<div class="job-common-description job-perform my-job-listing">
+                       <div class="job-common-description job-perform">
                         <div class="col-md-6 p-l-0">
-                        <div class="job-main-title">
-                                <h3 class="pointer" @click="servicedetail(record.id)">{{record.title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
-                         </div>
-                         <!-- <span><i class="icon-checked"></i></span> -->
-                         <div class="job-notification">									
-                          <div class="jobs-done">
-                             <span class="job-category">{{ record.service | mainServiceOrChildService }}</span>		
-                             <div class="job-status">
-                                <span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">
+
+                            <h3 class="pointer" @click="servicedetail(record.id)">{{record.title}}</h3>
+                            <!-- <span><i class="icon-checked"></i></span> -->
+                            <div class="job-notification">									
+                              <div class="jobs-done">
+                                 <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>		
+                                 <div class="job-status">
+                                    <span v-if="!record.is_archived" class="tags" 
+                                    :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
+                                    {{ record | jobStatus }}
+                                </span> 
+
+                                <span v-else class="tags" :class="['archived']">
                                     {{ record | jobStatus }}
                                 </span>	
+
                             </div>
                         </div>	
                     </div>
@@ -59,9 +64,11 @@
          <i class="icon-flag"></i> 
          <strong>{{ record.bids_count }} bids received - <a href="javascript:void(0);" @click="servicedetail(record.id)">View Bids</a></strong>
      </p>
-     <p class="awarded" v-if="record.awarded_to == true">
+     <p class="awarded" v-if="record.awarded_to">
          <i class="icon-checkmark2"></i> 
-         Awarded to <a href="javascript:void(0);">{{ record.awarded_to }}</a>
+         Awarded to <a href="javascript:void(0);">
+             {{  record.awarded_to.business_details  ? record.awarded_to.business_details.business_name : '' }}
+         </a>
      </p>								
      <p class="service-requirment">
          <i class="icon-brightness-down"></i>
@@ -122,7 +129,7 @@
          writereview: false,
          jobimage: '/images/front/profile-images/logoimage1.png',
          reviewerimage: '/images/front/profile-images/personimage1.png',
-         requestUrl : 'api/job?filter_by_me=true&pagination=true',
+         requestUrl : 'api/job?filter_by_me=true&pagination=true&details["profile_data"]=true',
          requestJobUrl : 'api/job/stats',
          records : [],
          jobStats : [],
@@ -137,7 +144,6 @@
   },
   ViewCustomerDetail() {
     /*this.viewcustomer = true;*/
-            window.scrollTo(0,0);
     this.$router.push({name: 'customerdetail'});
 },
 WriteReview(){
@@ -155,7 +161,7 @@ getResponse(response){
     self.loading = false;
     for (var i = 0 ; i < response.data.length; i++) {
         self.records.push( response.data[i] ) ;
-   
+        
     }
 
 },

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Data\Models\Role;
+use App\Data\Models\User;
 use Faker\Factory;
 use Carbon\Carbon;
 
@@ -26,15 +27,17 @@ class JobBidTableSeeder extends Seeder
 
         $totalCustomers = 150;
 
-        $totalBids = 5;
+        $totalBids = 3;
 
         $jobs = app('JobRepository')->model->limit($totalJobs)->get();
 
-        $customers = app('UserRepository')->model->where('role_id' , Role::SERVICE_PROVIDER)->inRandomOrder()->limit($totalCustomers)->pluck('id')->toArray();
+        $customers = app('UserRepository')
+                    ->model->where('role_id' , Role::SERVICE_PROVIDER)
+                    ->inRandomOrder()->limit($totalCustomers)->pluck('id')->toArray();
 
         // to reduce the possibility of archive happening
 
-        $jobBidStatuses = ['pending', 'pending', 'pending', 'pending', 'pending', 'pending', 'completed'];
+        $jobBidStatuses = ['pending', 'pending', 'pending', 'initiated', 'completed'];
 
 
         foreach ($jobs as $key => $job) {
@@ -65,7 +68,8 @@ class JobBidTableSeeder extends Seeder
                     // updating the job to be awarded  ( there is a small hitch . each time seeder runs it will reset jobs' status)
                     
                     $status = $jobBidStatuses[array_rand($jobBidStatuses)];
-                    $jobStatus = $status  == 'pending' ? 'awarded' : 'completed';
+
+                    $jobStatus = $status  == 'pending' ? 'awarded' : $status;                    
 
                     $updateData = ['id' => $job->id, 'status'=> $jobStatus, 'updated_at' => $now];
 
@@ -97,7 +101,7 @@ class JobBidTableSeeder extends Seeder
                 $data[] = $bidData;
 
                 if(!empty($jobStatus)){
-                    if($jobStatus == 'completed'){
+                    if($jobStatus == 'completed' || $jobStatus == 'initiated'){
                         $breakLoop = true;
                         continue;
                     }            

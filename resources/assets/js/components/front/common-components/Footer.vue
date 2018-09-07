@@ -10,7 +10,6 @@
 									<img src="images/logo.png">
 								</a>
 							</div>
-
 							<div class="footer-location">
 								<div class="form-group">
 									<select class="form-control">
@@ -37,11 +36,11 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Customers</strong></li>
-									<li @click="scroll()"><router-link to="/job-post">Post a job</router-link></li>
-									<li @click="scroll()"><router-link to="/sign-up">Sign up as a customer</router-link></li>
-									<li @click="scroll()"><router-link to="/explore">Explore Services</router-link></li>
-									<li @click="scroll()"><router-link to="/advice-center">Advice center</router-link></li>
-									<li><a href="javascript:;" @click="CustomerSupportPopup()">Customer support</a></li>
+									<li><a href="/job-post">Post a job</a></li>
+									<li><a href="/sign-up">Sign up as a customers</a></li>
+									<li><a href="/explore">Explore Services</a></li>
+									<li><a href="/advice-center">Advice center</a></li>
+									<li><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -49,10 +48,10 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li @click="scroll()"><router-link to="/sign-up">Sign up as a service provider</router-link></li>
+									<li><router-link to="/sign-up">Sign up as a service provider</router-link></li>
 									<li><a href="javascript:;">Completed Jobs</a></li>
-									<li @click="scroll()"><router-link to="/advice-center">Advice center</router-link></li>
-									<li><a href="javascript:;" @click="CustomerSupportPopup()">Service provider support</a></li>
+									<li><router-link to="/advice-center">Frequently asked questions</router-link></li>
+									<li><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,8 +90,8 @@
 						</div>
 						<div class="float-right terms-links">
 							<ul>
-								<li @click="scroll()"><router-link to="/terms-condition">Terms &amp; Conditions</router-link></li>
-								<li @click="scroll()"><router-link to="/privacy-policy">Privacy Policy</router-link></li>
+								<li><router-link to="/terms-condition">Terms &amp; Conditions</router-link></li>
+								<li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
 							</ul>
 						</div>
 					</div>
@@ -100,29 +99,28 @@
 			</div>
 		</div>
 
-		<customer-support-popup @HideModalValue="HideModal" :showModalProp="customersupport"></customer-support-popup>
+		<customer-support-popup @HideModalValue="HideModal" :showModalProp="supportPopup"></customer-support-popup>
 
 	</div>
 </template>
 
 <script type="text/javascript">
     export default {
+    	mounted() {
+    	},
         methods: {
-            CustomerSupportPopup() {
-                this.customersupport = true;
+            showSupportPopup() {
+                this.supportPopup = true;
             },
             HideModal(){
-                this.customersupport = false;
+                this.supportPopup = false;
             },
-            scroll(){
-                window.scrollTo(0,0);
-            },            
 
         },
         
         data(){
             return{
-                customersupport: false,
+                supportPopup: false,
             }
         }
     }

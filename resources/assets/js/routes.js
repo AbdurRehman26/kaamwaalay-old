@@ -109,7 +109,7 @@ const routes = [
         component: require('./components/admin/customer/ViewJobDetail.vue'),
         meta: {
             title: 'View Job Detail',
-            pagetitle:'Customer Job detail Section',
+            pagetitle:'Customer Job detail',
             icon:'icon-users',
             requiresAuth: true,
             forAdmin :true,
@@ -159,7 +159,7 @@ const routes = [
         }
     },
 
-    // Job detail Section
+    // Job detail
 
     {
         name: 'main.job.detail',
@@ -323,6 +323,7 @@ const admin = 1;
 const reviewer = 4;
 const title = document.title
 router.beforeEach((to, from, next) => {
+    console.log(title , 213123123);
     let user;
     if(router.app.$store.getters.getAuthUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthUser);

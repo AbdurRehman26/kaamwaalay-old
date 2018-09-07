@@ -79,7 +79,8 @@
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service_provider',
+        path: '/explore/service_provider/:serviceId/:zip',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',
@@ -89,12 +90,13 @@
     },
 
     {
-        name: 'Service_Provider_Detail',
-        path: '/explore/service_provider/service_provider_detail',
+        name: 'service-provider-detail.view',
+        path: '/explore/service-provider/service-provider_detail/:id',
         meta: {
             title: 'Professional Service Marketplace | Service Provider Detail',
             bodyClass: 'service_provider_detail_page',
             navigation: 'provider-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/explore/service-provider-detail.vue'),
     },    
@@ -139,8 +141,22 @@
     // Job Post
 
     {
-        name: 'Job-Post',
+        name: 'job.create',
         path: '/job-post',
+        meta: {
+            title: 'Professional Service Marketplace | Job Post',
+            bodyClass: 'job-post-page',
+            navigation: 'customer-nav',
+            requiresAuth: true,
+        },
+        component: require('./components/front/job-post/main.vue'),
+    },
+
+    // Job Post
+
+    {
+        name: 'job.view',
+        path: '/job-post/:id',
         meta: {
             title: 'Professional Service Marketplace | Job Post',
             bodyClass: 'job-post-page',

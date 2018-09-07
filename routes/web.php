@@ -23,6 +23,7 @@ Route::get('/admin/password/set/{token}/{email}', function(){
 Route::get('/', function () {
     return view('layout');
 });
+Route::resource('search/explore', 'Api\V1\SearchController');
 
 
 /*Route::get('/{any}', function(){
@@ -37,5 +38,6 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 /*Front Route*/
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
+
 Route::get('/', 'FrontController@index')->where('any', '.*')->name('front.login');
-Route::resource('search/explore', 'SearchController');
+

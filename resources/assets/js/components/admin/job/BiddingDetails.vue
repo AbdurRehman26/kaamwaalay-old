@@ -28,7 +28,7 @@
                     <tbody>
                         <tr v-for="record in records">
                             <td><span class="user-img radius-0"><img src=""></span></td>
-                            <td class="text-center"><router-link tag="a" :to="{name: 'Service_Provider_Detail' , params : {id  : record.service_provider ? record.service_provider.id : 1}}">{{ record.user | fullName }}</router-link></td>
+                            <td class="text-center"><router-link tag="a" :to="{name: 'service.provider.detail' , params : {id  : record.service_provider ? record.service_provider.id : 1}}">{{ record.user | fullName }}</router-link></td>
                             <td class="text-center"> {{record.amount ? '$' : '-'}} {{ record.amount }}</td>                           
                             <td><star-rating :star-size="20" read-only :rating="[record.user ? parseInt(record.user.average_rating) : 0]" active-color="#8200ff"></star-rating></td>
                             <td class="text-right">
@@ -47,7 +47,7 @@
 </div>
 <view-bidding-details :showModalProp="showModalValue" :item="currentRecord" @HideModalValue="showModalValue = false"></view-bidding-details>   
 
-<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 <vue-common-methods :url="requestSecondaryUrl" @get-records="getSecondaryRecord"></vue-common-methods>
 
 

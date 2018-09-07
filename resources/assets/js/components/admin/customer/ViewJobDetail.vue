@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 <vue-common-methods :url="requestUserUrl" @get-records="getUserRecord"></vue-common-methods>
 
 <view-customer-record :showModalProp="viewCustomerRecord" @HideModalValue="HideModal" :selectedJob="selectedJob"></view-customer-record>

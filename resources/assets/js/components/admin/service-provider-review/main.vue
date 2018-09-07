@@ -10,24 +10,25 @@
                               <input @keyup.enter.prevent="searchList(false)" type="text" placeholder="Search" autocomplete="off" v-model="search.keyword" class="form-control type-ahead-select taller">
                           </div>
                       </div>
+                      
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                           <label>By Business/Individual</label>
-                           <select v-model="search.filter_by_business_type" class="form-control">
-                             <option value="">Select</option>
-                             <option value="business">Business</option>
-                             <option value="individual">Individual</option>
+                           <label>By Type</label>
+                           <select v-model="search.filter_by_service" class="form-control">
+                             <option value="">Select All</option>
+                             <option v-for="service in servicesList" :value="service.id">
+                                 {{ service  | mainServiceOrChildService}}
+                             </option>
                          </select>
                      </div>
                  </div>
                  <div class="col-xs-12 col-md-3 datepicker-field">
                   <div class="form-group">
-                     <label>By Type</label>
-                     <select v-model="search.filter_by_service" class="form-control">
+                     <label>By Business/Individual</label>
+                     <select v-model="search.filter_by_business_type" class="form-control">
                        <option value="">Select All</option>
-                       <option v-for="service in servicesList" :value="service.id">
-                           {{ service  | mainServiceOrChildService}}
-                       </option>
+                       <option value="business">Business</option>
+                       <option value="individual">Individual</option>
                    </select>
                </div>
            </div>
@@ -68,7 +69,7 @@
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
                 
-                <td> {{ record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
+                <td> {{ record.service_provider_profile && record.service_provider_profile.business_details &&  record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
                 <td>
                     <span class="tags" :class="[record.status]">
                         {{ record.status }}

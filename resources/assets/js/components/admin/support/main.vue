@@ -78,7 +78,7 @@
         </div>-->
       </div>
     </div>
-    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportDetailPopup" @refreshList="getList(false, false)"></support-detail>
+    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportDetailPopup" @refreshList="getRefreshList"></support-detail>
   </div>
 </template>
 
@@ -126,6 +126,15 @@
         };
         this.getList(data, false);
       },
+      getRefreshList() {
+        this.loading = true;
+        this.loadingStart = true;
+        var data = {
+          search : this.search,
+          filter: this.filter_by_inquiry
+        };
+        this.getList(data, this.currentPage);
+      },
       SupportDetail(list) {
         this.selectedInquiry = list;
         this.supportDetailPopup = true;
@@ -138,7 +147,6 @@
         let self = this;
         self.showNoRecordFound = false;
         let url = self.url;
-
         if(typeof(page) == 'undefined' || !page){                        
           self.records = [];
         }
@@ -161,7 +169,6 @@
       if(typeof(page) !== 'undefined' && page){
         url += '&page='+page;   
       }
-
       self.$http.get(url).then(response => {
         response = response.data.response;
         self.listing = response.data;

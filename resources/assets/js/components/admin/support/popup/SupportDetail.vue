@@ -36,7 +36,7 @@
                     <p><strong class="title-head">Question</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>{{supportQuestion.question}}</p>
+                    <p>{{supportQuestion.question? supportQuestion.question : '-'}}</p>
                 </b-col>
             </b-row>
 
@@ -46,7 +46,7 @@
                 </b-col>
                 <b-col cols="12">
                     <div class="form-group">
-                        <p>{{selectedInquiry.message}}</p>
+                        <p>{{selectedInquiry.message? selectedInquiry.message : '-'}}</p>
                     </div>
                 </b-col>
             </b-row>
@@ -144,7 +144,7 @@
             selectedInquiry(value) {
                 this.selectedInquiry = value;
                 this.role = value.role;
-                this.supportQuestion = value.supportQuestion;
+                this.supportQuestion =  value.support_question;
             }
         },
     }

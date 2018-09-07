@@ -49,7 +49,7 @@ class UserRepository extends AbstractRepository implements RepositoryContract
 
 
         if($data) {
-
+            $data->profileImage = $data->profile_image;
             if(substr($data->profile_image, 0, 8) != "https://"){
              $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
          }

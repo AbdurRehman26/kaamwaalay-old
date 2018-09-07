@@ -25,7 +25,7 @@ class SupportInquiryController extends ApiResourceController
 
         if($value == 'store') {
             $rules['support_question_id'] =  'required|exists:support_questions,id';
-            $rules['message']      =  'required';
+            $rules['message']      =  'required|max:1000';
             $rules['email']      =  'nullable|email';
         }
 
@@ -41,6 +41,7 @@ class SupportInquiryController extends ApiResourceController
         if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['type_id']       =  'nullable|in:'.Role::SERVICE_PROVIDER.','.Role::CUSTOMER;
+            $rules['keyword']       =  'nullable|string';
         }
 
         return $rules;
@@ -52,11 +53,11 @@ class SupportInquiryController extends ApiResourceController
     {
 
         if($value == 'index'){
-            $input = request()->only('pagination', 'type_id');
+            $input = request()->only('pagination', 'type_id', 'keyword');
         }
 
         if($value == 'store'){
-            $input = request()->only('support_question_id', 'message');
+            $input = request()->only('support_question_id', 'message', 'user_id', 'email', 'name');
             $input['user_id'] = request()->user()->id;
         }
 
@@ -70,5 +71,4 @@ class SupportInquiryController extends ApiResourceController
 
         return $input;
     }
-
 }

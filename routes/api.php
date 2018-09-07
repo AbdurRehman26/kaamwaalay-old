@@ -29,6 +29,14 @@ Route::group([
 
 });
 
+Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
+    'edit','create','destory','store','update'
+]);
+
+Route::resource('service', 'Api\V1\ServiceController')->except([
+    'edit','create'
+]);
+
 Route::resource('city', 'Api\V1\CityController')->only([
     'index', 'show',
 ]);
@@ -41,3 +49,6 @@ Route::resource('state', 'Api\V1\StateController')->only([
     'index', 'show',
 ]);
 
+Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
+    'edit','create','destory'
+]);

@@ -31,14 +31,6 @@ Route::group(['middleware' => ['scopes']], function () {
         'edit','create','destory'
     ]);
 
-    Route::resource('user-rating', 'Api\V1\UserRatingController')->only([
-        'index','store','show'
-    ]);
-
-    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-        'edit','create','destory','store','update'
-    ]);
-
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
         'edit','create','destory','store'
     ]);
@@ -54,6 +46,9 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::resource('role', 'Api\V1\RoleController')->only([
         'index', 'show',
     ]);
+
+    //Dashboard Report
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
 
     Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
         'index', 'store', 'show', 'update',
@@ -73,10 +68,7 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
     Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 
-    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans')->name('plan.update.or.add');
-    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign')->name("update.campaign");
+    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
 
 });
-    Route::resource('service', 'Api\V1\ServiceController')->except([
-        'edit','create'
-    ]);

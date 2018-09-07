@@ -50,56 +50,54 @@
                 this.$emit('HideModalValue');
             },
             validateBeforeSubmit (evt) {
-            // Prevent modal from closing
-            this.$validator.validateAll().then((result) => {
-                if (result) {
-                    this.onSubmit()
-                    this.errorMessage ='';
-                    return;
-                }
-                this.errorMessage = this.errorBag.all()[0];
-            });
-        },
-        onSubmit() {
-            let self = this;
+                // Prevent modal from closing
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.onSubmit()
+                        this.errorMessage ='';
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            },
+            onSubmit() {
+                let self = this;
 
-            self.errorMessage = '';
-            self.successMessage = '';
-            let url = self.url;
-            let id = this.statusData.id;
-
-            self.loading = true;
-            self.data  = {
-              "id" : this.statusData.id,
-              "status" : this.selected,
-          }
-          self.$http.put(url,self.data).then(response => {
-            self.successMessage = response.data.message;
-            if(!response.data.message) {
-                self.successMessage = response.data.response.message;
-            }
-            setTimeout(function() {
-                self.loading = false;
-                self.hideModal();
-                self.onHidden();
+                self.errorMessage = '';
                 self.successMessage = '';
-                self.$parent.statusData.status = self.selected;
-            }, 2000);
+                let url = self.url;
+                let id = this.statusData.id;
 
-        }).catch(error => {
-            var response = error.response.data.response;
-            //self.errorMessage = response.message[0];
-            if(response.data.error) {
-                self.errorMessage = response.message + "There are " + (response.data.service_provider_count? response.data.service_provider_count + " service provider(s) & " : "") + (response.data.jobs_count? response.data.jobs_count + " job(s) associated with this service." : "");   
-            }
-            setTimeout(function(){
-                self.loading = false;
-                self.errorMessage=''
-            }, 3000);
+                self.loading = true;
+                self.data  = {
+                  "id" : this.statusData.id,
+                  "status" : this.selected,
+              }
+              self.$http.put(url,self.data).then(response => {
+                self.successMessage = response.data.message;
+                if(!response.data.message) {
+                    self.successMessage = response.data.response.message;
+                }
+                setTimeout(function() {
+                    self.loading = false;
+                    self.hideModal();
+                    self.onHidden();
+                    self.successMessage = '';
+                    self.$parent.statusData.status = self.selected;
+                }, 2000);
 
-
-        });
-    }
+            }).catch(error => {
+                var response = error.response.data.response;
+                //self.errorMessage = response.message[0];
+                if(response.data.error) {
+                    self.errorMessage = response.message + "There are " + (response.data.service_provider_count? response.data.service_provider_count + " service provider(s) & " : "") + (response.data.jobs_count? response.data.jobs_count + " job(s) associated with this service." : "");   
+                }
+                setTimeout(function(){
+                    self.loading = false;
+                    self.errorMessage = '';
+                }, 3000);
+            });
+        }
 },
 
 watch: {
