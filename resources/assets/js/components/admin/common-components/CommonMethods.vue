@@ -13,7 +13,8 @@
         'formData',
         'submit',
         'submitUrl',
-        'hideLoader'
+        'hideLoader',
+        'updateForm'
         ],
         data () {
             return {
