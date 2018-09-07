@@ -140,6 +140,16 @@ const app = new Vue({
         this.checkscroll();
     },
     methods:{
+        //if scroll exist add class else remove class
+        checkscroll(){
+          setTimeout(function(){
+              if(jQuery('body').height() > jQuery(window).height()){
+                    jQuery('body').addClass('handle-scroll');
+                }else{
+                    jQuery('body').removeClass('handle-scroll');
+                }
+          },1500);
+        },
         browserfunction() {
             if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
                 jQuery('body').addClass('opera-browser')
