@@ -333,7 +333,6 @@ router.beforeEach((to, from, next) => {
     if(router.app.$store.getters.getAuthUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthUser);
   }
-  console.log(user);
 
   if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
     next({name: 'login'});

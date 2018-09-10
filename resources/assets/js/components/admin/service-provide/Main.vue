@@ -77,8 +77,10 @@
                 <i @click="changestatuspopup(record)"  
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
             </i>
-            <i @click.prevent="currentRecord = record; confirmPopupShow = true;" v-if="!record.is_verified && record.user_detail.status == 'active'" title="" class="icon-check" data-original-title="Confirm Verification"></i>
-            <i @click.prevent="currentRecord = record; confirmPopupShow = true;" v-if="record.is_verified && record.user_detail.status == 'active'" title="" class="icon-cross" data-original-title="Cancel Verification"></i>
+            <i @click.prevent="currentRecord = record; confirmPopupShow = true;" 
+            v-if="!record.is_verified && record.user_detail.status == 'active'" title="" class="icon-check" title="Confirm Verification"></i>
+            <i @click.prevent="currentRecord = record; confirmPopupShow = true;" 
+            v-if="record.is_verified && record.user_detail.status == 'active'" title="" class="icon-cross" title="Cancel Verification"></i>
         </div>
     </td>
 </tr>
