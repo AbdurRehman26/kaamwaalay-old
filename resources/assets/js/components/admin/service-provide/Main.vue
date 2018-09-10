@@ -233,7 +233,6 @@
 
         }
 
-
     },
 
     components: {

@@ -8,7 +8,7 @@
 
 				<div class="job-common-description job-perform">
 					<div class="col-md-6 p-l-0">
-						<h3 class="pointer" @click="servicedetail">{{record.job.title}}</h3> 
+						<h3 class="pointer" @click="servicedetail">{{record.job.title}}</h3>
 						<div class="job-notification">									
 							<div class="jobs-done">											
 								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{getUserName(getJobUser(record))}}</a></span>		
@@ -65,7 +65,8 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['show'],
+
+		props: ['show', 'count'],
 		data () {
 			return {
 				url: null,
@@ -152,7 +153,7 @@
 	            let self = this;
 	            self.loading = false;
 	            self.records = response.data;
-	            this.$emit("recordCount", response.pagination? response.pagination.total : 0);
+	            this.$emit("recordCount", response.pagination? response.pagination.total : count);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
 	        },	
@@ -163,7 +164,7 @@
 		},
 		computed: {
 			requestUrl() {
-				//return 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_status=invited&filter_by_awarded=0';
+				//return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_completed=invited&filter_by_awarded=0&filter_by_active_bids=0&user_id=' + this.user.id;
 				return null;
 			}
 		},
@@ -174,11 +175,13 @@
 		watch: {
 			show(val) {
 				if(val) {
-					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&is_status=invited&filter_by_awarded=0';
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_status=cancelled';
 				}else {
 					//this.url = null;
 					//self.pagination = false;
 				}
+			},
+			count(val) {
 			}
 		}
 
