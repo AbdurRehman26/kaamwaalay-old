@@ -166,7 +166,7 @@
         submitUrl(){
             if(this.currentRecord){  
                 this.formData.is_verified = !this.currentRecord.is_verified;
-                this.formData.is = this.currentRecord.id;
+                this.formData.id = this.currentRecord.id;
 
                 return 'api/service-provider-profile/' +this.currentRecord.id;
             }
