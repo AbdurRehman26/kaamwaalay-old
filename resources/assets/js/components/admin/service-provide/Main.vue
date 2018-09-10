@@ -80,7 +80,7 @@
             <i @click.prevent="currentRecord = record; confirmPopupShow = true;" 
             v-if="!record.is_verified && record.user_detail.status == 'active'" title="" class="icon-check" title="Confirm Verification"></i>
             <i @click.prevent="currentRecord = record; confirmPopupShow = true;" 
-            v-if="record.is_verified && record.user_detail.status == 'active'" title="" class="icon-cross" title="Cancel Verification"></i>
+            v-if="record.is_verified && record.user_detail.status == 'active'" title="" class="icon-cancel" title="Cancel Verification"></i>
         </div>
     </td>
 </tr>
