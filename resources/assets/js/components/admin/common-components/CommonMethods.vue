@@ -35,6 +35,11 @@
                 let self = this;
                 let url = self.url;
 
+                if(typeof(url) == 'undefined'){
+                    return false;
+                }
+
+
                 let result = {
                     data : [],
                     noRecordFound : false
@@ -130,7 +135,6 @@
                 }
             },
             submit(value){
-                console.log(value , 12321321321);
                 if(value){
                     this.submitForm();
                 }

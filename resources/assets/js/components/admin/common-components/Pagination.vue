@@ -58,7 +58,6 @@
             },
             infiniteHandler($state) {
                 let self = this;
-                console.log(self.pagination , 2222);
                 if(!self.pagination){
 
                     self.$parent.getList(false , function (response) {

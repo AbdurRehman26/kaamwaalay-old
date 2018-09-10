@@ -44,6 +44,11 @@ class ServiceProviderProfileController extends ApiResourceController
             unset($input['is_verified']);
         }
 
+        if($value == 'update'){
+            unset($input['user_id']);
+        }
+
+
         return $input;
     }
 
