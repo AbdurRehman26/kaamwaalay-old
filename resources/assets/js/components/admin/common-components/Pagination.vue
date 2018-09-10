@@ -9,7 +9,11 @@
         <div v-if="pagination && !infiniteLoad" class="pagination-wrapper float-right">
             <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
         </div>
-        <infinite-loading v-if="infiniteLoad" @infinite="infiniteHandler"></infinite-loading>    
+        <infinite-loading :distance="10" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
+            <span slot="no-more">
+            </span>
+            <span slot="spinner"></span>
+        </infinite-loading>    
 
     </div>
 </template>
@@ -30,6 +34,9 @@
             }
         },
         mounted(){
+            if(this.infiniteLoad){
+                this.infiniteHandler();
+            }
         },
         computed : {
             totalRecords(){

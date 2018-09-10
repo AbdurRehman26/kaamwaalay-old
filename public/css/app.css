@@ -41726,3 +41726,15 @@ i.disabled {
   width: 200px;
 }
 
+/* .infinite-loading-container .loading-default{
+    display : none !important;
+} */
+
+body .infinite-loading-container {
+  display: none !important;
+}
+
+body .infinite-loading-container i.loading-default {
+  display: none !important;
+}
+

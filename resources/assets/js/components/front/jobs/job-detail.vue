@@ -307,7 +307,10 @@
                 forceValue : false,
                 bidder : '',
                 record : [],
-                jobBids : '',
+                jobBids : {
+                    pagination : false,
+                    data : []
+                },
                 awardJob: false,
                 visitjob: false,
                 visitpopup: false,
@@ -368,8 +371,8 @@
         formSubmitted(response){
 
             this.reSendCall();
-            
-            if(!response.is_archived && response.status == 'completed')
+
+            if(!response.data.is_archived && response.data.status == 'completed')
             {
                 this.showReviewForm = true;
             }
@@ -389,7 +392,12 @@
             this.record = response.data;
         },
         getBidsResponse(response){
-            this.jobBids = response;
+
+            for (var i = 0; i < response.data.length - 1; i++) {
+                this.jobBids.data.push(response.data[i]);    
+            }
+            this.jobBids.pagination = response.pagination;
+        
         },
         open (e) {            
             fancyBox(e.target, this.record.jobImages);

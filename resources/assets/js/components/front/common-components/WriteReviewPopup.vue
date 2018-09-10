@@ -66,10 +66,13 @@
                 this.submitFormData.job_id = this.job ? this.job.id : '';
                 this.submitFormData.user_id = this.job && this.job.awarded_to ? this.job.awarded_to.id : '';
             },
-            formSubmitted(){
+            formSubmitted(response){
                 let self = this;
                 self.$emit('review-sent');
+                self.successMessage = response.message;
+
                 setTimeout(function () {
+                    self.successMessage = '';
                     self.hideModal();
                     self.loading = false;
                 }, 2000);
