@@ -3,6 +3,8 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use App\Data\Repositories\ServiceRepository;
+use Illuminate\Support\Facades\Route;
+
 
 class ServiceComposer
 {
@@ -33,8 +35,10 @@ class ServiceComposer
      */
     public function compose(View $view)
     {
-        $name = Route::currentRouteName();
-        dd($name);
+        $currentRoute = Route::current();
+        $params = $currentRoute->parameters();
+        $service = $this->service->findByAttribute('url_suffix', $params['any']);
+        dd($service);
         $view->with('count', "Ali");
     }
 }
