@@ -48,28 +48,28 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
          *
          * @author Usaama Effendi <usaamaeffendi@gmail.com>
          **/
-        public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
-        {
+    public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+    {
 
-            $model = $this->model->newInstance()
+        $model = $this->model->newInstance()
             ->where($criteria);
 
-            if($whereIn) {
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+        if($whereIn) {
+            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
 
-            }
-
-            if($count) {
-                return $model->count();
-            }
-
-            $model = $model->first(['id']);
-
-            if ($model != null) {
-                $model = $this->findById($model->id, $refresh, $details, $encode);
-            }
-            return $model;
         }
+
+        if($count) {
+            return $model->count();
+        }
+
+        $model = $model->first(['id']);
+
+        if ($model != null) {
+            $model = $this->findById($model->id, $refresh, $details, $encode);
+        }
+        return $model;
+    }
 
 
         public function findByAll($pagination = false, $perPage = 10, array $input = [] )
@@ -78,200 +78,215 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
 
             if(!empty($input['filter_by_status'])) {
 
-                if($input['filter_by_status'] == 'awarded') {
+            if($input['filter_by_status'] == 'awarded') {
 
-                    $this->builder = $this->builder->where('is_awarded', '=', 1);            
+                $this->builder = $this->builder->where('is_awarded', '=', 1);            
 
-                }elseif($input['filter_by_status'] == 'invited') {
+            }elseif($input['filter_by_status'] == 'invited') {
 
-                    $this->builder = $this->builder->where('is_invited', '=', 1);            
+                $this->builder = $this->builder->where('is_invited', '=', 1);            
                     
-                }elseif($input['filter_by_status'] == 'archived') {
+            }elseif($input['filter_by_status'] == 'archived') {
 
-                    $this->builder = $this->builder->where('is_archived', '=', 1);            
+                $this->builder = $this->builder->where('is_archived', '=', 1);            
                     
-                }else{
+            }else{
+                $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+            }
 
-                    $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+        }
+
+        if(!empty($input['filter_by_job_id'])) {
+            $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);            
+        }           
+        if(!empty($input['filter_by_invitation'])) {
+            $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);            
+                
+        }   
+        if(!empty($input['filter_by_archived']) || isset($input['filter_by_archived'])) {
+            $this->builder = $this->builder->where('is_archived', '=', $input['filter_by_archived']);            
+        }                  
+        if(!empty($input['filter_by_awarded']) || isset($input['filter_by_awarded'])) {
+            $this->builder = $this->builder->where('is_awarded', '=', $input['filter_by_awarded']);            
+        }                 
+        if(!empty($input['is_status'])) {
+            $this->builder = $this->builder->where('status', '=', $input['is_status']);            
+        }               
+        if(!empty($input['filter_by_active_bids'])) {
+
+            //$this->builder = $this->builder->where('status', '=', 'pending');
+            $this->builder = $this->builder->where(
+                function ($query) {
+                    $query->where('status', '=', 'pending');
+                    $query->orWhere('status', '=', 'in_the_way');
+                    $query->orWhere('status', '=', 'initiated');
                 }
-
-            }
-            if(!empty($input['filter_by_job_id'])) {
-                $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);
-            }            
-
-            if(!empty($input['filter_by_invitation'])) {
-                $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);            
-                
-            }   
-            if(!empty($input['filter_by_archived'])) {
-                $this->builder = $this->builder->where('is_archived', '=', $input['filter_by_archived']);            
-                
-            }            
-            if(!empty($input['filter_by_completed'])) {
-                $this->builder = $this->builder->where('status', '=', $input['filter_by_completed']);            
-            }                 
-            if(!empty($input['filter_by_awarded'])) {
-                $this->builder = $this->builder->where('is_awarded', '=', $input['filter_by_awarded']);            
-            }               
-            if(!empty($input['filter_by_active_bids'])) {
-
-                $this->builder = $this->builder->where('status', '=', 'pending');
-            }            
-            $data = parent::findByAll($pagination, $perPage, $input);
-            return $data;
-
+            );
+        }            
+        if(!empty($input['filter_by_job_detail'])) {
+            $input['details'] = $input['filter_by_job_detail'];
         }
 
+        $data = parent::findByAll($pagination, $perPage, $input);
 
-        public function findById($id, $refresh = false, $details = false, $encode = true)
-        {
-            $data = parent::findById($id, $refresh, $details, $encode);
+        if(!empty($input['count_only'])) {
+            $data['data'] = sizeof($data['data']);
+        }
+        return $data;
 
-            $details = ['user_rating' => true];
+    }
 
-            $data->user = app('UserRepository')->findById($data->user_id, false, $details);
 
-            $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
+    public function findById($id, $refresh = false, $details = false, $encode = true)
+    {
+        $data = parent::findById($id, $refresh, $details, $encode);
+        $job_details = $details;
+        $details = ['user_rating' => true];
 
-            if($data) {
-                $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+        $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
 
-                if(!empty($details['job_details'])) {
-                    $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
+
+        if($data) {
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+            if($job_details) {
+                $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
+
+            }
+                
+            $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
+            $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
+        }
+
+        return $data;
+    }
+
+
+    public function getCountByCriteria($criteria, $whereIn = false)
+    {
+
+        $model = $this->model->where($criteria);
+
+        if($whereIn) {
+            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->count();
+        }
+
+        if ($model != null) {
+            $model = $model->count();
+            return $model;
+        }
+        return false;
+    }
+
+
+    public function getUrgentJobsCompleted($criteria)
+    {
+
+        $model = $this->model->where($criteria);
+            
+        if ($model != null) {
+
+            $model = $model->
+            leftJoin(
+                'jobs', function ($join) {
+                        $join->on('jobs.id', '=', 'job_bids.job_id');
                 }
+            )
+            ->where('jobs.job_type', '=', 'urgent')
+            ->where('jobs.status', '=', 'completed')
+            ->count();
                 
-            }
-
-            return $data;
+                
+            return $model;
         }
+        return false;
+    }
 
 
-        public function getCountByCriteria($criteria, $whereIn = false)
-        {
+    public function getUrgentJobsCreated($criteria)
+    {
 
-            $model = $this->model->where($criteria);
-
-            if($whereIn) {
-                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)])->count();
-            }
-
-            if ($model != null) {
-                $model = $model->count();
-                return $model;
-            }
-            return false;
-        }
-
-
-        public function getUrgentJobsCompleted($criteria)
-        {
-
-            $model = $this->model->where($criteria);
+        $model = $this->model->where($criteria);
             
-            if ($model != null) {
+        if ($model != null) {
 
-                $model = $model->
-                leftJoin(
-                    'jobs', function ($join) {
+            $model = $model->
+            leftJoin(
+                'jobs', function ($join) {
                         $join->on('jobs.id', '=', 'job_bids.job_id');
-                    }
-                )
-                ->where('jobs.job_type', '=', 'urgent')
-                ->where('jobs.status', '=', 'completed')
-                ->count();
+                }
+            )
+            ->where('jobs.job_type', '=', 'urgent')
+            ->where('jobs.status', '!=', 'completed')
+            ->count();
                 
                 
-                return $model;
-            }
-            return false;
+            return $model;
         }
+        return false;
+    }
 
+    public function getTotalRevenueCriteria($criteria)
+    {
 
-        public function getUrgentJobsCreated($criteria)
-        {
+        $model = $this->model->where($criteria);
 
-            $model = $this->model->where($criteria);
-            
-            if ($model != null) {
-
-                $model = $model->
-                leftJoin(
-                    'jobs', function ($join) {
+        if ($model != null) {
+            $model = $model->
+            leftJoin(
+                'jobs', function ($join) {
                         $join->on('jobs.id', '=', 'job_bids.job_id');
-                    }
-                )
-                ->where('jobs.job_type', '=', 'urgent')
-                ->where('jobs.status', '!=', 'completed')
-                ->count();
+                }
+            )
+            ->where('jobs.status', 'completed')
+            ->select(\DB::raw('AVG(job_bids.amount) as total_revenue'))->pluck('total_revenue')->toArray()[0];
                 
-                
-                return $model;
-            }
-            return false;
+            return $model;
         }
+        return false;
+    }
 
-        public function getTotalRevenueCriteria($criteria)
-        {
 
-            $model = $this->model->where($criteria);
+    public function getCompletedJobs($criteria)
+    {
 
-            if ($model != null) {
-                $model = $model->
-                leftJoin(
-                    'jobs', function ($join) {
+        $model = $this->model->where($criteria);
+
+        if ($model != null) {
+            $model = $model->
+            leftJoin(
+                'jobs', function ($join) {
                         $join->on('jobs.id', '=', 'job_bids.job_id');
-                    }
-                )
-                ->where('jobs.status', 'completed')
-                ->select(\DB::raw('AVG(job_bids.amount) as total_revenue'))->pluck('total_revenue')->toArray()[0];
+                }
+            )
+            ->where('jobs.status', '=', 'completed')
+            ->count();
                 
-                return $model;
-            }
-            return false;
+            return $model;
         }
+        return false;
+    }
 
 
-        public function getCompletedJobs($criteria)
-        {
+    public function getAwardedJobAmount($criteria)
+    {
 
-            $model = $this->model->where($criteria);
-
-            if ($model != null) {
-                $model = $model->
-                leftJoin(
-                    'jobs', function ($join) {
-                        $join->on('jobs.id', '=', 'job_bids.job_id');
-                    }
-                )
-                ->where('jobs.status', '=', 'completed')
-                ->count();
+        $model = $this->model->where($criteria);
+        if ($model != null) {
+            $model = $model->value('amount');
                 
-                return $model;
-            }
-            return false;
+            return $model;
         }
+        return false;
+    }
 
+    public function getJobServiceProvider($criteria)
+    {
 
-        public function getAwardedJobAmount($criteria)
-        {
-
-            $model = $this->model->where($criteria);
-            if ($model != null) {
-                $model = $model->value('amount');
-                
-                return $model;
-            }
-            return false;
-        }
-
-        public function getJobServiceProvider($criteria)
-        {
-
-            $model = $this->model->where($criteria);
-            if ($model != null) {
-                $model = $model->leftJoin(
-                    'users', function ($join) {
+        $model = $this->model->where($criteria);
+        if ($model != null) {
+            $model = $model->leftJoin(
+                'users', function ($join) {
                         $join->on('users.id', '=', 'job_bids.user_id');
                     }
                 )                    
@@ -294,9 +309,10 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
 
                 app('JobRepository')->update($updateData);
                 
-            }
-            
             return $data;
         }
+        return false;
     }
+
+}
 
