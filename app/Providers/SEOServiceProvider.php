@@ -15,7 +15,7 @@ class SEOServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'service', 'App\Http\ViewComposers\ServiceComposer'
+            'front-layout', 'App\Http\ViewComposers\ServiceComposer'
         );
     }
 

@@ -38,7 +38,7 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 /*Front Route*/
 Route::get('/services/{any}', function() {
-	return "hahah";//$name = Route::currentRouteName();
+	return view('front-layout');
 })->where('any', '.*');
 
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');

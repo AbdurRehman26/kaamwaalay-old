@@ -33,6 +33,8 @@ class ServiceComposer
      */
     public function compose(View $view)
     {
-        $view->with('count', $this->users->count());
+        $name = Route::currentRouteName();
+        dd($name);
+        $view->with('count', "Ali");
     }
 }
