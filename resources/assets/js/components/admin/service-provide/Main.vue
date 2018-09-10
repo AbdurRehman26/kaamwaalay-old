@@ -98,7 +98,7 @@
 </div>
 
 <confirmation-popup @form-updated="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
-<changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
+<changestatuspopup @form-updated="formUpdated" @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
 
 </div>
 </template>
