@@ -53,24 +53,22 @@
 						<div class="showmore showmore-link clearfix">
 							<div>
 							  <!-- element to collapse -->
-							  <b-collapse :id="''+service.id">
+							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians<i class="icon-angle-right"></i></a>
+							  <b-collapse :id="service.title">
 							    <b-card>
-							      <div class="items" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
+							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
 									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
 										<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
-										<h4>{{remainingSubServices.title}}</h4>
+										<p>{{remainingSubServices.title}}</p>
 									</a>
 								</div>
 							    </b-card>
 							  </b-collapse>
-							  <a href="javascript::void(0)" class="showCollapse" @click.prevent="onToggleCollapse($event, ''+service.id)" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians<i class="icon-keyboard_arrow_right"></i></a>
 							</div>
 						</div>
 
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 		<div class="other-categories section-grey section elementary-banner">
@@ -81,8 +79,8 @@
 					</div>
 					<div class="category-items">
 						<ul class="item-list-container">
-							<li class="items-list" v-for="othercategorySubservice in isnotexplorecategory.subservices.data">
-								<a href="javascript:void(0);">
+							<li class="items-list" v-for="othercategorySubservice in isnotexplorecategory.subservices">
+								<a href="javascript:void(0);" @click.prevent="changecategorypopup(othercategorySubservice)">
 									<p>{{othercategorySubservice.title}}</p>
 								</a>
 							</li>
@@ -97,7 +95,7 @@
 					<div class="category-items">
 						<ul class="item-list-container">
 							<li class="items-list" v-for="othercategory in getOtherServices">
-								<a href="javascript:void(0);">
+								<a @click.prevent="changecategorypopup(othercategory)" href="javascript:void(0);">
 									<p>{{othercategory.title}}</p>
 								</a>
 							</li>
@@ -142,16 +140,16 @@ export default {
         getImage(img) {
         	return img? img[0].upload_url : 'images/dummy/image-placeholder.jpg';
         },
-		onToggleCollapse(e, val) {
-			var elem = $('#'+val);
-			if($(elem).css("display") == "none" ) {
-				$(elem).show("slow");
-				$(e.target).text("Hide all services related to electricians ");
-			}else {
-				$(elem).hide("slow");
-				$(e.target).text("View all services related to electricians ");
-			}
-		},
+		// onToggleCollapse(e, val) {
+		// 	var elem = $('#'+val);
+		// 	if($(elem).css("display") == "none" ) {
+		// 		$(elem).show("fast", "linear");
+		// 		$(e.target).text("Hide all services related to electricians ");
+		// 	}else {
+		// 		$(elem).hide("fast", "linear");
+		// 		$(e.target).text("View all services related to electricians ");
+		// 	}
+		// },
 		onTouch () {
 			this.isTouched = true
 		},
@@ -235,8 +233,6 @@ export default {
 		    self.$http.get(url).then(response => {
 		    	response = response.data.response;
 		    	self.allServices = response.data;
-		    	console.log(self.allServices, 3333333);
-
 		    	if(!self.allServices.length) {
 		    		self.showNoRecordFound = true;
 		    	}
@@ -314,6 +310,7 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
+		console.log(result, 990066);
 		// if(result.length > 3) {
 		// 	result = result.slice(3,5);
 		// }else {

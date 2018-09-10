@@ -38,7 +38,7 @@
 <div class="col-6">
     <div class="widget-box">
       <div class="colmn">
-        <h3>Total Service Providers Sign ups</h3>
+        <h3>Total Service Providers Sign up</h3>
         <h2>{{stats.total_service_provider_signup}}</h2>
     </div>
 </div>
@@ -166,7 +166,7 @@
                 <td><a >{{list.email}}</a></td>
                 <td>{{list.duns_number}}</td>
                 <td>{{list.business_type}}</td>
-                <td ><star-rating :star-size="20" read-only :rating="list.rating" active-color="#8200ff"></star-rating></td>
+                <td ><star-rating :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">{{list.job_completed}}</td>
             </tr>
         </tbody>
@@ -200,7 +200,7 @@
           <tr v-for="list in topCustomer">
             <td><a >{{list.full_name}}</a></th>
               <td><a >{{list.email}}</a></td>
-              <td ><star-rating :star-size="20" read-only :rating="list.rating" active-color="#8200ff"></star-rating></td>
+              <td ><star-rating :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
               <td class="text-center">{{list.job_completed}}</td>
           </tr>
       </tbody>
@@ -357,7 +357,6 @@ methods: {
     };
     self.$http.get(self.url, {params: params}).then(response=>{
         let data = response.data;
-        console.log(data, type, data.length)
         if(type == 'stats'){
           self.stats = data;
       }

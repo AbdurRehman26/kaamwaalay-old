@@ -8,31 +8,27 @@ use App\Data\Models\Role;
 
 class RoleRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of Role Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: Role-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
-    protected $_cacheKey = 'Role';
-    protected $_cacheTotalKey = 'total-Role';
+    protected $_cacheKey = 'role';
+    protected $_cacheTotalKey = 'total-role';
 
     public function __construct(Role $model)
     {
@@ -41,12 +37,12 @@ class RoleRepository extends AbstractRepository implements RepositoryContract
 
     }
 
-    public function findByAll($pagination = false, $perPage = 10, array $data = [] ) {
+    public function findByAll($pagination = false, $perPage = 10, array $data = [] )
+    {
 
         $this->builder = $this->model
-                            ->where('id', '<>' , Role::ADMIN)
-                            ->orderBy('id', 'ASC')
-                            ;
+            ->where('id', '<>', Role::ADMIN)
+            ->orderBy('id', 'ASC');
    
         return  parent::findByAll($pagination, $perPage);
     

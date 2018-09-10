@@ -8,31 +8,27 @@ use App\Data\Models\ZipCode;
 
 class ZipCodeRepository extends AbstractRepository implements RepositoryContract
 {
-/**
-     *
+    /**
      * These will hold the instance of ZipCode Class.
      *
-     * @var object
+     * @var    object
      * @access public
-     *
      **/
     public $model;
 
     /**
-     *
      * This is the prefix of the cache key to which the
      * App\Data\Repositories data will be stored
      * App\Data\Repositories Auto incremented Id will be append to it
      *
      * Example: ZipCode-1
      *
-     * @var string
+     * @var    string
      * @access protected
-     *
      **/
 
-    protected $_cacheKey = 'ZipCode';
-    protected $_cacheTotalKey = 'total-ZipCode';
+    protected $_cacheKey = 'zip-code';
+    protected $_cacheTotalKey = 'total-zip-code';
 
     public function __construct(ZipCode $model)
     {

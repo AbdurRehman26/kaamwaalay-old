@@ -4,7 +4,7 @@
 			<div role="tablist">
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion11 variant="grey">How to sign up and use professional service marketplace? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion11 variant="grey"><p>How to sign up and use professional service marketplace?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion11" visible accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -16,7 +16,7 @@
 				</b-card>
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion12 variant="grey">How to message service providers using professional service marketplace? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion12 variant="grey"><p>How to message service providers using professional service marketplace?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion12" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -28,7 +28,7 @@
 				</b-card>
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion13 variant="grey">How to download Professional service marketplace mobile app? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion13 variant="grey"><p>How to download Professional service marketplace mobile app?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion13" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -40,7 +40,7 @@
 				</b-card>
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion14 variant="grey">How to post a new job? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion14 variant="grey"><p>How to post a new job?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion14" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -53,7 +53,7 @@
 
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion15 variant="grey">How to add photos to my job request? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion15 variant="grey"><p>How to add photos to my job request?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion15" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -66,7 +66,7 @@
 
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion16 variant="grey">How to change my job details later on? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion16 variant="grey"><p>How to change my job details later on?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion16" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -79,7 +79,7 @@
 
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion17 variant="grey">How and where to view bids on my job? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion17 variant="grey"><p>How and where to view bids on my job?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion17" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -92,7 +92,7 @@
 
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion18 variant="grey">How to award a job to service provider? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion18 variant="grey"><p>How to award a job to service provider?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion18" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -105,7 +105,7 @@
 
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion19 variant="grey">How to remove my job if I don’t need that work anymore? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion19 variant="grey"><p>How to remove my job if I don’t need that work anymore?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion19" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
@@ -118,7 +118,7 @@
 
 				<b-card no-body class="mb-3">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-btn block href="#" v-b-toggle.accordion20 variant="grey">How to post urgent job requests? <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
+						<b-btn block href="#" v-b-toggle.accordion20 variant="grey"><p>How to post urgent job requests?</p> <span class="switch-icon-caret"> <i class="icon-triangle-up"></i></span></b-btn>
 					</b-card-header>
 					<b-collapse id="accordion20" accordion="my-accordion" role="tabpanel">
 						<b-card-body>

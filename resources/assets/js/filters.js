@@ -8,7 +8,7 @@ const jobStatuses = [
 },
 {
     key : 'cancelled',
-    value : 'Archived'
+    value : 'Cancelled'
 },
 {
     key : 'completed',
@@ -94,12 +94,24 @@ const jobPreferences = [
     key : 'few_weeks',
     value : 'in next few days'
 },
+{
+    key : 'normal',
+    value : 'normal'
+},
+{
+    key : 'few_days',
+    value : 'few days'
+}
 ];
 
 
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
         return ;
+    }
+
+    if(value.is_archived){
+        return 'archived';
     }
 
     if(!Object.keys(value).length){
@@ -111,7 +123,6 @@ Vue.filter('jobStatus', function (value) {
             return item; 
         }
     });
-    console.log(obj , '22222');
     return obj.value.replace(/\s/g, '').trim();
 });
 
@@ -221,7 +232,7 @@ Vue.filter('disableProfileStatusButton', function (value) {
     return false;
 });
 
-Vue.filter('mainServiceOrChildService', function (value) {
+Vue.filter('mainServiceOrChildService', function (value, sign) {
     var serviceHtml = '';
 
     if(!value){
@@ -229,7 +240,12 @@ Vue.filter('mainServiceOrChildService', function (value) {
     }
 
     if(value.parent_id){
-        serviceHtml =   value.parent.title + ' >> ' + value.title ;
+    
+        var signValue = typeof(sign) !== 'undefined' ? sign : '>>';
+        
+        serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title ;
+  
+
     }else{
         serviceHtml = value.title;
 
@@ -251,3 +267,9 @@ Vue.filter('jobPreference', function (value) {
     }
     return obj.value;
 });
+
+Vue.filter('appendYoutubeUrl' , function (value) {
+    return 'https://www.youtube.com/embed/' + value;
+})
+
+

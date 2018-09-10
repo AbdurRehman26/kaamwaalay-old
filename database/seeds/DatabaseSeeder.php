@@ -11,18 +11,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CountriesTableSeeder::class);
-        $this->call(StatesTableSeeder::class);
-        $this->call(CitiesTableSeeder::class);
-        $this->call(ZipCodesTableSeeder::class);
-        $this->call(RolesTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(SupportQuestionsTableSeeder::class);
-        $this->call(PlansTableSeeder::class);
-        $this->call(ServiceTableSeeder::class);
-        $this->call(JobTableSeeder::class);
-        $this->call(ServiceProviderProfileSeeder::class);
-        $this->call(UserRatingTableSeeder::class);
+        // Guest User Calls
+
+        // commenting all seeders 
+
+       //  $this->call(CountriesTableSeeder::class);
+       //  $this->call(StatesTableSeeder::class);
+       //  $this->call(CitiesTableSeeder::class);
+       //  $this->call(ZipCodesTableSeeder::class);
+
+       //  $this->call(RolesTableSeeder::class);
+       //  $this->call(UsersTableSeeder::class);
+        
+       // $this->call(SupportQuestionsTableSeeder::class);
+       // $this->call(PlansTableSeeder::class);
+
+       //  // Service and Service Provider 
+
+       //  $this->call(ServiceTableSeeder::class);
+       //  $this->call(ServiceProviderProfileSeeder::class);
+
+       //  // Job bid and rating commented
+        
+       //  $this->call(JobTableSeeder::class);
+       //  $this->call(JobBidTableSeeder::class);
+
+       //  // These seeders will be commented
+       //  $this->call(UserRatingTableSeeder::class);
+       //  $this->call(PaymentTableSeeder::class);
+
+       //  $this->call(SupportInquiryTableSeeder::class);
+
         \Artisan::call('passport:install');
+        \Artisan::call('cache:clear');
     }
 }

@@ -61,17 +61,14 @@ import { directive as onClickaway } from 'vue-clickaway';
             },
        },
         methods: {
-
             getAllServices() {
                 let self = this;
                 let url = 'api/service';
-
                 self.$http.get(url).then(response=>{
                     response = response.data.response;
                     self.$store.commit('setAllServices' , response.data);
+                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
-
-
                 });
             },
             ShowModal(){

@@ -10,32 +10,45 @@ class PlanController extends ApiResourceController
 {
     public $_repository;
 
-    public function __construct(PlanRepository $repository){
+    public function __construct(PlanRepository $repository)
+    {
         $this->_repository = $repository;
     }
 
-    public function rules($value=''){
+    public function rules($value='')
+    {
         $rules = [];
 
-        if($value == 'update'){
+        if($value == 'update') {
             $rules['id'] =  'required|in:1,2|exists:plans,id';
             $rules['amount'] = 'required|numeric|not_in:0';
         }
 
-        if($value == 'show'){
+        if($value == 'show') {
             $rules['id'] =  'required|exists:plans,id';
         }
 
-        if($value == 'index'){
+        if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
-            $rules['type']          =  'required|in:service,job';
+            $rules['type']          =  'nullable|in:service,job';
+            $rules['product']    = 'nullable|in:featured_profile,account_creation';
         }
 
-        if($value == 'updateOrAddPlans'){
+        if($value == 'updateOrAddPlans') {
             $rules['plans_data.*.id']               = 'nullable|exists:plans,id|not_in:1,2';
             $rules['plans_data.*.amount']           = 'required|numeric|not_in:0';
             $rules['plans_data.*.quantity']         = 'required|numeric|not_in:0';
         }
+
+        if($value == 'store') {
+            $rules['amount']     = 'required|numeric|not_in:0';
+            $rules['type']       = 'required|in:job,service';
+            $rules['id']         = 'nullable|exists:plans,id';
+       }
+
+       if($value == 'destroy') {
+            $rules['id']     = 'required|exists:plans,id';
+       }
 
         return $rules;
 
@@ -43,13 +56,30 @@ class PlanController extends ApiResourceController
 
     public function input($value='')
     {
-        $input = request()->only('id', 'pagination', 'type', 'plans_data', 'amount');
-        $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
 
-        if($value == 'update'){
-            unset($input['user_id']);
-            unset($input['type']);
+        if($value == 'index'){
+            $input = request()->only('pagination', 'type','product');
         }
+
+        if($value == 'show'){
+            $input = request()->only('id');
+        }
+
+        if($value == 'update') {
+            $input = request()->only('id', 'amount');
+        }
+
+        if($value == 'updateOrAddPlans'){
+            $input = request()->only('plans_data');
+        }
+
+        if($value == 'store') {
+            $input = request()->only('id','product','amount','quantity','type');
+        }
+
+        if($value == 'destroy') {
+            $input = request()->only('id');
+       }
 
         return $input;
     }
@@ -71,7 +101,7 @@ class PlanController extends ApiResourceController
         $code = Response::HTTP_NOT_ACCEPTABLE;
 
         $response = $this->_repository->updateOrAddPlans($input);
-        if($response){
+        if($response) {
             $code = Response::HTTP_OK;
             $output = ['response' => 
                         [
@@ -95,6 +125,41 @@ class PlanController extends ApiResourceController
         ];
         
         return $messages;
+    }
+
+    public function store(Request $request)
+    {
+        $rules = $this->rules(__FUNCTION__);
+        $input = $this->input(__FUNCTION__);
+          if( $input['type'] == 'job'){
+              $rules['product']    = 'required|in:urgent_job';
+          }else{
+              $rules['product']    = 'required|in:featured_profile,account_creation';
+          } 
+          if(($input['type'] == 'job' && $input['product'] == 'urgent_job') || ($input['type'] == 'service' && $input['product'] == 'account_creation')){
+                $rules['quantity']   = 'nullable';
+          }else{
+              $rules['product']    = 'required|in:featured_profile,account_creation';
+          }
+        $this->validate($request, $rules);
+        $output = ['errors' => 
+                    [
+                        'message' => ['There might be something wrong.']
+                    ]
+                ];
+        $code = Response::HTTP_NOT_ACCEPTABLE;
+        $response = $this->_repository->create($input);
+        if($response) {
+            $code = Response::HTTP_OK;
+            $output = ['response' => 
+                        [
+                            'data' => $response,
+                            'message' => 'Records has been added successfully',
+                            'code' => $code
+                        ]
+                    ];
+        }
+        return response()->json($output, $code);
     }
 
 }

@@ -758,3 +758,14 @@ body{
         }
     }
 }
+
+
+.display-flex {
+    display: flex;
+    a{
+        margin-left: 20px;
+    }
+    input{
+        margin-bottom: 0;
+    }
+}

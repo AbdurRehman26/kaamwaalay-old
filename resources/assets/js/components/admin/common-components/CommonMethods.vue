@@ -5,12 +5,22 @@
 
 <script>
     export default {
-        props : ['url', 'search' , 'infiniteLoad'],
+        props : [
+        'url',
+        'search',
+        'infiniteLoad',
+        'force',
+        'formData',
+        'submit',
+        'submitUrl',
+        'hideLoader',
+        'updateForm'
+        ],
         data () {
             return {
                 records : [],
                 pagination : '',
-                loading : true,
+                loading : false,
                 noRecordFound : false
             }  
         },
@@ -31,14 +41,19 @@
                 };
 
                 self.$emit('get-records', result);
+                
+                if(!this.hideLoader){
+                    self.loading = true;
+                }
 
-                self.loading = true;
                 url = self.url;
+
                 self.$emit('start-loading');
 
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
+
                 self.$http.get(url).then(response=>{
 
                     response = response.data.response;
@@ -46,7 +61,8 @@
                     let result = {
                         data : response.data,
                         noRecordFound : false,
-                        pagination: response.pagination
+                        pagination : response.pagination
+
                     };
 
 
@@ -55,11 +71,10 @@
                     }
 
                     self.$emit('get-records', result);
+
                     self.pagination = response.pagination;
 
                     self.loading = false;
-
-                    console.log(typeof successCallback , 'this is type of successCallback');
 
                     if(typeof successCallback !== 'undefined'){
                         successCallback(true);
@@ -68,14 +83,57 @@
 
                 }).catch(error=>{
                     self.loading = false;
-                    console.log(error , 'error');
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@getList');
                 });
+            },
+            submitForm(successCallback) {
+                let self = this;
+                
+                let url = self.submitUrl;
+                let data = this.formData;
+
+                let urlRequest = '';
+
+                if(this.updateForm){
+                    urlRequest = self.$http.put(url , data)
+                }else{
+                    urlRequest = self.$http.post(url , data);
+                }
+
+                
+                urlRequest.then(response => {
+                    self.$emit('form-submitted', response.data.response);
+
+                }).catch(error => {
+
+                    
+                    if(typeof(successCallback) !== 'undefined'){
+                        return successCallback(true);
+                    }
+
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@submitForm');
+                    self.$emit('form-error', error);
+
+
+                });
+
             },
         },
         watch:{
             url(val){
                 this.url = val;
                 this.getList();
+            },
+            force(value){
+                if(value){
+                    this.getList();
+                }
+            },
+            submit(value){
+                console.log(value , 12321321321);
+                if(value){
+                    this.submitForm();
+                }
             }
         }
     }

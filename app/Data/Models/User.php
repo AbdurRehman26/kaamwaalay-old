@@ -12,28 +12,45 @@ use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
 use App\Notifications\SendServiceProviderStatusNotification;
 use Storage;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-	use InsertOnDuplicateKey,HasApiTokens, Notifiable;
+    use InsertOnDuplicateKey,HasApiTokens, Notifiable, Billable;
     const ACTIVE = 'active';
     const PENDING = 'pending';
     const IN_ACTIVE = 'deactived';
     const GLOBAL_ADMIN = 1;
     protected $perPage = 10;
-    public function getProfileImageAttribute($value){
-        if(substr($value, 0, 8) == "https://"){
-          return  $value;
-      }
-      return $value ? Storage::url(config('uploads.user.folder_name').'/'.$value) : null;
-  }
+    public function getProfileImageAttribute($value)
+    {
+        if(substr($value, 0, 8) == "https://") {
+            return  $value;
+        }
+        return $value;
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name','email', 'password', 'address','apartment','zip_code','phone_number','role_id','state_id','city_id','status','profile_image','access_level','activation_key','activated_at'
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'address',
+        'apartment',
+        'zip_code',
+        'phone_number',
+        'role_id',
+        'state_id',
+        'city_id',
+        'status',
+        'profile_image',
+        'access_level',
+        'activation_key',
+        'activated_at',
     ];
 
     /**
@@ -47,7 +64,7 @@ class User extends Authenticatable
     /**
      * Send the activation notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function sendActivationEmail()
@@ -61,16 +78,16 @@ class User extends Authenticatable
     }
     public function sendPasswordLinkByAdmin()
     {
-     $this->notify(new SendEmailPasswordNotification());
- }
- public static function generatePassword()
- {
-      // Generate random string and encrypt it. 
-  return bcrypt(str_random(35));
-}
+        $this->notify(new SendEmailPasswordNotification());
+    }
+    public static function generatePassword()
+    {
+         // Generate random string and encrypt it. 
+        return bcrypt(str_random(35));
+    }
 
-public function sendChangeStatusNotification($status)
-{
-   $this->notify(new  SendServiceProviderStatusNotification($status));
-}
+    public function sendChangeStatusNotification($status)
+    {
+        $this->notify(new  SendServiceProviderStatusNotification($status));
+    }
 }

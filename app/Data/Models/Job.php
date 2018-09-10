@@ -4,17 +4,20 @@ namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yadakhov\InsertOnDuplicateKey;
 
 class Job extends Model
 {   
-    use softDeletes;
-        /**
+    use InsertOnDuplicateKey, SoftDeletes;
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
         'images' => 'array',
+        'videos' => 'array'
     ];
 
 	const AWARDED 		= 'awarded';

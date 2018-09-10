@@ -62,23 +62,23 @@
 
                     self.$parent.getList(false , function (response) {
                         setTimeout(function () {
-                            console.log('12312321' , '22222');
                             $state.loaded();
-                        } , 2000);
+                        } , 3000);
                     });
 
                 }else{
                     if(self.pagination && self.pagination.current != self.pagination.next){
 
-                        self.$parent.getList(false , self.pagination.next , function (response) {
+                        self.$parent.getList(self.pagination.next , function (response) {
 
                             setTimeout(function () {
                                 $state.loaded();
-                            } , 2000);
+                            } , 3000);
 
                         });
 
                     }else{
+
                         $state.complete();
                     }
 

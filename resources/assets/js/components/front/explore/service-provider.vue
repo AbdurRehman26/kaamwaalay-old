@@ -21,19 +21,19 @@
 			<div class="container md">
 				<div class="row">
 					<div class="col-md-10 p-r-0">
-						<div class="search-filter m-b-0">
+			            <div class="search-filter m-b-0">
 							<div class="custom-multi multifull" :class="{'invalid': isInvalid }">
 								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch">
 									<span slot="noResult">No Service found. Consider changing the search query.</span>
 								</multiselect>
 							</div>
-							<div class="container-zip-code">
+			                <div class="container-zip-code">
 								<i class="icon-location"></i>
 								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
 							</div>
 						</div>			
 					</div>
-					<div class="col-md-2 p-r-0">			
+					<div class="col-md-2 p-r-0">
 						<button class="btn btn-primary" @click="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
 							<span>Search</span>
             				<loader></loader>
@@ -48,16 +48,15 @@
 		<div class="job-post-container section-padd sm" v-if="!noRecordFound">
 			<div class="container md">
 
-				<div class="text-notifer">
+				<div class="text-notifer" v-if="pagination">
 					<p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
 				</div>
-
 				<div class="job-post-list" v-for="record in records" v-if="record.profile_request">
 					<div class="job-post-details">
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
 						<div class="job-common-description">
 							<h3 class="pointer" @click="servicedetail">{{record.business_name}}</h3> 
-							<span v-if="record.profile_request && record.profile_request.status == 'approved'"><i class="icon-checked"></i></span>
+							<span v-if="record.is_verified"><i class="icon-checked"></i></span>
 							
 							<div class="jobs-rating">
 								<star-rating :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
@@ -97,7 +96,7 @@
 									<div class="feeback-detail">
 										<p class="feedback-personal-info">
 											<a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
-											posted on 
+											 posted on 
 											<strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
 										</p>
 										<i class="icon-quotes-right3"></i>
@@ -113,31 +112,31 @@
 		</div>
 
 		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
-		<div class="featured-categories section-padd sm  elementary-banner p-t-130">
-			<div class="container element-index">
+        <div class="featured-categories section-padd sm  elementary-banner p-t-130">
+        	<div class="container element-index">
 
-				<div class="category-section" v-for="maincategory in category">
-					<div class="category-title">
-						<h2>{{ maincategory.title }}</h2>	        			
-					</div>	        		
-					<div class="category-items">
+	        	<div class="category-section" v-for="maincategory in category">
+	        		<div class="category-title">
+	        			<h2>{{ maincategory.title }}</h2>	        			
+	        		</div>	        		
+	        		<div class="category-items">
 
-						<div class="items" v-for="categoryabc in maincategory.categoryitems">
-							<a href="javascript:void(0);">
-								<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
-								<h4>{{categoryabc.itemtitle}}</h4>
-							</a>
-						</div>
-						<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
-
-					</div>  	        	      		
-				</div>
-			</div>
+	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
+	        				<a href="javascript:void(0);">
+		        			<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
+		        				<h4>{{categoryabc.itemtitle}}</h4>
+		        			</a>
+		        		</div>
+		        		<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+	        				
+	        		</div>  	        	      		
+	        	</div>
+        	</div>
 			<div class="elements">
 				<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
-		</div>
+        </div>
 	</div>
 	</div>
 </template>
@@ -148,8 +147,8 @@
 
 	export default {
 		props: ['serviceId', 'zip'],
-		data () {
-			return {
+  data () {
+    return {
 				max: 6,
 				noRecordFound: false,
 				btnLoading: false,
@@ -159,46 +158,45 @@
 				searchValue: '',
 				isLoading: false,
             	loading : false,
-				noRecordFound : false,
 				pagination: '',
 				records : [],
-				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&is_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
+				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
 				service: '',
-				categoryimage: '/images/front/explore/carpenter1.jpg',
+    	categoryimage: '/images/front/explore/carpenter1.jpg',
 
-				jobimage: '/images/front/profile-images/logoimage1.png',
-				reviewerimage: '/images/front/profile-images/personimage1.png',
-				category:[
+    	jobimage: '/images/front/profile-images/logoimage1.png',
+    	reviewerimage: '/images/front/profile-images/personimage1.png',
+		category:[
+
+		{
+
+			title:'Related services',
+			categoryitems:[
+				{
+					itemimage: '/images/front/explore/carpenter1.jpg',
+					itemtitle: 'Wooden partition service'
+				},
 
 				{
+					itemimage: '/images/front/explore/carpenter2.jpg',
+					itemtitle: 'Furniture repair & Installation',
+				},
 
-					title:'Related services',
-					categoryitems:[
-					{
-						itemimage: '/images/front/explore/carpenter1.jpg',
-						itemtitle: 'Wooden partition service'
-					},
+				{
+					itemimage: '/images/front/explore/carpenter3.jpg',
+					itemtitle: 'Wooden deck building & repair',
+				},
 
-					{
-						itemimage: '/images/front/explore/carpenter2.jpg',
-						itemtitle: 'Furniture repair & Installation',
-					},
+			],
 
-					{
-						itemimage: '/images/front/explore/carpenter3.jpg',
-						itemtitle: 'Wooden deck building & repair',
-					},
+		},			
 
-					],
-
-				},			
+	
+		],    	
 
 
-				],    	
-
-
-			}
-		},
+    	}
+  	},
 
 	    computed : {
 	        requestUrl(){
@@ -208,7 +206,7 @@
 		      return this.isTouched && !this.searchValue
 		    }
 	    },
-		methods: {
+    methods: {
 		    limitText (count) {
 		      return `and ${count} other services`
 		    },
@@ -254,23 +252,25 @@
 			startLoading(){
 	            this.loading = true;
 	        },
-			AddCustomer() {
-				this.customer = true;
-			},
-			ViewCustomerDetail() {
-				/*this.viewcustomer = true;*/
-				this.$router.push({name: 'customerdetail'});
-			},
-			changestatuspopup() {
-				this.changestatus = true;
-			},
-			HideModal(){
-				this.customer = false;
-				this.viewcustomer = false;
-				this.changestatus = false;
-			},
-			servicedetail(){
-				this.$router.push({name: 'Service_Provider_Detail'});
+    	AddCustomer() {
+    		this.customer = true;
+    	},
+        ViewCustomerDetail() {
+            /*this.viewcustomer = true;*/
+            this.$router.push({name: 'customerdetail'});
+            window.scrollTo(0,0);
+        },
+        changestatuspopup() {
+            this.changestatus = true;
+        },
+        HideModal(){
+            this.customer = false;
+            this.viewcustomer = false;
+            this.changestatus = false;
+        },
+        servicedetail(){        	
+        	this.$router.push({name: 'Service_Provider_Detail'});
+        	window.scrollTo(0,0);
 			},
 			getService() {
 				let self = this;
@@ -283,11 +283,11 @@
 					self.searchValue = self.service;
 					self.categoryimage = self.getImage(self.service.images);
 					self.btnLoading = false;
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&is_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
 			    }).catch(error=>{
 			    	if(error.status == 403) {
 			    		self.pagination = false;
-			    	}
+        			}
 			    });
 			},
 	        getProviderRecords(response){
@@ -298,10 +298,10 @@
 	            self.pagination = response.pagination;
 	        },
 
-		},
-		components: {
-			StarRating
-		},
+    },
+    components: {
+        StarRating
+    },
 
 		watch: {
 			serviceId(val) {
@@ -317,11 +317,11 @@
 				this.zipCode = val; 
 			}
 		},
-		mounted(){
+    mounted(){
 			this.zipCode = this.zip;
 			this.getService();
 		},
 
-	}
+    }
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

@@ -25,8 +25,10 @@ class UserRatingRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('UserRatingRepository', function () {
-            return new UserRatingRepository(new UserRating);
-        });
+        $this->app->bind(
+            'UserRatingRepository', function () {
+                return new UserRatingRepository(new UserRating);
+            }
+        );
     }
 }

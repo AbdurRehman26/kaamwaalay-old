@@ -6,7 +6,7 @@
 			<div class="col-xs-12 col-sm-6 col-sm-6">
 				<div class="custom-radio boxed m-b-30">
 					<input  v-model="type" value="customer" type="radio" name="accountType" id="type_hire_provider">
-					<label for="type_hire_provider">
+					<label for="type_hire_provider" @click="signuptext = 'CUSTOMER SIGN UP'">
 						<div class="verticle-align">
 							<div class="inner">
 								I want to hire a service provider
@@ -20,7 +20,7 @@
 			<div class="col-xs-12 col-sm-6 col-sm-6">
 				<div class="custom-radio boxed">
 					<input  v-model="type" value="provider" type="radio" name="accountType" id="type_service_provider" >
-					<label for="type_service_provider">
+					<label for="type_service_provider" @click="signuptext = 'SERVICE PROVIDER SIGN UP'">
 						<div class="verticle-align">
 							<div class="inner">
 								I want to grow my business
@@ -36,7 +36,8 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<div class="sign-up-form service-provider-form">
-					<facebook-component :text = "'Sign up with Facebook'"></facebook-component>
+         <p class="custom-text">{{signuptext}}</p>
+					<facebook-component :text = "'Sign up with Facebook'" :fromSignUp="'true'"></facebook-component>
 					<div class="form-signup">
 						<form  @submit.prevent="validateBeforeSubmit"  novalidate="">
 							<alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
@@ -60,7 +61,7 @@
 									<div class="col-xs-12 col-md-6" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
 										<div class="form-group">
 											<label for="register_email">Email Address</label>
-											<input id="register_email" type="email" v-model="register_info.email" v-validate="'required|email'"  name="register_email" class="form-control"  data-vv-name="register_email" data-vv-as="Email" placeholder="Enter your email address" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
+											<input id="register_email" type="email" v-model="register_info.email" v-validate="{ required: true,email: true, regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/ }"  name="register_email" class="form-control"  data-vv-name="register_email" data-vv-as="Email" placeholder="Enter your email address" :class="[errorBag.first('register_email') ? 'is-invalid' : '']">
 										</div>
 									</div>
 									<div class="col-xs-12 col-md-6" :class="[errorBag.first('password') ? 'is-invalid' : '']" novalidate="">
@@ -72,7 +73,7 @@
 								</div>
                                <div class="form-detail form-group">
                                 <div class="custcheckbox custom-control custom-checkbox custom-control-inline">
-                                 <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree" :class="[errorBag.first('agree') ? 'is-invalid' : '']">
+                                 <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree">
                                  <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>								
                              </div>
                          </div>
@@ -112,11 +113,13 @@
             'email': '',
             'password': '',
             'role': '',
-        },
+			  },
+        status:  'not_accepted',
+        signuptext: 'CUSTOMER SIGN UP',
         agree  : false,
         loading: false,
-    }
-},
+        }
+        },
 mounted() {
     this.$auth.options.loginUrl = '/api/auth/login'
 },
@@ -125,9 +128,13 @@ methods:{
 
         var result = [];
         if ((this.type) === 'customer') {
+					this.signuptext = 'CUSTOMER SIGN UP';
+					window.scrollTo(0,0);
            this.$router.push('profile');
        }
        if ((this.type) === 'provider') {
+					this.signuptext = 'Service Provider Signup';
+					window.scrollTo(0,0);					
            this.$router.push('apply-for-review');
        }
        return result;
@@ -166,6 +173,10 @@ validateBeforeSubmit() {
         this.errorMessage = this.errorBag.all()[0];
     });
 },
+  scrolltop(){
+        window.scrollTo(0,0);
+   },
+
 resetModal () {
     let self = this;
     self.register_info = {

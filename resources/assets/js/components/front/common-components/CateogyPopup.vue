@@ -1,6 +1,6 @@
  <template>	
 	<div class="popup categories-popup">
-		<b-modal id="" centered hide-header=false hide-footer=false  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
+		<b-modal id="" centered hide-header=true hide-footer=true  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
 		    	<div class="category-selected">
                     <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue)+')'}">
                     </div>
@@ -55,8 +55,12 @@ export default {
             this.$emit('HideModalValue');
         },
         categorydetail(){
+            this.scrollToTop();
+            this.$router.push({name: 'Explore_Detail'});
+        },
+        scrollToTop() {
             this.$emit('onSubmit', this.zip);
-        }
+        },        
     },
 
     watch: {
@@ -72,6 +76,7 @@ export default {
             this.selectedValue = value;
         },
         zip(val) {
+            console.log(val,88);
             if(val.length > 5) {
                 val = val.substr(0, 5);
             }

@@ -263,6 +263,7 @@
            self.loading = false;
            response = response.data.response;
            self.records.status = response.data.status;
+           self.records.approved_by_user = response.data.approved_by_user;
 
        }).catch(error=>{
         console.log('error' , error);

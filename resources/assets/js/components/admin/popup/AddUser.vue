@@ -1,6 +1,6 @@
  <template>
 	<div>
-		<b-modal id="add-new-user" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Add New User" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
+		<b-modal id="add-new-user" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Add New Admin" ok-only ok-title="Submit" no-close-on-backdrop no-close-on-esc>
             
          <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
          <div>
@@ -19,14 +19,14 @@
             <div :class="[  'form-group' , errorBag.first('email')  ? 'is-invalid' : '']">
                 <div class="form-group">
                     <label for="addForm_email">Email</label>
-                    <input id="addForm_email" type="email" v-model="add_form_info.email" v-validate="'required|email'"  name="email" class="form-control"  data-vv-name="email"  placeholder="Enter your Email">
+                    <input id="addForm_email" type="email" v-model="add_form_info.email" v-validate="{ required: true,email: true, regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/ }"  name="email" class="form-control"  data-vv-name="email"  placeholder="Enter your Email">
                 </div>
             </div>
             <div class="form-group">
                         <label>Access Level</label>
                         <select class="form-control"  v-model="add_form_info.role_id" >
-                            <option value="1">Full Access</option>
-                            <option value="4">Review Process Only</option>
+                            <option value="1">Full</option>
+                            <option value="4">Service Provider Review</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -82,6 +82,7 @@ export default {
                 // Prevent modal from closing
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        this.errorMessage = ''
                         this.save();
                         return;
                     }
@@ -118,14 +119,14 @@ export default {
                         self.loading = false
                         self.successMessage='';
                          self.resetModal();
-                    }, 5000);
+                    }, 2000);
                 })
                 .catch(error => {
                         self.loading = false
                         self.errorMessage = error.response.data.message[0]
                         setTimeout(function(){
                             self.errorMessage=''
-                        }, 5000);
+                        }, 2000);
                 })
             },
     },

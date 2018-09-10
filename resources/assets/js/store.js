@@ -28,12 +28,20 @@ export default new Vuex.Store({
         servicesList : [],
         roles : [],
         paymentTypes : [],
+        urlPrefix: '',
+        supportQuestions: [],
     },
 
     // You can use it as a state getter function (probably the best solution)
     getters: {
         getServicesList(state){
                 return state.servicesList;
+        },
+        getSupportQuestions(state){
+                return state.supportQuestions;
+        },
+        getServiceUrlPrefix(state){
+                return state.urlPrefix;
         },
         getStep2StatsData(state){
             return state.step2StatsData;
@@ -93,6 +101,12 @@ export default new Vuex.Store({
 
     // Mutation for when you use it as state property
     mutations: {
+        setSupportQuestions(state , data){
+            state.supportQuestions = data;
+        },
+        setServiceUrlPrefix(state , data){
+            state.urlPrefix = data;
+        },
         setServicesList(state , data){
             state.servicesList = data;
         },
@@ -100,6 +114,16 @@ export default new Vuex.Store({
             state.step2StatsData = data;
         },
         setAuthUser(state, data){
+           if (data.access_token && data.access_token.split('.').length === 3) {
+                try {
+                    var token = data.access_token;
+                    var base64Url = token.split('.')[1];
+                    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    var authUser = JSON.parse(decodeURIComponent(escape(window.atob(base64))));
+                    data.scopes =  authUser.scopes;
+                } catch(e) {
+                }
+            }
             localStorage.setItem('user', JSON.stringify(data));
             state.authUser = localStorage.getItem('user');
         },

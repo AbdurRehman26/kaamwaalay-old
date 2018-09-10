@@ -23,10 +23,8 @@ abstract class ApiResourceController extends Controller
     //Get all records
     public function index(Request $request)
     {
-        
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
-
         $this->validate($request, $rules);
         
         $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
@@ -39,7 +37,7 @@ abstract class ApiResourceController extends Controller
             'response' => [
                 'data' => $data['data'],
                 'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
-                'message' => $this->response_messages(__FUNCTION__),
+                'message' => $this->responseMessages(__FUNCTION__),
             ]
         ];
 
@@ -82,7 +80,7 @@ abstract class ApiResourceController extends Controller
         
         $data = $this->_repository->create($input);
 
-        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
         
         // HTTP_OK = 200;
 
@@ -104,7 +102,7 @@ abstract class ApiResourceController extends Controller
         $this->validate($request, $rules, $messages);
 
         $data = $this->_repository->update($input);
-        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
 
         // HTTP_OK = 200;
 
@@ -127,7 +125,7 @@ abstract class ApiResourceController extends Controller
 
         $data = $this->_repository->deleteById($input['id']);
 
-        $output = ['response' => ['data' => $data, 'message' => $this->response_messages(__FUNCTION__)]];
+        $output = ['response' => ['data' => $data, 'message' => $this->responseMessages(__FUNCTION__)]];
 
         // HTTP_OK = 200;
 
@@ -156,7 +154,7 @@ abstract class ApiResourceController extends Controller
         return !empty($messages) ? $messages : [];
     }
 
-    public function response_messages($value = '')
+    public function responseMessages($value = '')
     {
         $messages = [
             'store' => 'Record created successfully.',

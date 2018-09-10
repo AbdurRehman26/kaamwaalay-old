@@ -20,6 +20,7 @@
         "vue": "^2.5.16"
     },
     "dependencies": {
+        "ajv": "^6.5.3",
         "ajv-keywords": "^3.2.0",
         "amcharts3": "github:amcharts/amcharts3",
         "babel-loader": "^7.1.5",
@@ -28,6 +29,7 @@
         "bootstrap-vue": "^2.0.0-rc.11",
         "material-icons": "^0.2.3",
         "moment": "^2.22.2",
+        "npm": "^6.4.1",
         "owl.carousel": "^2.3.4",
         "v-owl-carousel": "^1.0.2",
         "vee-validate": "^2.0.9",
@@ -44,6 +46,7 @@
         "vue-resource": "^1.5.1",
         "vue-router": "^3.0.1",
         "vue-star-rating": "^1.6.0",
+        "vue-stripe-elements-plus": "^0.2.8",
         "vue-touch": "^1.1.0",
         "vue2-datepicker": "^2.4.0",
         "vue2-timepicker-extra": "^0.3.0",

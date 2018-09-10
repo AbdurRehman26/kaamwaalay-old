@@ -172,7 +172,9 @@
                                 <p><strong class="title-head">Total revenue earned</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>{{records.total_revenue ?  records.total_revenue : 0}}</p>
+                                <p>
+                                {{records.total_revenue ? '$ ' : ''}}
+                                {{records.total_revenue ?  records.total_revenue : 0}}</p>
                             </b-col>
                         </b-row>                                 
                         <b-row>
@@ -216,7 +218,7 @@
     },    
     methods: {
         ServiceJobDetail(id) {
-            this.$router.push({name: 'viewservicejobdetail', params : {id : id}});
+            this.$router.push({name: 'view.service.job.detail', params : {id : id}});
         },
         getRecords(response){
             let self = this;

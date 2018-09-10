@@ -18,7 +18,6 @@ class JobBidController extends ApiResourceController
 
     if($value == 'store'){
 
-        $rules['user_id'] = 'required|exists:users,id';
         $rules['amount'] =  'required_without:is_tbd';    
         $rules['is_tbd'] =  'required_without:amount';    
         $rules['job_id'] = [
@@ -33,36 +32,24 @@ class JobBidController extends ApiResourceController
     }
 
     if($value == 'update'){
-        $rules['user_id'] = [
-            'required',
-            Rule::exists('jobs')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id']);
-            }),
-        ];
+        // needs usama's help for this.
 
-        $rules['job_id'] = [
-            'required',
-            Rule::exists('job_bids')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id']);
-            }),
-        ];
+        // $rules['user_id'] = [
+        //     'required',
+        //     Rule::exists('jobs')->where(function ($query) {
+        //         $query->where('user_id', $this->input()['user_id']);
+        //     }),
+        // ];
 
-
-    }
-
-
-    if($value == 'destroy'){
+        // $rules['job_id'] = [
+        //     'required',
+        //     Rule::exists('job_bids')->where(function ($query) {
+        //         $query->where('user_id', $this->input()['user_id']);
+        //     }),
+        // ];
 
     }
-
-    if($value == 'show'){
-
-    }
-
-    if($value == 'index'){
-
-    }
-
+    
     return $rules;
 
 }
@@ -70,7 +57,23 @@ class JobBidController extends ApiResourceController
 
 public function input($value='')
 {
-    $input = request()->only('id', 'job_id', 'description', 'is_tbd', 'amount', 'status', 'filter_by_status', 'filter_by_job_id', 'pagination');
+    $input = request()->only('id',
+    'job_id',
+    'description',
+    'is_tbd',
+    'amount',
+    'status',
+    'filter_by_status',
+    'filter_by_job_id',
+    'pagination',
+    'user_id',
+    'filter_by_invitation',
+    'filter_by_archived',
+    'filter_by_completed',
+    'filter_by_awarded',
+    'filter_by_active_bids',
+    'is_awarded'
+    );
         
     if(!empty($input['amount'])){
         unset($input['is_tbd']);
@@ -80,12 +83,21 @@ public function input($value='')
         unset($input['amount']);
     }
 
-    if($value == 'store'){
-        unset($input['status']);
+    if($value == 'store' || $value == 'update'){
+
+        unset(
+            $input['filter_by_status'], $input['filter_by_job_id'], $input['pagination']
+        );
+
     }
 
-    $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : 1;
-    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : 1]);
+    if($value == 'store'){
+        unset($input['status'], $input['is_awarded']);
+    }
+
+
+    $input['user_id'] = request()->user()->id;
+
     return $input;
 }
 

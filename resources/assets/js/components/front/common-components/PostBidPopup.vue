@@ -13,9 +13,9 @@
                     </b-col> 
                     <b-col md="6">
                         <div class="form-group">
-                            <label>&nbsp;</label>
+                            <label class="nolabel">&nbsp;</label>
                             <select class="form-control">
-                              <option v-model="selected">Minimum</option>
+                              <option>Minimum</option>
                             </select>
                         </div>
                     </b-col>
@@ -43,7 +43,7 @@
                     </b-col>
                     <b-col md="6">
                         <div class="form-group custom-datepicker custom-timepicker">
-                            <label>&nbsp;</label>
+                            <label class="nolabel">&nbsp;</label>
                             <date-picker v-model="value12" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time"></date-picker>
                         </div>
                     </b-col>

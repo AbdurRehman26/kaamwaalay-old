@@ -222,6 +222,7 @@ export default {
             this.changestatus = false;
         },
         categorylisting(){
+        	window.scrollTo(0,0);
         	this.$router.push({name: 'Explore_Detail'});	
         }
 

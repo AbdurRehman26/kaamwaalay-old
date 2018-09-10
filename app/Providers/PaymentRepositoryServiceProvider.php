@@ -25,8 +25,10 @@ class PaymentRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('PaymentRepository', function () {
-            return new PaymentRepository(new Payment);
-        });
+        $this->app->bind(
+            'PaymentRepository', function () {
+                return new PaymentRepository(new Payment);
+            }
+        );
     }
 }

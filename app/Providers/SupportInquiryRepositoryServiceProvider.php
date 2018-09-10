@@ -25,8 +25,10 @@ class SupportInquiryRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('SupportInquiryRepository', function () {
-            return new SupportInquiryRepository(new SupportInquiry);
-        });
+        $this->app->bind(
+            'SupportInquiryRepository', function () {
+                return new SupportInquiryRepository(new SupportInquiry);
+            }
+        );
     }
 }

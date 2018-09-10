@@ -1,6 +1,7 @@
 $mobile-sm-width:414px;
 $mobile-width:767px;
 $tablet-width: 768px;
+$tablet-portrait-width: 992px;
 $tablet-landscape-width:1140px;
 $tablet-full-width: 1024px;
 $window-small-width: 1280px;
@@ -28,6 +29,12 @@ $Desktop1440:1500px;
 
 @mixin tablet {
   @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tabletportrait {
+  @media (max-width: #{$tablet-portrait-width}) and (min-width: #{$tablet-width}) {
     @content;
   }
 }

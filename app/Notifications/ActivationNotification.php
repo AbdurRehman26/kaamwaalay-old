@@ -13,16 +13,16 @@ class ActivationNotification extends Notification
     use Queueable;
 
      /**
-     * The callback that should be used to build the mail message.
-     *
-     * @var \Closure|null
-     */
+      * The callback that should be used to build the mail message.
+      *
+      * @var \Closure|null
+      */
     public static $toMailCallback;
 
     /**
      * Create a notification instance.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function __construct()
@@ -33,7 +33,7 @@ class ActivationNotification extends Notification
     /**
      * Get the notification's channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array|string
      */
     public function via($notifiable)
@@ -44,7 +44,7 @@ class ActivationNotification extends Notification
     /**
      * Build the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -52,18 +52,22 @@ class ActivationNotification extends Notification
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable,  $notifiable->activation_key);
         }
-        $url = url(route('activate', [
+        $url = url(
+            route(
+                'user.activate', [
                 'token' => $notifiable->activation_key,
-            ]));
+                ]
+            )
+        );
         return (new MailMessage)
             ->subject(Lang::getFromJson('Activation Notification'))
-             ->markdown('email.user-invite', ['url' => $url]);
+            ->markdown('email.user-invite', ['url' => $url]);
     }
 
     /**
      * Set a callback that should be used when building the notification mail message.
      *
-     * @param  \Closure  $callback
+     * @param  \Closure $callback
      * @return void
      */
     public static function toMailUsing($callback)

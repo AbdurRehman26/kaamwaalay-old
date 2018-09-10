@@ -25,8 +25,10 @@ class PlanRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('PlanRepository', function () {
-            return new PlanRepository(new Plan);
-        });
+        $this->app->bind(
+            'PlanRepository', function () {
+                return new PlanRepository(new Plan);
+            }
+        );
     }
 }

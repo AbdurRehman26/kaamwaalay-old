@@ -66,19 +66,19 @@
 
   <div class="col-xs-12 col-md-12">
 
-    <div class="total-record float-left" v-if="totalServicesCount">
-      <p><strong>Total records: <span>{{totalServicesCount}}</span></strong></p>
+    <div class="total-record float-left" v-if="pagination.total">
+      <p><strong>Total records: <span>{{pagination.total}}</span></strong></p>
     </div>
 
-    <div class="pagination-wrapper float-right" v-if="totalServicesCount">
-      <b-pagination size="md" :total-rows="totalServicesCount" v-model="currentPage" :per-page="25"></b-pagination>
+    <div class="pagination-wrapper float-right" v-if="pagination.total">
+      <b-pagination size="md" :total-rows="pagination.total" v-model="currentPage" :per-page="25"></b-pagination>
     </div>
       <!--<div class="pagination-wrapper float-right">
           <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
         </div>-->
       </div>
     </div>
-    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportdetailpopup" @refreshList="getList(false, false)"></support-detail>
+    <support-detail :selectedInquiry="selectedInquiry" @HideModalValue="HideModal" :showModalProp="supportDetailPopup" @refreshList="getRefreshList"></support-detail>
   </div>
 </template>
 
@@ -86,12 +86,8 @@
   export default {
     data () {
       return {
-        supportdetailpopup: false,
-        totalServicesCount: 0,
+        supportDetailPopup: false,
         service: false,
-        viewdetails: false,
-        actiondelete: false,
-        viewcustomer: false,
         currentPage: 1,
         listing: [],
         search : '',
@@ -109,7 +105,6 @@
 
     watch : {
       currentPage(pageNumber){
-
         var data = {
           search : this.search,
           filter: this.filter_by_inquiry
@@ -117,13 +112,10 @@
         this.getList(data, pageNumber);
 
       },
-      totalServicesCount(count) {
-        this.totalServicesCount = count;
-      }
     },
     methods: {
       HideModal(){
-        this.supportdetailpopup = false;
+        this.supportDetailPopup = false;
       },
       onApply() {
         this.loading = true;
@@ -134,19 +126,23 @@
         };
         this.getList(data, false);
       },
+      getRefreshList(record) {
+        this.loading = true;
+        this.loadingStart = true;
+        var data = {
+          search : this.search,
+          filter: this.filter_by_inquiry
+        };
+        this.getList(data, this.currentPage);
+      },
       SupportDetail(list) {
         this.selectedInquiry = list;
-        this.supportdetailpopup = true;
+        this.supportDetailPopup = true;
       },
-      getResponse(response) {
-        return ['Helo', "kakak"];//response.data.items
-      },
-
       getList(data , page , successCallback){
         let self = this;
         self.showNoRecordFound = false;
         let url = self.url;
-
         if(typeof(page) == 'undefined' || !page){                        
           self.records = [];
         }
@@ -169,11 +165,9 @@
       if(typeof(page) !== 'undefined' && page){
         url += '&page='+page;   
       }
-
       self.$http.get(url).then(response => {
-        response = response.data.response.data;
+        response = response.data.response;
         self.listing = response.data;
-        self.totalServicesCount = response.inquiry_count;
         
         self.pagination = response.pagination;
 
