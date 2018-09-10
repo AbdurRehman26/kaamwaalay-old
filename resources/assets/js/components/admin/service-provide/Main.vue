@@ -77,7 +77,8 @@
                 <i @click="changestatuspopup(record)"  
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
             </i>
-            <i title="" class="icon-check" data-original-title="Confirm Verification"></i>
+            <i @click.prevent="currentRecord = record; confirmPopupShow = true;" v-if="!record.is_verified && record.user_detail.status == 'active'" title="" class="icon-check" data-original-title="Confirm Verification"></i>
+            <i @click.prevent="currentRecord = record; confirmPopupShow = true;" v-if="record.is_verified && record.user_detail.status == 'active'" title="" class="icon-cross" data-original-title="Cancel Verification"></i>
         </div>
     </td>
 </tr>
@@ -92,10 +93,9 @@
 
 <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
-
 </div>
 
-<confirmation-popup></confirmation-popup>
+<confirmation-popup @form-updated="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
 
 </div>
@@ -146,7 +146,12 @@
             }
             ],
             changeStatusURL: 'api/user/change-status',
-            statusData : []
+            statusData : [],
+            confirmPopupShow : false,
+            currentRecord : '',
+            formData : {
+
+            }
         }
     },
     computed : {
@@ -156,10 +161,23 @@
         servicesList(){
             return this.$store.getters.getAllServices;
         },
+        submitUrl(){
+            if(this.currentRecord){  
+                this.formData.is_verified = !this.currentRecord.is_verified;
+                this.formData.is = this.currentRecord.id;
+
+                return 'api/service-provider-profile/' +this.currentRecord.id;
+            }
+        }
 
     },
 
     methods: {
+        formUpdated(){
+            let newDate  = new Date().getMilliseconds();
+
+            this.url = 'api/service-provider-profile?pagination=true&time='+newDate;
+        },
         startLoading(){
             this.loading = true;
         },
