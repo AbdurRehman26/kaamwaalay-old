@@ -37,8 +37,18 @@ class ServiceComposer
     {
         $currentRoute = Route::current();
         $params = $currentRoute->parameters();
-        $service = $this->service->findByAttribute('url_suffix', $params['any']);
-        dd($service);
-        $view->with('count', "Ali");
+        dd($params);
+        if(!empty($params['any'])) {
+            $any = $params['any'];
+            dd($any);
+            $any = explode("/", $any);
+            $service_id = $any[0];
+            $zip = $any[1];
+            //dd(explode("/", $any));
+            $service = $this->service->findByAttribute('id', (int)$service_id);
+            //dd($service->title);
+            $view->with('service', $service);
+        }
+
     }
 }

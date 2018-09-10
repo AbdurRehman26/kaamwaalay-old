@@ -37,8 +37,18 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 
 /*Front Route*/
-Route::get('/services/{any}', function() {
-	return view('front-layout');
+Route::get('explore/service_provider/{any}', function(App\Data\Models\Service $service) {
+	$currentRoute = Route::current();
+    $params = $currentRoute->parameters();
+    if(!empty($params['any'])) {
+        $any = $params['any'];
+        $any = explode("/", $any);
+        $service_id = $any[0];
+        $zip = isset($any[1])? $any[1] : '';
+        $service = $service->find((int)$service_id);
+		return view('front-layout', ['service' => $service]);
+    }
+    return view('front-layout');
 })->where('any', '.*');
 
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
