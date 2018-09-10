@@ -14,7 +14,8 @@ $header-padding:13px 0px;
        background:$header-background;
        width: 100%;
        top:0;
-       z-index: 9999;
+       /* z-index: 9999; */
+       z-index: 99;
        padding:$header-padding;
        border-bottom:solid 1px $grey-lite;
     }

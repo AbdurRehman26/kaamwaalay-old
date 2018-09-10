@@ -10946,7 +10946,6 @@ a.text-dark:focus {
 
 .icon-check2:before {
   content: "\E92A";
-  color: #00699e;
 }
 
 .icon-send:before {
@@ -11115,6 +11114,7 @@ body {
   overflow: auto;
   padding-right: 0px !important;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 img {
@@ -13208,7 +13208,8 @@ input[type=number]::-webkit-outer-spin-button {
   background: #fff;
   width: 100%;
   top: 0;
-  z-index: 9999;
+  /* z-index: 9999; */
+  z-index: 99;
   padding: 13px 0px;
   border-bottom: solid 1px #E0E0E0;
 }
@@ -13509,14 +13510,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .loader-sm .button-loader {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   margin: 7px auto;
 }
 
 .loader-sm .button-loader .loader {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   font-size: 2px;
 }
 
@@ -18602,6 +18603,26 @@ body .chat-feedback-message.white-msg:before {
 
 .category-section .showmore a i {
   padding-left: 11px;
+}
+
+.alert.alert-success .icon-check2 {
+  display: block !important;
+}
+
+.alert.alert-success p {
+  color: #28a745 !important;
+}
+
+.alert.alert-danger .icon-alert {
+  display: block !important;
+}
+
+.alert.alert-danger p {
+  color: #d9534f !important;
+}
+
+.alert p {
+  margin-bottom: 0px !important;
 }
 
 @media (max-width: 992px) and (min-width: 768px) {

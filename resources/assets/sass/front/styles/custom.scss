@@ -3737,3 +3737,25 @@ body{
         }
     }
 }
+
+.alert{
+    &.alert-success{
+        .icon-check2{
+            display: block !important;
+        }
+        p{
+            color: #28a745 !important;
+        }
+    }
+    &.alert-danger{
+        .icon-alert{
+            display: block !important;
+        }
+        p{
+            color: #d9534f !important;
+        }
+    }
+    p{
+        margin-bottom: 0px !important; 
+    }    
+}
