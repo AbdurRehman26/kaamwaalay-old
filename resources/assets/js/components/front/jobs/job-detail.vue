@@ -1,6 +1,6 @@
 <template>
     <div class="job-main-details detail-page">
-        <div class="content">
+        <div class="content" v-if="Object.keys(record).length">
             <div class="job-main-heading grey-bg elementary-banner section-padd xs border-bottom">
                 <div class="container element-index text-center md">
                     <div class="content-sec">
@@ -268,12 +268,10 @@
                         <span>Mark Job Archive</span> <loader></loader>
                     </button>
 
-
                     <a href="javascript:void(0);" v-if="canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
                     <a href="javascript:void(0);" v-if="canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 
                 </div>
-
 
             </div>
         </div>
@@ -292,7 +290,7 @@
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
-<vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
 </template>

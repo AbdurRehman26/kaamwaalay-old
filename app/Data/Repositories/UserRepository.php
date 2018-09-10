@@ -271,7 +271,7 @@ public function updateField(array $data = [])
     
     if($data->status == 'banned'){
 
-        $serviceProvider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
+        $serviceProvider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->id);
 
         if($serviceProvider){
 
