@@ -33680,7 +33680,7 @@ body .ag-theme-balham .ag-cell-inline-editing:after {
   position: absolute;
   right: 8px;
   top: 0;
-  background-image: url(/images/play-svg.svg?906b791613f848001ef89fa46a87c75a);
+  background-image: url(/images/play-svg.svg?1b8a7a159dbf0a61d32d586b1aa46f7c);
   width: 27px;
   height: 31px;
   background-repeat: no-repeat;
@@ -35078,7 +35078,7 @@ body .form-group.is-invalid .form-control {
   border-color: #d9534f;
   -webkit-box-shadow: none;
           box-shadow: none;
-  background-image: url(/images/alert-icon.svg?e19bf2cbf9649b718816e15c9696c192);
+  background-image: url(/images/alert-icon.svg?09b6055c6e034afa1fc5b2d995574a77);
   background-repeat: no-repeat;
   background-size: 21px auto;
   background-position: 98% 53%;
@@ -35103,7 +35103,7 @@ body .form-group.is-valid .form-control {
   border-color: #fff;
   -webkit-box-shadow: none;
           box-shadow: none;
-  background-image: url(/images/check-symbol.svg?52c66b95fdcde248e61ed2c70cafd146);
+  background-image: url(/images/check-symbol.svg?06f82467afa6fc29b9d4f136c2e75c39);
   background-repeat: no-repeat;
   background-size: 24px auto;
   background-position: 98% 53%;
@@ -35295,7 +35295,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: #d9534f;
   -webkit-box-shadow: none;
           box-shadow: none;
-  background-image: url(/images/alert-icon.svg?e19bf2cbf9649b718816e15c9696c192);
+  background-image: url(/images/alert-icon.svg?09b6055c6e034afa1fc5b2d995574a77);
   background-repeat: no-repeat;
   background-size: 21px auto;
   background-position: 98% 53%;
@@ -35585,7 +35585,7 @@ input[type=number]::-webkit-outer-spin-button {
   top: -6px;
   width: 22px;
   height: 25px;
-  background-image: url(/images/caret-top.png?563732919430cb0d0288728a74261b4f);
+  background-image: url(/images/caret-top.png?0695d01f344026c0ec22424268e7b047);
   background-repeat: no-repeat;
   background-size: 100% auto;
   -webkit-box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2);
@@ -36729,7 +36729,7 @@ body .vue-grid-item .list-action i:focus {
 }
 
 .mx-input-icon__calendar {
-  background-image: url(/images/calendar.svg?c3b4eeeaaca0965013569d12f82b30ff) !important;
+  background-image: url(/images/calendar.svg?7c647412d0efda00c21a5e0660d8c4e6) !important;
 }
 
 .filters .filter-date .mx-datepicker .mx-input-icon__calendar {
@@ -37401,7 +37401,7 @@ body .vue-grid-item .list-action i:focus {
   width: 170px;
   height: 110px;
   margin: 0 auto;
-  background-image: url(/images/no-record.svg?c2151495d84edca035a704225e4f077e);
+  background-image: url(/images/no-record.svg?2f756fdeba7cdd317e2551bb8be95028);
   background-repeat: no-repeat;
   background-size: 100% auto;
   display: block;
@@ -41724,5 +41724,17 @@ i.disabled {
 
 .label-with-200 {
   width: 200px;
+}
+
+/* .infinite-loading-container .loading-default{
+    display : none !important;
+} */
+
+body .infinite-loading-container {
+  display: none !important;
+}
+
+body .infinite-loading-container i.loading-default {
+  display: none !important;
 }
 

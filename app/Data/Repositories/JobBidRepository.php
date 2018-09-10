@@ -74,7 +74,7 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
 
         public function findByAll($pagination = false, $perPage = 10, array $input = [] )
         {
-            $this->builder = $this->model->orderBy('id', 'desc');
+            $this->builder = $this->model->orderBy('id', 'asc');
 
             if(!empty($input['filter_by_status'])) {
 

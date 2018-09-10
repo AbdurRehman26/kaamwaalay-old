@@ -94,7 +94,7 @@
                 <a href="javascript:void(0);">{{record.review_details.rated_by_name}}</a>
                 posted on 
                 <strong>{{record.formatted_created_at}}</strong>
-            </p>{{record.review_details.rating}}
+            </p>
             <div class="ratings">
                 <star-rating :star-size="20" read-only :rating="[record.review_details.rating ? parseInt(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
             </div>

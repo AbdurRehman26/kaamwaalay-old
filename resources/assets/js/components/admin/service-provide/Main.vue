@@ -14,36 +14,36 @@
                       <div class="col-xs-12 col-md-3 datepicker-field">
 
                           <div class="form-group">
-                             <label>By Service Type</label>
-                             <select v-model="search.filter_by_service" class="form-control">
-                               <option value="">Select All</option>
-                               <option v-for="service in servicesList" :value="service.id">
-                                   {{ service  | mainServiceOrChildService}}
-                               </option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-3 datepicker-field">
-                      <div class="form-group">
-                         <label>By Business/Individual</label>
-                         <select v-model="search.filter_by_business_type" class="form-control">
-                           <option value="">Select All</option>
-                           <option value="business">Business</option>
-                           <option value="individual">Individual</option>
-                       </select>
-                   </div>
-               </div>
-               <div class="col-xs-12 col-md-2">
-                <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
-                    <span>Apply</span>
-                    <loader></loader>
-                </button>
-            </div>
+                           <label>By Service Type</label>
+                           <select v-model="search.filter_by_service" class="form-control">
+                             <option value="">Select All</option>
+                             <option v-for="service in servicesList" :value="service.id">
+                                 {{ service  | mainServiceOrChildService}}
+                             </option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-xs-12 col-md-3 datepicker-field">
+                  <div class="form-group">
+                   <label>By Business/Individual</label>
+                   <select v-model="search.filter_by_business_type" class="form-control">
+                     <option value="">Select All</option>
+                     <option value="business">Business</option>
+                     <option value="individual">Individual</option>
+                 </select>
+             </div>
+         </div>
+         <div class="col-xs-12 col-md-2">
+            <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
+                <span>Apply</span>
+                <loader></loader>
+            </button>
         </div>
     </div>
 </div>
+</div>
 <div class="col-md-12">
-   <div class="table-area">
+ <div class="table-area">
     <div class="table-responsive">
         <table class="table service-provider-table first-last-col-fix">
           <thead>
@@ -77,6 +77,7 @@
                 <i @click="changestatuspopup(record)"  
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
             </i>
+            <i title="" class="icon-check" data-original-title="Confirm Verification"></i>
         </div>
     </td>
 </tr>
@@ -94,6 +95,7 @@
 
 </div>
 
+<confirmation-popup></confirmation-popup>
 <changestatuspopup @HideModalValue="HideModal" :showModalProp="changestatus" :statusData="statusData" :options="ChangeStatusesOptions"  :url="changeStatusURL" ></changestatuspopup>
 
 </div>

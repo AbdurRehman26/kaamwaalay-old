@@ -2716,3 +2716,16 @@ i{
 .label-with-200 {
     width: 200px;
 }
+
+/* .infinite-loading-container .loading-default{
+    display : none !important;
+} */
+
+body .infinite-loading-container{
+    display: none !important;
+     i.loading-default {
+        display: none !important;
+    }
+}
+
+
