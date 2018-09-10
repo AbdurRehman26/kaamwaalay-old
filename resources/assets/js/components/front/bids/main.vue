@@ -14,11 +14,14 @@
 						<li @click="bid_selection = 'awardedbid'" :class="{ active: bid_selection === 'awardedbid' }">
 							<p>AWARDED <span>{{awardedCount? "(" + awardedCount + ")" : ""}}</span></p>						
 						</li>
-						<li @click="bid_selection = 'completedbid'" :class="{ active: bid_selection === 'completedbid' }">
-							<p>COMPLETED <span>{{completedCount? "(" + completedCount + ")" : ""}}</span></p>							
+                        <li @click="bid_selection = 'completedbid'" :class="{ active: bid_selection === 'completedbid' }">
+                            <p>COMPLETED <span>{{completedCount? "(" + completedCount + ")" : ""}}</span></p>                           
+                        </li>
+						<li @click="bid_selection = 'cancelled'" :class="{ active: bid_selection === 'cancelled' }">
+							<p>CANCELLED <span>{{cancelledCount? "(" + cancelledCount + ")" : ""}}</span></p>							
 						</li>
 						<li @click="bid_selection = 'archivedbid'" :class="{ active: bid_selection === 'archivedbid' }">
-							<p>ARCHIVED <span>{{archivedCount? "(" + archivedCount + ")" : ""}}</span></p>							
+							<p>ARCHIVED <span>{{archivedCount? "(" + archivedCount + ")" : ""}}</span></p>					
 						</li>
 					</ul>
 				</div>
@@ -30,6 +33,7 @@
 				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount" :show="(bid_selection == 'awardedbid')" :count="awardedCount"></bid-awarded>
 				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount" :show="(bid_selection == 'archivedbid')" :count="archivedCount"></bid-archived>
 				<bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" :show="(bid_selection == 'activebid')" :count="activeBidCount"></bid-active>
+                <bid-cancelled @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'cancelled'" @recordCount="setCancelledBidCount" :show="(bid_selection == 'cancelled')" :count="cancelledCount"></bid-cancelled>
 			</div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -56,6 +60,7 @@
          archivedCount: 0,    
          awardedCount: 0,    
          completedCount: 0,    
+         cancelledCount: 0,    
      }
  },
 
@@ -74,6 +79,9 @@
     },
     setCompletedCount(count) {
         this.completedCount = count;
+    },
+    setCancelledBidCount(count) {
+        this.cancelledCount = count;
     },
     AddCustomer() {
         this.customer = true;
@@ -130,6 +138,12 @@
             this.archivedCount = record.count;
         });
     },
+    getCancelledBidsCount() {
+        var cancelledBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_status=cancelled&count_only=true';
+        this.getListCount(cancelledBidUrl, false, (record) => {
+            this.cancelledCount = record.count;
+        });
+    },
     getListCount(url, page, successCallback){
 
         let self = this;
@@ -183,6 +197,7 @@ mounted(){
     this.getAwardedBidsCount();
     this.getCompletedBidsCount();
     this.getArchivedBidsCount();
+    this.getCancelledBidsCount();
     this.bid_selection = 'invitebid';
 },
 watch:{
