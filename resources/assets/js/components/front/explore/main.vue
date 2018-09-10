@@ -310,7 +310,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		console.log(result, 990066);
 		// if(result.length > 3) {
 		// 	result = result.slice(3,5);
 		// }else {

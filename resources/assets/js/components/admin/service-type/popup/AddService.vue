@@ -170,30 +170,30 @@
                 this.url_suffix = sufix;
 
                 var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
+                // if(this.isUpdate) {
+                //     if(this.list.parent_id) {
+                //         url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
+                //     }
+                // }else {
+                //     if(this.formData.parent_id) {
+                //         url = url + this.formData.parent_id.url_suffix;
+                //     }
+                // }
                 this.formData.url_suffix = url + sufix;
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
-                    var prefix = this.defaultUrlPrefix;                     
-                    this.formData.url_suffix = prefix;
-                    this.isChangePrefix = prefix;
+                    // var prefix = this.defaultUrlPrefix;                     
+                    // this.formData.url_suffix = prefix;
+                    // this.isChangePrefix = prefix;
                     this.showRadios = false;
                 }else {
-                    var prefix = this.$store.getters.getServiceUrlPrefix;
-                    if(this.isUpdate) { 
-                        prefix = this.defaultUrlPrefix;
-                    }
-                    this.formData.url_suffix = prefix;
-                    this.isChangePrefix = prefix;
+                    // var prefix = this.$store.getters.getServiceUrlPrefix;
+                    // if(this.isUpdate) { 
+                    //     prefix = this.defaultUrlPrefix;
+                    // }
+                    // this.formData.url_suffix = prefix;
+                    // this.isChangePrefix = prefix;
                     this.showRadios = true;
                 }
             },
@@ -483,30 +483,33 @@
             },
             defaultUrlPrefix() {
                 var url = this.$store.getters.getServiceUrlPrefix;
+                url = url + this.formData.url_suffix;
                 if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '') + this.list.url_suffix;
-                    }else {
-                        url = url + this.list.url_suffix;
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
+                    // if(this.list.parent_id) {
+                    //     url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '') + this.list.url_suffix;
+                    // }else {
+                    //     url = url + this.list.url_suffix;
+                    // }
+                    url = url + this.list.url_suffix;
+                } //else {
+                //     if(this.formData.parent_id) {
+                //         url = url + this.formData.parent_id.url_suffix;
+                //     }
+                // }
                 return url;
             },
             defaultUrlPrefixLength() {
                 var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
+                //url = url + this.formData.url_suffix;
+                // if(this.isUpdate) {
+                //     if(this.list.parent_id) {
+                //         url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
+                //     }
+                // }else {
+                //     if(this.formData.parent_id) {
+                //         url = url + this.formData.parent_id.url_suffix;
+                //     }
+                // }
                 return url.length;
             },
         }
