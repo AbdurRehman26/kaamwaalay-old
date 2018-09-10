@@ -252,7 +252,7 @@
                         } if(!regex.test(str)) {
                             this.errorBag.add({
                                 field: 'url',
-                                msg: 'The url suffix is invalid. Please use only lower case letter, numbers & hyphens.',
+                                msg: 'The url suffix is invalid. Please use only lower case letters, numbers & hyphens.',
                                 id: 7,
                             });
                             this.errorMessage = this.errorBag.all()[0];

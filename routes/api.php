@@ -34,7 +34,7 @@ Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileContro
 ]);
 
 Route::resource('service', 'Api\V1\ServiceController')->except([
-    'edit','create'
+    'edit', 'create', 'store', 'update' 
 ]);
 
 Route::resource('city', 'Api\V1\CityController')->only([
@@ -47,8 +47,4 @@ Route::resource('country', 'Api\V1\CountryController')->only([
 
 Route::resource('state', 'Api\V1\StateController')->only([
     'index', 'show',
-]);
-
-Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-    'edit','create','destory'
 ]);

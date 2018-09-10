@@ -39,7 +39,9 @@
                             <p class="service-requirment">
                                 <i class="icon-brightness-down"></i>
                                 Service required 
-                                <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
+                                <strong v-if="record.job_type == 'urgent' | record.job_type == 'normal'" :class="[record.job_type]">
+                                    {{ record.job_type }}
+                                </strong>
                                 <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
                                 <strong v-else>{{ record.preference | jobPreference }}</strong>
                             </p>
@@ -174,10 +176,10 @@
                                 <div class="jobs-rating">
                                     <star-rating :star-size="20" read-only :rating="bid.user ? parseInt(bid.user.average_rating) : 0" active-color="#8200ff"></star-rating>
                                     <div class="jobs-done">
-                                        <span class="review-job">{{ bid.total_feedback_count ? bid.total_feedback_count : 0 }} Feedback review(s)</span>				
+                                        <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
 
-                                        <span class="review-job" v-if="!bid.finished_jobs">No Jobs performed</span>
-                                        <span class="review-job" v-else>{{ bid.finished_jobs }} Job(s) performed</span>
+                                        <span class="review-job" v-if="!bid.user && !bid.user.total_finished_jobs">No Jobs performed</span>
+                                        <span class="review-job" v-else>{{ bid.user.total_finished_jobs }} Job(s) performed</span>
                                     </div>	
                                 </div>											
                             </div>
@@ -202,11 +204,19 @@
                                 </div>
 
                                 <div class="provider-bidding-btn">
+
                                     <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+                                    
                                     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
+                                    
                                     <a v-if="!jobAwarded && !bid.is_tbd" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary">Award Job</a>
+                                    
                                     <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
+                                    
+                                    <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                        Write Review
+                                    </a>                             
 
                                 </div>
                             </div>
@@ -261,6 +271,7 @@
 
                     <a href="javascript:void(0);" v-if="canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
                     <a href="javascript:void(0);" v-if="canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
+
                 </div>
 
 
@@ -273,10 +284,14 @@
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
-<chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>			
+<chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>           
+
+
 </div>
 
-<vue-common-methods @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
+<write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
+
+<vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
 <vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
@@ -310,6 +325,11 @@
                 requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
                 loading : false,
                 submit : false,
+                submitFormData : '',
+                showReviewForm : false,
+                errorMessage: '',
+                successMessage: '',
+
             }
         },
         computed : {
@@ -320,26 +340,41 @@
                 return this.record.awarded_to;
             },
             canInvite(){
-                if(this.jobBids){
-                    return !this.record.awarded_to  && !this.jobBids.data.length;
+                if(this.jobBids && Object.keys(this.record).length){
+                    return !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
                 }
+                return false;
             },
             canMarkJobComplete(){
-                return this.record.awardedBid && this.record.status !== 'completed';
+                return this.record.awardedBid && this.record.status !== 'completed' && this.record.awardedBid.status == 'completed';
             },
             canCancelJob(){
-                return this.record.status != 'completed' && this.record.status !== 'cancelled';
+                if(Object.keys(this.record).length){
+                    return !this.record.awarded_to && this.record.status != 'completed' && this.record.status !== 'cancelled';
+                }
+                return false;
             },
             canModifyJob(){
-                return !this.record.awarded_to && this.record.status !== 'cancelled';
+                if(Object.keys(this.record).length){
+                    return !this.record.awarded_to && this.record.status !== 'cancelled';
+                }
+                return false;
             },
             canArchiveJob(){
               return !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
           }
       },
       methods: {
-        formSubmitted(){
+        formSubmitted(response){
+
             this.reSendCall();
+            
+            if(!response.is_archived && response.status == 'completed')
+            {
+                this.showReviewForm = true;
+            }
+
+
         },
         reSendCall(){
             let self = this;
@@ -379,6 +414,7 @@
             this.visitjob = false;
             this.visitpopup = false;
             this.bidpopup = false;
+            this.showReviewForm = false;
         },
         showchatpanel(){
             this.isShowing=true;

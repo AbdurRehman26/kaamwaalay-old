@@ -13,32 +13,34 @@ class DatabaseSeeder extends Seeder
     {
         // Guest User Calls
 
-        $this->call(CountriesTableSeeder::class);
-        $this->call(StatesTableSeeder::class);
-        $this->call(CitiesTableSeeder::class);
-        $this->call(ZipCodesTableSeeder::class);
+        // commenting all seeders 
 
-        $this->call(RolesTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
+       //  $this->call(CountriesTableSeeder::class);
+       //  $this->call(StatesTableSeeder::class);
+       //  $this->call(CitiesTableSeeder::class);
+       //  $this->call(ZipCodesTableSeeder::class);
+
+       //  $this->call(RolesTableSeeder::class);
+       //  $this->call(UsersTableSeeder::class);
         
-       $this->call(SupportQuestionsTableSeeder::class);
-       $this->call(PlansTableSeeder::class);
+       // $this->call(SupportQuestionsTableSeeder::class);
+       // $this->call(PlansTableSeeder::class);
 
-        // Service and Service Provider 
+       //  // Service and Service Provider 
 
-        $this->call(ServiceTableSeeder::class);
-        $this->call(ServiceProviderProfileSeeder::class);
+       //  $this->call(ServiceTableSeeder::class);
+       //  $this->call(ServiceProviderProfileSeeder::class);
 
-        // Job bid and rating commented
+       //  // Job bid and rating commented
         
-        $this->call(JobTableSeeder::class);
-        $this->call(JobBidTableSeeder::class);
+       //  $this->call(JobTableSeeder::class);
+       //  $this->call(JobBidTableSeeder::class);
 
-        // These seeders will be commented
-        $this->call(UserRatingTableSeeder::class);
-        $this->call(PaymentTableSeeder::class);
+       //  // These seeders will be commented
+       //  $this->call(UserRatingTableSeeder::class);
+       //  $this->call(PaymentTableSeeder::class);
 
-        $this->call(SupportInquiryTableSeeder::class);
+       //  $this->call(SupportInquiryTableSeeder::class);
 
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');

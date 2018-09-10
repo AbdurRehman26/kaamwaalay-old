@@ -472,6 +472,16 @@ $section-padding-sm:20px 0px;
     }
 }
 
+.main-navigation{
+    li{
+        i.icon-exit {
+            font-size: 24px;
+            cursor: pointer;
+            color: #7D7D7D;
+
+        }
+    }
+}
 
 .border-top-bottom{
     border: 2px solid #E0E0E0;

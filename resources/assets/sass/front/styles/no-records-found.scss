@@ -1,11 +1,17 @@
 .no-records-found
 {
-        height: calc(100vh - 200px);
+        /* height: calc(100vh - 200px); */
+    min-height: 321px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;        
     .no-records-found-icon{
         width: 170px;
         height: 110px;
         margin:0 auto;
-        background-image:url('../images/no-record.svg');
+        background-image:url('../../images/front/no-record.svg');
         background-repeat:no-repeat;
         background-size:100% auto;
         display:block;

@@ -11,12 +11,16 @@ Route::group([
 
 Route::group(['middleware' => ['scopes']], function () {
 
-    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
-    Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
-    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
-    Route::resource('user', 'Api\V1\UserController')->except([
-        'edit','destory','create'
+    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
+    Route::resource('campaign', 'Api\V1\CampaignController')->only([
+        'index', 'store', 'show',
     ]);
+
+    Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
+
+    //Uploading File
+    Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
+    Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 
     Route::resource('job-bid', 'Api\V1\JobBidController')->except([
         'edit','create','destory'
@@ -31,24 +35,26 @@ Route::group(['middleware' => ['scopes']], function () {
         'edit','create','destory'
     ]);
 
-    Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
-        'edit','create','destory','store'
-    ]);
+    Route::resource('payment', 'Api\V1\PaymentController')->except([
+       'edit','create','destory'
+   ]);
 
-    Route::resource('campaign', 'Api\V1\CampaignController')->only([
-        'index', 'store', 'show',
-    ]);
-
-    Route::resource('plan', 'Api\V1\PlanController')->only([
-        'index', 'show', 'update',
+    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
+    Route::resource('plan', 'Api\V1\PlanController')->except([
+        'edit','create'
     ]);
 
     Route::resource('role', 'Api\V1\RoleController')->only([
         'index', 'show',
     ]);
 
-    //Dashboard Report
-    Route::get('dashboard', 'Api\V1\DashboardController@dashboard');
+    Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
+        'edit','create','destory','store'
+    ]);
+
+    Route::resource('service', 'Api\V1\ServiceController')->only([
+        'store', 'update' 
+    ]);
 
     Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
         'index', 'store', 'show', 'update',
@@ -58,17 +64,16 @@ Route::group(['middleware' => ['scopes']], function () {
         'index',
     ]);
 
-    //Payment Listing
-    Route::get('payment', 'Api\V1\PaymentController@index')->name('payment.index');
+    Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
+    Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
+    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
+    Route::resource('user', 'Api\V1\UserController')->except([
+        'edit','destory','create'
+    ]);
+    
+    Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
+        'edit','create','destory'
+    ]);
 
-    //Dashboard Report
-    Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
-
-    //Uploading File
-    Route::post('file/upload', 'Api\V1\FileController@upload')->name("file.upload");
-    Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
-
-    Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
-    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
 
 });

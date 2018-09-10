@@ -139,15 +139,13 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id, false, $details);
                 }
 
-                $ratingCriteria = ['user_id' => $data->user_id];
-                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+                $ratingCriteria = ['rated_by' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
+                
+                $data->job_rating = app('UserRatingRepository')->getAvgRatingCriteria($ratingCriteria, false);
 
-                $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
-                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-                $data->avg_rating = $avgRating;
 
                 if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
-                    
+
                     $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                     $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
                     $data->job_amount = $jobAmount;
@@ -174,25 +172,28 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
     public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null , $orCrtieria = [])
     {
+        $this->builder = $this->model->newInstance();
 
         if($crtieria) {
 
-            $this->model = $this->model->where($crtieria);
+            $this->builder = $this->builder->where($crtieria);
         }
 
         // or Criteria must be an array 
         if($crtieria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
-                $this->model  = $this->model->orWhere($where);
+                $this->builder  = $this->builder->orWhere(function ($query) use ($where) {
+                    $query->where($where);
+                });
             }
         }
 
 
         if($startDate && $endDate) {
-            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $this->builder = $this->builder->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        return  $this->model->count();
+        return  $this->builder->count();
     }
 
 }

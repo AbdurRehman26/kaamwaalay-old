@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Password;
+
 class ForgotPasswordController extends Controller
 {
     /*
@@ -49,5 +53,41 @@ class ForgotPasswordController extends Controller
     {
         $output = ['response' => ['data' => [],'message'=> trans($response)]];
         return response()->json($output, Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /**
+     * Send a reset link to the given user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function sendResetLinkEmail(Request $request)
+    {
+
+        $this->validateEmail($request);
+        $userRepo = app('UserRepository');
+        $user =$userRepo->findByAttribute('email', $request->email);
+        if(!empty($user->social_account_id)) {
+            return $this->sendInvalidUserResponse($request);
+        }
+        // We will send the password reset link to this user. Once we have attempted
+        // to send the link, we will examine the response then see the message we
+        // need to show to the user. Finally, we'll send out a proper response.
+        $response = $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        return $response == Password::RESET_LINK_SENT
+        ? $this->sendResetLinkResponse($response)
+        : $this->sendResetLinkFailedResponse($request, $response);
+    }
+
+    protected function sendInvalidUserResponse(Request $request)
+    {  
+        return response()->json(
+            ['response' => [
+                'message' =>Lang::get('auth.invalidFogotUser'),]
+            ], 422
+        );
     }
 }

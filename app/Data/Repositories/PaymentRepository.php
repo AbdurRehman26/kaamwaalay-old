@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Payment;
+use App\Data\Models\User;
 use Carbon\Carbon;
 use DB;
 
@@ -110,5 +111,23 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         }
 
         return $data;
+    }
+
+    public function create(array $data = [])
+    {
+        $user = User::find($data['user_id']);
+        $stripeToken = $data['stripe_token'];
+        $planId = $data['plan_id'];
+         try{
+              $user->newSubscription('', $planId)->create($stripeToken);
+              $campaignModel = app('CampaignRepository')->model;
+              $campaignData = [];
+              $campaignData['plan_id'] = $planId;
+              $campaignData['user_id'] = $data['user_id'];
+              $campaignModel->create($campaignData);
+              return 'success';
+          } catch (\Stripe\Error\InvalidRequest $e) {
+              return $e->getMessage();
+          }
     }
 }

@@ -62,7 +62,6 @@
 
                     self.$parent.getList(false , function (response) {
                         setTimeout(function () {
-                            console.log('1st Condition');
                             $state.loaded();
                         } , 3000);
                     });
@@ -72,7 +71,6 @@
 
                         self.$parent.getList(self.pagination.next , function (response) {
 
-                            console.log('2nd Condition');
                             setTimeout(function () {
                                 $state.loaded();
                             } , 3000);
@@ -80,8 +78,6 @@
                         });
 
                     }else{
-
-                        console.log('End Condition');
 
                         $state.complete();
                     }

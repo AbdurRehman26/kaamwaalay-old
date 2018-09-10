@@ -51,11 +51,11 @@ class UserRepository extends AbstractRepository implements RepositoryContract
         if($data) {
             $data->profileImage = $data->profile_image;
             if(substr($data->profile_image, 0, 8) != "https://"){
-             $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
-         }
+               $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
+           }
 
-         $data->role = app('RoleRepository')->findById($data->role_id);
-         if (!empty($details['profile_data'])) {
+           $data->role = app('RoleRepository')->findById($data->role_id);
+           if (!empty($details['profile_data'])) {
 
             if($data->role_id == Role::SERVICE_PROVIDER) {
                     // Todo
@@ -71,6 +71,11 @@ class UserRepository extends AbstractRepository implements RepositoryContract
         if (!empty($details['user_rating'])) {
             $criteria = ['user_id' => $id];
             $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
+
+            $data->total_feedback_count = app('UserRatingRepository')->getTotalFeedbackCriteria($criteria);
+            
+            $criteria['status'] = 'completed';
+            $data->total_finished_jobs = app('JobBidRepository')->getCountByCriteria($criteria);
         }
 
         if($data->role_id == Role::CUSTOMER) {
