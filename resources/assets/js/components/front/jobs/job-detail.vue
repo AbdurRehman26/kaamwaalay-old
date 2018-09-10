@@ -22,7 +22,11 @@
                                 <div class="jobs-done" v-else>
                                     <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                                     <div class="job-status">
-                                        <span v-if="record.is_archived" class="tags"
+                                    <span v-if="canMarkJobComplete" class="tags"
+                                        :class="['completed']">
+                                        Marked Done
+                                    </span>
+                                    <span v-else-if="record.is_archived" class="tags"
                                         :class="['archived']">
                                         {{ record | jobStatus }}
                                     </span>
@@ -342,22 +346,22 @@
             },
             canInvite(){
                 if(this.jobBids && Object.keys(this.record).length){
-                    return !this.record.status == 'cancelled' && !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
+                    return this.record.status != 'cancelled' && !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
                 }
                 return false;
             },
             canMarkJobComplete(){
-                return !this.record.status == 'cancelled' && this.record.awardedBid && this.record.status !== 'completed' && this.record.awardedBid.status == 'completed';
+                return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'completed';
             },
             canCancelJob(){
                 if(Object.keys(this.record).length){
-                    return !this.record.awarded_to && this.record.status != 'completed' && this.record.status !== 'cancelled';
+                    return !this.record.awarded_to && this.record.status != 'completed' && this.record.status != 'cancelled';
                 }
                 return false;
             },
             canModifyJob(){
                 if(Object.keys(this.record).length){
-                    return !this.record.awarded_to && this.record.status !== 'cancelled';
+                    return !this.record.awarded_to && this.record.status != 'cancelled';
                 }
                 return false;
             },
@@ -365,14 +369,14 @@
                 return !this.record.status == 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
             },
             canAwardJob(){
-                return !this.record.awarded_to && this.record.status !== 'cancelled';
+                return !this.record.awarded_to && this.record.status != 'cancelled';
             }
         },
         methods: {
             formSubmitted(response){
 
                 this.reSendCall();
-
+                
                 if(!response.data.is_archived && response.data.status == 'completed')
                 {
                     this.showReviewForm = true;
@@ -383,6 +387,10 @@
             reSendCall(){
                 let self = this;
                 self.forceValue = true;
+                self.jobBids = {
+                    data : [],
+                    pagination : false
+                };
                 setTimeout(function () {
                     self.loading = false;
                     self.forceValue = false;

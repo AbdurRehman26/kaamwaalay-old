@@ -34,9 +34,6 @@
             }
         },
         mounted(){
-            if(this.infiniteLoad){
-                this.infiniteHandler();
-            }
         },
         computed : {
             totalRecords(){

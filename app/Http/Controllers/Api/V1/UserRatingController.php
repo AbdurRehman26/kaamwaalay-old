@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\UserRatingRepository;
+use Illuminate\Validation\Rule;
 
 class UserRatingController extends ApiResourceController
 {
@@ -18,8 +19,16 @@ class UserRatingController extends ApiResourceController
         $rules = [];
 
         if($value == 'store') {
-            $rules['job_id']        =  'required|numeric|exists:jobs,id|unique:user_ratings,id,user_id,'.$this->input()['user_id'];
-            $rules['message']       =  'required';
+
+            $rules['job_id'] = [
+                'required',
+                'exists:jobs,id',
+                Rule::unique('user_ratings')->where(function ($query) use ($value) {
+                    $query->where('user_id', $this->input($value)['user_id']);
+                }),
+            ];
+
+            $rules['message']       =  'nullable';
             $rules['rating']        =  'required|numeric|max:5';
             $rules['user_service_id'] =  'numeric|exists:service_provider_services,id';
             $rules['user_id']        =  'required|numeric|exists:users,id';
@@ -42,20 +51,20 @@ class UserRatingController extends ApiResourceController
     public function input($value='')
     {
 
-       if($value == 'index'){
-        $input = request()->only('pagination', 'user_id');
-    }
+        if($value == 'index'){
+            $input = request()->only('pagination', 'user_id');
+        }
 
-    if($value == 'store'){
-        $input = request()->only('rating', 'message', 'job_id', 'user_service_id', 'user_id', 'status');
-        $input['rated_by'] = request()->user()->id;
-    }
+        if($value == 'store'){
+            $input = request()->only('rating', 'message', 'job_id', 'user_service_id', 'user_id', 'status');
+            $input['rated_by'] = request()->user()->id;
+        }
 
-    if($value == 'show'){
-        $input = request()->only('id');
-    }
+        if($value == 'show'){
+            $input = request()->only('id');
+        }
 
-    return $input;
-}
+        return $input;
+    }
 
 }
