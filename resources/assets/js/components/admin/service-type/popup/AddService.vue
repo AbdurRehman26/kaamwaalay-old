@@ -11,7 +11,6 @@
                     <option :value="service" v-for="service in services">{{service.title}}</option>
                 </select>
             </div>
-
             <div class="form-group">
               <label>Service Name</label>
               <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
@@ -150,6 +149,16 @@
         mounted() {
         },
         methods: {
+            getAllServices() {
+                let self = this;
+                let url = 'api/service';
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.$store.commit('setAllServices' , response.data);
+                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
+                }).catch(error=>{
+                });
+            },
             onUrlFocus(e) {
                 var suffix = $(e.target).val();
                 var prefixLength = this.defaultUrlPrefixLength;
@@ -225,7 +234,7 @@
                 var self = this;
                 var tempSuffix = this.formData.url_suffix;
                 var str = this.getSuffix;
-                var regex = /^[0-9A-Za-z\s\-\/]+$/;
+                var regex = /^[0-9a-z\s\-\/]+$/;
                 this.errorBag.clear();
                 
                 this.$validator.validateAll().then((result) => {
@@ -243,7 +252,7 @@
                         } if(!regex.test(str)) {
                             this.errorBag.add({
                                 field: 'url',
-                                msg: 'The url suffix is invalid. Please use only letter, numbers & hyphens.',
+                                msg: 'The url suffix is invalid. Please use only lower case letter, numbers & hyphens.',
                                 id: 7,
                             });
                             this.errorMessage = this.errorBag.all()[0];
@@ -323,7 +332,6 @@
                     response = response.data;
                     self.formData.images[0].name = response.name;
                     self.formData.images[0].original_name = response.original_name;
-
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -335,7 +343,7 @@
             },
             onSubmit() {
                 var self = this;
-                //this.loading = true;
+                this.loading = true;
                 let url = this.url;
 
                 var data = Object.assign({}, this.formData);
@@ -358,7 +366,7 @@
                             self.errorBag.clear()
                         })
                     }, 10);
-
+                    self.getAllServices();
 
                 }).catch(error => {
                     error = error.response.data;
@@ -381,7 +389,8 @@
                 //this.formData.url_suffix = this.getSuffix;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.url_suffix;
+                data.url_suffix = this.getSuffix;
+                console.log(data.url_suffix);
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;//'Updated Successfully';
@@ -398,6 +407,7 @@
                             self.errorBag.clear()
                         })
                     }, 10);
+                    self.getAllServices();
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
