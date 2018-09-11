@@ -85,3 +85,4 @@ Vue.component('file-upload-component', require('./components/admin/common-compon
 
 // stripe checkout component
 Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));
+Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));
