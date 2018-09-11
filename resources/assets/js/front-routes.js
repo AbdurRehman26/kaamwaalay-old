@@ -89,7 +89,7 @@
         component: require('./components/front/explore/service-provider.vue'),
     },
     {
-        name: 'Explore_Detail',
+        name: 'Explore_Detail_SEO',
         path: '/services/:serviceName/',
         props: true,
         meta: {

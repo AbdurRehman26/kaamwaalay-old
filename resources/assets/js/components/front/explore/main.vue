@@ -12,15 +12,15 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" >
+										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
 										</multiselect>
 									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
-										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
+										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric|min:5'" @keyup.enter="validateBeforeSubmit">
 									</div>
 								</div>
-								<button :class="['btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
+								<button :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
 									<span>Search</span>
 								</button>
 							</div>
@@ -120,6 +120,7 @@ export default {
 	data () {
 		return {
 			selectedService: '',
+			btnLoading: false,
 			allServices: [],
 			searchValue: '',
 			isLoading: false,
@@ -168,7 +169,7 @@ export default {
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
-				if (result) {
+				if (result && !this.loading) {
 					this.ServiceProviderPage();
 					this.errorMessage = "";
 					return;
@@ -210,8 +211,11 @@ export default {
 			this.categoryval = false;
 		},
 		ServiceProviderPage() {
+
+			this.btnLoading = true;
 			this.isTouched = false;
 			if(!this.searchValue) {
+				this.btnLoading = false;
 				this.isTouched = true;
 				return;
 			}
