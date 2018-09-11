@@ -146,9 +146,9 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['serviceId', 'zip'],
-  data () {
-    return {
+		props: ['serviceId', 'zip', 'serviceName'],
+	 	data () {
+	    	return {
 				max: 6,
 				noRecordFound: false,
 				btnLoading: false,
@@ -160,36 +160,37 @@
             	loading : false,
 				pagination: '',
 				records : [],
+				url: '',
 				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
 				service: '',
-    	categoryimage: '/images/front/explore/carpenter1.jpg',
+    			categoryimage: '/images/front/explore/carpenter1.jpg',
 
-    	jobimage: '/images/front/profile-images/logoimage1.png',
-    	reviewerimage: '/images/front/profile-images/personimage1.png',
-		category:[
-
-		{
-
-			title:'Related services',
-			categoryitems:[
-				{
-					itemimage: '/images/front/explore/carpenter1.jpg',
-					itemtitle: 'Wooden partition service'
-				},
+    			jobimage: '/images/front/profile-images/logoimage1.png',
+    			reviewerimage: '/images/front/profile-images/personimage1.png',
+				category:[
 
 				{
-					itemimage: '/images/front/explore/carpenter2.jpg',
-					itemtitle: 'Furniture repair & Installation',
-				},
 
-				{
-					itemimage: '/images/front/explore/carpenter3.jpg',
-					itemtitle: 'Wooden deck building & repair',
-				},
+					title:'Related services',
+					categoryitems:[
+						{
+							itemimage: '/images/front/explore/carpenter1.jpg',
+							itemtitle: 'Wooden partition service'
+						},
 
-			],
+						{
+							itemimage: '/images/front/explore/carpenter2.jpg',
+							itemtitle: 'Furniture repair & Installation',
+						},
 
-		},			
+						{
+							itemimage: '/images/front/explore/carpenter3.jpg',
+							itemtitle: 'Wooden deck building & repair',
+						},
+
+					],
+
+				},			
 
 	
 		],    	
@@ -198,14 +199,14 @@
     	}
   	},
 
-	    computed : {
-	        requestUrl(){
-	            return this.serviceProviderUrl;
-	        },
-		    isInvalid () {
-		      return this.isTouched && !this.searchValue
-		    }
-	    },
+    computed : {
+        requestUrl(){
+            return this.serviceProviderUrl;
+        },
+	    isInvalid () {
+	      return this.isTouched && !this.searchValue
+	    }
+    },
     methods: {
 		    limitText (count) {
 		      return `and ${count} other services`
@@ -271,56 +272,75 @@
         servicedetail(){        	
         	this.$router.push({name: 'Service_Provider_Detail'});
         	window.scrollTo(0,0);
-			},
-			getService() {
-				let self = this;
-				let id = this.serviceId;
-				this.btnLoading = true;
-				this.searchUrl  = 'search/explore/'+id;
-				self.$http.get(this.searchUrl).then(response => {
-			    	response = response.data.response;
-					self.service = response.data;
-					self.searchValue = self.service;
-					self.categoryimage = self.getImage(self.service.images);
-					self.btnLoading = false;
+		},
+		getService() {
+			let self = this;
+			this.checkRoute();
+			this.btnLoading = true;
+			self.$http.get(this.url).then(response => {
+		    	response = response.data.response.data;
+				self.service = response.data[0];
+				self.searchValue = self.service;
+				self.categoryimage = self.getImage(self.service.images);
+				self.btnLoading = false;
+				if(typeof(self.serviceId) != "undefined") {
 					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
-			    }).catch(error=>{
-			    	if(error.status == 403) {
-			    		self.pagination = false;
-        			}
-			    });
-			},
-	        getProviderRecords(response){
-	            let self = this;
-	            self.loading = false;
-	            self.records = response.data;
-	            self.noRecordFound = response.noRecordFound;
-	            self.pagination = response.pagination;
-	        },
+				}
+		    }).catch(error=>{
+		    	if(error.status == 403) {
+		    		self.pagination = false;
+    			}
+		    });
+		},
+        getProviderRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.pagination = response.pagination;
+        },
+        checkRoute() {
+        	this.zipCode = this.zip? this.zip : '';
+			console.log(this.serviceName, this.serviceId);
+			if(typeof(this.serviceName) != "undefined") {
+				this.url  = 'search/explore/?service_name=' + this.serviceName;
+			}
+			if(typeof(this.serviceId) != "undefined") {
+				this.url  = 'search/explore/?service_id=' + this.serviceId;
+			}
+			if(!this.zipCode) {
+				this.validateBeforeSubmit();
+			}
+        }
 
     },
     components: {
         StarRating
     },
 
-		watch: {
-			serviceId(val) {
-				if(val.length > 3) {
-					val = val.substr(0, 3);
-				}
-				this.serviceId = val;
-			},
-			zipCode(val) {
-				if(val.length > 5) {
-					val = val.substr(0, 5);
-				}
-				this.zipCode = val; 
+	watch: {
+		serviceId(val) {
+			if(val.length > 3) {
+				val = val.substr(0, 3);
 			}
+			this.serviceId = val;
 		},
+		serviceName(val) {
+			if(val.length > 3) {
+				val = val.substr(0, 3);
+			}
+			this.serviceName = val;
+		},
+		zipCode(val) {
+			if(val.length > 5) {
+				val = val.substr(0, 5);
+			}
+			this.zipCode = val; 
+		}
+	},
     mounted(){
-			this.zipCode = this.zip;
-			this.getService();
-		},
+		this.getService();
+	},
 
     }
 </script>

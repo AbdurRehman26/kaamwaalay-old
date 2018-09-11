@@ -29,7 +29,7 @@ class SearchController extends ApiResourceController
 
         if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
-            $rules['state_id'] =  'required|numeric|exists:states,id';
+            //$rules['state_id'] =  'required|numeric|exists:states,id';
         }
 
         return $rules;
@@ -39,7 +39,7 @@ class SearchController extends ApiResourceController
 
     public function input($value='')
     {
-        $input = request()->only('id', 'pagination', 'state_id');
+        $input = request()->only('id', 'pagination', 'state_id', 'service_name', 'service_id');
         return $input;
     }
 

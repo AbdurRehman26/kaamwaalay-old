@@ -115,12 +115,15 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                             ->orderBy('service_provider_profiles.created_at','desc');
         
         if(!empty($data['zip'])) {
-            $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
-                $join->on('users.id', '=', 'service_provider_profiles.user_id');
-            })->where(function($query)use($data){
-                $query->where('users.zip_code', '=', $data['zip']);
-            })->groupBy('service_provider_profiles.user_id');
+            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
         }
+        // if(!empty($data['zip'])) {
+        //     $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
+        //         $join->on('users.id', '=', 'service_provider_profiles.user_id');
+        //     })->where(function($query)use($data){
+        //         $query->where('users.zip_code', '=', $data['zip']);
+        //     })->groupBy('service_provider_profiles.user_id');
+        // }
 
         if (!empty($data['keyword'])) {
 
