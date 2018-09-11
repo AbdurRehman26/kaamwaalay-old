@@ -147,8 +147,8 @@
 
 	export default {
 		props: ['serviceId', 'zip'],
-  data () {
-    return {
+	 	data () {
+	    	return {
 				max: 6,
 				noRecordFound: false,
 				btnLoading: false,
@@ -162,34 +162,34 @@
 				records : [],
 				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
 				service: '',
-    	categoryimage: '/images/front/explore/carpenter1.jpg',
+    			categoryimage: '/images/front/explore/carpenter1.jpg',
 
-    	jobimage: '/images/front/profile-images/logoimage1.png',
-    	reviewerimage: '/images/front/profile-images/personimage1.png',
-		category:[
-
-		{
-
-			title:'Related services',
-			categoryitems:[
-				{
-					itemimage: '/images/front/explore/carpenter1.jpg',
-					itemtitle: 'Wooden partition service'
-				},
+    			jobimage: '/images/front/profile-images/logoimage1.png',
+    			reviewerimage: '/images/front/profile-images/personimage1.png',
+				category:[
 
 				{
-					itemimage: '/images/front/explore/carpenter2.jpg',
-					itemtitle: 'Furniture repair & Installation',
-				},
 
-				{
-					itemimage: '/images/front/explore/carpenter3.jpg',
-					itemtitle: 'Wooden deck building & repair',
-				},
+					title:'Related services',
+					categoryitems:[
+						{
+							itemimage: '/images/front/explore/carpenter1.jpg',
+							itemtitle: 'Wooden partition service'
+						},
 
-			],
+						{
+							itemimage: '/images/front/explore/carpenter2.jpg',
+							itemtitle: 'Furniture repair & Installation',
+						},
 
-		},			
+						{
+							itemimage: '/images/front/explore/carpenter3.jpg',
+							itemtitle: 'Wooden deck building & repair',
+						},
+
+					],
+
+				},			
 
 	
 		],    	
@@ -198,14 +198,14 @@
     	}
   	},
 
-	    computed : {
-	        requestUrl(){
-	            return this.serviceProviderUrl;
-	        },
-		    isInvalid () {
-		      return this.isTouched && !this.searchValue
-		    }
-	    },
+    computed : {
+        requestUrl(){
+            return this.serviceProviderUrl;
+        },
+	    isInvalid () {
+	      return this.isTouched && !this.searchValue
+	    }
+    },
     methods: {
 		    limitText (count) {
 		      return `and ${count} other services`
@@ -303,24 +303,27 @@
         StarRating
     },
 
-		watch: {
-			serviceId(val) {
-				if(val.length > 3) {
-					val = val.substr(0, 3);
-				}
-				this.serviceId = val;
-			},
-			zipCode(val) {
-				if(val.length > 5) {
-					val = val.substr(0, 5);
-				}
-				this.zipCode = val; 
+	watch: {
+		serviceId(val) {
+			if(val.length > 3) {
+				val = val.substr(0, 3);
 			}
+			this.serviceId = val;
 		},
+		zipCode(val) {
+			if(val.length > 5) {
+				val = val.substr(0, 5);
+			}
+			this.zipCode = val; 
+		}
+	},
     mounted(){
-			this.zipCode = this.zip;
-			this.getService();
-		},
+		this.zipCode = this.zip? this.zip : '';
+		if(!this.zipCode) {
+			this.validateBeforeSubmit();
+		}
+		this.getService();
+	},
 
     }
 </script>
