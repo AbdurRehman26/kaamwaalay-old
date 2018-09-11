@@ -234,10 +234,19 @@ class DashboardRepository
             'business_type'
         )
         ->groupBy('users.id')
-        ->limit(5)
-        ->orderBy('job_completed', 'DESC')
-        ->orderBy('rating', 'DESC')
-        ->get()
+        ->limit(5);
+        if(!empty($input['filter'])){
+            if($input['filter'] == 'by_rating'){
+                $result = $result->orderBy('rating', 'DESC');
+            }else{
+                $result = $result->orderBy('job_completed', 'DESC');    
+            }
+        }else{
+            $result = $result->orderBy('job_completed', 'DESC')
+            ->orderBy('rating', 'DESC');    
+        }
+        
+        $result = $result->get()
         ->toArray();
 
         return $result;
@@ -271,10 +280,18 @@ class DashboardRepository
             DB::raw('COUNT(jobs.id) as job_completed')
         )
         ->groupBy('users.id')
-        ->limit(5)
-        ->orderBy('job_completed', 'DESC')
-        ->orderBy('rating', 'DESC')
-        ->get()
+        ->limit(5);
+         if(!empty($input['filter'])){
+            if($input['filter'] == 'by_rating'){
+                $result = $result->orderBy('rating', 'DESC');
+            }else{
+                $result = $result->orderBy('job_completed', 'DESC');    
+            }
+        }else{
+            $result = $result->orderBy('job_completed', 'DESC')
+            ->orderBy('rating', 'DESC');    
+        }
+        $result = $result->get()
         ->toArray();
 
         return $result;
