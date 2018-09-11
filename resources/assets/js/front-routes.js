@@ -133,6 +133,7 @@
             title: 'Professional Service Marketplace | Apply for Review',
             bodyClass: 'apply-for-review-page',
             navigation: 'provider-nav',
+            requiresAuth : true
         },
         component: require('./components/front/profile/ApplyForReview.vue'),
     },

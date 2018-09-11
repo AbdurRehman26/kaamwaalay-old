@@ -291,8 +291,13 @@ return response()->json($output, $code);
 public function getAuthUser(Request $request)
 {
     $user_id = $request->user()->id;
+    $details = $request->only('details');
 
-    $data = $this->_repository->findById($user_id);
+    $data = $this->_repository->findById(
+        $user_id,
+        false,
+        !empty($details['details']) ? $details['details'] : false
+    );
 
     $output = [
         'response' => [
