@@ -19,7 +19,7 @@ class DashboardController
 
     public function dashboard(Request $request)
     {
-        $input = $request->only('start_date', 'end_date', 'type');
+        $input = $request->only('start_date', 'end_date', 'type','filter');
 
         $rules = [
                     'start_date'            =>  'required|date',
