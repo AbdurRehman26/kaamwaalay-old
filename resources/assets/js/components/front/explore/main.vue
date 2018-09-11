@@ -156,7 +156,8 @@ export default {
 		onSelectCategory(val) {
 			sessionStorage.setItem("zip", val);
 			this.HideModal();
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.selectedService.id, zip : val }});
+			return;
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
@@ -202,7 +203,7 @@ export default {
 				return;
 			}
 			sessionStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }});
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
 			//this.$router.push('/explore/service_provider');
 		},
 		getList(data , page , successCallback) {

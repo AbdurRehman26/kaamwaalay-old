@@ -145,8 +145,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         if(!empty($data['filter_by_service'])){
 
-            $ids = app('ServiceRepository')->model->where('id' , $data['filter_by_service'])
-                ->orWhere('parent_id', $data['filter_by_service'])
+            $ids = app('ServiceRepository')->model->where('url_suffix', '=' , $data['filter_by_service'])
+                //->orWhere('parent_id', $data['filter_by_service'])
                 ->pluck('id')->toArray();
 
 

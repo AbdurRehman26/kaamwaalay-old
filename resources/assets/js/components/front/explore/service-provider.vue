@@ -146,7 +146,7 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['serviceId', 'zip', 'serviceName'],
+		props: ['zip', 'serviceName'],
 	 	data () {
 	    	return {
 				max: 6,
@@ -161,7 +161,7 @@
 				pagination: '',
 				records : [],
 				url: '',
-				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
+				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceName+'&zip='+this.zip,
 				service: '',
     			categoryimage: '/images/front/explore/carpenter1.jpg',
 
@@ -228,7 +228,7 @@
 					this.isTouched = true;
 					return;
 				}
-				this.serviceId = this.searchValue.id;
+				this.serviceName = this.searchValue.url_suffix;
 				this.zip = this.zipCode;
 				this.getService(); 
 			},
@@ -280,12 +280,13 @@
 			self.$http.get(this.url).then(response => {
 		    	response = response.data.response.data;
 				self.service = response.data[0];
+				if(!self.service) {
+					this.$router.push({name: '404'});
+				}
 				self.searchValue = self.service;
 				self.categoryimage = self.getImage(self.service.images);
 				self.btnLoading = false;
-				if(typeof(self.serviceId) != "undefined") {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
-				}
+				self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
 		    }).catch(error=>{
 		    	if(error.status == 403) {
 		    		self.pagination = false;
@@ -301,12 +302,8 @@
         },
         checkRoute() {
         	this.zipCode = this.zip? this.zip : '';
-			console.log(this.serviceName, this.serviceId);
 			if(typeof(this.serviceName) != "undefined") {
 				this.url  = 'search/explore/?service_name=' + this.serviceName;
-			}
-			if(typeof(this.serviceId) != "undefined") {
-				this.url  = 'search/explore/?service_id=' + this.serviceId;
 			}
 			if(!this.zipCode) {
 				this.validateBeforeSubmit();
@@ -319,12 +316,6 @@
     },
 
 	watch: {
-		serviceId(val) {
-			if(val.length > 3) {
-				val = val.substr(0, 3);
-			}
-			this.serviceId = val;
-		},
 		serviceName(val) {
 			if(val.length > 3) {
 				val = val.substr(0, 3);

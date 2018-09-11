@@ -79,18 +79,7 @@
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service_provider/:serviceId/:zip',
-        props: true,
-        meta: {
-            title: 'Professional Service Marketplace | Category Detail',
-            bodyClass: 'explore_detail_page',
-            navigation: 'main-nav',
-        },
-        component: require('./components/front/explore/service-provider.vue'),
-    },
-    {
-        name: 'Explore_Detail',
-        path: '/services/:serviceName/',
+        path: '/explore/service_provider/:serviceName/:zip?',
         props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
