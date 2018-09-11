@@ -39,7 +39,7 @@ class SearchController extends ApiResourceController
 
     public function input($value='')
     {
-        $input = request()->only('id', 'pagination', 'state_id', 'service_name', 'service_id');
+        $input = request()->only('id', 'pagination', 'state_id', 'service_name');
         return $input;
     }
 

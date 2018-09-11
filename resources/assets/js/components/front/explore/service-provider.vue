@@ -291,7 +291,7 @@
 			this.checkRoute();
 			this.btnLoading = true;
 			self.$http.get(this.url).then(response => {
-		    	response = response.data.response.data;
+		    	response = response.data.response;
 				self.service = response.data[0];
 				if(!self.service) {
 					this.$router.push({name: '404'});
@@ -316,7 +316,7 @@
         checkRoute() {
         	this.zipCode = this.zip? this.zip : '';
 			if(typeof(this.serviceName) != "undefined") {
-				this.url  = 'search/explore/?service_name=' + this.serviceName;
+				this.url  = 'api/service/?service_name=' + this.serviceName;
 			}
 			if(!this.zipCode) {
 				this.validateBeforeSubmit();
