@@ -119,13 +119,16 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         $stripeToken = $data['stripe_token'];
         $planId = $data['plan_id'];
          try{
-              $user->newSubscription('', $planId)->create($stripeToken);
-              $campaignModel = app('CampaignRepository')->model;
-              $campaignData = [];
-              $campaignData['plan_id'] = $planId;
-              $campaignData['user_id'] = $data['user_id'];
-              $campaignModel->create($campaignData);
-              return 'success';
+             $payment =  $user->newSubscription('', $planId)->create($stripeToken);
+             $planRepo = app('PlanRepository')->findById($planId);
+             if($planRepo->product == 'featured_profile'){
+                $campaignModel = app('CampaignRepository')->model;
+                $campaignData = [];
+                $campaignData['plan_id'] = $planId;
+                $campaignData['user_id'] = $data['user_id'];
+                $campaignModel->create($campaignData);
+              }
+              return $payment;
           } catch (\Stripe\Error\InvalidRequest $e) {
               return $e->getMessage();
           }

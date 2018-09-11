@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="urgent-job" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Feature Profile" ok-only ok-title="Submit">
+  <b-modal id="urgent-job" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Feature Profile" ok-only ok-title="Submit"  no-close-on-backdrop no-close-on-esc hide-header-close>
      <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>      
      <div>
 <!--       <card class='stripe-card'
@@ -72,6 +72,7 @@ export default {
       expiry: false,
       cvc: false,
       loading: false,
+      stripeKey: process.env.MIX_STRIPE_KEY,
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
       },
@@ -108,12 +109,15 @@ export default {
       self.$http.post('/api/payment',params)
                 .then(response => {
                     self.successMessage =  response.data.message
-                    self.$parent.url = "";
+                    //self.$parent.url = "";
                     setTimeout(function(){
                         self.loading = false
                         self.successMessage='';
-                        if(self.fromFeaturedProfile){
+                        if(self.fromFeaturedProfile == 'true'){
                           self.$parent.getCampaignList()
+                        }else{
+                          self.$parent.formData.subscription_id = response.data.data.id
+                          self.$parent.onSubmit()
                         }
                         self.hideModal()
                     }, 2000);
@@ -166,16 +170,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.stripe-card {
-  width: 300px;
-  border: 1px solid grey;
-}
-.stripe-card.complete {
-  border-color: green;
-}
-.credit-card-inputs.complete {
-  border: 2px solid green;
-}
-</style>

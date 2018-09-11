@@ -47,7 +47,7 @@ class JobController extends ApiResourceController
             'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
-            'details', 'is_archived'
+            'details', 'is_archived','subscription_id'
         );
 
         $input['user_id'] = request()->user()->id;
