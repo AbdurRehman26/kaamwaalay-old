@@ -23,6 +23,7 @@ abstract class ApiResourceController extends Controller
     //Get all records
     public function index(Request $request)
     {
+        
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
         $this->validate($request, $rules);

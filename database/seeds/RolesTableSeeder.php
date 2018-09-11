@@ -36,6 +36,7 @@ class RolesTableSeeder extends Seeder
                     "service.update",
                     "service-provider-profile.index",
                     "service-provider-profile.show",
+                    "service-provider-profile.update",
                     "service-provider-profile-request.index",
                     "service-provider-profile-request.show",
                     "service-provider-profile-request.update",

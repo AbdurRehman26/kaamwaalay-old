@@ -1,6 +1,6 @@
 <template>
     <div class="job-main-details detail-page">
-        <div class="content">
+        <div class="content" v-if="Object.keys(record).length">
             <div class="job-main-heading grey-bg elementary-banner section-padd xs border-bottom">
                 <div class="container element-index text-center md">
                     <div class="content-sec">
@@ -22,7 +22,11 @@
                                 <div class="jobs-done" v-else>
                                     <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                                     <div class="job-status">
-                                        <span v-if="record.is_archived" class="tags"
+                                    <span v-if="canMarkJobComplete" class="tags"
+                                        :class="['completed']">
+                                        Marked Done
+                                    </span>
+                                    <span v-else-if="record.is_archived" class="tags"
                                         :class="['archived']">
                                         {{ record | jobStatus }}
                                     </span>
@@ -206,14 +210,14 @@
                                 <div class="provider-bidding-btn">
 
                                     <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-                                    
+
                                     <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
-                                    
-                                    <a v-if="!jobAwarded && !bid.is_tbd" href="javascript:void(0);" 
+
+                                    <a v-if="!bid.is_tbd && canAwardJob" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary">Award Job</a>
-                                    
+
                                     <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
-                                    
+
                                     <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>                             
@@ -268,12 +272,10 @@
                         <span>Mark Job Archive</span> <loader></loader>
                     </button>
 
-
                     <a href="javascript:void(0);" v-if="canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
                     <a href="javascript:void(0);" v-if="canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 
                 </div>
-
 
             </div>
         </div>
@@ -292,7 +294,7 @@
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
-<vue-common-methods :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -307,7 +309,10 @@
                 forceValue : false,
                 bidder : '',
                 record : [],
-                jobBids : '',
+                jobBids : {
+                    pagination : false,
+                    data : []
+                },
                 awardJob: false,
                 visitjob: false,
                 visitpopup: false,
@@ -341,120 +346,132 @@
             },
             canInvite(){
                 if(this.jobBids && Object.keys(this.record).length){
-                    return !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
+                    return this.record.status != 'cancelled' && !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
                 }
                 return false;
             },
             canMarkJobComplete(){
-                return this.record.awardedBid && this.record.status !== 'completed' && this.record.awardedBid.status == 'completed';
+                return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'completed';
             },
             canCancelJob(){
                 if(Object.keys(this.record).length){
-                    return !this.record.awarded_to && this.record.status != 'completed' && this.record.status !== 'cancelled';
+                    return !this.record.awarded_to && this.record.status != 'completed' && this.record.status != 'cancelled';
                 }
                 return false;
             },
             canModifyJob(){
                 if(Object.keys(this.record).length){
-                    return !this.record.awarded_to && this.record.status !== 'cancelled';
+                    return !this.record.awarded_to && this.record.status != 'cancelled';
                 }
                 return false;
             },
             canArchiveJob(){
-              return !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
-          }
-      },
-      methods: {
-        formSubmitted(response){
-
-            this.reSendCall();
-            
-            if(!response.is_archived && response.status == 'completed')
-            {
-                this.showReviewForm = true;
+                return !this.record.status == 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
+            },
+            canAwardJob(){
+                return !this.record.awarded_to && this.record.status != 'cancelled';
             }
+        },
+        methods: {
+            formSubmitted(response){
+
+                this.reSendCall();
+                
+                if(!response.data.is_archived && response.data.status == 'completed')
+                {
+                    this.showReviewForm = true;
+                }
 
 
-        },
-        reSendCall(){
-            let self = this;
-            self.forceValue = true;
-            setTimeout(function () {
-                self.loading = false;
-                self.forceValue = false;
-            }, 3000);
+            },
+            reSendCall(){
+                let self = this;
+                self.forceValue = true;
+                self.jobBids = {
+                    data : [],
+                    pagination : false
+                };
+                setTimeout(function () {
+                    self.loading = false;
+                    self.forceValue = false;
+                }, 3000);
 
-        },
-        getResponse(response){
-            this.record = response.data;
-        },
-        getBidsResponse(response){
-            this.jobBids = response;
-        },
-        open (e) {            
-            fancyBox(e.target, this.record.jobImages);
-        },
-        FindInvite(){
-            this.$router.push({name: 'Explore_Detail'});
-        },
-        Modify(){
-            this.$router.push({name: 'job.view' , params : { id : this.record.id }});
-        },        
-        VisitPopup(){
-            this.visitpopup = true;
-        },
-        VisitApproval(){
-            this.visitjob = true;
-        },
-        BidModify(){
-            this.bidpopup = true;
-        },
-        HideModal(){
-            this.awardJob = false;
-            this.visitjob = false;
-            this.visitpopup = false;
-            this.bidpopup = false;
-            this.showReviewForm = false;
-        },
-        showchatpanel(){
-            this.isShowing=true;
-        },
-        CloseDiscussion(){
-            this.isShowing=false;
-        },
-        showProfile(id){
-            this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
-        },
-        markCompletedByCustomer(){
-            this.loading = true;
+            },
+            getResponse(response){
+                this.record = response.data;
+            },
+            getBidsResponse(response){
 
-            let data = {
-                status : 'completed',
-                id : this.record ? this.record.id : ''
-            };
-            this.submitFormData = data;
+                for (var i = 0; i < response.data.length; i++) {
+                    this.jobBids.data.push(response.data[i]);    
+                }
+                this.jobBids.pagination = response.pagination;
 
-            this.submit = true;
+            },
+            open (e) {            
+                fancyBox(e.target, this.record.jobImages);
+            },
+            FindInvite(){
+                this.$router.push({name: 'Explore_Detail'});
+            },
+            Modify(){
+                this.$router.push({name: 'job.view' , params : { id : this.record.id }});
+            },        
+            VisitPopup(){
+                this.visitpopup = true;
+            },
+            VisitApproval(){
+                this.visitjob = true;
+            },
+            BidModify(){
+                this.bidpopup = true;
+            },
+            HideModal(){
+                this.awardJob = false;
+                this.visitjob = false;
+                this.visitpopup = false;
+                this.bidpopup = false;
+                this.showReviewForm = false;
+            },
+            showchatpanel(){
+                this.isShowing=true;
+            },
+            CloseDiscussion(){
+                this.isShowing=false;
+            },
+            showProfile(id){
+                this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
+            },
+            markCompletedByCustomer(){
+                this.loading = true;
+
+                let data = {
+                    status : 'completed',
+                    id : this.record ? this.record.id : ''
+                };
+                this.submitFormData = data;
+
+                this.submit = true;
+            },
+            markJobArchive(){
+                this.loading = true;
+
+                let data = {
+                    is_archived : 1,
+                    id : this.record ? this.record.id : ''
+                };
+                this.submitFormData = data;
+
+                this.submit = true;
+
+            },
         },
-        markJobArchive(){
-            this.loading = true;
-
-            let data = {
-                is_archived : 1,
-                id : this.record ? this.record.id : ''
-            };
-            this.submitFormData = data;
-
-            this.submit = true;
-
+        components: {
+            StarRating
         },
-    },
-    components: {
-        StarRating
-    },
 
-    mounted(){
-    },
+        mounted(){
+        },
 
-}
+    }
 </script>

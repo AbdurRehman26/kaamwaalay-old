@@ -78,6 +78,7 @@
                 if(!response.data.message) {
                     self.successMessage = response.data.response.message;
                 }
+                self.$emit('form-updated');
                 setTimeout(function() {
                     self.loading = false;
                     self.hideModal();

@@ -28,12 +28,12 @@
                     </span>
                 </li>
                 <li>
-                   <logout-component></logout-component>
-               </li>
+                    <logout-component></logout-component>
+                </li>
 
-           </ul>
-       </li>
-   </ul>
+            </ul>
+        </li>
+    </ul>
 </div>
 </template>
 
@@ -41,68 +41,69 @@
     import { directive as onClickaway } from 'vue-clickaway';
     export default{
         mounted (){
-         this.getAllServices();
-     },
-     data () {
-      return {
-        isShowing:false,
-        showModalValue : false,
-        tab: false,
-        tabmenu: false,
-        first_name : '',
-        last_name : '',
-        user:{}
-    }
-},
-directives: {
-    onClickaway: onClickaway,
-},
-    computed : {
-        userDetails(){
-            return JSON.parse(this.$store.getters.getAuthUser);
+            this.getAllServices();
         },
-        fullName(){
-            return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
-        },
-        socialAccountId(){
-            return this.userDetails ? this.userDetails.social_account_id : '';
-        },
-        imageValue(){
-            return this.userDetails ? this.userDetails.profileImage : ''
-        }
-    },
-    methods: {
-     changePassword(){
-            if(this.socialAccountId == null){
-              this.$emit('profilepopup')
+        data () {
+            return {
+                isShowing:false,
+                showModalValue : false,
+                tab: false,
+                tabmenu: false,
+                first_name : '',
+                last_name : '',
+                user:{}
             }
         },
-    away: function(){
-        this.isShowing = false;
-        this.tab = false;
-    },
-    WriteReviewModal(){                
-        this.$emit('WriteReviewModal');
-    },         
-    ViewBid(){
-        /*this.$router.push({name: 'job-details'})*/
-        this.$emit('ViewBid');
-    },           
-    scrollToTop() {
-        window.scrollTo(0,0);
-    },                       
-    getAllServices() {
-        let self = this;
-        let url = 'api/service';
-        self.$http.get(url).then(response=>{
-            response = response.data.response;
-            self.$store.commit('setAllServices' , response.data);
-            self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
-        }).catch(error=>{
+        directives: {
+            onClickaway: onClickaway,
+        },
+        computed : {
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
+            },
+            fullName(){
+                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
+            },
+            socialAccountId(){
+                return this.userDetails ? this.userDetails.social_account_id : '';
+            },
+            imageValue(){
+                let user = JSON.parse(this.$store.getters.getAuthUser);
+                return user.profile_image ? user.profile_image : '';
+            }
+        },
+        methods: {
+            changePassword(){
+                if(this.socialAccountId == null){
+                    this.$emit('profilepopup')
+                }
+            },
+            away: function(){
+                this.isShowing = false;
+                this.tab = false;
+            },
+            WriteReviewModal(){                
+                this.$emit('WriteReviewModal');
+            },         
+            ViewBid(){
+                /*this.$router.push({name: 'job-details'})*/
+                this.$emit('ViewBid');
+            },           
+            scrollToTop() {
+                window.scrollTo(0,0);
+            },                       
+            getAllServices() {
+                let self = this;
+                let url = 'api/service';
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.$store.commit('setAllServices' , response.data);
+                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
+                }).catch(error=>{
 
 
-        });
-    },
-}
-}
+                });
+            },
+        }
+    }
 </script>

@@ -48,6 +48,10 @@ Route::group(['middleware' => ['scopes']], function () {
         'index', 'show',
     ]);
 
+    Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->only([
+        'update'
+    ]);
+
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
         'edit','create','destory','store'
     ]);

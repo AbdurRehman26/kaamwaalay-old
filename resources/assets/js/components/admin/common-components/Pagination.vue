@@ -9,7 +9,11 @@
         <div v-if="pagination && !infiniteLoad" class="pagination-wrapper float-right">
             <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
         </div>
-        <infinite-loading v-if="infiniteLoad" @infinite="infiniteHandler"></infinite-loading>    
+        <infinite-loading :distance="10" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
+            <span slot="no-more">
+            </span>
+            <span slot="spinner"></span>
+        </infinite-loading>    
 
     </div>
 </template>
@@ -43,21 +47,14 @@
             loadingStart(value){
             },
             pagination(value){
-                if(value){
-                    if(value.current == value.next){
-
-                    }
-                }
             }
         },
         methods: {
             changePage(pageNumber){
-                console.log(pageNumber , '123');
                 this.$emit('page-changed', pageNumber);
             },
             infiniteHandler($state) {
                 let self = this;
-
                 if(!self.pagination){
 
                     self.$parent.getList(false , function (response) {

@@ -8,13 +8,13 @@
 
 				<div class="job-common-description job-perform">
 					<div class="col-md-6 p-l-0">
-						<h3 class="pointer" @click="servicedetail">{{record.job.title}}</h3> <span><i class="icon-checked"></i><i class="icon-info pointer" @click="$emit('showinformation')"><img src="/images/front/svg/info.svg"></i></span>
+						<h3 class="pointer" @click="servicedetail">{{record.job.title}}</h3> 
 						<div class="job-notification">									
 							<div class="jobs-done">											
 								<span class="job-poster">Posted By <a href="javascript:void(0);" @click="showProfile()">{{getUserName(getJobUser(record))}}</a></span>		
 								<span class="job-category noborder">{{ getJobCategory(record.job) }}</span>											
 							</div>	
-						</div>
+						</div>	
 					</div>
 					<div class="col-md-6 job-bid-btn p-r-0">
 						<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: chat_message === false}"><i class="icon-message"></i></a>						
@@ -56,7 +56,7 @@
 				</div>				
 			</div>
 		</div>
-		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
+		<vue-common-methods :url="url" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
 	</div>			
 
 </template>
@@ -65,8 +65,10 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
+		props: ['show', 'count'],
 		data () {
 			return {
+				url: null,
 				user: '',
 				records : [],
 				chat_message: false,
@@ -149,9 +151,12 @@
 	        getProviderRecords(response){
 	            let self = this;
 	            self.loading = false;
-	            self.records = response.data;
-	            console.log(response.data, 889900);
-	            this.$emit("recordCount", response.pagination? response.pagination.total : 0);
+	            let len = response.data.length;
+			    for (var i = 0 ; i < len; i++) {
+			        self.records.push( response.data[i] ) ;
+			        
+			    }
+	            this.$emit("recordCount", response.pagination? response.pagination.total : this.count);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
 	        },	
@@ -162,13 +167,25 @@
 		},
 		computed: {
 			requestUrl() {
-				//return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&user_id=' + this.user.id;
-				return null;
+				return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&user_id=' + this.user.id;
+				//return null;
 			}
 		},
 		mounted(){
-			window.scrollTo(0,0);
 			this.user = JSON.parse(this.$store.getters.getAuthUser);
+		},
+		watch: {
+			show(val) {
+				if(val) {
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true';
+				}else {
+					//this.url = null;
+					//self.pagination = false;
+				}
+			},
+			count(val) {
+				this.count = val;
+			}
 		}
 
 	}
