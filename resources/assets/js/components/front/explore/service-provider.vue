@@ -43,7 +43,7 @@
 			</div>
 		</div>
 
-		<h3 v-if="!this.zipCode">Please enter a zip code to view the list of service providers accordingly.</h3>
+		<h5 class="text-center enterzip" v-if="!this.zipCode">Please enter a zip code to view the list of service providers accordingly.</h5>
          <no-record-found v-else-if="noRecordFound"></no-record-found>
 		<div class="job-post-container section-padd sm" v-if="!noRecordFound">
 			<div class="container md">

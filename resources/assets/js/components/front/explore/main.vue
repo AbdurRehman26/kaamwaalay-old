@@ -165,7 +165,6 @@ export default {
 		onSelectCategory(val) {
 			sessionStorage.setItem("zip", val);
 			this.HideModal();
-			return;
 			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
 		},
 		validateBeforeSubmit() {

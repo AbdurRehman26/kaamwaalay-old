@@ -365,7 +365,7 @@ $section-padding-sm:20px 0px;
 
     .search-filter{
         position: relative;
-        z-index: 999;
+        z-index: 99;
         .custom-multi {
             width: calc(100% - 30%);
             display: inline-block;
@@ -2599,6 +2599,12 @@ body{
             border-left: 1px solid #ccc;
         }
     }
+}
+
+.category-detail .enterzip{
+    font-size: 1.125rem;
+    font-family: "AkzidenzGroteskBE-Md";
+    padding: 50px 0px;
 }
 
 
