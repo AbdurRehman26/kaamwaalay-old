@@ -302,7 +302,6 @@ class JobBidRepository extends AbstractRepository implements RepositoryContract
             unset($data['user_id']);
 
             $data = parent::update($data);
-
             if($data->is_awarded){
 
                 $updateData = ['id' => $data->job_id, 'status'=> 'awarded'];

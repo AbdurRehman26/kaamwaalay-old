@@ -10,10 +10,10 @@ class JobBidController extends ApiResourceController
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-       $this->_repository = $repository;
-   }
+     $this->_repository = $repository;
+ }
 
-   public function rules($value=''){
+ public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -34,19 +34,19 @@ class JobBidController extends ApiResourceController
     if($value == 'update'){
         // needs usama's help for this.
 
-        // $rules['user_id'] = [
-        //     'required',
-        //     Rule::exists('jobs')->where(function ($query) {
-        //         $query->where('user_id', $this->input()['user_id']);
-        //     }),
-        // ];
+        $rules['user_id'] = [
+            'required',
+            Rule::exists('job_bids')->where(function ($query) {
+                $query->where('user_id', $this->input()['user_id']);
+            }),
+        ];
 
-        // $rules['job_id'] = [
-        //     'required',
-        //     Rule::exists('job_bids')->where(function ($query) {
-        //         $query->where('user_id', $this->input()['user_id']);
-        //     }),
-        // ];
+        $rules['job_id'] = [
+            'required',
+            Rule::unique('job_bids')->where(function ($query) {
+                $query->where('is_awarded' , '=', 1);
+            }),
+        ];
 
     }
     
@@ -58,9 +58,29 @@ class JobBidController extends ApiResourceController
 public function input($value='')
 {
 
-    $input = request()->only('id', 'job_id', 'description', 'is_tbd', 'amount', 'status', 'filter_by_status', 'filter_by_job_id', 'pagination', 'user_id', 'filter_by_invitation', 'filter_by_archived', 'filter_by_completed', 'filter_by_awarded', 'filter_by_active_bids', 'filter_by_job_detail', 'is_status', 'count_only');
+    $input = request()->only(
+        'id',
+        'job_id',
+        'description',
+        'is_tbd',
+        'amount',
+        'status',
+        'filter_by_status',
+        'filter_by_job_id',
+        'pagination',
+        'user_id',
+        'filter_by_invitation',
+        'filter_by_archived',
+        'filter_by_completed',
+        'filter_by_awarded',
+        'filter_by_active_bids',
+        'filter_by_job_detail',
+        'is_status',
+        'count_only',
+        'is_awarded'
+    );
 
-        
+
     if(!empty($input['amount'])){
         unset($input['is_tbd']);
     }
