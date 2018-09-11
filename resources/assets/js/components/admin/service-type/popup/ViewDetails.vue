@@ -24,7 +24,7 @@
                     <p><strong class="title-head">URL Suffix</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p>{{selectedService.parent_id? (selectedService.parent.url_suffix+ "/" + selectedService.url_suffix) : selectedService.url_suffix}}</p>
+                    <p>{{selectedService.url_suffix}}</p>
                 </b-col>
             </b-row>
             <b-row>
