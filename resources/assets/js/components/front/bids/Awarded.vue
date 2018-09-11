@@ -151,8 +151,12 @@
 	        getProviderRecords(response){
 	            let self = this;
 	            self.loading = false;
-	            self.records = response.data;
-	            this.$emit("recordCount", response.pagination? response.pagination.total : count);
+	            let len = response.data.length;
+			    for (var i = 0 ; i < len; i++) {
+			        self.records.push( response.data[i] ) ;
+			        
+			    }
+	            this.$emit("recordCount", response.pagination? response.pagination.total : this.count);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
 	        },	
@@ -179,6 +183,9 @@
 					//this.url = null;
 					//self.pagination = false;
 				}
+			},
+			count(val) {
+				this.count = val;
 			}
 		}
 
