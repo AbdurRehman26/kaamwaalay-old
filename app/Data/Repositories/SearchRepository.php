@@ -144,6 +144,15 @@ class SearchRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where('is_featured', '=', (int)$data['filter_by_featured']);
 
         }
+        if(isset($data['service_id'])) {
+                        
+            $this->builder = $this->builder->find((int)$data['service_id']);
+
+        }
+        if(isset($data['service_name'])) {
+            $this->builder = $this->builder->where('url_suffix', '=', $data['service_name']);
+            
+        }
         if (!empty($data['keyword'])) {
 
             // $this->builder = $this->builder->where(function($query) use($data){

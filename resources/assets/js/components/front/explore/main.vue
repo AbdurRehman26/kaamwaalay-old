@@ -12,16 +12,15 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" >
-											<span slot="noResult">No Service found. Consider changing the search query.</span>
+										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
 										</multiselect>
 									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
-										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
+										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric|min:5'" @keyup.enter="validateBeforeSubmit">
 									</div>
 								</div>
-								<button class="btn btn-primary" @click="validateBeforeSubmit">
+								<button :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
 									<span>Search</span>
 								</button>
 							</div>
@@ -121,6 +120,7 @@ export default {
 	data () {
 		return {
 			selectedService: '',
+			btnLoading: false,
 			allServices: [],
 			searchValue: '',
 			isLoading: false,
@@ -133,10 +133,19 @@ export default {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 			categoryval: false,
+			loading: false,
 		}
 	},
 	methods: {
-
+		dispatchAction (actionName) {
+			this.searchValue = '';
+			this.options = [];
+			this.loading = false;
+		},
+		dispatchCloseAction (actionName) {
+			this.options = [];
+			this.loading = false;
+		},
         getImage(img) {
         	return img? img[0].upload_url : 'images/dummy/image-placeholder.jpg';
         },
@@ -156,11 +165,11 @@ export default {
 		onSelectCategory(val) {
 			sessionStorage.setItem("zip", val);
 			this.HideModal();
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.selectedService.id, zip : val }});
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
-				if (result) {
+				if (result && !this.loading) {
 					this.ServiceProviderPage();
 					this.errorMessage = "";
 					return;
@@ -173,7 +182,13 @@ export default {
 		},
 		asyncFind: _.debounce(function(query) {
 			let self = this;
-			if(!query || query.length < 3) return;
+			this.loading = true;
+			if(!query) {
+				this.loading = false;
+			}
+			if(!query || query.length < 3) {
+				return;
+			};
 			this.searchUrl  = 'api/service?keyword='+query;
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
@@ -196,13 +211,16 @@ export default {
 			this.categoryval = false;
 		},
 		ServiceProviderPage() {
+
+			this.btnLoading = true;
 			this.isTouched = false;
 			if(!this.searchValue) {
+				this.btnLoading = false;
 				this.isTouched = true;
 				return;
 			}
 			sessionStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }});
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
 			//this.$router.push('/explore/service_provider');
 		},
 		getList(data , page , successCallback) {
@@ -273,6 +291,11 @@ watch: {
 			val = val.substr(0, 5);
 		}
 		this.zipCode = val; 
+	},
+	searchValue(val) {
+		if(val == null) {
+			this.loading = false;
+		}
 	}
 },
 

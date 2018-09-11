@@ -107,6 +107,7 @@ export default {
         showCampaignFound: '',
         showPlanFound: '',
         user: {},
+        paymentSuccess: true,
 }
 },
 methods:{

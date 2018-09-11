@@ -31,7 +31,7 @@ class PlanController extends ApiResourceController
         if($value == 'index') {
             $rules['pagination']    =  'nullable|boolean';
             $rules['type']          =  'nullable|in:service,job';
-            $rules['product']    = 'nullable|in:featured_profile,account_creation';
+            $rules['product']    = 'nullable|in:featured_profile,account_creation,urgent_job';
         }
 
         if($value == 'updateOrAddPlans') {

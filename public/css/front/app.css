@@ -13209,7 +13209,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
   top: 0;
   /* z-index: 9999; */
-  z-index: 99;
+  z-index: 999;
   padding: 13px 0px;
   border-bottom: solid 1px #E0E0E0;
 }
@@ -14870,7 +14870,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .search-filter {
   position: relative;
-  z-index: 999;
+  z-index: 99;
 }
 
 .search-filter .custom-multi {
@@ -17386,6 +17386,12 @@ body .chat-feedback-message.white-msg:before {
   border-left: 1px solid #ccc;
 }
 
+.category-detail .enterzip {
+  font-size: 1.125rem;
+  font-family: "AkzidenzGroteskBE-Md";
+  padding: 50px 0px;
+}
+
 /* service detail */
 
 .provider-information {
@@ -18623,6 +18629,19 @@ body .chat-feedback-message.white-msg:before {
 
 .alert p {
   margin-bottom: 0px !important;
+}
+
+.stripe-card {
+  width: 300px;
+  border: 1px solid grey;
+}
+
+.stripe-card.complete {
+  border-color: green;
+}
+
+.credit-card-inputs.complete {
+  border: 2px solid green;
 }
 
 @media (max-width: 992px) and (min-width: 768px) {

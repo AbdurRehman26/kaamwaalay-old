@@ -3,6 +3,8 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use App\Data\Repositories\ServiceRepository;
+use Illuminate\Support\Facades\Route;
+
 
 class ServiceComposer
 {
@@ -33,6 +35,20 @@ class ServiceComposer
      */
     public function compose(View $view)
     {
-        $view->with('count', $this->users->count());
+        $currentRoute = Route::current();
+        $params = $currentRoute->parameters();
+        dd($params);
+        if(!empty($params['any'])) {
+            $any = $params['any'];
+            dd($any);
+            $any = explode("/", $any);
+            $service_id = $any[0];
+            $zip = $any[1];
+            //dd(explode("/", $any));
+            $service = $this->service->findByAttribute('id', (int)$service_id);
+            //dd($service->title);
+            $view->with('service', $service);
+        }
+
     }
 }

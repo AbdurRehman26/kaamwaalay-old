@@ -119,6 +119,7 @@ class RolesTableSeeder extends Seeder
                     "support-question.index",
                     "support-question.store",
                     "payment.store",
+                    "plan.index",
                 ]), 
                 'created_at' => $date,
                 'updated_at' => $date,

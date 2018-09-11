@@ -365,7 +365,7 @@ $section-padding-sm:20px 0px;
 
     .search-filter{
         position: relative;
-        z-index: 999;
+        z-index: 99;
         .custom-multi {
             width: calc(100% - 30%);
             display: inline-block;
@@ -2601,6 +2601,12 @@ body{
     }
 }
 
+.category-detail .enterzip{
+    font-size: 1.125rem;
+    font-family: "AkzidenzGroteskBE-Md";
+    padding: 50px 0px;
+}
+
 
 /* service detail */
 
@@ -3757,5 +3763,16 @@ body{
     }
     p{
         margin-bottom: 0px !important; 
-    }    
+    }  
+}  
+.stripe-card {
+  width: 300px;
+  border: 1px solid grey;
+}
+.stripe-card.complete {
+  border-color: green;
+}
+.credit-card-inputs.complete {
+  border: 2px solid green;
+
 }

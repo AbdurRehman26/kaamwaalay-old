@@ -234,7 +234,7 @@
                 var self = this;
                 var tempSuffix = this.formData.url_suffix;
                 var str = this.getSuffix;
-                var regex = /^[0-9a-z\s\-\/]+$/;
+                var regex = /^[0-9a-z\-\/]+$/;
                 this.errorBag.clear();
                 
                 this.$validator.validateAll().then((result) => {
