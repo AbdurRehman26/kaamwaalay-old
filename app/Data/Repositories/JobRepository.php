@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
+use App\Data\Models\Role;
 use Carbon\Carbon;
 use Storage;
 
@@ -89,6 +90,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             )->select('jobs.*');
         }
 
+        if(!empty($input['filter_by_city'])) {
+            $this->builder = $this->builder->where('city_id', '=', $input['filter_by_city']);            
+        }
+
         $data = parent::findByAll($pagination, $perPage, $input);
 
         return $data;   
@@ -100,7 +105,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     {
 
         $data = parent::findById($id, $refresh, $details, $encode);
+        
         if($data) {
+
+            $currentUser = request()->user();
 
             $details = ['user_rating' => true];
             $data->user = app('UserRepository')->findById($data->user_id, false, $details);
@@ -161,6 +169,14 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
 
                 }
+                
+                // current service provider bid 
+
+                if($currentUser->role_id == Role::SERVICE_PROVIDER){
+                    $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
+                    $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+                }
+
 
             }
 
@@ -170,17 +186,17 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     }
 
 
-    public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null , $orCrtieria = [])
+    public function getTotalCountByCriteria($criteria = [], $startDate = null, $endDate = null , $orCrtieria = [])
     {
         $this->builder = $this->model->newInstance();
 
-        if($crtieria) {
+        if($criteria) {
 
-            $this->builder = $this->builder->where($crtieria);
+            $this->builder = $this->builder->where($criteria);
         }
 
         // or Criteria must be an array 
-        if($crtieria && $orCrtieria) {
+        if($criteria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
                 $this->builder  = $this->builder->orWhere(function ($query) use ($where) {
                     $query->where($where);

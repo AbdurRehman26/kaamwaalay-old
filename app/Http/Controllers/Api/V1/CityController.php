@@ -23,7 +23,7 @@ class CityController extends ApiResourceController
 
         if($value == 'index') {
               $rules['pagination']    =  'nullable|boolean';
-              $rules['state_id'] =  'required|numeric|exists:states,id';
+              $rules['state_id'] =  'nullable|numeric|exists:states,id';
         }
 
         return $rules;
