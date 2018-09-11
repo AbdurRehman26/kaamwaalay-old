@@ -178,7 +178,7 @@
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
                                 <div class="jobs-rating">
-                                    <star-rating :star-size="20" read-only :rating="bid.user ? parseInt(bid.user.average_rating) : 0" active-color="#8200ff"></star-rating>
+                                    <star-rating :star-size="20" read-only :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
                                     <div class="jobs-done">
                                         <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
 
@@ -381,8 +381,7 @@
                 {
                     this.showReviewForm = true;
                 }
-
-
+                
             },
             reSendCall(){
                 let self = this;
