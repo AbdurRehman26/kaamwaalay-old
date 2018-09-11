@@ -20,7 +20,7 @@
 										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
 									</div>
 								</div>
-								<button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit">
+								<button :class="['btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
 									<span>Search</span>
 								</button>
 							</div>
