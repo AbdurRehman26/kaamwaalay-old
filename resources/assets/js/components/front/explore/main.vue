@@ -12,8 +12,7 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" >
-											<span slot="noResult">No Service found. Consider changing the search query.</span>
+										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" >
 										</multiselect>
 									</div>
 									<div class="container-zip-code">
@@ -21,7 +20,7 @@
 										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
 									</div>
 								</div>
-								<button class="btn btn-primary" @click="validateBeforeSubmit">
+								<button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit">
 									<span>Search</span>
 								</button>
 							</div>
@@ -133,10 +132,19 @@ export default {
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 			categoryval: false,
+			loading: false,
 		}
 	},
 	methods: {
-
+		dispatchAction (actionName) {
+			this.searchValue = '';
+			this.options = [];
+			this.loading = false;
+		},
+		dispatchCloseAction (actionName) {
+			this.options = [];
+			this.loading = false;
+		},
         getImage(img) {
         	return img? img[0].upload_url : 'images/dummy/image-placeholder.jpg';
         },
@@ -173,7 +181,13 @@ export default {
 		},
 		asyncFind: _.debounce(function(query) {
 			let self = this;
-			if(!query || query.length < 3) return;
+			this.loading = true;
+			if(!query) {
+				this.loading = false;
+			}
+			if(!query || query.length < 3) {
+				return;
+			};
 			this.searchUrl  = 'api/service?keyword='+query;
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
@@ -273,6 +287,11 @@ watch: {
 			val = val.substr(0, 5);
 		}
 		this.zipCode = val; 
+	},
+	searchValue(val) {
+		if(val == null) {
+			this.loading = false;
+		}
 	}
 },
 

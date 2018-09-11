@@ -8,26 +8,26 @@
                     <b-col md="12">
                         <div class="form-group">
                             <label>Old Password</label>
-                            <input type="password" v-model="userData.old_password" :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="old password" name="old_password" class="form-control"  data-vv-name="old_password" placeholder="Enter old password" :class="['form-group' , errorBag.first('old_password') ? 'is-invalid' : '']">
+                            <input type="password" v-model="userData.old_password" :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="old password" name="old_password" class="form-control"  data-vv-name="old_password" placeholder="Enter old password" :class="['form-group' , errorBag.first('old_password') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
                         </div>
                     </b-col> 
                     <b-col md="6">
                         <div class="form-group">
-                            <label>New Password</label>
-                            <input type="password" v-model="userData.new_password"  :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="new password" name="new_password" class="form-control"  data-vv-name="new_password" placeholder="Create new password" :class="['form-group' , errorBag.first('new_password') ? 'is-invalid' : '']">
+                            <label>New Password22</label>
+                            <input type="password" v-model="userData.new_password"  :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="new password" name="new_password" class="form-control"  data-vv-name="new_password" placeholder="Create new password" :class="['form-group' , errorBag.first('new_password') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
                         </div>
                     </b-col> 
                     <b-col md="6">
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" v-model="userData.password_confirmation" :maxlength="25" v-validate="'required|confirmed:new_password'" data-vv-as="confirm password" name="password_confirmation" class="form-control"  data-vv-name="password_confirmation" placeholder="Re-type new password" :class="['form-group' , errorBag.first('password_confirmation') ? 'is-invalid' : '']">
+                            <input type="password" v-model="userData.password_confirmation" :maxlength="25" v-validate="'required|confirmed:new_password'" data-vv-as="confirm password" name="password_confirmation" class="form-control"  data-vv-name="password_confirmation" placeholder="Re-type new password" :class="['form-group' , errorBag.first('password_confirmation') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
                         </div> 
                     </b-col> 
                 </b-row>           
 		    </div>
             <div slot="modal-footer" class="">
                 <b-col class="float-left" cols="6">
-                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();">
+                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();" >
                         <span>Submit</span> 
                         <loader></loader>
                     </button>
