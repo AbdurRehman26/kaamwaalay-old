@@ -79,7 +79,7 @@
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service_provider/:serviceName/:zip?',
+        path: '/services/:serviceName/:zip?',
         props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',

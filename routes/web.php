@@ -47,8 +47,8 @@ Route::get('services/{any}', function(App\Data\Models\Service $service) {
         // $zip = isset($any[1])? $any[1] : '';
         $service = $service->where('url_suffix', '=', $any)->get()->toArray();
         if(empty($service)) {
-            //return view('front-layout');
-            abort(404);
+            return view('front-layout');
+            //abort(404);
         }
 		return view('front-layout', ['service' => $service[0]]);
     }
