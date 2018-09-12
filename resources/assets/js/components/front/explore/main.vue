@@ -271,6 +271,10 @@ export default {
 	},
 },
 mounted(){
+	if(sessionStorage['zip']) {
+		this.zipCode = sessionStorage.getItem('zip');
+	}
+	
 	this.getList({service_category: 'All'},false);
 },
 watch: {
