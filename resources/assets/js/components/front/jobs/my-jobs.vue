@@ -72,9 +72,9 @@
                                     </p>
                                     <p class="awarded" v-if="record.awarded_to">
                                         <i class="icon-checkmark2"></i> 
-                                        Awarded to <a href="javascript:void(0);">
+                                        Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.id}}">
                                             {{  record.awarded_to.business_details  ? record.awarded_to.business_details.business_name : '' }}
-                                        </a>
+                                        </router-link>
                                     </p>								
                                     <p class="service-requirment">
                                         <i class="icon-brightness-down"></i>
@@ -102,7 +102,7 @@
                                                     <strong>{{record.formatted_created_at}}</strong>
                                                 </p>
                                                 <div class="ratings">
-                                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="[record.review_details.rating ? parseInt(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
+                                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="[record.review_details.rating ? parseFloat(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
                                                 </div>
                                             </div>
                                         </div>

@@ -37,12 +37,14 @@
 
                 <div class="job-post-list" v-for="record in records">
                     <div class="job-post-details">
-                        <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')'}"></div>
+                        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')'}"></div>
 
                         <div class="job-common-description job-perform">
                             <div class="col-md-6 p-l-0">
                                 <div class="job-main-title">
-                                    <h3 class="pointer">{{record.title}}</h3> <span><i class="icon-info pointer" @click="showinfo"><img src="/images/front/svg/info.svg"></i></span>
+                                    <router-link :to="{name: 'job.details' , params : { id : record.id }}">
+                                        <h3 class="pointer">{{record.title}}</h3>
+                                    </router-link> 
                                 </div>
                                 <div class="job-notification">
                                     <div class="jobs-done">
@@ -53,7 +55,8 @@
                             </div>
                             <div class="col-md-6 job-bid-btn p-r-0">
                                 <a href="javascript:void(0);" v-if="!record.my_bid" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
-                                <a @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message"><i class="icon-message"></i></a> <a href="javascript:void(0);" @click="servicedetail" class="btn btn-primary post-bid">View Details</a>
+                                <a @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message"><i class="icon-message"></i></a>
+                                <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
                             </div>
                         </div>
 
@@ -65,7 +68,7 @@
                             <p class="offer" v-if="record.my_bid">
                                 <i class="icon-work-briefcase"></i>
                                 Offer: <strong>
-                                {{ record.my_bid.is_tbd ? 'TBD' : record.my_bid.amount }}
+                                    {{ record.my_bid.is_tbd ? 'TBD' : record.my_bid.amount }}
                                 </strong> - <a v-if="!record.my_bid.is_awarded" @click="ChangeBid" href="javascript:void(0);">Change Bid</a>
                             </p>
 
