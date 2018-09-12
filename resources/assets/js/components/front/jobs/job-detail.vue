@@ -10,8 +10,8 @@
 
                     <div class="job-content">
                         <h2>{{record.title}}</h2>
-                        <div class="job-notification flexable">	
-                            <div class="col-md-5  p-l-0">
+                        <div class="job-notification flexable direction-column">	
+                            <div class="col-md-12 p-l-0 p-r-0">
                                 <div class="jobs-done"  v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
                                     <div class="job-status job-poster">
                                         <span>Posted by <a href="javascript:void(0);" @click="showProfile()">Nathan Alvarez</a></span>	
@@ -37,7 +37,7 @@
                         </div>											
                     </div>	
                 </div>		
-                <div class="col-md-8 p-r-0">
+                <div class="col-md-12 p-r-0 p-l-0">
                     <div class="job-details" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
 
                         <p class="service-requirment">
@@ -181,6 +181,7 @@
                         </div>
 
                     </div>
+
 
 
                     <div class="chat-feedback" v-else>

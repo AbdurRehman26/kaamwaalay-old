@@ -397,7 +397,7 @@ $section-padding-sm:20px 0px;
 
 .awarded.alignawd {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     position: relative;
     top: 9px;
     text-transform: capitalize;
@@ -549,6 +549,14 @@ $section-padding-sm:20px 0px;
             color: #7D7D7D;
 
         }
+    }
+}
+
+.direction-column{
+    flex-direction: column;
+    .job-details{
+    padding-top: 0px !important;
+    margin-bottom: 0;        
     }
 }
 
@@ -3248,6 +3256,10 @@ body{
     }
 }
 
+p.awarded_to {
+    margin-top: -2px;
+}
+
 .job-main-heading{
     .content-sec{
         .job-image{
@@ -3259,7 +3271,7 @@ body{
             margin-right: 30px;
         }
         .job-content{
-            font-size: 36px;
+            /* font-size: 36px; */
             margin-bottom: 0px;
             padding-bottom: 7px !important;
             padding-top: 11px;
