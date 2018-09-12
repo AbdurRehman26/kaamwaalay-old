@@ -110,8 +110,6 @@
                     support_question_id: this.selectedQuestion.id,
                     message: this.message,
                     user_id: this.user.id,
-                    name: this.user.first_name + " " + this.user.last_name,
-                    email: this.user.email,
                 };
 
               self.loading = true;
