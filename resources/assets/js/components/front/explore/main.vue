@@ -57,7 +57,6 @@
 							    <b-card>
 							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
 									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
-										<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
 										<p>{{remainingSubServices.title}}</p>
 									</a>
 								</div>
@@ -150,16 +149,6 @@ export default {
         	return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
         	
         },
-		// onToggleCollapse(e, val) {
-		// 	var elem = $('#'+val);
-		// 	if($(elem).css("display") == "none" ) {
-		// 		$(elem).show("fast", "linear");
-		// 		$(e.target).text("Hide all services related to electricians ");
-		// 	}else {
-		// 		$(elem).hide("fast", "linear");
-		// 		$(e.target).text("View all services related to electricians ");
-		// 	}
-		// },
 		onTouch () {
 			this.isTouched = true
 		},
@@ -222,7 +211,6 @@ export default {
 			}
 			sessionStorage.setItem('zip', this.zipCode);
 			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
-			//this.$router.push('/explore/service_provider');
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -238,7 +226,6 @@ export default {
 				if(data.service_category) {
 					var query  = query + '&service_category='+data.service_category;
 				}
-		        //var query  = '?pagination=true&keyword='+this.search+'&filter_by_featured='+this.search.filter_by_featured;
 		        url = url+query;
 		    }else{
 		    	var query  = '?pagination=true';
@@ -308,9 +295,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		// if(result.length > 2) {
-		// 	result = result.slice(0,2);
-		// }
 		return result;
 	},
 	getRemainingWithServices () {
@@ -320,11 +304,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		// if(result.length > 3) {
-		// 	result = result.slice(3,5);
-		// }else {
-		// 	result = result.slice(3);
-		// }
 		return result;
 	},
 	getOtherServices () {
@@ -334,11 +313,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		// if(result.length > 3) {
-		// 	result = result.slice(3,5);
-		// }else {
-		// 	result = result.slice(3);
-		// }
 		return result;
 	},
 	isInvalid () {

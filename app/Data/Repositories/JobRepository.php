@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
 use App\Data\Models\Role;
+use App\Data\Models\User;
 use Carbon\Carbon;
 use Storage;
 
@@ -43,7 +44,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     public function findByAll($pagination = false, $perPage = 10, array $input = [] )
     {
 
-        $this->builder = $this->model->orderBy('id', 'desc');
+        $this->builder = $this->model->join('users', 'users.id', 'jobs.user_id')
+                        ->where('users.role_id', '=', Role::CUSTOMER)
+                        ->where('users.status', '=', User::ACTIVE)
+                        ->select('jobs.id')
+                        ->orderBy('jobs.id', 'desc');
         
         if(!empty($input['filter_by_me'])) {
             $input['filter_by_user'] = request()->user()->id;            
