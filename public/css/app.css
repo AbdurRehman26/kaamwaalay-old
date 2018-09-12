@@ -32354,6 +32354,10 @@ h4 {
   vertical-align: middle;
 }
 
+.basecolor {
+  color: #1A1A1A;
+}
+
 .not-found {
   position: relative;
   height: calc(100% - 54px);

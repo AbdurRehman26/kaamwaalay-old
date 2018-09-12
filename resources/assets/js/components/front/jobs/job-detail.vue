@@ -11,7 +11,7 @@
                     <div class="job-content">
                         <h2>{{record.title}}</h2>
                         <div class="job-notification flexable">	
-                            <div class="col-md-8  p-l-0">
+                            <div class="col-md-5  p-l-0">
                                 <div class="jobs-done"  v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
                                     <div class="job-status job-poster">
                                         <span>Posted by <a href="javascript:void(0);" @click="showProfile()">Nathan Alvarez</a></span>	
@@ -37,7 +37,7 @@
                             </div>											
                         </div>	
                     </div>		
-                    <div class="col-md-6 p-r-0">
+                    <div class="col-md-8 p-r-0">
                         <div class="job-details" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
 
                             <p class="service-requirment">
@@ -51,16 +51,21 @@
                             </p>
                         </div>
                         <div class="job-details" v-else>
-                            <p class="awarded">
-                                <i class="icon-checkmark2"></i> 
-                                {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
-                                {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}
-                                <i class="icon-brightness-down"></i>
-                                Service required 
-                                <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
-                                <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
-                                <strong v-else>{{ record.preference | jobPreference }}</strong>
-                            </p>
+                            <div class="awarded alignawd">
+                                <p class="awarded_to">
+                                    <i class="icon-checkmark2"></i> 
+                                    {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
+                                    <strong>
+                                    {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}</strong>
+                                </p>
+                                <p class="service_required">
+                                    <i class="icon-brightness-down"></i>
+                                    Service required 
+                                    <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
+                                    <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
+                                    <strong v-else>{{ record.preference | jobPreference }}</strong>
+                                </p>
+                            </div>
                         </div>																				
                     </div>					
 
@@ -178,7 +183,7 @@
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
                                 <div class="jobs-rating">
-                                    <star-rating :star-size="20" read-only :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
+                                    <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
                                     <div class="jobs-done">
                                         <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
 

@@ -63,7 +63,8 @@
                 <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="viewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <!-- <i @click="viewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i> -->
+                    <router-link :to="{ name: 'customer.detail', params: { id:record.id }}" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
                     <i @click="changeStatusPopup(record)" :class="[record.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                 </div>
             </td>
@@ -144,11 +145,9 @@
             startLoading(){
                 this.loading = true;
             },
-            viewCustomerDetail(id) {
-
-                /*this.viewcustomer = true;*/
+            /*viewCustomerDetail(id) {                
                 this.$router.push({ name: 'customer.detail', params: { id:id }})
-            },
+            },*/
             changeStatusPopup(record) {
                 this.statusData = record;
                 this.changeStatus = true;

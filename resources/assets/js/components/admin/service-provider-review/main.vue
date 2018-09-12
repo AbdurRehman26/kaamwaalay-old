@@ -64,7 +64,8 @@
                         <img  :src="record.imagepath" >
                     </span>
                 </td>
-                <td> <a href="javascript:void(0);" @click="detailreview(record.id)">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a> </td>
+                <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
+                <td><router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="basecolor">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</router-link></td>
                 <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
@@ -76,8 +77,8 @@
                     </span>
                 </td>
                 <td class="text-center">
-                  <div class="action-icons">
-                    <i @click="detailreview(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                  <div class="action-icons">                    
+                    <router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
                 </div>
             </td>
         </tr>
@@ -157,9 +158,9 @@
             this.viewdetails = false;
             this.changeservicestatus = false;   
         },
-        detailreview(id){
+        /*detailreview(id){
             this.$router.push({name: 'service.detail.review' , params : {id : id}});
-        },
+        },*/
         startLoading(){
             this.loading = true;
         },
