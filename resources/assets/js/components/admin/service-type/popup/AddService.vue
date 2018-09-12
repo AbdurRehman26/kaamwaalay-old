@@ -193,7 +193,7 @@
                 var str = this.getSuffix;
                 var regex = /^[0-9a-z\-]+$/;
                 this.errorBag.clear();
-                
+                return;
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
                         if(str.length == 0) {
@@ -426,7 +426,12 @@
         computed : {
             getSuffix() {
                 var suffix = this.formData.url_suffix? this.formData.url_suffix : '';
-                return suffix;
+                var prefixLength = this.defaultUrlPrefixLength;
+                var isSuffix = suffix.substr(prefixLength);
+                if(!isSuffix) {
+                    return suffix;
+                }
+                return isSuffix;
             },
             imageValue(){
                 return this.image;
