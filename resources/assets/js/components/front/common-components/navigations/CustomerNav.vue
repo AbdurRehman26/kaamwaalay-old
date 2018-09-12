@@ -69,7 +69,7 @@
             },
             imageValue(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
-                return user.profile_image ? user.profile_image : '';
+                return user.profileImage ? user.profileImage : '';
             }
         },
         methods: {
