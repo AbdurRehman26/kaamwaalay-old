@@ -101,6 +101,26 @@ body{
     padding-bottom: 10px;
 }
 
+.width-100 {
+    width: 100%;
+}
+.url-suffix {    
+    display: flex;
+    align-content: center;
+    align-items: center;
+    max-width: 436px;
+    padding: 0px 15px;
+    p{
+        margin-bottom: 0 !important;
+        font-weight: 700;
+        word-wrap: break-word;
+        word-break: break-all;        
+    }
+}
+.url-area{
+    padding: 0px 15px 0px 0px;
+}
+
 .sidewrapper {
     width: calc(100% - 260px);
     margin-left: auto;

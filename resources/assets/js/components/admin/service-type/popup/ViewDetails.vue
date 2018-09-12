@@ -31,7 +31,7 @@
                             <p><strong class="title-head">URL Suffix</strong></p>
                         </b-col>
                         <b-col cols="7">
-                            <p>{{selectedService.url_suffix}}</p>
+                            <a :href="serviceUrl">{{selectedService.url_suffix}}</a>
                         </b-col>
                     </b-row>
                     <b-row>
@@ -97,6 +97,7 @@ export default {
     data () {
         return {
             successMessage: "",
+            url_prefix: '',
         }
     },
     methods: {
@@ -112,6 +113,9 @@ export default {
         }
     },
     computed: {
+        serviceUrl() {
+            return this.url_prefix + this.selectedService.url_suffix;
+        },
         getImage() {
             return this.selectedService.images? (this.selectedService.images[0].upload_url? this.selectedService.images[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
         },
@@ -119,6 +123,7 @@ export default {
     watch: {
         showModalProp(value) {
             if(value) {
+                this.url_prefix =  this.$store.getters.getServiceUrlPrefix;
                 this.showModal();
             } else {
                 this.hideModal();
