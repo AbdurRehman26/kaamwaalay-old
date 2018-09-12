@@ -57,6 +57,7 @@
 			</div>
 		</div>
 		<vue-common-methods :url="url" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
+        <no-record-found v-if="noRecordFound"></no-record-found>
 	</div>			
 
 </template>
@@ -72,24 +73,7 @@
 				user: '',
 				records : [],
 				chat_message: false,
-				joblisting:[
-				{
-					job_title_image: '/images/front/profile-images/bidimage1.png',
-					job_title: 'Concrete Floor Building',
-					job_poster: 'Nathan Alvarez',
-					job_category: 'Construction - Concrete Flooring',
-					job_status: 'Active',
-					job_perform: 270,
-					job_service: 'within a week',
-					job_location: 'New York, NY',
-					chat_message: false,
-					job_offer: '$250',
-					job_post_date: '24 Jan, 2018',
-					job_description: 'Room size is approx. 12 x 8 Ft with one side having a roller door. On two sides it is a sandstone wall and the other two it is breeze block wall, floor is currently a brick flooring. I would like someone to concrete over this up to the height of the roller door and then provide a slight ramp up to the roller door height.',
-					list_ratings: 5,
-				},
-				
-				], 	
+				noRecordFound: false,	
 
 			}
 		},
