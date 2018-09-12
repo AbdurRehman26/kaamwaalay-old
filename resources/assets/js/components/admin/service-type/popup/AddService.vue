@@ -211,6 +211,7 @@
                                 msg: 'The url suffix is invalid. Please use only lower case letters, numbers & hyphens.',
                                 id: 7,
                             });
+                            this.formData.url_suffix = "";
                             this.errorMessage = this.errorBag.all()[0];
                             return;
                         }else {
