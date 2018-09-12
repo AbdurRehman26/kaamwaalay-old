@@ -193,7 +193,6 @@
                 var str = this.getSuffix;
                 var regex = /^[0-9a-z\-]+$/;
                 this.errorBag.clear();
-                return;
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
                         if(str.length == 0) {
