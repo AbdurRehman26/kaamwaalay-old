@@ -1,34 +1,21 @@
  <template>
      <div>
-      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
+      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef"  hide-footer size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+        <form action="" method="" @submit.prevent="validateBeforeSubmit">
         <div>
-            <form action="" method="">
-                <div class="form-group">
-                 <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
-                    <option value="" selected="">None</option>
-                    <option :value="service" v-for="service in services">{{service.title}}</option>
-                </select>
+            <div class="form-group">
+             <label>Parent Service</label>
+             <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
+                <option value="" selected="">None</option>
+                <option :value="service" v-for="service in services">{{service.title}}</option>
+            </select>
             </div>
             <div class="form-group">
               <label>Service Name</label>
               <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
           </div>
           <div class="row">
-            <!--<div class="col-xs-12 col-sm-6 col-md-12">
-              <div class="form-group radio-group-row">
-                <label class="label-with-200">Is Featured?</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.is_featured">
-                  <label class="form-check-label" for="inlineRadio3">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.is_featured">
-                  <label class="form-check-label" for="inlineRadio7">No</label>
-                </div>
-              </div>
-            </div>-->
             <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Home Page Banner</label>
@@ -55,52 +42,39 @@
                   </div>
               </div>
           </div>
-          <!--<div class="col-xs-12 col-sm-6 col-md-12">
-            <div class="form-group radio-group-row">
-                <label class="label-with-200">Display Footer Navigation</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.is_display_footer_nav">
-                  <label class="form-check-label" for="inlineRadio2">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio6" value="0" v-model="formData.is_display_footer_nav">
-                  <label class="form-check-label" for="inlineRadio6">No</label>
-              </div>
-          </div>
-      </div>-->
+        </div>
 
-</div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.description" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
+    </div>
 
-<div class="form-group">
-    <label>Description</label>
-    <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.description" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
-</div>
+    <div class="form-group">
+        <label>Upload Image</label>
+        <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
+        <div class="uploded-picture">
+            <img :src="imageValue" />
+        </div>
+    </div>
 
-<div class="form-group">
-    <label>Upload Image</label>
-    <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
-    <div class="uploded-picture">
-        <img :src="imageValue" />
+    <div class="form-group">
+        <label>URL Suffix</label>
+        <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
+      @focus.prevent="onUrlFocus"
+      @blur.prevent="onUrlBlur">
     </div>
 </div>
 
-<div class="form-group">
-    <label>URL Suffix</label>
-    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
-  @focus.prevent="onUrlFocus"
-  @blur.prevent="onUrlBlur">
-</div>
-</form>
-
-</div>
 <div slot="modal-footer" class="">
-    <b-col class="float-right" cols="12">
-        <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit">
+    <div class="float-left">
+        <button type="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" >
             <span>{{isUpdate? 'Update' : 'Submit'}}</span> 
             <loader></loader>
         </button>
-    </b-col>
+    </div>
 </div>
+
+</form>
 </b-modal>
 </div>
 </template>
@@ -168,35 +142,16 @@
             onUrlBlur(e) {
                 var sufix = $(e.target).val();
                 this.url_suffix = sufix;
-
                 var url = this.$store.getters.getServiceUrlPrefix;
-                // if(this.isUpdate) {
-                //     if(this.list.parent_id) {
-                //         url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                //     }
-                // }else {
-                //     if(this.formData.parent_id) {
-                //         url = url + this.formData.parent_id.url_suffix;
-                //     }
-                // }
                 this.formData.url_suffix = url + sufix;
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
-                    // var prefix = this.defaultUrlPrefix;                     
-                    // this.formData.url_suffix = prefix;
-                    // this.isChangePrefix = prefix;
                     this.formData.is_display_banner = 0;
                     this.formData.is_display_service_nav = 0;
                     this.formData.is_display_footer_nav = 0;
                     this.showRadios = false;
                 }else {
-                    // var prefix = this.$store.getters.getServiceUrlPrefix;
-                    // if(this.isUpdate) { 
-                    //     prefix = this.defaultUrlPrefix;
-                    // }
-                    // this.formData.url_suffix = prefix;
-                    // this.isChangePrefix = prefix;
                     this.showRadios = true;
                 }
             },
@@ -355,7 +310,7 @@
                 data.url_suffix = this.url_suffix;
                 this.$http.post(url, data).then(response => {
                     response = response.data.response;
-                    self.successMessage = response.message;//'Updated Successfully';
+                    self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
                         self.loading = false; 
@@ -389,14 +344,12 @@
                 var self = this;
                 this.loading = true;
                 let url = this.url+"/"+this.list.id;
-                //this.formData.url_suffix = this.getSuffix;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
                 data.url_suffix = this.getSuffix;
-                console.log(data.url_suffix);
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
-                    self.successMessage = response.message;//'Updated Successfully';
+                    self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
@@ -432,9 +385,6 @@
         },
 
         watch: {
-            'formData.url_suffix': function(val) {
-                this.formData.url_suffix = val;
-            },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
@@ -478,8 +428,9 @@
         computed : {
             getSuffix() {
                 var suffix = this.formData.url_suffix? this.formData.url_suffix : '';
-                var prefixLength = this.defaultUrlPrefixLength;
-                return suffix.substr(prefixLength);
+                //var prefixLength = this.defaultUrlPrefixLength;
+                //return suffix.substr(prefixLength);
+                return suffix;
             },
             imageValue(){
                 return this.image;
@@ -488,31 +439,12 @@
                 var url = this.$store.getters.getServiceUrlPrefix;
                 url = url + this.formData.url_suffix;
                 if(this.isUpdate) {
-                    // if(this.list.parent_id) {
-                    //     url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '') + this.list.url_suffix;
-                    // }else {
-                    //     url = url + this.list.url_suffix;
-                    // }
                     url = url + this.list.url_suffix;
-                } //else {
-                //     if(this.formData.parent_id) {
-                //         url = url + this.formData.parent_id.url_suffix;
-                //     }
-                // }
+                }
                 return url;
             },
             defaultUrlPrefixLength() {
                 var url = this.$store.getters.getServiceUrlPrefix;
-                //url = url + this.formData.url_suffix;
-                // if(this.isUpdate) {
-                //     if(this.list.parent_id) {
-                //         url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                //     }
-                // }else {
-                //     if(this.formData.parent_id) {
-                //         url = url + this.formData.parent_id.url_suffix;
-                //     }
-                // }
                 return url.length;
             },
         }
