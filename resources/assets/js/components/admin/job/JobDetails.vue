@@ -132,7 +132,9 @@
                                         <p><strong class="title-head">Bidding Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a @click="biddingdetails(record.id)" href="javascript:void(0);">See All</a>
+
+                                        <router-link :to="{name: 'bidding.details', params : {jobId : record.id}}">See All</router-link>
+
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>
@@ -173,9 +175,6 @@
                     self.loading = false;
                     self.record = response.data;
                     
-                },
-                biddingdetails(id){
-                    this.$router.push({name: 'bidding.details', params : {jobId : id}});
                 },
                 open (e) {            
                     fancyBox(e.target, this.imageList);

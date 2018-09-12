@@ -11,14 +11,14 @@
                         </div>                     </div>
                         <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                             <label>By Status</label>
-                             <select v-model="search.filter_by_status" class="form-control">
-                               <option value="">Select All</option>
-                               <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-2">
+                           <label>By Status</label>
+                           <select v-model="search.filter_by_status" class="form-control">
+                             <option value="">Select All</option>
+                             <option v-for="status in statuses" :value="status.key">{{status.value}}</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-xs-12 col-md-2">
                     <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                         <span>Apply</span>
                         <loader></loader>
@@ -56,14 +56,18 @@
                         <img  :src="record.profile_image" >
                     </span>
                 </td>
-                <td><a href="javascript:void(0);" @click="viewCustomerDetail(record.id)">{{record.first_name}} {{record.last_name}}</a></td>
-                <!-- <td>{{list.email}} </td> -->
+                <td>
+                    <router-link :to="{ name: 'customer.detail', params: { id: record.id }}">{{record.first_name}} {{record.last_name}}</router-link>
+                </td>
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
                 <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <i @click="viewCustomerDetail(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <router-link :to="{ name: 'customer.detail', params: { id: record.id }}">
+                        <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    </router-link>
+                    
                     <i @click="changeStatusPopup(record)" :class="[record.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                 </div>
             </td>
@@ -143,11 +147,6 @@
         methods: {
             startLoading(){
                 this.loading = true;
-            },
-            viewCustomerDetail(id) {
-
-                /*this.viewcustomer = true;*/
-                this.$router.push({ name: 'customer.detail', params: { id:id }})
             },
             changeStatusPopup(record) {
                 this.statusData = record;

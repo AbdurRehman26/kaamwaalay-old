@@ -200,9 +200,6 @@
             this.statusData = record.user_detail;
             this.changestatus = true;
         },
-        providerdetailclick(id) {
-            this.$router.push({name: 'service.provider.detail' , params : {id  : id }});
-        },
         ConfirmationPopup() {
             this.confirmationpopup = true;
         },
@@ -212,9 +209,6 @@
             this.changestatus = false;
             this.providerdetailpopup = false;
             this.confirmationpopup = false;
-        },
-        profileimage(id){
-            this.$router.push({name: 'service.provider.detail' , params : {id : id }});  
         },
         getRecords(response){
             let self = this;
