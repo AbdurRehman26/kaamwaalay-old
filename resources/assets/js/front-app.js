@@ -29,6 +29,7 @@ import VeeValidate from 'vee-validate'
 import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js'
+import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
 Vue.use(BootstrapVue);
@@ -57,8 +58,20 @@ Vue.use(VueAuthenticate, {
         }
     }
 })
-Vue.use(Vuex);
-
+Vue.use(Vuex); 
+// base/global options
+// these options can be overridden 
+// by the options in the .open(options) 
+// function.
+/*const stripeOptions = {
+  key: 'pk_test_ix9VLy3CYcuwWxz1UkMipKun',
+  image: '',
+  locale: 'auto',
+  currency: 'PHP',
+  billingAddress: false,
+  panelLabel: 'Subscribe {{amount}}'
+}
+Vue.use(VueStripeCheckout, stripeOptions);*/
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
@@ -127,6 +140,16 @@ const app = new Vue({
         this.checkscroll();
     },
     methods:{
+        //if scroll exist add class else remove class
+        checkscroll(){
+          setTimeout(function(){
+              if(jQuery('body').height() > jQuery(window).height()){
+                    jQuery('body').addClass('handle-scroll');
+                }else{
+                    jQuery('body').removeClass('handle-scroll');
+                }
+          },1500);
+        },
         browserfunction() {
             if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
                 jQuery('body').addClass('opera-browser')

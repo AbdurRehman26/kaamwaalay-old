@@ -13,13 +13,14 @@
         'formData',
         'submit',
         'submitUrl',
-        'hideLoader'
+        'hideLoader',
+        'updateForm'
         ],
         data () {
             return {
                 records : [],
                 pagination : '',
-                loading : true,
+                loading : false,
                 noRecordFound : false
             }  
         },
@@ -34,23 +35,30 @@
                 let self = this;
                 let url = self.url;
 
+                if(typeof(url) == 'undefined'){
+                    return false;
+                }
+
+
                 let result = {
                     data : [],
                     noRecordFound : false
                 };
 
                 self.$emit('get-records', result);
-
+                
                 if(!this.hideLoader){
                     self.loading = true;
                 }
 
                 url = self.url;
+
                 self.$emit('start-loading');
 
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
+
                 self.$http.get(url).then(response=>{
 
                     response = response.data.response;
@@ -68,6 +76,7 @@
                     }
 
                     self.$emit('get-records', result);
+
                     self.pagination = response.pagination;
 
                     self.loading = false;
@@ -79,7 +88,7 @@
 
                 }).catch(error=>{
                     self.loading = false;
-                    console.log(error , 'error');
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@getList');
                 });
             },
             submitForm(successCallback) {
@@ -89,27 +98,25 @@
                 let data = this.formData;
 
                 let urlRequest = '';
-                console.log(data , url);
-                if(!this.updateForm){
+
+                if(this.updateForm){
                     urlRequest = self.$http.put(url , data)
                 }else{
                     urlRequest = self.$http.post(url , data);
                 }
-                console.log(urlRequest , '21312321');
 
                 
                 urlRequest.then(response => {
-                    self.$emit('form-submitted', response);
+                    self.$emit('form-submitted', response.data.response);
 
                 }).catch(error => {
 
-                console.log(error , '21321312');
                     
                     if(typeof(successCallback) !== 'undefined'){
                         return successCallback(true);
                     }
 
-                    console.log(error , 'error in job posting');
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@submitForm');
                     self.$emit('form-error', error);
 
 
@@ -128,7 +135,6 @@
                 }
             },
             submit(value){
-                console.log(value , 12321321321);
                 if(value){
                     this.submitForm();
                 }

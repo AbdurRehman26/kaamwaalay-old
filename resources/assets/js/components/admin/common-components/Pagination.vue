@@ -3,13 +3,17 @@
 
         <block-spinner v-if="loadingStart"></block-spinner>
 
-        <div v-if="pagination && !infiniteLoad" class="total-record float-left">
+        <div v-if="pagination && !infiniteLoad && !loadingStart" class="total-record float-left">
             <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>
         </div>
-        <div v-if="pagination && !infiniteLoad" class="pagination-wrapper float-right">
+        <div v-if="pagination && !infiniteLoad && !loadingStart" class="pagination-wrapper float-right">
             <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
         </div>
-        <infinite-loading v-if="infiniteLoad" @infinite="infiniteHandler"></infinite-loading>    
+        <infinite-loading :distance="10" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
+            <span slot="no-more">
+            </span>
+            <span slot="spinner"></span>
+        </infinite-loading>    
 
     </div>
 </template>
@@ -35,34 +39,32 @@
             totalRecords(){
                 return this.pagination ? this.pagination.total : 0;
             },
-            currentPage(){
-                return this.pagination ? this.pagination.current : 1;    
+            currentPage : {
+                get: function() {
+                    return this.pagination ? this.pagination.current : 1;    
+
+                },
+                set: function() {
+
+                }
             }
         },
         watch :{
             loadingStart(value){
             },
             pagination(value){
-                if(value){
-                    if(value.current == value.next){
-
-                    }
-                }
             }
         },
         methods: {
             changePage(pageNumber){
-                console.log(pageNumber , '123');
                 this.$emit('page-changed', pageNumber);
             },
             infiniteHandler($state) {
                 let self = this;
-
                 if(!self.pagination){
 
                     self.$parent.getList(false , function (response) {
                         setTimeout(function () {
-                            console.log('1st Condition');
                             $state.loaded();
                         } , 3000);
                     });
@@ -72,7 +74,6 @@
 
                         self.$parent.getList(self.pagination.next , function (response) {
 
-                            console.log('2nd Condition');
                             setTimeout(function () {
                                 $state.loaded();
                             } , 3000);
@@ -80,8 +81,6 @@
                         });
 
                     }else{
-
-                        console.log('End Condition');
 
                         $state.complete();
                     }

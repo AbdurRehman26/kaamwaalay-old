@@ -145,6 +145,14 @@
     <div class="graphs vue-grid-item">
       <div class="chart-header grid-head">
         <h2 class="float-left chart-heading">Top 5 Service Provider</h2>
+          <div class="topfilter">
+                        <label>Filter By:</label>
+                        <select v-model="searchTopServiceProvider.filter" class="form-control" v-on:change="searchTopServiceProviderList()">
+                            <option value="">Both</option> 
+                            <option value="by_job">By Jobs</option> 
+                            <option value="by_rating">By Rating</option>
+                        </select>
+           </div> 
     </div>
     <div>
         <div class="table-area">
@@ -166,7 +174,7 @@
                 <td><a >{{list.email}}</a></td>
                 <td>{{list.duns_number}}</td>
                 <td>{{list.business_type}}</td>
-                <td ><star-rating :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
+                <td ><star-rating :increment="0.5" :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">{{list.job_completed}}</td>
             </tr>
         </tbody>
@@ -183,7 +191,15 @@
   <div class="graphs vue-grid-item">
     <div class="chart-header grid-head">
       <h2 class="float-left chart-heading">Top 5 Customers</h2>
-  </div>
+         <div class="topfilter">
+                        <label>Filter By:</label>
+                        <select v-model="searchTopCustomer.filter" class="form-control" v-on:change="searchTopCustomerList()">
+                            <option value="">Both</option> 
+                            <option value="by_job">By Jobs</option> 
+                            <option value="by_rating">By Rating</option>
+                        </select>
+                    </div>  
+          </div>
   <div>
       <div class="table-area">
         <div class="table-responsive">
@@ -200,7 +216,7 @@
           <tr v-for="list in topCustomer">
             <td><a >{{list.full_name}}</a></th>
               <td><a >{{list.email}}</a></td>
-              <td ><star-rating :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
+              <td ><star-rating :increment="0.5" :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
               <td class="text-center">{{list.job_completed}}</td>
           </tr>
       </tbody>
@@ -238,6 +254,14 @@ export default{
         total_job_initiated:0,
         total_payment_collected:0,
         total_service_provider_signup:0
+    },
+    searchTopServiceProvider : {
+      filter : '',
+      keyword : ''
+    },
+    searchTopCustomer : {
+      filter : '',
+      keyword : ''
     },
     isCustomerDataprovider: false,
     customerDataprovider: [],
@@ -289,6 +313,14 @@ methods: {
       this.show = true;
       this.listingResponsive ^= true;
   },
+  searchTopServiceProviderList(){
+    this.isTopServiceProviderLoader = true;
+    this.dashboard(true, 'top_service_provider',this.searchTopServiceProvider.filter);
+  },
+   searchTopCustomerList(){
+    this.isTopCustomerLoader = true;
+    this.dashboard(true, 'top_customer',this.searchTopCustomer.filter);
+  } ,
   validateBeforeSubmit() {
       let self = this;
       self.$validator.validateAll().then((result) => {
@@ -346,14 +378,16 @@ methods: {
       self.isTopServiceProviderLoader = true;
       self.isTopCustomerLoader = true;
   },
-  dashboard (isApply, type) {
+  dashboard (isApply, type ,filter) {
       let self = this;
+      var filter = filter || null;
       self.loading = true;
       self.isApplyloading = isApply;
       let params = {
         start_date: this.start_date,
         end_date: this.end_date,
         type: type,
+        filter: filter,
     };
     self.$http.get(self.url, {params: params}).then(response=>{
         let data = response.data;

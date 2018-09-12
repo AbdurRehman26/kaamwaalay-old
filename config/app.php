@@ -181,6 +181,7 @@ return [
         App\Providers\UserRatingRepositoryServiceProvider::class,
         App\Providers\UserRepositoryServiceProvider::class,
         App\Providers\ZipCodeRepositoryServiceProvider::class,
+        App\Providers\SEOServiceProvider::class,
 
     ],  
 

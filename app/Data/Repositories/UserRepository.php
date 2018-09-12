@@ -47,7 +47,6 @@ class UserRepository extends AbstractRepository implements RepositoryContract
     {
         $data = parent::findById($id, $refresh, $details, $encode);
 
-
         if($data) {
             $data->profileImage = $data->profile_image;
             if(substr($data->profile_image, 0, 8) != "https://"){
@@ -55,14 +54,15 @@ class UserRepository extends AbstractRepository implements RepositoryContract
          }
 
          $data->role = app('RoleRepository')->findById($data->role_id);
+         
          if (!empty($details['profile_data'])) {
 
             if($data->role_id == Role::SERVICE_PROVIDER) {
                     // Todo
-                $data->business_details = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);                
+                $data->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);                
                 if (!empty($details['provider_request_data'])) {
                     $serviceDetailsCriteria = ['user_id' => $id];
-                    $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
+                    $data->service_details = app('ServiceProviderProfileRequestRepository')->getUserServices($serviceDetailsCriteria);                
                 }
 
             }   
@@ -71,6 +71,11 @@ class UserRepository extends AbstractRepository implements RepositoryContract
         if (!empty($details['user_rating'])) {
             $criteria = ['user_id' => $id];
             $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
+
+            $data->total_feedback_count = app('UserRatingRepository')->getTotalFeedbackCriteria($criteria);
+            
+            $criteria['status'] = 'completed';
+            $data->total_finished_jobs = app('JobBidRepository')->getCountByCriteria($criteria);
         }
 
         if($data->role_id == Role::CUSTOMER) {
@@ -261,7 +266,23 @@ public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endD
 public function updateField(array $data = [])
 {
     unset($data['user_id']);
-    return parent::update($data);
+
+    $data = parent::update($data);
+    
+    if($data->status == 'banned'){
+
+        $serviceProvider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->id);
+
+        if($serviceProvider){
+
+            $updateData = ['is_verified' => 0, 'id' =>$serviceProvider->id];
+            app('ServiceProviderProfileRepository')->update($updateData);
+        }
+
+        $data;
+    }
+
+    return $data;
 }
 
 }

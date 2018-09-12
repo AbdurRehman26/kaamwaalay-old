@@ -7,7 +7,7 @@
             <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/featured-profile">Featured Profile</router-link></li>
             <li>
 
-                <div class="user-login-detail float-left pointer"  @click="$emit('profilepopup')">
+                <div class="user-login-detail float-left pointer"  @click="changePassword">
                     <span class="user-img" @click="ShowModal">
                         <img src="" alt="">
                     </span>
@@ -36,6 +36,9 @@
     <script>
         import { directive as onClickaway } from 'vue-clickaway';
         export default{
+            mounted(){
+                this.getAllServices();
+            },
             data () {
               return {
                 isShowing:false,
@@ -50,18 +53,26 @@
         directives: {
             onClickaway: onClickaway,
         },
-         mounted: function () {
-            let self = this;
-            self.user = JSON.parse(self.$store.getters.getAuthUser);
-            self.first_name = self.user.first_name;
-            self.last_name = self.user.last_name;
-        },
         computed : {
-            fullName(){
-                return this.first_name + ' ' + this.last_name;
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
             },
+            fullName(){
+                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
+            },
+            socialAccountId(){
+                return this.userDetails ? this.userDetails.social_account_id : '';
+            },
+            imageValue(){
+                return this.userDetails ? this.userDetails.profileImage : ''
+            }
         },
         methods: {
+            changePassword(){
+              if(this.socialAccountId == null){
+                  this.$emit('profilepopup')
+              }
+          },
             ShowModal(){
                 this.showModalValue = true;
             },
@@ -84,6 +95,18 @@
             },              
             scrollToTop() {
                 window.scrollTo(0,0);
+            },
+            getAllServices() {
+                let self = this;
+                let url = 'api/service';
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.$store.commit('setAllServices' , response.data);
+                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
+                }).catch(error=>{
+
+
+                });
             },                          
 
         }

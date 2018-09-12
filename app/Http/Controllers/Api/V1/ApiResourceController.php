@@ -23,9 +23,9 @@ abstract class ApiResourceController extends Controller
     //Get all records
     public function index(Request $request)
     {
+        
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
-
         $this->validate($request, $rules);
         
         $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');

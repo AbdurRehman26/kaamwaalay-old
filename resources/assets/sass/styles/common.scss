@@ -145,6 +145,9 @@ h4{
         vertical-align: middle;
     }
 }
+.basecolor {
+    color: $text-primary-color;
+}
 .not-found{
     position: relative;
     height: calc(100% - 54px);
@@ -756,5 +759,16 @@ body{
                 fill:#fff;
             }
         }
+    }
+}
+
+
+.display-flex {
+    display: flex;
+    a{
+        margin-left: 20px;
+    }
+    input{
+        margin-bottom: 0;
     }
 }

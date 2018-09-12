@@ -17,6 +17,11 @@ return [
         resource_path('views'),
     ],
 
+    'service' => [
+        'url' => [
+            'folder' => 'services'
+        ]
+    ],
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

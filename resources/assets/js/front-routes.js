@@ -79,7 +79,7 @@
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service_provider/:serviceId/:zip',
+        path: '/services/:serviceName/:zip?',
         props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
@@ -133,6 +133,7 @@
             title: 'Professional Service Marketplace | Apply for Review',
             bodyClass: 'apply-for-review-page',
             navigation: 'provider-nav',
+            requiresAuth : true
         },
         component: require('./components/front/profile/ApplyForReview.vue'),
     },
@@ -333,7 +334,6 @@ router.beforeEach((to, from, next) => {
     if(router.app.$store.getters.getAuthUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthUser);
   }
-
 
   if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
     next({name: 'login'});

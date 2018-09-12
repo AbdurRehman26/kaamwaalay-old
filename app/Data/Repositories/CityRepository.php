@@ -30,6 +30,8 @@ class CityRepository extends AbstractRepository implements RepositoryContract
     protected $_cacheKey = 'city';
     protected $_cacheTotalKey = 'total-city';
 
+    CONST AMERICA = 231;
+
     public function __construct(City $model)
     {
         $this->model = $model;
@@ -40,11 +42,16 @@ class CityRepository extends AbstractRepository implements RepositoryContract
     public function findByAll($pagination = false, $perPage = 10, array $data = [] )
     {
 
-        $this->builder = $this->model
-            ->where('state_id', '=', $data['state_id'])
-            ->orderBy('name', 'ASC');
-   
+        $this->builder = $this->model->join('states' , 'states.id', 'cities.state_id')
+                        ->where('states.country_id', self::AMERICA)->orderBy('cities.name', 'ASC');
+
+        if(!empty($data['state_id'])){
+            $this->builder->where('cities.state_id', '=', $data['state_id']);
+        }
+
+        $this->builder->select(['cities.*', 'states.name']);
+
         return  parent::findByAll($pagination, $perPage);
-    
+
     }
 }

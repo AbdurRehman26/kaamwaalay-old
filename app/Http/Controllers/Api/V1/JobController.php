@@ -47,7 +47,7 @@ class JobController extends ApiResourceController
             'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
-            'details'
+            'details', 'is_archived', 'filter_by_city', 'subscription_id'
         );
 
         $input['user_id'] = request()->user()->id;
@@ -57,13 +57,14 @@ class JobController extends ApiResourceController
             unset(
                 $input['filter_by_service'], $input['keyword'], $input['details'],
                 $input['filter_by_status'], $input['filter_by_status'], $input['filter_by_status'],
-                $input['filter_by_user'], $input['filter_by_service_provider'], $input['filter_by_me']
+                $input['filter_by_user'], $input['filter_by_service_provider'], $input['filter_by_me'],
+                $input['filter_by_city']
             );
 
         }
 
         if($value == 'store'){
-            unset($input['status']);
+            unset($input['status'], $input['is_archived']);
         }
 
 

@@ -1,45 +1,31 @@
  <template>
      <div>
-      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
+      <b-modal id="add-new-service" centered  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef"  hide-footer size="md" :title="isUpdate? 'Update Service': 'Add new Service'" no-close-on-backdrop no-close-on-esc>                        
         <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+        <form action="" method="" @submit.prevent="validateBeforeSubmit">
         <div>
-            <form action="" method="">
-                <div class="form-group">
-                 <label>Parent Service</label>
-                 <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
-                    <option value="" selected="">None</option>
-                    <option :value="service" v-for="service in services">{{service.title}}</option>
-                </select>
+            <div class="form-group">
+             <label>Parent Service</label>
+             <select class="form-control" v-model="formData.parent_id" @change="onChangeParentService">
+                <option value="" selected="">None</option>
+                <option :value="service" v-for="service in services">{{service.title}}</option>
+            </select>
             </div>
-
             <div class="form-group">
               <label>Service Name</label>
-              <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
+              <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required|max:50'" >
           </div>
           <div class="row">
-            <!--<div class="col-xs-12 col-sm-6 col-md-12">
-              <div class="form-group radio-group-row">
-                <label class="label-with-200">Is Featured?</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioFeature" id="inlineRadio3" value="1" v-model="formData.is_featured">
-                  <label class="form-check-label" for="inlineRadio3">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioFeature" id="inlineRadio7" value="0" v-model="formData.is_featured">
-                  <label class="form-check-label" for="inlineRadio7">No</label>
-                </div>
-              </div>
-            </div>-->
             <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Home Page Banner</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
-                  <label class="form-check-label" for="inlineRadio4">Yes</label>
+                  <input class="form-check-input" type="radio" name="radioHomePageBanner" id="radioHomePageBannerYes" value="1" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="radioHomePageBannerYes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.is_display_banner">
-                  <label class="form-check-label" for="inlineRadio8">No</label>
+                  <input checked=""  class="form-check-input" type="radio" name="radioHomePageBanner" id="radioHomePageBannerNo" value="0" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="radioHomePageBannerNo">No</label>
                 </div>
               </div>
             </div>
@@ -47,61 +33,58 @@
                 <div class="form-group radio-group-row">
                     <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.is_display_service_nav">
-                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                      <input class="form-check-input" type="radio" name="radioExploreBanner" id="radioExploreBannerYes" value="1" v-model="formData.is_display_service_nav">
+                      <label class="form-check-label" for="radioExploreBannerYes">Yes</label>
                   </div>
                   <div class="form-check form-check-inline">
-                      <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio5" value="0" v-model="formData.is_display_service_nav">
-                      <label class="form-check-label" for="inlineRadio5">No</label>
+                      <input checked=""  class="form-check-input" type="radio" name="radioExploreBanner" id="radioExploreBannerNo" value="0" v-model="formData.is_display_service_nav">
+                      <label class="form-check-label" for="radioExploreBannerNo">No</label>
                   </div>
               </div>
           </div>
-          <!--<div class="col-xs-12 col-sm-6 col-md-12">
-            <div class="form-group radio-group-row">
-                <label class="label-with-200">Display Footer Navigation</label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio2" value="1" v-model="formData.is_display_footer_nav">
-                  <label class="form-check-label" for="inlineRadio2">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioFootnav" id="inlineRadio6" value="0" v-model="formData.is_display_footer_nav">
-                  <label class="form-check-label" for="inlineRadio6">No</label>
-              </div>
-          </div>
-      </div>-->
+        </div>
 
-</div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.description" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
+    </div>
 
-<div class="form-group">
-    <label>Description</label>
-    <textarea class="form-control" rows="5" placeholder="Enter description" v-model="formData.description" name="description" v-validate="'required'" :class="['form-group' , errorBag.first('description') ? 'is-invalid' : '']"></textarea>
-</div>
+    <div class="form-group">
+        <label>Upload Image</label>
+        <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
+        <div class="uploded-picture">
+            <img :src="imageValue" />
+        </div>
+    </div>
 
-<div class="form-group">
-    <label>Upload Image</label>
-    <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
-    <div class="uploded-picture">
-        <img :src="imageValue" />
+    <div class="form-group float-left width-100">
+        <div class="row">
+            <div class="col-md-12">
+                <label>URL Suffix</label>
+            </div>        
+            <div class="url-suffix">
+                <p>{{url_prefix}}</p>
+            </div>
+            <div class="url-area">
+                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required|max:50'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']">
+            </div>
+        </div>
+
+
+      
     </div>
 </div>
 
-<div class="form-group">
-    <label>URL Suffix</label>
-    <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
-  @focus.prevent="onUrlFocus"
-  @blur.prevent="onUrlBlur">
-</div>
-</form>
-
-</div>
 <div slot="modal-footer" class="">
-    <b-col class="float-right" cols="12">
-        <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit">
+    <div class="float-left">
+        <button type="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" >
             <span>{{isUpdate? 'Update' : 'Submit'}}</span> 
             <loader></loader>
         </button>
-    </b-col>
+    </div>
 </div>
+
+</form>
 </b-modal>
 </div>
 </template>
@@ -129,62 +112,39 @@
                         original_name: ''
                     }
                     ],
-                    url_suffix: this.defaultUrlPrefix,
+                    url_suffix: '',
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
                     is_display_footer_nav: 0,
-
                 },
-                emailaddress: 'arsalan@cygnismedia.com',
-                fullname: 'Arsalan Akhtar',
                 image: 'images/dummy/image-placeholder.jpg',
                 file: null,
                 url: 'api/service',
                 loading: false,
-                defaultUrlLength: this.defaultUrlPrefixLength,
-                isChangePrefix: '',
-                url_suffix: '',
+                url_prefix: '',
             }
         },
         mounted() {
         },
         methods: {
-            onUrlFocus(e) {
-                var suffix = $(e.target).val();
-                var prefixLength = this.defaultUrlPrefixLength;
-                var str = suffix.substr(prefixLength);
-                this.formData.url_suffix = str;
-            },
-            onUrlBlur(e) {
-                var sufix = $(e.target).val();
-                this.url_suffix = sufix;
-
-                var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
-                this.formData.url_suffix = url + sufix;
+            getAllServices() {
+                let self = this;
+                let url = 'api/service';
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.$store.commit('setAllServices' , response.data);
+                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
+                }).catch(error=>{
+                });
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
-                    var prefix = this.defaultUrlPrefix;                     
-                    this.formData.url_suffix = prefix;
-                    this.isChangePrefix = prefix;
+                    this.formData.is_display_banner = 0;
+                    this.formData.is_display_service_nav = 0;
+                    this.formData.is_display_footer_nav = 0;
                     this.showRadios = false;
                 }else {
-                    var prefix = this.$store.getters.getServiceUrlPrefix;
-                    if(this.isUpdate) { 
-                        prefix = this.defaultUrlPrefix;
-                    }
-                    this.formData.url_suffix = prefix;
-                    this.isChangePrefix = prefix;
                     this.showRadios = true;
                 }
             },
@@ -205,7 +165,7 @@
                         original_name: ''
                     }
                     ],
-                    url_suffix: this.$store.getters.getServiceUrlPrefix,
+                    url_suffix: '',
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
@@ -217,17 +177,14 @@
                         self.errorMessage = '';
                         self.successMessage = '';
                         self.errorBag.clear();
-                        self.formData.url_suffix = self.$store.getters.getServiceUrlPrefix;
                     })
                 }, 100);
             },
             validateBeforeSubmit() {
                 var self = this;
-                var tempSuffix = this.formData.url_suffix;
-                var str = this.getSuffix;
-                var regex = /^[0-9A-Za-z\s\-\/]+$/;
+                var str = this.formData.url_suffix;
+                var regex = /^[0-9a-z\-]+$/;
                 this.errorBag.clear();
-                
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
                         if(str.length == 0) {
@@ -237,13 +194,12 @@
                                 rule: 'required',
                                 id: 7,
                             });
-                            this.formData.url_suffix = "";
                             this.errorMessage = this.errorBag.all()[0];
                             return;
                         } if(!regex.test(str)) {
                             this.errorBag.add({
                                 field: 'url',
-                                msg: 'The url suffix is invalid. Please use only letter, numbers & hyphens.',
+                                msg: 'The url suffix is invalid. Please use only lower case letters, numbers & hyphens.',
                                 id: 7,
                             });
                             this.errorMessage = this.errorBag.all()[0];
@@ -251,7 +207,6 @@
                         }else {
                             this.errorBag.clear();
                             this.errorMessage = "";
-                            this.formData.url_suffix = tempSuffix;
                         }
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -269,9 +224,9 @@
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
+                this.url_prefix =  this.$store.getters.getServiceUrlPrefix;
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
-                this.formData.url_suffix = this.$store.getters.getServiceUrlPrefix;
             },
             hideModal () {
                 var self = this;
@@ -323,7 +278,6 @@
                     response = response.data;
                     self.formData.images[0].name = response.name;
                     self.formData.images[0].original_name = response.original_name;
-
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -335,16 +289,14 @@
             },
             onSubmit() {
                 var self = this;
-                //this.loading = true;
+                this.loading = true;
                 let url = this.url;
 
                 var data = Object.assign({}, this.formData);
-                var temp = this.formData.url_suffix;
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.url_suffix;
                 this.$http.post(url, data).then(response => {
                     response = response.data.response;
-                    self.successMessage = response.message;//'Updated Successfully';
+                    self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
                         self.loading = false; 
@@ -358,7 +310,7 @@
                             self.errorBag.clear()
                         })
                     }, 10);
-
+                    self.getAllServices();
 
                 }).catch(error => {
                     error = error.response.data;
@@ -378,13 +330,11 @@
                 var self = this;
                 this.loading = true;
                 let url = this.url+"/"+this.list.id;
-                //this.formData.url_suffix = this.getSuffix;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.url_suffix;
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
-                    self.successMessage = response.message;//'Updated Successfully';
+                    self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
                         self.hideModal();  
@@ -398,6 +348,7 @@
                             self.errorBag.clear()
                         })
                     }, 10);
+                    self.getAllServices();
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -419,9 +370,6 @@
         },
 
         watch: {
-            'formData.url_suffix': function(val) {
-                this.formData.url_suffix = val;
-            },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
@@ -445,7 +393,7 @@
                             original_name: img? img[0].original_name :''
                         }
                         ],
-                        url_suffix: '',
+                        url_suffix: this.list.url_suffix,
                         status: this.list.status,
                         is_display_banner: this.list.is_display_banner,
                         is_display_service_nav: this.list.is_display_service_nav,
@@ -453,9 +401,6 @@
                     };
 
                     this.showRadios = this.formData.parent_id? false : true;
-                    this.formData.url_suffix = this.defaultUrlPrefix;
-                    this.isChangePrefix = this.list.url_suffix;
-                    this.url_suffix = this.defaultUrlPrefix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file? this.file : 'Click here to upload image.';
@@ -463,41 +408,8 @@
             }
         },
         computed : {
-            getSuffix() {
-                var suffix = this.formData.url_suffix? this.formData.url_suffix : '';
-                var prefixLength = this.defaultUrlPrefixLength;
-                return suffix.substr(prefixLength);
-            },
             imageValue(){
                 return this.image;
-            },
-            defaultUrlPrefix() {
-                var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '') + this.list.url_suffix;
-                    }else {
-                        url = url + this.list.url_suffix;
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
-                return url;
-            },
-            defaultUrlPrefixLength() {
-                var url = this.$store.getters.getServiceUrlPrefix;
-                if(this.isUpdate) {
-                    if(this.list.parent_id) {
-                        url = url + (this.list.parent.url_suffix? this.list.parent.url_suffix + '/' : '');
-                    }
-                }else {
-                    if(this.formData.parent_id) {
-                        url = url + this.formData.parent_id.url_suffix;
-                    }
-                }
-                return url.length;
             },
         }
     }

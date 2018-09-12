@@ -54,7 +54,7 @@
         </div>
         <div slot="modal-footer" class="">
             <b-col class="float-right" cols="12">
-                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="onReply">
+                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevent="onReply">
                     <span>Reply</span> 
                     <loader></loader>
                 </button>
@@ -111,7 +111,7 @@
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
-                            self.errorBag.clear()
+                            self.errorBag.clear();
                         })
                     }, 10);
 

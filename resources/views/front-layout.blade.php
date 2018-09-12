@@ -1,9 +1,12 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>PSM</title>
+        <title>{{isset($service['title'])? $service['title'] : "PSM"}}</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        @if(isset($service['description']))
+        <meta name="description" content="{{$service['description']}}">
+        @endif
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <base href="{{url('/')}}"> @yield('before-base-css')
@@ -23,6 +26,7 @@
             <router-view></router-view>
             <front-footer></front-footer>
         </div>
+        <script src="https://js.stripe.com/v3/"></script>
         <script src="{{ mix('js/front-app.js') }}"></script>
     </body>
 </html>

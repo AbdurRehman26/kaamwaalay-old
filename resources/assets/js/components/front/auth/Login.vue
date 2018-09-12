@@ -13,7 +13,7 @@
             <div class="col-xs-12 col-md-12" :class="[errorBag.first('password') ? 'is-invalid' : '']">
                 <div class="form-group">
                     <label>Password</label>
-                    <input id="login_password" type="password" v-model="login_info.password" v-validate="'required'" data-vv-as="password" name="password" class="form-control"  data-vv-name="password" placeholder="Enter your password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
+                    <input id="login_password" type="password" :maxlength="25" v-model="login_info.password" v-validate="'required'" data-vv-as="password" name="password" class="form-control"  data-vv-name="password" placeholder="Enter your account password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
                 </div>
             </div>
             <div class="col-xs-12 col-md-12">
@@ -76,32 +76,47 @@ methods: {
             self.loading = false
             this_.$store.commit('setAuthUser', response.data.response.data[0]);
             if(response.data.response.data[0].role_id == 2){
-              this_.$router.push({ name: 'my.bids'})
-          }else{
-              this_.$router.push({ name: 'my.jobs'})  
-          }
-      }).catch(error => {
-        this.loading = false
-        this_.errorMessage  =error.response.data.errors.email[0];
-        setTimeout(function(){
-          this_.errorMessage='';
-          this.loading = false
-      }, 5000);
-    })
-  }else{
+              if(response.data.response.data[0].is_profile_completed == 0 ){
+                 this_.$router.push({ name: 'provider_profile'})
+             }else{ 
+                 this_.$router.push({ name: 'my.bids'})
+             }
+
+         }else{
+          if(response.data.response.data[0].is_profile_completed == 0 ){
+             this_.$router.push({ name: 'customer_profile'})
+         }else{ 
+             this_.$router.push({ name: 'my.jobs'})
+         }         
+     }
+ }).catch(error => {
+    this.loading = false
+    this_.errorMessage  =error.response.data.errors.email[0];
+    setTimeout(function(){
+      this_.errorMessage='';
+      this.loading = false
+  }, 5000);
+})
+}else{
     let user = JSON.parse(self.$store.getters.getAuthUser);
 
     setTimeout(function(){
         if(user.role_id == 2){
+           if(response.data.response.data[0].is_profile_completed == 0 ){
+             this_.$router.push({ name: 'provider_profile'})
+         }else{ 
+             this_.$router.push({ name: 'my.bids'})
+         }
+     }else{
+       if(response.data.response.data[0].is_profile_completed == 0 ){
+         this_.$router.push({ name: 'customer_profile'})
+     }else{ 
+         this_.$router.push({ name: 'my.jobs'})
+     }   
+ }
 
-            this_.$router.push({ name: 'my.bids'})
-
-        }else{
-          this_.$router.push({ name: 'my.jobs'})  
-      }
-
-      this.loading = falsel;
-  }, 5000);
+ this.loading = falsel;
+}, 5000);
 }
 },
 validateBeforeSubmit() {

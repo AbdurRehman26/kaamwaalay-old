@@ -32,7 +32,9 @@ class ServiceProviderProfileSeeder extends Seeder
 
         $businessTypes = ['business', 'individual'];
         foreach ($getUsers as $getUser) {
-            $providerStatuses = ['pending', 'approved', 'rejected'];
+
+            // marking all approved
+            $providerStatuses = ['approved'];
 
             $status = $providerStatuses[array_rand($providerStatuses)];
 

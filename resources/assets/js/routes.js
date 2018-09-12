@@ -323,7 +323,7 @@ const admin = 1;
 const reviewer = 4;
 const title = document.title
 router.beforeEach((to, from, next) => {
-    console.log(title , 213123123);
+
     let user;
     if(router.app.$store.getters.getAuthUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthUser);

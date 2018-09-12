@@ -61,7 +61,6 @@ import { directive as onClickaway } from 'vue-clickaway';
             },
        },
         methods: {
-
             getAllServices() {
                 let self = this;
                 let url = 'api/service';

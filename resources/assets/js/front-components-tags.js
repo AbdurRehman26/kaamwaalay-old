@@ -17,6 +17,9 @@ Vue.component('logo', require('./components/admin/common-components/Logo.vue'));
 Vue.component('no-record-found', require('./components/admin/common-components/NoRecords.vue'));
 Vue.component('search', require('./components/admin/common-components/Search.vue'));
 Vue.component('loader', require('./components/admin/common-components/Loader.vue'));
+Vue.component('page-loader', require('./components/admin/common-components/PageLoader.vue'));
+Vue.component('mid-loader', require('./components/admin/common-components/MediumLoader.vue'));
+Vue.component('spinner-loader', require('./components/admin/common-components/SpinnerLoader.vue'));
 Vue.component('alert', require('./components/admin/common-components/Alert.vue'));
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
 // Vue.component('info-popup', require('./components/front/common-components/InfoPopup.vue'));
@@ -30,10 +33,10 @@ Vue.component('urgent-job',require('./components/front/common-components/UrgentJ
 Vue.component('feature-job',require('./components/front/common-components/FeatureJobPopup.vue'));
 Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));
 Vue.component('go-to-visit-popup',require('./components/front/common-components/GoToVisitPopup.vue'));
-Vue.component('write-review-popup',require('./components/front/common-components/writeReviewPopup.vue'));
 Vue.component('profile-rejection',require('./components/front/common-components/ProfileRejection.vue'));
 Vue.component('notification',require('./components/front/common-components/Notification.vue'));
 Vue.component('chat-panel', require('./components/front/common-components/Chat.vue'));
+Vue.component('write-review-popup', require('./components/front/common-components/WriteReviewPopup.vue'));
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
@@ -61,6 +64,7 @@ Vue.component('bid-completed', require('./components/front/bids/Completed.vue'))
 Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
 Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
 Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));
+Vue.component('bid-cancelled', require('./components/front/bids/Cancelled.vue'));
 
 // Advice Center
 Vue.component('customer', require('./components/front/advice-center/Customer.vue'));
@@ -79,3 +83,7 @@ Vue.component('block-spinner', require('./components/admin/common-components/Blo
 
 
 Vue.component('file-upload-component', require('./components/admin/common-components/FileUpload.vue'));
+
+// stripe checkout component
+Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));
+Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));

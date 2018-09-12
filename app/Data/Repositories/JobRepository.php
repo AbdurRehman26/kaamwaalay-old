@@ -5,6 +5,8 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
+use App\Data\Models\Role;
+use App\Data\Models\User;
 use Carbon\Carbon;
 use Storage;
 
@@ -42,7 +44,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     public function findByAll($pagination = false, $perPage = 10, array $input = [] )
     {
 
-        $this->builder = $this->model->orderBy('id', 'desc');
+        $this->builder = $this->model->join('users', 'users.id', 'jobs.user_id')
+                        ->where('users.role_id', '=', Role::CUSTOMER)
+                        ->where('users.status', '=', User::ACTIVE)
+                        ->select('jobs.id')
+                        ->orderBy('jobs.id', 'desc');
         
         if(!empty($input['filter_by_me'])) {
             $input['filter_by_user'] = request()->user()->id;            
@@ -59,7 +65,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         }
 
         if(!empty($input['filter_by_status'])) {
-            $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+            $this->builder = $this->builder->where('jobs.status', '=', $input['filter_by_status']);            
         }
         
         if(!empty($input['filter_by_service'])) {
@@ -68,11 +74,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             ->orWhere('parent_id', $input['filter_by_service'])
             ->pluck('id')->toArray();
 
-            $this->builder = $this->builder->whereIn('service_id', $ids);            
+            $this->builder = $this->builder->whereIn('jobs.service_id', $ids);            
         }
 
         if(!empty($input['filter_by_user'])) {
-            $this->builder = $this->builder->where('user_id', '=', $input['filter_by_user']);            
+            $this->builder = $this->builder->where('jobs.user_id', '=', $input['filter_by_user']);            
         }
 
         if(!empty($input['filter_by_service_provider'])) {
@@ -89,6 +95,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             )->select('jobs.*');
         }
 
+        if(!empty($input['filter_by_city'])) {
+            $this->builder = $this->builder->where('jobs.city_id', '=', $input['filter_by_city']);            
+        }
+
         $data = parent::findByAll($pagination, $perPage, $input);
 
         return $data;   
@@ -100,7 +110,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     {
 
         $data = parent::findById($id, $refresh, $details, $encode);
+        
         if($data) {
+
+            $currentUser = request()->user();
 
             $details = ['user_rating' => true];
             $data->user = app('UserRepository')->findById($data->user_id, false, $details);
@@ -139,15 +152,13 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $data->awarded_to = app('UserRepository')->findById($awardedBid->user_id, false, $details);
                 }
 
-                $ratingCriteria = ['user_id' => $data->user_id];
-                $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria, false, false, false, false, true);
+                $ratingCriteria = ['rated_by' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
+                
+                $data->job_rating = app('UserRatingRepository')->getAvgRatingCriteria($ratingCriteria, false);
 
-                $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
-                $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-                $data->avg_rating = $avgRating;
 
                 if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
-                    
+
                     $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                     $jobAmount = app('JobBidRepository')->getAwardedJobAmount($bidsCriteria);
                     $data->job_amount = $jobAmount;
@@ -163,6 +174,14 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
 
                 }
+                
+                // current service provider bid 
+
+                if($currentUser->role_id == Role::SERVICE_PROVIDER){
+                    $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
+                    $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+                }
+
 
             }
 
@@ -172,27 +191,30 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     }
 
 
-    public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null , $orCrtieria = [])
+    public function getTotalCountByCriteria($criteria = [], $startDate = null, $endDate = null , $orCrtieria = [])
     {
+        $this->builder = $this->model->newInstance();
 
-        if($crtieria) {
+        if($criteria) {
 
-            $this->model = $this->model->where($crtieria);
+            $this->builder = $this->builder->where($criteria);
         }
 
         // or Criteria must be an array 
-        if($crtieria && $orCrtieria) {
+        if($criteria && $orCrtieria) {
             foreach ($orCrtieria as $key => $where) {
-                $this->model  = $this->model->orWhere($where);
+                $this->builder  = $this->builder->orWhere(function ($query) use ($where) {
+                    $query->where($where);
+                });
             }
         }
 
 
         if($startDate && $endDate) {
-            $this->model = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+            $this->builder = $this->builder->whereBetween('created_at', [$startDate, $endDate]);
         }
 
-        return  $this->model->count();
+        return  $this->builder->count();
     }
 
 }

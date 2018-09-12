@@ -104,8 +104,10 @@ public function input($value=''){
             'status',
             'keyword',
             'filter_by_featured',
-        'zip_code',
-        'service_category'
+            'zip_code',
+            'service_category',
+            'service_name',
+            'filter_by_related_services'
         );
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
@@ -184,7 +186,7 @@ public function input($value=''){
         $output = [
         'response' => [
             'data' => $data['data'],
-            'url_prefix' => Storage::url(config('uploads.service.url.folder').'/'),
+            'url_prefix' => url(config('view.service.url.folder')).'/',
             'pagination' => !empty($data['pagination']) ? $data['pagination'] : false,
             'message' => $this->responseMessages(__FUNCTION__),
         ]

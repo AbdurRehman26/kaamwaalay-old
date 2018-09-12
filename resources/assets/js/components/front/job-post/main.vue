@@ -77,16 +77,16 @@
                     </div>
                     <div class="boxed">
                         <div class="col-md-6">
-                            <input type="radio" id="normal" name="need" value="Normal job" checked="">
+                            <input type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
                             <label for="normal">No, Normal job</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" id="urgent" name="need" value="Urgent job" @click="urgentjob()">
+                            <input type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
                             <label for="urgent">Yes, Urgent job</label>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>$2</strong> fee for urgent job.</p>
+                        <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
                     </div>
                 </div>
                 <div class="row">
@@ -165,7 +165,7 @@
 </div>
 </div>
 
-<div class="verify-account">
+<div class="verify-account" v-if="isShowCardDetail">
     <div class="row">
         <div class="col-md-12">
             <div class="verification-alert">
@@ -174,74 +174,10 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="">Credit Card Type</label>
-                    <select class="form-control">
-                        <option selected="" disabled="">Select credit card type</option>
-                        <option>VISA</option>
-                        <option>Master</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group custom-datepicker">
-                    <label for="">&nbsp;</label>
-                    <select class="form-control">
-                        <option selected="" disabled="">Select Month</option>
-                        <option>January</option>
-                        <option>Feburay</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
-                    </select>
-                </div>
-            </div>
+        <div v-if='isShowCardDetail'>
+         <payment-component  :submit='isSubmitNormalJob'></payment-component>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="">Credit Card Number</label>
-                    <input type="text" class="form-control" placeholder="Enter your credit card number">
-                </div>
-            </div>
-            <div class="col-md-6">							
-                <div class="form-group custom-datepicker">
-                    <label for="">&nbsp;</label>
-                    <select class="form-control">
-                        <option selected="" disabled="">Select Year</option>
-                        <option>2010</option>
-                        <option>2011</option>
-                        <option>2012</option>
-                        <option>2013</option>
-                        <option>2014</option>
-                        <option>2015</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
-                        <option>2020</option>
-                        <option>2021</option>
-                    </select>
-                </div>													
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Security Code (CVV)</label>
-                    <input class="form-control" placeholder="Enter your cvv number" type="" name="">
-                </div>
-            </div>
-        </div>
+    </div>
         <div class="job-form-submission">
             <div class="">
 
@@ -253,7 +189,6 @@
             </div>
             <p>Please make sure all the information you entered is accurate before submitting.</p>
         </div>
-    </div>
 
 </form>
 </div>
@@ -262,7 +197,10 @@
 
 <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
-<urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job>
+<!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
+<div v-if='!isShowCardDetail'>
+<card-element  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
+</div>
 </div>
 </template>
 
@@ -273,6 +211,10 @@
         components: { DatePicker },
         data() {
             return {
+                plans : [],
+                urgentJobAmount: null,
+                selectedPlan :null,
+                paymentSuccess :false,
                 successMessage : '',
                 errorMessage : '',
                 url : 'api/job',
@@ -285,6 +227,7 @@
                 time2: '',
                 time3: '',
                 jobdes: '',
+                jobType: 'normal_job',
                 shortcuts: [
                 {
                     text: 'Today',
@@ -312,7 +255,8 @@
                     state_id : '',
                     zip_code : '',
                     videos : '',
-                    images : []
+                    images : [],
+                    subscription_id : null
                 },
                 loading : false,
                 numOfImages : 1,
@@ -320,6 +264,8 @@
                 stateUrl : 'api/state',
                 cityUrl : '',
                 states : [],
+                isShowCardDetail : true,
+                isSubmitNormalJob : false
                 
             }
         },
@@ -336,6 +282,7 @@
             }
         },
         mounted () {
+             this.getPlansList()
         },
         methods:{
             getJobResponse(response){
@@ -364,11 +311,15 @@
                 this.$validator.validateAll().then((result) => {
 
                     if (result) {
-                        this.onSubmit();
+                         if(this.jobType == 'urgent_job'){
+                             this.urgentjob()
+                         }else{
+                            this.isSubmitNormalJob = true
+                            //this.onSubmit();
+                         }
                         this.errorMessage = '';
                         return;
                     }
-                    console.log(result , this.errorBag.all());
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },
@@ -377,7 +328,6 @@
                 let data = this.formData;
 
                 self.loading = true;
-
                 let url = self.url;
                 let urlRequest = '';
 
@@ -416,7 +366,38 @@
             HideModal(){
                 this.categoryval = false;
             },
+            getPlansList (){
+                let self = this;
+                let url = 'api/plan';
+                let params = {
+                    pagination: false,
+                    type: 'job',
+                    product: 'urgent_job',
+                };
+                self.$http.get(url, {params: params}).then(response=>{
+                    self.plans = response.data.response.data
+                    self.selectedPlan = self.plans[0].id
+                    self.urgentJobAmount = self.plans[0].amount
+                }).catch(error=>{
+                });
+            },
 
+        },
+       watch:{
+            jobType (value) {
+                if(value == 'urgent_job'){
+                    this.isShowCardDetail = false
+                } else{
+                    this.isShowCardDetail = true
+                }
+            }, 
+            isSubmitNormalJob (value) {
+                if(value){
+                    this.isSubmitNormalJob = true
+                } else{
+                    this.isShowCardDetail = false
+                }
+            },
         }
     }
 </script>
