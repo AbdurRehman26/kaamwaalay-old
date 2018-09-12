@@ -81,7 +81,6 @@
                         <b-col cols="7">
                             <div class="form-group">
                                 <p>{{selectedService.parent_id? selectedService.parent.description : selectedService.description}}</p>
-                                <p>{{selectedService.images}}</p>
                             </div>
                         </b-col>
                     </b-row>

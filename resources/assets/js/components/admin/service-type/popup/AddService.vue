@@ -193,7 +193,6 @@
                 var str = this.getSuffix;
                 var regex = /^[0-9a-z\-]+$/;
                 this.errorBag.clear();
-                return;
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
                         if(str.length == 0) {
@@ -212,6 +211,7 @@
                                 msg: 'The url suffix is invalid. Please use only lower case letters, numbers & hyphens.',
                                 id: 7,
                             });
+                            this.formData.url_suffix = "";
                             this.errorMessage = this.errorBag.all()[0];
                             return;
                         }else {
