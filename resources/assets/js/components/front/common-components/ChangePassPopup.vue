@@ -13,7 +13,7 @@
                     </b-col> 
                     <b-col md="6">
                         <div class="form-group">
-                            <label>New Password22</label>
+                            <label>New Password</label>
                             <input type="password" v-model="userData.new_password"  :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="new password" name="new_password" class="form-control"  data-vv-name="new_password" placeholder="Create new password" :class="['form-group' , errorBag.first('new_password') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
                         </div>
                     </b-col> 
@@ -80,6 +80,9 @@ data () {
 
             },
             validateBeforeSubmit() {
+                if(this.loading) {
+                    return;
+                }
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.errorMessage = '';
@@ -100,14 +103,14 @@ data () {
                                 self.loading = false;
                                 self.successMessage='';
                                 self.hideModal();
-                            }, 5000);
+                            }, 2000);
                     })
                     .catch(error => {
                         self.loading = false
                         self.errorMessage =error.response.data.message;
                         setTimeout(function(){
                             self.errorMessage='';
-                        }, 5000);
+                        }, 2000);
                     })
             },
     },
