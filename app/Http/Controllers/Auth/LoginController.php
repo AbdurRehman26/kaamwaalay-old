@@ -150,7 +150,10 @@ class LoginController extends Controller
 
         $data =  $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());      
-        $output = ['access_token'=>$data->access_token, 'response' => ['data' => [$data],'message'=>'Success']];
+        
+        $user = app('UserRepository')->findById($data->id);
+
+        $output = ['access_token'=>$data->access_token, 'response' => ['data' => [$user],'message'=>'Success']];
 
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);

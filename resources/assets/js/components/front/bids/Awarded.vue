@@ -45,7 +45,7 @@
 				<div class="job-details">
 					<p class="customer-rating">									
 						<strong>Customer rating:</strong>
-						<star-rating :star-size="20" read-only :rating="getRating(getJobUser(record))" active-color="#8200ff"></star-rating>
+						<star-rating :increment="0.5" :star-size="20" read-only :rating="getRating(getJobUser(record))" active-color="#8200ff"></star-rating>
 					</p>								
 					<p class="service-requirment">
 						<i class="icon-brightness-down"></i>
