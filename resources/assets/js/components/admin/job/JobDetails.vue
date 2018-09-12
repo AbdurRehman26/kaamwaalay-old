@@ -176,9 +176,18 @@
                     self.record = response.data;
                     
                 },
-                open (e) {            
-                    fancyBox(e.target, this.imageList);
-                }                
+                open (e) {
+                    let jobImages = [];
+
+                    for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
+                        let data = {
+                            url : this.record.jobImages[i]
+                        };
+
+                        jobImages.push(data);
+                    }
+                    fancyBox(e.target, jobImages);
+                }               
             },    
         }
 
