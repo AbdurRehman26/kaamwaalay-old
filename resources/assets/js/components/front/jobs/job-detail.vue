@@ -388,8 +388,8 @@
             },
             isMyJob(){
                 if(Object.keys(this.record).length){
-
-                    return this.record.user_id == this.$store.getters.getAuthUser.id;
+                    let user = JSON.parse(this.$store.getters.getAuthUser);
+                    return this.record.user_id == user.id;
                 }
                 return false;
             }
