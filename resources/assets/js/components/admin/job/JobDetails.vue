@@ -179,7 +179,7 @@
                 open (e) {
                     let jobImages = [];
 
-                    for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
+                    for (var i = 0 ; i < this.record.jobImages.length; i++) {
                         let data = {
                             url : this.record.jobImages[i]
                         };
