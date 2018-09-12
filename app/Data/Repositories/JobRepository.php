@@ -65,7 +65,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         }
 
         if(!empty($input['filter_by_status'])) {
-            $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+            $this->builder = $this->builder->where('jobs.status', '=', $input['filter_by_status']);            
         }
         
         if(!empty($input['filter_by_service'])) {
@@ -74,11 +74,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             ->orWhere('parent_id', $input['filter_by_service'])
             ->pluck('id')->toArray();
 
-            $this->builder = $this->builder->whereIn('service_id', $ids);            
+            $this->builder = $this->builder->whereIn('jobs.service_id', $ids);            
         }
 
         if(!empty($input['filter_by_user'])) {
-            $this->builder = $this->builder->where('user_id', '=', $input['filter_by_user']);            
+            $this->builder = $this->builder->where('jobs.user_id', '=', $input['filter_by_user']);            
         }
 
         if(!empty($input['filter_by_service_provider'])) {
@@ -96,7 +96,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         }
 
         if(!empty($input['filter_by_city'])) {
-            $this->builder = $this->builder->where('city_id', '=', $input['filter_by_city']);            
+            $this->builder = $this->builder->where('jobs.city_id', '=', $input['filter_by_city']);            
         }
 
         $data = parent::findByAll($pagination, $perPage, $input);

@@ -102,8 +102,8 @@
                                     </b-col>
                                     <b-col class="calculated-value">
                                         <div class="gallery-pic">
-                                            <div class="gallery-item" v-for="(n, index) in record.images" :data-index="index">
-                                                <img @click="open($event)" :src="n.url">
+                                            <div class="gallery-item" v-for="(n, index) in record.jobImages" :data-index="index">
+                                                <img @click="open($event)" :src="n">
                                             </div>
                                         </div>
                                     </b-col>
@@ -176,9 +176,18 @@
                     self.record = response.data;
                     
                 },
-                open (e) {            
-                    fancyBox(e.target, this.imageList);
-                }                
+                open (e) {
+                    let jobImages = [];
+
+                    for (var i = 0 ; i < this.record.jobImages.length; i++) {
+                        let data = {
+                            url : this.record.jobImages[i]
+                        };
+
+                        jobImages.push(data);
+                    }
+                    fancyBox(e.target, jobImages);
+                }               
             },    
         }
 

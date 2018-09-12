@@ -22,50 +22,50 @@
                                 <div class="jobs-done" v-else>
                                     <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                                     <div class="job-status">
-                                    <span v-if="canMarkJobComplete" class="tags"
+                                        <span v-if="canMarkJobComplete" class="tags"
                                         :class="['completed']">
                                         Marked Done
                                     </span>
                                     <span v-else-if="record.is_archived" class="tags"
-                                        :class="['archived']">
-                                        {{ record | jobStatus }}
-                                    </span>
-                                    <span v-else class="tags"
-                                    :class="[ record.status ?  record.status.replace(/\s/g, '').replace('_', '').replace('cancelled' , 'rejected').toLowerCase().trim() : '']">
+                                    :class="['archived']">
                                     {{ record | jobStatus }}
-                                </span>	
-                            </div>											
-                        </div>	
-                    </div>		
-                    <div class="col-md-12 p-r-0 p-l-0">
-                        <div class="job-details" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
+                                </span>
+                                <span v-else class="tags"
+                                :class="[ record.status ?  record.status.replace(/\s/g, '').replace('_', '').replace('cancelled' , 'rejected').toLowerCase().trim() : '']">
+                                {{ record | jobStatus }}
+                            </span>	
+                        </div>											
+                    </div>	
+                </div>		
+                <div class="col-md-12 p-r-0 p-l-0">
+                    <div class="job-details" v-if="job_detail_right_panel == 'service-provider-customer-end' || job_detail_right_panel == 'serviceprovidercustomerend' || job_detail_right_panel == 'awarded' || job_detail_right_panel == 'serviceprovider'">
 
-                            <p class="service-requirment">
+                        <p class="service-requirment">
+                            <i class="icon-brightness-down"></i>
+                            Service required 
+                            <strong v-if="record.job_type == 'urgent' | record.job_type == 'normal'" :class="[record.job_type]">
+                                {{ record.job_type }}
+                            </strong>
+                            <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
+                            <strong v-else>{{ record.preference | jobPreference }}</strong>
+                        </p>
+                    </div>
+                    <div class="job-details" v-else>
+                        <div class="awarded alignawd">
+                            <p class="awarded_to">
+                                <i class="icon-checkmark2"></i> 
+                                {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
+                                <strong>
+                                {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}</strong>
+                            </p>
+                            <p class="service_required">
                                 <i class="icon-brightness-down"></i>
                                 Service required 
-                                <strong v-if="record.job_type == 'urgent' | record.job_type == 'normal'" :class="[record.job_type]">
-                                    {{ record.job_type }}
-                                </strong>
+                                <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
                                 <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
                                 <strong v-else>{{ record.preference | jobPreference }}</strong>
                             </p>
                         </div>
-                        <div class="job-details" v-else>
-                            <div class="awarded alignawd">
-                                <p class="awarded_to">
-                                    <i class="icon-checkmark2"></i> 
-                                    {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
-                                    <strong>
-                                    {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}</strong>
-                                </p>
-                                <p class="service_required">
-                                    <i class="icon-brightness-down"></i>
-                                    Service required 
-                                    <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
-                                    <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
-                                    <strong v-else>{{ record.preference | jobPreference }}</strong>
-                                </p>
-                            </div>
                             <!-- <p class="awarded">
                                 <i class="icon-checkmark2"></i> 
                                 {{ jobAwarded ? 'Job awarded to : ' : 'Job not awarded yet'}}
@@ -273,22 +273,22 @@
 
 
                 <div class="service-provider">
-                    <div v-if="canInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
+                    <div v-if="isMyJob && canInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>14 service providers available around you related to concrete flooring.</p>
                         <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
                     </div>
 
-                    <button v-if="canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
-                    <button v-if="canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-if="isMyJob && canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Mark Job Archive</span> <loader></loader>
                     </button>
 
-                    <a href="javascript:void(0);" v-if="canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-                    <a href="javascript:void(0);" v-if="canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
+                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 
                 </div>
 
@@ -309,7 +309,7 @@
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
-<vue-common-methods :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
+<vue-common-methods v-if="isMyJob" :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -385,6 +385,13 @@
             },
             canAwardJob(){
                 return !this.record.awarded_to && this.record.status != 'cancelled';
+            },
+            isMyJob(){
+                if(Object.keys(this.record).length){
+
+                    return this.record.user_id == this.$store.getters.getAuthUser.id;
+                }
+                return false;
             }
         },
         methods: {
