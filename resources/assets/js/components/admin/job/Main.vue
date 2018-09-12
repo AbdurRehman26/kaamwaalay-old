@@ -97,9 +97,9 @@
 
 
 
+<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 </div>
 
-<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
 <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
 <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>

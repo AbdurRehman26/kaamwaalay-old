@@ -67,7 +67,6 @@
                     <router-link :to="{ name: 'customer.detail', params: { id: record.id }}">
                         <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
                     </router-link>
-                    
                     <i @click="changeStatusPopup(record)" :class="[record.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                 </div>
             </td>
