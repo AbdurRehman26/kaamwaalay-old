@@ -85,25 +85,23 @@
                                     </p>
                                 </div>
 
+                            <div class="chat-feedback" v-if="record.review_details">
+                                <div class="text-notifer">
+                                    <p>My feedback & review</p>	
+                                </div>
+                                <div class="chat-feedback-column">
+                                    <div class="chat-feedback-image" v-bind:style="{'background-image': $store.getters.getAuthUser.profile_image}"></div>
+                                    <div class="chat-feedback-message">
+                                        <p>{{record.review_details.message}}</p>
+                                        <div class="feeback-detail">
+                                            <p class="feedback-personal-info">
+                                                <a href="javascript:void(0);">{{record.review_details.rated_by_name}}</a>
+                                                posted on 
+                                                <strong>{{record.formatted_created_at}}</strong>
+                                            </p>
+                                            <div class="ratings">
+                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="[record.review_details.rating ? parseInt(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
 
-
-                                <div class="chat-feedback" v-if="record.review_details">
-                                    <div class="text-notifer">
-                                        <p>My feedback & review</p>	
-                                    </div>
-                                    <div class="chat-feedback-column">
-                                        <div class="chat-feedback-image" v-bind:style="{'background-image': $store.getters.getAuthUser.profile_image}"></div>
-                                        <div class="chat-feedback-message">
-                                            <p>{{record.review_details.message}}</p>
-                                            <div class="feeback-detail">
-                                                <p class="feedback-personal-info">
-                                                    <a href="javascript:void(0);">{{record.review_details.rated_by_name}}</a>
-                                                    posted on 
-                                                    <strong>{{record.formatted_created_at}}</strong>
-                                                </p>
-                                                <div class="ratings">
-                                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="[record.review_details.rating ? parseFloat(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -116,6 +114,7 @@
                     </div>			
                 </div>
             </div>
+        </div>
 
             <write-review-popup @HideModalValue="HideModal" :showModalProp="writereview"></write-review-popup>
             <vue-common-methods :infiniteLoad="true" :url="requestUrl" @get-records="getResponse"></vue-common-methods>

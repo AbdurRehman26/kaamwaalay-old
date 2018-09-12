@@ -10701,7 +10701,7 @@ a.text-dark:focus {
   top: 50%;
   margin-left: -40px;
   margin-top: -40px;
-  background: url(/images/vendor/owl.carousel/src/owl.video.play.png?4cbde124d6cd8122c801118696c16f07) no-repeat;
+  background: url(/images/vendor/owl.carousel/src/owl.video.play.png?4a37f8008959c75f619bf0a3a4e2d7a2) no-repeat;
   cursor: pointer;
   z-index: 1;
   -webkit-backface-visibility: hidden;
@@ -14515,28 +14515,28 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .splash-design.d-1 {
-  background-image: url(/images/d-1.svg?aed8324ec19cc06180eca1acd8f843ea);
+  background-image: url(/images/d-1.svg?70fba90bbf2a711f0a151c3d05d27ba1);
 }
 
 .splash-design.d-2 {
-  background-image: url(/images/d-2.svg?8ac72b22a73d9e78aa2d8b4820d70862);
+  background-image: url(/images/d-2.svg?3f1d902d1c5e342a8316cd0712e31957);
 }
 
 .splash-design.d-3 {
-  background-image: url(/images/d-3.svg?33c73ce1d9291622fb185c0d6e1731d4);
+  background-image: url(/images/d-3.svg?b20e532313a13757e2222aa177b55b1b);
 }
 
 .splash-design.d-4 {
-  background-image: url(/images/d-4.svg?48cc588fc2123d490c42fa7bb73658a6);
+  background-image: url(/images/d-4.svg?ca5f85c33b09524fda77485280c33853);
 }
 
 .splash-design.d-5 {
-  background-image: url(/images/d-5.svg?f74158a19f2ee4544a72f6b3596fddf8);
+  background-image: url(/images/d-5.svg?acf2c8ccde5bb7f7767697d3a06f89d2);
   height: 122px !important;
 }
 
 .splash-design.d-6 {
-  background-image: url(/images/d-6.svg?29275829ff683521a9607fceba376b55);
+  background-image: url(/images/d-6.svg?7b3ce14c45730b89a9b8ba73ed07b794);
 }
 
 .splash-design.top-left {
@@ -14906,6 +14906,69 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 0px !important;
 }
 
+.awarded.alignawd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  position: relative;
+  top: 9px;
+  text-transform: capitalize;
+}
+
+.service-professional .multiselect__tags {
+  padding: 0px !important;
+  position: relative;
+  border-radius: 0px;
+  border-color: #B2B2B2 !important;
+  border-right: 0px solid !important;
+}
+
+.service-professional .multiselect__tags input {
+  background-color: #fff;
+  border: 1px solid #111;
+  padding: 13px 41px 12px 12px !important;
+  border-radius: 0px;
+  border-color: #B2B2B2 !important;
+  border-right: 0px solid !important;
+  border-radius: 5px 0px 0px 5px;
+  display: block !important;
+  width: 100% !important;
+}
+
+.service-professional .multiselect__tags span {
+  position: absolute;
+  width: 100%;
+}
+
+.service-professional .multiselect__tags span.multiselect__single {
+  display: none;
+}
+
+.service-professional .multiselect__content-wrapper {
+  border: 1px solid;
+  border-top: 0px;
+  border-color: #B2B2B2 !important;
+  background-color: #fff;
+  padding: 0px 12px;
+}
+
+.service-professional .container-zip-code {
+  margin-left: -7px;
+}
+
+.service-professional .container-zip-code select {
+  padding-left: 35px;
+  height: 51px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.service-professional .custom-multi {
+  vertical-align: top;
+}
+
 .content-sec h2 {
   font-size: 32px;
   margin-bottom: 24px;
@@ -15187,6 +15250,155 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 14px;
   font-family: "AkzidenzGroteskBE-Regular";
   margin-top: 30px;
+}
+
+.featured-categories-home {
+  width: 100%;
+  background-color: #F9F9F9;
+  padding: 22px 0;
+  border-bottom: solid 1px #E0E0E0;
+  border-top: solid 1px #E0E0E0;
+}
+
+.featured-categories-home ul {
+  margin: 0;
+  padding: 0;
+}
+
+.featured-categories-home .list-description p {
+  font-family: "AkzidenzGroteskBE-Bold";
+  margin-left: 12px;
+}
+
+.featured-categories-home .services-list a:hover {
+  text-decoration: none;
+}
+
+/*===
+    list icons
+===*/
+
+.list-image {
+  display: inline-block;
+  width: 100px;
+  vertical-align: middle;
+}
+
+.list-icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+  border: 1px solid #E0E0E0;
+  background-color: #F9F9F9;
+  border-radius: 12px;
+}
+
+.list-icon .inner {
+  width: 80px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+}
+
+.list-icon.sm {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+}
+
+.list-icon.sm .inner {
+  width: 55px;
+  height: 55px;
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .list-icon.sm .inner {
+    width: 43px;
+    height: 31px;
+    padding: 10px;
+    margin-top: 11px;
+    margin-left: 5px;
+  }
+}
+
+.list-icon.white {
+  background-color: #fff;
+}
+
+@media (max-width: 767px) {
+  .featured-categories-home .list-description {
+    text-align: center !important;
+    margin-top: 10px;
+  }
+}
+
+.list-description {
+  vertical-align: middle;
+  display: inline-block;
+  width: calc(100% - 116px);
+}
+
+.list-description h4 {
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  font-family: "AkzidenzGroteskBE-Md";
+}
+
+.list-description p {
+  font-size: 16px;
+  color: #1A1A1A;
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .list-description h4 {
+    font-size: 18px;
+  }
+
+  .list-description p {
+    line-height: 21px;
+    font-size: 15px;
+  }
+}
+
+/*
+    list icons details
+*/
+
+.services .services-list ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.services.two-column .services-list ul {
+  display: block;
+}
+
+.services.two-column .services-list ul li {
+  display: inline-block;
+  width: 49%;
+  padding-bottom: 52px;
+}
+
+.services.two-column .services-list ul li:nth-last-child(2),
+.services.two-column .services-list ul li:last-child(1) {
+  padding-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+  .services .services-list ul li {
+    width: 100% !important;
+  }
 }
 
 .featured-categories {
@@ -18069,7 +18281,7 @@ body .chat-feedback-message.white-msg:before {
 }
 
 .custom-timepicker .mx-calendar-icon {
-  background-image: url(/images/clock.png?0d35adad010e68e534f6f54b484435e7) !important;
+  background-image: url(/images/clock.png?5d66a6c7973c060404222c2ec6d82d47) !important;
 }
 
 /* my-bidding */
@@ -20010,7 +20222,7 @@ body .chat-feedback-message.white-msg:before {
   width: 170px;
   height: 110px;
   margin: 0 auto;
-  background-image: url(/images/no-record.svg?2f756fdeba7cdd317e2551bb8be95028);
+  background-image: url(/images/no-record.svg?c2151495d84edca035a704225e4f077e);
   background-repeat: no-repeat;
   background-size: 100% auto;
   display: block;

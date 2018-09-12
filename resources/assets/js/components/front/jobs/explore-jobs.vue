@@ -5,15 +5,15 @@
                 <div class="container element-index">
                     <div class="content-inner md">
                         <h1 class="heading-large">Find best skilled service professionals near you.</h1>
-                        <div class="search-filter">
+                        <div class="search-filter service-professional">
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                <multiselect v-model="searchValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" >
+                                <multiselect v-model="searchValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
                                     <span slot="noResult">No Service found. Consider changing the search query.</span>
                                 </multiselect>
                             </div>
                             <div class="container-zip-code">
                                 <i class="icon-location"></i>
-                                <label for="">City</label>
+                                <!-- <label for="">City</label> -->
                                 <select v-model="selectedCity" class="form-control" name="city">
                                   <option value="">Select City</option>
                                   <option v-for="city in cities" :value="city.id">{{city.name}}</option>
