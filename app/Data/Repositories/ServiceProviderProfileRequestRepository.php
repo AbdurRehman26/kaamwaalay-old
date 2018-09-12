@@ -216,5 +216,12 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         return $model;
     }
 
+    public function getUserServices($criteria)
+    {
+        $this->builder = $this->model->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
+            ->where('service_provider_profile_requests.user_id', $criteria['user_id']);
+
+        return $this->builder->select('service_provider_services.*')->get();
+    }
 
 }

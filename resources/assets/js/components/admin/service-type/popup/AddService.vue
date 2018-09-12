@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
               <label>Service Name</label>
-              <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required'" >
+              <input type="text" name="service name" placeholder="Enter service name" :class="['form-control' , errorBag.first('service name') ? 'is-invalid' : '']" v-model="formData.title" v-validate="'required|max:50'" >
           </div>
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
@@ -57,11 +57,21 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label>URL Suffix</label>
-        <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']" 
-      @focus.prevent="onUrlFocus"
-      @blur.prevent="onUrlBlur">
+    <div class="form-group float-left width-100">
+        <div class="row">
+            <div class="col-md-12">
+                <label>URL Suffix</label>
+            </div>        
+            <div class="url-suffix">
+                <p>{{url_prefix}}</p>
+            </div>
+            <div class="url-area">
+                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required|max:50'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']">
+            </div>
+        </div>
+
+
+      
     </div>
 </div>
 
@@ -102,21 +112,17 @@
                         original_name: ''
                     }
                     ],
-                    url_suffix: this.defaultUrlPrefix,
+                    url_suffix: '',
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
                     is_display_footer_nav: 0,
-
                 },
-                emailaddress: 'arsalan@cygnismedia.com',
-                fullname: 'Arsalan Akhtar',
                 image: 'images/dummy/image-placeholder.jpg',
                 file: null,
                 url: 'api/service',
                 loading: false,
-                defaultUrlLength: this.defaultUrlPrefixLength,
-                url_suffix: '',
+                url_prefix: '',
             }
         },
         mounted() {
@@ -131,18 +137,6 @@
                     self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
                 });
-            },
-            onUrlFocus(e) {
-                var suffix = $(e.target).val();
-                var prefixLength = this.defaultUrlPrefixLength;
-                var str = suffix.substr(prefixLength);
-                this.formData.url_suffix = str;
-            },
-            onUrlBlur(e) {
-                var sufix = $(e.target).val();
-                this.url_suffix = sufix;
-                var url = this.$store.getters.getServiceUrlPrefix;
-                this.formData.url_suffix = url + sufix;
             },
             onChangeParentService() {
                 if(this.formData.parent_id) {
@@ -171,7 +165,7 @@
                         original_name: ''
                     }
                     ],
-                    url_suffix: this.$store.getters.getServiceUrlPrefix,
+                    url_suffix: '',
                     status: 1,
                     is_display_banner: 0,
                     is_display_service_nav: 0,
@@ -183,17 +177,14 @@
                         self.errorMessage = '';
                         self.successMessage = '';
                         self.errorBag.clear();
-                        self.formData.url_suffix = self.$store.getters.getServiceUrlPrefix;
                     })
                 }, 100);
             },
             validateBeforeSubmit() {
                 var self = this;
-                var tempSuffix = this.formData.url_suffix;
-                var str = this.getSuffix;
+                var str = this.formData.url_suffix;
                 var regex = /^[0-9a-z\-]+$/;
                 this.errorBag.clear();
-                
                 this.$validator.validateAll().then((result) => {
                     if (result && !this.errorBag.all().length) {
                         if(str.length == 0) {
@@ -203,7 +194,6 @@
                                 rule: 'required',
                                 id: 7,
                             });
-                            this.formData.url_suffix = "";
                             this.errorMessage = this.errorBag.all()[0];
                             return;
                         } if(!regex.test(str)) {
@@ -217,7 +207,6 @@
                         }else {
                             this.errorBag.clear();
                             this.errorMessage = "";
-                            this.formData.url_suffix = tempSuffix;
                         }
                         if(this.isUpdate) {
                             this.onUpdate();
@@ -235,9 +224,9 @@
                 this.imageText = 'Click here to upload image';
                 this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
+                this.url_prefix =  this.$store.getters.getServiceUrlPrefix;
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
-                this.formData.url_suffix = this.$store.getters.getServiceUrlPrefix;
             },
             hideModal () {
                 var self = this;
@@ -304,9 +293,7 @@
                 let url = this.url;
 
                 var data = Object.assign({}, this.formData);
-                var temp = this.formData.url_suffix;
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.url_suffix;
                 this.$http.post(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;
@@ -345,7 +332,6 @@
                 let url = this.url+"/"+this.list.id;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                data.url_suffix = this.getSuffix;
                 this.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;
@@ -407,7 +393,7 @@
                             original_name: img? img[0].original_name :''
                         }
                         ],
-                        url_suffix: '',
+                        url_suffix: this.list.url_suffix,
                         status: this.list.status,
                         is_display_banner: this.list.is_display_banner,
                         is_display_service_nav: this.list.is_display_service_nav,
@@ -415,8 +401,6 @@
                     };
 
                     this.showRadios = this.formData.parent_id? false : true;
-                    this.formData.url_suffix = this.defaultUrlPrefix;
-                    this.url_suffix = this.defaultUrlPrefix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file? this.file : 'Click here to upload image.';
@@ -424,24 +408,8 @@
             }
         },
         computed : {
-            getSuffix() {
-                var suffix = this.formData.url_suffix? this.formData.url_suffix : '';
-                return suffix;
-            },
             imageValue(){
                 return this.image;
-            },
-            defaultUrlPrefix() {
-                var url = this.$store.getters.getServiceUrlPrefix;
-                url = url + this.formData.url_suffix;
-                if(this.isUpdate) {
-                    url = url + this.list.url_suffix;
-                }
-                return url;
-            },
-            defaultUrlPrefixLength() {
-                var url = this.$store.getters.getServiceUrlPrefix;
-                return url.length;
             },
         }
     }

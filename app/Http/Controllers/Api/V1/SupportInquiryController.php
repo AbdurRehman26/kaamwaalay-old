@@ -57,7 +57,7 @@ class SupportInquiryController extends ApiResourceController
         }
 
         if($value == 'store'){
-            $input = request()->only('support_question_id', 'message', 'user_id', 'email', 'name');
+            $input = request()->only('support_question_id', 'message', 'user_id');
             $input['user_id'] = request()->user()->id;
         }
 

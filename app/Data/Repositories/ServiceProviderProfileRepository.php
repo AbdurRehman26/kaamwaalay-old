@@ -72,7 +72,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
             $data->avg_rating = $avgRating;
-// findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+
             $reviewCriteria = ['user_id' => $data->user_id];
             $review = app('UserRatingRepository')->findByCriteria($reviewCriteria, false, false, false, false, false);
             $data->reviewedBy = null;
@@ -117,21 +117,10 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['zip'])) {
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
         }
-        // if(!empty($data['zip'])) {
-        //     $this->builder = $this->builder->leftJoin('users', function ($join)  use($data){
-        //         $join->on('users.id', '=', 'service_provider_profiles.user_id');
-        //     })->where(function($query)use($data){
-        //         $query->where('users.zip_code', '=', $data['zip']);
-        //     })->groupBy('service_provider_profiles.user_id');
-        // }
 
         if (!empty($data['keyword'])) {
 
-            $this->builder = $this->builder->leftJoin(
-                'users', function ($join) use ($data) {
-                    $join->on('users.id', '=', 'service_provider_profiles.user_id');
-                }
-            )->where(
+            $this->builder = $this->builder->where(
                 function ($query) use ($data) {
                         $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
                 }

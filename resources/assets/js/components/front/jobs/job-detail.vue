@@ -66,6 +66,16 @@
                                     <strong v-else>{{ record.preference | jobPreference }}</strong>
                                 </p>
                             </div>
+                            <!-- <p class="awarded">
+                                <i class="icon-checkmark2"></i> 
+                                {{ jobAwarded ? 'Job awarded to : ' : 'Job not awarded yet'}}
+                                {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}
+                                <i class="icon-brightness-down"></i>
+                                Service required 
+                                <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
+                                <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
+                                <strong v-else>{{ record.preference | jobPreference }}</strong>
+                            </p> -->
                         </div>																				
                     </div>					
 
@@ -371,7 +381,7 @@
                 return false;
             },
             canArchiveJob(){
-                return !this.record.status == 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
+                return this.record.status != 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
             },
             canAwardJob(){
                 return !this.record.awarded_to && this.record.status != 'cancelled';

@@ -62,7 +62,7 @@ class UserRepository extends AbstractRepository implements RepositoryContract
                 $data->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);                
                 if (!empty($details['provider_request_data'])) {
                     $serviceDetailsCriteria = ['user_id' => $id];
-                    $data->service_details = app('ServiceProviderProfileRequestRepository')->findCollectionByCriteria($serviceDetailsCriteria);                
+                    $data->service_details = app('ServiceProviderProfileRequestRepository')->getUserServices($serviceDetailsCriteria);                
                 }
 
             }   

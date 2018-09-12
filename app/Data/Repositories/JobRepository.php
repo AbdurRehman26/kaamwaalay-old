@@ -47,6 +47,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         $this->builder = $this->model->join('users', 'users.id', 'jobs.user_id')
                         ->where('users.role_id', '=', Role::CUSTOMER)
                         ->where('users.status', '=', User::ACTIVE)
+                        ->select('jobs.id')
                         ->orderBy('jobs.id', 'desc');
         
         if(!empty($input['filter_by_me'])) {

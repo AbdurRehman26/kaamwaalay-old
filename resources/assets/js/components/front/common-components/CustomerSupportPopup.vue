@@ -18,7 +18,7 @@
         </div>
         <div slot="modal-footer" class="">
             <b-col class="float-left" cols="6">
-                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();">
+                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevent="validateBeforeSubmit();">
                     <span>Submit</span> 
                     <loader></loader>
                 </button>
@@ -110,8 +110,6 @@
                     support_question_id: this.selectedQuestion.id,
                     message: this.message,
                     user_id: this.user.id,
-                    name: this.user.first_name + " " + this.user.last_name,
-                    email: this.user.email,
                 };
 
               self.loading = true;

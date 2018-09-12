@@ -70,17 +70,17 @@
                     {{ record.user_detail.first_name +' '+ record.user_detail.last_name }}
                 </router-link>
             </td>
+
             <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
             <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
-            <td><star-rating :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
+            <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
-                <!-- <i @click="providerdetailclick(record.id)" v-b-tooltip.hover title="View Details" class="icon-eye"></i> -->
-                <router-link :to="{ name: 'service.provider.detail', params: { id:record.id }}" class="basecolor">
+                <router-link :to="{name: 'service.provider.detail' , params : {id : record.id }}">
                     <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
-                </router-link>                
+                </router-link>
                 <i @click="changestatuspopup(record)"  
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
             </i>
@@ -203,9 +203,6 @@
             this.statusData = record.user_detail;
             this.changestatus = true;
         },
-        /*providerdetailclick(id) {
-            this.$router.push({name: 'service.provider.detail' , params : {id  : id }});
-        },*/
         ConfirmationPopup() {
             this.confirmationpopup = true;
         },
@@ -216,9 +213,6 @@
             this.providerdetailpopup = false;
             this.confirmationpopup = false;
         },
-        /*profileimage(id){
-            this.$router.push({name: 'service.provider.detail' , params : {id : id }});  
-        },*/
         getRecords(response){
             let self = this;
             self.loading = false;
