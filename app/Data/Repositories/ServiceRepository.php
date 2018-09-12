@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
+use DB;
 
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
@@ -154,6 +155,19 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where('url_suffix', '=', $data['service_name']);
             
         }
+        if(isset($data['filter_by_related_services'])) {
+            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1);
+
+            $isParent = $this->builder->whereNull('parent_id')->get()->toArray();
+            if(!$isParent) {
+                $this->builder = $this->getPopularServices();
+            }else {
+                $this->builder = $this->model->where('id', '!=', $data['filter_by_related_services'])->where('parent_id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1);
+                if(!$this->builder->get()->toArray()) {
+                    $this->builder = $this->getPopularServices();
+                }
+            }
+        }
         if (!empty($data['keyword'])) {
 
             // $this->builder = $this->builder->where(function($query) use($data){
@@ -211,7 +225,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     return parent::findByAll($pagination, $perPage, $data);
     }
 
-
+    public function getPopularServices() {
+        return $this->model
+                ->leftJoin('jobs', function ($join) {
+                    $join->on('jobs.service_id', '=', 'services.id');
+                })
+                ->select('services.id')
+                ->groupby('service_id')   
+                ->orderBy(DB::raw('COUNT(service_id)'), 'desc')
+                ->limit(3);
+    }
     public function deleteById($id)
     {
         $model = $this->model->find($id);
