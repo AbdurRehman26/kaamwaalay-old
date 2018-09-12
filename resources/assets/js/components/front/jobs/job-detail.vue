@@ -53,7 +53,7 @@
                         <div class="job-details" v-else>
                             <p class="awarded">
                                 <i class="icon-checkmark2"></i> 
-                                {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
+                                {{ jobAwarded ? 'Job awarded to : ' : 'Job not awarded yet'}}
                                 {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}
                                 <i class="icon-brightness-down"></i>
                                 Service required 
@@ -366,7 +366,7 @@
                 return false;
             },
             canArchiveJob(){
-                return !this.record.status == 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
+                return this.record.status != 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
             },
             canAwardJob(){
                 return !this.record.awarded_to && this.record.status != 'cancelled';

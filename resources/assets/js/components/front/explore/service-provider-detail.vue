@@ -9,7 +9,7 @@
 						<div class="category-content">
 							<h2>{{listing.job_title}}</h2>
 							<div class="jobs-completed">
-								<star-rating :star-size="20" read-only :rating="[listing.job_full_rating]" active-color="#8200ff"></star-rating>	
+								<star-rating :increment="0.5" :star-size="20" read-only :rating="[listing.job_full_rating]" active-color="#8200ff"></star-rating>	
 								<span class="review-job">{{listing.job_feedback}} Feedback reviews</span>				
 								<span class="review-job left-border">{{listing.job_perform}} Jobs performed</span>
 							</div>
@@ -69,7 +69,7 @@
 														 <strong>{{reviewer.latest_review_post_date}}</strong>
 													</p>
 													<div class="ratings">
-														<star-rating :star-size="20" read-only :rating="[reviewer.list_ratings]" active-color="#8200ff"></star-rating>
+														<star-rating :increment="0.5" :star-size="20" read-only :rating="[reviewer.list_ratings]" active-color="#8200ff"></star-rating>
 													</div>
 												</div>
 											</div>

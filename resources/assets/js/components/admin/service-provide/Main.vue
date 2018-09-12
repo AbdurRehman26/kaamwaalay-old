@@ -72,7 +72,7 @@
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
             <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
-            <td><star-rating :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
+            <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
             <td class="text-center">
               <div class="action-icons">
                 <router-link :to="{name: 'service.provider.detail' , params : {id : record.id }}">
