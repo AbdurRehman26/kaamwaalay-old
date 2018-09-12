@@ -39,8 +39,14 @@
             totalRecords(){
                 return this.pagination ? this.pagination.total : 0;
             },
-            currentPage(){
-                return this.pagination ? this.pagination.current : 1;    
+            currentPage : {
+                get: function() {
+                    return this.pagination ? this.pagination.current : 1;    
+
+                },
+                set: function() {
+
+                }
             }
         },
         watch :{
