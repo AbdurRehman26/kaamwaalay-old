@@ -1,6 +1,6 @@
 <template>	
 	<div>
-		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" hide-footersize="sm" title="Change Password" ok-only ok-title="Submit">
+		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" hide-footer size="sm" title="Change Password" ok-only ok-title="Submit">
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
             <form action="" method="" @submit.prevent="validateBeforeSubmit">
 		    <div>

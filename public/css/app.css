@@ -39041,6 +39041,34 @@ body .list-height .scrollbar .list-group-item {
   padding-bottom: 10px;
 }
 
+.width-100 {
+  width: 100%;
+}
+
+.url-suffix {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 436px;
+  padding: 0px 15px;
+}
+
+.url-suffix p {
+  margin-bottom: 0 !important;
+  font-weight: 700;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.url-area {
+  padding: 0px 15px 0px 0px;
+}
+
 .sidewrapper {
   width: calc(100% - 260px);
   margin-left: auto;
