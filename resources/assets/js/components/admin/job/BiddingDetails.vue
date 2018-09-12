@@ -29,7 +29,7 @@
                         <tr v-for="record in records">
                          <td>
                             <span class="user-img radius-0">
-                                <img  :src="record.user ? record.user.profile_image : ''" >
+                                <img  :src="record.user ? record.user.profileImage : ''" >
                             </span>
                         </td>
 

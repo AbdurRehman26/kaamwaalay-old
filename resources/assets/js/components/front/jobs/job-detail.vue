@@ -279,16 +279,16 @@
                         <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
                     </div>
 
-                    <button v-if="canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
-                    <button v-if="canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-if="isMyJob && canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Mark Job Archive</span> <loader></loader>
                     </button>
 
-                    <a href="javascript:void(0);" v-if="canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-                    <a href="javascript:void(0);" v-if="canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
+                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
 
                 </div>
 
