@@ -106,7 +106,8 @@ public function input($value=''){
             'filter_by_featured',
             'zip_code',
             'service_category',
-            'service_name'
+            'service_name',
+            'filter_by_related_services'
         );
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;

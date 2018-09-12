@@ -115,19 +115,33 @@
         <div class="featured-categories section-padd sm  elementary-banner p-t-130">
         	<div class="container element-index">
 
-	        	<div class="category-section" v-for="maincategory in category">
+	        	<div class="category-section">  
 	        		<div class="category-title">
-	        			<h2>{{ maincategory.title }}</h2>	        			
-	        		</div>	        		
+						<h2>Related Services</h2>
+					</div>  		
 	        		<div class="category-items">
-
-	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
-	        				<a href="javascript:void(0);">
-		        			<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
-		        				<h4>{{categoryabc.itemtitle}}</h4>
-		        			</a>
-		        		</div>
-		        		<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+	        			<div class="items" v-for="subservice in filterRelatedServices(relatedServices)">
+							<a @click="changecategorypopup(subservice)" href="javascript:void(0);">
+								<div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images? subservice.images[0].upload_url : null) +')',}"></div>
+								<h4>{{subservice.title}}</h4>
+							</a>
+						</div>
+						<div class="showmore showmore-link clearfix" >
+							<div>
+							  <!-- element to collapse -->
+							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(relatedServices).length">View all services related to electricians<i class="icon-angle-right"></i></a>
+							  <b-collapse :id="service.title">
+							    <b-card>
+							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(relatedServices)">
+									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
+										<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
+										<p>{{remainingSubServices.title}}</p>
+									</a>
+								</div>
+							    </b-card>
+							  </b-collapse>
+							</div>
+						</div>
 	        				
 	        		</div>  	        	      		
 	        	</div>
@@ -163,6 +177,7 @@
 				url: '',
 				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceName+'&zip='+this.zip,
 				service: '',
+				relatedServices: '',
     			categoryimage: '/images/front/explore/carpenter1.jpg',
 
     			jobimage: '/images/front/profile-images/logoimage1.png',
@@ -179,6 +194,15 @@
 							itemtitle: 'Wooden partition service'
 						},
 
+						{
+							itemimage: '/images/front/explore/carpenter2.jpg',
+							itemtitle: 'Furniture repair & Installation',
+						},
+
+						{
+							itemimage: '/images/front/explore/carpenter3.jpg',
+							itemtitle: 'Wooden deck building & repair',
+						},
 						{
 							itemimage: '/images/front/explore/carpenter2.jpg',
 							itemtitle: 'Furniture repair & Installation',
@@ -209,6 +233,19 @@
 	    }
     },
     methods: {
+	    	filterRelatedServices (subservices) {
+				if(subservices.length > 3) {
+					subservices = subservices.slice(0,3);
+				}
+				return subservices;
+			},
+			getRemainingSubServices (subservices) {
+				if(subservices.length > 3) {
+					subservices = subservices.slice(3);
+					return subservices;
+				}
+				return [];
+			},
 	    	dispatchAction (actionName) {
 				this.searchValue = '';
 				this.options = [];
@@ -293,6 +330,8 @@
 			self.$http.get(this.url).then(response => {
 		    	response = response.data.response;
 				self.service = response.data[0];
+				self.getRelatedServices();
+				console.log(self.service);
 				if(!self.service) {
 					this.$router.push({name: '404'});
 				}
@@ -300,6 +339,20 @@
 				self.categoryimage = self.getImage(self.service.images);
 				self.btnLoading = false;
 				self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
+		    }).catch(error=>{
+		    	if(error.status == 403) {
+		    		self.pagination = false;
+    			}
+		    });
+		},
+		getRelatedServices() {
+			let self = this;
+			let url = 
+				this.url  = 'api/service/?filter_by_related_services=' + this.service.id;
+			self.$http.get(this.url).then(response => {
+		    	response = response.data.response;
+				self.relatedServices = response.data;
+				console.log(self.relatedServices, 99009);
 		    }).catch(error=>{
 		    	if(error.status == 403) {
 		    		self.pagination = false;
