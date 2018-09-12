@@ -347,12 +347,10 @@
 		},
 		getRelatedServices() {
 			let self = this;
-			let url = 
-				this.url  = 'api/service/?filter_by_related_services=' + this.service.id;
-			self.$http.get(this.url).then(response => {
+			let url = 'api/service/?filter_by_related_services=' + this.service.id;
+			self.$http.get(url).then(response => {
 		    	response = response.data.response;
 				self.relatedServices = response.data;
-				console.log(self.relatedServices, 99009);
 		    }).catch(error=>{
 		    	if(error.status == 403) {
 		    		self.pagination = false;
