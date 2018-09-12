@@ -20,12 +20,12 @@
               <div class="form-group radio-group-row">
                 <label class="label-with-200">Home Page Banner</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="radioBanner" id="inlineRadio4" value="1" v-model="formData.is_display_banner">
-                  <label class="form-check-label" for="inlineRadio4">Yes</label>
+                  <input class="form-check-input" type="radio" name="radioHomePageBanner" id="radioHomePageBannerYes" value="1" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="radioHomePageBannerYes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input checked=""  class="form-check-input" type="radio" name="radioBanner" id="inlineRadio8" value="0" v-model="formData.is_display_banner">
-                  <label class="form-check-label" for="inlineRadio8">No</label>
+                  <input checked=""  class="form-check-input" type="radio" name="radioHomePageBanner" id="radioHomePageBannerNo" value="0" v-model="formData.is_display_banner">
+                  <label class="form-check-label" for="radioHomePageBannerNo">No</label>
                 </div>
               </div>
             </div>
@@ -33,12 +33,12 @@
                 <div class="form-group radio-group-row">
                     <label class="label-with-200">Explore Banner</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="radioServname" id="inlineRadio1" value="1" v-model="formData.is_display_service_nav">
-                      <label class="form-check-label" for="inlineRadio1">Yes</label>
+                      <input class="form-check-input" type="radio" name="radioExploreBanner" id="radioExploreBannerYes" value="1" v-model="formData.is_display_service_nav">
+                      <label class="form-check-label" for="radioExploreBannerYes">Yes</label>
                   </div>
                   <div class="form-check form-check-inline">
-                      <input checked=""  class="form-check-input" type="radio" name="radioServname" id="inlineRadio5" value="0" v-model="formData.is_display_service_nav">
-                      <label class="form-check-label" for="inlineRadio5">No</label>
+                      <input checked=""  class="form-check-input" type="radio" name="radioExploreBanner" id="radioExploreBannerNo" value="0" v-model="formData.is_display_service_nav">
+                      <label class="form-check-label" for="radioExploreBannerNo">No</label>
                   </div>
               </div>
           </div>
@@ -116,7 +116,6 @@
                 url: 'api/service',
                 loading: false,
                 defaultUrlLength: this.defaultUrlPrefixLength,
-                isChangePrefix: '',
                 url_suffix: '',
             }
         },
@@ -192,7 +191,7 @@
                 var self = this;
                 var tempSuffix = this.formData.url_suffix;
                 var str = this.getSuffix;
-                var regex = /^[0-9a-z\-\/]+$/;
+                var regex = /^[0-9a-z\-]+$/;
                 this.errorBag.clear();
                 
                 this.$validator.validateAll().then((result) => {
@@ -417,7 +416,6 @@
 
                     this.showRadios = this.formData.parent_id? false : true;
                     this.formData.url_suffix = this.defaultUrlPrefix;
-                    this.isChangePrefix = this.list.url_suffix;
                     this.url_suffix = this.defaultUrlPrefix;
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
@@ -428,8 +426,6 @@
         computed : {
             getSuffix() {
                 var suffix = this.formData.url_suffix? this.formData.url_suffix : '';
-                //var prefixLength = this.defaultUrlPrefixLength;
-                //return suffix.substr(prefixLength);
                 return suffix;
             },
             imageValue(){
