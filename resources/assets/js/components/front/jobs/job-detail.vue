@@ -183,6 +183,7 @@
                     </div>
 
 
+
                     <div class="chat-feedback" v-else>
                         <div class="text-notifer">
                             <h3>Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>	
