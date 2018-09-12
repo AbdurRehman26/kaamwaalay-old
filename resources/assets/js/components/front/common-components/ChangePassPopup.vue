@@ -3,7 +3,6 @@
 		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change Password" ok-only ok-title="Submit">
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
 		    <div>
-
                 <b-row class="justify-content-md-center">
                     <b-col md="12">
                         <div class="form-group">
