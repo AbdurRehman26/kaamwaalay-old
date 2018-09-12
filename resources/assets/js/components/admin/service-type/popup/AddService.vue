@@ -186,6 +186,9 @@
                     // var prefix = this.defaultUrlPrefix;                     
                     // this.formData.url_suffix = prefix;
                     // this.isChangePrefix = prefix;
+                    this.formData.is_display_banner = 0;
+                    this.formData.is_display_service_nav = 0;
+                    this.formData.is_display_footer_nav = 0;
                     this.showRadios = false;
                 }else {
                     // var prefix = this.$store.getters.getServiceUrlPrefix;
