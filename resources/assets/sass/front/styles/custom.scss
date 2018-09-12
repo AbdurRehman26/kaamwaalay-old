@@ -408,6 +408,7 @@ $section-padding-sm:20px 0px;
             padding: 0px !important;
             position: relative;
             border-radius: 0px;
+            border: 0px !important;
             border-color: #B2B2B2 !important;
             border-right: 0px solid !important;
             input{
@@ -434,7 +435,20 @@ $section-padding-sm:20px 0px;
             border-top: 0px;
             border-color: #B2B2B2 !important;
             background-color: #fff;
-            padding: 0px 12px;
+            /* padding: 0px 12px; */
+            padding: 0px 0px;
+            border-bottom: 0px;
+            position: absolute;
+            width: calc(100% - 30.1%);            
+            ul{
+                padding-left: 0px !important;
+                margin-bottom: 0 !important;
+            }
+            li{
+                border-bottom: 1px solid;
+                padding: 0px 10px;
+                border-color: #B2B2B2 !important;
+            }
         }          
         .container-zip-code{
             margin-left: -7px;
@@ -3035,7 +3049,8 @@ body{
 .search-fixture {
     position: relative;
     width: 100%;
-    height: 70px;
+    /* height: 70px; */
+    height: 150px;
     z-index: 99;
     .search-fix {
         border-top: 1px solid #E0E0E0;
@@ -3043,6 +3058,12 @@ body{
         padding: 10px 0px !important;
         position: fixed;
         width: 100%;
+    }
+    h1{
+        &.heading-large{
+            font-size: 25px;
+            padding: 10px 0px;            
+        }
     }
 }
 
