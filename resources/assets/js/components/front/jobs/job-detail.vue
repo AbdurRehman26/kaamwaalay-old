@@ -66,27 +66,17 @@
                                 <strong v-else>{{ record.preference | jobPreference }}</strong>
                             </p>
                         </div>
-                            <!-- <p class="awarded">
-                                <i class="icon-checkmark2"></i> 
-                                {{ jobAwarded ? 'Job awarded to : ' : 'Job not awarded yet'}}
-                                {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}
-                                <i class="icon-brightness-down"></i>
-                                Service required 
-                                <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
-                                <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
-                                <strong v-else>{{ record.preference | jobPreference }}</strong>
-                            </p> -->
-                        </div>																				
-                    </div>					
+                    </div>																				
+                </div>					
 
-                </div>	
-            </div>
+            </div>	
         </div>
-    </div> 
-    <div class="elements">
-        <img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
-        <img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
     </div>
+</div> 
+<div class="elements">
+    <img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
+    <img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
+</div>
 </div>
 
 
@@ -196,6 +186,9 @@
                             <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user.profileImage +')'}"></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
+                                
+                                <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-checkmark2"></i></strong>
+                                
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
                                     <div class="jobs-done">
@@ -233,7 +226,7 @@
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
 
                                     <a v-if="!bid.is_tbd && canAwardJob" href="javascript:void(0);" 
-                                    @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary">Award Job</a>
+                                    @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
                                     <a v-if="!jobAwarded && bid.is_visit_required" href="javascript:void(0);" @click="VisitApproval" v-else class="btn btn-primary">Visit Approval</a>
 
@@ -305,7 +298,7 @@
 
     </div>			
 </div>
-<award-job-popup @bid-updated="reSendCall" :job="record" :bidder="bidder" @HideModalValue="HideModal" :showModalProp="awardJob"></award-job-popup>
+<award-job-popup @bid-updated="reSendCall" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -336,7 +329,7 @@
                     pagination : false,
                     data : []
                 },
-                awardJob: false,
+                showAwardJob : false,
                 visitjob: false,
                 visitpopup: false,
                 bidpopup: false,
@@ -469,7 +462,6 @@
                 this.bidpopup = true;
             },
             HideModal(){
-                this.awardJob = false;
                 this.visitjob = false;
                 this.visitpopup = false;
                 this.bidpopup = false;

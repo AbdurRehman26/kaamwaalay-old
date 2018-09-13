@@ -32,14 +32,6 @@ class JobBidController extends ApiResourceController
     }
 
     if($value == 'update'){
-        // needs usama's help for this.
-
-        $rules['user_id'] = [
-            'required',
-            Rule::exists('job_bids')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id']);
-            }),
-        ];
 
         $rules['job_id'] = [
             'required',
