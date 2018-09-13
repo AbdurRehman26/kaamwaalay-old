@@ -114,16 +114,6 @@ export default new Vuex.Store({
             state.step2StatsData = data;
         },
         setAuthUser(state, data){
-           if (data.access_token && data.access_token.split('.').length === 3) {
-                try {
-                    var token = data.access_token;
-                    var base64Url = token.split('.')[1];
-                    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                    var authUser = JSON.parse(decodeURIComponent(escape(window.atob(base64))));
-                    data.scopes =  authUser.scopes;
-                } catch(e) {
-                }
-            }
             localStorage.setItem('user', JSON.stringify(data));
             state.authUser = localStorage.getItem('user');
         },
