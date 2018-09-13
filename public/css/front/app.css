@@ -14918,6 +14918,14 @@ input[type=number]::-webkit-outer-spin-button {
   text-transform: capitalize;
 }
 
+.invalid .multiselect__tags {
+  border-color: #d9534f !important;
+}
+
+.invalid .input.form-control {
+  border-color: #d9534f !important;
+}
+
 .service-professional .multiselect__tags {
   padding: 0px !important;
   position: relative;
