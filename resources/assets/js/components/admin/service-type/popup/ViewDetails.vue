@@ -5,8 +5,11 @@
         <div class="view-details-list">
             <b-row>
                 <b-col col md="3" sm="12" class="">
-                    <div class="user-img bigimage">
-                        <img :src="getImage" alt="">
+                    <div class="user-img bigimage" v-if="getImage.length == true" v-bind:style="{'background-image': 'url('+ getImage+')',}">
+                        
+                    </div>
+                    <div class="user-img bigimage no-image">
+                        <!-- <img :src="getImage" alt=""> -->
                     </div>
                 </b-col>
                 <b-col col md="9" sm="12" class="">
