@@ -165,7 +165,7 @@
 </div>
 </div>
 
-<div class="verify-account" v-if="isShowCardDetail">
+<div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
     <div class="row">
         <div class="col-md-12">
             <div class="verification-alert">
@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <div v-if='isShowCardDetail'>
+        <div>
          <payment-component  :submit='isSubmitNormalJob'></payment-component>
         </div>
     </div>
@@ -265,7 +265,8 @@
                 cityUrl : '',
                 states : [],
                 isShowCardDetail : true,
-                isSubmitNormalJob : false
+                isSubmitNormalJob : false,
+                isPaymentDetailShow : true
                 
             }
         },
@@ -282,9 +283,18 @@
             }
         },
         mounted () {
-             this.getPlansList()
+             this.getPlansList(),
+             this.paymentDetailShow()
         },
         methods:{
+             paymentDetailShow(){
+                 let user = JSON.parse(this.$store.getters.getAuthUser)   
+                 if(user.stripe_token){
+                    this.isPaymentDetailShow = false
+                 }else{
+                    this.isPaymentDetailShow = true
+                 }
+            },
             getJobResponse(response){
                 this.formData = response.data;
                 this.onStateChange();
@@ -309,13 +319,18 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-
                     if (result) {
                          if(this.jobType == 'urgent_job'){
                              this.urgentjob()
                          }else{
-                            this.isSubmitNormalJob = true
-                            //this.onSubmit();
+                            if(!this.errorMessage){    
+                               this.isSubmitNormalJob = true
+                            }else{
+                               this.isSubmitNormalJob = false 
+                            }
+                            if(!this.isPaymentDetailShow){
+                              this.onSubmit();
+                            }
                          }
                         this.errorMessage = '';
                         return;
@@ -389,13 +404,6 @@
                     this.isShowCardDetail = false
                 } else{
                     this.isShowCardDetail = true
-                }
-            }, 
-            isSubmitNormalJob (value) {
-                if(value){
-                    this.isSubmitNormalJob = true
-                } else{
-                    this.isShowCardDetail = false
                 }
             },
         }
