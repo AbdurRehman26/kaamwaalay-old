@@ -16,7 +16,7 @@
                                 <label>Select Service</label>
                                 <select v-validate="'required'" name="service" 
                                 :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" v-model="formData.service_id" class="form-control">
-                                <option value="">Select All</option>
+                                <option value="">Select Service</option>
                                 <option v-for="service in servicesList" :value="service.id">
                                     {{ service  | mainServiceOrChildService}}
                                 </option>
@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Job Title</label>
-                            <input  v-validate="'required'" name="title" 
+                            <input  :maxlength="100" v-validate="'required'" name="title" 
                             :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
                             v-model="formData.title" type="text" class="form-control" 
                             placeholder="Enter job title">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <textarea v-validate="'required'" name="description" 
+                            <textarea :maxlength="500" v-validate="'required'" name="description" 
                             :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
                         </div>
                     </div>
