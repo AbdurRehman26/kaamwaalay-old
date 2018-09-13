@@ -307,7 +307,10 @@
                 return false;
             },
             canMarkJobComplete(){
-                return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'completed';
+                if(Object.keys(this.record).length){
+                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'completed';
+                }
+                return false;
             },
             canCancelJob(){
                 if(Object.keys(this.record).length){
@@ -367,7 +370,7 @@
                 }
             },
             jobCancelled(){
-             if(Object.keys(this.record).length){
+               if(Object.keys(this.record).length){
                 return this.record.status == 'cancelled'
             } 
         }
