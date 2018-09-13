@@ -19,8 +19,9 @@
                                   <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                               </select> 
                           </div>
-                          <button class="btn btn-primary" @click="validateBeforeSubmit">
+                          <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
                             <span>Search</span>
+                            <loader></loader>
                         </button>
                     </div>
                 </div>
@@ -29,7 +30,7 @@
     </div>
     <div class="container">
         <div class="category-section-search">
-            <h1 class="m-b-0">General Carpentry Jobs in New York, NY</h1>
+            <h1 class="m-b-0">{{ searchValue ? searchValue.title : '' }} Jobs in New York, NY</h1>
         </div>
 
         <div class="job-post-container section-padd sm">
@@ -135,7 +136,8 @@
                 servicesList : [],
                 cityUrl : 'api/city',
                 cities : [],
-                selectedCity : ''
+                selectedCity : '',
+                loading : false,
             }
         },
 
@@ -150,7 +152,7 @@
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.records = [];
-
+                        this.loading = true;
                         this.url = 'api/job?pagination=true&details["profile_data"]=true&time='+dateNow;
 
                         if(this.searchValue){
