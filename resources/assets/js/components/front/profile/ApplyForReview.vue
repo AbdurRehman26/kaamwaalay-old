@@ -67,6 +67,9 @@
                     </div>
 
                     <div class="business-detail">
+                        <div class="form-label-heading m-b-30">
+                            <p>BUSINESS DETAILS</p>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -115,6 +118,9 @@
                     </div>
 
                     <div class="service-offered">
+                        <div class="form-label-heading m-b-30">
+                            <p>SERVICES OFFERED</p>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -136,6 +142,9 @@
                 </div>
 
                 <div class="business-proof">
+                        <div class="form-label-heading m-b-30">
+                            <p>PROOF OF BUSINESS</p>
+                        </div>                    
                     <div class="row">
                         <div class="col-md-12">
                             <p>We can confirm your association to the business or organization with any of these documents:
@@ -158,6 +167,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <label>&nbsp;</label>
                             <a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
                         </div>
                     </div>
@@ -187,6 +197,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <label>&nbsp;</label>
                             <a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
                         </div>
                     </div>
@@ -215,6 +226,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <label>&nbsp;</label>
                             <a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
                         </div>
                     </div>
@@ -274,6 +286,9 @@
                 </div>
 
                 <div class="account-fee">
+                    <div class="form-label-heading m-b-30 m-t-30">
+                        <p>ACCOUNT FEE</p>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="verification-alert">

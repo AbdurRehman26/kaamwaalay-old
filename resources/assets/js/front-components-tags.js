@@ -53,6 +53,9 @@ Vue.component('popularservices', require('./components/front/landing/PopularServ
 Vue.component('appstore', require('./components/front/landing/AppStore.vue'));
 Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue'));
 
+//404 page
+Vue.component('page-not-found', require('./components/404/Main.vue'));
+
 //join as pro
 Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 

@@ -72,7 +72,7 @@
                                 <p><strong class="title-head">Business or Individual?</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>{{records.business_type == 'individual' ? 'I' : 'B'}}</p>
+                                <p>{{records.business_type == 'individual' ? 'Individual' : 'Business'}}</p>
                             </b-col>
                         </b-row>
                         <b-row>
