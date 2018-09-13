@@ -19,8 +19,9 @@
                                   <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                               </select> 
                           </div>
-                          <button class="btn btn-primary" @click="validateBeforeSubmit">
+                          <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
                             <span>Search</span>
+                            <loader></loader>
                         </button>
                     </div>
                 </div>
@@ -29,7 +30,7 @@
     </div>
     <div class="container">
         <div class="category-section-search">
-            <h1 class="m-b-0">General Carpentry Jobs in New York, NY</h1>
+            <h1 class="m-b-0">{{ searchService ? searchService : '' }} {{  searchPlace ? 'Jobs in '+  searchPlace : ''}}</h1>
         </div>
 
         <div class="job-post-container section-padd sm">
@@ -48,14 +49,18 @@
                                 </div>
                                 <div class="job-notification">
                                     <div class="jobs-done">
-                                        <span class="job-poster">Posted By <a>{{ record.user | fullName }}</a></span>
+                                        <span class="job-poster">Posted By {{ record.user | fullName }}</span>
                                         <span class="job-category noborder">{{ record.service | mainServiceOrChildService('-') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 job-bid-btn p-r-0">
                                 <a href="javascript:void(0);" v-if="!record.my_bid" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
-                                <a @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message"><i class="icon-message"></i></a>
+                                
+                                <a v-if="record.can_message && record.status !== 'cancelled'" @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message">
+                                    <i class="icon-message"></i>
+                                </a>
+                                
                                 <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
                             </div>
                         </div>
@@ -101,6 +106,8 @@
                 </div>
 
             </div>
+            <no-record-found v-show="noRecordFound"></no-record-found>
+
         </div>
 
         <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -135,7 +142,11 @@
                 servicesList : [],
                 cityUrl : 'api/city',
                 cities : [],
-                selectedCity : ''
+                selectedCity : '',
+                loading : false,
+                searchPlace : '',
+                searchService : '',
+                noRecordFound : false
             }
         },
 
@@ -150,6 +161,7 @@
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.records = [];
+                        this.loading = true;
 
                         this.url = 'api/job?pagination=true&details["profile_data"]=true&time='+dateNow;
 
@@ -159,6 +171,9 @@
                         if(this.selectedCity){
                             this.url += '&filter_by_city='+this.selectedCity
                         }
+                        
+                        this.searchService = '';
+                        this.searchPlace = '';
 
                         this.errorMessage = "";
                         return;
@@ -168,11 +183,27 @@
             }, 
             getResponse(response){
                 let self = this;
-                self.loading = false;
-                for (var i = 0 ; i < response.data.length; i++) {
-                    self.records.push( response.data[i] ) ;
 
+                if(typeof(response.pagination) !== 'undefined' && !response.pagination.total){
+                    this.loading = false;
+                    this.searchService = this.searchValue.title;
                 }
+
+                for (var i = 0 ; i < response.data.length; i++) {
+                    self.loading = false;
+                    self.records.push( response.data[i]);
+                    this.searchService = this.searchValue.title;
+                }
+
+                let cityId = this.selectedCity;
+                let obj = _.find(this.cities, item =>{
+                    if(item.id == cityId){
+                        return item; 
+                    }
+                });
+                self.noRecordFound = response.noRecordFound;
+
+                this.searchPlace = obj ? obj.name : '';
 
             },
             limitText (count) {
