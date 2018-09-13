@@ -145,7 +145,6 @@
                 customer: false,
                 changeProviderStatus: false,
                 url : 'api/job?pagination=true',
-                noRecordFound : false,
                 records : [],
                 pagination : []
             }
