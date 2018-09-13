@@ -26,7 +26,13 @@
                                             <div class="jobs-done">
                                                 <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>		
                                                 <div class="job-status">
-                                                    <span v-if="!record.is_archived" class="tags" 
+                                                  
+                                                    <span v-if="record.status != 'cancelled' && record.awardedBid && record.status != 'completed' && record.awardedBid.status == 'completed'" class="tags"
+                                                        :class="['completed']">
+                                                        Marked Done
+                                                    </span>
+                                                    
+                                                    <span v-else-if="!record.is_archived" class="tags" 
                                                     :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
                                                     {{ record | jobStatus }}
                                                 </span> 
