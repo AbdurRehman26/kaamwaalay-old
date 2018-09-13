@@ -434,9 +434,18 @@ $section-padding-sm:20px 0px;
             span{
                 position: absolute;
                 width: 100%;                
+                > span.multiselect__single {
+                    display: none;
+                }                
             }          
             span.multiselect__single{
-                display: none;
+                /* display: none; */
+                display: block;
+                top: 11px;
+                left: 10px;
+                background-color: #fff;
+                width: 100%;
+                padding: 5px 0px;                
             }
         }
         .multiselect__content-wrapper {
@@ -453,7 +462,7 @@ $section-padding-sm:20px 0px;
                 padding-left: 0px !important;
                 margin-bottom: 0 !important;
                 width: 100%;
-                max-height: 300px;
+                max-height: 270px;
                 overflow: auto;
                 border: 1px solid;
                 border-top: 0px;
@@ -479,12 +488,19 @@ $section-padding-sm:20px 0px;
                 }                
             }
             li{
-                border-bottom: 1px solid;
-                padding: 5px 10px;
+                border-bottom: 1px solid;                
                 border-color: #B2B2B2 !important;
-                &:hover,&:focus{
-                    background-color: $primary-color-md;
-                    color: #fff;
+                span{
+                    display: block;
+                    padding: 5px 10px;
+                    &:hover,&:focus{                        
+                        background-color: $primary-color-md;
+                        color: #fff;                    
+                    }
+                    &.multiselect__option--highlight{
+                        background-color: $primary-color-md;
+                        color: #fff;
+                    }
                 }
             }
         }          
@@ -1515,6 +1531,29 @@ $section-padding-sm:20px 0px;
     }
 }
 
+.__PrivateStripeElement {
+    top: -3px;
+}
+
+#change-pass{
+    .modal-body{
+        /* padding: 28px 0px 10px 0px; */
+        padding: 15px 0px 10px 0px;
+    }
+    div[slot="modal-footer"] {
+        float: left;
+        width: 100%;
+        padding-top: 11px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding: 13px 33px 9px 19px;
+        border-top: 1px solid #E0E0E0;
+    }
+    .form-block {
+        padding: 0px 30px;
+    }    
+}
+
 .profile-form-section {
     position: relative;
     margin-bottom: 40px;
@@ -1563,10 +1602,21 @@ $section-padding-sm:20px 0px;
             line-height: 103px;      
             &:after{
                 content: "\E90F";
-                font-family: 'icomoon';            
+                font-family: 'icomoon';
+                left: 0;
+                right: 0;
+                display: block;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                bottom: 0;                            
             }
             @include mobile{
                 top: -29%;
+            }
+            img{
+                z-index: 9;
+                position: relative;
             }      
         }
         &:after {
@@ -1596,6 +1646,37 @@ $section-padding-sm:20px 0px;
         }
     }
 }
+
+.form-label-heading {
+    text-align: center;
+    color: #494949;
+    text-transform: uppercase;
+    font-size: 14px;    
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+     p {
+        background-color: #fff;
+        position: relative;
+        display: table;
+        font-family: "AkzidenzGroteskBE-Md" !important;
+        margin: auto;
+        padding: 0px 16px;
+    }    
+    &:before{
+        position: absolute;
+        content: '';
+        border-bottom: 1px solid $grey-lite;
+        width: 100%;
+        left: 0;
+        margin: auto;
+        top: 41%;        
+    }
+}
+
+
+
+
 .apply-review-sec {
 /*     &:after {
     position: absolute;
@@ -1870,10 +1951,10 @@ $section-padding-sm:20px 0px;
 }
 .attach-job-files {
     position: relative;
-    padding-top: 40px;
+    /* padding-top: 40px; */
     margin-bottom: 20px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* border-top: 1px solid $grey-lite; */
+/*     &:after {
         position: absolute;
         content:'ATTACH PHOTOS';
         text-transform: uppercase;
@@ -1892,15 +1973,15 @@ $section-padding-sm:20px 0px;
             left: 0;
             margin: auto;            
         }
-    }
+    } */
 }
 
 .attach-video-files {
     position: relative;
-    padding-top: 40px;
+    /* padding-top: 40px; */
     margin-bottom: 40px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* border-top: 1px solid $grey-lite; */
+    /* &:after {
         position: absolute;
         content:'ATTACH VIDEO';
         text-transform: uppercase;
@@ -1919,7 +2000,7 @@ $section-padding-sm:20px 0px;
             left: 0;
             margin: auto;            
         }
-    }
+    } */
     .video-url {
         p {
             font-size: 14px;
@@ -1932,10 +2013,10 @@ $section-padding-sm:20px 0px;
 
 .service-need {
     position: relative;
-    padding-top: 25px;
+    /* padding-top: 25px; */
     padding-bottom: 20px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* border-top: 1px solid $grey-lite; */
+/*     &:after {
         position: absolute;
         content:'WHEN YOU NEED THIS SERVICE';
         text-transform: uppercase;
@@ -1954,7 +2035,7 @@ $section-padding-sm:20px 0px;
             left: 0;
             margin: auto;            
         }
-    }
+    } */
     p {
         font-size: 14px;
         font-family: $font_regular;
@@ -2001,9 +2082,9 @@ $section-padding-sm:20px 0px;
 }
 .verify-account {
     position: relative;
-    padding-top: 25px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* padding-top: 25px;
+    border-top: 1px solid $grey-lite; */
+/*     &:after {
         position: absolute;
         content:'VERIFY ACCOUNT';
         text-transform: uppercase;
@@ -2022,7 +2103,7 @@ $section-padding-sm:20px 0px;
             left: 0;
             margin: auto;            
         }        
-    }
+    } */
     .verification-alert {
         p {
             font-family: $font_regular;
@@ -3316,6 +3397,7 @@ p.awarded_to {
             width: calc(100% - 138px);
             h2{
                 padding-bottom: 0px;
+                line-height: 34px;
             }
             .job-details{
                 padding-top: 19px;
