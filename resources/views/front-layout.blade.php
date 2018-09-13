@@ -6,6 +6,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         @if(isset($service['description']))
         <meta name="description" content="{{$service['description']}}">
+        <!-- Facebook Meta-->
+        <meta property="og:title" content="{{isset($service['title'])? $service['title'] : 'PSM'}}"/>
+        <meta property="og:type" content="Product"/>
+        <meta property="og:description" content="{{$service['description']}}"/>
+        <!-- Twitter Meta-->
+        <meta name="twitter:card" content="summary"></meta>
         @endif
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
