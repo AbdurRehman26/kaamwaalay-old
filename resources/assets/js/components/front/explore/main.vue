@@ -179,7 +179,7 @@ export default {
 			if(!query || query.length < 3) {
 				return;
 			};
-			this.searchUrl  = 'api/service?keyword='+query;
+			this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
 				response = response.data.response;

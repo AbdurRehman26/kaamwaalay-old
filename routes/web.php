@@ -41,7 +41,8 @@ Route::get('services/{any}', function(App\Data\Models\Service $service) {
     $params = $currentRoute->parameters();
     if(!empty($params['any'])) {
         $any = $params['any'];
-        $service = $service->where('url_suffix', '=', $any)->get()->toArray();
+        $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->get()->toArray();
+        
         if(empty($service)) {
             return view('front-layout');
         }
