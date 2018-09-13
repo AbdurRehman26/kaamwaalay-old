@@ -43,7 +43,7 @@
 
             <div class="attach-job-files">
                 <div class="form-label-heading">
-                    <label>Attach Photo</label>
+                    <p>Attach Photo</p>
                 </div>
                 <div class="margin-bottom-20px row" v-for="(image, index) in numOfImages">
                     <div class="col-md-6">
@@ -60,6 +60,9 @@
             </div>
 
             <div class="attach-video-files">
+                <div class="form-label-heading">
+                    <p>ATTACH VIDEO</p>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group custom-file">
@@ -74,6 +77,9 @@
             </div>
 
             <div class="service-need">
+                <div class="form-label-heading m-b-25">
+                    <p>WHEN YOU NEED THIS SERVICE</p>
+                </div>
                 <div class="row ">
                     <div class="col-md-12">
                         <label>Do you need this service urgently?</label>
@@ -169,6 +175,9 @@
 </div>
 
 <div class="verify-account" v-if="isShowCardDetail">
+    <div class="form-label-heading m-b-25">
+        <p>VERIFY ACCOUNT</p>
+    </div>    
     <div class="row">
         <div class="col-md-12">
             <div class="verification-alert">
