@@ -22,8 +22,13 @@
     </head>
     <body>
         <div id="app" class="frontlayout">
+            
             <front-header></front-header>
-            <router-view></router-view>
+            @if(isset($page_not_found) && $page_not_found)
+                <page-not-found></page-not-found>
+            @else
+                <router-view></router-view>
+            @endif
             <front-footer></front-footer>
         </div>
         <script src="https://js.stripe.com/v3/"></script>
