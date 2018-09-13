@@ -119,6 +119,12 @@ body{
 }
 .url-area{
     padding: 0px 15px 0px 0px;
+    max-width: 46%;
+    width: 100%;    
+}
+
+.pointer-event{
+    cursor: pointer;
 }
 
 .sidewrapper {
@@ -2605,9 +2611,62 @@ a.underline {
     margin-top: 27px;
 }
 
+.grid-head{
+    .topfilter {
+        float: right;
+        position: relative;
+        top: -9px;
+        margin-bottom: 4px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        label{
+            width: 73px;
+            vertical-align: middle;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;            
+        }
+        select.form-control{
+            width: 129px;
+        }
+    }
+}
+
+.grid-head {
+    h2{
+        font-size: 18px !important;
+        margin-bottom: 17px;
+    }
+}
+
+
+.feature-remove {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: -19px;
+}
+
+.capitilize option {
+    text-transform: capitalize;
+}
+
+.calculated-value.col{
+    span.tags {
+        margin-left: 10px;
+        &:first-child{
+            margin-left: 0px;
+        }
+    }
+}
+
 .add-more-featured {
-    margin-top: 34px;
-    margin-bottom: 20px;
+    /* margin-top: 34px;
+    margin-bottom: 20px; */
+    margin-top: 0px;
+    margin-bottom: 0px;    
     a {
         text-decoration: underline;
     }

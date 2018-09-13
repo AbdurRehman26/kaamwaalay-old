@@ -39071,6 +39071,12 @@ body .list-height .scrollbar .list-group-item {
 
 .url-area {
   padding: 0px 15px 0px 0px;
+  max-width: 46%;
+  width: 100%;
+}
+
+.pointer-event {
+  cursor: pointer;
 }
 
 .sidewrapper {
@@ -41617,9 +41623,73 @@ a.underline {
   margin-top: 27px;
 }
 
+.grid-head .topfilter {
+  float: right;
+  position: relative;
+  top: -9px;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.grid-head .topfilter label {
+  width: 73px;
+  vertical-align: middle;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 0;
+}
+
+.grid-head .topfilter select.form-control {
+  width: 129px;
+}
+
+.grid-head h2 {
+  font-size: 18px !important;
+  margin-bottom: 17px;
+}
+
+.feature-remove {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-top: -19px;
+}
+
+.capitilize option {
+  text-transform: capitalize;
+}
+
+.calculated-value.col span.tags {
+  margin-left: 10px;
+}
+
+.calculated-value.col span.tags:first-child {
+  margin-left: 0px;
+}
+
 .add-more-featured {
-  margin-top: 34px;
-  margin-bottom: 20px;
+  /* margin-top: 34px;
+    margin-bottom: 20px; */
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .add-more-featured a {
