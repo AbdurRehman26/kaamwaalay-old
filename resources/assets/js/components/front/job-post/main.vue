@@ -16,7 +16,7 @@
                                 <label>Select Service</label>
                                 <select v-validate="'required'" name="service" 
                                 :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" v-model="formData.service_id" class="form-control">
-                                <option value="">Select All</option>
+                                <option value="">Select Service</option>
                                 <option v-for="service in servicesList" :value="service.id">
                                     {{ service  | mainServiceOrChildService}}
                                 </option>
@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Job Title</label>
-                            <input  v-validate="'required'" name="title" 
+                            <input  :maxlength="100" v-validate="'required'" name="title" 
                             :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
                             v-model="formData.title" type="text" class="form-control" 
                             placeholder="Enter job title">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <textarea v-validate="'required'" name="description" 
+                            <textarea :maxlength="500" v-validate="'required'" name="description" 
                             :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
 
             <div class="attach-job-files">
                 <div class="form-label-heading">
-                    <label>Attach Photo</label>
+                    <p>Attach Photo</p>
                 </div>
                 <div class="margin-bottom-20px row" v-for="(image, index) in numOfImages">
                     <div class="col-md-6">
@@ -60,6 +60,9 @@
             </div>
 
             <div class="attach-video-files">
+                <div class="form-label-heading">
+                    <p>ATTACH VIDEO</p>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group custom-file">
@@ -74,6 +77,9 @@
             </div>
 
             <div class="service-need">
+                <div class="form-label-heading m-b-25">
+                    <p>WHEN YOU NEED THIS SERVICE</p>
+                </div>
                 <div class="row ">
                     <div class="col-md-12">
                         <label>Do you need this service urgently?</label>
@@ -168,7 +174,10 @@
 </div>
 </div>
 
-<div class="verify-account" v-if="isShowCardDetail">
+<div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
+    <div class="form-label-heading m-b-25">
+        <p>VERIFY ACCOUNT</p>
+    </div> 
     <div class="row">
         <div class="col-md-12">
             <div class="verification-alert">
@@ -177,7 +186,7 @@
                 </div>
             </div>
         </div>
-        <div v-if='isShowCardDetail'>
+        <div>
          <payment-component  :submit='isSubmitNormalJob'></payment-component>
         </div>
     </div>
@@ -268,7 +277,8 @@
                 cityUrl : '',
                 states : [],
                 isShowCardDetail : true,
-                isSubmitNormalJob : false
+                isSubmitNormalJob : false,
+                isPaymentDetailShow : true
                 
             }
         },
@@ -285,9 +295,18 @@
             }
         },
         mounted () {
-             this.getPlansList()
+             this.getPlansList(),
+             this.paymentDetailShow()
         },
         methods:{
+             paymentDetailShow(){
+                 let user = JSON.parse(this.$store.getters.getAuthUser)   
+                 if(user.stripe_token){
+                    this.isPaymentDetailShow = false
+                 }else{
+                    this.isPaymentDetailShow = true
+                 }
+            },
             getJobResponse(response){
                 this.formData = response.data;
                 this.onStateChange();
@@ -312,13 +331,18 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-
                     if (result) {
                          if(this.jobType == 'urgent_job'){
                              this.urgentjob()
                          }else{
-                            this.isSubmitNormalJob = true
-                            //this.onSubmit();
+                            if(!this.errorMessage){    
+                               this.isSubmitNormalJob = true
+                            }else{
+                               this.isSubmitNormalJob = false 
+                            }
+                            if(!this.isPaymentDetailShow){
+                              this.onSubmit();
+                            }
                          }
                         this.errorMessage = '';
                         return;
@@ -392,13 +416,6 @@
                     this.isShowCardDetail = false
                 } else{
                     this.isShowCardDetail = true
-                }
-            }, 
-            isSubmitNormalJob (value) {
-                if(value){
-                    this.isSubmitNormalJob = true
-                } else{
-                    this.isShowCardDetail = false
                 }
             },
         }

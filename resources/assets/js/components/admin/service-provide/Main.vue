@@ -79,7 +79,7 @@
             <td class="text-center">
               <div class="action-icons">
                 <router-link :to="{name: 'service.provider.detail' , params : {id : record.id }}">
-                    <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <i v-b-tooltip.hover title="View Details" class="icon-eye basecolor"></i>
                 </router-link>
                 <i @click="changestatuspopup(record)"  
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">

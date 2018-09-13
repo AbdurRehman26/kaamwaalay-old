@@ -102,6 +102,7 @@
                                     </b-col>
                                     <b-col class="calculated-value">
                                         <div class="gallery-pic">
+                                            
                                             <div class="gallery-item" v-for="(n, index) in record.jobImages" :data-index="index">
                                                 <img @click="open($event)" :src="n">
                                             </div>

@@ -4,10 +4,11 @@
         <alert v-if="successMessage"></alert>
         <div class="view-details-list">
             <b-row>
-                <b-col col md="3" sm="12" class="">
-                    <div class="user-img bigimage">
-                        <img :src="getImage" alt="">
-                    </div>
+                <b-col col md="3" sm="12" class=""> 
+                
+                    <div class="user-img bigimage" v-bind:style="{'background-image': 'url('+ getImage+')',}">
+                        
+                    </div>                
                 </b-col>
                 <b-col col md="9" sm="12" class="">
                    <b-row>

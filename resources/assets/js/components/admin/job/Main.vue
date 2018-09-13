@@ -78,7 +78,7 @@
             <td class="text-center">
               <div class="action-icons">
                 
-                <router-link :to="{name: 'main.job.detail' , params : {id : record.id}}"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
+                <router-link class="basecolor" :to="{name: 'main.job.detail' , params : {id : record.id}}"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
 
             </div>
         </td>
@@ -145,7 +145,6 @@
                 customer: false,
                 changeProviderStatus: false,
                 url : 'api/job?pagination=true',
-                noRecordFound : false,
                 records : [],
                 pagination : []
             }

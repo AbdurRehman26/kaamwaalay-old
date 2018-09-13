@@ -14982,7 +14982,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding-left: 0px !important;
   margin-bottom: 0 !important;
   width: 100%;
-  max-height: 300px;
+  max-height: 270px;
   overflow: auto;
   border: 1px solid;
   border-top: 0px;
@@ -16117,15 +16117,27 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.__PrivateStripeElement {
+  top: -3px;
+}
+
 #change-pass .modal-body {
-  padding: 28px 0px 10px 0px;
+  /* padding: 28px 0px 10px 0px; */
+  padding: 15px 0px 10px 0px;
 }
 
 #change-pass div[slot="modal-footer"] {
   float: left;
   width: 100%;
-  border-top: 1px solid;
   padding-top: 11px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding: 13px 33px 9px 19px;
+  border-top: 1px solid #E0E0E0;
+}
+
+#change-pass .form-block {
+  padding: 0px 30px;
 }
 
 .profile-form-section {
@@ -16197,6 +16209,11 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.profile-form-section .personal-detail .profile-image-placeholder img {
+  z-index: 9;
+  position: relative;
+}
+
 .profile-form-section .personal-detail:after {
   content: 'HOME ADDRESS';
   position: absolute;
@@ -16223,6 +16240,35 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 14px;
   color: #494949;
   margin-bottom: 0;
+}
+
+.form-label-heading {
+  text-align: center;
+  color: #494949;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.form-label-heading p {
+  background-color: #fff;
+  position: relative;
+  display: table;
+  font-family: "AkzidenzGroteskBE-Md" !important;
+  margin: auto;
+  padding: 0px 16px;
+}
+
+.form-label-heading:before {
+  position: absolute;
+  content: '';
+  border-bottom: 1px solid #E0E0E0;
+  width: 100%;
+  left: 0;
+  margin: auto;
+  top: 41%;
 }
 
 .apply-review-sec {
@@ -16324,31 +16370,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .business-detail {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.business-detail:after {
-  content: 'BUSINESS DETAILS';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 40%;
-  background: #fff;
-  text-align: center;
-  width: 164px;
-}
-
-@media (max-width: 767px) {
-  .business-detail:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        content:'BUSINESS DETAILS';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 164px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }        
+    } */
 }
 
 .business-detail .duns-help-icon .icon-help {
@@ -16361,31 +16403,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .service-offered {
   position: relative;
-  padding-top: 30px;
+  /*padding-top: 30px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.service-offered:after {
-  content: 'SERVICES OFFERED';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 40%;
-  background: #fff;
-  text-align: center;
-  width: 164px;
-}
-
-@media (max-width: 767px) {
-  .service-offered:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /*     border-top: 1px solid $grey-lite;
+    &:after {
+        content:'SERVICES OFFERED';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 164px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }                
+    } */
 }
 
 @media (max-width: 767px) {
@@ -16394,33 +16432,33 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.home-detail {
+  padding-top: 20px;
+}
+
 .business-proof {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 10px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.business-proof:after {
-  content: 'PROOF OF BUSINESS';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 37%;
-  background: #fff;
-  text-align: center;
-  width: 195px;
-}
-
-@media (max-width: 767px) {
-  .business-proof:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        content:'PROOF OF BUSINESS';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 37%;
+        background: #fff;
+        text-align: center;
+        width: 195px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }                
+    } */
 }
 
 .business-proof p {
@@ -16469,31 +16507,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .account-fee {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.account-fee:after {
-  content: 'ACCOUNT FEE';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 40%;
-  background: #fff;
-  text-align: center;
-  width: 140px;
-}
-
-@media (max-width: 767px) {
-  .account-fee:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /* &:after {
+        content:'ACCOUNT FEE';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 140px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }                
+    } */
 }
 
 .account-fee .verification-alert p {
@@ -16537,64 +16571,56 @@ input[type=number]::-webkit-outer-spin-button {
 
 .attach-job-files {
   position: relative;
-  padding-top: 40px;
+  /* padding-top: 40px; */
   margin-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.attach-job-files:after {
-  position: absolute;
-  content: 'ATTACH PHOTOS';
-  text-transform: uppercase;
-  top: -8px;
-  background: #fff;
-  width: 150px;
-  color: #494949;
-  font-size: 14px;
-  left: 40%;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-}
-
-@media (max-width: 767px) {
-  .attach-job-files:after {
-    width: 154px;
-    right: 0;
-    top: -11px;
-    left: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        position: absolute;
+        content:'ATTACH PHOTOS';
+        text-transform: uppercase;
+        top: -8px;
+        background: #fff;
+        width: 150px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 40%;
+        font-family: $font_medium;
+        text-align: center;
+        @include mobile{
+            width: 154px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }
+    } */
 }
 
 .attach-video-files {
   position: relative;
-  padding-top: 40px;
+  /* padding-top: 40px; */
   margin-bottom: 40px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.attach-video-files:after {
-  position: absolute;
-  content: 'ATTACH VIDEO';
-  text-transform: uppercase;
-  top: -8px;
-  background: #fff;
-  width: 150px;
-  color: #494949;
-  font-size: 14px;
-  left: 40%;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-}
-
-@media (max-width: 767px) {
-  .attach-video-files:after {
-    width: 154px;
-    right: 0;
-    top: -11px;
-    left: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /* &:after {
+        position: absolute;
+        content:'ATTACH VIDEO';
+        text-transform: uppercase;
+        top: -8px;
+        background: #fff;
+        width: 150px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 40%;
+        font-family: $font_medium;
+        text-align: center;
+        @include mobile{
+            width: 154px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }
+    } */
 }
 
 .attach-video-files .video-url p {
@@ -16606,33 +16632,29 @@ input[type=number]::-webkit-outer-spin-button {
 
 .service-need {
   position: relative;
-  padding-top: 25px;
+  /* padding-top: 25px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.service-need:after {
-  position: absolute;
-  content: 'WHEN YOU NEED THIS SERVICE';
-  text-transform: uppercase;
-  top: -10px;
-  background: #fff;
-  width: 270px;
-  color: #494949;
-  font-size: 14px;
-  left: 33%;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-}
-
-@media (max-width: 767px) {
-  .service-need:after {
-    width: 220px;
-    right: 0;
-    top: -11px;
-    left: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        position: absolute;
+        content:'WHEN YOU NEED THIS SERVICE';
+        text-transform: uppercase;
+        top: -10px;
+        background: #fff;
+        width: 270px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 33%;
+        font-family: $font_medium;
+        text-align: center;
+        @include mobile{
+            width: 220px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }
+    } */
 }
 
 .service-need p {
@@ -16686,32 +16708,28 @@ input[type=number]::-webkit-outer-spin-button {
 
 .verify-account {
   position: relative;
-  padding-top: 25px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.verify-account:after {
-  position: absolute;
-  content: 'VERIFY ACCOUNT';
-  text-transform: uppercase;
-  top: -10px;
-  background: #fff;
-  width: 190px;
-  color: #494949;
-  font-size: 14px;
-  left: 38%;
-  font-family: "AkzidenzGroteskBE-Md";
-  text-align: center;
-}
-
-@media (max-width: 767px) {
-  .verify-account:after {
-    width: 190px;
-    right: 0;
-    top: -11px;
-    left: 0;
-    margin: auto;
-  }
+  /* padding-top: 25px;
+    border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        position: absolute;
+        content:'VERIFY ACCOUNT';
+        text-transform: uppercase;
+        top: -10px;
+        background: #fff;
+        width: 190px;
+        color: $grey-Edark;
+        font-size: 14px;
+        left: 38%;
+        font-family: $font_medium;
+        text-align: center;
+        @include mobile{
+            width: 190px;
+            right: 0;
+            top: -11px;
+            left: 0;
+            margin: auto;            
+        }        
+    } */
 }
 
 .verify-account .verification-alert p {
@@ -18169,6 +18187,7 @@ p.awarded_to {
 
 .job-main-heading .content-sec .job-content h2 {
   padding-bottom: 0px;
+  line-height: 34px;
 }
 
 .job-main-heading .content-sec .job-content .job-details {

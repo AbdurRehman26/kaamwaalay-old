@@ -41,10 +41,12 @@ Route::get('services/{any}', function(App\Data\Models\Service $service) {
     $params = $currentRoute->parameters();
     if(!empty($params['any'])) {
         $any = $params['any'];
-        $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->get()->toArray();
-        
-        if(empty($service)) {
-            return view('front-layout');
+        if (strpos($any, '/') == false) {
+            $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->get()->toArray();
+
+            if(empty($service)) {
+                return view('front-layout', ['page_not_found' => true]);
+            }
         }
 		return view('front-layout', ['service' => $service[0]]);
     }
