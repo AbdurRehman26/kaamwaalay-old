@@ -51,7 +51,7 @@
 				<div class="text-notifer" v-if="pagination">
 					<p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
 				</div>
-				<div class="job-post-list" v-for="record in records" v-if="record.profile_request">
+				<div class="job-post-list" v-for="record in records" v-if="records.length">
 					<div class="job-post-details">
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
 						<div class="job-common-description">
@@ -175,51 +175,10 @@
 				pagination: '',
 				records : [],
 				url: '',
-				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceName+'&zip='+this.zip,
+				serviceProviderUrl : null,
 				service: '',
 				relatedServices: '',
-    			categoryimage: '/images/front/explore/carpenter1.jpg',
-
-    			jobimage: '/images/front/profile-images/logoimage1.png',
-    			reviewerimage: '/images/front/profile-images/personimage1.png',
 				loading: false,
-				category:[
-
-				{
-
-					title:'Related services',
-					categoryitems:[
-						{
-							itemimage: '/images/front/explore/carpenter1.jpg',
-							itemtitle: 'Wooden partition service'
-						},
-
-						{
-							itemimage: '/images/front/explore/carpenter2.jpg',
-							itemtitle: 'Furniture repair & Installation',
-						},
-
-						{
-							itemimage: '/images/front/explore/carpenter3.jpg',
-							itemtitle: 'Wooden deck building & repair',
-						},
-						{
-							itemimage: '/images/front/explore/carpenter2.jpg',
-							itemtitle: 'Furniture repair & Installation',
-						},
-
-						{
-							itemimage: '/images/front/explore/carpenter3.jpg',
-							itemtitle: 'Wooden deck building & repair',
-						},
-
-					],
-
-				},			
-
-	
-		],    	
-
 
     	}
   	},
@@ -233,6 +192,20 @@
 	    }
     },
     methods: {
+
+			onSelectCategory(val) {
+				sessionStorage.setItem("zip", val);
+				this.HideModal();
+				this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
+			},
+			changecategorypopup(service) {
+				this.selectedService = service;
+				if(sessionStorage['zip']) {
+					this.onSelectCategory(sessionStorage['zip']);
+				}else {
+					this.categoryval = true;	
+				}
+			},
 	    	filterRelatedServices (subservices) {
 				if(subservices.length > 3) {
 					subservices = subservices.slice(0,3);
@@ -290,7 +263,7 @@
 				if(!query || query.length < 3) {
 					return;
 				};
-		        this.searchUrl  = 'api/service?keyword='+query;
+		        this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
 				this.isLoading = true;
 				this.$http.get(this.searchUrl).then(response => {
 					response = response.data.response;
@@ -327,23 +300,29 @@
 			let self = this;
 			this.checkRoute();
 			this.btnLoading = true;
-			self.$http.get(this.url).then(response => {
-		    	response = response.data.response;
-				self.service = response.data[0];
-				self.getRelatedServices();
-				console.log(self.service);
-				if(!self.service) {
+
+			this.$http.get(this.url).then(response => {
+				response = response.data.response;
+				if(!response.data.length) {
 					this.$router.push({name: '404'});
 				}
+				self.service = response.data[0];
+				self.getRelatedServices();
+
 				self.searchValue = self.service;
-				self.categoryimage = self.getImage(self.service.images);
 				self.btnLoading = false;
-				self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
-		    }).catch(error=>{
+				if(self.zip) {
+
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
+				}
+
+			}).catch(error=>{
 		    	if(error.status == 403) {
 		    		self.pagination = false;
     			}
-		    });
+    			
+				self.btnLoading = false;
+			});
 		},
 		getRelatedServices() {
 			let self = this;
@@ -381,16 +360,16 @@
 
 	watch: {
 		serviceName(val) {
-			if(val.length > 3) {
-				val = val.substr(0, 3);
-			}
 			this.serviceName = val;
+			this.getService();
 		},
-		zipCode(val) {
+		zip(val) {
 			if(val.length > 5) {
 				val = val.substr(0, 5);
 			}
+			this.zip = val;
 			this.zipCode = val; 
+			console.log(this.zipCode);
 		},
 		searchValue(val) {
 			if(val == null) {

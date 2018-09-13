@@ -151,18 +151,23 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where('is_featured', '=', (int)$data['filter_by_featured']);
 
         }
+        if(isset($data['filter_by_status'])) {
+                        
+            $this->builder = $this->builder->where('status', '=', (int)$data['filter_by_status']);
+
+        }
         if(isset($data['service_name'])) {
-            $this->builder = $this->builder->where('url_suffix', '=', $data['service_name']);
+            $this->builder = $this->builder->where('url_suffix', '=', $data['service_name'])->where('status', '=', 1);
             
         }
         if(isset($data['filter_by_related_services'])) {
-            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1);
+            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
 
             $isParent = $this->builder->whereNull('parent_id')->get()->toArray();
             if(!$isParent) {
                 $this->builder = $this->getPopularServices();
             }else {
-                $this->builder = $this->model->where('id', '!=', $data['filter_by_related_services'])->where('parent_id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1);
+                $this->builder = $this->model->where('id', '!=', $data['filter_by_related_services'])->where('parent_id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
                 if(!$this->builder->get()->toArray()) {
                     $this->builder = $this->getPopularServices();
                 }
@@ -207,7 +212,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         $modelData['data'] = [];
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
-                $services = $this->model->orderBy('created_at', 'desc')->whereNull('parent_id')->get();
+                $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
                 foreach ($services as $key => $value) {
                     // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
                      $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->get();

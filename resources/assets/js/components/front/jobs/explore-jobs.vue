@@ -110,7 +110,7 @@
 
 
     <vue-common-methods :infiniteLoad="true" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-    <vue-common-methods :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :url="requestCityUrl" @get-records="getCityResponse" :hideLoader="true"></vue-common-methods>
 
 
 </div>

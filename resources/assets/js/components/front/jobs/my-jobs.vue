@@ -26,7 +26,13 @@
                                             <div class="jobs-done">
                                                 <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>		
                                                 <div class="job-status">
-                                                    <span v-if="!record.is_archived" class="tags" 
+                                                  
+                                                    <span v-if="record.status != 'cancelled' && record.awardedBid && record.status != 'completed' && record.awardedBid.status == 'completed'" class="tags"
+                                                        :class="['completed']">
+                                                        Marked Done
+                                                    </span>
+                                                    
+                                                    <span v-else-if="!record.is_archived" class="tags" 
                                                     :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
                                                     {{ record | jobStatus }}
                                                 </span> 
@@ -100,7 +106,7 @@
                                                 <strong>{{record.formatted_created_at}}</strong>
                                             </p>
                                             <div class="ratings">
-                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="[record.review_details.rating ? parseInt(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
+                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="[record.review_details.rating ? parseFloat(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
 
                                             </div>
                                         </div>

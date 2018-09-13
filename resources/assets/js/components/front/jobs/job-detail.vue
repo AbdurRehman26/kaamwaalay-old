@@ -185,15 +185,18 @@
 
 
                     <div class="chat-feedback" v-else>
+
                         <div class="text-notifer">
-                            <h3>Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>	
+                            <h3 v-if="isMyJob">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
+                            <h3 v-if="!isMyJob">My Bid</h3>	
                         </div>
+                        
                         <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
 
                             <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user.profileImage +')'}"></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
-                                <div class="jobs-rating">
+                                <div v-if="isMyJob" class="jobs-rating">
                                     <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
                                     <div class="jobs-done">
                                         <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
@@ -225,9 +228,9 @@
 
                                 <div class="provider-bidding-btn">
 
-                                    <a href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
 
-                                    <a href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
+                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
 
                                     <a v-if="!bid.is_tbd && canAwardJob" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary">Award Job</a>
@@ -289,7 +292,11 @@
                     </button>
 
                     <a href="javascript:void(0);" v-if="isMyJob && canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>								
+                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
+
+                    <a v-if="!isMyJob" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
+
+                    <a v-if="!isMyJob" href="javascript:void(0);" class="btn btn-primary">Chat</a>                                                  
 
                 </div>
 
@@ -389,8 +396,8 @@
             },
             isMyJob(){
                 if(Object.keys(this.record).length){
-
-                    return this.record.user_id == this.$store.getters.getAuthUser.id;
+                    let user = JSON.parse(this.$store.getters.getAuthUser);
+                    return this.record.user_id == user.id;
                 }
                 return false;
             }
@@ -420,7 +427,20 @@
 
             },
             getResponse(response){
+
+                this.jobBids = {
+                    data : [],
+                    pagination : []
+                };
+                
                 this.record = response.data;
+                
+                let user = JSON.parse(this.$store.getters.getAuthUser);
+                
+                if(this.record.user_id != user.id && this.record.my_bid){
+                    this.jobBids.data.push(this.record.my_bid);                    
+                }
+
             },
             getBidsResponse(response){
 
