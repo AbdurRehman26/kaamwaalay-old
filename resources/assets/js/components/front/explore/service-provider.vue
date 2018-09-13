@@ -314,7 +314,7 @@
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip;
 				}
 
         		window.scrollTo(0,0);
