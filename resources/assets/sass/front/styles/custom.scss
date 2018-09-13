@@ -1766,10 +1766,10 @@ $section-padding-sm:20px 0px;
 
 .business-detail {
     position: relative;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 20px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* border-top: 1px solid $grey-lite; */
+/*     &:after {
         content:'BUSINESS DETAILS';
         position: absolute;
         top: -10px;
@@ -1786,7 +1786,7 @@ $section-padding-sm:20px 0px;
             right: 0;
             margin: auto;
         }        
-    }
+    } */
     .duns-help-icon {
         .icon-help {
             color: #b2b2b2;
@@ -1799,9 +1799,9 @@ $section-padding-sm:20px 0px;
 }
 .service-offered {
     position: relative;
-    padding-top: 30px;
+    /*padding-top: 30px; */
     padding-bottom: 20px;
-    border-top: 1px solid $grey-lite;
+/*     border-top: 1px solid $grey-lite;
     &:after {
         content:'SERVICES OFFERED';
         position: absolute;
@@ -1819,19 +1819,22 @@ $section-padding-sm:20px 0px;
             right: 0;
             margin: auto;
         }                
-    }
+    } */
     @include mobile{
         .add-photos{
             margin-top: 0px !important;
         }
     }     
 }
+.home-detail {
+    padding-top: 20px;
+}
 .business-proof {
     position: relative;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 10px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* border-top: 1px solid $grey-lite; */
+/*     &:after {
         content:'PROOF OF BUSINESS';
         position: absolute;
         top: -10px;
@@ -1848,7 +1851,7 @@ $section-padding-sm:20px 0px;
             right: 0;
             margin: auto;
         }                
-    }
+    } */
     p {
         font-size: 14px;
         color: $grey-Edark;
@@ -1890,10 +1893,10 @@ $section-padding-sm:20px 0px;
 }
 .account-fee {
     position: relative;
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 20px;
-    border-top: 1px solid $grey-lite;
-    &:after {
+    /* border-top: 1px solid $grey-lite; */
+    /* &:after {
         content:'ACCOUNT FEE';
         position: absolute;
         top: -10px;
@@ -1910,7 +1913,7 @@ $section-padding-sm:20px 0px;
             right: 0;
             margin: auto;
         }                
-    }
+    } */
     .verification-alert {
         p {
             color: $grey-Edark;

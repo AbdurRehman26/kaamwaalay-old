@@ -16370,31 +16370,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .business-detail {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.business-detail:after {
-  content: 'BUSINESS DETAILS';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 40%;
-  background: #fff;
-  text-align: center;
-  width: 164px;
-}
-
-@media (max-width: 767px) {
-  .business-detail:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        content:'BUSINESS DETAILS';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 164px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }        
+    } */
 }
 
 .business-detail .duns-help-icon .icon-help {
@@ -16407,31 +16403,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .service-offered {
   position: relative;
-  padding-top: 30px;
+  /*padding-top: 30px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.service-offered:after {
-  content: 'SERVICES OFFERED';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 40%;
-  background: #fff;
-  text-align: center;
-  width: 164px;
-}
-
-@media (max-width: 767px) {
-  .service-offered:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /*     border-top: 1px solid $grey-lite;
+    &:after {
+        content:'SERVICES OFFERED';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 164px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }                
+    } */
 }
 
 @media (max-width: 767px) {
@@ -16440,33 +16432,33 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.home-detail {
+  padding-top: 20px;
+}
+
 .business-proof {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 10px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.business-proof:after {
-  content: 'PROOF OF BUSINESS';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 37%;
-  background: #fff;
-  text-align: center;
-  width: 195px;
-}
-
-@media (max-width: 767px) {
-  .business-proof:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /*     &:after {
+        content:'PROOF OF BUSINESS';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 37%;
+        background: #fff;
+        text-align: center;
+        width: 195px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }                
+    } */
 }
 
 .business-proof p {
@@ -16515,31 +16507,27 @@ input[type=number]::-webkit-outer-spin-button {
 
 .account-fee {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 20px;
-  border-top: 1px solid #E0E0E0;
-}
-
-.account-fee:after {
-  content: 'ACCOUNT FEE';
-  position: absolute;
-  top: -10px;
-  text-transform: capitalize;
-  font-family: "AkzidenzGroteskBE-Md";
-  font-size: 14px;
-  color: #494949;
-  left: 40%;
-  background: #fff;
-  text-align: center;
-  width: 140px;
-}
-
-@media (max-width: 767px) {
-  .account-fee:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  /* border-top: 1px solid $grey-lite; */
+  /* &:after {
+        content:'ACCOUNT FEE';
+        position: absolute;
+        top: -10px;
+        text-transform: capitalize;
+        font-family: $font_medium;
+        font-size: 14px;
+        color: $grey-Edark;
+        left: 40%;
+        background: #fff;
+        text-align: center;
+        width: 140px;
+        @include mobile{
+            left: 0;
+            right: 0;
+            margin: auto;
+        }                
+    } */
 }
 
 .account-fee .verification-alert p {
