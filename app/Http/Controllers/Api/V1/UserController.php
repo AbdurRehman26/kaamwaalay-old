@@ -232,7 +232,11 @@ public function changeStatus(Request $request)
 
         $result = $this->_repository->updateField($data);
         if($result) {
-
+            $userId = $data['id'];
+            $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
+            $sqlParameter = [];
+            $sqlParameter[] = $userId;
+            \DB::select($sql, $sqlParameter);
             $code = 200;
             $output = [
                 'data' => 'Status has been updated successfully.',
