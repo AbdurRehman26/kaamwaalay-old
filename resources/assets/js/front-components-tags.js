@@ -33,10 +33,10 @@ Vue.component('urgent-job',require('./components/front/common-components/UrgentJ
 Vue.component('feature-job',require('./components/front/common-components/FeatureJobPopup.vue'));
 Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));
 Vue.component('go-to-visit-popup',require('./components/front/common-components/GoToVisitPopup.vue'));
-Vue.component('write-review-popup',require('./components/front/common-components/writeReviewPopup.vue'));
 Vue.component('profile-rejection',require('./components/front/common-components/ProfileRejection.vue'));
 Vue.component('notification',require('./components/front/common-components/Notification.vue'));
 Vue.component('chat-panel', require('./components/front/common-components/Chat.vue'));
+Vue.component('write-review-popup', require('./components/front/common-components/WriteReviewPopup.vue'));
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
@@ -53,6 +53,9 @@ Vue.component('popularservices', require('./components/front/landing/PopularServ
 Vue.component('appstore', require('./components/front/landing/AppStore.vue'));
 Vue.component('explorenow', require('./components/front/landing/ExploreNow.vue'));
 
+//404 page
+Vue.component('page-not-found', require('./components/404/Main.vue'));
+
 //join as pro
 Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.vue'));
 
@@ -64,6 +67,7 @@ Vue.component('bid-completed', require('./components/front/bids/Completed.vue'))
 Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
 Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
 Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));
+Vue.component('bid-cancelled', require('./components/front/bids/Cancelled.vue'));
 
 // Advice Center
 Vue.component('customer', require('./components/front/advice-center/Customer.vue'));
@@ -84,3 +88,6 @@ Vue.component('block-spinner', require('./components/admin/common-components/Blo
 Vue.component('file-upload-component', require('./components/admin/common-components/FileUpload.vue'));
 // stripe checkout component
 Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));
+Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));
+
+Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 

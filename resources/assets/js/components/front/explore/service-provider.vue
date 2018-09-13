@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail">
+	<div class="category-detail" v-if="service">
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
@@ -22,19 +22,19 @@
 				<div class="row">
 					<div class="col-md-10 p-r-0">
 			            <div class="search-filter m-b-0">
-							<div class="custom-multi multifull" :class="{'invalid': isInvalid }">
-								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch">
-									<span slot="noResult">No Service found. Consider changing the search query.</span>
+							<div class="custom-multi" :class="{'invalid': isInvalid }">
+								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="false" 
+								@select="dispatchAction" @keyup.enter="validateBeforeSubmit">
 								</multiselect>
 							</div>
 			                <div class="container-zip-code">
 								<i class="icon-location"></i>
-								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
+								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
 							</div>
 						</div>			
 					</div>
 					<div class="col-md-2 p-r-0">
-						<button class="btn btn-primary" @click="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+						<button class="btn btn-primary" @click.prevent="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" :disabled="loading">
 							<span>Search</span>
             				<loader></loader>
 						</button>
@@ -43,15 +43,15 @@
 			</div>
 		</div>
 
-
-         <no-record-found v-if="noRecordFound"></no-record-found>
+		<h5 class="text-center enterzip" v-if="!zip">Please enter a zip code to view the list of service providers accordingly.</h5>
+         <no-record-found v-else-if="noRecordFound"></no-record-found>
 		<div class="job-post-container section-padd sm" v-if="!noRecordFound">
 			<div class="container md">
 
 				<div class="text-notifer" v-if="pagination">
 					<p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
 				</div>
-				<div class="job-post-list" v-for="record in records" v-if="record.profile_request">
+				<div class="job-post-list" v-for="record in records" v-if="records.length">
 					<div class="job-post-details">
 						<div class="job-image pointer" @click="servicedetail" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
 						<div class="job-common-description">
@@ -59,7 +59,7 @@
 							<span v-if="record.is_verified"><i class="icon-checked"></i></span>
 							
 							<div class="jobs-rating">
-								<star-rating :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
+								<star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
 								<div class="jobs-done">
 									<span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>				
 
@@ -115,19 +115,33 @@
         <div class="featured-categories section-padd sm  elementary-banner p-t-130">
         	<div class="container element-index">
 
-	        	<div class="category-section" v-for="maincategory in category">
+	        	<div class="category-section">  
 	        		<div class="category-title">
-	        			<h2>{{ maincategory.title }}</h2>	        			
-	        		</div>	        		
+						<h2>Related Services</h2>
+					</div>  		
 	        		<div class="category-items">
-
-	        			<div class="items" v-for="categoryabc in maincategory.categoryitems">
-	        				<a href="javascript:void(0);">
-		        			<div class="item-image" v-bind:style="{'background-image': 'url('+ categoryabc.itemimage +')',}"></div>
-		        				<h4>{{categoryabc.itemtitle}}</h4>
-		        			</a>
-		        		</div>
-		        		<div class="showmore"><a href="/explore/service_provider">View all services related to electricians <i class="icon-keyboard_arrow_right"></i></a></div>
+	        			<div class="items" v-for="subservice in filterRelatedServices(relatedServices)">
+							<a @click="changecategorypopup(subservice)" href="javascript:void(0);">
+								<div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images? subservice.images[0].upload_url : null) +')',}"></div>
+								<h4>{{subservice.title}}</h4>
+							</a>
+						</div>
+						<div class="showmore showmore-link clearfix" >
+							<div>
+							  <!-- element to collapse -->
+							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(relatedServices).length">View all services related to electricians<i class="icon-angle-right"></i></a>
+							  <b-collapse :id="service.title">
+							    <b-card>
+							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(relatedServices)">
+									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
+										<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
+										<p>{{remainingSubServices.title}}</p>
+									</a>
+								</div>
+							    </b-card>
+							  </b-collapse>
+							</div>
+						</div>
 	        				
 	        		</div>  	        	      		
 	        	</div>
@@ -137,6 +151,7 @@
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
         </div>
+	<category-popup @HideModalValue="hideZipModal" :showModalProp="categoryPopup" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
 	</div>
 	</div>
 </template>
@@ -146,117 +161,124 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['serviceId', 'zip'],
-  data () {
-    return {
-				max: 6,
-				noRecordFound: false,
-				btnLoading: false,
-				options: [],
-				zipCode: '',
-				isTouched: false,
-				searchValue: '',
-				isLoading: false,
-            	loading : false,
-				pagination: '',
-				records : [],
-				serviceProviderUrl : 'api/service-provider-profile?pagination=true&user_detail=true&is_verified=1&is_approved=approved&filter_by_featured=1&filter_by_service='+this.serviceId+'&zip='+this.zip,
-				service: '',
-    	categoryimage: '/images/front/explore/carpenter1.jpg',
-
-    	jobimage: '/images/front/profile-images/logoimage1.png',
-    	reviewerimage: '/images/front/profile-images/personimage1.png',
-		category:[
-
-		{
-
-			title:'Related services',
-			categoryitems:[
-				{
-					itemimage: '/images/front/explore/carpenter1.jpg',
-					itemtitle: 'Wooden partition service'
-				},
-
-				{
-					itemimage: '/images/front/explore/carpenter2.jpg',
-					itemtitle: 'Furniture repair & Installation',
-				},
-
-				{
-					itemimage: '/images/front/explore/carpenter3.jpg',
-					itemtitle: 'Wooden deck building & repair',
-				},
-
-			],
-
-		},			
-
-	
-		],    	
-
-
-    	}
+	props: ['zip', 'serviceName'],
+ 	data () {
+    	return {
+			max: 6,
+			noRecordFound: false,
+			btnLoading: false,
+			options: [],
+			zipCode: '',
+			isTouched: false,
+			searchValue: '',
+			isLoading: false,
+        	loading : false,
+			pagination: '',
+			records : [],
+			url: '',
+			serviceProviderUrl : null,
+			service: '',
+			relatedServices: '',
+			loading: false,
+			categoryPopup: false,
+			selectedService: '',
+		}
   	},
-
-	    computed : {
-	        requestUrl(){
-	            return this.serviceProviderUrl;
-	        },
-		    isInvalid () {
-		      return this.isTouched && !this.searchValue
-		    }
-	    },
+    computed : {
+        requestUrl(){
+            return this.serviceProviderUrl;
+        },
+	    isInvalid () {
+	      return this.isTouched && !this.searchValue
+	    }
+    },
     methods: {
-		    limitText (count) {
-		      return `and ${count} other services`
-		    },
-            validateBeforeSubmit() {
-                this.$validator.validateAll().then((result) => {
-                    if (result) {
-                        this.ServiceProviderPage();
-                        this.errorMessage = "";
-                        return;
-                    }
-                    this.errorMessage = this.errorBag.all()[0];
-                });
-            },  
+		onSelectCategory(val) {
+			this.hideZipModal();
+			localStorage.setItem("zip", val);
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
+		},
+		changecategorypopup(service) {
+			this.selectedService = service;
+			if(localStorage['zip']) {
+				this.onSelectCategory(localStorage['zip']);
+			}else {
+				this.categoryPopup = true;	
+			}
+		},
+    	filterRelatedServices (subservices) {
+			if(subservices.length > 3) {
+				subservices = subservices.slice(0,3);
+			}
+			return subservices;
+		},
+		getRemainingSubServices (subservices) {
+			if(subservices.length > 3) {
+				subservices = subservices.slice(3);
+				return subservices;
+			}
+			return [];
+		},
+    	dispatchAction (actionName) {
+			this.searchValue = '';
+			this.options = [];
+			this.loading = false;
+		},
+	    limitText (count) {
+	      return `and ${count} other services`
+	    },
+        validateBeforeSubmit() {
+            this.$validator.validateAll().then((result) => {
+                if (result && !this.loading) {
+                    this.ServiceProviderPage();
+                    this.errorMessage = "";
+                    return;
+                }
+                this.errorMessage = this.errorBag.all()[0];
+            });
+        },  
+		ServiceProviderPage() {
+			this.isTouched = false;
+			if(!this.searchValue) {
+				this.isTouched = true;
+				return;
+			}
+			this.serviceName = this.searchValue.url_suffix;
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.serviceName, zip : this.zipCode }});
+			//this.getService(); 
+		},
+		onTouch () {
+			this.options = [];
+			this.loading = false;
+	      	this.isTouched = true;
+	    },
+		asyncFind: _.debounce(function(query) {
+			let self = this;
 
-			ServiceProviderPage() {
-				this.isTouched = false;
-				if(!this.searchValue) {
-					this.isTouched = true;
-					return;
-				}
-				this.serviceId = this.searchValue.id;
-				this.zip = this.zipCode;
-				this.getService(); 
-			},
-			onTouch () {
-		      this.isTouched = true
-		    },
-			asyncFind: _.debounce(function(query) {
-				let self = this;
-		        this.searchUrl  = 'api/service?keyword='+query;
-				this.isLoading = true;
-				this.$http.get(this.searchUrl).then(response => {
-					response = response.data.response;
-					self.options = response.data;
-					self.isLoading = false;
+			this.loading = true;
+			if(!query) {
+				this.loading = false;
+			}
+			if(!query || query.length < 3) {
+				return;
+			};
+	        this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
+			this.isLoading = true;
+			this.$http.get(this.searchUrl).then(response => {
+				response = response.data.response;
+				self.options = response.data;
+				self.isLoading = false;
 
-				}).catch(error=>{
-				});
-			}, 1000),
-	        getImage(img) {
-	        	return img? img : 'images/dummy/image-placeholder.jpg';
-	        },
-			startLoading(){
-	            this.loading = true;
-	        },
+			}).catch(error=>{
+			});
+		}, 1000),
+        getImage(img) {
+        	return img? img : 'images/dummy/image-placeholder.jpg';
+        },
     	AddCustomer() {
     		this.customer = true;
     	},
         ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
             this.$router.push({name: 'customerdetail'});
             window.scrollTo(0,0);
         },
@@ -268,59 +290,106 @@
             this.viewcustomer = false;
             this.changestatus = false;
         },
+
+		hideZipModal(){
+			this.categoryPopup = false;
+		},
         servicedetail(){        	
-        	this.$router.push({name: 'Service_Provider_Detail'});
         	window.scrollTo(0,0);
-			},
-			getService() {
-				let self = this;
-				let id = this.serviceId;
-				this.btnLoading = true;
-				this.searchUrl  = 'search/explore/'+id;
-				self.$http.get(this.searchUrl).then(response => {
-			    	response = response.data.response;
-					self.service = response.data;
-					self.searchValue = self.service;
-					self.categoryimage = self.getImage(self.service.images);
-					self.btnLoading = false;
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceId+'&zip='+self.zip;
-			    }).catch(error=>{
-			    	if(error.status == 403) {
-			    		self.pagination = false;
-        			}
-			    });
-			},
-	        getProviderRecords(response){
-	            let self = this;
-	            self.loading = false;
-	            self.records = response.data;
-	            self.noRecordFound = response.noRecordFound;
-	            self.pagination = response.pagination;
-	        },
+        	this.$router.push({name: 'Service_Provider_Detail'});
+		},
+		getService() {
+			let self = this;
+			this.checkRoute();
+			this.btnLoading = true;
+			this.$http.get(this.url).then(response => {
+				response = response.data.response;
+				if(!response.data.length) {
+					//this.$router.push({name: '404'});
+					return;
+				}
+				self.service = response.data[0];
+				self.getRelatedServices();
+
+				self.searchValue = self.service;
+				self.btnLoading = false;
+				if(self.zip) {
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip;
+				}
+
+        		window.scrollTo(0,0);
+
+			}).catch(error=>{
+		    	self.pagination = false;
+				self.btnLoading = false;
+			});
+		},
+		getRelatedServices() {
+			let self = this;
+			let url = 'api/service/?filter_by_related_services=' + this.service.id;
+			self.$http.get(url).then(response => {
+		    	response = response.data.response;
+				self.relatedServices = response.data;
+		    }).catch(error=>{
+		    	self.pagination = false;
+		    });
+		},
+        getProviderRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
+            self.pagination = response.pagination;
+        },
+        checkRoute() {
+        	this.zipCode = this.zip? this.zip : this.zipCode;
+			if(typeof(this.serviceName) != "undefined") {
+				this.url  = 'api/service/?service_name=' + this.serviceName;
+			}
+        	if(typeof(this.zip) != "undefined") {
+        		let val = this.zip;
+				if(val.length > 5) {
+					val = val.substr(0, 5);
+				}
+        		this.url += '&zip=' + val;
+        	}
+			if(!this.zipCode) {
+				this.validateBeforeSubmit();
+			}
+        }
 
     },
     components: {
         StarRating
     },
 
-		watch: {
-			serviceId(val) {
-				if(val.length > 3) {
-					val = val.substr(0, 3);
-				}
-				this.serviceId = val;
-			},
-			zipCode(val) {
-				if(val.length > 5) {
-					val = val.substr(0, 5);
-				}
-				this.zipCode = val; 
-			}
-		},
-    mounted(){
-			this.zipCode = this.zip;
+	watch: {
+		serviceName(val) {
+			this.serviceName = val;
 			this.getService();
 		},
+		zip(val) {
+			if(val.length > 5) {
+				val = val.substr(0, 5);
+			}
+			this.zip = val;
+			this.getService();
+		},
+		zipCode(val) {
+			if(val.length > 5) {
+				val = val.substr(0, 5);
+			}
+			this.zipCode = val; 
+		},
+		searchValue(val) {
+			if(val == null) {
+				this.loading = false;
+			}
+		}
+	},
+    mounted(){	
+		this.getService();
+	},
 
     }
 </script>

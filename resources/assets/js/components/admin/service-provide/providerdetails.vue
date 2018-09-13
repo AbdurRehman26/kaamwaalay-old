@@ -72,7 +72,7 @@
                                 <p><strong class="title-head">Business or Individual?</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <p>{{records.business_type == 'individual' ? 'I' : 'B'}}</p>
+                                <p>{{records.business_type == 'individual' ? 'Individual' : 'Business'}}</p>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -173,7 +173,7 @@
                             </b-col>
                             <b-col class="calculated-value">
                                 <p>
-                                {{records.total_revenue ? '$ ' : ''}}
+                                    {{records.total_revenue ? '$ ' : ''}}
                                 {{records.total_revenue ?  records.total_revenue : 0}}</p>
                             </b-col>
                         </b-row>                                 
@@ -191,7 +191,7 @@
                             </b-col>
 
                             <b-col class="calculated-value">
-                                <a href="javascript:void(0);" @click="ServiceJobDetail(records.user_id)">See All</a>
+                                <router-link :to="{name: 'view.service.job.detail',params: { id: records.user_id }}">See All</router-link>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
@@ -217,9 +217,6 @@
         StarRating
     },    
     methods: {
-        ServiceJobDetail(id) {
-            this.$router.push({name: 'view.service.job.detail', params : {id : id}});
-        },
         getRecords(response){
             let self = this;
             self.loading = false;

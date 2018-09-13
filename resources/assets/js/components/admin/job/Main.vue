@@ -12,10 +12,10 @@
                     </div>
                     <div class="col-xs-12 col-md-3 datepicker-field">
                       <div class="form-group">
-                         <label>By Type</label>
-                         <select v-model="search.filter_by_service" class="form-control">
-                           <option value="">Select All</option>
-                           <option v-for="service in servicesList" :value="service.id">
+                       <label>By Type</label>
+                       <select v-model="search.filter_by_service" class="form-control">
+                         <option value="">Select All</option>
+                         <option v-for="service in servicesList" :value="service.id">
                             {{ service  | mainServiceOrChildService}}
                         </option>
                     </select>
@@ -23,14 +23,14 @@
             </div>
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-                 <label>By Job Status</label>
-                 <select v-model="search.filter_by_status" class="form-control">
-                   <option value="">Select All</option>
-                   <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
-               </select>
-           </div>
-       </div>                            
-       <div class="col-xs-12 col-md-2">
+               <label>By Job Status</label>
+               <select v-model="search.filter_by_status" class="form-control">
+                 <option value="">Select All</option>
+                 <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
+             </select>
+         </div>
+     </div>                            
+     <div class="col-xs-12 col-md-2">
         <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
             <span>Apply</span>
             <loader></loader>
@@ -58,12 +58,16 @@
 
             <tr v-for="record in records">
                 <td> {{ record.title }} </td>
-                <td> <a href="javascript:void(0);" @click="profileimage(record.user.id)">{{ record.user.first_name }}</a> </td>
+                <td> 
+
+                    <router-link :to="{name: 'customer.detail' , params : {id : record.user.id}}">{{ record.user.first_name }}</router-link>
+
+                </td>
                 <td> {{ record.service | mainService }} </td>
                 <td> {{ record.service | childOrParentService }} </td>
                 <td>
                     <span v-if="!record.is_archived" class="tags" 
-                    :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
+                    :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'rejected')]">
                     {{ record | jobStatus }}
                 </span> 
 
@@ -71,13 +75,15 @@
                     {{ record | jobStatus }}
                 </span>
             </td>
-                <td class="text-center">
-                  <div class="action-icons">
-                    <i class="icon-eye" v-b-tooltip.hover title="View Details" @click="ViewDetails(record.id)"></i>
-                </div>
-            </td>
-        </tr>
-    </tbody>
+            <td class="text-center">
+              <div class="action-icons">
+                
+                <router-link class="basecolor" :to="{name: 'main.job.detail' , params : {id : record.id}}"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
+
+            </div>
+        </td>
+    </tr>
+</tbody>
 </table>
 <no-record-found v-show="noRecordFound"></no-record-found>
 
@@ -91,9 +97,9 @@
 
 
 
+<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 </div>
 
-<vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
 <customer-detail @HideModalValue="HideModal" :showModalProp="customer"></customer-detail>
 <change-status-user @HideModalValue="HideModal" :showModalProp="changeProviderStatus"></change-status-user>
@@ -139,7 +145,6 @@
                 customer: false,
                 changeProviderStatus: false,
                 url : 'api/job?pagination=true',
-                noRecordFound : false,
                 records : [],
                 pagination : []
             }
@@ -183,16 +188,9 @@
                 this.changeProviderStatus = false;
                 this.customer = false;
             },
-            ViewDetails(id){
-                this.$router.push({name: 'main.job.detail' , params : { id : id}});
-            },
-
             AddService(){
                 this.changeProviderStatus = true;
             },
-            profileimage(id){
-              this.$router.push({name: 'customer.detail' , params : {id  : id}});  
-          },        
 
       },
   }

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
        //  $this->call(CitiesTableSeeder::class);
        //  $this->call(ZipCodesTableSeeder::class);
 
-       //  $this->call(RolesTableSeeder::class);
+         $this->call(RolesTableSeeder::class);
        //  $this->call(UsersTableSeeder::class);
         
        // $this->call(SupportQuestionsTableSeeder::class);
@@ -41,8 +41,6 @@ class DatabaseSeeder extends Seeder
        //  $this->call(PaymentTableSeeder::class);
 
        //  $this->call(SupportInquiryTableSeeder::class);
-
-
 
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');

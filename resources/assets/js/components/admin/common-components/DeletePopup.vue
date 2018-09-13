@@ -8,13 +8,13 @@
           </div>
           <div slot="modal-footer" class="">
             <b-col class="float-right" cols="6">
-               <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();">
+               <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevent="validateBeforeSubmit();">
                 <span>Confirm</span> 
                 <loader></loader>
             </button>
         </b-col>
         <b-col class="float-right" cols="6">
-           <button :class="['btn' , 'btn-link' , 'apply-primary-color' ]" @click.prevant="onHidden">
+           <button :class="['btn' , 'btn-link' , 'apply-primary-color' ]" @click.prevent="onHidden">
             <span>Cancel</span> 
         </button>
     </b-col>

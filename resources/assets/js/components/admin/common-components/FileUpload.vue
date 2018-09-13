@@ -29,6 +29,7 @@
             return {
                 file : '',
                 isFileUpload : false,
+                fileUploadKey : 'user',
             }
         },
         methods : {
@@ -68,16 +69,13 @@
                 var self = this;
                 let url = "api/file/upload";
 
-                if(!this.uploadKey){
-                    this.uploadKey = 'user';
+                if(this.uploadKey){
+                    this.fileUploadKey = this.uploadKey;
                 }
 
-
                 var data = new FormData;
-                data.append('key', this.uploadKey);
+                data.append('key', this.fileUploadKey);
                 data.append('file', file);
-
-                console.log(this.uploadKey);
 
                 this.$http.post(url, data).then(response => {
                     response = response.data;

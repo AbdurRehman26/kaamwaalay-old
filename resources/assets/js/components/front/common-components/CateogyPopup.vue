@@ -1,17 +1,17 @@
  <template>	
 	<div class="popup categories-popup">
-		<b-modal id="" centered hide-header=true hide-footer=true  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
+		<b-modal id="" centered hide-header hide-footer  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
 		    	<div class="category-selected">
                     <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue)+')'}">
                     </div>
-                    <h4>{{selectedValue.title}}</h4>
+                    <h4>{{selectedValue ? selectedValue.title : ''}}</h4>
                     <i @click="onHidden" class="icon-close2"></i>
 		    	</div>
                 <div class="category-search-field">
-                    <h5>What do you need general carpentry service?</h5>
+                    <h5>What do you need general {{selectedValue ? selectedValue.title : ''}}?</h5>
                     <div class="zip-code-field">
                         <i class="icon-location"></i>
-                        <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
+                        <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
                     </div>
                     <a href="javascript:void(0);" @click="validateBeforeSubmit" class="btn btn-primary m-t-24">Continue</a>
                 </div>
@@ -49,17 +49,18 @@ export default {
             this.$refs.myModalRef.show()
         },
         hideModal () {
+            this.errorBag.clear();
             this.$refs.myModalRef.hide()
         },
         onHidden() {
+            this.errorBag.clear();
             this.$emit('HideModalValue');
         },
         categorydetail(){
             this.scrollToTop();
-            this.$router.push({name: 'Explore_Detail'});
+            this.$emit('onSubmit', this.zip);
         },
         scrollToTop() {
-            this.$emit('onSubmit', this.zip);
         },        
     },
 
@@ -76,7 +77,6 @@ export default {
             this.selectedValue = value;
         },
         zip(val) {
-            console.log(val,88);
             if(val.length > 5) {
                 val = val.substr(0, 5);
             }

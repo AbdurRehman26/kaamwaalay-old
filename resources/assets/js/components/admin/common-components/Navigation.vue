@@ -8,11 +8,8 @@
                         <h2 class="page-title"><i :class="[$route.meta.icon]"></i>{{$route.meta.pagetitle}}</h2>
                     </div>
                     <div class="float-right">
-                        <div class="left-cog profile-block">
-                            <span class="user-img" @click="ChangePass">
-                                <img src="" alt="">
-                            </span>
-                            <div class="profile-username">
+                        <div class="left-cog profile-block">                            
+                            <div class="profile-username pointer-event" @click="ChangePass">
                                     <div class="username">{{fullName}}</div>
                                     <i class="icon-triangle-down"></i>
                            </div>
@@ -61,7 +58,6 @@ import { directive as onClickaway } from 'vue-clickaway';
             },
        },
         methods: {
-
             getAllServices() {
                 let self = this;
                 let url = 'api/service';

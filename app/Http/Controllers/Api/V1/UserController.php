@@ -28,123 +28,122 @@ class UserController extends ApiResourceController
 
         if($value == 'update'){
 
-          $rules['id'] =  'required|exists:users,id';
-          $rules['user_details.first_name']    = 'required';
-          $rules['user_details.last_name']     = 'required';
-          $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
-          $rules['user_details.profile_image']     = 'nullable|string';
-          $rules['business_details.business_type']     = 'nullable|in:business,individual';
-          
-          $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
-          $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
-          
-      }
+            $rules['id'] =  'required|exists:users,id';
+            $rules['user_details.first_name']    = 'required';
+            $rules['user_details.last_name']     = 'required';
+            $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
+            $rules['user_details.profile_image']     = 'nullable|string';
+            $rules['business_details.business_type']     = 'nullable|in:business,individual';
 
-      return $rules;
+            $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
+            $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
 
-  }
+        }
 
+        if($value == 'store') {
 
-  public function input($value='')
-  {
-    $input = request()->only(
-        'id',
-        'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
-        'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
-        'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id',
-        'user_details.status', 'user_details.state_id',  'user_details.profle_image',
-        'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
-        'business_details.years_of_experience', 'business_details.business_type',
-        'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role', 'filter_by_service', 'filter_by_roles'
-    );
+            $rule['first_name'] = 'required';
+            $rule['last_name'] = 'required';
+            $rule['email'] = 'required|email|unique:users,email|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/';
+            $rule['role_id'] = ['required', Rule::in(Role::ADMIN, Role::REVIEWER)];
+            $rule['status'] = 'required|in:active,banned'; 
 
-    $input['user_id'] = request()->user()->id;
-     
-    if($value == 'update') {
-        
-        unset(
-            $input['user_details']['email'], $input['pagination'], $input['filter_by_role'], 
-            $input['filter_by_service'], $input['filter_by_roles'], $input['keyword']
-        );
+        }
+
+        return $rules;
 
     }
 
 
-    return $input;
-}
+    public function input($value='')
+    {
+        $input = request()->only(
+            'id',
+            'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
+            'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
+            'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id',
+            'user_details.status', 'user_details.state_id',  'user_details.profle_image', 'user_details.is_profile_completed', 'user_details.stripe_token',
+            'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
+            'business_details.years_of_experience', 'business_details.business_type',
+            'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role', 'filter_by_service', 'filter_by_roles'
+        );
 
-public function changePassword(Request $request)
-{
-    $new_password = $request->get('new_password');
-    $old_password = $request->get('old_password');
-    if (\Hash::check($old_password, $request->user()->password)) {
-        if (strlen($new_password) >= 8) {
-                //change password of logged in user
-            $request->user()->password = bcrypt($new_password);
-            $request->user()->save();
-            $output = ['response' => ['data' => [],'message'=>'Password has been updated successfully.']];
-                // HTTP_OK = 200;
-            return response()->json($output, 200);
+        $input['user_id'] = request()->user()->id;
+
+        if($value == 'store') {
+
+            $input = request()->only('first_name', 'last_name', 'email', 'role_id', 'status');
+            $input['password'] = User::generatePassword();
+
+        }
+        if($value == 'update') {
+
+            unset(
+                $input['user_details']['email'], $input['pagination'], $input['filter_by_role'], 
+                $input['filter_by_service'], $input['filter_by_roles'], $input['keyword']
+            );
+
+        }
+
+        return $input;
+    }
+
+    public function changePassword(Request $request)
+    {
+        $new_password = $request->get('new_password');
+        $old_password = $request->get('old_password');
+        if (\Hash::check($old_password, $request->user()->password)) {
+            if (strlen($new_password) >= 8) {
+//change password of logged in user
+                $request->user()->password = bcrypt($new_password);
+                $request->user()->save();
+                $output = ['response' => ['data' => [],'message'=>'Password has been updated successfully.']];
+// HTTP_OK = 200;
+                return response()->json($output, 200);
+            } else {
+                return response()->json(
+                    [
+                        'message' => 'Password must be minimum 8 character long.',
+                    ], 406
+                );
+            }
         } else {
             return response()->json(
                 [
-                    'message' => 'Password must be minimum 8 character long.',
+                    'message' => 'The old password is incorrect.',
                 ], 406
             );
         }
-    } else {
-        return response()->json(
-            [
-                'message' => 'The old password is incorrect.',
-            ], 406
-        );
     }
-}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'role_id', 'status');
-        $rules = [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email|unique:users,email|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/',
-            'role_id' => ['required', Rule::in(Role::ADMIN, Role::REVIEWER)],
-            'status' => 'required|in:active,banned',
-        ];
-
-        $validator = Validator::make($data, $rules);
-        if ($validator->fails()) {
-            $code = 406;
-            $output = [
-               'message' => $validator->messages()->all(),
-           ];
-       }else{
-            //generate a password for the new users
-        $pw = User::generatePassword();
-        $data['password'] = $pw;
-        $result = $this->_repository->create($data);
-        if($result) {
-          $user = User::find($result->id);
-          event(new NewPasswordSet($user));
-          $code = 200;
-          $output = [
+/**
+* Store a newly created resource in storage.
+*
+* @param  \Illuminate\Http\Request $request
+* @return \Illuminate\Http\Response
+*/
+public function store(Request $request)
+{
+    $input = $this->input(__FUNCTION__);
+    $rules = $this->rules(__FUNCTION__);
+    $this->validate($request, $rules);
+    $result = $this->_repository->create($input);
+    if($result) {
+        $user = User::find($result->id);
+        event(new NewPasswordSet($user));
+        $code = 200;
+        $output = [
             'data' => $result,
             'message' => 'Add Admin successfully',
         ];
     }else{
-      $code = 406;
-      $output = [
-        'message' => 'An error occurred',
-    ];
-}
-}
-return response()->json($output, $code);
+        $code = 406;
+        $output = [
+            'message' => 'An error occurred',
+        ];
+    }
+    return response()->json($output, $code);
+
 }
 public function socialLogin(Request $request)
 {
@@ -170,44 +169,44 @@ public function socialLogin(Request $request)
         ];
     }else{
         if($user) {
-           unset($data['role_id']);
-           unset($data['from_sign_up']);
-           $userData['user_details'] = $data; 
-           $userData['id'] = $user->id; 
-           $result = $this->_repository->update($userData);
-           $userId = $user->id;
-       }else{
-          $data['status']  = 'active'; 
-          unset($data['from_sign_up']); 
-          $result = $this->_repository->create($data);
-          $userId = $result->id;
-      }
-      if($result) {
-        $user = User::find($userId);
-        $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
-        $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
-        $code = 200;
-        $output = [
-         'data' => $user,
-         'message' => 'Success',
-     ];
- }else{
-  $code = 406;
-  $output = [
-    'message' => 'An error occurred',
-];
-}
-}
-return response()->json($output, $code);
+            unset($data['role_id']);
+            unset($data['from_sign_up']);
+            $userData['user_details'] = $data; 
+            $userData['id'] = $user->id; 
+            $result = $this->_repository->update($userData);
+            $userId = $user->id;
+        }else{
+            $data['status']  = 'active'; 
+            unset($data['from_sign_up']); 
+            $result = $this->_repository->create($data);
+            $userId = $result->id;
+        }
+        if($result) {
+            $user = User::find($userId);
+            $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+            $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
+            $code = 200;
+            $output = [
+                'data' => $user,
+                'message' => 'Success',
+            ];
+        }else{
+            $code = 406;
+            $output = [
+                'message' => 'An error occurred',
+            ];
+        }
+    }
+    return response()->json($output, $code);
 }
 
 public function changeStatus(Request $request)
 {
     $data = $request->only('status', 'id', 'user_id');
     $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
-    
+
     request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
-    
+
     $rules = [
         'status' => 'required|in:active,banned',
         'id' => [
@@ -219,39 +218,42 @@ public function changeStatus(Request $request)
             ),
             'not_in:'.$data['user_id']
         ],
-        'user_id' => 'required|exists:users,id'
     ];
 
     $validator = Validator::make($data, $rules);
-    
+
     if ($validator->fails()) {
         $code = 406;
         $output = [
-           'message' => $validator->messages()->all(),
-       ];
+            'message' => $validator->messages()->all(),
+        ];
 
-   }else{
+    }else{
 
-    $result = $this->_repository->updateField($data);
-    if($result) {
+        $result = $this->_repository->updateField($data);
+        if($result) {
+            $userId = $data['id'];
+            $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
+            $sqlParameter = [];
+            $sqlParameter[] = $userId;
+            \DB::select($sql, $sqlParameter);
+            $code = 200;
+            $output = [
+                'data' => 'Status has been updated successfully.',
+                'message' => 'Status has been updated successfully.',
+            ];
 
-     $code = 200;
-     $output = [
-       'data' => 'Status has been updated successfully.',
-       'message' => 'Status has been updated successfully.',
-   ];
+        }else{
 
-}else{
+            $code = 406;
+            $output = [
+                'message' => 'An error occurred',
+            ];
 
- $code = 406;
- $output = [
-   'message' => 'An error occurred',
-];
+        }
+    }
 
-}
-}
-
-return response()->json($output, $code);
+    return response()->json($output, $code);
 
 }
 
@@ -268,32 +270,37 @@ public function changeAccessLevel(Request $request)
     if ($validator->fails()) {
         $code = 406;
         $output = [
-           'message' => $validator->messages()->all(),
-       ];
-   }else{
-    $result = $this->_repository->updateField($data);
-    if($result) {
-     $code = 200;
-     $output = [
-       'data' => 'Access level has been updated successfully.',
-       'message' => 'Access level has been updated successfully.',
-   ];
-}else{
- $code = 406;
- $output = [
-   'message' => 'An error occurred',
-];
-}
-}
-return response()->json($output, $code);
+            'message' => $validator->messages()->all(),
+        ];
+    }else{
+        $result = $this->_repository->updateField($data);
+        if($result) {
+            $code = 200;
+            $output = [
+                'data' => 'Access level has been updated successfully.',
+                'message' => 'Access level has been updated successfully.',
+            ];
+        }else{
+            $code = 406;
+            $output = [
+                'message' => 'An error occurred',
+            ];
+        }
+    }
+    return response()->json($output, $code);
 }
 
 
 public function getAuthUser(Request $request)
 {
     $user_id = $request->user()->id;
+    $details = $request->only('details');
 
-    $data = $this->_repository->findById($user_id);
+    $data = $this->_repository->findById(
+        $user_id,
+        false,
+        !empty($details['details']) ? $details['details'] : false
+    );
 
     $output = [
         'response' => [
@@ -301,7 +308,7 @@ public function getAuthUser(Request $request)
         ]
     ];
     $code = 200;
-        // HTTP_OK = 200;
+// HTTP_OK = 200;
 
     return response()->json($output, $code);
 

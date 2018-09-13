@@ -101,6 +101,36 @@ body{
     padding-bottom: 10px;
 }
 
+.table-area table thead tr th.p-r-30 {
+    padding-right: 30px !important;
+}
+
+.width-100 {
+    width: 100%;
+}
+.url-suffix {    
+    display: flex;
+    align-content: center;
+    align-items: center;
+    max-width: 436px;
+    padding: 0px 15px;
+    p{
+        margin-bottom: 0 !important;
+        font-weight: 700;
+        word-wrap: break-word;
+        word-break: break-all;        
+    }
+}
+.url-area{
+    padding: 0px 15px 0px 0px;
+    max-width: 46%;
+    width: 100%;    
+}
+
+.pointer-event{
+    cursor: pointer;
+}
+
 .sidewrapper {
     width: calc(100% - 260px);
     margin-left: auto;
@@ -377,6 +407,15 @@ i[active="true"]{
         color: $secondary-color;
     }
 }
+}
+
+.user-img{
+    &.bigimage {
+        width: 100%;
+        height: 120px;
+        border-radius: 7px;
+        background-size: cover;
+    }
 }
 
 
@@ -2577,9 +2616,62 @@ a.underline {
     margin-top: 27px;
 }
 
+.grid-head{
+    .topfilter {
+        float: right;
+        position: relative;
+        top: -9px;
+        margin-bottom: 4px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        label{
+            width: 73px;
+            vertical-align: middle;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;            
+        }
+        select.form-control{
+            width: 129px;
+        }
+    }
+}
+
+.grid-head {
+    h2{
+        font-size: 18px !important;
+        margin-bottom: 17px;
+    }
+}
+
+
+.feature-remove {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: -19px;
+}
+
+.capitilize option {
+    text-transform: capitalize;
+}
+
+.calculated-value.col{
+    span.tags {
+        margin-left: 10px;
+        &:first-child{
+            margin-left: 0px;
+        }
+    }
+}
+
 .add-more-featured {
-    margin-top: 34px;
-    margin-bottom: 20px;
+    /* margin-top: 34px;
+    margin-bottom: 20px; */
+    margin-top: 0px;
+    margin-bottom: 0px;    
     a {
         text-decoration: underline;
     }
@@ -2715,4 +2807,31 @@ i{
 
 .label-with-200 {
     width: 200px;
+}
+
+/* .infinite-loading-container .loading-default{
+    display : none !important;
+} */
+
+body .infinite-loading-container{
+    display: none !important;
+     i.loading-default {
+        display: none !important;
+    }
+}
+
+
+$spaceamounts: (0, 5, 10, 15, 20, 24, 25, 30, 35, 40, 45, 50, 75, 100, 130); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
 }

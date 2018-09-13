@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
+use DB;
 
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
@@ -59,7 +60,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
-            $data->url_suffix = $data->url_suffix? $data->url_suffix : Storage::url(config('uploads.service.url.folder').'/');
+            $data->url_suffix = $data->url_suffix? $data->url_suffix : url(config('view.service.url.folder')).'/';
         }
         
         return $data;
@@ -150,6 +151,28 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where('is_featured', '=', (int)$data['filter_by_featured']);
 
         }
+        if(isset($data['filter_by_status'])) {
+                        
+            $this->builder = $this->builder->where('status', '=', (int)$data['filter_by_status']);
+
+        }
+        if(isset($data['service_name'])) {
+            $this->builder = $this->builder->where('url_suffix', '=', $data['service_name'])->where('status', '=', 1);
+            
+        }
+        if(isset($data['filter_by_related_services'])) {
+            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
+
+            $isParent = $this->builder->whereNull('parent_id')->get()->toArray();
+            if(!$isParent) {
+                $this->builder = $this->getPopularServices();
+            }else {
+                $this->builder = $this->model->where('id', '!=', $data['filter_by_related_services'])->where('parent_id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
+                if(!$this->builder->get()->toArray()) {
+                    $this->builder = $this->getPopularServices();
+                }
+            }
+        }
         if (!empty($data['keyword'])) {
 
             // $this->builder = $this->builder->where(function($query) use($data){
@@ -189,7 +212,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         $modelData['data'] = [];
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
-                $services = $this->model->orderBy('created_at', 'desc')->whereNull('parent_id')->get();
+                $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
                 foreach ($services as $key => $value) {
                     // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
                      $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->get();
@@ -207,7 +230,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     return parent::findByAll($pagination, $perPage, $data);
     }
 
-
+    public function getPopularServices() {
+        return $this->model
+                ->leftJoin('jobs', function ($join) {
+                    $join->on('jobs.service_id', '=', 'services.id');
+                })
+                ->select('services.id')
+                ->groupby('service_id')   
+                ->orderBy(DB::raw('COUNT(service_id)'), 'desc')
+                ->limit(3);
+    }
     public function deleteById($id)
     {
         $model = $this->model->find($id);

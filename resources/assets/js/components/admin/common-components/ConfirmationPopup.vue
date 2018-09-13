@@ -5,10 +5,10 @@
             <div>
                 <p>Are you sure you want to perform this action?</p>
             </div>
-             <div slot="modal-footer" class="w-100">
-                        <button @click.prevent="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit
-                            <loader></loader>
-                        </button>
+            <div slot="modal-footer" class="w-100">
+                <button @click.prevent="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit
+                    <loader></loader>
+                </button>
             </div>
         </b-modal>
     </div>
@@ -16,9 +16,9 @@
 
 <script>
 
-export default {
+    export default {
 
-    props : ['showModalProp','url','data'],
+        props : ['showModalProp','url','data'],
         data () {
             return {
                 records : [],
@@ -40,49 +40,50 @@ export default {
             onHidden(){
                 this.$emit('HideModalValue');
                 this.$parent.actionConfirmation = false
-            },submit(){
+            },
+            submit(){
                 let self = this
                 self.loading = true
                 self.$http.put(self.requestUrl,self.requestData)
-                    .then(response => {
-                            self.successMessage= response.data.message
-                            self.$parent.currentRecord.status = self.requestData.status
-                            setTimeout(function(){
-                                self.successMessage=''
-                                self.loading = false
-                                self.$parent.currentRecord.status = self.requestData.status
-                                self.$parent.actionConfirmation = false
-                                self.hideModal()
-                            }, 2000);
-                    })
-                    .catch(error => {
+                .then(response => {
+                    self.successMessage= response.data.message
+                    self.$parent.currentRecord.status = self.requestData.status
+                    setTimeout(function(){
+                        self.successMessage=''
                         self.loading = false
-                        self.errorMessage =error.response.data.message[0];
-                        setTimeout(function(){
-                            self.errorMessage=''
-                        }, 2000);
-                    })
+                        self.$parent.currentRecord.status = self.requestData.status
+                        self.$parent.actionConfirmation = false
+                        self.hideModal()
+                    }, 2000);
+                })
+                .catch(error => {
+                    self.loading = false
+                    self.errorMessage =error.response.data.message[0];
+                    setTimeout(function(){
+                        self.errorMessage=''
+                    }, 2000);
+                })
             },
         },
 
-    watch:{
-        showModalProp(value){
+        watch:{
+            showModalProp(value){
 
-            if(value){
-                this.showModal();
-            }
-            if(!value){
-                this.hideModal();
-            }
+                if(value){
+                    this.showModal();
+                }
+                if(!value){
+                    this.hideModal();
+                }
 
+            },
+            url(value){
+                this.requestUrl = value
+            },
+            data(value){
+                this.requestData = value
+            }
         },
-        url(value){
-            this.requestUrl = value
-        },
-        data(value){
-            this.requestData = value
-        }
-    },
-}
+    }
 
 </script>

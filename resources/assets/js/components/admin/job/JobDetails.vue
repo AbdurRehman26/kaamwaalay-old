@@ -102,8 +102,9 @@
                                     </b-col>
                                     <b-col class="calculated-value">
                                         <div class="gallery-pic">
-                                            <div class="gallery-item" v-for="(n, index) in record.images" :data-index="index">
-                                                <img @click="open($event)" :src="n.url">
+                                            
+                                            <div class="gallery-item" v-for="(n, index) in record.jobImages" :data-index="index">
+                                                <img @click="open($event)" :src="n">
                                             </div>
                                         </div>
                                     </b-col>
@@ -132,7 +133,9 @@
                                         <p><strong class="title-head">Bidding Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a @click="biddingdetails(record.id)" href="javascript:void(0);">See All</a>
+
+                                        <router-link :to="{name: 'bidding.details', params : {jobId : record.id}}">See All</router-link>
+
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>
@@ -174,12 +177,18 @@
                     self.record = response.data;
                     
                 },
-                biddingdetails(id){
-                    this.$router.push({name: 'bidding.details', params : {jobId : id}});
-                },
-                open (e) {            
-                    fancyBox(e.target, this.imageList);
-                }                
+                open (e) {
+                    let jobImages = [];
+
+                    for (var i = 0 ; i < this.record.jobImages.length; i++) {
+                        let data = {
+                            url : this.record.jobImages[i]
+                        };
+
+                        jobImages.push(data);
+                    }
+                    fancyBox(e.target, jobImages);
+                }               
             },    
         }
 

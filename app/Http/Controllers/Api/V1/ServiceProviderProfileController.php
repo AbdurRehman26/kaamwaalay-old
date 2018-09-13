@@ -18,28 +18,39 @@ class ServiceProviderProfileController extends ApiResourceController
         $rules = [];
 
         if($value == 'index'){
-          $rules['pagination'] =  'nullable|boolean';
-          $rules['keyword']    = 'nullable|string';
-          $rules['filter_by_business_type'] = 'nullable|in:business,individual';
-      }
+            $rules['pagination'] =  'nullable|boolean';
+            $rules['keyword']    = 'nullable|string';
+            $rules['filter_by_business_type'] = 'nullable|in:business,individual';
+        }
 
-      return $rules;
+        return $rules;
 
-  }
+    }
 
 
-  public function input($value='')
-  {
-    $input = request()->only(
-        'id', 'pagination', 'keyword',
-        'filter_by_business_type', 'filter_by_service',
-        'user_rating', 'zip', 'filter_by_featured', 'is_approved', 'user_detail', 'is_verified'
-    );
+    public function input($value='')
+    {
+        $input = request()->only(
+            'id', 'pagination', 'keyword',
+            'filter_by_business_type', 'filter_by_service',
+            'user_rating', 'zip', 'filter_by_featured', 'is_approved', 'user_detail', 'is_verified',
+            'filter_by_top_providers'
+        );
 
-    if (request()->user()) {
-      $input['user_id'] = request()->user()->id;
-  }
-  
-  return $input;
-}
+        if (request()->user()) {
+            $input['user_id'] = request()->user()->id;
+        }
+
+        if($value != 'update'){
+            unset($input['is_verified']);
+        }
+
+        if($value == 'update'){
+            unset($input['user_id']);
+        }
+
+
+        return $input;
+    }
+
 }
