@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail">
+	<div class="category-detail" v-if="service">
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
@@ -160,29 +160,27 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['zip', 'serviceName'],
-	 	data () {
-	    	return {
-				max: 6,
-				noRecordFound: false,
-				btnLoading: false,
-				options: [],
-				zipCode: '',
-				isTouched: false,
-				searchValue: '',
-				isLoading: false,
-            	loading : false,
-				pagination: '',
-				records : [],
-				url: '',
-				serviceProviderUrl : null,
-				service: '',
-				relatedServices: '',
-				loading: false,
-
-    	}
+	props: ['zip', 'serviceName'],
+ 	data () {
+    	return {
+			max: 6,
+			noRecordFound: false,
+			btnLoading: false,
+			options: [],
+			zipCode: '',
+			isTouched: false,
+			searchValue: '',
+			isLoading: false,
+        	loading : false,
+			pagination: '',
+			records : [],
+			url: '',
+			serviceProviderUrl : null,
+			service: '',
+			relatedServices: '',
+			loading: false,
+		}
   	},
-
     computed : {
         requestUrl(){
             return this.serviceProviderUrl;
@@ -192,90 +190,88 @@
 	    }
     },
     methods: {
-    	
-			onSelectCategory(val) {
-				sessionStorage.setItem("zip", val);
-				this.HideModal();
-				this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
-			},
-			changecategorypopup(service) {
-				this.selectedService = service;
-				if(sessionStorage['zip']) {
-					this.onSelectCategory(sessionStorage['zip']);
-				}else {
-					this.categoryval = true;	
-				}
-			},
-	    	filterRelatedServices (subservices) {
-				if(subservices.length > 3) {
-					subservices = subservices.slice(0,3);
-				}
+		onSelectCategory(val) {
+			sessionStorage.setItem("zip", val);
+			this.HideModal();
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
+		},
+		changecategorypopup(service) {
+			this.selectedService = service;
+			if(sessionStorage['zip']) {
+				this.onSelectCategory(sessionStorage['zip']);
+			}else {
+				this.categoryval = true;	
+			}
+		},
+    	filterRelatedServices (subservices) {
+			if(subservices.length > 3) {
+				subservices = subservices.slice(0,3);
+			}
+			return subservices;
+		},
+		getRemainingSubServices (subservices) {
+			if(subservices.length > 3) {
+				subservices = subservices.slice(3);
 				return subservices;
-			},
-			getRemainingSubServices (subservices) {
-				if(subservices.length > 3) {
-					subservices = subservices.slice(3);
-					return subservices;
-				}
-				return [];
-			},
-	    	dispatchAction (actionName) {
-				this.searchValue = '';
-				this.options = [];
+			}
+			return [];
+		},
+    	dispatchAction (actionName) {
+			this.searchValue = '';
+			this.options = [];
+			this.loading = false;
+		},
+	    limitText (count) {
+	      return `and ${count} other services`
+	    },
+        validateBeforeSubmit() {
+            this.$validator.validateAll().then((result) => {
+                if (result && !this.loading) {
+                    this.ServiceProviderPage();
+                    this.errorMessage = "";
+                    return;
+                }
+                this.errorMessage = this.errorBag.all()[0];
+            });
+        },  
+		ServiceProviderPage() {
+			this.isTouched = false;
+			if(!this.searchValue) {
+				this.isTouched = true;
+				return;
+			}
+			this.serviceName = this.searchValue.url_suffix;
+			this.zip = this.zipCode;
+			this.getService(true); 
+		},
+		onTouch () {
+			this.options = [];
+			this.loading = false;
+	      	this.isTouched = true;
+	    },
+		asyncFind: _.debounce(function(query) {
+			let self = this;
+
+			this.loading = true;
+			if(!query) {
 				this.loading = false;
-			},
-		    limitText (count) {
-		      return `and ${count} other services`
-		    },
-            validateBeforeSubmit() {
-                this.$validator.validateAll().then((result) => {
-                    if (result && !this.loading) {
-                        this.ServiceProviderPage();
-                        this.errorMessage = "";
-                        return;
-                    }
-                    this.errorMessage = this.errorBag.all()[0];
-                });
-            },  
+			}
+			if(!query || query.length < 3) {
+				return;
+			};
+	        this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
+			this.isLoading = true;
+			this.$http.get(this.searchUrl).then(response => {
+				response = response.data.response;
+				self.options = response.data;
+				self.isLoading = false;
 
-			ServiceProviderPage() {
-				this.isTouched = false;
-				if(!this.searchValue) {
-					this.isTouched = true;
-					return;
-				}
-				this.serviceName = this.searchValue.url_suffix;
-				this.zip = this.zipCode;
-				this.getService(); 
-			},
-			onTouch () {
-				this.options = [];
-				this.loading = false;
-		      	this.isTouched = true;
-		    },
-			asyncFind: _.debounce(function(query) {
-				let self = this;
-
-				this.loading = true;
-				if(!query) {
-					this.loading = false;
-				}
-				if(!query || query.length < 3) {
-					return;
-				};
-		        this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
-				this.isLoading = true;
-				this.$http.get(this.searchUrl).then(response => {
-					response = response.data.response;
-					self.options = response.data;
-					self.isLoading = false;
-
-				}).catch(error=>{
-				});
-			}, 1000),
-	        getImage(img) {
-	        	return img? img : 'images/dummy/image-placeholder.jpg';
-	        },
+			}).catch(error=>{
+			});
+		}, 1000),
+        getImage(img) {
+        	return img? img : 'images/dummy/image-placeholder.jpg';
+        },
     	AddCustomer() {
     		this.customer = true;
     	},
@@ -296,15 +292,23 @@
         	this.$router.push({name: 'Service_Provider_Detail'});
         	window.scrollTo(0,0);
 		},
-		getService() {
+		getService(isRoute = false) {
 			let self = this;
-			this.checkRoute();
+			if(isRoute) {
+				sessionStorage.setItem('zip', this.zipCode);
+				this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			}
+			if(this.zip) {
+				this.checkRoute();
+			}else {
+				this.url  = 'api/service/?service_name=' + this.serviceName;
+			}
 			this.btnLoading = true;
-
 			this.$http.get(this.url).then(response => {
 				response = response.data.response;
 				if(!response.data.length) {
-					this.$router.push({name: '404'});
+					//this.$router.push({name: '404'});
+					return;
 				}
 				self.service = response.data[0];
 				self.getRelatedServices();
@@ -312,7 +316,6 @@
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {
-
 					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
 				}
 
@@ -344,10 +347,17 @@
             self.pagination = response.pagination;
         },
         checkRoute() {
-        	this.zipCode = this.zip? this.zip : '';
+        	this.zipCode = this.zip? this.zip : this.zipCode;
 			if(typeof(this.serviceName) != "undefined") {
 				this.url  = 'api/service/?service_name=' + this.serviceName;
 			}
+        	if(typeof(this.zip) != "undefined") {
+        		let val = this.zip;
+				if(val.length > 5) {
+					val = val.substr(0, 5);
+				}
+        		this.url += '&zip=' + val;
+        	}
 			if(!this.zipCode) {
 				this.validateBeforeSubmit();
 			}
@@ -361,15 +371,19 @@
 	watch: {
 		serviceName(val) {
 			this.serviceName = val;
-			this.getService();
+			//this.getService();
 		},
 		zip(val) {
 			if(val.length > 5) {
 				val = val.substr(0, 5);
 			}
 			this.zip = val;
+		},
+		zipCode(val) {
+			if(val.length > 5) {
+				val = val.substr(0, 5);
+			}
 			this.zipCode = val; 
-			console.log(this.zipCode);
 		},
 		searchValue(val) {
 			if(val == null) {
@@ -378,7 +392,7 @@
 		}
 	},
     mounted(){
-		this.getService();
+		this.getService(false);
 	},
 
     }

@@ -403,6 +403,15 @@ $section-padding-sm:20px 0px;
     text-transform: capitalize;
 }
 
+.invalid{
+     .multiselect__tags {
+        border-color: $danger-color !important;
+    }
+    .input.form-control{
+        border-color: $danger-color !important;   
+    }
+}
+
     .service-professional{
          .multiselect__tags {
             padding: 0px !important;
