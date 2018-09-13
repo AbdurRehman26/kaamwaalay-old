@@ -155,6 +155,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
         $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
+
     }
 
     return $data;

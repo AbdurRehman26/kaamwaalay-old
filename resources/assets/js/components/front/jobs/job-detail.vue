@@ -164,12 +164,10 @@
 
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
 
-                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showchatpanel()" class="btn btn-primary">Chat</a>													
+                                    <a v-if="!bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
+                                    @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary"> Award Job</a>
 
-                                    <a v-if="!bid.is_tbd && canAwardJob && isMyJob" href="javascript:void(0);" 
-                                    @click.prevent="bidder = bid; awardJob = true;" class="btn btn-primary">Award Job</a>
-
-                                    <a v-if="!jobAwarded && canAllowVisit && isMyJob" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
+                                    <a v-if="!jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" >Modify Bid</a>   
 
@@ -177,7 +175,7 @@
                                         Write Review
                                     </a>
 
-                                    <a v-if="(isMyJob || canChat) && !jobAwarded" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="(isMyJob || canChat) && !jobAwarded && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -191,10 +189,10 @@
             <div class="col-md-3 p-l-0 p-r-0">
 
                 <div class="service-provider">
-                    <div v-if="isMyJob && canInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
+                    <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobimage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>14 service providers available around you related to concrete flooring.</p>
-                        <a href="javascript:void(0);" @click="FindInvite" class="btn btn-primary">Find &amp; Invite</a>				
+                        <router-link href="javascript:void(0);" class="btn btn-primary" :to="{name: 'Explore_Detail'}">Find &amp; Invite</router-link>				
                     </div>
 
                     <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
@@ -206,7 +204,7 @@
                     </button>
 
                     <a href="javascript:void(0);" v-if="isMyJob && canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
+                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" @click.prevent="confirmPopupShow = true;" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
                     <a v-if="!isMyJob && !myBidValue && !jobAwarded" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
 
@@ -216,7 +214,7 @@
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <a v-if="(isMyJob || canChat) && !jobAwarded" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!isMyJob && canChat && !jobAwarded && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                     <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -241,6 +239,9 @@
 
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
 <vue-common-methods v-if="isMyJob" :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
+
+<confirmation-popup @form-updated="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
+
 
 </div>
 </template>
@@ -281,7 +282,11 @@
                 errorMessage: '',
                 successMessage: '',
                 showBidPopup : false,
-                showChatPopup : false
+                showChatPopup : false,
+                confirmPopupShow : false,
+                formData : {
+
+                }
             }
         },
         computed : {
@@ -292,7 +297,7 @@
                 return this.record.awarded_to;
             },
             canInvite(){
-                if(this.jobBids && Object.keys(this.record).length){
+                if(Object.keys(this.record).length){
                     return this.record.status != 'cancelled' && !this.record.awarded_to  && Object.keys(this.jobBids) && !this.jobBids.data.length;
                 }
                 return false;
@@ -318,11 +323,6 @@
             canAwardJob(){
                 return !this.record.awarded_to && this.record.status != 'cancelled';
             },
-            canAllowVisit(){
-                if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.is_visit_required && this.record.my_bid.status == "pending";
-                }
-            },
             isMyJob(){
                 if(Object.keys(this.record).length){
                     let user = JSON.parse(this.$store.getters.getAuthUser);
@@ -342,138 +342,154 @@
             },
             visitAllowed(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.my_bid.status == "visit_allowed";
+                    return this.record.status != 'cancelled' && this.record.my_bid.status == "visit_allowed";
                 }
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return parseInt(this.record.my_bid.status == "visit_allowed" || this.record.my_bid.amount || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && parseInt(this.record.my_bid.status == "visit_allowed" || this.record.my_bid.amount || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
                 if(Object.keys(this.record).length){
-                    return  this.record.can_message;
+                    return this.record.can_message;
                 }
+            },
+            submitUrl(){
+                if(this.record){  
+                    this.formData.status = 'cancelled';
+                    this.formData.id = this.record.id;
+                    return 'api/job/' +this.record.id;
+                }
+            },
+            jobCancelled(){
+             if(Object.keys(this.record).length){
+                return this.record.status == 'cancelled'
+            } 
+        }
+    },
+    methods: {
+        formUpdated(){
+            let newDate  = new Date().getMilliseconds();
+
+            this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
+            this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
+        },
+        formSubmitted(response){
+
+            this.reSendCall();
+
+            if(!response.data.is_archived && response.data.status == 'completed')
+            {
+                this.showReviewForm = true;
             }
+
         },
-        methods: {
-            formSubmitted(response){
+        reSendCall(){
+            let self = this;
+            self.forceValue = true;
+            self.jobBids = {
+                data : [],
+                pagination : false
+            };
+            setTimeout(function () {
+                self.loading = false;
+                self.forceValue = false;
+            }, 3000);
 
-                this.reSendCall();
+        },
+        getResponse(response){
 
-                if(!response.data.is_archived && response.data.status == 'completed')
-                {
-                    this.showReviewForm = true;
-                }
+            this.jobBids = {
+                data : [],
+                pagination : []
+            };
 
-            },
-            reSendCall(){
-                let self = this;
-                self.forceValue = true;
-                self.jobBids = {
-                    data : [],
-                    pagination : false
-                };
-                setTimeout(function () {
-                    self.loading = false;
-                    self.forceValue = false;
-                }, 3000);
+            this.record = response.data;
 
-            },
-            getResponse(response){
+            let user = JSON.parse(this.$store.getters.getAuthUser);
 
-                this.jobBids = {
-                    data : [],
-                    pagination : []
-                };
+            if(this.record.user_id != user.id && this.record.my_bid){
+                this.jobBids.data.push(this.record.my_bid);                    
+            }
 
-                this.record = response.data;
+        },
+        getBidsResponse(response){
 
-                let user = JSON.parse(this.$store.getters.getAuthUser);
+            for (var i = 0; i < response.data.length; i++) {
+                this.jobBids.data.push(response.data[i]);    
+            }
+            this.jobBids.pagination = response.pagination;
+            this.jobBids.showInvite = true;
+            console.log(this.jobBids);
+        },
+        open (e) {
+            let jobImages = [];
 
-                if(this.record.user_id != user.id && this.record.my_bid){
-                    this.jobBids.data.push(this.record.my_bid);                    
-                }
-
-            },
-            getBidsResponse(response){
-
-                for (var i = 0; i < response.data.length; i++) {
-                    this.jobBids.data.push(response.data[i]);    
-                }
-                this.jobBids.pagination = response.pagination;
-
-            },
-            open (e) {
-                let jobImages = [];
-
-                for (var i = 0 ; i < this.record.jobImages.length; i++) {
-                    let data = {
-                        url : this.record.jobImages[i]
-                    };
-
-                    jobImages.push(data);
-                }
-                fancyBox(e.target, jobImages);       
-            },
-            FindInvite(){
-                this.$router.push({name: 'Explore_Detail'});
-            },
-            Modify(){
-                this.$router.push({name: 'job.view' , params : { id : this.record.id }});
-            },        
-            VisitPopup(){
-                this.visitpopup = true;
-            },
-            VisitApproval(){
-                this.visitjob = true;
-            },
-            BidModify(){
-                this.bidpopup = true;
-            },
-            HideModal(){
-                this.awardJob = false;
-                this.visitjob = false;
-                this.visitpopup = false;
-                this.bidpopup = false;
-                this.showReviewForm = false;
-            },
-            showchatpanel(){
-                this.isShowing=true;
-            },
-            showProfile(id){
-                this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
-            },
-            markCompletedByCustomer(){
-                this.loading = true;
-
+            for (var i = 0 ; i < this.record.jobImages.length; i++) {
                 let data = {
-                    status : 'completed',
-                    id : this.record ? this.record.id : ''
+                    url : this.record.jobImages[i]
                 };
-                this.submitFormData = data;
 
-                this.submit = true;
-            },
-            markJobArchive(){
-                this.loading = true;
-
-                let data = {
-                    is_archived : 1,
-                    id : this.record ? this.record.id : ''
-                };
-                this.submitFormData = data;
-
-                this.submit = true;
-
-            },
+                jobImages.push(data);
+            }
+            fancyBox(e.target, jobImages);       
         },
-        components: {
-            StarRating
+        Modify(){
+            this.$router.push({name: 'job.view' , params : { id : this.record.id }});
+        },        
+        VisitPopup(){
+            this.visitpopup = true;
         },
-
-        mounted(){
+        VisitApproval(){
+            this.visitjob = true;
         },
+        BidModify(){
+            this.bidpopup = true;
+        },
+        HideModal(){
+            this.awardJob = false;
+            this.visitjob = false;
+            this.visitpopup = false;
+            this.bidpopup = false;
+            this.showReviewForm = false;
+        },
+        showchatpanel(){
+            this.isShowing=true;
+        },
+        showProfile(id){
+            this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
+        },
+        markCompletedByCustomer(){
+            this.loading = true;
 
-    }
+            let data = {
+                status : 'completed',
+                id : this.record ? this.record.id : ''
+            };
+            this.submitFormData = data;
+
+            this.submit = true;
+        },
+        markJobArchive(){
+            this.loading = true;
+
+            let data = {
+                is_archived : 1,
+                id : this.record ? this.record.id : ''
+            };
+            this.submitFormData = data;
+
+            this.submit = true;
+
+        },
+    },
+    components: {
+        StarRating
+    },
+
+    mounted(){
+    },
+
+}
 </script>

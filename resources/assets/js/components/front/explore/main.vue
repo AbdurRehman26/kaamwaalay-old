@@ -144,6 +144,7 @@ export default {
 		dispatchCloseAction (actionName) {
 			this.options = [];
 			this.loading = false;
+			this.onTouch();
 		},
         getImage(img) {
         	return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
