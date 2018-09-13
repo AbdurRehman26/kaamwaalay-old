@@ -192,7 +192,7 @@
 	    }
     },
     methods: {
-
+    	
 			onSelectCategory(val) {
 				sessionStorage.setItem("zip", val);
 				this.HideModal();

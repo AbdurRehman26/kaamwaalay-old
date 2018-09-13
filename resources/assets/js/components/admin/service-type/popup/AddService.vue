@@ -66,7 +66,7 @@
                 <p>{{url_prefix}}</p>
             </div>
             <div class="url-area">
-                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="url" v-validate="'required|max:50'" :class="['form-control' , errorBag.first('url') ? 'is-invalid' : '']">
+                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="URL Suffix" v-validate="{ required: true, regex: /^[0-9a-z\-]+$/, max:50 }" :class="['form-control' , (errorBag.first('URL Suffix') || isInalidSuffix) ? 'is-invalid' : '']">
             </div>
         </div>
 
@@ -94,6 +94,7 @@
         props: ['showModalProp', 'isUpdate', 'list'],
         data () {
             return {
+                isInalidSuffix: false,
                 showRadios: true,
                 errorMessage : '',
                 successMessage : '',
@@ -189,7 +190,7 @@
                     if (result && !this.errorBag.all().length) {
                         if(str.length == 0) {
                             this.errorBag.add({
-                                field: 'url',
+                                field: 'URL Suffix',
                                 msg: 'The url suffix is required.',
                                 rule: 'required',
                                 id: 7,
@@ -198,7 +199,7 @@
                             return;
                         } if(!regex.test(str)) {
                             this.errorBag.add({
-                                field: 'url',
+                                field: 'URL Suffix',
                                 msg: 'The url suffix is invalid. Please use only lower case letters, numbers & hyphens.',
                                 id: 7,
                             });
@@ -370,6 +371,14 @@
         },
 
         watch: {
+            'formData.url_suffix' (val) {
+                var regex = /^[0-9a-z\-]+$/;
+                if(val.length == 0 || !regex.test(val)) {
+                    this.isInalidSuffix = true;
+                    return;
+                } 
+                this.isInalidSuffix = false;
+            },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
