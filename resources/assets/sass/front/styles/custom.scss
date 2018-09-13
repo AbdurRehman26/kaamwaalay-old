@@ -434,9 +434,18 @@ $section-padding-sm:20px 0px;
             span{
                 position: absolute;
                 width: 100%;                
+                > span.multiselect__single {
+                    display: none;
+                }                
             }          
             span.multiselect__single{
-                display: none;
+                /* display: none; */
+                display: block;
+                top: 11px;
+                left: 10px;
+                background-color: #fff;
+                width: 100%;
+                padding: 5px 0px;                
             }
         }
         .multiselect__content-wrapper {
@@ -479,12 +488,19 @@ $section-padding-sm:20px 0px;
                 }                
             }
             li{
-                border-bottom: 1px solid;
-                padding: 5px 10px;
+                border-bottom: 1px solid;                
                 border-color: #B2B2B2 !important;
-                &:hover,&:focus{
-                    background-color: $primary-color-md;
-                    color: #fff;
+                span{
+                    display: block;
+                    padding: 5px 10px;
+                    &:hover,&:focus{                        
+                        background-color: $primary-color-md;
+                        color: #fff;                    
+                    }
+                    &.multiselect__option--highlight{
+                        background-color: $primary-color-md;
+                        color: #fff;
+                    }
                 }
             }
         }          
@@ -1515,6 +1531,18 @@ $section-padding-sm:20px 0px;
     }
 }
 
+#change-pass{
+    .modal-body{
+        padding: 28px 0px 10px 0px;
+    }
+    div[slot="modal-footer"] {
+        float: left;
+        width: 100%;
+        border-top: 1px solid;
+        padding-top: 11px;
+    }
+}
+
 .profile-form-section {
     position: relative;
     margin-bottom: 40px;
@@ -1563,7 +1591,14 @@ $section-padding-sm:20px 0px;
             line-height: 103px;      
             &:after{
                 content: "\E90F";
-                font-family: 'icomoon';            
+                font-family: 'icomoon';
+                left: 0;
+                right: 0;
+                display: block;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                bottom: 0;                            
             }
             @include mobile{
                 top: -29%;

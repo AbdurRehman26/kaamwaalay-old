@@ -42,6 +42,9 @@
             </div>
 
             <div class="attach-job-files">
+                <div class="form-label-heading">
+                    <label>Attach Photo</label>
+                </div>
                 <div class="margin-bottom-20px row" v-for="(image, index) in numOfImages">
                     <div class="col-md-6">
                         <div class="form-group custom-file">

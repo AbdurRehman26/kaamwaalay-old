@@ -14952,8 +14952,18 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
 }
 
-.service-professional .multiselect__tags span.multiselect__single {
+.service-professional .multiselect__tags span > span.multiselect__single {
   display: none;
+}
+
+.service-professional .multiselect__tags span.multiselect__single {
+  /* display: none; */
+  display: block;
+  top: 11px;
+  left: 10px;
+  background-color: #fff;
+  width: 100%;
+  padding: 5px 0px;
 }
 
 .service-professional .multiselect__content-wrapper {
@@ -14998,12 +15008,21 @@ input[type=number]::-webkit-outer-spin-button {
 
 .service-professional .multiselect__content-wrapper li {
   border-bottom: 1px solid;
-  padding: 5px 10px;
   border-color: #B2B2B2 !important;
 }
 
-.service-professional .multiselect__content-wrapper li:hover,
-.service-professional .multiselect__content-wrapper li:focus {
+.service-professional .multiselect__content-wrapper li span {
+  display: block;
+  padding: 5px 10px;
+}
+
+.service-professional .multiselect__content-wrapper li span:hover,
+.service-professional .multiselect__content-wrapper li span:focus {
+  background-color: #8200FF;
+  color: #fff;
+}
+
+.service-professional .multiselect__content-wrapper li span.multiselect__option--highlight {
   background-color: #8200FF;
   color: #fff;
 }
@@ -16098,6 +16117,17 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+#change-pass .modal-body {
+  padding: 28px 0px 10px 0px;
+}
+
+#change-pass div[slot="modal-footer"] {
+  float: left;
+  width: 100%;
+  border-top: 1px solid;
+  padding-top: 11px;
+}
+
 .profile-form-section {
   position: relative;
   margin-bottom: 40px;
@@ -16152,6 +16182,13 @@ input[type=number]::-webkit-outer-spin-button {
 .profile-form-section .personal-detail .profile-image-placeholder:after {
   content: "\E90F";
   font-family: 'icomoon';
+  left: 0;
+  right: 0;
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 @media (max-width: 767px) {
