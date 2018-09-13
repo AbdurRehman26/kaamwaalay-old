@@ -22,19 +22,19 @@
 				<div class="row">
 					<div class="col-md-10 p-r-0">
 			            <div class="search-filter m-b-0">
-							<div class="custom-multi multifull" :class="{'invalid': isInvalid }">
-								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="false" 
+							<div class="custom-multi" :class="{'invalid': isInvalid }">
+								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="false" 
 								@select="dispatchAction" @keyup.enter="validateBeforeSubmit">
 								</multiselect>
 							</div>
 			                <div class="container-zip-code">
 								<i class="icon-location"></i>
-								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric|min:5'" @keyup.enter="validateBeforeSubmit">
+								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
 							</div>
 						</div>			
 					</div>
 					<div class="col-md-2 p-r-0">
-						<button class="btn btn-primary" @click="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" :disabled="loading">
+						<button class="btn btn-primary" @click.prevent="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" :disabled="loading">
 							<span>Search</span>
             				<loader></loader>
 						</button>
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 
-		<h5 class="text-center enterzip" v-if="!this.zipCode">Please enter a zip code to view the list of service providers accordingly.</h5>
+		<h5 class="text-center enterzip" v-if="!zip">Please enter a zip code to view the list of service providers accordingly.</h5>
          <no-record-found v-else-if="noRecordFound"></no-record-found>
 		<div class="job-post-container section-padd sm" v-if="!noRecordFound">
 			<div class="container md">
@@ -151,6 +151,7 @@
 				<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
 			</div>        	
         </div>
+	<category-popup @HideModalValue="hideZipModal" :showModalProp="categoryPopup" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
 	</div>
 	</div>
 </template>
@@ -179,6 +180,8 @@
 			service: '',
 			relatedServices: '',
 			loading: false,
+			categoryPopup: false,
+			selectedService: '',
 		}
   	},
     computed : {
@@ -191,16 +194,16 @@
     },
     methods: {
 		onSelectCategory(val) {
-			sessionStorage.setItem("zip", val);
-			this.HideModal();
+			this.hideZipModal();
+			localStorage.setItem("zip", val);
 			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
 		},
 		changecategorypopup(service) {
 			this.selectedService = service;
-			if(sessionStorage['zip']) {
-				this.onSelectCategory(sessionStorage['zip']);
+			if(localStorage['zip']) {
+				this.onSelectCategory(localStorage['zip']);
 			}else {
-				this.categoryval = true;	
+				this.categoryPopup = true;	
 			}
 		},
     	filterRelatedServices (subservices) {
@@ -241,8 +244,8 @@
 				return;
 			}
 			this.serviceName = this.searchValue.url_suffix;
-			this.zip = this.zipCode;
-			this.getService(true); 
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.serviceName, zip : this.zipCode }});
+			//this.getService(); 
 		},
 		onTouch () {
 			this.options = [];
@@ -276,7 +279,6 @@
     		this.customer = true;
     	},
         ViewCustomerDetail() {
-            /*this.viewcustomer = true;*/
             this.$router.push({name: 'customerdetail'});
             window.scrollTo(0,0);
         },
@@ -288,21 +290,17 @@
             this.viewcustomer = false;
             this.changestatus = false;
         },
-        servicedetail(){        	
-        	this.$router.push({name: 'Service_Provider_Detail'});
-        	window.scrollTo(0,0);
+
+		hideZipModal(){
+			this.categoryPopup = false;
 		},
-		getService(isRoute = false) {
+        servicedetail(){        	
+        	window.scrollTo(0,0);
+        	this.$router.push({name: 'Service_Provider_Detail'});
+		},
+		getService() {
 			let self = this;
-			if(isRoute) {
-				sessionStorage.setItem('zip', this.zipCode);
-				this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
-			}
-			if(this.zip) {
-				this.checkRoute();
-			}else {
-				this.url  = 'api/service/?service_name=' + this.serviceName;
-			}
+			this.checkRoute();
 			this.btnLoading = true;
 			this.$http.get(this.url).then(response => {
 				response = response.data.response;
@@ -319,11 +317,10 @@
 					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
 				}
 
+        		window.scrollTo(0,0);
+
 			}).catch(error=>{
-		    	if(error.status == 403) {
-		    		self.pagination = false;
-    			}
-    			
+		    	self.pagination = false;
 				self.btnLoading = false;
 			});
 		},
@@ -334,9 +331,7 @@
 		    	response = response.data.response;
 				self.relatedServices = response.data;
 		    }).catch(error=>{
-		    	if(error.status == 403) {
-		    		self.pagination = false;
-    			}
+		    	self.pagination = false;
 		    });
 		},
         getProviderRecords(response){
@@ -371,13 +366,14 @@
 	watch: {
 		serviceName(val) {
 			this.serviceName = val;
-			//this.getService();
+			this.getService();
 		},
 		zip(val) {
 			if(val.length > 5) {
 				val = val.substr(0, 5);
 			}
 			this.zip = val;
+			this.getService();
 		},
 		zipCode(val) {
 			if(val.length > 5) {
@@ -391,8 +387,8 @@
 			}
 		}
 	},
-    mounted(){
-		this.getService(false);
+    mounted(){	
+		this.getService();
 	},
 
     }
