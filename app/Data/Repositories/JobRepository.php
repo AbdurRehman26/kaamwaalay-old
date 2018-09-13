@@ -45,10 +45,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
     {
 
         $this->builder = $this->model->join('users', 'users.id', 'jobs.user_id')
-                        ->where('users.role_id', '=', Role::CUSTOMER)
-                        ->where('users.status', '=', User::ACTIVE)
-                        ->select('jobs.id')
-                        ->orderBy('jobs.id', 'desc');
+        ->where('users.role_id', '=', Role::CUSTOMER)
+        ->where('users.status', '=', User::ACTIVE)
+        ->select('jobs.id')
+        ->orderBy('jobs.id', 'desc');
         
         if(!empty($input['filter_by_me'])) {
             $input['filter_by_user'] = request()->user()->id;            
@@ -182,7 +182,9 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
                 }
 
-
+                $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
+                $data->can_message = app('JobMessageRepository')->findByCriteria($criteria);
+                
             }
 
         }

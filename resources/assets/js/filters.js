@@ -244,11 +244,11 @@ Vue.filter('mainServiceOrChildService', function (value, sign) {
     }
 
     if(value.parent_id){
-    
+
         var signValue = typeof(sign) !== 'undefined' ? sign : '>>';
         
         serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title ;
-  
+
 
     }else{
         serviceHtml = value.title;
@@ -272,8 +272,30 @@ Vue.filter('jobPreference', function (value) {
     return obj.value;
 });
 
-Vue.filter('appendYoutubeUrl' , function (value) {
+Vue.filter('appendYoutubeUrl', function (value) {
     return 'https://www.youtube.com/embed/' + value;
 })
 
 
+Vue.filter('bidStatus', function (bid) {
+
+
+    if(typeof(bid) == 'undefined'){
+        return ;
+    }
+    
+    if(bid.is_visit_required && bid.status =='pending'){
+        return 'Visit requested';
+    }
+
+    if(bid.is_visit_required && bid.status =='visit_allowed'){
+        return 'Visit allowed';
+    }
+
+    if(bid.is_tbd){
+        return 'TBD';
+    }
+
+    return bid.amount ? '$ ' + bid.amount : 0;
+
+});
