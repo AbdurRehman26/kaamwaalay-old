@@ -165,7 +165,7 @@
 
                                 <div class="provider-bidding-btn">
 
-                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile2</a>
 
                                     <a v-if="!bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
@@ -177,8 +177,8 @@
                                     <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
-
-                                    <a v-if="(isMyJob || canChat) && !jobAwarded && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <!--v-if="(isMyJob || canChat) && !jobAwarded && !jobCancelled" -->
+                                    <a @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -216,8 +216,8 @@
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
-
-                    <a v-if="!isMyJob && canChat && !jobAwarded && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <!--v-if="!isMyJob && canChat && !jobAwarded && !jobCancelled"-->
+                    <a  @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                     <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -413,7 +413,7 @@
             };
 
             this.record = response.data;
-
+            console.log(this.record, 88898);
             let user = JSON.parse(this.$store.getters.getAuthUser);
 
             if(this.record.user_id != user.id && this.record.my_bid){
