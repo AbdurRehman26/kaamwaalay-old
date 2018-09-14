@@ -39092,6 +39092,10 @@ button.sl-close {
   margin-left: auto;
 }
 
+.my-gallery.my-album-class img.img-rounded {
+  max-width: 110px;
+}
+
 h4.page-title {
   font-size: 21px;
 }
