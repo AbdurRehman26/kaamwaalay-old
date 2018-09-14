@@ -30,6 +30,8 @@ export default new Vuex.Store({
         paymentTypes : [],
         urlPrefix: '',
         supportQuestions: [],
+        socketConnect: false,
+        socketNotification: null
     },
 
     // You can use it as a state getter function (probably the best solution)
@@ -97,6 +99,13 @@ export default new Vuex.Store({
         getPaymentTypeList(state){
             return     state.paymentTypes;
         },
+        socketNotification: (context, message) => {
+            context.dispatch('newMessage', message);
+            context.commit('NEW_MESSAGE_RECEIVED', message);
+            if (message.is_important) {
+                context.dispatch('alertImportantMessage', message);
+            }
+        }
     },
 
     // Mutation for when you use it as state property
@@ -159,5 +168,11 @@ export default new Vuex.Store({
         setPaymentTypeList(state, data){
             state.paymentTypes = data;
         },
+        socketConnect: (state,  status ) => {
+            state.socketConnect = true;
+        },
+        socketNotification: (state,  message) => {
+            state.socketNotification = message;
+        }
     },
 });
