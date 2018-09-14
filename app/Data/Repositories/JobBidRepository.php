@@ -74,7 +74,7 @@ public function findByCriteria($criteria, $refresh = false, $details = false, $e
 
 public function findByAll($pagination = false, $perPage = 10, array $input = [] )
 {
-    $this->builder = $this->model->orderBy('id', 'asc');
+    $this->builder = $this->model->orderBy('is_awarded' , 'desc');
 
     if(!empty($input['filter_by_status'])) {
 
@@ -155,6 +155,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
         $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
+
     }
 
     return $data;
