@@ -146,3 +146,9 @@
     },
     }
 </script>
+
+<style>
+.stripe-element.card-number .InputElement{
+    font-size: 14px;
+}
+</style> 
