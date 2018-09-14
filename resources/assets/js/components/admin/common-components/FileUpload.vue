@@ -7,7 +7,7 @@
         <b-form-file @change="onFileChange" :state="isFileUpload" v-model="file" ref="fileinput" 
         accept="image/jpeg, image/png, image/jpg" 
         name="upload image" 
-        :class="['form-control','file-upload-input', 'form-group' , errorBag.first('upload image') ? 'is-invalid' : '']">
+        :class="['form-control','file-upload-input', 'form-group']">
         </b-form-file>
 
 

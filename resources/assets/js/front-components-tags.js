@@ -76,7 +76,7 @@ Vue.component('service-provider', require('./components/front/advice-center/Serv
 // facebook 
 Vue.component('facebook-component',require('./components/front/common-components/facebookComponent.vue'));
 /*logout*/
-Vue.component('logout-component',require('./components/auth/LogoutComponent.vue'));
+Vue.component('logout-component',require('./components/front/auth/LogoutComponent.vue'));
 
 
 
@@ -90,3 +90,5 @@ Vue.component('file-upload-component', require('./components/admin/common-compon
 // stripe checkout component
 Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));
 Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));
+
+Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 

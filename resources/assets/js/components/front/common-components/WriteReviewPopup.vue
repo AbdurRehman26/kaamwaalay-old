@@ -12,7 +12,7 @@
                     <b-col md="12" sm="12">
                         <div class="form-group">
                             <label>Overall Service Rating</label>
-                            <star-rating v-model="submitFormData.rating" :increment="0.5" :star-size="20" :rating="submitFormData.rating" active-color="#8200ff"></star-rating>    
+                            <star-rating v-validate="'required'" v-model="submitFormData.rating" :increment="0.5" :star-size="20" :rating="submitFormData.rating" active-color="#8200ff"></star-rating>    
                         </div>
 
                         <div class="form-group">
@@ -61,6 +61,12 @@
         },
         methods: {
             submitForm(){
+                this.errorMessage = '';
+                if(!this.submitFormData.rating){
+                    this.errorMessage = 'You need to rate in order to submit form';
+                    return false;
+                }
+
                 this.submit = true;
                 this.loading = true;
                 this.submitFormData.job_id = this.job ? this.job.id : '';
@@ -88,6 +94,8 @@
                 this.$refs.myModalRef.hide()
             },
             onHidden(){
+                this.errorMessage = '';
+
                 this.$emit('HideModalValue');
             },        
         },    

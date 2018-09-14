@@ -12,6 +12,7 @@ export default new Vuex.Store({
     state: {
         step2StatsData: [],
         authUser : localStorage.getItem('user')?localStorage.getItem('user'):false,
+        authAdminUser : localStorage.getItem('admin_user')?localStorage.getItem('admin_user'):false,
         type_id:'',
         category_id:'',
         metric_id:'',
@@ -31,7 +32,8 @@ export default new Vuex.Store({
         urlPrefix: '',
         supportQuestions: [],
         socketConnect: false,
-        socketNotification: null
+        socketNotification: null,
+        redirectUrl: '',
     },
 
     // You can use it as a state getter function (probably the best solution)
@@ -50,6 +52,9 @@ export default new Vuex.Store({
         },
         getAuthUser(state){
             return     state.authUser;
+        },
+        getAuthAdminUser(state){
+            return     state.authAdminUser;
         },
          getInitialiseStore(state){
             return localStorage.getItem('store', JSON.stringify(state));;
@@ -105,7 +110,10 @@ export default new Vuex.Store({
             if (message.is_important) {
                 context.dispatch('alertImportantMessage', message);
             }
-        }
+        },
+        getRedirectUrl(state){
+            return     state.redirectUrl;
+        },
     },
 
     // Mutation for when you use it as state property
@@ -125,6 +133,10 @@ export default new Vuex.Store({
         setAuthUser(state, data){
             localStorage.setItem('user', JSON.stringify(data));
             state.authUser = localStorage.getItem('user');
+        },
+        setAuthAdminUser(state, data){
+            localStorage.setItem('admin_user', JSON.stringify(data));
+            state.authAdminUser = localStorage.getItem('admin_user');
         },
         setTypeId(state , data){
             state.type_id = data;
@@ -173,6 +185,9 @@ export default new Vuex.Store({
         },
         socketNotification: (state,  message) => {
             state.socketNotification = message;
-        }
+        },
+        setRedirectUrl(state, data){
+            state.redirectUrl = data;
+        },
     },
 });

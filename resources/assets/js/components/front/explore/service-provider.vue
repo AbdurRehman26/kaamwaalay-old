@@ -77,7 +77,7 @@
 							</p>
 							<p class="member-since">
 								<i class="icon-calendar-daily"></i>
-								Member since <strong>{{record.profile_request.formatted_created_at }}</strong>
+								Member since <strong>{{record.formatted_created_at }}</strong>
 							</p>
 						</div>
 
@@ -314,7 +314,7 @@
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip;
 				}
 
         		window.scrollTo(0,0);
@@ -338,6 +338,11 @@
             let self = this;
             self.loading = false;
             self.records = response.data;
+            let len = response.data.length;
+		    for (var i = 0 ; i < len; i++) {
+		        self.records.push( response.data[i] ) ;
+		        
+		    }
             self.noRecordFound = response.noRecordFound;
             self.pagination = response.pagination;
         },

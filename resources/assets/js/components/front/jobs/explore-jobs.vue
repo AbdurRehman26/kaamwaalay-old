@@ -3,9 +3,10 @@
         <div class="search-fixture">
             <div class="grey-bg section-padd xs border-top-bottom search-fix">
                 <div class="container element-index">
-                    <div class="content-inner md">
-                        <h1 class="heading-large">Find best skilled service professionals near you.</h1>
+                    <div class="content-inner md">                        
                         <div class="search-filter service-professional">
+                            <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
+                            <h3 class="labelheading">Select Service Category</h3>
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
                                 <multiselect v-model="searchValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
                                     <span slot="noResult">No Service found. Consider changing the search query.</span>
@@ -19,8 +20,9 @@
                                   <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                               </select> 
                           </div>
-                          <button class="btn btn-primary" @click="validateBeforeSubmit">
-                            <span>Search</span>
+                          <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
+                            <span>Search Jobs</span>
+                            <loader></loader>
                         </button>
                     </div>
                 </div>
@@ -29,7 +31,7 @@
     </div>
     <div class="container">
         <div class="category-section-search">
-            <h1 class="m-b-0">General Carpentry Jobs in New York, NY</h1>
+            <h1 class="m-b-0">{{ searchService ? searchService : '' }} {{  searchPlace ? 'Jobs in '+  searchPlace : ''}}</h1>
         </div>
 
         <div class="job-post-container section-padd sm">
@@ -48,14 +50,18 @@
                                 </div>
                                 <div class="job-notification">
                                     <div class="jobs-done">
-                                        <span class="job-poster">Posted By <a>{{ record.user | fullName }}</a></span>
+                                        <span class="job-poster">Posted By {{ record.user | fullName }}</span>
                                         <span class="job-category noborder">{{ record.service | mainServiceOrChildService('-') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 job-bid-btn p-r-0">
                                 <a href="javascript:void(0);" v-if="!record.my_bid" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
-                                <a @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message"><i class="icon-message"></i></a>
+                                
+                                <a v-if="record.can_message && record.status !== 'cancelled'" @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message">
+                                    <i class="icon-message"></i>
+                                </a>
+                                
                                 <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
                             </div>
                         </div>
@@ -101,6 +107,8 @@
                 </div>
 
             </div>
+            <no-record-found v-show="noRecordFound"></no-record-found>
+
         </div>
 
         <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -135,7 +143,11 @@
                 servicesList : [],
                 cityUrl : 'api/city',
                 cities : [],
-                selectedCity : ''
+                selectedCity : '',
+                loading : false,
+                searchPlace : '',
+                searchService : '',
+                noRecordFound : false
             }
         },
 
@@ -150,6 +162,7 @@
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.records = [];
+                        this.loading = true;
 
                         this.url = 'api/job?pagination=true&details["profile_data"]=true&time='+dateNow;
 
@@ -159,6 +172,9 @@
                         if(this.selectedCity){
                             this.url += '&filter_by_city='+this.selectedCity
                         }
+                        
+                        this.searchService = '';
+                        this.searchPlace = '';
 
                         this.errorMessage = "";
                         return;
@@ -168,11 +184,27 @@
             }, 
             getResponse(response){
                 let self = this;
-                self.loading = false;
-                for (var i = 0 ; i < response.data.length; i++) {
-                    self.records.push( response.data[i] ) ;
 
+                if(typeof(response.pagination) !== 'undefined' && !response.pagination.total){
+                    this.loading = false;
+                    this.searchService = this.searchValue.title;
                 }
+
+                for (var i = 0 ; i < response.data.length; i++) {
+                    self.loading = false;
+                    self.records.push( response.data[i]);
+                    this.searchService = this.searchValue.title;
+                }
+
+                let cityId = this.selectedCity;
+                let obj = _.find(this.cities, item =>{
+                    if(item.id == cityId){
+                        return item; 
+                    }
+                });
+                self.noRecordFound = response.noRecordFound;
+
+                this.searchPlace = obj ? obj.name : '';
 
             },
             limitText (count) {

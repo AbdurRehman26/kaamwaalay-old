@@ -34,7 +34,6 @@ Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.act
 /*Admin Route*/
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
-
 /*Front Route*/
 Route::get('services/{any}', function(App\Data\Models\Service $service) {
 	$currentRoute = Route::current();

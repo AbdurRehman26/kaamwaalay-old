@@ -43,7 +43,7 @@
 												<input class="form-control form-group" data-vv-scope="featured" placeholder="Enter featured quantity" name="quantity" v-model="data.quantity" v-validate="'required|numeric|min_value:1'" :disabled="data.disabled">
 											</div>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-2 feature-remove">
 											<a href="javascript:;" @click="remove(index)">- remove</a>		
 										</div>										
 									</div>

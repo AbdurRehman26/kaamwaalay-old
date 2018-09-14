@@ -413,6 +413,24 @@ $section-padding-sm:20px 0px;
 }
 
     .service-professional{
+        display: flex;
+        margin-bottom: 0px;
+        align-content: center;
+        margin-bottom: 0px !important;
+        align-items: center;
+        .custom-multi{
+            position: relative;   
+        }        
+        h3.labelheading{
+            width: 258px;
+            margin-right: 25px;
+        }    
+        .job-search-btn {
+            margin-left: 30px;
+            width: 180px;
+            padding: 12px 26px;
+            height: auto;
+        }            
          .multiselect__tags {
             padding: 0px !important;
             position: relative;
@@ -441,7 +459,7 @@ $section-padding-sm:20px 0px;
             span.multiselect__single{
                 /* display: none; */
                 display: block;
-                top: 11px;
+                top: 8px;
                 left: 10px;
                 background-color: #fff;
                 width: 100%;
@@ -457,7 +475,8 @@ $section-padding-sm:20px 0px;
             padding: 0px 0px;
             /* border-bottom: 0px; */
             position: absolute;
-            width: calc(100% - 30.1%);            
+            /* width: calc(100% - 30.1%); */
+            width: 99%;            
             ul{
                 padding-left: 0px !important;
                 margin-bottom: 0 !important;
@@ -490,6 +509,7 @@ $section-padding-sm:20px 0px;
             li{
                 border-bottom: 1px solid;                
                 border-color: #B2B2B2 !important;
+                cursor: pointer;
                 span{
                     display: block;
                     padding: 5px 10px;
