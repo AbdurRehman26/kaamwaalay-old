@@ -152,9 +152,11 @@ class LoginController extends Controller
                 ?: redirect()->intended($this->redirectPath());      
         
         $user = app('UserRepository')->findById($data->id);
-
-        $output = ['access_token'=>$data->access_token, 'response' => ['data' => [$user],'message'=>'Success']];
-
+        if($user->role_id == Role::ADMIN || $user->role_id == Role::REVIEWER){
+            $output = ['admin_access_token'=>$data->access_token, 'response' => ['data' => [$user],'message'=>'Success']];
+        }else{
+            $output = ['access_token'=>$data->access_token, 'response' => ['data' => [$user],'message'=>'Success']];
+        }
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);
     }

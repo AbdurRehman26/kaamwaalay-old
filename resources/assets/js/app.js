@@ -60,7 +60,7 @@ Vue.use(VeeValidate,config);
 Vue.use(InfiniteLoading);
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
-    tokenName: 'access_token',
+    tokenName: 'admin_access_token',
     baseUrl: '/',
     loginUrl: '/api/auth/login',
     registerUrl: '/api/auth/register',
