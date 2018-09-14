@@ -105,6 +105,10 @@ body{
     padding-right: 30px !important;
 }
 
+button.sl-close {
+    font-size: 23px !important;
+}
+
 .width-100 {
     width: 100%;
 }
@@ -135,6 +139,21 @@ body{
     width: calc(100% - 260px);
     margin-left: auto;
 }
+
+.my-gallery.my-album-class img.img-rounded {
+    max-width: 110px;
+}
+
+.rejected-textbox{
+    max-width: 350px;
+}
+.general-setting textarea[aria-invalid='true']{
+    &.rejected-textbox{
+        background-position: right 6px;
+        background-position-x: 98%;        
+    }
+}
+
 
 h4.page-title {
     font-size: 21px;

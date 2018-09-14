@@ -28,12 +28,14 @@ import VueProgressBar from 'vue-progressbar';
 import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
+import Lightbox from 'vue-simple-lightbox';
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Datepicker);
 Vue.use( vbclass, router );
 Vue.use(require('vue-faker'));
 Vue.use(VueProgressBar, options);
+Vue.use(Lightbox);
 let veeCustomMessage = {
         en: {
             custom: {

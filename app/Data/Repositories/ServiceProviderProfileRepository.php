@@ -59,7 +59,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
             $data->urgent_jobs_completed = $urgentJobsCompleted;
 
-
             $bidsCriteria = ['job_bids.user_id' => $data->user_id];
             $data->urgent_jobs_created  = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
 
@@ -100,7 +99,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
         
-               
         }
         
         return $data;
@@ -161,10 +159,17 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder
                ->select(DB::raw('(count(jobs.user_id) * (avg(user_ratings.rating)+1)), *'))
-                ->leftJoin('jobs', 'service_provider_profiles.user_id', '=', 'jobs.user_id')
+                ->leftJoin('job_bids', 'service_provider_profiles.user_id', '=', 'job_bids.user_id')
+                ->leftJoin('jobs', 'job_bids.job_id', '=', 'jobs.id')
                 ->leftJoin('user_ratings', 'service_provider_profiles.user_id', '=', 'user_ratings.user_id')
-                ->orWhere('jobs.status', '=', 'completed')->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) DESC');
-            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->select('*');
+                ->orwhere(function($query) {
+                    $query->where('jobs.status', '=', 'completed');
+                    $query->where('job_bids.status', '=', 'completed');
+                })->orWhere('service_provider_profiles.is_featured', '=', 1)
+                ->orWhere('service_provider_profiles.is_verified', '=', 1)
+                //->orWhere('jobs.status', '=', 'completed')
+                ->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) DESC');
+            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->select('service_provider_profiles.*');
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');
         $record = parent::findByAll($pagination, $perPage, $data);
