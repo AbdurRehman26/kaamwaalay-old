@@ -5,10 +5,10 @@
             <p>To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure.</p>
         </div>
 
-        <div v-if="Object.keys(record).length" class="profile-form-section apply-review-sec">
+        <div v-if="Object.keys(submitFormData).length" class="profile-form-section apply-review-sec">
 
             <div class="form-signup">
-                <form>
+                <form @submit.prevent="validateBeforeSubmit">
                     <div class="personal-provider-detail">
                         <div class="profile-image-placeholder">
                             <img :src="imageValue">
@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label for="">First Name *</label>
                                     <input type="text" v-validate="'required'" class="form-control"
-                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
+                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="submitFormData.first_name" 
                                     placeholder="Enter your first name">
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label for="">Last Name *</label>
                                     <input type="text" v-validate="'required'" class="form-control"
-                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
+                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="submitFormData.last_name" 
                                     placeholder="Enter your last name">
                                 </div>
                             </div>
@@ -53,14 +53,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Email Address</label>
-                                    <input type="text" :disabled="true" class="form-control" name="email" v-model="record.email" placeholder="Enter your first email address">
+                                    <input type="text" :disabled="true" class="form-control" name="email" v-model="submitFormData.email" placeholder="Enter your first email address">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
                                     <input v-validate="'numeric|max:15'" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
-                                    name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
+                                    name="phone number" v-model="submitFormData.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
                         </div>
@@ -75,10 +75,9 @@
                                 <div class="form-group">
                                     <label for="">Are you an individual or a business?</label>
 
-                                    <select :class="['form-control', 'form-group' , errorBag.first('business_type') ? 'is-invalid' : '']" v-validate="'required'" name="business_type" v-model="record.business_details.business_type">
-                                        <option disabled="" selected="">Select Business</option>
-                                        <option>Business</option>
-                                        <option>Individual</option>
+                                    <select :class="['form-control', 'form-group' , errorBag.first('business_type') ? 'is-invalid' : '']" v-validate="'required'" name="business_type" v-model="submitFormData.business_details.business_type">
+                                        <option value="business">Business</option>
+                                        <option value="individual">Individual</option>
                                     </select>
 
                                 </div>
@@ -86,7 +85,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" type="text" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" type="text" name="duns" v-model="submitFormData.business_details.duns_number" placeholder="Enter your duns number">
                                 </div>
                             </div>
                         </div>
@@ -95,13 +94,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" type="text" name="business_name" v-model="submitFormData.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Working since</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" type="number" name="years_of_exprience" v-model="record.business_details.years_of_exprience" placeholder="Enter your years of exprience">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" type="number" name="years_of_exprience" v-model="submitFormData.business_details.years_of_exprience" placeholder="Enter your years of exprience">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +110,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About</label>
-                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="submitFormData.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -121,12 +120,11 @@
                         <div class="form-label-heading m-b-30">
                             <p>SERVICES OFFERED</p>
                         </div>
-                        <div class="row">
+                        <div v-for="(service_detail, index) in submitFormData.service_details" class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Service</label>
-
-                                    <select v-validate="'required'" name="service" 
+                                    <select v-model="submitFormData.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option value="">Select All</option>
                                     <option v-for="service in servicesList" :value="service.id">
@@ -136,7 +134,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a href="javascript:;" class="add-photos mt-35">+ Add more services</a>
+                            <a v-if="index == submitFormData.service_details.length-1" @click.prevent="submitFormData.service_details.push({ service_id : ''})" href="javascript:;" class="add-photos mt-35">+ Add more services</a>
+                            <a v-if="index < submitFormData.service_details.length-1" @click.prevent="submitFormData.service_details.splice(index, 1)" href="javascript:;" class="add-photos mt-35"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -238,13 +237,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Address</label>
-                                <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
+                                <input type="text" class="form-control" name="address" v-model="submitFormData.address" placeholder="Enter your street address">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Apartment, Suite, Unit</label>
-                                <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your apartment and suite number">
+                                <input type="text" class="form-control" name="apartment" v-model="submitFormData.apartment" placeholder="Enter your apartment and suite number">
                             </div>
                         </div>
                     </div>
@@ -254,7 +253,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="submitFormData.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
@@ -264,7 +263,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">City *</label>
-                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
+                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="submitFormData.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
@@ -279,7 +278,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Zip Code *</label>
-                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="record.zip_code" placeholder="Enter your zip code">
+                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="submitFormData.zip_code" placeholder="Enter your zip code">
                             </div>
                         </div>
                     </div>
@@ -388,9 +387,9 @@
 
     </div>
 
-    <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
+    <vue-common-methods @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
     <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods v-if="submitFormData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 
 </div>
@@ -404,7 +403,7 @@
             return {
                 successMessage : '',
                 errorMessage : '',
-                record : [],
+                submitFormData : [],
                 url : 'api/user/me?details[profile_data]=true&details[provider_request_data]=true',
                 showNoRecordFound : false,
                 search : '',
@@ -434,7 +433,10 @@
                     start: '00:00',
                     step: '00:30',
                     end: '23:30'
-                }
+                },
+                submit : false,
+                submitUrl : 'api/user',
+                
             }
         },
         computed : {
@@ -452,9 +454,18 @@
             }
         },
         methods: {
+            formError(){
+
+            },
+            formSubmitted(){
+
+            },
+            submitForm(){
+
+            },
             onStateChange(){
-                this.record.city_id = null;
-                this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                this.submitFormData.city_id = null;
+                this.cityUrl = 'api/city?state_id=' + this.submitFormData.state_id;
             },
             getFileUploadResponse(response){
                 console.log(response , 1);
@@ -462,12 +473,12 @@
             getResponse(response){
                 let self = this;
                 self.loading = false;
-                self.record = response.data;
+                self.submitFormData = response.data;
 
-                if(self.record.state_id){  
-                    this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                if(self.submitFormData.state_id){  
+                    this.cityUrl = 'api/city?state_id=' + this.submitFormData.state_id;
                 }
-                self.profileImage = self.record.profileImage;
+                self.profileImage = self.submitFormData.profileImage;
 
             },
             getStateResponse(response){

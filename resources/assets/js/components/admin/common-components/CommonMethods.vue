@@ -111,13 +111,13 @@
 
                 }).catch(error => {
 
+                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@submitForm');
+                    self.$emit('form-error', error);
                     
                     if(typeof(successCallback) !== 'undefined'){
                         return successCallback(true);
                     }
 
-                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@submitForm');
-                    self.$emit('form-error', error);
 
 
                 });
