@@ -160,7 +160,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         if(!empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder
-               ->select(DB::raw('(count(jobs.user_id) * avg(user_ratings.rating)), *'))
+               ->select(DB::raw('(count(jobs.user_id) * (avg(user_ratings.rating)+1)), *'))
                 ->leftJoin('jobs', 'service_provider_profiles.user_id', '=', 'jobs.user_id')
                 ->leftJoin('user_ratings', 'service_provider_profiles.user_id', '=', 'user_ratings.user_id')
                 ->orWhere('jobs.status', '=', 'completed')->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) DESC');
