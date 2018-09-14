@@ -15009,6 +15009,7 @@ input[type=number]::-webkit-outer-spin-button {
 .service-professional .multiselect__content-wrapper li {
   border-bottom: 1px solid;
   border-color: #B2B2B2 !important;
+  cursor: pointer;
 }
 
 .service-professional .multiselect__content-wrapper li span {

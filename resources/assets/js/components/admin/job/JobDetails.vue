@@ -101,12 +101,19 @@
                                         <p><strong class="title-head">Photos</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <div class="gallery-pic">
-                                            
+                                        <div class="gallery-pic">                                            
                                             <div class="gallery-item" v-for="(n, index) in record.jobImages" :data-index="index">
                                                 <img @click="open($event)" :src="n">
                                             </div>
-                                        </div>
+                                        </div>         
+                                            <lightbox
+                                                  id="mylightbox"
+                                                  :images="imageList"
+                                                  :image_class=" 'img-responsive img-rounded' "
+                                                  :album_class=" 'my-album-class' "
+                                                  :options="options">
+                                            </lightbox>                                              
+                                                                                                                                                  
                                     </b-col>
                                 </b-row>                                                                   
 
@@ -150,6 +157,7 @@
         <script>
             import fancyBox from 'vue-fancybox';
             import StarRating from 'vue-star-rating';
+            import Lightbox from 'vue-simple-lightbox';
             export default{
                 data () {
                   return {
@@ -158,7 +166,20 @@
                     imageList: [
                     { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
                     { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
-                    ]            
+                    ],
+                    imageList : [
+                        {
+                            src : '/images/dummy/nice-door.jpg',
+                            title : 'Nice Door',
+                        },
+                        {
+                            src : '/images/dummy/door-2.jpg',
+                            title : 'Door 2',
+                        },
+                    ],
+                    options : {
+                        closeText : 'X'
+                    }                                                      
                 }
             },
             computed : {
@@ -168,8 +189,9 @@
                 },
             },
             components: {
-                StarRating
-            },
+                StarRating,
+                Lightbox
+            },        
             methods:{
                 getRecords(response){
                     let self = this;
