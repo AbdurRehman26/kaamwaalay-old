@@ -52,21 +52,20 @@
     import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
 
     export default {
-             props : ['submit'],
-            data () {
-                return {
-                    complete: false,
-                    number: false,
-                    expiry: false,
-                    cvc: false,
-                    loading: false,
-                    pageLoad: false,
-                    stripeOptions: {
-    // see https://stripe.com/docs/stripe.js#element-options for details
-    },
-    errorMessage: '',
-    successMessage: '',
-    }
+       props : ['submit'],
+       data () {
+        return {
+            complete: false,
+            number: false,
+            expiry: false,
+            cvc: false,
+            loading: false,
+            pageLoad: false,
+            stripeOptions: {
+            },
+            errorMessage: '',
+            successMessage: '',
+        }
     },
 
     components: { 
@@ -78,20 +77,20 @@
 
     methods: { 
         verifyCard () {
-         this.$parent.loading = true   
+           this.$parent.loading = true   
         // createToken returns a Promise which resolves in a result object with
         // either a token or an error key.
         // See https://stripe.com/docs/api#tokens for the token object.
         // See https://stripe.com/docs/api#errors for the error object.
         // More general https://stripe.com/docs/stripe.js#stripe-create-token.
         createToken().then(data => {
-                let self = this
-                let record = {}
-                let user = JSON.parse(this.$store.getters.getAuthUser)
-                record.stripe_token = data.token.id
-                record.first_name = user.first_name
-                record.last_name = user.last_name
-                record.email = user.email
+            let self = this
+            let record = {}
+            let user = JSON.parse(this.$store.getters.getAuthUser)
+            record.stripe_token = data.token.id
+            record.first_name = user.first_name
+            record.last_name = user.last_name
+            record.email = user.email
                 //customerNav.data().user.stripe_token = data.token.id
                 let update = {
                     user_details : record
@@ -106,8 +105,8 @@
             }).catch(error=>{
             });
         },
-    update () {
-        this.complete = this.number && this.expiry && this.cvc
+        update () {
+            this.complete = this.number && this.expiry && this.cvc
     // field completed, find field to focus next
     if (this.number) {
         if (!this.expiry) {
@@ -124,25 +123,25 @@
     }
     // no focus magic for the CVC field as it gets complete with three
     // numbers, but can also have four
-    }
-    },
-    watch:{
-        number () { this.update() },
-        expiry () { this.update() },
-        cvc () { this.update() },
-        submit(value){
-                console.log('submitCard',value)
-                this.pageLoad = true
-                if(value){
-                 if(this.complete){
-                    this.$parent.errorMessage = ''
-                    this.verifyCard();
-                }else{
-                     this.$parent.errorMessage = 'Please fill out credit card information'
-                }
-                    
-                }
-            }
-    },
-    }
+}
+},
+watch:{
+    number () { this.update() },
+    expiry () { this.update() },
+    cvc () { this.update() },
+    submit(value){
+        console.log('submitCard',value)
+        this.pageLoad = true
+        if(value){
+           if(this.complete){
+            this.$parent.errorMessage = ''
+            this.verifyCard();
+        }else{
+           this.$parent.errorMessage = 'Please fill out credit card information'
+       }
+       
+   }
+}
+},
+}
 </script>
