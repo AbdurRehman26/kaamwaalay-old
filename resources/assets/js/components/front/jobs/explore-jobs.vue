@@ -3,9 +3,10 @@
         <div class="search-fixture">
             <div class="grey-bg section-padd xs border-top-bottom search-fix">
                 <div class="container element-index">
-                    <div class="content-inner md">
-                        <h1 class="heading-large">Find best skilled service professionals near you.</h1>
+                    <div class="content-inner md">                        
                         <div class="search-filter service-professional">
+                            <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
+                            <h3 class="labelheading">Select Service Category</h3>
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
                                 <multiselect v-model="searchValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
                                     <span slot="noResult">No Service found. Consider changing the search query.</span>
@@ -19,8 +20,8 @@
                                   <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                               </select> 
                           </div>
-                          <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
-                            <span>Search</span>
+                          <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
+                            <span>Search Jobs</span>
                             <loader></loader>
                         </button>
                     </div>
