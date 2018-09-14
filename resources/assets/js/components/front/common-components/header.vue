@@ -53,7 +53,7 @@
                 this.$router.push({name: 'job-details'})
             },
             scroll(){
-                this.$router.push({name: 'main_page'});
+                this.$router.push({name: 'main-page'});
                 this.responsivemenu = false;
                 window.scrollTo(0,0);
             },
