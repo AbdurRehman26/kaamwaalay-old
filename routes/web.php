@@ -23,7 +23,6 @@ Route::get('/admin/password/set/{token}/{email}', function(){
 Route::get('/', function () {
     return view('layout');
 });
-Route::resource('search/explore', 'Api\V1\SearchController');
 
 
 /*Route::get('/{any}', function(){
@@ -34,21 +33,24 @@ Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.act
 
 /*Admin Route*/
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
+Route::get('/hello', function() {
+    dd(phpinfo());
+});
 
 
 /*Front Route*/
 Route::get('services/{any}', function(App\Data\Models\Service $service) {
+    dd(phpinfo());
 	$currentRoute = Route::current();
     $params = $currentRoute->parameters();
     if(!empty($params['any'])) {
         $any = $params['any'];
-        // $any = explode("/", $any);
-        // $service_id = $any[0];
-        // $zip = isset($any[1])? $any[1] : '';
-        $service = $service->where('url_suffix', '=', $any)->get()->toArray();
-        if(empty($service)) {
-            return view('front-layout');
-            //abort(404);
+        if (strpos($any, '/') == false) {
+            $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->get()->toArray();
+
+            if(empty($service)) {
+                return view('front-layout', ['page_not_found' => true]);
+            }
         }
 		return view('front-layout', ['service' => $service[0]]);
     }

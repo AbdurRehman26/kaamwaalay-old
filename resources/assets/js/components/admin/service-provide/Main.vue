@@ -55,28 +55,31 @@
               <th>Contact</th>
               <th>Status</th>
               <th>Avg. Rating</th>
-              <th class="text-center">Actions</th>
+              <th class="text-right p-r-30">Actions</th>
           </tr>
       </thead>
       <tbody>
           <tr v-for="record in records">
             <td>
                 <span class="user-img radius-0">
-                    <img  :src="record.imagepath" >
+                    <img  :src="record.user_detail ? record.user_detail.profileImage : ''" >
                 </span>
-            </td>
+            </td>            
             <td>
-                <router-link :to="{name: 'service.provider.detail' , params : {id : record.id }}">{{ record.user_detail.first_name +' '+ record.user_detail.last_name }}</router-link>
+                <router-link :to="{ name: 'service.provider.detail', params: { id:record.id }}">
+                    {{ record.user_detail.first_name +' '+ record.user_detail.last_name }}
+                </router-link>
             </td>
+
             <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
             <td> {{ record.business_name }} </td>
             <td> {{ record.user_detail.phone_number }} </td>
             <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
-            <td><star-rating :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
-            <td class="text-center">
+            <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
+            <td class="text-right">
               <div class="action-icons">
                 <router-link :to="{name: 'service.provider.detail' , params : {id : record.id }}">
-                    <i v-b-tooltip.hover title="View Details" class="icon-eye"></i>
+                    <i v-b-tooltip.hover title="View Details" class="icon-eye basecolor"></i>
                 </router-link>
                 <i @click="changestatuspopup(record)"  
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">

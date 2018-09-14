@@ -115,31 +115,31 @@
         this.isShowing=false;
     },
     getActiveBidsCount() {
-        var activeBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&count_only=true';
+        var activeBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&count_only=true';
         this.getListCount(activeBidUrl, false, (record) => {
             this.activeBidCount = record.count;
         });
     },
     getAwardedBidsCount() {
-        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=1&count_only=true';
+        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=1&count_only=true';
         this.getListCount(awardedBidUrl, false, (record) => {
             this.awardedCount = record.count;
         });
     },
     getCompletedBidsCount() {
-        var completedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_status=completed&filter_by_awarded=1&count_only=true';
+        var completedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_status=completed&filter_by_awarded=1&count_only=true';
         this.getListCount(completedBidUrl, false, (record) => {
             this.completedCount = record.count;
         });
     },
     getArchivedBidsCount() {
-        var archivedBidUrl = 'api/job-bid?&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=1&count_only=true';
+        var archivedBidUrl = 'api/job-bid?&filter_by_job_detail=true&filter_by_archived=1&count_only=true';
         this.getListCount(archivedBidUrl, false, (record) => {
             this.archivedCount = record.count;
         });
     },
     getCancelledBidsCount() {
-        var cancelledBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_invitation=1&filter_by_status=cancelled&count_only=true';
+        var cancelledBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_status=cancelled&count_only=true';
         this.getListCount(cancelledBidUrl, false, (record) => {
             this.cancelledCount = record.count;
         });

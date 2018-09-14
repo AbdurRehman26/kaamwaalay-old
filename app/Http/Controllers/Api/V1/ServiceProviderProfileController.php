@@ -33,7 +33,8 @@ class ServiceProviderProfileController extends ApiResourceController
         $input = request()->only(
             'id', 'pagination', 'keyword',
             'filter_by_business_type', 'filter_by_service',
-            'user_rating', 'zip', 'filter_by_featured', 'is_approved', 'user_detail', 'is_verified'
+            'user_rating', 'zip', 'filter_by_featured', 'is_approved', 'user_detail', 'is_verified',
+            'filter_by_top_providers'
         );
 
         if (request()->user()) {

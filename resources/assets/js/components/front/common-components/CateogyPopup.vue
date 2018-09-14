@@ -8,10 +8,10 @@
                     <i @click="onHidden" class="icon-close2"></i>
 		    	</div>
                 <div class="category-search-field">
-                    <h5>What do you need general carpentry service?</h5>
+                    <h5>What do you need general {{selectedValue ? selectedValue.title : ''}}?</h5>
                     <div class="zip-code-field">
                         <i class="icon-location"></i>
-                        <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
+                        <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
                     </div>
                     <a href="javascript:void(0);" @click="validateBeforeSubmit" class="btn btn-primary m-t-24">Continue</a>
                 </div>
@@ -49,17 +49,18 @@ export default {
             this.$refs.myModalRef.show()
         },
         hideModal () {
+            this.errorBag.clear();
             this.$refs.myModalRef.hide()
         },
         onHidden() {
+            this.errorBag.clear();
             this.$emit('HideModalValue');
         },
         categorydetail(){
             this.scrollToTop();
-            this.$router.push({name: 'Explore_Detail'});
+            this.$emit('onSubmit', this.zip);
         },
         scrollToTop() {
-            this.$emit('onSubmit', this.zip);
         },        
     },
 
@@ -76,7 +77,6 @@ export default {
             this.selectedValue = value;
         },
         zip(val) {
-            console.log(val,88);
             if(val.length > 5) {
                 val = val.substr(0, 5);
             }

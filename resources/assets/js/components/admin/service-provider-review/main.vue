@@ -13,7 +13,7 @@
                       
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                           <label>By Type</label>
+                           <label>By Service</label>
                            <select v-model="search.filter_by_service" class="form-control">
                              <option value="">Select All</option>
                              <option v-for="service in servicesList" :value="service.id">
@@ -22,7 +22,7 @@
                          </select>
                      </div>
                  </div>
-                 <div class="col-xs-12 col-md-3 datepicker-field">
+                 <div class="col-xs-12 col-md-2 datepicker-field">
                   <div class="form-group">
                      <label>By Business/Individual</label>
                      <select v-model="search.filter_by_business_type" class="form-control">
@@ -30,8 +30,21 @@
                        <option value="business">Business</option>
                        <option value="individual">Individual</option>
                    </select>
-               </div>
+               </div>             
            </div>
+                <div class="col-xs-12 col-md-2 datepicker-field capitilize">
+                    <div class="form-group">
+                        <label>By Status</label>
+                        <select class="form-control">
+                            <option value="">Select All</option>
+                            <!-- <option v-for="status in statuses" :value="status.key">{{status.value}}</option> -->
+                            <option>Approved</option>
+                            <option>Pending</option>
+                            <option>Rejected</option>
+                            <option>Banned</option>
+                        </select>
+                    </div>
+                 </div>             
            <div class="col-xs-12 col-md-2">
             <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                 <span>Apply</span>
@@ -64,13 +77,8 @@
                         <img  :src="record.imagepath" >
                     </span>
                 </td>
-
-
-                <td>
-
-                    <router-link :to="{name: 'service.detail.review' , params : {id : record.id}}">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</router-link>
-
-                </td>
+                <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
+                <td><router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</router-link></td>
                 <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
                     {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                 </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
@@ -82,8 +90,8 @@
                     </span>
                 </td>
                 <td class="text-center">
-                  <div class="action-icons">
-                    <router-link :to="{name: 'service.detail.review' , params : {id : record.id}}"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
+                  <div class="action-icons">                    
+                    <router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
                 </div>
             </td>
         </tr>
@@ -163,9 +171,9 @@
             this.viewdetails = false;
             this.changeservicestatus = false;   
         },
-        detailreview(id){
+        /*detailreview(id){
             this.$router.push({name: 'service.detail.review' , params : {id : id}});
-        },
+        },*/
         startLoading(){
             this.loading = true;
         },

@@ -6,19 +6,19 @@
                 <p>Please fill out the following form and we'll get right back to you.</p>
                 <label>What can we help you with?</label>
                 <div class="form-group">
-                    <select class="form-control" v-model="selectedQuestion">
-                      <option value="" selected="">General questions</option>
+                    <select class="form-control" v-model="selectedQuestion" v-validate="'required'" name="question" :class="[errorBag.first('question') ? 'is-invalid' : '']">
+                      <option value="" selected="">Please select a question</option>
                       <option :value="supportQuestion" v-for="supportQuestion in supportQuestions">{{supportQuestion.question}}</option>
                   </select>
               </div>
               <label>Message</label>
               <div class="form-group">
-                <textarea class="form-control" placeholder="Start typing your message" name="" rows="5" v-model="message" name="message" :class="[errorBag.first('message') ? 'is-invalid' : '']" v-validate="'required|max:1000'"></textarea>
+                <textarea class="form-control" placeholder="Start typing your message" rows="5" v-model="message" name="message" :class="[errorBag.first('message') ? 'is-invalid' : '']" v-validate="'required|max:1000'"></textarea>
             </div>           
         </div>
         <div slot="modal-footer" class="">
             <b-col class="float-left" cols="6">
-                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();">
+                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevent="validateBeforeSubmit();">
                     <span>Submit</span> 
                     <loader></loader>
                 </button>
@@ -87,13 +87,8 @@
                 }, 100);
             },
             validateBeforeSubmit (evt) {
-                // Prevent modal from closing
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        if(!this.selectedQuestion) {
-                            this.errorMessage = "Please select a question.";
-                            return;        
-                        }
                         this.onSubmit()
                         this.errorMessage ='';
                         return;
@@ -110,14 +105,12 @@
                     support_question_id: this.selectedQuestion.id,
                     message: this.message,
                     user_id: this.user.id,
-                    name: this.user.first_name + " " + this.user.last_name,
-                    email: this.user.email,
                 };
 
               self.loading = true;
               self.$http.post(supportInquiryUrl, data).then(response => {
                 response = response.data.response;
-                self.successMessage = "Your inquiry has been submitted successfully.";//response.message;
+                self.successMessage = "Your enquiry has been submitted successfully.";//response.message;
                 
                 setTimeout(function() {
                     self.loading = false;

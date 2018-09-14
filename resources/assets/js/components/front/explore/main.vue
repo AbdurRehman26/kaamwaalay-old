@@ -12,12 +12,12 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+										<multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
 										</multiselect>
 									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
-										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric|min:5'" @keyup.enter="validateBeforeSubmit">
+										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
 									</div>
 								</div>
 								<button :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
@@ -107,7 +107,7 @@
 			</div>
 		</div>
 
-		<category-popup @HideModalValue="HideModal" :showModalProp="categoryval" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
+		<category-popup @HideModalValue="hideModal" :showModalProp="categoryPopup" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
 
 	</div>
 </template>
@@ -131,7 +131,7 @@ export default {
 			invalidSearch: true,
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
-			categoryval: false,
+			categoryPopup: false,
 			loading: false,
 		}
 	},
@@ -144,6 +144,7 @@ export default {
 		dispatchCloseAction (actionName) {
 			this.options = [];
 			this.loading = false;
+			this.onTouch();
 		},
         getImage(img) {
         	return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
@@ -153,9 +154,9 @@ export default {
 			this.isTouched = true
 		},
 		onSelectCategory(val) {
-			sessionStorage.setItem("zip", val);
-			this.HideModal();
+			this.hideModal();
 			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
+			localStorage.setItem("zip", val);
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
@@ -179,7 +180,7 @@ export default {
 			if(!query || query.length < 3) {
 				return;
 			};
-			this.searchUrl  = 'api/service?keyword='+query;
+			this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
 				response = response.data.response;
@@ -191,14 +192,15 @@ export default {
 		}, 1000),
 		changecategorypopup(service) {
 			this.selectedService = service;
-			if(sessionStorage['zip']) {
-				this.onSelectCategory(sessionStorage['zip']);
+			if(localStorage['zip']) {
+
+				this.onSelectCategory(localStorage['zip']);
 			}else {
-				this.categoryval = true;	
+				this.categoryPopup = true;	
 			}
 		},
-		HideModal(){
-			this.categoryval = false;
+		hideModal(){
+			this.categoryPopup = false;
 		},
 		ServiceProviderPage() {
 
@@ -209,7 +211,7 @@ export default {
 				this.isTouched = true;
 				return;
 			}
-			sessionStorage.setItem('zip', this.zipCode);
+			localStorage.setItem('zip', this.zipCode);
 			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
 		},
 		getList(data , page , successCallback) {
@@ -271,6 +273,10 @@ export default {
 	},
 },
 mounted(){
+	if(localStorage['zip']) {
+		this.zipCode = localStorage.getItem('zip');
+	}
+	
 	this.getList({service_category: 'All'},false);
 },
 watch: {
