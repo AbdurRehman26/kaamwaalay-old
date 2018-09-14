@@ -46,6 +46,7 @@
                     <p>Attach Photo</p>
                 </div>
                 <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
+
                     <div class="col-md-6">
                         <div class="form-group custom-file">
 
@@ -417,7 +418,7 @@
             },
             removeImage(imageIndex){
                 console.log(imageIndex  ,this.formData.images , 123123);
-                delete this.formData.images.splice(imageIndex , 1);
+                this.formData.images.splice(imageIndex , 1);
                 this.$forceUpdate();
                 return false;
             },
