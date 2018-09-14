@@ -182,7 +182,6 @@ return [
         App\Providers\UserRepositoryServiceProvider::class,
         App\Providers\ZipCodeRepositoryServiceProvider::class,
         App\Providers\SEOServiceProvider::class,
-        //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],  
 
