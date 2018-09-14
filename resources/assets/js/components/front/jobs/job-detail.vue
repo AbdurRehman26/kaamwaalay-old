@@ -178,7 +178,7 @@
                                         Write Review
                                     </a>
 
-                                    <a v-if="(isMyJob || canChat) && !jobAwarded && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <a v-if="!isMyJob && canChat && !jobAwarded && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                     <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -413,7 +413,7 @@
             };
 
             this.record = response.data;
-
+            
             let user = JSON.parse(this.$store.getters.getAuthUser);
 
             if(this.record.user_id != user.id && this.record.my_bid){
