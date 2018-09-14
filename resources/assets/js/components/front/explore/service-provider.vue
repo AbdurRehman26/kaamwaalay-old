@@ -77,7 +77,7 @@
 							</p>
 							<p class="member-since">
 								<i class="icon-calendar-daily"></i>
-								Member since <strong>{{record.profile_request.formatted_created_at }}</strong>
+								Member since <strong>{{record.formatted_created_at }}</strong>
 							</p>
 						</div>
 

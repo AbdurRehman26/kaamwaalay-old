@@ -44,7 +44,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
     {
         $data = parent::findById($id, $refresh, $details, $input);
         if ($data) {
-
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->user_detail = app('UserRepository')->findById($data->user_id, false, $details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
@@ -149,8 +149,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         }
         if(!empty($data['is_approved'])) {
-            $is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
-            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $is_approved);
+            //$is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
+            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['is_approved']);
 
         }
 

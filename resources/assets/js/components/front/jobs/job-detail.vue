@@ -413,7 +413,7 @@
             };
 
             this.record = response.data;
-
+            
             let user = JSON.parse(this.$store.getters.getAuthUser);
 
             if(this.record.user_id != user.id && this.record.my_bid){
