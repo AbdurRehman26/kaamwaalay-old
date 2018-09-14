@@ -48,7 +48,7 @@ import { directive as onClickaway } from 'vue-clickaway';
              this.getAllServices();
              self.setRoleList();
              self.setPaymentTypeList();
-            self.user = JSON.parse(self.$store.getters.getAuthUser);
+            self.user = JSON.parse(self.$store.getters.getAuthAdminUser);
             self.first_name = self.user.first_name;
             self.last_name = self.user.last_name;
       },

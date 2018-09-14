@@ -325,8 +325,8 @@ const title = document.title
 router.beforeEach((to, from, next) => {
 
     let user;
-    if(router.app.$store.getters.getAuthUser != 'undefined'){
-      user = JSON.parse(router.app.$store.getters.getAuthUser);
+    if(router.app.$store.getters.getAuthAdminUser != 'undefined'){
+      user = JSON.parse(router.app.$store.getters.getAuthAdminUser);
     }
     document.title = (title + ' | ' + to.meta.title)
     if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {

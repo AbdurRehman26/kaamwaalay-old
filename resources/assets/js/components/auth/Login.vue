@@ -70,7 +70,7 @@
                       //this.$http.put('api/auth/login/admin', this.userData)
                      this.$auth.login(this.login_info).then(function (response) {
                       self.loading = false
-                      this_.$store.commit('setAuthUser', response.data.response.data[0]);
+                      this_.$store.commit('setAuthAdminUser', response.data.response.data[0]);
                       if(response.data.response.data[0].role_id == 1){
                        this_.$router.push({ name: 'dashboard'})
                       }else{
