@@ -17984,8 +17984,8 @@ body .chat-feedback-message.white-msg:before {
 .search-fixture {
   position: relative;
   width: 100%;
-  /* height: 70px; */
-  height: 150px;
+  height: 70px;
+  /* height: 150px; */
   z-index: 99;
 }
 
