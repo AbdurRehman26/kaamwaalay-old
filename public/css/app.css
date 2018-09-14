@@ -39100,6 +39100,11 @@ button.sl-close {
   max-width: 350px;
 }
 
+.general-setting textarea[aria-invalid='true'].rejected-textbox {
+  background-position: right 6px;
+  background-position-x: 98%;
+}
+
 h4.page-title {
   font-size: 21px;
 }
