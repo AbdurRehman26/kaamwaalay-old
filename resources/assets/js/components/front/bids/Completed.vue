@@ -163,7 +163,7 @@
 		watch: {
 			show(val) {
 				if(val) {
-					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_status=completed&filter_by_awarded=1';
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_status=completed&filter_by_awarded=1';
 				}else {
 					//this.url = null;
 					//self.pagination = false;

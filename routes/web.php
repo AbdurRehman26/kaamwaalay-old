@@ -33,10 +33,14 @@ Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.act
 
 /*Admin Route*/
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
+Route::get('/hello', function() {
+    dd(phpinfo());
+});
 
 
 /*Front Route*/
 Route::get('services/{any}', function(App\Data\Models\Service $service) {
+    dd(phpinfo());
 	$currentRoute = Route::current();
     $params = $currentRoute->parameters();
     if(!empty($params['any'])) {
