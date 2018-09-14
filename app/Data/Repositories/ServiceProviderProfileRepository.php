@@ -136,7 +136,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 //->orWhere('parent_id', $data['filter_by_service'])
                 ->pluck('id')->toArray();
 
-
             $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
                     $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
             })->join('service_provider_services', function($join) use ($data){
@@ -158,18 +157,19 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         if(!empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder
-               ->select(DB::raw('(count(jobs.user_id) * (avg(user_ratings.rating)+1)), *'))
                 ->leftJoin('job_bids', 'service_provider_profiles.user_id', '=', 'job_bids.user_id')
                 ->leftJoin('jobs', 'job_bids.job_id', '=', 'jobs.id')
-                ->leftJoin('user_ratings', 'service_provider_profiles.user_id', '=', 'user_ratings.user_id')
+                ->leftJoin('user_ratings', 'job_bids.job_id', '=', 'user_ratings.job_id')
                 ->orwhere(function($query) {
                     $query->where('jobs.status', '=', 'completed');
                     $query->where('job_bids.status', '=', 'completed');
                 })->orWhere('service_provider_profiles.is_featured', '=', 1)
                 ->orWhere('service_provider_profiles.is_verified', '=', 1)
                 //->orWhere('jobs.status', '=', 'completed')
-                ->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) DESC');
+                ->orderByRaw('(count(job_bids.user_id) * (avg(user_ratings.rating)+1)) DESC')
+               ->select(DB::raw('(avg(user_ratings.rating)+1)'));
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->select('service_provider_profiles.*');
+            
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');
         $record = parent::findByAll($pagination, $perPage, $data);
