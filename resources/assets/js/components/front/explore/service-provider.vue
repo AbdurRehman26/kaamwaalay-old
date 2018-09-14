@@ -77,7 +77,7 @@
 							</p>
 							<p class="member-since">
 								<i class="icon-calendar-daily"></i>
-								Member since <strong>{{record.profile_request.formatted_created_at }}</strong>
+								Member since <strong>{{record.formatted_created_at }}</strong>
 							</p>
 						</div>
 
@@ -338,6 +338,11 @@
             let self = this;
             self.loading = false;
             self.records = response.data;
+            let len = response.data.length;
+		    for (var i = 0 ; i < len; i++) {
+		        self.records.push( response.data[i] ) ;
+		        
+		    }
             self.noRecordFound = response.noRecordFound;
             self.pagination = response.pagination;
         },
