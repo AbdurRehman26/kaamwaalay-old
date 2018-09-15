@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail">
+	<div class="category-detail" v-if="isService">
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
@@ -179,6 +179,7 @@
 				service: '',
 				relatedServices: '',
 				loading: false,
+				isService: false,
 
     	}
   	},
@@ -293,10 +294,11 @@
             this.changestatus = false;
         },
         servicedetail(){        	
-        	this.$router.push({name: 'Service_Provider_Detail'});
         	window.scrollTo(0,0);
+        	this.$router.push({name: 'Service_Provider_Detail'});
 		},
-		getService() {
+		getService() {	
+        	window.scrollTo(0,0);
 			let self = this;
 			this.checkRoute();
 			this.btnLoading = true;
@@ -306,14 +308,14 @@
 				if(!response.data.length) {
 					this.$router.push({name: '404'});
 				}
+				self.isService = response.data.length;
 				self.service = response.data[0];
 				self.getRelatedServices();
-
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {
 
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&is_verified=1&user_detail=true&is_approved=approved&filter_by_featured=1&filter_by_service='+self.serviceName+'&zip='+self.zip;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip;
 				}
 
 			}).catch(error=>{
