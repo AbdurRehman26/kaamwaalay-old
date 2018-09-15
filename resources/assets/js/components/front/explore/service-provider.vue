@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail" v-if="service">
+	<div class="category-detail" v-if="isService">
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
@@ -182,6 +182,7 @@
 			loading: false,
 			categoryPopup: false,
 			selectedService: '',
+			isService: false,
 		}
   	},
     computed : {
@@ -299,6 +300,7 @@
         	this.$router.push({name: 'Service_Provider_Detail'});
 		},
 		getService() {
+        	window.scrollTo(0,0);
 			let self = this;
 			this.checkRoute();
 			this.btnLoading = true;
@@ -308,9 +310,9 @@
 					//this.$router.push({name: '404'});
 					return;
 				}
+				self.isService = response.data.length;
 				self.service = response.data[0];
 				self.getRelatedServices();
-
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {

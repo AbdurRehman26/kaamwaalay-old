@@ -137,7 +137,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 ->pluck('id')->toArray();
 
             $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
-                    $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
+                    $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
             })->join('service_provider_services', function($join) use ($data){
                         $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
             })->whereIn('service_provider_services.service_id', $ids)
@@ -148,7 +148,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['is_approved'])) {
             //$is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
             $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['is_approved']);
-
         }
 
         if(!empty($data['filter_by_featured'])){
@@ -157,19 +156,22 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         if(!empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder
-                ->leftJoin('job_bids', 'service_provider_profiles.user_id', '=', 'job_bids.user_id')
-                ->leftJoin('jobs', 'job_bids.job_id', '=', 'jobs.id')
-                ->leftJoin('user_ratings', 'job_bids.job_id', '=', 'user_ratings.job_id')
-                ->orwhere(function($query) {
-                    $query->where('jobs.status', '=', 'completed');
-                    $query->where('job_bids.status', '=', 'completed');
-                })->orWhere('service_provider_profiles.is_featured', '=', 1)
-                ->orWhere('service_provider_profiles.is_verified', '=', 1)
-                //->orWhere('jobs.status', '=', 'completed')
-                ->orderByRaw('(count(job_bids.user_id) * (avg(user_ratings.rating)+1)) DESC')
-               ->select(DB::raw('(avg(user_ratings.rating)+1)'));
-            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->select('service_provider_profiles.*');
-            
+                ->leftJoin('user_ratings', function ($join){
+                    $join->on('service_provider_profiles.user_id', '=', 'user_ratings.user_id');
+                    $join->where('user_ratings.status', '=', 'approved');
+                })
+                ->leftJoin('job_bids', function ($join){
+                    $join->on('service_provider_profiles.user_id', '=', 'job_bids.user_id');
+                    $join->where('job_bids.status', '=', 'completed');
+                })
+                ->leftJoin('jobs', function ($join){
+                    $join->on('job_bids.job_id', '=', 'jobs.id');
+                    $join->where('jobs.status', '=', 'completed');
+                })
+                ->groupBy('service_provider_profiles.user_id')
+                ->orderBy('service_provider_profiles.is_featured', 'desc')
+                ->orderBy('service_provider_profiles.is_verified', 'desc')
+                ->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) desc');
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');
         $record = parent::findByAll($pagination, $perPage, $data);
