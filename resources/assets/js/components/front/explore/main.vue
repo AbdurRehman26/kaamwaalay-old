@@ -12,15 +12,15 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" >
+										<multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
 										</multiselect>
 									</div>
 									<div class="container-zip-code">
 										<i class="icon-location"></i>
-										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'">
+										<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric|min:5'" @keyup.enter="validateBeforeSubmit">
 									</div>
 								</div>
-								<button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit">
+								<button :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
 									<span>Search</span>
 								</button>
 							</div>
@@ -57,7 +57,6 @@
 							    <b-card>
 							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
 									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
-										<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
 										<p>{{remainingSubServices.title}}</p>
 									</a>
 								</div>
@@ -120,6 +119,7 @@ export default {
 	data () {
 		return {
 			selectedService: '',
+			btnLoading: false,
 			allServices: [],
 			searchValue: '',
 			isLoading: false,
@@ -146,29 +146,20 @@ export default {
 			this.loading = false;
 		},
         getImage(img) {
-        	return img? img[0].upload_url : 'images/dummy/image-placeholder.jpg';
+        	return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
+        	
         },
-		// onToggleCollapse(e, val) {
-		// 	var elem = $('#'+val);
-		// 	if($(elem).css("display") == "none" ) {
-		// 		$(elem).show("fast", "linear");
-		// 		$(e.target).text("Hide all services related to electricians ");
-		// 	}else {
-		// 		$(elem).hide("fast", "linear");
-		// 		$(e.target).text("View all services related to electricians ");
-		// 	}
-		// },
 		onTouch () {
 			this.isTouched = true
 		},
 		onSelectCategory(val) {
 			sessionStorage.setItem("zip", val);
 			this.HideModal();
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.selectedService.id, zip : val }});
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
-				if (result) {
+				if (result && !this.loading) {
 					this.ServiceProviderPage();
 					this.errorMessage = "";
 					return;
@@ -210,14 +201,16 @@ export default {
 			this.categoryval = false;
 		},
 		ServiceProviderPage() {
+
+			this.btnLoading = true;
 			this.isTouched = false;
 			if(!this.searchValue) {
+				this.btnLoading = false;
 				this.isTouched = true;
 				return;
 			}
 			sessionStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: 'Explore_Detail', params: { serviceId: this.searchValue.id, zip : this.zipCode }});
-			//this.$router.push('/explore/service_provider');
+			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -233,7 +226,6 @@ export default {
 				if(data.service_category) {
 					var query  = query + '&service_category='+data.service_category;
 				}
-		        //var query  = '?pagination=true&keyword='+this.search+'&filter_by_featured='+this.search.filter_by_featured;
 		        url = url+query;
 		    }else{
 		    	var query  = '?pagination=true';
@@ -279,6 +271,10 @@ export default {
 	},
 },
 mounted(){
+	if(sessionStorage['zip']) {
+		this.zipCode = sessionStorage.getItem('zip');
+	}
+	
 	this.getList({service_category: 'All'},false);
 },
 watch: {
@@ -303,9 +299,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		// if(result.length > 2) {
-		// 	result = result.slice(0,2);
-		// }
 		return result;
 	},
 	getRemainingWithServices () {
@@ -315,11 +308,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		// if(result.length > 3) {
-		// 	result = result.slice(3,5);
-		// }else {
-		// 	result = result.slice(3);
-		// }
 		return result;
 	},
 	getOtherServices () {
@@ -329,11 +317,6 @@ computed: {
 			  		}
 				});
 		result = _.without(result, undefined);
-		// if(result.length > 3) {
-		// 	result = result.slice(3,5);
-		// }else {
-		// 	result = result.slice(3);
-		// }
 		return result;
 	},
 	isInvalid () {

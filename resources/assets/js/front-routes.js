@@ -79,18 +79,7 @@
 
     {
         name: 'Explore_Detail',
-        path: '/explore/service_provider/:serviceId/:zip',
-        props: true,
-        meta: {
-            title: 'Professional Service Marketplace | Category Detail',
-            bodyClass: 'explore_detail_page',
-            navigation: 'main-nav',
-        },
-        component: require('./components/front/explore/service-provider.vue'),
-    },
-    {
-        name: 'Explore_Detail',
-        path: '/services/:serviceName/',
+        path: '/services/:serviceName/:zip?',
         props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
@@ -144,6 +133,7 @@
             title: 'Professional Service Marketplace | Apply for Review',
             bodyClass: 'apply-for-review-page',
             navigation: 'provider-nav',
+            requiresAuth : true
         },
         component: require('./components/front/profile/ApplyForReview.vue'),
     },

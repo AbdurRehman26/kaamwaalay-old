@@ -1,38 +1,39 @@
 <template>	
 	<div>
-		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Change Password" ok-only ok-title="Submit">
+		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" hide-footer size="sm" title="Change Password" ok-only ok-title="Submit">
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
+            <form action="" method="" @submit.prevent="validateBeforeSubmit">
 		    <div>
-
                 <b-row class="justify-content-md-center">
                     <b-col md="12">
                         <div class="form-group">
                             <label>Old Password</label>
-                            <input type="password" v-model="userData.old_password" :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="old password" name="old_password" class="form-control"  data-vv-name="old_password" placeholder="Enter old password" :class="['form-group' , errorBag.first('old_password') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
+                            <input type="password" v-model="userData.old_password" :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="old password" name="old_password" class="form-control"  data-vv-name="old_password" placeholder="Enter old password" :class="['form-group' , errorBag.first('old_password') ? 'is-invalid' : '']">
                         </div>
                     </b-col> 
                     <b-col md="6">
                         <div class="form-group">
-                            <label>New Password22</label>
-                            <input type="password" v-model="userData.new_password"  :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="new password" name="new_password" class="form-control"  data-vv-name="new_password" placeholder="Create new password" :class="['form-group' , errorBag.first('new_password') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
+                            <label>New Password</label>
+                            <input type="password" v-model="userData.new_password"  :maxlength="25" v-validate="'required|min:8|max:25'" data-vv-as="new password" name="new_password" class="form-control"  data-vv-name="new_password" placeholder="Create new password" :class="['form-group' , errorBag.first('new_password') ? 'is-invalid' : '']">
                         </div>
                     </b-col> 
                     <b-col md="6">
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" v-model="userData.password_confirmation" :maxlength="25" v-validate="'required|confirmed:new_password'" data-vv-as="confirm password" name="password_confirmation" class="form-control"  data-vv-name="password_confirmation" placeholder="Re-type new password" :class="['form-group' , errorBag.first('password_confirmation') ? 'is-invalid' : '']" @keyup.enter="validateBeforeSubmit">
+                            <input type="password" v-model="userData.password_confirmation" :maxlength="25" v-validate="'required|confirmed:new_password'" data-vv-as="confirm password" name="password_confirmation" class="form-control"  data-vv-name="password_confirmation" placeholder="Re-type new password" :class="['form-group' , errorBag.first('password_confirmation') ? 'is-invalid' : '']" >
                         </div> 
                     </b-col> 
                 </b-row>           
 		    </div>
             <div slot="modal-footer" class="">
-                <b-col class="float-left" cols="6">
-                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click.prevant="validateBeforeSubmit();" >
+                <b-col class="float-left">
+                    <button type="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Submit</span> 
                         <loader></loader>
                     </button>
                 </b-col>
             </div>
+        </form>
 	    </b-modal>
 	</div>
 </template>
@@ -80,6 +81,9 @@ data () {
 
             },
             validateBeforeSubmit() {
+                if(this.loading) {
+                    return;
+                }
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.errorMessage = '';
@@ -100,14 +104,14 @@ data () {
                                 self.loading = false;
                                 self.successMessage='';
                                 self.hideModal();
-                            }, 5000);
+                            }, 2000);
                     })
                     .catch(error => {
                         self.loading = false
                         self.errorMessage =error.response.data.message;
                         setTimeout(function(){
                             self.errorMessage='';
-                        }, 5000);
+                        }, 2000);
                     })
             },
     },

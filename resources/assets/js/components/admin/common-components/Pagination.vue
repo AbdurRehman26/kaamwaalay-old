@@ -3,10 +3,10 @@
 
         <block-spinner v-if="loadingStart"></block-spinner>
 
-        <div v-if="pagination && !infiniteLoad" class="total-record float-left">
+        <div v-if="pagination && !infiniteLoad && !loadingStart" class="total-record float-left">
             <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>
         </div>
-        <div v-if="pagination && !infiniteLoad" class="pagination-wrapper float-right">
+        <div v-if="pagination && !infiniteLoad && !loadingStart" class="pagination-wrapper float-right">
             <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
         </div>
         <infinite-loading :distance="10" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
@@ -39,8 +39,14 @@
             totalRecords(){
                 return this.pagination ? this.pagination.total : 0;
             },
-            currentPage(){
-                return this.pagination ? this.pagination.current : 1;    
+            currentPage : {
+                get: function() {
+                    return this.pagination ? this.pagination.current : 1;    
+
+                },
+                set: function() {
+
+                }
             }
         },
         watch :{

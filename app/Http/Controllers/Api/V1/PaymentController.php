@@ -64,7 +64,7 @@ class PaymentController extends ApiResourceController
            ];
     }else{
         $result = $this->_repository->create($data);
-        if($result == 'success') {
+        if(!empty($result['id'])) {
           $code = 200;
           $output = [
             'data' => $result,

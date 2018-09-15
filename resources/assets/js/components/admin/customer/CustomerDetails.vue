@@ -1,44 +1,44 @@
 <template>
-<div class="panel-inner">
-            <div class="main-detail-content">
+    <div class="panel-inner">
+        <div class="main-detail-content">
 
-                <div class="provider-detail">
+            <div class="provider-detail">
 
-                          <div class="col-xs-12">
-                            <div class="customer-detail-title">
-                                <h2 class="page-title">{{customerDetail.first_name}} {{customerDetail.last_name}}</h2>
-                            </div>
-                        </div>
-  
-                    <!-- Basic Detail -->
- 
-                        <div class="col-xs-12 block-area">
+              <div class="col-xs-12">
+                <div class="customer-detail-title">
+                    <h2 class="page-title">{{customerDetail.first_name}} {{customerDetail.last_name}}</h2>
+                </div>
+            </div>
+            
+            <!-- Basic Detail -->
+            
+            <div class="col-xs-12 block-area">
 
-                            <div class="view-details-list">
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">First Name </strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <p>{{customerDetail.first_name}}</p>
-                                    </b-col>
-                                </b-row>
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">Last Name</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <p>{{customerDetail.last_name}}</p>
-                                    </b-col>
-                                </b-row>                                                                
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">Email Address</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <a href="mailto:Chester_Kris15@gmail.com">{{customerDetail.email}}</a>
-                                    </b-col>
-                                </b-row>
+                <div class="view-details-list">
+                    <b-row>
+                        <b-col class="text-right fixed-label">
+                            <p><strong class="title-head">First Name </strong></p>
+                        </b-col>
+                        <b-col class="calculated-value">
+                            <p>{{customerDetail.first_name}}</p>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col class="text-right fixed-label">
+                            <p><strong class="title-head">Last Name</strong></p>
+                        </b-col>
+                        <b-col class="calculated-value">
+                            <p>{{customerDetail.last_name}}</p>
+                        </b-col>
+                    </b-row>                                                                
+                    <b-row>
+                        <b-col class="text-right fixed-label">
+                            <p><strong class="title-head">Email Address</strong></p>
+                        </b-col>
+                        <b-col class="calculated-value">
+                            <a href="mailto:Chester_Kris15@gmail.com">{{customerDetail.email}}</a>
+                        </b-col>
+                    </b-row>
 <!--                                 <b-row>
                                     <b-col class="text-right fixed-label">
                                         <p><strong class="title-head">Address</strong></p>
@@ -57,9 +57,9 @@
                                 </b-row>                                                                   
                             </div>
                         </div>
-    
+                        
 
-                    <!-- Profile Detail -->
+                        <!-- Profile Detail -->
 
                         <div class="col-xs-12 block-area">
 <!--                             <div class="customer-detail-title">
@@ -103,7 +103,7 @@
 
 
 
-                    <!-- Service Detail -->
+                        <!-- Service Detail -->
 
                         <div class="col-xs-12 block-area">
  <!--                            <div class="customer-detail-title">
@@ -147,43 +147,41 @@
                                         <p><strong class="title-head">Job Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <a @click="viewjob(customerDetail.id)" href="javascript:void(0);">View All Jobs</a>
+                                        
+                                        <router-link :to="{name: 'customer.job.detail',params: { id: customerDetail.id }}">View All Jobs</router-link>
+                                        
                                     </b-col>
                                 </b-row>                                                                                                 
                             </div>
                         </div>
 
-                    
+                        
 
+                    </div>
                 </div>
             </div>
-</div>
-</template>
+        </template>
 
-<script>
-import fancyBox from 'vue-fancybox';
-import StarRating from 'vue-star-rating';
-export default{
-    data () {
-        return {
-            customerId: this.$route.params.id,
-            userURL : 'api/user',
-            customerDetail : '',
-        }
-    },
-    components: {
-        StarRating
-    },    
-    mounted() {
-        this.getSingle();
-    },
+        <script>
+            import fancyBox from 'vue-fancybox';
+            import StarRating from 'vue-star-rating';
+            export default{
+                data () {
+                    return {
+                        customerId: this.$route.params.id,
+                        userURL : 'api/user',
+                        customerDetail : '',
+                    }
+                },
+                components: {
+                    StarRating
+                },    
+                mounted() {
+                    this.getSingle();
+                },
 
-    methods:{
-        viewjob(id){
-            
-            this.$router.push({name: 'customer.job.detail',params: { id:id }});
-        },
-        getSingle(){
+                methods:{
+                    getSingle(){
             // alert('single')
             let self = this;
             self.showModalValue = false;

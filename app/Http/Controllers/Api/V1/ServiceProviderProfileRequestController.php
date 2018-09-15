@@ -20,7 +20,7 @@ class ServiceProviderProfileRequestController extends ApiResourceController
         
 
         if($value == 'update'){
-          $rules['id']            =  'required|exists:services,id';
+          $rules['id']            =  'required|exists:service_provider_profile_requests,id';
           $rules['status']        =  'nullable|in:approved,pending,rejected,in-review';
           $rules['reason']        =  'nullable';
       }

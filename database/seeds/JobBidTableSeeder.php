@@ -73,7 +73,7 @@ class JobBidTableSeeder extends Seeder
 
                     $updateData = ['id' => $job->id, 'status'=> $jobStatus, 'updated_at' => $now];
 
-                    app('JobRepository')->update($updateData);
+                    app('JobRepository')->model->update($updateData);
                     
                 }
 
