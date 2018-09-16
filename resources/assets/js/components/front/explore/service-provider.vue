@@ -29,7 +29,7 @@
 							</div>
 			                <div class="container-zip-code">
 								<i class="icon-location"></i>
-								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
+								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[(errorBag.first('zip') || isZipEmpty) ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
 							</div>
 						</div>			
 					</div>
@@ -183,6 +183,9 @@
 			categoryPopup: false,
 			selectedService: '',
 			isService: false,
+			authUser: '',
+			routeName: '',
+			isZipEmpty: false,
 		}
   	},
     computed : {
@@ -196,11 +199,13 @@
     methods: {
 		onSelectCategory(val) {
 			this.hideZipModal();
+
 			localStorage.setItem("zip", val);
-			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
+			this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
 		},
 		changecategorypopup(service) {
 			this.selectedService = service;
+
 			if(localStorage['zip']) {
 				this.onSelectCategory(localStorage['zip']);
 			}else {
@@ -245,7 +250,7 @@
 				return;
 			}
 			this.serviceName = this.searchValue.url_suffix;
-			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.serviceName, zip : this.zipCode }});
+			this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
 			//this.getService(); 
 		},
 		onTouch () {
@@ -383,6 +388,7 @@
 			this.getService();
 		},
 		zipCode(val) {
+			this.isZipEmpty = false;
 			if(val.length > 5) {
 				val = val.substr(0, 5);
 			}
@@ -395,6 +401,16 @@
 		}
 	},
     mounted(){	
+
+		if(!this.zip) {
+			localStorage.removeItem('zip');
+			this.isZipEmpty = true;
+		}
+    	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
+		this.routeName = 'Explore_Detail';
+		if(this.authUser) {
+			this.routeName = 'Customer_Explore_Detail';
+		}
 		this.getService();
 	},
 

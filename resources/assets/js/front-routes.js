@@ -75,6 +75,18 @@
         },
         component: require('./components/front/explore/main.vue'),
     },
+    {
+        name: 'Customer_Explore',
+        path: '/customer-explore',
+        meta: {
+            title: 'Professional Service Marketplace | Explore',
+            bodyClass: 'explore_page',
+            navigation: 'customer-nav',
+            requiresAuth: true,
+            forCustomer: true,
+        },
+        component: require('./components/front/explore/main.vue'),
+    },
 
 
     {
@@ -85,6 +97,19 @@
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',
             navigation: 'main-nav',
+        },
+        component: require('./components/front/explore/service-provider.vue'),
+    },
+    {
+        name: 'Customer_Explore_Detail',
+        path: '/customer-services/:serviceName/:zip?',
+        props: true,
+        meta: {
+            title: 'Professional Service Marketplace | Category Detail',
+            bodyClass: 'explore_detail_page',
+            navigation: 'customer-nav',
+            requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/explore/service-provider.vue'),
     },

@@ -2,7 +2,7 @@
     <!-- custom heder -->
     <div class="navigation main-navigation customer-navigation">
         <ul class="float-left">
-            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/explore">Explore</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/customer-explore">Explore</router-link></li>
             <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-jobs">My Jobs</router-link></li>
             <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
             <li>
