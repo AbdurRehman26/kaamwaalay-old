@@ -178,7 +178,7 @@
                                         Write Review
                                     </a>
 
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatBox(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                     <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -234,7 +234,7 @@
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>           
+<chat-panel v-show="showChat" @closeChat="showChat = false;" :jobMessageData="jobMessageData" :show="showChat"></chat-panel>           
 
 
 </div>
@@ -286,8 +286,9 @@
                 errorMessage: '',
                 successMessage: '',
                 showBidPopup : false,
-                showChatPopup : false,
+                showChat : false,
                 confirmPopupShow : false,
+                jobMessageData: {},
                 formData : {
 
                 }
@@ -376,6 +377,15 @@
         }
     },
     methods: {
+        showChatBox(bid) {
+            this.jobMessageData = {
+                text: '',
+                job_id: bid.job_id,
+                reciever_id: bid.service_provider.user_id,
+                job_bid_id: bid.id,
+            };
+            this.showChat = true;
+        },
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
 

@@ -74,7 +74,7 @@ public function findByCriteria($criteria, $refresh = false, $details = false, $e
 
 public function findByAll($pagination = false, $perPage = 10, array $input = [] )
 {
-    $this->builder = $this->model->where('user_id', '=', $input['user_id'])->orderBy('is_awarded' , 'desc');
+    $this->builder = $this->model->orderBy('is_awarded' , 'desc');
 
     if(!empty($input['filter_by_status'])) {
 
@@ -123,6 +123,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         );
     }            
     if(!empty($input['filter_by_job_detail'])) {
+        $this->builder = $this->builder->where('user_id', '=', $input['user_id']);
         $input['details'] = $input['filter_by_job_detail'];
     }
 
