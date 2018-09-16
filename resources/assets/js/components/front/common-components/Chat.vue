@@ -47,6 +47,19 @@
                 showNoRecordFound: false,
             }
         },
+        created() {
+            // window.Echo.private('Discussion-Dashboard-Report.'+worspaces[i].id).listen('.Dms\\Events\\UserDiscussed', e => {
+            //     var obj = {
+            //         data: {
+            //             notification_details: e.discussion,
+            //         },
+            //     };
+            //     obj.data.notification_details.fromUser = e.discussion.user;
+            //     self.notifications.unshift(obj);
+            //     var count = e.discussion.notification_count;
+            //     self.$emit('setNotificationCount', count);
+            // });
+        },
         methods: {
             getList(data , page , successCallback){
                 let self = this;
