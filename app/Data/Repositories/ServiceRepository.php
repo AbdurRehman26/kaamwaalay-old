@@ -161,7 +161,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
         }
         if(isset($data['filter_by_related_services'])) {
-            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
+            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('status', '=', 1);
 
             $isParent = $this->builder->whereNull('parent_id')->get()->toArray();
             if(!$isParent) {
