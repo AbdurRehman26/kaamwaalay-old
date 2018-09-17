@@ -14,7 +14,7 @@
               var this_ = this;
               if(this.$auth.isAuthenticated()){
                 this.$auth.logout().then(function (Vue) {
-                    this_.$store.commit('setAuthUser', '');
+                    this_.$store.commit('setAuthAdminUser', '');
                     this_.$router.push({ name: 'login'})
                 })
             }else{

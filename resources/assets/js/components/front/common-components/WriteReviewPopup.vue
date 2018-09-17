@@ -12,7 +12,7 @@
                     <b-col md="12" sm="12">
                         <div class="form-group">
                             <label>Overall Service Rating</label>
-                            <star-rating v-model="submitFormData.rating" :increment="0.5" :star-size="20" :rating="submitFormData.rating" active-color="#8200ff"></star-rating>    
+                            <star-rating v-validate="'required'" v-model="submitFormData.rating" :star-size="20" :rating="submitFormData.rating" active-color="#8200ff"></star-rating>    
                         </div>
 
                         <div class="form-group">
@@ -61,6 +61,12 @@
         },
         methods: {
             submitForm(){
+                this.errorMessage = '';
+                if(!this.submitFormData.rating){
+                    this.errorMessage = 'You need to rate in order to submit form';
+                    return false;
+                }
+
                 this.submit = true;
                 this.loading = true;
                 this.submitFormData.job_id = this.job ? this.job.id : '';
@@ -78,8 +84,18 @@
                 }, 2000);
             },
             formError(error){
-                console.log(error);
-                this.errorMessage = error;
+                let self = this;
+
+                self.loading = false;
+                self.submit = false;
+
+
+                self.errorMessage =  'You have already provided the review';
+                // let errors = error.response.data;
+                // _.forEach(errors, function(value, key) {
+                //     return false;
+                // });
+
             },
             showModal() {
                 this.$refs.myModalRef.show()
@@ -88,6 +104,13 @@
                 this.$refs.myModalRef.hide()
             },
             onHidden(){
+                this.errorMessage = '';
+
+
+                this.submitFormData.rating  = 0;
+                this.submitFormData.message  = '';
+                this.submitFormData.status  = 'approved';
+
                 this.$emit('HideModalValue');
             },        
         },    

@@ -71,6 +71,7 @@ methods: {
       var this_ = this;
       this.loading = true
       window.successMessage = ""
+      let redirectUrl = this_.$store.getters.getRedirectUrl
       if(!this.$auth.isAuthenticated()){
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
@@ -86,7 +87,11 @@ methods: {
           if(response.data.response.data[0].is_profile_completed == 0 ){
              this_.$router.push({ name: 'customer_profile'})
          }else{ 
-             this_.$router.push({ name: 'my.jobs'})
+             if(redirectUrl){
+              this_.$router.push({ name: redirectUrl})
+             }else{
+              this_.$router.push({ name: 'my.jobs'})
+             }
          }         
      }
  }).catch(error => {
@@ -108,10 +113,15 @@ methods: {
              this_.$router.push({ name: 'my.bids'})
          }
      }else{
+       this_.$router.push({ name: this_.$store.getters.getRedirectUrl})
        if(response.data.response.data[0].is_profile_completed == 0 ){
          this_.$router.push({ name: 'customer_profile'})
      }else{ 
-         this_.$router.push({ name: 'my.jobs'})
+         if(redirectUrl){
+          this_.$router.push({ name: redirectUrl})
+        }else{
+          this_.$router.push({ name: 'my.jobs'})
+        }
      }   
  }
 

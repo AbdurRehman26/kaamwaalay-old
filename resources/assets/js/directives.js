@@ -16,7 +16,7 @@ Vue.directive('can', {
     let user
     var permissionValue = binding.value;
     if(app.$store != 'undefined'){
-      user = JSON.parse(app.$store.getters.getAuthUser);
+      user = JSON.parse(app.$store.getters.getAuthAdminUser);
       var allPermissions = user.role.scope;
       if(allPermissions){       
         if(!allPermissions.includes(permissionValue))
@@ -30,7 +30,7 @@ update: function (el, binding, vnode) {
     let user
     var permissionValue = binding.value;
     if(app.$store != 'undefined'){
-      user = JSON.parse(app.$store.getters.getAuthUser);
+      user = JSON.parse(app.$store.getters.getAuthAdminUser);
       var allPermissions = user.role.scope;
       if(allPermissions){       
         if(!allPermissions.includes(permissionValue))

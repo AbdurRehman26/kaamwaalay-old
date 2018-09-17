@@ -76,7 +76,7 @@ Vue.component('service-provider', require('./components/front/advice-center/Serv
 // facebook 
 Vue.component('facebook-component',require('./components/front/common-components/facebookComponent.vue'));
 /*logout*/
-Vue.component('logout-component',require('./components/auth/LogoutComponent.vue'));
+Vue.component('logout-component',require('./components/front/auth/LogoutComponent.vue'));
 
 
 

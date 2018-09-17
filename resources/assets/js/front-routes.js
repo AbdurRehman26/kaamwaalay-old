@@ -40,7 +40,7 @@
     // Home
 
     {
-        name: 'main_page',
+        name: 'main-page',
         path: '/',
         meta: {
             title: 'Professional Service Marketplace | Landing',
@@ -133,7 +133,8 @@
             title: 'Professional Service Marketplace | Apply for Review',
             bodyClass: 'apply-for-review-page',
             navigation: 'provider-nav',
-            requiresAuth : true
+            requiresAuth : true,
+            forServiceProvider : true,
         },
         component: require('./components/front/profile/ApplyForReview.vue'),
     },
@@ -149,6 +150,7 @@
             bodyClass: 'job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/job-post/main.vue'),
     },
@@ -175,7 +177,9 @@
         meta: {
             title: 'Professional Service Marketplace | Featured Profile',
             bodyClass: 'featured-profile-page',  
-            navigation: 'provider-nav',          
+            navigation: 'provider-nav',   
+            requiresAuth: true,       
+            forServiceProvider: true,       
         },
         component: require('./components/front/featured-profile/main.vue'),
     },
@@ -191,6 +195,7 @@
             bodyClass: 'my-job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/jobs/my-jobs.vue'),
     },
@@ -203,6 +208,8 @@
             title: 'Professional Service Marketplace | My Jobs',
             bodyClass: 'my-explore-job-page',
             navigation: 'provider-nav',
+            requiresAuth: true,
+            forServiceProvider: true,
         },
         component: require('./components/front/jobs/explore-jobs.vue'),
     },
@@ -242,6 +249,8 @@
             title: 'Professional Service Marketplace | My Bids',
             bodyClass: 'my-bids-page',
             navigation: 'provider-nav',
+            requiresAuth: true,
+            forServiceProvider: true,
         },
         component: require('./components/front/bids/main.vue'),
     },
@@ -327,25 +336,46 @@ const router = new VueRouter({
     routes, // short for `routes: routes`
     app,
 })
+const serviceProvider = 2;
 const customer = 3;
 const title = document.title
 router.beforeEach((to, from, next) => {
     let user;
+    if(to.name != 'login'){
+     router.app.$store.commit('setRedirectUrl',to.name);
+    }
     if(router.app.$store.getters.getAuthUser != 'undefined'){
-      user = JSON.parse(router.app.$store.getters.getAuthUser);
-  }
+        user = JSON.parse(router.app.$store.getters.getAuthUser);
+    }
+    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+        next({name: 'login'});
+    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+        if(user  && user.role_id == customer){
+            next({name: 'my.jobs'});
+        }
+        else if(user  && user.role_id == serviceProvider){
+            next({name: 'my.bids'});
+        }
+    } else {
+        next();
+    }
 
-  if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
-    next({name: 'login'});
-} else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-    if(user  && user.role_id == customer){
-      next({name: 'my.jobs'});
-  }
-} else {
-    next();
-}
-
-next();
+    if (to.matched.some(record => record.meta.forCustomer) && router.app.$auth.isAuthenticated()) {
+        if(user  && user.role_id == customer){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
+    if (to.matched.some(record => record.meta.forServiceProvider) && router.app.$auth.isAuthenticated()) {
+        if(user  && (user.role_id == serviceProvider)){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
 })
 
 export default router
