@@ -10,13 +10,13 @@
                 </span>
 
                 <!--main nav-->
-                <main-nav v-if="$route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
+                <main-nav v-if="!userDetails && $route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
                 {{$store.getters.getAuthUser.role}}
 
-                <customer-nav @profilepopup="ProfilePopup" v-if="activeUser.role_id == userRoles.customer" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
+                <customer-nav @profilepopup="ProfilePopup" v-if="userDetails.role_id == userRoles.customer" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->
-                <provider-nav @profilepopup="ProfilePopup" v-if="activeUser.role_id == userRoles.provider" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
+                <provider-nav @profilepopup="ProfilePopup" v-if="userDetails.role_id == userRoles.provider" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
 
             </div>
             <i class="icon-menu2 menuiconbutton" @click="responsivemenu ^= true"></i>
@@ -38,12 +38,14 @@
                     customer  : 3,
                     provider : 2
                 },
-                activeUser : ''
             }
         },
         mounted (){
-            let user = JSON.parse(this.$store.getters.getAuthUser);
-            this.activeUser =  user ? user : '';            
+        },
+        computed : {
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
+            },
         },
         methods:{
             ProfilePopup(){
@@ -72,9 +74,7 @@
                 this.responsivemenu = false;
             }
         },
-        watch : {
-            activeUser(){
-            }   
+        watch : { 
         }
     }
 </script>
