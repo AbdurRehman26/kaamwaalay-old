@@ -24,16 +24,16 @@
                             <th class="text-center">Project Amount</th>                          
                             <th>Service Provider Rating</th>
 
-                                <th class="text-center">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr v-for="(record, index) in records">
-                                <td>{{ record.title }}</td>
-                                <td>{{record.service_provider}}</td>
-                                <td class="text-center"> {{ record |jobType}}</td>
-                                <td class="text-center">{{record.job_amount == null ? '-':'$'+record.job_amount}}  </td>                           
-                                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(record, index) in records">
+                            <td>{{ record.title }}</td>
+                            <td>{{record.service_provider}}</td>
+                            <td class="text-center"> {{ record |jobType}}</td>
+                            <td class="text-center">{{record.job_amount == null ? '-':'$'+record.job_amount}}  </td>                           
+                            <td><star-rating :star-size="20" read-only :increment="0.02" :rating="record.avg_rating" active-color="#8200ff"></star-rating></td>
 
                             <td class="text-center">
                                 <div class="action-icons">
@@ -47,12 +47,11 @@
             </div>
         </div>
     </div>
+    <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" :url="requestUserUrl" @get-records="getUserRecord"></vue-common-methods>
 </div>
-
-<vue-common-methods :hideLoader="true" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-<vue-common-methods :url="requestUserUrl" @get-records="getUserRecord"></vue-common-methods>
-
 <view-customer-record :showModalProp="viewCustomerRecord" @HideModalValue="HideModal" :selectedJob="selectedJob"></view-customer-record>
+
 </div> 
 </template>
 <script>
@@ -89,9 +88,11 @@
             },
             getRecords(response){
                 let self = this;
-                self.loading = false;
-                self.records = response.data;
-                self.noRecordFound = response.noRecordFound;
+                if(response.data){
+                    self.records = response.data;
+                    self.loading = false;
+                    self.noRecordFound = response.noRecordFound;
+                }
                 
 
             },

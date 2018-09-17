@@ -112,7 +112,7 @@
 		</div>
 
 		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
-        <div class="featured-categories section-padd sm  elementary-banner p-t-130">
+        <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
         	<div class="container element-index">
 
 	        	<div class="category-section">  
@@ -129,8 +129,8 @@
 						<div class="showmore showmore-link clearfix" >
 							<div>
 							  <!-- element to collapse -->
-							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(relatedServices).length">View all services related to electricians<i class="icon-angle-right"></i></a>
-							  <b-collapse :id="service.title">
+							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(relatedServices).length">View all related services<i class="icon-angle-right"></i></a>
+							  <b-collapse :id="service.title" v-if="getRemainingSubServices(relatedServices).length">
 							    <b-card>
 							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(relatedServices)">
 									<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">

@@ -52,7 +52,7 @@
 						<div class="showmore showmore-link clearfix">
 							<div>
 							  <!-- element to collapse -->
-							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(service.subservices).length">View all services related to electricians<i class="icon-angle-right"></i></a>
+							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(service.subservices).length">View all services related to {{service.title}}<i class="icon-angle-right"></i></a>
 							  <b-collapse :id="service.title">
 							    <b-card>
 							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
