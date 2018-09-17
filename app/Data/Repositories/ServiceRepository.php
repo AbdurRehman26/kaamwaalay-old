@@ -161,13 +161,17 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
         }
         if(isset($data['filter_by_related_services'])) {
-            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('status', '=', 1);
+            $this->builder = $this->builder->where('id', '=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
 
-            $isParent = $this->builder->whereNull('parent_id')->get()->toArray();
-            if(!$isParent) {
-                $this->builder = $this->getPopularServices();
+            $isParent = $this->builder->pluck('parent_id')->toArray();
+            if(!$isParent[0]) {
+                $this->builder = $this->model->where('parent_id', '=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
+                if(!$this->builder->get()->toArray()) {
+                    $this->builder = $this->getPopularServices();
+                }
+                
             }else {
-                $this->builder = $this->model->where('id', '!=', $data['filter_by_related_services'])->where('parent_id', '=', $data['filter_by_related_services'])->where('status', '=', 1);
+                $this->builder = $this->model->where('parent_id', '=', (int)$isParent[0])->where('id', '!=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
                 if(!$this->builder->get()->toArray()) {
                     $this->builder = $this->getPopularServices();
                 }

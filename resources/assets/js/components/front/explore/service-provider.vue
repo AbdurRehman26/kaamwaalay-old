@@ -112,7 +112,7 @@
 		</div>
 
 		<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
-        <div class="featured-categories section-padd sm  elementary-banner p-t-130">
+        <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
         	<div class="container element-index">
 
 	        	<div class="category-section">  
