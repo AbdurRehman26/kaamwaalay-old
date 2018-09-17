@@ -18,9 +18,6 @@ class JobBidTableSeeder extends Seeder
 
         $now = Carbon::now()->toDateTimeString();
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \DB::table('job_bids')->truncate();
-
         echo "\nThis Seeder requires Jobs to be present in data base.\n"; 
 
         $faker = Faker\Factory::create();
@@ -85,6 +82,7 @@ class JobBidTableSeeder extends Seeder
                 $amount = mt_rand(0, 150000);
 
                 $bidData = [
+                    'id' => $i,
                     'description' => $faker->Text,
                     'amount' => $amount,
                     'is_tbd' => $isTbd,
@@ -115,8 +113,6 @@ class JobBidTableSeeder extends Seeder
             }
 
         }
-
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         app("JobBidRepository")->model->InsertOnDuplicateKey($data);
 

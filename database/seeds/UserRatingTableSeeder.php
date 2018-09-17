@@ -16,9 +16,6 @@ class UserRatingTableSeeder extends Seeder
 
         echo "\nThis Seeder requires Jobs and Job Bids to be present in data base.\n"; 
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \DB::table('user_ratings')->truncate();
-
 
         $faker = Faker\Factory::create();
         $now = Carbon::now()->toDateTimeString();
@@ -35,6 +32,7 @@ class UserRatingTableSeeder extends Seeder
             $data = [];
             foreach ($jobBids as $key => $bid) {
                 $data[] = [
+                    'id' => $key,
                     'job_id' => $bid->job_id,
                     'user_id' => $bid->service_provider_user_id,
                     'rated_by' => $bid->customer_user_id,
@@ -47,8 +45,6 @@ class UserRatingTableSeeder extends Seeder
                 ];
 
             }
-
-            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
             app('UserRatingRepository')->model->insertOnDuplicateKey($data);
 
