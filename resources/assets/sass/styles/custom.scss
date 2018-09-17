@@ -52,7 +52,9 @@
 }
 .datepicker-row{
     label {
-        font-size: 12px;
+        @media (max-width: 1380px) and (min-width: 1170px) {
+            font-size: 12px;
+        }
     }
 }
 

@@ -38983,8 +38983,10 @@ body .vue-treeselect .vue-treeselect__list-item .vue-treeselect__list-item.vue-t
   }
 }
 
-.datepicker-row label {
-  font-size: 12px;
+@media (max-width: 1380px) and (min-width: 1170px) {
+  .datepicker-row label {
+    font-size: 12px;
+  }
 }
 
 .left-cog.profile-block {
