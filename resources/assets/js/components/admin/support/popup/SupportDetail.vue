@@ -41,10 +41,10 @@
             </b-row>
 
             <b-row>
-                <b-col cols="12" class="">
+                <b-col cols="5" class="">
                     <p><strong class="title-head">Message:</strong></p>
                 </b-col>
-                <b-col cols="12">
+                <b-col cols="7">
                     <div class="form-group">
                         <p>{{selectedInquiry.message? selectedInquiry.message : '-'}}</p>
                     </div>

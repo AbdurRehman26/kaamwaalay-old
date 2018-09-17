@@ -50,6 +50,24 @@
     }
 
 }
+.datepicker-row{
+    label {
+        font-size: 12px;
+    }
+}
+
+.left-cog.profile-block{
+    top: 5px;   
+    position: relative;
+    .profile-username.pointer-event{
+        display: flex;
+        i{
+            display: inline-block;
+            position: relative;
+            top: -2px;
+        }
+    }
+}
 body{
     .list-height{
         .scrollbar{
