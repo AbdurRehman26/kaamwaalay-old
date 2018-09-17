@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Data\Repositories\JobRepository;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use App\Events\UrgentJobCreated;
 
 class JobController extends ApiResourceController
 {
@@ -109,5 +110,13 @@ class JobController extends ApiResourceController
 
         return !empty($messages[$value]) ? $messages[$value] : 'Success.';
     }
-
+    public function store(Request $request)
+    {
+       $result = parent::store($request);
+       if($result){
+         $user = $request->user();
+         event(new UrgentJobCreated($user));
+       }
+       return $result;
+    }
 }

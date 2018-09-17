@@ -30,25 +30,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js'
 import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
-import socketio from 'socket.io-client';
-import VueSocketio from 'vue-socket.io';
-Vue.use(VueSocketio,socketio('http://127.0.0.1:6379/'), store);
-var vm = new Vue({
-  sockets:{
-    connect: function(){
-      console.log('socket connected')
-    },
-    customEmit: function(val){
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
-    }
-  },
-  methods: {
-    clickButton: function(val){
-        // $socket is socket.io-client instance
-        this.$socket.emit('emit_method', val);
-    }
-  }
-})
+
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
 Vue.use(BootstrapVue);
@@ -217,7 +199,6 @@ const app = new Vue({
         }
     }
 });
-
 Vue.axios.interceptors.response.use((response) => { // intercept the global error
     return response
   }, function (error) {
