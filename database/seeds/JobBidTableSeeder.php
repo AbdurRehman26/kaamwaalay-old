@@ -114,7 +114,7 @@ class JobBidTableSeeder extends Seeder
 
         }
 
-        app("JobBidRepository")->model->InsertOnDuplicateKey($data);
+        app("JobBidRepository")->model->insertIgnore($data);
 
         if(!empty($jobs)){
 
