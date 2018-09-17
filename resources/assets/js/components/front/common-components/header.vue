@@ -44,6 +44,7 @@
         },
         computed : {
             userDetails(){
+                
                 return JSON.parse(this.$store.getters.getAuthUser);
             },
         },
