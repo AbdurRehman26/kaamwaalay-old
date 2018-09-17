@@ -92,7 +92,7 @@
                         <div class="job-details">
                             <p class="customer-rating">
                                 <strong>Customer rating:</strong>
-                                <star-rating :increment="0.5" :star-size="20" read-only :rating="[record.user ? parseFloat(record.user.average_rating) : 0]" active-color="#8200ff"></star-rating>
+                                <star-rating :increment="0.5" :star-size="20" read-only :rating="record.user ? parseFloat(record.user.average_rating) : 0" active-color="#8200ff"></star-rating>
                             </p>
                             <p class="service-requirment">
                                 <i class="icon-brightness-down"></i>
@@ -153,8 +153,10 @@
 
         methods: {
             getCityResponse(response){
-                let self = this;
-                self.cities = response.data;
+                if(response.data){
+                    let self = this;
+                    self.cities = response.data;
+                }
             },
             validateBeforeSubmit() {
                 let dateNow = new Date().getMilliseconds();
