@@ -13,7 +13,12 @@
     box-shadow: 0 0px 4px 0 rgba(0,0,0,0.2);
     overflow:hidden;
 
-
+    @media (max-height: 700px) {
+        height: calc(100vh - 72px);
+        .discussion-content.scrollbar{
+            min-height: auto;
+        }
+    }
     @include mobileS{
         width: 100%;
         top: 0;

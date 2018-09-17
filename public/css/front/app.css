@@ -12609,6 +12609,16 @@ input[type=number]::-webkit-outer-spin-button {
   overflow: hidden;
 }
 
+@media (max-height: 700px) {
+  .discussion-panel {
+    height: calc(100vh - 72px);
+  }
+
+  .discussion-panel .discussion-content.scrollbar {
+    min-height: auto;
+  }
+}
+
 @media (max-width: 414px) {
   .discussion-panel {
     width: 100%;
