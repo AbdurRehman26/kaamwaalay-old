@@ -9,7 +9,7 @@
         </div>
         <div class="discussion-content scrollbar style-2">
             <b-list-group>
-                <div class="chat-message" v-for="person in persons">
+                <div class="chat-message" v-for="(person, index) in persons">
                     <b-list-group-item>
                         <span class="chat-profile-pic"  :style="{'background-image': 'url(' + profileImage + ')'}"></span>
                         <div class="profile-message">
