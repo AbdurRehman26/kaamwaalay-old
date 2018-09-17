@@ -109,8 +109,11 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
     public function findByAll($pagination = false,$perPage = 10, $data = []){
         
         $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
-                            ->where('users.role_id', '=', Role::SERVICE_PROVIDER)
-                            ->orderBy('service_provider_profiles.created_at','desc');
+                            ->where('users.role_id', '=', Role::SERVICE_PROVIDER);
+
+        if (empty($data['filter_by_top_providers'])) {
+            $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
+        }
         
         if(!empty($data['zip'])) {
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
