@@ -123,6 +123,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         );
     }            
     if(!empty($input['filter_by_job_detail'])) {
+        $this->builder = $this->builder->where('user_id', '=', $input['user_id']);
         $input['details'] = $input['filter_by_job_detail'];
     }
 
