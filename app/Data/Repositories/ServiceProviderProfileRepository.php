@@ -148,7 +148,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['is_approved'])) {
             //$is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
             $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['is_approved']);
-
         }
 
         if(!empty($data['filter_by_featured'])){

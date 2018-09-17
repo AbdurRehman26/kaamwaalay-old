@@ -110,7 +110,7 @@ Vue.mixin({
 })
 // Create and mount the root instance.
 
-
+require('./echo.js');
 const app = new Vue({
     el: '#app',
     router: router,

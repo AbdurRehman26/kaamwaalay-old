@@ -161,15 +161,15 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
         }
         if(isset($data['filter_by_related_services'])) {
-            $this->builder = $this->builder->where('id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
+            $this->builder = $this->builder->where('id', '=', (int)$data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
 
             $isParent = $this->builder->whereNull('parent_id')->get()->toArray();
             if(!$isParent) {
-                $this->builder = $this->getPopularServices();
+                $this->builder = $this->getPopularServices((int)$data['filter_by_related_services']);
             }else {
-                $this->builder = $this->model->where('id', '!=', $data['filter_by_related_services'])->where('parent_id', '=', $data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
+                $this->builder = $this->model->where('id', '!=', (int)$data['filter_by_related_services'])->where('parent_id', '=', (int)$data['filter_by_related_services'])->where('is_display_service_nav', '=', 1)->where('status', '=', 1);
                 if(!$this->builder->get()->toArray()) {
-                    $this->builder = $this->getPopularServices();
+                    $this->builder = $this->getPopularServices((int)$data['filter_by_related_services']);
                 }
             }
         }
@@ -230,11 +230,12 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     return parent::findByAll($pagination, $perPage, $data);
     }
 
-    public function getPopularServices() {
+    public function getPopularServices($currentServiceId) {
         return $this->model
                 ->leftJoin('jobs', function ($join) {
                     $join->on('jobs.service_id', '=', 'services.id');
                 })
+                ->where('service_id', '<>', $currentServiceId)
                 ->select('services.id')
                 ->groupby('service_id')   
                 ->orderBy(DB::raw('COUNT(service_id)'), 'desc')
