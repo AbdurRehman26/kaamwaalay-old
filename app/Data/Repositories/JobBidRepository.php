@@ -303,7 +303,8 @@ public function update(array $data = [])
     unset($data['user_id']);
 
     $data = parent::update($data);
-    if($data->is_awarded){
+        
+    if(!empty($data->is_awarded)){
 
         $updateData = ['id' => $data->job_id, 'status'=> 'awarded'];
 

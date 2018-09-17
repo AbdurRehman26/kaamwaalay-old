@@ -106,122 +106,124 @@
                                                    <img @click="open($event)" :src="n">
                                                </div>
                                            </div>   -->   
-                                            <lightbox
-                                                  id="mylightbox"
-                                                  :images="imageLists"
-                                                  :image_class=" 'img-responsive img-rounded' "
-                                                  :album_class=" 'my-album-class' "
-                                                  :options="options">
-                                            </lightbox>                                              
-                                                                                                                                                  
-                                    </b-col>
-                                </b-row>                                                                   
+                                           <lightbox
+                                           id="mylightbox"
+                                           :images="imageLists"
+                                           :image_class=" 'img-responsive img-rounded' "
+                                           :album_class=" 'my-album-class' "
+                                           :options="options">
+                                       </lightbox>                                              
 
-                            </div>
-                        </div>
+                                   </b-col>
+                               </b-row>                                                                   
+
+                           </div>
+                       </div>
 
 
 
-                        <!-- Bidding Detail -->
+                       <!-- Bidding Detail -->
 
-                        <div class="col-xs-12 block-area">
-                            <div class="view-details-list">
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">Total Bidding Initiated</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <p>{{record.bids_count}}</p>
-                                    </b-col>
-                                </b-row>
+                       <div class="col-xs-12 block-area">
+                        <div class="view-details-list">
+                            <b-row>
+                                <b-col class="text-right fixed-label">
+                                    <p><strong class="title-head">Total Bidding Initiated</strong></p>
+                                </b-col>
+                                <b-col class="calculated-value">
+                                    <p>{{record.bids_count}}</p>
+                                </b-col>
+                            </b-row>
 
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">Bidding Details</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
+                            <b-row>
+                                <b-col class="text-right fixed-label">
+                                    <p><strong class="title-head">Bidding Details</strong></p>
+                                </b-col>
+                                <b-col class="calculated-value">
 
-                                        <router-link :to="{name: 'bidding.details', params : {jobId : record.id}}">See All</router-link>
+                                    <router-link :to="{name: 'bidding.details', params : {jobId : record.id}}">See All</router-link>
 
-                                    </b-col>
-                                </b-row>                                                                                                 
-                            </div>
+                                </b-col>
+                            </b-row>                                                                                                 
                         </div>
                     </div>
                 </div>
-                <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-
             </div>
-        </template>
+            <vue-common-methods :url="requestUrl" @get-records="getRecords"></vue-common-methods>
 
-        <script>
-            import fancyBox from 'vue-fancybox';
-            import StarRating from 'vue-star-rating';
-            import Lightbox from 'vue-simple-lightbox';
-            export default{
-                data () {
-                  return {
-                    url : 'api/job/',
-                    record : [],
-                    imageList: [
-                    { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
-                    { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
-                    ],
-                     imageList : [
-                        {
-                            src : '/images/dummy/nice-door.jpg',
-                            title : 'Nice Door',
-                        },
-                        {
-                            src : '/images/dummy/door-2.jpg',
-                            title : 'Door 2',
-                        },
-                    ],
-                    options : {
-                        closeText : 'X'
-                    }                                                      
-                }
-            },
-            computed : {
-                requestUrl(){
-                    console.log(this.$route);
-                    return this.url+this.$route.params.id+'?bid_data=true';
+        </div>
+    </template>
+
+    <script>
+        import fancyBox from 'vue-fancybox';
+        import StarRating from 'vue-star-rating';
+        import Lightbox from 'vue-simple-lightbox';
+        export default{
+            data () {
+              return {
+                url : 'api/job/',
+                record : [],
+                imageList: [
+                { width: 900, height: 675, url: '/images/dummy/nice-door.jpg' },
+                { width: 900, height: 675, url: '/images/dummy/door-2.jpg' },
+                ],
+                imageList : [
+                {
+                    src : '/images/dummy/nice-door.jpg',
+                    title : 'Nice Door',
                 },
-                imageLists(){
-                    let data = [];
-                    for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
-                            let myImage = {
-                                src : this.record.jobImages[i]
-                            };
-                        data.push(myImage);
-                    }
-                    return data;
-                }
-            },
-            components: {
-                StarRating,
-                Lightbox
-            },        
-            methods:{
-                getRecords(response){
-                    let self = this;
-                    self.loading = false;
-                    self.record = response.data;
-                    
+                {
+                    src : '/images/dummy/door-2.jpg',
+                    title : 'Door 2',
                 },
-                open (e) {
-                    let jobImages = [];
+                ],
+                options : {
+                    closeText : 'X'
+                }                                                      
+            }
+        },
+        computed : {
+            requestUrl(){
+                console.log(this.$route);
+                return this.url+this.$route.params.id+'?bid_data=true';
+            },
+            imageLists(){
+                let data = [];
+                for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
+                    let myImage = {
+                        src : this.record.jobImages[i]
+                    };
+                    data.push(myImage);
+                }
+                return data;
+            }
+        },
+        components: {
+            StarRating,
+            Lightbox
+        },        
+        methods:{
+            getRecords(response){
+                let self = this;
+                self.loading = false;
+                self.record = response.data;
 
-                    for (var i = 0 ; i < this.record.jobImages.length; i++) {
-                        let data = {
-                            src : this.record.jobImages[i]
-                        };
+            },
+            open (e) {
+                let jobImages = [];
+                console.log(this.record.jobImages);
+                for (var i = 0 ; i < this.record.jobImages.length; i++) {
+                    let data = {
+                        src : this.record.jobImages[i]
+                    };
 
-                        jobImages.push(data);
-                    }
+                    jobImages.push(data);
+                }
+                if(jobImages){
                     fancyBox(e.target, jobImages);
-                }               
-            },    
-        }
+                }
+            }               
+        },    
+    }
 
-    </script>
+</script>
