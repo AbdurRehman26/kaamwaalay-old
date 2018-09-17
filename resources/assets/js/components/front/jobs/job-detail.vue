@@ -30,6 +30,7 @@
                                     :class="['archived']">
                                     {{ record | jobStatus }}
                                 </span>
+                                
                                 <span v-else class="tags"
                                 :class="[ record.status ?  record.status.replace(/\s/g, '').replace('_', '').replace('cancelled' , 'rejected').toLowerCase().trim() : '']">
                                 {{ record | jobStatus }}
@@ -163,14 +164,14 @@
                                     <p>{{bid.description}}</p>
                                 </div>
 
-                                <div class="provider-bidding-btn">
+                                <div class="provider-bidding-btn" v-if="!jobArchived && !jobCancelled">
 
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
 
                                     <a v-if="!bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
-                                    <a v-if="!jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
+                                    <a v-if="!jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" >Modify Bid</a>   
 
@@ -206,20 +207,20 @@
                         <span>Mark Job Archive</span> <loader></loader>
                     </button>
 
-                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob" @click.prevent="confirmPopupShow = true;" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
+                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="confirmPopupShow = true;" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
-                    <a v-if="!isMyJob && !myBidValue && !jobAwarded" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
+                    <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
 
-                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>   
+                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>   
 
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
-                    <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
+                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
                 </div>
 
@@ -299,6 +300,9 @@
             },
             jobAwarded(){
                 return this.record.awarded_to;
+            },
+            jobArchived(){
+                return this.record.is_archived;
             },
             canInvite(){
                 if(Object.keys(this.record).length){
