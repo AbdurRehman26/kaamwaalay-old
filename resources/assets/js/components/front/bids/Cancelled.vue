@@ -164,7 +164,7 @@
 		watch: {
 			show(val) {
 				if(val) {
-					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_status=cancelled';
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_status=cancelled&filter_by_archived=0';
 				}else {
 					//this.url = null;
 					//self.pagination = false;

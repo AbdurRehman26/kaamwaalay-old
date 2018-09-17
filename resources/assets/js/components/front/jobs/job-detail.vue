@@ -177,8 +177,8 @@
                                     <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
-                                    <!--v-if="(isMyJob || canChat) && !jobAwarded && !jobCancelled" -->
-                                    <a @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -216,9 +216,8 @@
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
-                    <!--v-if="!isMyJob && canChat && !jobAwarded && !jobCancelled"-->
-                    <a  @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
+                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
                 </div>

@@ -1,5 +1,5 @@
 <template>
-	<div class="category-detail" v-if="service">
+	<div class="category-detail" v-if="isService">
 		<div class="next-project grey-bg elementary-banner section-padd md">
 			<div class="container element-index text-center md">
 				<div class="content-sec">
@@ -77,7 +77,7 @@
 							</p>
 							<p class="member-since">
 								<i class="icon-calendar-daily"></i>
-								Member since <strong>{{record.profile_request.formatted_created_at }}</strong>
+								Member since <strong>{{record.formatted_created_at }}</strong>
 							</p>
 						</div>
 
@@ -182,6 +182,7 @@
 			loading: false,
 			categoryPopup: false,
 			selectedService: '',
+			isService: false,
 		}
   	},
     computed : {
@@ -299,6 +300,7 @@
         	this.$router.push({name: 'Service_Provider_Detail'});
 		},
 		getService() {
+        	window.scrollTo(0,0);
 			let self = this;
 			this.checkRoute();
 			this.btnLoading = true;
@@ -308,9 +310,9 @@
 					//this.$router.push({name: '404'});
 					return;
 				}
+				self.isService = response.data.length;
 				self.service = response.data[0];
 				self.getRelatedServices();
-
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {
@@ -337,7 +339,12 @@
         getProviderRecords(response){
             let self = this;
             self.loading = false;
-            self.records = response.data;
+            //self.records = response.data;
+            let len = response.data.length;
+		    for (var i = 0 ; i < len; i++) {
+		        self.records.push( response.data[i] ) ;
+		        
+		    }
             self.noRecordFound = response.noRecordFound;
             self.pagination = response.pagination;
         },

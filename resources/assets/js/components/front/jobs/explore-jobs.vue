@@ -3,9 +3,10 @@
         <div class="search-fixture">
             <div class="grey-bg section-padd xs border-top-bottom search-fix">
                 <div class="container element-index">
-                    <div class="content-inner md">
-                        <h1 class="heading-large">Find best skilled service professionals near you.</h1>
+                    <div class="content-inner md">                        
                         <div class="search-filter service-professional">
+                            <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
+                            <h3 class="labelheading">Select Service Category</h3>
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
                                 <multiselect v-model="searchValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
                                     <span slot="noResult">No Service found. Consider changing the search query.</span>
@@ -19,8 +20,8 @@
                                   <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                               </select> 
                           </div>
-                          <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
-                            <span>Search</span>
+                          <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
+                            <span>Search Jobs</span>
                             <loader></loader>
                         </button>
                     </div>
@@ -55,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 job-bid-btn p-r-0">
-                                <a href="javascript:void(0);" v-if="!record.my_bid" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
+                                <a href="javascript:void(0);" v-if="!record.my_bid && record.status != 'completed' &&  record.status != 'cancelled'" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
                                 
                                 <a v-if="record.can_message && record.status !== 'cancelled'" @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message">
                                     <i class="icon-message"></i>
@@ -91,7 +92,7 @@
                         <div class="job-details">
                             <p class="customer-rating">
                                 <strong>Customer rating:</strong>
-                                <star-rating :increment="0.5" :star-size="20" read-only :rating="[record.user ? parseFloat(record.user.average_rating) : 0]" active-color="#8200ff"></star-rating>
+                                <star-rating :increment="0.5" :star-size="20" read-only :rating="record.user ? parseFloat(record.user.average_rating) : 0" active-color="#8200ff"></star-rating>
                             </p>
                             <p class="service-requirment">
                                 <i class="icon-brightness-down"></i>
@@ -152,8 +153,10 @@
 
         methods: {
             getCityResponse(response){
-                let self = this;
-                self.cities = response.data;
+                if(response.data){
+                    let self = this;
+                    self.cities = response.data;
+                }
             },
             validateBeforeSubmit() {
                 let dateNow = new Date().getMilliseconds();

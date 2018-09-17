@@ -186,7 +186,7 @@
                                 <b-form-select v-validate="'required'" :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
                                 <textarea placeholder="Enter rejection reason" v-model="reason" name="reason" v-validate="'required'" 
                                 v-if="selected == 'rejected' && records.status != 'rejected' && records.status != 'approved'"  
-                                class="calculated-value form-control margin-bottom-20px">
+                                class="rejected-textbox form-control margin-bottom-20px">
                             </textarea>
                         </b-col>
                     </b-row>

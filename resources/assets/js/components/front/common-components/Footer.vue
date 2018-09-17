@@ -32,26 +32,26 @@
 
 
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3" v-if='userDetails.role_id!=2 || userDetails == ""'>
 							<div class="footer-links">
 								<ul>
 									<li><strong>Customers</strong></li>
 									<li><a href="/job-post">Post a job</a></li>
-									<li><a href="/sign-up">Sign up as a customers</a></li>
+									<li  v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a customers</router-link></li>
 									<li><a href="/explore">Explore Services</a></li>
 									<li><a href="/advice-center">Advice center</a></li>
-									<li><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
+									<li v-if='userDetails.role_id==3'><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3" v-if='userDetails.role_id!=3 || userDetails == ""'>
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li><router-link to="/sign-up">Sign up as a service provider</router-link></li>
-									<li><a href="javascript:;">Completed Jobs</a></li>
+									<li v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a service provider</router-link></li>
+									<li v-if='userDetails.role_id==2'><a href="javascript:;">Completed Jobs</a></li>
 									<li><router-link to="/advice-center">Frequently asked questions</router-link></li>
-									<li><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
+									<li v-if='userDetails.role_id==2'><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>
 						</div>
@@ -106,6 +106,12 @@
 
 <script type="text/javascript">
     export default {
+    	computed : {
+            userDetails(){
+                return JSON.parse(this.$store.getters.getAuthUser);
+            },
+          
+        },
     	mounted() {
     	},
         methods: {
