@@ -38,8 +38,8 @@ class ServiceProviderProfileRequestController extends ApiResourceController
   public function input($value='')
   {
     $input = request()->only(
-        'id', 'keyword', 'filter_by_business_type', 'status', 'reason', 'pagination', 'filter_by_service',
-        'user_details', 'profile_details'
+        'id', 'keyword', 'filter_by_business_type', 'status', 'reason', 'pagination', 'filter_by_service', 
+        'user_details', 'profile_details', 'filter_by_status'
     );
 
     if (request()->user()) {
@@ -53,7 +53,7 @@ class ServiceProviderProfileRequestController extends ApiResourceController
 
         unset(
             $input['keyword'], $input['filter_by_business_type'], $input['pagination'], $input['filter_by_service'],
-            $input['user_details'], $input['profile_details']
+            $input['user_details'], $input['profile_details'], $input['filter_by_status']
         );
 
     }
