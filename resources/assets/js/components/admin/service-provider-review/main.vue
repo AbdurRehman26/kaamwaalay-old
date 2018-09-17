@@ -35,13 +35,11 @@
                 <div class="col-xs-12 col-md-2 datepicker-field capitilize">
                     <div class="form-group">
                         <label>By Status</label>
-                        <select class="form-control">
+                        <select v-model="search.filter_by_status" class="form-control">
                             <option value="">Select All</option>
-                            <!-- <option v-for="status in statuses" :value="status.key">{{status.value}}</option> -->
-                            <option>Approved</option>
-                            <option>Pending</option>
-                            <option>Rejected</option>
-                            <option>Banned</option>
+                            <option value="approved">Approved</option>
+                            <option value="pending">Pending</option>
+                            <option value="rejected">Rejected</option>
                         </select>
                     </div>
                  </div>             
@@ -119,7 +117,8 @@
             search : {
                 keyword : '',
                 filter_by_business_type : '',
-                filter_by_service : ''
+                filter_by_service : '',
+                filter_by_status : ''
             },
             url : 'api/service-provider-profile-request?pagination=true',
             loading : true,

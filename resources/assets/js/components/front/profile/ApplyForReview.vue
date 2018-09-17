@@ -141,9 +141,9 @@
                 </div>
 
                 <div class="business-proof">
-                        <div class="form-label-heading m-b-30">
-                            <p>PROOF OF BUSINESS</p>
-                        </div>                    
+                    <div class="form-label-heading m-b-30">
+                        <p>PROOF OF BUSINESS</p>
+                    </div>                    
                     <div class="row">
                         <div class="col-md-12">
                             <p>We can confirm your association to the business or organization with any of these documents:
@@ -160,7 +160,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Browse</label>
-                                <file-upload-component @get-response="getFileUploadResponse">
+                                <file-upload-component :uploadKey="'service_provider'" @get-response="getFileUploadResponse">
 
                                 </file-upload-component>
                             </div>
@@ -189,7 +189,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Browse</label>
-                                <file-upload-component @get-response="getFileUploadResponse">
+                                <file-upload-component :uploadKey="'service_provider'" @get-response="getFileUploadResponse">
 
                                 </file-upload-component>
 
@@ -219,7 +219,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Browse</label>
-                                <file-upload-component @get-response="getFileUploadResponse">
+                                <file-upload-component :uploadKey="'service_provider'" @get-response="getFileUploadResponse">
 
                                 </file-upload-component>
                             </div>
@@ -373,7 +373,7 @@
                     </div>
                 </div>
 
-                <div class="submit-approval-btn" @click="profileredirct()">
+                <div class="submit-approval-btn">
                     <button class="btn btn-primary">Submit for Apporoval
                         <loader></loader>
                     </button>
@@ -388,8 +388,8 @@
     </div>
 
     <vue-common-methods @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-    <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods v-if="submitFormData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" v-if="submitFormData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 
 </div>
@@ -436,7 +436,7 @@
                 },
                 submit : false,
                 submitUrl : 'api/user',
-                
+
             }
         },
         computed : {
@@ -454,14 +454,23 @@
             }
         },
         methods: {
-            formError(){
-
+            validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.submit = true;
+                        this.errorMessage = ''
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
             },
-            formSubmitted(){
-
+            formError(error){
+                console.log(error , 'inside formError method Apply for review comp');
+                this.submit = false;
             },
-            submitForm(){
-
+            formSubmitted(response){
+                this.submit = false;
+                console.log(response , 'inside formSubmit method Apply for review comp');
             },
             onStateChange(){
                 this.submitFormData.city_id = null;
