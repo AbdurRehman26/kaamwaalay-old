@@ -12,9 +12,11 @@
                 <!--main nav-->
                 <main-nav v-if="$route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
-                <customer-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'customer-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
+                {{$store.getters.getAuthUser.role}}
+
+                <customer-nav @profilepopup="ProfilePopup" v-if="activeUser.role_id == userRoles.customer" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->
-                <provider-nav @profilepopup="ProfilePopup" v-if="$route.meta.navigation == 'provider-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
+                <provider-nav @profilepopup="ProfilePopup" v-if="activeUser.role_id == userRoles.provider" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></provider-nav>
 
             </div>
             <i class="icon-menu2 menuiconbutton" @click="responsivemenu ^= true"></i>
@@ -32,7 +34,16 @@
                 changepopup: false,
                 responsivemenu: false,
                 writereview: false,
+                userRoles : {
+                    customer  : 3,
+                    provider : 2
+                },
+                activeUser : ''
             }
+        },
+        mounted (){
+            let user = JSON.parse(this.$store.getters.getAuthUser);
+            this.activeUser =  user ? user : '';            
         },
         methods:{
             ProfilePopup(){
@@ -58,8 +69,12 @@
                 window.scrollTo(0,0);
             },
             closemenu(){
-              this.responsivemenu = false;
+                this.responsivemenu = false;
             }
-        },   
+        },
+        watch : {
+            activeUser(){
+            }   
+        }
     }
 </script>
