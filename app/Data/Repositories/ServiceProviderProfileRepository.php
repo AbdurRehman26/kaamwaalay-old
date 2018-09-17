@@ -156,19 +156,22 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         }
 
         if(!empty($data['filter_by_top_providers'])) {
-            $this->builder = $this->builder
-                ->leftJoin('job_bids', 'service_provider_profiles.user_id', '=', 'job_bids.user_id')
-                ->leftJoin('jobs', 'job_bids.job_id', '=', 'jobs.id')
-                ->leftJoin('user_ratings', 'job_bids.job_id', '=', 'user_ratings.job_id')
-                ->orwhere(function($query) {
-                    $query->where('jobs.status', '=', 'completed');
-                    $query->where('job_bids.status', '=', 'completed');
-                })->orWhere('service_provider_profiles.is_featured', '=', 1)
-                ->orWhere('service_provider_profiles.is_verified', '=', 1)
-                //->orWhere('jobs.status', '=', 'completed')
-                ->orderByRaw('(count(job_bids.user_id) * (avg(user_ratings.rating)+1)) DESC')
-               ->select(DB::raw('(avg(user_ratings.rating)+1)'));
-            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->select('service_provider_profiles.*');
+
+            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip']);
+            // $this->builder = $this->builder
+            //     ->leftJoin('job_bids', 'service_provider_profiles.user_id', '=', 'job_bids.user_id')
+            //     ->leftJoin('user_ratings', 'job_bids.job_id', '=', 'user_ratings.job_id')
+            //     ->leftJoin('jobs', 'job_bids.job_id', '=', 'jobs.id')
+            //     // ->orwhere(function($query) {
+            //     //     $query->where('jobs.status', '=', 'completed');
+            //     //     $query->where('job_bids.status', '=', 'completed');
+            //     // })->orWhere('service_provider_profiles.is_featured', '=', 1)
+            //     // ->orWhere('service_provider_profiles.is_verified', '=', 1)
+            //     //->orWhere('jobs.status', '=', 'completed')
+            //     ->orderByRaw('(count(job_bids.user_id) * (avg(user_ratings.rating)+1)) DESC')
+            //    ->select(DB::raw('(avg(user_ratings.rating)+1), job_bids.user_id'));
+
+            //    dd($this->builder->get()->toArray());
             
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');

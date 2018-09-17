@@ -337,7 +337,7 @@
         getProviderRecords(response){
             let self = this;
             self.loading = false;
-            self.records = response.data;
+            //self.records = response.data;
             let len = response.data.length;
 		    for (var i = 0 ; i < len; i++) {
 		        self.records.push( response.data[i] ) ;
