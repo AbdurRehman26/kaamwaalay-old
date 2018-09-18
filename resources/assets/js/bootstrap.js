@@ -54,27 +54,3 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-import Echo from "laravel-echo"
-/*import Vue from 'vue'
-import VueRouter from 'vue-router'
-import store from './store.js'
-const app = new Vue({
-    router: router,
-    store
-});
-// Create the router instance
-const router = new VueRouter({
-    mode: 'history',
-    app,
-})*/
-window.io = require('socket.io-client');
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ':6001',
-    auth: {
-        headers: {
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJiZTBkZjJhOTEzNzhkOTllZDBjMGRkMzIzYWY5OGFjMzdmNmQ0ZDcwMjBlMTJhNWI4MDVmZmQ2MDFiYWViZmEwMDBlNDE4N2U1OGVhNWRiIn0.eyJhdWQiOiIxIiwianRpIjoiMmJlMGRmMmE5MTM3OGQ5OWVkMGMwZGQzMjNhZjk4YWMzN2Y2ZDRkNzAyMGUxMmE1YjgwNWZmZDYwMWJhZWJmYTAwMGU0MTg3ZTU4ZWE1ZGIiLCJpYXQiOjE1MzcxNjIxNDksIm5iZiI6MTUzNzE2MjE0OSwiZXhwIjoxNTY4Njk4MTQ4LCJzdWIiOiI1OSIsInNjb3BlcyI6WyJ1c2VyLm1lIiwidXNlci5zdG9yZSIsInVzZXIudXBkYXRlIiwiam9iLmluZGV4Iiwiam9iLnNob3ciLCJqb2Iuc3RvcmUiLCJqb2IudXBkYXRlIiwiZmlsZS51cGxvYWQiLCJmaWxlLnJlbW92ZSIsImpvYi5zdGF0cyIsImpvYi1iaWQuaW5kZXgiLCJqb2ItYmlkLnN0b3JlIiwiam9iLWJpZC51cGRhdGUiLCJzZXJ2aWNlLmluZGV4Iiwic3VwcG9ydC1pbnF1aXJ5LnN0b3JlIiwidXBkYXRlLmNhbXBhaWduIiwidXNlci1yYXRpbmcuc3RvcmUiLCJzdXBwb3J0LXF1ZXN0aW9uLmluZGV4Iiwic3VwcG9ydC1xdWVzdGlvbi5zdG9yZSIsInBheW1lbnQuc3RvcmUiLCJwbGFuLmluZGV4Il19.TgBynSk8VGNgb5G18r8AQuCUu3y8FyAR-36IP6OKwkMGt-l3VvZamk3T8c1ib7IXyZHZ-HNfBnSxZSOxqTDOMwQXDkCFo3IyzGqtEeryfL_SxW4j2UU2_yvaYtYZsyUBF-p9TKg394V8s4NT41MkTvbASIAzEbhFzUvEHKuT1BgxZjAagkITSa2MwLI1c43L8n8ZZL5v9-sCHTllmka9mg8jOc-mfDv36aRxUrKFqs1EeCOKsJQ9L4g1-iJpCDN0kWDVadkUCIEVtjFnyMZDaVWMg0LAbScxBaJoWHRS4m9iom0CVfb8-kkL_6aBLl15CslJMQZqstheBPyb4T2lSCk-CF5Yopj_kefGC3oAvUB8V_J2Ahh4oJsErQNyUD8tPGDvGAUzqVpILX812tDZhvH1noWBi4IdOSZvqTkyFVHZPbOKvyvw1X_PBB--tsvK2n1LdQiKD22c5Xzy-5zc9VqcgO1xTMVV83CJUZP-1PvYiXSdk7pIF9KP86BZgU1ELgNo5vZTB_Fq7iIDHVpN9x48jpP9_xnExBBqIHZTYJnGp1KfgfdIM-3AwOIYT18TYn9P2vHzOSVSvcsCU4rAMHf3audJNWHo8xJKMW3TcXqz-hnvf4T9Rwo5yygPyk0_twLO3ewD30p8ALOXu1k-U5mtGNmKH28FozLgg0n5gyY'
-        }
-    }
-});

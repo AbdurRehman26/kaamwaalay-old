@@ -53,7 +53,7 @@
         },
         mounted(){
             let self = this
-            window.Echo.channel('urgent-job')
+            window.Echo.private('urgent-job')
                .listen('urgent-job-create', (e) => {
                 self.notificationCount++;
                 self.$parent.notificationCount == self.notificationCount;
@@ -67,8 +67,36 @@
             },
             HideModal(){
                 this.writereview = false;
+            },
+            initializeNotifications(){
+            setTimeout(function() {
+
+                var userId = self.$store.getters.getAuthUser.id;
+                var worspaces = self.$store.getters.getUserWorkspaces;
+                var len = worspaces.length;
+            //window.Echo.connector.options.auth.headers['X-Socket-ID'] = Echo.socketId();
+            
+            for(let i = 0; i < len; i++) {
+
+                // subscribe dashboard-report discussions
+                window.Echo.private('urgent-job').listen('urgent-job-create', e => {
+                    var obj = {
+                        data: {
+                            notification_details: e.discussion,
+                        },
+                    };
+                    obj.data.notification_details.fromUser = e.discussion.user;
+                    self.notifications.unshift(obj);
+                    var count = e.discussion.notification_count;
+                    self.$emit('setNotificationCount', count);
+                });
+
             }
 
+        }, 2000);
+
         }
+        }
+
     }
 </script>
