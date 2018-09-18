@@ -156,10 +156,10 @@
                             </p>
                         </div>
                     </div>
-                    <div v-if="record.business_details.attachments" class="row" v-for="(proof_of_business, index) in record.business_details.attachments.proof_of_business">
+                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(proof_of_business, index) in record.business_details.attachments.proof_of_business">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Browse</label>
+                                <label>Proof of Business</label>
                                 <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
 
                                 </file-upload-component>
@@ -167,29 +167,22 @@
                         </div>
                         <div class="col-md-6">
                             <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">x</a>
+                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">Remove</a>
                             <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more photos</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="business-proof">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>We can confirm your association to the business or organization with any of these documents:
-                                <ul>
-                                    <!-- <li>Certificate of Formation (for a partnership)</li> -->
-                                    <!-- <li>Articles of Incorporation (for a corporation)</li> -->
-                                    <!-- <li>Local Business License (issued by your city, county, state, etc.)</li> -->
-                                    <li>More documents to be decided.</li>
-                                </ul>
-                            </p>
-                        </div>
+                    <div class="form-label-heading m-b-20 m-t-20">
+                        <p>Registrations</p>
                     </div>
-                    <div v-if="record.business_details.attachments" class="row" v-for="(certification, index) in record.business_details.attachments.certifications">
+                    <div class="row">    
+                    </div>
+                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(certification, index) in record.business_details.attachments.certifications">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Browse</label>
+                                <label>Registrations</label>
                                 <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
 
                                 </file-upload-component>
@@ -198,29 +191,22 @@
                         </div>
                         <div class="col-md-6">
                             <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">x</a>
+                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">Remove</a>
                             <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more photos</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="business-proof">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>We can confirm your association to the business or organization with any of these documents:
-                                <ul>
-                                    <!-- <li>Certificate of Formation (for a partnership)</li> -->
-                                    <!-- <li>Articles of Incorporation (for a corporation)</li> -->
-                                    <!-- <li>Local Business License (issued by your city, county, state, etc.)</li> -->
-                                    <li>More documents to be decided.</li>
-                                </ul>
-                            </p>
-                        </div>
+                    <div class="form-label-heading m-b-20 m-t-20">
+                        <p>Certificates</p>
                     </div>
-                    <div v-if="record.business_details.attachments" class="row" v-for="(registration, index) in record.business_details.attachments.registrations">
+                    <div class="row">
+                    </div>
+                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(registration, index) in record.business_details.attachments.registrations">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Browse</label>
+                                <label>Certificates</label>
                                 <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
 
                                 </file-upload-component>
@@ -228,7 +214,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">x</a>
+                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">Remove</a>
                             <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more photos</a>
                         </div>
                     </div>
