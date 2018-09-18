@@ -70,7 +70,8 @@ public function input($value='')
         'is_status',
         'count_only',
         'is_awarded',
-        'filter_by_tbd'
+        'filter_by_tbd',
+        'filter_by_awarded_status'
     );
 
 
