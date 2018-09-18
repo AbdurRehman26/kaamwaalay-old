@@ -1420,6 +1420,7 @@ $section-padding-sm:20px 0px;
     margin-top: -8px;
     p{
         margin-bottom: 0px !important;
+        font-size: 15px;
     }
 }
 
@@ -2807,6 +2808,19 @@ body{
         }
     }
 } 
+
+.chat-feedback-column.job-bidding{
+     .job-common-description{
+        strong {
+            position: relative;
+            top: -2px;
+            i{
+                position: relative;
+                left: 7px;
+            }
+        }
+     }
+}
 
 .member-details, .job-details {
     display: block;

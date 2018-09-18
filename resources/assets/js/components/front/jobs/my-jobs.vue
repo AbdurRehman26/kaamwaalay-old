@@ -16,7 +16,7 @@
                                 </div>
 
                                 <div class="job-common-description job-perform">
-                                    <div class="col-md-6 p-l-0">
+                                    <div class="col-md-8 p-l-0">
 
                                         <router-link :to="{name: 'job.details' , params : { id : record.id }}">
                                             <h3 class="pointer">{{record.title}}</h3>
@@ -45,7 +45,7 @@
                                         </div>	
                                     </div>
                                 </div>
-                                <div class="col-md-6 job-bid-btn p-r-0">
+                                <div class="col-md-4 job-bid-btn p-r-0">
                                     <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
 
                                     <a href="javascript:void(0);" @click="WriteReview" class="btn btn-primary post-bid" v-if="record.job_bid == true">
