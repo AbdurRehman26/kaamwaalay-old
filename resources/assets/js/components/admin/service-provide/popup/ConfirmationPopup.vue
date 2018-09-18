@@ -5,7 +5,7 @@
            <div>
             <p>Are you sure you want to comfirm this action?</p>
         </div>
-        <div slot="modal-footer" class="w-100">
+        <div slot="modal-footer" class="w-100 frontfix">
             <button @click.prevent="submitForm" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit
                 <loader></loader>
             </button>

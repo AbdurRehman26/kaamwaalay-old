@@ -369,6 +369,13 @@ $section-padding-sm:20px 0px;
     }
 
 }
+.frontfix{
+    .col-sm-3 {
+        width: auto;
+        max-width: none;
+        display: table;
+    }
+}
 
     .search-filter{
         position: relative;
@@ -389,6 +396,25 @@ $section-padding-sm:20px 0px;
         }
         .multiselect__content-wrapper{
             z-index: 999;
+            max-height: 280px !important;
+                &::-webkit-scrollbar-track
+                {
+                    background-color: $body-bg;
+                    border-radius: 51px;
+                }
+
+                &::-webkit-scrollbar
+                {
+                    width: 6px;
+                    background-color: $body-bg;
+                    border-radius: 51px;
+                }
+
+                &::-webkit-scrollbar-thumb
+                {
+                    background-color: #cfd4d9;
+                    border-radius: 51px;
+                }            
         }
         .multiselect__single{
             margin-bottom: 0px !important;
@@ -1343,6 +1369,13 @@ $section-padding-sm:20px 0px;
     }
 }
 
+.expirychanges{
+     .stripe-element {
+        position: relative;
+        top: 3px;
+    }
+}
+
 .grey-bg{
     background-color: #F9F9F9;
 }
@@ -1376,6 +1409,17 @@ $section-padding-sm:20px 0px;
         p{
             margin-bottom: 0px;
         }
+    }
+}
+
+.no-photos {
+    background-color: #f1eded;
+    padding: 10px 20px;
+    border-radius: 7px;
+    color: #1a1a1a;
+    margin-top: -8px;
+    p{
+        margin-bottom: 0px !important;
     }
 }
 
@@ -1461,7 +1505,7 @@ $section-padding-sm:20px 0px;
         .showmore{
             padding-left: 0px;
             @include Desktop1300{
-                padding-left: 15px;
+                padding-left: 0px;
             }
             @include tabletF{
                 float: left;
@@ -3472,16 +3516,29 @@ p.awarded_to {
                     }
                     i{
                         font-size: 18px;
+                        position: relative;
+                        top: 2px;
                         &.icon-brightness-down{
                             font-size: 21px;
                             vertical-align: text-top;
                             position: relative;
-                            top: -2px;
+                            top: -3px;
                         }
                     }
                 }
             }
         }
+    }
+}
+
+.archiving{
+    width: 100%;
+    position: relative;
+    i{
+        position: absolute;
+        left: 17px;
+        top: 10px;
+        font-size: 21px;
     }
 }
 
