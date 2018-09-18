@@ -25,6 +25,6 @@ class ServiceProviderStatusListener
      */
     public function handle($event)
     {
-        $event->user->sendChangeStatusNotification($event->status);
+        $event->user->sendChangeStatusNotification($event->status, $event->reason);
     }
 }

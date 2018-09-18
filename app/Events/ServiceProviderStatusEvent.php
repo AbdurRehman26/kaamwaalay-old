@@ -20,14 +20,16 @@ class ServiceProviderStatusEvent
      */
     public $user;
     public $status;
+    public $reason;
     /**
      * Create a new event instance.
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return void
      */
-    public function __construct($user, $status)
+    public function __construct($user, $status, $reason)
     {
+        $this->reason = $reason;
         $this->status = $status;
         $this->user = $user;
     }

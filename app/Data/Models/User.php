@@ -87,8 +87,8 @@ class User extends Authenticatable
         return bcrypt(str_random(35));
     }
 
-    public function sendChangeStatusNotification($status)
+    public function sendChangeStatusNotification($status, $reason)
     {
-        $this->notify(new  SendServiceProviderStatusNotification($status));
+        $this->notify(new  SendServiceProviderStatusNotification($status, $reason));
     }
 }
