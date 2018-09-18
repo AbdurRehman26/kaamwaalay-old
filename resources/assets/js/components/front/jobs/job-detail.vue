@@ -51,6 +51,7 @@
                             <strong v-else>{{ record.preference | jobPreference }}</strong>
                         </p>
                     </div>
+                    
                     <div class="job-details">
                         <div class="awarded alignawd">
                             <p class="awarded_to">
@@ -110,7 +111,7 @@
 
                     <div v-if="record.jobImages" class="jobs-post-files">
                         <h3>Related Photos</h3>
-                        <div class="no-photos" v-if="record.jobImages = []"> 
+                        <div class="no-photos" v-if="!record.jobImages.length"> 
                             <p>Photo(s) Not Avaliable</p>
                         </div>
                         <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
@@ -245,6 +246,7 @@
 <chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
 
 </div>
+
 
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 
