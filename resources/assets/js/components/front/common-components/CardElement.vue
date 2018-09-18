@@ -4,7 +4,7 @@
      <div>
 <!--       <card class='stripe-card'
       :class='{ complete }'
-      stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+      :stripe='process.env.MIX_STRIPE_KEY'
       :options='stripeOptions'
       @change='complete = $event.complete'
       /> -->
@@ -16,7 +16,7 @@
                 <label for="">Credit Card Number</label>
                 <card-number class='stripe-element card-number  form-control'
                 ref='cardNumber'
-                stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+                :stripe='stripeKey'
                 :options='options'
                 placeholder="Enter your credit card number"
                 @change='number = $event.complete'
@@ -28,7 +28,7 @@
                 <label for="">Expiry Date</label>
                 <card-expiry class='stripe-element card-expiry form-control'
                 ref='cardExpiry'
-                stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+                :stripe='stripeKey'
                 :options='options'
                 @change='expiry = $event.complete'
                 />
@@ -41,7 +41,7 @@
                 <label>Security Code (CVV)</label>
                 <card-cvc class='stripe-element card-cvc form-control'
                 ref='cardCvc'
-                stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+                :stripe='stripeKey'
                 :options='options'
                 placeholder="Enter your cvv number"
                 @change='cvc = $event.complete'

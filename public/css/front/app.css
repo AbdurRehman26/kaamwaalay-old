@@ -14886,6 +14886,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.frontfix .col-sm-3 {
+  width: auto;
+  max-width: none;
+  display: table;
+}
+
 .search-filter {
   position: relative;
   z-index: 99;
@@ -14910,6 +14916,23 @@ input[type=number]::-webkit-outer-spin-button {
 
 .search-filter .multiselect__content-wrapper {
   z-index: 999;
+  max-height: 280px !important;
+}
+
+.search-filter .multiselect__content-wrapper::-webkit-scrollbar-track {
+  background-color: #fff;
+  border-radius: 51px;
+}
+
+.search-filter .multiselect__content-wrapper::-webkit-scrollbar {
+  width: 6px;
+  background-color: #fff;
+  border-radius: 51px;
+}
+
+.search-filter .multiselect__content-wrapper::-webkit-scrollbar-thumb {
+  background-color: #cfd4d9;
+  border-radius: 51px;
 }
 
 .search-filter .multiselect__single {
@@ -15905,6 +15928,15 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.custom-multi.category-detail {
+  width: calc(100% - 20%);
+}
+
+.expirychanges .stripe-element {
+  position: relative;
+  top: 3px;
+}
+
 .grey-bg {
   background-color: #F9F9F9;
 }
@@ -15942,6 +15974,19 @@ input[type=number]::-webkit-outer-spin-button {
 
 .category-detail .no-records-found p {
   margin-bottom: 0px;
+}
+
+.no-photos {
+  background-color: #f1eded;
+  padding: 10px 20px;
+  border-radius: 7px;
+  color: #1a1a1a;
+  margin-top: -8px;
+}
+
+.no-photos p {
+  margin-bottom: 0px !important;
+  font-size: 15px;
 }
 
 .category-section {
@@ -16051,7 +16096,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 1300px) {
   .category-section .category-items .showmore {
-    padding-left: 15px;
+    padding-left: 0px;
   }
 }
 
@@ -17481,6 +17526,21 @@ body .chat-feedback-message.white-msg:before {
   padding: 10px 40px 10px 20px;
 }
 
+.job-post-container .job-details p.service-requirment {
+  position: relative;
+  top: -6px;
+}
+
+.chat-feedback-column.job-bidding .job-common-description strong {
+  position: relative;
+  top: -2px;
+}
+
+.chat-feedback-column.job-bidding .job-common-description strong i {
+  position: relative;
+  left: 7px;
+}
+
 .member-details,
 .job-details {
   display: block;
@@ -18283,13 +18343,27 @@ p.awarded_to {
 
 .job-main-heading .content-sec .job-content .job-details p i {
   font-size: 18px;
+  position: relative;
+  top: 2px;
 }
 
 .job-main-heading .content-sec .job-content .job-details p i.icon-brightness-down {
   font-size: 21px;
   vertical-align: text-top;
   position: relative;
-  top: -2px;
+  top: -3px;
+}
+
+.archiving {
+  width: 100%;
+  position: relative;
+}
+
+.archiving i {
+  position: absolute;
+  left: 17px;
+  top: 10px;
+  font-size: 21px;
 }
 
 .job-bidding {
