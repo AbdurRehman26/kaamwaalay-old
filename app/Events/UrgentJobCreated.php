@@ -34,7 +34,7 @@ class UrgentJobCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel ('urgent-job');
+        return new PrivateChannel('urgent-job');
       
     }
 

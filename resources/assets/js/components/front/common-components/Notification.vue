@@ -3,7 +3,7 @@
         <div class="notification-block" v-show="true">
             <div class="notify-dropdown scrollbar" id="style-2">
                 <ul>
-                    <li class="notify-list" v-for='notification in notifications'>
+                    <li class="notify-list" v-for='notification in notificationData'>
                         <div class="notify-image">
                             <img src="images/front/profile-images/personimage6.png" alt="">
                         </div>
@@ -44,22 +44,16 @@
 
    <script>
         export default{
+            props: ['notificationData', 'show'],
             data () {
               return {
                 writereview: false,
-                notifications: [],
                 notificationCount : 0
             }
         },
         mounted(){
-            let self = this
-            window.Echo.private('urgent-job')
-               .listen('urgent-job-create', (e) => {
-                self.notificationCount++;
-                self.$parent.notificationCount == self.notificationCount;
-                self.notifications.push = e.data
-                console.log(e.data,'dataaa')
-            });
+            //this.subscribeChannel()
+            this.show = true
         },
         methods: {
             WriteReviewModal(){
@@ -68,34 +62,37 @@
             HideModal(){
                 this.writereview = false;
             },
-            initializeNotifications(){
-            setTimeout(function() {
-
-                var userId = self.$store.getters.getAuthUser.id;
-                var worspaces = self.$store.getters.getUserWorkspaces;
-                var len = worspaces.length;
-            //window.Echo.connector.options.auth.headers['X-Socket-ID'] = Echo.socketId();
-            
-            for(let i = 0; i < len; i++) {
-
-                // subscribe dashboard-report discussions
-                window.Echo.private('urgent-job').listen('urgent-job-create', e => {
-                    var obj = {
-                        data: {
-                            notification_details: e.discussion,
-                        },
-                    };
-                    obj.data.notification_details.fromUser = e.discussion.user;
-                    self.notifications.unshift(obj);
-                    var count = e.discussion.notification_count;
-                    self.$emit('setNotificationCount', count);
+            showNotificaton() {
+                this.url = 'api/notification?pagination=true';
+                let data = this.notificationData;
+                data.pagination = true;
+                this.getList(data, false);
+                this.subscribeChannel();
+            },
+            subscribeChannel() {
+                alert()
+                let channelName = 'urgent-job';
+                self = this
+                window.Echo.private(channelName).listen('urgent-job-create', (e) => {
+                   alert('ppppppp');
+                   console.log(e.data);
+                   self.notificationData = e.data
+                   self.notificationCount = notificationCount+1
+                   self.$emit('notificationCount',notificationCount)
                 });
+            },
 
-            }
-
-        }, 2000);
-
-        }
+        },
+         watch: {
+            show(value) {
+                if(value) {
+                    alert()
+                    this.showNotificaton();
+                }
+               /* if(!value) {
+                    this.hideChatBox();
+                }*/
+            },
         }
 
     }
