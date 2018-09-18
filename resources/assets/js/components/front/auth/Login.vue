@@ -88,7 +88,11 @@ methods: {
              this_.$router.push({ name: 'customer_profile'})
          }else{ 
              if(redirectUrl){
-              this_.$router.push({ name: redirectUrl})
+              if(redirectUrl == "Explore_Detail") {
+                this_.$router.push({ name: 'Explore'})
+              }else {
+                this_.$router.push({ name: redirectUrl})
+              }
              }else{
               this_.$router.push({ name: 'my.jobs'})
              }

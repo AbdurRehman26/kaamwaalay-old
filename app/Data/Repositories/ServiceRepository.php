@@ -172,8 +172,9 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 
             }else {
                 $this->builder = $this->model->where('parent_id', '=', (int)$isParent[0])->where('id', '!=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
+
                 if(!$this->builder->get()->toArray()) {
-                    $this->builder = $this->getPopularServices();
+                    $this->builder = $this->getPopularServices((int)$data['filter_by_related_services']);
                 }
             }
         }
@@ -219,7 +220,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
                 foreach ($services as $key => $value) {
                     // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
-                     $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->get();
+                     $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->where('status', '=', 1)->get();
                     $services[$key]->subservices = $subservice;
                 }
                 $modelData['data'] = $services;
@@ -234,11 +235,12 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     return parent::findByAll($pagination, $perPage, $data);
     }
 
-    public function getPopularServices() {
+    public function getPopularServices($currentServiceId) {
         return $this->model
                 ->leftJoin('jobs', function ($join) {
                     $join->on('jobs.service_id', '=', 'services.id');
                 })
+                ->where('service_id', '<>', $currentServiceId)
                 ->select('services.id')
                 ->groupby('service_id')   
                 ->orderBy(DB::raw('COUNT(service_id)'), 'desc')

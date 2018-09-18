@@ -72,11 +72,10 @@
             title: 'Professional Service Marketplace | Explore',
             bodyClass: 'explore_page',
             navigation: 'main-nav',
+            forAll: true,
         },
         component: require('./components/front/explore/main.vue'),
     },
-
-
     {
         name: 'Explore_Detail',
         path: '/services/:serviceName/:zip?',
@@ -85,6 +84,7 @@
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',
             navigation: 'main-nav',
+            forAll: true,
         },
         component: require('./components/front/explore/service-provider.vue'),
     },
@@ -347,11 +347,19 @@ router.beforeEach((to, from, next) => {
     if(router.app.$store.getters.getAuthUser != 'undefined'){
         user = JSON.parse(router.app.$store.getters.getAuthUser);
     }
+    
+    if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
+        next();
+    }
     if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
         next({name: 'login'});
-    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+    }else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
         if(user  && user.role_id == customer){
-            next({name: 'my.jobs'});
+            if(!to.matched.some(record => record.meta.forAll)) {
+                next({name: "my.jobs"});
+            }else {
+                next();
+            }
         }
         else if(user  && user.role_id == serviceProvider){
             next({name: 'my.bids'});

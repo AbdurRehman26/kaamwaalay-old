@@ -15905,6 +15905,10 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.custom-multi.category-detail {
+  width: calc(100% - 20%);
+}
+
 .grey-bg {
   background-color: #F9F9F9;
 }

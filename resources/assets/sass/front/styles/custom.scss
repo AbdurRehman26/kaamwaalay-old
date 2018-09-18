@@ -1336,6 +1336,13 @@ $section-padding-sm:20px 0px;
         }
     }
 }
+
+.custom-multi{
+    &.category-detail{
+        width: calc(100% - 20%);        
+    }
+}
+
 .grey-bg{
     background-color: #F9F9F9;
 }
