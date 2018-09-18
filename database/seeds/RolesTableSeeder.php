@@ -89,6 +89,7 @@ public function run()
                 "job.show",
                 "job.update",
                 "user.me",
+                "user.update",
                 "job-bid.index",
                 "payment.store",
             ]), 

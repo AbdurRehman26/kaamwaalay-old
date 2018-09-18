@@ -5,7 +5,7 @@
             <p>To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure.</p>
         </div>
 
-        <div v-if="Object.keys(submitFormData).length" class="profile-form-section apply-review-sec">
+        <div v-if="Object.keys(record).length" class="profile-form-section apply-review-sec">
 
             <div class="form-signup">
                 <form @submit.prevent="validateBeforeSubmit">
@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label for="">First Name *</label>
                                     <input type="text" v-validate="'required'" class="form-control"
-                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="submitFormData.first_name" 
+                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
                                     placeholder="Enter your first name">
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label for="">Last Name *</label>
                                     <input type="text" v-validate="'required'" class="form-control"
-                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="submitFormData.last_name" 
+                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
                                     placeholder="Enter your last name">
                                 </div>
                             </div>
@@ -53,14 +53,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Email Address</label>
-                                    <input type="text" :disabled="true" class="form-control" name="email" v-model="submitFormData.email" placeholder="Enter your first email address">
+                                    <input type="text" :disabled="true" class="form-control" name="email" v-model="record.email" placeholder="Enter your first email address">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input v-validate="'numeric|max:15'" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
-                                    name="phone number" v-model="submitFormData.phone_number" placeholder="Enter your mobile or landline number">
+                                    <input  v-validate="{ regex:/^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
+                                    name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label for="">Are you an individual or a business?</label>
 
-                                    <select :class="['form-control', 'form-group' , errorBag.first('business_type') ? 'is-invalid' : '']" v-validate="'required'" name="business_type" v-model="submitFormData.business_details.business_type">
+                                    <select :class="['form-control', 'form-group' , errorBag.first('business_type') ? 'is-invalid' : '']" v-validate="'required'" name="business_type" v-model="record.business_details.business_type">
                                         <option value="business">Business</option>
                                         <option value="individual">Individual</option>
                                     </select>
@@ -85,7 +85,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" type="text" name="duns" v-model="submitFormData.business_details.duns_number" placeholder="Enter your duns number">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" type="text" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
                                 </div>
                             </div>
                         </div>
@@ -94,13 +94,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" type="text" name="business_name" v-model="submitFormData.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Working since</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" type="number" name="years_of_exprience" v-model="submitFormData.business_details.years_of_exprience" placeholder="Enter your years of exprience">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" type="number" name="years_of_exprience" v-model="record.business_details.years_of_exprience" placeholder="Enter your years of exprience">
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About</label>
-                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="submitFormData.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -120,11 +120,11 @@
                         <div class="form-label-heading m-b-30">
                             <p>SERVICES OFFERED</p>
                         </div>
-                        <div v-for="(service_detail, index) in submitFormData.service_details" class="row">
+                        <div v-for="(service_detail, index) in record.service_details" class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Service</label>
-                                    <select v-model="submitFormData.service_details[index].service_id" v-validate="'required'" name="service" 
+                                    <select v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option value="">Select All</option>
                                     <option v-for="service in servicesList" :value="service.id">
@@ -134,8 +134,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="index == submitFormData.service_details.length-1" @click.prevent="submitFormData.service_details.push({ service_id : ''})" href="javascript:;" class="add-photos mt-35">+ Add more services</a>
-                            <a v-if="index < submitFormData.service_details.length-1" @click.prevent="submitFormData.service_details.splice(index, 1)" href="javascript:;" class="add-photos mt-35"><strong>X</strong></a>
+                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-if="!pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -237,13 +237,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Address</label>
-                                <input type="text" class="form-control" name="address" v-model="submitFormData.address" placeholder="Enter your street address">
+                                <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Apartment, Suite, Unit</label>
-                                <input type="text" class="form-control" name="apartment" v-model="submitFormData.apartment" placeholder="Enter your apartment and suite number">
+                                <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your apartment and suite number">
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="submitFormData.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
@@ -263,7 +263,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">City *</label>
-                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="submitFormData.city_id">
+                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
@@ -278,7 +278,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Zip Code *</label>
-                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="submitFormData.zip_code" placeholder="Enter your zip code">
+                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="record.zip_code" placeholder="Enter your zip code">
                             </div>
                         </div>
                     </div>
@@ -374,7 +374,7 @@
                 </div>
 
                 <div class="submit-approval-btn">
-                    <button class="btn btn-primary">Submit for Apporoval
+                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Apporoval
                         <loader></loader>
                     </button>
                 </div>
@@ -387,9 +387,9 @@
 
     </div>
 
-    <vue-common-methods @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
+    <vue-common-methods :updateForm="true" @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
     <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods :hideLoader="true" v-if="submitFormData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 
 </div>
@@ -403,7 +403,12 @@
             return {
                 successMessage : '',
                 errorMessage : '',
-                submitFormData : [],
+                record : [],
+                submitFormData : {
+                    user_details : {
+
+                    }
+                },
                 url : 'api/user/me?details[profile_data]=true&details[provider_request_data]=true',
                 showNoRecordFound : false,
                 search : '',
@@ -435,7 +440,7 @@
                     end: '23:30'
                 },
                 submit : false,
-                submitUrl : 'api/user',
+                pendingProfile : false,
 
             }
         },
@@ -451,12 +456,73 @@
             },
             servicesList(){
                 return this.$store.getters.getAllServices;
+            },
+            submitUrl(){
+                return 'api/user/' + this.record.id
             }
         },
         methods: {
+            findUniqueValues(){
+
+                let self = this;
+                let service_details = self.record.service_details;
+
+                var result = _.map(service_details, function(o, i) {
+                    var eq = _.find(service_details, function(e, ind) {
+                        if (i != ind) {
+                            if(_.isEqual(e, o)){
+                                return _.isEqual(e, o);
+                            }
+                        }
+                    });
+                    
+                    if (typeof(eq) != 'undefined') {
+                        return eq;
+                    }
+                });
+
+
+                for (var i = result.length - 1; i >= 0; i--) {
+                    if(typeof(result[i]) != 'undefined'){
+                        return true;
+                    }
+                }
+
+                return false;
+
+            },
+
             validateBeforeSubmit() {
+                let self = this;
+
+                this.errorMessage = '';
+                
+                if(this.findUniqueValues()){
+                    this.errorMessage = 'Please remove duplicate services';
+                    return false;
+                }
+
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+
+                        _.forEach(self.record, function(value, key) {
+
+                            if(key == 'business_details' || key == 'service_details'){
+                                if(key == 'service_details'){
+                                    for (var i = value.length - 1; i >= 0; i--) {
+                                        value[i].id = value.service_provider_profile_request_id;
+                                    }
+
+                                }
+
+                                self.submitFormData[key] = value;
+
+                            }else{
+                                self.submitFormData.user_details[key] = value;
+                            }
+
+                        });
+                        this.loading = true;
                         this.submit = true;
                         this.errorMessage = ''
                         return;
@@ -466,28 +532,43 @@
             },
             formError(error){
                 console.log(error , 'inside formError method Apply for review comp');
+                this.loading = false;
                 this.submit = false;
             },
             formSubmitted(response){
+                this.loading = false;
                 this.submit = false;
                 console.log(response , 'inside formSubmit method Apply for review comp');
             },
             onStateChange(){
-                this.submitFormData.city_id = null;
-                this.cityUrl = 'api/city?state_id=' + this.submitFormData.state_id;
+                this.record.city_id = null;
+                this.cityUrl = 'api/city?state_id=' + this.record.state_id;
             },
             getFileUploadResponse(response){
                 console.log(response , 1);
             },
             getResponse(response){
                 let self = this;
-                self.loading = false;
-                self.submitFormData = response.data;
 
-                if(self.submitFormData.state_id){  
-                    this.cityUrl = 'api/city?state_id=' + this.submitFormData.state_id;
+                if(response.data){
+
+                    self.loading = false;
+                    self.record = response.data;
+
+                    if(this.record.service_details){
+
+                        for (var i = this.record.service_details.length-1; i >= 0; i--) {
+                            if(this.record.service_details[i].status == 'pending'){
+                                self.pendingProfile = true;
+                            }
+                        }
+
+                    }
+                    if(self.record.state_id){  
+                        this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                    }
+                    self.profileImage = self.record.profileImage;
                 }
-                self.profileImage = self.submitFormData.profileImage;
 
             },
             getStateResponse(response){

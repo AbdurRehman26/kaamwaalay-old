@@ -111,6 +111,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
                             ->where('users.role_id', '=', Role::SERVICE_PROVIDER);
 
+        $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
+
         if (empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
         }
@@ -151,7 +153,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if(!empty($data['is_approved'])) {
             //$is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
             $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['is_approved']);
-
         }
 
         if(!empty($data['filter_by_featured'])){
@@ -175,7 +176,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 ->groupBy('service_provider_profiles.user_id')
                 ->orderBy('service_provider_profiles.is_featured', 'desc')
                 ->orderBy('service_provider_profiles.is_verified', 'desc')
-                ->orderByRaw('(count(jobs.user_id) * (avg(user_ratings.rating)+1)) desc');
+                ->orderByRaw('(count(jobs.user_id) * IFNULL(avg(user_ratings.rating) + 1, 1)) desc');
             
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');

@@ -164,22 +164,26 @@
                                     <p>{{bid.description}}</p>
                                 </div>
 
-                                <div class="provider-bidding-btn" v-if="!jobArchived && !jobCancelled">
+                                <div class="provider-bidding-btn">
 
-                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
 
-                                    <a v-if="!bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
+
+                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
-                                    <a v-if="!jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" >Modify Bid</a>   
+                                    <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                    <a v-if="!jobArchived && !jobCancelled && !isMyJob && myBidValue && !jobAwarded && canModifyBid" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" >Modify Bid</a>   
+
+                                    <a v-if="!jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
 
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+
+                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+
+                                    <a v-if="(isMyJob || canChat)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -235,8 +239,7 @@
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>           
-
+<chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
 
 </div>
 

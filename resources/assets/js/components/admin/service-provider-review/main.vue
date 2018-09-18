@@ -58,7 +58,6 @@
             <table class="table service-provider-table first-last-col-fix">
               <thead>
                 <tr>
-                  <th width="40"></th>
                   <th>Full Name</th>
                   <!-- <th>Email Address</th> -->
                   <th>Services</th>                                  
@@ -70,11 +69,6 @@
           </thead>
           <tbody>
             <tr v-for="record in records">
-                <td>
-                    <span class="user-img radius-0">
-                        <img  :src="record.imagepath" >
-                    </span>
-                </td>
                 <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
                 <td><router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</router-link></td>
                 <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
