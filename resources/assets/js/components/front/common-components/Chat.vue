@@ -63,6 +63,10 @@
                alert();
                console.log(e);
             });
+
+            // setTimeout(function() {
+            //     window.Echo.leave('hello');
+            // }, 10000);
         },
         methods: {
             getList(data , page , successCallback){
