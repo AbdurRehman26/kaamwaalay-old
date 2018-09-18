@@ -2799,6 +2799,15 @@ body{
     padding: 10px 40px 10px 20px;
 }
 
+.job-post-container{
+    .job-details{
+        p.service-requirment{
+            position: relative;
+            top: -6px;
+        }
+    }
+} 
+
 .member-details, .job-details {
     display: block;
     padding-top: 21px;

@@ -50,7 +50,7 @@
 									<li><strong>Service Providers</strong></li>
 									<li v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a service provider</router-link></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:;">Completed Jobs</a></li>
-									<li><router-link to="/advice-center">Frequently asked questions</router-link></li>
+									<li><router-link to="/advice-center">Advice Center</router-link></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>
