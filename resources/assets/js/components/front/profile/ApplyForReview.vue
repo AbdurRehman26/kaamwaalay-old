@@ -483,21 +483,20 @@
                 let self = this;
                 let service_details = self.record.service_details;
 
-                var result = _.map(service_details, function(o, i) {
-                    var eq = _.find(service_details, function(e, ind) {
-                        if (i != ind) {
-                            if(_.isEqual(e, o)){
-                                return _.isEqual(e, o);
+                var result = _.map(service_details, function(serviceDetail, serviceDetailIndex) {
+                    var eq = _.find(service_details, function(findServiceDetail, findIndex) {
+                        if (serviceDetailIndex != findIndex) {
+                            if(findServiceDetail.service_id ==  serviceDetail.service_id){
+                                return findServiceDetail;
                             }
                         }
                     });
-                    
                     if (typeof(eq) != 'undefined') {
                         return eq;
                     }
                 });
 
-
+                console.log(result);
                 for (var i = result.length - 1; i >= 0; i--) {
                     if(typeof(result[i]) != 'undefined'){
                         return true;
