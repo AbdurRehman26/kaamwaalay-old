@@ -3531,6 +3531,17 @@ p.awarded_to {
     }
 }
 
+.archiving{
+    width: 100%;
+    position: relative;
+    i{
+        position: absolute;
+        left: 17px;
+        top: 10px;
+        font-size: 21px;
+    }
+}
+
 .job-bidding{
     position: relative;
     padding-left: 64px;

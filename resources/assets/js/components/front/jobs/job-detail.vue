@@ -210,7 +210,7 @@
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
-                    <button v-if="isMyJob && canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job' ]">
+                    <button v-if="isMyJob && canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
                         <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
                     </button>
 
