@@ -59,7 +59,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input v-validate="'numeric|max:15'" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
+                                    <input  v-validate="{ regex:/^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
                                     name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
@@ -134,8 +134,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" class="add-photos mt-35">+ Add more services</a>
-                            <a v-if="index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" class="add-photos mt-35"><strong>X</strong></a>
+                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-if="!pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -374,7 +374,7 @@
                 </div>
 
                 <div class="submit-approval-btn">
-                    <button class="btn btn-primary">Submit for Apporoval
+                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Apporoval
                         <loader></loader>
                     </button>
                 </div>
@@ -440,6 +440,7 @@
                     end: '23:30'
                 },
                 submit : false,
+                pendingProfile : false,
 
             }
         },
@@ -463,19 +464,28 @@
         methods: {
             validateBeforeSubmit() {
                 let self = this;
+
                 this.$validator.validateAll().then((result) => {
                     if (result) {
 
                         _.forEach(self.record, function(value, key) {
 
                             if(key == 'business_details' || key == 'service_details'){
+                                if(key == 'service_details'){
+                                    for (var i = value.length - 1; i >= 0; i--) {
+                                        value[i].id = value.service_provider_profile_request_id;
+                                    }
+
+                                }
+
                                 self.submitFormData[key] = value;
+
                             }else{
                                 self.submitFormData.user_details[key] = value;
                             }
 
                         });
-
+                        this.loading = true;
                         this.submit = true;
                         this.errorMessage = ''
                         return;
@@ -485,9 +495,11 @@
             },
             formError(error){
                 console.log(error , 'inside formError method Apply for review comp');
+                this.loading = false;
                 this.submit = false;
             },
             formSubmitted(response){
+                this.loading = false;
                 this.submit = false;
                 console.log(response , 'inside formSubmit method Apply for review comp');
             },
@@ -500,13 +512,24 @@
             },
             getResponse(response){
                 let self = this;
-                self.loading = false;
-                self.record = response.data;
+                
+                if(response.data){
 
-                if(self.record.state_id){  
-                    this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                    self.loading = false;
+                    self.record = response.data;
+
+
+                    for (var i = this.record.service_details.length-1; i >= 0; i--) {
+                        if(this.record.service_details[i].status == 'pending'){
+                            self.pendingProfile = true;
+                        }
+                    }
+
+                    if(self.record.state_id){  
+                        this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                    }
+                    self.profileImage = self.record.profileImage;
                 }
-                self.profileImage = self.record.profileImage;
 
             },
             getStateResponse(response){

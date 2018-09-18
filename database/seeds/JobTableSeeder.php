@@ -29,6 +29,10 @@ class JobTableSeeder extends Seeder
 
         $jobBiddingStatuses = ['in_bidding', 'in_bidding', 'in_bidding', 'in_bidding', 'in_bidding', 'cancelled'];
         
+
+        $zipCodes = app('ZipCodeRepository')->model->inRandomOrder()->pluck('zip_code')->toArray();
+        
+
         for ($i=1; $i < $numberOfJobs; $i++) { 
 
 
@@ -61,7 +65,7 @@ class JobTableSeeder extends Seeder
                     'title' => $faker->Company,
                     'description' => $faker->Text,
                     'address' => $faker->Address,
-                    'zip_code' => mt_rand(10000, 99999),
+                    'zip_code' => $zipCodes[array_rand($zipCodes)],
                     'country_id' => $country_id,
                     'state_id' => $state->id,
                     'city_id' => $city ? $city->id : null,
