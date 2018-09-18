@@ -22,7 +22,7 @@ class UserMessaged implements ShouldBroadcast
     public function __construct($discussion)
     {
         $this->discussion = $discussion;
-        $this->dontBroadcastToCurrentUser();
+        //$this->dontBroadcastToCurrentUser();
     }
 
     /**
@@ -33,7 +33,7 @@ class UserMessaged implements ShouldBroadcast
     public function broadcastOn()
     {
         //return new Channel('hello');
-        //return new PrivateChannel('Job-Messages.'.$this->discussion->job_id.$this->discussion->job_bid_id);
-        return new PrivateChannel('Job-Messages.1');
+        return new PrivateChannel('Job-Messages.'.$this->discussion->job_id.$this->discussion->job_bid_id);
+        //return new PrivateChannel('Job-Messages.1');
     }
 }

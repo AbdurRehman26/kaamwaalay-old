@@ -209,17 +209,10 @@
                 this.subscribeChannel();
             },
             subscribeChannel() {
-                let channelName = 'Job-Messages.' + this.jobMessageData.job_id + this.jobMessageData.job_bid_id;
-                window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', e => {
-                    var obj = {
-                        data: {
-                            notification_details: e.discussion,
-                        },
-                    };
-                    obj.data.notification_details.fromUser = e.discussion.user;
-                    self.notifications.unshift(obj);
-                    var count = e.discussion.notification_count;
-                    self.$emit('setNotificationCount', count);
+                let channelName = 'Job-Messages.' + this.jobMessageData.job_id + '.' + this.jobMessageData.job_bid_id;
+                window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
+                   alert('ppppppp');
+                   console.log(e);
                 });
             },
             hideChatBox() {

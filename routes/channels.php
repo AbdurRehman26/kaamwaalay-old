@@ -22,3 +22,8 @@ Broadcast::channel('Job-Messages.{job_id}.{job_bid_id}', function ($user, $job_i
 	->toArray();
     return in_array($user_id, $receivers);
 });
+
+// Broadcast::channel('Job-Messages.{id}', function ($user, $id) {
+// 	dd($user);
+// 	return $id == 1;
+// });
