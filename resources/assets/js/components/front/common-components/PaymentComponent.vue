@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">                          
-                    <div class="form-group custom-datepicker">
+                    <div class="form-group custom-datepicker expirychanges">
                         <label for="">Expiry Date</label>
                         <card-expiry :class="['form-control' , (!expiry && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-expiry'
                         ref='cardExpiry'
