@@ -462,8 +462,45 @@
             }
         },
         methods: {
+            findUniqueValues(){
+
+                let self = this;
+                let service_details = self.record.service_details;
+
+                var result = _.map(service_details, function(o, i) {
+                    var eq = _.find(service_details, function(e, ind) {
+                        if (i != ind) {
+                            if(_.isEqual(e, o)){
+                                return _.isEqual(e, o);
+                            }
+                        }
+                    });
+                    
+                    if (typeof(eq) != 'undefined') {
+                        return eq;
+                    }
+                });
+
+
+                for (var i = result.length - 1; i >= 0; i--) {
+                    if(typeof(result[i]) != 'undefined'){
+                        return true;
+                    }
+                }
+
+                return false;
+
+            },
+
             validateBeforeSubmit() {
                 let self = this;
+
+                this.errorMessage = '';
+                
+                if(this.findUniqueValues()){
+                    this.errorMessage = 'Please remove duplicate services';
+                    return false;
+                }
 
                 this.$validator.validateAll().then((result) => {
                     if (result) {
@@ -512,19 +549,21 @@
             },
             getResponse(response){
                 let self = this;
-                
+
                 if(response.data){
 
                     self.loading = false;
                     self.record = response.data;
 
+                    if(this.record.service_details){
 
-                    for (var i = this.record.service_details.length-1; i >= 0; i--) {
-                        if(this.record.service_details[i].status == 'pending'){
-                            self.pendingProfile = true;
+                        for (var i = this.record.service_details.length-1; i >= 0; i--) {
+                            if(this.record.service_details[i].status == 'pending'){
+                                self.pendingProfile = true;
+                            }
                         }
-                    }
 
+                    }
                     if(self.record.state_id){  
                         this.cityUrl = 'api/city?state_id=' + this.record.state_id;
                     }
