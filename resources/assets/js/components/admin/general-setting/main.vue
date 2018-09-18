@@ -358,7 +358,6 @@ export default {
                     self.urgent_job_disable = true
                 }
             }
-            console.log(key)
             if (key === (self.list.length -1)) {
                 setTimeout(function () {
                         self.isFeaturedUpdating = false;
