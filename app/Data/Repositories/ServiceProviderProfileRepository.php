@@ -111,7 +111,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
                             ->where('users.role_id', '=', Role::SERVICE_PROVIDER);
 
-        $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
+        $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
 
         if (empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
