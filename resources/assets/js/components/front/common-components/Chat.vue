@@ -48,21 +48,10 @@
             }
         },
         created() {
-            // window.Echo.private('Discussion-Dashboard-Report.'+worspaces[i].id).listen('.Dms\\Events\\UserDiscussed', e => {
-            //     var obj = {
-            //         data: {
-            //             notification_details: e.discussion,
-            //         },
-            //     };
-            //     obj.data.notification_details.fromUser = e.discussion.user;
-            //     self.notifications.unshift(obj);
-            //     var count = e.discussion.notification_count;
-            //     self.$emit('setNotificationCount', count);
+            // window.Echo.channel('hello').listen('.App\\Events\\UserMessaged', (e) => {
+            //    alert();
+            //    console.log(e);
             // });
-            window.Echo.channel('hello').listen('App\\Events\\UserMessaged', (e) => {
-               alert();
-               console.log(e);
-            });
 
             // setTimeout(function() {
             //     window.Echo.leave('hello');
@@ -217,6 +206,21 @@
                 let data = this.jobMessageData;
                 data.pagination = true;
                 this.getList(data, false);
+                this.subscribeChannel();
+            },
+            subscribeChannel() {
+                let channelName = 'Job-Messages.' + this.jobMessageData.job_id + this.jobMessageData.job_bid_id;
+                window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', e => {
+                    var obj = {
+                        data: {
+                            notification_details: e.discussion,
+                        },
+                    };
+                    obj.data.notification_details.fromUser = e.discussion.user;
+                    self.notifications.unshift(obj);
+                    var count = e.discussion.notification_count;
+                    self.$emit('setNotificationCount', count);
+                });
             },
             hideChatBox() {
                 this.$emit('closeChat');

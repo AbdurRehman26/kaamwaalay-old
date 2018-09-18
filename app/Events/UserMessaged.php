@@ -32,7 +32,8 @@ class UserMessaged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('hello');
+        //return new Channel('hello');
         //return new PrivateChannel('Job-Messages.'.$this->discussion->job_id.$this->discussion->job_bid_id);
+        return new PrivateChannel('Job-Messages.1');
     }
 }
