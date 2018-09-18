@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // clears cache
+        \Artisan::call('cache:clear');
         // Guest User Calls
 
         // commenting all seeders 

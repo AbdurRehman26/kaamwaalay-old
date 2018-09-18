@@ -52,7 +52,7 @@
 						<div class="showmore showmore-link clearfix">
 							<div>
 							  <!-- element to collapse -->
-							  <a v-b-toggle="service.title" href="javascript:void(0);" class="showCollapse" v-if="getRemainingSubServices(service.subservices).length">View all services related to {{service.title}}<i class="icon-angle-right"></i></a>
+							  <a v-b-toggle="service.title" href="javascript:void(0);" :class="showCollapse" v-if="getRemainingSubServices(service.subservices).length">View all services related to {{service.title}}<i class="icon-angle-right"></i></a>
 							  <b-collapse :id="service.title">
 							    <b-card>
 							      <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(service.subservices)">
@@ -86,7 +86,7 @@
 
 					</div>
 				</div>
-				<div class="category-section">
+				<div class="category-section" v-if="getOtherServices.length">
 					<div class="category-title">
 						<h2>Others</h2>
 					</div>
@@ -133,6 +133,9 @@ export default {
 			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
 			categoryPopup: false,
 			loading: false,
+			showCollapse: true,
+			authUser: '',
+			routeName: '',
 		}
 	},
 	methods: {
@@ -155,7 +158,7 @@ export default {
 		},
 		onSelectCategory(val) {
 			this.hideModal();
-			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.selectedService.url_suffix, zip : val }});
+			this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
 			localStorage.setItem("zip", val);
 		},
 		validateBeforeSubmit() {
@@ -193,7 +196,6 @@ export default {
 		changecategorypopup(service) {
 			this.selectedService = service;
 			if(localStorage['zip']) {
-
 				this.onSelectCategory(localStorage['zip']);
 			}else {
 				this.categoryPopup = true;	
@@ -212,7 +214,7 @@ export default {
 				return;
 			}
 			localStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: 'Explore_Detail', params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -273,8 +275,15 @@ export default {
 	},
 },
 mounted(){
-	if(localStorage['zip']) {
-		this.zipCode = localStorage.getItem('zip');
+	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
+	this.routeName = 'Explore_Detail';
+	if(this.authUser) {
+		this.zipCode = this.authUser.zip_code;
+		localStorage.setItem("zip", this.zipCode);
+	}else {
+		if(localStorage['zip']) {
+			this.zipCode = localStorage.getItem('zip');
+		}
 	}
 	
 	this.getList({service_category: 'All'},false);
