@@ -382,6 +382,9 @@
     		this.serviceTitle = val;
     	},
     	serviceName(val) {
+    		if(!val) {
+    			this.$router.push({ name: 'Explore'})
+    		}
     		this.serviceName = val;
     		this.getService();
     	},
