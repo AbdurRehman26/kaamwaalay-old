@@ -93,10 +93,10 @@ class PlanRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = [])
     {
-        if(!empty($data['id']) && ($data['type'] == 'service' &&  $data['product'] == 'account_creation') || ($data['type'] == 'job' &&  $data['product'] == 'urgent_job')){
+        if(!empty($data['id']) && (($data['type'] == 'service' &&  $data['product'] == 'account_creation') || ($data['type'] == 'job' &&  $data['product'] == 'urgent_job'))){
             parent::deleteById($data['id']);
+            unset($data['id']);
         }
-        unset($data['id']);
         $record = parent::create($data);
         // for stripe cent to dollar
         $data['amount'] = (int) $data['amount']*100;

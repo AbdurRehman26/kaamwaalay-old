@@ -13,58 +13,59 @@ class PlansTableSeeder extends Seeder
      */
     public function run()
     {
-    	$date = Carbon::now();        
-        Plan::insertOnDuplicateKey(array (
-            array (
-                'id' => 1,
-                'product' => 'Urgent',
+    	$date = Carbon::now();   
+        $planRepository = app('PlanRepository');
+        $i = 1;
+        $data = [
+            [
+                'product' => 'urgent_job',
                 'amount' => 2,
                 'quantity' => NULL,
                 'type' => 'job',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
-            ),
-            array (
-                'id' => 2,
-                'product' => 'Account Creation',
+            ],
+            [
+                'product' => 'account_creation',
                 'amount' => 2,
                 'quantity' => NULL,
                 'type' => 'service',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
-            ),
-            array (
-                'id' => 3,
-                'product' => 'Featured Profile',
+            ],
+            [
+                'product' => 'featured_profile',
                 'amount' => 10,
                 'quantity' => 100,
                 'type' => 'service',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
-            ),
-            array (
-                'id' => 4,
-                'product' => 'Featured Profile',
+            ],
+            [
+                'product' => 'featured_profile',
                 'amount' => 15,
                 'quantity' => 200,
                 'type' => 'service',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
-            ),
-            array (
-                'id' => 5,
-                'product' => 'Featured Profile',
+            ],
+            [
+                'product' => 'featured_profile',
                 'amount' => 25,
                 'quantity' => 500,
                 'type' => 'service',
                 'created_at' => $date,
                 'updated_at' => $date,
                 'deleted_at' => NULL,
-            ),
-        ));
+            ],
+        ];
+        foreach ($data as $datum) {
+                    $planRepository->create($datum);
+                } 
+
     }
 }
