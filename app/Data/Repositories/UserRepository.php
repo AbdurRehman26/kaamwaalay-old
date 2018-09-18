@@ -194,12 +194,10 @@ public function update(array $data = [])
 
                 if(!$profileRequest) {
 
-
                     foreach ($data['service_details'] as $key => $service) {
                         if(empty($service['service_id'])) {
                             continue;
                         }
-
                         if(!empty($service['id'])) {
 
                             $existingServiceIds[$service['id']][] = $service['service_id'];
