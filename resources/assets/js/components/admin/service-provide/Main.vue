@@ -62,7 +62,7 @@
           <tr v-for="record in records">
             <td>
                 <span class="user-img radius-0">
-                    <img  :src="record.user_detail ? record.user_detail.profileImage : ''" >
+                    <img v-if="record.user_detail && record.user_detail.profile_image" :src="record.user_detail ? record.user_detail.profileImage : ''" >
                 </span>
             </td>            
             <td>
@@ -85,9 +85,9 @@
                 v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
             </i>
             <i v-b-tooltip.hover @click.prevent="currentRecord = record; confirmPopupShow = true;" 
-            v-if="!record.is_verified && record.user_detail.status == 'active'" title="" class="icon-check" title="Confirm Verification"></i>
+            v-if="!record.is_verified" title="" :class="['icon-check' , record.user_detail.status == 'banned' ? 'disabled' : '']" title="Confirm Verification"></i>
             <i v-b-tooltip.hover @click.prevent="currentRecord = record; confirmPopupShow = true;" 
-            v-if="record.is_verified && record.user_detail.status == 'active'" title="" class="icon-cancel" title="Cancel Verification"></i>
+            v-if="record.is_verified" title="" class="icon-cancel" title="Cancel Verification"></i>
         </div>
     </td>
 </tr>
