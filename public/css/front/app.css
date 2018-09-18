@@ -18327,13 +18327,15 @@ p.awarded_to {
 
 .job-main-heading .content-sec .job-content .job-details p i {
   font-size: 18px;
+  position: relative;
+  top: 2px;
 }
 
 .job-main-heading .content-sec .job-content .job-details p i.icon-brightness-down {
   font-size: 21px;
   vertical-align: text-top;
   position: relative;
-  top: -2px;
+  top: -3px;
 }
 
 .job-bidding {

@@ -3516,11 +3516,13 @@ p.awarded_to {
                     }
                     i{
                         font-size: 18px;
+                        position: relative;
+                        top: 2px;
                         &.icon-brightness-down{
                             font-size: 21px;
                             vertical-align: text-top;
                             position: relative;
-                            top: -2px;
+                            top: -3px;
                         }
                     }
                 }
