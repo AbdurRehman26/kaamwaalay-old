@@ -162,7 +162,7 @@
 		watch: {
 			show(val) {
 				if(val) {
-					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true';
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&filter_by_tbd=1';
 				}else {
 					//this.url = null;
 					//self.pagination = false;
