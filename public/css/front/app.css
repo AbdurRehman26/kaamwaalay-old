@@ -15986,6 +15986,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .no-photos p {
   margin-bottom: 0px !important;
+  font-size: 15px;
 }
 
 .category-section {
@@ -17523,6 +17524,21 @@ body .chat-feedback-message.white-msg:before {
   color: #7D7D7D !important;
   font-size: 14px;
   padding: 10px 40px 10px 20px;
+}
+
+.job-post-container .job-details p.service-requirment {
+  position: relative;
+  top: -6px;
+}
+
+.chat-feedback-column.job-bidding .job-common-description strong {
+  position: relative;
+  top: -2px;
+}
+
+.chat-feedback-column.job-bidding .job-common-description strong i {
+  position: relative;
+  left: 7px;
 }
 
 .member-details,

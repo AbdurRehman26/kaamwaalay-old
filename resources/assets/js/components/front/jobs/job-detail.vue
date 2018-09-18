@@ -110,7 +110,7 @@
 
                     <div v-if="record.jobImages" class="jobs-post-files">
                         <h3>Related Photos</h3>
-                        <div class="no-photos" v-if="record.jobImages == [] || record.jobImages == null"> 
+                        <div class="no-photos" v-if="record.jobImages = []"> 
                             <p>Photo(s) Not Avaliable</p>
                         </div>
                         <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
