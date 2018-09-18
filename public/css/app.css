@@ -38983,6 +38983,29 @@ body .vue-treeselect .vue-treeselect__list-item .vue-treeselect__list-item.vue-t
   }
 }
 
+@media (max-width: 1380px) and (min-width: 1170px) {
+  .datepicker-row label {
+    font-size: 12px;
+  }
+}
+
+.left-cog.profile-block {
+  top: 5px;
+  position: relative;
+}
+
+.left-cog.profile-block .profile-username.pointer-event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.left-cog.profile-block .profile-username.pointer-event i {
+  display: inline-block;
+  position: relative;
+  top: -2px;
+}
+
 body .list-height .scrollbar {
   width: 100%;
   padding-right: 0px;

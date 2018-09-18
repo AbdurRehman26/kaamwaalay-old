@@ -175,7 +175,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 ->groupBy('service_provider_profiles.user_id')
                 ->orderBy('service_provider_profiles.is_featured', 'desc')
                 ->orderBy('service_provider_profiles.is_verified', 'desc')
-                ->orderByRaw('(count(jobs.user_id) * (avg(user_ratings.rating)+1)) desc');
+                ->orderByRaw('(count(jobs.user_id) * IFNULL(avg(user_ratings.rating) + 1, 1)) desc');
             
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');

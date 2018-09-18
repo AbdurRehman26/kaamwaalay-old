@@ -10,8 +10,9 @@
                     <div class="float-right">
                         <div class="left-cog profile-block">                            
                             <div class="profile-username pointer-event" @click="ChangePass">
-                                    <div class="username">{{fullName}}</div>
-                                    <i class="icon-triangle-down"></i>
+                                <i class="icon-lock_outline"></i>
+                                <div class="username">{{fullName}}</div>
+                                <i class="icon-triangle-down"></i>
                            </div>
                            <logout-component></logout-component> 
                         </div>
