@@ -5,7 +5,7 @@
             <p>To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure.</p>
         </div>
 
-        <div v-if="Object.keys(record).length" class="profile-form-section apply-review-sec">
+        <div v-if="Object.keys(record).length && record.business_details &&  Object.keys(record.business_details).length" class="profile-form-section apply-review-sec">
 
             <div class="form-signup">
                 <form @submit.prevent="validateBeforeSubmit">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="col-md-6">
                             <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
-                            <a v-if="!pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
+                            <a v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -156,18 +156,19 @@
                             </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div v-if="record.business_details.attachments" class="row" v-for="(proof_of_business, index) in record.business_details.attachments.proof_of_business">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Browse</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getFileUploadResponse">
+                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
 
                                 </file-upload-component>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>&nbsp;</label>
-                            <a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
+                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">x</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more photos</a>
                         </div>
                     </div>
                 </div>
@@ -185,11 +186,11 @@
                             </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div v-if="record.business_details.attachments" class="row" v-for="(certification, index) in record.business_details.attachments.certifications">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Browse</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getFileUploadResponse">
+                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
 
                                 </file-upload-component>
 
@@ -197,7 +198,8 @@
                         </div>
                         <div class="col-md-6">
                             <label>&nbsp;</label>
-                            <a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
+                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">x</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more photos</a>
                         </div>
                     </div>
                 </div>
@@ -215,18 +217,19 @@
                             </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div v-if="record.business_details.attachments" class="row" v-for="(registration, index) in record.business_details.attachments.registrations">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Browse</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getFileUploadResponse">
+                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
 
                                 </file-upload-component>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>&nbsp;</label>
-                            <a href="javascript:;" class="add-photos filter-btn-top-space">+ Add more photos</a>
+                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">x</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more photos</a>
                         </div>
                     </div>
                 </div>
@@ -462,6 +465,19 @@
             }
         },
         methods: {
+            removeFile(type, index){
+                console.log(this.record.business_details.attachments[type] , type , index);
+                this.record.business_details.attachments[type].splice(index , 1);
+                this.$forceUpdate();
+                return false;
+
+            },
+            addMoreFiles(type, index){
+                if(this.record.business_details.attachments[type][index]){
+                    this.record.business_details.attachments[type][index+1] = ''
+                }
+                this.$forceUpdate();
+            },
             findUniqueValues(){
 
                 let self = this;
@@ -512,7 +528,6 @@
                                     for (var i = value.length - 1; i >= 0; i--) {
                                         value[i].id = value.service_provider_profile_request_id;
                                     }
-
                                 }
 
                                 self.submitFormData[key] = value;
@@ -531,21 +546,23 @@
                 });
             },
             formError(error){
-                console.log(error , 'inside formError method Apply for review comp');
                 this.loading = false;
                 this.submit = false;
             },
             formSubmitted(response){
-                this.loading = false;
-                this.submit = false;
-                console.log(response , 'inside formSubmit method Apply for review comp');
+                this.$router.push({ name : 'my.bids'});
             },
             onStateChange(){
                 this.record.city_id = null;
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
             },
             getFileUploadResponse(response){
-                console.log(response , 1);
+                let self = this;
+                self.record.profile_image = response.name;
+                self.profileImage = response.upload_url;
+            },
+            getDocumentUploadResponse(response, type, index){
+                this.record.business_details.attachments[type][index] = response.name; 
             },
             getResponse(response){
                 let self = this;
@@ -554,6 +571,16 @@
 
                     self.loading = false;
                     self.record = response.data;
+
+                    if(this.record && this.record.business_details && !this.record.business_details.attachments){
+                        this.record.business_details.attachments = {
+                            certifications : [{}], 
+                            proof_of_business : [{}],
+                            registrations : [{}],
+                        }
+                    }
+
+
 
                     if(this.record.service_details){
 
