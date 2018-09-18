@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 job-bid-btn p-r-0">
-                                <a href="javascript:void(0);" v-if="!record.my_bid && record.status != 'completed' &&  record.status != 'cancelled'" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
+                                <a href="javascript:void(0);" v-if="!record.my_bid && record.status != 'completed' &&  record.status != 'cancelled' && !record.awarded_to" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
                                 
                                 <a v-if="record.can_message && record.status !== 'cancelled'" @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message">
                                     <i class="icon-message"></i>
