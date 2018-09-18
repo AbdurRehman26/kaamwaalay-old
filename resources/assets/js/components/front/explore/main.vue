@@ -239,7 +239,6 @@ export default {
 		    if(typeof(page) !== 'undefined' && page){
 		    	url += '&page='+page;   
 		    }
-
 		    self.$http.get(url).then(response => {
 		    	response = response.data.response;
 		    	self.allServices = response.data;
