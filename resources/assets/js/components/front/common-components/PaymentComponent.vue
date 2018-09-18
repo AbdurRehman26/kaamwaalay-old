@@ -100,7 +100,8 @@
                 self.$http.put(url, update).then(response => {
                     response = response.data.response;
                     self.$store.commit('setAuthUser', response.data);
-                    self.$parent.onSubmit()
+                    self.$parent.onSubmit();
+                    self.$parent.submit = true;
                 }).catch(error => {
                 });
             }).catch(error=>{
