@@ -61,27 +61,38 @@
             },
             infiniteHandler($state) {
                 let self = this;
-                if(!self.pagination){
 
+                if(self.loading) {
+                    return false;
+                }
+
+
+                if(!self.pagination){
+                    self.loading = true;
                     self.$parent.getList(false , function (response) {
                         setTimeout(function () {
+                            self.loading = false;
                             $state.loaded();
                         } , 3000);
                     });
 
                 }else{
+
+                    self.loading = true;
                     if(self.pagination && self.pagination.current != self.pagination.next){
 
                         self.$parent.getList(self.pagination.next , function (response) {
 
                             setTimeout(function () {
                                 $state.loaded();
+                                self.loading = false;
                             } , 3000);
 
                         });
 
                     }else{
 
+                        self.loading = false;
                         $state.complete();
                     }
 
