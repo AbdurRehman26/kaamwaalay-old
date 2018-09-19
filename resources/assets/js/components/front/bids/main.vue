@@ -28,16 +28,16 @@
 			</div>
 
 			<div class="job-post-container section-padd sm">
-				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation>
-				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount" :show="(bid_selection == 'completedbid')" :count="completedCount"></bid-completed>
-				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount" :show="(bid_selection == 'awardedbid')" :count="awardedCount"></bid-awarded>
-				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount" :show="(bid_selection == 'archivedbid')" :count="archivedCount"></bid-archived>
-				<bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" :show="(bid_selection == 'activebid')" :count="activeBidCount"></bid-active>
-                <bid-cancelled @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showchatpanel" v-show="bid_selection == 'cancelled'" @recordCount="setCancelledBidCount" :show="(bid_selection == 'cancelled')" :count="cancelledCount"></bid-cancelled>
+				<bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation>
+				<bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount" :show="(bid_selection == 'completedbid')" :count="completedCount"></bid-completed>
+				<bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount" :show="(bid_selection == 'awardedbid')" :count="awardedCount"></bid-awarded>
+				<bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount" :show="(bid_selection == 'archivedbid')" :count="archivedCount"></bid-archived>
+				<bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" :show="(bid_selection == 'activebid')" :count="activeBidCount"></bid-active>
+                <bid-cancelled @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'cancelled'" @recordCount="setCancelledBidCount" :show="(bid_selection == 'cancelled')" :count="cancelledCount"></bid-cancelled>
 			</div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
-            <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
+            <chat-panel v-show="showChat" @closeChat="closeChatBox" :jobMessageData="jobMessageData" :show="showChat"></chat-panel>  
             <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
 
         </div>
@@ -61,10 +61,28 @@
          awardedCount: 0,    
          completedCount: 0,    
          cancelledCount: 0,    
+         showChat : false,
+         jobMessageData: {},
      }
  },
 
  methods: {
+    closeChatBox() {
+        this.showChat = false;
+    },
+    showChatBox(record) {
+        console.log(record, 44444444444);
+        this.closeChatBox();
+        this.jobMessageData = {
+            text: '',
+            job_id: record.job_id,
+            reciever_id: record.service_provider.user_id,
+            job_bid_id: record.id,
+            sender_detail: record.service_provider.user_detail,
+            business_name: record.service_provider.business_name,
+        };
+        this.showChat = true;
+    },
     setInvitationCount(count) {
         this.invitationCount = count;
     },
@@ -107,12 +125,6 @@
     servicedetail(){
         window.scrollTo(0,0);
         this.$router.push({name: 'job-details'});
-    },
-    showchatpanel(){
-        this.isShowing=true;
-    },
-    CloseDiscussion(){
-        this.isShowing=false;
     },
     getActiveBidsCount() {
         var activeBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&count_only=true';

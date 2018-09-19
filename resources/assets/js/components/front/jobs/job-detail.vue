@@ -232,7 +232,7 @@
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChat" @closeChat="showChat = false;" :jobMessageData="jobMessageData" :show="showChat"></chat-panel>           
+<chat-panel v-show="showChat" @closeChat="closeChatBox" :jobMessageData="jobMessageData" :show="showChat"></chat-panel>           
 
 
 </div>
@@ -375,13 +375,17 @@
         }
     },
     methods: {
+        closeChatBox() {
+            this.showChat = false;
+        },
         showChatBox(bid) {
             this.jobMessageData = {
                 text: '',
                 job_id: bid.job_id,
                 reciever_id: bid.service_provider.user_id,
                 job_bid_id: bid.id,
-                sender_detail: bid.service_provider
+                sender_detail: bid.service_provider.user_detail,
+                business_name: bid.service_provider.business_name,
             };
             this.showChat = true;
         },
@@ -505,6 +509,14 @@
     },
 
     mounted(){
+
+        // $('body').click((e) => {
+        //     var target = $(e.target);
+        //     alert(target.attr('class'));
+        //     if(target.is('div')) {
+        //         this.closeChatBox();
+        //     }
+        // });
     },
 
 }

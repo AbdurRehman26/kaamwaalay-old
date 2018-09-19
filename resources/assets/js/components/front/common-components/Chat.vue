@@ -197,8 +197,8 @@
                 return null;
             },
             getSenderName() {
-                if(typeof(this.jobMessageData.sender_detail) != "undefined") {
-                    return this.jobMessageData.sender_detail.business_name;
+                if(typeof(this.jobMessageData.business_name) != "undefined") {
+                    return this.jobMessageData.business_name.business_name;
                 }
                 return null;
             }
