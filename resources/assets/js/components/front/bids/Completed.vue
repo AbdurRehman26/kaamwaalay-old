@@ -110,7 +110,7 @@
 				return record.first_name + " " + record.last_name;
 			},
 			getImage(record) {
-				return record.profile_image? record.profile_image : 'images/dummy/image-placeholder.jpg';
+				return record.profileImage? record.profileImage : 'images/dummy/image-placeholder.jpg';
 			},
 			AddCustomer() {
 				this.customer = true;
