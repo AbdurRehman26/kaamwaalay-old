@@ -26,10 +26,7 @@
                             </div>
                         </div>
 
-                        <!-- Alert Tag -->
-                        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-                        <!-- Alert Tag -->
-
+                        
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -288,23 +285,33 @@
                     <payment-component></payment-component>
                 </div>
 
-                <div class="submit-approval-btn">
+                <div v-if="!pendingProfile" class="submit-approval-btn">
                     <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Apporoval
                         <loader></loader>
                     </button>
                 </div>
 
-                <div class="form-detail">
+                <div class="margin-bottom-20px form-detail">
                     <p>Please make sure all the information you entered is accurate before submitting.</p>
                 </div>
-            </form>
-        </div>
 
-    </div>
+                <!-- Alert Tag -->
+                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                <!-- Alert Tag -->
 
-    <vue-common-methods :updateForm="true" @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-    <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+                <b-alert v-if="pendingProfile" variant="info" show>
+                  <p><strong>Info : </strong> Your account is currently in pending process</p>
+              </b-alert>
+
+
+          </form>
+      </div>
+
+  </div>
+
+  <vue-common-methods :updateForm="true" @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
+  <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+  <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 
 </div>
@@ -477,33 +484,46 @@
             },
             getResponse(response){
                 let self = this;
+                console.log(self, 'hi');
 
-                if(response.data){
+                if(response.data.id){
 
                     self.loading = false;
                     self.record = response.data;
 
-                    if(this.record && this.record.business_details && !this.record.business_details.attachments){
-                        this.record.business_details.attachments = {
+                    if(self.record && self.record.business_details && !self.record.business_details.attachments){
+                        self.record.business_details.attachments = {
                             certifications : [{}], 
                             proof_of_business : [{}],
                             registrations : [{}],
                         }
+
                     }
 
 
+                    console.log(response.data , 'response');
 
-                    if(this.record.service_details){
+                    if(self.record.service_details.length){
 
-                        for (var i = this.record.service_details.length-1; i >= 0; i--) {
-                            if(this.record.service_details[i].status == 'pending'){
+                        for (var i = self.record.service_details.length-1; i >= 0; i--) {
+                            if(self.record.service_details[i].status == 'pending'){
                                 self.pendingProfile = true;
                             }
                         }
-
                     }
+
+                    if(!self.record.service_details.length){
+                        self.record.service_details = [{
+                            service_id : ''
+                        }];
+                    }
+
+                    console.log(self.record , 'asdfasdf');
+
+
+
                     if(self.record.state_id){  
-                        this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                        self.cityUrl = 'api/city?state_id=' + self.record.state_id;
                     }
                     self.profileImage = self.record.profileImage;
                 }

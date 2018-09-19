@@ -299,3 +299,4 @@ Vue.filter('bidStatus', function (bid) {
     return bid.amount ? '$ ' + bid.amount : 0;
 
 });
+

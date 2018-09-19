@@ -14491,6 +14491,20 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.small-ico .list-icon {
+  background-color: transparent;
+  border-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: auto;
+  margin-bottom: 22px;
+  width: auto;
+  height: 92px;
+}
+
 .multiselect__option--highlight {
   background-color: #8200FF !important;
 }
@@ -14671,6 +14685,12 @@ input[type=number]::-webkit-outer-spin-button {
   .services .services-list ul li {
     width: 100% !important;
   }
+}
+
+.custom-file input {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .section-padd {

@@ -61,7 +61,7 @@
             cvc: false,
             loading: false,
             pageLoad: false,
-            stripeKey: process.env.MIX_STRIPE_KEY,
+            stripeKey: window.stripeKey,
             stripeOptions: {
             },
             errorMessage: '',

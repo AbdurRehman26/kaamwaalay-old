@@ -112,7 +112,7 @@
                     <div v-if="record.jobImages" class="jobs-post-files">
                         <h3>Related Photos</h3>
                         <div class="no-photos" v-if="!record.jobImages.length"> 
-                            <p>Photo(s) Not Avaliable</p>
+                            <p>Photo(s) Not Available</p>
                         </div>
                         <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
                             <img @click="open($event)" :src="image" />
@@ -304,7 +304,7 @@
         },
         computed : {
             jobImage(){
-                return this.record && this.record.user ? this.record.user.profileImage : '';
+                return this.record && this.record.user && this.record.user.profileImage ? this.record.user.profileImage : 'images/dummy/image-placeholder.jpg';
             },
             jobAwarded(){
                 return this.record.awarded_to;

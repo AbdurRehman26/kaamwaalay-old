@@ -296,7 +296,6 @@
                 return this.url + '/' + this.$route.params.id;
             },
             jobImages(){
-                console.log(this.formData ,12312321);
                 return this.formData['images'];
             }
         },

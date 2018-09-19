@@ -123,7 +123,9 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $data->jobImages = [];
                 if(!empty($data->images)){
                     foreach ($data->images as $key => $image) {
-                        $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                        if(is_string($image)){   
+                            $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                        }
                     }
                 }
                 
@@ -178,7 +180,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 
                 // current service provider bid 
                 if($currentUser){
-                    
+
                     if($currentUser->role_id == Role::SERVICE_PROVIDER){
                         $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
                         $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
