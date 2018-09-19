@@ -96,7 +96,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 $profile->formatted_created_at = Carbon::parse($profile->approved_at)->format('F j, Y');
             }
             $data->profile_request = $profile;
-            
+        
+
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
         
         }
