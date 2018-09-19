@@ -50,12 +50,12 @@ class UserRepository extends AbstractRepository implements RepositoryContract
         if($data) {
             $data->profileImage = $data->profile_image;
             if(substr($data->profile_image, 0, 8) != "https://"){
-             $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
-         }
+               $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
+           }
 
-         $data->role = app('RoleRepository')->findById($data->role_id);
-         
-         if (!empty($details['profile_data'])) {
+           $data->role = app('RoleRepository')->findById($data->role_id);
+
+           if (!empty($details['profile_data'])) {
 
             if($data->role_id == Role::SERVICE_PROVIDER) {
                     // Todo
@@ -198,17 +198,26 @@ public function update(array $data = [])
                         if(empty($service['service_id'])) {
                             continue;
                         }
-                        if(!empty($service['id'])) {
+                        unset($service['status']);
+                        if(!empty($service['service_provider_profile_request_id'])) {
 
-                            $existingServiceIds[$service['id']][] = $service['service_id'];
-                            $service['service_provider_profile_request_id'] = $service['id'];
-                            unset($service['id']);
+                            $existingServiceIds[$service['service_provider_profile_request_id']][] = $service['service_id'];
 
                             $service['deleted_at'] = null;
                             $existingServices[] = $service;
 
                         }else{
-                            $newServices[] = $service;
+
+                            $serviceExists = app('ServiceProviderProfileRequestRepository')->model
+                            ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
+                            ->whereNull('service_provider_services.deleted_at')
+                            ->where('service_provider_services.service_id' , $service['service_id'])
+                            ->first();
+
+                            if(!empty($serviceExists)){      
+                                $newServices[] = $service;
+                            }
+
                         }
                     }
 

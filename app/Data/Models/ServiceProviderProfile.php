@@ -13,4 +13,9 @@ class ServiceProviderProfile extends Model
     const REJECTED = 'rejected';
     const PENDING = 'pending';
 
+    protected $casts = [
+        'attachments' => 'array'
+    ];
+
+
 }

@@ -61,7 +61,7 @@ class UserController extends ApiResourceController
             'id',
             'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
             'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
-            'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id',
+            'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id', 'business_details.attachments',
             'user_details.status', 'user_details.state_id',  'user_details.profle_image', 'user_details.is_profile_completed', 'user_details.stripe_token',
             'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
             'business_details.years_of_experience', 'business_details.business_type',

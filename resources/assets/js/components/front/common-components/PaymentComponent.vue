@@ -8,7 +8,7 @@
                         <label for="">Credit Card Number</label>
                         <card-number :class="['form-control' , (!number && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-number  form-control'
                         ref='cardNumber'
-                        stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+                        :stripe='stripeKey'
                         :options='options'
                         placeholder="Enter your credit card number"
                         @change='number = $event.complete'
@@ -16,11 +16,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">                          
-                    <div class="form-group custom-datepicker">
+                    <div class="form-group custom-datepicker expirychanges">
                         <label for="">Expiry Date</label>
                         <card-expiry :class="['form-control' , (!expiry && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-expiry'
                         ref='cardExpiry'
-                        stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+                        :stripe='stripeKey'
                         :options='options'
                         @change='expiry = $event.complete'
                         />
@@ -33,7 +33,7 @@
                         <label>Security Code (CVV)</label>
                         <card-cvc :class="['form-control' , (!cvc && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-cvc form-control'
                         ref='cardCvc'
-                        stripe='pk_test_ix9VLy3CYcuwWxz1UkMipKun'
+                        :stripe='stripeKey'
                         :options='options'
                         placeholder="Enter your cvv number"
                         @change='cvc = $event.complete'
@@ -61,6 +61,7 @@
             cvc: false,
             loading: false,
             pageLoad: false,
+            stripeKey: process.env.MIX_STRIPE_KEY,
             stripeOptions: {
             },
             errorMessage: '',
@@ -99,7 +100,8 @@
                 self.$http.put(url, update).then(response => {
                     response = response.data.response;
                     self.$store.commit('setAuthUser', response.data);
-                    self.$parent.onSubmit()
+                    self.$parent.onSubmit();
+                    self.$parent.submit = true;
                 }).catch(error => {
                 });
             }).catch(error=>{

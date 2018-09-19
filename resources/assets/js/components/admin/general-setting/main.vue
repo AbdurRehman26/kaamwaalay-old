@@ -20,12 +20,12 @@
 									<div class="row">
 										<div class="col-xs-12 col-md-5">
 											<div class="form-group">
-												<label>Featured Amount</label>
+												<label>Amount</label>
 											</div>
 										</div>
 										<div class="col-xs-12 col-md-5">
 											<div class="form-group">
-												<label>Featured Quantity</label>	
+												<label>Quantity</label>	
 											</div>
 										</div>
 									</div>
@@ -44,7 +44,7 @@
 											</div>
 										</div>
 										<div class="col-md-2 feature-remove">
-											<a href="javascript:;" @click="remove(index)">- remove</a>		
+											<a href="javascript:;" @click="remove(index)" v-if="showRemove">- remove</a>		
 										</div>										
 									</div>
 								</div>
@@ -66,7 +66,7 @@
                             <div class="row urgent-setting">    
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Urgent Amount ($)</label>
+                                        <label>Amount ($)</label>
                                         <div class="display-flex" v-if="urgent_job_disable && !data.remove && data.type=='job' && data.product=='urgent_job'" v-for="(data, index) in list">
                                             <input  data-vv-scope="urgent" class="form-control" placeholder="Enter urgent amount" name="urgent amount" v-model="urgent_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('urgent.urgent_amount')  ? 'is-invalid' : '']" :disabled="data.disabled">
                                             <a v-if="urgent_job_disable" href="javascript:void(0);" class="btn btn-primary" @click='editUrgentJob(data)'><i class="icon-edit field-edit"></i> Edit</a>
@@ -89,7 +89,7 @@
                             <div class="row urgent-setting">    
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Account Creation Fee</label>
+                                        <label>Fee</label>
                                         <div class="display-flex" v-if="account_creation_disable && !data.remove && data.type=='service' && data.product=='account_creation'" v-for="(data, index) in list">
                                             <input  data-vv-scope="account_creation" class="form-control" placeholder="Enter account creation amount" name="account creation fee" v-model="account_creation_amount" v-validate="'required|decimal|min_value:0.1'" :class="[ 'form-group' , errorBag.has('account_creation.account_creation_amount')  ? 'is-invalid' : '']" :disabled="data.disabled">
                                             <a  href="javascript:void(0);" class="btn btn-primary" @click='editAccountCreation(data)'><i class="icon-edit field-edit"></i> Edit</a>
@@ -138,7 +138,8 @@ export default {
             urgent_amount:0,
             urgent_job_disable:false,
             account_creation_amount:0,
-			account_creation_disable:false,
+            account_creation_disable:false,
+			showRemove:true,
 		}
 	},
     watch: {
@@ -179,7 +180,20 @@ export default {
                     'remove': false,
                 });
             }
-        }
+        },
+        list: {
+          handler: function (newValue, oldValue) {
+            if(newValue){
+                let featuredProfileObject = _.filter(newValue,{ 'product': 'featured_profile', remove: false });
+               if(featuredProfileObject.length > 1){
+                 this.showRemove = true
+               }else{
+                 this.showRemove = false
+               }
+            }
+        },
+        deep: true
+       }
     },
     mounted() {
         this.getlist();
@@ -204,10 +218,6 @@ export default {
                         this.updatelist();
                     }else if(scope == 'featured' && where == 'add-more'){
                         this.addMore();
-                    }else if(scope == 'urgent'){
-                    	this.update(scope);
-                    }else if(scope == 'account_creation'){
-                    	this.update(scope);
                     }
                     return;
                 }
@@ -296,13 +306,11 @@ export default {
                     setTimeout(function () {
                         self.featuredSuccessMessage = '';
                     } , 3000);
-                    self.isFeaturedUpdating = false;
                     self.account_creation_disable = true
                     self.urgent_job_disable = true
 
                 }).catch(error=>{
                     let errors = error.response.data.errors;
-                    self.isFeaturedUpdating = false;
                     _.forEach(errors, function(value, key) {
                         self.featuredErrorMessage =  errors[key][0];
                         return false;
@@ -315,8 +323,7 @@ export default {
                     self.featuredSuccessMessage = 'Record has been updated';
                    setTimeout(function () {
                         self.featuredSuccessMessage = '';
-                    } , 3000);
-                    self.isFeaturedUpdating = false; 
+                    } , 3000); 
                     self.account_creation_disable = true
                     self.urgent_job_disable = true
                 }
@@ -327,7 +334,6 @@ export default {
                     setTimeout(function () {
                         self.featuredSuccessMessage = '';
                     } , 3000);
-                    self.isFeaturedUpdating = false;
                     self.list[key].disabled = true
                     self.list[key].remove = false
                     self.list[key].id = response.data.response.data.id
@@ -336,7 +342,6 @@ export default {
 
                 }).catch(error=>{
                     let errors = error.response.data.errors;
-                    self.isFeaturedUpdating = false;
                     _.forEach(errors, function(value, key) {
                         self.featuredErrorMessage =  errors[key][0];
                         return false;
@@ -348,13 +353,17 @@ export default {
                     self.featuredSuccessMessage = 'Record has been updated';
                    setTimeout(function () {
                         self.featuredSuccessMessage = '';
-                    } , 3000);
-                    self.isFeaturedUpdating = false; 
+                    } , 3000); 
                     self.account_creation_disable = true
                     self.urgent_job_disable = true
                 }
             }
-         
+            if (key === (self.list.length -1)) {
+                setTimeout(function () {
+                        self.isFeaturedUpdating = false;
+                    } , 2000); 
+                
+            }
         });
         },
 	}

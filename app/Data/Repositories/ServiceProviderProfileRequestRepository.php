@@ -187,7 +187,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             $data =  parent::update($data);
             
             $user = app('UserRepository')->model->find($data->user_id);
-            event(new ServiceProviderStatusEvent($user, $data->status));
+            event(new ServiceProviderStatusEvent($user, $data->status, $data->reason));
             return $data;
         }
         return $data;

@@ -51,6 +51,7 @@
                             <strong v-else>{{ record.preference | jobPreference }}</strong>
                         </p>
                     </div>
+                    
                     <div class="job-details">
                         <div class="awarded alignawd">
                             <p class="awarded_to">
@@ -110,6 +111,9 @@
 
                     <div v-if="record.jobImages" class="jobs-post-files">
                         <h3>Related Photos</h3>
+                        <div class="no-photos" v-if="!record.jobImages.length"> 
+                            <p>Photo(s) Not Avaliable</p>
+                        </div>
                         <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
                             <img @click="open($event)" :src="image" />
                         </div>
@@ -207,8 +211,8 @@
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
-                    <button v-if="isMyJob && canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span>Mark Job Archive</span> <loader></loader>
+                    <button v-if="isMyJob && canArchiveJob" @click="markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
+                        <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
                     </button>
 
                     <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
@@ -242,6 +246,7 @@
 <chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
 
 </div>
+
 
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 

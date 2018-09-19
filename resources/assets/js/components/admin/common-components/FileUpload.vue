@@ -5,11 +5,10 @@
     <div>
 
         <b-form-file @change="onFileChange" :state="isFileUpload" v-model="file" ref="fileinput" 
-        accept="image/jpeg, image/png, image/jpg" 
+        :accept="acceptedFiles" 
         name="upload image" 
         :class="['form-control','file-upload-input', 'form-group']">
-        </b-form-file>
-
+    </b-form-file>
 
 </div>
 
@@ -18,15 +17,19 @@
 </template>    
 
 <script type="text/javascript">
-    
+
     // uploadKey determines the folder name 
 
     export default{
         mounted (){
+
+            this.acceptedFiles = this.fileExtensions ? this.fileExtensions : this.acceptedFiles;
+
         },
-        props : ['uploadKey'],
+        props : ['uploadKey', 'fileExtensions'],
         data(){
             return {
+                acceptedFiles : 'image/jpeg, image/png, image/jpg',
                 file : '',
                 isFileUpload : false,
                 fileUploadKey : 'user',
@@ -91,6 +94,13 @@
                 });
             },
 
+        },
+        watch : {
+            fileExtensions(value){
+                if(value){
+                    this.acceptedFiles = value;
+                }
+            }
         }
     }
 
