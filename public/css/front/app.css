@@ -14501,6 +14501,8 @@ input[type=number]::-webkit-outer-spin-button {
       align-content: center;
   margin: auto;
   margin-bottom: 22px;
+  width: auto;
+  height: 92px;
 }
 
 .multiselect__option--highlight {
