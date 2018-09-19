@@ -304,7 +304,7 @@
         },
         computed : {
             jobImage(){
-                return this.record && this.record.user ? this.record.user.profileImage : '';
+                return this.record && this.record.user && this.record.user.profileImage ? this.record.user.profileImage : 'images/dummy/image-placeholder.jpg';
             },
             jobAwarded(){
                 return this.record.awarded_to;

@@ -140,9 +140,10 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Certificates</strong></p>
                             </b-col>
-                            <b-col v-if="records.attachments" class="calculated-value">
-                                <a v-for="certificate in records.attachments.certificates" class="underline" href="javascript:void(0);">
-                                    {{certificate}}
+
+                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
+                                <a download v-for="(certificate, index) in records.provider_profile.attachments.certifications" class="underline" :href="certificate">
+                                    Certificate {{ index + 1 }}
                                 </a>
                                 <span>,</span>
                             </b-col>
@@ -151,9 +152,9 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Registrations</strong></p>
                             </b-col>
-                            <b-col v-if="records.attachments" class="calculated-value">
-                                <a v-for="registration in records.attachments.registration"  class="underline" href="javascript:void(0);">
-                                    Registrations.docx
+                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
+                                <a download v-for="(registration, index) in records.provider_profile.attachments.registrations"  class="underline" :href="registration">
+                                    Registration {{ index + 1 }}
                                 </a>
                                 <span>,</span>
                             </b-col>
@@ -162,9 +163,9 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Proof of business</strong></p>
                             </b-col>
-                            <b-col v-if="records.attachments" class="calculated-value">
-                                <a v-for="business in records.attachments.business" class="underline" href="javascript:void(0);">
-                                    BusinessProof.docx
+                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
+                                <a download v-for="(business, index) in records.provider_profile.attachments.proof_of_business" class="underline" :href="business">
+                                    Proof {{ index + 1 }} 
                                 </a>
                                 <span>,</span>
                             </b-col>
