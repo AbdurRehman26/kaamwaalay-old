@@ -13163,10 +13163,6 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: "AkzidenzGroteskBE-Regular";
 }
 
-.custom-datepicker label {
-  display: block;
-}
-
 .custom-datepicker .mx-datepicker {
   width: 100%;
 }

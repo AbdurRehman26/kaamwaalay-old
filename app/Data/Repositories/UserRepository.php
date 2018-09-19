@@ -173,7 +173,6 @@ public function update(array $data = [])
     if ($user = parent::update($input)) {
 
         if($user->role_id == Role::SERVICE_PROVIDER) {
-
             if(!empty($data['business_details'])) {
 
                 $business_details = $data['business_details']; 
@@ -198,6 +197,7 @@ public function update(array $data = [])
                         if(empty($service['service_id'])) {
                             continue;
                         }
+
                         unset($service['status']);
                         if(!empty($service['service_provider_profile_request_id'])) {
 
@@ -214,10 +214,9 @@ public function update(array $data = [])
                             ->where('service_provider_services.service_id' , $service['service_id'])
                             ->first();
 
-                            if(!empty($serviceExists)){      
+                            if(empty($serviceExists)){      
                                 $newServices[] = $service;
                             }
-
                         }
                     }
 

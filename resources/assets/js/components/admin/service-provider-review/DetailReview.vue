@@ -144,8 +144,8 @@
                             <b-col v-if="records.provider_profile.attachments" class="calculated-value">
                                 <a download v-for="(certificate, index) in records.provider_profile.attachments.certifications" class="underline" :href="certificate">
                                     Certificate {{ index + 1 }}
+                                    <span v-if="typeof(records.provider_profile.attachments.certifications[index+1]) !== 'undefined'">,</span>
                                 </a>
-                                <span>,</span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -155,8 +155,8 @@
                             <b-col v-if="records.provider_profile.attachments" class="calculated-value">
                                 <a download v-for="(registration, index) in records.provider_profile.attachments.registrations"  class="underline" :href="registration">
                                     Registration {{ index + 1 }}
+                                    <span v-if="typeof(records.provider_profile.attachments.registrations[index+1]) !== 'undefined'">,</span>
                                 </a>
-                                <span>,</span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -166,8 +166,8 @@
                             <b-col v-if="records.provider_profile.attachments" class="calculated-value">
                                 <a download v-for="(business, index) in records.provider_profile.attachments.proof_of_business" class="underline" :href="business">
                                     Proof {{ index + 1 }} 
+                                    <span v-if="typeof(records.provider_profile.attachments.proof_of_business[index+1]) !== 'undefined'">,</span>
                                 </a>
-                                <span>,</span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -239,17 +239,17 @@
         }
     },
     methods : {
-     validateBeforeSubmit() {
+       validateBeforeSubmit() {
         let self = this;
         self.errorMessage = '';
         self.$validator.validateAll().then((result) => {
-           if (result) {
-              self.onSubmit();
-              self.errorMessage =  '';
-              return;
-          }
-          self.errorMessage =  self.errorBag.all()[0];
-      });
+         if (result) {
+          self.onSubmit();
+          self.errorMessage =  '';
+          return;
+      }
+      self.errorMessage =  self.errorBag.all()[0];
+  });
     },
     onSubmit(){
         let self = this;
@@ -261,18 +261,18 @@
         };
 
         self.$http.put(url , data).then(response=>{
-           self.loading = false;
-           response = response.data.response;
-           self.records.status = response.data.status;
-           self.records.approved_by_user = response.data.approved_by_user;
+         self.loading = false;
+         response = response.data.response;
+         self.records.status = response.data.status;
+         self.records.approved_by_user = response.data.approved_by_user;
 
-       }).catch(error=>{
+     }).catch(error=>{
         console.log('error' , error);
 
     });
 
-   }, 
-   getRecords(response){
+ }, 
+ getRecords(response){
     let self = this;
     self.loading = false;
     self.records = response.data;

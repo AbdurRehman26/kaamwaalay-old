@@ -12,7 +12,7 @@
 
                         <div class="job-post-list" v-for="record in records">
                             <div class="job-post-details">
-                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')'}">
+                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ (record.user.profileImage ? record.user.profileImage : 'images/dummy/image-placeholder.jpg') +')'}">
                                 </div>
 
                                 <div class="job-common-description job-perform">
