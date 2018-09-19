@@ -38,7 +38,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Security Code (CVV)</label>
+                <label>Security Code (CVC)</label>
                 <card-cvc class='stripe-element card-cvc form-control'
                 ref='cardCvc'
                 :stripe='stripeKey'
