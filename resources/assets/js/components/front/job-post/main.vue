@@ -176,7 +176,7 @@
             </div>
         </div>
 
-        <div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
+        <div class="verify-account" v-show="isShowCardDetail && isPaymentDetailShow">
             <div class="form-label-heading m-b-25">
                 <p>VERIFY ACCOUNT</p>
             </div> 
@@ -212,8 +212,8 @@
     <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
     <!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
-    <div v-if='!isShowCardDetail'>
-        <card-element  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
+    <div v-show='!isShowCardDetail'>
+        <card-element :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
     </div>
 </div>
 </template>

@@ -9,7 +9,6 @@
                         <card-number :class="['form-control' , (!number && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-number  form-control'
                         ref='cardNumber'
                         :stripe='stripeKey'
-                        :options='options'
                         placeholder="Enter your credit card number"
                         @change='number = $event.complete'
                         />
@@ -21,7 +20,6 @@
                         <card-expiry :class="['form-control' , (!expiry && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-expiry'
                         ref='cardExpiry'
                         :stripe='stripeKey'
-                        :options='options'
                         @change='expiry = $event.complete'
                         />
                     </div>                                                  
@@ -34,7 +32,6 @@
                         <card-cvc :class="['form-control' , (!cvc && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-cvc form-control'
                         ref='cardCvc'
                         :stripe='stripeKey'
-                        :options='options'
                         placeholder="Enter your cvv number"
                         @change='cvc = $event.complete'
                         />
