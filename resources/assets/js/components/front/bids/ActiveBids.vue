@@ -157,6 +157,7 @@
 			}
 		},
 		mounted(){
+			window.scrollTo(0,0);
 			this.user = JSON.parse(this.$store.getters.getAuthUser);
 		},
 		watch: {

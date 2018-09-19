@@ -121,7 +121,7 @@
         });
     },
     getAwardedBidsCount() {
-        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=1&count_only=true&filter_by_awarded_status=true&filter_by_tbd=0';
+        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=1&count_only=true&filter_by_awarded_status=true';
         this.getListCount(awardedBidUrl, false, (record) => {
             this.awardedCount = record.count;
         });
