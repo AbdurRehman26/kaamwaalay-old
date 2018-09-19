@@ -72,7 +72,7 @@ export default {
       expiry: false,
       cvc: false,
       loading: false,
-      stripeKey: process.env.MIX_STRIPE_KEY,
+      stripeKey: window.stripeKey,
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
       },
