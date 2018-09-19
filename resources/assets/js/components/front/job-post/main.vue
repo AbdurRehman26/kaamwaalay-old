@@ -278,9 +278,9 @@
                 stateUrl : 'api/state',
                 cityUrl : '',
                 states : [],
-                isShowCardDetail : false,
+                isShowCardDetail : true,
                 isSubmitNormalJob : false,
-                isPaymentDetailShow : false
+                isPaymentDetailShow : true
 
             }
         },
@@ -338,7 +338,6 @@
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        this.onSubmit();
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
                         }else{
