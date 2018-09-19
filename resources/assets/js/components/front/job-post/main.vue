@@ -338,7 +338,6 @@
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        this.onSubmit();
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
                         }else{
