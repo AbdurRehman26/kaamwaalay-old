@@ -98,7 +98,10 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
 
     if(!empty($input['filter_by_job_id'])) {
         $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);            
-    }           
+    }  
+    if(isset($input['filter_by_tbd'])) {
+        $this->builder = $this->builder->where('is_tbd', '=', (int)$input['filter_by_tbd']);            
+    }             
     if(!empty($input['filter_by_invitation'])) {
         $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);            
 
@@ -117,7 +120,16 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         $this->builder = $this->builder->where(
             function ($query) {
                 $query->where('status', '=', 'pending');
-                $query->orWhere('status', '=', 'in_the_way');
+                $query->orWhere('status', '=', 'on_the_way');
+                $query->orWhere('status', '=', 'visit_allowed');
+            }
+        );
+    }            
+    if(!empty($input['filter_by_awarded_status'])) {
+
+        $this->builder = $this->builder->where(
+            function ($query) {
+                $query->where('status', '=', 'pending');
                 $query->orWhere('status', '=', 'initiated');
             }
         );

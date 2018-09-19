@@ -38,7 +38,7 @@
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
             <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
-            <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
+            <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
 
         </div>
 
@@ -121,7 +121,7 @@
         });
     },
     getAwardedBidsCount() {
-        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=1&count_only=true';
+        var awardedBidUrl = 'api/job-bid?filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=1&count_only=true&filter_by_awarded_status=true';
         this.getListCount(awardedBidUrl, false, (record) => {
             this.awardedCount = record.count;
         });

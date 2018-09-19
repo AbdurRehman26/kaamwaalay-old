@@ -69,7 +69,9 @@ public function input($value='')
         'filter_by_job_detail',
         'is_status',
         'count_only',
-        'is_awarded'
+        'is_awarded',
+        'filter_by_tbd',
+        'filter_by_awarded_status'
     );
 
 

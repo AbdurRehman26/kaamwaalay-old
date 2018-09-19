@@ -158,11 +158,12 @@
 		mounted(){
 			window.scrollTo(0,0);
 			this.user = JSON.parse(this.$store.getters.getAuthUser);
+			this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&is_status=invited&filter_by_awarded=0&filter_by_tbd=0';
 		},
 		watch: {
 			show(val) {
 				if(val) {
-					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&is_status=invited';
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&is_status=invited&filter_by_awarded=0&filter_by_tbd=0';
 				}else {
 					//this.url = null;
 					//self.pagination = false;
