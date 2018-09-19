@@ -278,9 +278,9 @@
                 stateUrl : 'api/state',
                 cityUrl : '',
                 states : [],
-                isShowCardDetail : false,
+                isShowCardDetail : true,
                 isSubmitNormalJob : false,
-                isPaymentDetailShow : false
+                isPaymentDetailShow : true
 
             }
         },
