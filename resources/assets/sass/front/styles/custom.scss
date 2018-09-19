@@ -218,6 +218,14 @@ $section-padding-sm:20px 0px;
     }
 }
 
+.custom-file{
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
 
 .section-padd{
     padding: 100px 0px;
