@@ -1,27 +1,25 @@
 <template>
     <div class="discussion-panel">
         <div class="panel-heading">
-            <span class="chat-profile-pic" style="background-image: url('images/dummy/electrician.jpg');"></span>
-            <span class="chat-head-heading">C&N Home Solutions
+            <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
+            <span class="chat-head-heading">{{getSenderName}}
                 <span class="status online">Available online</span>
             </span>
-            <i class="icon-close2 close-icon" @click="$emit('CloseDiscussion')"></i>
+            <i class="icon-close2 close-icon" @click="$emit('closeChat')"></i>
         </div>
         <div class="discussion-content scrollbar style-2" ref="scrollWrapper" infinite-wrapper>
             <infinite-loading @infinite="infiniteHandler" spinner="waveDots" direction="top" ref="infiniteLoading"></infinite-loading>
             <b-list-group>
                 <div class="chat-message" v-for="message in messages">
                     <b-list-group-item>
-                        <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profile_image) + ')'}"></span>
+                        <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profileImage) + ')'}"></span>
                         <div class="profile-message">
-<!--                             <h5>{{person.name}} <span class="time-date"><i>May 10,</i> 1:12 PM</span></h5> -->
                             <p>{{message.text}}</p>
                             <span class="chat-last-seen">{{message.formatted_created_at}}</span>
                         </div>
                     </b-list-group-item>
                 </div>
             </b-list-group>
-            <!-- <vue-common-methods :url="url" :infiniteLoad="true" @get-records="getMessages"></vue-common-methods> -->
         </div>
         <div class="panel-footer">
             <textarea class="form-control scroll" placeholder="Start typing your message" @keyup.enter.exact="onSubmit" v-model="text"></textarea>
@@ -45,17 +43,10 @@
                 pagination : false,
                 height: 0,
                 showNoRecordFound: false,
+                senderImage: ''
             }
         },
         created() {
-            // window.Echo.channel('hello').listen('.App\\Events\\UserMessaged', (e) => {
-            //    alert();
-            //    console.log(e);
-            // });
-
-            // setTimeout(function() {
-            //     window.Echo.leave('hello');
-            // }, 10000);
         },
         methods: {
             getList(data , page , successCallback){
@@ -73,7 +64,6 @@
                 };
 
                 url = self.url;
-                console.log(url, 12321);
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
@@ -81,7 +71,6 @@
                  self.$http.get(url).then(response=>{
 
                     response = response.data.response;
-                    console.log(response.pagination, 2222222222);
                     let result = {
                         data : response.data,
                         noRecordFound : false,
@@ -149,7 +138,6 @@
                 let self = this;
                 self.loading = false;
                 let len = response.data.length;
-                console.log(response, 99999);
                 for (var i = 0 ; i < len; i++) {
                     self.messages.unshift( response.data[i] );
                 }
@@ -170,38 +158,15 @@
                         response = response.data.response;
                         self.successMessage = response.message;
                         self.messages.push(response.data);
-                        // setTimeout(function () {
-                        //     self.successMessage = '';
-                        //     self.loading = false; 
-                        //     self.hideModal();  
-                        //     self.resetFormFields(); 
-                        //     self.$emit('call-list');         
-                        // } , 2000);
-
-                        // setTimeout(function () {
-                        //     Vue.nextTick(() => {
-                        //         self.errorBag.clear()
-                        //     })
-                        // }, 10);
-                        // self.getAllServices();
-
                     }).catch(error => {
                         error = error.response.data;
                         let errors = error.errors;
-                        // _.forEach(errors, function(value, key) {
-                        //     if(key == "title") {
-                        //         self.errorMessage =  "The Service Name has alreary been taken.";    
-                        //         return false;
-                        //     }
-                        //     self.errorMessage =  errors[key][0];
-                        //     return false;
-                        // });
-                        // this.loading = false;
                     });
                 }
                 
             },
             showChatBox() {
+                console.log(this.jobMessageData, 33333);
                 this.url = 'api/job-message?pagination=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = this.jobMessageData;
                 data.pagination = true;
@@ -209,16 +174,35 @@
                 this.subscribeChannel();
             },
             subscribeChannel() {
+                let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_id + '.' + this.jobMessageData.job_bid_id;
+                console.log(channelName, 88990099);
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
-                   alert('ppppppp');
-                   console.log(e);
+                    self.messages.push(e.discussion);
+                   console.log(e.discussion);
                 });
             },
             hideChatBox() {
                 this.$emit('closeChat');
             }
         },
+        computed: {
+            getSenderImage() {
+                if(this.senderImage) {
+                    return this.senderImage;
+                }
+                if(typeof(this.jobMessageData.sender_detail) != "undefined") {
+                    return this.jobMessageData.sender_detail.user_detail.profileImage;
+                }
+                return null;
+            },
+            getSenderName() {
+                if(typeof(this.jobMessageData.sender_detail) != "undefined") {
+                    return this.jobMessageData.sender_detail.business_name;
+                }
+                return null;
+            }
+        },  
         watch: {
             show(value) {
                 if(value) {

@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobMessage;
+use App\Events\UserMessaged;
 use Carbon\Carbon;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
@@ -46,7 +47,9 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
 
         //$input['reciever_id'] = $job->user_id;
 
-        return parent::create($input);
+        $message = parent::create($input);
+        UserMessaged::dispatch($message);
+        return $message;
     }
 
 

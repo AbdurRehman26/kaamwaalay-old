@@ -165,7 +165,7 @@
 
                                 <div class="provider-bidding-btn">
 
-                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile2</a>
+                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
 
                                     <a v-if="!bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
@@ -381,6 +381,7 @@
                 job_id: bid.job_id,
                 reciever_id: bid.service_provider.user_id,
                 job_bid_id: bid.id,
+                sender_detail: bid.service_provider
             };
             this.showChat = true;
         },
