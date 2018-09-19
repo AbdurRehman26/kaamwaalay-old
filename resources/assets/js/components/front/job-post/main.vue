@@ -278,9 +278,9 @@
                 stateUrl : 'api/state',
                 cityUrl : '',
                 states : [],
-                isShowCardDetail : true,
+                isShowCardDetail : false,
                 isSubmitNormalJob : false,
-                isPaymentDetailShow : true
+                isPaymentDetailShow : false
 
             }
         },
@@ -296,7 +296,6 @@
                 return this.url + '/' + this.$route.params.id;
             },
             jobImages(){
-                console.log(this.formData ,12312321);
                 return this.formData['images'];
             }
         },
@@ -339,6 +338,7 @@
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        this.onSubmit();
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
                         }else{

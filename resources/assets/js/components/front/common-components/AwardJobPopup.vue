@@ -1,11 +1,11 @@
  <template> 
     <div class="popup categories-popup">
         <b-modal id="award-job" centered hide-footer hide-header @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Yes, award job">
-            
+
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
 
             <div class="category-selected">
-                <div class="category-image-block" style="background-image:url(/images/front/explore/carpenter1.jpg);">
+                <div class="category-image-block" :style="'background-image:url('+jobImage+');'">
                 </div>
                 <h4>{{job.title}}</h4>
                 <i @click="onHidden" class="icon-close2"></i>
@@ -100,5 +100,12 @@
                 }
             }
         },
+        computed : {
+            jobImage(){
+                if(this.job){
+                    return this.job.jobImages.length ? this.job.jobImages[0] : 'images/dummy/image-placeholder.jpg'; 
+                }
+            }
+        }
     }
 </script>

@@ -26,10 +26,7 @@
                             </div>
                         </div>
 
-                        <!-- Alert Tag -->
-                        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-                        <!-- Alert Tag -->
-
+                        
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -288,15 +285,25 @@
                     <payment-component></payment-component>
                 </div>
 
-                <div class="submit-approval-btn">
+                <div v-if="!pendingProfile" class="submit-approval-btn">
                     <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Apporoval
                         <loader></loader>
                     </button>
                 </div>
 
-                <div class="form-detail">
+                <div class="margin-bottom-20px form-detail">
                     <p>Please make sure all the information you entered is accurate before submitting.</p>
                 </div>
+
+                <!-- Alert Tag -->
+                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                <!-- Alert Tag -->
+
+                <b-alert v-if="pendingProfile" variant="info" show>
+                  <p><strong>Info : </strong> Your account is currently in pending process</p>
+                </b-alert>
+
+
             </form>
         </div>
 

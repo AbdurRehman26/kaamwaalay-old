@@ -15,7 +15,7 @@
                 </div>
             </li>
             <li class="setting-li">
-                <router-link to="/profile">
+                <router-link to="/apply-for-review">
                     <i class="icon-cog2 action-icon"></i>
                 </router-link>
             </li>
