@@ -116,7 +116,7 @@
                 <div v-if="formData.preference == 'choose_date'" class="col-md-6">
                     <div class="form-group custom-datepicker">
                         <label>Select Date</label>
-                        <date-picker :class="[errorBag.first('scheduled at') ? 'is-invalid' : '']" name="scheduled at" v-validate="'required'" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
+                        <date-picker :class="[errorBag.first('scheduled at') ? 'is-invalid' : '']" name="scheduled at" v-validate="'required'" :not-before="Date.now()" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
                     </div>
                 </div>
             </div>				
