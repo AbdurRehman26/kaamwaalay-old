@@ -219,11 +219,21 @@ $section-padding-sm:20px 0px;
 }
 
 .custom-file{
+    border-color: transparent !important;
     input {
         position: absolute;
         top: 0;
         left: 0;
+    &.is-invalid {
+        
+    }         
     }
+    .is-invalid {
+        border-color: transparent !important;
+    }
+    label{
+        border-color: #B2B2B2 !important;
+    }   
 }
 
 

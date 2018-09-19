@@ -5,10 +5,11 @@
     <div>
 
         <b-form-file @change="onFileChange" :state="isFileUpload" v-model="file" ref="fileinput" 
-        :accept="acceptedFiles" 
+        :accept="acceptedFiles"
+        placeholder="Choose a file..."
         name="upload image" 
         :class="['form-control','file-upload-input', 'form-group']">
-    </b-form-file>
+        </b-form-file>
 
 </div>
 
