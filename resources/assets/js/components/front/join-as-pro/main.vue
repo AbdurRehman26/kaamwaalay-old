@@ -96,7 +96,7 @@
 				</div>
 					<div class="how-it-work-list">
 						<b-row>
-							<b-col sm="4" class="text-center">
+							<b-col sm="4" class="text-center small-ico">
 								<div class="list-image">
 									<div class="list-icon"><img src="/images/front/svg/find.svg"></div>
 								</div>
@@ -105,7 +105,7 @@
 									<p>Pick those which are of interest to you. Signal your interest through the site.</p>
 								</div>
 							</b-col>
-							<b-col sm="4" class="text-center">
+							<b-col sm="4" class="text-center small-ico">
 								<div class="list-image">
 									<div class="list-icon"><img src="/images/front/svg/list.svg"></div>
 								</div>
@@ -114,7 +114,7 @@
 									<p>Customers review your profiles online & shortlist you to bid on the job.</p>
 								</div>
 							</b-col>
-							<b-col sm="4" class="text-center">
+							<b-col sm="4" class="text-center small-ico">
 								<div class="list-image">
 									<div class="list-icon"><img src="/images/front/svg/communicate.svg"></div>
 								</div>

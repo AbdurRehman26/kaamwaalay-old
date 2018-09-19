@@ -42,6 +42,17 @@ $section-padding-sm:20px 0px;
     }
 }
 
+.small-ico{ 
+    .list-icon {
+        background-color: transparent;
+        border-color: transparent;
+        display: flex;
+        align-content: center;
+        margin: auto;
+        margin-bottom: 22px;        
+    }
+}
+
 .multiselect__option--highlight{
  background-color : $primary-color-md !important;   
     &:after{
