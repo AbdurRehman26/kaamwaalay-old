@@ -22,7 +22,19 @@ export default {
     },
     methods:{
        openFbLoginDialog () {
-          FB.login(this.checkLoginState, { scope: 'email' })
+        let self = this;
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'unknown' || response.status === 'not_authorized') {
+            if(!(self.fromSignUp)){
+              self.$router.push({ name: 'sign-up'});
+            }else{
+              FB.login(self.checkLoginState, { scope: 'email' })
+            }
+          }else{
+              FB.login(self.checkLoginState, { scope: 'email' })
+            }
+        });
+          //
         },
         checkLoginState: function (response) {
           let self = this;
