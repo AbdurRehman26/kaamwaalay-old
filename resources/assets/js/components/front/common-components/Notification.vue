@@ -65,15 +65,15 @@
             showNotificaton() {
                 this.url = 'api/notification?pagination=true';
                 let data = this.notificationData;
-                data.pagination = true;
-                this.getList(data, false);
+                //data.pagination = true;
+                //this.getList(data, false);
                 this.subscribeChannel();
             },
             subscribeChannel() {
-                alert()
                 let channelName = 'urgent-job';
                 self = this
-                window.Echo.private(channelName).listen('urgent-job-create', (e) => {
+                let roleId = 2
+                window.Echo.private(channelName+roleId).listen('urgent-job-create', (e) => {
                    alert('ppppppp');
                    console.log(e.data);
                    self.notificationData = e.data
@@ -86,7 +86,7 @@
          watch: {
             show(value) {
                 if(value) {
-                    alert()
+                    alert('showNotificaton')
                     this.showNotificaton();
                 }
                /* if(!value) {
