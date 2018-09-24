@@ -13,7 +13,6 @@ use App\Data\Models\User;
 */
 
 Broadcast::channel('Job-Messages.{job_id}.{job_bid_id}', function ($user, $job_id, $job_bid_id) {
-
 	$user_id = User::where('id', '=', (int) $user->id)->where(function($query) {
         $query->where('role_id', '=', 2);
         $query->orWhere('role_id', '=', 3);

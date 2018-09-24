@@ -82,7 +82,6 @@
                     if(!response.data.length){
                         result.noRecordFound = true;
                     }
-                    console.log(result, 12321);
                     self.getMessages(result);
 
                     self.pagination = response.pagination;
@@ -198,13 +197,13 @@
                 if(this.senderImage) {
                     return this.senderImage;
                 }
-                if(typeof(this.jobMessageData.sender_detail) != "undefined") {
+                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.sender_detail) != "undefined" ) {
                     return this.jobMessageData.sender_detail.profileImage;
                 }
                 return null;
             },
             getSenderName() {
-                if(typeof(this.jobMessageData.business_name) != "undefined") {
+                if(typeof(this.jobMessageData) != "undefined") {
                     return this.jobMessageData.business_name;
                 }
                 return null;
@@ -213,16 +212,23 @@
         watch: {
             show(value) {
                 if(value) {
-                    this.showChatBox();
+                    //this.showChatBox();
                 }
                 if(!value) {
                     this.hideChatBox();
                 }
             },
-            height: function(newVal,oldVal){
+            height(newVal,oldVal){
                 var diff = newVal - oldVal;
                 this.$refs.scrollWrapper.scrollTop = diff
 
+            },
+            messageData(val) {
+                this.messageData = val;
+                if(this.show) {
+                    this.messages = [];
+                    this.showChatBox();
+                }
             }
         }
     }

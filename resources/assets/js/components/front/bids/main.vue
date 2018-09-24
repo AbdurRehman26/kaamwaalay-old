@@ -37,7 +37,7 @@
 			</div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
-            <chat-panel v-show="showChat" @closeChat="closeChatBox" :jobMessageData="jobMessageData" :show="showChat"></chat-panel>  
+            <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"></chat-panel>  
             <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup>
 
         </div>
@@ -76,11 +76,12 @@
         this.jobMessageData = {
             text: '',
             job_id: record.job_id,
-            reciever_id: record.service_provider.user_id,
+            reciever_id: record.job.user_id,
             job_bid_id: record.id,
-            sender_detail: record.service_provider.user_detail,
-            business_name: record.service_provider.business_name,
+            sender_detail: record.job.user,
+            business_name: record.job.title,
         };
+        this.showChat = false;
         this.showChat = true;
     },
     setInvitationCount(count) {
