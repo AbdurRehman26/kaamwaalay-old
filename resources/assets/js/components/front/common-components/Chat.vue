@@ -50,6 +50,7 @@
         },
         methods: {
             getList(data , page , successCallback){
+                console.log("hello");
                 let self = this;
                 self.showNoRecordFound = false;
                 let url = self.url;
@@ -81,6 +82,7 @@
                     if(!response.data.length){
                         result.noRecordFound = true;
                     }
+                    console.log(result, 12321);
                     self.getMessages(result);
 
                     self.pagination = response.pagination;
@@ -183,6 +185,7 @@
                 });
             },
             hideChatBox() {
+                this.messages = [];
                 this.$emit('closeChat');
             }
         },
