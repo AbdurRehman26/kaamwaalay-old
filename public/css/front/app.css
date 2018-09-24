@@ -12257,11 +12257,11 @@ body .form-group.is-invalid {
                 right:0;
                 top:0;
                 color:$danger-color;
-            } */
+                } */
 }
 
 body .form-group.is-invalid .form-control {
-  border-color: #d9534f;
+  border-color: #d9534f !important;
   -webkit-box-shadow: none;
           box-shadow: none;
   background-repeat: no-repeat;

@@ -138,7 +138,7 @@
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
                                 
-                                <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-checkmark2"></i></strong>
+                                <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
                                 
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
@@ -271,7 +271,8 @@
                 record : [],
                 jobBids : {
                     pagination : false,
-                    data : []
+                    data : [],
+                    showInvite : false
                 },
                 showAwardJob : false,
                 visitjob: false,
@@ -311,6 +312,9 @@
             },
             jobArchived(){
                 return this.record.is_archived;
+            },
+            showInvite (){
+                return this.jobBids.showInvite;
             },
             canInvite(){
                 if(Object.keys(this.record).length){
@@ -425,7 +429,7 @@
             };
 
             this.record = response.data;
-            
+
             let user = JSON.parse(this.$store.getters.getAuthUser);
 
             if(this.record.user_id != user.id && this.record.my_bid){
@@ -434,13 +438,21 @@
 
         },
         getBidsResponse(response){
+            let self = this;
 
-            for (var i = 0; i < response.data.length; i++) {
-                this.jobBids.data.push(response.data[i]);    
+            if(response.data){
+                for (var i = 0; i < response.data.length; i++) {
+                    self.jobBids.data.push(response.data[i]);    
+                }
+
+                self.jobBids.pagination = response.pagination;
+
+                setTimeout(function () {
+                    self.jobBids.showInvite = true;
+                    self.$forceUpdate();
+                }, 1000);
+
             }
-            this.jobBids.pagination = response.pagination;
-            this.jobBids.showInvite = true;
-            console.log(this.jobBids);
         },
         open (e) {
             let jobImages = [];

@@ -12,7 +12,7 @@
             </div>
             <div class="category-search-field">
                 <h5>Are you sure you want to award this job to 
-                    {{ bidder.service_provider ? bidder.service_provider.business_name : '' }} ?
+                    {{ bidder.service_provider ? bidder.service_provider.business_name : '' }}?
                 </h5>
 
                 <button @click.prevent="onSubmit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">

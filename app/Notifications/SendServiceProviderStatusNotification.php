@@ -18,7 +18,7 @@ class SendServiceProviderStatusNotification extends Notification
      *
      * @return void
      */
-    public function __construct($status)
+    public function __construct($status, $reason)
     {
         $this->reason = $reason;
         $this->status = $status;
@@ -47,7 +47,7 @@ class SendServiceProviderStatusNotification extends Notification
         $url = route('front.login');
         return (new MailMessage)
         ->subject(Lang::getFromJson('Service Provider Profile Request Status'))
-        ->markdown('email.provider-profile-status', ['url' => $url , 'status' => $this->status, 'reason' => $reason]);
+        ->markdown('email.provider-profile-status', ['url' => $url , 'status' => $this->status, 'reason' => $this->reason]);
     }
 
     /**

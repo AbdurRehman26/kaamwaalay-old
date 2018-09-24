@@ -161,6 +161,8 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
     if($data) {
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
+        $data->amount = number_format($data->amount, 2);
+
         if($job_details) {
             $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
 
@@ -315,7 +317,7 @@ public function update(array $data = [])
     unset($data['user_id']);
 
     $data = parent::update($data);
-        
+
     if(!empty($data->is_awarded)){
 
         $updateData = ['id' => $data->job_id, 'status'=> 'awarded'];

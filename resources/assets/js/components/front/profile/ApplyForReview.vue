@@ -484,7 +484,6 @@
             },
             getResponse(response){
                 let self = this;
-                console.log(self, 'hi');
 
                 if(response.data.id){
 
@@ -500,9 +499,6 @@
 
                     }
 
-
-                    console.log(response.data , 'response');
-
                     if(self.record.service_details.length){
 
                         for (var i = self.record.service_details.length-1; i >= 0; i--) {
@@ -517,9 +513,6 @@
                             service_id : ''
                         }];
                     }
-
-                    console.log(self.record , 'asdfasdf');
-
 
 
                     if(self.record.state_id){  

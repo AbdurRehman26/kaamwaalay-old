@@ -65,7 +65,18 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         }
 
         if(!empty($input['filter_by_status'])) {
-            $this->builder = $this->builder->where('jobs.status', '=', $input['filter_by_status']);            
+
+            if($input['filter_by_status'] == 'archived'){
+
+                $this->builder->where('is_archived' , '=' ,1);            
+
+            }else{
+                $this->builder = $this->builder->where('jobs.status', '=', $input['filter_by_status'])
+                ->where('is_archived' , '!=' ,1);            
+                
+            }
+
+
         }
         
         if(!empty($input['filter_by_service'])) {

@@ -99,7 +99,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $data->profile_request = $profile;
             
             if(!empty($data->attachments)){
-                
+
                 foreach ($data->attachments as $key => $value) {
                     foreach ($data->attachments[$key] as $childKey => $childValue) {
                         $data->attachments[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue);
@@ -129,7 +129,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if (empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
         }
-        
+
         if(!empty($data['zip'])) {
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
         }

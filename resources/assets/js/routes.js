@@ -1,7 +1,7 @@
     // Route components
-import VueRouter from 'vue-router'
+    import VueRouter from 'vue-router'
 
-const routes = [
+    const routes = [
 
     /* Dashboard */
 
@@ -50,14 +50,14 @@ const routes = [
         component: require('./components/auth/CreatePassword.vue'),
     },
     {
-            path: '/admin/password/set/:token/:email',
-            component: require('./components/auth/CreatePassword.vue'),
-             meta: {
-                title: 'Create Password',
-                bodyClass: 'login-page',
-                noHeader: true,
-                forAdmin :true,
-            },
+        path: '/admin/password/set/:token/:email',
+        component: require('./components/auth/CreatePassword.vue'),
+        meta: {
+            title: 'Create Password',
+            bodyClass: 'login-page',
+            noHeader: true,
+            forAdmin :true,
+        },
     },
 
     /* Service Type */
@@ -137,7 +137,7 @@ const routes = [
         component: require('./components/admin/service-provide/ViewJobDetail.vue'),
         meta: {
             title: 'View Jobs',
-            pagetitle:'Service Jobs Detail',
+            pagetitle:'Jobs Awarded',
             icon:'icon-handshake-o',
             requiresAuth: true,
             forAdmin :true,
@@ -310,7 +310,7 @@ const routes = [
         },
         component: require('./components/admin/Main.vue'),
     },
-]
+    ]
 
 
 // Create the router instance
@@ -327,35 +327,35 @@ router.beforeEach((to, from, next) => {
     let user;
     if(router.app.$store.getters.getAuthAdminUser != 'undefined'){
       user = JSON.parse(router.app.$store.getters.getAuthAdminUser);
-    }
-    document.title = (title + ' | ' + to.meta.title)
-    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
-        next({name: 'login'});
-    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-        if(user  && user.role_id == admin){
-          next({name: 'dashboard'});
-        } else if(user  && user.role_id == reviewer){
-          next({name: 'service.provider.review'});
-        }
-    } else {
+  }
+  document.title = (title + ' | ' + to.meta.title)
+  if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+    next({name: 'login'});
+} else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+    if(user  && user.role_id == admin){
+      next({name: 'dashboard'});
+  } else if(user  && user.role_id == reviewer){
+      next({name: 'service.provider.review'});
+  }
+} else {
+    next();
+}
+if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
+    if(user  && user.role_id == admin){
         next();
+    } 
+    else{
+        next({name: 'login'});
     }
-    if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
-        if(user  && user.role_id == admin){
-            next();
-        } 
-        else{
-            next({name: 'login'});
-        }
+}
+if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
+    if(user  && (user.role_id == reviewer ||user.role_id == admin)){
+        next();
+    } 
+    else{
+        next({name: 'login'});
     }
-    if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
-        if(user  && (user.role_id == reviewer ||user.role_id == admin)){
-            next();
-        } 
-        else{
-            next({name: 'login'});
-        }
-    }
+}
 })
 
 export default router
