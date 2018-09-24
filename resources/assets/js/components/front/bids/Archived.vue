@@ -17,7 +17,7 @@
 						</div>
 					</div>
 					<div class="col-md-6 job-bid-btn p-r-0">
-						<a href="javascript:void(0);" @click="$emit('chatmessage')" class="chat-message" :class="{disable: record.job.can_message? false : true}"><i class="icon-message"></i></a>						
+						<a href="javascript:void(0);" @click="$emit('chatmessage', record)" class="chat-message" :class="{disable: record.job.can_message? false : true}"><i class="icon-message"></i></a>						
 						<a href="javascript:void(0);" @click="servicedetail" class="btn btn-primary post-bid">View Details</a>
 					</div>
 				</div>

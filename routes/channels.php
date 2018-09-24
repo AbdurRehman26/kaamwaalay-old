@@ -1,5 +1,6 @@
 <?php
 use App\Data\Models\JobMessage;
+use App\Data\Models\JobBid;
 use App\Data\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use App\Data\Models\User;
 |
 */
 
-Broadcast::channel('Job-Messages.{job_id}.{job_bid_id}', function ($user, $job_id, $job_bid_id) {
+Broadcast::channel('Job-Messages.{job_bid_id}', function ($user, $job_bid_id) {
 	$user_id = User::where('id', '=', (int) $user->id)->where(function($query) {
         $query->where('role_id', '=', 2);
         $query->orWhere('role_id', '=', 3);
@@ -20,16 +21,15 @@ Broadcast::channel('Job-Messages.{job_id}.{job_bid_id}', function ($user, $job_i
     if(!$user_id) {
         return false;
     }
-    $criteria = ['job_id' => (int)$job_id, 'job_bid_id' => (int)$job_bid_id];
-    $receiver = JobMessage::where('job_id', '=', (int)$job_id)
-    ->where('job_bid_id', '=', (int)$job_bid_id)
-    ->distinct('reciever_id')
-    ->pluck('reciever_id')
-    ->toArray();
-    return $user_id[0] == $receiver[0];
-});
+    $service_provider = app('JobBidRepository')->findById((int)$job_bid_id);
 
-// Broadcast::channel('Job-Messages.{id}', function ($user, $id) {
-// 	dd($user);
-// 	return $id == 1;
-// });
+    $customer = app('JobRepository')->findById((int)$service_provider->job_id);
+    // $criteria = ['job_id' => (int)$job_id, 'job_bid_id' => (int)$job_bid_id];
+
+    // $receiver = JobMessage::where('job_id', '=', (int)$job_id)
+    // ->where('job_bid_id', '=', (int)$job_bid_id)
+    // ->distinct('reciever_id')
+    // ->pluck('reciever_id')
+    // ->toArray();
+    return ($user_id[0] == $service_provider->user_id || $user_id[0] == $customer->user_id);
+});
