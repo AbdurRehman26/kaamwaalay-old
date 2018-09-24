@@ -34,16 +34,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">First Name *</label>
-                                    <input type="text" v-validate="'required'" class="form-control"
-                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
+                                    <input type="text" class="form-control"
+                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-validate="'required|max:25'" v-model="record.first_name" 
                                     placeholder="Enter your first name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Last Name *</label>
-                                    <input type="text" v-validate="'required'" class="form-control"
-                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
+                                    <input type="text" class="form-control"
+                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-validate="'required|max:25'" v-model="record.last_name" 
                                     placeholder="Enter your last name">
                                 </div>
                             </div>
@@ -94,13 +94,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" v-validate="'max:50'" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Working since</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" type="number" name="years_of_exprience" v-model="record.business_details.years_of_exprience" placeholder="Enter your years of exprience">
+                                    <label for="">Years of Experience</label>
+                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years_of_exprience" v-model="record.business_details.years_of_exprience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -109,8 +109,8 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="">About</label>
-                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <label for="">About </label>
+                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" v-validate="'max:500'" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,6 @@
                                     <label for="">Service</label>
                                     <select v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
-                                    <option value="">Select All</option>
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
                                     </option>
@@ -571,11 +570,11 @@
                     self.loading = false;
                     self.record = response.data;
 
-                    if(this.record && this.record.business_details && !this.record.business_details.attachments){
-                        this.record.business_details.attachments = {
-                            certifications : [{}], 
-                            proof_of_business : [{}],
-                            registrations : [{}],
+                    if(self.record && self.record.business_details && !self.record.business_details.attachments){
+                        self.record.business_details.attachments = {
+                            certifications : [''], 
+                            proof_of_business : [''],
+                            registrations : [''],
                         }
                     }
 

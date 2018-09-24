@@ -60,4 +60,29 @@ class ServiceProviderProfileRequestController extends ApiResourceController
 
     return $input;
 }
+
+public function getUserApprovedProfile()
+{
+
+    $criteria = ['user_id' => request()->user()->id , 'status' => 'approved'];
+    $data = $this->_repository->findByCriteria($criteria, true);
+    if(!$data){
+
+        $criteria = ['user_id' => request()->user()->id , 'status' => 'pending'];
+        $data = $this->_repository->findByCriteria($criteria, true);
+
+    }
+
+    $output = [
+        'response' => [
+            'data' => $data ? $data : ''       
+        ]
+    ];
+
+        // HTTP_OK = 200;
+    $code = 200;
+
+    return response()->json($output, $code);
+}
+
 }

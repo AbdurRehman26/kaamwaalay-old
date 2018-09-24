@@ -17,5 +17,4 @@ class ServiceProviderProfile extends Model
         'attachments' => 'array'
     ];
 
-
 }
