@@ -182,6 +182,7 @@
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     self.messages.push(e.discussion);
                    console.log(e.discussion);
+                   alert("event");
                 });
             },
             hideChatBox() {
