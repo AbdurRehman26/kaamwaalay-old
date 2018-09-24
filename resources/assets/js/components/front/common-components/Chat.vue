@@ -192,7 +192,7 @@
                     return this.senderImage;
                 }
                 if(typeof(this.jobMessageData.sender_detail) != "undefined") {
-                    return this.jobMessageData.sender_detail.user_detail.profileImage;
+                    return this.jobMessageData.sender_detail.profileImage;
                 }
                 return null;
             },
