@@ -126,7 +126,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         if (empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
-        } else {
             $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
         }
         
