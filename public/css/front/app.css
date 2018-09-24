@@ -14508,6 +14508,10 @@ input[type=number]::-webkit-outer-spin-button {
   padding-bottom: 30px;
 }
 
+button.sl-close {
+  font-size: 22px !important;
+}
+
 .multiselect__option--highlight {
   background-color: #8200FF !important;
 }

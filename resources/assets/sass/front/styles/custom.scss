@@ -63,6 +63,10 @@ $section-padding-sm:20px 0px;
     padding-bottom: 30px;
 }
 
+button.sl-close {
+    font-size: 22px !important;
+}
+
 .multiselect__option--highlight{
  background-color : $primary-color-md !important;   
     &:after{
