@@ -8,13 +8,11 @@
                             <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
                             <h3 class="labelheading">Select Service Category</h3>
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                <multiselect v-model="searchValue" :options="servicesList"  placeholder="Enter the service name whose jobs you want to explore" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
-                                    <span slot="noResult">No Service found. Consider changing the search query.</span>
+                                <multiselect :showNoResults="false" v-model="searchValue" :options="servicesList"  placeholder="Enter the service name whose jobs you want to explore" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
                                 </multiselect>
                             </div>
                             <div class="container-zip-code">
-                                <multiselect :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajax" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
-                                    <span slot="noResult">No Service found. Consider changing the search query.</span>
+                                <multiselect :showNoResults="false" :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajax" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
                                 </multiselect>                                
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
@@ -168,7 +166,7 @@
                         this.records = [];
                         this.loading = true;
 
-                        this.url = 'api/job?pagination=true&details["profile_data"]=true&time='+dateNow;
+                        this.url = 'api/job?pagination=true&status=in_bidding&details["profile_data"]=true&time='+dateNow;
 
                         if(this.searchValue){
                             this.url += '&filter_by_service='+this.searchValue.id;
