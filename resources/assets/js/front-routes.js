@@ -104,7 +104,7 @@
     // Sign Up
 
     {
-        name: 'Sign Up',
+        name: 'sign-up',
         path: '/sign-up',
         meta: {
             title: 'Professional Service Marketplace | Sign Up',

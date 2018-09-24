@@ -114,9 +114,21 @@
                         <div class="no-photos" v-if="!record.jobImages.length"> 
                             <p>Photo(s) Not Available</p>
                         </div>
-                        <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
+
+
+                        <!-- <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
                             <img @click="open($event)" :src="image" />
-                        </div>
+                        </div> -->
+
+                        <lightbox
+                           id="mylightbox"
+                           :images="imageLists"
+                           :image_class=" 'img-responsive img-rounded' "
+                           :album_class=" 'service-images' "
+                           :options="optionsset">
+                       </lightbox>
+
+
                     </div>
 
                     <div class="jobs-post-files" v-if="record.videos">
@@ -263,6 +275,7 @@
 <script>
     import StarRating from 'vue-star-rating';
     import fancyBox from 'vue-fancybox';
+    import Lightbox from 'vue-simple-lightbox';
     export default {
         data () {
             return {
@@ -297,9 +310,12 @@
                 showBidPopup : false,
                 showChatPopup : false,
                 confirmPopupShow : false,
+                optionsset : {
+                    closeText : 'X'
+                },                
                 formData : {
 
-                }
+                },                                
             }
         },
         computed : {
@@ -318,6 +334,16 @@
                 }
                 return false;
             },
+            imageLists(){
+                let data = [];
+                for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
+                    let myImage = {
+                        src : this.record.jobImages[i]
+                    };
+                    data.push(myImage);
+                }
+                return data;
+            },            
             canMarkJobComplete(){
                 if(Object.keys(this.record).length){
                     return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'completed';
@@ -504,7 +530,8 @@
         },
     },
     components: {
-        StarRating
+        StarRating,
+        Lightbox
     },
 
     mounted(){

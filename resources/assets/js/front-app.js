@@ -28,7 +28,8 @@ import router from './front-routes';
 import VeeValidate from 'vee-validate'
 import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
-import store from './store.js'
+import store from './store.js';
+import Lightbox from 'vue-simple-lightbox';
 import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
@@ -41,7 +42,7 @@ Vue.use(VueProgressBar, options);
 
 
 Vue.use(InfiniteLoading);
-
+Vue.use(Lightbox);
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
     tokenName: 'access_token',
