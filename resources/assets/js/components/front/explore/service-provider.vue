@@ -252,7 +252,8 @@
 					return;
 				}
 				this.serviceName = this.searchValue.url_suffix;
-			this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
+				localStorage.setItem('zip', this.zipCode);
+				this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
 			//this.getService(); 
 		},
 		onTouch () {
