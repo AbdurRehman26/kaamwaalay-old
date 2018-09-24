@@ -178,7 +178,7 @@
                                         Write Review
                                     </a>
 
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatBox(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatBox(bid)" href="javascript:void(0);" class="btn btn-primary">Chat3</a>
 
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
-                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat2</a>
                     <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
                 </div>
@@ -232,7 +232,7 @@
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChat" @closeChat="closeChatBox" :jobMessageData="jobMessageData" :show="showChat"></chat-panel>           
+<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"></chat-panel>           
 
 
 </div>

@@ -34,7 +34,7 @@
         components : {
             InfiniteLoading
         },
-        props: ['jobMessageData', 'show'],
+        props: ['messageData', 'show'],
         data () {
             return{
                 url: null,
@@ -187,6 +187,9 @@
             }
         },
         computed: {
+            jobMessageData() {
+                return this.messageData;
+            },
             getSenderImage() {
                 if(this.senderImage) {
                     return this.senderImage;
@@ -198,7 +201,7 @@
             },
             getSenderName() {
                 if(typeof(this.jobMessageData.business_name) != "undefined") {
-                    return this.jobMessageData.business_name.business_name;
+                    return this.jobMessageData.business_name;
                 }
                 return null;
             }
