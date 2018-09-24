@@ -14,6 +14,7 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
-Broadcast::channel('urgent-job.2', function ($data,$roleId) {
+Broadcast::channel('urgent-job-user.{sendTO}', function ($user,$sendTo) {
+
     return true;
 });

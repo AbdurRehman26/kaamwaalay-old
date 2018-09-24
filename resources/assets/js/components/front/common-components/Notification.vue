@@ -44,11 +44,12 @@
 
    <script>
         export default{
-            props: ['notificationData', 'show'],
+            props: ['show'],
             data () {
               return {
                 writereview: false,
-                notificationCount : 0
+                notificationCount : 0,
+                notificationData : [],
             }
         },
         mounted(){
@@ -70,15 +71,15 @@
                 this.subscribeChannel();
             },
             subscribeChannel() {
-                let channelName = 'urgent-job';
+                console.log(this.$parent.userDetails);
+                let channelName = 'urgent-job-user.'+this.$parent.userDetails.id;
                 self = this
-                let roleId = 2
-                window.Echo.private(channelName+roleId).listen('urgent-job-create', (e) => {
+                window.Echo.private(channelName).listen('.App\\Events\\UrgentJobCreated', (e) => {
                    alert('ppppppp');
                    console.log(e.data);
-                   self.notificationData = e.data
-                   self.notificationCount = notificationCount+1
-                   self.$emit('notificationCount',notificationCount)
+                   self.notificationData.push(e.data)
+                   self.notificationCount = self.notificationCount+1
+                   self.$parent.notificationCount = self.notificationCount
                 });
             },
 

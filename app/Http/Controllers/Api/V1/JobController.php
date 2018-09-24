@@ -6,6 +6,8 @@ use App\Data\Repositories\JobRepository;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Events\UrgentJobCreated;
+use App\Data\Models\ServiceProviderProfile;
+use App\Helper\Helper;
 
 class JobController extends ApiResourceController
 {
@@ -114,9 +116,62 @@ class JobController extends ApiResourceController
     {
        $result = parent::store($request);
        if($result){
-         $user = $request->user();
-         event(new UrgentJobCreated($user));
+         $data = $result->getData();
+         $zipCodeModel = app('ZipCodeRepository')->model;
+         $userModel = app('UserRepository')->model;
+         $userTable = $userModel->getTableName();
+         $serviceProviderServiceTable = app('ServiceProviderServiceRepository')->model->getTableName();
+         $serviceProviderProfileRequestTable = app('ServiceProviderProfileRequestRepository')->model->getTableName();
+         $currentZipCode = $zipCodeModel->where('zip_code','=',  $data->response->data->zip_code)->first();
+        $selectedUsers  = $this->getUsersByRadius($currentZipCode,1000,$data);
+        if($selectedUsers){
+            foreach ($selectedUsers as $selectedUser) {
+                event(new UrgentJobCreated($data,$selectedUser->id));
+            }
+        }
        }
        return $result;
     }
+
+    public function getUsersByRadius($zipcodes,$radius,$data)
+    {
+         $zipCodeModel = app('ZipCodeRepository')->model;
+         $userModel = app('UserRepository')->model;
+         $userTable = $userModel->getTableName();
+         $serviceProviderServiceTable = app('ServiceProviderServiceRepository')->model->getTableName();
+         $serviceProviderProfileRequestTable = app('ServiceProviderProfileRequestRepository')->model->getTableName();
+         $sql = 'SELECT
+        DISTINCT(zip_code), (
+        6371 * ACOS (
+        COS ( RADIANS(?) )
+          * COS( RADIANS( latitude ) )
+          * COS( RADIANS( longitude ) - RADIANS(?) )
+        + SIN ( RADIANS(?) )
+          * SIN( RADIANS( latitude ) )
+        )
+        ) AS distance
+        FROM zip_codes
+        HAVING distance <= ?';
+        $sqlParameter = [];
+        $sqlParameter[] = $zipcodes->latitude;
+        $sqlParameter[] = $zipcodes->longitude;
+        $sqlParameter[] = $zipcodes->latitude;
+        $sqlParameter[] = $radius;
+        $queryResult =  \DB::select($sql, $sqlParameter);
+           $selectedZipCodes =  Helper::makeArray($queryResult,'zip_code');
+       return $userModel->whereIn('zip_code',$selectedZipCodes)
+        ->join(
+                $serviceProviderProfileRequestTable, function ($joins) use($data,$serviceProviderProfileRequestTable,$userTable) {
+                $joins->on( $serviceProviderProfileRequestTable.'.user_id', '=', $userTable.'.id');
+                $joins->where($serviceProviderProfileRequestTable.'.status','=',ServiceProviderProfile::APPROVED);
+            })
+        ->join(
+                $serviceProviderServiceTable, function ($joins) use ($data,$serviceProviderServiceTable,$serviceProviderProfileRequestTable) {
+                $joins->on($serviceProviderServiceTable.'.service_provider_profile_request_id', '=', $serviceProviderProfileRequestTable.'.id');
+                $joins->where($serviceProviderServiceTable.'.service_id','=',$data->response->data->service_id);
+            }
+        )
+        ->select($userTable.'.id')->get();
+    }
 }
+

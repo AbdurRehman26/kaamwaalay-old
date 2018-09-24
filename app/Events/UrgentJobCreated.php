@@ -16,17 +16,19 @@ class UrgentJobCreated implements ShouldBroadcast
      use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $data;
-    public $roleId;
+    public $sendTo;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data,$sendTo)
     {
-        $this->data = $data['first_name'].' '.$data['last_name'].' has invited you to bid on their job';
-        $this->roleId =2;
+        $this->data = $data->response->data->user->first_name.' '.$data->response->data->user->last_name.' has invited you to bid on their job';
+        $this->sendTo = $sendTo;
+       // dd($this->sendTo);
+        //$this->dontBroadcastToCurrentUser();
     }
 
     /**
@@ -36,7 +38,7 @@ class UrgentJobCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('urgent-job.'.$this->roleId);
+        return new PrivateChannel('urgent-job-user.'.$this->sendTo);
       
     }
 }
