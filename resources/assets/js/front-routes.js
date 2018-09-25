@@ -28,14 +28,14 @@
         component: require('./components/front/auth/ResetPassword.vue'),
     },
     {
-            path: '/user/activate',
-            component: require('./components/front/auth/main.vue'),
-             meta: {
-                title: 'PSM | Login',
-                bodyClass: 'login-page',
-                noHeader: true,
-                navigation: 'main-nav',
-            },
+        path: '/user/activate',
+        component: require('./components/front/auth/main.vue'),
+        meta: {
+            title: 'PSM | Login',
+            bodyClass: 'login-page',
+            noHeader: true,
+            navigation: 'main-nav',
+        },
     },
     // Home
 
@@ -343,47 +343,49 @@ router.beforeEach((to, from, next) => {
     let user;
     if(to.name != 'login'){
      router.app.$store.commit('setRedirectUrl',to.name);
-    }
-    if(router.app.$store.getters.getAuthUser != 'undefined'){
-        user = JSON.parse(router.app.$store.getters.getAuthUser);
-    }
-    
-    if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
-        next();
-    }
-    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
-        next({name: 'login'});
-    }else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-        if(user  && user.role_id == customer){
-            if(!to.matched.some(record => record.meta.forAll)) {
-                next({name: "my.jobs"});
-            }else {
-                next();
-            }
-        }
-        else if(user  && user.role_id == serviceProvider){
-            next({name: 'my.bids'});
-        }
-    } else {
-        next();
-    }
+ }
+ if(router.app.$store.getters.getAuthUser != 'undefined'){
+    user = JSON.parse(router.app.$store.getters.getAuthUser);
+}
 
-    if (to.matched.some(record => record.meta.forCustomer) && router.app.$auth.isAuthenticated()) {
-        if(user  && user.role_id == customer){
+if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
+    next();
+}
+if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+    localStorage.removeItem('user');
+    router.app.$store.commit('setAuthUser' , '');
+    next({name: 'login'});
+}else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+    if(user  && user.role_id == customer){
+        if(!to.matched.some(record => record.meta.forAll)) {
+            next({name: "my.jobs"});
+        }else {
             next();
-        } 
-        else{
-            next({name: 'login'});
         }
     }
-    if (to.matched.some(record => record.meta.forServiceProvider) && router.app.$auth.isAuthenticated()) {
-        if(user  && (user.role_id == serviceProvider)){
-            next();
-        } 
-        else{
-            next({name: 'login'});
-        }
+    else if(user  && user.role_id == serviceProvider){
+        next({name: 'my.bids'});
     }
+} else {
+    next();
+}
+
+if (to.matched.some(record => record.meta.forCustomer) && router.app.$auth.isAuthenticated()) {
+    if(user  && user.role_id == customer){
+        next();
+    } 
+    else{
+        next({name: 'login'});
+    }
+}
+if (to.matched.some(record => record.meta.forServiceProvider) && router.app.$auth.isAuthenticated()) {
+    if(user  && (user.role_id == serviceProvider)){
+        next();
+    } 
+    else{
+        next({name: 'login'});
+    }
+}
 })
 
 export default router

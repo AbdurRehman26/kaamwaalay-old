@@ -96,34 +96,34 @@ const options = {
 require('./front-components-tags');
 
 Vue.mixin({
- data: function() {
-   return {
-    globalReadOnlyProperty() {
-        return  $route.name;
-     }
-   }
- }
+   data: function() {
+     return {
+        globalReadOnlyProperty() {
+            return  $route.name;
+        }
+    }
+}
 
 })
 // Create and mount the root instance.
 
 let veeCustomMessage = {
-        en: {
-            custom: {
-                agree: {
-                    required: 'You must agree to the terms and conditions before registering!',
-                    digits: (field, params) => `length must be ${params[0]}`
-                },
-                privacypolicy: {
-                    required: 'You must agree the privacy policy before registering!',
-                    digits: (field, params) => `length must be ${params[0]}`
-                },
-                password_confirmation: {
-                    confirmed: 'Password does not match.'
-                }
+    en: {
+        custom: {
+            agree: {
+                required: 'You must agree to the terms and conditions before registering!',
+                digits: (field, params) => `length must be ${params[0]}`
+            },
+            privacypolicy: {
+                required: 'You must agree the privacy policy before registering!',
+                digits: (field, params) => `length must be ${params[0]}`
+            },
+            password_confirmation: {
+                confirmed: 'Password does not match.'
             }
         }
-    };
+    }
+};
 const config = {
     errorBagName: 'errorBag', // change if property conflicts.
     dictionary:  veeCustomMessage,
@@ -145,21 +145,21 @@ const app = new Vue({
         checkscroll(){
           setTimeout(function(){
               if(jQuery('body').height() > jQuery(window).height()){
-                    jQuery('body').addClass('handle-scroll');
-                }else{
-                    jQuery('body').removeClass('handle-scroll');
-                }
-          },1500);
-        },
-        browserfunction() {
-            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
-                jQuery('body').addClass('opera-browser')
-            } else if (navigator.userAgent.indexOf("Chrome") != -1) {
-                jQuery('body').addClass('chrome-browser')
-            } else if (navigator.userAgent.indexOf("Safari") != -1) {
-                jQuery('body').addClass('safari-browser')
-            } else if (navigator.userAgent.indexOf("Firefox") != -1) {
-                jQuery('body').addClass('firefox-browser')
+                jQuery('body').addClass('handle-scroll');
+            }else{
+                jQuery('body').removeClass('handle-scroll');
+            }
+        },1500);
+      },
+      browserfunction() {
+        if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+            jQuery('body').addClass('opera-browser')
+        } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+            jQuery('body').addClass('chrome-browser')
+        } else if (navigator.userAgent.indexOf("Safari") != -1) {
+            jQuery('body').addClass('safari-browser')
+        } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+            jQuery('body').addClass('firefox-browser')
             } else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
             {
                 jQuery('body').addClass('IE-browser')
@@ -182,15 +182,15 @@ const app = new Vue({
     created () {
         this.$Progress.start()
         this.$router.beforeEach((to, from, next) => {
-        if (to.meta.progress !== undefined) {
-            let meta = to.meta.progress
-            this.$Progress.parseMeta(meta)
-        }
+            if (to.meta.progress !== undefined) {
+                let meta = to.meta.progress
+                this.$Progress.parseMeta(meta)
+            }
             this.$Progress.start()
             next()
         })
         this.$router.afterEach((to, from) => {
-        this.$Progress.finish()
+            this.$Progress.finish()
         })
     },
     watch:{
@@ -202,18 +202,18 @@ const app = new Vue({
 
 Vue.axios.interceptors.response.use((response) => { // intercept the global error
     return response
-  }, function (error) {
+}, function (error) {
     let originalRequest = error.config
     if (error.response.status === 401 && !originalRequest._retry) { // if the error is 401 and hasent already been retried
-                 app.$auth.logout().then(function (Vue) {
-                    app.$store.commit('setAuthUser', '')
-                    router.push({ name: 'login'})
-                   })
-    }
+       app.$auth.logout().then(function (Vue) {
+        app.$store.commit('setAuthUser', '')
+        router.push({ name: 'login'})
+    })
+   }
    if(error.response.status === 406 || error.response.status === 422){  
-     return Promise.reject(error);
-    }
-  })
+       return Promise.reject(error);
+   }
+})
 
 
 /*const app = new Vue({
