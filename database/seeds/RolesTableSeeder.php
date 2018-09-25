@@ -91,6 +91,8 @@ public function run()
                 "user.me",
                 "service-provider.approved-profile",
                 "user.update",
+                "job-bid.store",
+                "job-bid.update",
                 "job-bid.index",
                 "payment.store",
             ]), 

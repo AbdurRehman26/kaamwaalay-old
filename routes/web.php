@@ -34,6 +34,7 @@ Route::get('/', function () {
     return view('layout');
 })->where('any', '.*');*/
 Route::post('login/social', 'Api\V1\UserController@socialLogin')->name('social.login');
+Route::get('login/social/status', 'Api\V1\UserController@socialLoginCheck')->name('social.login.status');
 Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.activate');
 
 /*Admin Route*/
