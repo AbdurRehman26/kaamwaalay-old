@@ -70,6 +70,7 @@ Route::group(['middleware' => ['scopes']], function () {
 
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
+    Route::get('user/get-notification', 'Api\V1\UserController@getUserNotification')->name('user.notification');
     Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
@@ -78,6 +79,4 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
         'edit','create','destory'
     ]);
-
-
 });

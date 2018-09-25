@@ -123,11 +123,33 @@ class JobController extends ApiResourceController
          $serviceProviderServiceTable = app('ServiceProviderServiceRepository')->model->getTableName();
          $serviceProviderProfileRequestTable = app('ServiceProviderProfileRequestRepository')->model->getTableName();
          $currentZipCode = $zipCodeModel->where('zip_code','=',  $data->response->data->zip_code)->first();
-        $selectedUsers  = $this->getUsersByRadius($currentZipCode,1000,$data);
-        if($selectedUsers){
-            foreach ($selectedUsers as $selectedUser) {
-                event(new UrgentJobCreated($data,$selectedUser->id));
+        $selectedUsers  = $this->getUsersByRadius($currentZipCode,50,$data);
+        if($data->response->data->job_type == 'urgent'){
+            if(!empty($selectedUsers)){
+                foreach ($selectedUsers as $selectedUser) {
+                    event(new UrgentJobCreated($data,$selectedUser->id));
+                }    
+            }else{
+                 $selectedUsers  = $this->getUsersByRadius($currentZipCode,100,$data);
+                 if(!empty($selectedUsers)){
+                    foreach ($selectedUsers as $selectedUser) {
+                        event(new UrgentJobCreated($data,$selectedUser->id));
+                    }
+                 }else{
+                    $selectedUsers  = $this->getUsersByRadius($currentZipCode,150,$data);
+                    if(!empty($selectedUsers)){
+                        foreach ($selectedUsers as $selectedUser) {
+                            event(new UrgentJobCreated($data,$selectedUser->id));
+                        }
+                 }else{
+                    $selectedUsers  = $this->getUsersByRadius($currentZipCode,'',$data);
+                        foreach ($selectedUsers as $selectedUser) {
+                            event(new UrgentJobCreated($data,$selectedUser->id));
+                        }
+                 }    
+                }
             }
+            
         }
        }
        return $result;
@@ -150,13 +172,17 @@ class JobController extends ApiResourceController
           * SIN( RADIANS( latitude ) )
         )
         ) AS distance
-        FROM zip_codes
-        HAVING distance <= ?';
+        FROM zip_codes';
+        if($radius != ''){
+           $sql = $sql.' HAVING distance <= ?';
+        }
         $sqlParameter = [];
         $sqlParameter[] = $zipcodes->latitude;
         $sqlParameter[] = $zipcodes->longitude;
         $sqlParameter[] = $zipcodes->latitude;
-        $sqlParameter[] = $radius;
+        if($radius != ''){
+           $sqlParameter[] = $radius;
+        } 
         $queryResult =  \DB::select($sql, $sqlParameter);
            $selectedZipCodes =  Helper::makeArray($queryResult,'zip_code');
        return $userModel->whereIn('zip_code',$selectedZipCodes)

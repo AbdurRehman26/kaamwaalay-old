@@ -341,6 +341,31 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
+ public function getUserNotification(Request $request)
+{
+    $user_id = $request->user()->id;
+    $data = $this->_repository->getUserNotification($user_id);
+    if($data){
+      $code = 200;
+      $output = [
+        'response' => [
+            'data' => $data,
+            'message' => 'success'
+        ]
+      ];  
+    }else{
+       $code = 406;
+       $output = [
+        'response' => [
+            'error' => 'no notification found'
+        ]
+      ];  
+    }
+    
+    
+// HTTP_OK = 200;
 
+    return response()->json($output, $code);
 
+}
 }

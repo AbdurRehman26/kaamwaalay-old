@@ -17,7 +17,9 @@ class UrgentJobCreated implements ShouldBroadcast
 
     public $data;
     public $sendTo;
-
+    public $broadcastQueue = 'urgent-jobs';
+    public $sendById;
+    public $jobId;
     /**
      * Create a new event instance.
      *
@@ -27,6 +29,8 @@ class UrgentJobCreated implements ShouldBroadcast
     {
         $this->data = $data->response->data->user->first_name.' '.$data->response->data->user->last_name.' has invited you to bid on their job';
         $this->sendTo = $sendTo;
+        $this->jobId = $data->response->data->id;
+        $this->sendById = $data->response->data->user->id;
        // dd($this->sendTo);
         //$this->dontBroadcastToCurrentUser();
     }
@@ -39,6 +43,5 @@ class UrgentJobCreated implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel('urgent-job-user.'.$this->sendTo);
-      
     }
 }
