@@ -3,7 +3,8 @@
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
-                <span class="status online">Available online</span>
+                <span class="status online" v-if="isOnline">Available online</span>
+                <span class="status offline" v-else="">Not available offline</span>
             </span>
             <i class="icon-close2 close-icon" @click="$emit('closeChat')"></i>
         </div>
@@ -19,11 +20,17 @@
                         </div>
                     </b-list-group-item>
                 </div>
+                <b-list-group-item v-show="errorMessage">
+                    <div class="alert alert-danger" style="font-size: 12px;">
+                        <i class="icon-alert" style="font-size: 24px;"></i>
+                        <p>You are not allowed to send contact details and personal information.</p>
+                    </div>
+                </b-list-group-item>
             </b-list-group>
         </div>
         <div class="panel-footer">
-            <textarea class="form-control scroll" placeholder="Start typing your message" @keyup.enter.exact="onSubmit" v-model="text"></textarea>
-            <span class="icon-circle secondary-color" @click.prevent="onSubmit"><i class="icon-send"></i></span>
+            <textarea class="form-control scroll" placeholder="Start typing your message" @keyup.enter.exact="validateBeforeSubmit" v-model="text"></textarea>
+            <span class="icon-circle secondary-color" @click.prevent="validateBeforeSubmit"><i class="icon-send"></i></span>
         </div>
     </div>
 </template>
@@ -43,14 +50,15 @@
                 pagination : false,
                 height: 0,
                 showNoRecordFound: false,
-                senderImage: ''
+                senderImage: '',
+                errorMessage: false,
+                isOnline: false,
             }
         },
         created() {
         },
         methods: {
             getList(data , page , successCallback){
-                console.log("hello");
                 let self = this;
                 self.showNoRecordFound = false;
                 let url = self.url;
@@ -145,6 +153,27 @@
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
             },
+            validateBeforeSubmit() {
+                let message = this.text;
+                let digitRegex = /(<!\d)?\d{5,}(!\d)?/g;
+                let emailRegex = /\S+@\S+\.\S+/ig;
+                let urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+                let generalRegex = /((house)|(flat)|(society)|(appartment)|(block)|(road))/ig;
+
+                let containsDigits = digitRegex.test(message);
+                let containsEmail = emailRegex.test(message);
+                let containsGeneral = generalRegex.test(message);
+                let containsUrl = urlRegex.test(message);
+                if(containsDigits || containsEmail || containsGeneral || containsUrl) {
+                    this.errorMessage = true;
+                    setTimeout((e) => {
+                        this.errorMessage = false;
+                    }, 3000);
+                    return;
+                }
+                this.errorMessage = false;
+                this.onSubmit();
+            },
             onSubmit() {
                 if(this.text.trim() != null && this.text.trim() != "" && (this.text.charCodeAt(0) != 10 || this.text.trim().length > 0)){
                     var self = this;
@@ -154,11 +183,18 @@
 
                     let tempQuery = this.text.replace(/\n/g, "\r\n");
                     data.text = this.text;
-                    this.text = "";
                     this.$http.post(url, data).then(response => {
                         response = response.data.response;
+                        if(response.data == "error") {
+                            self.errorMessage = true;
+                            setTimeout((e) => {
+                                self.errorMessage = false;
+                            }, 3000);
+                            return;
+                        }
                         self.successMessage = response.message;
                         self.messages.push(response.data);
+                        self.text = "";
                     }).catch(error => {
                         error = error.response.data;
                         let errors = error.errors;
@@ -167,24 +203,53 @@
                 
             },
             showChatBox() {
-                console.log(this.jobMessageData, 33333);
                 this.url = 'api/job-message?pagination=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = this.jobMessageData;
                 data.pagination = true;
                 this.getList(data, false);
                 this.subscribeChannel();
+                this.userIsOnline();
             },
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                console.log(channelName, 88990099);
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
+                    console.log(e.discussion);
+                    if(typeof(e.discussion.user_is_online) != "undefined")  {
+                        self.isOnline = e.discussion.user_is_online;
+                        return;
+                    }
                     self.messages.push(e.discussion);
-                   console.log(e.discussion);
+                });
+            },
+            userIsOnline() {
+                var self = this;
+                this.loading = true;
+                let url = 'api/job-message?pagination=true&trigger_online_status=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
+                let data = {};
+                this.$http.post(url, data).then(response => {
+                    response = response.data.response;
+                }).catch(error => {
+                    error = error.response.data;
+                    let errors = error.errors;
+                });
+            },
+            userIsOffline() {
+                var self = this;
+                this.loading = true;
+                let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
+                let data = {};
+                this.$http.post(url, data).then(response => {
+                    response = response.data.response;
+                }).catch(error => {
+                    error = error.response.data;
+                    let errors = error.errors;
                 });
             },
             hideChatBox() {
                 this.messages = [];
+                this.text = "";
+                this.userIsOffline();
                 this.$emit('closeChat');
             }
         },
@@ -226,6 +291,7 @@
                 this.messageData = val;
                 if(this.show) {
                     this.messages = [];
+                    this.text = "";
                     this.showChatBox();
                 }
             }

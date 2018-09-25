@@ -47,6 +47,19 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
 
         //$input['reciever_id'] = $job->user_id;
 
+        if(isset($input['trigger_online_status'])) {
+            UserMessaged::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
+            return ['user_is_online' => $input['trigger_online_status']];
+        }
+        $message = $input['text'];
+        $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
+        $containsEmail = preg_match_all("/\S+@\S+\.\S+/i", $message);
+        $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
+        $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road))/i", $message);
+
+        if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
+            return "error";
+        }
         $message = parent::create($input);
         UserMessaged::dispatch($message);
         return $message;
@@ -57,7 +70,6 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
     {
 
         $this->builder = $this->model->orderBy('id', 'desc');
-
         if(empty($input['job_bid_id'])) {
             return false;
         }

@@ -30,7 +30,7 @@ class JobMessageController extends ApiResourceController
 
   public function input($value='')
   {
-    $input = request()->only('id', 'text', 'job_id', 'job_bid_id', 'reciever_id', 'pagination');
+    $input = request()->only('id', 'text', 'job_id', 'job_bid_id', 'reciever_id', 'pagination', 'trigger_online_status');
     
     $input['sender_id'] = request()->user()->id;
     
