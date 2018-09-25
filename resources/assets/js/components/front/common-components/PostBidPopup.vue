@@ -1,6 +1,6 @@
 <template>  
     <div>
-        <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" ok-only ok-title="Submit">
+        <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" ok-only ok-title="Submit" hide-footer="true">
         <form>
                 <div class="model-content">
                     <alert></alert>
