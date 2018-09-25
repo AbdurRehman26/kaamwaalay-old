@@ -189,6 +189,19 @@
     }
 }
 
+.container-zip-code{
+    ul{
+        overflow-x: hidden;  
+    }
+    span.multiselect__single {
+        width: 90% !important;
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
 .profile-message{
     width: calc(100% - 70px);
     display: inline-block;
