@@ -1906,16 +1906,19 @@ button.sl-close {
             left: 0;
             right: 0;
             margin: auto;
-            background-size: 60% !important;
+            background-size: cover;
             text-align: center;
             border-radius: 100%;
             background: #f9f9f9;
             background-position: 50%;
             background-repeat: no-repeat;
-            line-height: 103px;
-            background-image: url(/images/front/svg/sp-grey.svg);
+            line-height: 103px;            
             @include mobile{
                 top: -31%;
+            }
+            &.onlyplaceholder{
+                background-image: url(/images/front/svg/sp-grey.svg);
+                background-size: 60% !important;
             }
         }    
 }

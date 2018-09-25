@@ -10,9 +10,9 @@
             <div class="form-signup">
                 <form @submit.prevent="validateBeforeSubmit">
                     <div class="personal-provider-detail">
-                        <div class="profile-image-placeholder">
-                            <img :src="imageValue">
-                        </div>						
+                        <div v-if="!imageValue.length" class="profile-image-placeholder onlyplaceholder">
+                        </div>
+                        <div class="profile-image-placeholder" else v-bind:style="{'background-image':'url('+imageValue+')'}"></div>						
                         <div class="row">
                             <div class="browse-btn">
                                 <div class="form-group">
