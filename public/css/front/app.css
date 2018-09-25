@@ -16520,7 +16520,7 @@ button.sl-close {
   left: 0;
   right: 0;
   margin: auto;
-  background-size: cover;
+  background-size: cover !important;
   text-align: center;
   border-radius: 100%;
   background: #f9f9f9;
