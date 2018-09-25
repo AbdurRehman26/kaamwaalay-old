@@ -33,6 +33,12 @@ $Desktop1440:1500px;
   }
 }
 
+@mixin tabletportraitlayout{
+  @media (max-width: 850px) and (min-width: 736px) {
+    @content;
+  }
+}
+
 @mixin tabletportrait {
   @media (max-width: #{$tablet-portrait-width}) and (min-width: #{$tablet-width}) {
     @content;
