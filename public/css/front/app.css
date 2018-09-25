@@ -14700,6 +14700,10 @@ button.sl-close {
   }
 }
 
+.bg-light-custom {
+  background-color: #f9f9f9 !important;
+}
+
 .custom-file {
   border-color: transparent !important;
 }
@@ -15975,6 +15979,20 @@ button.sl-close {
 
 .custom-multi.category-detail {
   width: calc(100% - 20%);
+}
+
+.no-chat .alert p {
+  font-size: 12px;
+}
+
+.no-chat .alert i {
+  font-size: 24px;
+  top: 12px;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #e6e3e3 !important;
 }
 
 .expirychanges .stripe-element {

@@ -70,7 +70,6 @@
 
                     };
 
-
                     if(!response.data.length){
                         result.noRecordFound = true;
                     }
