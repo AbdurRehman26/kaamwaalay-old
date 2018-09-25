@@ -167,14 +167,12 @@ public function update(array $data = [])
 
     $input = $data['user_details'];
 
-
     $input['id'] = $data['id'];
 
     if ($user = parent::update($input)) {
 
         if($user->role_id == Role::SERVICE_PROVIDER) {
             if(!empty($data['business_details'])) {
-
                 $business_details = $data['business_details']; 
                 $business_details['user_id'] = $user->id;
                 if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $user->id)) {

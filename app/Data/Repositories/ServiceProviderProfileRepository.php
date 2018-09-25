@@ -99,19 +99,18 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $data->profile_request = $profile;
             
             if(!empty($data->attachments)){
-
                 foreach ($data->attachments as $key => $value) {
                     foreach ($data->attachments[$key] as $childKey => $childValue) {
-                        $data->attachments[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue);
+                        if($childValue){         
+                            $data->attachments[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue);
+                        }
                     }
 
                 }
             }
 
-
-
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-
+            
         }
         
         return $data;
@@ -120,6 +119,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
 
     public function findByAll($pagination = false,$perPage = 10, $data = []){
+        
 
         $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
         ->where('users.role_id', '=', Role::SERVICE_PROVIDER);

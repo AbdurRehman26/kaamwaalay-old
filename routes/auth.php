@@ -36,8 +36,8 @@ Route::group(['middleware' => ['scopes']], function () {
     ]);
 
     Route::resource('payment', 'Api\V1\PaymentController')->except([
-       'edit','create','destory'
-   ]);
+     'edit','create','destory'
+ ]);
 
     Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
     Route::resource('plan', 'Api\V1\PlanController')->except([
@@ -52,6 +52,7 @@ Route::group(['middleware' => ['scopes']], function () {
         'update'
     ]);
 
+    Route::get('service-provider-profile-request/approved-profile', 'Api\V1\ServiceProviderProfileRequestController@getUserApprovedProfile')->name("service-provider.approved-profile");
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
         'edit','create','destory','store'
     ]);

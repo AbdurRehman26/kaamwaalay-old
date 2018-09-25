@@ -68,6 +68,8 @@ Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
 Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
 Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));
 Vue.component('bid-cancelled', require('./components/front/bids/Cancelled.vue'));
+Vue.component('profile-not-approved', require('./components/front/profile-rejection/not-approved.vue'));
+Vue.component('profile-not-completed', require('./components/front/profile-rejection/profile-yet.vue'));
 
 // Advice Center
 Vue.component('customer', require('./components/front/advice-center/Customer.vue'));
