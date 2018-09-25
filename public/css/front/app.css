@@ -14955,7 +14955,8 @@ button.sl-close {
 }
 
 .search-filter .custom-multi {
-  width: calc(100% - 30%);
+  /* width: calc(100% - 30%); */
+  width: calc(100% - 36%);
   display: inline-block;
   vertical-align: bottom;
 }
@@ -15142,7 +15143,9 @@ button.sl-close {
 
 .service-professional .multiselect__content-wrapper li span {
   display: block;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
+  padding: 5px 6px;
+  font-size: 16px;
 }
 
 .service-professional .multiselect__content-wrapper li span:hover,
@@ -15875,7 +15878,8 @@ button.sl-close {
 }
 
 .search-filter .container-zip-code {
-  width: 19%;
+  /* width: 19%; */
+  width: 24%;
   display: inline-block;
   position: relative;
 }
