@@ -12,7 +12,6 @@
                 <!--main nav-->
                 <main-nav v-if="!userDetails && $route.meta.navigation == 'main-nav'" @clickmenu="closemenu();" v-bind:active="responsivemenu == true"></main-nav>
                 <!--customer nav-->
-                {{$store.getters.getAuthUser.role}}
 
                 <customer-nav @profilepopup="ProfilePopup" v-if="userDetails.role_id == userRoles.customer" @clickmenu="closemenu();" v-bind:active="responsivemenu == true" @WriteReviewModal="WriteReviewModal()"  @ViewBid="ViewBid()"></customer-nav>
                 <!--provider nav-->

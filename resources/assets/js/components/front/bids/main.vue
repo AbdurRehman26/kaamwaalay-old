@@ -41,9 +41,9 @@
             <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
 
         </div>
-
-        <profile-not-approved v-if="!profileInComplete && !profileApproved && loadingCompleted"></profile-not-approved>
-        <profile-not-completed v-if="profileInComplete && loadingCompleted"></profile-not-completed>
+        <profile-not-approved v-if="!profileRejected && !profileInComplete && !profileApproved && loadingCompleted"></profile-not-approved>
+        <profile-not-completed v-if="!profileRejected && profileInComplete && loadingCompleted"></profile-not-completed>
+        <profile-rejection :formData="profileValue" v-if="profileRejected"></profile-rejection>
 
         <vue-common-methods :url="url" @get-records="getRecords"></vue-common-methods>
 
@@ -54,7 +54,7 @@
     import StarRating from 'vue-star-rating';
 
     export default {
-        
+
         data () {
             return {
                 bid_selection: '',
@@ -70,7 +70,9 @@
                 url : 'api/service-provider-profile-request/approved-profile',
                 profileApproved : false,
                 profileInComplete : false,
-                loadingCompleted : false
+                loadingCompleted : false,
+                profileRejected : false,
+                profileValue : ''
 
             }
         },
@@ -219,8 +221,11 @@
                     if(profileStatus == 'approved'){
                         this.initializeAllBidCalls();
                         this.profileApproved = true;
+                    }else if(profileStatus == 'rejected'){
+                        this.profileValue = response.data;
+                        this.profileRejected = true;
                     }else{
-                        this.profileApproved = false;
+
                     }
                     this.loadingCompleted = true;
                 }

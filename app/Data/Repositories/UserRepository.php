@@ -196,8 +196,8 @@ public function update(array $data = [])
                             continue;
                         }
 
-                        unset($service['status']);
-                        if(!empty($service['service_provider_profile_request_id'])) {
+                        if(!empty($service['service_provider_profile_request_id']) && $service['status'] != 'rejected') {
+                            unset($service['status']);
 
                             $existingServiceIds[$service['service_provider_profile_request_id']][] = $service['service_id'];
 
@@ -205,19 +205,19 @@ public function update(array $data = [])
                             $existingServices[] = $service;
 
                         }else{
+                            unset($service['status'] , $service['service_provider_profile_request_id']);
 
                             $serviceExists = app('ServiceProviderProfileRequestRepository')->model
                             ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
                             ->whereNull('service_provider_services.deleted_at')
+                            ->where('service_provider_profile_requests.status' , '!=' , 'rejected')
                             ->where('service_provider_services.service_id' , $service['service_id'])
                             ->first();
-
                             if(empty($serviceExists)){      
                                 $newServices[] = $service;
                             }
                         }
                     }
-
                     if(!empty($newServices)) {
                         $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
                         foreach ($newServices as $key => $newService) {

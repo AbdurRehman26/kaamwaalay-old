@@ -206,8 +206,15 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
              **/
             public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
             {
+
+
                 $model = $this->model->newInstance()
                 ->where($crtieria);
+                
+                if(!empty($details['orderBy'])){
+                    $model = $model->orderBy('created_at' , $details['orderBy']);
+                }
+
                 if($whereIn) {
                     $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
                 }
@@ -223,7 +230,8 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             public function getUserServices($criteria)
             {
                 $this->builder = $this->model->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
-                ->where('service_provider_profile_requests.user_id', $criteria['user_id']);
+                ->where('service_provider_profile_requests.user_id', $criteria['user_id'])
+                ->where('service_provider_profile_requests.status', '!=' , 'rejected');
 
                 return $this->builder->select(['service_provider_profile_requests.status' ,'service_provider_services.*'])->get();
             }

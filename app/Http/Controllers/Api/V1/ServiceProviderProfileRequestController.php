@@ -66,12 +66,23 @@ public function getUserApprovedProfile()
 
     $criteria = ['user_id' => request()->user()->id , 'status' => 'approved'];
     $data = $this->_repository->findByCriteria($criteria, true);
+
+    $details = ['orderBy' => 'desc'];
+
     if(!$data){
 
-        $criteria = ['user_id' => request()->user()->id , 'status' => 'pending'];
-        $data = $this->_repository->findByCriteria($criteria, true);
+        $criteria = ['user_id' => request()->user()->id];
+        $data = $this->_repository->findByCriteria($criteria, true, $details);
 
     }
+
+    if(!$data){
+
+        $criteria = ['user_id' => request()->user()->id];
+        $data = $this->_repository->findByCriteria($criteria, true, $details);
+
+    }
+
 
     $output = [
         'response' => [

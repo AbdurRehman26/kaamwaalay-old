@@ -453,6 +453,8 @@
                                 self.submitFormData.user_details[key] = value;
                             }
 
+                            self.submitFormData.user_details['is_profile_completed'] = 1;
+
                         });
                         this.loading = true;
                         this.submit = true;

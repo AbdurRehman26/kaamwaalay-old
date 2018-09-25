@@ -1,10 +1,6 @@
 <template>
 	<div class="my-job-lising-content">
 		<div class="container">
-			<div class="my-job-indication">
-				<h2>My Bids</h2>
-				<p>You have total <span class="primary-color text-bold">0 active</span> job and <span class="primary-color text-bold">0 completed</span> jobs.</p>
-			</div>
 
 			<div class="profile-rejection-content">
                 <div class="profile-rejection-box">
@@ -14,37 +10,37 @@
                     </div>
                     <h2>Your profile has not been approved yet.</h2>
                     <p>It will take one to three days in profile approval. We will inform you once your profile is approved. In the mean time, please download our mobile apps. </p>
-                                    <div class="app-images custom-appicon">
-                                        <ul>
-                                            <li class="apple">
-                                                <a href="javascript:;" @click="profilenotcomplete()">
-                                                <img src="images/front/common-images/app-store.jpg">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;" @click="profileapprove()">
-                                                    <img src="images/front/common-images/google-play.jpg">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>                    
+                    <div class="app-images custom-appicon">
+                        <ul>
+                            <li class="apple">
+                                <a href="javascript:;" @click="profilenotcomplete()">
+                                    <img src="images/front/common-images/app-store.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" @click="profileapprove()">
+                                    <img src="images/front/common-images/google-play.jpg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>                    
                 </div>
-			</div>
-		</div>
+            </div>
+        </div>
 
-	</div>
+    </div>
 </template>
 
 <script>
-import StarRating from 'vue-star-rating';
+    import StarRating from 'vue-star-rating';
 
-export default {
-  data () {
-    return {
- 
+    export default {
+      data () {
+        return {
+         
 
-    	}
-  	},
+        }
+    },
 
     methods: {
 
