@@ -359,6 +359,7 @@
             },
             onSubmit() {
                 let self = this;
+                this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
 
                 self.loading = true;

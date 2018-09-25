@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ServiceProviderStatusEvent' => [
             'App\Listeners\ServiceProviderStatusListener',
         ],
+        'App\Events\UrgentJobCreated' => [
+            'App\Listeners\SendUrgentJobCreated',
+        ],
     ];
 
     /**

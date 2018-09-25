@@ -307,4 +307,21 @@ class Helper
         }
     }
 
+    public static function makeArray($data , $key = false)
+    {
+        $array = [];
+        foreach ($data as $obj) {
+            if(empty($key)){
+                $array[] = $obj[0];
+                continue;
+            }
+            $obj = (object) $obj;
+            if(!empty($obj->{$key})) {
+                $array[] = $obj->{$key};
+            }
+
+        }
+        return $array;
+    }
+
 }
