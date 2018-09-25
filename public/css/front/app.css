@@ -12794,6 +12794,18 @@ input[type=number]::-webkit-outer-spin-button {
   color: #6004BA;
 }
 
+.container-zip-code ul {
+  overflow-x: hidden;
+}
+
+.container-zip-code span.multiselect__single {
+  width: 90% !important;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .profile-message {
   width: calc(100% - 70px);
   display: inline-block;
@@ -12802,6 +12814,8 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgba(221, 198, 244, 0.2);
   border-radius: 6px;
   padding: 10px;
+  white-space: pre-line;
+  word-break: break-all;
 }
 
 .profile-message p {
@@ -14941,7 +14955,8 @@ button.sl-close {
 }
 
 .search-filter .custom-multi {
-  width: calc(100% - 30%);
+  /* width: calc(100% - 30%); */
+  width: calc(100% - 36%);
   display: inline-block;
   vertical-align: bottom;
 }
@@ -15128,7 +15143,9 @@ button.sl-close {
 
 .service-professional .multiselect__content-wrapper li span {
   display: block;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
+  padding: 5px 6px;
+  font-size: 16px;
 }
 
 .service-professional .multiselect__content-wrapper li span:hover,
@@ -15861,7 +15878,8 @@ button.sl-close {
 }
 
 .search-filter .container-zip-code {
-  width: 19%;
+  /* width: 19%; */
+  width: 24%;
   display: inline-block;
   position: relative;
 }

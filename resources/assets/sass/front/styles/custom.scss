@@ -428,7 +428,8 @@ button.sl-close {
         position: relative;
         z-index: 99;
         .custom-multi {
-            width: calc(100% - 30%);
+            /* width: calc(100% - 30%); */
+            width: calc(100% - 36%);
             display: inline-block;
             vertical-align: bottom;
             &.multifull{
@@ -592,7 +593,9 @@ button.sl-close {
                 cursor: pointer;
                 span{
                     display: block;
-                    padding: 5px 10px;
+                    /* padding: 5px 10px; */
+                    padding: 5px 6px;
+                    font-size: 16px;
                     &:hover,&:focus{                        
                         background-color: $primary-color-md;
                         color: #fff;                    
@@ -1321,7 +1324,8 @@ button.sl-close {
         }
     }
     .container-zip-code{
-        width: 19%;
+        /* width: 19%; */
+        width: 24%;
         display: inline-block;
         position: relative;
         i{
