@@ -342,5 +342,28 @@ public function messages($value = '')
     return !empty($messages) ? $messages : [];
 }
 
-
+    public function socialLoginCheck(Request $request)
+    {
+        $data = $request->only('email','social_account_id', 'social_account_type');
+        $rules = [
+            'email' => 'required|string|email|max:255',
+            'social_account_id' => 'required',
+            'social_account_type' => 'required|in:facebook',
+        ];
+        $userModel = $this->_repository->model;
+        $result = $userModel->where('email','=',$request->email)->where('social_account_id','=',$request->social_account_id)->where('social_account_type','=',$request->social_account_type)->first();
+            if($result) {
+                $code = 406;
+                $output = [
+                    'data' => $result,
+                    'message' => 'User Already Exists',
+                ];
+            }else{
+                $code = 200;
+                $output = [
+                    'message' => 'User not exsits',
+                ];
+            }
+        return response()->json($output, $code);
+    }
 }
