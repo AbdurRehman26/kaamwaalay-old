@@ -1753,6 +1753,7 @@ button.sl-close {
             background: #f9f9f9;
             line-height: 103px;
             background-size: cover;
+            background-position: 50%;
             &.onlyplaceholder{      
                 &:after{
                     content: "\E90F";
