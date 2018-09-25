@@ -55,6 +55,11 @@ $section-padding-sm:20px 0px;
     }
 }
 
+
+.main-banner.elementary-banner .verticle-align {
+    min-height: 343px;
+}
+
 .service-images {
     display: block;
     width: 100%;
@@ -1746,17 +1751,20 @@ button.sl-close {
             text-align: center;
             border-radius: 100%;
             background: #f9f9f9;
-            line-height: 103px;      
-            &:after{
-                content: "\E90F";
-                font-family: 'icomoon';
-                left: 0;
-                right: 0;
-                display: block;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                bottom: 0;                            
+            line-height: 103px;
+            background-size: cover;
+            &.onlyplaceholder{      
+                &:after{
+                    content: "\E90F";
+                    font-family: 'icomoon';
+                    left: 0;
+                    right: 0;
+                    display: block;
+                    margin: auto;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;                            
+                }
             }
             @include mobile{
                 top: -29%;
