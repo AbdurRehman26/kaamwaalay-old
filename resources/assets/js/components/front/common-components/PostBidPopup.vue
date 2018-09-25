@@ -178,8 +178,12 @@
                 formSubmitted(response){
                     if(response.data){
 
-                        this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
+                        this.loading = false;
+                        this.submit = false;
 
+                        this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
+                        this.hideModal();
+                        this.$emit('bid-created');
                     }
 
                 },
@@ -187,6 +191,9 @@
                     this.$refs.myModalRef.show()
                 },
                 hideModal() {
+                    this.loading = false;
+                    this.submit = false;
+
                     this.$refs.myModalRef.hide()
                 },
                 onHidden(){
@@ -204,20 +211,20 @@
                     this.submitFormData.preferred_date = '';
                     this.submitFormData.preferred_time = '';
                     this.submitFormData.is_visit_required = 0;                    
+                }
+            },
+            watch:{
+                showModalProp(value){
+
+                    if(value){
+                        this.showModal();
                     }
-                },
-                watch:{
-                    showModalProp(value){
-
-                        if(value){
-                            this.showModal();
-                        }
-                        if(!value){
-                            this.hideModal();
-                        }
-
+                    if(!value){
+                        this.hideModal();
                     }
-                },
-            }
 
-        </script>
+                }
+            },
+        }
+
+    </script>

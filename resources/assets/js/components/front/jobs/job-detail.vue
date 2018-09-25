@@ -254,7 +254,7 @@
 
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-<post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
+<post-bid-popup @bid-created="forceValue = true;" :job="record" @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
 
 </div>
