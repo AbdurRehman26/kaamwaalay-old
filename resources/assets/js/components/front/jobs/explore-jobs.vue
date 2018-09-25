@@ -12,7 +12,7 @@
                                 </multiselect>
                             </div>
                             <div class="container-zip-code">
-                                <multiselect :showNoResults="false" :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajax" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
+                                <multiselect :showNoResults="false" :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajaxCity" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
                                 </multiselect>                                
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 job-bid-btn p-r-0">
-                                    <a href="javascript:void(0);" v-if="!record.my_bid && record.status != 'completed' &&  record.status != 'cancelled' && !record.awarded_to" @click="ChangeBid" class="btn btn-primary post-bid m-r-10">Bid Now</a>
+                                    <a href="javascript:void(0);" v-if="!record.my_bid && record.status != 'completed' &&  record.status != 'cancelled' && !record.awarded_to" @click="currentRecord = record; showBidPopup = true;" class="btn btn-primary post-bid m-r-10">Bid Now</a>
 
                                     <a v-if="record.can_message && record.status !== 'cancelled'" @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message">
                                         <i class="icon-message"></i>
@@ -106,7 +106,7 @@
 
             </div>
 
-            <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
+            <post-bid-popup :job="currentRecord" @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
         </div>
         <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
         <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
@@ -125,9 +125,10 @@
     export default {
         data () {
             return {
+                currentRecord : '',
                 url : 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true',
                 bid_selection: 'activebid',
-                bidpopup: false,
+                showBidPopup: false,
                 isShowing:false,
                 infoval:false,
                 records : [],
@@ -252,13 +253,13 @@
                 this.changestatus = true;
             },
             ChangeBid(){
-                this.bidpopup = true;
+                this.showBidPopup = true;
             },
             showinfo() {
                 this.infoval = true;
             },        
             HideModal(){
-                this.bidpopup = false;
+                this.showBidPopup = false;
                 this.infoval = false;
             },
             servicedetail(){
