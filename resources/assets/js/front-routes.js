@@ -92,11 +92,12 @@
     {
         name: 'service-provider-detail.view',
         path: '/explore/service-provider/service-provider_detail/:id',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Service Provider Detail',
             bodyClass: 'service_provider_detail_page',
-            navigation: 'provider-nav',
-            requiresAuth: true,
+            navigation: 'main-nav',
+            forAll: true,
         },
         component: require('./components/front/explore/service-provider-detail.vue'),
     },    

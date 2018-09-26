@@ -1286,6 +1286,8 @@ button.sl-close {
             width: 80px;
             height: 80px;
             margin: auto;
+            overflow: hidden;
+            border-radius: 50%;            
         }
         .testmonial-name {
             text-align: center;
