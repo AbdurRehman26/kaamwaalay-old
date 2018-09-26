@@ -70,7 +70,7 @@
                                     <i class="icon-work-briefcase"></i>
                                     Offer: <strong>
                                         {{ record.my_bid.is_tbd ? 'TBD' : record.my_bid.amount }}
-                                    </strong> - <a v-if="!record.my_bid.is_awarded" @click="ChangeBid" href="javascript:void(0);">Change Bid</a>
+                                    </strong> - <a v-if="!record.my_bid.is_awarded" @click="showBidPopup = true; bidValue = record.my_bid; currentRecord = record;" href="javascript:void(0);">Change Bid</a>
                                 </p>
 
                                 <p class="member-since">
@@ -106,7 +106,7 @@
 
             </div>
 
-            <post-bid-popup :job="currentRecord" @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
+            <post-bid-popup :bid="bidValue" :job="currentRecord" @HideModalValue="showBidPopup = false; bidValue = '';" :showModalProp="showBidPopup"></post-bid-popup>
         </div>
         <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
         <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
@@ -125,6 +125,7 @@
     export default {
         data () {
             return {
+                bidValue : '',
                 currentRecord : '',
                 url : 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true',
                 bid_selection: 'activebid',
