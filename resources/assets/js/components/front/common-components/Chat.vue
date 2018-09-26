@@ -3,8 +3,8 @@
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
-                <span class="status online" v-if="isOnline">Available online</span>
-                <span class="status offline" v-else="">Not available offline</span>
+                <span class="status online" v-if="isOnline" v-show="!disabledChat">Available online</span>
+                <span class="status offline" v-else v-show="!disabledChat">Not available offline</span>
             </span>
             <i class="icon-close2 close-icon" @click="$emit('closeChat')"></i>
         </div>
@@ -20,10 +20,15 @@
                         </div>
                     </b-list-group-item>
                 </div>
-                <b-list-group-item v-show="errorMessage" class="no-chat">
+                <b-list-group-item v-if="errorMessage" class="no-chat">
                     <div class="alert alert-danger">
                         <i class="icon-alert"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
+                    </div>
+                </b-list-group-item>
+                <b-list-group-item v-if="disabledChat" class="no-chat">
+                    <div class="alert alert-secondary">
+                        <p>Chat is Closed.</p>
                     </div>
                 </b-list-group-item>
             </b-list-group>
