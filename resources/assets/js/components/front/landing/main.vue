@@ -12,13 +12,16 @@
                                 <h1>Find the right service provider for the job!</h1>
                                 <h5 class="banner-hd-sub">Get expert help to get done almost anything.</h5>
                                 <div class="search-filter">
-                                    <input type="text" placeholder="What service do you need?" class="form-control lg search-service" name="">
+                                    <div class="custom-multi" :class="{ 'invalid': isInvalid }">
+                                        <multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+                                        </multiselect>
+                                    </div>
                                     <div class="container-zip-code">
                                         <i class="icon-location"></i>
-                                        <input type="number" placeholder="Zip code" class="form-control lg zip-code" name="">
+                                        <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" @click="SignUp">
+                                <button :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" @click="validateBeforeSubmit" :disabled="loading">
                                     <span>Get Started</span>
                                 </button>
                             </div>
@@ -130,27 +133,122 @@
 
         <!--get started-->
         <div class="section section-grey get-started-section next-project  elementary-banner">
-           <explorenow></explorenow>
-       </div>
-   </div>
+         <explorenow></explorenow>
+     </div>
+ </div>
 </template>
 
 
 <script>
+    import _ from 'lodash';
+    export default {
+        data() {
+            return{
+                headerBanner: 'images/front/banners/home.jpg',
+                searchValue: '',
+                isLoading: false,
+                btnLoading: false,
+                loading: false,
+                options: [],
+                zipCode: '',
+                errorMessage: '',
+            }
+        },
+        mounted(){
+            this.authUser = JSON.parse(this.$store.getters.getAuthUser);
+            this.routeName = 'Explore_Detail';
+            if(this.authUser) {
+                this.zipCode = this.authUser.zip_code;
+                localStorage.setItem("zip", this.zipCode);
+            }else {
+                if(localStorage['zip']) {
+                    this.zipCode = localStorage.getItem('zip');
+                }
+            }
+        },
+        watch: {
+            zipCode(val) {
+                if(val.length > 5) {
+                    val = val.substr(0, 5);
+                }
+                this.zipCode = val; 
+            },
+            searchValue(val) {
+                if(val == null) {
+                    this.loading = false;
+                }
+            }
+        },
+        computed: {
+            isInvalid () {
+                return this.isTouched && !this.searchValue
+            }
+        },
+        methods: {
+            onTouch () {
+                this.isTouched = true
+            },
+            validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result && !this.loading) {
+                        this.ServiceProviderPage();
+                        this.errorMessage = "";
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            }, 
+            ServiceProviderPage() {
 
-export default {
-    data() {
-        return{
-            headerBanner: 'images/front/banners/home.jpg',
+                this.btnLoading = true;
+                this.isTouched = false;
+                if(!this.searchValue) {
+                    this.btnLoading = false;
+                    this.isTouched = true;
+                    return;
+                }
+                localStorage.setItem('zip', this.zipCode);
+                this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+            },
+            dispatchAction (actionName) {
+                this.searchValue = '';
+                this.options = [];
+                this.loading = false;
+            },
+            dispatchCloseAction (actionName) {
+                this.options = [];
+                this.loading = false;
+                this.onTouch();
+            },
+            asyncFind: _.debounce(function(query) {
+                let self = this;
+                this.loading = true;
+                if(!query) {
+                    this.loading = false;
+                }
+                if(!query || query.length < 3) {
+                    return;
+                };
+                this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
+                this.isLoading = true;
+                this.$http.get(this.searchUrl).then(response => {
+                    response = response.data.response;
+                    self.options = response.data;
+                    self.isLoading = false;
+
+                }).catch(error=>{
+                });
+            }, 1000),
+            limitText (count) {
+                return `and ${count} other services`
+            },
+            SignUp() {
+                this.$router.push('explore/service_provider');
+            },
+            JoinUsPro() {
+                this.$router.push('/join-as-pro');
+            },
         }
-    },
-    methods: {
-        SignUp() {
-            this.$router.push('explore/service_provider');
-        },
-        JoinUsPro() {
-            this.$router.push('/join-as-pro');
-        },
     }
-}
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
