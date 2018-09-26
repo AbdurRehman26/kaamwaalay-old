@@ -23,6 +23,7 @@
             var successMessage = '<?php echo isset($success) ? $success : ''; ?>';
             var errorMessage = '<?php echo isset($error) ? $error : ''; ?>';
             var resetEmail = '<?php echo isset($email) ? $email : ''; ?>';
+            var socketPort = '<?php echo config('broadcasting.connections.socket.port'); ?>';
         </script>
         @yield('after-base-js')
     </head>

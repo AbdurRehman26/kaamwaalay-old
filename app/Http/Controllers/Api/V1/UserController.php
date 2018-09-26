@@ -341,11 +341,11 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
- public function getUserNotification(Request $request)
+ public function getUserNotification()
 {
-    $user_id = $request->user()->id;
-    $data = $this->_repository->getUserNotification($user_id);
-    if($data){
+
+    $data =  request()->user()->unreadNotifications;
+    if($data->isNotEmpty()){
       $code = 200;
       $output = [
         'response' => [
