@@ -232,11 +232,13 @@
 
     {
         name: 'Advice Center',
-        path: '/advice-center',
+        path: '/advice-center/:type?',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Advice Center',
             bodyClass: 'advice-center-page',
-            navigation: 'main-nav',
+            navigation: 'provider-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/advice-center/main.vue'),
     },
