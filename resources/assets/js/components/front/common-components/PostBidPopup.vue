@@ -17,7 +17,7 @@
                         <b-col md="6">
                             <div class="form-group">                                                            
                                 <label for="bid_amount">Bid Amount</label>
-                                <input v-validate="rules" v-model="submitFormData.amount" placeholder="Bid amount in $" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
+                                <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Bid amount in $" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
                             </div>
                         </b-col> 
                         <b-col md="5">
@@ -145,8 +145,8 @@
                 submitUrl(){
                     return this.url;
                 },
-                rules() {
-                    return this.bidType == 'amount_value' ? 'required|decimal|max:7' : '';
+                valueRequired (){
+                    return this.bidType == 'amount_value'; 
                 }
             },
             methods: {
