@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // clears cache
-        \Artisan::call('migrate:fresh --seed');
         \Artisan::call('cache:clear');
         // Guest User Calls
 
