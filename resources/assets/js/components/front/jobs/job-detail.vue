@@ -140,7 +140,7 @@
                     <div class="chat-feedback">
 
                         <div class="text-notifer">
-                            <h3 v-if="isMyJob">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
+                            <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
                             <h3 v-if="myBidValue && !isMyJob">My Bid</h3>	
                         </div>
 
