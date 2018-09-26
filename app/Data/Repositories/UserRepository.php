@@ -288,5 +288,4 @@ public function updateField(array $data = [])
 
     return $data;
 }
-
 }

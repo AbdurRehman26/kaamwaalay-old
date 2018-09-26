@@ -113,5 +113,5 @@ class JobController extends ApiResourceController
 
         return !empty($messages[$value]) ? $messages[$value] : 'Success.';
     }
-
 }
+
