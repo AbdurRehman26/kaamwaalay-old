@@ -70,7 +70,7 @@
                                     <i class="icon-work-briefcase"></i>
                                     Offer: <strong>
                                         {{ record.my_bid.is_tbd ? 'TBD' : record.my_bid.amount }}
-                                    </strong> - <a v-if="!record.my_bid.is_awarded" @click="showBidPopup = true; bidValue = record.my_bid; currentRecord = record;" href="javascript:void(0);">Change Bid</a>
+                                    </strong> - <a v-if="!record.my_bid.is_awarded && !record.my_bid.is_visit_required" @click="showBidPopup = true; bidValue = record.my_bid; currentRecord = record;" href="javascript:void(0);">Change Bid</a>
                                 </p>
 
                                 <p class="member-since">

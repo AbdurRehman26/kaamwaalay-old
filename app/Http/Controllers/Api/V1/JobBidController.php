@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobBidRepository;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class JobBidController extends ApiResourceController
 {
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-       $this->_repository = $repository;
-   }
+     $this->_repository = $repository;
+ }
 
-   public function rules($value=''){
+ public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -102,13 +103,18 @@ public function input($value='')
             $input['filter_by_status'], $input['filter_by_job_id'], $input['pagination']
         );
 
+        if(!empty($input['status']) && $input['status'] == 'rejected'){
+            $input['deleted_at'] = Carbon::now()->toDateTimeString();
+            $input['status'] = 'pending';
+        }
+
     }
 
     if($value == 'store'){
         unset($input['is_awarded']);
         
         $input['status'] = 'pending';
-    
+
     }
 
 
