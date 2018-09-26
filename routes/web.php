@@ -30,12 +30,6 @@ Route::get('/', function () {
     return view('layout');
 });
 
-Route::get('/broadcast', function(){
-    UserMessaged::dispatch("kakaka");
-    echo "broadcast";
-
-});
-
 /*Route::get('/{any}', function(){
     return view('layout');
 })->where('any', '.*');*/

@@ -2,36 +2,54 @@
 	<div class="testmonial-section">
 		<div class="item-list">
 
-			<div class="item">
+			<div class="item" v-for="record in records">
 				<div class="testmonial-block">
 					<i class="icon-quotes-left"></i>
-					<p>The first time in all these years of being a landlord in NY where I have had trustworthy service and a good end result, within the time frame promised.</p>
+					<p>{{record.message}}</p>
 					<div class="caret"></div>
 				</div>
 				<div class="testmonial-img">
-					<img src="/images/front/profile-images/customer1.jpg">
+					<img :src="getImage(record.user.profileImage)">
 				</div>
 				<div class="testmonial-name">
-					<h3>Maria Randall</h3>
+					<h3>{{record.user.first_name + " " + record.user.last_name}}</h3>
 				</div>
-
 			</div>
-
-			<div class="item">
-				<div class="testmonial-block">
-					<i class="icon-quotes-left"></i>
-					<p>Easy to hire electrician when i had been struggling to get quotes, Simple service and workman turned up when he was meant to and price was cheaper too.</p>
-					<div class="caret"></div>
-				</div>
-				<div class="testmonial-img">
-					<img src="/images/front/profile-images/customer2.jpg">
-				</div>
-				<div class="testmonial-name">
-					<h3>Kamron Sparks</h3>
-				</div>
-
-			</div>
-
 		</div>
 	</div>
 </template>
+<script>
+    export default {
+        data () {
+            return {
+                url: 'api/testimonial',
+                records: [],
+            }
+        },
+        mounted() {
+        	this.getTopTestimonials();
+        },
+        methods: {
+            getTopTestimonials() {
+                let self = this;
+                let url = this.url;
+                url = url + '?filter_by_count=2&filter_by_role=2'
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    this.records = response.data;
+                    console.log(response.data);
+                }).catch(error=>{
+                });
+            },
+			getImage(img) {
+				return img? img : 'images/dummy/image-placeholder.jpg';
+			},
+        },
+
+        watch: {
+            
+        },
+        computed : {
+        }
+    }
+</script>

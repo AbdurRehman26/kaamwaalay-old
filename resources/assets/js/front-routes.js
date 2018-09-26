@@ -105,7 +105,8 @@
 
     {
         name: 'sign-up',
-        path: '/sign-up',
+        path: '/sign-up/:isPro?',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Sign Up',
             bodyClass: 'signup-page',
