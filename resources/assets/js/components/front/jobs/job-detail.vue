@@ -188,7 +188,7 @@
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
 
-                                    <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
+                                    <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="!jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
@@ -253,7 +253,7 @@
 
 <award-job-popup @bid-updated="reSendCall" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
-<visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
+<visit-request-popup @bid-updated="reSendCall" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
@@ -290,7 +290,7 @@
                     showInvite : false
                 },
                 showAwardJob : false,
-                visitjob: false,
+                showVisitJob: false,
                 visitpopup: false,
                 bidpopup: false,
                 isShowing:false,
@@ -502,14 +502,14 @@
             this.visitpopup = true;
         },
         VisitApproval(){
-            this.visitjob = true;
+            this.showVisitJob = true;
         },
         BidModify(){
             this.bidpopup = true;
         },
         HideModal(){
             this.awardJob = false;
-            this.visitjob = false;
+            this.showVisitJob = false;
             this.visitpopup = false;
             this.bidpopup = false;
             this.showReviewForm = false;

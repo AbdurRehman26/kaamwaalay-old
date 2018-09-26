@@ -3,12 +3,13 @@
 namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Yadakhov\InsertOnDuplicateKey;
 use Carbon\Carbon;
 
 class JobBid extends Model
 {
-    use InsertOnDuplicateKey;
+    use InsertOnDuplicateKey, softDeletes;
 
     const CANCELLED 	= 'cancelled';
     const COMPLETED 	= 'completed';
@@ -26,6 +27,8 @@ class JobBid extends Model
 
         $this->attributes['preferred_date'] = Carbon::parse($value)->toDateTimeString();
     }
+
+    
 
 }
 
