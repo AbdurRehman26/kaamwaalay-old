@@ -27,10 +27,10 @@ class UrgentJobCreated implements ShouldBroadcast
      */
     public function __construct($data,$sendTo)
     {
-        $this->data = $data->response->data->user->first_name.' '.$data->response->data->user->last_name.' has invited you to bid on their job';
+        $this->data = $data->user->first_name.' '.$data->user->last_name.' has invited you to bid on their job';
         $this->sendTo = $sendTo;
-        $this->jobId = $data->response->data->id;
-        $this->sendById = $data->response->data->user->id;
+        $this->jobId = $data->id;
+        $this->sendById = $data->user->id;
        // dd($this->sendTo);
         //$this->dontBroadcastToCurrentUser();
     }

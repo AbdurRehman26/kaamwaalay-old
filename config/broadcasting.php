@@ -53,6 +53,9 @@ return [
         'null' => [
             'driver' => 'null',
         ],
+        'socket' => [
+            'port' => env('SOCKET_PORT', 6001),
+        ],
 
     ],
 

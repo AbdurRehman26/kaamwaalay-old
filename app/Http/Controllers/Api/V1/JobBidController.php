@@ -80,16 +80,19 @@ public function input($value='')
 
 
     if(!empty($input['is_visit_required'])){
-        unset($input['is_tbd'], $input['amount']);
+        $input['amount'] = null;
+        $input['is_tbd'] = 0;
 
     }
 
     if(!empty($input['is_tbd'])){
-        unset($input['amount'], $input['is_visit_required']);
+        $input['amount'] = null;
+        $input['is_visit_required'] = 0;
     }
 
     if(!empty($input['amount'])){
-        unset($input['is_tbd'], $input['is_visit_required']);
+        $input['is_visit_required'] = 0;
+        $input['is_tbd'] = 0;
     }
 
 

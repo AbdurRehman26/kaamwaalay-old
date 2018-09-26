@@ -190,8 +190,6 @@
 
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="VisitApproval" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="!jobArchived && !jobCancelled && !isMyJob && myBidValue && !jobAwarded && canModifyBid" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" >Modify Bid</a>   
-
                                     <a v-if="!jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
@@ -231,9 +229,11 @@
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="confirmPopupShow = true;" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
                     <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
-                    <a v-if="!isMyJob && !jobCancelled && !jobArchived && !jobAwarded && myBidValue" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Modify Bid</a>
-
-                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary" @click="BidModify" ><i class="icon-edit-pencil"></i> Modify Bid</a>   
+    
+                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
+                    <i class="icon-edit-pencil"></i>
+                        Modify Bid
+                    </a>   
 
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
@@ -243,9 +243,6 @@
 
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
                 
-
-
-
                 </div>
 
             </div>
@@ -258,7 +255,7 @@
 
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-<post-bid-popup @bid-created="forceValue = true;" :job="record" @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
+<post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
 
 </div>
@@ -283,6 +280,7 @@
     export default {
         data () {
             return {
+                bidValue : '',
                 forceValue : false,
                 bidder : '',
                 record : [],
@@ -385,6 +383,7 @@
             },
             myBidValue(){
                 if(Object.keys(this.record).length){
+                    this.bidValue = this.record.my_bid;
                     return this.record.my_bid;
                 }
             },
@@ -400,7 +399,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && parseInt(this.record.my_bid.status == "visit_allowed" || this.record.my_bid.amount || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && parseInt(this.record.my_bid.status == "visit_allowed" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
@@ -424,14 +423,13 @@
     methods: {
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
-
+            console.log(1);
             this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
             this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
         },
         formSubmitted(response){
 
-            this.reSendCall();
-
+            this.reSendCall();            
             if(!response.data.is_archived && response.data.status == 'completed')
             {
                 this.showReviewForm = true;
@@ -448,10 +446,11 @@
             setTimeout(function () {
                 self.loading = false;
                 self.forceValue = false;
-            }, 3000);
+            }, 2000);
 
         },
         getResponse(response){
+            this.showBidPopup = false;
 
             this.jobBids = {
                 data : [],

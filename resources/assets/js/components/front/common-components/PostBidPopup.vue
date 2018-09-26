@@ -17,7 +17,7 @@
                         <b-col md="6">
                             <div class="form-group">                                                            
                                 <label for="bid_amount">Bid Amount</label>
-                                <input v-validate="rules" v-model="submitFormData.amount" placeholder="Bid amount in $" type="number" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
+                                <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Bid amount in $" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
                             </div>
                         </b-col> 
                         <b-col md="5">
@@ -75,7 +75,7 @@
                     </footer>
                 </form>
             </b-modal>
-            <vue-common-methods @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit"></vue-common-methods>
+            <vue-common-methods :updateForm="updateForm" @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit"></vue-common-methods>
 
         </div>
     </template>
@@ -87,12 +87,20 @@
             components: { DatePicker },
             props : [
             'showModalProp',
-            'job'
+            'job',
+            'bid',
             ],
+            mounted () {
+                if(this.bid){
 
+                    this.setBidData();
+
+                }
+            },
             data() {
                 return {
-                    bidType : 'visit_required',
+                    updateForm : false,
+                    bidType : 'amount_value',
                     amountTypes : [
                     {           
                         key : 'min',
@@ -137,11 +145,31 @@
                 submitUrl(){
                     return this.url;
                 },
-                rules() {
-                    return this.bidType == 'amount_value' ? 'required|max:5' : '';
+                valueRequired (){
+                    return this.bidType == 'amount_value'; 
                 }
             },
             methods: {
+                setBidData (){
+
+                    this.updateForm = true;
+
+                    this.submitFormData = JSON.parse(JSON.stringify(this.bid));
+
+                    this.url = 'api/job-bid/'+ this.bid.id;
+                    if(this.bid.is_tbd){
+                        this.submitFormData.amount = '';
+                        this.bidType = 'is_tbd';
+                    }else if(this.bid.is_visit_required){
+                        this.submitFormData.amount = '';
+                        this.bidType = 'visit_required';
+                    }else{
+                        this.bidType = 'amount_value';
+                    }
+
+
+
+                },
                 validateBeforeSubmit() {
                     let self = this;
 
@@ -149,7 +177,9 @@
 
                     this.$validator.validateAll().then((result) => {
                         if (result) {
-
+                            this.submitFormData.is_tbd = 0;
+                            this.submitFormData.is_visit_required = 0;
+                            
                             this.submitFormData.job_id = this.job.id;
 
                             if(this.bidType == 'is_tbd'){
@@ -157,7 +187,14 @@
                             }
 
                             if(this.bidType == 'visit_required'){
+
+
                                 this.submitFormData.is_visit_required = 1;
+                            }
+
+                            if(this.bidType != 'visit_required'){
+                                this.submitFormData.preferred_time = null;
+                                this.submitFormData.preferred_date = null;
                             }
 
 
@@ -203,6 +240,7 @@
                     this.$emit('HideModalValue');
                 },
                 clearFields (){
+                    let self = this;
                     this.submitFormData.description = '';
                     this.submitFormData.amount = '';
                     this.submitFormData.amount_type = 'min';
@@ -211,9 +249,21 @@
                     this.submitFormData.preferred_date = '';
                     this.submitFormData.preferred_time = '';
                     this.submitFormData.is_visit_required = 0;                    
+                    this.bidType = 'visit_required';
+
+                    setTimeout(function () {
+                        Vue.nextTick(() => {
+                            self.errorBag.clear()
+                        })
+
+                    }, 100);
+
                 }
             },
             watch:{
+                bid (value){
+                    this.setBidData();
+                },
                 showModalProp(value){
 
                     if(value){
