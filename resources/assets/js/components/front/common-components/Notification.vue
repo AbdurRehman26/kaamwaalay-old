@@ -145,9 +145,9 @@
                     }, 3000);
             },
             subscribeChannel() {
-                let channelName = 'urgent-job-user.'+this.$parent.userDetails.id;
+                let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
                 self = this
-                window.Echo.private(channelName).listen('.App\\Events\\UrgentJobCreated', (e) => {
+                window.Echo.private(channelName).notification((notification) => {
                    self.showNotificaton(); 
                 });
             },

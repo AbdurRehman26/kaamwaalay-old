@@ -11,10 +11,6 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
+Broadcast::channel('App.Data.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
-});
-Broadcast::channel('urgent-job-user.{sendTo}', function ($user,$sendTo) {
-
-    return true;
 });

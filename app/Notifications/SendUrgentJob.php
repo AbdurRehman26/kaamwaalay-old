@@ -9,8 +9,11 @@ use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\OneSignal\OneSignalChannel;
 use NotificationChannels\OneSignal\OneSignalMessage;
 use NotificationChannels\OneSignal\OneSignalWebButton;
+use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SendUrgentJob extends Notification
+
+class SendUrgentJob extends Notification implements ShouldBroadcast
 {
     use Queueable;
     public $data;
@@ -33,7 +36,7 @@ class SendUrgentJob extends Notification
     public function via($notifiable)
     {
         \Log::info('via');
-         return [OneSignalChannel::class, 'database'];
+         return [OneSignalChannel::class, 'database','broadcast'];
     }
 
     /**
@@ -48,7 +51,7 @@ class SendUrgentJob extends Notification
       //\Log::info($notifiable);
        return OneSignalMessage::create()
             ->subject("Urgent Job")
-            ->body($this->data->data);
+            ->body($this->data->message);
     }
 
     /**
@@ -60,11 +63,27 @@ class SendUrgentJob extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'text' => $this->data->data,
-            'image' => $this->data->sendBy->profile_image,
+            'text' => $this->data->message,
+            'image' => $this->data->from->profile_image,
             'link_text' => 'View Job',
             'route' => 'job.details',
-            "id" => $this->data->jobId
+            "id" => $this->data->id
         ];
+    }
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return BroadcastMessage
+    */
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'text' => $this->data->message,
+            'image' => $this->data->from->profile_image,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id
+        ]);
     }
 }

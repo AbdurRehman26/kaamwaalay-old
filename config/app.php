@@ -236,4 +236,5 @@ return [
 
     ],
    'app_name'=> env('APP_NAME'),
+   'queue_post_fix'=>env('QUEUE_POST_FIX', '')
 ];
