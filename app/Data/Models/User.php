@@ -91,12 +91,15 @@ class User extends Authenticatable
         $this->notify(new  SendServiceProviderStatusNotification($status));
     }
 
-      public function routeNotificationForOneSignal()
-        {
-
-           \Log::info('routeNotificationForOneSignal');
-            return 'a16dfd5c-d05a-4b73-87e9-c4fb2a14609e';
-            /*return ['tags' => ['key' => 'role_id', 'relation' => '=', 'value' => '3'],['operator'=> 'OR'],['key' => 'role_id', 'relation' => '=', 'value' => '2']];*/
-        }
+    public function routeNotificationForOneSignal()
+    {
+        return [
+            'tags' => [
+                        'key' => 'user_id',
+                        'relation' => '=',
+                        'value' => $this->id,
+                      ]
+            ];
+    }
 
 }
