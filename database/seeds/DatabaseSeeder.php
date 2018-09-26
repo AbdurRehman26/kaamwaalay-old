@@ -46,6 +46,5 @@ class DatabaseSeeder extends Seeder
 
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');
-        \Artisan::call('config:clear');
     }
 }
