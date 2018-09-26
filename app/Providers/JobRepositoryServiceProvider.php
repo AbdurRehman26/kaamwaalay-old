@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Data\Models\Job;
+use App\Data\Models\ZipCode;
+use App\Data\Models\User;
+use App\Data\Models\ServiceProviderService;
+use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Repositories\JobRepository;
 use App\Helper\Helper;
 use App\Events\UrgentJobCreated;
@@ -20,11 +24,7 @@ public  function boot() {
 
         Job::created(function($item) {
              $data = app('JobRepository')->findById($item->id);
-             $zipCodeModel = app('ZipCodeRepository')->model;
-             $userModel = app('UserRepository')->model;
-             $userTable = $userModel->getTableName();
-             $serviceProviderServiceTable = app('ServiceProviderServiceRepository')->model->getTableName();
-             $serviceProviderProfileRequestTable = app('ServiceProviderProfileRequestRepository')->model->getTableName();
+             $zipCodeModel = new ZipCode;
              $currentZipCode = $zipCodeModel->where('zip_code','=',  $data->zip_code)->first();
              $selectedUsers  =  $this->getUsersByRadius($currentZipCode,50,$data);
              if($data->job_type == 'urgent'){
@@ -58,11 +58,13 @@ public  function boot() {
 }
 public function getUsersByRadius($zipcodes,$radius,$data)
     {
-           $zipCodeModel = app('ZipCodeRepository')->model;
-           $userModel = app('UserRepository')->model;
-           $userTable = $userModel->getTableName();
-           $serviceProviderServiceTable = app('ServiceProviderServiceRepository')->model->getTableName();
-           $serviceProviderProfileRequestTable = app('ServiceProviderProfileRequestRepository')->model->getTableName();
+         $zipCodeModel = new ZipCode;
+         $userModel = new User;
+         $userTable = $userModel->getTableName();
+         $serviceProviderServiceModel = new ServiceProviderService;
+         $serviceProviderProfileRequestModel = new ServiceProviderProfileRequest;
+         $serviceProviderServiceTable = $serviceProviderServiceModel->getTableName();
+         $serviceProviderProfileRequestTable = $serviceProviderProfileRequestModel->getTableName();
            $sql = 'SELECT
            DISTINCT(zip_code), (
            6371 * ACOS (
