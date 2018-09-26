@@ -36,8 +36,8 @@ Route::group(['middleware' => ['scopes']], function () {
     ]);
 
     Route::resource('payment', 'Api\V1\PaymentController')->except([
-       'edit','create','destory'
-   ]);
+     'edit','create','destory'
+ ]);
 
     Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
     Route::resource('plan', 'Api\V1\PlanController')->except([
@@ -52,6 +52,7 @@ Route::group(['middleware' => ['scopes']], function () {
         'update'
     ]);
 
+    Route::get('service-provider-profile-request/approved-profile', 'Api\V1\ServiceProviderProfileRequestController@getUserApprovedProfile')->name("service-provider.approved-profile");
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
         'edit','create','destory','store'
     ]);
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['scopes']], function () {
 
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
+    Route::get('user/get-notification', 'Api\V1\UserController@getUserNotification')->name('user.notification');
     Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
@@ -78,6 +80,4 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
         'edit','create','destory'
     ]);
-
-
 });

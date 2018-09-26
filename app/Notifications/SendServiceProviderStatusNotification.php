@@ -12,13 +12,15 @@ class SendServiceProviderStatusNotification extends Notification
 {
     use Queueable;
     public $status;
+    public $reason;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($status)
+    public function __construct($status, $reason)
     {
+        $this->reason = $reason;
         $this->status = $status;
         return ['mail'];
     }
@@ -45,7 +47,7 @@ class SendServiceProviderStatusNotification extends Notification
         $url = route('front.login');
         return (new MailMessage)
         ->subject(Lang::getFromJson('Service Provider Profile Request Status'))
-        ->markdown('email.provider-profile-status', ['url' => $url , 'status' => $this->status]);
+        ->markdown('email.provider-profile-status', ['url' => $url , 'status' => $this->status, 'reason' => $this->reason]);
     }
 
     /**

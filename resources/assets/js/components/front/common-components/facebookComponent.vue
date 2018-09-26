@@ -22,9 +22,11 @@ export default {
     },
     methods:{
        openFbLoginDialog () {
-          FB.login(this.checkLoginState, { scope: 'email' })
+        let self = this;
+        FB.login(self.checkLoginState, { scope: 'email' })
         },
         checkLoginState: function (response) {
+          console.log(response,'response');
           let self = this;
           if (response.status === 'connected') {
             FB.api('/me', { fields: 'first_name,last_name,email,picture' }, function(profile) {
@@ -40,7 +42,12 @@ export default {
                     self.facebookLoginData.role_id = 2;
                }
               self.facebookLoginData.social_account_type = 'facebook';
-              self.socialLogin()
+              //from signIn
+              if(!(self.fromSignUp)){
+               self.socialLoginCheck()
+              }else{
+                self.socialLogin()
+              }
             });
           } else if (response.status === 'not_authorized') {
            // the user is logged in to Facebook, 
@@ -84,6 +91,17 @@ export default {
                 
                 })
             },
+            socialLoginCheck () {
+                let self = this;
+                this.$http.get('/login/social/status', {params: self.facebookLoginData})
+                .then(response => {
+                  self.$router.push({ name: 'sign-up'})
+                })
+                .catch(error => {
+                  console.log(error,'errorMessage')
+                  self.socialLogin()
+                })
+            }
     },
 }
 window.fbAsyncInit = function() {

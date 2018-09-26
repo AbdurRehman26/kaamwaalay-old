@@ -45,16 +45,18 @@
                 <div class="form-label-heading">
                     <p>Attach Photo</p>
                 </div>
-                <div class="margin-bottom-20px row" v-for="(image, index) in numOfImages">
+                <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
+
                     <div class="col-md-6">
                         <div class="form-group custom-file">
 
-                            <file-upload-component @get-response="getResponse" :uploadKey="'job'"></file-upload-component>
+                            <file-upload-component @get-response="getResponse(image, index, $event)" :uploadKey="'job'"></file-upload-component>
 
                         </div>
                     </div>
-                    <div class="col-md-6" v-if="parseInt(index) === parseInt(numOfImages-1)">
-                        <a href="javascript:;" @click.prevent="numOfImages++" class="add-photos filter-btn-top-space">+ Add more photos</a>
+                    <div class="col-md-6">
+                        <a v-if="parseInt(index) < parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="removeImage(index);" class="add-photos filter-btn-top-space">x</a>
+                        <a v-if="parseInt(index) === parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="addImages" class="add-photos filter-btn-top-space">+ Add more photos</a>
                     </div>
                 </div>
             </div>
@@ -65,7 +67,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group custom-file">
+                        <div class="form-group">
                             <label>Youtube video ID</label>
                             <input v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
                         </div>
@@ -112,9 +114,9 @@
                     </div>
                 </div>
                 <div v-if="formData.preference == 'choose_date'" class="col-md-6">
-                    <div class="form-group custom-datepicker">
+                    <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' ,'custom-datepicker']">
                         <label>Select Date</label>
-                        <date-picker v-validate="'required'" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
+                        <date-picker name="scheduled at" v-validate="'required'" :not-before="Date.now()" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
                     </div>
                 </div>
             </div>				
@@ -140,79 +142,79 @@
             <div class="row">
 
                 <div class="col-md-6">
-                 <div class="form-group">
-                    <label for="">State</label>
-                    <select @change="onStateChange" class="form-control" name="state" v-model="formData.state_id">
-                      <option value="">Select State</option>
-                      <option v-for="state in states" :value="state.id">{{state.name}}</option>
-                  </select>
-              </div>
-          </div>
+                    <div class="form-group">
+                        <label for="">State</label>
+                        <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="formData.state_id">
+                            <option value="">Select State</option>
+                            <option v-for="state in states" :value="state.id">{{state.name}}</option>
+                        </select>
+                    </div>
+                </div>
 
-          <div class="col-md-6">
-             <div class="form-group">
-                <label for="">City</label>
-                <select class="form-control" name="city" v-model="formData.city_id">
-                  <option value="">Select City</option>
-                  <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-              </select>
-          </div>
-      </div>
-
-
-  </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">City</label>
+                        <select :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" name="city" v-model="formData.city_id">
+                            <option value="">Select City</option>
+                            <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                        </select>
+                    </div>
+                </div>
 
 
-  <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>Zip Code</label>
-            <input v-validate="'required'" name="zip_code" 
-            :class="['form-control' , errorBag.first('zip_code') ? 'is-invalid' : '']" v-model="formData.zip_code" type="text" class="form-control" placeholder="Enter your zip code">
-        </div>
-    </div>
-</div>
-</div>
+            </div>
 
-<div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
-    <div class="form-label-heading m-b-25">
-        <p>VERIFY ACCOUNT</p>
-    </div> 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="verification-alert">
-                <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
-                    <span>We won't charge your card</span>.</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Zip Code</label>
+                        <input v-validate="'required'" name="zip code" 
+                        :class="['form-control' , errorBag.first('zip code') ? 'is-invalid' : '']" v-model="formData.zip_code" type="text" class="form-control" placeholder="Enter your zip code">
+                    </div>
                 </div>
             </div>
         </div>
-        <div>
-         <payment-component  :submit='isSubmitNormalJob'></payment-component>
-        </div>
-    </div>
-        <div class="job-form-submission">
-            <div class="">
 
-                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
-                    {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
-                    <loader></loader>
-                </button>
-
+        <div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
+            <div class="form-label-heading m-b-25">
+                <p>VERIFY ACCOUNT</p>
+            </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="verification-alert">
+                        <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
+                            <span>We won't charge your card</span>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <payment-component  :submit='isSubmitNormalJob'></payment-component>
+                </div>
             </div>
-            <p>Please make sure all the information you entered is accurate before submitting.</p>
-        </div>
+            <div class="job-form-submission">
+                <div class="">
 
-</form>
-</div>
-<vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-<vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
+                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
+                        {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
+                        <loader></loader>
+                    </button>
 
-<vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+                </div>
+                <p>Please make sure all the information you entered is accurate before submitting.</p>
+            </div>
 
-<!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
-<div v-if='!isShowCardDetail'>
-<card-element  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
-</div>
+        </form>
+    </div>
+    <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+    <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
+
+    <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+
+    <!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
+    <div v-if='!isShowCardDetail'>
+        <card-element :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
+    </div>
 </div>
 </template>
 
@@ -267,7 +269,7 @@
                     state_id : '',
                     zip_code : '',
                     videos : '',
-                    images : [],
+                    images : [{}],
                     subscription_id : null
                 },
                 loading : false,
@@ -279,7 +281,7 @@
                 isShowCardDetail : true,
                 isSubmitNormalJob : false,
                 isPaymentDetailShow : true
-                
+
             }
         },
         computed : {
@@ -292,20 +294,23 @@
             },
             requestJobUrl () {
                 return this.url + '/' + this.$route.params.id;
+            },
+            jobImages(){
+                return this.formData['images'];
             }
         },
         mounted () {
-             this.getPlansList(),
-             this.paymentDetailShow()
+            this.getPlansList(),
+            this.paymentDetailShow()
         },
         methods:{
-             paymentDetailShow(){
-                 let user = JSON.parse(this.$store.getters.getAuthUser)   
-                 if(user.stripe_token){
+            paymentDetailShow(){
+                let user = JSON.parse(this.$store.getters.getAuthUser)   
+                if(user.stripe_token){
                     this.isPaymentDetailShow = false
-                 }else{
+                }else{
                     this.isPaymentDetailShow = true
-                 }
+                }
             },
             getJobResponse(response){
                 this.formData = response.data;
@@ -322,36 +327,39 @@
                 let self = this;
                 self.cities = response.data;
             },
-            
+
             onStateChange(){
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
             },
-            getResponse(response){
-                this.formData.images.push(response.name);
+            getResponse(imageResponse, index, $event){
+                this.formData['images'][index] = $event.name;
+                this.$forceUpdate();
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                         if(this.jobType == 'urgent_job'){
-                             this.urgentjob()
-                         }else{
+                        if(this.jobType == 'urgent_job'){
+                            this.urgentjob()
+                        }else{
                             if(!this.errorMessage){    
-                               this.isSubmitNormalJob = true
+                                this.isSubmitNormalJob = true
                             }else{
-                               this.isSubmitNormalJob = false 
+                                this.isSubmitNormalJob = false 
                             }
                             if(!this.isPaymentDetailShow){
-                              this.onSubmit();
+                                this.onSubmit();
                             }
-                         }
+                        }
                         this.errorMessage = '';
                         return;
                     }
+                    console.log(this.errorBag , 13123);
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
                 let self = this;
+                this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
 
                 self.loading = true;
@@ -408,9 +416,19 @@
                 }).catch(error=>{
                 });
             },
+            removeImage(imageIndex){
+                console.log(imageIndex  ,this.formData.images , 123123);
+                this.formData.images.splice(imageIndex , 1);
+                this.$forceUpdate();
+                return false;
+            },
+            addImages(){
+                this.formData.images[this.formData.images.length] = '';
+                this.$forceUpdate();
+            }
 
         },
-       watch:{
+        watch:{
             jobType (value) {
                 if(value == 'urgent_job'){
                     this.isShowCardDetail = false

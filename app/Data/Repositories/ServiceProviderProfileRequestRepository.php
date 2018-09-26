@@ -56,7 +56,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         $data = parent::findById($id, $refresh, $details, $encode);
 
         if($data) {
-            
+
             $data->formatted_approved_at = Carbon::parse($data->approved_at)->format('F j, Y');
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->formatted_updated_at = Carbon::parse($data->updated_at)->format('F j, Y');
@@ -130,7 +130,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                 }
             )->where(
                 function ($query) use ($data) {
-                        $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
+                    $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
                 }
             );
         }
@@ -147,8 +147,8 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         if(!empty($data['filter_by_service'])) {
 
             $ids = app('ServiceRepository')->model->where('id', $data['filter_by_service'])
-                ->orWhere('parent_id', $data['filter_by_service'])
-                ->pluck('id')->toArray();
+            ->orWhere('parent_id', $data['filter_by_service'])
+            ->pluck('id')->toArray();
 
 
 
@@ -157,6 +157,10 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                     $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
                 }
             )->whereIn('service_provider_services.service_id', $ids);
+        }
+
+        if(!empty($data['filter_by_status'])) {
+            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['filter_by_status']);            
         }
 
         $this->builder = $this->builder->select('service_provider_profile_requests.*');
@@ -183,7 +187,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             $data =  parent::update($data);
             
             $user = app('UserRepository')->model->find($data->user_id);
-            event(new ServiceProviderStatusEvent($user, $data->status));
+            event(new ServiceProviderStatusEvent($user, $data->status, $data->reason));
             return $data;
         }
         return $data;
@@ -200,28 +204,36 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
              *
              * @author Usaama Effendi <usaamaeffendi@gmail.com>
              **/
-    public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
-    {
-        $model = $this->model->newInstance()
-            ->where($crtieria);
-        if($whereIn) {
-            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+            public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
+            {
+
+
+                $model = $this->model->newInstance()
+                ->where($crtieria);
+                
+                if(!empty($details['orderBy'])){
+                    $model = $model->orderBy('created_at' , $details['orderBy']);
+                }
+
+                if($whereIn) {
+                    $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+                }
+
+                $model = $model->first(['id']);
+
+                if ($model != null) {
+                    $model = $this->findById($model->id, $refresh, $details, $encode);
+                }
+                return $model;
+            }
+
+            public function getUserServices($criteria)
+            {
+                $this->builder = $this->model->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
+                ->where('service_provider_profile_requests.user_id', $criteria['user_id'])
+                ->where('service_provider_profile_requests.status', '!=' , 'rejected');
+
+                return $this->builder->select(['service_provider_profile_requests.status' ,'service_provider_services.*'])->get();
+            }
+
         }
-
-        $model = $model->first(['id']);
-
-        if ($model != null) {
-            $model = $this->findById($model->id, $refresh, $details, $encode);
-        }
-        return $model;
-    }
-
-    public function getUserServices($criteria)
-    {
-        $this->builder = $this->model->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
-            ->where('service_provider_profile_requests.user_id', $criteria['user_id']);
-
-        return $this->builder->select('service_provider_services.*')->get();
-    }
-
-}

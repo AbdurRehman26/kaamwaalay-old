@@ -35,13 +35,11 @@
                 <div class="col-xs-12 col-md-2 datepicker-field capitilize">
                     <div class="form-group">
                         <label>By Status</label>
-                        <select class="form-control">
+                        <select v-model="search.filter_by_status" class="form-control">
                             <option value="">Select All</option>
-                            <!-- <option v-for="status in statuses" :value="status.key">{{status.value}}</option> -->
-                            <option>Approved</option>
-                            <option>Pending</option>
-                            <option>Rejected</option>
-                            <option>Banned</option>
+                            <option value="approved">Approved</option>
+                            <option value="pending">Pending</option>
+                            <option value="rejected">Rejected</option>
                         </select>
                     </div>
                  </div>             
@@ -60,7 +58,6 @@
             <table class="table service-provider-table first-last-col-fix">
               <thead>
                 <tr>
-                  <th width="40"></th>
                   <th>Full Name</th>
                   <!-- <th>Email Address</th> -->
                   <th>Services</th>                                  
@@ -72,11 +69,6 @@
           </thead>
           <tbody>
             <tr v-for="record in records">
-                <td>
-                    <span class="user-img radius-0">
-                        <img  :src="record.imagepath" >
-                    </span>
-                </td>
                 <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
                 <td><router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</router-link></td>
                 <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
@@ -119,7 +111,8 @@
             search : {
                 keyword : '',
                 filter_by_business_type : '',
-                filter_by_service : ''
+                filter_by_service : '',
+                filter_by_status : ''
             },
             url : 'api/service-provider-profile-request?pagination=true',
             loading : true,

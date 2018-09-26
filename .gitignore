@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 /packages
+sftp-config.json
+laravel-echo-server.json

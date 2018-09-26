@@ -61,7 +61,7 @@ class UserController extends ApiResourceController
             'id',
             'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
             'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
-            'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id',
+            'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id', 'business_details.attachments',
             'user_details.status', 'user_details.state_id',  'user_details.profle_image', 'user_details.is_profile_completed', 'user_details.stripe_token',
             'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
             'business_details.years_of_experience', 'business_details.business_type',
@@ -341,6 +341,50 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
+public function socialLoginCheck(Request $request)
+{
+    $data = $request->only('email','social_account_id', 'social_account_type');
+    $rules = [
+        'email' => 'required|string|email|max:255',
+        'social_account_id' => 'required',
+        'social_account_type' => 'required|in:facebook',
+    ];
+    $userModel = $this->_repository->model;
+    $result = $userModel->where('email','=',$request->email)->where('social_account_id','=',$request->social_account_id)->where('social_account_type','=',$request->social_account_type)->first();
+        if($result) {
+            $code = 406;
+            $output = [
+                'data' => $result,
+                'message' => 'User Already Exists',
+            ];
+        }else{
+            $code = 200;
+            $output = [
+                'message' => 'User not exsits',
+            ];
+        }
+    return response()->json($output, $code);
+}
+public function getUserNotification()
+{
 
-
+    $data =  request()->user()->unreadNotifications;
+    if($data->isNotEmpty()){
+      $code = 200;
+      $output = [
+        'response' => [
+            'data' => $data,
+            'message' => 'success'
+        ]
+      ];  
+    }else{
+       $code = 406;
+       $output = [
+        'response' => [
+            'error' => 'no notification found'
+        ]
+      ];  
+    }
+    return response()->json($output, $code);
+}
 }

@@ -5,29 +5,21 @@
 			<img class="cross" src="images/front/svg/cancel.svg">
 		</div>
 		<h2>Your profile has been rejected.</h2>
-		<p>You need to provide certification document related to electrician service. Also you need to provide proof of business. </p>
-		<a href="javascript:void(0);" @click="profileredirct()" class="btn btn-primary">Re-submit your profile</a>
-	</div>
+        <router-link to="/apply-for-review" class="btn btn-primary">Re-submit your profile </router-link>
+        <p>{{formData.reason}} </p>
+    </div>
 </template>
 
 
 <script>
 
-export default {
-  data () {
-    return {
- 
+    export default {
+      props : ['formData'],
+      data () {
+        return {
 
-    	}
-  	},
 
-    methods: {
-
-    	profileredirct() {
-    		this.$router.push({name: 'provider_profile'});
-    	},
- 
-
+        }
     },
 
 }

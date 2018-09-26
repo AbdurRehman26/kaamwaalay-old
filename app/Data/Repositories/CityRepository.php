@@ -39,19 +39,33 @@ class CityRepository extends AbstractRepository implements RepositoryContract
 
     }
 
+    public function findById($id, $refresh = false, $details = false, $encode = true) {
+        $data = parent::findById($id);
+
+        if ($data && $details) {
+            $data->state = app('StateRepository')->findById($data->state_id);
+        }
+
+        return $data;
+    }
+
+
     public function findByAll($pagination = false, $perPage = 10, array $data = [] )
     {
 
         $this->builder = $this->model->join('states' , 'states.id', 'cities.state_id')
-                        ->where('states.country_id', self::AMERICA)->orderBy('cities.name', 'ASC');
+        ->where('states.country_id', self::AMERICA)->orderBy('cities.name', 'ASC');
 
         if(!empty($data['state_id'])){
             $this->builder->where('cities.state_id', '=', $data['state_id']);
         }
+        if(!empty($data['keyword'])){
+            $this->builder->where('cities.name', 'LIKE', '%'.$data['keyword'].'%');
+        }
 
-        $this->builder->select(['cities.*', 'states.name']);
+        $this->builder->select(['cities.*']);
 
-        return  parent::findByAll($pagination, $perPage);
+        return  parent::findByAll($pagination, $perPage, $data);
 
     }
 }

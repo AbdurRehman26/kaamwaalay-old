@@ -11,8 +11,10 @@
             <div class="form-signup">
                 <form @submit.prevent="validateBeforeSubmit" novalidate="">
                     <div class="personal-detail">
-                        <div class="profile-image-placeholder">
-                            <img :src="imageValue">
+                        <div v-if="!imageValue" class="profile-image-placeholder onlyplaceholder">
+                        </div>
+
+                        <div class="profile-image-placeholder" v-if="imageValue" v-bind:style="{'background-image':'url('+imageValue+')'}">                            
                         </div>
                         <div class="row">
                             <div class="browse-btn">

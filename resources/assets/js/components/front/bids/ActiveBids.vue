@@ -110,7 +110,7 @@
 				return record.first_name + " " + record.last_name;
 			},
 			getImage(record) {
-				return record.profile_image? record.profile_image : 'images/dummy/image-placeholder.jpg';
+				return record.profileImage? record.profileImage : 'images/dummy/image-placeholder.jpg';
 			},
 			AddCustomer() {
 				this.customer = true;
@@ -152,17 +152,18 @@
 		},
 		computed: {
 			requestUrl() {
-				return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&user_id=' + this.user.id;
-				//return null;
+				//return 'api/job-bid?pagination=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true&user_id=' + this.user.id;
+				return null;
 			}
 		},
 		mounted(){
+			window.scrollTo(0,0);
 			this.user = JSON.parse(this.$store.getters.getAuthUser);
 		},
 		watch: {
 			show(val) {
 				if(val) {
-					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true';
+					this.url = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true';
 				}else {
 					//this.url = null;
 					//self.pagination = false;

@@ -13,7 +13,12 @@
     box-shadow: 0 0px 4px 0 rgba(0,0,0,0.2);
     overflow:hidden;
 
-
+    @media (max-height: 700px) {
+        height: calc(100vh - 72px);
+        .discussion-content.scrollbar{
+            min-height: auto;
+        }
+    }
     @include mobileS{
         width: 100%;
         top: 0;
@@ -184,6 +189,19 @@
     }
 }
 
+.container-zip-code{
+    ul{
+        overflow-x: hidden;  
+    }
+    span.multiselect__single {
+        width: 90% !important;
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
 .profile-message{
     width: calc(100% - 70px);
     display: inline-block;
@@ -192,6 +210,8 @@
     background-color: rgba(221,198,244,0.2);
     border-radius: 6px;
     padding: 10px;
+    white-space: pre-line;
+    word-break: break-all;
 
     p{
         font-size:$discussion-chat-size;

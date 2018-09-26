@@ -23,6 +23,8 @@
             var successMessage = '<?php echo isset($success) ? $success : ''; ?>';
             var errorMessage = '<?php echo isset($error) ? $error : ''; ?>';
             var resetEmail = '<?php echo isset($email) ? $email : ''; ?>';
+            var stripeKey = '<?php echo config('services.stripe.key'); ?>';
+            var socketPort = '<?php echo config('broadcasting.connections.socket.port'); ?>';
         </script>
         @yield('after-base-js')
     </head>

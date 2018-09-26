@@ -8,6 +8,7 @@ use App\Data\Models\ServiceProviderProfile;
 use DB;
 use Carbon\Carbon;
 use App\Data\Models\Role;
+use Storage;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
@@ -44,7 +45,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
     {
         $data = parent::findById($id, $refresh, $details, $input);
         if ($data) {
-
+            $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->user_detail = app('UserRepository')->findById($data->user_id, false, $details);
 
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
@@ -58,7 +59,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $urgentJobsCompleted = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
             $data->urgent_jobs_completed = $urgentJobsCompleted;
-
 
             $bidsCriteria = ['job_bids.user_id' => $data->user_id];
             $data->urgent_jobs_created  = app('JobBidRepository')->getUrgentJobsCompleted($bidsCriteria);
@@ -98,9 +98,19 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             }
             $data->profile_request = $profile;
             
+            if(!empty($data->attachments)){
+                foreach ($data->attachments as $key => $value) {
+                    foreach ($data->attachments[$key] as $childKey => $childValue) {
+                        if($childValue){         
+                            $data->attachments[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue);
+                        }
+                    }
+
+                }
+            }
+
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-        
-               
+            
         }
         
         return $data;
@@ -110,10 +120,15 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
     public function findByAll($pagination = false,$perPage = 10, $data = []){
         
+
         $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
-                            ->where('users.role_id', '=', Role::SERVICE_PROVIDER)
-                            ->orderBy('service_provider_profiles.created_at','desc');
-        
+        ->where('users.role_id', '=', Role::SERVICE_PROVIDER);
+
+        if (empty($data['filter_by_top_providers'])) {
+            $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
+            $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
+        }
+
         if(!empty($data['zip'])) {
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
         }
@@ -122,7 +137,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $this->builder = $this->builder->where(
                 function ($query) use ($data) {
-                        $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
+                    $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
                 }
             )->groupBy('service_provider_profiles.user_id');
         }
@@ -136,22 +151,20 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $ids = app('ServiceRepository')->model->where('url_suffix', '=' , $data['filter_by_service'])
                 //->orWhere('parent_id', $data['filter_by_service'])
-                ->pluck('id')->toArray();
-
+            ->pluck('id')->toArray();
 
             $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
-                    $join->on('service_provider_profile_requests.user_id', '=', 'service_provider_profiles.user_id');
+                $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
             })->join('service_provider_services', function($join) use ($data){
-                        $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
+                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
             })->whereIn('service_provider_services.service_id', $ids)
             ->select('service_provider_profiles.*')
             ->groupBy('service_provider_profiles.user_id');
 
         }
         if(!empty($data['is_approved'])) {
-            $is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
-            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $is_approved);
-
+            //$is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
+            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['is_approved']);
         }
 
         if(!empty($data['filter_by_featured'])){
@@ -160,11 +173,23 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
         if(!empty($data['filter_by_top_providers'])) {
             $this->builder = $this->builder
-               ->select(DB::raw('(count(jobs.user_id) * avg(user_ratings.rating)), *'))
-                ->leftJoin('jobs', 'service_provider_profiles.user_id', '=', 'jobs.user_id')
-                ->leftJoin('user_ratings', 'service_provider_profiles.user_id', '=', 'user_ratings.user_id')
-                ->orWhere('jobs.status', '=', 'completed')->orderByRaw('(count(jobs.user_id) * avg(user_ratings.rating)) DESC');
-            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->select('*');
+            ->leftJoin('user_ratings', function ($join){
+                $join->on('service_provider_profiles.user_id', '=', 'user_ratings.user_id');
+                $join->where('user_ratings.status', '=', 'approved');
+            })
+            ->leftJoin('job_bids', function ($join){
+                $join->on('service_provider_profiles.user_id', '=', 'job_bids.user_id');
+                $join->where('job_bids.status', '=', 'completed');
+            })
+            ->leftJoin('jobs', function ($join){
+                $join->on('job_bids.job_id', '=', 'jobs.id');
+                $join->where('jobs.status', '=', 'completed');
+            })
+            ->groupBy('service_provider_profiles.user_id')
+            ->orderBy('service_provider_profiles.is_featured', 'desc')
+            ->orderBy('service_provider_profiles.is_verified', 'desc')
+            ->orderByRaw('(count(jobs.user_id) * IFNULL(avg(user_ratings.rating) + 1, 1)) desc');
+            
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');
         $record = parent::findByAll($pagination, $perPage, $data);
@@ -181,20 +206,20 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
          *
          * @author Usaama Effendi <usaamaeffendi@gmail.com>
          **/
-    public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
-    {
-        $model = $this->model->newInstance()
+        public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
+        {
+            $model = $this->model->newInstance()
             ->where($crtieria);
-        if($whereIn) {
-            $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+            if($whereIn) {
+                $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+            }
+
+            $model = $model->first(['id']);
+
+            if ($model != null) {
+                $model = $this->findById($model->id, $refresh, $details, $encode);
+            }
+            return $model;
         }
 
-        $model = $model->first(['id']);
-
-        if ($model != null) {
-            $model = $this->findById($model->id, $refresh, $details, $encode);
-        }
-        return $model;
     }
-
-}

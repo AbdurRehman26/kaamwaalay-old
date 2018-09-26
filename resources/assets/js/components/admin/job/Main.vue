@@ -12,10 +12,10 @@
                     </div>
                     <div class="col-xs-12 col-md-3 datepicker-field">
                       <div class="form-group">
-                       <label>By Type</label>
-                       <select v-model="search.filter_by_service" class="form-control">
-                         <option value="">Select All</option>
-                         <option v-for="service in servicesList" :value="service.id">
+                         <label>By Type</label>
+                         <select v-model="search.filter_by_service" class="form-control">
+                           <option value="">Select All</option>
+                           <option v-for="service in servicesList" :value="service.id">
                             {{ service  | mainServiceOrChildService}}
                         </option>
                     </select>
@@ -23,14 +23,14 @@
             </div>
             <div class="col-xs-12 col-md-3 datepicker-field">
               <div class="form-group">
-               <label>By Job Status</label>
-               <select v-model="search.filter_by_status" class="form-control">
-                 <option value="">Select All</option>
-                 <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
-             </select>
-         </div>
-     </div>                            
-     <div class="col-xs-12 col-md-2">
+                 <label>By Job Status</label>
+                 <select v-model="search.filter_by_status" class="form-control">
+                   <option value="">Select All</option>
+                   <option v-for="status in jobStatuses" :value="status.key">{{status.value}}</option>
+               </select>
+           </div>
+       </div>                            
+       <div class="col-xs-12 col-md-2">
         <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
             <span>Apply</span>
             <loader></loader>
@@ -77,7 +77,7 @@
             </td>
             <td class="text-center">
               <div class="action-icons">
-                
+
                 <router-link class="basecolor" :to="{name: 'main.job.detail' , params : {id : record.id}}"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
 
             </div>
@@ -125,7 +125,11 @@
                 },
                 {
                     key : 'cancelled',
-                    value : 'Archived'
+                    value : 'Cancelled'
+                },
+                {
+                    key : 'archived',
+                    value : 'Archived'                    
                 },
                 {
                     key : 'completed',
@@ -192,6 +196,6 @@
                 this.changeProviderStatus = true;
             },
 
-      },
-  }
+        },
+    }
 </script>

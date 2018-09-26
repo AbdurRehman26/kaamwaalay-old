@@ -140,33 +140,34 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Certificates</strong></p>
                             </b-col>
-                            <b-col v-if="records.attachments" class="calculated-value">
-                                <a v-for="certificate in records.attachments.certificates" class="underline" href="javascript:void(0);">
-                                    {{certificate}}
+
+                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
+                                <a download v-for="(certificate, index) in records.provider_profile.attachments.certifications" class="underline" :href="certificate">
+                                    Certificate {{ index + 1 }}
+                                    <span v-if="typeof(records.provider_profile.attachments.certifications[index+1]) !== 'undefined'">,</span>
                                 </a>
-                                <span>,</span>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Registrations</strong></p>
                             </b-col>
-                            <b-col v-if="records.attachments" class="calculated-value">
-                                <a v-for="registration in records.attachments.registration"  class="underline" href="javascript:void(0);">
-                                    Registrations.docx
+                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
+                                <a download v-for="(registration, index) in records.provider_profile.attachments.registrations"  class="underline" :href="registration">
+                                    Registration {{ index + 1 }}
+                                    <span v-if="typeof(records.provider_profile.attachments.registrations[index+1]) !== 'undefined'">,</span>
                                 </a>
-                                <span>,</span>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Proof of business</strong></p>
                             </b-col>
-                            <b-col v-if="records.attachments" class="calculated-value">
-                                <a v-for="business in records.attachments.business" class="underline" href="javascript:void(0);">
-                                    BusinessProof.docx
+                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
+                                <a download v-for="(business, index) in records.provider_profile.attachments.proof_of_business" class="underline" :href="business">
+                                    Proof {{ index + 1 }} 
+                                    <span v-if="typeof(records.provider_profile.attachments.proof_of_business[index+1]) !== 'undefined'">,</span>
                                 </a>
-                                <span>,</span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -186,7 +187,7 @@
                                 <b-form-select v-validate="'required'" :disabled="records.status  | disableProfileStatusButton" v-model="selected" :options="options" class="max-field margin-bottom-20px"/>                                   
                                 <textarea placeholder="Enter rejection reason" v-model="reason" name="reason" v-validate="'required'" 
                                 v-if="selected == 'rejected' && records.status != 'rejected' && records.status != 'approved'"  
-                                class="calculated-value form-control margin-bottom-20px">
+                                class="rejected-textbox form-control margin-bottom-20px">
                             </textarea>
                         </b-col>
                     </b-row>
@@ -238,17 +239,17 @@
         }
     },
     methods : {
-     validateBeforeSubmit() {
+       validateBeforeSubmit() {
         let self = this;
         self.errorMessage = '';
         self.$validator.validateAll().then((result) => {
-           if (result) {
-              self.onSubmit();
-              self.errorMessage =  '';
-              return;
-          }
-          self.errorMessage =  self.errorBag.all()[0];
-      });
+         if (result) {
+          self.onSubmit();
+          self.errorMessage =  '';
+          return;
+      }
+      self.errorMessage =  self.errorBag.all()[0];
+  });
     },
     onSubmit(){
         let self = this;
@@ -260,18 +261,18 @@
         };
 
         self.$http.put(url , data).then(response=>{
-           self.loading = false;
-           response = response.data.response;
-           self.records.status = response.data.status;
-           self.records.approved_by_user = response.data.approved_by_user;
+         self.loading = false;
+         response = response.data.response;
+         self.records.status = response.data.status;
+         self.records.approved_by_user = response.data.approved_by_user;
 
-       }).catch(error=>{
+     }).catch(error=>{
         console.log('error' , error);
 
     });
 
-   }, 
-   getRecords(response){
+ }, 
+ getRecords(response){
     let self = this;
     self.loading = false;
     self.records = response.data;

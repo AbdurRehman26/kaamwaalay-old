@@ -49,13 +49,13 @@ class UserRepository extends AbstractRepository implements RepositoryContract
 
         if($data) {
             $data->profileImage = $data->profile_image;
-            if(substr($data->profile_image, 0, 8) != "https://"){
-             $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
-         }
+            if($data->profile_image && substr($data->profile_image, 0, 8) != "https://"){
+               $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
+           }
 
-         $data->role = app('RoleRepository')->findById($data->role_id);
-         
-         if (!empty($details['profile_data'])) {
+           $data->role = app('RoleRepository')->findById($data->role_id);
+
+           if (!empty($details['profile_data'])) {
 
             if($data->role_id == Role::SERVICE_PROVIDER) {
                     // Todo
@@ -167,15 +167,12 @@ public function update(array $data = [])
 
     $input = $data['user_details'];
 
-
     $input['id'] = $data['id'];
 
     if ($user = parent::update($input)) {
 
         if($user->role_id == Role::SERVICE_PROVIDER) {
-
             if(!empty($data['business_details'])) {
-
                 $business_details = $data['business_details']; 
                 $business_details['user_id'] = $user->id;
                 if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $user->id)) {
@@ -194,26 +191,33 @@ public function update(array $data = [])
 
                 if(!$profileRequest) {
 
-
                     foreach ($data['service_details'] as $key => $service) {
                         if(empty($service['service_id'])) {
                             continue;
                         }
 
-                        if(!empty($service['id'])) {
+                        if(!empty($service['service_provider_profile_request_id']) && $service['status'] != 'rejected') {
+                            unset($service['status']);
 
-                            $existingServiceIds[$service['id']][] = $service['service_id'];
-                            $service['service_provider_profile_request_id'] = $service['id'];
-                            unset($service['id']);
+                            $existingServiceIds[$service['service_provider_profile_request_id']][] = $service['service_id'];
 
                             $service['deleted_at'] = null;
                             $existingServices[] = $service;
 
                         }else{
-                            $newServices[] = $service;
+                            unset($service['status'] , $service['service_provider_profile_request_id']);
+
+                            $serviceExists = app('ServiceProviderProfileRequestRepository')->model
+                            ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
+                            ->whereNull('service_provider_services.deleted_at')
+                            ->where('service_provider_profile_requests.status' , '!=' , 'rejected')
+                            ->where('service_provider_services.service_id' , $service['service_id'])
+                            ->first();
+                            if(empty($serviceExists)){      
+                                $newServices[] = $service;
+                            }
                         }
                     }
-
                     if(!empty($newServices)) {
                         $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
                         foreach ($newServices as $key => $newService) {
@@ -284,5 +288,4 @@ public function updateField(array $data = [])
 
     return $data;
 }
-
 }

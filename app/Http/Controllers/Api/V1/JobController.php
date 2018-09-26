@@ -61,6 +61,10 @@ class JobController extends ApiResourceController
                 $input['filter_by_city']
             );
 
+            if(empty($input['images'][0])){
+                $input['images'] = null;
+            }
+
         }
 
         if($value == 'store'){
@@ -109,5 +113,5 @@ class JobController extends ApiResourceController
 
         return !empty($messages[$value]) ? $messages[$value] : 'Success.';
     }
-
 }
+

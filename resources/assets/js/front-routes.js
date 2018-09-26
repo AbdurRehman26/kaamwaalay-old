@@ -28,19 +28,19 @@
         component: require('./components/front/auth/ResetPassword.vue'),
     },
     {
-            path: '/user/activate',
-            component: require('./components/front/auth/main.vue'),
-             meta: {
-                title: 'PSM | Login',
-                bodyClass: 'login-page',
-                noHeader: true,
-                navigation: 'main-nav',
-            },
+        path: '/user/activate',
+        component: require('./components/front/auth/main.vue'),
+        meta: {
+            title: 'PSM | Login',
+            bodyClass: 'login-page',
+            noHeader: true,
+            navigation: 'main-nav',
+        },
     },
     // Home
 
     {
-        name: 'main_page',
+        name: 'main-page',
         path: '/',
         meta: {
             title: 'Professional Service Marketplace | Landing',
@@ -72,11 +72,10 @@
             title: 'Professional Service Marketplace | Explore',
             bodyClass: 'explore_page',
             navigation: 'main-nav',
+            forAll: true,
         },
         component: require('./components/front/explore/main.vue'),
     },
-
-
     {
         name: 'Explore_Detail',
         path: '/services/:serviceName/:zip?',
@@ -85,6 +84,7 @@
             title: 'Professional Service Marketplace | Category Detail',
             bodyClass: 'explore_detail_page',
             navigation: 'main-nav',
+            forAll: true,
         },
         component: require('./components/front/explore/service-provider.vue'),
     },
@@ -104,7 +104,7 @@
     // Sign Up
 
     {
-        name: 'Sign Up',
+        name: 'sign-up',
         path: '/sign-up',
         meta: {
             title: 'Professional Service Marketplace | Sign Up',
@@ -133,7 +133,8 @@
             title: 'Professional Service Marketplace | Apply for Review',
             bodyClass: 'apply-for-review-page',
             navigation: 'provider-nav',
-            requiresAuth : true
+            requiresAuth : true,
+            forServiceProvider : true,
         },
         component: require('./components/front/profile/ApplyForReview.vue'),
     },
@@ -149,6 +150,7 @@
             bodyClass: 'job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/job-post/main.vue'),
     },
@@ -175,7 +177,9 @@
         meta: {
             title: 'Professional Service Marketplace | Featured Profile',
             bodyClass: 'featured-profile-page',  
-            navigation: 'provider-nav',          
+            navigation: 'provider-nav',   
+            requiresAuth: true,       
+            forServiceProvider: true,       
         },
         component: require('./components/front/featured-profile/main.vue'),
     },
@@ -191,6 +195,7 @@
             bodyClass: 'my-job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/jobs/my-jobs.vue'),
     },
@@ -203,6 +208,8 @@
             title: 'Professional Service Marketplace | My Jobs',
             bodyClass: 'my-explore-job-page',
             navigation: 'provider-nav',
+            requiresAuth: true,
+            forServiceProvider: true,
         },
         component: require('./components/front/jobs/explore-jobs.vue'),
     },
@@ -242,6 +249,8 @@
             title: 'Professional Service Marketplace | My Bids',
             bodyClass: 'my-bids-page',
             navigation: 'provider-nav',
+            requiresAuth: true,
+            forServiceProvider: true,
         },
         component: require('./components/front/bids/main.vue'),
     },
@@ -327,25 +336,56 @@ const router = new VueRouter({
     routes, // short for `routes: routes`
     app,
 })
+const serviceProvider = 2;
 const customer = 3;
 const title = document.title
 router.beforeEach((to, from, next) => {
     let user;
-    if(router.app.$store.getters.getAuthUser != 'undefined'){
-      user = JSON.parse(router.app.$store.getters.getAuthUser);
-  }
+    if(to.name != 'login'){
+     router.app.$store.commit('setRedirectUrl',to.name);
+ }
+ if(router.app.$store.getters.getAuthUser != 'undefined'){
+    user = JSON.parse(router.app.$store.getters.getAuthUser);
+}
 
-  if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
+    next();
+}
+if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
+    localStorage.removeItem('user');
+    router.app.$store.commit('setAuthUser' , '');
     next({name: 'login'});
-} else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+}else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
-      next({name: 'my.jobs'});
-  }
+        if(!to.matched.some(record => record.meta.forAll)) {
+            next({name: "my.jobs"});
+        }else {
+            next();
+        }
+    }
+    else if(user  && user.role_id == serviceProvider){
+        next({name: 'my.bids'});
+    }
 } else {
     next();
 }
 
-next();
+if (to.matched.some(record => record.meta.forCustomer) && router.app.$auth.isAuthenticated()) {
+    if(user  && user.role_id == customer){
+        next();
+    } 
+    else{
+        next({name: 'login'});
+    }
+}
+if (to.matched.some(record => record.meta.forServiceProvider) && router.app.$auth.isAuthenticated()) {
+    if(user  && (user.role_id == serviceProvider)){
+        next();
+    } 
+    else{
+        next({name: 'login'});
+    }
+}
 })
 
 export default router

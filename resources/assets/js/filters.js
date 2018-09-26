@@ -245,7 +245,7 @@ Vue.filter('mainServiceOrChildService', function (value, sign) {
 
     if(value.parent_id){
 
-        var signValue = typeof(sign) !== 'undefined' ? sign : '>>';
+        var signValue = typeof(sign) !== 'undefined' ? sign : '→';
         
         serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title ;
 
@@ -296,6 +296,7 @@ Vue.filter('bidStatus', function (bid) {
         return 'TBD';
     }
 
-    return bid.amount ? '$ ' + bid.amount : 0;
+    return bid.amount ? '$' + bid.amount : 0;
 
 });
+

@@ -10,10 +10,10 @@ class JobBidController extends ApiResourceController
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -69,17 +69,32 @@ public function input($value='')
         'filter_by_job_detail',
         'is_status',
         'count_only',
-        'is_awarded'
+        'is_awarded',
+        'filter_by_tbd',
+        'filter_by_awarded_status',
+        'amount_type',
+        'is_visit_required',
+        'preferred_date',
+        'preferred_time'
     );
 
 
-    if(!empty($input['amount'])){
-        unset($input['is_tbd']);
+    if(!empty($input['is_visit_required'])){
+        $input['amount'] = null;
+        $input['is_tbd'] = 0;
+
     }
 
     if(!empty($input['is_tbd'])){
-        unset($input['amount']);
+        $input['amount'] = null;
+        $input['is_visit_required'] = 0;
     }
+
+    if(!empty($input['amount'])){
+        $input['is_visit_required'] = 0;
+        $input['is_tbd'] = 0;
+    }
+
 
     if($value == 'store' || $value == 'update'){
 
@@ -90,7 +105,10 @@ public function input($value='')
     }
 
     if($value == 'store'){
-        unset($input['status'], $input['is_awarded']);
+        unset($input['is_awarded']);
+        
+        $input['status'] = 'pending';
+    
     }
 
 

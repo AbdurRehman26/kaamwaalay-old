@@ -10,8 +10,9 @@
                     <div class="float-right">
                         <div class="left-cog profile-block">                            
                             <div class="profile-username pointer-event" @click="ChangePass">
-                                    <div class="username">{{fullName}}</div>
-                                    <i class="icon-triangle-down"></i>
+                                <i class="icon-lock_outline"></i>
+                                <div class="username">{{fullName}}</div>
+                                <i class="icon-triangle-down"></i>
                            </div>
                            <logout-component></logout-component> 
                         </div>
@@ -48,7 +49,7 @@ import { directive as onClickaway } from 'vue-clickaway';
              this.getAllServices();
              self.setRoleList();
              self.setPaymentTypeList();
-            self.user = JSON.parse(self.$store.getters.getAuthUser);
+            self.user = JSON.parse(self.$store.getters.getAuthAdminUser);
             self.first_name = self.user.first_name;
             self.last_name = self.user.last_name;
       },

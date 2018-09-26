@@ -156,7 +156,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // Kazmi\Resource\ResourceCommandServiceProvider::class,
@@ -182,6 +182,8 @@ return [
         App\Providers\UserRepositoryServiceProvider::class,
         App\Providers\ZipCodeRepositoryServiceProvider::class,
         App\Providers\SEOServiceProvider::class,
+        //NotificationChannels\OneSignal\OneSignalServiceProvider::class,
+        //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],  
 

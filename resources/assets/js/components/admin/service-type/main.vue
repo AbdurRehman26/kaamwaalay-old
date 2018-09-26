@@ -72,7 +72,7 @@
   </div>
 </div>
 </div>
-<add-service @HideModalValue="hideModal" :showModalProp="service" @call-list="getList(false, currentPage)" :isUpdate="isUpdate" :list="list"></add-service>
+<add-service @HideModalValue="hideModal" :showModalProp="service" @call-list="onCallList" :isUpdate="isUpdate" :list="list"></add-service>
 <view-details @HideModalValue="hideModal" :showModalProp="viewDetails" :selectedService="selectedService"></view-details>
 <changestatuspopup @HideModalValue="hideModal" :showModalProp="changeStatus" :statusData="statusData" :options="changeStatusOptions" :url="statusUrl" ></changestatuspopup>
 </div>
@@ -125,6 +125,13 @@
       this.statusUrl = 'api/service/' + list.id;
       this.statusData = list;
       this.changeStatus = true;
+    },
+    onCallList() {
+      if(this.search) {
+        this.onApply();
+      }else {
+        this.getList(false, this.currentPage);
+      }
     },
     onApply() {
       this.loadingStart = true;

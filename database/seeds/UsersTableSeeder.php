@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
         
         $state_id = $states[array_rand($states)];
 
-        $city_id = $cities[self::getCityId($cities , 'state_id', $state_id)]['id'];
+        $city_id = !empty($cities[self::getCityId($cities , 'state_id', $state_id)]) ? $cities[self::getCityId($cities , 'state_id', $state_id)]['id'] : null;
 
         $data[] =[
             'id' => 1,

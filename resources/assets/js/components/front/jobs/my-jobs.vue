@@ -12,11 +12,11 @@
 
                         <div class="job-post-list" v-for="record in records">
                             <div class="job-post-details">
-                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')'}">
+                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ (record.user.profileImage ? record.user.profileImage : 'images/dummy/image-placeholder.jpg') +')'}">
                                 </div>
 
                                 <div class="job-common-description job-perform">
-                                    <div class="col-md-6 p-l-0">
+                                    <div class="col-md-8 p-l-0">
 
                                         <router-link :to="{name: 'job.details' , params : { id : record.id }}">
                                             <h3 class="pointer">{{record.title}}</h3>
@@ -45,7 +45,7 @@
                                         </div>	
                                     </div>
                                 </div>
-                                <div class="col-md-6 job-bid-btn p-r-0">
+                                <div class="col-md-4 job-bid-btn p-r-0">
                                     <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
 
                                     <a href="javascript:void(0);" @click="WriteReview" class="btn btn-primary post-bid" v-if="record.job_bid == true">
@@ -106,7 +106,7 @@
                                                 <strong>{{record.formatted_created_at}}</strong>
                                             </p>
                                             <div class="ratings">
-                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="[record.review_details.rating ? parseFloat(record.review_details.rating) : 0]" active-color="#8200ff"></star-rating>
+                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="record.review_details.rating ? parseFloat(record.review_details.rating) : 0" active-color="#8200ff"></star-rating>
 
                                             </div>
                                         </div>
