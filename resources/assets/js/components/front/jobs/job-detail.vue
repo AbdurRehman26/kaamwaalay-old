@@ -255,7 +255,7 @@
 
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-<post-bid-popup :bid="bidValue" @bid-created="forceValue = true;" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
+<post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
 
 </div>
@@ -423,7 +423,7 @@
     methods: {
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
-
+            console.log(1);
             this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
             this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
         },
@@ -446,7 +446,7 @@
             setTimeout(function () {
                 self.loading = false;
                 self.forceValue = false;
-            }, 3000);
+            }, 2000);
 
         },
         getResponse(response){
