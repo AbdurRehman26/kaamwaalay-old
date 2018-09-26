@@ -288,12 +288,4 @@ public function updateField(array $data = [])
 
     return $data;
 }
- public function getUserNotification($id){
-        $user = User::find($id);
-        if($user->unreadNotifications){
-         return $user->unreadNotifications;
-        }else{
-         return false; 
-        }
- }
 }

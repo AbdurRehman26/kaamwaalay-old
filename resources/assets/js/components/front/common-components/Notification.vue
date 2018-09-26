@@ -121,7 +121,7 @@
                 self.loading = false;
                 let len = response.data.length;
                 for (var i = 0 ; i < len; i++) {
-                    self.notificationData.push( response.data[i] );
+                    self.notificationData.unshift( response.data[i] );
                 }
                 self.notificationCount = len
                 self.$parent.notificationCount = self.notificationCount
@@ -135,19 +135,20 @@
                 this.writereview = false;
             },
             showNotificaton() {
+                self = this
                 this.url = 'api/user/get-notification';
                 let data = this.notificationData;
-                data.pagination = true;
-                this.getList(data, false);
-                this.subscribeChannel();
+                this.subscribeChannel()
+                 setTimeout(function () {
+                         data.pagination = true;
+                         self.getList(data, false);
+                    }, 3000);
             },
             subscribeChannel() {
-                console.log(this.$parent.userDetails);
                 let channelName = 'urgent-job-user.'+this.$parent.userDetails.id;
                 self = this
                 window.Echo.private(channelName).listen('.App\\Events\\UrgentJobCreated', (e) => {
-                   console.log(e.data);
-                  this.getList(e.data, false);
+                   self.showNotificaton(); 
                 });
             },
 
