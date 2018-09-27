@@ -202,12 +202,12 @@ id="mylightbox"
             <span>Mark Job Complete</span> <loader></loader>
         </button>
 
-        <button v-if="isMyJob && canArchiveJob" @click="confirmPopupShow = true; markJobArchive" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
+        <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
             <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
         </button>
 
         <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-        <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="confirmPopupShow = true;" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
+        <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
 
         <button v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
@@ -314,6 +314,7 @@ id="mylightbox"
                 submitBidForm : false,
                 submitBidUrl : 'api/job-bid/',
                 submitFormData : '',
+                confirmPopupUrl : ''
             }
         },
         computed : {
@@ -346,14 +347,14 @@ id="mylightbox"
                 return data;
             },            
             canInitiateJob(){
-                if(Object.keys(this.record).length){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'pending';
+                if(Object.keys(this.record).length && this.record.my_bid){
+                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'pending' && ( this.record.my_bid.id == this.record.awardedBid.id);
                 }
                 return false;
             },
             canArchiveBid(){
-                if(Object.keys(this.record) && this.record.my_bid){
-                    return this.record.my_bid &&  !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id && this.record.status !== 'awarded');
+                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
+                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id) || ( this.record.my_bid.id == this.record.awardedBid.id &&  this.record.status != 'awarded');
                 }
                 return false;
             },
@@ -422,9 +423,7 @@ id="mylightbox"
             },
             submitUrl(){
                 if(this.record){  
-                    this.formData.status = 'cancelled';
-                    this.formData.id = this.record.id;
-                    return 'api/job/' +this.record.id;
+                    return this.confirmPopupUrl;
                 }
             },
             jobCancelled(){
@@ -552,15 +551,17 @@ id="mylightbox"
                 this.submit = true;
             },
             markJobArchive(){
-                this.loading = true;
 
-                let data = {
-                    is_archived : 1,
-                    id : this.record ? this.record.id : ''
-                };
-                this.submitFormData = data;
+                this.formData.is_archived = 1;
+                this.formData.id = this.record.id;
+                this.confirmPopupUrl = 'api/job/' +this.record.id;
 
-                this.submit = true;
+            },
+            markJobCancel(){
+                
+                this.formData.status = 'cancelled';
+                this.formData.id = this.record.id;
+                this.confirmPopupUrl = 'api/job/' +this.record.id;
 
             },
             markInitiateJobByCustomer(){
@@ -590,16 +591,16 @@ id="mylightbox"
 
             },
             markArchiveBySp(){
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
+
+                this.confirmPopupUrl = 'api/job-bid/'+ this.myBidValue.id;
 
                 let data = {
-                    status : 'completed',
+                    is_archived : 1,
                     id : this.myBidValue ? this.myBidValue.id : '',
                     job_id : this.myBidValue ? this.myBidValue.job_id : ''
                 };
-                this.submitFormData = data;
-                this.submitBidForm = true;
+                this.formData = data;
+                this.confirmPopupShow = true;
 
             }
         },

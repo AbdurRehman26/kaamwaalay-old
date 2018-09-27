@@ -73,6 +73,7 @@ public function input($value='')
         'filter_by_active_bids',
         'filter_by_job_detail',
         'is_status',
+        'is_archived',
         'count_only',
         'is_awarded',
         'filter_by_tbd',
