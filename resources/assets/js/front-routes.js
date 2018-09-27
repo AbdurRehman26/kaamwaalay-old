@@ -231,7 +231,7 @@
     // Advice Center
 
     {
-        name: 'Advice Center',
+        name: 'Advice_Center',
         path: '/advice-center/:type?',
         props: true,
         meta: {
