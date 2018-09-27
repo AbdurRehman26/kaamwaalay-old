@@ -37,7 +37,6 @@
                 self.$http.get(url).then(response=>{
                     response = response.data.response;
                     this.records = response.data;
-                    console.log(response.data);
                 }).catch(error=>{
                 });
             },

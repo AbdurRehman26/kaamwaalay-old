@@ -35,7 +35,7 @@
 
 					<p class="member-since">
 						<i class="icon-calendar-daily"></i>
-						Post Date <strong>{{ record.formatted_created_at }}</strong>
+						Post Date <strong>{{ record.job.formatted_created_at }}</strong>
 					</p>
 				</div>
 
