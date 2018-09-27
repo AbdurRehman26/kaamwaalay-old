@@ -32,7 +32,7 @@
                     </div>	
                 </div>		
                 <div class="col-md-12 p-r-0 p-l-0">
-                    
+
                     <div class="job-details">
                         <div class="awarded alignawd">
                             <p class="awarded_to">
@@ -210,6 +210,10 @@
                 <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="confirmPopupShow = true;" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
 
+                <button v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <span><i class="icon-checkmark2"></i> Mark Job Done</span> <loader></loader>
+                </button>
+
                 <button v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                     <span>Initiate Job</span> <loader></loader>
                 </button>
@@ -254,9 +258,9 @@
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
 <vue-common-methods v-if="isMyJob" :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
-<vue-common-methods :updateForm="true" :submit="submitBidForm" @form-updated="formUpdated" :formData="submitFormData" :submitUrl="submitBidUrl" v-if="!isMyJob"></vue-common-methods>
+<vue-common-methods :updateForm="true" :submit="submitBidForm" @form-submitted="formUpdated" :formData="submitFormData" :submitUrl="submitBidUrl" v-if="!isMyJob"></vue-common-methods>
 
-<confirmation-popup @form-updated="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
+<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 
 
 </div>
@@ -347,6 +351,12 @@
                 }
                 return false;
             },
+            canMarkJobDone(){
+                if(Object.keys(this.record).length){
+                    return this.record.awardedBid && this.record.status == 'initiated' && this.record.awardedBid.status == 'initiated';
+                }
+                return false;
+            },
             canCancelJob(){
                 if(Object.keys(this.record).length){
                     return !this.record.awarded_to && this.record.status != 'completed' && this.record.status != 'cancelled';
@@ -414,7 +424,11 @@
     methods: {
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
-            console.log(1);
+
+            this.submit = false;
+            this.loading = false;
+            this.submitBidForm = false;
+
             this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
             this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
         },
@@ -430,6 +444,8 @@
         reSendCall(){
             let self = this;
             self.forceValue = true;
+            this.submitBidForm = false;
+
             self.jobBids = {
                 data : [],
                 pagination : false
@@ -447,6 +463,7 @@
                 data : [],
                 pagination : []
             };
+            this.submitBidForm = false;
 
             this.record = response.data;
 
@@ -546,6 +563,19 @@
             this.submitFormData = data;
             this.submitBidForm = true;
             
+        },
+        markDoneBySp(){
+            this.loading = true;
+            this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
+
+            let data = {
+                status : 'completed',
+                id : this.myBidValue ? this.myBidValue.id : '',
+                job_id : this.myBidValue ? this.myBidValue.job_id : ''
+            };
+            this.submitFormData = data;
+            this.submitBidForm = true;
+
         }
     },
     components: {
