@@ -23,7 +23,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
     public  function boot() {
 
         Job::created(function($item) {
-             UrgentJobCreate::dispatch($item)->onQueue('urgent-job'.config('app.queue_post_fix'));
+             UrgentJobCreate::dispatch($item)->onQueue(config('queue.pre_fix').'urgent-job');
         });
 
     }

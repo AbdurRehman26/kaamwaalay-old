@@ -235,6 +235,5 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-   'app_name'=> env('APP_NAME'),
-   'queue_post_fix'=>env('QUEUE_POST_FIX', '')
+   'app_name'=> env('APP_NAME')
 ];

@@ -11,6 +11,7 @@ use App\Events\NewPasswordSet;
 use App\Data\Models\Role;
 use Illuminate\Validation\Rule;
 use Validator;
+use App\Helper\Helper;
 
 class UserController extends ApiResourceController
 {
@@ -341,20 +342,26 @@ public function messages($value = '')
 
     return !empty($messages) ? $messages : [];
 }
- public function getUserNotification()
+ public function getUserNotification(Request $request)
 {
-
-    $data =  request()->user()->unreadNotifications;
+    $input = $request->only('page');
+    $notification = request()->user()->unreadNotifications();
+    $data =  $notification->paginate(10);
+    $models = $data->items();
+    $response = Helper::paginator($models, $data); 
+    $pagination =$response['pagination'];
+    unset($response['pagination']); 
     if($data->isNotEmpty()){
       $code = 200;
       $output = [
         'response' => [
-            'data' => $data,
-            'message' => 'success'
+            'data' => $response,
+            'message' => 'success',
+            'pagination' => $pagination,
         ]
       ];  
     }else{
-       $code = 406;
+       $code = 404;
        $output = [
         'response' => [
             'error' => 'no notification found'
@@ -367,5 +374,9 @@ public function messages($value = '')
 
     return response()->json($output, $code);
 
+}
+public function markRead(Request $request)
+{ 
+   return request()->user()->unreadNotifications->markAsRead();
 }
 }

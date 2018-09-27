@@ -36,7 +36,7 @@ class SendUrgentJob extends Notification implements ShouldBroadcast
     public function via($notifiable)
     {
         \Log::info('via');
-         return [OneSignalChannel::class, 'database','broadcast'];
+         return ['database', OneSignalChannel::class ,'broadcast'];
     }
 
     /**
@@ -48,10 +48,20 @@ class SendUrgentJob extends Notification implements ShouldBroadcast
      public function toOneSignal($notifiable)
     {
        \Log::info('toOneSignal');
+        $data = ['data'=>[
+                    'text' => $this->data->message,
+                    'image' => $this->data->from->profile_image,
+                    'link_text' => 'View Job',
+                    'route' => 'job.details',
+                    "id" => $this->data->id
+                    ],
+                'created_at' => $notifiable->created_at->toDateTimeString()
+                 ];
       //\Log::info($notifiable);
        return OneSignalMessage::create()
             ->subject("Urgent Job")
-            ->body($this->data->message);
+            ->body($this->data->message)
+            ->setData('data',$data);
     }
 
     /**
@@ -79,11 +89,14 @@ class SendUrgentJob extends Notification implements ShouldBroadcast
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'text' => $this->data->message,
-            'image' => $this->data->from->profile_image,
-            'link_text' => 'View Job',
-            'route' => 'job.details',
-            "id" => $this->data->id
+            'data'=>[
+                'text' => $this->data->message,
+                'image' => $this->data->from->profile_image,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id
+            ],
+            'created_at' => $notifiable->created_at->toDateTimeString(),
         ]);
     }
 }

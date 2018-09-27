@@ -52,7 +52,7 @@ class UrgentJobCreate implements ShouldQueue
                 if(!empty($selectedUsers)){
                     foreach ($selectedUsers as $selectedUser) {
                         $event->to = User::find($selectedUser->id);
-                        $event->message =  $event->to->first_name.' '. $event->to->last_name.' has invited you to bid on their job';
+                        $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
                         $event->to->notify(new SendUrgentJob($event));
                         //event(new UrgentJobCreated($data,$selectedUser->id));
                     }    
@@ -61,7 +61,7 @@ class UrgentJobCreate implements ShouldQueue
                  if(!empty($selectedUsers)){
                     foreach ($selectedUsers as $selectedUser) {
                        $event->to = User::find($selectedUser->id); 
-                       $event->message =  $event->to->first_name.' '. $event->to->last_name.' has invited you to bid on their job';
+                       $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
                        $event->to->notify(new SendUrgentJob($event));
                     }
                 }else{
@@ -69,14 +69,14 @@ class UrgentJobCreate implements ShouldQueue
                     if(!empty($selectedUsers)){
                         foreach ($selectedUsers as $selectedUser) {
                            $event->to = User::find($selectedUser->id);
-                           $event->message =  $event->to->first_name.' '. $event->to->last_name.' has invited you to bid on their job';
+                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }else{
                         $selectedUsers  =  $this->getUsersByRadius($currentZipCode,'',$data);
                         foreach ($selectedUsers as $selectedUser) {
                            $event->to = User::find($selectedUser->id); 
-                           $event->message =  $event->to->first_name.' '. $event->to->last_name.' has invited you to bid on their job';
+                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }    
