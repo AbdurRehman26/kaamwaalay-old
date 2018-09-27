@@ -1,10 +1,10 @@
 <template>
-	<div class="category-detail detail-page">
-		<div class="content" v-for="listing in joblisting">
+	<div class="category-detail detail-page" v-if="record">
+		<div class="content">
 			<div class="next-project grey-bg elementary-banner section-padd md border-bottom">
 				<div class="container element-index text-center md">
 					<div class="content-sec">
-						<div class="category-image" v-bind:style="{'background-image': 'url('+ getImage() +')',}"></div>
+						<div class="category-image" v-bind:style="{'background-image': 'url('+ getUserImage(record.user_detail) +')',}"></div>
 
 						<div class="category-content">
 							<h2>{{record.business_name}}</h2>
@@ -44,7 +44,7 @@
 								<div class="member-details">
 									<p class="location">
 										<i class="icon-location"></i> 
-										Location <strong>{{ record.user_detail.city }}</strong>
+										Location <strong>{{ getCity }}</strong>
 									</p>
 									<p class="member-since">										
 										Member since <strong>{{ record.formatted_created_at }}</strong>
@@ -59,18 +59,18 @@
 									<div class="text-notifer">
 										<h3>Feedback & Reviews</h3>	
 									</div>
-									<div class="chat-feedback-column" v-for="reviewer in listing.review_details">
-										<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ reviewer.latest_review_image +')',}"></div>
+									<div class="chat-feedback-column" v-for="reviewer in reviewerRecords" v-if="!noRecordFound">
+										<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getUserImage(reviewer.user_detail) +')',}"></div>
 										<div class="chat-feedback-message white-msg">
-											<p>{{reviewer.latest_review_description}}</p>
+											<p>{{reviewer.message}}</p>
 											<div class="feeback-detail">
 												<p class="feedback-personal-info">
-													<a href="javascript:void(0);">{{reviewer.latest_reviewer_name}}</a>
+													<a href="javascript:void(0);">{{reviewer.user_detail.first_name + " " +reviewer.user_detail.last_name}}</a>
 													posted on 
-													<strong>{{reviewer.latest_review_post_date}}</strong>
+													<strong>{{reviewer.formatted_created_at}}</strong>
 												</p>
 												<div class="ratings">
-													<star-rating :increment="0.5" :star-size="20" read-only :rating="[reviewer.list_ratings]" active-color="#8200ff"></star-rating>
+													<star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(reviewer.rating)" active-color="#8200ff"></star-rating>
 												</div>
 											</div>
 										</div>
@@ -87,7 +87,7 @@
 
 						<div class="col-md-3 p-l-0 p-r-0">
 
-							<div class="service-avaliable">
+							<div class="service-avaliable" v-if="!record.services_offered">
 								<h3 class="m-b-20">Services offered</h3>
 								<ul>
 									<li v-for="service in record.services_offered">
@@ -119,95 +119,14 @@
 				jobimage: '/images/front/profile-images/logoimage1.png',
 				reviewerimage: '/images/front/profile-images/personimage1.png',
 				record: [],
-				joblisting:[
-
-				{
-					job_title: 'M.D.S Joinery & Glazing',
-					job_feedback: 180,
-					job_perform: 208,
-					job_full_rating: 4,
-					job_location: 'New York, NY',
-					job_member_since: 'Jan, 2018',
-					job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote.",
-
-					servicesavaliable:[
-
-					{
-						title:'General carpentry',
-					},
-
-					{
-						title:'Furniture',
-					},
-
-					{
-						title:'Glazing Installation',
-					},
-
-					{
-						title:'Wooden deck repair',
-					},	    			    			    		
-
-					],
-					review_details:[
-
-					{
-
-						latest_review_image: '/images/front/profile-images/personimage1.png',
-						latest_review_description: 'Matt installed a new fence at our school and I am more than pleased, he was punctual, polite and did the work quickly and I would offer him other work without hesitation.',
-						list_ratings: 5,
-						latest_reviewer_name: 'Lauren Gomez',
-						latest_review_post_date: 'August, 2018',
-					},
-
-					{
-
-						latest_review_image: '/images/front/profile-images/personimage2.png',
-						latest_review_description: 'Matt did a great job. Took him about 10 minutes to get the door down to size and re-hang it. Room looks a lot better now. Thank you!',
-						list_ratings: 4,
-						latest_reviewer_name: 'Paul Payne',
-						latest_review_post_date: 'August, 2018',
-					},
-
-					{
-
-						latest_review_image: '/images/front/profile-images/personimage3.png',
-						latest_review_description: 'Matt came exactly when he said, fixed the problem with my window with no fuss and at a good price. Very good bloke and would highly recommend!',
-						list_ratings: 3,
-						latest_reviewer_name: 'William Willis',
-						latest_review_post_date: 'July, 2018',
-					},
-
-					{
-
-						latest_review_image: '/images/front/profile-images/personimage4.png',
-						latest_review_description: 'Matt did an amazing job.I was happy with every part of the service he provided. He turned up at the agreed time for the estimate and returned promptly at the agreed time and date to complete the job, which was very affordable.',
-						list_ratings: 4,
-						latest_reviewer_name: 'Brian Howell',
-						latest_review_post_date: 'June, 2018',
-					},
-
-					{
-
-						latest_review_image: '/images/front/profile-images/personimage5.png',
-						latest_review_description: 'I would highly recommend Matt. He fitted a loft hatch and ladder for us, fitted new handles and locks to our windows and also child safety catches to all our windows upstairs. He was very professional and punctual and we were happy with the work undertaken, which he did very quickly.',
-						list_ratings: 5,
-						latest_reviewer_name: 'Timothy Schultz',
-						latest_review_post_date: 'June, 2018',
-					},	    			    			    			    		
-
-					]
-
-
-				},
-
-
-
-				],
-
+				noRecordFound: false,
 			}
 		},
-
+		computed: {
+			getCity() {
+				return this.record.user_detail? this.record.user_detail.city : '';
+			}
+		},
 		methods: {
 			getReviewerRecords(response){
 	            let self = this;
@@ -216,12 +135,11 @@
 			    for (var i = 0 ; i < len; i++) {
 			        self.reviewerRecords.push( response.data[i] ) ;
 			    }
-	            this.$emit("recordCount", response.pagination? response.pagination.total : 0);
 	            self.noRecordFound = response.noRecordFound;
 	            self.pagination = response.pagination;
 	        },
-			getImage(img) {
-                return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
+			getUserImage(user) {
+                return user? user.profileImage : 'images/dummy/image-placeholder.jpg';
             },
 			AddCustomer() {
 				this.customer = true;
@@ -246,7 +164,7 @@
 				this.$http.get(serviceProviderUrl).then(response => {
 					response = response.data.response;
 					self.record = response.data;
-
+					self.reviewUrl = 'api/user-rating?pagination=true&user_id=' + self.record.user_id;
 				}).catch(error=>{
 					self.pagination = false;
 					self.btnLoading = false;
@@ -258,6 +176,7 @@
 		},
 
 		mounted(){
+			window.scrollTo(0, 0);
 			this.getServiceProvider();
 		}
 

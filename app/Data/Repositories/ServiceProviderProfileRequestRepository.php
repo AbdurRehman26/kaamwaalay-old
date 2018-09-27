@@ -109,7 +109,10 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                 'services', function ($join) {
                     $join->on('services.id', '=', 'service_provider_services.service_id');
                 }
-            )->get();
+            )
+            ->whereNotNull('services.parent_id')
+            ->pluck('services.id', 'services.title')
+            ->toArray();
             
             return $model;
         }

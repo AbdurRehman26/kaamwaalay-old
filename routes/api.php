@@ -52,3 +52,7 @@ Route::resource('state', 'Api\V1\StateController')->only([
 Route::resource('testimonial', 'Api\V1\TestimonialController')->only([
     'index', 'show',
 ]);
+
+Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
+    'edit','create','destory'
+]);

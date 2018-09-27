@@ -43,6 +43,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
     {
         $data = parent::findById($id, $refresh, $details, $encode);
         $data->rated_by_name = '';
+        $data->user_detail = app('UserRepository')->findById($data->rated_by);
         if($data && $data->rated_by) {
             $userData = $this->userRepo->findById($data->rated_by);
             if($userData) {
