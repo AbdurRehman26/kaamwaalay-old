@@ -11,10 +11,10 @@ class JobBidController extends ApiResourceController
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -34,12 +34,16 @@ class JobBidController extends ApiResourceController
 
     if($value == 'update'){
 
-        $rules['job_id'] = [
-            'required',
-            Rule::unique('job_bids')->where(function ($query) {
-                $query->where('is_awarded' , '=', 1);
-            }),
-        ];
+        if(!empty($this->input('update')['is_awarded']) && $this->input('update')['is_awarded']){
+
+            $rules['job_id'] = [
+                'required',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('is_awarded' , '=', 1);
+                }),
+            ];
+
+        }
 
     }
     

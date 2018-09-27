@@ -96,7 +96,7 @@
                         this.records = [];
                         this.loading = true;
 
-                        this.url = 'api/job?pagination=true&status=in_bidding&details["profile_data"]=true&time='+dateNow;
+                        this.url = 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true&time='+dateNow;
 
                         if(this.searchValue){
                             this.url += '&filter_by_service='+this.searchValue.id;
