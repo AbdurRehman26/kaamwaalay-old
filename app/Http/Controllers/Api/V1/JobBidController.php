@@ -87,17 +87,18 @@ public function input($value='')
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;
-
     }
 
     if(!empty($input['is_tbd'])){
         $input['amount'] = null;
         $input['is_visit_required'] = 0;
+        unset($input['preferred_date'] , $input['preferred_time']);
     }
 
     if(!empty($input['amount'])){
         $input['is_visit_required'] = 0;
         $input['is_tbd'] = 0;
+        unset($input['preferred_date'] , $input['preferred_time']);
     }
 
 

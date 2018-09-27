@@ -249,7 +249,7 @@
                     this.submitFormData.preferred_date = '';
                     this.submitFormData.preferred_time = '';
                     this.submitFormData.is_visit_required = 0;                    
-                    this.bidType = 'visit_required';
+                    this.bidType = 'amount_value';
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
