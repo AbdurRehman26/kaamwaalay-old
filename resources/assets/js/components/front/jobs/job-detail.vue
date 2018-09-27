@@ -194,10 +194,9 @@
                                         Write Review
                                     </a>
 
-
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
 
-                                    <a v-if="(isMyJob || canChat)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatBox(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -238,10 +237,8 @@
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
-
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
-
-                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
+                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
                 
                 </div>
 
@@ -256,7 +253,7 @@
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
+<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"></chat-panel>           
 
 </div>
 
@@ -311,11 +308,12 @@
                 errorMessage: '',
                 successMessage: '',
                 showBidPopup : false,
-                showChatPopup : false,
+                showChat : false,
                 confirmPopupShow : false,
                 optionsset : {
                     closeText : 'X'
                 },                
+                jobMessageData: {},
                 formData : {
 
                 },                                
@@ -421,6 +419,20 @@
         }
     },
     methods: {
+        closeChatBox() {
+            this.showChat = false;
+        },
+        showChatBox(bid) {
+            this.jobMessageData = {
+                text: '',
+                job_id: bid.job_id,
+                reciever_id: bid.service_provider.user_id,
+                job_bid_id: bid.id,
+                sender_detail: bid.service_provider.user_detail,
+                business_name: bid.service_provider.business_name,
+            };
+            this.showChat = true;
+        },
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
             console.log(1);
@@ -458,7 +470,7 @@
             };
 
             this.record = response.data;
-
+            console.log(this.record, 88898);
             let user = JSON.parse(this.$store.getters.getAuthUser);
 
             if(this.record.user_id != user.id && this.record.my_bid){
@@ -550,6 +562,14 @@
     },
 
     mounted(){
+
+        // $('body').click((e) => {
+        //     var target = $(e.target);
+        //     alert(target.attr('class'));
+        //     if(target.is('div')) {
+        //         this.closeChatBox();
+        //     }
+        // });
     },
 
 }

@@ -5,6 +5,8 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobMessage;
+use App\Events\UserMessaged;
+use Carbon\Carbon;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
 {
@@ -41,11 +43,26 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
     {
         $input = $data;
 
-        $job = app('JobRepository')->findById($data['job_id']);
+        //$job = app('JobRepository')->findById($data['job_id']);
 
-        $input['reciever_id'] = $job->user_id;
+        //$input['reciever_id'] = $job->user_id;
 
-        return parent::create($input);
+        if(isset($input['trigger_online_status'])) {
+            UserMessaged::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
+            return ['user_is_online' => $input['trigger_online_status']];
+        }
+        $message = $input['text'];
+        $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
+        $containsEmail = preg_match_all("/\S+@\S+\.\S+/i", $message);
+        $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
+        $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road))/i", $message);
+
+        if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
+            return "error";
+        }
+        $message = parent::create($input);
+        UserMessaged::dispatch($message);
+        return $message;
     }
 
 
@@ -53,7 +70,6 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
     {
 
         $this->builder = $this->model->orderBy('id', 'desc');
-
         if(empty($input['job_bid_id'])) {
             return false;
         }
@@ -64,7 +80,18 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         return $data;
 
     }
+public function findById($id, $refresh = false, $details = false, $encode = true)
+{
+    $data = parent::findById($id, $refresh, $details, $encode);
 
+    $data->user = app('UserRepository')->findById($data->sender_id);
+
+    if($data) {
+        $data->formatted_created_at = Carbon::parse($data->created_at)->diffForHumans();
+    }
+
+    return $data;
+}
     /**
 * This method will fetch single model by attribute
 * and will return output back to client as json
