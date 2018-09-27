@@ -8,7 +8,7 @@
                     <i @click="onHidden" class="icon-close2"></i>
 		    	</div>
                 <div class="category-search-field">
-                    <h5>What do you need general {{selectedValue ? selectedValue.title : ''}}?</h5>
+                    <h5>What do you need {{selectedValue ? selectedValue.title : ''}} service?</h5>
                     <div class="zip-code-field">
                         <i class="icon-location"></i>
                         <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">

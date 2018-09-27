@@ -4,10 +4,23 @@
                 <div class="content-sec">
                     <h1>The better way to find your next project.</h1>
                     <p>A proven source of genuine enquiries for quality service providers.</p>
-                    <a href="/sign-up" class="btn btn-primary">Get Started</a>
+                    <a @click="onSignup" href="javascript:void(0);" class="btn btn-primary">Get Started</a>
                 </div>
         </div>
         <span class="splash-design md d-1 top-left"></span>
         <span class="splash-design d-5 bottom-right lg"></span>
     </div>
 </template>
+<script>
+    export default {
+        data () {
+            return {
+            }
+        },
+        methods: {
+            onSignup() {
+                this.$emit('onSignup');
+            }
+        },
+    }
+</script>

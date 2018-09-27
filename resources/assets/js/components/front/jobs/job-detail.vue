@@ -195,8 +195,7 @@
                                     </a>
 
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="showChatBox(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
                                 </div>
                             </div>
@@ -237,8 +236,9 @@
                     <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
-                    <a v-if="!isMyJob && canChat && !jobCancelled && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
-                    <a v-if="!jobAwarded && myBidValue && visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
+                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+
+                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
                 
                 </div>
 
@@ -252,8 +252,9 @@
 
 <visit-request-popup @HideModalValue="HideModal" :showModalProp="visitjob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-<post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"></chat-panel>           
+
+<post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
+<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
 </div>
 
@@ -315,8 +316,9 @@
                 },                
                 jobMessageData: {},
                 formData : {
-
                 },                                
+                strict: false,
+                disabledChat: false,                      
             }
         },
         computed : {
@@ -419,10 +421,20 @@
         }
     },
     methods: {
+
+        checkStatus(bid) {
+            if(this.record.status == 'in_bidding') {
+                return this.showChatBox(bid, true, false);
+            }else if(this.record.status == 'cancelled' || this.record.status == 'archived' || this.record.status == 'completed'){
+                return this.showChatBox(bid, true, true);
+            }else {
+                return this.showChatBox(bid, false, false);
+            }
+        },
         closeChatBox() {
             this.showChat = false;
         },
-        showChatBox(bid) {
+        showChatBox(bid, strictChat = false, disabled = false) {
             this.jobMessageData = {
                 text: '',
                 job_id: bid.job_id,
@@ -432,6 +444,8 @@
                 business_name: bid.service_provider.business_name,
             };
             this.showChat = true;
+            this.strict = strictChat;
+            this.disabledChat = disabled;
         },
         formUpdated(){
             let newDate  = new Date().getMilliseconds();

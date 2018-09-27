@@ -97,6 +97,7 @@
 </template>
 <script>
     export default {
+      props: ['isPro'],
       data () {
          remind: null;
          return {
@@ -121,7 +122,10 @@
         }
         },
 mounted() {
-    this.$auth.options.loginUrl = '/api/auth/login'
+    this.$auth.options.loginUrl = '/api/auth/login';
+    if(typeof(this.isPro) != "undefined") {
+      this.type = 'provider';
+    }
 },
 methods:{
     switchType: function(type) {

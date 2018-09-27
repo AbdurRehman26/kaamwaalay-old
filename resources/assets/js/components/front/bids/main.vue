@@ -38,7 +38,7 @@
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
             <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
-            <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"></chat-panel>  
+            <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat" :strict="strict" :disabled="disabledChat"></chat-panel>  
 
         </div>
         <profile-not-approved v-if="!profileRejected && !profileInComplete && !profileApproved && loadingCompleted"></profile-not-approved>
@@ -75,6 +75,8 @@
                 profileValue : '',
                 showChat : false,
                 jobMessageData: {},
+                strict: false,
+                disabledChat: false,  
             }
         },
 
@@ -90,7 +92,7 @@
             closeChatBox() {
                 this.showChat = false;
             },
-            showChatBox(record) {
+            showChatBox(record, strictChat = false, disabled = false) {
                 this.closeChatBox();
                 this.jobMessageData = {
                     text: '',
@@ -102,6 +104,9 @@
                 };
                 this.showChat = false;
                 this.showChat = true;
+                this.strict = strictChat;
+                this.disabledChat = disabled;
+
             },
             setInvitationCount(count) {
                 this.invitationCount = count;

@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SupportInquiryTableSeeder::class);*/
 
+
         \Artisan::call('passport:install');
         \Artisan::call('cache:clear');
     }
