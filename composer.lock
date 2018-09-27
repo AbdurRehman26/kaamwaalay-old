@@ -4,8 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "6559799a4e49b5b355b43c26b6c34f06",
+=======
+    "content-hash": "799783f318bbbdd77a156468a64a3a8f",
+>>>>>>> 705fa21312a97f57cceb22198f54436c633e9b2f
     "packages": [
+        {
+            "name": "berkayk/onesignal-laravel",
+            "version": "0.9.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/berkayk/laravel-onesignal.git",
+                "reference": "543f042a845569e26680b7204076240c8f61785a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/berkayk/laravel-onesignal/zipball/543f042a845569e26680b7204076240c8f61785a",
+                "reference": "543f042a845569e26680b7204076240c8f61785a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "illuminate/support": "4.*|5.*",
+                "php": ">=5.4.0",
+                "symfony/psr-http-message-bridge": "1.*"
+            },
+            "require-dev": {
+                "vlucas/phpdotenv": "^2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Berkayk\\OneSignal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maykonn Welington Candido",
+                    "email": "maykonn@outlook.com"
+                },
+                {
+                    "name": "Berkay Kaya",
+                    "email": "berkayk@gmail.com",
+                    "homepage": "http://berkaykaya.com"
+                }
+            ],
+            "description": "OneSignal Push Wrapper Laravel",
+            "keywords": [
+                "WebPush",
+                "laravel",
+                "laravel 5",
+                "onesignal",
+                "push"
+            ],
+            "time": "2017-09-22T09:52:00+00:00"
+        },
         {
             "name": "cygnis-php/abstraction",
             "version": "dev-master",
@@ -1125,6 +1183,7 @@
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "jenssegers/mongodb",
             "version": "v3.4.2",
             "source": {
@@ -1155,19 +1214,53 @@
             "suggest": {
                 "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
                 "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
+=======
+            "name": "laravel-notification-channels/onesignal",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-notification-channels/onesignal.git",
+                "reference": "aaae22ff27a8009ffe302105691b90f962ace5db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-notification-channels/onesignal/zipball/aaae22ff27a8009ffe302105691b90f962ace5db",
+                "reference": "aaae22ff27a8009ffe302105691b90f962ace5db",
+                "shasum": ""
+            },
+            "require": {
+                "berkayk/onesignal-laravel": "^0.9.3",
+                "illuminate/notifications": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "^6.4"
+>>>>>>> 705fa21312a97f57cceb22198f54436c633e9b2f
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
+<<<<<<< HEAD
                         "Jenssegers\\Mongodb\\MongodbServiceProvider",
                         "Jenssegers\\Mongodb\\MongodbQueueServiceProvider"
+=======
+                        "NotificationChannels\\OneSignal\\OneSignalServiceProvider"
+>>>>>>> 705fa21312a97f57cceb22198f54436c633e9b2f
                     ]
                 }
             },
             "autoload": {
+<<<<<<< HEAD
                 "psr-0": {
                     "Jenssegers\\Mongodb": "src/"
+=======
+                "psr-4": {
+                    "NotificationChannels\\OneSignal\\": "src"
+>>>>>>> 705fa21312a97f57cceb22198f54436c633e9b2f
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1176,6 +1269,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
                     "name": "Jens Segers",
                     "homepage": "https://jenssegers.com"
                 }
@@ -1192,6 +1286,31 @@
                 "mongodb"
             ],
             "time": "2018-04-25T06:38:53+00:00"
+=======
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be"
+                },
+                {
+                    "name": "Marcel Pociot",
+                    "email": "hello@marcelpociot.com",
+                    "homepage": "http://marcelpociot.com"
+                },
+                {
+                    "name": "Lukas Kämmerling",
+                    "email": "kontakt@lukas-kaemmerling.de",
+                    "homepage": "https://lukas-kaemmerling.de"
+                },
+                {
+                    "name": "David Llop",
+                    "email": "hello@davidllop.com",
+                    "homepage": "http://davidllop.com"
+                }
+            ],
+            "description": "OneSignal Notifications driver",
+            "homepage": "https://github.com/laravel-notification-channels/onesignal",
+            "time": "2018-03-09T07:12:22+00:00"
+>>>>>>> 705fa21312a97f57cceb22198f54436c633e9b2f
         },
         {
             "name": "laravel/cashier",

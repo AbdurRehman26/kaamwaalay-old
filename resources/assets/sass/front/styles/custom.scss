@@ -1422,7 +1422,8 @@ button.sl-close {
 
 .custom-multi{
     &.category-detail{
-        width: calc(100% - 20%);        
+        /* width: calc(100% - 20%); */
+        width: calc(100% - 25%);        
     }
 }
 

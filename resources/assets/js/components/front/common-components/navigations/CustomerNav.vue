@@ -8,8 +8,9 @@
             <li>
 
                 <div class="user-login-detail float-left pointer" @click="changePassword">
-                    <span class="user-img" @click="ShowModalValue = true;">
-                        <img :src="imageValue" alt="">
+                    <span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">                        
+                    </span>
+                    <span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">                        
                     </span>
                     <p class="username">{{fullName}}</p>
                 </div>
