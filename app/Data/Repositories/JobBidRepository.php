@@ -319,7 +319,7 @@ public function update(array $data = [])
     $data = parent::update($data);
 
 
-    if(!empty($status)){
+    if($data && !empty($status)){
         $updateData = ['id' => $data->job_id];
         if($status == 'initiated'){
 
