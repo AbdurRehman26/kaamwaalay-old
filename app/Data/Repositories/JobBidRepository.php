@@ -315,8 +315,7 @@ public function update(array $data = [])
 {
     unset($data['user_id']);
 
-    $status = $data['status'];
-
+    $status = !empty($data['status']) ? $data['status'] : null;
     $data = parent::update($data);
 
 
