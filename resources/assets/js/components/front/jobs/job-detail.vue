@@ -114,7 +114,7 @@ id="mylightbox"
 
 <div class="jobs-post-files" v-if="record.videos">
     <h3>Related Videos</h3>
-    <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 
@@ -217,10 +217,6 @@ id="mylightbox"
 
 
 
-        <a  href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
-            Archive
-        </a>
-
 
 
         <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
@@ -232,6 +228,10 @@ id="mylightbox"
 
 
         <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
+
+        <a  href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+            Archive
+        </a>
 
     </div>
 
