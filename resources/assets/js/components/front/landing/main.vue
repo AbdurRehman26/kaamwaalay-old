@@ -104,13 +104,13 @@
         </div>
 
         <!--testimonial-section-->
-        <div class="section section-grey">
+        <div class="section section-grey" v-show="isSuccessStory">
             <div class="container">
                 <div class="section-title">
                     <h2 class="btm-space">What our customers are saying</h2>
                     <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
                 </div>
-                <testmonial-sec></testmonial-sec>
+                <testmonial-sec @onExist="onSuccessStoryExist" :byRole="3"></testmonial-sec>
             </div>
         </div>
         <!-- -->
@@ -152,6 +152,7 @@
                 options: [],
                 zipCode: '',
                 errorMessage: '',
+                isSuccessStory: false,
             }
         },
         mounted(){
@@ -185,6 +186,9 @@
             }
         },
         methods: {
+            onSuccessStoryExist(val) {
+                this.isSuccessStory = val;
+            },
             onTouch () {
                 this.isTouched = true
             },

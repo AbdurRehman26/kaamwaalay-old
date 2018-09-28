@@ -20,6 +20,7 @@
 </template>
 <script>
     export default {
+        props: ['byRole'],
         data () {
             return {
                 url: 'api/testimonial',
@@ -32,7 +33,7 @@
         methods: {
             getTopTestimonials() {
                 let url = this.url;
-                url = url + '?filter_by_count=2&filter_by_role=2'
+                url = url + '?filter_by_count=2&filter_by_role=' + this.byRole;
                 this.$http.get(url).then( (response) =>{
                     response = response.data.response;
                     this.records = response.data;
