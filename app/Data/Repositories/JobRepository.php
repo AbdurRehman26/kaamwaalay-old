@@ -183,7 +183,14 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                     
                     if($data->status == 'completed') {
-                        $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
+
+                        $criteria = ['job_id' => $data->id];
+
+                        $criteria['rated_by'] = $data->user_id; 
+
+                        $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
+                    
+
                     }
 
 
@@ -195,6 +202,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     if($currentUser->role_id == Role::SERVICE_PROVIDER){
                         $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
                         $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+
+                        $criteria['user_id'] = $data->user_id; 
+                        $criteria['rated_by'] = $currentUser->id; 
+
+                        $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
+                        
                     }
 
                     $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
