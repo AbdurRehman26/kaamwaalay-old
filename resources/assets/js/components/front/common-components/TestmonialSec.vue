@@ -31,12 +31,12 @@
         },
         methods: {
             getTopTestimonials() {
-                let self = this;
                 let url = this.url;
                 url = url + '?filter_by_count=2&filter_by_role=2'
-                self.$http.get(url).then(response=>{
+                this.$http.get(url).then( (response) =>{
                     response = response.data.response;
                     this.records = response.data;
+                    this.$emit('onExist', response.data.length);
                 }).catch(error=>{
                 });
             },

@@ -156,13 +156,13 @@
 		<!-- Ready To Meet section end-->
 
 		<!-- Sucess Stories section start-->
-		<div class="next-project section-padd grey-bg">
+		<div class="next-project section-padd grey-bg" v-show="isSuccessStory">
 			<div class="container">
 					<div class="section-title">
 						<h2>Success Stories</h2>
 						<p>Professional service marketplace has helped thousands of service providers around US.</p>
 					</div>
-					<testmonial-sec></testmonial-sec>
+					<testmonial-sec @onExist="onSuccessStoryExist"></testmonial-sec>
 			</div>	
 		</div>
 		<!-- Sucess Stories section end-->	
@@ -178,10 +178,14 @@
 export default {
   data () {
     return {
-    	bannerimage: '/images/front/join-as-pro/banner.jpg',
+    		bannerimage: '/images/front/join-as-pro/banner.jpg',
+    		isSuccessStory: false,
     	}
   	},
     methods: {
+    	onSuccessStoryExist(val) {
+    		this.isSuccessStory = val;
+    	},
     	onSignup() {
 			this.$router.push({ name: 'sign-up', params: { isPro: 'join-as-pro' }});
     	}
