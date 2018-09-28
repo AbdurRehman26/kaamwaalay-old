@@ -5,22 +5,22 @@
                 <h2>My Bids</h2>
                 <div class="bidding-navigation">
                     <ul>
-                        <li @click="bid_selection = 'invitebid'" :class="{ active: bid_selection === 'invitebid' }">
+                        <li @click.prevent="onChangeTab('invitebid')" :class="{ active: bid_selection === 'invitebid' }">
                             <p>INVITATIONS <span>{{invitationCount? "(" + invitationCount + ")" : ""}}</span></p>						
                         </li>
-                        <li @click="bid_selection = 'activebid'" :class="{ active: bid_selection === 'activebid' }">
+                        <li @click.prevent="onChangeTab('activebid')" :class="{ active: bid_selection === 'activebid' }">
                             <p>ACTIVE BIDS <span>{{activeBidCount? "(" + activeBidCount + ")" : ""}}</span></p>							
                         </li>
-                        <li @click="bid_selection = 'awardedbid'" :class="{ active: bid_selection === 'awardedbid' }">
+                        <li @click.prevent="onChangeTab('awardedbid')" :class="{ active: bid_selection === 'awardedbid' }">
                             <p>AWARDED <span>{{awardedCount? "(" + awardedCount + ")" : ""}}</span></p>						
                         </li>
-                        <li @click="bid_selection = 'completedbid'" :class="{ active: bid_selection === 'completedbid' }">
+                        <li @click.prevent="onChangeTab('completedbid')" :class="{ active: bid_selection === 'completedbid' }">
                             <p>COMPLETED <span>{{completedCount? "(" + completedCount + ")" : ""}}</span></p>                           
                         </li>
-                        <li @click="bid_selection = 'cancelled'" :class="{ active: bid_selection === 'cancelled' }">
+                        <li @click.prevent="onChangeTab('cancelled')" :class="{ active: bid_selection === 'cancelled' }">
                             <p>CANCELLED <span>{{cancelledCount? "(" + cancelledCount + ")" : ""}}</span></p>							
                         </li>
-                        <li @click="bid_selection = 'archivedbid'" :class="{ active: bid_selection === 'archivedbid' }">
+                        <li @click.prevent="onChangeTab('archivedbid')" :class="{ active: bid_selection === 'archivedbid' }">
                             <p>ARCHIVED <span>{{archivedCount? "(" + archivedCount + ")" : ""}}</span></p>					
                         </li>
                     </ul>
@@ -28,12 +28,17 @@
             </div>
 
             <div class="job-post-container section-padd sm">
-                <bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation>
-                <bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount" :show="(bid_selection == 'completedbid')" :count="completedCount"></bid-completed>
+                <!-- <bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation> -->
+                <div class="container md" v-if="!noRecordFound">
+                    <jobs-list :records="records" @chatMessage="showChatBox" :tabType="tabType"></jobs-list>
+                </div>
+                <no-record-found v-if="noRecordFound"></no-record-found>
+                <vue-common-methods :url="bidUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
+                <!-- <bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount" :show="(bid_selection == 'completedbid')" :count="completedCount"></bid-completed>
                 <bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount" :show="(bid_selection == 'awardedbid')" :count="awardedCount"></bid-awarded>
                 <bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount" :show="(bid_selection == 'archivedbid')" :count="archivedCount"></bid-archived>
                 <bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" :show="(bid_selection == 'activebid')" :count="activeBidCount"></bid-active>
-                <bid-cancelled @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'cancelled'" @recordCount="setCancelledBidCount" :show="(bid_selection == 'cancelled')" :count="cancelledCount"></bid-cancelled>
+                <bid-cancelled @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'cancelled'" @recordCount="setCancelledBidCount" :show="(bid_selection == 'cancelled')" :count="cancelledCount"></bid-cancelled> -->
             </div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>
@@ -57,6 +62,12 @@
 
         data () {
             return {
+                tab: 'invitebid',
+                bidUrl: null,
+                tabType: 'invitebid',
+                records : [],
+                chat_message: true,
+                noRecordFound: false,   
                 bid_selection: '',
                 bidpopup: false,
                 isShowing:false,
@@ -81,26 +92,61 @@
         },
 
         methods: {
+            onChangeTab(val) {
+                this.bid_selection = val;
+                this.tab = val;
+                switch(val) {
+                    case 'invitebid':
+                        this.bidUrl = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_invitation=1&filter_by_archived=0&is_status=invited&filter_by_awarded=0&filter_by_tbd=0';
+                    break;
+                    case 'activebid':
+                        this.bidUrl = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=0&filter_by_active_bids=true';
+                    break;
+                    case 'awardedbid':
+                        this.bidUrl = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_awarded=1&filter_by_awarded_status=true';
+                    break;
+                    case 'completedbid':
+                        this.bidUrl = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=0&filter_by_status=completed&filter_by_awarded=1';
+                    break;
+                    case 'cancelled':
+                        this.bidUrl = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_status=cancelled&filter_by_archived=0';
+                    break;
+                    case 'archivedbid':
+                        this.bidUrl = 'api/job-bid?pagination=true&filter_by_job_detail=true&filter_by_archived=1';
+                    break;
+                }
+            },
             initializeAllBidCalls(){
                 this.getActiveBidsCount();
                 this.getAwardedBidsCount();
                 this.getCompletedBidsCount();
                 this.getArchivedBidsCount();
                 this.getCancelledBidsCount();
-                this.bid_selection = 'invitebid';
             },
             closeChatBox() {
                 this.showChat = false;
+            },
+
+            getProviderRecords(response){
+                let self = this;
+                self.loading = false;
+                let len = response.data.length;
+                for (var i = 0 ; i < len; i++) {
+                    self.records.push( response.data[i] ) ;
+                    
+                }
+                self.noRecordFound = response.noRecordFound;
+                self.pagination = response.pagination;
             },
             showChatBox(record, strictChat = false, disabled = false) {
                 this.closeChatBox();
                 this.jobMessageData = {
                     text: '',
-                    job_id: record.job_id,
-                    reciever_id: record.job.user_id,
-                    job_bid_id: record.id,
-                    sender_detail: record.job.user,
-                    business_name: record.job.title,
+                    job_id: record.id,
+                    reciever_id: record.user_id,
+                    job_bid_id: record.my_bid.id,
+                    sender_detail: record.user,
+                    business_name: record.title,
                 };
                 this.showChat = false;
                 this.showChat = true;
@@ -252,11 +298,15 @@
         },
 
         mounted(){
+            this.onChangeTab('invitebid');
         },
         watch:{
-            bid_selection: function (val){
+            bid_selection(val){
                 return this.val
             },
+            tab(val) {
+                this.records = [];
+            }
         }
 
     }
