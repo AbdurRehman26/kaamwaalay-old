@@ -234,6 +234,10 @@ button.sl-close {
     }
 }
 
+.bg-light-custom {
+    background-color: #f9f9f9 !important;
+}
+
 .custom-file{
     border-color: transparent !important;
     input {
@@ -1285,6 +1289,8 @@ button.sl-close {
             width: 80px;
             height: 80px;
             margin: auto;
+            overflow: hidden;
+            border-radius: 50%;            
         }
         .testmonial-name {
             text-align: center;
@@ -1419,6 +1425,23 @@ button.sl-close {
         /* width: calc(100% - 20%); */
         width: calc(100% - 25%);        
     }
+}
+
+.no-chat{
+    .alert{
+        p{
+            font-size: 12px;
+        }
+        i{
+            font-size: 24px;
+            top: 12px;
+        }
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    background-color: #e6e3e3 !important;
 }
 
 .expirychanges{

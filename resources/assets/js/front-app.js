@@ -131,6 +131,8 @@ const config = {
     events: 'input' 
 };
 Vue.use(VeeValidate,config);
+//require('./echo.js');
+
 
 const app = new Vue({
     el: '#app',
@@ -200,7 +202,6 @@ const app = new Vue({
         }
     }
 });
-
 
 // Laravel Echo 
 import Echo from 'laravel-echo'

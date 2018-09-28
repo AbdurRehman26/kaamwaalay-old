@@ -86,7 +86,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $totalFeedbackCount = app('UserRatingRepository')->getTotalFeedbackCriteria($avgCriteria, false);
             $data->total_feedback_count = $totalFeedbackCount;      
-
             $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
             $data->services_offered = $subServices;
@@ -119,7 +118,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
 
     public function findByAll($pagination = false,$perPage = 10, $data = []){
-        
 
         $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
         ->where('users.role_id', '=', Role::SERVICE_PROVIDER);
@@ -189,6 +187,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             ->orderBy('service_provider_profiles.is_featured', 'desc')
             ->orderBy('service_provider_profiles.is_verified', 'desc')
             ->orderByRaw('(count(jobs.user_id) * IFNULL(avg(user_ratings.rating) + 1, 1)) desc');
+
             
         }
         $this->builder = $this->builder->select('service_provider_profiles.*');

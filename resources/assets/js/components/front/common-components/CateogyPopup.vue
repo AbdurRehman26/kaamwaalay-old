@@ -2,13 +2,13 @@
 	<div class="popup categories-popup">
 		<b-modal id="" centered hide-header hide-footer  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
 		    	<div class="category-selected">
-                    <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue.images)+')'}">
+                    <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue)+')'}">
                     </div>
                     <h4>{{selectedValue ? selectedValue.title : ''}}</h4>
                     <i @click="onHidden" class="icon-close2"></i>
 		    	</div>
                 <div class="category-search-field">
-                    <h5>What do you need general {{selectedValue ? selectedValue.title : ''}}?</h5>
+                    <h5>What do you need {{selectedValue ? selectedValue.title : ''}} service?</h5>
                     <div class="zip-code-field">
                         <i class="icon-location"></i>
                         <input type="number" class="form-control lg" placeholder="Enter your zip code" v-model="zip" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">

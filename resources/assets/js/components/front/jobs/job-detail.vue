@@ -167,18 +167,13 @@ id="mylightbox"
 
                 <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                 @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
-
-
+                <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+                <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                 <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
                 <a v-if="!jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                     Write Review
                 </a>
-
-
-                <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-
-                <a v-if="(isMyJob || canChat)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
             </div>
         </div>
@@ -205,10 +200,12 @@ id="mylightbox"
         <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
             <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
         </button>
-
+        <a v-if="awardedToMe" class="btn btn-primary btn-outline">
+            <i class="icon-trophy"></i> Job Awarded
+        </a>
+        <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
         <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
         <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
-
 
         <button v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
             <span><i class="icon-checkmark2"></i> Mark Job Done</span> <loader></loader>
@@ -233,11 +230,6 @@ id="mylightbox"
             Modify Bid
         </a>   
 
-        <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-            <i class="icon-trophy"></i> Job Awarded
-        </a>
-
-        <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChatPopup = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
         <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -253,8 +245,9 @@ id="mylightbox"
 
 <visit-request-popup @bid-updated="reSendCall" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-<post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
-<chat-panel v-show="showChatPopup" @CloseDiscussion="showChatPopup = false;"></chat-panel>
+
+<post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
+<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
 </div>
 
@@ -300,14 +293,16 @@ id="mylightbox"
                 errorMessage: '',
                 successMessage: '',
                 showBidPopup : false,
-                showChatPopup : false,
+                showChat : false,
                 confirmPopupShow : false,
                 optionsset : {
                     closeText : 'X'
                 },                
+                jobMessageData: {},
                 formData : {
-
-                },                                
+                },                  
+                strict: false,
+                disabledChat: false,
                 requestUrl : 'api/job/'+this.$route.params.id,
                 requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
                 submit : false,
@@ -427,6 +422,43 @@ id="mylightbox"
                 }
             },
             jobCancelled(){
+               if(Object.keys(this.record).length){
+                return this.record.status == 'cancelled'
+            } 
+        }
+    },
+    methods: {
+
+        checkStatus(bid) {
+            if(this.record.status == 'in_bidding') {
+                return this.showChatBox(bid, true, false);
+            }else if(this.record.status == 'cancelled' || this.record.status == 'archived' || this.record.status == 'completed'){
+                return this.showChatBox(bid, true, true);
+            }else {
+                return this.showChatBox(bid, false, false);
+            }
+        },
+        closeChatBox() {
+            this.showChat = false;
+        },
+        showChatBox(bid, strictChat = false, disabled = false) {
+            this.jobMessageData = {
+                text: '',
+                job_id: bid.job_id,
+                reciever_id: bid.service_provider.user_id,
+                job_bid_id: bid.id,
+                sender_detail: bid.service_provider.user_detail,
+                business_name: bid.service_provider.business_name,
+            };
+            this.showChat = true;
+            this.strict = strictChat;
+            this.disabledChat = disabled;
+        },
+        formUpdated(){
+            let newDate  = new Date().getMilliseconds();
+            console.log(1);
+            this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
+            this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
                 if(Object.keys(this.record).length){
                     return this.record.status == 'cancelled'
                 } 
@@ -465,7 +497,8 @@ id="mylightbox"
                     self.loading = false;
                     self.forceValue = false;
                 }, 2000);
-
+                this.record = response.data;
+                let user = JSON.parse(this.$store.getters.getAuthUser);
             },
             getResponse(response){
                 this.showBidPopup = false;
@@ -608,7 +641,6 @@ id="mylightbox"
             StarRating,
             Lightbox
         },
-
         mounted(){
         },
 

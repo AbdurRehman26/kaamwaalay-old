@@ -77,7 +77,6 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
     ]);
-    
     Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
         'edit','create','destory'
     ]);

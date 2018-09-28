@@ -30,11 +30,11 @@
     		<p><strong>Browse topics for:</strong></p>
     		<div class="advice-tabs">
 
-    			<b-tabs>
+    			<b-tabs v-model="tabIndex">
 					<b-tab title="CUSTOMERS" @click="advice_center = 'customer'" :class="{ active: advice_center === 'customer' }">
 					</b-tab>
 
-					<b-tab title="SERVICE PROVIDER" @click="advice_center = 'service-provider'" :class="{ active: advice_center === 'service-provider' }">
+					<b-tab title="SERVICE PROVIDER" @click="advice_center = 'service-provider'" :class="{ active: advice_center == 'service-provider' }">
 					</b-tab>
 				</b-tabs>
 				
@@ -76,10 +76,13 @@
 
 <script>
 	export default {
+		props: ['type'],
 		data() {
 			return {
+				tabIndex: 0,
 				advice_center: 'customer',
 				bannerimage: '/images/front/explore/banner-bg/banner.jpg',
+				contentimage: '/images/front/explore/banner-bg/banner.jpg',
 				SupportReview: false,
 				
 				text1:"After posting your job, you'll receive bids from professionals ready to help. You can initiate chat with professionals to discuss further. We’ll let you know with text or email notifications whenever a service provider sends you a new message.",
@@ -89,6 +92,10 @@
 			}
 		},
 		mounted (){
+			window.scrollTo(0, 0);
+			if(typeof(this.type) != "undefined") {
+				this.tabIndex = this.type == 'service-provider'? 1 : 0;
+			}
 			this.message = this.text1 + '\n' + this.text2;
 		},
 		methods: {

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Events\UserMessaged;
+use App\Data\Models\JobMessage;
 Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
@@ -28,7 +29,6 @@ Route::get('/admin/password/set/{token}/{email}', function(){
 Route::get('/', function () {
     return view('layout');
 });
-
 
 /*Route::get('/{any}', function(){
     return view('layout');

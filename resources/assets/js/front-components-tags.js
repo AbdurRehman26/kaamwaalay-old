@@ -88,7 +88,6 @@ Vue.component('block-spinner', require('./components/admin/common-components/Blo
 
 
 Vue.component('file-upload-component', require('./components/admin/common-components/FileUpload.vue'));
-
 // stripe checkout component
 Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));
 Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));

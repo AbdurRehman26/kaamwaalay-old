@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 class RolesTableSeeder extends Seeder
 {
+
 /**
 * Run the database seeds.
 *
@@ -88,6 +89,8 @@ public function run()
                 "job.index",
                 "job.show",
                 "job.update",
+                "job-message.index",
+                "job-message.store",
                 "user.me",
                 "service-provider.approved-profile",
                 "user.update",
@@ -119,6 +122,8 @@ public function run()
                 "job.stats",
                 "job-bid.index",
                 "job-bid.store",
+                "job-message.index",
+                "job-message.store",
                 "job-bid.update",
                 "service.index",
                 "support-inquiry.store",

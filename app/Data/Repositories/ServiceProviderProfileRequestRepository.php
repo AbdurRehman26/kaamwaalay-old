@@ -111,7 +111,8 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                 }
             )
             ->whereNotNull('services.parent_id')
-            ->pluck('services.title', 'services.id')->toArray();
+            ->pluck('services.id', 'services.title')
+            ->toArray();
             
             return $model;
         }
