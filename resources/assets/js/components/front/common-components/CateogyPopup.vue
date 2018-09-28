@@ -2,7 +2,7 @@
 	<div class="popup categories-popup">
 		<b-modal id="" centered hide-header hide-footer  @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail" ok-only ok-title="Continue">
 		    	<div class="category-selected">
-                    <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue)+')'}">
+                    <div class="category-image-block" v-bind:style="{'background-image': 'url('+ getImage(selectedValue.images)+')'}">
                     </div>
                     <h4>{{selectedValue ? selectedValue.title : ''}}</h4>
                     <i @click="onHidden" class="icon-close2"></i>
