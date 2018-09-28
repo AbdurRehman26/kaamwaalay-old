@@ -13,6 +13,7 @@ use App\Data\Models\User;
 |
 */
 
+
 Broadcast::channel('Job-Messages.{job_bid_id}', function ($user, $job_bid_id) {
 	$user_id = User::where('id', '=', (int) $user->id)->where(function($query) {
         $query->where('role_id', '=', 2);
@@ -33,7 +34,6 @@ Broadcast::channel('Job-Messages.{job_bid_id}', function ($user, $job_bid_id) {
     // ->toArray();
     return ($user_id[0] == $service_provider->user_id || $user_id[0] == $customer->user_id);
 });
-Broadcast::channel('urgent-job-user.{sendTo}', function ($user,$sendTo) {
-
-    return true;
+Broadcast::channel('App.Data.Models.User.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
 });

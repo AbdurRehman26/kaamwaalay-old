@@ -235,5 +235,5 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-   'app_name'=> env('APP_NAME'),
+   'app_name'=> env('APP_NAME')
 ];
