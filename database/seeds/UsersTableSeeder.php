@@ -77,7 +77,7 @@ class UsersTableSeeder extends Seeder
 
         $data = [];
 
-        foreach (range(1, 150) as $index) {
+        foreach (range(1, 10) as $index) {
 
             $state_id = $states[array_rand($states)];
 
