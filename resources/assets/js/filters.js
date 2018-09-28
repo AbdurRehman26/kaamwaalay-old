@@ -163,6 +163,11 @@ Vue.filter('formatDate', function(value) {
         return moment(String(value)).format('MMMM DD, YYYY')
     }
 });
+Vue.filter('formatDateTime', function(value) {
+    if (value) {
+        return moment(String(value)).format('MMMM DD, YYYY HH:mm:ss A')
+    }
+});
 
 Vue.filter('fullName', function (value) {
     if(value){
