@@ -316,16 +316,29 @@ public function update(array $data = [])
 {
     unset($data['user_id']);
 
+    $status = !empty($data['status']) ? $data['status'] : null;
+    $status = !empty($data['is_awarded']) ? 'awarded' : null;
+
     $data = parent::update($data);
 
-    if(!empty($data->is_awarded)){
 
-        $updateData = ['id' => $data->job_id, 'status'=> 'awarded'];
+    if($data && !empty($status)){
+        $updateData = ['id' => $data->job_id];
+        if($status == 'initiated'){
+
+            $updateData['status'] = 'initiated';
+        }
+
+        if(!empty($status)){
+
+            $updateData['status'] = 'awarded';
+
+        }
 
         app('JobRepository')->update($updateData);
-
-        return $data;
     }
+
+
     return $data;
 }
 

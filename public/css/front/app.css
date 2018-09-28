@@ -12269,6 +12269,10 @@ body .form-group.is-invalid .form-control {
   background-position: 98% 53%;
 }
 
+body .form-group.is-invalid input.mx-input {
+  border: 1px solid #d9534f;
+}
+
 body .form-group.is-valid .form-control {
   border-color: #fff;
   -webkit-box-shadow: none;

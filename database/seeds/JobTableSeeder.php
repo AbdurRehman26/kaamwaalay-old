@@ -73,8 +73,6 @@ class JobTableSeeder extends Seeder
                     'preference' => $preference, 
                     'job_type' => $jobType[array_rand($jobType)],
                     'status' => $jobBiddingStatuses[array_rand($jobBiddingStatuses)],
-                    'min_amount' => $min_amount[array_rand($min_amount)],
-                    'max_amount' => $max_amount[array_rand($max_amount)],
                     'is_archived' => $isArchived,
                     'created_at' => $now,
                     'updated_at' => $now
