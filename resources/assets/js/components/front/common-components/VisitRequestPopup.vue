@@ -8,7 +8,7 @@
                 </div>
                 <div class="category-content-block">
 
-                    <h6 v-if="typeof(bid) !== 'undefined'">{{bid.service_provider.business_name}} Requested to visit your address to evaluate work before bidding.</h6>
+                    <h6 v-if="typeof(bid) !== 'undefined'">{{ bid ? bid.service_provider.business_name : ''}} Requested to visit your address to evaluate work before bidding.</h6>
 
                 </div>
             </div>

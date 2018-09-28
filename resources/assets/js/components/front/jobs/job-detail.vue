@@ -114,7 +114,7 @@ id="mylightbox"
 
 <div class="jobs-post-files" v-if="record.videos">
     <h3>Related Videos</h3>
-    <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 
@@ -217,10 +217,6 @@ id="mylightbox"
 
 
 
-        <a  href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
-            Archive
-        </a>
-
 
 
         <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
@@ -230,8 +226,16 @@ id="mylightbox"
             Modify Bid
         </a>   
 
+                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
+                        <i class="icon-trophy"></i> Job Awarded
+                    </a>
+                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
         <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
+
+        <a  href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+            Archive
+        </a>
 
     </div>
 
@@ -245,11 +249,12 @@ id="mylightbox"
 
 <visit-request-popup @bid-updated="reSendCall" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
-
-<post-bid-popup @HideModalValue="showBidPopup = false;" :showModalProp="showBidPopup"></post-bid-popup>
+<post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
 </div>
+
+
 
 
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
