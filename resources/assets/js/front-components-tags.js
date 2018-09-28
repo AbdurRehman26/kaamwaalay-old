@@ -93,3 +93,5 @@ Vue.component('card-element',require('./components/front/common-components/CardE
 Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));
 
 Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 
+Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue')); 
+Vue.component('job',require('./components/front/common-components/Job.vue')); 

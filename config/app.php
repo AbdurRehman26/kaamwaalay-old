@@ -182,7 +182,7 @@ return [
         App\Providers\UserRepositoryServiceProvider::class,
         App\Providers\ZipCodeRepositoryServiceProvider::class,
         App\Providers\SEOServiceProvider::class,
-        //NotificationChannels\OneSignal\OneSignalServiceProvider::class,
+        NotificationChannels\OneSignal\OneSignalServiceProvider::class,
         //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],  

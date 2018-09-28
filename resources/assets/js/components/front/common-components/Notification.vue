@@ -21,7 +21,7 @@
                     </li>  
 
                 </ul>
-                <vue-common-methods :infiniteLoad="infiniteLoad" @start-loading="loading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+                <vue-common-methods :infiniteLoad="infiniteLoad" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
                 <div v-show="noRecordFound">No record Found</div>
             </div>  
         </div>
@@ -32,7 +32,6 @@
 <script>
     export default{
         props: [
-        'show',
         'isShowTab'
         ],
         data () {
@@ -68,7 +67,7 @@
                     _.forEach(response.data, function(value, key) {
                         self.notificationData.push(value);
                     })
-                    this.notificationCount = response.pagination.total;
+                    this.notificationCount = response.pagination ? response.pagination.total : 0;
                     this.$parent.notificationCount = this.notificationCount;
                 }
             },
@@ -94,9 +93,7 @@
                 }).catch(error => {
 
                 });
-
             }
-
         },
          watch:{
             isShowTab(val){
@@ -106,7 +103,6 @@
                     this.$parent.notificationCount = "";
                 }
             },
-            
         }
 
     }

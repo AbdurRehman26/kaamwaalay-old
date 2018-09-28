@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobBidRepository;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class JobBidController extends ApiResourceController
 {
@@ -33,12 +34,16 @@ class JobBidController extends ApiResourceController
 
     if($value == 'update'){
 
-        $rules['job_id'] = [
-            'required',
-            Rule::unique('job_bids')->where(function ($query) {
-                $query->where('is_awarded' , '=', 1);
-            }),
-        ];
+        if(!empty($this->input('update')['is_awarded']) && $this->input('update')['is_awarded']){
+
+            $rules['job_id'] = [
+                'required',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('is_awarded' , '=', 1);
+                }),
+            ];
+
+        }
 
     }
     
@@ -68,6 +73,7 @@ public function input($value='')
         'filter_by_active_bids',
         'filter_by_job_detail',
         'is_status',
+        'is_archived',
         'count_only',
         'is_awarded',
         'filter_by_tbd',
@@ -82,17 +88,18 @@ public function input($value='')
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;
-
     }
 
     if(!empty($input['is_tbd'])){
         $input['amount'] = null;
         $input['is_visit_required'] = 0;
+        unset($input['preferred_date'] , $input['preferred_time']);
     }
 
     if(!empty($input['amount'])){
         $input['is_visit_required'] = 0;
         $input['is_tbd'] = 0;
+        unset($input['preferred_date'] , $input['preferred_time']);
     }
 
 
@@ -102,13 +109,18 @@ public function input($value='')
             $input['filter_by_status'], $input['filter_by_job_id'], $input['pagination']
         );
 
+        if(!empty($input['status']) && $input['status'] == 'rejected'){
+            $input['deleted_at'] = Carbon::now()->toDateTimeString();
+            $input['status'] = 'pending';
+        }
+
     }
 
     if($value == 'store'){
         unset($input['is_awarded']);
         
         $input['status'] = 'pending';
-    
+
     }
 
 

@@ -289,8 +289,31 @@ $nav-font:$font-bold;
     border-radius: 100%;
     vertical-align: middle;
     overflow: hidden;
-    background-color: $grey-medium;
+    background-size: cover;
+    background-color: transparent;
     margin-left: 3px;
+    position: relative;
+    border: 1px solid #E0E0E0;
+    background-position: 50%;
+    &.no-image{
+        position: relative;
+        &:after{
+            content: "\E90F";
+            font-family: 'icomoon';
+            left: 0;
+            right: 0;
+            display: block;
+            margin: auto;
+            color: #7d7d7d;
+            position: absolute;
+            top: -2px;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+        }
+    }
 }
 
 .notification-block{
