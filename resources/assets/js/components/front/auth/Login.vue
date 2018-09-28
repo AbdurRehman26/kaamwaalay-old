@@ -72,6 +72,7 @@ methods: {
       this.loading = true
       window.successMessage = ""
       let redirectUrl = this_.$store.getters.getRedirectUrl
+
       if(!this.$auth.isAuthenticated()){
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
@@ -89,10 +90,12 @@ methods: {
          }else{ 
              if(redirectUrl){
               if(redirectUrl == "Explore_Detail") {
-                this_.$router.push({ name: 'Explore'})
+                this_.$router.push({ name: 'Explore'});
+              }else if(redirectUrl == "job.create"){
+                this_.$router.push({ name: redirectUrl});
               }else {
-                this_.$router.push({ name: redirectUrl})
-              }
+                this_.$router.push({ name: 'main-page'});
+              } 
              }else{
               this_.$router.push({ name: 'my.jobs'})
              }
@@ -108,7 +111,6 @@ methods: {
 })
 }else{
     let user = JSON.parse(self.$store.getters.getAuthUser);
-
     setTimeout(function(){
         if(user.role_id == 2){
            if(response.data.response.data[0].is_profile_completed == 0 ){
