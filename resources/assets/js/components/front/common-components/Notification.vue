@@ -76,7 +76,6 @@
                 let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
                 self = this
                 window.Echo.private(channelName).notification((notification) => {
-                    console.log('notifications',notification)
                     self.notificationData.unshift(notification);
                     self.notificationCount += 1;
                     self.$parent.notificationCount = self.notificationCount;
