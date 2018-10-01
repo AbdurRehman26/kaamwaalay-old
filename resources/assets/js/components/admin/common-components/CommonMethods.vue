@@ -64,7 +64,6 @@
                     return false;
                 }
 
-
                 this.callInProgress = true;
 
                 self.$http.get(url).then(response=>{
