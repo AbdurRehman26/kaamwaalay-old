@@ -4,8 +4,9 @@
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
             <div>
                 <p>Write review and provide your feedback on 
-                    <strong>{{job ? job.title : ''}}</strong>  performed by 
-                    <strong>{{job && job.awarded_to &&  job.awarded_to.business_details ? job.awarded_to.business_details.business_name : ''}}</strong>
+                    <strong>{{job ? job.title : ''}}</strong> {{type}}  <span v-if="!type">performed</span> <span v-if="type">posted</span> by 
+                    <strong v-if="!type">{{job && job.awarded_to &&  job.awarded_to.business_details ? job.awarded_to.business_details.business_name : ''}}</strong>
+                    <strong v-if="type">{{ job.user | fullName }}</strong>
                 </p>
                 
                 <b-row class="justify-content-md-center">
@@ -43,7 +44,12 @@
     import StarRating from 'vue-star-rating';
     export default {
 
-        props : ['showModalProp', 'job'],
+        props : [
+        'showModalProp',
+        'job',
+        'type'
+        ],
+
         data(){
             return {
                 submitFormData : {
@@ -70,7 +76,17 @@
                 this.submit = true;
                 this.loading = true;
                 this.submitFormData.job_id = this.job ? this.job.id : '';
-                this.submitFormData.user_id = this.job && this.job.awarded_to ? this.job.awarded_to.id : '';
+
+                this.submitFormData.user_id = this.job && this.job ? this.job.awarded_to.id : '';
+                
+                if(this.type){
+
+                    this.submitFormData.user_id = this.job ? this.job.user_id : '';
+
+                }
+
+
+
             },
             formSubmitted(response){
                 let self = this;
@@ -91,10 +107,6 @@
 
 
                 self.errorMessage =  'You have already provided the review';
-                // let errors = error.response.data;
-                // _.forEach(errors, function(value, key) {
-                //     return false;
-                // });
 
             },
             showModal() {
