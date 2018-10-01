@@ -66,7 +66,7 @@
             },
 
             getImage(img) {
-                return img? img[0].upload_url : 'images/dummy/image-placeholder.jpg';
+                return img? (typeof(img[0].upload_url) != 'undefined'? img[0].upload_url : 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
             },
 
             onSelectCategory(val) {
