@@ -49,6 +49,28 @@ body{
             border-color:$input-focus-border-color;
         }
     }
+    .vdp-datepicker__calendar{
+        width: 280px;
+    }
+    .vdp-datepicker{
+        input {
+            height: 38px;
+            font-family: "AkzidenzGroteskBE-Regular";
+            font-size: 14px;
+            padding: 9px 16px;
+            border-radius: 4px;
+            color: #000000;
+            width: 100%;
+            border: 1px solid #B2B2B2;
+        }           
+    }
+    .vdp-datepicker__calendar .cell.selected {
+        background: $primary-color-md !important;
+        color: #fff;
+    }
+    .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover, .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover, .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover{
+        border: 1px solid $primary-color-md !important;
+    } 
     .form-group{
         .input-icon{
             position: absolute;
