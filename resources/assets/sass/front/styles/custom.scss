@@ -305,6 +305,17 @@ button.sl-close {
     }
 }
 
+
+.imagegallery{
+    .image {
+        width: 110px;
+        display: inline-block;
+        margin: 0px 10px 10px 0px;
+        border-radius: 9px;
+        cursor: pointer;
+    }
+}
+
 .elementary-banner{
     position: relative;
     .elements{

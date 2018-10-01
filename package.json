@@ -40,6 +40,7 @@
         "vue-clickaway": "^2.2.2",
         "vue-faker": "^1.0.1",
         "vue-fancybox": "^1.0.3",
+        "vue-gallery-slideshow": "^1.2.4",
         "vue-grid-layout": "^2.1.13",
         "vue-gridster": "^1.0.7",
         "vue-infinite-loading": "^2.3.1",

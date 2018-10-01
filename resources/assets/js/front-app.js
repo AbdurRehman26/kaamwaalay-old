@@ -20,6 +20,7 @@ import VueProgressBar from 'vue-progressbar';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 
+
 import fancyBox from 'vue-fancybox';
 import VueAxios from 'vue-axios'
 import VueAuthenticate from 'vue-authenticate'
@@ -30,7 +31,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js';
 import Lightbox from 'vue-simple-lightbox';
-import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
+import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus';
+import VueGallerySlideshow from 'vue-gallery-slideshow';
 
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
@@ -44,6 +46,7 @@ Vue.use(VueProgressBar, options);
 
 Vue.use(InfiniteLoading);
 Vue.use(Lightbox);
+Vue.use(VueGallerySlideshow);
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
     tokenName: 'access_token',
@@ -138,7 +141,6 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-
     mounted () {
         this.$Progress.finish();
         this.checkscroll();

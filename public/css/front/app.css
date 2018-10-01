@@ -14856,6 +14856,14 @@ button.sl-close {
   margin: 0 auto;
 }
 
+.imagegallery .image {
+  width: 110px;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
 .elementary-banner {
   position: relative;
 }
