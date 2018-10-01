@@ -42,7 +42,8 @@ export default {
             });
         }, 
         getImage(img) {
-            return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
+            return img? (img.images? ((typeof(img.images[0].upload_url) != 'undefined')? img.images[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg')
+            : 'images/dummy/image-placeholder.jpg';
         },
         showModal () {
             this.$refs.myModalRef.show()
