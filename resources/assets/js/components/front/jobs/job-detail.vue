@@ -207,14 +207,6 @@
                     <span>Initiate Job</span> <loader></loader>
                 </button>
 
-                <button v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                    <span>Initiate Job</span> <loader></loader>
-                </button>
-
-                <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
-                    <i class="icon-edit-pencil"></i>
-                    Modify Bid
-                </a>   
 
                 <a v-if="awardedToMe" class="btn btn-primary btn-outline">
                     <i class="icon-trophy"></i> Job Awarded
