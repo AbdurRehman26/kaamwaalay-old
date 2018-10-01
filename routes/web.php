@@ -18,7 +18,7 @@ Route::get('/clear', function () {
 
 Route::get('/clear', function () {
     \Cache::flush();
-    dd( App\Data\Models\User::where('role_id' , 3)->first() ,  'cache cleared');
+    dd( App\Data\Models\User::where('role_id' , 2)->first() ,  'cache cleared');
 });
 Route::get('/password/reset/{token}/{email}', function(){
     return view('front-layout');
