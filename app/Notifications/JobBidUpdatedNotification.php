@@ -55,6 +55,10 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
+                    'image' => $this->data->from->profile_image,
+                    'link_text' => 'View Job',
+                    'route' => 'job.details',
+                    "id" => $this->data->id
                     ],
                 'created_at' => $notifiable->created_at->toDateTimeString()
                  ];
@@ -73,6 +77,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
     {
         return [
             'text' => $this->data->message,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id
         ];
     }
     /**
@@ -86,6 +93,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
         return new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
         ]);

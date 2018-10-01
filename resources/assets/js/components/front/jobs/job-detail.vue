@@ -530,7 +530,12 @@
                 }
 
                 self.jobBids.pagination = response.pagination;
-
+                if(typeof self.$route.params.jobBidId !== 'undefined'){
+                    self.bidValue =  _.find(self.jobBids.data, function(o) { return o.id == self.$route.params.jobBidId; });
+                    if(typeof self.bidValue !== 'undefined'){
+                     self.showVisitJob = true;   
+                    }
+                }
                 setTimeout(function () {
                     self.jobBids.showInvite = true;
                     self.$forceUpdate();
