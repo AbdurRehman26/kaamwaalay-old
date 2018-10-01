@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceRepository;
 use App\Data\Models\Role;
+use App\Data\Models\Service;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
@@ -26,7 +27,13 @@ class ServiceController extends ApiResourceController
         if($value == 'store') {
 
               $rules['parent_id']               = 'nullable|exists:services,id';           
-              $rules['title']                   = 'required|unique:services,title'; 
+              $rules['title']                   = [
+                'required', 'unique:services,title',
+                function ($attribute, $value, $fail) {
+                   $this->checkServiceCount($attribute, $value, $fail);
+                   
+                },
+              ];
               $rules['description']            = 'required';               
               $rules['is_display_banner']       = 'required|in:0,1';                   
               $rules['is_display_service_nav']  = 'required|in:0,1';                       
@@ -59,7 +66,10 @@ class ServiceController extends ApiResourceController
                     $query->where('id', '!=', $this->input()['id']);
                 }
             ),
-              ]; 
+            function ($attribute, $value, $fail) {
+               $this->checkServiceCount($attribute, $value, $fail);
+               
+            }]; 
         }
 
 
@@ -117,6 +127,22 @@ public function input($value=''){
         return $input;
 }
 
+public function checkServiceCount($attribute, $value, $fail) {
+    $idb = $this->input()['is_display_banner'];
+    $idsn = $this->input()['is_display_service_nav'];
+    if($idb || $idsn) {
+        $tempBuilder = Service::whereNull('parent_id')->get();
+        $isDisplayNavCount = $tempBuilder->where('is_display_banner', '=', 1)->count();
+        $errorMsg = 'You have already marked 6 services as Home/Explore Banner.';
+        if ($isDisplayNavCount > 6) {
+            $fail($errorMsg);
+        }
+        $isDisplayServiceNavCount = $tempBuilder->where('is_display_service_nav', '=', 1)->count();
+        if ($isDisplayServiceNavCount > 6) {
+            $fail($errorMsg);
+        }
+    }
+}
     //Update single record
     public function update(Request $request, $id)
     { 

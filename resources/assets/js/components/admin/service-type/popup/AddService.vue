@@ -317,7 +317,8 @@
                     error = error.response.data;
                     let errors = error.errors;
                     _.forEach(errors, function(value, key) {
-                        if(key == "title") {
+                        var reg = /marked 6 services/g;
+                        if(!reg.test(value[0])) {
                             self.errorMessage =  "The Service Name has alreary been taken.";    
                             return false;
                         }
@@ -355,8 +356,11 @@
                     let errors = error.errors;
                     _.forEach(errors, function(value, key) {
                         if(key == "title") {
-                            self.errorMessage =  "The Service Name has alreary been taken.";    
-                            return false;
+                            var reg = /marked 6 services/g;
+                            if(!reg.test(value[0])) {
+                                self.errorMessage =  "The Service Name has alreary been taken.";    
+                                return false;
+                            }
                         }
                         if(key == "parent_id") {
                             self.errorMessage =  "This service is already a parent service.";    

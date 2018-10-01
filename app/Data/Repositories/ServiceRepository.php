@@ -73,7 +73,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = [])
     {
-        
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
 
