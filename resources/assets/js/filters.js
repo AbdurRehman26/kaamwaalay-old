@@ -163,6 +163,11 @@ Vue.filter('formatDate', function(value) {
         return moment(String(value)).format('MMMM DD, YYYY')
     }
 });
+Vue.filter('formatDateTime', function(value) {
+    if (value) {
+        return moment(String(value)).format('MMMM DD, YYYY HH:mm:ss A')
+    }
+});
 
 Vue.filter('fullName', function (value) {
     if(value){
@@ -296,7 +301,7 @@ Vue.filter('bidStatus', function (bid) {
         return 'TBD';
     }
 
-    return bid.amount ? '$' + bid.amount : 0;
+    return bid.amount ? bid.formatted_amount : 0;
 
 });
 

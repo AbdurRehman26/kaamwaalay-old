@@ -2,65 +2,108 @@
     <div>
         <div class="notification-block" v-show="true">
             <div class="notify-dropdown scrollbar" id="style-2">
-                <ul>
-                    <li class="notify-list">
-                        <div class="notify-image">
-                            <img src="images/front/profile-images/personimage6.png" alt="">
+                <ul v-show="!noRecordFound">
+                    <li class="notify-list" v-for='notification in notificationData'>
+                        <div v-if="notification.data.image" class="notify-image">
+                            <img :src="notification.data.image" alt="">
                         </div>
                         <div class="right-notification">
                             <div class="notification-content">
                                 <p>
-                                    <strong>Christopher Ward Joinery Services</strong> posted a bid on
-                                    <strong>Concrete Floor Building</strong>
+                                    <strong>{{notification.data.text}}</strong>
                                 </p>
-                                <p class="notification-limit">
-                                    <span><a href="javascript:;" @click="$emit('ViewBid')">View Bid </a></span>
-                                    <span>10 Jan, 2018 at 10:45 am</span>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="notify-list">
-                        <div class="notify-image">
-                            <img src="images/front/explore/carpenter1.jpg" alt="">
-                        </div>
-                        <div class="right-notification">
-                            <div class="notification-content">
-                                <p>
-                                    <strong>Christopher Ward Joinery Services</strong> posted a bid on
-                                    <strong>Concrete Floor Building</strong>
-                                </p>
-                                <p class="notification-limit">
-                                    <span><a href="javascript:;" @click="$emit('ReviewWrite')">Write Review </a></span>
-                                    <span>10 Jan, 2018 at 10:45 am</span>
+                                <p :class="{'notification-limit': notification.data.route}">
+                                    <span v-show="notification.data.route"><router-link :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link></span>
+                                    <span>{{notification.created_at | formatDateTime}}</span>
                                 </p>
                             </div>
                         </div>
-                    </li>
+                    </li>  
+
                 </ul>
-                
-            </div>        
+                <vue-common-methods :infiniteLoad="infiniteLoad" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+                <div v-show="noRecordFound">No record Found</div>
+            </div>  
         </div>
-        
     </div>
 </template>    
 
 
-   <script>
-        export default{
-            data () {
-              return {
-                writereview: false,
+<script>
+    export default{
+        props: [
+        'isShowTab'
+        ],
+        data () {
+            return {
+                notificationCount : 0,
+                notificationData : [],
+                pagination : false,
+                noRecordFound: false,
+                page : 0,
+                loading : false,
+                url : 'api/user/notification?pagination=true',
+                infiniteLoad : false,
+                show: false,
             }
         },
-        methods: {
-            WriteReviewModal(){
-                this.writereview = true;
+        computed : {
+            requestUrl(){
+                return this.url;
             },
-            HideModal(){
-                this.writereview = false;
-            }
+        },
+        mounted(){
+            self = this
+            this.show = true;
+            setTimeout(function(){
+                 self.subscribeChannel();
+            }, 3000);      
+        },
+        methods: {
+            getRecords(response){
+                if(response.data){
+                    self = this
+                    this.infiniteLoad = true;
+                    _.forEach(response.data, function(value, key) {
+                        self.notificationData.push(value);
+                    })
+                    this.notificationCount = response.pagination ? response.pagination.total : 0;
+                    this.$parent.notificationCount = this.notificationCount;
+                }
+            },
+            subscribeChannel() {
+                let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
+                self = this
+                window.Echo.private(channelName).notification((notification) => {
+                    self.notificationData.unshift(notification);
+                    self.notificationCount += 1;
+                    self.$parent.notificationCount = self.notificationCount;
+                });
+            },
+            markRead() {
+                let self = this;
+                self.loading = true;
 
+                let url = 'api/user/mark-read-notification';
+
+                let urlRequest = self.$http.post(url)
+
+                urlRequest.then(response => {
+
+                }).catch(error => {
+
+                });
+            }
+        },
+         watch:{
+            isShowTab(val){
+                if(val == 1){
+                    this.markRead();
+                    this.notificationCount = 0;
+                    this.$parent.notificationCount = "";
+                }
+            },
         }
+
     }
 </script>

@@ -10,9 +10,9 @@
             <div class="form-signup">
                 <form @submit.prevent="validateBeforeSubmit">
                     <div class="personal-provider-detail">
-                        <div class="profile-image-placeholder">
-                            <img :src="imageValue">
-                        </div>						
+                        <div v-if="!imageValue" class="profile-image-placeholder onlyplaceholder">
+                        </div>
+                        <div class="profile-image-placeholder" v-if="imageValue" v-bind:style="{'background-image':'url('+imageValue+')'}"></div>						
                         <div class="row">
                             <div class="browse-btn">
                                 <div class="form-group">
@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years_of_exprience" v-model="record.business_details.years_of_exprience" placeholder="Enter your years of experience">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years_of_experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>

@@ -61,5 +61,12 @@ return [
         'rules' => [
             'mimes:jpeg,jpg,png',
         ],
+        'thumb' => [
+            'folder' => 'job/thumb/',
+            'height' => 400,
+            'width' => 400,
+            'method' => 'fit',
+        ],
+        
     ],
 ];

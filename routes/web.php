@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Events\UserMessaged;
+use App\Data\Models\JobMessage;
 Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
@@ -29,11 +30,11 @@ Route::get('/', function () {
     return view('layout');
 });
 
-
 /*Route::get('/{any}', function(){
     return view('layout');
 })->where('any', '.*');*/
 Route::post('login/social', 'Api\V1\UserController@socialLogin')->name('social.login');
+Route::get('login/social/status', 'Api\V1\UserController@socialLoginCheck')->name('social.login.status');
 Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.activate');
 
 /*Admin Route*/

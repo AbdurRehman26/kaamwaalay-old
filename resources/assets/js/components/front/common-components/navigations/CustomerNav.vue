@@ -8,8 +8,9 @@
             <li>
 
                 <div class="user-login-detail float-left pointer" @click="changePassword">
-                    <span class="user-img" @click="ShowModalValue = true;">
-                        <img :src="imageValue" alt="">
+                    <span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">                        
+                    </span>
+                    <span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">                        
                     </span>
                     <p class="username">{{fullName}}</p>
                 </div>
@@ -23,7 +24,7 @@
             <li class="bell-li">
                 <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true">
                     <i v-bind:active="tab == true" class="icon-notification action-icon">
-                        <span class="badge-count">5</span></i>
+                        <span class="badge-count">{{notificationCount}}</span></i>
                         <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
                     </span>
                 </li>
@@ -51,7 +52,8 @@
                 tabmenu: false,
                 first_name : '',
                 last_name : '',
-                user:{}
+                user:{},
+                notificationCount:0,
             }
         },
         directives: {

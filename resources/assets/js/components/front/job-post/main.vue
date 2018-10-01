@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Job Title</label>
-                            <input  :maxlength="100" v-validate="'required'" name="title" 
+                            <input  :maxlength="100" v-validate="'required|max:150'" name="title" 
                             :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
                             v-model="formData.title" type="text" class="form-control" 
                             placeholder="Enter job title">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <textarea :maxlength="500" v-validate="'required'" name="description" 
+                            <textarea :maxlength="500" v-validate="'required|max:500'" name="description" 
                             :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div v-if="formData.preference == 'choose_date'" class="col-md-6">
-                    <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker', 'form-control']">
+                    <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' ,'custom-datepicker','form-group']">
                         <label>Select Date</label>
                         <date-picker name="scheduled at" v-validate="'required'" :not-before="Date.now()" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
                     </div>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Apartment, suite, unit</label>
+                        <label>Apartment, Suite, Unit</label>
                         <input v-model="formData.apartment" type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
                     </div>
                 </div>
@@ -362,6 +362,7 @@
             },
             onSubmit() {
                 let self = this;
+                this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
 
                 self.loading = true;

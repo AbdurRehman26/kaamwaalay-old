@@ -132,10 +132,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             if(empty($details['job_details'])) {
 
                 $data->jobImages = [];
+                $data->jobThumbImages = [];
                 if(!empty($data->images)){
                     foreach ($data->images as $key => $image) {
                         if(is_string($image)){   
                             $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                            $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image);
                         }
                     }
                 }
@@ -155,7 +157,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $state = app('StateRepository')->findById($data->state_id);                
                 $data->state = !empty($state->name)?$state->name:'';
                 $bidsCriteria = ['job_id' => $data->id];
-                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited', 'visit_allowed']];
                 $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);

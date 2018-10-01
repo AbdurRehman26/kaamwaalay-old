@@ -159,6 +159,8 @@ const config = {
     events: 'input' 
 };
 Vue.use(VeeValidate,config);
+//require('./echo.js');
+
 
 const app = new Vue({
     el: '#app',
@@ -227,6 +229,21 @@ const app = new Vue({
             this.checkscroll();
         }
     }
+});
+
+// Laravel Echo 
+import Echo from 'laravel-echo'
+window.io = require('socket.io-client');
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':'+ window.socketPort,
+    auth: {
+        headers: {
+            Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
+        },
+    },
 });
 
 Vue.axios.interceptors.response.use((response) => { // intercept the global error

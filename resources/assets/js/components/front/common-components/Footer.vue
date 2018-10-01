@@ -37,9 +37,9 @@
 								<ul>
 									<li><strong>Customers</strong></li>
 									<li><a href="/job-post">Post a job</a></li>
-									<li  v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a customers</router-link></li>
+									<li  v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'customer' }}">Sign up as a customers</router-link></li>
 									<li><a href="/explore">Explore Services</a></li>
-									<li><a href="/advice-center">Advice center</a></li>
+									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('customer')">Advice center</a></li>
 									<li v-if='userDetails.role_id==3'><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
@@ -48,9 +48,9 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a service provider</router-link></li>
+									<li v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'provider' }}">Sign up as a service provider</router-link></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:;">Completed Jobs</a></li>
-									<li><router-link to="/advice-center">Advice Center</router-link></li>
+									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('provider')">Advice center</a></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>
@@ -121,6 +121,13 @@
             HideModal(){
                 this.supportPopup = false;
             },
+	    	onAdviceCenterClick(type) {
+	    		if(type == 'customer') {
+					this.$router.push({ name: 'Advice_Center', params: { type: 'customer' }});
+	    		}else {
+					this.$router.push({ name: 'Advice_Center', params: { type: 'service-provider' }});
+	    		}
+	    	}
 
         },
         

@@ -91,4 +91,16 @@ class User extends Authenticatable
     {
         $this->notify(new  SendServiceProviderStatusNotification($status, $reason));
     }
+
+    public function routeNotificationForOneSignal()
+    {
+        return [
+            'tags' => [
+                        'key' => 'user_id',
+                        'relation' => '=',
+                        'value' => $this->id,
+                      ]
+            ];
+    }
+
 }

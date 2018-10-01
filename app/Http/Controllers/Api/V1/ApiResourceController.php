@@ -12,7 +12,7 @@ abstract class ApiResourceController extends Controller
 {
     public $_repository;
     
-    const   PER_PAGE = 25;
+    const PER_PAGE = 25;
 
     public function __constructor($repository)
     {
@@ -29,9 +29,7 @@ abstract class ApiResourceController extends Controller
         $this->validate($request, $rules);
         
         $per_page = self::PER_PAGE ? self::PER_PAGE : config('app.per_page');
-
         $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
-
         $data = $this->_repository->findByAll($pagination, $per_page, $input);
 
         $output = [
@@ -74,7 +72,6 @@ abstract class ApiResourceController extends Controller
     {   
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
-        
         $messages = $this->messages(__FUNCTION__);
 
         $this->validate($request, $rules, $messages);

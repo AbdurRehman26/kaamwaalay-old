@@ -135,7 +135,8 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         );
     }            
     if(!empty($input['filter_by_job_detail'])) {
-        $this->builder = $this->builder->where('user_id', '=', $input['user_id']);
+        $this->builder = $this->builder->where('user_id', '=', $input['user_id'])
+        ->orderBy('updated_at', 'desc');
         $input['details'] = $input['filter_by_job_detail'];
     }
 
@@ -155,13 +156,14 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $job_details = $details;
     $details = ['user_rating' => true];
 
-    $data->user = app('UserRepository')->findById($data->user_id, false, $details);
-    $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
-
 
     if($data) {
+        $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+        $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
+
+        $data->formatted_amount = '$'. number_format($data->amount, 2);
+        
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-        $data->amount = number_format($data->amount, 2);
 
         if($job_details) {
             $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
@@ -316,17 +318,30 @@ public function update(array $data = [])
 {
     unset($data['user_id']);
 
+    $status = !empty($data['status']) ? $data['status'] : null;
+    $status = !empty($data['is_awarded']) ? 'awarded' : null;
+
     $data = parent::update($data);
 
-    if(!empty($data->is_awarded)){
 
-        $updateData = ['id' => $data->job_id, 'status'=> 'awarded'];
+    if($data && !empty($status)){
+        $updateData = ['id' => $data->job_id];
+        if($status == 'initiated'){
+
+            $updateData['status'] = 'initiated';
+        }
+
+        if(!empty($status)){
+
+            $updateData['status'] = 'awarded';
+
+        }
 
         app('JobRepository')->update($updateData);
-
-        return $data;
     }
-    return false;
+
+
+    return $data;
 }
 
 }
