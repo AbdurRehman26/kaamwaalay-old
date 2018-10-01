@@ -344,13 +344,13 @@ const serviceProvider = 2;
 const customer = 3;
 const title = document.title
 router.beforeEach((to, from, next) => {
-    let user;
-    if(to.name != 'login'){
+ let user;
+ if(to.name != 'login'){
      router.app.$store.commit('setRedirectUrl',to.name);
  }
  if(router.app.$store.getters.getAuthUser != 'undefined'){
     user = JSON.parse(router.app.$store.getters.getAuthUser);
-}
+ }
 
 if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
     next();
@@ -361,14 +361,16 @@ if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isA
     next({name: 'login'});
 }else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
-        if(!to.matched.some(record => record.meta.forAll)) {
+        if(!to.matched.some(record => record.meta.forAll) && to.name != '404') {
             next({name: "my.jobs"});
         }else {
             next();
         }
     }
-    else if(user  && user.role_id == serviceProvider){
+    else if(user  && user.role_id == serviceProvider && to.name != '404'){
         next({name: 'my.bids'});
+    }else {
+            next();
     }
 } else {
     next();

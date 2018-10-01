@@ -32,7 +32,7 @@
             <div class="job-post-container section-padd sm">
                 <div class="container md">
 
-                        <jobs-list :records="records"></jobs-list>
+                        <explore-jobs-list :records="records"></explore-jobs-list>
                     
                 </div>
                 <no-record-found v-show="noRecordFound"></no-record-found>

@@ -94,4 +94,5 @@ Vue.component('payment-component',require('./components/front/common-components/
 
 Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 
 Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue')); 
+Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue')); 
 Vue.component('job',require('./components/front/common-components/Job.vue')); 
