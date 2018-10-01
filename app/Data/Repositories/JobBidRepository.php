@@ -159,6 +159,8 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $data->user = app('UserRepository')->findById($data->user_id, false, $details);
     $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
 
+    $data->formatted_amount = '$'. number_format($data->amount, 2);
+    
 
     if($data) {
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
