@@ -236,5 +236,26 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
 
                 return $this->builder->select(['service_provider_profile_requests.status' ,'service_provider_services.*'])->get();
             }
+             public function getAllServices($crtieria)
+            {
+
+                $model = $this->model->where($crtieria);
+                if ($model != null) {
+                    $model = $model->
+                    leftJoin(
+                        'service_provider_services', function ($join) {
+                            $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+                        }
+                    )
+                    ->leftJoin(
+                        'services', function ($join) {
+                            $join->on('services.id', '=', 'service_provider_services.service_id');
+                        }
+                    )->where('service_provider_profile_requests.status', '=', 'approved')->get();
+                    
+                    return $model;
+                }
+                return false;
+            }
 
         }

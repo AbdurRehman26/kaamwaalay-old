@@ -90,6 +90,11 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
             $data->services_offered = $subServices;
 
+
+            $allServicesCriteria = ['user_id' => $data->user_id];
+            $allServices = app('ServiceProviderProfileRequestRepository')->getAllServices($allServicesCriteria, false);
+            $data->all_services_offered = $allServices;
+
             $crtieria = ['user_id' => $data->user_id, 'status'=>'approved'];
             $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
             if($profile){
