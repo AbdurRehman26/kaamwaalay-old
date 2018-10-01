@@ -21,7 +21,8 @@
                 records : [],
                 pagination : '',
                 loading : false,
-                noRecordFound : false
+                noRecordFound : false,
+                callInProgress : false,
             }  
         },
         mounted(){
@@ -59,7 +60,16 @@
                     url += '&page='+page;   
                 }
 
+                if(this.callInProgress){
+                    return false;
+                }
+
+
+                this.callInProgress = true;
+
                 self.$http.get(url).then(response=>{
+
+                    this.callInProgress = false;
 
                     response = response.data.response;
                     
@@ -87,6 +97,7 @@
 
                 }).catch(error=>{
                     self.loading = false;
+                    this.callInProgress = false;
                     console.log(error , 'exceptional handling error in generalize CommonMethods.vue@getList');
                 });
             },
