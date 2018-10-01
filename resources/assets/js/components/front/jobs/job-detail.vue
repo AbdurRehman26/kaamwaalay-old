@@ -96,11 +96,6 @@
                             <p>Photo(s) Not Available</p>
                         </div>
 
-
-<!-- <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
-<img @click="open($event)" :src="image" />
-</div> -->
-
 <lightbox
 id="mylightbox"
 :images="imageLists"
@@ -338,9 +333,9 @@ id="mylightbox"
             },
             imageLists(){
                 let data = [];
-                for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
+                for (var i = this.record.jobThumbImages.length - 1; i >= 0; i--) {
                     let myImage = {
-                        src : this.record.jobImages[i]
+                        src : this.record.jobThumbImages[i]
                     };
                     data.push(myImage);
                 }
