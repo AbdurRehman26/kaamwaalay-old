@@ -25,7 +25,8 @@ class JobBidController extends ApiResourceController
             'required',
             'exists:jobs,id',
             Rule::unique('job_bids')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id']);
+                $query->where('user_id', $this->input()['user_id'])
+                ->whereNull('deleted_at');
             }),
         ];
 

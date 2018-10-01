@@ -93,6 +93,8 @@ methods: {
                 this_.$router.push({ name: 'Explore'});
               }else if(redirectUrl == "job.create"){
                 this_.$router.push({ name: redirectUrl});
+              }else if(redirectUrl == "Advice_Center"){
+                this_.$router.push({ name: 'Advice_Center'});
               }else {
                 this_.$router.push({ name: 'main-page'});
               } 

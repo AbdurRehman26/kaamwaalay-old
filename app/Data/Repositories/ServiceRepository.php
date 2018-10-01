@@ -73,7 +73,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = [])
     {
-        
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
 
@@ -99,7 +98,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             }else{
                 return parent::update($data);
             }
-            
         }else{
             if($data['status'] == 0) {
                 $criteria = ['service_id' => (int)$data['id']];
@@ -122,7 +120,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     {       
 
         $this->builder = $this->model->orderBy('updated_at', 'desc');
-
         if (!empty($data['zip_code'])) {
             $this->builder = $this->builder
                 ->leftJoin(
@@ -215,6 +212,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                         
         }
         $modelData['data'] = [];
+
+        if (!empty($data['filter_by_parent'])) {
+            $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
+        }
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
                 $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();

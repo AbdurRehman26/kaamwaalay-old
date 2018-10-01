@@ -87,10 +87,10 @@
 
 						<div class="col-md-3 p-l-0 p-r-0">
 
-							<div class="service-avaliable" v-if="!record.services_offered">
+							<div class="service-avaliable" v-if="record.all_services_offered.length">
 								<h3 class="m-b-20">Services offered</h3>
 								<ul>
-									<li v-for="service in record.services_offered">
+									<li v-for="service in record.all_services_offered">
 										{{ service.title }}
 									</li>
 								</ul>
