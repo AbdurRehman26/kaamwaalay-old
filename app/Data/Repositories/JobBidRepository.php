@@ -344,5 +344,16 @@ public function update(array $data = [])
     return $data;
 }
 
+
+public function create(array $data = [])
+{
+    $data['deleted_at'] = null;
+    $data['updated_at'] = Carbon::now()->ToDateTimeString();
+
+    $this->model->insertOnDuplicateKey($data);
+
+    return $data;
+}
+
 }
 
