@@ -155,7 +155,6 @@
                 this.showChat = true;
                 this.strict = strictChat;
                 this.disabledChat = disabled;
-
             },
             setInvitationCount(count) {
                 this.invitationCount = count;

@@ -245,8 +245,10 @@
                 this.userIsOnline();
             },
             unSubscribeChannel() {
-                let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                window.Echo.leave(channelName);
+                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
+                    let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+                    window.Echo.leave(channelName);
+                }
             },
             subscribeChannel() {
                 let self = this;
@@ -275,20 +277,24 @@
             },
             userIsOffline() {
 
-                var self = this;
-                this.messages = [];
-                this.text = "";
-                this.isOnline = false;
-                this.$emit('closeChat');
-                this.loading = true;
-                let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
-                let data = {};
-                this.$http.post(url, data).then(response => {
-                    response = response.data.response;
-                }).catch(error => {
-                    error = error.response.data;
-                    let errors = error.errors;
-                });
+                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
+                    console.log(this.jobMessageData, 77787878);
+                    alert("popo");
+                    var self = this;
+                    this.messages = [];
+                    this.text = "";
+                    this.isOnline = false;
+                    this.$emit('closeChat');
+                    this.loading = true;
+                    let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
+                    let data = {};
+                    this.$http.post(url, data).then(response => {
+                        response = response.data.response;
+                    }).catch(error => {
+                        error = error.response.data;
+                        let errors = error.errors;
+                    });
+                }
             },
             hideChatBox() {
                 this.userIsOffline();
@@ -299,7 +305,9 @@
                 return typeof(this.disabled) == "undefined"? false : this.disabled;
             },
             jobMessageData() {
-                return this.messageData;
+                if(typeof(this.messageData) != "undefined") {
+                    return this.messageData;
+                }
             },
             getSenderImage() {
                 if(this.senderImage) {
