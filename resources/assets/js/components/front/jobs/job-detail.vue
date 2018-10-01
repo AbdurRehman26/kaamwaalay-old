@@ -166,7 +166,7 @@
                                 <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                 <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
-                                <a v-if="!jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                <a v-if="isMyJob !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                     Write Review
                                 </a>
 
@@ -248,8 +248,6 @@
 <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
 </div>
-
-
 
 
 <write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
