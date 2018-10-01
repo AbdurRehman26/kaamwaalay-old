@@ -14,11 +14,11 @@
             <div class="category-search-field">
                 <h6>Are you sure you want to accept visit request?</h6>
                 <p>If you accept, your contact details and address will be shared with the service provider.</p>
-                <button @click.prevent="loadingAccept = true; submit = true; submitFormData.status='visit_allowed'" type="submit" :class="['btn', 'btn-primary',  loadingAccept ? 'show-spinner' : '']">
+                <button :disabled="disableButtons" @click.prevent="disableButtons = true; loadingAccept = true; submit = true; submitFormData.status='visit_allowed'" type="submit" :class="['btn', 'btn-primary',  loadingAccept ? 'show-spinner' : '']">
                     Yes, allow visit
                     <loader></loader>
                 </button>
-                <button @click.prevent="loadingReject = true; submit = true; submitFormData.status='rejected'" type="submit" :class="['btn', 'btn-primary',  loadingReject ? 'show-spinner' : '']">
+                <button :disabled="disableButtons" @click.prevent="disableButtons = true; loadingReject = true; submit = true; submitFormData.status='rejected'" type="submit" :class="['btn', 'btn-primary',  loadingReject ? 'show-spinner' : '']">
                     No, decline request
                     <loader></loader>
                 </button>
@@ -40,7 +40,8 @@
                 errorMessage : false,
                 successMessage : false,
                 url : '',
-                submitFormData : ''
+                submitFormData : '',
+                disableButtons : false
             }
         },
 
@@ -61,18 +62,16 @@
                 this.submit = false;
             },
             formSubmitted(response){
-                if(response.data){
+                this.disableButtons = false;
+                this.loadingAccept = false;
+                this.loadingReject = false;
+                this.submit = false;
 
-                    this.loadingAccept = false;
-                    this.loadingReject = false;
-                    this.submit = false;
+                this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
+                this.hideModal();
+                this.$emit('bid-updated');
 
-                    this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
-                    this.hideModal();
-                    this.$emit('bid-updated');
-
-                }
-
+                
             },
             showModal () {
                 this.$refs.myModalRef.show()
