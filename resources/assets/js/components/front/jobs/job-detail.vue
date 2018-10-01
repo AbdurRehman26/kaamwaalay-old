@@ -82,7 +82,7 @@
                             Location <strong>{{ record.city  }}, {{ record.state}}</strong>
                         </p>
                         <p class="member-since">										
-                            Member since <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
+                            Member since: <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
                         </p>
                     </div>
 
@@ -95,11 +95,6 @@
                         <div class="no-photos" v-if="!record.jobImages.length"> 
                             <p>Photo(s) Not Available</p>
                         </div>
-
-
-<!-- <div class="gallery-item" v-for="(image, index) in record.jobImages" :data-index="index" v-bind:style="{'background-image':'url('+image+')'}">
-<img @click="open($event)" :src="image" />
-</div> -->
 
 <lightbox
 id="mylightbox"
@@ -226,14 +221,14 @@ id="mylightbox"
             Modify Bid
         </a>   
 
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+        <a v-if="awardedToMe" class="btn btn-primary btn-outline">
+            <i class="icon-trophy"></i> Job Awarded
+        </a>
+        <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
 
         <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
-        <a  href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+        <a  href="#" v-if="!isMyJob && !jobCancelled && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
             Archive
         </a>
 
@@ -338,9 +333,9 @@ id="mylightbox"
             },
             imageLists(){
                 let data = [];
-                for (var i = this.record.jobImages.length - 1; i >= 0; i--) {
+                for (var i = this.record.jobThumbImages.length - 1; i >= 0; i--) {
                     let myImage = {
-                        src : this.record.jobImages[i]
+                        src : this.record.jobThumbImages[i]
                     };
                     data.push(myImage);
                 }
@@ -427,13 +422,13 @@ id="mylightbox"
                 }
             },
             jobCancelled(){
-               if(Object.keys(this.record).length){
+             if(Object.keys(this.record).length){
                 return this.record.status == 'cancelled'
             } 
         }
     },
+    
     methods: {
-
         checkStatus(bid) {
             if(this.record.status == 'in_bidding') {
                 return this.showChatBox(bid, true, false);
@@ -461,193 +456,182 @@ id="mylightbox"
         },
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
-            console.log(1);
+
+            this.submit = false;
+            this.loading = false;
+            this.submitBidForm = false;
+
             this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
             this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
-                if(Object.keys(this.record).length){
-                    return this.record.status == 'cancelled'
-                } 
-            }
         },
-        methods: {
-            formUpdated(){
-                let newDate  = new Date().getMilliseconds();
+        formSubmitted(response){
 
-                this.submit = false;
-                this.loading = false;
-                this.submitBidForm = false;
+            this.reSendCall();            
+            if(!response.data.is_archived && response.data.status == 'completed')
+            {
+                this.showReviewForm = true;
+            }
 
-                this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
-                this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
-            },
-            formSubmitted(response){
+        },
+        reSendCall(){
+            let self = this;
+            self.forceValue = true;
+            this.submitBidForm = false;
 
-                this.reSendCall();            
-                if(!response.data.is_archived && response.data.status == 'completed')
-                {
-                    this.showReviewForm = true;
+            self.jobBids = {
+                data : [],
+                pagination : false
+            };
+            setTimeout(function () {
+                self.loading = false;
+                self.forceValue = false;
+            }, 2000);
+            this.record = response.data;
+            let user = JSON.parse(this.$store.getters.getAuthUser);
+        },
+        getResponse(response){
+            this.showBidPopup = false;
+
+            this.jobBids = {
+                data : [],
+                pagination : []
+            };
+            this.submitBidForm = false;
+
+            this.record = response.data;
+
+            let user = JSON.parse(this.$store.getters.getAuthUser);
+
+            if(this.record.user_id != user.id && this.record.my_bid){
+                this.jobBids.data.push(this.record.my_bid);                    
+            }
+
+        },
+        getBidsResponse(response){
+            let self = this;
+
+            if(response.data){
+                for (var i = 0; i < response.data.length; i++) {
+                    self.jobBids.data.push(response.data[i]);    
                 }
 
-            },
-            reSendCall(){
-                let self = this;
-                self.forceValue = true;
-                this.submitBidForm = false;
+                self.jobBids.pagination = response.pagination;
 
-                self.jobBids = {
-                    data : [],
-                    pagination : false
-                };
                 setTimeout(function () {
-                    self.loading = false;
-                    self.forceValue = false;
-                }, 2000);
-                this.record = response.data;
-                let user = JSON.parse(this.$store.getters.getAuthUser);
-            },
-            getResponse(response){
-                this.showBidPopup = false;
-
-                this.jobBids = {
-                    data : [],
-                    pagination : []
-                };
-                this.submitBidForm = false;
-
-                this.record = response.data;
-
-                let user = JSON.parse(this.$store.getters.getAuthUser);
-
-                if(this.record.user_id != user.id && this.record.my_bid){
-                    this.jobBids.data.push(this.record.my_bid);                    
-                }
-
-            },
-            getBidsResponse(response){
-                let self = this;
-
-                if(response.data){
-                    for (var i = 0; i < response.data.length; i++) {
-                        self.jobBids.data.push(response.data[i]);    
-                    }
-
-                    self.jobBids.pagination = response.pagination;
-
-                    setTimeout(function () {
-                        self.jobBids.showInvite = true;
-                        self.$forceUpdate();
-                    }, 1000);
-
-                }
-            },
-            open (e) {
-                let jobImages = [];
-
-                for (var i = 0 ; i < this.record.jobImages.length; i++) {
-                    let data = {
-                        url : this.record.jobImages[i]
-                    };
-
-                    jobImages.push(data);
-                }
-                fancyBox(e.target, jobImages);       
-            },
-            Modify(){
-                this.$router.push({name: 'job.view' , params : { id : this.record.id }});
-            },        
-            VisitPopup(){
-                this.visitpopup = true;
-            },
-            VisitApproval(){
-                this.showVisitJob = true;
-            },
-            BidModify(){
-                this.bidpopup = true;
-            },
-            HideModal(){
-                this.awardJob = false;
-                this.showVisitJob = false;
-                this.visitpopup = false;
-                this.bidpopup = false;
-                this.showReviewForm = false;
-            },
-            showchatpanel(){
-                this.isShowing=true;
-            },
-            showProfile(id){
-                this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
-            },
-            markCompletedByCustomer(){
-                this.loading = true;
-
-                let data = {
-                    status : 'completed',
-                    id : this.record ? this.record.id : ''
-                };
-                this.submitFormData = data;
-
-                this.submit = true;
-            },
-            markJobArchive(){
-
-                this.formData.is_archived = 1;
-                this.formData.id = this.record.id;
-                this.confirmPopupUrl = 'api/job/' +this.record.id;
-
-            },
-            markJobCancel(){
-                
-                this.formData.status = 'cancelled';
-                this.formData.id = this.record.id;
-                this.confirmPopupUrl = 'api/job/' +this.record.id;
-
-            },
-            markInitiateJobByCustomer(){
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
-
-                let data = {
-                    status : 'initiated',
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.submitFormData = data;
-                this.submitBidForm = true;
-
-            },
-            markDoneBySp(){
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
-
-                let data = {
-                    status : 'completed',
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.submitFormData = data;
-                this.submitBidForm = true;
-
-            },
-            markArchiveBySp(){
-
-                this.confirmPopupUrl = 'api/job-bid/'+ this.myBidValue.id;
-
-                let data = {
-                    is_archived : 1,
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.formData = data;
-                this.confirmPopupShow = true;
+                    self.jobBids.showInvite = true;
+                    self.$forceUpdate();
+                }, 1000);
 
             }
         },
-        components: {
-            StarRating,
-            Lightbox
-        },
-        mounted(){
-        },
+        open (e) {
+            let jobImages = [];
 
-    }
+            for (var i = 0 ; i < this.record.jobImages.length; i++) {
+                let data = {
+                    url : this.record.jobImages[i]
+                };
+
+                jobImages.push(data);
+            }
+            fancyBox(e.target, jobImages);       
+        },
+        Modify(){
+            this.$router.push({name: 'job.view' , params : { id : this.record.id }});
+        },        
+        VisitPopup(){
+            this.visitpopup = true;
+        },
+        VisitApproval(){
+            this.showVisitJob = true;
+        },
+        BidModify(){
+            this.bidpopup = true;
+        },
+        HideModal(){
+            this.awardJob = false;
+            this.showVisitJob = false;
+            this.visitpopup = false;
+            this.bidpopup = false;
+            this.showReviewForm = false;
+        },
+        showchatpanel(){
+            this.isShowing=true;
+        },
+        showProfile(id){
+            this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
+        },
+        markCompletedByCustomer(){
+            this.loading = true;
+
+            let data = {
+                status : 'completed',
+                id : this.record ? this.record.id : ''
+            };
+            this.submitFormData = data;
+
+            this.submit = true;
+        },
+        markJobArchive(){
+
+            this.formData.is_archived = 1;
+            this.formData.id = this.record.id;
+            this.confirmPopupUrl = 'api/job/' +this.record.id;
+
+        },
+        markJobCancel(){
+
+            this.formData.status = 'cancelled';
+            this.formData.id = this.record.id;
+            this.confirmPopupUrl = 'api/job/' +this.record.id;
+
+        },
+        markInitiateJobByCustomer(){
+            this.loading = true;
+            this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
+
+            let data = {
+                status : 'initiated',
+                id : this.myBidValue ? this.myBidValue.id : '',
+                job_id : this.myBidValue ? this.myBidValue.job_id : ''
+            };
+            this.submitFormData = data;
+            this.submitBidForm = true;
+
+        },
+        markDoneBySp(){
+            this.loading = true;
+            this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
+
+            let data = {
+                status : 'completed',
+                id : this.myBidValue ? this.myBidValue.id : '',
+                job_id : this.myBidValue ? this.myBidValue.job_id : ''
+            };
+            this.submitFormData = data;
+            this.submitBidForm = true;
+
+        },
+        markArchiveBySp(){
+
+            this.confirmPopupUrl = 'api/job-bid/'+ this.myBidValue.id;
+
+            let data = {
+                is_archived : 1,
+                id : this.myBidValue ? this.myBidValue.id : '',
+                job_id : this.myBidValue ? this.myBidValue.job_id : ''
+            };
+            this.formData = data;
+            this.confirmPopupShow = true;
+
+        }
+    },
+    components: {
+        StarRating,
+        Lightbox
+    },
+    mounted(){
+    },
+
+}
 </script>

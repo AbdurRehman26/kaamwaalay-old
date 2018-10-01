@@ -301,7 +301,7 @@ Vue.filter('bidStatus', function (bid) {
         return 'TBD';
     }
 
-    return bid.amount ? '$' + bid.amount : 0;
+    return bid.amount ? bid.formatted_amount : 0;
 
 });
 

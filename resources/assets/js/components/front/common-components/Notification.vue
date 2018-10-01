@@ -4,7 +4,7 @@
             <div class="notify-dropdown scrollbar" id="style-2">
                 <ul v-show="!noRecordFound">
                     <li class="notify-list" v-for='notification in notificationData'>
-                        <div class="notify-image">
+                        <div v-if="notification.data.image" class="notify-image">
                             <img :src="notification.data.image" alt="">
                         </div>
                         <div class="right-notification">
@@ -12,8 +12,8 @@
                                 <p>
                                     <strong>{{notification.data.text}}</strong>
                                 </p>
-                                <p class="notification-limit">
-                                    <span><router-link :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link></span>
+                                <p :class="{'notification-limit': notification.data.route}">
+                                    <span v-show="notification.data.route"><router-link :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link></span>
                                     <span>{{notification.created_at | formatDateTime}}</span>
                                 </p>
                             </div>
