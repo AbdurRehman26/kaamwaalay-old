@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Repositories\ServiceProviderProfileRequestRepository;
+use App\Notifications\ServiceProviderReviewNotification;
+use App\Data\Models\User;
 
 class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProvider
 {
@@ -15,7 +17,21 @@ class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProv
      */
     public function boot()
     {
-        //
+        ServiceProviderProfileRequest::updated(function($item) {
+            if($item->status == ServiceProviderProfileRequest::APPROVED || $item->status == ServiceProviderProfileRequest::REJECTED){  
+                $event = new \StdClass();
+                $event->id = $item->id;
+                $event->body = $item;
+                $event->from = User::find($item->approved_by);
+                $event->to = User::find($item->user_id);   
+                if($item->status == ServiceProviderProfileRequest::APPROVED){
+                    $event->message =  'Your Profile has been approved'; 
+                }else{
+                    $event->message =  'Your Profile has been rejected with '.$item->reason; 
+                }
+               $event->to->notify(new ServiceProviderReviewNotification($event));
+            }
+        });
     }
 
     /**

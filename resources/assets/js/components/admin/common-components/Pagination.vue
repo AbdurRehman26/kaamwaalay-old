@@ -9,7 +9,7 @@
         <div v-if="pagination && !infiniteLoad && !loadingStart" class="pagination-wrapper float-right">
             <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
         </div>
-        <infinite-loading :distance="10" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
+        <infinite-loading :distance="100" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
             <span slot="no-more">
             </span>
             <span slot="spinner"></span>

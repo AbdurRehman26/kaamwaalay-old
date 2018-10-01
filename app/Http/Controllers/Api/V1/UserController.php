@@ -11,6 +11,7 @@ use App\Events\NewPasswordSet;
 use App\Data\Models\Role;
 use Illuminate\Validation\Rule;
 use Validator;
+use App\Helper\Helper;
 
 class UserController extends ApiResourceController
 {
@@ -34,6 +35,7 @@ class UserController extends ApiResourceController
             $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
             $rules['user_details.profile_image']     = 'nullable|string';
             $rules['business_details.business_type']     = 'nullable|in:business,individual';
+            $rules['business_details.is_featured']     = 'nullable|in:1,0';
 
             $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
             $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
@@ -65,7 +67,7 @@ class UserController extends ApiResourceController
             'user_details.status', 'user_details.state_id',  'user_details.profle_image', 'user_details.is_profile_completed', 'user_details.stripe_token',
             'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',
             'business_details.years_of_experience', 'business_details.business_type',
-            'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role', 'filter_by_service', 'filter_by_roles'
+            'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role', 'filter_by_service', 'filter_by_roles','business_details.is_featured'
         );
 
         $input['user_id'] = request()->user()->id;
@@ -365,20 +367,26 @@ public function socialLoginCheck(Request $request)
         }
     return response()->json($output, $code);
 }
-public function getUserNotification()
+ public function getUserNotification(Request $request)
 {
-
-    $data =  request()->user()->unreadNotifications;
+    $input = $request->only('page');
+    $notification = request()->user()->unreadNotifications();
+    $data =  $notification->paginate(10);
+    $models = $data->items();
+    $response = Helper::paginator($models, $data); 
+    $pagination =$response['pagination'];
+    unset($response['pagination']); 
     if($data->isNotEmpty()){
       $code = 200;
       $output = [
         'response' => [
-            'data' => $data,
-            'message' => 'success'
+            'data' => $response,
+            'message' => 'success',
+            'pagination' => $pagination,
         ]
       ];  
     }else{
-       $code = 406;
+       $code = 404;
        $output = [
         'response' => [
             'error' => 'no notification found'
@@ -386,5 +394,9 @@ public function getUserNotification()
       ];  
     }
     return response()->json($output, $code);
+}
+public function markRead(Request $request)
+{ 
+   return request()->user()->unreadNotifications->markAsRead();
 }
 }

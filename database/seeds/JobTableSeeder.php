@@ -31,7 +31,6 @@ class JobTableSeeder extends Seeder
         
 
         $zipCodes = app('ZipCodeRepository')->model->inRandomOrder()->pluck('zip_code')->toArray();
-        
 
         for ($i=1; $i < $numberOfJobs; $i++) { 
 
@@ -47,10 +46,6 @@ class JobTableSeeder extends Seeder
             $city = app('CityRepository')->model->where('state_id' , $state->id)->inRandomOrder()->first();
 
             $preferences = ['choose_date', 'any_time', 'few_days', 'with_in_a_week'];
-
-
-            $min_amount = [mt_rand(1000 , 200000), null];
-            $max_amount = [mt_rand($min_amount[0] , $min_amount[0] * 3) , null];
 
             if($user && $service){
 
@@ -73,8 +68,6 @@ class JobTableSeeder extends Seeder
                     'preference' => $preference, 
                     'job_type' => $jobType[array_rand($jobType)],
                     'status' => $jobBiddingStatuses[array_rand($jobBiddingStatuses)],
-                    'min_amount' => $min_amount[array_rand($min_amount)],
-                    'max_amount' => $max_amount[array_rand($max_amount)],
                     'is_archived' => $isArchived,
                     'created_at' => $now,
                     'updated_at' => $now

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 class RolesTableSeeder extends Seeder
 {
+
 /**
 * Run the database seeds.
 *
@@ -88,6 +89,8 @@ public function run()
                 "job.index",
                 "job.show",
                 "job.update",
+                "job-message.index",
+                "job-message.store",
                 "user.me",
                 "service-provider.approved-profile",
                 "user.update",
@@ -96,6 +99,7 @@ public function run()
                 "job-bid.index",
                 "payment.store",
                 "user.notification",
+                "user.notification.mark.read",
             ]), 
             'created_at' => $date,
             'updated_at' => $date,
@@ -118,6 +122,8 @@ public function run()
                 "job.stats",
                 "job-bid.index",
                 "job-bid.store",
+                "job-message.index",
+                "job-message.store",
                 "job-bid.update",
                 "service.index",
                 "support-inquiry.store",
@@ -129,6 +135,7 @@ public function run()
                 "payment.store",
                 "plan.index",
                 "user.notification",
+                "user.notification.mark.read",
             ]), 
             'created_at' => $date,
             'updated_at' => $date,

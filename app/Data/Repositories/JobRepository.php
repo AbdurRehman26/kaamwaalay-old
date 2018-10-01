@@ -132,10 +132,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             if(empty($details['job_details'])) {
 
                 $data->jobImages = [];
+                $data->jobThumbImages = [];
                 if(!empty($data->images)){
                     foreach ($data->images as $key => $image) {
                         if(is_string($image)){   
                             $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                            $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image);
                         }
                     }
                 }
@@ -155,7 +157,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $state = app('StateRepository')->findById($data->state_id);                
                 $data->state = !empty($state->name)?$state->name:'';
                 $bidsCriteria = ['job_id' => $data->id];
-                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited', 'visit_allowed']];
                 $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
@@ -183,7 +185,14 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                     
                     if($data->status == 'completed') {
-                        $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
+
+                        $criteria = ['job_id' => $data->id];
+
+                        $criteria['rated_by'] = $data->user_id; 
+
+                        $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
+                    
+
                     }
 
 
@@ -195,6 +204,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     if($currentUser->role_id == Role::SERVICE_PROVIDER){
                         $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
                         $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+
+                        $criteria['user_id'] = $data->user_id; 
+                        $criteria['rated_by'] = $currentUser->id; 
+
+                        $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
+                        
                     }
 
                     $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];

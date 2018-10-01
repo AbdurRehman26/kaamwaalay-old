@@ -12269,6 +12269,10 @@ body .form-group.is-invalid .form-control {
   background-position: 98% 53%;
 }
 
+body .form-group.is-invalid input.mx-input {
+  border: 1px solid #d9534f;
+}
+
 body .form-group.is-valid .form-control {
   border-color: #fff;
   -webkit-box-shadow: none;
@@ -14744,6 +14748,10 @@ button.sl-close {
   }
 }
 
+.bg-light-custom {
+  background-color: #f9f9f9 !important;
+}
+
 .custom-file {
   border-color: transparent !important;
 }
@@ -15864,6 +15872,8 @@ button.sl-close {
   width: 80px;
   height: 80px;
   margin: auto;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .testmonial-section .item-list .testmonial-name {
@@ -16024,6 +16034,20 @@ button.sl-close {
 .custom-multi.category-detail {
   /* width: calc(100% - 20%); */
   width: calc(100% - 25%);
+}
+
+.no-chat .alert p {
+  font-size: 12px;
+}
+
+.no-chat .alert i {
+  font-size: 24px;
+  top: 12px;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #e6e3e3 !important;
 }
 
 .expirychanges .stripe-element {

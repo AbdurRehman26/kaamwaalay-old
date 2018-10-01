@@ -82,5 +82,5 @@ return [
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'failed_jobs',
     ],
-
+ 'pre_fix'=>env('QUEUE_PREFIX', '')
 ];

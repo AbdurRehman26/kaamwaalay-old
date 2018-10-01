@@ -75,6 +75,9 @@ body{
                 background-size: 21px auto;
                 background-position: 98% 53%;
             }
+            input.mx-input {
+                border: 1px solid $danger-bg;
+            }
 
            /*  &:after{
                 content:"";

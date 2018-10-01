@@ -124,8 +124,8 @@ setTimeout(function(){
       self.$parent.getCampaignList()
   }else{
       self.$parent.formData.subscription_id = response.data.data.id
-      self.$parent.onSubmit()
   }
+  self.$parent.onSubmit()
   self.hideModal()
 }, 2000);
 })

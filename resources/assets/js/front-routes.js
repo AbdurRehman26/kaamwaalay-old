@@ -92,11 +92,12 @@
     {
         name: 'service-provider-detail.view',
         path: '/explore/service-provider/service-provider_detail/:id',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Service Provider Detail',
             bodyClass: 'service_provider_detail_page',
-            navigation: 'provider-nav',
-            requiresAuth: true,
+            navigation: 'main-nav',
+            forAll: true,
         },
         component: require('./components/front/explore/service-provider-detail.vue'),
     },    
@@ -105,7 +106,8 @@
 
     {
         name: 'sign-up',
-        path: '/sign-up',
+        path: '/sign-up/:isPro?',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Sign Up',
             bodyClass: 'signup-page',
@@ -230,12 +232,14 @@
     // Advice Center
 
     {
-        name: 'Advice Center',
-        path: '/advice-center',
+        name: 'Advice_Center',
+        path: '/advice-center/:type?',
+        props: true,
         meta: {
             title: 'Professional Service Marketplace | Advice Center',
             bodyClass: 'advice-center-page',
-            navigation: 'main-nav',
+            navigation: 'provider-nav',
+            requiresAuth: true,
         },
         component: require('./components/front/advice-center/main.vue'),
     },
@@ -340,13 +344,13 @@ const serviceProvider = 2;
 const customer = 3;
 const title = document.title
 router.beforeEach((to, from, next) => {
-    let user;
-    if(to.name != 'login'){
+ let user;
+ if(to.name != 'login'){
      router.app.$store.commit('setRedirectUrl',to.name);
  }
  if(router.app.$store.getters.getAuthUser != 'undefined'){
     user = JSON.parse(router.app.$store.getters.getAuthUser);
-}
+ }
 
 if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
     next();
@@ -357,14 +361,16 @@ if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isA
     next({name: 'login'});
 }else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
-        if(!to.matched.some(record => record.meta.forAll)) {
+        if(!to.matched.some(record => record.meta.forAll) && to.name != '404') {
             next({name: "my.jobs"});
         }else {
             next();
         }
     }
-    else if(user  && user.role_id == serviceProvider){
+    else if(user  && user.role_id == serviceProvider && to.name != '404'){
         next({name: 'my.bids'});
+    }else {
+            next();
     }
 } else {
     next();

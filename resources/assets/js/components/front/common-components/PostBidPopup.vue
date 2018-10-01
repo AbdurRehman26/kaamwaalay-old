@@ -5,7 +5,7 @@
             <form @submit.prevent="validateBeforeSubmit">
                 <div class="model-content">
                     <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-                    <p>Post a bid on <strong>{{job.title}}</strong> job posted by <strong> {{ job.user | fullName }} </strong></a></p>
+                    <p>Post a bid on <strong>{{ job ? job.title : ''}}</strong> job posted by <strong> {{  job ? job.user : ''  | fullName }} </strong></a></p>
                     <b-row class="justify-content-md-center">
                         <b-col md="1">
                             <label>&nbsp;</label>
@@ -249,7 +249,7 @@
                     this.submitFormData.preferred_date = '';
                     this.submitFormData.preferred_time = '';
                     this.submitFormData.is_visit_required = 0;                    
-                    this.bidType = 'visit_required';
+                    this.bidType = 'amount_value';
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
