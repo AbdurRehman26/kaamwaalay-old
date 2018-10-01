@@ -157,10 +157,6 @@
                             </div>
 
                             <div class="provider-bidding-btn">
-
-                                <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
-                                @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
-
                                 <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                 @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                 <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
