@@ -162,7 +162,7 @@
 						<h2>Success Stories</h2>
 						<p>Professional service marketplace has helped thousands of service providers around US.</p>
 					</div>
-					<testmonial-sec @onExist="onSuccessStoryExist"></testmonial-sec>
+					<testmonial-sec @onExist="onSuccessStoryExist" :roleId="2"></testmonial-sec>
 			</div>	
 		</div>
 		<!-- Sucess Stories section end-->	
