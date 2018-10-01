@@ -25,10 +25,16 @@ public function boot()
         $event = new \StdClass();
         $event->id = $jobBid->id;
         $job = Job::find($jobBid->job_id);
-        $event->to = User::find($job->user_id);
-        $event->body =  $job;
-        $event->from = User::find($jobBid->user_id); 
-        $event->message =  $event->from->first_name.' '. $event->from->last_name.' posted a bid on '.$job->title; 
+        $event->body =  $job; 
+        if($jobBid->is_invited == 1){
+         $event->from = User::find($job->user_id);
+         $event->to = User::find($jobBid->user_id);   
+         $event->message = $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job.'; 
+        }else{ 
+         $event->to = User::find($job->user_id);
+         $event->from = User::find($jobBid->user_id);   
+         $event->message =  $event->from->first_name.' '. $event->from->last_name.' posted a bid on '.$job->title; 
+        }
         $event->to->notify(new JobBidCreatedNotification($event));
     });
     JobBid::updated(function($jobBid) {
