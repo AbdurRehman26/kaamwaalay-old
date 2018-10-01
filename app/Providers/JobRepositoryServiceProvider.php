@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Data\Models\Job;
+use App\Data\Models\JobBid;
 use App\Data\Models\ZipCode;
 use App\Data\Models\User;
 use App\Data\Models\ServiceProviderService;
@@ -12,6 +13,7 @@ use App\Data\Repositories\JobRepository;
 use App\Helper\Helper;
 use App\Data\Models\ServiceProviderProfile;
 use App\Jobs\UrgentJobCreate;
+use App\Notifications\JobStatusChangeNotification;
 
 class JobRepositoryServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,22 @@ class JobRepositoryServiceProvider extends ServiceProvider
 
         Job::created(function($item) {
              UrgentJobCreate::dispatch($item)->onQueue(config('queue.pre_fix').'urgent-job');
+        }); 
+        Job::updated(function($item) {
+              if($item->status == Job::COMPLETED || $item->status == Job::AWARDED){  
+                $event = new \StdClass();
+                $event->id = $item->id;
+                $event->body = $item;
+                $job_bid = JobBid::where('job_id','=',$item->id)->where('is_awarded','=','1')->first();
+                $event->from = User::find($item->user_id);
+                $event->to = User::find($job_bid->user_id);  
+                if($item->status == Job::COMPLETED){
+                    $event->message =  'The '.$item->title.' job you have performed is marked as completed by '.$event->from->first_name.' '. $event->from->last_name.'. Please post a review.'; 
+                }else{
+                    $event->message =  $item->title.' is awarded to you.'; 
+                }
+               $event->to->notify(new JobStatusChangeNotification($event));
+            }
         });
 
     }

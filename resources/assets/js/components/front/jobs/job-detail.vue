@@ -109,7 +109,7 @@
 
                 <div class="jobs-post-files" v-if="record.videos">
                     <h3>Related Videos</h3>
-                    <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
 
 
@@ -158,7 +158,8 @@
 
                             <div class="provider-bidding-btn">
 
-
+                                <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
+                                @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
                                 <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                 @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
@@ -166,7 +167,7 @@
                                 <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                 <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
-                                <a v-if="!jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                     Write Review
                                 </a>
 
@@ -210,9 +211,18 @@
                     <span>Initiate Job</span> <loader></loader>
                 </button>
 
+                <button v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <span>Initiate Job</span> <loader></loader>
+                </button>
 
+                <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
+                    <i class="icon-edit-pencil"></i>
+                    Modify Bid
+                </a>   
 
-
+                <a v-if="awardedToMe" class="btn btn-primary btn-outline">
+                    <i class="icon-trophy"></i> Job Awarded
+                </a>
 
                 <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
 
@@ -228,7 +238,11 @@
                 <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                 <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
-                <a  href="#" v-if="!isMyJob && !jobCancelled && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                <a v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                    Write Review
+                </a>
+
+                <a href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
                     Archive
                 </a>
 
@@ -250,9 +264,7 @@
 </div>
 
 
-
-
-<write-review-popup @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
+<write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
 <vue-common-methods v-if="isMyJob" :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
@@ -273,6 +285,7 @@
     export default {
         data () {
             return {
+                reviewType : '',
                 bidValue : '',
                 forceValue : false,
                 bidder : '',
@@ -389,8 +402,13 @@
             isMyJob(){
                 if(Object.keys(this.record).length){
                     let user = JSON.parse(this.$store.getters.getAuthUser);
+                    if(this.record.user_id != user.id){                  
+                        this.reviewType = 'review';
+                    }
+                    
                     return this.record.user_id == user.id;
                 }
+                this.reviewType = false;
                 return false;
             },
             myBidValue(){
@@ -427,7 +445,13 @@
             jobCancelled(){
              if(Object.keys(this.record).length){
                 return this.record.status == 'cancelled'
-            } 
+            }
+        },
+        canRateReviewSp(){
+            if(Object.keys(this.record).length && this.record.my_bid){
+                return !this.record.service_provider_review && this.record.my_bid.status == 'completed' && this.record.status == 'completed';
+            }
+
         }
     },
     methods: {

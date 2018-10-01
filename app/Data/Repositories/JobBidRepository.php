@@ -162,7 +162,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
         $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
 
         $data->formatted_amount = '$'. number_format($data->amount, 2);
-        
+
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
 
         if($job_details) {
@@ -319,10 +319,9 @@ public function update(array $data = [])
     unset($data['user_id']);
 
     $status = !empty($data['status']) ? $data['status'] : null;
-    $status = !empty($data['is_awarded']) ? 'awarded' : null;
+    $status = !empty($data['is_awarded']) ? 'awarded' : $status;
 
     $data = parent::update($data);
-
 
     if($data && !empty($status)){
         $updateData = ['id' => $data->job_id];
@@ -331,7 +330,7 @@ public function update(array $data = [])
             $updateData['status'] = 'initiated';
         }
 
-        if(!empty($status)){
+        if($status == 'awarded'){
 
             $updateData['status'] = 'awarded';
 
@@ -340,6 +339,22 @@ public function update(array $data = [])
         app('JobRepository')->update($updateData);
     }
 
+
+    return $data;
+}
+
+
+public function create(array $data = [])
+{
+    $data['deleted_at'] = null;
+    $data['updated_at'] = Carbon::now()->ToDateTimeString();
+
+    $criteria = ['user_id' => $data['user_id'] , 'job_id' => $data['job_id']];
+
+
+    $this->model->insertOnDuplicateKey($data);
+
+    $this->findByCriteria($criteria, true);
 
     return $data;
 }

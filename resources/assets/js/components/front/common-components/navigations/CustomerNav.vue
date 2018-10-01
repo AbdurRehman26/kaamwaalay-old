@@ -22,10 +22,10 @@
                 </router-link>
             </li>
             <li class="bell-li">
-                <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true">
+                    <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true" v-on:click="Showactive">
                     <i v-bind:active="tab == true" class="icon-notification action-icon">
-                        <span class="badge-count">{{notificationCount}}</span></i>
-                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
+                        <span :class="{'badge-count': notificationCount != ''}">{{notificationCount}}</span></i>
+                        <notification v-show="isShowing" :isShowTab='isShowing'></notification>
                     </span>
                 </li>
                 <li>
@@ -53,7 +53,7 @@
                 first_name : '',
                 last_name : '',
                 user:{},
-                notificationCount:0,
+                notificationCount:'',
             }
         },
         directives: {
