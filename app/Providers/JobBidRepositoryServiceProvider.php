@@ -47,8 +47,10 @@ public function boot()
         $event->from = User::find($jobBid->user_id);
         if($jobBid->status == JobBid::COMPLETED){
             $event->message = 'Your '.$job->title.' job is completed. Please post a review.';
-            $event->to->notify(new JobBidUpdatedNotification($event));
+        }else{
+            $event->message = $event->from->first_name.' '.$event->from->last_name.' modified a bid on '.$job->title;
         }
+        $event->to->notify(new JobBidUpdatedNotification($event));
     });
 
 }
