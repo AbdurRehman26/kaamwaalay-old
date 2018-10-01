@@ -296,7 +296,7 @@
         },
         computed: {
             disabledChat() {
-                return typeof(this.disabled) == "undefined"? null : true;
+                return typeof(this.disabled) == "undefined"? false : this.disabled;
             },
             jobMessageData() {
                 return this.messageData;

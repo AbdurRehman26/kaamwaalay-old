@@ -26,7 +26,7 @@
         <div class="member-details">
             <p class="location">
                 <i class="icon-location"></i>
-                Location <strong>{{ job.city  }}, {{ job.state}}</strong>
+                Location <strong>{{ getCountry}}</strong>
             </p>
             <p class="offer" v-if="job.my_bid">
                 <i class="icon-work-briefcase"></i>
@@ -87,7 +87,10 @@ export default{
             }
         },
     },
-    watch: {
+    computed: {
+        getCountry() {
+            return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
+        }
     }
 }
 

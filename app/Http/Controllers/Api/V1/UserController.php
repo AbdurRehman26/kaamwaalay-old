@@ -12,6 +12,7 @@ use App\Data\Models\Role;
 use Illuminate\Validation\Rule;
 use Validator;
 use App\Helper\Helper;
+use App\Jobs\CustomerBanned;
 
 class UserController extends ApiResourceController
 {
@@ -234,6 +235,9 @@ public function changeStatus(Request $request)
 
         $result = $this->_repository->updateField($data);
         if($result) {
+            if($result->role_id == Role::CUSTOMER && $result->status  == User::BANNED){
+               CustomerBanned::dispatch($result)->onQueue(config('queue.pre_fix').'customer-banned');   
+            }
             $userId = $data['id'];
             $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
             $sqlParameter = [];

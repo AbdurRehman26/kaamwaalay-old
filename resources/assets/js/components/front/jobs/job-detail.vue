@@ -157,10 +157,6 @@
                             </div>
 
                             <div class="provider-bidding-btn">
-
-                                <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
-                                @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
-
                                 <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                 @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                 <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
@@ -449,11 +445,11 @@
     methods: {
         checkStatus(bid) {
             if(this.record.status == 'in_bidding') {
-                return this.showChatBox(bid, true, false);
+                this.showChatBox(bid, true, false);
             }else if(this.record.status == 'cancelled' || this.record.status == 'archived' || this.record.status == 'completed'){
-                return this.showChatBox(bid, true, true);
+                this.showChatBox(bid, true, true);
             }else {
-                return this.showChatBox(bid, false, false);
+                this.showChatBox(bid, false, false);
             }
         },
         closeChatBox() {
@@ -468,9 +464,9 @@
                 sender_detail: bid.service_provider.user_detail,
                 business_name: bid.service_provider.business_name,
             };
-            this.showChat = true;
             this.strict = strictChat;
             this.disabledChat = disabled;
+            this.showChat = true;
         },
         formUpdated(){
             let newDate  = new Date().getMilliseconds();
