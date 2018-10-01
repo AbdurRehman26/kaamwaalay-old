@@ -132,10 +132,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             if(empty($details['job_details'])) {
 
                 $data->jobImages = [];
+                $data->jobThumbImages = [];
                 if(!empty($data->images)){
                     foreach ($data->images as $key => $image) {
                         if(is_string($image)){   
                             $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                            $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image);
                         }
                     }
                 }

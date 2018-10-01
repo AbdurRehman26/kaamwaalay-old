@@ -31,7 +31,7 @@
             <p class="offer" v-if="job.my_bid">
                 <i class="icon-work-briefcase"></i>
                 Offer: <strong>
-                    {{ job.my_bid.is_tbd ? 'TBD' : job.my_bid.amount }}
+                    {{ job.my_bid.is_tbd ? 'TBD' : job.my_bid.formatted_amount }}
                 </strong> - <a v-if="!job.my_bid.is_awarded && !job.my_bid.is_visit_required" @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a>
                 <strong v-if="job.my_bid.is_visit_required">
                     {{ job.my_bid.status == 'visit_allowed' ? 'Visit allowed' : 'Visit required' }}
