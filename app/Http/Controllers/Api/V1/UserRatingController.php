@@ -24,7 +24,7 @@ class UserRatingController extends ApiResourceController
                 'required',
                 'exists:jobs,id',
                 Rule::unique('user_ratings')->where(function ($query) use ($value) {
-                    $query->where('user_id', $this->input($value)['user_id']);
+                    $query->where('rated_by', $this->input($value)['user_id']);
                 }),
             ];
 
