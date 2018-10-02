@@ -7,8 +7,12 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
+use App\Helper\Helper;
 use Request;
 use DB;
+use GuzzleHttp\Client;
+use GuzzleHttp\Message\Request as GuzzleRequest;
+use GuzzleHttp\Message\Response as GuzzleResponse;
 
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
@@ -218,8 +222,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
         }
         if (!empty($data['filter_by_popular_services'])) {
-            $homepage = file_get_contents('https://ipinfo.io/17.114.168.59');
-            dd($homepage);
+            $zip = $this->getZip();
+            dd($zip);
             $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
         }
         if (!empty($data['service_category'])) {
@@ -242,6 +246,13 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     return parent::findByAll($pagination, $perPage, $data);
     }
 
+    public function getZip() {
+        $ip = Helper::getIp();
+        $client = new Client(['base_uri' => 'http://ipinfo.io/']);
+        $response = "".$client->request("GET", '70.114.164.59')->getBody();
+        return json_decode($response)->postal;
+    }
+
     public function getPopularServices($currentServiceId = fasle, $limit = false) {
         $tempModel = $this->model
                 ->leftJoin('jobs', function ($join) {
@@ -251,7 +262,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 ->groupby('service_id')   
                 ->orderBy(DB::raw('COUNT(service_id)'), 'desc');
         if($currentServiceId) {
-            $tempModel = $tempModel->->where('service_id', '<>', $currentServiceId);
+            $tempModel = $tempModel->where('service_id', '<>', $currentServiceId);
         }
         if($limit) {
             $tempModel = $tempModel->limit($limit);

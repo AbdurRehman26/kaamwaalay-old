@@ -19,6 +19,16 @@ class Helper
 
     const ENCODE_PADDING = 10;
 
+    public static function getIp() {
+        $ip = request()->server('HTTP_X_REAL_IP');
+        if (empty($ip)) {
+            $ip = request()->server('HTTP_X_FORWARDED_FOR');
+            if (empty($ip)) {
+                $ip = request()->ip();
+            }
+        }
+        return $ip;
+    }
     public static function getRequestInfo(ServerRequest $request)
     {
         $ip_address = $request->server('HTTP_X_REAL_IP');
