@@ -12405,6 +12405,10 @@ textarea {
   top: 5px;
 }
 
+.service-provider button.btn {
+  width: 100%;
+}
+
 .custom-file {
   position: relative;
   display: inline-block;
@@ -14782,6 +14786,22 @@ button.sl-close {
   display: block;
   padding-right: 25px;
   color: #7d7d7d;
+}
+
+.bidding-navigation li.disabled {
+  background-color: transparent !important;
+}
+
+.invite-bid-search .custom-multi {
+  width: 100% !important;
+}
+
+.invite-bid-search .multiselect__tags span.multiselect__single {
+  width: 96% !important;
+}
+
+.invite-job-form .modal-body .model-content {
+  padding: 20px 33px 20px 33px !important;
 }
 
 .bg-light-custom {

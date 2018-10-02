@@ -176,6 +176,14 @@
             <div class="col-md-3 p-l-0 p-r-0">
 
                 <div class="service-provider">
+
+                    <!-- static btn start-->
+                    <button @click="invite_to_job()" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                        <span>Invite to Bid</span> <loader></loader>
+                    </button>
+                    <!-- static btn end-->
+
+
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>14 service providers available around you related to concrete flooring.</p>
@@ -258,6 +266,8 @@
 
 <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 
+<invite-bid-popup :showModalProp="invitepopupdata" @HideModalValue="invitepopupdata = false;"></invite-bid-popup>
+
 
 </div>
 </template>
@@ -294,6 +304,7 @@
                 showBidPopup : false,
                 showChat : false,
                 confirmPopupShow : false,
+                invitepopupdata: false,
                 jobMessageData: {},
                 formData : {
                 },                  
@@ -438,6 +449,9 @@
                     this.showChatBox(bid, false, false);
                 }
             },
+            invite_to_job(){
+                this.invitepopupdata = true;
+            },
             closeChatBox() {
                 this.showChat = false;
             },
@@ -542,6 +556,7 @@
                 this.visitpopup = false;
                 this.bidpopup = false;
                 this.showReviewForm = false;
+                this.invitepopupdata = false;
             },
             showchatpanel(){
                 this.isShowing=true;
