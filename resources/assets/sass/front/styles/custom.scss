@@ -244,13 +244,16 @@ button.sl-close {
 
 .bidding-navigation{
     li{
+        position: relative;
+        padding: 0px 32px 7px 32px;
         &.disabled {
             background-color: transparent !important;
         }
         p{
             span{
-                min-width: 24px;
-                display: inline-block;
+                position: absolute;
+                top: 0;
+                right: 2px;
             }
         }
     }
