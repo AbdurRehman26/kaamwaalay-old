@@ -122,9 +122,6 @@
                     this.$refs.myModalRef.hide()
                 },
                 onHidden(){
-                    this.clearFields();
-                    this.errorBag.clear();
-                    this.errorMessage = '';
                     this.$emit('HideModalValue');
                 },
             },
