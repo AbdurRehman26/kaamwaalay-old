@@ -119,7 +119,7 @@ public function input($value=''){
             'service_name',
             'filter_by_related_services',
             'filter_by_status',
-            'filter_by_parent',
+            'filter_by_parent'
         );
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;

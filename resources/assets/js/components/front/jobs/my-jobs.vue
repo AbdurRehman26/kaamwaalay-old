@@ -78,7 +78,7 @@
                                     </p>
                                     <p class="awarded" v-if="record.awarded_to">
                                         <i class="icon-checkmark2"></i> 
-                                        Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.id}}">
+                                        Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.business_details.profile_request.id}}">
                                             {{  record.awarded_to.business_details  ? record.awarded_to.business_details.business_name : '' }}
                                         </router-link>
                                     </p>								
