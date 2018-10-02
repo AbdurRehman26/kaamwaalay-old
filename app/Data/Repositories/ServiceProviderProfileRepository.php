@@ -106,7 +106,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 foreach ($data->attachments as $key => $value) {
                     foreach ($data->attachments[$key] as $childKey => $childValue) {
                         if($childValue){         
-                            $data->attachments[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue);
+                            $data->attachmentsUrl[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue);
                         }
                     }
 
