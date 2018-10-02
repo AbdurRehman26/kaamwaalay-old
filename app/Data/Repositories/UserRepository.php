@@ -9,6 +9,7 @@ use App\Data\Models\Role;
 use DB;
 use Carbon\Carbon;
 use Storage;
+use App\Helper\Helper;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -164,7 +165,6 @@ public function findByAll($pagination = false,$perPage = 10, $data = [])
 
 public function update(array $data = [])
 {
-
     $input = $data['user_details'];
 
     $input['id'] = $data['id'];
@@ -196,7 +196,7 @@ public function update(array $data = [])
 
                 if(!$profileRequest) {
 
-                    self::updateServices($data);
+                    self::updateServices($data, $user);
 
                 }
 
@@ -215,19 +215,22 @@ public function update(array $data = [])
 }
 
 
-public function updateServices($data)
+public function updateServices($data, $user)
 {
 
+    $servicesRepository = app('ServiceRepository');
+
+    $serviceProfileRequestRepository = app('ServiceProviderProfileRequestRepository');
 
     foreach ($data['service_details'] as $key => $service) {
 
         // Service id is definitely required in order to update a profile request
 
-        if(empty($service['service_id']) || $service['status'] == 'approved') {
+        if(empty($service['service_id']) ||  (!empty($service['status']) && $service['status'] == 'approved')) {
             continue;
         }
 
-        if(!empty($service['service_provider_profile_request_id']) && $service['status'] != 'rejected') {
+        if(!empty($service['service_provider_profile_request_id']) && (!empty($service['status']) && $service['status'] == 'rejected')) {
             unset($service['status']);
 
             $existingServiceIds[$service['service_provider_profile_request_id']][] = $service['service_id'];
@@ -238,7 +241,7 @@ public function updateServices($data)
         }else{
             unset($service['status'] , $service['service_provider_profile_request_id']);
 
-            $serviceExists = app('ServiceProviderProfileRequestRepository')->model
+            $serviceExists = $serviceProfileRequestRepository->model
             ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
             ->whereNull('service_provider_services.deleted_at')
             ->where('service_provider_profile_requests.status' , '!=' , 'rejected')
@@ -250,11 +253,50 @@ public function updateServices($data)
         }
     }
     if(!empty($newServices)) {
+
+        $toBeAddedServices = [];
+
         $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
         foreach ($newServices as $key => $newService) {
-            $newServices[$key]['service_provider_profile_request_id'] = $serviceProfileRequest->id; 
+
+            $childServices = $servicesRepository->getAllServicesByCategory($newService['service_id']);
+
+            if(!empty($childServices)){
+                $childServiceIds = Helper::makeArray($childServices['data'], 'id');
+
+                $newServiceIds = Helper::makeArray($newServices, 'service_id');
+
+                $similarIds = array_intersect($childServiceIds, $newServiceIds);
+
+                foreach ($similarIds as $key => $similarId) {
+                    unset($childServiceIds[$key]);
+                }
+
+                $criteria = ['user_id' => $user->id];
+                
+                $existingSavedServices = $serviceProfileRequestRepository->getSubServices($criteria, true);
+
+                $similarIds =  array_intersect($childServiceIds , $existingSavedServices);
+
+                foreach ($similarIds as $key => $similarId) {
+                    unset($childServiceIds[$key]);
+                }
+
+                foreach ($childServiceIds as $key => $childServiceId) {
+                    $toBeAddedServices[] = [
+                        'service_id' => $childServiceId,
+                        'service_provider_profile_request_id' => $serviceProfileRequest->id
+                    ];                     
+                }
+
+            }
+
+            $toBeAddedServices[] = [
+                'service_id' => $newService['service_id'],
+                'service_provider_profile_request_id' => $serviceProfileRequest->id
+            ]; 
         }
-        app('ServiceProviderServiceRepository')->model->insert($newServices);
+        app('ServiceProviderServiceRepository')->model->insert($toBeAddedServices);
     }
 
     if(!empty($existingServiceIds)) {
