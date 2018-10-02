@@ -14777,6 +14777,13 @@ button.sl-close {
   }
 }
 
+.no-notification-found {
+  text-align: center;
+  display: block;
+  padding-right: 25px;
+  color: #7d7d7d;
+}
+
 .bg-light-custom {
   background-color: #f9f9f9 !important;
 }
