@@ -12,53 +12,53 @@ use Storage;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
-    /**
-     * These will hold the instance of User Class.
-     *
-     * @var    object
-     * @access public
-     **/
-    public $model;
+/**
+* These will hold the instance of User Class.
+*
+* @var    object
+* @access public
+**/
+public $model;
 
-    /**
-     * This is the prefix of the cache key to which the
-     * App\Data\Repositories data will be stored
-     * App\Data\Repositories Auto incremented Id will be append to it
-     *
-     * Example: User-1
-     *
-     * @var    string
-     * @access protected
-     **/
+/**
+* This is the prefix of the cache key to which the
+* App\Data\Repositories data will be stored
+* App\Data\Repositories Auto incremented Id will be append to it
+*
+* Example: User-1
+*
+* @var    string
+* @access protected
+**/
 
-    protected $_cacheKey = 'user';
-    protected $_cacheTotalKey = 'total-user';
+protected $_cacheKey = 'user';
+protected $_cacheTotalKey = 'total-user';
 
-    public function __construct(User $model)
-    {
-        $this->model = $model;
-        $this->builder = $model;
-        $this->roleRepo = app('RoleRepository');
+public function __construct(User $model)
+{
+    $this->model = $model;
+    $this->builder = $model;
+    $this->roleRepo = app('RoleRepository');
 
-    }
+}
 
 
-    public function findById($id, $refresh = false, $details = false, $encode = true)
-    {
-        $data = parent::findById($id, $refresh, $details, $encode);
+public function findById($id, $refresh = false, $details = false, $encode = true)
+{
+    $data = parent::findById($id, $refresh, $details, $encode);
 
-        if($data) {
-            $data->profileImage = $data->profile_image;
-            if($data->profile_image && substr($data->profile_image, 0, 8) != "https://"){
-               $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
-           }
+    if($data) {
+        $data->profileImage = $data->profile_image;
+        if($data->profile_image && substr($data->profile_image, 0, 8) != "https://"){
+            $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
+        }
 
-           $data->role = app('RoleRepository')->findById($data->role_id);
+        $data->role = app('RoleRepository')->findById($data->role_id);
 
-           if (!empty($details['profile_data'])) {
+        if (!empty($details['profile_data'])) {
 
             if($data->role_id == Role::SERVICE_PROVIDER) {
-                    // Todo
+// Todo
                 $data->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);                
                 if (!empty($details['provider_request_data'])) {
                     $serviceDetailsCriteria = ['user_id' => $id];
@@ -73,13 +73,13 @@ class UserRepository extends AbstractRepository implements RepositoryContract
             $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
 
             $data->total_feedback_count = app('UserRatingRepository')->getTotalFeedbackCriteria($criteria);
-            
+
             $criteria['status'] = 'completed';
             $data->total_finished_jobs = app('JobBidRepository')->getCountByCriteria($criteria);
         }
 
         if($data->role_id == Role::CUSTOMER) {
-                // Todo
+// Todo
             $avgCriteria = ['user_id' => $data->id,'status'=>'approved'];
             $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
             $data->avg_rating = $avgRating;
@@ -183,59 +183,21 @@ public function update(array $data = [])
                 }
             }
 
+// Here we will check if service details exist. they will exist in case of service provider
+
             if(!empty($data['service_details'])) {
 
                 $criteria = ['user_id' => $input['id'] , 'status' => 'pending'];
 
                 $profileRequest = app('ServiceProviderProfileRequestRepository')->findByCriteria($criteria);
 
+// Checking if a profile request is already in a pending state or not.
+// if yes no new request will be generate 
+
                 if(!$profileRequest) {
 
-                    foreach ($data['service_details'] as $key => $service) {
-                        if(empty($service['service_id'])) {
-                            continue;
-                        }
+                    self::updateServices($data);
 
-                        if(!empty($service['service_provider_profile_request_id']) && $service['status'] != 'rejected') {
-                            unset($service['status']);
-
-                            $existingServiceIds[$service['service_provider_profile_request_id']][] = $service['service_id'];
-
-                            $service['deleted_at'] = null;
-                            $existingServices[] = $service;
-
-                        }else{
-                            unset($service['status'] , $service['service_provider_profile_request_id']);
-
-                            $serviceExists = app('ServiceProviderProfileRequestRepository')->model
-                            ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
-                            ->whereNull('service_provider_services.deleted_at')
-                            ->where('service_provider_profile_requests.status' , '!=' , 'rejected')
-                            ->where('service_provider_services.service_id' , $service['service_id'])
-                            ->first();
-                            if(empty($serviceExists)){      
-                                $newServices[] = $service;
-                            }
-                        }
-                    }
-                    if(!empty($newServices)) {
-                        $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
-                        foreach ($newServices as $key => $newService) {
-                            $newServices[$key]['service_provider_profile_request_id'] = $serviceProfileRequest->id; 
-                        }
-                        app('ServiceProviderServiceRepository')->model->insert($newServices);
-                    }
-
-                    if(!empty($existingServiceIds)) {
-                        foreach ($existingServiceIds as $key => $existingServiceId) {
-                            app('ServiceProviderServiceRepository')->model
-                            ->where('service_provider_profile_request_id', $key)
-                            ->whereNotIn('id', $existingServiceId)->delete();
-                        }
-
-                        app('ServiceProviderServiceRepository')->model->insertOnDuplicateKey($existingServices);
-
-                    }
                 }
 
             }
@@ -250,6 +212,62 @@ public function update(array $data = [])
 
 
     return false;
+}
+
+
+public function updateServices($data)
+{
+
+
+    foreach ($data['service_details'] as $key => $service) {
+
+        // Service id is definitely required in order to update a profile request
+
+        if(empty($service['service_id']) || $service['status'] == 'approved') {
+            continue;
+        }
+
+        if(!empty($service['service_provider_profile_request_id']) && $service['status'] != 'rejected') {
+            unset($service['status']);
+
+            $existingServiceIds[$service['service_provider_profile_request_id']][] = $service['service_id'];
+
+            $service['deleted_at'] = null;
+            $existingServices[] = $service;
+
+        }else{
+            unset($service['status'] , $service['service_provider_profile_request_id']);
+
+            $serviceExists = app('ServiceProviderProfileRequestRepository')->model
+            ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
+            ->whereNull('service_provider_services.deleted_at')
+            ->where('service_provider_profile_requests.status' , '!=' , 'rejected')
+            ->where('service_provider_services.service_id' , $service['service_id'])
+            ->first();
+            if(empty($serviceExists)){      
+                $newServices[] = $service;
+            }
+        }
+    }
+    if(!empty($newServices)) {
+        $serviceProfileRequest = app('ServiceProviderProfileRequestRepository')->create(['user_id' => $user->id]);
+        foreach ($newServices as $key => $newService) {
+            $newServices[$key]['service_provider_profile_request_id'] = $serviceProfileRequest->id; 
+        }
+        app('ServiceProviderServiceRepository')->model->insert($newServices);
+    }
+
+    if(!empty($existingServiceIds)) {
+        foreach ($existingServiceIds as $key => $existingServiceId) {
+            app('ServiceProviderServiceRepository')->model
+            ->where('service_provider_profile_request_id', $key)
+            ->whereNotIn('id', $existingServiceId)->delete();
+        }
+
+        app('ServiceProviderServiceRepository')->model->insertOnDuplicateKey($existingServices);
+
+    }
+
 }
 
 public function getTotalCountByCriteria($crtieria = [], $startDate = null, $endDate = null)
@@ -272,7 +290,7 @@ public function updateField(array $data = [])
     unset($data['user_id']);
 
     $data = parent::update($data);
-    
+
     if($data->status == 'banned'){
 
         $serviceProvider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->id);
@@ -288,4 +306,6 @@ public function updateField(array $data = [])
 
     return $data;
 }
+
+
 }

@@ -61,7 +61,7 @@
                 });
             },
             showModal() {
-                this.$refs.myModalRef.show();
+                this.$refs.myModalRef.show(); 
                 this.supportQuestions = this.$store.getters.getSupportQuestions;
                 if(!this.supportQuestions.length) {
                     this.getSupportQuestions();

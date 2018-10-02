@@ -81,7 +81,15 @@ methods: {
               if(response.data.response.data[0].is_profile_completed == 0 ){
                  this_.$router.push({ name: 'provider_profile'})
              }else{ 
+                if(redirectUrl == "Advice_Center") {
+                  if(response.data.response.data[0].role.id == 2) {
+                    this_.$router.push({ name: 'Advice_Center', params: { type: 'service-provider' }});
+                  }else {
+                    this_.$router.push({ name: 'Advice_Center', params: { type: 'customer' }});
+                  }
+                }else {
                  this_.$router.push({ name: 'my.bids'})
+                }
              }
 
          }else{
@@ -89,16 +97,22 @@ methods: {
              this_.$router.push({ name: 'customer_profile'})
          }else{ 
              if(redirectUrl){
+              
               if(redirectUrl == "Explore_Detail") {
                 this_.$router.push({ name: 'Explore'});
               }else if(redirectUrl == "job.create"){
                 this_.$router.push({ name: redirectUrl});
               }else if(redirectUrl == "Advice_Center"){
-                this_.$router.push({ name: 'Advice_Center'});
+                if(response.data.response.data[0].role.id == 2) {
+                  this_.$router.push({ name: 'Advice_Center', params: { type: 'service-provider' }});
+                }else {
+                  this_.$router.push({ name: 'Advice_Center', params: { type: 'customer' }});
+                }
               }else {
                 this_.$router.push({ name: 'main-page'});
               } 
              }else{
+
               this_.$router.push({ name: 'my.jobs'})
              }
          }         
@@ -112,6 +126,7 @@ methods: {
   }, 5000);
 })
 }else{
+
     let user = JSON.parse(self.$store.getters.getAuthUser);
     setTimeout(function(){
         if(user.role_id == 2){

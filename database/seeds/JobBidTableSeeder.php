@@ -136,7 +136,7 @@ class JobBidTableSeeder extends Seeder
 
                         if($jobBid = app('JobBidRepository')->findByCriteria($criteria)){
 
-                            $updateData = ['id' => $jobBid->id, 'status' => 'initiated'];
+                            $updateData = ['id' => $jobBid->id, 'status' => 'initiated', 'job_id' => $initiatedJob->id];
                             app('JobBidRepository')->update($updateData);
 
                         }else{
@@ -145,7 +145,7 @@ class JobBidTableSeeder extends Seeder
                             $jobBid = app('JobBidRepository')->model->where('is_tbd', '=' , 0)
                                         ->where($criteria)->first();
                             if($jobBid){
-                            $updateData = ['id' => $jobBid['id'], 'status' => 'initiated', 'is_awarded' => 1];
+                            $updateData = ['id' => $jobBid['id'], 'status' => 'initiated', 'is_awarded' => 1, 'job_id' => $initiatedJob->id];
                             $jobBid = app('JobBidRepository')->update($updateData);
                                 
                             }else{
@@ -172,7 +172,7 @@ class JobBidTableSeeder extends Seeder
                     $criteria = ['job_id' => $awardedJob->id, 'is_awarded' => 1];
                     if(!app('JobBidRepository')->findByCriteria($criteria)){
                         $jobBid = app('JobBidRepository')->findByAttribute('job_id', $criteria['job_id']);
-                        $updateData = ['id' => $jobBid->id, 'is_awarded' => 1];
+                        $updateData = ['id' => $jobBid->id, 'is_awarded' => 1, 'job_id' => $awardedJob->id];
                         app('JobBidRepository')->update($updateData);
 
                     }
@@ -196,7 +196,7 @@ class JobBidTableSeeder extends Seeder
 
                         if($jobBid = app('JobBidRepository')->findByCriteria($criteria)){
 
-                            $updateData = ['id' => $jobBid->id, 'status' => 'completed'];
+                            $updateData = ['id' => $jobBid->id, 'status' => 'completed', 'job_id' => $completedJob->id];
                             app('JobBidRepository')->update($updateData);
 
                         }else{
@@ -205,7 +205,7 @@ class JobBidTableSeeder extends Seeder
                             $jobBid = app('JobBidRepository')->model->where('is_tbd', '=' , 0)
                                         ->where($criteria)->first();
                             
-                            $updateData = ['id' => $jobBid['id'], 'status' => 'completed', 'is_awarded' => 1];
+                            $updateData = ['id' => $jobBid['id'], 'status' => 'completed', 'is_awarded' => 1, 'job_id' => $completedJob->id];
                             $jobBid = app('JobBidRepository')->update($updateData);
 
                         }

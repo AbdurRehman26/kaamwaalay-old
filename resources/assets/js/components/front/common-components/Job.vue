@@ -32,7 +32,7 @@
                 <i class="icon-work-briefcase"></i>
                 Offer: <strong>
                     {{ job.my_bid.is_tbd ? 'TBD' : job.my_bid.formatted_amount }}
-                </strong> - <a v-if="!job.my_bid.is_awarded && !job.my_bid.is_visit_required" @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a>
+                </strong> <span v-if="!job.my_bid.is_awarded && !job.my_bid.is_visit_required">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
                 <strong v-if="job.my_bid.is_visit_required">
                     {{ job.my_bid.status == 'visit_allowed' ? 'Visit allowed' : 'Visit required' }}
                 </strong>
@@ -65,33 +65,33 @@
     </div>
 </template>
 <script>
-import StarRating from 'vue-star-rating';
+    import StarRating from 'vue-star-rating';
 
-export default{
-    props : ['job'],
-    components: {
-        StarRating
-    },
-    data(){
-        return { 
-            bidValue : '',
-            currentrecord : '',
-        }
-    },
-    methods: {
-        showBidPopup(val) {
-            if(val == 'bidNow') {
-                this.$emit('showBidPopup', this.job, val);
-            }else {
-                this.$emit('showBidPopup', this.job, val);
+    export default{
+        props : ['job'],
+        components: {
+            StarRating
+        },
+        data(){
+            return { 
+                bidValue : '',
+                currentrecord : '',
             }
         },
-    },
-    computed: {
-        getCountry() {
-            return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
+        methods: {
+            showBidPopup(val) {
+                if(val == 'bidNow') {
+                    this.$emit('showBidPopup', this.job, val);
+                }else {
+                    this.$emit('showBidPopup', this.job, val);
+                }
+            },
+        },
+        computed: {
+            getCountry() {
+                return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
+            }
         }
     }
-}
 
 </script>

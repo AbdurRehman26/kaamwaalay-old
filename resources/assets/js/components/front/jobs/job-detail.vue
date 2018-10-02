@@ -106,7 +106,7 @@
 
                     <div class="jobs-post-files" v-if="record.videos">
                         <h3>Related Videos</h3>
-                        <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
 
@@ -349,7 +349,7 @@
                 return false;
             },
             canArchiveBid(){
-                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
+                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived && this.record.my_bid.status != 'initiated'){
                     return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id) || ( this.record.my_bid.id == this.record.awardedBid.id &&  this.record.status != 'awarded');
                 }
                 return false;
@@ -479,7 +479,6 @@
                 this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
             },
             formSubmitted(response){
-
                 this.reSendCall();            
                 if(!response.data.is_archived && response.data.status == 'completed')
                 {
@@ -503,8 +502,6 @@
                     self.loading = false;
                     self.forceValue = false;
                 }, 2000);
-                this.record = response.data;
-                let user = JSON.parse(this.$store.getters.getAuthUser);
             },
             getResponse(response){
                 this.showBidPopup = false;
