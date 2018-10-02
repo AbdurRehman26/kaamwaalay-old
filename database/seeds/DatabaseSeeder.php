@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         // commenting all seeders 
 
-      /*  $this->call(CountriesTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
         $this->call(ZipCodesTableSeeder::class);
@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SupportQuestionsTableSeeder::class);
         $this->call(PlansTableSeeder::class);
 
+        /*
         // Service and Service Provider 
 
         $this->call(ServiceTableSeeder::class);
@@ -42,7 +43,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserRatingTableSeeder::class);
         $this->call(PaymentTableSeeder::class);
 
-        $this->call(SupportInquiryTableSeeder::class);*/
+        $this->call(SupportInquiryTableSeeder::class);
+        */
 
 
         \Artisan::call('passport:install');

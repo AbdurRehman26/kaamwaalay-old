@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years_of_experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -130,6 +130,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            {{service_detail}}
                             <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
                             <a v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
