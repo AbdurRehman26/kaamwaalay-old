@@ -106,7 +106,7 @@
 
                     <div class="jobs-post-files" v-if="record.videos">
                         <h3>Related Videos</h3>
-                        <iframe width="1280" height="365" :src="record.videos[0] | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
 
