@@ -278,8 +278,6 @@
             userIsOffline() {
 
                 if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
-                    console.log(this.jobMessageData, 77787878);
-                    alert("popo");
                     var self = this;
                     this.messages = [];
                     this.text = "";

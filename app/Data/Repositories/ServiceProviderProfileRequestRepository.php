@@ -253,6 +253,7 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                         }
                     )->where('service_provider_profile_requests.status', '=', 'approved')->get();
                     
+                    
                     return $model;
                 }
                 return false;

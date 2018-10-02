@@ -62,10 +62,12 @@
             },
             showModal() {
                 this.$refs.myModalRef.show();
-                this.supportQuestions = this.$store.getters.getSupportQuestions;
-                if(!this.supportQuestions.length) {
-                    this.getSupportQuestions();
-                }  
+                // this code will be used when we empty the vuejs store on logout 
+                // this.supportQuestions = this.$store.getters.getSupportQuestions;
+                // if(!this.supportQuestions.length) {
+                    // this.getSupportQuestions();
+                // }  
+                this.getSupportQuestions();
             },
             hideModal() {
                 this.resetForm();
