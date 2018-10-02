@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SupportQuestionsTableSeeder::class);
         $this->call(PlansTableSeeder::class);
 
-        /*
         // Service and Service Provider 
 
         $this->call(ServiceTableSeeder::class);
@@ -44,7 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentTableSeeder::class);
 
         $this->call(SupportInquiryTableSeeder::class);
-        */
 
 
         \Artisan::call('passport:install');
