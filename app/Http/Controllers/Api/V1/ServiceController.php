@@ -120,12 +120,13 @@ public function input($value=''){
             'filter_by_related_services',
             'filter_by_status',
             'filter_by_parent',
+            'filter_by_popular_services'
         );
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
     request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
 
-        return $input;
+    return $input;
 }
 
 public function checkServiceCount($attribute, $value, $fail) {

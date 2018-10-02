@@ -7,9 +7,9 @@
             <ul class="Popular-services-slides my-owl-carousel owl-carousel owl-theme">
                 <li class="item" v-for="service in services">
                     <a href="javascript:;" @click="changecategorypopup">
-                        <div class="box-img"><img :src="service.serviceImage"></div>
-                        <h6>{{service.serviceHeading}}</h6>
-                        <p><i class="icon-map-marker2"></i>{{service.serviceDesc}}</p>
+                        <div class="box-img"><img :src="getImage(service.images)"></div>
+                        <h6>{{service.title}}</h6>
+                        <p><i class="icon-map-marker2"></i>{{getProviders(service.service_prodider_count)}}</p>
                     </a>
                 </li>
             </ul>
@@ -21,6 +21,10 @@
 <script>
     export default {
         methods: {
+            getProviders(count) {
+                let str = "service providers near you."
+                return count? count +" "+str : "No "+str;
+            },
             changecategorypopup() {
                 this.categoryval = true;
             },
@@ -35,7 +39,7 @@
                 let url = 'api/service?filter_by_popular_services=true';
                 self.$http.get(url).then(response=>{
                     response = response.data.response;
-                    self.categories = response.data;
+                    self.services = response.data;
                 }).catch(error=>{
                 });
             },
@@ -95,61 +99,6 @@
                         serviceImage:'images/front/home/cleaning.jpg',
                         serviceHeading:'Cleaning Services',
                         serviceDesc:'4 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/carpenter.jpg',
-                        serviceHeading:'Carpenter',
-                        serviceDesc:'3 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/electrician.jpg',
-                        serviceHeading:'Electricians',
-                        serviceDesc:'8 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/movers.jpg',
-                        serviceHeading:'Movers',
-                        serviceDesc:'2 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/cleaning.jpg',
-                        serviceHeading:'Cleaning Services',
-                        serviceDesc:'4 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/carpenter.jpg',
-                        serviceHeading:'Carpenter',
-                        serviceDesc:'3 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/electrician.jpg',
-                        serviceHeading:'Electricians',
-                        serviceDesc:'8 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/movers.jpg',
-                        serviceHeading:'Movers',
-                        serviceDesc:'2 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/cleaning.jpg',
-                        serviceHeading:'Cleaning Services',
-                        serviceDesc:'4 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/carpenter.jpg',
-                        serviceHeading:'Carpenter',
-                        serviceDesc:'3 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/electrician.jpg',
-                        serviceHeading:'Electricians',
-                        serviceDesc:'8 service providers near you',
-                    },
-                    {
-                        serviceImage:'images/front/home/movers.jpg',
-                        serviceHeading:'Movers',
-                        serviceDesc:'2 service providers near you',
                     },
                 ]
            }
