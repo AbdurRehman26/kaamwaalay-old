@@ -54,5 +54,5 @@ Route::resource('testimonial', 'Api\V1\TestimonialController')->only([
 ]);
 
 Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-    'edit','create','destory'
+    'edit','store','destory'
 ]);

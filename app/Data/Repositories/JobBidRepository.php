@@ -333,7 +333,8 @@ public function update(array $data = [])
         }
 
         if($status == 'awarded'){
-
+            
+            $updateData['is_archived'] = 0;
             $updateData['status'] = 'awarded';
 
         }
