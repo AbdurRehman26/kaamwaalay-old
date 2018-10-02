@@ -14792,6 +14792,11 @@ button.sl-close {
   background-color: transparent !important;
 }
 
+.bidding-navigation li p span {
+  min-width: 24px;
+  display: inline-block;
+}
+
 .invite-bid-search .custom-multi {
   width: 100% !important;
 }

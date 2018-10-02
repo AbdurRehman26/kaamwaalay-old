@@ -243,8 +243,16 @@ button.sl-close {
 }
 
 .bidding-navigation{
-    li.disabled {
-        background-color: transparent !important;
+    li{
+        &.disabled {
+            background-color: transparent !important;
+        }
+        p{
+            span{
+                min-width: 24px;
+                display: inline-block;
+            }
+        }
     }
 }
 
