@@ -334,11 +334,19 @@ public function update(array $data = [])
 
         if($status == 'awarded'){
 
+
             $data['is_archived'] = 0;
             $updateData['status'] = 'awarded';
 
         }
         $data = parent::update($data);
+            
+        $criteria = ['job_id' , $data->job_id, 'is_visit_required' => 1];
+
+        if($status == 'awarded'){
+            $this->model->where($criteria)->delete();
+        }
+
     }
 
     
@@ -352,7 +360,11 @@ public function update(array $data = [])
 
 public function create(array $data = [])
 {
+    $data['status'] = 'pending';
     $data['deleted_at'] = null;
+    $data['is_archived'] = 0;
+    $data['is_visit_required'] = 0;
+
     $data['updated_at'] = Carbon::now()->ToDateTimeString();
 
     $criteria = ['user_id' => $data['user_id'] , 'job_id' => $data['job_id']];
