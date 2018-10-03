@@ -177,17 +177,11 @@
 
                 <div class="service-provider">
 
-                    <!-- static btn start-->
-                    <button @click="invite_to_job()" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span>Invite to Bid</span> <loader></loader>
-                    </button>
-                    <!-- static btn end-->
-
-
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>14 service providers available around you related to concrete flooring.</p>
-                        <router-link href="javascript:void(0);" class="btn btn-primary" :to="{name: 'Explore_Detail'}">Find &amp; Invite</router-link>				
+                        <router-link v-if="job && $store.getters.getAuthUser" href="javascript:void(0);" class="btn btn-primary" 
+                        :to="{name: 'Explore_Detail' ,  params : { serviceName: this.job.service.url_suffix , zip : $store.getters.getAuthUser.zip_code }}">Find &amp; Invite</router-link>				
                     </div>
 
                     <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
@@ -265,9 +259,6 @@
 <vue-common-methods :updateForm="true" :submit="submitBidForm" @form-submitted="formUpdated" :formData="submitFormData" :submitUrl="submitBidUrl" v-if="!isMyJob"></vue-common-methods>
 
 <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
-
-<invite-bid-popup :showModalProp="invitepopupdata" @HideModalValue="invitepopupdata = false;"></invite-bid-popup>
-
 
 </div>
 </template>

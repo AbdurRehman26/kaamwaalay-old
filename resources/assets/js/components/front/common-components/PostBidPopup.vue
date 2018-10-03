@@ -1,4 +1,4 @@
-<template>  
++<template>  
     <div>
 
         <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" hide-footer>
@@ -56,7 +56,7 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker  v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="HH:mm:ss" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
@@ -102,8 +102,7 @@
             data() {
                 return {
                     disabledDates: {
-                        to: new Date(1990, 0, 5), 
-                        from: new Date(2019, 0, 26)
+                        to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
                     },
                     updateForm : false,
                     bidType : 'amount_value',

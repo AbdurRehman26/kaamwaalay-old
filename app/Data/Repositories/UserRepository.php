@@ -101,6 +101,9 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             $totalUrgentJobsCompleted = app('JobRepository')->getTotalCountByCriteria($totalUrgentJobsCompletedCriteria);
             $data->total_urgent_jobs_completed = $totalUrgentJobsCompleted;
 
+            $totalInBiddingCriteria = ['user_id' => $data->id, 'status'=>'in_bidding'];
+            $data->total_inbidding_jobs = app('JobRepository')->getTotalCountByCriteria($totalInBiddingCriteria);;
+
 
         }
         $country = app('CountryRepository')->findById($data->country_id);             
