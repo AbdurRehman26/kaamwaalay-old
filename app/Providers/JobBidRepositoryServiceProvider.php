@@ -20,11 +20,11 @@ class JobBidRepositoryServiceProvider extends ServiceProvider
 public function boot()
 {
 
-       JobBid::created(function($jobBid) {
+    JobBid::created(function($jobBid) {
 
         $event = new \StdClass();
-        $event->id = $jobBid->id;
         $job = Job::find($jobBid->job_id);
+        $event->id = $job->id;
         $event->body =  $job; 
         if($jobBid->is_invited == 1){
          $event->from = User::find($job->user_id);
@@ -38,19 +38,44 @@ public function boot()
         $event->to->notify(new JobBidCreatedNotification($event));
     });
     JobBid::updated(function($jobBid) {
-
         $event = new \StdClass();
-        $event->id = $jobBid->id;
         $job = Job::find($jobBid->job_id);
+        $event->id = $job->id;
         $event->body =  $job;
-        $event->to =  User::find($job->user_id);
-        $event->from = User::find($jobBid->user_id);
-        if($jobBid->status == JobBid::COMPLETED){
-            $event->message = 'Your '.$job->title.' job is completed. Please post a review.';
-        }else{
-            $event->message = $event->from->first_name.' '.$event->from->last_name.' modified a bid on '.$job->title;
+        if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = $jobBid->id;
+            $event->message = $event->from->first_name.' '.$event->from->last_name.' requested to visit your address to evaluate work before bidding.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
         }
-        $event->to->notify(new JobBidUpdatedNotification($event));
+        if($jobBid->status == JobBid::COMPLETED && empty($jobBid->deleted_at)){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->message = 'Your '.$job->title.' job is completed. Please post a review.';
+        }
+        if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){
+            $event->to =  User::find($jobBid->user_id);
+            $event->from = User::find($job->user_id);
+            $event->object_id = '';
+            $event->message = 'Your visit request for '.$job->title.' job has been accepted';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if(!empty($jobBid->deleted_at)){
+            $event->to =  User::find($jobBid->user_id);
+            $event->from = User::find($job->user_id);
+            $event->object_id = '';
+            $event->message = 'Your visit request for '.$job->title.' job has been declined';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if(empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->message = $event->from->first_name.' '.$event->from->last_name.' modified a bid on '.$job->title;
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
     });
 
 }
