@@ -15596,9 +15596,17 @@ button.sl-close {
   padding: 0;
 }
 
+.featured-categories-home .list-description {
+  width: calc(100% - 60px);
+}
+
 .featured-categories-home .list-description p {
   font-family: "AkzidenzGroteskBE-Bold";
   margin-left: 12px;
+  width: 108px;
+  overflow: hidden;
+  max-height: 50px;
+  text-overflow: ellipsis;
 }
 
 .featured-categories-home .services-list a:hover {
