@@ -1,7 +1,7 @@
 <template>
    <div>
 
-    <b-modal id="invite-bid" class="post-bid-form invite-job-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Invite on bid" hide-footer>
+    <b-modal id="invite-bid" class="post-bid-form invite-job-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Invite to bid" hide-footer>
 
         <form @submit.prevent="validateBeforeSubmit">
             <div class="model-content">
@@ -83,9 +83,8 @@
 
             let data = {
                 job_id : this.searchValue.id,
-                is_tbd : 1,
                 is_invited : 1,
-                user_id : this.user.user_id,
+                user_id : this.user.id,
             }
 
             if(!data.job_id){
@@ -176,6 +175,9 @@
         }, 1000),
     },
     watch:{
+        user(){
+
+        },
         bid (value){
             this.setBidData();
         },

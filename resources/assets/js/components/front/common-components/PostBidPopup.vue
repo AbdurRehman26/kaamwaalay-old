@@ -50,7 +50,7 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label>Preferred date and time of visit</label>
-                                    <datepicker :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date" name="uniquename"></datepicker>
+                                    <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
                                 </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
