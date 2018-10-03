@@ -169,8 +169,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Zip Code</label>
-                        <input v-validate="'required'" name="zip code" 
-                        :class="['form-control' , errorBag.first('zip code') ? 'is-invalid' : '']" v-model="formData.zip_code" type="text" class="form-control" placeholder="Enter your zip code">
+                        <div class="custom-multi" :class="{ 'invalid': isInvalid }">
+                            <multiselect  v-model="searchValue" :options="options"  placeholder="Enter your zip code" track-by="id" label="zip_code" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+                                <span slot="noResult">No zip code found.</span>
+                            </multiselect>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,11 +223,15 @@
 
 <script>
     import Datepicker from 'vuejs-datepicker';
+    import _ from 'lodash';
 
     export default {
         components: { Datepicker },
         data() {
             return {
+                isLoading: false,
+                searchValue: '',
+                options: [],
                 disabledDates: {
                     to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
                 },
@@ -283,11 +290,15 @@
                 states : [],
                 isShowCardDetail : true,
                 isSubmitNormalJob : false,
-                isPaymentDetailShow : true
+                isPaymentDetailShow : true,
+                isTouched: false,
 
             }
         },
         computed : {
+            isInvalid () {
+                return this.isTouched && !this.searchValue
+            },
             servicesList(){
                 return this.$store.getters.getAllServices;
             },
@@ -307,6 +318,39 @@
             this.paymentDetailShow()
         },
         methods:{
+            onTouch () {
+                this.isTouched = true
+            },
+            dispatchAction (actionName) {
+                this.searchValue = '';
+                this.options = [];
+                this.formData.zip_code = actionName.zip_code;
+            },
+            dispatchCloseAction (actionName) {
+                this.options = [];
+                this.onTouch();
+            },
+            limitText (count) {
+                return `and ${count} other services`;
+            },
+            asyncFind: _.debounce(function(query) {
+                let self = this;
+                if(!query) {
+                    this.loading = false;
+                }
+                if(!query || query.length < 3) {
+                    return;
+                };
+                this.searchUrl  = 'api/zipcode?zip_code=' + query;
+                this.isLoading = true;
+                this.$http.get(this.searchUrl).then(response => {
+                    response = response.data.response;
+                    self.options = response.data;
+                    self.isLoading = false;
+
+                }).catch(error=>{
+                });
+            }, 1000),
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
                 if(user.stripe_token){
@@ -353,15 +397,22 @@
                                 this.onSubmit();
                             }
                         }
+                        this.isTouched = false;
                         this.errorMessage = '';
                         return;
                     }
-                    console.log(this.errorBag , 13123);
+                    this.isTouched = true;
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
                 let self = this;
+
+                this.isTouched = false;
+                if(!this.searchValue) {
+                    this.isTouched = true;
+                    return;
+                }
                 this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
 
@@ -442,3 +493,4 @@
         }
     }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
