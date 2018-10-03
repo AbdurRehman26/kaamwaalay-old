@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use Validator;
 use App\Helper\Helper;
 use App\Jobs\CustomerBanned;
+use Socialite;
 
 class UserController extends ApiResourceController
 {
@@ -150,7 +151,7 @@ public function store(Request $request)
 }
 public function socialLogin(Request $request)
 {
-    $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'social_account_id', 'social_account_type', 'profile_pic','from_sign_up');
+    $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'social_account_id', 'social_account_type', 'profile_pic','from_sign_up','access_token');
     $rules = [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
@@ -159,44 +160,55 @@ public function socialLogin(Request $request)
         'social_account_id' => 'required',
         'social_account_type' => 'required|in:facebook',
         'from_sign_up' => 'boolean',
+        'access_token' => 'required',
     ];
     $user = $this->_repository->findByAttribute('social_account_id', $request->social_account_id);
     if(!$user) {
         $rules['email'] = 'required|string|email|max:255|unique:users';
     }
-    $validator = Validator::make($data, $rules);
-    if ($validator->fails()) {
-        $code = 406;
-        $output = [
-            'message' => $validator->messages()->all(),
-        ];
-    }else{
-        if($user) {
-            unset($data['role_id']);
-            unset($data['from_sign_up']);
-            $userData['user_details'] = $data; 
-            $userData['id'] = $user->id; 
-            $result = $this->_repository->update($userData);
-            $userId = $user->id;
-        }else{
-            $data['status']  = 'active'; 
-            unset($data['from_sign_up']); 
-            $result = $this->_repository->create($data);
-            $userId = $result->id;
-        }
-        if($result) {
-            $user = User::find($userId);
-            $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
-            $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
-            $code = 200;
-            $output = [
-                'data' => $user,
-                'message' => 'Success',
-            ];
-        }else{
+    $messages['email.unique'] = 'This email address is already taken. Please try another email address';
+    $validator = Validator::make($data, $rules,$messages);
+        if ($validator->fails()) {
             $code = 406;
             $output = [
-                'message' => 'An error occurred',
+                'message' => $validator->messages()->all(),
+            ];
+        }else{
+         try{
+               $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
+               unset($data['access_token']);
+            if($user) {
+                unset($data['role_id']);
+                unset($data['from_sign_up']);
+                $userData['user_details'] = $data; 
+                $userData['id'] = $user->id; 
+                $result = $this->_repository->update($userData);
+                $userId = $user->id;
+            }else{
+                $data['status']  = 'active'; 
+                unset($data['from_sign_up']); 
+                $result = $this->_repository->create($data);
+                $userId = $result->id;
+            }
+            if($result) {
+                $user = User::find($userId);
+                $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+                $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
+                $code = 200;
+                $output = [
+                    'data' => $user,
+                    'message' => 'Success',
+                ];
+            }else{
+                $code = 406;
+                $output = [
+                    'message' => 'An error occurred',
+                ];
+            }
+        }catch(\Exception $e){
+             $code = 406;
+             $output = [
+                'message' => 'Invalid User',
             ];
         }
     }
