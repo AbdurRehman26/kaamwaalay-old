@@ -189,7 +189,7 @@
                     </div>
                 </div>
                 <div>
-                    <payment-component  :submit='isSubmitNormalJob'></payment-component>
+                    <card-element  :isPopup='false' :submit='isSubmitNormalJob'></card-element>
                 </div>
             </div>
             <div class="job-form-submission">
@@ -213,7 +213,7 @@
 
     <!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
     <div v-if='!isShowCardDetail'>
-        <card-element :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
+        <card-element :isPopup='true'  :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
     </div>
 </div>
 </template>
