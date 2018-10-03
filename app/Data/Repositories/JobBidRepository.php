@@ -335,11 +335,17 @@ public function update(array $data = [])
 
         if($status == 'awarded'){
 
-
             $data['is_archived'] = 0;
             $updateData['status'] = 'awarded';
 
         }
+        if($status == 'cancelled'){
+
+            $data['is_awarded'] = 0;
+            $data['is_archived'] = 0;
+
+        }
+
         $data = parent::update($data);
         $criteria = ['job_id' => $data->job_id, 'is_visit_required' => 1];
 

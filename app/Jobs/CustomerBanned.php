@@ -39,11 +39,35 @@ class CustomerBanned implements ShouldQueue
      * @return void
      */
     public function handle()
-    {
+    {       
+            // this code will be removed after reviewed
+            // $currentUserJobs = app('JobRepository')->findByCriteriaAll(['user_id' => $data['id']])->toArray();
+            // foreach ($currentUserJobs as $column => $value) {
+            //     $jobCancelled = app('JobRepository')->update(['id' => $value['id'], 'status' => 'cancelled']);
+            //     $jobBids = app('JobBidRepository')->findByCriteriaAll('job_id', '=', $jobCancelled->id)->pluck('id')->toArray();
+            //     foreach ($jobBids as $key => $value2) {
+            //         $tempData = [];
+            //         $tempData['id'] = $value2;
+            //         $tempData['job_id'] = $jobCancelled->id;
+            //         $tempData['status'] = "cancelled";
+            //         $tempData['updateJob'] = false;
+            //         $response = app('JobBidRepository')->update($tempData);
+            //     }
+            // }
             $jobs = Job::where('user_id','=',$this->data->id)->get();
             foreach ($jobs as $job) {
-                $jobBids = JobBid::where('job_id','=',$job->id)->where('status','!=',JobBid::COMPLETED)->get();
+                // $jobBids = JobBid::where('job_id','=',$job->id)->where('status','!=',JobBid::COMPLETED)->get();
+                $jobCancelled = app('JobRepository')->update(['id' => $job->id, 'status' => 'cancelled']);
+                $jobBids = JobBid::where('job_id','=',$job->id)->get();
                 foreach ($jobBids as $jobBid) {
+
+                    $tempData = [];
+                    $tempData['id'] = $jobBid->id;
+                    $tempData['job_id'] = $job->id;
+                    $tempData['status'] = "cancelled";
+                    $tempData['updateJob'] = false;
+                    $response = app('JobBidRepository')->update($tempData);
+
                     $event = new \StdClass();
                     $event->to = User::find($jobBid->user_id);
                     if($jobBid->is_awarded == 1){
