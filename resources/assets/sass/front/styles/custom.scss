@@ -1002,9 +1002,18 @@ button.sl-close {
         }
     }
     .list-description{
+        width: calc(100% - 60px);
         p{
             font-family:$font-bold;
             margin-left:12px;
+            width: 108px;
+            overflow: hidden;
+            max-height: 50px;
+            text-overflow: ellipsis;
+            @include mobile{
+                width: 100%;
+                max-height: none;
+            }            
         }
     }
     .services-list {

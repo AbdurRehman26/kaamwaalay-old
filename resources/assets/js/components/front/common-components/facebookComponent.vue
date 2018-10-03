@@ -26,7 +26,6 @@ export default {
         FB.login(self.checkLoginState, { scope: 'email' })
         },
         checkLoginState: function (response) {
-          console.log(response,'response');
           let self = this;
           if (response.status === 'connected') {
             FB.api('/me', { fields: 'first_name,last_name,email,picture' }, function(profile) {
@@ -36,6 +35,7 @@ export default {
               self.facebookLoginData.email = profile.email;
               self.facebookLoginData.profile_image = profile.picture.data.url;
               self.facebookLoginData.from_sign_up = (self.fromSignUp)?true:false;
+              self.facebookLoginData.access_token = response.authResponse.accessToken;
               if(self.$parent.type == 'customer'){
                      self.facebookLoginData.role_id = 3;
                }else{
@@ -88,8 +88,12 @@ export default {
                   }
                 })
                 .catch(error => {
-                
-                })
+                   self.loading = false
+                   self.$parent.errorMessage = error.response.data.message[0]
+                   setTimeout(function(){
+                     self.$parent.errorMessage = ''
+                   }, 2000);
+               })
             },
             socialLoginCheck () {
                 let self = this;
@@ -98,7 +102,6 @@ export default {
                   self.$router.push({ name: 'sign-up'})
                 })
                 .catch(error => {
-                  console.log(error,'errorMessage')
                   self.socialLogin()
                 })
             }
