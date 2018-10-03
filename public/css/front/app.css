@@ -15609,6 +15609,13 @@ button.sl-close {
   text-overflow: ellipsis;
 }
 
+@media (max-width: 767px) {
+  .featured-categories-home .list-description p {
+    width: 100%;
+    max-height: none;
+  }
+}
+
 .featured-categories-home .services-list a:hover {
   text-decoration: none;
 }

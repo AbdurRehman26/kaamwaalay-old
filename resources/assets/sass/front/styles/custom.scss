@@ -1009,7 +1009,11 @@ button.sl-close {
             width: 108px;
             overflow: hidden;
             max-height: 50px;
-            text-overflow: ellipsis;            
+            text-overflow: ellipsis;
+            @include mobile{
+                width: 100%;
+                max-height: none;
+            }            
         }
     }
     .services-list {
