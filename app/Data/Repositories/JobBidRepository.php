@@ -341,7 +341,6 @@ public function update(array $data = [])
         }
         if($status == 'cancelled'){
 
-            $data['is_awarded'] = 0;
             $data['is_archived'] = 0;
 
         }

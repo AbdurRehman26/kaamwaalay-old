@@ -54,11 +54,10 @@ class CustomerBanned implements ShouldQueue
             //         $response = app('JobBidRepository')->update($tempData);
             //     }
             // }
-            $jobs = Job::where('user_id','=',$this->data->id)->get();
+            $jobs = Job::where('user_id','=',$this->data->id)->where('is_archived','!=', 1)->where('status','!=', "completed")->get();
             foreach ($jobs as $job) {
-                // $jobBids = JobBid::where('job_id','=',$job->id)->where('status','!=',JobBid::COMPLETED)->get();
+                $jobBids = JobBid::where('job_id', '=', $job->id)->where('status','!=',JobBid::COMPLETED)->get();
                 $jobCancelled = app('JobRepository')->update(['id' => $job->id, 'status' => 'cancelled']);
-                $jobBids = JobBid::where('job_id','=',$job->id)->get();
                 foreach ($jobBids as $jobBid) {
 
                     $tempData = [];
