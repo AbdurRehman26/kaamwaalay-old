@@ -560,7 +560,6 @@
             },
             markCompletedByCustomer(){
                 this.loading = true;
-
                 let data = {
                     status : 'completed',
                     id : this.record ? this.record.id : ''
@@ -573,7 +572,6 @@
                 this.formData.is_archived = 1;
                 this.formData.id = this.record.id;
                 this.confirmPopupUrl = 'api/job/' +this.record.id;
-
             },
             markJobCancel(){
 
