@@ -53,7 +53,7 @@
     </div>
     <div class="job-post-list" v-for="record in records" v-if="records.length">
         <div class="job-post-details">
-           <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
+           <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
            <div class="job-common-description">
               <h3 class="pointer" @click="servicedetail(record.id)">{{record.business_name}}</h3> 
               <span v-if="record.is_verified"><i class="icon-checked"></i></span>
