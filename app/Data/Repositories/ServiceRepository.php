@@ -126,26 +126,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         $this->builder = $this->model->orderBy('updated_at', 'desc');
         if (!empty($data['zip_code'])) {
-            $this->builder = $this->builder
-                ->leftJoin(
-                    'service_provider_services', function ($join) use ($data) {
-                                $join->on('service_provider_services.service_id', '=', 'services.id');
-                    }
-                )->
-            leftJoin(
-                'service_provider_profile_requests', function ($join) use ($data) {
-                                $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_services.id');
-                }
-            )->
-            leftJoin(
-                'users', function ($join) use ($data) {
-                                $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
-                }
-            )
-            ->where('service_provider_profile_requests.status', 'approved')
-            ->where('users.role_id', Role::SERVICE_PROVIDER)
-            ->where('users.zip_code', $data['zip_code'])
-            ->select(['services.id']);
+            $this->builder = getServicesByZip(true, $data['zip_code']);
         }
 
         if(isset($data['filter_by_featured'])) {
@@ -223,8 +204,15 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         }
         if (!empty($data['filter_by_popular_services'])) {
             $zip = $this->getZip();
-            dd($zip);
-            $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
+            if($zip) {
+                $this->builder = $this->getServicesByZip(false, $zip);
+                $count = $this->builder->count();
+                if(!$count) {
+                    $this->builder = $this->getServicesByZip(false);
+                }
+            }else {
+                $this->builder = $this->getServicesByZip(false);
+            }
         }
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
@@ -244,6 +232,41 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
                     //$modelData['data']['service_count'] = $count;
                     return parent::findByAll($pagination, $perPage, $data);
+    }
+
+    public function getServicesByZip($fromBuilder = false, $zip = false)
+    {   
+
+        $tempbuilder = $this->model;
+        if($fromBuilder) {
+            $tempbuilder = $this->builder;    
+        }
+        $tempbuilder = $tempbuilder
+            ->leftJoin(
+                'service_provider_services', function ($join) {
+                            $join->on('service_provider_services.service_id', '=', 'services.id');
+                }
+            )->
+        leftJoin(
+            'service_provider_profile_requests', function ($join) {
+                            $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+            }
+        )->
+        leftJoin(
+            'users', function ($join) {
+                            $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+            }
+        )
+        ->where('service_provider_profile_requests.status', 'approved')
+        ->where('users.role_id', Role::SERVICE_PROVIDER)
+        ->groupBy('services.id')
+        ->orderByRaw('count(services.id) desc');
+
+        if($zip) {
+            $tempbuilder = $tempbuilder->where('users.zip_code', $zip);
+        }
+        return $tempbuilder->select(['services.id']);
+            
     }
 
     public function getZip() {
