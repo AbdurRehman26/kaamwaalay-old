@@ -230,6 +230,8 @@ public function updateServices($data, $user)
             continue;
         }
 
+        \Log::info('1');
+
         if(!empty($service['service_provider_profile_request_id']) && (!empty($service['status']) && $service['status'] == 'rejected')) {
             unset($service['status']);
 
@@ -237,22 +239,30 @@ public function updateServices($data, $user)
 
             $service['deleted_at'] = null;
             $existingServices[] = $service;
+            \Log::info('2');
 
         }else{
             unset($service['status'] , $service['service_provider_profile_request_id']);
+            \Log::info('3');
+
 
             $serviceExists = $serviceProfileRequestRepository->model
             ->join('service_provider_services', 'service_provider_services.service_provider_profile_request_id', 'service_provider_profile_requests.id')
             ->whereNull('service_provider_services.deleted_at')
             ->where('service_provider_profile_requests.status' , '!=' , 'rejected')
             ->where('service_provider_services.service_id' , $service['service_id'])
+            ->where('service_provider_profile_requests.user_id', $user->id)
             ->first();
             if(empty($serviceExists)){      
                 $newServices[] = $service;
             }
         }
     }
+    \Log::info('4');
+
     if(!empty($newServices)) {
+
+        \Log::info('5');
 
         $toBeAddedServices = [];
 
@@ -291,13 +301,16 @@ public function updateServices($data, $user)
 
             }
 
+            \Log::info('6');
             $toBeAddedServices[] = [
                 'service_id' => $newService['service_id'],
                 'service_provider_profile_request_id' => $serviceProfileRequest->id
             ]; 
         }
+        \Log::info('7');
         app('ServiceProviderServiceRepository')->model->insert($toBeAddedServices);
     }
+    \Log::info('8');
 
     if(!empty($existingServiceIds)) {
         foreach ($existingServiceIds as $key => $existingServiceId) {
@@ -308,6 +321,7 @@ public function updateServices($data, $user)
 
         app('ServiceProviderServiceRepository')->model->insertOnDuplicateKey($existingServices);
 
+        \Log::info('9');
     }
 
 }

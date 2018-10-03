@@ -25,9 +25,11 @@ class JobRepositoryServiceProvider extends ServiceProvider
     public  function boot() {
 
         Job::created(function($item) {
-             UrgentJobCreate::dispatch($item)->onQueue(config('queue.pre_fix').'urgent-job');
-        }); 
+           UrgentJobCreate::dispatch($item)->onQueue(config('queue.pre_fix').'urgent-job');
+       }); 
         Job::updated(function($item) {
+
+            if (!\App::runningInConsole()) {
               if($item->status == Job::COMPLETED || $item->status == Job::AWARDED){  
                 $event = new \StdClass();
                 $event->id = $item->id;
@@ -40,9 +42,11 @@ class JobRepositoryServiceProvider extends ServiceProvider
                 }else{
                     $event->message =  $item->title.' is awarded to you.'; 
                 }
-               $event->to->notify(new JobStatusChangeNotification($event));
+                $event->to->notify(new JobStatusChangeNotification($event));
             }
-        });
+
+        }
+    });
 
     }
 
@@ -51,7 +55,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
          *
          * @return void
          */
-    public function register()
+        public function register()
         {
             $this->app->bind(
                 'JobRepository', function () {
@@ -59,4 +63,4 @@ class JobRepositoryServiceProvider extends ServiceProvider
                 }
             );
         }
-}
+    }
