@@ -176,6 +176,9 @@
         }, 1000),
     },
     watch:{
+        user(){
+
+        },
         bid (value){
             this.setBidData();
         },
