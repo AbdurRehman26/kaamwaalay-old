@@ -164,7 +164,7 @@
                         <div class="col-md-6">
                             <label>&nbsp;</label>
                             <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more photos</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more</a>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                         <div class="col-md-6">
                             <label>&nbsp;</label>
                             <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more photos</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more</a>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                         <div class="col-md-6">
                             <label>&nbsp;</label>
                             <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more photos</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more</a>
                         </div>
                     </div>
                 </div>
@@ -446,18 +446,20 @@
 
                 this.errorMessage = '';
                 
-                if(this.findUniqueValues()){
-                    this.errorMessage = 'Please remove duplicate services';
-                    return false;
-                }
-
-                if(!this.checkUploadedDocuments()){
-                    this.errorMessage = 'Please add at least one file for each document';
-                    return false;
-                }
 
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+
+                        if(this.findUniqueValues()){
+                            this.errorMessage = 'Please remove duplicate services';
+                            return false;
+                        }
+
+                        if(!this.checkUploadedDocuments()){
+                            this.errorMessage = 'Please add at least one file for each document';
+                            return false;
+                        }
+
 
                         _.forEach(self.record, function(value, key) {
 
