@@ -346,13 +346,16 @@ public function update(array $data = [])
         }
 
         $data = parent::update($data);
-        $criteria = ['job_id' => $data->job_id, 'is_visit_required' => 1];
+        if($data){
+            
+            $criteria = ['job_id' => $data->job_id, 'is_visit_required' => 1];
 
-        if($status == 'awarded'){
+            if($status == 'awarded'){
 
-            if (!\App::runningInConsole()) {
-                $this->model->where($criteria)->delete();
-            }        
+                if (!\App::runningInConsole()) {
+                    $this->model->where($criteria)->delete();
+                }        
+            }
         }
 
     }
