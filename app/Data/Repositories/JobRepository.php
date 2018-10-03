@@ -261,7 +261,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             $model->updated_at = Carbon::now();
 
             if ($model->save()) {
-                if($data['status'] == "cancelled") {
+                if(isset($data['status']) && $data['status'] == "cancelled") {
                     $jobBids = JobBid::where('job_id', '=', $data['id'])->pluck('id')->toArray();
                     foreach ($jobBids as $key => $value) {
                         $tempData = [];
