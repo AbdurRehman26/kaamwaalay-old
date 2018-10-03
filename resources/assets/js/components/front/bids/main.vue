@@ -5,22 +5,22 @@
                 <h2>My Bids</h2>
                 <div class="bidding-navigation">
                     <ul>
-                        <li @click.prevent="onChangeTab('invitebid')" :class="{ active: bid_selection === 'invitebid' }">
+                        <li @click.prevent="onChangeTab('invitebid')" :class="{ active: bid_selection === 'invitebid', disabled: disableList }">
                             <p>INVITATIONS <span>{{invitationCount? "(" + invitationCount + ")" : ""}}</span></p>						
                         </li>
-                        <li @click.prevent="onChangeTab('activebid')" :class="{ active: bid_selection === 'activebid' }">
+                        <li @click.prevent="onChangeTab('activebid')" :class="{ active: bid_selection === 'activebid', disabled: disableList }">
                             <p>ACTIVE BIDS <span>{{activeBidCount? "(" + activeBidCount + ")" : ""}}</span></p>							
                         </li>
-                        <li @click.prevent="onChangeTab('awardedbid')" :class="{ active: bid_selection === 'awardedbid' }">
+                        <li @click.prevent="onChangeTab('awardedbid')" :class="{ active: bid_selection === 'awardedbid', disabled: disableList }">
                             <p>AWARDED <span>{{awardedCount? "(" + awardedCount + ")" : ""}}</span></p>						
                         </li>
-                        <li @click.prevent="onChangeTab('completedbid')" :class="{ active: bid_selection === 'completedbid' }">
+                        <li @click.prevent="onChangeTab('completedbid')" :class="{ active: bid_selection === 'completedbid', disabled: disableList }">
                             <p>COMPLETED <span>{{completedCount? "(" + completedCount + ")" : ""}}</span></p>                           
                         </li>
-                        <li @click.prevent="onChangeTab('cancelled')" :class="{ active: bid_selection === 'cancelled' }">
+                        <li @click.prevent="onChangeTab('cancelled')" :class="{ active: bid_selection === 'cancelled', disabled: disableList }">
                             <p>CANCELLED <span>{{cancelledCount? "(" + cancelledCount + ")" : ""}}</span></p>							
                         </li>
-                        <li @click.prevent="onChangeTab('archivedbid')" :class="{ active: bid_selection === 'archivedbid' }">
+                        <li @click.prevent="onChangeTab('archivedbid')" :class="{ active: bid_selection === 'archivedbid', disabled: disableList }">
                             <p>ARCHIVED <span>{{archivedCount? "(" + archivedCount + ")" : ""}}</span></p>					
                         </li>
                     </ul>
@@ -62,6 +62,7 @@
 
         data () {
             return {
+                disableList: true,
                 tab: 'invitebid',
                 bidUrl: null,
                 tabType: 'invitebid',
@@ -128,15 +129,17 @@
             },
 
             getProviderRecords(response){
-                let self = this;
-                self.loading = false;
+                this.loading = false;
                 let len = response.data.length;
+                if(len || response.noRecordFound) {
+                    this.disableList = false;
+                }
                 for (var i = 0 ; i < len; i++) {
-                    self.records.push( response.data[i] ) ;
+                    this.records.push( response.data[i] ) ;
                     
                 }
-                self.noRecordFound = response.noRecordFound;
-                self.pagination = response.pagination;
+                this.noRecordFound = response.noRecordFound;
+                this.pagination = response.pagination;
             },
             showChatBox(record, strictChat = false, disabled = false) {
                 this.closeChatBox();
@@ -152,7 +155,6 @@
                 this.showChat = true;
                 this.strict = strictChat;
                 this.disabledChat = disabled;
-
             },
             setInvitationCount(count) {
                 this.invitationCount = count;
@@ -306,6 +308,7 @@
             },
             tab(val) {
                 this.records = [];
+                this.disableList = true;
             }
         }
 

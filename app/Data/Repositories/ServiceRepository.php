@@ -7,7 +7,12 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
+use App\Helper\Helper;
+use Request;
 use DB;
+use GuzzleHttp\Client;
+use GuzzleHttp\Message\Request as GuzzleRequest;
+use GuzzleHttp\Message\Response as GuzzleResponse;
 
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
@@ -73,7 +78,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = [])
     {
-        
         unset($data['user_id']);
         if (!empty($data['parent_id'])) {
 
@@ -99,7 +103,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             }else{
                 return parent::update($data);
             }
-            
         }else{
             if($data['status'] == 0) {
                 $criteria = ['service_id' => (int)$data['id']];
@@ -122,28 +125,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     {       
 
         $this->builder = $this->model->orderBy('updated_at', 'desc');
-
         if (!empty($data['zip_code'])) {
-            $this->builder = $this->builder
-                ->leftJoin(
-                    'service_provider_services', function ($join) use ($data) {
-                                $join->on('service_provider_services.service_id', '=', 'services.id');
-                    }
-                )->
-            leftJoin(
-                'service_provider_profile_requests', function ($join) use ($data) {
-                                $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_services.id');
-                }
-            )->
-            leftJoin(
-                'users', function ($join) use ($data) {
-                                $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
-                }
-            )
-            ->where('service_provider_profile_requests.status', 'approved')
-            ->where('users.role_id', Role::SERVICE_PROVIDER)
-            ->where('users.zip_code', $data['zip_code'])
-            ->select(['services.id']);
+            $this->builder = getServicesByZip(true, $data['zip_code']);
         }
 
         if(isset($data['filter_by_featured'])) {
@@ -167,14 +150,14 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             if(!$isParent[0]) {
                 $this->builder = $this->model->where('parent_id', '=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
                 if(!$this->builder->get()->toArray()) {
-                    $this->builder = $this->getPopularServices();
+                    $this->builder = $this->getPopularServices((int)$data['filter_by_related_services'], 3);
                 }
                 
             }else {
                 $this->builder = $this->model->where('parent_id', '=', (int)$isParent[0])->where('id', '!=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
 
                 if(!$this->builder->get()->toArray()) {
-                    $this->builder = $this->getPopularServices((int)$data['filter_by_related_services']);
+                    $this->builder = $this->getPopularServices((int)$data['filter_by_related_services'], 3);
                 }
             }
         }
@@ -215,6 +198,22 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                         
         }
         $modelData['data'] = [];
+
+        if (!empty($data['filter_by_parent'])) {
+            $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
+        }
+        if (!empty($data['filter_by_popular_services'])) {
+            $zip = $this->getZip();
+            if($zip) {
+                $this->builder = $this->getServicesByZip(false, $zip);
+                $count = $this->builder->count();
+                if(!$count) {
+                    $this->builder = $this->getServicesByZip(false);
+                }
+            }else {
+                $this->builder = $this->getServicesByZip(false);
+            }
+        }
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
                 $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
@@ -235,16 +234,64 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     return parent::findByAll($pagination, $perPage, $data);
     }
 
-    public function getPopularServices($currentServiceId) {
-        return $this->model
+    public function getServicesByZip($fromBuilder = false, $zip = false)
+    {   
+
+        $tempbuilder = $this->model;
+        if($fromBuilder) {
+            $tempbuilder = $this->builder;    
+        }
+        $tempbuilder = $tempbuilder
+            ->leftJoin(
+                'service_provider_services', function ($join) {
+                            $join->on('service_provider_services.service_id', '=', 'services.id');
+                }
+            )->
+        leftJoin(
+            'service_provider_profile_requests', function ($join) {
+                            $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+            }
+        )->
+        leftJoin(
+            'users', function ($join) {
+                            $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+            }
+        )
+        ->where('service_provider_profile_requests.status', 'approved')
+        ->where('users.role_id', Role::SERVICE_PROVIDER)
+        ->groupBy('services.id')
+        ->orderByRaw('count(services.id) desc');
+
+        if($zip) {
+            $tempbuilder = $tempbuilder->where('users.zip_code', $zip);
+        }
+        return $tempbuilder->select(['services.id']);
+            
+    }
+
+    public function getZip() {
+        $ip = Helper::getIp();
+        $client = new Client(['base_uri' => 'http://ipinfo.io/']);
+        $response = "".$client->request("GET", '70.114.164.59')->getBody();
+        return json_decode($response)->postal;
+    }
+
+    public function getPopularServices($currentServiceId = fasle, $limit = false) {
+        $tempModel = $this->model
                 ->leftJoin('jobs', function ($join) {
                     $join->on('jobs.service_id', '=', 'services.id');
                 })
-                ->where('service_id', '<>', $currentServiceId)
                 ->select('services.id')
                 ->groupby('service_id')   
-                ->orderBy(DB::raw('COUNT(service_id)'), 'desc')
-                ->limit(3);
+                ->orderBy(DB::raw('COUNT(service_id)'), 'desc');
+        if($currentServiceId) {
+            $tempModel = $tempModel->where('service_id', '<>', $currentServiceId);
+        }
+        if($limit) {
+            $tempModel = $tempModel->limit($limit);
+        }
+
+        return $tempModel;
     }
     public function deleteById($id)
     {

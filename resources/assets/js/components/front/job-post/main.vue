@@ -116,7 +116,7 @@
                 <div v-if="formData.preference == 'choose_date'" class="col-md-6">
                     <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' ,'custom-datepicker','form-group']">
                         <label>Select Date</label>
-                        <date-picker name="scheduled at" v-validate="'required'" :not-before="Date.now()" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
+                        <datepicker name="scheduled at" v-validate="'required'" v-model="formData.schedule_at"   :disabledDates="disabledDates" placeholder="Select Date"></datepicker>
                     </div>
                 </div>
             </div>				
@@ -222,12 +222,15 @@
 </template>
 
 <script>
-    import DatePicker from 'vue2-datepicker'
+    import Datepicker from 'vuejs-datepicker';
 
     export default {
-        components: { DatePicker },
+        components: { Datepicker },
         data() {
             return {
+                disabledDates: {
+                    to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                },
                 plans : [],
                 urgentJobAmount: null,
                 selectedPlan :null,

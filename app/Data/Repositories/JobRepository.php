@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
 use App\Data\Models\Role;
 use App\Data\Models\User;
+use App\Data\Models\JobBid;
 use Carbon\Carbon;
 use Storage;
 
@@ -185,7 +186,14 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                     
                     if($data->status == 'completed') {
-                        $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
+
+                        $criteria = ['job_id' => $data->id];
+
+                        $criteria['rated_by'] = $data->user_id; 
+
+                        $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
+                    
+
                     }
 
 
@@ -196,7 +204,15 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
                     if($currentUser->role_id == Role::SERVICE_PROVIDER){
                         $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
-                        $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+                        $notCriteria = ['status' => 'invited'];
+
+                        $data->my_bid = app('JobBidRepository')->findByCriteria($criteria, false, $notCriteria);
+
+                        $criteria['user_id'] = $data->user_id; 
+                        $criteria['rated_by'] = $currentUser->id; 
+
+                        $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
+                        
                     }
 
                     $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
@@ -235,6 +251,37 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         }
 
         return  $this->builder->count();
+    }
+
+    public function update(array $data = []) 
+    {
+        $model = $this->model->find($data['id']);
+        if ($model != NULL) {
+            foreach ($data as $column => $value) {
+                $model->{$column} = $value;
+            }
+            $model->updated_at = Carbon::now();
+
+            if ($model->save()) {
+                if(isset($data['status']) && $data['status'] == "cancelled") {
+                    $jobBids = JobBid::where('job_id', '=', $data['id'])->pluck('id')->toArray();
+                    foreach ($jobBids as $key => $value) {
+                        $tempData = [];
+                        $tempData['id'] = $value;
+                        $tempData['job_id'] = $data['id'];
+                        $tempData['status'] = $data['status'];
+                        $tempData['updateJob'] = false;
+                        $response = app('JobBidRepository')->update($tempData);
+                        if(!$response) {
+                            return false;
+                        }
+                    }
+                }
+                return $this->findById($data['id'], true);
+            }
+            return false;
+        }
+        return NULL;
     }
 
 }

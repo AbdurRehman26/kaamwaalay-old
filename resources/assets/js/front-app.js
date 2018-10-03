@@ -20,6 +20,7 @@ import VueProgressBar from 'vue-progressbar';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 
+
 import fancyBox from 'vue-fancybox';
 import VueAxios from 'vue-axios'
 import VueAuthenticate from 'vue-authenticate'
@@ -60,6 +61,8 @@ Vue.use(VueGoogleMaps, {
   // installComponents: true,
 })
 
+import VueGallerySlideshow from 'vue-gallery-slideshow';
+
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
 Vue.use(BootstrapVue);
@@ -72,6 +75,7 @@ Vue.use(VueProgressBar, options);
 
 Vue.use(InfiniteLoading);
 Vue.use(Lightbox);
+Vue.use(VueGallerySlideshow);
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
     tokenName: 'access_token',
@@ -166,7 +170,6 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-
     mounted () {
         this.$Progress.finish();
         this.checkscroll();
@@ -227,6 +230,7 @@ const app = new Vue({
     watch:{
         '$route': function(from, to) {
             this.checkscroll();
+            window.scrollTo(0,0);
         }
     }
 });
@@ -265,4 +269,3 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
 /*const app = new Vue({
     router
 }).$mount('#app')*/
-

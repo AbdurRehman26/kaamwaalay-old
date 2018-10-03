@@ -133,6 +133,9 @@ $nav-font:$font-bold;
         @include mobile{
             /* top: 51px; */
             top: 65px;
+            position: fixed;
+            height: calc(100% - 63px);
+            top: 65px;            
             ul{
                 li{
                     height: auto;

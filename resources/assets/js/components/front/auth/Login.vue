@@ -77,7 +77,8 @@ methods: {
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
             this_.$store.commit('setAuthUser', response.data.response.data[0]);
-            if(response.data.response.data[0].role_id == 2){
+
+            if(response.data.response.data[0].role.id == 2){
               if(response.data.response.data[0].is_profile_completed == 0 ){
                  this_.$router.push({ name: 'provider_profile'})
              }else{ 
@@ -97,6 +98,7 @@ methods: {
                 this_.$router.push({ name: 'main-page'});
               } 
              }else{
+
               this_.$router.push({ name: 'my.jobs'})
              }
          }         
@@ -110,6 +112,7 @@ methods: {
   }, 5000);
 })
 }else{
+
     let user = JSON.parse(self.$store.getters.getAuthUser);
     setTimeout(function(){
         if(user.role_id == 2){

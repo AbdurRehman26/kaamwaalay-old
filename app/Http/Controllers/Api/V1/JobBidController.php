@@ -11,23 +11,29 @@ class JobBidController extends ApiResourceController
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-       $this->_repository = $repository;
-   }
+     $this->_repository = $repository;
+ }
 
-   public function rules($value=''){
+ public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
 
-        $rules['amount'] =  'required_without:is_tbd';    
-        $rules['is_tbd'] =  'required_without:amount';    
+        if(empty($this->input()['is_invited'])){
+            $rules['amount'] =  'required_without:is_tbd';    
+            $rules['is_tbd'] =  'required_without:amount';    
+        }
+
         $rules['job_id'] = [
             'required',
             'exists:jobs,id',
             Rule::unique('job_bids')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id']);
+                $query->where('user_id', $this->input()['user_id'])
+                ->whereNull('deleted_at')
+                ->where('status' , '!=', 'invited');
             }),
         ];
+
 
 
     }
@@ -81,7 +87,9 @@ public function input($value='')
         'amount_type',
         'is_visit_required',
         'preferred_date',
-        'preferred_time'
+        'preferred_time',
+        'user_id',
+        'is_invited'
     );
 
 
@@ -120,11 +128,18 @@ public function input($value='')
         unset($input['is_awarded']);
         
         $input['status'] = 'pending';
+        if(!empty($input['is_invited'])){
+            $input['status'] = 'invited';
+        }
+    }
 
+    if(empty($input['user_id'])){
+
+        $input['user_id'] = request()->user()->id;
     }
 
 
-    $input['user_id'] = request()->user()->id;
+
 
     return $input;
 }

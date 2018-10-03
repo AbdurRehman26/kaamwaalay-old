@@ -21,137 +21,146 @@
 			<div class="container md">
 				<div class="row">
 					<div class="col-md-10 p-r-0">
-			            <div class="search-filter m-b-0">
-							<div class="custom-multi category-detail" :class="{'invalid': isInvalid }">
-								<multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="false" 
-								@select="dispatchAction" @keyup.enter="validateBeforeSubmit">
-							</multiselect>
-						</div>
-						<div class="container-zip-code">
-							<i class="icon-location"></i>
-								<input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[(errorBag.first('zip') || isZipEmpty) ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
-						</div>
-					</div>			
-				</div>
-				<div class="col-md-2 p-r-0">
-					<button class="btn btn-primary" @click.prevent="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" :disabled="loading">
-						<span>Search</span>
-						<loader></loader>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                     <div class="search-filter m-b-0">
+                         <div class="custom-multi category-detail" :class="{'invalid': isInvalid }">
+                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="false" 
+                            @select="dispatchAction" @keyup.enter="validateBeforeSubmit">
+                        </multiselect>
+                    </div>
+                    <div class="container-zip-code">
+                     <i class="icon-location"></i>
+                     <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[(errorBag.first('zip') || isZipEmpty) ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
+                 </div>
+             </div>			
+         </div>
+         <div class="col-md-2 p-r-0">
+           <button class="btn btn-primary" @click.prevent="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" :disabled="loading">
+              <span>Search</span>
+              <loader></loader>
+          </button>
+      </div>
+  </div>
+</div>
+</div>
 
-	<h5 class="text-center enterzip" v-if="!zip">Please enter a zip code to view the list of service providers accordingly.</h5>
-	<no-record-found v-else-if="noRecordFound"></no-record-found>
-	<div class="job-post-container section-padd sm" v-if="!noRecordFound">
-		<div class="container md">
+<h5 class="text-center enterzip" v-if="!zip">Please enter a zip code to view the list of service providers accordingly.</h5>
+<no-record-found v-else-if="noRecordFound"></no-record-found>
+<div class="job-post-container section-padd sm" v-if="!noRecordFound">
+  <div class="container md">
 
-			<div class="text-notifer" v-if="pagination">
-				<p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
-			</div>
-			<div class="job-post-list" v-for="record in records" v-if="records.length">
-				<div class="job-post-details">
-					<div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
-					<div class="job-common-description">
-						<h3 class="pointer" @click="servicedetail(record.id)">{{record.business_name}}</h3> 
-						<span v-if="record.is_verified"><i class="icon-checked"></i></span>
-						
-						<div class="jobs-rating">
-							<star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
-							<div class="jobs-done">
-								<span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>				
+     <div class="text-notifer" v-if="pagination">
+        <p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
+    </div>
+    <div class="job-post-list" v-for="record in records" v-if="records.length">
+        <div class="job-post-details">
+           <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profile_image) +')',}"></div>
+           <div class="job-common-description">
+              <h3 class="pointer" @click="servicedetail(record.id)">{{record.business_name}}</h3> 
+              <span v-if="record.is_verified"><i class="icon-checked"></i></span>
 
-								<span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
-								<span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
-							</div>	
-						</div>
-						<a href="/job-post" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
-					</div>
+              <div class="jobs-rating">
+                 <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
+                 <div class="jobs-done">
+                    <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>				
 
-					<div class="member-details">
-						<p class="location">
-							<i class="icon-location"></i> 
-							Location <strong>{{ record.user_detail.city }}</strong>
-						</p>
-						<p class="member-since">
-							<i class="icon-calendar-daily"></i>
-							Member since <strong>{{record.formatted_created_at }}</strong>
-						</p>
-					</div>
+                    <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
+                    <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
+                </div>	
+            </div>
+            <a href="/job-post" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
 
-					<div class="post-job-description">
-						<p>{{ record.business_details }}</p>
-					</div>
+            <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
+                Invite to Bid
+            </a>
 
-					<div class="chat-feedback" v-if="record.reviewedBy">
-						<div class="text-notifer">
-							<p>Latest feedback & review</p>	
-						</div>
-						<div class="chat-feedback-column">
-							<div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profile_image) +')',}"></div>
-							<div class="chat-feedback-message">
-								<p>{{record.reviewedBy.review.message}}</p>
-								<div class="feeback-detail">
-									<p class="feedback-personal-info">
-										<a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
-										posted on 
-										<strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
-									</p>
-									<i class="icon-quotes-right3"></i>
-								</div>
-							</div>
-						</div>
 
-					</div>						
+        </div>
 
-				</div>
-			</div>
-		</div>			
-	</div>
+        <div class="member-details">
+          <p class="location">
+             <i class="icon-location"></i> 
+             Location <strong>{{ record.user_detail.city }}</strong>
+         </p>
+         <p class="member-since">
+             <i class="icon-calendar-daily"></i>
+             Member since <strong>{{record.formatted_created_at }}</strong>
+         </p>
+     </div>
 
-	<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
-	<div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
-		<div class="container element-index">
+     <div class="post-job-description">
+      <p>{{ record.business_details }}</p>
+  </div>
 
-			<div class="category-section">  
-				<div class="category-title">
-					<h2>Related Services</h2>
-				</div>  		
-				<div class="category-items">
-					<div class="items" v-for="subservice in filterRelatedServices(relatedServices)">
-						<a @click="changecategorypopup(subservice)" href="javascript:void(0);">
-							<div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images? subservice.images[0].upload_url : null) +')',}"></div>
-							<h4>{{subservice.title}}</h4>
-						</a>
-					</div>
-					<div class="showmore showmore-link clearfix" v-if="getRemainingSubServices(relatedServices).length">
-						<div>
-							<!-- element to collapse -->
-							<a v-b-toggle="serviceTitle" :aria-controls="serviceTitle" href="javascript:void(0);" >View all related services<i class="icon-angle-right"></i></a>
-							<b-collapse :id="serviceTitle">
-								<b-card>
-									<div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(relatedServices)">
-										<a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
-											<!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
-											<p>{{remainingSubServices.title}}</p>
-										</a>
-									</div>
-								</b-card>
-							</b-collapse>
-						</div>
-					</div>
-					
-				</div>  	        	      		
-			</div>
-		</div>
-		<div class="elements">
-			<img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
-			<img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
-		</div>        	
-	</div>
-	<category-popup @HideModalValue="hideZipModal" :showModalProp="categoryPopup" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
+  <div class="chat-feedback" v-if="record.reviewedBy">
+      <div class="text-notifer">
+         <p>Latest feedback & review</p>	
+     </div>
+     <div class="chat-feedback-column">
+         <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profile_image) +')',}"></div>
+         <div class="chat-feedback-message">
+            <p>{{record.reviewedBy.review.message}}</p>
+            <div class="feeback-detail">
+               <p class="feedback-personal-info">
+                  <a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
+                  posted on 
+                  <strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
+              </p>
+              <i class="icon-quotes-right3"></i>
+          </div>
+      </div>
+  </div>
+
+</div>						
+
+</div>
+</div>
+</div>			
+</div>
+
+<vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
+<div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
+  <div class="container element-index">
+
+     <div class="category-section">  
+        <div class="category-title">
+           <h2>Related Services</h2>
+       </div>  		
+       <div class="category-items">
+           <div class="items" v-for="subservice in filterRelatedServices(relatedServices)">
+              <a @click="changecategorypopup(subservice)" href="javascript:void(0);">
+                 <div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images? subservice.images[0].upload_url : null) +')',}"></div>
+                 <h4>{{subservice.title}}</h4>
+             </a>
+         </div>
+         <div class="showmore showmore-link clearfix" v-if="getRemainingSubServices(relatedServices).length">
+          <div>
+             <!-- element to collapse -->
+             <a v-b-toggle="serviceTitle" :aria-controls="serviceTitle" href="javascript:void(0);" >View all related services<i class="icon-angle-right"></i></a>
+             <b-collapse :id="serviceTitle">
+                <b-card>
+                   <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(relatedServices)">
+                      <a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
+                         <!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
+                         <p>{{remainingSubServices.title}}</p>
+                     </a>
+                 </div>
+             </b-card>
+         </b-collapse>
+     </div>
+ </div>
+
+</div>  	        	      		
+</div>
+</div>
+<div class="elements">
+ <img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
+ <img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
+</div>        	
+</div>
+
+<invite-bid-popup :type="'job'" :user="userToSendInvite" :showModalProp="invitePopup" @HideModalValue="invitePopup = false;"></invite-bid-popup>
+
+<category-popup @HideModalValue="hideZipModal" :showModalProp="categoryPopup" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
 </div>
 </div>
 </template>
@@ -164,96 +173,102 @@
 		props: ['zip', 'serviceName'],
 		data () {
 			return {
-				max: 6,
-				noRecordFound: false,
-				btnLoading: false,
-				options: [],
-				zipCode: '',
-				isTouched: false,
-				searchValue: '',
-				isLoading: false,
-				loading : false,
-				pagination: '',
-				records : [],
-				url: '',
-				serviceProviderUrl : null,
-				service: '',
-				serviceTitle: '',
-				relatedServices: '',
-				loading: false,
-				categoryPopup: false,
-				selectedService: '',
-				isService: false,
-				showCollapse: true,
-				authUser: '',
-				routeName: '',
-				isZipEmpty: false,
-			}
-		},
-		computed : {
-			requestUrl(){
-				return this.serviceProviderUrl;
-			},
-			isInvalid () {
-				return this.isTouched && !this.searchValue
-			}
-		},
-		methods: {
-			onSelectCategory(val) {
-				this.hideZipModal();
+                userToSendInvite : '',
+                max: 6,
+                noRecordFound: false,
+                btnLoading: false,
+                options: [],
+                zipCode: '',
+                isTouched: false,
+                searchValue: '',
+                isLoading: false,
+                loading : false,
+                pagination: '',
+                records : [],
+                url: '',
+                serviceProviderUrl : null,
+                service: '',
+                serviceTitle: '',
+                relatedServices: '',
+                loading: false,
+                categoryPopup: false,
+                selectedService: '',
+                isService: false,
+                showCollapse: true,
+                authUser: '',
+                routeName: '',
+                isZipEmpty: false,
+                invitePopup : false,
+            }
+        },
+        computed : {
+         requestUrl(){
+            return this.serviceProviderUrl;
+        },
+        isInvalid () {
+            return this.isTouched && !this.searchValue
+        },
+        inBiddingJobs(){
+            let user = JSON.parse(this.$store.getters.getAuthUser);
+            return user ? user.total_inbidding_jobs : false;
+        }
+    },
+    methods: {
+     onSelectCategory(val) {
+        this.hideZipModal();
 
-				localStorage.setItem("zip", val);
-			this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
-			},
-			changecategorypopup(service) {
-				this.selectedService = service;
+        localStorage.setItem("zip", val);
+        this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
+    },
+    changecategorypopup(service) {
+        this.selectedService = service;
 
-				if(localStorage['zip']) {
-					this.onSelectCategory(localStorage['zip']);
-				}else {
-					this.categoryPopup = true;	
-				}
-			},
-			filterRelatedServices (subservices) {
-				if(subservices.length > 3) {
-					subservices = subservices.slice(0,3);
-				}
-				return subservices;
-			},
-			getRemainingSubServices (subservices) {
-				if(subservices.length > 3) {
-					subservices = subservices.slice(3);
-					return subservices;
-				}
-				return [];
-			},
-			dispatchAction (actionName) {
-				this.searchValue = '';
-				this.options = [];
-				this.loading = false;
-			},
-			limitText (count) {
-				return `and ${count} other services`
-			},
-			validateBeforeSubmit() {
-				this.$validator.validateAll().then((result) => {
-					if (result && !this.loading) {
-						this.ServiceProviderPage();
-						this.errorMessage = "";
-						return;
-					}
-					this.errorMessage = this.errorBag.all()[0];
-				});
-			},  
-			ServiceProviderPage() {
-				this.isTouched = false;
-				if(!this.searchValue) {
-					this.isTouched = true;
-					return;
-				}
-				this.serviceName = this.searchValue.url_suffix;
-				localStorage.setItem('zip', this.zipCode);
-				this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
+        if(localStorage['zip']) {
+           this.onSelectCategory(localStorage['zip']);
+       }else {
+           this.categoryPopup = true;	
+       }
+   },
+   filterRelatedServices (subservices) {
+    if(subservices.length > 3) {
+       subservices = subservices.slice(0,3);
+   }
+   return subservices;
+},
+getRemainingSubServices (subservices) {
+    if(subservices.length > 3) {
+       subservices = subservices.slice(3);
+       return subservices;
+   }
+   return [];
+},
+dispatchAction (actionName) {
+    this.searchValue = '';
+    this.options = [];
+    this.loading = false;
+},
+limitText (count) {
+    return `and ${count} other services`
+},
+validateBeforeSubmit() {
+    this.$validator.validateAll().then((result) => {
+       if (result && !this.loading) {
+          this.ServiceProviderPage();
+          this.errorMessage = "";
+          return;
+      }
+      this.errorMessage = this.errorBag.all()[0];
+  });
+},  
+ServiceProviderPage() {
+    this.isTouched = false;
+    if(!this.searchValue) {
+       this.isTouched = true;
+       return;
+   }
+   this.serviceName = this.searchValue.url_suffix;
+   localStorage.setItem('zip', this.zipCode);
+   this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
 			//this.getService(); 
 		},
 		onTouch () {
@@ -398,31 +413,31 @@
     		this.getService();
     	},
     	zipCode(val) {
-			this.isZipEmpty = false;
-    		if(val.length > 5) {
-    			val = val.substr(0, 5);
-    		}
-    		this.zipCode = val; 
-    	},
-    	searchValue(val) {
-    		if(val == null) {
-    			this.loading = false;
-    		}
-    	}
-    },
-    mounted(){	
+         this.isZipEmpty = false;
+         if(val.length > 5) {
+             val = val.substr(0, 5);
+         }
+         this.zipCode = val; 
+     },
+     searchValue(val) {
+      if(val == null) {
+         this.loading = false;
+     }
+ }
+},
+mounted(){	
 
-		if(!this.zip) {
-			localStorage.removeItem('zip');
-			this.isZipEmpty = true;
-		}
-    	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
-		this.routeName = 'Explore_Detail';
+  if(!this.zip) {
+     localStorage.removeItem('zip');
+     this.isZipEmpty = true;
+ }
+ this.authUser = JSON.parse(this.$store.getters.getAuthUser);
+ this.routeName = 'Explore_Detail';
 		// if(this.authUser) {
 		// 	this.routeName = 'Customer_Explore_Detail';
 		// }
-    	this.getService();
-    },
+       this.getService();
+   },
 
 }
 </script>

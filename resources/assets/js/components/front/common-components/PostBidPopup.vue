@@ -1,4 +1,4 @@
-<template>  
++<template>  
     <div>
 
         <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" hide-footer>
@@ -18,6 +18,7 @@
                             <div class="form-group">                                                            
                                 <label for="bid_amount">Bid Amount</label>
                                 <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Bid amount in $" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
+                                
                             </div>
                         </b-col> 
                         <b-col md="5">
@@ -49,13 +50,13 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label>Preferred date and time of visit</label>
-                                    <date-picker :not-before="Date.now()" v-validate="'required'" v-model="submitFormData.preferred_date" type="date" format="DD-MM-YYYY" lang="en" name="preferred date"></date-picker>
+                                    <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
                                 </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
@@ -82,9 +83,10 @@
 
     <script>
         import DatePicker from 'vue2-datepicker'
+        import Datepicker from 'vuejs-datepicker';
 
         export default {
-            components: { DatePicker },
+            components: { DatePicker, Datepicker },
             props : [
             'showModalProp',
             'job',
@@ -99,8 +101,12 @@
             },
             data() {
                 return {
+                    disabledDates: {
+                        to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                    },
                     updateForm : false,
                     bidType : 'amount_value',
+                    date:'',
                     amountTypes : [
                     {           
                         key : 'min',
