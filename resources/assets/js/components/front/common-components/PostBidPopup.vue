@@ -50,14 +50,13 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label>Preferred date and time of visit</label>
-                                    <date-picker :not-before="Date.now()" v-validate="'required'" v-model="submitFormData.preferred_date" type="date" format="DD-MM-YYYY" lang="en" name="preferred date"></date-picker>                                    
-                                    <datepicker placeholder="Select Date" v-model="submitFormData.preferred_date" name="uniquename"></datepicker>
+                                    <datepicker :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date" name="uniquename"></datepicker>
                                 </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker  v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="HH:mm:ss" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
@@ -102,6 +101,10 @@
             },
             data() {
                 return {
+                    disabledDates: {
+                        to: new Date(1990, 0, 5), 
+                        from: new Date(2019, 0, 26)
+                    },
                     updateForm : false,
                     bidType : 'amount_value',
                     date:'',
