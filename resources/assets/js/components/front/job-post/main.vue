@@ -189,7 +189,7 @@
                     </div>
                 </div>
                 <div>
-                    <card-element  :isPopup='false' :submit='isSubmitNormalJob'></card-element>
+                    <card-element  :isPopup='false' :onlyVerify='true' :submit='isSubmitNormalJob'></card-element>
                 </div>
             </div>
             <div class="job-form-submission">
@@ -213,7 +213,7 @@
 
     <!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
     <div v-if='!isShowCardDetail'>
-        <card-element :isPopup='true'  :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
+        <card-element :isPopup='true' :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
     </div>
 </div>
 </template>
@@ -283,7 +283,7 @@
                 states : [],
                 isShowCardDetail : true,
                 isSubmitNormalJob : false,
-                isPaymentDetailShow : true
+                isPaymentDetailShow : true,
 
             }
         },
