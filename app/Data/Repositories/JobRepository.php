@@ -251,7 +251,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         return  $this->builder->count();
     }
 
-    public function update(array $data = []) {
+    public function update(array $data = []) 
+    {
         $model = $this->model->find($data['id']);
         if ($model != NULL) {
             foreach ($data as $column => $value) {

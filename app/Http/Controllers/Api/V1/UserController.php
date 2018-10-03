@@ -260,7 +260,6 @@ public function changeStatus(Request $request)
                 'data' => 'Status has been updated successfully.',
                 'message' => 'Status has been updated successfully.',
             ];
-
         }else{
 
             $code = 406;
