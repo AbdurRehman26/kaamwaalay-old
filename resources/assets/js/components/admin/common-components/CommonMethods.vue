@@ -36,10 +36,9 @@
                 let self = this;
                 let url = self.url;
 
-                if(typeof(url) == 'undefined'){
+                if(typeof(url) == 'undefined' || url == ''){
                     return false;
                 }
-
 
                 let result = {
                     data : [],

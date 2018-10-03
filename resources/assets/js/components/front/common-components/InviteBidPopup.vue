@@ -85,7 +85,7 @@
                 job_id : this.searchValue.id,
                 is_tbd : 1,
                 is_invited : 1,
-                user_id : this.user.user_id,
+                user_id : this.user.id,
             }
 
             if(!data.job_id){
