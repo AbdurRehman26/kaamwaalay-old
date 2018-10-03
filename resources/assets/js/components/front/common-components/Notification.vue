@@ -13,7 +13,10 @@
                                     <strong>{{notification.data.text}}</strong>
                                 </p>
                                 <p :class="{'notification-limit': notification.data.route}">
-                                    <span v-show="notification.data.route"><router-link :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link></span>
+                                    <span v-show="notification.data.route">
+                                        <router-link v-show="!notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link>
+                                        <router-link v-show="notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id ,jobBidId : notification.data.object_id}}">{{notification.data.link_text}}</router-link>
+                                    </span>
                                     <span>{{notification.created_at | formatDateTime}}</span>
                                 </p>
                             </div>

@@ -58,7 +58,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
                     'image' => $this->data->from->profile_image,
                     'link_text' => 'View Job',
                     'route' => 'job.details',
-                    "id" => $this->data->id
+                    "id" => $this->data->id,
+                    "object_id" => $this->data->object_id,
+                    "object_name" => 'jobBidId',
                     ],
                 'created_at' => $notifiable->created_at->toDateTimeString()
                  ];
@@ -79,7 +81,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
             'text' => $this->data->message,
             'link_text' => 'View Job',
             'route' => 'job.details',
-            "id" => $this->data->id
+            "id" => $this->data->id,
+            "object_id" => $this->data->object_id,
+            "object_name" => 'jobBidId',
         ];
     }
     /**
@@ -95,7 +99,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
                 'text' => $this->data->message,
                 'link_text' => 'View Job',
                 'route' => 'job.details',
-                "id" => $this->data->id
+                "id" => $this->data->id,
+                "object_id" => $this->data->object_id,
+                "object_name" => 'jobBidId',
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
         ]);
