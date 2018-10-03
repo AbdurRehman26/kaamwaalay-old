@@ -1,6 +1,6 @@
 <template>
     <div class="job-post-details" v-if="typeof(job)">
-        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ job.user.profileImage ? job.user.profileImage : 'images/dummy/image-placeholder.jpg' +')'}"></div>
+        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImagePath(job.user) +')'}"></div>
 
         <div class="job-common-description job-perform">
             <div class="col-md-6 p-l-0">
@@ -77,6 +77,9 @@
             }
         },
         methods: {
+            getImagePath(user){
+                return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
+            },
             showBidPopup(val) {
                 if(val == 'bidNow') {
                     this.$emit('showBidPopup', this.job, val);

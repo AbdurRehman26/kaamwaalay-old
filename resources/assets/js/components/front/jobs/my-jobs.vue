@@ -12,7 +12,7 @@
 
                         <div class="job-post-list" v-for="record in records">
                             <div class="job-post-details">
-                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ (record.user.profileImage ? record.user.profileImage : 'images/dummy/image-placeholder.jpg') +')'}">
+                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImagePath(record.user) +')'}">
                                 </div>
 
                                 <div class="job-common-description job-perform">
@@ -96,7 +96,7 @@
                                     <p>My feedback & review</p>	
                                 </div>
                                 <div class="chat-feedback-column">
-                                    <div class="chat-feedback-image" v-bind:style="{'background-image': $store.getters.getAuthUser.profile_image}"></div>
+                                    <div class="chat-feedback-image" v-bind:style="{'background-image': getImagePath($store.getters.getAuthUser) }"></div>
                                     <div class="chat-feedback-message">
                                         <p>{{record.review_details.message}}</p>
                                         <div class="feeback-detail">
@@ -149,6 +149,10 @@
         },
 
         methods: {
+
+            getImagePath(user){
+                return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
+            },
 
             AddCustomer() {
                 this.customer = true;
