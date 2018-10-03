@@ -319,7 +319,8 @@ public function getJobServiceProvider($criteria)
 public function update(array $data = [])
 {
     unset($data['user_id']);
-
+    $updateJob = isset($data['updateJob']) ? $data['updateJob'] : true;
+    unset($data['updateJob']);
     $status = !empty($data['status']) ? $data['status'] : null;
     $status = !empty($data['is_awarded']) ? 'awarded' : $status;
     $status = !empty($data['is_archived']) ? 'is_archived' : $status;
@@ -334,13 +335,17 @@ public function update(array $data = [])
 
         if($status == 'awarded'){
 
-
             $data['is_archived'] = 0;
             $updateData['status'] = 'awarded';
 
         }
-        $data = parent::update($data);
+        if($status == 'cancelled'){
 
+            $data['is_archived'] = 0;
+
+        }
+
+        $data = parent::update($data);
         $criteria = ['job_id' => $data->job_id, 'is_visit_required' => 1];
 
         if($status == 'awarded'){
@@ -353,7 +358,7 @@ public function update(array $data = [])
     }
 
     
-    if(!empty($updateData)){    
+    if(!empty($updateData) && $updateJob){  
         app('JobRepository')->update($updateData);
     }
 
