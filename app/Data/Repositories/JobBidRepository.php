@@ -48,11 +48,23 @@ public function __construct(JobBid $model)
 *
 * @author Usaama Effendi <usaamaeffendi@gmail.com>
 **/
-public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+public function findByCriteria($criteria, $refresh = false, $notCriteria = false, $encode = true, $whereIn = false, $count = false)
 {
+
+    $details = false;
+
 
     $model = $this->model->newInstance()
     ->where($criteria);
+
+    if(!empty($notCriteria)){
+
+        $model  = $model->where(function ($query) use ($notCriteria) {
+            foreach ($notCriteria as $key => $where) {
+                $query->where($key , '!=', $where);
+            }
+        });
+    }
 
     if($whereIn) {
         $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
@@ -99,7 +111,10 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
     }
 
     if(!empty($input['filter_by_job_id'])) {
-        $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);            
+        $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);
+
+        $this->builder->where('status' , '!=', 'invited');
+
     }  
     if(isset($input['filter_by_tbd'])) {
         $this->builder = $this->builder->where('is_tbd', '=', (int)$input['filter_by_tbd']);            
@@ -347,7 +362,7 @@ public function update(array $data = [])
 
         $data = parent::update($data);
         if($data){
-            
+
             $criteria = ['job_id' => $data->job_id, 'is_visit_required' => 1];
 
             if($status == 'awarded'){
@@ -371,7 +386,7 @@ public function update(array $data = [])
 
 public function create(array $data = [])
 {
-    $data['status'] = 'pending';
+    $data['status'] = !empty($data['status']) ? $data['status'] : 'pending';
     $data['deleted_at'] = null;
     $data['is_archived'] = 0;
     $data['is_visit_required'] = !empty($data['is_visit_required']) ? $data['is_visit_required'] : 0;

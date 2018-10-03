@@ -119,7 +119,7 @@
 
                         <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
 
-                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user.profileImage +')'}"></div>
+                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user.profileImage ? bid.user.profileImage : 'images/dummy/image-placeholder.jpg' +')'}"></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
 

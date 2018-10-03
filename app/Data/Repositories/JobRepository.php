@@ -204,7 +204,9 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
                     if($currentUser->role_id == Role::SERVICE_PROVIDER){
                         $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
-                        $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+                        $notCriteria = ['status' => 'invited'];
+
+                        $data->my_bid = app('JobBidRepository')->findByCriteria($criteria, false, $notCriteria);
 
                         $criteria['user_id'] = $data->user_id; 
                         $criteria['rated_by'] = $currentUser->id; 
