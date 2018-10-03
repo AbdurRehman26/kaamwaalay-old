@@ -201,6 +201,7 @@ const app = new Vue({
     watch:{
         '$route': function(from, to) {
             this.checkscroll();
+            window.scrollTo(0,0);
         }
     }
 });

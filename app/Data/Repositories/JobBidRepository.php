@@ -322,26 +322,40 @@ public function update(array $data = [])
 
     $status = !empty($data['status']) ? $data['status'] : null;
     $status = !empty($data['is_awarded']) ? 'awarded' : $status;
-
-    $data = parent::update($data);
+    $status = !empty($data['is_archived']) ? 'is_archived' : $status;
 
     if($data && !empty($status)){
-        $updateData = ['id' => $data->job_id];
+        $updateData = ['id' => $data['job_id']];
         if($status == 'initiated'){
 
+            $data['is_archived'] = 0;
             $updateData['status'] = 'initiated';
         }
 
         if($status == 'awarded'){
-            
-            $updateData['is_archived'] = 0;
+
+
+            $data['is_archived'] = 0;
             $updateData['status'] = 'awarded';
 
         }
+        $data = parent::update($data);
 
-        app('JobRepository')->update($updateData);
+        $criteria = ['job_id' => $data->job_id, 'is_visit_required' => 1];
+
+        if($status == 'awarded'){
+
+            if (!\App::runningInConsole()) {
+                $this->model->where($criteria)->delete();
+            }        
+        }
+
     }
 
+    
+    if(!empty($updateData)){    
+        app('JobRepository')->update($updateData);
+    }
 
     return $data;
 }
@@ -349,7 +363,11 @@ public function update(array $data = [])
 
 public function create(array $data = [])
 {
+    $data['status'] = 'pending';
     $data['deleted_at'] = null;
+    $data['is_archived'] = 0;
+    $data['is_visit_required'] = 0;
+
     $data['updated_at'] = Carbon::now()->ToDateTimeString();
 
     $criteria = ['user_id' => $data['user_id'] , 'job_id' => $data['job_id']];

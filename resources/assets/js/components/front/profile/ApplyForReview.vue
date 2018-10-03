@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Email Address</label>
+                                    <label for="">Email Address *</label>
                                     <input type="text" :disabled="true" class="form-control" name="email" v-model="record.email" placeholder="Enter your first email address">
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years_of_experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Service</label>
-                                    <select v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
+                                    <select :disabled="service_detail.status == 'approved'" v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -130,8 +130,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
-                            <a v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
+                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : 1})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-id="service_detail.status != 'approved'" v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Proof of Business</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
+                                <file-upload-component  :currentRecord="proof_of_business" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
 
                                 </file-upload-component>
                             </div>
@@ -164,7 +164,7 @@
                         <div class="col-md-6">
                             <label>&nbsp;</label>
                             <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more photos</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more</a>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Registrations</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
+                                <file-upload-component :currentRecord="certification" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
 
                                 </file-upload-component>
 
@@ -188,7 +188,7 @@
                         <div class="col-md-6">
                             <label>&nbsp;</label>
                             <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more photos</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more</a>
                         </div>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Certificates</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
+                                <file-upload-component :currentRecord="registration" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
 
                                 </file-upload-component>
                             </div>
@@ -211,7 +211,7 @@
                         <div class="col-md-6">
                             <label>&nbsp;</label>
                             <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more photos</a>
+                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more</a>
                         </div>
                     </div>
                 </div>
@@ -285,7 +285,7 @@
                 </div>
 
                 <div v-if="!pendingProfile" class="submit-approval-btn">
-                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Apporoval
+                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Approval
                         <loader></loader>
                     </button>
                 </div>
@@ -384,7 +384,6 @@
         },
         methods: {
             removeFile(type, index){
-                console.log(this.record.business_details.attachments[type] , type , index);
                 this.record.business_details.attachments[type].splice(index , 1);
                 this.$forceUpdate();
                 return false;
@@ -414,7 +413,6 @@
                     }
                 });
 
-                console.log(result);
                 for (var i = result.length - 1; i >= 0; i--) {
                     if(typeof(result[i]) != 'undefined'){
                         return true;
@@ -424,19 +422,44 @@
                 return false;
 
             },
+            checkUploadedDocuments(){
 
+                let attachments = this.record.business_details.attachments;
+
+                if(!attachments['certifications'][0]){
+                    return false;
+                }
+
+                if(!attachments['registrations'][0]){
+                    return false;
+                }
+
+                if(!attachments['proof_of_business'][0]){
+                    return false;
+                }
+
+                return true;
+
+            },
             validateBeforeSubmit() {
                 let self = this;
 
                 this.errorMessage = '';
                 
-                if(this.findUniqueValues()){
-                    this.errorMessage = 'Please remove duplicate services';
-                    return false;
-                }
 
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+
+                        if(this.findUniqueValues()){
+                            this.errorMessage = 'Please remove duplicate services';
+                            return false;
+                        }
+
+                        if(!this.checkUploadedDocuments()){
+                            this.errorMessage = 'Please add at least one file for each document';
+                            return false;
+                        }
+
 
                         _.forEach(self.record, function(value, key) {
 

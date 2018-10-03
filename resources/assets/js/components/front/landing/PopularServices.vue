@@ -27,6 +27,37 @@
             HideModal(){
                 this.categoryval = false;
             },
+            hideModal(){
+                this.categoryPopup = false;
+            },
+            getPopularServices() {
+                let self = this;
+                let url = 'api/service?filter_by_popular_services=true';
+                self.$http.get(url).then(response=>{
+                    response = response.data.response;
+                    self.categories = response.data;
+                }).catch(error=>{
+                });
+            },
+
+            getImage(img) {
+                return img? (typeof(img[0].upload_url) != 'undefined'? img[0].upload_url : 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
+            },
+
+            onSelectCategory(val) {
+                this.hideModal();
+                this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
+                localStorage.setItem("zip", val);
+            },
+
+            changecategorypopup(service) {
+                this.selectedService = service;
+                if(localStorage['zip']) {
+                    this.onSelectCategory(localStorage['zip']);
+                }else {
+                    this.categoryPopup = true;  
+                }
+            },
 
         },
         mounted(){
@@ -50,10 +81,15 @@
                     }
               });
           });
+            this.getPopularServices();
         },
         data() {
             return{
                 categoryval: false,
+                categoryPopup: false,
+                selectedService: '',
+                categories: [],
+                routeName: 'Explore_Detail',
                 services:[
                     {
                         serviceImage:'images/front/home/cleaning.jpg',

@@ -87,7 +87,7 @@
 
 						<div class="col-md-3 p-l-0 p-r-0">
 
-							<div class="service-avaliable" v-if="record.all_services_offered.length">
+							<div class="service-avaliable" v-if="record.all_services_offered">
 								<h3 class="m-b-20">Services offered</h3>
 								<ul>
 									<li v-for="service in record.all_services_offered">
@@ -155,7 +155,7 @@
 			},
 			categorylisting(){
 				window.scrollTo(0,0);
-				this.$router.push({name: 'Explore_Detail'});	
+				this.$router.push({name: 'Explore'});	
 			},
 			getServiceProvider() {
 				window.scrollTo(0,0);

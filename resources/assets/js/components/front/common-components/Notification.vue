@@ -22,7 +22,9 @@
 
                 </ul>
                 <vue-common-methods :infiniteLoad="infiniteLoad" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-                <div v-show="noRecordFound">No record Found</div>
+                <div v-show="noRecordFound" class="no-notification-found">
+                    No new notification 
+                </div>
             </div>  
         </div>
     </div>

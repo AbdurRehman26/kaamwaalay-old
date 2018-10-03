@@ -234,6 +234,44 @@ button.sl-close {
     }
 }
 
+
+.no-notification-found {
+    text-align: center;
+    display: block;
+    padding-right: 25px;
+    color: #7d7d7d;
+}
+
+.bidding-navigation{
+    li{
+        position: relative;
+        padding: 0px 40px 7px 40px !important;
+        &.disabled {
+            background-color: transparent !important;
+        }
+        p{
+            span{
+                position: absolute;
+                top: 0;
+                right: 2px;
+            }
+        }
+    }
+}
+
+.invite-bid-search{
+    .custom-multi {
+        width: 100% !important;
+    }
+    .multiselect__tags span.multiselect__single{
+        width: 96% !important;
+    }
+}
+
+.invite-job-form .modal-body .model-content {
+    padding: 20px 33px 20px 33px !important;
+}
+
 .bg-light-custom {
     background-color: #f9f9f9 !important;
 }
@@ -964,9 +1002,18 @@ button.sl-close {
         }
     }
     .list-description{
+        width: calc(100% - 60px);
         p{
             font-family:$font-bold;
             margin-left:12px;
+            width: 108px;
+            overflow: hidden;
+            max-height: 50px;
+            text-overflow: ellipsis;
+            @include mobile{
+                width: 100%;
+                max-height: none;
+            }            
         }
     }
     .services-list {
