@@ -15788,6 +15788,14 @@ button.sl-close {
   display: block;
 }
 
+.zipcode-selectize .multiselect__tags {
+  border-color: #B2B2B2;
+}
+
+.zipcode-selectize .multiselect__select {
+  opacity: 0;
+}
+
 .Popular-services-slides {
   margin: 0 0px;
   clear: both;
@@ -15814,6 +15822,9 @@ button.sl-close {
 
 .Popular-services-slides li .box-img {
   margin-bottom: 32px;
+  width: 270px;
+  height: 270px;
+  background-size: cover;
 }
 
 .Popular-services-slides li h6 {
