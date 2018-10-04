@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div>
-                    <payment-component  :submit='isSubmitNormalJob'></payment-component>
+                    <card-element  :isPopup='false' :onlyVerify='true' :submit='isSubmitNormalJob'></card-element>
                 </div>
             </div>
             <div class="job-form-submission">
@@ -209,7 +209,7 @@
 
     <!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
     <div v-if='!isShowCardDetail'>
-        <card-element :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
+        <card-element :isPopup='true' :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
     </div>
 </div>
 </template>
@@ -341,6 +341,7 @@
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
+                this.isSubmitNormalJob = false
                 this.$validator.validateAll().then((result) => {
                     this.invalidZip = true;
                     if(!this.formData.zip_code) {
@@ -350,11 +351,14 @@
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
                         }else{
+                            setTimeout(function () {
                             if(!this.errorMessage){    
                                 this.isSubmitNormalJob = true
                             }else{
                                 this.isSubmitNormalJob = false 
                             }
+                            }, 500);
+                           
                             if(!this.isPaymentDetailShow){
                                 this.onSubmit();
                             }

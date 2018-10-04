@@ -266,19 +266,20 @@
                     </div>
                 </div>
 
-                <div class="account-fee">
+                <div v-if="isPaymentDetailShow" class="account-fee">
                     <div class="form-label-heading m-b-30 m-t-30">
                         <p>ACCOUNT FEE</p>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="verification-alert">
-                                <p>Enter your credit card details to pay service provider account creation fee of <span>$50</span>.</p>
+                                <p>Enter your credit card details to pay service provider account creation fee of <span>${{accountCreationAmount}}</span>.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <payment-component></payment-component>
+                          <card-element  :isPopup='false' :onlyVerify='true' :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
+              
                 </div>
 
                 <div v-if="!pendingProfile" class="submit-approval-btn">
@@ -360,6 +361,11 @@
                 submit : false,
                 pendingProfile : false,
                 invalidZip: false,
+                isSubmit : false,
+                isPaymentDetailShow : true,
+                plans : [],
+                accountCreationAmount: null,
+                selectedPlan :null,
 
             }
         },
@@ -453,9 +459,8 @@
             },
             validateBeforeSubmit() {
                 let self = this;
-
                 this.errorMessage = '';
-                
+                this.isSubmit = false
 
                 this.$validator.validateAll().then((result) => {
                     this.invalidZip = true;
@@ -489,12 +494,24 @@
                             }else{
                                 self.submitFormData.user_details[key] = value;
                             }
-
+                            delete self.submitFormData.user_details.stripe_token; 
                             self.submitFormData.user_details['is_profile_completed'] = 1;
 
+
                         });
-                        this.loading = true;
+                        if(!this.isPaymentDetailShow){
                         this.submit = true;
+                                this.loading = true;
+                        }else{
+                            setTimeout(function () {
+                                if(!self.errorMessage){    
+                                    self.isSubmit = true
+                                }else{
+                                    self.isSubmit = false 
+                                }
+                            }, 500);
+                            
+                        }
                         this.errorMessage = ''
                         return;
                     }
@@ -570,7 +587,33 @@
                 let self = this;
                 self.cities = response.data;
             },
-
+            paymentDetailShow(){
+                let user = JSON.parse(this.$store.getters.getAuthUser)   
+                if(user.stripe_token){
+                    this.isPaymentDetailShow = false
+                }else{
+                    this.isPaymentDetailShow = true
         }
+            },
+            getPlansList (){
+                let self = this;
+                let url = 'api/plan';
+                let params = {
+                    pagination: false,
+                    type: 'service',
+                    product: 'account_creation',
+                };
+                self.$http.get(url, {params: params}).then(response=>{
+                    self.plans = response.data.response.data
+                    self.selectedPlan = self.plans[0].id
+                    self.accountCreationAmount = self.plans[0].amount
+                }).catch(error=>{
+                });
+            },
+        },
+        mounted () {
+            this.getPlansList(),
+            this.paymentDetailShow()
+        },
     }
 </script>
