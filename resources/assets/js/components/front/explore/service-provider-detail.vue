@@ -155,7 +155,7 @@
          self.pagination = response.pagination;
      },
      getUserImage(user) {
-        return user? user.profileImage : 'images/dummy/image-placeholder.jpg';
+        return user? (user.profileImage? user.profileImage : 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
     },
     AddCustomer() {
         this.customer = true;

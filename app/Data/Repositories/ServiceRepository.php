@@ -206,12 +206,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $zip = $this->getZip();
             if($zip) {
                 $this->builder = $this->getServicesByZip(false, $zip);
-                $count = $this->builder->count();
+                $count = $this->builder->get()->count();
                 if(!$count) {
                     $this->builder = $this->getServicesByZip(false);
+                    $count = $this->builder->get()->count();
                 }
             }else {
                 $this->builder = $this->getServicesByZip(false);
+            }
+            if($count > 12) {
+                $this->builder = $this->builder->limit(12);
             }
         }
         if (!empty($data['service_category'])) {

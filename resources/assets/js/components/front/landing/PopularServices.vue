@@ -7,7 +7,7 @@
             <ul class="Popular-services-slides my-owl-carousel owl-carousel owl-theme">
                 <li class="item" v-for="service in services">
                     <a href="javascript:;" @click="changecategorypopup(service)">
-                        <div class="box-img"><img :src="getImage(service.images)"></div>
+                        <div class="box-img" v-bind:style="{'background-image': 'url('+ getImage(service.images) +')'}"></div>
                         <h6>{{service.title}}</h6>
                         <p><i class="icon-map-marker2"></i>{{getProviders(service.service_prodider_count)}}</p>
                     </a>
