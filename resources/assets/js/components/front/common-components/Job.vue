@@ -94,7 +94,7 @@
             },
             hideChangeBid() {
                 if(typeof(this.tabType) != "undefined") {
-                    return (this.tabType == "activebid" && this.job.status == 'awarded');
+                    return (this.tabType == "activebid" && this.job.status != 'in_bidding');
                 }
                 return false;
             }
