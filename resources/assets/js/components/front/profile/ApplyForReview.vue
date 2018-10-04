@@ -56,7 +56,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input  v-validate="{ regex:/^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
+                                    <input  v-validate="{ regex:/^([+])([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
                                     name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
@@ -548,7 +548,7 @@
 
                     if(!self.record.service_details.length){
                         self.record.service_details = [{
-                            service_id : ''
+                            service_id : 1
                         }];
                     }
 
