@@ -24,13 +24,6 @@ class User extends Authenticatable
     const GLOBAL_ADMIN = 1;
     protected $perPage = 10;
 
-    public function getProfileImageAttribute($value)
-    {
-        if(substr($value, 0, 8) == "https://") {
-            return  $value;
-        }
-        return $value;
-    }
     /**
      * The attributes that are mass assignable.
      *
