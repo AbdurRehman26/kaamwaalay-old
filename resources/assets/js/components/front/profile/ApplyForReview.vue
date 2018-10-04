@@ -506,7 +506,13 @@
                 this.submit = false;
             },
             formSubmitted(response){
-                this.$router.push({ name : 'my.bids'});
+
+                if(response.data){
+                    this.$store.commit('setAuthUser', response.data);
+                    
+                    this.$router.push({ name : 'my.bids'});
+                    
+                }
             },
             onStateChange(){
                 this.record.city_id = null;
