@@ -61,9 +61,12 @@
       <tbody>
           <tr v-for="record in records">
             <td>
-                <span class="user-img radius-0">
-                    <img v-if="record.user_detail && record.user_detail.profile_image" :src="record.user_detail ? record.user_detail.profileImage : ''" >
+                <span v-if="record.user_detail.profileImage" class="user-img radius-0" v-bind:style="{'background-image': 'url('+ record.user_detail.profileImage +')'}">
+                    <!-- <img v-if="record.user_detail && record.user_detail.profile_image" :src="record.user_detail ? record.user_detail.profileImage : ''" > -->
                 </span>
+                <span v-if="!record.user_detail.profileImage" class="user-img radius-0">
+                    <!-- <img v-if="record.user_detail && record.user_detail.profile_image" :src="record.user_detail ? record.user_detail.profileImage : ''" > -->
+                </span>                
             </td>            
             <td>
                 <router-link :to="{ name: 'service.provider.detail', params: { id:record.id }}">

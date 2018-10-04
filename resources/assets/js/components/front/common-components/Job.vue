@@ -1,6 +1,6 @@
 <template>
     <div class="job-post-details" v-if="typeof(job)">
-        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ job.user.profileImage +')'}"></div>
+        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImagePath(job.user) +')'}"></div>
 
         <div class="job-common-description job-perform">
             <div class="col-md-6 p-l-0">
@@ -31,11 +31,9 @@
             <p class="offer" v-if="job.my_bid">
                 <i class="icon-work-briefcase"></i>
                 Offer: <strong>
-                    {{ job.my_bid.is_tbd ? 'TBD' : job.my_bid.formatted_amount }}
-                </strong> - <a v-if="!job.my_bid.is_awarded && !job.my_bid.is_visit_required" @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a>
-                <strong v-if="job.my_bid.is_visit_required">
-                    {{ job.my_bid.status == 'visit_allowed' ? 'Visit allowed' : 'Visit required' }}
-                </strong>
+                    {{ job.my_bid | bidStatus}}
+ 
+               </strong> <span v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !job.my_bid.is_visit_required">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
             </p>
 
             <p class="member-since">
@@ -65,33 +63,36 @@
     </div>
 </template>
 <script>
-import StarRating from 'vue-star-rating';
+    import StarRating from 'vue-star-rating';
 
-export default{
-    props : ['job'],
-    components: {
-        StarRating
-    },
-    data(){
-        return { 
-            bidValue : '',
-            currentrecord : '',
-        }
-    },
-    methods: {
-        showBidPopup(val) {
-            if(val == 'bidNow') {
-                this.$emit('showBidPopup', this.job, val);
-            }else {
-                this.$emit('showBidPopup', this.job, val);
+    export default{
+        props : ['job'],
+        components: {
+            StarRating
+        },
+        data(){
+            return { 
+                bidValue : '',
+                currentrecord : '',
             }
         },
-    },
-    computed: {
-        getCountry() {
-            return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
+        methods: {
+            getImagePath(user){
+                return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
+            },
+            showBidPopup(val) {
+                if(val == 'bidNow') {
+                    this.$emit('showBidPopup', this.job, val);
+                }else {
+                    this.$emit('showBidPopup', this.job, val);
+                }
+            },
+        },
+        computed: {
+            getCountry() {
+                return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
+            }
         }
     }
-}
 
 </script>

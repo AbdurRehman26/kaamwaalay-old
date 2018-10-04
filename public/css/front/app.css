@@ -10701,7 +10701,7 @@ a.text-dark:focus {
   top: 50%;
   margin-left: -40px;
   margin-top: -40px;
-  background: url(/images/vendor/owl.carousel/src/owl.video.play.png?4cbde124d6cd8122c801118696c16f07) no-repeat;
+  background: url(/images/vendor/owl.carousel/src/owl.video.play.png?4a37f8008959c75f619bf0a3a4e2d7a2) no-repeat;
   cursor: pointer;
   z-index: 1;
   -webkit-backface-visibility: hidden;
@@ -12403,6 +12403,10 @@ textarea {
 .sorting-checkbox .custom-checkbox {
   margin-left: -18px;
   top: 5px;
+}
+
+.service-provider button.btn {
+  width: 100%;
 }
 
 .custom-file {
@@ -14637,28 +14641,28 @@ button.sl-close {
 }
 
 .splash-design.d-1 {
-  background-image: url(/images/d-1.svg?aed8324ec19cc06180eca1acd8f843ea);
+  background-image: url(/images/d-1.svg?70fba90bbf2a711f0a151c3d05d27ba1);
 }
 
 .splash-design.d-2 {
-  background-image: url(/images/d-2.svg?8ac72b22a73d9e78aa2d8b4820d70862);
+  background-image: url(/images/d-2.svg?3f1d902d1c5e342a8316cd0712e31957);
 }
 
 .splash-design.d-3 {
-  background-image: url(/images/d-3.svg?33c73ce1d9291622fb185c0d6e1731d4);
+  background-image: url(/images/d-3.svg?b20e532313a13757e2222aa177b55b1b);
 }
 
 .splash-design.d-4 {
-  background-image: url(/images/d-4.svg?48cc588fc2123d490c42fa7bb73658a6);
+  background-image: url(/images/d-4.svg?ca5f85c33b09524fda77485280c33853);
 }
 
 .splash-design.d-5 {
-  background-image: url(/images/d-5.svg?f74158a19f2ee4544a72f6b3596fddf8);
+  background-image: url(/images/d-5.svg?acf2c8ccde5bb7f7767697d3a06f89d2);
   height: 122px !important;
 }
 
 .splash-design.d-6 {
-  background-image: url(/images/d-6.svg?29275829ff683521a9607fceba376b55);
+  background-image: url(/images/d-6.svg?7b3ce14c45730b89a9b8ba73ed07b794);
 }
 
 .splash-design.top-left {
@@ -14777,6 +14781,45 @@ button.sl-close {
   }
 }
 
+.no-notification-found {
+  text-align: center;
+  display: block;
+  padding-right: 25px;
+  color: #7d7d7d;
+}
+
+.bidding-navigation li {
+  position: relative;
+  padding: 0px 40px 7px 40px !important;
+}
+
+.bidding-navigation li.disabled {
+  background-color: transparent !important;
+}
+
+.bidding-navigation li p span {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 37px;
+}
+
+.vdp-datepicker__calendar .disabled {
+  color: #bdbdbd !important;
+}
+
+.invite-bid-search .custom-multi {
+  width: 100% !important;
+}
+
+.invite-bid-search .multiselect__tags span.multiselect__single {
+  width: 96% !important;
+}
+
+.invite-job-form .modal-body .model-content {
+  padding: 20px 33px 20px 33px !important;
+}
+
 .bg-light-custom {
   background-color: #f9f9f9 !important;
 }
@@ -14854,6 +14897,14 @@ button.sl-close {
 .how-it-work .list-description p {
   max-width: 320px;
   margin: 0 auto;
+}
+
+.imagegallery .image {
+  width: 110px;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+  border-radius: 9px;
+  cursor: pointer;
 }
 
 .elementary-banner {
@@ -15550,9 +15601,24 @@ button.sl-close {
   padding: 0;
 }
 
+.featured-categories-home .list-description {
+  width: calc(100% - 60px);
+}
+
 .featured-categories-home .list-description p {
   font-family: "AkzidenzGroteskBE-Bold";
   margin-left: 12px;
+  width: 108px;
+  overflow: hidden;
+  max-height: 50px;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+  .featured-categories-home .list-description p {
+    width: 100%;
+    max-height: none;
+  }
 }
 
 .featured-categories-home .services-list a:hover {
@@ -15727,6 +15793,14 @@ button.sl-close {
   display: block;
 }
 
+.zipcode-selectize .multiselect__tags {
+  border-color: #B2B2B2;
+}
+
+.zipcode-selectize .multiselect__select {
+  opacity: 0;
+}
+
 .Popular-services-slides {
   margin: 0 0px;
   clear: both;
@@ -15753,6 +15827,9 @@ button.sl-close {
 
 .Popular-services-slides li .box-img {
   margin-bottom: 32px;
+  width: 270px;
+  height: 270px;
+  background-size: cover;
 }
 
 .Popular-services-slides li h6 {
@@ -18723,7 +18800,7 @@ p.awarded_to {
 }
 
 .custom-timepicker .mx-calendar-icon {
-  background-image: url(/images/clock.png?0d35adad010e68e534f6f54b484435e7) !important;
+  background-image: url(/images/clock.png?5d66a6c7973c060404222c2ec6d82d47) !important;
 }
 
 /* my-bidding */
@@ -21984,7 +22061,7 @@ p.awarded_to {
   width: 170px;
   height: 110px;
   margin: 0 auto;
-  background-image: url(/images/no-record.svg?2f756fdeba7cdd317e2551bb8be95028);
+  background-image: url(/images/no-record.svg?c2151495d84edca035a704225e4f077e);
   background-repeat: no-repeat;
   background-size: 100% auto;
   display: block;

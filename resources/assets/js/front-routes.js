@@ -219,7 +219,7 @@
 
     {
         name: 'job.details',
-        path: '/job-details/:id',
+        path: '/job-details/:id/:jobBidId?',
         meta: {
             title: 'Professional Service Marketplace | Job Details',
             bodyClass: 'job-detail-page',

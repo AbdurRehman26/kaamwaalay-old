@@ -116,7 +116,7 @@
                 <div v-if="formData.preference == 'choose_date'" class="col-md-6">
                     <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' ,'custom-datepicker','form-group']">
                         <label>Select Date</label>
-                        <date-picker name="scheduled at" v-validate="'required'" :not-before="Date.now()" v-model="formData.schedule_at" format="DD-MM-YYYY" lang="en"></date-picker>
+                        <datepicker name="scheduled at" v-validate="'required'" v-model="formData.schedule_at"   :disabledDates="disabledDates" placeholder="Select Date"></datepicker>
                     </div>
                 </div>
             </div>				
@@ -167,11 +167,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Zip Code</label>
-                        <input v-validate="'required'" name="zip code" 
-                        :class="['form-control' , errorBag.first('zip code') ? 'is-invalid' : '']" v-model="formData.zip_code" type="text" class="form-control" placeholder="Enter your zip code">
-                    </div>
+                    <zip @onSelect="setZipCode" :showError="invalidZip"></zip>
                 </div>
             </div>
         </div>
@@ -219,12 +215,16 @@
 </template>
 
 <script>
-    import DatePicker from 'vue2-datepicker'
+    import Datepicker from 'vuejs-datepicker';
+    import _ from 'lodash';
 
     export default {
-        components: { DatePicker },
+        components: { Datepicker },
         data() {
             return {
+                disabledDates: {
+                    to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                },
                 plans : [],
                 urgentJobAmount: null,
                 selectedPlan :null,
@@ -280,7 +280,8 @@
                 states : [],
                 isShowCardDetail : true,
                 isSubmitNormalJob : false,
-                isPaymentDetailShow : true
+                isPaymentDetailShow : true,
+                invalidZip: false,
 
             }
         },
@@ -304,6 +305,10 @@
             this.paymentDetailShow()
         },
         methods:{
+            setZipCode(val) {
+                this.formData.zip_code = val.zip_code;
+                this.invalidZip = false;
+            },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
                 if(user.stripe_token){
@@ -337,6 +342,10 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
+                    this.invalidZip = true;
+                    if(!this.formData.zip_code) {
+                        this.invalidZip = true;
+                    }
                     if (result) {
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
@@ -353,12 +362,12 @@
                         this.errorMessage = '';
                         return;
                     }
-                    console.log(this.errorBag , 13123);
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
                 let self = this;
+
                 this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
 
@@ -429,6 +438,11 @@
 
         },
         watch:{
+            'formData.zip_code'(val) {
+                if(!val) {
+                    this.invalidZip = true;
+                }
+            },
             jobType (value) {
                 if(value == 'urgent_job'){
                     this.isShowCardDetail = false

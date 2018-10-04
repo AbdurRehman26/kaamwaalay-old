@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
 
         // commenting all seeders 
 
-      /*  $this->call(CountriesTableSeeder::class);
+        /*$this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
-        $this->call(ZipCodesTableSeeder::class);
+        $this->call(ZipCodesTableSeeder::class);*/
 
         $this->call(RolesTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
+        /*$this->call(UsersTableSeeder::class);
         
         $this->call(SupportQuestionsTableSeeder::class);
         $this->call(PlansTableSeeder::class);

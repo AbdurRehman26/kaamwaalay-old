@@ -13,7 +13,10 @@
                                     <strong>{{notification.data.text}}</strong>
                                 </p>
                                 <p :class="{'notification-limit': notification.data.route}">
-                                    <span v-show="notification.data.route"><router-link :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link></span>
+                                    <span v-show="notification.data.route">
+                                        <router-link v-show="!notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link>
+                                        <router-link v-show="notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id ,jobBidId : notification.data.object_id}}">{{notification.data.link_text}}</router-link>
+                                    </span>
                                     <span>{{notification.created_at | formatDateTime}}</span>
                                 </p>
                             </div>
@@ -22,7 +25,9 @@
 
                 </ul>
                 <vue-common-methods :infiniteLoad="infiniteLoad" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-                <div v-show="noRecordFound">No record Found</div>
+                <div v-show="noRecordFound" class="no-notification-found">
+                    No new notification 
+                </div>
             </div>  
         </div>
     </div>
@@ -67,7 +72,7 @@
                     _.forEach(response.data, function(value, key) {
                         self.notificationData.push(value);
                     })
-                    this.notificationCount = response.pagination ? response.pagination.total : 0;
+                    this.notificationCount = response.pagination ? response.pagination.total : "";
                     this.$parent.notificationCount = this.notificationCount;
                 }
             },

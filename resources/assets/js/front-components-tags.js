@@ -24,6 +24,7 @@ Vue.component('alert', require('./components/admin/common-components/Alert.vue')
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
 // Vue.component('info-popup', require('./components/front/common-components/InfoPopup.vue'));
 Vue.component('change-password-popup', require('./components/front/common-components/ChangePassPopup.vue'));
+Vue.component('invite-bid-popup', require('./components/front/common-components/InviteBidPopup.vue'));
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue'));
 Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue'));
 Vue.component('award-job-popup',require('./components/front/common-components/AwardJobPopup.vue'));
@@ -96,3 +97,5 @@ Vue.component('confirmation-popup',require('./components/admin/service-provide/p
 Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue')); 
 Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue')); 
 Vue.component('job',require('./components/front/common-components/Job.vue')); 
+
+Vue.component('zip',require('./components/front/common-components/Zip.vue')); 

@@ -23,11 +23,19 @@
 
     export default{
         mounted (){
-
+            this.file = this.currentRecord;
             this.acceptedFiles = this.fileExtensions ? this.fileExtensions : this.acceptedFiles;
 
         },
-        props : ['uploadKey', 'fileExtensions'],
+        
+        props : [
+        
+        'uploadKey',
+        'fileExtensions',
+        'currentRecord'
+        
+        ],
+
         data(){
             return {
                 acceptedFiles : 'image/jpeg, image/png, image/jpg',
@@ -97,6 +105,8 @@
 
         },
         watch : {
+            currentRecord(value){
+            },
             fileExtensions(value){
                 if(value){
                     this.acceptedFiles = value;
