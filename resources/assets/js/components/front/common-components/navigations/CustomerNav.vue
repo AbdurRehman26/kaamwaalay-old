@@ -71,7 +71,7 @@
             },
             imageValue(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
-                return user.profileImage ? user.profileImage : '';
+                return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
             }
         },
         methods: {
