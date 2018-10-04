@@ -96,7 +96,7 @@
                                     <p>My feedback & review</p>	
                                 </div>
                                 <div class="chat-feedback-column">
-                                    <div class="chat-feedback-image" v-bind:style="{'background-image': getImagePath($store.getters.getAuthUser) }"></div>
+                                    <div class="chat-feedback-image" v-bind:style="{'background-image': getImagePath(JSON.parse($store.getters.getAuthUser)) }"></div>
                                     <div class="chat-feedback-message">
                                         <p>{{record.review_details.message}}</p>
                                         <div class="feeback-detail">
