@@ -151,7 +151,6 @@
         methods: {
             getCurrentUser() {
                 let user = JSON.parse(this.$store.getters.getAuthUser);
-                console.log(user.profileImage, 123213);
                 return user;
 
             },
