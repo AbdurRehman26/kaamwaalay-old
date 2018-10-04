@@ -20,11 +20,12 @@
                 searchValue: '',
                 options: [],
                 isTouched: false,
+                isError: false,
             }
         },
         computed : {
             isInvalid () {
-                return this.isTouched && !this.searchValue
+                return this.isTouched && !this.searchValue && this.isError;
             },
         },
         mounted () {
@@ -82,7 +83,14 @@
                 }
             },
             showError(val) {
-                this.isTouched = val;
+                this.isError = val;
+            },
+            searchValue(val) {
+                if(!val) {
+                    this.searchValue = "";
+                    this.isTouched = true;
+                    this.isError = true;
+                }
             }
         }
     }
