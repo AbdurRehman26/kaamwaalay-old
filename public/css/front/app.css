@@ -14805,7 +14805,7 @@ button.sl-close {
 }
 
 .vdp-datepicker__calendar .disabled {
-  color: #bdbdbd;
+  color: #bdbdbd !important;
 }
 
 .invite-bid-search .custom-multi {
