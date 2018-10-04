@@ -260,6 +260,12 @@ button.sl-close {
     }
 }
 
+.vdp-datepicker__calendar{
+    .disabled{
+        color: #bdbdbd;
+    }
+}
+
 .invite-bid-search{
     .custom-multi {
         width: 100% !important;
