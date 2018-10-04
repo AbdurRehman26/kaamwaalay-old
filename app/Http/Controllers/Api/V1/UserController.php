@@ -14,6 +14,7 @@ use Validator;
 use App\Helper\Helper;
 use App\Jobs\CustomerBanned;
 use Socialite;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends ApiResourceController
 {
@@ -101,22 +102,22 @@ class UserController extends ApiResourceController
 //change password of logged in user
                 $request->user()->password = bcrypt($new_password);
                 $request->user()->save();
-                $output = ['response' => ['data' => [],'message'=>'Password has been updated successfully.']];
+                $output = ['data' => [],'message'=>'Password has been updated successfully.'];
 // HTTP_OK = 200;
                 return response()->json($output, 200);
             } else {
-                return response()->json(
-                    [
-                        'message' => 'Password must be minimum 8 character long.',
-                    ], 406
+                $errorResponse = ValidationException::withMessages(
+                    ['message'=> 'Password must be minimum 8 character long.' ]
                 );
+                $errorResponse->status = 406;
+                throw $errorResponse;
             }
         } else {
-            return response()->json(
-                [
-                    'message' => 'The old password is incorrect.',
-                ], 406
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> 'The old password is incorrect.' ]
             );
+            $errorResponse->status = 406;
+            throw $errorResponse;
         }
     }
 
@@ -141,10 +142,12 @@ public function store(Request $request)
             'message' => 'Add Admin successfully',
         ];
     }else{
-        $code = 406;
-        $output = [
-            'message' => 'An error occurred',
-        ];
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> 'An error occurred.' ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
+
     }
     return response()->json($output, $code);
 
@@ -167,51 +170,46 @@ public function socialLogin(Request $request)
         $rules['email'] = 'required|string|email|max:255|unique:users';
     }
     $messages['email.unique'] = 'This email address is already taken. Please try another email address';
-    $validator = Validator::make($data, $rules,$messages);
-    if ($validator->fails()) {
-        $code = 406;
-        $output = [
-            'message' => $validator->messages()->all(),
-        ];
-    }else{
+    $this->validate($request, $rules,$messages);
          try{
                $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
                unset($data['access_token']);
-        if($user) {
-            unset($data['role_id']);
-            unset($data['from_sign_up']);
-            $userData['user_details'] = $data; 
-            $userData['id'] = $user->id; 
-            $result = $this->_repository->update($userData);
-            $userId = $user->id;
-        }else{
-            $data['status']  = 'active'; 
-            unset($data['from_sign_up']); 
-            $result = $this->_repository->create($data);
-            $userId = $result->id;
-        }
-        if($result) {
-            $user = User::find($userId);
-            $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
-            $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
-            $code = 200;
-            $output = [
-                'data' => $user,
-                'message' => 'Success',
-            ];
-        }else{
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
-        }
+            if($user) {
+                unset($data['role_id']);
+                unset($data['from_sign_up']);
+                $userData['user_details'] = $data; 
+                $userData['id'] = $user->id; 
+                $result = $this->_repository->update($userData);
+                $userId = $user->id;
+            }else{
+                $data['status']  = 'active'; 
+                unset($data['from_sign_up']); 
+                $result = $this->_repository->create($data);
+                $userId = $result->id;
+            }
+            if($result) {
+                $user = User::find($userId);
+                $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+                $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
+                $code = 200;
+                $output = [
+                    'data' => $user,
+                    'message' => 'Success',
+                ];
+            }else{
+                $errorResponse = ValidationException::withMessages(
+                    ['message'=> 'An error occurred.' ]
+                );
+                $errorResponse->status = 406;
+                throw $errorResponse;
+            }
         }catch(\Exception $e){
-             $code = 406;
-             $output = [
-                'message' => 'Invalid User',
-            ];
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> 'Invalid User.' ]
+            );
+            $errorResponse->status = 406;
+            throw $errorResponse;
         }
-    }
     return response()->json($output, $code);
 }
 
@@ -260,12 +258,12 @@ public function changeStatus(Request $request)
                 'data' => 'Status has been updated successfully.',
                 'message' => 'Status has been updated successfully.',
             ];
-        }else{
-
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
+        }else{ 
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> 'An error occurred.' ]
+            );
+            $errorResponse->status = 406;
+            throw $errorResponse;
 
         }
     }
@@ -298,10 +296,11 @@ public function changeAccessLevel(Request $request)
                 'message' => 'Access level has been updated successfully.',
             ];
         }else{
-            $code = 406;
-            $output = [
-                'message' => 'An error occurred',
-            ];
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> 'An error occurred.' ]
+            );
+            $errorResponse->status = 406;
+            throw $errorResponse;
         }
     }
     return response()->json($output, $code);
@@ -369,11 +368,11 @@ public function socialLoginCheck(Request $request)
     $userModel = $this->_repository->model;
     $result = $userModel->where('email','=',$request->email)->where('social_account_id','=',$request->social_account_id)->where('social_account_type','=',$request->social_account_type)->first();
         if($result) {
-            $code = 406;
-            $output = [
-                'data' => $result,
-                'message' => 'User Already Exists',
-            ];
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> 'User Already Exists.' ]
+            );
+            $errorResponse->status = 406;
+            throw $errorResponse;
         }else{
             $code = 200;
             $output = [
@@ -394,19 +393,16 @@ public function getUserNotification(Request $request)
     if($data->isNotEmpty()){
       $code = 200;
       $output = [
-        'response' => [
             'data' => $response,
             'message' => 'success',
             'pagination' => $pagination,
-        ]
       ];  
     }else{
-       $code = 404;
-       $output = [
-        'response' => [
-            'error' => 'no notification found'
-        ]
-      ];  
+      $errorResponse = ValidationException::withMessages(
+        ['message'=> 'no notification found' ]
+      );
+      $errorResponse->status = 404;
+      throw $errorResponse;
     }
     return response()->json($output, $code);
 }

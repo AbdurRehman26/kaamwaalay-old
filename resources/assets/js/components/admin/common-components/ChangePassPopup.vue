@@ -102,7 +102,7 @@ data () {
                 self.loading = true
                 this.$http.put('api/auth/change/password/', this.userData)
                     .then(response => {
-                            self.successMessage= response.data.response.message;
+                            self.successMessage= response.data.message;
                             setTimeout(function(){
                                 self.loading = false;
                                 self.successMessage='';
@@ -111,7 +111,7 @@ data () {
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage =error.response.data.message;
+                        self.errorMessage =error.response.data.errors.message[0];
                         setTimeout(function(){
                             self.errorMessage='';
                         }, 5000);
