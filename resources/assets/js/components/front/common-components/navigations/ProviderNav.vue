@@ -63,7 +63,7 @@
                 return JSON.parse(this.$store.getters.getAuthUser);
             },
             fullName(){
-                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : '';
+                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : 'images/dummy/image-placeholder.jpg';
             },
             socialAccountId(){
                 return this.userDetails ? this.userDetails.social_account_id : '';
