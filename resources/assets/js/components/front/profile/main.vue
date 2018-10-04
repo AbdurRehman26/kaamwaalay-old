@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 zipcode-selectize">
                             <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
                         </div>
                     </div>

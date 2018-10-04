@@ -15788,6 +15788,14 @@ button.sl-close {
   display: block;
 }
 
+.zipcode-selectize .multiselect__tags {
+  border-color: #B2B2B2;
+}
+
+.zipcode-selectize .multiselect__select {
+  opacity: 0;
+}
+
 .Popular-services-slides {
   margin: 0 0px;
   clear: both;
