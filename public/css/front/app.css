@@ -15814,6 +15814,9 @@ button.sl-close {
 
 .Popular-services-slides li .box-img {
   margin-bottom: 32px;
+  width: 270px;
+  height: 270px;
+  background-size: cover;
 }
 
 .Popular-services-slides li h6 {
