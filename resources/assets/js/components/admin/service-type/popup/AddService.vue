@@ -52,8 +52,8 @@
     <div class="form-group">
         <label>Upload Image</label>
         <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
-        <div class="uploded-picture">
-            <img :src="imageValue" />
+        <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ imageValue +')',}">
+            <!-- <img :src="imageValue" /> -->
         </div>
     </div>
 
