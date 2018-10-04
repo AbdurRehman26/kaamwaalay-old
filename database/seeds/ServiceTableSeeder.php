@@ -144,56 +144,75 @@ class ServiceTableSeeder extends Seeder
            ],
        ];
 
-        $isFeatured = [0, 0, 1];
+       $isFeatured = [0, 0, 1];
         // reduce the probabiltiy of 1 occuring 
 
-        foreach ($services as $key => $service) {
+       $serviceRandomImages = [
+        'images/dummy/door-2.jpg',
+        'images/dummy/electrician.jpg',
+        'images/dummy/nice-door.jpg',
+        'images/dummy/jobfileimage1.jpg',
+        'images/dummy/jobfileimage2.jpg',
+        'images/dummy/jobfileimage3.jpg',
+    ];
+
+    foreach ($services as $key => $service) {
+
+
+        $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
+
+
+        $data [] = [
+            'id' => (int) $key+1,
+            'title' => $service,
+            'description' => $faker->Text,
+            'url_suffix' =>  strtolower(str_replace(' ', '-', $service)),
+            'parent_id' => null,
+            'images' => json_encode($imageObject),
+            'is_featured' => $isFeatured[array_rand($isFeatured)],
+            'created_at' => $now,
+            'updated_at' => $now
+        ];
+    }
+    app("ServiceRepository")->model->insertOnDuplicateKey($data);
+
+    $key = 13;
+
+
+    foreach ($subServices as $parentServiceKey => $subService) {
+
+        $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
+
+
+        $data = [];
+        $parentService = app('ServiceRepository')->findByAttribute('title' , $parentServiceKey);
+
+        if(empty($parentService)){
+            continue;
+        }
+
+
+        foreach ($subService as $value) {
+
             $data [] = [
-                'id' => (int) $key+1,
-                'title' => $service,
+                'id' => (int) $key,
+                'title' => $value,
+                'url_suffix' =>  strtolower(str_replace(' ', '-', $value)),
                 'description' => $faker->Text,
-                'url_suffix' =>  strtolower(str_replace(' ', '-', $service)),
-                'parent_id' => null,
+                'parent_id' => $parentService->id,
+                'images' => json_encode($imageObject),
                 'is_featured' => $isFeatured[array_rand($isFeatured)],
+                'is_display_banner' => 1,
+                'is_display_service_nav' => 1,
+                'is_display_footer_nav' => 1,
                 'created_at' => $now,
                 'updated_at' => $now
             ];
+            $key += 1;
         }
         app("ServiceRepository")->model->insertOnDuplicateKey($data);
-
-        $key = 13;
-
-        
-        foreach ($subServices as $parentServiceKey => $subService) {
-
-            $data = [];
-            $parentService = app('ServiceRepository')->findByAttribute('title' , $parentServiceKey);
-            
-            if(empty($parentService)){
-                continue;
-            }
-
-
-            foreach ($subService as $value) {
-
-                $data [] = [
-                    'id' => (int) $key,
-                    'title' => $value,
-                    'url_suffix' =>  strtolower(str_replace(' ', '-', $value)),
-                    'description' => $faker->Text,
-                    'parent_id' => $parentService->id,
-                    'is_featured' => $isFeatured[array_rand($isFeatured)],
-                    'is_display_banner' => 1,
-                    'is_display_service_nav' => 1,
-                    'is_display_footer_nav' => 1,
-                    'created_at' => $now,
-                    'updated_at' => $now
-                ];
-                $key += 1;
-            }
-            app("ServiceRepository")->model->insertOnDuplicateKey($data);
-        }
-
-
     }
+
+
+}
 }
