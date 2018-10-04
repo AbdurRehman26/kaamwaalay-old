@@ -62,7 +62,7 @@ public function run()
                 "user-rating.show",
                 "support-inquiry.index",
                 'support-inquiry.show',
-                "support-inquiry.index",
+                "support-inquiry.update",
                 "support-question.index",
                 "plan.update.or.add",
                 "payment.index",
