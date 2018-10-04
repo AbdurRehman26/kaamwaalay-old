@@ -4,8 +4,8 @@
 			<img class="building" src="images/front/svg/sp-default.svg">
 			<img class="cross" src="images/front/svg/cancel.svg">
 		</div>
-		<h2>Your profile has been rejected.</h2>
-        <h3>{{formData.reason}} </h3>
+		<h2 class="p-b-10">Your profile has been rejected.</h2>
+        <h5 class="m-b-20">{{formData.reason}} </h5>
         <router-link to="/apply-for-review" class="btn btn-primary">Re-submit your profile </router-link>        
     </div>
 </template>
