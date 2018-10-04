@@ -112,12 +112,8 @@
                     </div>
 
                     <div class="row">
-
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Zip Code *</label>
-                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="record.zip_code" placeholder="Enter your zip code">
-                            </div>
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
                         </div>
                     </div>
                 </div>
@@ -160,10 +156,18 @@
                 cityUrl : '',
                 states : [],
                 file: null,
-                profileImage : ''
+                profileImage : '',
+                invalidZip: false,
             }
         },
         mounted(){
+        },
+        watch: {
+            'record.zip_code' (val) {
+                if(!val) {
+                    this.invalidZip = true;
+                }
+            },
         },
         computed : {
             requestUrl(){
@@ -177,6 +181,10 @@
             }
         },
         methods: {
+            setZipCode(val) {
+                this.record.zip_code = val.zip_code;
+                this.invalidZip = false;
+            },
             onStateChange(){
                 this.record.city_id = null;
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
@@ -204,7 +212,10 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-
+                    this.invalidZip = true;
+                    if(!this.record.zip_code) {
+                        this.invalidZip = true;
+                    }
                     if (result) {
                         this.onSubmit();
                         this.errorMessage = '';

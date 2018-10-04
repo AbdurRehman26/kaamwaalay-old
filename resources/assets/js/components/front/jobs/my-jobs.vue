@@ -96,7 +96,7 @@
                                     <p>My feedback & review</p>	
                                 </div>
                                 <div class="chat-feedback-column">
-                                    <div class="chat-feedback-image" v-bind:style="{'background-image': getImagePath(JSON.parse($store.getters.getAuthUser)) }"></div>
+                                    <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImagePath(getCurrentUser()) +')',}"></div>
                                     <div class="chat-feedback-message">
                                         <p>{{record.review_details.message}}</p>
                                         <div class="feeback-detail">
@@ -149,7 +149,11 @@
         },
 
         methods: {
+            getCurrentUser() {
+                let user = JSON.parse(this.$store.getters.getAuthUser);
+                return user;
 
+            },
             getImagePath(user){
                 return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
             },
