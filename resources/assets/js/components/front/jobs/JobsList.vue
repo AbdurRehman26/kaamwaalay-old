@@ -2,7 +2,7 @@
 
     <div v-if="records.length">
         <div class="job-post-list" v-for="record in records">
-            <job :job="record.job" @chatMessage="chatMessage" v-if="record.job" @showBidPopup="bidPopup"></job>
+            <job :job="record.job" @chatMessage="chatMessage" v-if="record.job" @showBidPopup="bidPopup" :tabType="tabType"></job>
         </div>
         <post-bid-popup :bid="bidValue" :job="currentRecord" @HideModalValue="showBidPopup = false; bidValue = '';" :showModalProp="showBidPopup"></post-bid-popup>
 
