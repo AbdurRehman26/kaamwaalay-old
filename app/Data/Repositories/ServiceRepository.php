@@ -203,7 +203,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
         }
         if (!empty($data['filter_by_popular_services'])) {
-            $zip = $this->getZip();
+            $zip = "78606";//$this->getZip();
             if($zip) {
                 $this->builder = $this->getServicesByZip(false, $zip);
                 $count = $this->builder->get()->count();
