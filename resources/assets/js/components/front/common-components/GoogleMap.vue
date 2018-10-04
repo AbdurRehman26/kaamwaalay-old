@@ -10,7 +10,7 @@
 
         <gmap-map
         :center="center"
-        :zoom="7"
+        :zoom="17"
         map-type-id="terrain"
         style="width: 100%; height: 500px"
         >
@@ -81,6 +81,7 @@
       },
       updateMaker: function(event) {
           console.log('updateMaker, ', event.latLng.lat());
+          this.place = 'Afghanistan';
           this.markers[0].position = {
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),

@@ -98,3 +98,6 @@ Vue.component('google-map-component',require('./components/front/common-componen
 Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue')); 
 Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue')); 
 Vue.component('job',require('./components/front/common-components/Job.vue')); 
+
+
+Vue.component('google-map-autocomplete-component',require('./components/front/common-components/GoogleInputAutoComplete.vue')); 
