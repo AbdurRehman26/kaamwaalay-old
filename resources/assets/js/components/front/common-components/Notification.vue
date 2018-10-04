@@ -72,7 +72,7 @@
                     _.forEach(response.data, function(value, key) {
                         self.notificationData.push(value);
                     })
-                    this.notificationCount = response.pagination ? response.pagination.total : 0;
+                    this.notificationCount = response.pagination ? response.pagination.total : "";
                     this.$parent.notificationCount = this.notificationCount;
                 }
             },
