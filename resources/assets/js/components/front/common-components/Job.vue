@@ -78,6 +78,7 @@
         },
         methods: {
             getImagePath(user){
+                console.log(user , 'User image');
                 return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
             },
             showBidPopup(val) {
