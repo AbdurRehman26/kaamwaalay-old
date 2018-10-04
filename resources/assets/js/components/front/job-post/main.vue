@@ -167,14 +167,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Zip Code</label>
-                        <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                            <multiselect  v-model="searchValue" :options="options"  placeholder="Enter your zip code" track-by="id" label="zip_code" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
-                                <span slot="noResult">No zip code found.</span>
-                            </multiselect>
-                        </div>
-                    </div>
+                    <zip @onSelect="setZipCode" :showError="invalidZip"></zip>
                 </div>
             </div>
         </div>
@@ -229,9 +222,6 @@
         components: { Datepicker },
         data() {
             return {
-                isLoading: false,
-                searchValue: '',
-                options: [],
                 disabledDates: {
                     to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
                 },
@@ -291,14 +281,11 @@
                 isShowCardDetail : true,
                 isSubmitNormalJob : false,
                 isPaymentDetailShow : true,
-                isTouched: false,
+                invalidZip: false,
 
             }
         },
         computed : {
-            isInvalid () {
-                return this.isTouched && !this.searchValue
-            },
             servicesList(){
                 return this.$store.getters.getAllServices;
             },
@@ -318,39 +305,10 @@
             this.paymentDetailShow()
         },
         methods:{
-            onTouch () {
-                this.isTouched = true
+            setZipCode(val) {
+                this.formData.zip_code = val.zip_code;
+                this.invalidZip = false;
             },
-            dispatchAction (actionName) {
-                this.searchValue = '';
-                this.options = [];
-                this.formData.zip_code = actionName.zip_code;
-            },
-            dispatchCloseAction (actionName) {
-                this.options = [];
-                this.onTouch();
-            },
-            limitText (count) {
-                return `and ${count} other services`;
-            },
-            asyncFind: _.debounce(function(query) {
-                let self = this;
-                if(!query) {
-                    this.loading = false;
-                }
-                if(!query || query.length < 3) {
-                    return;
-                };
-                this.searchUrl  = 'api/zipcode?zip_code=' + query;
-                this.isLoading = true;
-                this.$http.get(this.searchUrl).then(response => {
-                    response = response.data.response;
-                    self.options = response.data;
-                    self.isLoading = false;
-
-                }).catch(error=>{
-                });
-            }, 1000),
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
                 if(user.stripe_token){
@@ -384,6 +342,10 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
+                    this.invalidZip = true;
+                    if(!this.formData.zip_code) {
+                        this.invalidZip = true;
+                    }
                     if (result) {
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
@@ -397,22 +359,15 @@
                                 this.onSubmit();
                             }
                         }
-                        this.isTouched = false;
                         this.errorMessage = '';
                         return;
                     }
-                    this.isTouched = true;
                     this.errorMessage = this.errorBag.all()[0];
                 });
             },
             onSubmit() {
                 let self = this;
 
-                this.isTouched = false;
-                if(!this.searchValue) {
-                    this.isTouched = true;
-                    return;
-                }
                 this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
 
@@ -483,6 +438,11 @@
 
         },
         watch:{
+            'formData.zip_code'(val) {
+                if(!val) {
+                    this.invalidZip = true;
+                }
+            },
             jobType (value) {
                 if(value == 'urgent_job'){
                     this.isShowCardDetail = false
@@ -493,4 +453,3 @@
         }
     }
 </script>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

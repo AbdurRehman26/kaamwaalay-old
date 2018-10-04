@@ -261,10 +261,7 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Zip Code *</label>
-                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="record.zip_code" placeholder="Enter your zip code">
-                            </div>
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
                         </div>
                     </div>
                 </div>
@@ -362,6 +359,7 @@
                 },
                 submit : false,
                 pendingProfile : false,
+                invalidZip: false,
 
             }
         },
@@ -382,7 +380,19 @@
                 return 'api/user/' + this.record.id
             }
         },
+
+        watch: {
+            'record.zip_code' (val) {
+                if(!val) {
+                    this.invalidZip = true;
+                }
+            },
+        },
         methods: {
+            setZipCode(val) {
+                this.record.zip_code = val.zip_code;
+                this.invalidZip = false;
+            },
             removeFile(type, index){
                 this.record.business_details.attachments[type].splice(index , 1);
                 this.$forceUpdate();
@@ -448,6 +458,10 @@
                 
 
                 this.$validator.validateAll().then((result) => {
+                    this.invalidZip = true;
+                    if(!this.record.zip_code) {
+                        this.invalidZip = true;
+                    }
                     if (result) {
 
                         if(this.findUniqueValues()){
