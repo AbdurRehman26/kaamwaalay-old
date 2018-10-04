@@ -170,13 +170,7 @@ public function socialLogin(Request $request)
         $rules['email'] = 'required|string|email|max:255|unique:users';
     }
     $messages['email.unique'] = 'This email address is already taken. Please try another email address';
-    $validator = Validator::make($data, $rules,$messages);
-        if ($validator->fails()) {
-            $code = 406;
-            $output = [
-                'message' => $validator->messages()->all(),
-            ];
-        }else{
+    $this->validate($request, $rules,$messages);
          try{
                $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
                unset($data['access_token']);
@@ -203,18 +197,19 @@ public function socialLogin(Request $request)
                     'message' => 'Success',
                 ];
             }else{
-                $code = 406;
-                $output = [
-                    'message' => 'An error occurred',
-                ];
+                $errorResponse = ValidationException::withMessages(
+                    ['message'=> 'An error occurred.' ]
+                );
+                $errorResponse->status = 406;
+                throw $errorResponse;
             }
         }catch(\Exception $e){
-             $code = 406;
-             $output = [
-                'message' => 'Invalid User',
-            ];
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> 'Invalid User.' ]
+            );
+            $errorResponse->status = 406;
+            throw $errorResponse;
         }
-    }
     return response()->json($output, $code);
 }
 
