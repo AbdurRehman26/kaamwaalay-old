@@ -96,7 +96,7 @@
          <p>Latest feedback & review</p>	
      </div>
      <div class="chat-feedback-column">
-         <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profile_image) +')',}"></div>
+         <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profileImage) +')',}"></div>
          <div class="chat-feedback-message">
             <p>{{record.reviewedBy.review.message}}</p>
             <div class="feeback-detail">
