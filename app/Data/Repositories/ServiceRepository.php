@@ -214,7 +214,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             }else {
                 $this->builder = $this->getServicesByZip(false);
             }
-            if($count > 12) {
+            if(isset($count) && $count > 12) {
                 $this->builder = $this->builder->limit(12);
             }
         }
@@ -276,8 +276,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     public function getZip() {
         $ip = Helper::getIp();
         $client = new Client(['base_uri' => 'http://ipinfo.io/']);
-        $response = "".$client->request("GET", '70.114.164.59')->getBody();
-        return json_decode($response)->postal;
+        $response = "".$client->request("GET", $ip)->getBody();
+        $response = json_decode($response);
+        $postal = isset($response->postal)? $response->postal : null;
+        return $postal;
     }
 
     public function getPopularServices($currentServiceId = fasle, $limit = false) {
