@@ -339,16 +339,20 @@
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
+                this.isSubmitNormalJob = false
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         if(this.jobType == 'urgent_job'){
                             this.urgentjob()
                         }else{
-                            if(!this.errorMessage){    
+                            setTimeout(function () {
+                               if(!this.errorMessage){    
                                 this.isSubmitNormalJob = true
-                            }else{
+                               }else{
                                 this.isSubmitNormalJob = false 
-                            }
+                               }
+                            }, 500);
+                           
                             if(!this.isPaymentDetailShow){
                                 this.onSubmit();
                             }
