@@ -123,7 +123,7 @@ export default {
                 })
                 .catch(error => {
                         self.loading = false
-                        self.errorMessage = error.response.data.message[0]
+                        self.errorMessage = error.response.data.errors.message[0]
                         setTimeout(function(){
                             self.errorMessage=''
                         }, 2000);

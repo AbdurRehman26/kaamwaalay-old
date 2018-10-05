@@ -153,9 +153,9 @@ class LoginController extends Controller
         
         $user = app('UserRepository')->findById($data->id);
         if($user->role_id == Role::ADMIN || $user->role_id == Role::REVIEWER){
-            $output = ['admin_access_token'=>$data->access_token, 'response' => ['data' => [$user],'message'=>'Success']];
+            $output = ['admin_access_token'=>$data->access_token, 'data' => $user,'message'=>'Success'];
         }else{
-            $output = ['access_token'=>$data->access_token, 'response' => ['data' => [$user],'message'=>'Success']];
+            $output = ['access_token'=>$data->access_token,'data' => $user,'message'=>'Success'];
         }
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);
