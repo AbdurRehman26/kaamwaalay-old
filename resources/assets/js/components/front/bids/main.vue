@@ -30,7 +30,7 @@
             <div class="job-post-container section-padd sm">
                 <!-- <bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation> -->
                 <div class="container md" v-if="!noRecordFound">
-                    <jobs-list :records="records" @chatMessage="showChatBox" :tabType="tabType"></jobs-list>
+                    <jobs-list :records="records" @chatMessage="showChatBox" :tabType="tab"></jobs-list>
                 </div>
                 <no-record-found v-if="noRecordFound"></no-record-found>
                 <vue-common-methods :url="bidUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
@@ -65,7 +65,6 @@
                 disableList: true,
                 tab: 'invitebid',
                 bidUrl: null,
-                tabType: 'invitebid',
                 records : [],
                 chat_message: true,
                 noRecordFound: false,   

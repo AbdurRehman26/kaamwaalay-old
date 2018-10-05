@@ -162,7 +162,7 @@
                 return;
             };
             this.loading = true;
-            this.searchUrl  = 'api/job?keyword=' + query + '&filter_by_me=true';
+            this.searchUrl  = 'api/job?filter_by_status=in_bidding&keyword=' + query + '&filter_by_me=true';
             this.isLoading = true;
             this.$http.get(this.searchUrl).then(response => {
                 response = response.data.response;
