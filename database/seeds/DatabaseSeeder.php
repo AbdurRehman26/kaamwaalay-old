@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         
         $this->call(SupportQuestionsTableSeeder::class);
-        $this->call(PlansTableSeeder::class);
 
         // Service and Service Provider 
 
@@ -43,7 +42,6 @@ class DatabaseSeeder extends Seeder
 
         // These seeders will be commented
         $this->call(UserRatingTableSeeder::class);
-        $this->call(PaymentTableSeeder::class);
 
         $this->call(SupportInquiryTableSeeder::class);
 
