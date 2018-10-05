@@ -33,6 +33,7 @@ import store from './store.js';
 import Lightbox from 'vue-simple-lightbox';
 import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
 import * as VueGoogleMaps from 'vue2-google-maps'
+// import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
 
 
@@ -59,7 +60,9 @@ Vue.use(VueGoogleMaps, {
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
   // installComponents: true,
-})
+});
+// Vue.use(VueGoogleAutocomplete);
+
 
 import VueGallerySlideshow from 'vue-gallery-slideshow';
 

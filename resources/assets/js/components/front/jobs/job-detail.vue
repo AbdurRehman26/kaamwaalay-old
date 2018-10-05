@@ -109,6 +109,27 @@
                         <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
+                    <div v-if="awardedToMe" class="jobs-post-files">
+                        <h3>Customer Information</h3>
+                        <div class="coustomer-info-line">
+                            <i class="icon-phone_in_talk"></i>
+                            <p>Phone number: <strong>{{record.user.phone_number}}</strong></p>
+                        </div>
+                        <div class="coustomer-info-line">
+                            <i class="icon-pin"></i>
+                            <p>Address: 
+                                <strong>
+                                    {{record.user.address}}
+                                </strong>
+                                <a href="javascript:void(0);">
+                                    Get driving directions
+                                </a>
+                            </p>
+                        </div>                        
+                        <div class="coustomer-info-line">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d187.3521292068258!2d-124.0968600187008!3d43.70235783020168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c3c3b9ac656e47%3A0x7b79c93b5e4b888!2sReedsport%2C+OR+97467!5e0!3m2!1sen!2s!4v1534485973398" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>                
+                    </div>
 
                     <div class="chat-feedback">
 
@@ -121,8 +142,6 @@
                             <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
-
-                                <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
 
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
@@ -182,6 +201,9 @@
                         <router-link href="javascript:void(0);" class="btn btn-primary" 
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
+                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
+                        <i class="icon-trophy"></i> Job Awarded
+                    </a>
 
                     <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Mark Job Complete</span> <loader></loader>
@@ -190,9 +212,6 @@
                     <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
                         <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
                     </button>
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
                     <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
@@ -205,11 +224,6 @@
                         <span>Initiate Job</span> <loader></loader>
                     </button>
 
-
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
-
                     <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
 
                     <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
@@ -217,10 +231,6 @@
                         Modify Bid
                     </a>   
 
-
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
                     <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -394,7 +404,8 @@
             },
             awardedToMe(){
                 if(Object.keys(this.record).length && this.record.my_bid && this.record.awarded_to){
-                    return this.record.my_bid.id == this.record.awarded_to.id;
+                    console.log(this.record.my_bid , this.record.awarded_to);
+                    return this.record.my_bid.user_id == this.record.awarded_to.id;
                 }
             },
             visitAllowed(){

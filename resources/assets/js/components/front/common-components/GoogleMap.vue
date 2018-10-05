@@ -2,8 +2,7 @@
     <div>
         <label>
             AutoComplete
-            {{place}}
-            <GmapAutocomplete :position.sync="markers[0].position" @keyup.enter="usePlace" @place_changed="setPlace">
+            <GmapAutocomplete :value="place" :position.sync="markers[0].position" @keyup.enter="usePlace" @place_changed="setPlace">
             </GmapAutocomplete>
             <button @click="usePlace">Add</button>
         </label>
@@ -70,24 +69,25 @@
             this.description = description;
         },
         usePlace(place) {
+            console.log(this.place , 12321321312321);
             if (this.place) {
                 var newPostion = {
-                    lat: this.place.geometry.location.lat(),
-                    lng: this.place.geometry.location.lng(),
-                };
-                this.center = newPostion;
-                this.markers[0].position =  newPostion;
-                this.place = null;
-            }
-        },
-        updateMaker: function(event) {
-            console.log('updateMaker, ', event);
-            this.place = 'Afghanistan';
-            this.markers[0].position = {
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng(),
-            }
-        },
-    }
+                  lat: this.place.geometry.location.lat(),
+                  lng: this.place.geometry.location.lng(),
+              };
+              this.center = newPostion;
+              this.markers[0].position =  newPostion;
+              this.place = null;
+          }
+      },
+      updateMaker: function(event) {
+          console.log('updateMaker, ', event.latLng.lat());
+          this.place = 'Afghanistan';
+          this.markers[0].position = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+        }
+    },
+}
 }
 </script>
