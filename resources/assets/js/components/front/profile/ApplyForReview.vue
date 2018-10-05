@@ -278,7 +278,7 @@
                         </div>
                     </div>
                     
-                          <card-element  :isPopup='false' :onlyVerify='true' :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
+                          <card-element  :showCardInfo="true" :isPopup='false'  :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
               
                 </div>
 
