@@ -73,10 +73,9 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
                         if(substr($image['name'], 0, 8) == "https://") {
                             $image['upload_url'] = $image['name'];
-                            return  $image;
+                        }else {
+                            $image['upload_url'] = Storage::url(config('uploads.service.folder').'/'.$image['name']);
                         }
-
-                        $image['upload_url'] = Storage::url(config('uploads.service.folder').'/'.$image['name']);
                         $data->images[$key] = $image;
                     }
                 }
