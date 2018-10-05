@@ -151,9 +151,9 @@ class ServiceTableSeeder extends Seeder
         'images/dummy/door-2.jpg',
         'images/dummy/electrician.jpg',
         'images/dummy/nice-door.jpg',
-        'images/dummy/jobfileimage1.jpg',
-        'images/dummy/jobfileimage2.jpg',
-        'images/dummy/jobfileimage3.jpg',
+        'images/dummy/jobfileimage1.png',
+        'images/dummy/jobfileimage2.png',
+        'images/dummy/jobfileimage3.png',
     ];
 
     foreach ($services as $key => $service) {

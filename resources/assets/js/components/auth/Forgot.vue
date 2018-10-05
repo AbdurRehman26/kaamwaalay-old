@@ -45,13 +45,13 @@ export default {
                  this.loading = true
                 this.$http.post('/api/auth/password/email', this.reset_info).then(response => {
                     self.loading = false
-                    self.successMessage = response.data.response.message
+                    self.successMessage = response.data.message
                     setTimeout(function(){
                         self.successMessage='';
                     }, 5000);
                 }).catch(error => {
                     this.loading = false
-                    self.errorMessage = error.response.data.response.message
+                    self.errorMessage = error.response.data.errors.email[0]
                         setTimeout(function() {
                             self.errorMessage = ''
                             this.loading = false
