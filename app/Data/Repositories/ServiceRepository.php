@@ -123,10 +123,9 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     public function findByAll($pagination = false,$perPage = 10, $data = [])
     {       
-
         $this->builder = $this->model->orderBy('updated_at', 'desc');
         if (!empty($data['zip_code'])) {
-            $this->builder = getServicesByZip(true, $data['zip_code']);
+            $this->builder = $this->getServicesByZip(false, $data['zip_code']);
         }
 
         if(isset($data['filter_by_featured'])) {
