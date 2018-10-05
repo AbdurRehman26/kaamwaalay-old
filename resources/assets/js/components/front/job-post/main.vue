@@ -172,20 +172,28 @@
             </div>
         </div>
 
-        <div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
-            <div class="form-label-heading m-b-25">
+        <div class="verify-account">
+            <div v-if="isShowCardDetail && isPaymentDetailShow" class="form-label-heading m-b-25">
                 <p>VERIFY ACCOUNT</p>
             </div> 
+            <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
+                <p>URGENT JOB</p>
+            </div>
             <div class="row">
-                <div class="col-md-12">
+                <div v-if="isShowCardDetail && isPaymentDetailShow" class="col-md-12">
                     <div class="verification-alert">
                         <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
                             <span>We won't charge your card</span>.</p>
                         </div>
-                    </div>
                 </div>
+                <div v-else-if="!isShowCardDetail" class="col-md-12">
+                    <div class="verification-alert">
+                        <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
+                        </div>
+                </div>
+            </div>
                 <div>
-                    <payment-component  :submit='isSubmitNormalJob'></payment-component>
+                    <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
                 </div>
             </div>
             <div class="job-form-submission">
@@ -206,11 +214,6 @@
     <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
 
     <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
-
-    <!-- <urgent-job  @HideModalValue="HideModal" :showModalProp="categoryval"></urgent-job> -->
-    <div v-if='!isShowCardDetail'>
-        <card-element :cardTitle="'Urgent job'"  @HideModalValue="HideModal" :showModalProp="categoryval" :planId='selectedPlan' :fromFeaturedProfile="'false'"></card-element>
-    </div>
 </div>
 </template>
 
@@ -235,7 +238,6 @@
                 value: '',
                 customdate: '',
                 value_month:'',
-                categoryval: false,
                 value_year:'',
                 time1: '',
                 time2: '',
@@ -279,8 +281,9 @@
                 cityUrl : '',
                 states : [],
                 isShowCardDetail : true,
-                isSubmitNormalJob : false,
                 isPaymentDetailShow : true,
+                isSubmit : false,
+                isUrgentJob : false,
                 invalidZip: false,
 
             }
@@ -341,24 +344,25 @@
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
+                self = this;
+                this.isSubmit = false
                 this.$validator.validateAll().then((result) => {
                     this.invalidZip = true;
                     if(!this.formData.zip_code) {
                         this.invalidZip = true;
                     }
                     if (result) {
-                        if(this.jobType == 'urgent_job'){
-                            this.urgentjob()
-                        }else{
-                            if(!this.errorMessage){    
-                                this.isSubmitNormalJob = true
-                            }else{
-                                this.isSubmitNormalJob = false 
-                            }
-                            if(!this.isPaymentDetailShow){
+                            setTimeout(function () {
+                               if(!this.errorMessage){    
+                                self.isSubmit = true
+                               }else{
+                                self.isSubmit = false 
+                               }
+                            }, 500);
+                           
+                            if(!this.isPaymentDetailShow && !this.isUrgentJob){
                                 this.onSubmit();
                             }
-                        }
                         this.errorMessage = '';
                         return;
                     }
@@ -395,7 +399,6 @@
                     }, 2000);
 
                 }).catch(error => {
-                    console.log(error , 'error in job posting');
                     self.loading = false;
                 });
 
@@ -403,12 +406,6 @@
             job(){
                 window.scrollTo(0,0);
                 this.$router.push({name: 'My Jobs'});
-            },
-            urgentjob() {
-                this.categoryval = true;
-            },
-            HideModal(){
-                this.categoryval = false;
             },
             getPlansList (){
                 let self = this;
@@ -426,7 +423,6 @@
                 });
             },
             removeImage(imageIndex){
-                console.log(imageIndex  ,this.formData.images , 123123);
                 this.formData.images.splice(imageIndex , 1);
                 this.$forceUpdate();
                 return false;
@@ -446,8 +442,10 @@
             jobType (value) {
                 if(value == 'urgent_job'){
                     this.isShowCardDetail = false
+                    this.isUrgentJob = true
                 } else{
                     this.isShowCardDetail = true
+                    this.isUrgentJob = false
                 }
             },
         }

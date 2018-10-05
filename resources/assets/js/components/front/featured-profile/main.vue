@@ -83,7 +83,7 @@
                 </div>	
                 <no-record-found v-if="showCampaignFound"></no-record-found>
             </div>
-            <card-element :cardTitle="'Featured profile'" @HideModalValue="HideModal" :showModalProp="showCardPopup" :planId='selectedPlan' :fromFeaturedProfile="'true'"></card-element>
+            <card-element :isPopup='true' :cardTitle="'Featured profile'" @HideModalValue="HideModal" :showModalProp="showCardPopup" :planId='selectedPlan' :fromFeaturedProfile="'true'"></card-element>
         </div>
     </template>
 
