@@ -118,8 +118,7 @@
                         </div>
 
                         <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
-
-                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ bid.user.profileImage ? bid.user.profileImage : 'images/dummy/image-placeholder.jpg' +')'}"></div>
+                            <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
 
@@ -229,7 +228,7 @@
                         Write Review
                     </a>
 
-                    <a href="#" v-if="!isMyJob && canArchiveBid" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                    <a href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
                         Archive
                     </a>
 
@@ -434,6 +433,9 @@
             }
         },
         methods: {
+            getImage(img) {
+                return img ? img : 'images/dummy/image-placeholder.jpg'
+            },
             checkStatus(bid) {
                 if(this.record.status == 'in_bidding') {
                     this.showChatBox(bid, true, false);

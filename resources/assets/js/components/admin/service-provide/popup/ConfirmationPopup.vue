@@ -40,7 +40,9 @@
             formSubmitted(response){
                 let self = this;
                 
+
                 self.successMessage = response.message;
+                self.$emit('form-updated')
                 self.$emit('form-submitted')
                 setTimeout(function () {
                     self.successMessage = '';

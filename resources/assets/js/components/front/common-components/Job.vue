@@ -1,6 +1,6 @@
 <template>
     <div class="job-post-details" v-if="typeof(job)">
-        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ job.user.profileImage ? job.user.profileImage : 'images/dummy/image-placeholder.jpg' +')'}"></div>
+        <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImagePath(job.user) +')'}"></div>
 
         <div class="job-common-description job-perform">
             <div class="col-md-6 p-l-0">
@@ -33,7 +33,7 @@
                 Offer: <strong>
                     {{ job.my_bid | bidStatus}}
  
-               </strong> <span v-if="!job.my_bid.is_awarded && !job.my_bid.is_visit_required">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
+               </strong><span v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !job.my_bid.is_visit_required && !hideChangeBid">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
             </p>
 
             <p class="member-since">
@@ -66,7 +66,7 @@
     import StarRating from 'vue-star-rating';
 
     export default{
-        props : ['job'],
+        props : ['job', 'tabType'],
         components: {
             StarRating
         },
@@ -77,6 +77,9 @@
             }
         },
         methods: {
+            getImagePath(user){
+                return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
+            },
             showBidPopup(val) {
                 if(val == 'bidNow') {
                     this.$emit('showBidPopup', this.job, val);
@@ -88,8 +91,15 @@
         computed: {
             getCountry() {
                 return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
+            },
+            hideChangeBid() {
+                if(typeof(this.tabType) != "undefined") {
+                    return (this.tabType == "activebid" && this.job.status != 'in_bidding');
+                }
+                return false;
             }
-        }
+
+        },
     }
 
 </script>

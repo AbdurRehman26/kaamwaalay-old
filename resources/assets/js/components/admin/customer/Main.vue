@@ -52,8 +52,11 @@
 
               <tr v-for="record in records">
                 <td>
-                    <span class="user-img radius-0">
-                        <img  v-if="record && record.profile_image" :src="record.profileImage" >
+                    <span v-if="record.profileImage" class="user-img radius-0" v-bind:style="{'background-image': 'url('+ record.profileImage +')'}">
+                        <!-- <img  v-if="record && record.profile_image" :src="record.profileImage" > -->
+                    </span>
+                    <span v-if="!record.profileImage" class="user-img radius-0">
+                        <!-- <img  v-if="record && record.profile_image" :src="record.profileImage" > -->
                     </span>
                 </td>
                 <td>

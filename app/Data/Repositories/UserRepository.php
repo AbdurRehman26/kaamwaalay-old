@@ -49,7 +49,8 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $data = parent::findById($id, $refresh, $details, $encode);
 
     if($data) {
-        $data->profileImage = $data->profile_image;
+        $data->profile_image = str_replace('(NULL)', '', $data->profile_image);
+
         if($data->profile_image && substr($data->profile_image, 0, 8) != "https://"){
             $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
         }
