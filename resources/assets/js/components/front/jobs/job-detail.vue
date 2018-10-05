@@ -127,7 +127,7 @@
                             </p>
                         </div>                        
                         <div class="coustomer-info-line">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d187.3521292068258!2d-124.0968600187008!3d43.70235783020168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c3c3b9ac656e47%3A0x7b79c93b5e4b888!2sReedsport%2C+OR+97467!5e0!3m2!1sen!2s!4v1534485973398" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe :src="mapUrl" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>                
                     </div>
 
@@ -201,7 +201,8 @@
                         <router-link href="javascript:void(0);" class="btn btn-primary" 
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
+
+                    <a v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
@@ -317,7 +318,11 @@
                 submitBidUrl : 'api/job-bid/',
                 submitFormData : '',
                 confirmPopupUrl : '',
-                index: null         
+                index: null,
+                mapZoom : 10,
+                mapKey : '',
+                xAxis : 37.090240,
+                yAxis : -95.712891   
             }
         },
         computed : {
@@ -441,6 +446,18 @@
             zipCode(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
                 return user ? user.zip_code : false;
+            },
+            mapUrl(){
+                if(this.record){
+                }
+                let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
+                let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
+
+                this.mapKey = window.mapKey;
+                
+                let axisPoints = xAxis +','+  yAxis;
+                console.log(axisPoints , 213213213);
+                return 'https://www.google.com/maps/embed/v1/view?key='+this.mapKey+'&zoom='+this.mapZoom+'&center='+axisPoints;
             }
         },
         methods: {

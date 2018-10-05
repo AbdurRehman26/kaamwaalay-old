@@ -35,11 +35,11 @@ import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-
 import * as VueGoogleMaps from 'vue2-google-maps'
 // import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
-
+window.mapKey = 'AIzaSyAq_eswaJReb7b5zM83qCbBE94muPMTIZ0';
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyAq_eswaJReb7b5zM83qCbBE94muPMTIZ0',
+    key: window.mapKey,
     libraries: 'places', // This is required if you use the Autocomplete plugin
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'
