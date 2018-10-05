@@ -66,8 +66,23 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
             $data->url_suffix = $data->url_suffix? $data->url_suffix : url(config('view.service.url.folder')).'/';
+            if(!empty($data->images)) {
+
+                foreach ($data->images as $key => $image) {
+                    if(!empty($image['name'])) {
+
+                        if(substr($image['name'], 0, 8) == "https://") {
+                            $image['upload_url'] = $image['name'];
+                            return  $image;
+                        }
+
+                        $image['upload_url'] = Storage::url(config('uploads.service.folder').'/'.$image['name']);
+                        $data->images[$key] = $image;
+                    }
+                }
+            
+            }
         }
-        
         return $data;
     }
 

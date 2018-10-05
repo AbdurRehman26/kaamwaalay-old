@@ -254,6 +254,7 @@ limitText (count) {
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
        if (result && !this.loading) {
+          this.records = [];
           this.ServiceProviderPage();
           this.errorMessage = "";
           return;
