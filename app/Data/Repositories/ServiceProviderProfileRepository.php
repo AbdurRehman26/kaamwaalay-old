@@ -114,7 +114,13 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            
+          if(request()->get('from_explore')){
+             $campaignData =[
+              'service_provider_user_id' => $data->user_id,
+              'type' => 'view',
+             ];
+             app('CampaignRepository')->updateCampaign($campaignData);
+          }  
         }
         
         return $data;

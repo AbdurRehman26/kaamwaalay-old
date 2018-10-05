@@ -305,3 +305,9 @@ Vue.filter('bidStatus', function (bid) {
 
 });
 
+Vue.filter('roundOff', function(value) {
+    if (value) {
+        return Number((value).toFixed(2));
+    }
+});
+
