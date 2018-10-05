@@ -94,17 +94,17 @@
                  this.loading = true;
                  let self = this
                  this.$http.post('/api/auth/password/reset' , this.formData).then(response=>{
-                    let currentUser = response.data.response.data;
+                    let currentUser = response.data.data;
                     this.loading = false;
-                    self.successMessage = response.data.response.message
+                    self.successMessage = response.data.message
                       let userData = {}
                       userData.email = currentUser.email
                       userData.password = self.formData.password
                       this.$auth.login(userData).then(function (response) {
-                       self.$store.commit('setAuthUser', response.data.response.data[0]);
-                     if(response.data.response.data[0].role_id == 2){
+                       self.$store.commit('setAuthUser', response.data.data);
+                     if(response.data.data.role_id == 2){
                           self.$router.push({ name: 'my.bids'})
-                      }else if(response.data.response.data[0].role_id == 3){
+                      }else if(response.data.data.role_id == 3){
                           self.$router.push({ name: 'my.jobs'})  
                       }else{
                           self.$router.push({ name: 'dashboard'}) 
@@ -119,7 +119,7 @@
             this.loading = false;
             this.errorMessage =  error;
             this.loading = false
-            self.errorMessage = error.response.data.response.message
+            self.errorMessage = error.response.data.errors.email[0]
             setTimeout(function() {
                 self.errorMessage = ''
                 this.loading = false

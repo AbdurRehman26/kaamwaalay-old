@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
 use App\Data\Repositories\UserRepository;
 use App\Data\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class ResetPasswordController extends Controller
 {
@@ -50,7 +51,7 @@ class ResetPasswordController extends Controller
 
     protected function sendResetResponse(Request $request, $response)
     {
-       $output = ['response' => ['data' => $request->user(),'message'=> trans($response)]];
+       $output = ['data' => $request->user(),'message'=> trans($response)];
         return response()->json($output, Response::HTTP_OK);
     }
 
@@ -63,8 +64,9 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        $output = ['response' => ['data' => [],'message'=> trans($response)]];
-        return response()->json($output, Response::HTTP_UNPROCESSABLE_ENTITY);
+        throw ValidationException::withMessages(
+            ['email'=> trans($response) ]
+        ); 
     }
     /**
      * Reset the given user's password.

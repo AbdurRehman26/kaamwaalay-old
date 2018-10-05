@@ -76,17 +76,17 @@ methods: {
       if(!this.$auth.isAuthenticated()){
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
-            this_.$store.commit('setAuthUser', response.data.response.data[0]);
+            this_.$store.commit('setAuthUser', response.data.data);
 
-            if(response.data.response.data[0].role.id == 2){
-              if(response.data.response.data[0].is_profile_completed == 0 ){
+            if(response.data.data.role.id == 2){
+              if(response.data.data.is_profile_completed == 0 ){
                  this_.$router.push({ name: 'provider_profile'})
              }else{ 
                  this_.$router.push({ name: 'my.bids'})
              }
 
          }else{
-          if(response.data.response.data[0].is_profile_completed == 0 ){
+          if(response.data.data.is_profile_completed == 0 ){
              this_.$router.push({ name: 'customer_profile'})
          }else{ 
              if(redirectUrl){
@@ -116,14 +116,14 @@ methods: {
     let user = JSON.parse(self.$store.getters.getAuthUser);
     setTimeout(function(){
         if(user.role_id == 2){
-           if(response.data.response.data[0].is_profile_completed == 0 ){
+           if(response.data.data.is_profile_completed == 0 ){
              this_.$router.push({ name: 'provider_profile'})
          }else{ 
              this_.$router.push({ name: 'my.bids'})
          }
      }else{
        this_.$router.push({ name: this_.$store.getters.getRedirectUrl})
-       if(response.data.response.data[0].is_profile_completed == 0 ){
+       if(response.data.data.is_profile_completed == 0 ){
          this_.$router.push({ name: 'customer_profile'})
      }else{ 
          if(redirectUrl){
