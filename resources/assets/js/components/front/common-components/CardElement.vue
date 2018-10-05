@@ -3,7 +3,7 @@
         <b-modal  v-show='isPopup' v-if='isPopup' id="urgent-job" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" :title="cardTitle" ok-only ok-title="Submit"  no-close-on-backdrop no-close-on-esc>
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>      
             <div>
-                <div class="verify-account nobar" id="pay-card">
+                <div class="verify-account nobar">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -52,8 +52,8 @@
             </div>
         </b-modal>
 
-        <div v-show='onlyVerify' v-if='onlyVerify'>
-            <div class="verify-account nobar" id="verify-card">
+        <div v-show='!isPopup && showCardInfo' v-if='!isPopup && showCardInfo'>
+            <div class="verify-account nobar">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -96,14 +96,9 @@
 </template>
 
 <script>
-    import { Card , createToken , CardNumber, CardExpiry, CardCvc, StripeElement, baseStyle } from 'vue-stripe-elements-plus'
+    import { Card , createToken , CardNumber, CardExpiry, CardCvc} from 'vue-stripe-elements-plus'
 
     export default {
-        render (h) {
-            const tag = this.isPopup ? 'b-modal' : 'div'
-            console.log(h(tag),'asd');
-            return h(tag);
-        },
         props : [
         'showModalProp',
         'stripe',
@@ -113,8 +108,9 @@
         'cardTitle',
         'submit',
         'isPopup',
-        'onlyVerify',
         'profileReview',
+        'urgentJob',
+        'showCardInfo',
         ],
         data () {
             return {
@@ -151,6 +147,7 @@
             pay () {
                 self = this
                 this.loading = true
+                this.$parent.loading = true
                 if(self.profileReview){
                    this.$parent.loading = true  
                 }
@@ -169,22 +166,7 @@
                                 self.$parent.getCampaignList()
                             }else{
                                 if(self.profileReview){
-                                   let record = {}
-                                   let user = JSON.parse(self.$store.getters.getAuthUser)
-                                   record.stripe_token = data.token.id
-                                   record.first_name = user.first_name
-                                   record.last_name = user.last_name
-                                   record.email = user.email
-                                   let update = {
-                                    user_details : record
-                                };
-                                let url = 'api/user/'+user.id;
-                                self.$http.put(url, update).then(response => {
-                                    response = response.data.response;
-                                    self.$store.commit('setAuthUser', response.data);
-                                    self.$parent.submit = true;
-                                }).catch(error => {
-                                });
+                                   self.saveUserStripeToken();
                                 }
                                 if(self.$parent.formData.subscription_id){
                                   self.$parent.formData.subscription_id = response.data.data.id  
@@ -205,27 +187,31 @@
                 });
             },
             verifyCard () {
+                let self = this
                 this.$parent.loading = true   
                 createToken().then(data => {
-                    let self = this
-                    let record = {}
-                    let user = JSON.parse(this.$store.getters.getAuthUser)
-                    record.stripe_token = data.token.id
-                    record.first_name = user.first_name
-                    record.last_name = user.last_name
-                    record.email = user.email
-                    let update = {
-                        user_details : record
-                    };
-                    let url = 'api/user/'+user.id;
-                    self.$http.put(url, update).then(response => {
-                        response = response.data.response;
-                        self.$store.commit('setAuthUser', response.data);
-                        self.$parent.onSubmit();
-                        self.$parent.submit = true;
-                    }).catch(error => {
-                    });
+                    self.saveUserStripeToken();
                 }).catch(error=>{
+                });
+            },
+            saveUserStripeToken(){
+                let self = this
+                let record = {}
+                let user = JSON.parse(self.$store.getters.getAuthUser)
+                record.stripe_token = data.token.id
+                record.first_name = user.first_name
+                record.last_name = user.last_name
+                record.email = user.email
+                let update = {
+                    user_details : record
+                };
+                let url = 'api/user/'+user.id;
+                self.$http.put(url, update).then(response => {
+                    response = response.data.response;
+                    self.$store.commit('setAuthUser', response.data);
+                    self.$parent.onSubmit();
+                    self.$parent.submit = true;
+                }).catch(error => {
                 });
             },
             update () {
@@ -260,12 +246,13 @@
             expiry () { this.update() },
             cvc () { this.update() },
             submit(value){
-                console.log('submitCard',value)
                 this.pageLoad = true
                 if(value){
                     if(this.complete){
                         this.$parent.errorMessage = ''
                         if(this.profileReview){
+                            this.pay();
+                        }else if(this.urgentJob){
                             this.pay();
                         }else{
                             this.verifyCard();
