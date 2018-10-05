@@ -56,8 +56,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input  v-validate="{ regex:/^([+])([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
-                                    name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
+                                    <input  v-validate="{ regex:/^([+])([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('contact number') ? 'is-invalid' : '']" type="text"
+                                    name="contact number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
                         </div>
@@ -409,7 +409,6 @@
                 this.$forceUpdate();
             },
             findUniqueValues(){
-
                 let self = this;
                 let service_details = self.record.service_details;
 
@@ -538,6 +537,7 @@
                     self.record = response.data;
 
                     if(self.record && self.record.business_details && !self.record.business_details.attachments){
+
                         self.record.business_details.attachments = {
                             certifications : [''], 
                             proof_of_business : [''],
@@ -560,6 +560,15 @@
                             service_id : 1
                         }];
                     }
+
+                    if(self.record.business_details){
+
+                        if(!self.record.business_details.business_type){
+                            self.record.business_details.business_type = 'business';
+                        }
+                    }
+
+
 
 
                     if(self.record.state_id){  

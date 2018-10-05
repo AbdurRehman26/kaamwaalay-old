@@ -38,7 +38,7 @@
 
         data(){
             return {
-                acceptedFiles : '.jpg, .png, .gif',
+                acceptedFiles : '.png, .jpg, .jpeg',
                 file : '',
                 isFileUpload : false,
                 fileUploadKey : 'user',
@@ -47,19 +47,21 @@
         methods : {
             onFileChange(e) {
                 var supportedType = [
-                '.jpg',
-                '.png',
-                '.gif',
-                '.pdf',
-                '.doc',
-                '.docx',
-                '.xls',
-                '.xlsx'                
+                'png',
+                'jpg',
+                'jpeg',
+                'pdf',
+                'xlsx',
+                'xls',
+                'doc',
+                'docx'
                 ];
-                
                 var files = e.target.files || e.dataTransfer.files;
+
+                console.log(supportedType, files[0].name.split('.').pop() , 213213);
+
                 this.errorMessage = "";
-                if(!supportedType.includes(files[0].type)) {
+                if(!supportedType.includes(files[0].name.split('.').pop())) {
                     this.errorBag.add({
                       field: 'upload image',
                       msg: 'The file must be an image.',
