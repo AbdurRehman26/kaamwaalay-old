@@ -175,7 +175,7 @@
 
         <google-map-component></google-map-component>
 
-        <div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow">
+        <div class="verify-account" v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id">
             <div class="form-label-heading m-b-25">
                 <p>VERIFY ACCOUNT</p>
             </div> 
