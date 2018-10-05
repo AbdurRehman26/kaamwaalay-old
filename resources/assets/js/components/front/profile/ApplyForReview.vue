@@ -82,7 +82,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" type="text" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" v-validate="'max:25'" type="number" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
                                 </div>
                             </div>
                         </div>
@@ -91,13 +91,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" v-validate="'max:50'" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input v-validate="{required: businessRequired, numeric: true, max : 2}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" v-validate="'max:500'" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Proof of Business</label>
-                                <file-upload-component  :currentRecord="proof_of_business" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
+                                <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'"  :currentRecord="proof_of_business" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
 
                                 </file-upload-component>
                             </div>
@@ -179,7 +179,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Registrations</label>
-                                <file-upload-component :currentRecord="certification" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
+                                <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :currentRecord="certification" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
 
                                 </file-upload-component>
 
@@ -203,7 +203,7 @@
                         <div class="col-md-6">
                             <div class="form-group custom-file">
                                 <label>Certificates</label>
-                                <file-upload-component :currentRecord="registration" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
+                                <file-upload-component  :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'":currentRecord="registration" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
 
                                 </file-upload-component>
                             </div>
@@ -378,6 +378,9 @@
             },
             submitUrl(){
                 return 'api/user/' + this.record.id
+            },
+            businessRequired(){
+                return this.record.business_details.business_type == 'business';
             }
         },
 

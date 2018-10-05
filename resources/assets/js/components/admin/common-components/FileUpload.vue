@@ -38,7 +38,7 @@
 
         data(){
             return {
-                acceptedFiles : 'image/jpeg, image/png, image/jpg',
+                acceptedFiles : '.jpg, .png, .gif',
                 file : '',
                 isFileUpload : false,
                 fileUploadKey : 'user',
@@ -46,7 +46,17 @@
         },
         methods : {
             onFileChange(e) {
-                var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
+                var supportedType = [
+                '.jpg',
+                '.png',
+                '.gif',
+                '.pdf',
+                '.doc',
+                '.docx',
+                '.xls',
+                '.xlsx'                
+                ];
+                
                 var files = e.target.files || e.dataTransfer.files;
                 this.errorMessage = "";
                 if(!supportedType.includes(files[0].type)) {
