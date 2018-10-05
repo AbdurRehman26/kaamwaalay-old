@@ -52,7 +52,7 @@
      <div class="text-notifer" v-if="pagination">
         <p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
     </div>
-    <div class="job-post-list" v-for="record in records" v-if="records.length">
+    <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
         <div class="job-post-details">
            <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
            <div class="job-common-description">
