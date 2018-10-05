@@ -41,7 +41,9 @@ class DatabaseSeeder extends Seeder
         $this->call(JobBidTableSeeder::class);
 
         // These seeders will be commented
+        /** /
         $this->call(UserRatingTableSeeder::class);
+        /**/
 
         $this->call(SupportInquiryTableSeeder::class);
 
