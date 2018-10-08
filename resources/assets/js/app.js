@@ -29,13 +29,8 @@ import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 import Lightbox from 'vue-simple-lightbox';
-Vue.use(VueRouter);
-Vue.use(BootstrapVue);
-Vue.use(Datepicker);
-Vue.use( vbclass, router );
-Vue.use(require('vue-faker'));
-Vue.use(VueProgressBar, options);
-Vue.use(Lightbox);
+
+
 let veeCustomMessage = {
     en: {
         custom: {
@@ -58,9 +53,21 @@ const config = {
     dictionary:  veeCustomMessage,
     events: 'input' 
 };
+
+
+
+
+Vue.use(VueRouter);
+Vue.use(BootstrapVue);
+Vue.use(Datepicker);
+Vue.use( vbclass, router );
+Vue.use(require('vue-faker'));
+Vue.use(VueProgressBar, options);
+Vue.use(Lightbox);
 Vue.use(VeeValidate,config);
 Vue.use(InfiniteLoading);
 Vue.use(VueAxios, axios)
+
 Vue.use(VueAuthenticate, {
     tokenName: 'admin_access_token',
     baseUrl: '/',

@@ -165,10 +165,8 @@
                             if(self.fromFeaturedProfile == 'true'){
                                 self.$parent.getCampaignList()
                             }else{
-                                if(self.profileReview){
-                                   self.saveUserStripeToken();
-                                }
-                                if(self.$parent.formData.subscription_id){
+                                self.saveUserStripeToken(data);
+                                if(typeof self.$parent.formData.subscription_id != 'undefined'){
                                   self.$parent.formData.subscription_id = response.data.data.id  
                                 } 
                             }
@@ -190,11 +188,11 @@
                 let self = this
                 this.$parent.loading = true   
                 createToken().then(data => {
-                    self.saveUserStripeToken();
+                    self.saveUserStripeToken(data);
                 }).catch(error=>{
                 });
             },
-            saveUserStripeToken(){
+            saveUserStripeToken(data){
                 let self = this
                 let record = {}
                 let user = JSON.parse(self.$store.getters.getAuthUser)

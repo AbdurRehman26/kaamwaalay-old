@@ -171,9 +171,9 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="verify-account">
-            <div v-if="isShowCardDetail && isPaymentDetailShow" class="form-label-heading m-b-25">
+            <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
                 <p>VERIFY ACCOUNT</p>
             </div> 
             <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
@@ -263,7 +263,7 @@
                     title : '',
                     description : '',
                     preference : 'choose_date',
-                    schedule_at : '',
+                    schedule_at :  new Date(),
                     address : '',
                     apartment : '',
                     city_id : '',
@@ -324,8 +324,16 @@
                 }
             },
             getJobResponse(response){
+                let self = this;
                 this.formData = response.data;
                 this.onStateChange();
+
+                 setTimeout(function () {
+                    Vue.nextTick(() => {
+                        self.errorBag.clear()
+                    })
+
+                }, 100);
 
             },
             getStateResponse(response){
