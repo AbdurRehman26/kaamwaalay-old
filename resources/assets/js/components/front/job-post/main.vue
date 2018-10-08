@@ -311,6 +311,9 @@
             setZipCode(val) {
                 this.formData.zip_code = val.zip_code;
                 this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
@@ -347,20 +350,21 @@
                 self = this;
                 this.isSubmit = false
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = true;
+                    this.invalidZip = null;
                     if(!this.formData.zip_code) {
                         this.invalidZip = true;
+                        return;
                     }
                     if (result) {
                             setTimeout(function () {
                                if(!this.errorMessage){    
-                                self.isSubmit = true
+                                self.isSubmit = true;
                                }else{
-                                self.isSubmit = false 
+                                self.isSubmit = false;
                                }
                             }, 500);
                            
-                            if(!this.isPaymentDetailShow && !this.isUrgentJob){
+                            if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
                                 this.onSubmit();
                             }
                         this.errorMessage = '';
