@@ -165,10 +165,8 @@
                             if(self.fromFeaturedProfile == 'true'){
                                 self.$parent.getCampaignList()
                             }else{
-                                if(self.profileReview){
-                                   self.saveUserStripeToken(data);
-                                }
-                                if(self.$parent.formData.subscription_id){
+                                self.saveUserStripeToken(data);
+                                if(typeof self.$parent.formData.subscription_id != 'undefined'){
                                   self.$parent.formData.subscription_id = response.data.data.id  
                                 } 
                             }

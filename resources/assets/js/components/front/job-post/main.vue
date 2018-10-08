@@ -263,7 +263,7 @@
                     title : '',
                     description : '',
                     preference : 'choose_date',
-                    schedule_at : '',
+                    schedule_at :  new Date(),
                     address : '',
                     apartment : '',
                     city_id : '',
