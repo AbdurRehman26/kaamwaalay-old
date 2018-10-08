@@ -64,7 +64,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
     {
         $this->builder = $this->builder
             ->where('user_id', '=', $data['user_id'])
-            ->orderBy('id', 'ASC');   
+            ->orderByRaw("FIELD(STATUS, 'pending') DESC");   
         return  parent::findByAll($pagination, $perPage);
     
     }
