@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         // commenting all seeders 
 
-        /**/
+        /** /
         $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         /**/
 
         $this->call(RolesTableSeeder::class);
-        /**/
+        /** /
         $this->call(UsersTableSeeder::class);
         
         $this->call(SupportQuestionsTableSeeder::class);
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         // These seeders will be commented
         /** /
         $this->call(UserRatingTableSeeder::class);
-        /**/
+        /** /
 
         $this->call(SupportInquiryTableSeeder::class);
 
