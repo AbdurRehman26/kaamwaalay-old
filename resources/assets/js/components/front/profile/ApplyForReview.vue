@@ -394,6 +394,7 @@
             'record.zip_code' (val) {
                 if(!val) {
                     this.invalidZip = true;
+                    this.record.zip_code = "";
                 }
             },
         },
@@ -401,6 +402,9 @@
             setZipCode(val) {
                 this.record.zip_code = val.zip_code;
                 this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
             },
             removeFile(type, index){
                 this.record.business_details.attachments[type].splice(index , 1);
@@ -465,12 +469,14 @@
                 this.isSubmit = false
 
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = true;
-                    if(!this.record.zip_code) {
-                        this.invalidZip = true;
-                    }
                     if (result) {
 
+                        this.invalidZip = false;
+                        if(!this.record.zip_code) {
+                            this.invalidZip = true;
+                            this.errorMessage = 'Please enter zip code.';
+                            return false;
+                        }
                         if(this.findUniqueValues()){
                             this.errorMessage = 'Please remove duplicate services';
                             return false;
