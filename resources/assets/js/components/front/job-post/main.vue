@@ -5,7 +5,7 @@
             <p>Please fill out the form below to create a new job.</p>
         </div>
         <div class="post-job-form">
-            <form @submit.prevent="validateBeforeSubmit">
+            <form @submit.prevent="validateBeforeSubmit" autocomplete="off">
 
                 <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
 
@@ -304,8 +304,8 @@
             }
         },
         mounted () {
-            this.getPlansList(),
-            this.paymentDetailShow()
+            this.getPlansList();
+            this.paymentDetailShow();
         },
         methods:{
             setZipCode(val) {
