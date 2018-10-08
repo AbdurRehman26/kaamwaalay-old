@@ -14788,6 +14788,12 @@ button.sl-close {
   color: #7d7d7d;
 }
 
+.p-r-align {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+}
+
 .bidding-navigation li {
   position: relative;
   padding: 0px 40px 7px 40px !important;
