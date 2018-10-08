@@ -52,11 +52,11 @@
      <div class="text-notifer" v-if="pagination">
         <p>{{(pagination? pagination.total: pagination) + " " + service.title}} service professionals found near you</p>
     </div>
-    <div class="job-post-list" v-for="record in records" v-if="records.length">
+    <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
         <div class="job-post-details">
            <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
            <div class="job-common-description">
-              <h3 class="pointer" @click="servicedetail(record.id)">{{record.business_name}}</h3> 
+              <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3> 
               <span v-if="record.is_verified"><i class="icon-checked"></i></span>
 
               <div class="jobs-rating">
@@ -254,6 +254,7 @@ limitText (count) {
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
        if (result && !this.loading) {
+          this.records = [];
           this.ServiceProviderPage();
           this.errorMessage = "";
           return;
@@ -319,11 +320,21 @@ ServiceProviderPage() {
 		hideZipModal(){
 			this.categoryPopup = false;
 		},
-		servicedetail(id){        	
+		servicedetail(record){        	
 			window.scrollTo(0,0);
-
-			this.$router.push({ name: 'service-provider-detail.view', params: { id: id }});
+            this.updateCampaignClickCount(record.user_id);
+			this.$router.push({ name: 'service-provider-detail.view', params: { id: record.id }});
 		},
+        updateCampaignClickCount(id){
+                let update = {
+                    'service_provider_user_id' : id,
+                    'type' : 'click',
+                };
+                let url = 'api/campaign/update-campaign';
+                this.$http.post(url, update).then(response => {
+                }).catch(error => {
+                });
+        },
 		getService() {
 			window.scrollTo(0,0);
 			let self = this;
@@ -341,7 +352,7 @@ ServiceProviderPage() {
 				self.searchValue = self.service;
 				self.btnLoading = false;
 				if(self.zip) {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip;
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip+'&from_explore=true';
 				}
 
 				window.scrollTo(0,0);

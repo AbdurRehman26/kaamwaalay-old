@@ -21,6 +21,7 @@ class ServiceProviderProfileController extends ApiResourceController
             $rules['pagination'] =  'nullable|boolean';
             $rules['keyword']    = 'nullable|string';
             $rules['filter_by_business_type'] = 'nullable|in:business,individual';
+            $rules['from_explore'] = 'nullable|boolean';
         }
 
         return $rules;
@@ -34,7 +35,7 @@ class ServiceProviderProfileController extends ApiResourceController
             'id', 'pagination', 'keyword',
             'filter_by_business_type', 'filter_by_service',
             'user_rating', 'zip', 'filter_by_featured', 'is_approved', 'user_detail', 'is_verified',
-            'filter_by_top_providers'
+            'filter_by_top_providers','from_explore'
         );
 
         if (request()->user()) {

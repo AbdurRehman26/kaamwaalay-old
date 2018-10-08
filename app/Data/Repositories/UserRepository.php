@@ -221,7 +221,6 @@ public function update(array $data = [])
 
 public function updateServices($data, $user)
 {
-
     $servicesRepository = app('ServiceRepository');
 
     $serviceProfileRequestRepository = app('ServiceProviderProfileRequestRepository');
@@ -276,6 +275,8 @@ public function updateServices($data, $user)
             $childServices = $servicesRepository->getAllServicesByCategory($newService['service_id']);
 
             if(!empty($childServices)){
+                \Log::info('6');
+
                 $childServiceIds = Helper::makeArray($childServices['data'], 'id');
 
                 $newServiceIds = Helper::makeArray($newServices, 'service_id');
@@ -289,7 +290,6 @@ public function updateServices($data, $user)
                 $criteria = ['user_id' => $user->id];
                 
                 $existingSavedServices = $serviceProfileRequestRepository->getSubServices($criteria, true);
-
                 $similarIds =  array_intersect($childServiceIds , $existingSavedServices);
 
                 foreach ($similarIds as $key => $similarId) {
@@ -305,16 +305,16 @@ public function updateServices($data, $user)
 
             }
 
-            \Log::info('6');
+            \Log::info('7');
             $toBeAddedServices[] = [
                 'service_id' => $newService['service_id'],
                 'service_provider_profile_request_id' => $serviceProfileRequest->id
             ]; 
         }
-        \Log::info('7');
+        \Log::info('8');
         app('ServiceProviderServiceRepository')->model->insert($toBeAddedServices);
     }
-    \Log::info('8');
+    \Log::info('9');
 
     if(!empty($existingServiceIds)) {
         foreach ($existingServiceIds as $key => $existingServiceId) {

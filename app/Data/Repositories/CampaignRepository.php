@@ -64,7 +64,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
     {
         $this->builder = $this->builder
             ->where('user_id', '=', $data['user_id'])
-            ->orderBy('id', 'ASC');   
+            ->orderByRaw("FIELD(STATUS, 'pending') DESC");   
         return  parent::findByAll($pagination, $perPage);
     
     }
@@ -86,8 +86,8 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
         $model = $this->model
             ->where('user_id', '=', $input['service_provider_user_id'])
             ->where('is_completed', '=', 0)
+            ->where('status', '!=', Campaign::EXPIRED)
             ->first();
-
         if($model) {
             if($input['type'] == 'view') {
                 $model->views++;
@@ -96,13 +96,18 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             }
 
             $getPlanViews = $this->findById($model->id);
-            if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views >= $getPlanViews->plan->quantity ) {
+            if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views == $getPlanViews->plan->quantity ) {
                 $model->is_completed = 1;
-                $this->serviceProviderProfileRepo->update(['id'=>$input['service_provider_user_id'],'is_featured'=>0]);
+                $model->status = Campaign::EXPIRED;
             }
 
             if($model->save()) {
                 Cache::forget($this->_cacheKey.$model->id);
+                $planCount = $this->model->where('user_id','=', $input['service_provider_user_id'])->where('status', '!=', Campaign::EXPIRED)->count();
+                if($planCount == 0){
+                    $serviceProviderProfile = $this->serviceProviderProfileRepo->findByAttribute('user_id',$input['service_provider_user_id']);
+                    $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
+                }
                 return true;
             }
 

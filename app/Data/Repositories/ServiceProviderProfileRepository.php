@@ -114,7 +114,13 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            
+          if(request()->get('from_explore')){
+             $campaignData =[
+              'service_provider_user_id' => $data->user_id,
+              'type' => 'view',
+             ];
+             app('CampaignRepository')->updateCampaign($campaignData);
+          }  
         }
         
         return $data;
@@ -155,7 +161,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $ids = app('ServiceRepository')->model->where('url_suffix', '=' , $data['filter_by_service'])
                 //->orWhere('parent_id', $data['filter_by_service'])
             ->pluck('id')->toArray();
-
             $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
                 $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
             })->join('service_provider_services', function($join) use ($data){

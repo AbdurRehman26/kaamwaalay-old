@@ -9,10 +9,11 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use App\Data\Models\JobMessage;
 use App\Data\Models\User;
 
-class UserMessaged implements ShouldBroadcast
+class UserMessaged implements ShouldBroadcastNow 
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $discussion;

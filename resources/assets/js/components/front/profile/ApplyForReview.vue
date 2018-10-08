@@ -441,7 +441,7 @@
 
             },
             checkUploadedDocuments(){
-
+                return true;
                 let attachments = this.record.business_details.attachments;
 
                 if(!attachments['certifications'][0]){
