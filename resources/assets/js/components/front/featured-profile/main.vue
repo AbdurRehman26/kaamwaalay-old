@@ -79,7 +79,7 @@
                             <li>Clicks: <span>{{campaign.clicks}}</span></li>
                             <li>CTR: <span>{{(campaign.clicks != 0)?((campaign.clicks/campaign.views)*100|roundOff):0}}%</span></li>
                         </ul>
-                        <div class="tags rejected p-r-align">
+                        <div v-if="campaign.status=='expired'" class="tags rejected p-r-align">
                             Expired
                         </div>
                     </div>
