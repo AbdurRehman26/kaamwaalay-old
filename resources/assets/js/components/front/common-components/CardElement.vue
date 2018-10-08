@@ -166,7 +166,7 @@
                                 self.$parent.getCampaignList()
                             }else{
                                 if(self.profileReview){
-                                   self.saveUserStripeToken();
+                                   self.saveUserStripeToken(data);
                                 }
                                 if(self.$parent.formData.subscription_id){
                                   self.$parent.formData.subscription_id = response.data.data.id  
@@ -190,11 +190,11 @@
                 let self = this
                 this.$parent.loading = true   
                 createToken().then(data => {
-                    self.saveUserStripeToken();
+                    self.saveUserStripeToken(data);
                 }).catch(error=>{
                 });
             },
-            saveUserStripeToken(){
+            saveUserStripeToken(data){
                 let self = this
                 let record = {}
                 let user = JSON.parse(self.$store.getters.getAuthUser)
