@@ -160,7 +160,7 @@
                 }
                 this.$auth.register(this.register_info).then(function (response) {
                     self.loading = false
-                    self.successMessage = response.data.response.message;
+                    self.successMessage = response.data.message;
                     self.resetModal();
                     setTimeout(function(){
                         self.successMessage='';

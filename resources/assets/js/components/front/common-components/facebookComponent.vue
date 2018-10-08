@@ -89,7 +89,7 @@ export default {
                 })
                 .catch(error => {
                    self.loading = false
-                   self.$parent.errorMessage = error.response.data.message[0]
+                   self.$parent.errorMessage = error.response.data.errors.email[0]
                    setTimeout(function(){
                      self.$parent.errorMessage = ''
                    }, 2000);

@@ -94,10 +94,9 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         return $data;
     }
 
-    public function getSubServices($crtieria, $onlyIds = false)
+    public function getSubServices($criteria, $onlyIds = false)
     {
-
-        $model = $this->model->where($crtieria);
+        $model = $this->model->where($criteria);
         if ($model != null) {
             $model = $model->
             leftJoin(
@@ -114,94 +113,106 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             
 
             if(!$onlyIds){
-                $model=  $model->pluck('services.id', 'services.title');
+                $model = $model->where(function($query){
+                    $query->where('service_provider_services.deleted_at', '=', null)
+                        ->orWhere('service_provider_services.deleted_at' , '!=', null);  
+                });
+                $model =  $model->pluck('services.id', 'services.title');
+
             }else{
-               $model=  $model->pluck('services.id');
-           }
-
-           $model = $model->toArray();
-
-           return $model;
-       }
-       return false;
-   }
-
-   public function findByAll($pagination = false,$perPage = 10, $data = [])
-   {       
-
-    $this->builder = $this->model->orderBy('service_provider_profile_requests.created_at', 'desc');
-    if (!empty($data['keyword'])) {
-
-        $this->builder = $this->builder->leftJoin(
-            'users', function ($join) use ($data) {
-                $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+                $model = $model->whereNull('service_provider_services.deleted_at');
+                $model=  $model->pluck('services.id');
             }
-        )->where(
-            function ($query) use ($data) {
-                $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
-            }
-        );
+
+            $model = $model->toArray();
+
+            return $model;
+        }
+        return false;
     }
 
-    if(!empty($data['filter_by_business_type'])) {
-        $this->builder = $this->builder->leftJoin(
-            'service_provider_profiles', function ($join) use ($data) {
-                $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
-            }
-        )->where('service_provider_profiles.business_type', $data['filter_by_business_type'])
-        ->select('service_provider_profile_requests.*');
-    }
+    public function findByAll($pagination = false,$perPage = 10, $data = [])
+    {       
 
-    if(!empty($data['filter_by_service'])) {
+        $this->builder = $this->model->orderBy('service_provider_profile_requests.created_at', 'desc');
+        if (!empty($data['keyword'])) {
 
-        $ids = app('ServiceRepository')->model->where('id', $data['filter_by_service'])
-        ->orWhere('parent_id', $data['filter_by_service'])
-        ->pluck('id')->toArray();
-
-
-
-        $this->builder = $this->builder->leftJoin(
-            'service_provider_services', function ($join) use ($data) {
-                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
-            }
-        )->whereIn('service_provider_services.service_id', $ids);
-    }
-
-    if(!empty($data['filter_by_status'])) {
-        $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['filter_by_status']);            
-    }
-
-    $this->builder = $this->builder->select('service_provider_profile_requests.*');
-
-
-    $data['details'] = ['details' => ['show' => true]];
-    return parent::findByAll($pagination, $perPage, $data);
-
-}
-
-
-public function update(array $data = [])
-{
-
-    if ($data['role_id'] == Role::ADMIN | $data['role_id'] == Role::REVIEWER) {
-        unset($data['role_id']);
-        $data['approved_by'] = $data['user_id'];  
-        unset($data['user_id']);
-        if ($data['status'] == 'approved') {
-            $data['approved_at'] = Carbon::now();
-
+            $this->builder = $this->builder->leftJoin(
+                'users', function ($join) use ($data) {
+                    $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+                }
+            )->where(
+                function ($query) use ($data) {
+                    $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
+                }
+            );
         }
 
-        $data =  parent::update($data);
+        if(!empty($data['filter_by_business_type'])) {
+            $this->builder = $this->builder->leftJoin(
+                'service_provider_profiles', function ($join) use ($data) {
+                    $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
+                }
+            )->where('service_provider_profiles.business_type', $data['filter_by_business_type'])
+            ->select('service_provider_profile_requests.*');
+        }
 
-        $user = app('UserRepository')->model->find($data->user_id);
-        event(new ServiceProviderStatusEvent($user, $data->status, $data->reason));
-        return $data;
+        if(!empty($data['filter_by_service'])) {
+
+            $ids = app('ServiceRepository')->model->where('id', $data['filter_by_service'])
+            ->orWhere('parent_id', $data['filter_by_service'])
+            ->pluck('id')->toArray();
+
+
+
+            $this->builder = $this->builder->leftJoin(
+                'service_provider_services', function ($join) use ($data) {
+                    $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
+                }
+            )->whereIn('service_provider_services.service_id', $ids);
+        }
+
+        if(!empty($data['filter_by_status'])) {
+            $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['filter_by_status']);            
+        }
+
+        $this->builder = $this->builder->select('service_provider_profile_requests.*');
+
+
+        $data['details'] = ['details' => ['show' => true]];
+        return parent::findByAll($pagination, $perPage, $data);
+
     }
-    return $data;
 
 
-}
+    public function update(array $data = [])
+    {
+
+        if ($data['role_id'] == Role::ADMIN | $data['role_id'] == Role::REVIEWER) {
+            unset($data['role_id']);
+            $data['approved_by'] = $data['user_id'];  
+            unset($data['user_id']);
+            if ($data['status'] == 'approved') {
+                $data['approved_at'] = Carbon::now();
+
+            }
+
+            $data =  parent::update($data);
+
+            if($data->status == 'rejected'){
+                $criteria = ['service_provider_profile_request_id'  => $data->id];
+                app('ServiceProviderServiceRepository')->bulkDeleteByCriteria($criteria);
+            }
+
+
+            $user = app('UserRepository')->model->find($data->user_id);
+            event(new ServiceProviderStatusEvent($user, $data->status, $data->reason));
+            return $data;
+        }
+        return $data;
+
+
+    }
 
             /**
              * This method will fetch single model by attribute
@@ -212,12 +223,12 @@ public function update(array $data = [])
              *
              * @author Usaama Effendi <usaamaeffendi@gmail.com>
              **/
-            public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
+            public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false)
             {
 
 
                 $model = $this->model->newInstance()
-                ->where($crtieria);
+                ->where($criteria);
                 
                 if(!empty($details['orderBy'])){
                     $model = $model->orderBy('created_at' , $details['orderBy']);
@@ -243,10 +254,10 @@ public function update(array $data = [])
 
                 return $this->builder->select(['service_provider_profile_requests.status' ,'service_provider_services.*'])->get();
             }
-            public function getAllServices($crtieria)
+            public function getAllServices($criteria)
             {
 
-                $model = $this->model->where($crtieria);
+                $model = $this->model->where($criteria);
                 if ($model != null) {
                     $model = $model->
                     leftJoin(

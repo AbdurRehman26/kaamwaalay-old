@@ -41,7 +41,8 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
 
     public function findCollectionByCriteria($criteria , $whereInModelIds = false, $details = [])
     {
-        $this->builder = $this->model->where($criteria);
+        $this->builder = $this->model->withTrashed()->where($criteria);
+
         if(is_array($whereInModelIds)) {
             $this->builder = $this->builder->whereIn('id', $whereInModelIds);
         }
@@ -77,4 +78,22 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
 
         return  $count->count();
     }
+
+    public function bulkDeleteByCriteria($criteria)
+    {
+        $this->builder->where($criteria);
+        $result = $this->findByAll(false);
+
+        $this->builder->where($criteria)->delete();
+
+        // clearing the deleted data from cache
+
+        foreach ($result['data'] as $key => $value) {
+            $this->findById($value->id, true);
+        }
+
+        return true;
+
+    }
+
 }

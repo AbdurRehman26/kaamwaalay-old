@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
 
     protected function sendResetLinkResponse($response)
     {
-         $output = ['response' => ['data' => [],'message'=> trans($response)]];
+         $output = ['data' => [],'message'=> trans($response)];
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);
     }
@@ -51,8 +51,11 @@ class ForgotPasswordController extends Controller
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        $output = ['response' => ['data' => [],'message'=> trans($response)]];
-        return response()->json($output, Response::HTTP_UNPROCESSABLE_ENTITY);
+        throw ValidationException::withMessages(
+            [
+            'email' => [trans($response)],
+            ]
+        );
     }
 
     /**
@@ -84,10 +87,10 @@ class ForgotPasswordController extends Controller
 
     protected function sendInvalidUserResponse(Request $request)
     {  
-        return response()->json(
-            ['response' => [
-                'message' =>Lang::get('auth.invalidFogotUser'),]
-            ], 422
+        throw ValidationException::withMessages(
+            [
+            'email' => [Lang::get('auth.invalidFogotUser')],
+            ]
         );
     }
 }

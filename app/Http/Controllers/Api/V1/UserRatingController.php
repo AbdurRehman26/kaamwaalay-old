@@ -65,7 +65,7 @@ class UserRatingController extends ApiResourceController
         if($value == 'show'){
             $input = request()->only('id');
         }
-
+        
         return $input;
     }
 
