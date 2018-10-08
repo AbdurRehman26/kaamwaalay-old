@@ -240,7 +240,7 @@
                 let data = this.jobMessageData;
                 data.pagination = true;
                 this.getList(data, false);
-                this.unSubscribeChannel();
+                //this.unSubscribeChannel();
                 this.subscribeChannel();
                 this.userIsOnline();
             },
@@ -253,6 +253,7 @@
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+                console.log(channelName, 2222);
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     if(typeof(e.discussion.user_is_online) != "undefined")  {
                         self.isOnline = e.discussion.user_is_online;
