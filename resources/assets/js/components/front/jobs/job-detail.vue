@@ -109,7 +109,7 @@
                         <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
-                    <div v-if="awardedToMe" class="jobs-post-files">
+                    <div class="jobs-post-files">
                         <h3>Customer Information</h3>
                         <div class="coustomer-info-line">
                             <i class="icon-phone_in_talk"></i>
@@ -119,7 +119,7 @@
                             <i class="icon-pin"></i>
                             <p>Address: 
                                 <strong>
-                                    {{record.user.address}}
+                                    {{record.address}}
                                 </strong>
                                 <a href="javascript:void(0);">
                                     Get driving directions
@@ -456,8 +456,9 @@
                 this.mapKey = window.mapKey;
                 
                 let axisPoints = xAxis +','+  yAxis;
+                axisPoints = this.record.address;
                 console.log(axisPoints , 213213213);
-                return 'https://www.google.com/maps/embed/v1/view?key='+this.mapKey+'&zoom='+this.mapZoom+'&center='+axisPoints;
+                return 'https://www.google.com/maps/embed/v1/view?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints;
             }
         },
         methods: {
