@@ -11,10 +11,10 @@ class JobBidController extends ApiResourceController
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
@@ -22,17 +22,33 @@ class JobBidController extends ApiResourceController
         if(empty($this->input()['is_invited'])){
             $rules['amount'] =  'required_without:is_tbd';    
             $rules['is_tbd'] =  'required_without:amount';    
+
+
+            $rules['job_id'] = [
+                'required',
+                'exists:jobs,id',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('user_id', $this->input()['user_id'])
+                    ->whereNull('deleted_at')
+                    ->where('status' , '!=', 'invited');
+                }),
+            ];
+
         }
 
-        $rules['job_id'] = [
-            'required',
-            'exists:jobs,id',
-            Rule::unique('job_bids')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id'])
-                ->whereNull('deleted_at')
-                ->where('status' , '!=', 'invited');
-            }),
-        ];
+
+
+        if(!empty($this->input()['is_invited'])){
+
+            $rules['job_id'] = [
+                'required',
+                'exists:jobs,id',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('user_id', $this->input()['user_id'])
+                    ->whereNull('deleted_at');
+                }),
+            ];
+        }
 
 
 
@@ -148,6 +164,7 @@ public function messages($value = '')
 {
     $messages = [
         'job_id.unique' => 'A bid has already been placed.',
+        'job_id.required' => 'Job field is required.',
     ];
     return $messages;
 }
