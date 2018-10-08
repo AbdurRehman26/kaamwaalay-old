@@ -6,6 +6,7 @@ use App\Data\Repositories\PaymentRepository;
 use App\Data\Models\Role;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Validation\ValidationException;
 
 class PaymentController extends ApiResourceController
 {
@@ -56,13 +57,7 @@ class PaymentController extends ApiResourceController
             'plan_id' => 'required|exists:plans,id',
         ];
 
-        $validator = Validator::make($data, $rules);
-        if ($validator->fails()) {
-            $code = 406;
-            $output = [
-               'message' => $validator->messages()->all(),
-           ];
-    }else{
+        $this->validate($request, $rules);
         $result = $this->_repository->create($data);
         if(!empty($result['id'])) {
           $code = 200;
@@ -71,12 +66,12 @@ class PaymentController extends ApiResourceController
             'message' => 'Payment has been made successfully',
         ];
     }else{
-      $code = 406;
-      $output = [
-        'message' => $result,
-    ];
+     $errorResponse = ValidationException::withMessages(
+      ['message'=> $result ]
+     );
+     $errorResponse->status = 406;
+     throw $errorResponse;
     }
-   }
    return response()->json($output, $code);
  }
 }
