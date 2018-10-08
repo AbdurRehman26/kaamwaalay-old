@@ -69,7 +69,9 @@
             },
             getPopularServices() {
                 let self = this;
-                let url = 'api/service?filter_by_popular_services=true';
+                let zip = localStorage['zip']? localStorage['zip'] : false;
+
+                let url = 'api/service?filter_by_popular_services=' + zip;
                 self.$http.get(url).then(response=>{
                     self.initializeCarousel();
                     response = response.data.response;
