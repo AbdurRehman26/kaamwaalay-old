@@ -215,8 +215,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         if (!empty($data['filter_by_parent'])) {
             $this->builder = $this->builder->where('is_display_banner','=', 1)->whereNull('parent_id');
         }
-        if (!empty($data['filter_by_popular_services'])) {
-            $zip = "12";//$this->getZip();
+        if (isset($data['filter_by_popular_services'])) {
+            $zip = $data['filter_by_popular_services'];
             if($zip) {
                 $this->builder = $this->getServicesByZip(false, $zip);
                 $count = $this->builder->get()->count();
@@ -284,15 +284,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         }
         return $tempbuilder->select(['services.id']);
             
-    }
-
-    public function getZip() {
-        $ip = Helper::getIp();
-        $client = new Client(['base_uri' => 'http://ipinfo.io/']);
-        $response = "".$client->request("GET", $ip)->getBody();
-        $response = json_decode($response);
-        $postal = isset($response->postal)? $response->postal : null;
-        return $postal;
     }
 
     public function getPopularServices($currentServiceId = fasle, $limit = false) {
