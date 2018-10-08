@@ -121,9 +121,6 @@
                                 <strong>
                                     {{record.address}}
                                 </strong>
-                                <a href="javascript:void(0);">
-                                    Get driving directions
-                                </a>
                             </p>
                         </div>                        
                         <div class="coustomer-info-line">
