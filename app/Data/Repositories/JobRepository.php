@@ -143,6 +143,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     }
                 }
                 
+                if(empty($data->images)){
+                    $data->images[0] = '';
+                }
+
                 $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
                 $data->service = app('ServiceRepository')->findById($data->service_id);
 

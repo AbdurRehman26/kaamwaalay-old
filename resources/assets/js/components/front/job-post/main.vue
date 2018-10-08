@@ -321,8 +321,16 @@
                 }
             },
             getJobResponse(response){
+                let self = this;
                 this.formData = response.data;
                 this.onStateChange();
+
+                 setTimeout(function () {
+                    Vue.nextTick(() => {
+                        self.errorBag.clear()
+                    })
+
+                }, 100);
 
             },
             getStateResponse(response){
