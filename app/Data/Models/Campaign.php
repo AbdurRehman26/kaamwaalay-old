@@ -16,6 +16,8 @@ class Campaign extends Model
         'plan_id','user_id'
     ];
 	
+    const  EXPIRED = 'expired';
+
     public function plan()
 	{
 		return $this->belongsTo(Plan::class);
