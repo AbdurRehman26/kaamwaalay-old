@@ -29,7 +29,12 @@
 <script>
     export default {
 
-        props: ['showModalProp', 'bidder', 'job',],
+        props: [
+        'showModalProp',
+        'bidder',
+        'job'
+        ],
+        
         data(){
             return { 
                 successMessage : '',
@@ -76,6 +81,7 @@
 
             },
             showModal () {
+                console.log(this.$refs , 11132323);
                 this.$refs.myModalRef.show()
             },
             hideModal () {
