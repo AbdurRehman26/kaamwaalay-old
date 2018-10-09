@@ -306,6 +306,7 @@
         mounted () {
             this.getPlansList();
             this.paymentDetailShow();
+            console.log(JSON.parse(this.$store.getters.getAuthUser) , '213213213212132123213');
         },
         methods:{
             setZipCode(val) {

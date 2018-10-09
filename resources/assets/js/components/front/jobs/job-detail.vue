@@ -109,7 +109,7 @@
                         <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
-                    <div v-if="awardedToMe" class="jobs-post-files">
+                    <div v-if="awardedToMe || isMyJob" class="jobs-post-files">
                         <h3>Customer Information</h3>
                         <div class="coustomer-info-line">
                             <i class="icon-phone_in_talk"></i>
