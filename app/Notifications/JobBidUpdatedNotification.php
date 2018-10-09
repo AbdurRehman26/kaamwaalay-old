@@ -106,8 +106,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                 "object_name" => 'jobBidId',
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
-        ])->onQueue();
-    }
+        ])->onQueue($this->queue);
 
     /**
     * Get the mail representation of the notification.
