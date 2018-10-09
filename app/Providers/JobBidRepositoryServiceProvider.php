@@ -54,6 +54,7 @@ public function boot()
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
             $event->message = 'Your '.$job->title.' job is completed. Please post a review.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){
             $event->to =  User::find($jobBid->user_id);
