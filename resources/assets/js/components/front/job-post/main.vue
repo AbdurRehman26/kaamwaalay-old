@@ -171,9 +171,9 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="verify-account">
-            <div v-if="isShowCardDetail && isPaymentDetailShow" class="form-label-heading m-b-25">
+            <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
                 <p>VERIFY ACCOUNT</p>
             </div> 
             <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
@@ -263,7 +263,7 @@
                     title : '',
                     description : '',
                     preference : 'choose_date',
-                    schedule_at : '',
+                    schedule_at :  new Date(),
                     address : '',
                     apartment : '',
                     city_id : '',
@@ -306,11 +306,15 @@
         mounted () {
             this.getPlansList();
             this.paymentDetailShow();
+            console.log(JSON.parse(this.$store.getters.getAuthUser) , '213213213212132123213');
         },
         methods:{
             setZipCode(val) {
                 this.formData.zip_code = val.zip_code;
                 this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
@@ -321,8 +325,16 @@
                 }
             },
             getJobResponse(response){
+                let self = this;
                 this.formData = response.data;
                 this.onStateChange();
+
+                 setTimeout(function () {
+                    Vue.nextTick(() => {
+                        self.errorBag.clear()
+                    })
+
+                }, 100);
 
             },
             getStateResponse(response){
@@ -347,20 +359,21 @@
                 self = this;
                 this.isSubmit = false
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = true;
+                    this.invalidZip = null;
                     if(!this.formData.zip_code) {
                         this.invalidZip = true;
+                        return;
                     }
                     if (result) {
                             setTimeout(function () {
                                if(!this.errorMessage){    
-                                self.isSubmit = true
+                                self.isSubmit = true;
                                }else{
-                                self.isSubmit = false 
+                                self.isSubmit = false;
                                }
                             }, 500);
                            
-                            if(!this.isPaymentDetailShow && !this.isUrgentJob){
+                            if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
                                 this.onSubmit();
                             }
                         this.errorMessage = '';

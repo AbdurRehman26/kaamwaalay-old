@@ -91,7 +91,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business name" v-model="record.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -394,6 +394,7 @@
             'record.zip_code' (val) {
                 if(!val) {
                     this.invalidZip = true;
+                    this.record.zip_code = "";
                 }
             },
         },
@@ -401,6 +402,9 @@
             setZipCode(val) {
                 this.record.zip_code = val.zip_code;
                 this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
             },
             removeFile(type, index){
                 this.record.business_details.attachments[type].splice(index , 1);
@@ -441,7 +445,7 @@
 
             },
             checkUploadedDocuments(){
-                return true;
+                
                 let attachments = this.record.business_details.attachments;
 
                 if(!attachments['certifications'][0]){
@@ -465,12 +469,14 @@
                 this.isSubmit = false
 
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = true;
-                    if(!this.record.zip_code) {
-                        this.invalidZip = true;
-                    }
                     if (result) {
 
+                        this.invalidZip = false;
+                        if(!this.record.zip_code) {
+                            this.invalidZip = true;
+                            this.errorMessage = 'Please enter zip code.';
+                            return false;
+                        }
                         if(this.findUniqueValues()){
                             this.errorMessage = 'Please remove duplicate services';
                             return false;

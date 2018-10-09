@@ -13,10 +13,11 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 
-class SendUrgentJob extends Notification implements ShouldBroadcast
+class SendUrgentJob extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
+    public $queue;
     /**
      * Create a new notification instance.
      *
@@ -25,6 +26,7 @@ class SendUrgentJob extends Notification implements ShouldBroadcast
     public function __construct($data)
     {
         $this->data = $data;
+        $this->queue = config('queue.pre_fix').'notifications';
     }
 
     /**

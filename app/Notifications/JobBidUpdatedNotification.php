@@ -19,11 +19,12 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
 
 
-class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
+class JobBidUpdatedNotification extends Notification implements ShouldQueue
 {
 
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
+    public $queue;
     /**
      * Create a new notification instance.
      *
@@ -32,6 +33,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldBroadcast
     public function __construct($data)
     {
         $this->data = $data;
+        $this->queue = config('queue.pre_fix').'notifications';
     }
 
     /**

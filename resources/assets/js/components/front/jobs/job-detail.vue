@@ -109,6 +109,24 @@
                         <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
+                    <div v-if="awardedToMe || isMyJob" class="jobs-post-files">
+                        <h3>Customer Information</h3>
+                        <div class="coustomer-info-line">
+                            <i class="icon-phone_in_talk"></i>
+                            <p>Phone number: <strong>{{record.user.phone_number}}</strong></p>
+                        </div>
+                        <div class="coustomer-info-line">
+                            <i class="icon-pin"></i>
+                            <p>Address: 
+                                <strong>
+                                    {{record.address}}
+                                </strong>
+                            </p>
+                        </div>                        
+                        <div class="coustomer-info-line">
+                            <iframe :src="mapUrl" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>                
+                    </div>
 
                     <div class="chat-feedback">
 
@@ -121,8 +139,6 @@
                             <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
-
-                                <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
 
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
@@ -183,6 +199,10 @@
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
 
+                    <a v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px">
+                        <i class="icon-trophy"></i> Job Awarded
+                    </a>
+
                     <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
@@ -190,9 +210,6 @@
                     <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
                         <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
                     </button>
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
                     <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
@@ -205,11 +222,6 @@
                         <span>Initiate Job</span> <loader></loader>
                     </button>
 
-
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
-
                     <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
 
                     <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
@@ -217,10 +229,6 @@
                         Modify Bid
                     </a>   
 
-
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
                     <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -307,7 +315,11 @@
                 submitBidUrl : 'api/job-bid/',
                 submitFormData : '',
                 confirmPopupUrl : '',
-                index: null         
+                index: null,
+                mapZoom : 10,
+                mapKey : '',
+                xAxis : 37.090240,
+                yAxis : -95.712891   
             }
         },
         computed : {
@@ -394,7 +406,8 @@
             },
             awardedToMe(){
                 if(Object.keys(this.record).length && this.record.my_bid && this.record.awarded_to){
-                    return this.record.my_bid.id == this.record.awarded_to.id;
+                    console.log(this.record.my_bid , this.record.awarded_to);
+                    return this.record.my_bid.user_id == this.record.awarded_to.id;
                 }
             },
             visitAllowed(){
@@ -430,6 +443,19 @@
             zipCode(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
                 return user ? user.zip_code : false;
+            },
+            mapUrl(){
+                if(this.record){
+                }
+                let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
+                let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
+
+                this.mapKey = window.mapKey;
+                
+                let axisPoints = xAxis +','+  yAxis;
+                axisPoints = this.record.address;
+                console.log(axisPoints , 213213213);
+                return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints;
             }
         },
         methods: {

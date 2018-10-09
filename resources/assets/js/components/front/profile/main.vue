@@ -184,6 +184,9 @@
             setZipCode(val) {
                 this.record.zip_code = val.zip_code;
                 this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
             },
             onStateChange(){
                 this.record.city_id = null;
@@ -212,11 +215,11 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = true;
+                    this.invalidZip = false;
                     if(!this.record.zip_code) {
                         this.invalidZip = true;
                     }
-                    if (result) {
+                    if (result && !this.invalidZip) {
                         this.onSubmit();
                         this.errorMessage = '';
                         return;

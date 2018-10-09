@@ -89,7 +89,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $data = parent::findById($id, $refresh, $details, $encode);
     $data->user = app('UserRepository')->findById($data->sender_id);
     if($data) {
-        $data->formatted_created_at = Carbon::parse($data->created_at)->diffForHumans();
+        $data->formatted_created_at = Carbon::parse($data->created_at)->format('M d, Y, h:m a');
     }
 
     return $data;

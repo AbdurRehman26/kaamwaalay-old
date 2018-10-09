@@ -131,6 +131,8 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
               return $payment;
           } catch (\Stripe\Error\InvalidRequest $e) {
               return $e->getMessage();
+          }catch (\Exception $e) {
+              return $e->getMessage();
           }
     }
 }

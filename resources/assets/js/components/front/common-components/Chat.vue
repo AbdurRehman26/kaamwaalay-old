@@ -220,6 +220,7 @@
                             self.text = tempText;
                             return;
                         }
+                        self.scrollToEnd();
                         self.successMessage = response.message;
                         self.messages.push(response.data);
                     }).catch(error => {
@@ -261,7 +262,12 @@
 
                     self.isOnline = true;
                     self.messages.push(e.discussion);
+                    self.scrollToEnd();
+                    
                 });
+            },
+            scrollToEnd() {
+                this.$refs.scrollWrapper.scrollTop = this.$refs.scrollWrapper.scrollHeight;
             },
             userIsOnline() {
                 var self = this;
@@ -344,7 +350,7 @@
                     this.text = "";
                     this.showChatBox();
                 }
-            }
+            },
         }
     }
 </script>

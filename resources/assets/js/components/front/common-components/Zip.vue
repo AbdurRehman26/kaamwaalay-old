@@ -2,6 +2,7 @@
     <div class="form-group">
         <label>Zip Code</label>
         <div class="custom-multi" :class="{ 'invalid': isInvalid }">
+            <input name="search" type="text" style="display: none;">
             <multiselect  v-model="searchValue" :options="options"  placeholder="Enter your zip code" track-by="zip_code" label="zip_code" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
                 <span slot="noResult">No zip code found.</span>
             </multiselect>
@@ -29,12 +30,14 @@
             },
         },
         mounted () {
-            if(typeof(this.initialValue) != "undefined") {
+            if(typeof(this.initialValue) != "undefined" && this.initialValue) {
                 this.searchValue = {
                     zip_code: this.initialValue,
                     latitude: '',
                     longitude: '',
                 };
+            }else {
+                this.searchValue = "";
             }
         },
         methods:{
@@ -80,13 +83,25 @@
                         latitude: '',
                         longitude: '',
                     };
+                }else {
+                    this.searchValue = "";
                 }
             },
             showError(val) {
                 this.isError = val;
+                if(val) {
+                    this.isTouched = true;
+                }
             },
             searchValue(val) {
                 if(!val) {
+                    this.$emit('onSelect', 
+                        {
+                            zip_code: "",
+                            latitude: '',
+                            longitude: '',
+                        }
+                    );
                     this.searchValue = "";
                     this.isTouched = true;
                     this.isError = true;

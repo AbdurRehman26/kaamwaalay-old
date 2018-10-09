@@ -31,7 +31,11 @@ import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js';
 import Lightbox from 'vue-simple-lightbox';
-import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus';
+import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
+
+window.mapKey = 'AIzaSyAq_eswaJReb7b5zM83qCbBE94muPMTIZ0';
+
+
 import VueGallerySlideshow from 'vue-gallery-slideshow';
 
 Vue.use(VueRouter);
@@ -240,4 +244,3 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
 /*const app = new Vue({
     router
 }).$mount('#app')*/
-

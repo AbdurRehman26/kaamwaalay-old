@@ -12,7 +12,8 @@
                         <div class="search-filter service-professional invite-bid-search">
                             <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                <multiselect :showNoResults="false" v-model="searchValue" :options="options" placeholder="Select Job" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
+                                <multiselect :showNoResults="true" v-model="searchValue" :options="options" :placeholder="'Please enter job title'" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
+                                <span slot="noResult" >No job found.</span>
                                 </multiselect>
                             </div>
                         </div>

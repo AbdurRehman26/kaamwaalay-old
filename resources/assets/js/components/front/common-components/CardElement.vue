@@ -165,10 +165,8 @@
                             if(self.fromFeaturedProfile == 'true'){
                                 self.$parent.getCampaignList()
                             }else{
-                                if(self.profileReview){
-                                   self.saveUserStripeToken(data);
-                                }
-                                if(self.$parent.formData.subscription_id){
+                                self.saveUserStripeToken(data);
+                                if(typeof self.$parent.formData.subscription_id != 'undefined'){
                                   self.$parent.formData.subscription_id = response.data.data.id  
                                 } 
                             }
@@ -178,12 +176,22 @@
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage = error.response.data.message
+                        self.$parent.loading = false
+                        self.errorMessage = error.response.data.errors.message[0]
+                        self.$parent.errorMessage = self.errorMessage
                         setTimeout(function(){
-                            self.errorMessage=''
+                            self.errorMessage = ''
+                            self.$parent.errorMessage = ''
                         }, 2000);
                     })
                 }).catch(error=>{
+                    self.$parent.loading = false
+                    self.errorMessage = error.response.data.error.message
+                    self.$parent.errorMessage = self.errorMessage
+                    setTimeout(function(){
+                        self.errorMessage = ''
+                        self.$parent.errorMessage = ''
+                    }, 2000);
                 });
             },
             verifyCard () {
@@ -192,6 +200,13 @@
                 createToken().then(data => {
                     self.saveUserStripeToken(data);
                 }).catch(error=>{
+                    self.$parent.loading = false
+                    self.errorMessage = error.response.data.error.message
+                    self.$parent.errorMessage = self.errorMessage
+                    setTimeout(function(){
+                        self.errorMessage = ''
+                        self.$parent.errorMessage = ''
+                    }, 2000);
                 });
             },
             saveUserStripeToken(data){
