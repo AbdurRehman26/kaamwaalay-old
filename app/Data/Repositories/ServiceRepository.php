@@ -66,21 +66,22 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
             $data->url_suffix = $data->url_suffix? $data->url_suffix : url(config('view.service.url.folder')).'/';
-            if(!empty($data->images)) {
+            //comentend due to errors in various places
+            // if(!empty($data->images)) {
 
-                foreach ($data->images as $key => $image) {
-                    if(!empty($image['name'])) {
+            //     foreach ($data->images as $key => $image) {
+            //         if(!empty($image['name'])) {
 
-                        if(substr($image['name'], 0, 8) == "https://") {
-                            $image['upload_url'] = $image['name'];
-                        }else {
-                            $image['upload_url'] = Storage::url(config('uploads.service.folder').'/'.$image['name']);
-                        }
-                        $data->images[$key] = $image;
-                    }
-                }
+            //             if(substr($image['name'], 0, 8) == "https://") {
+            //                 $image['upload_url'] = $image['name'];
+            //             }else {
+            //                 $image['upload_url'] = Storage::url(config('uploads.service.folder').'/'.$image['name']);
+            //             }
+            //             $data->images[$key] = $image;
+            //         }
+            //     }
             
-            }
+            // }
         }
         return $data;
     }
@@ -237,6 +238,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 foreach ($services as $key => $value) {
                     // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
                      $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->where('status', '=', 1)->get();
+
                     $services[$key]->subservices = $subservice;
                 }
                 $modelData['data'] = $services;
