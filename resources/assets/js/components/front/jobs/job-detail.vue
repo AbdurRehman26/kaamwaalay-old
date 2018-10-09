@@ -248,9 +248,9 @@
     </div>			
 </div>
 
-<award-job-popup @bid-updated="reSendCall" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
+<award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
-<visit-request-popup @bid-updated="reSendCall" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
+<visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
 <go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
@@ -259,13 +259,19 @@
 
 
 <write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
+<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 
+<!--  Job list  -->
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
+
+<!--  Bids list  -->
 <vue-common-methods v-if="isMyJob" :hideLoader="true" :force="forceValue" :infiniteLoad="true" :url="requestBidUrl" @get-records="getBidsResponse"></vue-common-methods>
 
+<!--  Submit bid list  -->
 <vue-common-methods :updateForm="true" :submit="submitBidForm" @form-submitted="formUpdated" :formData="submitFormData" :submitUrl="submitBidUrl" v-if="!isMyJob"></vue-common-methods>
 
-<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
+<!--  Get Use response to update bidding jobs  -->
+<vue-common-methods :force="forceUserValue" :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -319,7 +325,10 @@
                 mapZoom : 10,
                 mapKey : '',
                 xAxis : 37.090240,
-                yAxis : -95.712891   
+                yAxis : -95.712891,
+                forceUserValue : false,
+                requestUserUrl : ''
+
             }
         },
         computed : {
@@ -454,7 +463,6 @@
                 
                 let axisPoints = xAxis +','+  yAxis;
                 axisPoints = this.record.address;
-                console.log(axisPoints , 213213213);
                 return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints;
             }
         },
@@ -501,7 +509,7 @@
                 this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
             },
             formSubmitted(response){
-                this.reSendCall();            
+                this.reSendCall();         
                 if(!response.data.is_archived && response.data.status == 'completed')
                 {
                     this.showReviewForm = true;
@@ -512,7 +520,9 @@
                 this.index = i;
             },        
             reSendCall(){
+
                 let self = this;
+
                 self.forceValue = true;
                 this.submitBidForm = false;
 
@@ -646,7 +656,12 @@
                 this.formData = data;
                 this.confirmPopupShow = true;
 
-            }
+            },
+            getUserResponse(response){
+                if(response.data){
+                    this.$store.commit('setAuthUser', response.data);
+                }
+            }    
         },
         components: {
             StarRating,
@@ -654,6 +669,7 @@
             VueGallerySlideshow,
         },
         mounted(){
+            console.log(this.record , 123123213);
         },
 
     }

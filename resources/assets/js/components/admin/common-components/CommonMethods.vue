@@ -32,10 +32,10 @@
         },
         methods: {
             getList(page, successCallback){
-
                 let self = this;
                 let url = self.url;
-
+                console.log(url , '12222');
+                
                 if(typeof(url) == 'undefined' || url == ''){
                     return false;
                 }
