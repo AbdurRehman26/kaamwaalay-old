@@ -96,7 +96,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     */
     public function toBroadcast($notifiable)
     {
-        return new BroadcastMessage([
+        return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
                 'link_text' => 'View Job',
@@ -106,7 +106,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                 "object_name" => 'jobBidId',
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
-        ])->onQueue($this->queue);
+        ]))->onQueue($this->queue);
 
     /**
     * Get the mail representation of the notification.
