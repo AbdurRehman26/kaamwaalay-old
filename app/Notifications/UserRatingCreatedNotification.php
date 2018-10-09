@@ -19,41 +19,42 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
 
 
-class JobBidUpdatedNotification extends Notification implements ShouldQueue
+class UserRatingCreatedNotification extends Notification implements ShouldQueue
 {
 
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
     public $queue;
+ 
     /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct($data)
+    * Create a new notification instance.
+    *
+    * @return void
+    */
+    public function __construct($event)
     {
-        $this->data = $data;
+        $this->data = $event;
         $this->queue = config('queue.pre_fix').'notifications';
     }
 
     /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+    * Get the notification's delivery channels.
+    *
+    * @param  mixed  $notifiable
+    * @return array
+    */
     public function via($notifiable)
     {
-        return ['database', OneSignalChannel::class ,'broadcast','mail'];
+      return ['database', OneSignalChannel::class ,'broadcast','mail'];
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \NotificationChannels\OneSignal\OneSignalMessage
-     */
-     public function toOneSignal($notifiable)
+    * Get the mail representation of the notification.
+    *
+    * @param  mixed  $notifiable
+    * @return \Illuminate\Notifications\Messages\MailMessage
+    */
+    public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
@@ -61,52 +62,15 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                     'link_text' => 'View Job',
                     'route' => 'job.details',
                     "id" => $this->data->id,
-                    "object_id" => $this->data->object_id,
-                    "object_name" => 'jobBidId',
                     ],
                 'created_at' => $notifiable->created_at->toDateTimeString()
                  ];
-        return OneSignalMessage::create()
-            ->subject("Urgent Job")
+      //\Log::info($notifiable);
+       return OneSignalMessage::create()
+            ->subject("Job bid")
             ->body($this->data->message)
             ->setData('data',$data);
-    }
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toDatabase($notifiable)
-    {
-        return [
-            'text' => $this->data->message,
-            'link_text' => 'View Job',
-            'route' => 'job.details',
-            "id" => $this->data->id,
-            "object_id" => $this->data->object_id,
-            "object_name" => 'jobBidId',
-        ];
-    }
-    /**
-     * Get the broadcastable representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return BroadcastMessage
-    */
-    public function toBroadcast($notifiable)
-    {
-        return new BroadcastMessage([
-            'data'=>[
-                'text' => $this->data->message,
-                'link_text' => 'View Job',
-                'route' => 'job.details',
-                "id" => $this->data->id,
-                "object_id" => $this->data->object_id,
-                "object_name" => 'jobBidId',
-            ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
-        ]);
+
     }
 
     /**
@@ -119,7 +83,38 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     {
         $url = route('front.login');
         return (new MailMessage)
-        ->subject(Lang::getFromJson('Job Mark Done'))
+        ->subject(Lang::getFromJson('Feedback and rating'))
         ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
+    }
+
+    /**
+    * Get the array representation of the notification.
+    *
+    * @param  mixed  $notifiable
+    * @return array
+    */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'text' => $this->data->message,
+            'image' => $this->data->from->profile_image,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id,
+        ];
+    }
+
+    public function toBroadcast($notifiable)
+    {   
+        return new BroadcastMessage([
+            'data'=>[
+                'text' => $this->data->message,
+                'image' => $this->data->from->profile_image,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id,
+            ],
+            'created_at' => $notifiable->created_at->toDateTimeString(),
+        ]);
     }
 }
