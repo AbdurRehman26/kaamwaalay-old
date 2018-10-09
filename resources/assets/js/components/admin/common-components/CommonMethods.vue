@@ -66,10 +66,12 @@
                 this.callInProgress = true;
 
                 self.$http.get(url).then(response=>{
-
                     this.callInProgress = false;
-
-                    response = response.data.response;
+                    if(typeof response.data.response != 'undefined'){
+                      response = response.data.response;
+                    }else{
+                      response = response.data;
+                    }
                     
                     let result = {
                         data : response.data,

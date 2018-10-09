@@ -71,7 +71,7 @@
                      this.$auth.login(this.login_info).then(function (response) {
                       self.loading = false
                       this_.$store.commit('setAuthAdminUser', response.data.data);
-                      if(response.data.role_id == 1){
+                      if(response.data.data.role_id == 1){
                        this_.$router.push({ name: 'dashboard'})
                       }else{
                        this_.$router.push({ name: 'service.provider.review'})
