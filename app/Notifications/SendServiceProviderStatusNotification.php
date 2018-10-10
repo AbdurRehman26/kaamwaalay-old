@@ -47,7 +47,7 @@ class SendServiceProviderStatusNotification extends Notification
         $url = route('front.login');
         return (new MailMessage)
         ->subject(Lang::getFromJson('Service Provider Profile Request Status'))
-        ->markdown('email.provider-profile-status', ['url' => $url , 'status' => $this->status, 'reason' => $this->reason]);
+        ->markdown('email.provider-profile-status', ['url' => $url , 'status' => $this->status, 'reason' => $this->reason, 'user' => $notifiable]);
     }
 
     /**
