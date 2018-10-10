@@ -109,7 +109,6 @@
                         result.noRecordFound = true;
                     }
                     self.getMessages(result);
-
                     self.pagination = response.pagination;
 
                     self.loading = false;
@@ -170,6 +169,7 @@
                 }
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
+                
             },
             validateBeforeSubmit() {
                 let message = this.text;
@@ -185,6 +185,7 @@
                     let containsUrl = urlRegex.test(message);
                     if(containsDigits || containsEmail || containsGeneral || containsUrl) {
                         this.errorMessage = true;
+                        this.scrollToEnd();
                         setTimeout((e) => {
                             this.errorMessage = false;
                         }, 3000);
@@ -241,7 +242,7 @@
                 let data = this.jobMessageData;
                 data.pagination = true;
                 this.getList(data, false);
-                //this.unSubscribeChannel();
+                this.unSubscribeChannel();
                 this.subscribeChannel();
                 this.userIsOnline();
             },
@@ -254,7 +255,7 @@
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                
+
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     if(typeof(e.discussion.user_is_online) != "undefined")  {
                         self.isOnline = e.discussion.user_is_online;
@@ -268,7 +269,7 @@
                 });
             },
             scrollToEnd() {
-                this.$refs.scrollWrapper.scrollTop = this.$refs.scrollWrapper.scrollHeight;
+                this.$refs.scrollWrapper.scrollTop = this.$refs.scrollWrapper.scrollHeight + 1000;
             },
             userIsOnline() {
                 var self = this;
