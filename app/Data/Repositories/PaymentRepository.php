@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Payment;
 use App\Data\Models\User;
+use App\Data\Models\Plan;
 use Carbon\Carbon;
 use DB;
 
@@ -108,7 +109,7 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
                 $data->full_name = $data->pay_by->first_name. ' ' .$data->pay_by->last_name;
             }
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            $planData = app('PlanRepository')->findById($data->stripe_plan, false);
+            $planData = Plan::where('id','=',$data->stripe_plan)->withTrashed()->first();
             $data->type = $planData->product;
             $data->amount = $planData->amount;
         }
