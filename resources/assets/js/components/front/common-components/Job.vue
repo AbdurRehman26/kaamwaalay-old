@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-md-6 job-bid-btn p-r-0">
-                <a href="javascript:void(0);" v-if="!job.my_bid && job.status != 'completed' &&  job.status != 'cancelled' && !job.awarded_to" @click="showBidPopup('bidNow')" class="btn btn-primary post-bid m-r-10">Bid Now</a>
+                <a v-canBid href="javascript:void(0);" v-if="!job.my_bid && job.status != 'completed' &&  job.status != 'cancelled' && !job.awarded_to" @click="showBidPopup('bidNow')" class="btn btn-primary post-bid m-r-10">Bid Now</a>
                 <a href="javascript:void(0);" v-else @click="$emit('chatMessage', job)" class="chat-message" :class="{disable: job.can_message == null? true : false}"><i class="icon-message"></i></a>
                 <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : job.id }}">View Details </router-link>
             </div>
@@ -33,7 +33,7 @@
                 Offer: <strong>
                     {{ job.my_bid | bidStatus}}
  
-               </strong><span v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !job.my_bid.is_visit_required && !hideChangeBid">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
+               </strong><span v-canBid v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !job.my_bid.is_visit_required && !hideChangeBid">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
             </p>
 
             <p class="member-since">

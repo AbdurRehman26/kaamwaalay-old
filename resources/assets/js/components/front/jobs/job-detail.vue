@@ -214,17 +214,17 @@
                     <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
-                    <button v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span><i class="icon-checkmark2"></i> Mark Job Done</span> <loader></loader>
                     </button>
 
-                    <button v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
                         <span>Initiate Job</span> <loader></loader>
                     </button>
 
-                    <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
+                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
 
-                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
+                    <a v-canBid v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
                         <i class="icon-edit-pencil"></i>
                         Modify Bid
                     </a>   
@@ -232,11 +232,11 @@
                     <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
 
-                    <a v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                    <a v-canBid v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                         Write Review
                     </a>
 
-                    <a href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                    <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
                         Archive
                     </a>
 
