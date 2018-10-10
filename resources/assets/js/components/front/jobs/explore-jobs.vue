@@ -34,7 +34,7 @@
             <div class="job-post-container section-padd sm">
                 <div class="container md">
 
-                        <explore-jobs-list :records="records"></explore-jobs-list>
+                        <explore-jobs-list :records="records" @chatMessage="showChatBox" tabType="activebid"></explore-jobs-list>
                     
                 </div>
                 <no-record-found v-show="noRecordFound"></no-record-found>
@@ -42,7 +42,7 @@
             </div>
 
         </div>
-        <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
+        <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat" :strict="strict" :disabled="disabledChat"></chat-panel>
         <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
 
 
@@ -76,11 +76,33 @@
                 searchService : '',
                 noRecordFound : false,
                 cityValue : '',
-                citiesList : []
+                citiesList : [],
+                showChat : false,
+                jobMessageData: {},
+                strict: false,
+                disabledChat: false,  
             }
         },
 
         methods: {
+            showChatBox(record, strictChat = false, disabled = false) {
+                this.closeChatBox();
+                this.jobMessageData = {
+                    text: '',
+                    job_id: record.id,
+                    reciever_id: record.user_id,
+                    job_bid_id: record.my_bid.id,
+                    sender_detail: record.user,
+                    business_name: record.title,
+                };
+                this.showChat = false;
+                this.showChat = true;
+                this.strict = strictChat;
+                this.disabledChat = disabled;
+            },
+            closeChatBox() {
+                this.showChat = false;
+            },
             customLabel ({ name, state }) {
                 return `${name} → ${state.name}`
             },

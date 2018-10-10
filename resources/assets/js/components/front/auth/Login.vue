@@ -94,7 +94,6 @@ methods: {
             self.loading = false
             this_.$store.commit('setAuthUser', response.data.data);
 
-            console.log(response.data.access_token, 4555);
             self.echoAuthenticate(response.data.access_token);
             if(response.data.data.role.id == 2){
               if(response.data.data.is_profile_completed == 0 ){
