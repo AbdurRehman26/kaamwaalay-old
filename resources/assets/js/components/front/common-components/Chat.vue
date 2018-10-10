@@ -265,11 +265,13 @@
                     self.isOnline = true;
                     self.messages.push(e.discussion);
                     self.scrollToEnd();
-                    
                 });
             },
             scrollToEnd() {
-                this.$refs.scrollWrapper.scrollTop = this.$refs.scrollWrapper.scrollHeight + 1000;
+                let self = this;
+                setTimeout(function(){
+                    self.$refs.scrollWrapper.scrollTop = self.$refs.scrollWrapper.scrollHeight;
+                }, 500);
             },
             userIsOnline() {
                 var self = this;
