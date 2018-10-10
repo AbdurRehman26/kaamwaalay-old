@@ -67,7 +67,7 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
     {
 
         $this->builder = $this->builder
-            ->leftJoin('users', 'payments.pay_by', '=', 'users.id');
+            ->leftJoin('users', 'subscriptions.user_id', '=', 'users.id');
 
         if(!empty($data['filter_by_pay_by'])) {
             $this->builder = $this->builder->where('users.role_id', '=', $data['filter_by_pay_by']);
@@ -75,7 +75,8 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         }
 
         if(!empty($data['filter_by_type'])) {
-            $this->builder = $this->builder->where('payments.type', '=', $data['filter_by_type']);
+            $this->builder = $this->builder->leftJoin('plans', 'subscriptions.stripe_plan', '=', 'plans.id');
+            $this->builder = $this->builder->where('plans.product', '=', $data['filter_by_type']);
             ;
         }
 
@@ -89,8 +90,8 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         }
 
         $this->builder = $this->builder
-            ->select('payments.id')
-            ->orderBy('payments.created_at', 'DESC');
+            ->select('subscriptions.id')
+            ->orderBy('subscriptions.created_at', 'DESC');
 
         return  parent::findByAll($pagination, $perPage);
     
@@ -102,12 +103,14 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
         if($data) {
             $details = ['role' => true];
             $data->full_name = '';
-            $data->pay_by = $this->userRepo->findById($data->pay_by, false, $details);
+            $data->pay_by = $this->userRepo->findById($data->user_id, false, $details);
             if($data->pay_by) {
                 $data->full_name = $data->pay_by->first_name. ' ' .$data->pay_by->last_name;
             }
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            $data->type = ucfirst($data->type);
+            $planData = app('PlanRepository')->findById($data->stripe_plan, false);
+            $data->type = $planData->product;
+            $data->amount = $planData->amount;
         }
 
         return $data;
