@@ -31,89 +31,103 @@
                     </span>
                 </li>
                 <li>
-                     <logout-component></logout-component> 
-                </li>
+                 <logout-component></logout-component> 
+             </li>
 
-            </ul>
-        </div>
-    </template>
-    <script>
-        import { directive as onClickaway } from 'vue-clickaway';
-        export default{
-            mounted(){
-                this.getAllServices();
-            },
-            data () {
-              return {
-                isShowing:false,
-                showModalValue : false,
-                tab: false,
-                tabmenu: false,
-                first_name : '',
-                last_name : '',
-                user:{},
-                notificationCount:'',
+         </ul>
+         <!--  Get Service provider profile  -->
+         <vue-common-methods :url="url" @get-records="getResponse"></vue-common-methods>
+
+
+     </div>
+ </template>
+ <script>
+    import { directive as onClickaway } from 'vue-clickaway';
+    export default{
+        mounted(){
+            this.getAllServices();
+        },
+        data () {
+          return {
+            isShowing:false,
+            showModalValue : false,
+            tab: false,
+            tabmenu: false,
+            first_name : '',
+            last_name : '',
+            user:{},
+            notificationCount:'',
+            url : 'api/service-provider-profile-request/approved-profile'
+        }
+    },
+    directives: {
+        onClickaway: onClickaway,
+    },
+    computed : {
+        userDetails(){
+            return JSON.parse(this.$store.getters.getAuthUser);
+        },
+        fullName(){
+            return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : 'images/dummy/image-placeholder.jpg';
+        },
+        socialAccountId(){
+            return this.userDetails ? this.userDetails.social_account_id : '';
+        },
+        imageValue(){
+            return this.userDetails ? this.userDetails.profileImage : ''
+        }
+    },
+    methods: {
+        changePassword(){
+          if(this.socialAccountId == null){
+              this.$emit('profilepopup')
+          }
+      },
+      ShowModal(){
+        this.showModalValue = true;
+    },
+    HideModal(){
+        this.showModalValue = false;
+    },
+    Showactive(){
+        this.tab ^= true;
+    },
+    away: function(){
+        this.isShowing = false;
+        this.tab = false;
+    },
+    WriteReviewModal(){                
+        this.$emit('WriteReviewModal');
+    },         
+    ViewBid(){
+        /*this.$router.push({name: 'job-details'})*/
+        this.$emit('ViewBid');
+    },              
+    scrollToTop() {
+        window.scrollTo(0,0);
+    },
+    getAllServices() {
+        let self = this;
+        let url = 'api/service';
+        self.$http.get(url).then(response=>{
+            response = response.data.response;
+            self.$store.commit('setAllServices' , response.data);
+            self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
+        }).catch(error=>{
+
+
+        });
+    },                          
+    getResponse(response){
+        if(response.data){
+            if(response.data.status == 'approved'){
+                let user = JSON.parse(this.$store.getters.getAuthUser);
+                user.is_approved = 1;
+                this.$store.commit('setAuthUser' , user);
             }
-        },
-        directives: {
-            onClickaway: onClickaway,
-        },
-        computed : {
-            userDetails(){
-                return JSON.parse(this.$store.getters.getAuthUser);
-            },
-            fullName(){
-                return this.userDetails ? this.userDetails.first_name + ' ' + this.userDetails.last_name : 'images/dummy/image-placeholder.jpg';
-            },
-            socialAccountId(){
-                return this.userDetails ? this.userDetails.social_account_id : '';
-            },
-            imageValue(){
-                return this.userDetails ? this.userDetails.profileImage : ''
-            }
-        },
-        methods: {
-            changePassword(){
-              if(this.socialAccountId == null){
-                  this.$emit('profilepopup')
-              }
-          },
-            ShowModal(){
-                this.showModalValue = true;
-            },
-            HideModal(){
-                this.showModalValue = false;
-            },
-            Showactive(){
-                this.tab ^= true;
-            },
-            away: function(){
-                this.isShowing = false;
-                this.tab = false;
-            },
-            WriteReviewModal(){                
-                this.$emit('WriteReviewModal');
-            },         
-            ViewBid(){
-                /*this.$router.push({name: 'job-details'})*/
-                this.$emit('ViewBid');
-            },              
-            scrollToTop() {
-                window.scrollTo(0,0);
-            },
-            getAllServices() {
-                let self = this;
-                let url = 'api/service';
-                self.$http.get(url).then(response=>{
-                    response = response.data.response;
-                    self.$store.commit('setAllServices' , response.data);
-                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
-                }).catch(error=>{
-
-
-                });
-            },                          
-
         }
     }
+
+}
+}
 </script>
