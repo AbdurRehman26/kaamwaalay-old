@@ -16,7 +16,7 @@
                         <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profileImage) + ')'}"></span>
                         <div class="profile-message" :class="[checkCurrentUser(message)? 'bg-light-custom' : '']">
                             <p>{{message.text}}</p>
-                            <span class="chat-last-seen">{{message.formatted_created_at}}</span>
+                            <span class="chat-last-seen">{{getFormattedDateTime(message.formatted_created_at)}}</span>
                         </div>
                     </b-list-group-item>
                 </div>
@@ -237,7 +237,11 @@
                 let currentUser = JSON.parse(this.$store.getters.getAuthUser);
                 return currentUser.id == message.user.id;
             },
+            getFormattedDateTime(date) {
+                return moment.utc(date).local().format('MMM Do, YYYY, h:mm a');
+            },
             showChatBox() {
+                
                 this.url = 'api/job-message?pagination=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = this.jobMessageData;
                 data.pagination = true;
