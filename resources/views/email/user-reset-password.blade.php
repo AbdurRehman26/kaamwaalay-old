@@ -1,10 +1,10 @@
 @component('mail::message')
-# Hi {{ $user->first_name ." ". $user->last_name}}
+# Hi {{ $user->first_name ." ". $user->last_name}},
 
 You recently requested to reset your password for your account, use the button below to reset it.
 
 @component('mail::button', ['url' => $url])
-Reset Password
+RESET PASSWORD
 @endcomponent
 
 <strong>Thanks,<br>

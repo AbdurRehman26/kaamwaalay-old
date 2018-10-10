@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi {{ $user->first_name ." ". $user->last_name}}
+# Hi {{ $user->first_name ." ". $user->last_name}},
 
 Your profile request has been {{$status}}.
  
