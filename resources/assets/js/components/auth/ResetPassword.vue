@@ -74,7 +74,6 @@
             this.ContactIsExpire = true;
         },        
         onSubmit() {
-          console.log(this.form);
           this.$router.push('dashboard');
         },
       },

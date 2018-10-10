@@ -62,7 +62,7 @@
                                         <td>{{record.pay_by.role.title}}</td>
                                         <td>{{record.formatted_created_at}}</td>
                                         <td>${{record.amount}}</td>
-                                        <td >{{record.type}}</td>
+                                        <td >{{record.type | paymentType}}</td>
                                         <!-- <td><span class="tags" :class="[record.status.replace(/\s/g, '').toLowerCase().trim()]">{{record.status}}</span></td> -->
                                     </tr>
                                 </tbody>

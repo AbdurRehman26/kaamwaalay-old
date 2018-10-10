@@ -106,7 +106,7 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
 
     public function toBroadcast($notifiable)
     {   
-        return new (BroadcastMessage([
+        return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
                 'image' => $this->data->from->profile_image,

@@ -16,7 +16,6 @@ use App\Data\Models\User;
 
 Broadcast::channel('Job-Messages.{job_bid_id}', function ($user, $job_bid_id) {
 	
-
     $service_provider = app('JobBidRepository')->findById((int)$job_bid_id);
 
     $customer = app('JobRepository')->findById((int)$service_provider->job_id);

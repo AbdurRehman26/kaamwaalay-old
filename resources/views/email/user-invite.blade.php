@@ -1,10 +1,14 @@
 @component('mail::message')
-Your account has been successfully created. To activate your account, please click on the button provided below:
+# Congratulations {{ $user->first_name ." ". $user->last_name}}! Your account has been successfully created.
  
+<div>
+    We're excited to welcome you to {{ config('app.name') }}. To activate your accountm please click on the button provided below.
+</div>
+
 @component('mail::button', ['url' => $url])
-ACTIVATE
+ACTIVATE NOW
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+<strong>Thanks,<br>
+{{ config('app.name') }}.</strong>
 @endcomponent

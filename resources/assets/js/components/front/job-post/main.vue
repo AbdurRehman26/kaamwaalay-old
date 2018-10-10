@@ -167,7 +167,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <zip @onSelect="setZipCode" :showError="invalidZip"></zip>
+                    <zip @onSelect="setZipCode" :initialValue="formData.zip_code" :showError="invalidZip"></zip>
                 </div>
             </div>
         </div>

@@ -78,7 +78,6 @@
             },
             user_id() {
                 let user = JSON.parse(this.$store.getters.getAuthAdminUser);
-                console.log(user , 123213);
                 return user.id;
             },
         },

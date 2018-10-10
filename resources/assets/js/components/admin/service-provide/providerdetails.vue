@@ -182,7 +182,7 @@
                                 <p><strong class="title-head">Related activites</strong></p>
                             </b-col>
                             <b-col v-show="records.services_offered" class="calculated-value">
-                                <span v-for="service in records.services_offered" class="tags">{{service}}</span>
+                                <span v-for="(service, index) in records.services_offered" class="tags">{{index}}</span>
                             </b-col>
                         </b-row>                                 
                         <b-row>

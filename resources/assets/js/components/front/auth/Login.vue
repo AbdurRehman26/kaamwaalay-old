@@ -34,6 +34,9 @@
 </template>
 
 <script>
+
+    import Echo from 'laravel-echo'
+    window.io = require('socket.io-client');
     export default {
       data () {
         return {
@@ -64,6 +67,20 @@ watch: {
     }
 },
 methods: {
+    echoAuthenticate(access_token) {
+      let self = this;
+      // Laravel Echo 
+      let token = document.head.querySelector('meta[name="csrf-token"]');
+      window.Echo = new Echo({
+          broadcaster: 'socket.io',
+          host: window.location.hostname + ':'+ window.socketPort,
+          auth: {
+              headers: {
+                  Authorization: 'Bearer ' + access_token,//token.content,
+              },
+          },
+      });
+    },
     MyBids(){
         this.$router.push('my.bids');
     },
@@ -72,12 +89,12 @@ methods: {
       this.loading = true
       window.successMessage = ""
       let redirectUrl = this_.$store.getters.getRedirectUrl
-
       if(!this.$auth.isAuthenticated()){
           this.$auth.login(this.login_info).then(function (response) {
             self.loading = false
             this_.$store.commit('setAuthUser', response.data.data);
 
+            self.echoAuthenticate(response.data.access_token);
             if(response.data.data.role.id == 2){
               if(response.data.data.is_profile_completed == 0 ){
                  this_.$router.push({ name: 'provider_profile'})

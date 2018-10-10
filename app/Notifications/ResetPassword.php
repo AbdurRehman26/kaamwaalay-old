@@ -70,7 +70,7 @@ class ResetPassword extends Notification
         );
         return (new MailMessage)
             ->subject(Lang::getFromJson('Reset Password'))
-            ->markdown('email.user-reset-password', ['url' => $url]);
+            ->markdown('email.user-reset-password', ['url' => $url, 'user' => $notifiable]);
     }
     /**
      * Set a callback that should be used when building the notification mail message.

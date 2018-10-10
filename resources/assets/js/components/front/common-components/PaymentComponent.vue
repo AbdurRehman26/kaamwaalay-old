@@ -129,7 +129,6 @@ watch:{
     expiry () { this.update() },
     cvc () { this.update() },
     submit(value){
-        console.log('submitCard',value)
         this.pageLoad = true
         if(value){
            if(this.complete){

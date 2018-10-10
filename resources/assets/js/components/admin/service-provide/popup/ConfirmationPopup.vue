@@ -52,7 +52,6 @@
                 }, 2000);
             },
             formError(error){
-                console.log(error);
                 this.errorMessage = error;
             },
             StatusChange(){

@@ -28,17 +28,11 @@
             </div>
 
             <div class="job-post-container section-padd sm">
-                <!-- <bid-invitation @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'invitebid'" @recordCount="setInvitationCount" :show="(bid_selection == 'invitebid')"></bid-invitation> -->
                 <div class="container md" v-if="!noRecordFound">
                     <jobs-list :records="records" @chatMessage="showChatBox" :tabType="tab"></jobs-list>
                 </div>
                 <no-record-found v-if="noRecordFound"></no-record-found>
                 <vue-common-methods :url="bidUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
-                <!-- <bid-completed @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'completedbid'" @recordCount="setCompletedCount" :show="(bid_selection == 'completedbid')" :count="completedCount"></bid-completed>
-                <bid-awarded @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'awardedbid'" @recordCount="setAwardedCount" :show="(bid_selection == 'awardedbid')" :count="awardedCount"></bid-awarded>
-                <bid-archived @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'archivedbid'" @recordCount="setArchivedCount" :show="(bid_selection == 'archivedbid')" :count="archivedCount"></bid-archived>
-                <bid-active @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'activebid'" @recordCount="setActiveBidCount" :show="(bid_selection == 'activebid')" :count="activeBidCount"></bid-active>
-                <bid-cancelled @changebid="ChangeBid" @showinformation="showinfo()" @chatmessage="showChatBox" v-show="bid_selection == 'cancelled'" @recordCount="setCancelledBidCount" :show="(bid_selection == 'cancelled')" :count="cancelledCount"></bid-cancelled> -->
             </div>
 
             <post-bid-popup @HideModalValue="HideModal" :showModalProp="bidpopup"></post-bid-popup>

@@ -85,6 +85,7 @@ Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
 require('./filters')
+require('./directives')
 
 const options = {
     color: '#8200ff',
@@ -211,19 +212,19 @@ const app = new Vue({
 });
 
 // Laravel Echo 
-import Echo from 'laravel-echo'
-window.io = require('socket.io-client');
+// import Echo from 'laravel-echo'
+// window.io = require('socket.io-client');
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ':'+ window.socketPort,
-    auth: {
-        headers: {
-            Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
-        },
-    },
-});
+// let token = document.head.querySelector('meta[name="csrf-token"]');
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: window.location.hostname + ':'+ window.socketPort,
+//     auth: {
+//         headers: {
+//             Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
+//         },
+//     },
+// });
 
 Vue.axios.interceptors.response.use((response) => { // intercept the global error
     return response

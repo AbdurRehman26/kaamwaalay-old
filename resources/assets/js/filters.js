@@ -108,6 +108,20 @@ const jobPreferences = [
 }
 ];
 
+const paymentType = [
+{
+    key : 'featured_profile',
+    value : 'Featured'
+},
+{
+    key : 'urgent_job',
+    value : 'Urgent'
+},
+{
+    key : 'account_creation',
+    value : 'Account Creation'
+}
+];
 
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
@@ -309,5 +323,19 @@ Vue.filter('roundOff', function(value) {
     if (value) {
         return Number((value).toFixed(2));
     }
+});
+
+Vue.filter('paymentType', function (value) {
+
+    let obj = _.find(paymentType, item =>{
+        if(item.key == value){
+            return item; 
+        }
+    });
+
+    if(!obj){
+        return '';
+    }
+    return obj.value;
 });
 
