@@ -184,7 +184,6 @@
         },
         computed : {
             requestUrl(){
-                console.log(this.$route);
                 return this.url+this.$route.params.id+'?bid_data=true';
             },
             imageLists(){
@@ -211,7 +210,6 @@
             },
             open (e) {
                 let jobImages = [];
-                console.log(this.record.jobImages);
                 for (var i = 0 ; i < this.record.jobImages.length; i++) {
                     let data = {
                         src : this.record.jobImages[i]

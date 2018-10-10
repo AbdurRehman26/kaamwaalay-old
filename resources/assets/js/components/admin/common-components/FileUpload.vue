@@ -58,8 +58,6 @@
                 ];
                 var files = e.target.files || e.dataTransfer.files;
 
-                console.log(supportedType, files[0].name.split('.').pop() , 213213);
-
                 this.errorMessage = "";
                 if(!supportedType.includes(files[0].name.split('.').pop())) {
                     this.errorBag.add({

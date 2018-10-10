@@ -5,6 +5,7 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\ServiceProviderService;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceProviderServiceRepository extends AbstractRepository implements RepositoryContract
 {
@@ -46,7 +47,7 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
         if(is_array($whereInModelIds)) {
             $this->builder = $this->builder->whereIn('id', $whereInModelIds);
         }
- 
+
         $details = $details ? ['details' => true] : fasle;
 
         return $this->findByAll(false, self::PER_PAGE, $details);
@@ -54,8 +55,29 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
-        $data = parent::findById($id, $refresh, $details, $encode);
- 
+
+        $data = $this->cache()->get($this->_cacheKey.$id);
+
+        if ($data == NULL || $refresh == true) {
+
+            if(request()->has('with-trashed')){
+                $query = $this->model->withTrashed()->find($id);
+            }else{
+                $query = $this->model->find($id);
+            }
+
+            if ($query != NULL) {
+
+                $data = new \stdClass;
+                foreach ($query->getAttributes() as $column => $value) {
+                    $data->{$column} = $query->{$column};
+                }
+                $this->cache()->forever($this->_cacheKey.$id, $data);
+            } else {
+                return null;
+            }
+        }
+
         if($data && $details) {
 
             $data->service = app('ServiceRepository')->findById($data->service_id);
