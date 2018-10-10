@@ -313,6 +313,7 @@
             },
             hideChatBox() {
                 this.userIsOffline();
+                this.unSubscribeChannel();
             }
         },
         computed: {
