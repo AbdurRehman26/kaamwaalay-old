@@ -6,9 +6,10 @@
 Please click on the button provided below:
 
 @component('mail::button', ['url' => $url])
-GO TO PSM
+GO TO {{ config('app.name') }}
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+<strong>Thanks,<br>
+{{ config('app.name') }}.</strong>
 @endcomponent
+

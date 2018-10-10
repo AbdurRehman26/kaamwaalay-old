@@ -1,12 +1,12 @@
 @component('mail::message')
-You are receiving this email because we received a password reset request for your account.
+# Hi {{ $user->first_name ." ". $user->last_name}}
 
-If you did not request a password reset, no further action is required.
- 
+You recently requested to reset your password for your account, use the button below to reset it.
+
 @component('mail::button', ['url' => $url])
-RESET PASSWORD
+Reset Password
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+<strong>Thanks,<br>
+{{ config('app.name') }}</strong><br>
 @endcomponent
