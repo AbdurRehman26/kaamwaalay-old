@@ -415,7 +415,6 @@
             },
             awardedToMe(){
                 if(Object.keys(this.record).length && this.record.my_bid && this.record.awarded_to){
-                    console.log(this.record.my_bid , this.record.awarded_to);
                     return this.record.my_bid.user_id == this.record.awarded_to.id;
                 }
             },
@@ -669,7 +668,6 @@
             VueGallerySlideshow,
         },
         mounted(){
-            console.log(this.record , 123123213);
         },
 
     }

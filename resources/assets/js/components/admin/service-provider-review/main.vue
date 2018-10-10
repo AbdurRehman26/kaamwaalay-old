@@ -115,7 +115,7 @@
                     filter_by_service : '',
                     filter_by_status : ''
                 },
-                url : 'api/service-provider-profile-request?pagination=true',
+                url : 'api/service-provider-profile-request?pagination=true&with-trashed=true',
                 loading : true,
                 statuses : [
                 {

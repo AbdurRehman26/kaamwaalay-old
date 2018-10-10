@@ -81,7 +81,6 @@
 
             },
             showModal () {
-                console.log(this.$refs , 11132323);
                 this.$refs.myModalRef.show()
             },
             hideModal () {
