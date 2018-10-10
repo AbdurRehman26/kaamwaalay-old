@@ -185,13 +185,13 @@
                         <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
                             <span>We won't charge your card</span>.</p>
                         </div>
-                </div>
-                <div v-else-if="!isShowCardDetail" class="col-md-12">
-                    <div class="verification-alert">
-                        <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
+                    </div>
+                    <div v-else-if="!isShowCardDetail" class="col-md-12">
+                        <div class="verification-alert">
+                            <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
                         </div>
+                    </div>
                 </div>
-            </div>
                 <div>
                     <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
                 </div>
@@ -214,6 +214,8 @@
     <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
 
     <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
+
 </div>
 </template>
 
@@ -285,6 +287,8 @@
                 isSubmit : false,
                 isUrgentJob : false,
                 invalidZip: false,
+                forceUserValue : false,
+                requestUserUrl : ''
 
             }
         },
@@ -306,6 +310,7 @@
         mounted () {
             this.getPlansList();
             this.paymentDetailShow();
+
         },
         methods:{
             setZipCode(val) {
@@ -327,8 +332,7 @@
                 let self = this;
                 this.formData = response.data;
                 this.onStateChange();
-
-                 setTimeout(function () {
+                setTimeout(function () {
                     Vue.nextTick(() => {
                         self.errorBag.clear()
                     })
@@ -364,17 +368,17 @@
                         return;
                     }
                     if (result) {
-                            setTimeout(function () {
-                               if(!this.errorMessage){    
-                                self.isSubmit = true;
-                               }else{
-                                self.isSubmit = false;
-                               }
-                            }, 500);
-                           
-                            if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
-                                this.onSubmit();
-                            }
+                        setTimeout(function () {
+                           if(!this.errorMessage){    
+                            self.isSubmit = true;
+                        }else{
+                            self.isSubmit = false;
+                        }
+                    }, 500);
+
+                        if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
+                            this.onSubmit();
+                        }
                         this.errorMessage = '';
                         return;
                     }
@@ -403,9 +407,11 @@
 
                     self.successMessage = response.message;
 
-                    self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
+                    self.requestUserUrl = 'api/user/me';
+
 
                     setTimeout(function () {
+                        self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);
@@ -442,6 +448,11 @@
             addImages(){
                 this.formData.images[this.formData.images.length] = '';
                 this.$forceUpdate();
+            },
+            getUserResponse(response){
+                if(response.data){
+                    this.$store.commit('setAuthUser', response.data);
+                }
             }
 
         },

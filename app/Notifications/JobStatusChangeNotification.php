@@ -13,10 +13,11 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Lang;
 
-class JobStatusChangeNotification extends Notification implements ShouldBroadcast
+class JobStatusChangeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
+    public $queue;
     /**
      * Create a new notification instance.
      *
@@ -25,6 +26,7 @@ class JobStatusChangeNotification extends Notification implements ShouldBroadcas
     public function __construct($data)
     {
         $this->data = $data;
+        $this->queue = config('queue.pre_fix').'notifications';
     }
 
     /**
@@ -76,12 +78,12 @@ class JobStatusChangeNotification extends Notification implements ShouldBroadcas
     */
     public function toBroadcast($notifiable)
     {
-        return new BroadcastMessage([
+        return new (BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
-        ]);
+        ]))->onQueue($this->queue);
     }
 
     /**

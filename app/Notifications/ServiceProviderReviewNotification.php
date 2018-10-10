@@ -12,10 +12,11 @@ use NotificationChannels\OneSignal\OneSignalWebButton;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ServiceProviderReviewNotification extends Notification implements ShouldBroadcast
+class ServiceProviderReviewNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
+    public $queue;
     /**
      * Create a new notification instance.
      *
@@ -24,6 +25,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldBr
     public function __construct($data)
     {
         $this->data = $data;
+        $this->queue = config('queue.pre_fix').'notifications';
     }
 
     /**
@@ -75,11 +77,11 @@ class ServiceProviderReviewNotification extends Notification implements ShouldBr
     */
     public function toBroadcast($notifiable)
     {
-        return new BroadcastMessage([
+        return new (BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
-        ]);
+        ]))->onQueue($this->queue);
     }
 }

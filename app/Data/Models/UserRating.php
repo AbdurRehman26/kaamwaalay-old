@@ -9,4 +9,5 @@ class UserRating extends Model
 {
     //
     use InsertOnDuplicateKey;
+    const APPROVED = "approved";
 }

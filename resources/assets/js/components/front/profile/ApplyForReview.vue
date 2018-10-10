@@ -91,7 +91,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business name" v-model="record.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -445,7 +445,7 @@
 
             },
             checkUploadedDocuments(){
-                return true;
+                
                 let attachments = this.record.business_details.attachments;
 
                 if(!attachments['certifications'][0]){

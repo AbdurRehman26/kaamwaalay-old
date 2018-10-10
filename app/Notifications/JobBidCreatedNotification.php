@@ -19,11 +19,12 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
 
 
-class JobBidCreatedNotification extends Notification implements ShouldBroadcast
+class JobBidCreatedNotification extends Notification implements ShouldQueue
 {
 
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
+    public $queue;
 
     /**
     * Create a new notification instance.
@@ -33,6 +34,7 @@ class JobBidCreatedNotification extends Notification implements ShouldBroadcast
     public function __construct($event)
     {
         $this->data = $event;
+        $this->queue = config('queue.pre_fix').'notifications';
     }
 
     /**
@@ -98,12 +100,12 @@ class JobBidCreatedNotification extends Notification implements ShouldBroadcast
 
     public function toBroadcast($notifiable)
     {   
-        return new BroadcastMessage([
+        return new (BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
                 'image' => $this->data->from->profile_image,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
-        ]);
+        ]))->onQueue($this->queue);
     }
 }
