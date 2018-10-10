@@ -254,6 +254,7 @@
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+                
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     if(typeof(e.discussion.user_is_online) != "undefined")  {
                         self.isOnline = e.discussion.user_is_online;

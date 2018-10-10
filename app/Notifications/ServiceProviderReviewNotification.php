@@ -77,11 +77,11 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     */
     public function toBroadcast($notifiable)
     {
-        return new BroadcastMessage([
+        return new (BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
-        ]);
+        ]))->onQueue($this->queue);
     }
 }
