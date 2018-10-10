@@ -209,7 +209,6 @@
                             this.errorMessage = ''
                             return;
                         }
-                        console.log(this.errorBag.all());
                         this.errorMessage = this.errorBag.all()[0];
                     });
                 },

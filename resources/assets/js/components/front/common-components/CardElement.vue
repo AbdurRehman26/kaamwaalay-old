@@ -166,12 +166,18 @@
                                 self.$parent.getCampaignList()
                             }else{
                                 self.saveUserStripeToken(data);
-                                if(typeof self.$parent.formData.subscription_id != 'undefined'){
-                                  self.$parent.formData.subscription_id = response.data.data.id  
+                                if(typeof self.$parent.formData != 'undefined'){
+                                    if(typeof self.$parent.formData.subscription_id != 'undefined' ){
+                                      self.$parent.formData.subscription_id = response.data.data.id  
+                                    }
                                 } 
                             }
-                            self.$parent.onSubmit()
-                            self.hideModal()
+                            if(typeof self.$parent.onSubmit != 'undefined'){
+                             self.$parent.onSubmit()
+                            }
+                            if(self.isPopup){
+                             self.hideModal()
+                            }
                         }, 1000);
                     })
                     .catch(error => {
@@ -224,8 +230,12 @@
                 self.$http.put(url, update).then(response => {
                     response = response.data.response;
                     self.$store.commit('setAuthUser', response.data);
-                    self.$parent.onSubmit();
-                    self.$parent.submit = true;
+                    if(typeof self.$parent.onSubmit != 'undefined'){
+                             self.$parent.onSubmit()
+                    }
+                    if(typeof self.$parent.submit != 'undefined'){
+                            self.$parent.submit = true;
+                    }      
                 }).catch(error => {
                 });
             },
