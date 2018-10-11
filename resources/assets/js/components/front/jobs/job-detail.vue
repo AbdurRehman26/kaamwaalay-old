@@ -258,7 +258,9 @@
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
 <visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
+
 <go-to-visit-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
+
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
@@ -432,7 +434,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){                    
-                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || this.record.my_bid.status == "visit_allowed" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
