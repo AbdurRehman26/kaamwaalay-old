@@ -159,7 +159,7 @@ public function socialLogin(Request $request)
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255',
-        'role_id' => 'required|exists:roles,id',
+        'role_id' => 'nullable|exists:roles,id',
         'social_account_id' => 'required',
         'social_account_type' => 'required|in:facebook',
         'from_sign_up' => 'boolean',
