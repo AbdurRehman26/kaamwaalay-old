@@ -174,9 +174,10 @@ class ServiceTableSeeder extends Seeder
 
     foreach ($services as $key => $service) {
 
+        $imageObject = [];
 
         $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
-
+        dd($serviceRandomImages[array_rand($serviceRandomImages)]);
 
         $data [] = [
             'id' => (int) $key+1,
@@ -197,6 +198,8 @@ class ServiceTableSeeder extends Seeder
 
     foreach ($subServices as $parentServiceKey => $subService) {
 
+        $imageObject = [];
+        
         $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
 
 
