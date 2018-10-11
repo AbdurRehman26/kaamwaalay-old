@@ -155,6 +155,7 @@ class LoginController extends Controller
         if($user->role_id == Role::ADMIN || $user->role_id == Role::REVIEWER){
             $output = ['admin_access_token'=>$data->access_token, 'data' => $user,'message'=>'Success'];
         }else{
+            $user->access_token =$data->access_token;
             $output = ['access_token'=>$data->access_token,'data' => $user,'message'=>'Success'];
         }
         // HTTP_OK = 200;
