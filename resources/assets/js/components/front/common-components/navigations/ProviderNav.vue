@@ -36,7 +36,7 @@
 
 </ul>
 <!--  Get Service provider profile  -->
-<vue-common-methods :url="url" @get-records="getResponse"></vue-common-methods>
+<vue-common-methods :url="url" :hideLoader='true' @get-records="getResponse"></vue-common-methods>
 
 
 </div>
