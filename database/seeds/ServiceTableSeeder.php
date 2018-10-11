@@ -148,11 +148,6 @@ class ServiceTableSeeder extends Seeder
         // reduce the probabiltiy of 1 occuring 
 
      $serviceRandomImages = [
-        'images/dummy/door-2.jpg',
-        'images/dummy/electrician.jpg',
-        'images/dummy/nice-door.jpg',
-        'images/dummy/jobfileimage1.png',
-        'images/dummy/jobfileimage2.png',
         'images/dummy/carpenter1.jpg',
         'images/dummy/carpenter2.jpg',
         'images/dummy/carpenter3.jpg',
@@ -163,7 +158,6 @@ class ServiceTableSeeder extends Seeder
         'images/dummy/electrician1.jpg',
         'images/dummy/electrician2.jpg',
         'images/dummy/electrician3.jpg',
-        'images/dummy/mds.png',
         'images/dummy/mover1.jpg',
         'images/dummy/mover2.jpg',
         'images/dummy/mover3.jpg',
@@ -197,7 +191,7 @@ class ServiceTableSeeder extends Seeder
 
     foreach ($subServices as $parentServiceKey => $subService) {
 
-        
+
         $data = [];
         $parentService = app('ServiceRepository')->findByAttribute('title' , $parentServiceKey);
 
@@ -208,7 +202,7 @@ class ServiceTableSeeder extends Seeder
 
         foreach ($subService as $value) {
             $imageObject = [];
-            
+
             $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
 
 
