@@ -224,9 +224,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
                     $data->can_message = app('JobMessageRepository')->findByCriteria($criteria);
                 }
-                
+                $criteriaServiceProviderCount = ['zip_code' => $data->zip_code, 'role_id' => Role::SERVICE_PROVIDER];     
+                $data->service_provider_count = app('UserRepository')->findByCriteria($criteriaServiceProviderCount,false,false,true,false,true);
             }
-
+            
         }
 
         return $data;

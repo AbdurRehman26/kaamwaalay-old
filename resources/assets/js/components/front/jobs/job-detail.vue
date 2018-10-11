@@ -198,7 +198,7 @@
 
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
-                        <p>14 service providers available around you related to concrete flooring.</p>
+                        <p>{{record.service_provider_count}} service providers available around you related to concrete flooring.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary" 
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
