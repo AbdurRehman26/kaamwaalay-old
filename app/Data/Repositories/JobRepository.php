@@ -196,7 +196,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                         $criteria['rated_by'] = $data->user_id; 
 
                         $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
-                    
+
 
                     }
 
@@ -262,7 +262,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         $model = $this->model->find($data['id']);
         if ($model != NULL) {
             foreach ($data as $column => $value) {
-                $model->{$column} = $value;
+
+                if($data[$column]){
+                    $model->{$column} = $value;
+                }
+
             }
             $model->updated_at = Carbon::now();
 
