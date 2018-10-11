@@ -238,6 +238,7 @@
                     
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
+
                     <a v-canBid v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                         Write Review
                     </a>
@@ -430,8 +431,8 @@
                 }
             },
             canModifyBid(){
-                if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && parseInt(this.record.my_bid.status == "visit_allowed" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                if(Object.keys(this.record).length && this.record.my_bid){                    
+                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || this.record.my_bid.status == "visit_allowed" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
