@@ -143,11 +143,12 @@ class DashboardRepository
 
 
         $result = $this->paymentRepo->model
+            ->join('plans', 'subscriptions.stripe_plan', '=', 'plans.id')
             ->select(
-                DB::raw('SUM(amount) as value'),
-                DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
+                DB::raw('SUM(plans.amount) as value'),
+                DB::raw('DATE_FORMAT(subscriptions.created_at, "%Y-%m-%d") as date')
             )
-            ->whereBetween('created_at', [$startDate, $endDate])
+            ->whereBetween('subscriptions.created_at', [$startDate, $endDate])
             ->groupBy('date')
             ->get()
             ->toArray();
@@ -187,12 +188,13 @@ class DashboardRepository
 
 
         $result = $this->paymentRepo->model
+            ->join('plans', 'subscriptions.stripe_plan', '=', 'plans.id')
             ->select(
-                'type',
-                DB::raw('SUM(amount) as value')
+                DB::raw('REPLACE(plans.product,"_"," ") AS type'),
+                DB::raw('SUM(plans.amount) as value')
             )
-            ->whereBetween('created_at', [$startDate, $endDate])
-            ->groupBy('type')
+            ->whereBetween('subscriptions.created_at', [$startDate, $endDate])
+            ->groupBy('plans.product')
             ->get()
             ->toArray();
 
