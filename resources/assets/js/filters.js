@@ -311,6 +311,10 @@ Vue.filter('bidStatus', function (bid) {
         return 'Visit allowed';
     }
 
+    if(bid.is_visit_required && bid.status =='on_the_way'){
+        return 'On the way';
+    }
+
     if(bid.is_tbd){
         return 'TBD';
     }

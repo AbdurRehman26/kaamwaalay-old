@@ -32,8 +32,7 @@
                 <i class="icon-work-briefcase"></i>
                 Offer: <strong>
                     {{ job.my_bid | bidStatus}}
- 
-               </strong><span v-canBid v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !job.my_bid.is_visit_required && !hideChangeBid">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
+               </strong><span v-canBid v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !hideChangeBid && (job.my_bid.status == 'on_the_way' || (job.my_bid.status == 'pending' && !job.my_bid.is_visit_required))">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
             </p>
 
             <p class="member-since">
