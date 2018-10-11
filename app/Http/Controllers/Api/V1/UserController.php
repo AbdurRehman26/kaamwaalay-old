@@ -159,7 +159,7 @@ public function socialLogin(Request $request)
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255',
-        'role_id' => 'required|exists:roles,id',
+        'role_id' => 'nullable|exists:roles,id',
         'social_account_id' => 'required',
         'social_account_type' => 'required|in:facebook',
         'from_sign_up' => 'boolean',
@@ -387,7 +387,8 @@ public function socialLoginCheck(Request $request)
 public function getUserNotification(Request $request)
 {
     $input = $request->only('page');
-    $notification = request()->user()->unreadNotifications();
+    $notification = request()->user()->notifications();
+    $count = request()->user()->unreadNotifications()->count();
     $data =  $notification->paginate(10);
     $models = $data->items();
     $response = Helper::paginator($models, $data); 
@@ -398,14 +399,15 @@ public function getUserNotification(Request $request)
       $output = [
             'data' => $response,
             'message' => 'success',
+            'unread_count' => $count,
             'pagination' => $pagination,
       ];  
     }else{
-      $errorResponse = ValidationException::withMessages(
-        ['message'=> 'no notification found' ]
-      );
-      $errorResponse->status = 404;
-      throw $errorResponse;
+      $code = 200;
+      $output = [
+            'data' => [],
+            'message' => 'no notifcation found',
+      ];
     }
     return response()->json($output, $code);
 }

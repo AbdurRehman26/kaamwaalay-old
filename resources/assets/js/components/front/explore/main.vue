@@ -278,7 +278,7 @@ mounted(){
 	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
 	this.routeName = 'Explore_Detail';
 	if(this.authUser) {
-		this.zipCode = this.authUser.zip_code;
+		this.zipCode = this.authUser.zip_code? this.authUser.zip_code : null;
 		localStorage.setItem("zip", this.zipCode);
 	}else {
 		if(localStorage['zip']) {
