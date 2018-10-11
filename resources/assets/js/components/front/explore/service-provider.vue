@@ -23,7 +23,7 @@
 					<div class="col-md-10 p-r-0">
                      <div class="search-filter m-b-0">
                          <div class="custom-multi category-detail" :class="{'invalid': isInvalid }">
-                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
+                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
                             @select="dispatchAction" @keyup.enter="validateBeforeSubmit">
                               <span slot="noResult">No service found.</span>
                         </multiselect>
@@ -389,7 +389,7 @@ ServiceProviderPage() {
         },
         checkRoute() {
         	this.zipCode = this.zip? this.zip : this.zipCode;
-          if(typeof(this.childServiceName) != "undefined") {
+          if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName)) {
             this.url  = 'api/service/?service_name=' + this.childServiceName;
           }else if(typeof(this.serviceName) != "undefined") {
             this.url  = 'api/service/?service_name=' + this.serviceName;
