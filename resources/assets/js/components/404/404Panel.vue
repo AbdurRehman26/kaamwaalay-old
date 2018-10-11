@@ -4,7 +4,8 @@
                 <h1>{{ heading }}</h1>
                 <h2>{{ description }}</h2>
                 <h3>{{ description2 }}</h3>
-                <router-link :to="{name: 'main-page'}" class="btn btn-primary">{{ buttontext }}</router-link>
+                <a href="/" v-if="anchor" class="btn btn-primary"> {{ buttontext }}</a>
+                <router-link :to="{name: 'main-page'}" class="btn btn-primary" v-else>{{ buttontext }}</router-link>
             </div>
 
          </div>
@@ -12,6 +13,7 @@
 
 <script>
     export default{
+        props: ['anchor'],
         data () {
           return {
             heading: '404.',

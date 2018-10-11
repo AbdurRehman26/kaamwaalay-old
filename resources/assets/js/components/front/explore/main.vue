@@ -215,7 +215,13 @@ export default {
 				return;
 			}
 			localStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			if(this.searchValue.parent) {
+
+   				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			}else {
+				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});	
+			}
+			
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -285,7 +291,6 @@ mounted(){
 			this.zipCode = localStorage.getItem('zip');
 		}
 	}
-	
 	this.getList({service_category: 'All'},false);
 },
 watch: {
