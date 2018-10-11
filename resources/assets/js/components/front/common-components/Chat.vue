@@ -16,7 +16,7 @@
                         <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profileImage) + ')'}"></span>
                         <div class="profile-message" :class="[checkCurrentUser(message)? 'bg-light-custom' : '']">
                             <p>{{message.text}}</p>
-                            <span class="chat-last-seen">{{getFormattedDateTime(message.formatted_created_at)}}</span>
+                            <span class="chat-last-seen">{{getFormattedDateTime(message.updated_at.date)}}</span>
                         </div>
                     </b-list-group-item>
                 </div>
