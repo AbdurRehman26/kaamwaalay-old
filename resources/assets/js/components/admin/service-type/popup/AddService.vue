@@ -145,8 +145,11 @@
                     this.formData.is_display_service_nav = 0;
                     this.formData.is_display_footer_nav = 0;
                     this.showRadios = false;
+                    console.log(this.formData.parent_id, 123213);
+                    this.url_prefix  = this.formData.parent_id.url + "/";
                 }else {
                     this.showRadios = true;
+                    this.url_prefix  = this.$store.getters.getServiceUrlPrefix;
                 }
             },
             resetFormFields() {

@@ -47,7 +47,7 @@ Route::get('services/{any}', function(App\Data\Models\Service $service) {
     if(!empty($params['any'])) {
         $any = $params['any'];
         if (strpos($any, '/') == false) {
-            $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->get()->toArray();
+            $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->first();
 
             if(empty($service)) {
                 return view('front-layout', ['page_not_found' => true]);

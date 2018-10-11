@@ -65,7 +65,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
-            $data->url_suffix = $data->url_suffix? $data->url_suffix : url(config('view.service.url.folder')).'/';
+            $data->url_suffix;
+            $data->url = url(config('view.service.url.folder')).'/'.$data->url_suffix;
             //comentend due to errors in various places
             // if(!empty($data->images)) {
 
