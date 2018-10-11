@@ -224,7 +224,6 @@
                         self.scrollToEnd();
                         self.successMessage = response.message;
 
-                        console.log(response.data, 9999);
                         self.messages.push(response.data);
                     }).catch(error => {
                         error = error.response.data;
@@ -268,7 +267,6 @@
                         return;
                     }
 
-                    console.log(e.discussion, 12121212);
                     self.isOnline = true;
                     self.messages.push(e.discussion);
                     self.scrollToEnd();
