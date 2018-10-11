@@ -24,7 +24,7 @@
                     </li>  
 
                 </ul>
-                <vue-common-methods :infiniteLoad="infiniteLoad" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+                <vue-common-methods :infiniteLoad="infiniteLoad" :url="requestUrl" @get-records="getNotificationRecords"></vue-common-methods>
                 <div v-show="noRecordFound" class="no-notification-found">
                     No new notification 
                 </div>
@@ -65,21 +65,21 @@
             }, 3000);      
         },
         methods: {
-            getRecords(response){
-                if(response.data){
+            getNotificationRecords(response){
                     self = this
                     this.infiniteLoad = true;
                     _.forEach(response.data, function(value, key) {
                         self.notificationData.push(value);
                     })
-                    this.notificationCount = response.pagination ? response.pagination.total : "";
+                    this.notificationCount = response.unread_count ? response.unread_count : "";
                     this.$parent.notificationCount = this.notificationCount;
-                }
+                    this.noRecordFound = response.noRecordFound
             },
             subscribeChannel() {
                 let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
                 self = this
                 window.Echo.private(channelName).notification((notification) => {
+                    self.noRecordFound = false
                     self.notificationData.unshift(notification);
                     self.notificationCount += 1;
                     self.$parent.notificationCount = self.notificationCount;

@@ -79,6 +79,9 @@
 
                     };
 
+                    if(typeof response.unread_count != 'undefined'){
+                      result.unread_count = response.unread_count
+                    }
                     if(!response.data.length){
                         result.noRecordFound = true;
                     }
