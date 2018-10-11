@@ -172,7 +172,7 @@
                                     <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <!-- <a v-if="(isMyJob || canChat) && !jobCancelled" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
@@ -229,13 +229,8 @@
                         Modify Bid
                     </a>   
 
-<<<<<<< HEAD
-                    <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
+                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click="VisitPopup"><i class="icon-front-car"></i> Go to visit</a>    
-=======
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a>
-                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
->>>>>>> adcc9fc3303f8ca2faac01e7e96a5324d6827d5f
 
                     <a v-canBid v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                         Write Review
@@ -256,7 +251,7 @@
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
 <visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
-<go-to-visit-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
+<go-to-visit-popup @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
@@ -430,7 +425,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || this.record.my_bid.status == "visit_allowed" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && parseInt(this.record.my_bid.status == "visit_allowed" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
@@ -476,11 +471,11 @@
             },
             checkStatus(bid) {
                 if(this.record.status == 'in_bidding') {
-                    this.showChatBox(bid, true, false);
+                    this.showChatBox(this.record, true, false);
                 }else if(this.record.status == 'cancelled' || this.record.status == 'archived' || this.record.status == 'completed'){
-                    this.showChatBox(bid, true, true);
+                    this.showChatBox(this.record, true, true);
                 }else {
-                    this.showChatBox(bid, false, false);
+                    this.showChatBox(this.record, false, false);
                 }
             },
             invite_to_job(){
@@ -489,14 +484,15 @@
             closeChatBox() {
                 this.showChat = false;
             },
-            showChatBox(bid, strictChat = false, disabled = false) {
+            showChatBox(record, strictChat = false, disabled = false) {
+                
                 this.jobMessageData = {
                     text: '',
-                    job_id: bid.job_id,
-                    reciever_id: bid.service_provider.user_id,
-                    job_bid_id: bid.id,
-                    sender_detail: bid.service_provider.user_detail,
-                    business_name: bid.service_provider.business_name,
+                    job_id: record.id,
+                    reciever_id: record.user_id,
+                    job_bid_id: record.my_bid.id,
+                    sender_detail: record.user,
+                    business_name: record.title,
                 };
                 this.strict = strictChat;
                 this.disabledChat = disabled;
