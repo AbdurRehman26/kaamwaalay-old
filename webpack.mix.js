@@ -19,6 +19,7 @@ mix.js('resources/assets/js/front-app.js', 'public/js')
 
 mix.copyDirectory('resources/assets/images', 'public/images');
 mix.copyDirectory('resources/assets/fonts', 'public/fonts');
+mix.copyDirectory('resources/assets/images/dummy', 'public/images');
 // Front
 mix.copyDirectory('resources/assets/images/front', 'public/images/front');
 mix.version();
