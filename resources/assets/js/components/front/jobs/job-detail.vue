@@ -203,7 +203,7 @@
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
 
-                    <a v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px">
+                    <a style="pointer-events: none;" v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px">
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
@@ -361,7 +361,6 @@
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    console.log(this.record.awardedBid.status)
                     return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'pending' && ( this.record.my_bid.id == this.record.awardedBid.id);
                 }
                 return false;
