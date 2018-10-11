@@ -114,6 +114,10 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views == $getPlanViews->plan->quantity ) {
                 $model->is_completed = 1;
                 $model->status = Campaign::EXPIRED;
+                $data = new \stdClass;
+                $data->user_id = $model->user_id;
+                $data->message = 'Your current subscription plan has ended. Your next subscription plan has begun.'; 
+                $this->sendNotification($data);
             }
 
             if($model->save()) {
