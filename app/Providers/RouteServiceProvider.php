@@ -30,7 +30,9 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('service', function ($service, $route) {
             $subservice = $route->parameter('subservice');
-            dd($subservice);
+            if(is_numeric($subservice)) {
+                return Service::where('url_suffix', '=', $service)->where('status', '=', 1)->first();
+            }
             if($subservice) {
                 return Service::where('url_suffix', '=', $subservice)->where('status', '=', 1)->first();    
             }
