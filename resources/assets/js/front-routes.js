@@ -174,7 +174,7 @@
     // Featured Profile
 
     {
-        name: 'Featured Profile',
+        name: 'featured_profile',
         path: '/featured-profile',
         meta: {
             title: 'Professional Service Marketplace | Featured Profile',
