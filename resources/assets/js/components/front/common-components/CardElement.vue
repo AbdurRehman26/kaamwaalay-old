@@ -175,9 +175,9 @@
                                     }
                                 } 
                             }
-                            if(typeof self.$parent.onSubmit != 'undefined'){
+                            /*if(typeof self.$parent.onSubmit != 'undefined'){
                              self.$parent.onSubmit()
-                            }
+                            }*/
                             if(self.isPopup){
                              self.$refs.myModalRef.hideHeaderClose  = false   
                              self.hideModal()
