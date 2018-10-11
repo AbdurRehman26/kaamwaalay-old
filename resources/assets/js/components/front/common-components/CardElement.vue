@@ -139,6 +139,7 @@
                 this.$refs.myModalRef.show()
             },
             hideModal() {
+                this.clearCard()
                 this.$refs.myModalRef.hide()
             },
             onHidden(){
@@ -147,9 +148,11 @@
             pay () {
                 self = this
                 this.loading = true
-                this.$parent.loading = true
-                if(self.profileReview){
+                if(this.profileReview || !this.isPopup){
                    this.$parent.loading = true  
+                }
+                if(this.isPopup){
+                   this.$refs.myModalRef.hideHeaderClose  = true
                 }
                 createToken().then(data => {
                     let params =  {
@@ -166,19 +169,31 @@
                                 self.$parent.getCampaignList()
                             }else{
                                 self.saveUserStripeToken(data);
-                                if(typeof self.$parent.formData.subscription_id != 'undefined'){
-                                  self.$parent.formData.subscription_id = response.data.data.id  
+                                if(typeof self.$parent.formData != 'undefined'){
+                                    if(typeof self.$parent.formData.subscription_id != 'undefined' ){
+                                      self.$parent.formData.subscription_id = response.data.data.id  
+                                    }
                                 } 
                             }
-                            self.$parent.onSubmit()
-                            self.hideModal()
+                            if(typeof self.$parent.onSubmit != 'undefined'){
+                             self.$parent.onSubmit()
+                            }
+                            if(self.isPopup){
+                             self.$refs.myModalRef.hideHeaderClose  = false   
+                             self.hideModal()
+                            }
                         }, 1000);
                     })
                     .catch(error => {
                         self.loading = false
                         self.$parent.loading = false
                         self.errorMessage = error.response.data.errors.message[0]
-                        self.$parent.errorMessage = self.errorMessage
+                        if(self.isPopup){
+                             self.$refs.myModalRef.hideHeaderClose  = false
+                             self.clearCard()
+                        }else{
+                             self.$parent.errorMessage = self.errorMessage 
+                        }
                         setTimeout(function(){
                             self.errorMessage = ''
                             self.$parent.errorMessage = ''
@@ -187,7 +202,12 @@
                 }).catch(error=>{
                     self.$parent.loading = false
                     self.errorMessage = error.response.data.error.message
-                    self.$parent.errorMessage = self.errorMessage
+                    if(self.isPopup){
+                       self.$refs.myModalRef.hideHeaderClose  = false
+                       self.clearCard()
+                    }else{
+                       self.$parent.errorMessage = self.errorMessage 
+                    }
                     setTimeout(function(){
                         self.errorMessage = ''
                         self.$parent.errorMessage = ''
@@ -224,8 +244,12 @@
                 self.$http.put(url, update).then(response => {
                     response = response.data.response;
                     self.$store.commit('setAuthUser', response.data);
-                    self.$parent.onSubmit();
-                    self.$parent.submit = true;
+                    if(typeof self.$parent.onSubmit != 'undefined'){
+                             self.$parent.onSubmit()
+                    }
+                    if(typeof self.$parent.submit != 'undefined'){
+                            self.$parent.submit = true;
+                    }      
                 }).catch(error => {
                 });
             },
@@ -244,6 +268,11 @@
                         this.$refs.cardNumber.focus()
                     }
                 }
+            },
+            clearCard () {
+              this.$refs.cardCvc.clear() 
+              this.$refs.cardNumber.clear() 
+              this.$refs.cardExpiry.clear() 
             }
         },
         watch:{

@@ -5,6 +5,6 @@ Your account has been created by Admin. To set your password, please click on th
 SET YOUR PASSWORD
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+<strong>Thanks,<br>
+{{ config('app.name') }}</strong><br>
 @endcomponent

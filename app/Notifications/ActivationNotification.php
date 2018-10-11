@@ -61,7 +61,7 @@ class ActivationNotification extends Notification
         );
         return (new MailMessage)
             ->subject(Lang::getFromJson('Activation Notification'))
-            ->markdown('email.user-invite', ['url' => $url]);
+            ->markdown('email.user-invite', ['url' => $url, 'user' => $notifiable]);
     }
 
     /**

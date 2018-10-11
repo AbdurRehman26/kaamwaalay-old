@@ -190,10 +190,13 @@ public function socialLogin(Request $request)
             if($result) {
                 $user = User::find($userId);
                 $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
-                $user->access_token = $token = $user->createToken('Token Name', $scopes)->accessToken;
+                $token = $user->createToken('Token Name', $scopes)->accessToken;
+                $user = app('UserRepository')->findById($userId,false);
+                $user->access_token = $token;
                 $code = 200;
                 $output = [
                     'data' => $user,
+                    'access_token' => $token,
                     'message' => 'Success',
                 ];
             }else{

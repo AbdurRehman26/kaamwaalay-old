@@ -102,15 +102,15 @@ import { directive as onClickaway } from 'vue-clickaway';
             setPaymentTypeList() {
                 let data = [
                 {
-                    id:'urgent',
+                    id:'urgent_job',
                     title:'Urgent'
                 },
                 {
-                    id:'featured',
+                    id:'featured_profile',
                     title:'Featured'
                 },
                 {
-                    id:'account creation',
+                    id:'account_creation',
                     title:'Account Creation'
                 }
                 ];

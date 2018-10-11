@@ -16,7 +16,7 @@
                         <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profileImage) + ')'}"></span>
                         <div class="profile-message" :class="[checkCurrentUser(message)? 'bg-light-custom' : '']">
                             <p>{{message.text}}</p>
-                            <span class="chat-last-seen">{{message.formatted_created_at}}</span>
+                            <span class="chat-last-seen">{{getFormattedDateTime(message.formatted_created_at)}}</span>
                         </div>
                     </b-list-group-item>
                 </div>
@@ -109,7 +109,6 @@
                         result.noRecordFound = true;
                     }
                     self.getMessages(result);
-
                     self.pagination = response.pagination;
 
                     self.loading = false;
@@ -170,6 +169,7 @@
                 }
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
+                
             },
             validateBeforeSubmit() {
                 let message = this.text;
@@ -185,6 +185,7 @@
                     let containsUrl = urlRegex.test(message);
                     if(containsDigits || containsEmail || containsGeneral || containsUrl) {
                         this.errorMessage = true;
+                        this.scrollToEnd();
                         setTimeout((e) => {
                             this.errorMessage = false;
                         }, 3000);
@@ -222,6 +223,8 @@
                         }
                         self.scrollToEnd();
                         self.successMessage = response.message;
+
+                        console.log(response.data, 9999);
                         self.messages.push(response.data);
                     }).catch(error => {
                         error = error.response.data;
@@ -236,12 +239,16 @@
                 let currentUser = JSON.parse(this.$store.getters.getAuthUser);
                 return currentUser.id == message.user.id;
             },
+            getFormattedDateTime(date) {
+                return moment.utc(date).local().format('MMM Do, YYYY, h:mm a');
+            },
             showChatBox() {
+                
                 this.url = 'api/job-message?pagination=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = this.jobMessageData;
                 data.pagination = true;
                 this.getList(data, false);
-                //this.unSubscribeChannel();
+                this.unSubscribeChannel();
                 this.subscribeChannel();
                 this.userIsOnline();
             },
@@ -254,21 +261,24 @@
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                
+
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     if(typeof(e.discussion.user_is_online) != "undefined")  {
                         self.isOnline = e.discussion.user_is_online;
                         return;
                     }
 
+                    console.log(e.discussion, 12121212);
                     self.isOnline = true;
                     self.messages.push(e.discussion);
                     self.scrollToEnd();
-                    
                 });
             },
             scrollToEnd() {
-                this.$refs.scrollWrapper.scrollTop = this.$refs.scrollWrapper.scrollHeight;
+                let self = this;
+                setTimeout(function(){
+                    self.$refs.scrollWrapper.scrollTop = self.$refs.scrollWrapper.scrollHeight;
+                }, 500);
             },
             userIsOnline() {
                 var self = this;
@@ -303,6 +313,7 @@
             },
             hideChatBox() {
                 this.userIsOffline();
+                this.unSubscribeChannel();
             }
         },
         computed: {
