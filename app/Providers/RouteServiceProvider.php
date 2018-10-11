@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('service', function ($service, $route) {
             $subservice = $route->parameter('subservice');
+            dd($subservice);
             if($subservice) {
                 return Service::where('url_suffix', '=', $subservice)->where('status', '=', 1)->first();    
             }
