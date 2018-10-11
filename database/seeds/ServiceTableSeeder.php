@@ -177,7 +177,6 @@ class ServiceTableSeeder extends Seeder
         $imageObject = [];
 
         $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
-        dd($serviceRandomImages[array_rand($serviceRandomImages)]);
 
         $data [] = [
             'id' => (int) $key+1,
