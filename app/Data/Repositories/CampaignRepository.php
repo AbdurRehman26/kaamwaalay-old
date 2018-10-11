@@ -5,6 +5,8 @@ namespace App\Data\Repositories;
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Campaign;
+use App\Data\Models\User;
+use App\Notifications\CampaignNotification;
 use Cache;
 class CampaignRepository extends AbstractRepository implements RepositoryContract
 {
@@ -96,6 +98,19 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             }
 
             $getPlanViews = $this->findById($model->id);
+            $consumptionPercent = round(($model->clicks/$model->views)*100);
+            $consumption = (int) $consumptionPercent;
+            $intervals = [25,50,75,100];
+            if(in_array($consumption, $intervals)){
+                $data = new \stdClass;
+                $data->user_id = $model->user_id;
+                $data->remaining_views = ($getPlanViews->plan->quantity-$model->views).' view(s)';
+                $data->title = $getPlanViews->plan->quantity.' view(s)';
+                $data->consumption = $consumption.'%';
+                $user = User::find($data->user_id);
+                $data->message = $user->first_name.' '.$user->last_name.' , you have used '.$data->consumption.' of '.$data->title.'. Remaining '.$data->remaining_views; 
+                $this->sendNotification($data);
+            }
             if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views == $getPlanViews->plan->quantity ) {
                 $model->is_completed = 1;
                 $model->status = Campaign::EXPIRED;
@@ -107,6 +122,10 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 if($planCount == 0){
                     $serviceProviderProfile = $this->serviceProviderProfileRepo->findByAttribute('user_id',$input['service_provider_user_id']);
                     $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
+                    $data = new \stdClass;
+                    $data->user_id = $model->user_id;
+                    $data->message = 'Your featured profile subscription has ended. To restart this subscription, you must purchase the subscription again.'; 
+                    $this->sendNotification($data);
                 }
                 return true;
             }
@@ -114,5 +133,12 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
         }
 
         return false;
+    }
+    public function sendNotification($data){
+           $event = new \StdClass();
+           $event->body =  $data; 
+           $event->to = User::find($data->user_id);   
+           $event->message = $data->message;
+           $event->to->notify(new CampaignNotification($event));
     }
 }

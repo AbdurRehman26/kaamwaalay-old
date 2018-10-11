@@ -176,7 +176,7 @@
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-
+                                    <a v-if="(isMyJob || canChat) && !jobCancelled && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
@@ -234,7 +234,7 @@
                         Modify Bid
                     </a>   
 
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="checkStatus" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -478,13 +478,13 @@
             getImage(img) {
                 return img ? img : 'images/dummy/image-placeholder.jpg'
             },
-            checkStatus() {
+            checkStatus(bid) {
                 if(this.record.status == 'in_bidding') {
-                    this.showChatBox(this.record, true, false);
+                    this.showChatBox(bid, true, false);
                 }else if(this.record.status == 'cancelled' || this.record.status == 'archived' || this.record.status == 'completed'){
-                    this.showChatBox(this.record, true, true);
+                    this.showChatBox(bid, true, true);
                 }else {
-                    this.showChatBox(this.record, false, false);
+                    this.showChatBox(bid, false, false);
                 }
             },
             invite_to_job(){
@@ -494,15 +494,27 @@
                 this.showChat = false;
             },
             showChatBox(record, strictChat = false, disabled = false) {
+                let user = JSON.parse(this.$store.getters.getAuthUser);
+                if(user.role_id == 3) {
+                    this.jobMessageData = {
+                        text: '',
+                        job_id: record.job_id,
+                        reciever_id: record.user_id,
+                        job_bid_id: record.id,
+                        sender_detail: user,
+                        business_name: record.service_provider.business_name,
+                    };
+                }else {
+                    this.jobMessageData = {
+                        text: '',
+                        job_id: record.id,
+                        reciever_id: record.user_id,
+                        job_bid_id: record.my_bid.id,
+                        sender_detail: record.user,
+                        business_name: record.title,
+                    };
+                }
                 
-                this.jobMessageData = {
-                    text: '',
-                    job_id: record.id,
-                    reciever_id: record.user_id,
-                    job_bid_id: record.my_bid.id,
-                    sender_detail: record.user,
-                    business_name: record.title,
-                };
                 this.strict = strictChat;
                 this.disabledChat = disabled;
                 this.showChat = true;
