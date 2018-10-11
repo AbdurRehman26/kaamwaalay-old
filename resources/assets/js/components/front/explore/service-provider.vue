@@ -171,7 +171,7 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['zip', 'serviceName'],
+		props: ['zip', 'serviceName', 'childServiceName'],
 		data () {
 			return {
                 userToSendInvite : '',
@@ -270,7 +270,7 @@ ServiceProviderPage() {
    }
    this.serviceName = this.searchValue.url_suffix;
    localStorage.setItem('zip', this.zipCode);
-   this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
+   this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, childServiceName: this.childServiceName, zip : this.zipCode }});
 			//this.getService(); 
 		},
 		onTouch () {
@@ -386,9 +386,11 @@ ServiceProviderPage() {
         },
         checkRoute() {
         	this.zipCode = this.zip? this.zip : this.zipCode;
-        	if(typeof(this.serviceName) != "undefined") {
-        		this.url  = 'api/service/?service_name=' + this.serviceName;
-        	}
+          if(typeof(this.childServiceName) != "undefined") {
+            this.url  = 'api/service/?service_name=' + this.childServiceName;
+          }else if(typeof(this.serviceName) != "undefined") {
+            this.url  = 'api/service/?service_name=' + this.serviceName;
+          }
         	if(typeof(this.zip) != "undefined") {
         		let val = this.zip;
         		if(val.length > 5) {
