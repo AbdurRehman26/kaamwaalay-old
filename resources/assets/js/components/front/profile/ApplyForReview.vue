@@ -157,10 +157,10 @@
 
                     </file-upload-component>
 
-                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(proof_of_business, index) in record.business_details.attachments.proof_of_business">
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.proof_of_business">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <a href="#">Proof of business {{index+1}}</a>
+                                {{attachment.original_name}}
                             </div>
                         </div>
                         <div class="col-md-6 text-right">
@@ -179,10 +179,10 @@
 
                     </file-upload-component>
 
-                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(certification, index) in record.business_details.attachments.certifications">
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.certifications">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <a href="#">Ceritificate {{index+1}}</a>
+                                {{attachment.original_name}}
                             </div>
                         </div>
                         <div class="col-md-6 text-right">
@@ -200,10 +200,10 @@
 
                     </file-upload-component>
 
-                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(registration, index) in record.business_details.attachments.registrations">
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.registrations">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <a href="#">Registration {{index+1}}</a>
+                                {{attachment.original_name}}
                             </div>
                         </div>
                         
@@ -409,12 +409,6 @@
                 return false;
 
             },
-            addMoreFiles(type, index){
-                if(this.record.business_details.attachments[type][index]){
-                    this.record.business_details.attachments[type][index+1] = ''
-                }
-                this.$forceUpdate();
-            },
             findUniqueValues(){
                 let self = this;
                 let service_details = self.record.service_details;
@@ -445,15 +439,15 @@
 
                 let attachments = this.record.business_details.attachments;
 
-                if(!attachments['certifications'][0]){
+                if(typeof(attachments['certifications']) == 'undefined' || !attachments['certifications'][0]){
                     return false;
                 }
 
-                if(!attachments['registrations'][0]){
+                if(typeof(attachments['registrations']) == 'undefined' || !attachments['registrations'][0]){
                     return false;
                 }
 
-                if(!attachments['proof_of_business'][0]){
+                if(typeof(attachments['proof_of_business']) == 'undefined' || !attachments['proof_of_business'][0]){
                     return false;
                 }
 
@@ -546,7 +540,17 @@
                 self.profileImage = response.upload_url;
             },
             getDocumentUploadResponse(response, type){
-                this.record.business_details.attachments[type][this.record.business_details.attachments[type].length] = response.name; 
+                var lengthOfAttachmentTypes = this.record.business_details.attachments[type];
+
+                if(typeof(lengthOfAttachmentTypes) == 'undefined' || !lengthOfAttachmentTypes.length){
+                    this.record.business_details.attachments[type] = [];
+                }
+
+                this.record.business_details.attachments[type].push({
+                   name : response.name,
+                   original_name : response.original_name
+               }); 
+
                 this.$forceUpdate();
             },
             getResponse(response){
@@ -560,9 +564,6 @@
                     if(self.record && self.record.business_details && !self.record.business_details.attachments){
 
                         self.record.business_details.attachments = {
-                            certifications : [''], 
-                            proof_of_business : [''],
-                            registrations : [''],
                         }
 
                     }

@@ -45,7 +45,7 @@ class ServiceProviderProfileSeeder extends Seeder
                 'business_details' =>$faker->Address,
                 'business_type' =>$businessTypes[array_rand($businessTypes)],
                 'duns_number' =>rand(),
-                'years_of_experience' =>$formattedData,
+                'years_of_experience' => 1,
                 'is_featured' => 0,
                 'is_verified' => 0,
                 'created_at' => $date,

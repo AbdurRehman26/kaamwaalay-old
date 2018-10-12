@@ -109,7 +109,7 @@
                         <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
-                    <div v-if="awardedToMe || isMyJob" class="jobs-post-files">
+                    <div v-if="canViewMap" class="jobs-post-files">
                         <h3>Customer Information</h3>
                         <div class="coustomer-info-line">
                             <i class="icon-phone_in_talk"></i>
@@ -171,7 +171,7 @@
                                 </div>
 
                                 <div class="provider-bidding-btn">
-                                    
+
                                     <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
@@ -472,6 +472,14 @@
                 let axisPoints = xAxis +','+  yAxis;
                 axisPoints = this.record.address;
                 return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints;
+            },
+            onTheWay(){
+                if(Object.keys(this.record).length && this.record.my_bid){
+                    return this.record.status != 'cancelled' && this.record.my_bid.status == "on_the_way";
+                }
+            },
+            canViewMap(){
+                return this.isMyJob || this.visitAllowed || this.onTheWay || this.awardedToMe;
             }
         },
         methods: {
@@ -501,7 +509,7 @@
                         job_id: record.job_id,
                         reciever_id: record.user_id,
                         job_bid_id: record.id,
-                        sender_detail: user,
+                        sender_detail: record.user,
                         business_name: record.service_provider.business_name,
                     };
                 }else {

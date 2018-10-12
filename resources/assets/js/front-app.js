@@ -211,20 +211,7 @@ const app = new Vue({
     }
 });
 
-// Laravel Echo 
-import Echo from 'laravel-echo'
-window.io = require('socket.io-client');
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ':'+ window.socketPort,
-    auth: {
-        headers: {
-            Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
-        },
-    },
-});
 
 Vue.axios.interceptors.response.use((response) => { // intercept the global error
     return response
@@ -241,7 +228,22 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
    }
 })
 
+// Laravel Echo 
+import Echo from 'laravel-echo';
+window.io = require('socket.io-client');
+if(app.$auth.isAuthenticated()) {
 
+    let token = document.head.querySelector('meta[name="csrf-token"]');
+    window.Echo = new Echo({
+        broadcaster: 'socket.io',
+        host: window.location.hostname + ':'+ window.socketPort,
+        auth: {
+            headers: {
+                Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
+            },
+        },
+    });
+}
 /*const app = new Vue({
     router
 }).$mount('#app')*/

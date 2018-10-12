@@ -88,6 +88,7 @@
             },
             getRecords(response){
                 let self = this;
+                console.log(self.loading , 1111);
                 if(response.data){
                     self.records = response.data;
                     self.loading = false;
@@ -98,8 +99,10 @@
             },
             getUserRecord(response){
                 let self = this;
-                self.loading = false;
-                self.mainUser = response.data;
+                if(response.data){
+                    self.mainUser = response.data;
+                }
+
             }
         },
 
