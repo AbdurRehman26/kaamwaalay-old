@@ -142,8 +142,8 @@
                             </b-col>
 
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a download v-for="(certificate, index) in records.provider_profile.attachmentsUrl.certifications" class="underline" :href="certificate">
-                                    Certificate {{ index + 1 }}
+                                <a download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.certifications" class="underline" :href="certificate">
+                                    {{ attachment.original_name }}
                                     <span v-if="typeof(records.provider_profile.attachmentsUrl.certifications[index+1]) !== 'undefined'">,</span>
                                 </a>
                             </b-col>
@@ -153,8 +153,8 @@
                                 <p><strong class="title-head">Registrations</strong></p>
                             </b-col>
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a download v-for="(registration, index) in records.provider_profile.attachmentsUrl.registrations"  class="underline" :href="registration">
-                                    Registration {{ index + 1 }}
+                                <a download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.registrations"  class="underline" :href="registration">
+                                    {{ attachment.original_name }}
                                     <span v-if="typeof(records.provider_profile.attachmentsUrl.registrations[index+1]) !== 'undefined'">,</span>
                                 </a>
                             </b-col>
@@ -164,8 +164,8 @@
                                 <p><strong class="title-head">Proof of business</strong></p>
                             </b-col>
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a download v-for="(business, index) in records.provider_profile.attachmentsUrl.proof_of_business" class="underline" :href="business">
-                                    Proof {{ index + 1 }} 
+                                <a download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.proof_of_business" class="underline" :href="business">
+                                    {{ attachment.original_name }} 
                                     <span v-if="typeof(records.provider_profile.attachmentsUrl.proof_of_business[index+1]) !== 'undefined'">,</span>
                                 </a>
                             </b-col>
