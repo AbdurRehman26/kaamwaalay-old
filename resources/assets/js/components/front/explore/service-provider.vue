@@ -23,7 +23,7 @@
 					<div class="col-md-10 p-r-0">
                      <div class="search-filter m-b-0">
                          <div class="custom-multi category-detail" :class="{'invalid': isInvalid }">
-                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
+                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
                             @select="dispatchAction" @keyup.enter="validateBeforeSubmit">
                               <span slot="noResult">No service found.</span>
                         </multiselect>
@@ -171,7 +171,7 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['zip', 'serviceName'],
+		props: ['zip', 'serviceName', 'childServiceName'],
 		data () {
 			return {
                 userToSendInvite : '',
@@ -200,6 +200,7 @@
                 routeName: '',
                 isZipEmpty: false,
                 invitePopup : false,
+                serName: '',
             }
         },
         computed : {
@@ -217,9 +218,12 @@
     methods: {
      onSelectCategory(val) {
         this.hideZipModal();
-
         localStorage.setItem("zip", val);
-        this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
+        if(this.selectedService.parent) {
+            this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+        }else {
+          this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});  
+        }
     },
     changecategorypopup(service) {
         this.selectedService = service;
@@ -268,10 +272,13 @@ ServiceProviderPage() {
        this.isTouched = true;
        return;
    }
-   this.serviceName = this.searchValue.url_suffix;
+   this.serName = this.searchValue.url_suffix;
    localStorage.setItem('zip', this.zipCode);
-   this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
-			//this.getService(); 
+   if(this.searchValue.parent) {
+        this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+    }else {
+      this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, childServiceName: null, zip : this.zipCode }}); 
+    }
 		},
 		onTouch () {
 			this.options = [];
@@ -385,12 +392,18 @@ ServiceProviderPage() {
             self.pagination = response.pagination;
         },
         checkRoute() {
-        	this.zipCode = this.zip? this.zip : this.zipCode;
-        	if(typeof(this.serviceName) != "undefined") {
-        		this.url  = 'api/service/?service_name=' + this.serviceName;
-        	}
-        	if(typeof(this.zip) != "undefined") {
-        		let val = this.zip;
+          this.serviceProviderUrl = null;
+          this.zipCode = this.zip? this.zip : this.zipCode;
+          if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
+            this.zipCode =  this.childServiceName;
+          }
+          if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
+            this.url  = 'api/service/?service_name=' + this.childServiceName;
+          }else if(typeof(this.serviceName) != "undefined") {
+            this.url  = 'api/service/?service_name=' + this.serviceName;
+          }
+        	if(typeof(this.zipCode) != "undefined") {
+        		let val = this.zipCode;
         		if(val.length > 5) {
         			val = val.substr(0, 5);
         		}
@@ -410,11 +423,19 @@ ServiceProviderPage() {
     	'service.title' (val) {
     		this.serviceTitle = val;
     	},
-    	serviceName(val) {
-    		if(!val) {
-    			this.$router.push({ name: 'Explore'})
-    		}
-    		this.serviceName = val;
+      serviceName(val) {
+        // if(!val) {
+        //   this.$router.push({ name: 'Explore'})
+        // }
+        this.serviceName = val;
+        this.getService();
+      },
+    	childServiceName(val) {
+
+    		// if(!val) {
+    		// 	this.$router.push({ name: 'Explore'})
+    		// }
+    		this.childServiceName = val;
     		this.getService();
     	},
     	zip(val) {

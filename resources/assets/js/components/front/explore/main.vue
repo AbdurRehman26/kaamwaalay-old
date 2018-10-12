@@ -12,7 +12,7 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+										<multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
 											<span slot="noResult">No service found.</span>
 										</multiselect>
 									</div>
@@ -159,8 +159,12 @@ export default {
 		},
 		onSelectCategory(val) {
 			this.hideModal();
-			this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
 			localStorage.setItem("zip", val);
+			if(this.selectedService.parent) {
+   				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+			}else {
+				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});	
+			}
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
@@ -215,7 +219,13 @@ export default {
 				return;
 			}
 			localStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			if(this.searchValue.parent) {
+   				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			}else {
+
+				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});	
+			}
+			
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -285,7 +295,6 @@ mounted(){
 			this.zipCode = localStorage.getItem('zip');
 		}
 	}
-	
 	this.getList({service_category: 'All'},false);
 },
 watch: {

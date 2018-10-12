@@ -41,22 +41,19 @@ Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.act
 Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 /*Front Route*/
-Route::get('services/{any}', function(App\Data\Models\Service $service) {
-	$currentRoute = Route::current();
-    $params = $currentRoute->parameters();
-    if(!empty($params['any'])) {
-        $any = $params['any'];
-        if (strpos($any, '/') == false) {
-            $service = $service->where('url_suffix', '=', $any)->where('status', '=', 1)->get()->toArray();
+Route::prefix('services')->group(function () {
 
-            if(empty($service)) {
-                return view('front-layout', ['page_not_found' => true]);
-            }
+    Route::get('/{service}/{subservice?}', function(App\Data\Models\Service $serviceModel) {
+        $subService = $serviceModel->toArray();
+        if(!empty($subService)) {
+            return view('front-layout', ['service' => $subService]);
+        }else {
+            return view('front-layout', ['page_not_found' => true]);
         }
-		return view('front-layout', ['service' => $service[0]]);
-    }
-    return view('front-layout');
-})->where('any', '.*');
+        return view('front-layout');
+    });
+});
+
 
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
 
