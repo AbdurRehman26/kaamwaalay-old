@@ -47,6 +47,7 @@
                 </div>
                 <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
+{{jobImages}}
                 <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
 
                     <div class="col-md-6">
@@ -55,7 +56,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <a v-if="parseInt(index) < parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="removeImage(index);" class="add-photos filter-btn-top-space">x</a>
+                        <a href="javascript:;" @click.prevent="removeImage(index);" class="add-photos filter-btn-top-space">remove</a>
                     </div>
                 </div>
             </div>
