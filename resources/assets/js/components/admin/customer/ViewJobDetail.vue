@@ -99,7 +99,6 @@
             getUserRecord(response){
                 let self = this;
                 if(response.data){
-                    self.loading = false;
                     self.mainUser = response.data;
                 }
 
