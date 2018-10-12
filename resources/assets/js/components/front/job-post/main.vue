@@ -48,7 +48,7 @@
                 <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
 {{jobImages}}
-                <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
+                <div class="margin-bottom-20px row" v-for="(image, index) in jobImages">
 
                     <div class="col-md-6">
                         <div class="form-group custom-file">
@@ -273,7 +273,7 @@
                     state_id : '',
                     zip_code : '',
                     videos : '',
-                    images : [{}],
+                    images : [],
                     subscription_id : null
                 },
                 loading : false,
