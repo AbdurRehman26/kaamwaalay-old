@@ -47,12 +47,11 @@
                 </div>
                 <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
-{{jobImages}}
                 <div class="margin-bottom-20px row" v-for="(image, index) in jobImages">
 
                     <div class="col-md-6">
                         <div class="form-group custom-file">
-                            {{image}}
+                            {{image.original_name}}
                         </div>
                     </div>
                     <div class="col-md-6">
