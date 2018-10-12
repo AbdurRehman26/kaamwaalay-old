@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Data\Models\Service;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,17 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::bind('service', function ($service, $route) {
+            $subservice = $route->parameter('subservice');
+            if(is_numeric($subservice)) {
+                return Service::where('url_suffix', '=', $service)->where('status', '=', 1)->first();
+            }
+            if($subservice) {
+                return Service::where('url_suffix', '=', $subservice)->where('status', '=', 1)->first();    
+            }
+            return Service::where('url_suffix', '=', $service)->where('status', '=', 1)->first();
+        });
     }
 
     /**

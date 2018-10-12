@@ -75,7 +75,6 @@
                     status : 'on_the_way',
                     job_id : this.job.id,
                     visit_details : this.visit_details,
-                    status : 'pending'
                 };
 
                 self.loading = true;

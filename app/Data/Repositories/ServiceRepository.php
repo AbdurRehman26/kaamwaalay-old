@@ -65,7 +65,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
-            $data->url_suffix = $data->url_suffix? $data->url_suffix : url(config('view.service.url.folder')).'/';
+            $data->url_suffix;
+            $data->url = url(config('view.service.url.folder')).'/'.$data->url_suffix;
             //comentend due to errors in various places
             // if(!empty($data->images)) {
 
@@ -236,9 +237,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             if($data['service_category'] == 'All') {
                 $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
                 foreach ($services as $key => $value) {
-                    // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
                      $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->where('status', '=', 1)->get();
-
+                     foreach ($subservice as $key2 => $value2) {
+                        $subservice[$key2]->parent = $value->toArray();
+                     }
                     $services[$key]->subservices = $subservice;
                 }
                 $modelData['data'] = $services;

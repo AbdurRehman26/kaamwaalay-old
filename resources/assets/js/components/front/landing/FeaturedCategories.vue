@@ -71,8 +71,12 @@
 
             onSelectCategory(val) {
                 this.hideModal();
-                this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
                 localStorage.setItem("zip", val);
+                if(this.selectedService.parent) {
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+                }else {
+                  this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});  
+                }
             },
 
             changecategorypopup(service) {
