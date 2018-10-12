@@ -236,17 +236,8 @@ public function changeStatus(Request $request)
         ],
     ];
 
-    $validator = Validator::make($data, $rules);
-
-    if ($validator->fails()) {
-        $code = 406;
-        $output = [
-            'message' => $validator->messages()->all(),
-        ];
-
-    }else{
-
-        $result = $this->_repository->updateField($data);
+    $this->validate($request, $rules);
+    $result = $this->_repository->updateField($data);
         if($result) {
             if($result->role_id == Role::CUSTOMER && $result->status  == User::BANNED){
                CustomerBanned::dispatch($result)->onQueue(config('queue.pre_fix').'customer-banned');   
@@ -269,7 +260,6 @@ public function changeStatus(Request $request)
             throw $errorResponse;
 
         }
-    }
 
     return response()->json($output, $code);
 
@@ -281,18 +271,16 @@ public function changeAccessLevel(Request $request)
     $data['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null ;
     $rules = [
         'role_id' => ['required', Rule::in(Role::ADMIN, Role::REVIEWER)],
-        'id' => 'required|exists:users,id',
-        'user_id' => 'required|exists:users,id'
+        'id' => 'required|exists:users,id'
     ];
-    $validator = Validator::make($data, $rules);
-    if ($validator->fails()) {
-        $code = 406;
-        $output = [
-            'message' => $validator->messages()->all(),
-        ];
-    }else{
+        $this->validate($request, $rules);
         $result = $this->_repository->updateField($data);
         if($result) {
+            $userId = $data['id'];
+            $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
+            $sqlParameter = [];
+            $sqlParameter[] = $userId;
+            \DB::select($sql, $sqlParameter);
             $code = 200;
             $output = [
                 'data' => 'Access level has been updated successfully.',
@@ -305,7 +293,6 @@ public function changeAccessLevel(Request $request)
             $errorResponse->status = 406;
             throw $errorResponse;
         }
-    }
     return response()->json($output, $code);
 }
 
