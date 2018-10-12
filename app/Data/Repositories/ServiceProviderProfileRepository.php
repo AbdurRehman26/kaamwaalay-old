@@ -101,13 +101,14 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 $profile->formatted_created_at = Carbon::parse($profile->approved_at)->format('F j, Y');
             }
             $data->profile_request = $profile;
-            
+
             if(!empty($data->attachments)){
                 foreach ($data->attachments as $key => $value) {
                     foreach ($data->attachments[$key] as $childKey => $childValue) {
                         if($childValue){         
                             if(!empty($childValue['name'])){                 
-                                $data->attachmentsUrl[$key][$childKey] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
+                                $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
+                                $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name']; 
                             }
                         }
                     }
