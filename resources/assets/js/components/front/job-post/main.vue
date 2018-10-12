@@ -354,7 +354,10 @@
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
             },
             getResponse(imageResponse, $event){
-                this.formData['images'][this.formData['images'].length] = $event.name;
+                this.formData['images'][this.formData['images'].length] = {
+                    name : $event.name,
+                    original_name : $event.original_name
+                };
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
