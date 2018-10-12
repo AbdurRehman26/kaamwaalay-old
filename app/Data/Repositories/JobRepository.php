@@ -266,10 +266,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         if ($model != NULL) {
             foreach ($data as $column => $value) {
 
-                if($data[$column]){
                     $model->{$column} = $value;
-                }
-
+ 
             }
             $model->updated_at = Carbon::now();
 
