@@ -237,9 +237,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             if($data['service_category'] == 'All') {
                 $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
                 foreach ($services as $key => $value) {
-                    // $subservice = $this->getAllServicesByCategory($value->id, true, 3);
                      $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->where('status', '=', 1)->get();
-
+                     foreach ($subservice as $key2 => $value2) {
+                        $subservice[$key2]->parent = $value->toArray();
+                     }
                     $services[$key]->subservices = $subservice;
                 }
                 $modelData['data'] = $services;

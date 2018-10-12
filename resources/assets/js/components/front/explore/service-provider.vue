@@ -217,9 +217,13 @@
     methods: {
      onSelectCategory(val) {
         this.hideZipModal();
-
         localStorage.setItem("zip", val);
-        this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
+        console.log(this.selectedService);
+        if(this.selectedService.parent) {
+            this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+        }else {
+          this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});  
+        }
     },
     changecategorypopup(service) {
         this.selectedService = service;
@@ -268,7 +272,7 @@ ServiceProviderPage() {
        this.isTouched = true;
        return;
    }
-   this.serviceName = this.searchValue.url_suffix;
+   //this.serviceName = this.searchValue.url_suffix;
    localStorage.setItem('zip', this.zipCode);
    if(this.searchValue.parent) {
         this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
@@ -415,11 +419,18 @@ ServiceProviderPage() {
     	'service.title' (val) {
     		this.serviceTitle = val;
     	},
-    	serviceName(val) {
+      serviceName(val) {
+        if(!val) {
+          this.$router.push({ name: 'Explore'})
+        }
+        this.serviceName = val;
+        this.getService();
+      },
+    	childServiceName(val) {
     		if(!val) {
     			this.$router.push({ name: 'Explore'})
     		}
-    		this.serviceName = val;
+    		this.childServiceName = val;
     		this.getService();
     	},
     	zip(val) {
