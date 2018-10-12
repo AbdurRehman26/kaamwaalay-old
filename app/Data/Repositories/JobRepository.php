@@ -136,17 +136,13 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $data->jobThumbImages = [];
                 if(!empty($data->images)){
                     foreach ($data->images as $key => $image) {
-                        if(is_string($image)){   
-                            $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
-                            $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image);
+                        if(!empty($image['name']) && is_string($image['name'])){   
+                            $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image['name']);
+                            $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image['name']);
                         }
                     }
                 }
                 
-                if(empty($data->images)){
-                    $data->images[0] = '';
-                }
-
                 $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
                 $data->service = app('ServiceRepository')->findById($data->service_id);
 
@@ -266,10 +262,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         if ($model != NULL) {
             foreach ($data as $column => $value) {
 
-                if($data[$column]){
                     $model->{$column} = $value;
-                }
-
+ 
             }
             $model->updated_at = Carbon::now();
 

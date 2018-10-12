@@ -140,12 +140,13 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Certificates</strong></p>
                             </b-col>
-
-                            <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.certifications" class="underline" :href="certificate">
-                                    {{ attachment.original_name }}
-                                    <span v-if="typeof(records.provider_profile.attachmentsUrl.certifications[index+1]) !== 'undefined'">,</span>
-                                </a>
+                            <b-col class="calculated-value">
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.certifications">     
+                                    <a target="_blank" download class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }}
+                                    </a>
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -153,10 +154,13 @@
                                 <p><strong class="title-head">Registrations</strong></p>
                             </b-col>
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.registrations"  class="underline" :href="registration">
-                                    {{ attachment.original_name }}
-                                    <span v-if="typeof(records.provider_profile.attachmentsUrl.registrations[index+1]) !== 'undefined'">,</span>
-                                </a>
+
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.registrations">
+                                    <a target="_blank" download   class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }}
+                                    </a>
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -164,10 +168,14 @@
                                 <p><strong class="title-head">Proof of business</strong></p>
                             </b-col>
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.proof_of_business" class="underline" :href="business">
-                                    {{ attachment.original_name }} 
-                                    <span v-if="typeof(records.provider_profile.attachmentsUrl.proof_of_business[index+1]) !== 'undefined'">,</span>
-                                </a>
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.proof_of_business">
+
+                                    <a target="_blank" download class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }} 
+                                    </a>
+                                    
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>

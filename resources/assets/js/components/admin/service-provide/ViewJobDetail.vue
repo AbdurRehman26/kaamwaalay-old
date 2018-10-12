@@ -86,9 +86,11 @@
         },
         getRecords(response){
             let self = this;
-            self.loading = false;
-            self.records = response.data;
-            self.noRecordFound = response.noRecordFound;
+            if(response.data){
+                self.records = response.data;
+                self.noRecordFound = response.noRecordFound;
+                self.loading = false;
+            }
             
         },
         getSecondaryRecord(data){
