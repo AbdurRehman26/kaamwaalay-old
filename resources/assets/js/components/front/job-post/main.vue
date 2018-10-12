@@ -47,15 +47,15 @@
                 </div>
                 <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
-                <div class="margin-bottom-20px row" v-for="(image, index) in jobImages">
+                <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 
                     <div class="col-md-6">
                         <div class="form-group custom-file">
                             {{image.original_name}}
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <a href="javascript:;" @click.prevent="removeImage(index);" class="add-photos filter-btn-top-space">remove</a>
+                    <div class="col-md-6 text-right">
+                        <a href="javascript:;" @click.prevent="removeImage(index);" class="add-photos">remove</a>
                     </div>
                 </div>
             </div>

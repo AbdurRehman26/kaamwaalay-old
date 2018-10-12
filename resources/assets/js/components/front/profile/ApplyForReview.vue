@@ -160,7 +160,7 @@
                     <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.proof_of_business">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <a href="#">{{attachment.original_name}}</a>
+                                {{attachment.original_name}}
                             </div>
                         </div>
                         <div class="col-md-6 text-right">
@@ -182,7 +182,7 @@
                     <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.certifications">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <a href="#">{{attachment.original_name}}</a>
+                                {{attachment.original_name}}
                             </div>
                         </div>
                         <div class="col-md-6 text-right">
@@ -203,7 +203,7 @@
                     <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.registrations">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <a href="#">{{attachment.original_name}}</a>
+                                {{attachment.original_name}}
                             </div>
                         </div>
                         
