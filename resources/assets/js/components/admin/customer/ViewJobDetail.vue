@@ -98,8 +98,11 @@
             },
             getUserRecord(response){
                 let self = this;
-                self.loading = false;
-                self.mainUser = response.data;
+                if(response.data){
+                    self.loading = false;
+                    self.mainUser = response.data;
+                }
+
             }
         },
 
