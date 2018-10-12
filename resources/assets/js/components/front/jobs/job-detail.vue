@@ -364,7 +364,7 @@
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'pending' && ( this.record.my_bid.id == this.record.awardedBid.id);
+                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
                 }
                 return false;
             },
