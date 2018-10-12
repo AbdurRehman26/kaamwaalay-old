@@ -495,13 +495,14 @@
             },
             showChatBox(record, strictChat = false, disabled = false) {
                 let user = JSON.parse(this.$store.getters.getAuthUser);
+                console.log(record, 33232);
                 if(user.role_id == 3) {
                     this.jobMessageData = {
                         text: '',
                         job_id: record.job_id,
                         reciever_id: record.user_id,
                         job_bid_id: record.id,
-                        sender_detail: user,
+                        sender_detail: record.user,
                         business_name: record.service_provider.business_name,
                     };
                 }else {
