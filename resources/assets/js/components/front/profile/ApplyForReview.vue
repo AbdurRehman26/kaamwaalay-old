@@ -439,15 +439,15 @@
 
                 let attachments = this.record.business_details.attachments;
 
-                if(!attachments['certifications'][0]){
+                if(typeof(attachments['certifications']) == 'undefined' || !attachments['certifications'][0]){
                     return false;
                 }
 
-                if(!attachments['registrations'][0]){
+                if(typeof(attachments['registrations']) == 'undefined' || !attachments['registrations'][0]){
                     return false;
                 }
 
-                if(!attachments['proof_of_business'][0]){
+                if(typeof(attachments['proof_of_business']) == 'undefined' || !attachments['proof_of_business'][0]){
                     return false;
                 }
 
