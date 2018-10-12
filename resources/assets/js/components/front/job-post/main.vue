@@ -45,7 +45,7 @@
                 <div class="form-label-heading">
                     <p>Attach Photo</p>
                 </div>
-                <file-upload-component @get-response="getResponse(image, $event)" :uploadKey="'job'"></file-upload-component>
+                <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
                 <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
 
@@ -353,7 +353,7 @@
             onStateChange(){
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
             },
-            getResponse(imageResponse, $event){
+            getResponse($event){
                 this.formData['images'][this.formData['images'].length] = {
                     name : $event.name,
                     original_name : $event.original_name
