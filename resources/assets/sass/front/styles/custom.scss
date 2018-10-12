@@ -3263,6 +3263,23 @@ body{
 
 /* service detail */
 
+
+.attachment-field{
+    background-color: #e9ecef;
+    border-radius: 6px;
+    margin: auto;
+    padding-top: 7px;
+    margin-top: 3px;
+    width: 100%;
+    margin-bottom: 10px;
+    .custom-file {
+        height: auto;
+    }
+    a{
+        color: #000000;
+    }
+}
+
 .provider-information{
     padding-right: 30px;
 }

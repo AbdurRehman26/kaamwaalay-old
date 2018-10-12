@@ -16,7 +16,7 @@
                         <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profileImage) + ')'}"></span>
                         <div class="profile-message" :class="[checkCurrentUser(message)? 'bg-light-custom' : '']">
                             <p>{{message.text}}</p>
-                            <span class="chat-last-seen">{{getFormattedDateTime(message.formatted_created_at)}}</span>
+                            <span class="chat-last-seen">{{getFormattedDateTime(message.updated_at.date)}}</span>
                         </div>
                     </b-list-group-item>
                 </div>
@@ -102,7 +102,6 @@
                         data : response.data,
                         noRecordFound : false,
                         pagination : response.pagination
-
                     };
 
                     if(!response.data.length){
@@ -112,7 +111,7 @@
                     self.pagination = response.pagination;
 
                     self.loading = false;
-
+                    self.scrollToEnd();
                     if(typeof successCallback !== 'undefined'){
                         successCallback(true);
                     }
@@ -185,7 +184,6 @@
                     let containsUrl = urlRegex.test(message);
                     if(containsDigits || containsEmail || containsGeneral || containsUrl) {
                         this.errorMessage = true;
-                        this.scrollToEnd();
                         setTimeout((e) => {
                             this.errorMessage = false;
                         }, 3000);
@@ -224,7 +222,6 @@
                         self.scrollToEnd();
                         self.successMessage = response.message;
 
-                        console.log(response.data, 9999);
                         self.messages.push(response.data);
                     }).catch(error => {
                         error = error.response.data;
@@ -268,10 +265,8 @@
                         return;
                     }
 
-                    console.log(e.discussion, 12121212);
                     self.isOnline = true;
                     self.messages.push(e.discussion);
-                    self.scrollToEnd();
                 });
             },
             scrollToEnd() {

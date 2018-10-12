@@ -152,66 +152,63 @@
                             </p>
                         </div>
                     </div>
-                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(proof_of_business, index) in record.business_details.attachments.proof_of_business">
+                    <label>Proof of Business</label>
+                    <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
+
+                    </file-upload-component>
+
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.proof_of_business">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Proof of Business</label>
-                                <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'"  :currentRecord="proof_of_business" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
-
-                                </file-upload-component>
+                                {{attachment.original_name}}
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more</a>
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos">Remove</a>
                         </div>
                     </div>
-                </div>
 
-                <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
-                        <p>Registrations</p>
-                    </div>
-                    <div class="row">    
-                    </div>
-                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(certification, index) in record.business_details.attachments.certifications">
-                        <div class="col-md-6">
-                            <div class="form-group custom-file">
-                                <label>Registrations</label>
-                                <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :currentRecord="certification" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
-
-                                </file-upload-component>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more</a>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="business-proof">
                     <div class="form-label-heading m-b-20 m-t-20">
                         <p>Certificates</p>
                     </div>
-                    <div class="row">
-                    </div>
-                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(registration, index) in record.business_details.attachments.registrations">
+                    <label>Certificates</label>
+                    <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
+
+                    </file-upload-component>
+
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.certifications">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Certificates</label>
-                                <file-upload-component  :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'":currentRecord="registration" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
-
-                                </file-upload-component>
+                                {{attachment.original_name}}
                             </div>
                         </div>
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos">Remove</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="business-proof">
+                    <div class="form-label-heading m-b-20 m-t-20">
+                        <p>Registration</p>
+                    </div>
+                    <label>Registration</label>
+                    <file-upload-component  :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
+
+                    </file-upload-component>
+
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.registrations">
                         <div class="col-md-6">
-                            <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more</a>
+                            <div class="form-group custom-file">
+                                {{attachment.original_name}}
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos">Remove</a>
                         </div>
                     </div>
                 </div>
@@ -278,8 +275,8 @@
                         </div>
                     </div>
                     
-                          <card-element  :showCardInfo="true" :isPopup='false'  :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
-              
+                    <card-element  :showCardInfo="true" :isPopup='false'  :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
+
                 </div>
 
                 <div v-if="!pendingProfile" class="submit-approval-btn">
@@ -412,12 +409,6 @@
                 return false;
 
             },
-            addMoreFiles(type, index){
-                if(this.record.business_details.attachments[type][index]){
-                    this.record.business_details.attachments[type][index+1] = ''
-                }
-                this.$forceUpdate();
-            },
             findUniqueValues(){
                 let self = this;
                 let service_details = self.record.service_details;
@@ -445,18 +436,18 @@
 
             },
             checkUploadedDocuments(){
-                
+
                 let attachments = this.record.business_details.attachments;
 
-                if(!attachments['certifications'][0]){
+                if(typeof(attachments['certifications']) == 'undefined' || !attachments['certifications'][0]){
                     return false;
                 }
 
-                if(!attachments['registrations'][0]){
+                if(typeof(attachments['registrations']) == 'undefined' || !attachments['registrations'][0]){
                     return false;
                 }
 
-                if(!attachments['proof_of_business'][0]){
+                if(typeof(attachments['proof_of_business']) == 'undefined' || !attachments['proof_of_business'][0]){
                     return false;
                 }
 
@@ -508,8 +499,8 @@
 
                         });
                         if(!this.isPaymentDetailShow){
-                                this.submit = true;
-                                this.loading = true;
+                            this.submit = true;
+                            this.loading = true;
                         }else{
                             setTimeout(function () {
                                 if(!self.errorMessage){    
@@ -548,8 +539,19 @@
                 self.record.profile_image = response.name;
                 self.profileImage = response.upload_url;
             },
-            getDocumentUploadResponse(response, type, index){
-                this.record.business_details.attachments[type][index] = response.name; 
+            getDocumentUploadResponse(response, type){
+                var lengthOfAttachmentTypes = this.record.business_details.attachments[type];
+
+                if(typeof(lengthOfAttachmentTypes) == 'undefined' || !lengthOfAttachmentTypes.length){
+                    this.record.business_details.attachments[type] = [];
+                }
+
+                this.record.business_details.attachments[type].push({
+                   name : response.name,
+                   original_name : response.original_name
+               }); 
+
+                this.$forceUpdate();
             },
             getResponse(response){
                 let self = this;
@@ -562,9 +564,6 @@
                     if(self.record && self.record.business_details && !self.record.business_details.attachments){
 
                         self.record.business_details.attachments = {
-                            certifications : [''], 
-                            proof_of_business : [''],
-                            registrations : [''],
                         }
 
                     }

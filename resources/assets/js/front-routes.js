@@ -125,6 +125,7 @@
             bodyClass: 'profile-page',
             navigation: 'customer-nav',
             requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/profile/main.vue'),
     },
@@ -174,7 +175,7 @@
     // Featured Profile
 
     {
-        name: 'Featured Profile',
+        name: 'featured_profile',
         path: '/featured-profile',
         meta: {
             title: 'Professional Service Marketplace | Featured Profile',
@@ -348,6 +349,10 @@ router.beforeEach((to, from, next) => {
  if(to.name != 'login'){
      router.app.$store.commit('setRedirectUrl',to.name);
  }
+ if(!router.app.$auth.isAuthenticated()){
+        router.app.$store.commit('setAuthUser', '')
+        next();
+ }
  if(router.app.$store.getters.getAuthUser != 'undefined'){
     user = JSON.parse(router.app.$store.getters.getAuthUser);
  }
@@ -367,7 +372,7 @@ if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isA
             next();
         }
     }
-    else if(user  && user.role_id == serviceProvider && to.name != '404'){
+    if(user  && user.role_id == serviceProvider && to.name != '404'){
         next({name: 'my.bids'});
     }else {
             next();

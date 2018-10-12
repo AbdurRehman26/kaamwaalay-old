@@ -368,5 +368,37 @@ public function updateField(array $data = [])
     return $data;
 }
 
+/**
+* This method will fetch single model by attribute
+* and will return output back to client as json
+*
+* @access public
+* @return mixed
+*
+* @author Usaama Effendi <usaamaeffendi@gmail.com>
+**/
+public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+{
+
+    $model = $this->model->newInstance()
+    ->where($criteria);
+
+    if($whereIn) {
+        $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+
+    }
+
+    if($count) {
+        return $model->count();
+    }
+
+    $model = $model->first(['id']);
+
+    if ($model != null) {
+        $model = $this->findById($model->id, $refresh, $details, $encode);
+    }
+    return $model;
+}
+
 
 }
