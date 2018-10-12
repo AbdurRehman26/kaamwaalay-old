@@ -45,18 +45,17 @@
                 <div class="form-label-heading">
                     <p>Attach Photo</p>
                 </div>
+                <file-upload-component @get-response="getResponse(image, $event)" :uploadKey="'job'"></file-upload-component>
+
                 <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
 
                     <div class="col-md-6">
                         <div class="form-group custom-file">
-
-                            <file-upload-component @get-response="getResponse(image, index, $event)" :uploadKey="'job'"></file-upload-component>
-
+                            {{image}}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <a v-if="parseInt(index) < parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="removeImage(index);" class="add-photos filter-btn-top-space">x</a>
-                        <a v-if="parseInt(index) === parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="addImages" class="add-photos filter-btn-top-space">+ Add more photos</a>
                     </div>
                 </div>
             </div>
@@ -354,8 +353,8 @@
             onStateChange(){
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
             },
-            getResponse(imageResponse, index, $event){
-                this.formData['images'][index] = $event.name;
+            getResponse(imageResponse, $event){
+                this.formData['images'][this.formData['images'].length] = $event.name;
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
@@ -369,7 +368,7 @@
                     }
                     if (result) {
                         setTimeout(function () {
-                           if(!this.errorMessage){    
+                         if(!this.errorMessage){    
                             self.isSubmit = true;
                         }else{
                             self.isSubmit = false;
