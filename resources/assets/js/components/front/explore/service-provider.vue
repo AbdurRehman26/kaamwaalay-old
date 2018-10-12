@@ -200,6 +200,7 @@
                 routeName: '',
                 isZipEmpty: false,
                 invitePopup : false,
+                serName: '',
             }
         },
         computed : {
@@ -218,7 +219,6 @@
      onSelectCategory(val) {
         this.hideZipModal();
         localStorage.setItem("zip", val);
-        console.log(this.selectedService);
         if(this.selectedService.parent) {
             this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
         }else {
@@ -272,12 +272,12 @@ ServiceProviderPage() {
        this.isTouched = true;
        return;
    }
-   //this.serviceName = this.searchValue.url_suffix;
+   this.serName = this.searchValue.url_suffix;
    localStorage.setItem('zip', this.zipCode);
    if(this.searchValue.parent) {
         this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
     }else {
-      this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }}); 
+      this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, childServiceName: null, zip : this.zipCode }}); 
     }
 		},
 		onTouch () {
@@ -392,14 +392,18 @@ ServiceProviderPage() {
             self.pagination = response.pagination;
         },
         checkRoute() {
-        	this.zipCode = this.zip? this.zip : this.zipCode;
-          if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName)) {
+          this.serviceProviderUrl = null;
+          this.zipCode = this.zip? this.zip : this.zipCode;
+          if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
+            this.zipCode =  this.childServiceName;
+          }
+          if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
             this.url  = 'api/service/?service_name=' + this.childServiceName;
           }else if(typeof(this.serviceName) != "undefined") {
             this.url  = 'api/service/?service_name=' + this.serviceName;
           }
-        	if(typeof(this.zip) != "undefined") {
-        		let val = this.zip;
+        	if(typeof(this.zipCode) != "undefined") {
+        		let val = this.zipCode;
         		if(val.length > 5) {
         			val = val.substr(0, 5);
         		}
@@ -420,16 +424,17 @@ ServiceProviderPage() {
     		this.serviceTitle = val;
     	},
       serviceName(val) {
-        if(!val) {
-          this.$router.push({ name: 'Explore'})
-        }
+        // if(!val) {
+        //   this.$router.push({ name: 'Explore'})
+        // }
         this.serviceName = val;
         this.getService();
       },
     	childServiceName(val) {
-    		if(!val) {
-    			this.$router.push({ name: 'Explore'})
-    		}
+
+    		// if(!val) {
+    		// 	this.$router.push({ name: 'Explore'})
+    		// }
     		this.childServiceName = val;
     		this.getService();
     	},
