@@ -102,7 +102,6 @@
                         data : response.data,
                         noRecordFound : false,
                         pagination : response.pagination
-
                     };
 
                     if(!response.data.length){
@@ -112,7 +111,7 @@
                     self.pagination = response.pagination;
 
                     self.loading = false;
-
+                    self.scrollToEnd();
                     if(typeof successCallback !== 'undefined'){
                         successCallback(true);
                     }
@@ -185,7 +184,6 @@
                     let containsUrl = urlRegex.test(message);
                     if(containsDigits || containsEmail || containsGeneral || containsUrl) {
                         this.errorMessage = true;
-                        this.scrollToEnd();
                         setTimeout((e) => {
                             this.errorMessage = false;
                         }, 3000);
@@ -269,7 +267,6 @@
 
                     self.isOnline = true;
                     self.messages.push(e.discussion);
-                    self.scrollToEnd();
                 });
             },
             scrollToEnd() {

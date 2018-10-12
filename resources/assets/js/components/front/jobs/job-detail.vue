@@ -501,7 +501,7 @@
                         job_id: record.job_id,
                         reciever_id: record.user_id,
                         job_bid_id: record.id,
-                        sender_detail: user,
+                        sender_detail: record.user,
                         business_name: record.service_provider.business_name,
                     };
                 }else {
