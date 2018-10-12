@@ -141,11 +141,12 @@
                                 <p><strong class="title-head">Certificates</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-
-                                <a target="_blank" download v-for="(attachment, index) in records.provider_profile.attachmentsUrl['certifications']" class="underline" :href="attachment.name">
-                                    {{ attachment.original_name }}
-                                </a>
-                                &nbsp;
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.certifications">     
+                                    <a target="_blank" download class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }}
+                                    </a>
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -153,10 +154,13 @@
                                 <p><strong class="title-head">Registrations</strong></p>
                             </b-col>
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a target="_blank" download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.registrations"  class="underline" :href="attachment.name">
-                                    {{ attachment.original_name }}
-                                </a>
-                                &nbsp;
+
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.registrations">
+                                    <a target="_blank" download   class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }}
+                                    </a>
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -164,10 +168,14 @@
                                 <p><strong class="title-head">Proof of business</strong></p>
                             </b-col>
                             <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
-                                <a target="_blank" download v-for="(attachment, index) in records.provider_profile.attachmentsUrl.proof_of_business" class="underline" :href="attachment.name">
-                                    {{ attachment.original_name }} 
-                                </a>
-                                &nbsp;
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.proof_of_business">
+
+                                    <a target="_blank" download class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }} 
+                                    </a>
+                                    
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -239,17 +247,17 @@
         }
     },
     methods : {
-     validateBeforeSubmit() {
+       validateBeforeSubmit() {
         let self = this;
         self.errorMessage = '';
         self.$validator.validateAll().then((result) => {
-           if (result) {
-              self.onSubmit();
-              self.errorMessage =  '';
-              return;
-          }
-          self.errorMessage =  self.errorBag.all()[0];
-      });
+         if (result) {
+          self.onSubmit();
+          self.errorMessage =  '';
+          return;
+      }
+      self.errorMessage =  self.errorBag.all()[0];
+  });
     },
     onSubmit(){
         let self = this;
@@ -261,18 +269,18 @@
         };
 
         self.$http.put(url , data).then(response=>{
-           self.loading = false;
-           response = response.data.response;
-           self.records.status = response.data.status;
-           self.records.approved_by_user = response.data.approved_by_user;
+         self.loading = false;
+         response = response.data.response;
+         self.records.status = response.data.status;
+         self.records.approved_by_user = response.data.approved_by_user;
 
-       }).catch(error=>{
+     }).catch(error=>{
         console.log('error' , error);
 
     });
 
-   }, 
-   getRecords(response){
+ }, 
+ getRecords(response){
     let self = this;
     self.loading = false;
     self.records = response.data;
