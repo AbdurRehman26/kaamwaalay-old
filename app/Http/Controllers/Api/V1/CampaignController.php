@@ -75,25 +75,23 @@ class CampaignController extends ApiResourceController
         
 
         $output = ['errors' => 
-                    [
-                        'message' => ['There might be something wrong.']
-                    ]
-                ];
-        $code = Response::HTTP_NOT_ACCEPTABLE;
+        [
+            'message' => ['There might be something wrong.']
+        ]
+    ];
+    $code = Response::HTTP_NOT_ACCEPTABLE;
 
-        $response = $this->_repository->updateCampaign($input);
-        if($response) {
-            $code = Response::HTTP_OK;
-            $output = ['response' => 
-                        [
-                            'data' => $response,
-                            'message' => 'Records has been updated successfully',
-                            'code' => $code
-                        ]
-                    ];
-        }
+    $response = $this->_repository->updateCampaign($input);
+    if($response) {
+        $code = Response::HTTP_OK;
+        $output = [
+            'data' => $response,
+            'message' => 'Records has been updated successfully',
+            'code' => $code
+        ];
+    }
 
     
-        return response()->json($output, $code);
-    }
+    return response()->json($output, $code);
+}
 }

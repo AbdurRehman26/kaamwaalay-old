@@ -94,7 +94,9 @@ class JobController extends ApiResourceController
 
         $data = ['completed' => $completed , 'active' => $active];
 
-        $output = ['response' => ['data' => $data]];
+        $output = [
+            'data' => $data
+        ];
 
         $code  = 200;
 

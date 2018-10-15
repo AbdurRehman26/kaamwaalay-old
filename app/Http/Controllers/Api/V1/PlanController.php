@@ -44,11 +44,11 @@ class PlanController extends ApiResourceController
             $rules['amount']     = 'required|numeric|not_in:0';
             $rules['type']       = 'required|in:job,service';
             $rules['id']         = 'nullable|exists:plans,id';
-       }
+        }
 
-       if($value == 'destroy') {
+        if($value == 'destroy') {
             $rules['id']     = 'required|exists:plans,id';
-       }
+        }
 
         return $rules;
 
@@ -79,87 +79,83 @@ class PlanController extends ApiResourceController
 
         if($value == 'destroy') {
             $input = request()->only('id');
-       }
+        }
 
         return $input;
     }
 
     public function updateOrAddPlans(Request $request)
     {
-        
+
         $rules = $this->rules(__FUNCTION__);
         $input = $this->input(__FUNCTION__);
         $messages = $this->messages(__FUNCTION__);
         $this->validate($request, $rules);
-        
+
 
         $output = ['errors' => 
-                    [
-                        'message' => ['There might be something wrong.']
-                    ]
-                ];
-        $code = Response::HTTP_NOT_ACCEPTABLE;
+        [
+            'message' => ['There might be something wrong.']
+        ]
+    ];
+    $code = Response::HTTP_NOT_ACCEPTABLE;
 
-        $response = $this->_repository->updateOrAddPlans($input);
-        if($response) {
-            $code = Response::HTTP_OK;
-            $output = ['response' => 
-                        [
-                            'data' => $response,
-                            'message' => 'Records has been added successfully',
-                            'code' => $code
-                        ]
-                    ];
-        }
-
-    
-        return response()->json($output, $code);
-
-    }
-
-    public function messages($value = '')
-    {
-        $messages = [
-            'amount.not_in' => 'The entered amount is invalid.',
-            'plans_data.*.amount.not_in' => 'The entered amount is invalid.',
+    $response = $this->_repository->updateOrAddPlans($input);
+    if($response) {
+        $code = Response::HTTP_OK;
+        $output = [
+            'data' => $response,
+            'message' => 'Records has been added successfully',
+            'code' => $code
         ];
-        
-        return $messages;
     }
 
-    public function store(Request $request)
-    {
-        $rules = $this->rules(__FUNCTION__);
-        $input = $this->input(__FUNCTION__);
-          if( $input['type'] == 'job'){
-              $rules['product']    = 'required|in:urgent_job';
-          }else{
-              $rules['product']    = 'required|in:featured_profile,account_creation';
-          } 
-          if(($input['type'] == 'job' && $input['product'] == 'urgent_job') || ($input['type'] == 'service' && $input['product'] == 'account_creation')){
-                $rules['quantity']   = 'nullable';
-          }else{
-              $rules['product']    = 'required|in:featured_profile,account_creation';
-          }
-        $this->validate($request, $rules);
-        $output = ['errors' => 
-                    [
-                        'message' => ['There might be something wrong.']
-                    ]
-                ];
-        $code = Response::HTTP_NOT_ACCEPTABLE;
-        $response = $this->_repository->create($input);
-        if($response) {
-            $code = Response::HTTP_OK;
-            $output = ['response' => 
-                        [
-                            'data' => $response,
-                            'message' => 'Records has been added successfully',
-                            'code' => $code
-                        ]
-                    ];
-        }
-        return response()->json($output, $code);
+
+    return response()->json($output, $code);
+
+}
+
+public function messages($value = '')
+{
+    $messages = [
+        'amount.not_in' => 'The entered amount is invalid.',
+        'plans_data.*.amount.not_in' => 'The entered amount is invalid.',
+    ];
+
+    return $messages;
+}
+
+public function store(Request $request)
+{
+    $rules = $this->rules(__FUNCTION__);
+    $input = $this->input(__FUNCTION__);
+    if( $input['type'] == 'job'){
+        $rules['product']    = 'required|in:urgent_job';
+    }else{
+        $rules['product']    = 'required|in:featured_profile,account_creation';
+    } 
+    if(($input['type'] == 'job' && $input['product'] == 'urgent_job') || ($input['type'] == 'service' && $input['product'] == 'account_creation')){
+        $rules['quantity']   = 'nullable';
+    }else{
+        $rules['product']    = 'required|in:featured_profile,account_creation';
     }
+    $this->validate($request, $rules);
+    $output = ['errors' => 
+    [
+        'message' => ['There might be something wrong.']
+    ]
+];
+$code = Response::HTTP_NOT_ACCEPTABLE;
+$response = $this->_repository->create($input);
+if($response) {
+    $code = Response::HTTP_OK;
+    $output =  [
+        'data' => $response,
+        'message' => 'Records has been added successfully',
+        'code' => $code
+    ];
+}
+return response()->json($output, $code);
+}
 
 }
