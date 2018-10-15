@@ -101,6 +101,20 @@ class ServiceProviderServiceRepository extends AbstractRepository implements Rep
         return  $count->count();
     }
 
+    public function getTotalCountByZip($crtieria = [], $startDate = null, $endDate = null)
+    {
+
+        if($crtieria) {
+            $count = $this->model->where($crtieria);
+        }
+
+        if($startDate && $endDate) {
+            $count = $this->model->whereBetween('created_at', [$startDate, $endDate]);
+        }
+
+        return  $count->count();
+    }
+
     public function bulkDeleteByCriteria($criteria)
     {
         $this->builder->where($criteria);

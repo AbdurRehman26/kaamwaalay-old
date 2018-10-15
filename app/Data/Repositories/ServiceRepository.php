@@ -4,6 +4,7 @@ namespace App\Data\Repositories;
 
 use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
+use App\Data\Models\ServiceProviderService;
 use Illuminate\Support\Facades\Storage;
 use App\Data\Models\Service;
 use App\Data\Models\Role;
@@ -51,6 +52,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     {
         $data = parent::findById($id, $refresh, $details, $input);
         if ($data) {
+            $zip = request()->get('filter_by_popular_services');
             if($data->parent_id != null) {
                 $data->parent = $this->findById($data->parent_id);
                 
@@ -67,6 +69,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
             $data->url_suffix;
             $data->url = url(config('view.service.url.folder')).'/'.$data->url_suffix;
+            $data->provider_count = $this->getServicesProvderCountByZip($data->id, $zip);
             //comentend due to errors in various places
             // if(!empty($data->images)) {
 
@@ -226,11 +229,15 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     $this->builder = $this->getServicesByZip(false);
                     $count = $this->builder->get()->count();
                 }
+
+                $data['details'] = ['zip' => $zip];
             }else {
                 $this->builder = $this->getServicesByZip(false);
+                $count = $this->builder->get()->count();
             }
             if(isset($count) && $count > 12) {
                 $this->builder = $this->builder->limit(12);
+                $data['details'] = ['zip' => false];
             }
         }
         if (!empty($data['service_category'])) {
@@ -287,6 +294,37 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $tempbuilder = $tempbuilder->where('users.zip_code', $zip);
         }
         return $tempbuilder->select(['services.id']);
+            
+    }
+
+     public function getServicesProvderCountByZip($service_id = false, $zip = false)
+    {   
+
+        $tempbuilder = $this->model;
+        $tempbuilder = ServiceProviderService::where('service_provider_services.service_id', '=', $service_id)
+        ->leftJoin(
+            'service_provider_profile_requests', function ($join) {
+                            $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+            }
+        )->
+        leftJoin(
+            'users', function ($join) {
+                            $join->on('users.id', '=', 'service_provider_profile_requests.user_id');
+            }
+        )
+        ->where('service_provider_profile_requests.status', 'approved')
+        ->where('users.role_id', Role::SERVICE_PROVIDER);
+
+
+        if($zip) {
+            $tempbuilder = $tempbuilder->where('users.zip_code', $zip);
+        }
+
+        $tempbuilder = $tempbuilder->groupBy('users.id')
+        ->orderByRaw('count(users.id) desc');
+
+        return $tempbuilder->get()->count();
+
             
     }
 

@@ -9,7 +9,7 @@
                     <a href="javascript:;" @click="changecategorypopup(service)">
                         <div class="box-img" v-bind:style="{'background-image': 'url('+ getImage(service.images) +')'}"></div>
                         <h6>{{service.title}}</h6>
-                        <p><i class="icon-map-marker2"></i>{{getProviders(service.service_prodider_count)}}</p>
+                        <p><i class="icon-map-marker2"></i>{{getProviders(service.provider_count)}}</p>
                     </a>
                 </li>
             </ul>
