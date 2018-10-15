@@ -258,7 +258,6 @@ limitText (count) {
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
        if (result && !this.loading) {
-          this.records = [];
           this.ServiceProviderPage();
           this.errorMessage = "";
           return;
@@ -392,6 +391,7 @@ ServiceProviderPage() {
             self.pagination = response.pagination;
         },
         checkRoute() {
+          this.records = [];
           this.serviceProviderUrl = null;
           this.zipCode = this.zip? this.zip : this.zipCode;
           if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){

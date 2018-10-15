@@ -336,7 +336,7 @@
                 let url = this.url+"/"+this.list.id;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                this.$http.put(url, data).then(response => {
+                self.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;
                     setTimeout(function () {
