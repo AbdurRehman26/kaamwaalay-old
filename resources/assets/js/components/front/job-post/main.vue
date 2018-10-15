@@ -45,7 +45,7 @@
                 <div class="form-label-heading">
                     <p>Attach Photo</p>
                 </div>
-                <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
+                <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
                 <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 

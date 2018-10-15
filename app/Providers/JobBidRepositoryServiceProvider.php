@@ -81,7 +81,7 @@ public function boot()
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->message = $event->from->first_name.' '.$event->from->last_name.' will be reaching in '.$jobBid->visit_time.' minutes or hours.';
+            $event->message = $event->from->first_name.' '.$event->from->last_name.', '.$jobBid->visit_details;
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
     });
