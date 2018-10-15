@@ -370,7 +370,7 @@ ServiceProviderPage() {
 		},
 		getRelatedServices() {
 			let self = this;
-			let url = 'api/service/?filter_by_related_services=' + this.service.id;
+			let url = 'api/service?filter_by_related_services=' + this.service.id;
 			self.$http.get(url).then(response => {
 				response = response.data.response;
 				self.relatedServices = response.data;
@@ -398,9 +398,9 @@ ServiceProviderPage() {
             this.zipCode =  this.childServiceName;
           }
           if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
-            this.url  = 'api/service/?service_name=' + this.childServiceName;
+            this.url  = 'api/service?service_name=' + this.childServiceName;
           }else if(typeof(this.serviceName) != "undefined") {
-            this.url  = 'api/service/?service_name=' + this.serviceName;
+            this.url  = 'api/service?service_name=' + this.serviceName;
           }
         	if(typeof(this.zipCode) != "undefined") {
         		let val = this.zipCode;
