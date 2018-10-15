@@ -44,7 +44,7 @@
 </div>
 </div>
 
-<h5 class="text-center enterzip" v-if="!zip">Please enter a zip code to view the list of service providers accordingly.</h5>
+<h5 class="text-center enterzip" v-if="!zipCode">Please enter a zip code to view the list of service providers accordingly.</h5>
 <no-record-found v-else-if="noRecordFound"></no-record-found>
 <div class="job-post-container section-padd sm" v-if="!noRecordFound">
   <div class="container md">
@@ -357,8 +357,8 @@ ServiceProviderPage() {
 				self.getRelatedServices();
 				self.searchValue = self.service;
 				self.btnLoading = false;
-				if(self.zip) {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip+'&from_explore=true';
+				if(self.zipCode) {
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zipCode+'&from_explore=true';
 				}
 
 				window.scrollTo(0,0);
@@ -370,7 +370,7 @@ ServiceProviderPage() {
 		},
 		getRelatedServices() {
 			let self = this;
-			let url = 'api/service/?filter_by_related_services=' + this.service.id;
+			let url = 'api/service?filter_by_related_services=' + this.service.id;
 			self.$http.get(url).then(response => {
 				response = response.data.response;
 				self.relatedServices = response.data;
@@ -398,17 +398,17 @@ ServiceProviderPage() {
             this.zipCode =  this.childServiceName;
           }
           if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
-            this.url  = 'api/service/?service_name=' + this.childServiceName;
+            this.url  = 'api/service?service_name=' + this.childServiceName;
           }else if(typeof(this.serviceName) != "undefined") {
-            this.url  = 'api/service/?service_name=' + this.serviceName;
+            this.url  = 'api/service?service_name=' + this.serviceName;
           }
-        	if(typeof(this.zipCode) != "undefined") {
-        		let val = this.zipCode;
-        		if(val.length > 5) {
-        			val = val.substr(0, 5);
-        		}
-        		this.url += '&zip=' + val;
-        	}
+          if(typeof(this.zipCode) != "undefined") {
+            let val = this.zipCode;
+            if(val.length > 5) {
+              val = val.substr(0, 5);
+            }
+            this.url += '&zip=' + val;
+          }
         	if(!this.zipCode) {
         		this.validateBeforeSubmit();
         	}

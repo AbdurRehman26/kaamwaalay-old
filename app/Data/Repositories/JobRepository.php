@@ -161,10 +161,11 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $state = app('StateRepository')->findById($data->state_id);                
                 $data->state = !empty($state->name)?$state->name:'';
                 $bidsCriteria = ['job_id' => $data->id];
-                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited', 'visit_allowed']];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited', 'visit_allowed', 'visit_requested', 'on_the_way']];
                 $notCriteria = ['status' => 'invited'];
 
                 $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, $notCriteria, false, $bidsWhereIn, true);
+                
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
