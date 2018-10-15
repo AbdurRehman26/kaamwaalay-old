@@ -7,7 +7,10 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
 use App\Data\Models\Role;
 use App\Data\Models\User;
+use App\Data\Models\ServiceProviderService;
+use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Models\JobBid;
+use App\Data\Models\ServiceProviderProfile;
 use Carbon\Carbon;
 use Storage;
 
@@ -221,8 +224,26 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
                     $data->can_message = app('JobMessageRepository')->findByCriteria($criteria);
                 }
-                $criteriaServiceProviderCount = ['zip_code' => $data->zip_code, 'role_id' => Role::SERVICE_PROVIDER];     
-                $data->service_provider_count = app('UserRepository')->findByCriteria($criteriaServiceProviderCount,false,false,true,false,true);
+                //$criteriaServiceProviderCount = ['zip_code' => $data->zip_code, 'role_id' => Role::SERVICE_PROVIDER];     
+                //$data->service_provider_count = app('UserRepository')->findByCriteria($criteriaServiceProviderCount,false,false,true,false,true);
+                $userModel = new User;
+                $userTable = $userModel->getTableName();
+                $serviceProviderServiceModel = new ServiceProviderService;
+                $serviceProviderProfileRequestModel = new ServiceProviderProfileRequest;
+                $serviceProviderServiceTable = $serviceProviderServiceModel->getTableName();
+                $serviceProviderProfileRequestTable = $serviceProviderProfileRequestModel->getTableName();
+                $service_provider_count = $userModel
+                ->join(
+                    $serviceProviderProfileRequestTable, function ($joins) use($data,$serviceProviderProfileRequestTable,$userTable) {
+                        $joins->on( $serviceProviderProfileRequestTable.'.user_id', '=', $userTable.'.id');
+                        $joins->where($serviceProviderProfileRequestTable.'.status','=',ServiceProviderProfile::APPROVED);
+                    })
+                ->join(
+                    $serviceProviderServiceTable, function ($joins) use ($data,$serviceProviderServiceTable,$serviceProviderProfileRequestTable) {
+                        $joins->on($serviceProviderServiceTable.'.service_provider_profile_request_id', '=', $serviceProviderProfileRequestTable.'.id');
+                        $joins->where($serviceProviderServiceTable.'.service_id','=',$data->service_id);
+                    })->where('zip_code',$data->zip_code)->where('role_id',Role::SERVICE_PROVIDER)->count();
+                $data->service_provider_count =$service_provider_count;
             }
             
         }

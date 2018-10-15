@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot();
 
-        Route::bind('service', function ($service, $route) {
+        Route::bind('services', function ($service, $route) {
             $subservice = $route->parameter('subservice');
             if(is_numeric($subservice)) {
                 return Service::where('url_suffix', '=', $service)->where('status', '=', 1)->first();

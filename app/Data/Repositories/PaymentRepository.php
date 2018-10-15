@@ -132,11 +132,12 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
                 $campaignData['user_id'] = $data['user_id'];
                 $campaignModel->create($campaignData);
               }
-              return $payment;
+              $response =  $payment;
           } catch (\Stripe\Error\InvalidRequest $e) {
-              return $e->getMessage();
+              $response =  $e->getMessage();
           }catch (\Exception $e) {
-              return $e->getMessage();
+              $response =  $e->getMessage();
           }
+               return $response;
     }
 }
