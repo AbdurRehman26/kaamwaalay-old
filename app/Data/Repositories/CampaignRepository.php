@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Campaign;
 use App\Data\Models\User;
+use App\Data\Models\Plan;
 use App\Notifications\CampaignNotification;
 use Cache;
 class CampaignRepository extends AbstractRepository implements RepositoryContract
@@ -42,24 +43,14 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
-        $data = Cache::get($this->_cacheKey.$id);
-
-        if ($data == null || $refresh == true) {
-            $query = $this->model->with('plan')->find($id);
-            if ($query != null) {
-
-                $data = new \stdClass;
-                foreach ($query->getAttributes() as $column => $value) {
-                    $data->{$column} = $query->{$column};
-                }
-
-                $data->plan = $query->plan;
-                Cache::forever($this->_cacheKey.$id, $data);
-            } else {
-                return null;
+        $data = parent::findById($id, $refresh, $details, $encode);
+        if($data) {
+            $planQuery = Plan::where('id','=',$data->plan_id)->withTrashed()->first();
+            if ($planQuery) {
+                $data->plan = $planQuery;    
             }
+            return $data;
         }
-        return $data;
     }
 
     public function findByAll($pagination = false, $perPage = 10, array $data = [] )
