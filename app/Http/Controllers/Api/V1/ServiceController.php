@@ -147,7 +147,7 @@ public function checkServiceCount($attribute, $value, $fail) {
 }
     //Update single record
     public function update(Request $request, $id)
-    { 
+    {   
         $request->request->add(['id' => $id]);
         $input = $this->input(__FUNCTION__);
         $rules = $this->rules(__FUNCTION__);

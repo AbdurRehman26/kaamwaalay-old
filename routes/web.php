@@ -43,7 +43,7 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 /*Front Route*/
 Route::prefix('services')->group(function () {
 
-    Route::get('/{service}/{subservice?}', function(App\Data\Models\Service $serviceModel) {
+    Route::get('/{services}/{subservice?}', function(App\Data\Models\Service $serviceModel) {
         $subService = $serviceModel->toArray();
         if(!empty($subService)) {
             return view('front-layout', ['service' => $subService]);
