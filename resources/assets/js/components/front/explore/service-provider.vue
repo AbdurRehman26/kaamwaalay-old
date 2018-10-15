@@ -357,8 +357,8 @@ ServiceProviderPage() {
 				self.getRelatedServices();
 				self.searchValue = self.service;
 				self.btnLoading = false;
-				if(self.zip) {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip+'&from_explore=true';
+				if(self.zipCode) {
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zipCode+'&from_explore=true';
 				}
 
 				window.scrollTo(0,0);
@@ -402,13 +402,13 @@ ServiceProviderPage() {
           }else if(typeof(this.serviceName) != "undefined") {
             this.url  = 'api/service?service_name=' + this.serviceName;
           }
-        	if(typeof(this.zipCode) != "undefined") {
-        		let val = this.zipCode;
-        		if(val.length > 5) {
-        			val = val.substr(0, 5);
-        		}
-        		this.url += '&zip=' + val;
-        	}
+          if(typeof(this.zipCode) != "undefined") {
+            let val = this.zipCode;
+            if(val.length > 5) {
+              val = val.substr(0, 5);
+            }
+            this.url += '&zip=' + val;
+          }
         	if(!this.zipCode) {
         		this.validateBeforeSubmit();
         	}
