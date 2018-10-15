@@ -20,12 +20,18 @@
                         </div>
                     </b-list-group-item>
                 </div>
-                <b-list-group-item v-show="errorMessage">
+<!--                 <b-list-group-item v-show="errorMessage">
                     <div class="alert alert-danger" style="font-size: 12px;">
                         <i class="icon-alert" style="font-size: 24px;"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
                     </div>
-                </b-list-group-item>
+                </b-list-group-item> -->
+                <div class="alert-indicator" v-show="errorMessage">
+                    <div class="alert alert-danger">
+                        <i class="icon-alert"></i>
+                        <p>You are not allowed to send contact details and personal information.</p>
+                    </div>
+                </div>                
             </b-list-group>
         </div>
         <div class="panel-footer">

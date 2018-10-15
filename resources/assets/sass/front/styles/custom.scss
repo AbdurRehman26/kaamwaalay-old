@@ -78,6 +78,15 @@ button.sl-close {
     }
 }
 
+.alert-indicator {
+    position: absolute;
+    left: 16px;
+    right: 0;
+    width: 89%;
+    margin: auto;
+    top: 13px;
+}
+
 .white-bg{
     background-color: #fff;
 }
