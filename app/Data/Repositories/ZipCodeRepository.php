@@ -39,11 +39,15 @@ class ZipCodeRepository extends AbstractRepository implements RepositoryContract
 
      public function findByAll($pagination = false,$perPage = 10, $data = [])
     {       
+        $this->builder = $this->model;
         if (!empty($data['zip_code'])) {
-            $this->builder = $this->builder
-                                ->select('zip_code as id')
-                                ->where('zip_code', 'LIKE', '%'.$data['zip_code'].'%');
+            $this->builder = $this->builder->where(
+                function ($query) use ($data) {
+                    $query->where('zip_code', 'LIKE', "%{$data['zip_code']}%");
+                }
+            );
         }
+        $this->builder = $this->builder->groupBy('zip_code');
         return parent::findByAll($pagination, $perPage, $data);
     }
 
