@@ -45,7 +45,7 @@ class JobBidCreated implements ShouldQueue
        }else{ 
          $event->to = User::find($job->user_id);
          $event->from = User::find($this->data['user_id']);   
-         $event->message =  $event->from->first_name.' '. $event->from->last_name.' posted a bid on '.$job->title; 
+         $event->message =  $event->from->first_name.' '. $event->from->last_name.' posted a bid on '.$job->title.' job.'; 
         }
         $event->to->notify(new JobBidCreatedNotification($event));
     }

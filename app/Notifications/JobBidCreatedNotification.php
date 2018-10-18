@@ -59,6 +59,9 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
         $data = ['data'=>[
                     'text' => $this->data->message,
                     'image' => $this->data->from->profile_image,
+                    'link_text' => 'View Job',
+                    'route' => 'job.details',
+                    "id" => $this->data->id,
                     ],
                 'created_at' => $notifiable->created_at->toDateTimeString()
                  ];
@@ -95,6 +98,9 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
         return [
             'text' => $this->data->message,
             'image' => $this->data->from->profile_image,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id,
         ];
     }
 
@@ -104,6 +110,9 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
             'data'=>[
                 'text' => $this->data->message,
                 'image' => $this->data->from->profile_image,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
         ]))->onQueue($this->queue);
