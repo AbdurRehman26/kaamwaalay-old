@@ -84,6 +84,8 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
+                'link_text' => $this->data->link_route,
+                'route' => $this->data->route,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
         ]))->onQueue($this->queue);
