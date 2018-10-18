@@ -83,7 +83,7 @@
                     self.notificationData.unshift(notification);
                     self.notificationCount += 1;
                     self.$parent.notificationCount = self.notificationCount;
-                });
+                }).leaving((user) => {});
             },
             markRead() {
                 let self = this;
