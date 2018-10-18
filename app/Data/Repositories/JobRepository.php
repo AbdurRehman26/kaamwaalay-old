@@ -195,7 +195,7 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
                         $criteria = ['job_id' => $data->id];
 
-                        $criteria['rated_by'] = $data->user_id; 
+                        $criteria['user_id'] = $data->user_id; 
 
                         $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
 

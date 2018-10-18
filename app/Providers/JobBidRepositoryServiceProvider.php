@@ -34,7 +34,7 @@ public function boot()
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->message = 'Your '.$job->title.' job is completed. Please post a review.';
+            $event->message = 'The awarded '.$job->title.' job has been marked as completed by the'.$event->from->first_name.' '.$event->from->last_name.'.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){
@@ -51,11 +51,19 @@ public function boot()
             $event->message = 'Your visit request for '.$job->title.' job has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
-        if(empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED && $jobBid->status != JobBid::ONTHEWAY){
+        if(!$jobBid->is_awarded){
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->message = $event->from->first_name.' '.$event->from->last_name.' modified a bid on '.$job->title;
+            $event->link_text = 'View Bid';
+            $event->message = $event->from->first_name.' '.$event->from->last_name.' modified a bid on '.$job->title.' job.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if($jobBid->status == JobBid::INITIATED && empty($jobBid->deleted_at)){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->message = $event->from->first_name.' '.$event->from->last_name.' initiated a '.$job->title.' job.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if(empty($jobBid->deleted_at) && $jobBid->status == JobBid::ONTHEWAY){

@@ -91,7 +91,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             $getPlanViews = $this->findById($model->id);
             $consumptionPercent = round(($model->clicks/$model->views)*100);
             $consumption = (int) $consumptionPercent;
-            $intervals = [25,50,75,100];
+            $intervals = [25,50,75];
             if(in_array($consumption, $intervals)){
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
@@ -107,7 +107,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 $model->status = Campaign::EXPIRED;
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
-                $data->message = 'Your current subscription plan has ended. Your next subscription plan has begun.'; 
+                $data->message = 'Your current campaign plan has ended. Your next campaign has begun.'; 
                 $this->sendNotification($data);
             }
 
@@ -119,7 +119,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                     $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
                     $data = new \stdClass;
                     $data->user_id = $model->user_id;
-                    $data->message = 'Your featured profile subscription has ended. To restart this subscription, you must purchase the subscription again.'; 
+                    $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
                     $this->sendNotification($data);
                 }
                 return true;

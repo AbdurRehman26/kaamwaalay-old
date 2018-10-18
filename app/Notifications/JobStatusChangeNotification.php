@@ -50,7 +50,7 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
-                    'link_text' => 'View Job',
+                    'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
                     'route' => 'job.details',
                     "id" => $this->data->id,
                     ],
@@ -71,7 +71,7 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
     {
         return [
             'text' => $this->data->message,
-            'link_text' => 'View Job',
+            'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
             'route' => 'job.details',
             "id" => $this->data->id,
         ];
@@ -87,7 +87,7 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
-                'link_text' => 'View Job',
+                'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
                 'route' => 'job.details',
                 "id" => $this->data->id,
             ],

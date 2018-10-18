@@ -58,7 +58,7 @@ class CampaignNotification extends Notification implements ShouldQueue
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
-                    'link_text' => 'Featured Profile',
+                    'link_text' => 'View Campaign',
                     'route' => 'featured_profile',
                     ],
                 'created_at' => $notifiable->created_at->toDateTimeString()
@@ -95,7 +95,7 @@ class CampaignNotification extends Notification implements ShouldQueue
     {
         return [
             'text' => $this->data->message,
-            'link_text' => 'Featured Profile',
+            'link_text' => 'View Campaign',
             'route' => 'featured_profile',
         ];
     }
@@ -105,7 +105,7 @@ class CampaignNotification extends Notification implements ShouldQueue
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
-                'link_text' => 'Featured Profile',
+                'link_text' => 'View Campaign',
                 'route' => 'featured_profile',
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
