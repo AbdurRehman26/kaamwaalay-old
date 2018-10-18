@@ -27,7 +27,7 @@ class UserRatingRepositoryServiceProvider extends ServiceProvider
             if($userRating->status == UserRating::APPROVED){
                $event->from = User::find($userRating->rated_by);
                $event->to = User::find($userRating->user_id);   
-               $event->message = $event->from->first_name.' '.$event->from->last_name.' posted a review & rating on '.$job->title.'. Please Review'; 
+               $event->message = $event->from->first_name.' '.$event->from->last_name.' posted a feedback & rating on '.$job->title.' job.'; 
                $event->to->notify(new UserRatingCreatedNotification($event));
             }     
        });
