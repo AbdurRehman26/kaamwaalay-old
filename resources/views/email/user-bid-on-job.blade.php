@@ -1,12 +1,12 @@
 @component('mail::message')
-{{$message}}.
+{{$message}}
 
 
 <br>
 Please click on the button provided below:
 
 @component('mail::button', ['url' => $url])
-GO TO {{ config('app.name') }}
+GO TO {{ strtoupper(config('app.name')) }}
 @endcomponent
 
 <strong>Thanks,<br>
