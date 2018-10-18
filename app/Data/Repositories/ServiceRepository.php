@@ -56,7 +56,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 
             }else{
 
-                $data->parent = '';
+                $data->parent = null;
             }
             $jobInitCriteria = ['status' => 'initiated', 'service_id' => $data->id];
             $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
