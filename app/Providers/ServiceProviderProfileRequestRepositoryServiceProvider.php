@@ -31,7 +31,7 @@ class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProv
                 }else{
                     $event->link_text =  'Re-submit your profile'; 
                     $event->route =  'my.bids'; 
-                    $event->message =  'Your Profile has been rejected Reason: '.$item->reason.'.'; 
+                    $event->message =  'Your Profile has been rejected.'; 
                 }
                $event->to->notify(new ServiceProviderReviewNotification($event));
             }
