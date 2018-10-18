@@ -69,7 +69,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     {
         return [
             'text' => $this->data->message,
-            'link_text' => $this->data->link_route,
+            'link_text' => $this->data->link_text,
             'route' => $this->data->route,
         ];
     }
@@ -84,7 +84,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
-                'link_text' => $this->data->link_route,
+                'link_text' => $this->data->link_text,
                 'route' => $this->data->route,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
