@@ -331,16 +331,16 @@ ServiceProviderPage() {
             this.updateCampaignClickCount(record.user_id);
 			this.$router.push({ name: 'service-provider-detail.view', params: { id: record.id }});
 		},
-        updateCampaignClickCount(id){
-                let update = {
-                    'service_provider_user_id' : id,
-                    'type' : 'click',
-                };
-                let url = 'api/campaign/update-campaign';
-                this.$http.post(url, update).then(response => {
-                }).catch(error => {
-                });
-        },
+    updateCampaignClickCount(id){
+            let update = {
+                'service_provider_user_id' : id,
+                'type' : 'click',
+            };
+            let url = 'api/campaign/update-campaign';
+            this.$http.post(url, update).then(response => {
+            }).catch(error => {
+            });
+    },
 		getService() {
 			window.scrollTo(0,0);
 			let self = this;
@@ -392,7 +392,6 @@ ServiceProviderPage() {
         },
         checkRoute() {
           this.records = [];
-          this.serviceProviderUrl = null;
           this.zipCode = this.zip? this.zip : this.zipCode;
           if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
             this.zipCode =  this.childServiceName;

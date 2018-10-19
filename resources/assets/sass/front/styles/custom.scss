@@ -80,11 +80,12 @@ button.sl-close {
 
 .alert-indicator {
     position: absolute;
-    left: 16px;
+    left: 6px;
     right: 0;
     width: 89%;
     margin: auto;
-    top: 13px;
+    z-index: 9;
+    top: 90px;
 }
 
 .white-bg{
