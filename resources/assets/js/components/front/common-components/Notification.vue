@@ -9,8 +9,7 @@
                         </div>
                         <div class="right-notification">
                             <div class="notification-content">
-                                <p>
-                                    <strong>{{notification.data.text}}</strong>
+                                <p v-html="notification.data.text">
                                 </p>
                                 <p :class="{'notification-limit': notification.data.route}">
                                     <span v-show="notification.data.route">

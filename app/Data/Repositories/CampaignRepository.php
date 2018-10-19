@@ -99,7 +99,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 $data->title = $getPlanViews->plan->quantity.' view(s)';
                 $data->consumption = $consumption.'%';
                 $user = User::find($data->user_id);
-                $data->message = $user->first_name.' '.$user->last_name.' , you have used '.$data->consumption.' of '.$data->title.'. Remaining '.$data->remaining_views; 
+                $data->message = '<strong>'.$user->first_name.' '.$user->last_name.'</strong> , you have used <strong>'.$data->consumption.'</strong> of <strong>'.$data->title.'</strong>. Remaining <strong>'.$data->remaining_views.'</strong>'; 
                 $this->sendNotification($data);
             }
             if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views == $getPlanViews->plan->quantity ) {

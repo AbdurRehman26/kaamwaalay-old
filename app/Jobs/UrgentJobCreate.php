@@ -60,7 +60,7 @@ class UrgentJobCreate implements ShouldQueue
                         ];
                         app('JobBidRepository')->create($jobBidData);
                         $event->to = User::find($selectedUser->id);
-                        $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
+                        $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$data->title.'</strong> job';
                         $event->to->notify(new SendUrgentJob($event));
                         //event(new UrgentJobCreated($data,$selectedUser->id));
                     }    
@@ -76,7 +76,7 @@ class UrgentJobCreate implements ShouldQueue
                         ];
                         app('JobBidRepository')->create($jobBidData); 
                        $event->to = User::find($selectedUser->id); 
-                       $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
+                       $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$data->title.'</strong> job';
                        $event->to->notify(new SendUrgentJob($event));
                     }
                 }else{
@@ -91,7 +91,7 @@ class UrgentJobCreate implements ShouldQueue
                           ];
                           app('JobBidRepository')->create($jobBidData);
                            $event->to = User::find($selectedUser->id);
-                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
+                           $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$data->title.'</strong> job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }else{
@@ -105,7 +105,7 @@ class UrgentJobCreate implements ShouldQueue
                           ];
                           app('JobBidRepository')->create($jobBidData);
                            $event->to = User::find($selectedUser->id); 
-                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
+                           $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$data->title.'</strong> job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }    

@@ -71,9 +71,9 @@ class CustomerBanned implements ShouldQueue
                     $event->id = $job->id;
                     $event->to = User::find($jobBid->user_id);
                     if($jobBid->is_awarded == 1){
-                      $event->message =  'We apologize you may not perform this '.$job->title.' job as the user has been banned.';  
+                      $event->message =  'We apologize you may not perform this <strong>'.$job->title.'</strong> job as the user has been banned.';  
                     }else{
-                      $event->message =  'We apologize you may not place a bid on this '.$job->title.' job as the user has been banned.';
+                      $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
                     }
                     if($event->to){
                       $event->to->notify(new CustomerBannedNotification($event));
