@@ -1,5 +1,11 @@
 <template>
     <div class="discussion-panel">
+        <div class="alert-indicator" v-show="errorMessage">
+            <div class="alert alert-danger">
+                <i class="icon-alert"></i>
+                <p>You are not allowed to send contact details and personal information.</p>
+            </div>
+        </div>         
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
@@ -25,13 +31,7 @@
                         <i class="icon-alert" style="font-size: 24px;"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
                     </div>
-                </b-list-group-item> -->
-                <div class="alert-indicator" v-show="errorMessage">
-                    <div class="alert alert-danger">
-                        <i class="icon-alert"></i>
-                        <p>You are not allowed to send contact details and personal information.</p>
-                    </div>
-                </div>                
+                </b-list-group-item> -->               
             </b-list-group>
         </div>
         <div class="panel-footer">
