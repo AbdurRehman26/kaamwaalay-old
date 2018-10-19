@@ -176,7 +176,7 @@
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
@@ -234,7 +234,7 @@
                         Modify Bid
                     </a>   
 
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="showChatButton && !isMyJob && canChat" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
@@ -337,7 +337,8 @@
                 xAxis : 37.090240,
                 yAxis : -95.712891,
                 forceUserValue : false,
-                requestUserUrl : ''
+                requestUserUrl : '',
+                showChatButton : true,
 
             }
         },
@@ -582,6 +583,12 @@
                     this.jobBids.data.push(this.record.my_bid);                    
                 }
 
+                if(this.jobBids.data.length == 0 && user.role_id == 2){
+                    this.showChatButton = false
+                }else{
+                    this.showChatButton = true
+                }
+
             },
             getBidsResponse(response){
                 let self = this;
@@ -592,7 +599,7 @@
                     }
 
                     self.jobBids.pagination = response.pagination;
-
+ 
                     setTimeout(function () {
                         self.jobBids.showInvite = true;
                         self.$forceUpdate();
