@@ -57,6 +57,9 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
+                    'link_text' => 'View Job',
+                    'route' => 'job.details',
+                    "id" => $this->data->id,
                     ],
                 'created_at' => $notifiable->created_at->toDateTimeString()
                  ];
@@ -75,6 +78,9 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         return [
             'text' => $this->data->message,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id,
         ];
     }
     /**
@@ -88,6 +94,9 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id,
             ],
             'created_at' => $notifiable->created_at->toDateTimeString(),
         ]))->onQueue($this->queue);
@@ -104,6 +113,6 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
         $url = route('front.login');
         return (new MailMessage)
         ->subject(Lang::getFromJson('Customer Banned'))
-        ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
+->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
     }
 }

@@ -16,6 +16,7 @@ use App\Data\Repositories\JobRepository;
 use App\Helper\Helper;
 use App\Events\UrgentJobCreated;
 use App\Data\Models\ServiceProviderProfile;
+use App\Data\Models\JobBid;
 use App\Notifications\SendUrgentJob;
 
 class UrgentJobCreate implements ShouldQueue
@@ -51,8 +52,15 @@ class UrgentJobCreate implements ShouldQueue
              if($data->job_type == 'urgent'){
                 if(!empty($selectedUsers)){
                     foreach ($selectedUsers as $selectedUser) {
+                        $jobBidData = [
+                            'job_id'=>$data->id,
+                            'user_id'=>$selectedUser->id,
+                            'status'=>JobBid::INVITED,
+                            'is_invited'=>1
+                        ];
+                        app('JobBidRepository')->create($jobBidData);
                         $event->to = User::find($selectedUser->id);
-                        $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
+                        $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
                         $event->to->notify(new SendUrgentJob($event));
                         //event(new UrgentJobCreated($data,$selectedUser->id));
                     }    
@@ -60,23 +68,44 @@ class UrgentJobCreate implements ShouldQueue
                  $selectedUsers  =  $this->getUsersByRadius($currentZipCode,100,$data);
                  if(!empty($selectedUsers)){
                     foreach ($selectedUsers as $selectedUser) {
+                       $jobBidData = [
+                            'job_id'=>$data->id,
+                            'user_id'=>$selectedUser->id,
+                            'status'=>JobBid::INVITED,
+                            'is_invited'=>1
+                        ];
+                        app('JobBidRepository')->create($jobBidData); 
                        $event->to = User::find($selectedUser->id); 
-                       $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
+                       $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
                        $event->to->notify(new SendUrgentJob($event));
                     }
                 }else{
                     $selectedUsers  =  $this->getUsersByRadius($currentZipCode,150,$data);
                     if(!empty($selectedUsers)){
                         foreach ($selectedUsers as $selectedUser) {
+                            $jobBidData = [
+                            'job_id'=>$data->id,
+                            'user_id'=>$selectedUser->id,
+                            'status'=>JobBid::INVITED,
+                            'is_invited'=>1
+                          ];
+                          app('JobBidRepository')->create($jobBidData);
                            $event->to = User::find($selectedUser->id);
-                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
+                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }else{
                         $selectedUsers  =  $this->getUsersByRadius($currentZipCode,'',$data);
                         foreach ($selectedUsers as $selectedUser) {
+                          $jobBidData = [
+                            'job_id'=>$data->id,
+                            'user_id'=>$selectedUser->id,
+                            'status'=>JobBid::INVITED,
+                            'is_invited'=>1
+                          ];
+                          app('JobBidRepository')->create($jobBidData);
                            $event->to = User::find($selectedUser->id); 
-                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on their job';
+                           $event->message =  $event->from->first_name.' '. $event->from->last_name.' has invited you to bid on '.$data->title.' job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }    
