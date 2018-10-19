@@ -343,3 +343,9 @@ Vue.filter('paymentType', function (value) {
     return obj.value;
 });
 
+Vue.filter('formatDateTimeUTC', function(value) {
+    if (value) {
+        return moment.utc(value).local().format('MMM Do, YYYY, h:mm a')
+    }
+});
+

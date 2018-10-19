@@ -17,7 +17,7 @@
                                         <router-link v-show="!notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link>
                                         <router-link v-show="notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id ,jobBidId : notification.data.object_id}}">{{notification.data.link_text}}</router-link>
                                     </span>
-                                    <span>{{notification.created_at | formatDateTime}}</span>
+                                    <span>{{notification.created_at | formatDateTimeUTC}}</span>
                                 </p>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                 }).catch(error => {
 
                 });
-            }
+            },
         },
          watch:{
             isShowTab(val){

@@ -34,7 +34,7 @@ public function boot()
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->message = 'The awarded '.$job->title.' job has been marked as completed by the'.$event->from->first_name.' '.$event->from->last_name.'.';
+            $event->message = 'The awarded '.$job->title.' job has been marked as completed by the '.$event->from->first_name.' '.$event->from->last_name.'.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){

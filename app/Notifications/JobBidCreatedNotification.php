@@ -17,6 +17,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
+use Carbon\Carbon;
 
 
 class JobBidCreatedNotification extends Notification implements ShouldQueue
@@ -25,6 +26,7 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
     public $queue;
+    protected $date;
 
     /**
     * Create a new notification instance.
@@ -35,6 +37,7 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
     {
         $this->data = $event;
         $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -63,7 +66,7 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
                     'route' => 'job.details',
                     "id" => $this->data->id,
                     ],
-                'created_at' => $notifiable->created_at->toDateTimeString()
+                'created_at' => $this->date
                  ];
       //\Log::info($notifiable);
        return OneSignalMessage::create()
@@ -114,7 +117,7 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
                 'route' => 'job.details',
                 "id" => $this->data->id,
             ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
+            'created_at' => $this->date,
         ]))->onQueue($this->queue);
     }
 }
