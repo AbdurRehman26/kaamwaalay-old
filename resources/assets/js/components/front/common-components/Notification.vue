@@ -78,12 +78,13 @@
             subscribeChannel() {
                 let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
                 self = this
+                window.Echo.leave(channelName);
                 window.Echo.private(channelName).notification((notification) => {
                     self.noRecordFound = false
                     self.notificationData.unshift(notification);
                     self.notificationCount += 1;
                     self.$parent.notificationCount = self.notificationCount;
-                }).leaving((user) => {});
+                });
             },
             markRead() {
                 let self = this;

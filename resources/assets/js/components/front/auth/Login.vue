@@ -92,7 +92,9 @@
                     this.$auth.login(this.login_info).then(function (response) {
                         self.loading = false
                         self.$store.commit('setAuthUser', response.data.data);
-                        self.echoAuthenticate(response.data.access_token);
+                        if(typeof window.Echo == 'undefined'){
+                          self.echoAuthenticate(response.data.access_token);
+                        }
                         if(response.data.data.role.id == 2){
                             if(response.data.data.is_profile_completed == 0 ){
                                 self.$router.push({ name: 'provider_profile'})
