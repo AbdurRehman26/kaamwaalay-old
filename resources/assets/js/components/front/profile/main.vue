@@ -87,7 +87,11 @@
                     </div>
 
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="zipcode-selectize">
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
@@ -97,25 +101,19 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
+                   <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
                                 <label for="">City *</label>
                                 <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
-                            </div>
                         </div>
-
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                        </div>
-                    </div>
+                     </div>
+                    </div> 
                 </div>
 
 
@@ -158,6 +156,7 @@
                 file: null,
                 profileImage : '',
                 invalidZip: false,
+                currentCity: null,
             }
         },
         mounted(){
@@ -183,10 +182,16 @@
         methods: {
             setZipCode(val) {
                 this.record.zip_code = val.zip_code;
+                this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {
                     this.invalidZip = true;
                 }
+            },
+            setCity(object){
+                this.record.state_id = object.state_id;
+                this.currentCity = object.city_id;
+                this.onStateChange();
             },
             onStateChange(){
                 this.record.city_id = null;
@@ -212,6 +217,10 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {

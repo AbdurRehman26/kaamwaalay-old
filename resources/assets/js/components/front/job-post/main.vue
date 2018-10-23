@@ -139,36 +139,34 @@
             </div>
 
             <div class="row">
-
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">State</label>
-                        <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="formData.state_id">
-                            <option value="">Select State</option>
-                            <option v-for="state in states" :value="state.id">{{state.name}}</option>
-                        </select>
+                    <div class="zipcode-selectize">
+                        <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="formData.zip_code"></zip>
                     </div>
                 </div>
-
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">City</label>
-                        <select :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" name="city" v-model="formData.city_id">
-                            <option value="">Select City</option>
-                            <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="">State *</label>
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="formData.state_id">
+                                    <option value="">Select State</option>
+                                    <option v-for="state in states" :value="state.id">{{state.name}}</option>
+                                </select>
+                            </div>
                 </div>
 
 
             </div>
-
-
             <div class="row">
-                <div class="col-md-6">
-                    <zip @onSelect="setZipCode" :initialValue="formData.zip_code" :showError="invalidZip"></zip>
-                </div>
-            </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="">City *</label>
+                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
+                                    <option value="">Select City</option>
+                                    <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                                </select>
+                        </div>
+                     </div>
+            </div> 
         </div>
         
         <div class="verify-account">
@@ -287,7 +285,8 @@
                 isUrgentJob : false,
                 invalidZip: false,
                 forceUserValue : false,
-                requestUserUrl : ''
+                requestUserUrl : '',
+                currentCity: '',
 
             }
         },
@@ -314,10 +313,24 @@
         methods:{
             setZipCode(val) {
                 this.formData.zip_code = val.zip_code;
+                this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {
                     this.invalidZip = true;
                 }
+            },
+            setCity(object){
+                if(object.state_id){
+                  this.formData.state_id = object.state_id;    
+                }else{
+                  this.formData.state_id = ''  
+                }
+                if(object.city_id){
+                  this.currentCity = object.city_id;    
+                }else{
+                  this.currentCity = ''  
+                }
+                this.onStateChange();
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
@@ -348,9 +361,16 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.formData.city_id = this.currentCity;
+                   this.currentCity = '';
+                }
             },
 
             onStateChange(){
+                if(!this.$route.params.id){
+                 this.formData.city_id = '';
+                }
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
             },
             getResponse($event){
