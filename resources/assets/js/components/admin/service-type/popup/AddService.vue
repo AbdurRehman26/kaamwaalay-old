@@ -66,7 +66,7 @@
                 <p>{{url_prefix}}</p>
             </div>
             <div class="url-area">
-                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="URL Suffix" v-validate="{ required: true, regex: /^[0-9a-z\-]+$/, max:50 }" :class="['form-control' , (errorBag.first('URL Suffix') || isInalidSuffix) ? 'is-invalid' : '']">
+                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="URL Suffix" v-validate="{ required: true, regex: /^[0-9a-z\-]+$/, max:50 }" :class="['form-control' , (errorBag.first('URL Suffix')) ? 'is-invalid' : '']">
             </div>
         </div>
 
@@ -145,8 +145,10 @@
                     this.formData.is_display_service_nav = 0;
                     this.formData.is_display_footer_nav = 0;
                     this.showRadios = false;
+                    this.url_prefix  = this.formData.parent_id.url + "/";
                 }else {
                     this.showRadios = true;
+                    this.url_prefix  = this.$store.getters.getServiceUrlPrefix;
                 }
             },
             resetFormFields() {
@@ -223,11 +225,11 @@
             },  
             showModal () {
                 this.imageText = 'Click here to upload image';
-                this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
                 this.url_prefix =  this.$store.getters.getServiceUrlPrefix;
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
+                this.$refs.myModalRef.show();
             },
             hideModal () {
                 var self = this;
@@ -334,7 +336,7 @@
                 let url = this.url+"/"+this.list.id;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                this.$http.put(url, data).then(response => {
+                self.$http.put(url, data).then(response => {
                     response = response.data.response;
                     self.successMessage = response.message;
                     setTimeout(function () {
@@ -375,14 +377,14 @@
         },
 
         watch: {
-            'formData.url_suffix' (val) {
-                var regex = /^[0-9a-z\-]+$/;
-                if(val.length == 0 || !regex.test(val)) {
-                    this.isInalidSuffix = true;
-                    return;
-                } 
-                this.isInalidSuffix = false;
-            },
+        //     'formData.url_suffix' (val) {
+        //         var regex = /^[0-9a-z\-]+$/;
+        //         if(val.length == 0 || !regex.test(val)) {
+        //             this.isInalidSuffix = true;
+        //             return;
+        //         } 
+        //         this.isInalidSuffix = false;
+        //     },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
@@ -417,6 +419,12 @@
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file? this.file : 'Click here to upload image.';
+                    if(this.formData.parent_id) {
+                        this.url_prefix  = this.formData.parent_id.url + "/";
+                    }else {
+                        this.url_prefix  = this.$store.getters.getServiceUrlPrefix;
+                    }
+                    this.errorBag.clear();
                 }
             }
         },

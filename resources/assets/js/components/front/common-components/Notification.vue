@@ -9,15 +9,14 @@
                         </div>
                         <div class="right-notification">
                             <div class="notification-content">
-                                <p>
-                                    <strong>{{notification.data.text}}</strong>
+                                <p v-html="notification.data.text">
                                 </p>
                                 <p :class="{'notification-limit': notification.data.route}">
                                     <span v-show="notification.data.route">
                                         <router-link v-show="!notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link>
                                         <router-link v-show="notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id ,jobBidId : notification.data.object_id}}">{{notification.data.link_text}}</router-link>
                                     </span>
-                                    <span>{{notification.created_at | formatDateTime}}</span>
+                                    <span>{{notification.created_at | formatDateTimeUTC}}</span>
                                 </p>
                             </div>
                         </div>
@@ -78,6 +77,7 @@
             subscribeChannel() {
                 let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
                 self = this
+                window.Echo.leave(channelName);
                 window.Echo.private(channelName).notification((notification) => {
                     self.noRecordFound = false
                     self.notificationData.unshift(notification);
@@ -98,7 +98,7 @@
                 }).catch(error => {
 
                 });
-            }
+            },
         },
          watch:{
             isShowTab(val){

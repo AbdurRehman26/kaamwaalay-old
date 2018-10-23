@@ -45,18 +45,17 @@
                 <div class="form-label-heading">
                     <p>Attach Photo</p>
                 </div>
-                <div class="margin-bottom-20px row" v-for="(image, index) in jobImages.length">
+                <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
+
+                <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 
                     <div class="col-md-6">
                         <div class="form-group custom-file">
-
-                            <file-upload-component @get-response="getResponse(image, index, $event)" :uploadKey="'job'"></file-upload-component>
-
+                            {{image.original_name}}
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <a v-if="parseInt(index) < parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="removeImage(index);" class="add-photos filter-btn-top-space">x</a>
-                        <a v-if="parseInt(index) === parseInt(jobImages.length-1)" href="javascript:;" @click.prevent="addImages" class="add-photos filter-btn-top-space">+ Add more photos</a>
+                    <div class="col-md-6 text-right">
+                        <a href="javascript:;" @click.prevent="removeImage(index);" class="add-photos">remove</a>
                     </div>
                 </div>
             </div>
@@ -273,7 +272,7 @@
                     state_id : '',
                     zip_code : '',
                     videos : '',
-                    images : [{}],
+                    images : [],
                     subscription_id : null
                 },
                 loading : false,
@@ -354,8 +353,11 @@
             onStateChange(){
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
             },
-            getResponse(imageResponse, index, $event){
-                this.formData['images'][index] = $event.name;
+            getResponse($event){
+                this.formData['images'][this.formData['images'].length] = {
+                    name : $event.name,
+                    original_name : $event.original_name
+                };
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
@@ -369,7 +371,7 @@
                     }
                     if (result) {
                         setTimeout(function () {
-                           if(!this.errorMessage){    
+                         if(!this.errorMessage){    
                             self.isSubmit = true;
                         }else{
                             self.isSubmit = false;

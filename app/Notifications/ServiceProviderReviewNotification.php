@@ -11,12 +11,15 @@ use NotificationChannels\OneSignal\OneSignalMessage;
 use NotificationChannels\OneSignal\OneSignalWebButton;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Carbon\Carbon;
 
 class ServiceProviderReviewNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
     public $queue;
+    protected $date;
+
     /**
      * Create a new notification instance.
      *
@@ -26,6 +29,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     {
         $this->data = $data;
         $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -49,8 +53,10 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
+                    'link_text' => $this->data->link_route,
+                    'route' => $this->data->route,
                     ],
-                'created_at' => $notifiable->created_at->toDateTimeString()
+                'created_at' => $this->date
                  ];
         return OneSignalMessage::create()
             ->subject("Urgent Job")
@@ -67,6 +73,8 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     {
         return [
             'text' => $this->data->message,
+            'link_text' => $this->data->link_text,
+            'route' => $this->data->route,
         ];
     }
     /**
@@ -80,8 +88,10 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
+                'link_text' => $this->data->link_text,
+                'route' => $this->data->route,
             ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
+            'created_at' => $this->date,
         ]))->onQueue($this->queue);
     }
 }

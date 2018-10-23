@@ -63,7 +63,9 @@ class JobController extends ApiResourceController
             );
 
             if(empty($input['images'][0])){
-                $input['images'] = null;
+                if(isset($input['images'])){           
+                    $input['images'] = null;
+                }
             }
 
         }

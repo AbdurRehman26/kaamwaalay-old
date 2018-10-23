@@ -1,5 +1,11 @@
 <template>
     <div class="discussion-panel">
+        <div class="alert-indicator" v-show="errorMessage">
+            <div class="alert alert-danger">
+                <i class="icon-alert"></i>
+                <p>You are not allowed to send contact details and personal information.</p>
+            </div>
+        </div>         
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
@@ -20,12 +26,12 @@
                         </div>
                     </b-list-group-item>
                 </div>
-                <b-list-group-item v-show="errorMessage">
+<!--                 <b-list-group-item v-show="errorMessage">
                     <div class="alert alert-danger" style="font-size: 12px;">
                         <i class="icon-alert" style="font-size: 24px;"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
                     </div>
-                </b-list-group-item>
+                </b-list-group-item> -->               
             </b-list-group>
         </div>
         <div class="panel-footer">
@@ -102,7 +108,6 @@
                         data : response.data,
                         noRecordFound : false,
                         pagination : response.pagination
-
                     };
 
                     if(!response.data.length){
@@ -112,7 +117,7 @@
                     self.pagination = response.pagination;
 
                     self.loading = false;
-
+                    self.scrollToEnd();
                     if(typeof successCallback !== 'undefined'){
                         successCallback(true);
                     }
@@ -185,7 +190,6 @@
                     let containsUrl = urlRegex.test(message);
                     if(containsDigits || containsEmail || containsGeneral || containsUrl) {
                         this.errorMessage = true;
-                        this.scrollToEnd();
                         setTimeout((e) => {
                             this.errorMessage = false;
                         }, 3000);
@@ -269,7 +273,6 @@
 
                     self.isOnline = true;
                     self.messages.push(e.discussion);
-                    self.scrollToEnd();
                 });
             },
             scrollToEnd() {

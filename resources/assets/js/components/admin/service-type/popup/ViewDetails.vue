@@ -115,7 +115,8 @@ export default {
     },
     computed: {
         serviceUrl() {
-            return this.url_prefix + this.selectedService.url_suffix;
+            let parent_url_suffix = this.selectedService.parent? this.selectedService.parent.url_suffix + "/" : "";
+            return this.url_prefix + parent_url_suffix + this.selectedService.url_suffix;
         },
         getImage() {
             return this.selectedService.images? (this.selectedService.images[0].upload_url? this.selectedService.images[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';

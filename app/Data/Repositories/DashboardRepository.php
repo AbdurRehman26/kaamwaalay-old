@@ -244,8 +244,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderBy('job_completed', 'DESC')
-            ->orderBy('rating', 'DESC');    
+            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');    
         }
         
         $result = $result->get()
@@ -290,8 +289,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderBy('job_completed', 'DESC')
-            ->orderBy('rating', 'DESC');    
+            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');
         }
         $result = $result->get()
         ->toArray();

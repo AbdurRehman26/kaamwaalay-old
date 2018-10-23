@@ -23,7 +23,7 @@
 					<div class="col-md-10 p-r-0">
                      <div class="search-filter m-b-0">
                          <div class="custom-multi category-detail" :class="{'invalid': isInvalid }">
-                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
+                            <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
                             @select="dispatchAction" @keyup.enter="validateBeforeSubmit">
                               <span slot="noResult">No service found.</span>
                         </multiselect>
@@ -44,7 +44,7 @@
 </div>
 </div>
 
-<h5 class="text-center enterzip" v-if="!zip">Please enter a zip code to view the list of service providers accordingly.</h5>
+<h5 class="text-center enterzip" v-if="!zipCode">Please enter a zip code to view the list of service providers accordingly.</h5>
 <no-record-found v-else-if="noRecordFound"></no-record-found>
 <div class="job-post-container section-padd sm" v-if="!noRecordFound">
   <div class="container md">
@@ -171,7 +171,7 @@
 	import StarRating from 'vue-star-rating';
 
 	export default {
-		props: ['zip', 'serviceName'],
+		props: ['zip', 'serviceName', 'childServiceName'],
 		data () {
 			return {
                 userToSendInvite : '',
@@ -200,6 +200,7 @@
                 routeName: '',
                 isZipEmpty: false,
                 invitePopup : false,
+                serName: '',
             }
         },
         computed : {
@@ -217,9 +218,12 @@
     methods: {
      onSelectCategory(val) {
         this.hideZipModal();
-
         localStorage.setItem("zip", val);
-        this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
+        if(this.selectedService.parent) {
+            this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+        }else {
+          this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});  
+        }
     },
     changecategorypopup(service) {
         this.selectedService = service;
@@ -254,7 +258,6 @@ limitText (count) {
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
        if (result && !this.loading) {
-          this.records = [];
           this.ServiceProviderPage();
           this.errorMessage = "";
           return;
@@ -268,10 +271,13 @@ ServiceProviderPage() {
        this.isTouched = true;
        return;
    }
-   this.serviceName = this.searchValue.url_suffix;
+   this.serName = this.searchValue.url_suffix;
    localStorage.setItem('zip', this.zipCode);
-   this.$router.push({ name: this.routeName, params: { serviceName: this.serviceName, zip : this.zipCode }});
-			//this.getService(); 
+   if(this.searchValue.parent) {
+        this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+    }else {
+      this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, childServiceName: null, zip : this.zipCode }}); 
+    }
 		},
 		onTouch () {
 			this.options = [];
@@ -325,16 +331,16 @@ ServiceProviderPage() {
             this.updateCampaignClickCount(record.user_id);
 			this.$router.push({ name: 'service-provider-detail.view', params: { id: record.id }});
 		},
-        updateCampaignClickCount(id){
-                let update = {
-                    'service_provider_user_id' : id,
-                    'type' : 'click',
-                };
-                let url = 'api/campaign/update-campaign';
-                this.$http.post(url, update).then(response => {
-                }).catch(error => {
-                });
-        },
+    updateCampaignClickCount(id){
+            let update = {
+                'service_provider_user_id' : id,
+                'type' : 'click',
+            };
+            let url = 'api/campaign/update-campaign';
+            this.$http.post(url, update).then(response => {
+            }).catch(error => {
+            });
+    },
 		getService() {
 			window.scrollTo(0,0);
 			let self = this;
@@ -351,8 +357,8 @@ ServiceProviderPage() {
 				self.getRelatedServices();
 				self.searchValue = self.service;
 				self.btnLoading = false;
-				if(self.zip) {
-					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zip+'&from_explore=true';
+				if(self.zipCode) {
+					self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zipCode+'&from_explore=true';
 				}
 
 				window.scrollTo(0,0);
@@ -364,7 +370,7 @@ ServiceProviderPage() {
 		},
 		getRelatedServices() {
 			let self = this;
-			let url = 'api/service/?filter_by_related_services=' + this.service.id;
+			let url = 'api/service?filter_by_related_services=' + this.service.id;
 			self.$http.get(url).then(response => {
 				response = response.data.response;
 				self.relatedServices = response.data;
@@ -385,17 +391,23 @@ ServiceProviderPage() {
             self.pagination = response.pagination;
         },
         checkRoute() {
-        	this.zipCode = this.zip? this.zip : this.zipCode;
-        	if(typeof(this.serviceName) != "undefined") {
-        		this.url  = 'api/service/?service_name=' + this.serviceName;
-        	}
-        	if(typeof(this.zip) != "undefined") {
-        		let val = this.zip;
-        		if(val.length > 5) {
-        			val = val.substr(0, 5);
-        		}
-        		this.url += '&zip=' + val;
-        	}
+          this.records = [];
+          this.zipCode = this.zip? this.zip : this.zipCode;
+          if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
+            this.zipCode =  this.childServiceName;
+          }
+          if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
+            this.url  = 'api/service?service_name=' + this.childServiceName;
+          }else if(typeof(this.serviceName) != "undefined") {
+            this.url  = 'api/service?service_name=' + this.serviceName;
+          }
+          if(typeof(this.zipCode) != "undefined") {
+            let val = this.zipCode;
+            if(val.length > 5) {
+              val = val.substr(0, 5);
+            }
+            this.url += '&zip=' + val;
+          }
         	if(!this.zipCode) {
         		this.validateBeforeSubmit();
         	}
@@ -410,11 +422,19 @@ ServiceProviderPage() {
     	'service.title' (val) {
     		this.serviceTitle = val;
     	},
-    	serviceName(val) {
-    		if(!val) {
-    			this.$router.push({ name: 'Explore'})
-    		}
-    		this.serviceName = val;
+      serviceName(val) {
+        // if(!val) {
+        //   this.$router.push({ name: 'Explore'})
+        // }
+        this.serviceName = val;
+        this.getService();
+      },
+    	childServiceName(val) {
+
+    		// if(!val) {
+    		// 	this.$router.push({ name: 'Explore'})
+    		// }
+    		this.childServiceName = val;
     		this.getService();
     	},
     	zip(val) {

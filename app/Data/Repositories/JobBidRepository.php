@@ -7,6 +7,7 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobBid;
 use App\Data\Models\Job;
 use Carbon\Carbon;
+use App\Jobs\JobBidCreated;
 
 class JobBidRepository extends AbstractRepository implements RepositoryContract
 {
@@ -397,7 +398,7 @@ public function create(array $data = [])
 
 
     $this->model->insertOnDuplicateKey($data);
-
+    JobBidCreated::dispatch($data)->onQueue(config('queue.pre_fix').'notifications'); 
     $this->findByCriteria($criteria, true);
 
     return $data;

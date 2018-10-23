@@ -109,7 +109,7 @@
                         <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
-                    <div v-if="awardedToMe || isMyJob" class="jobs-post-files">
+                    <div v-if="canViewMap" class="jobs-post-files">
                         <h3>Customer Information</h3>
                         <div class="coustomer-info-line">
                             <i class="icon-phone_in_talk"></i>
@@ -171,12 +171,12 @@
                                 </div>
 
                                 <div class="provider-bidding-btn">
-                                    
+
                                     <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
                                     <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
@@ -198,7 +198,7 @@
 
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
-                        <p>{{record.service_provider_count}} service providers available around you related to concrete flooring.</p>
+                        <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary" 
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
@@ -234,10 +234,11 @@
                         Modify Bid
                     </a>   
 
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="showChatButton && !isMyJob && canChat" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
+                    <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
 
                     <a v-canBid v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                         Write Review
@@ -336,7 +337,8 @@
                 xAxis : 37.090240,
                 yAxis : -95.712891,
                 forceUserValue : false,
-                requestUserUrl : ''
+                requestUserUrl : '',
+                showChatButton : true,
 
             }
         },
@@ -364,7 +366,7 @@
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'pending' && ( this.record.my_bid.id == this.record.awardedBid.id);
+                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
                 }
                 return false;
             },
@@ -472,6 +474,14 @@
                 let axisPoints = xAxis +','+  yAxis;
                 axisPoints = this.record.address;
                 return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints;
+            },
+            onTheWay(){
+                if(Object.keys(this.record).length && this.record.my_bid){
+                    return this.record.status != 'cancelled' && this.record.my_bid.status == "on_the_way";
+                }
+            },
+            canViewMap(){
+                return this.isMyJob || this.visitAllowed || this.onTheWay || this.awardedToMe;
             }
         },
         methods: {
@@ -501,7 +511,7 @@
                         job_id: record.job_id,
                         reciever_id: record.user_id,
                         job_bid_id: record.id,
-                        sender_detail: user,
+                        sender_detail: record.user,
                         business_name: record.service_provider.business_name,
                     };
                 }else {
@@ -573,6 +583,12 @@
                     this.jobBids.data.push(this.record.my_bid);                    
                 }
 
+                if(this.jobBids.data.length == 0 && user.role_id == 2){
+                    this.showChatButton = false
+                }else{
+                    this.showChatButton = true
+                }
+
             },
             getBidsResponse(response){
                 let self = this;
@@ -583,7 +599,7 @@
                     }
 
                     self.jobBids.pagination = response.pagination;
-
+ 
                     setTimeout(function () {
                         self.jobBids.showInvite = true;
                         self.$forceUpdate();

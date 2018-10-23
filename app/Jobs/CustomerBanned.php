@@ -54,25 +54,26 @@ class CustomerBanned implements ShouldQueue
             //         $response = app('JobBidRepository')->update($tempData);
             //     }
             // }
-            $jobs = Job::where('user_id','=',$this->data->id)->where('is_archived','!=', 1)->where('status','!=', "completed")->get();
+            $jobs = Job::where('user_id','=',$this->data->id)->whereNotIn('status',[Job::COMPLETED,Job::CANCELLED])->get();
             foreach ($jobs as $job) {
-                $jobBids = JobBid::where('job_id', '=', $job->id)->where('status','!=',JobBid::COMPLETED)->get();
-                $jobCancelled = app('JobRepository')->update(['id' => $job->id, 'status' => 'cancelled']);
+                $jobBids = JobBid::where('job_id', '=', $job->id)->whereNotIn('status',[JobBid::COMPLETED,JobBid::CANCELLED])->get();
+                $jobCancelled = app('JobRepository')->update(['id' => $job->id, 'status' => Job::CANCELLED]);
                 foreach ($jobBids as $jobBid) {
 
                     $tempData = [];
                     $tempData['id'] = $jobBid->id;
                     $tempData['job_id'] = $job->id;
-                    $tempData['status'] = "cancelled";
+                    $tempData['status'] = JobBid::CANCELLED;
                     $tempData['updateJob'] = false;
                     $response = app('JobBidRepository')->update($tempData);
 
                     $event = new \StdClass();
+                    $event->id = $job->id;
                     $event->to = User::find($jobBid->user_id);
                     if($jobBid->is_awarded == 1){
-                      $event->message =  'We apologize you may not perform this '.$job->title.' as the user has been banned.';  
+                      $event->message =  'We apologize you may not perform this <strong>'.$job->title.'</strong> job as the user has been banned.';  
                     }else{
-                      $event->message =  'We apologize you may not place a bid on this '.$job->title.' as the user has been banned.';
+                      $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
                     }
                     if($event->to){
                       $event->to->notify(new CustomerBannedNotification($event));

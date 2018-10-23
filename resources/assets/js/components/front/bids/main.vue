@@ -137,6 +137,16 @@
             },
             showChatBox(record, strictChat = false, disabled = false) {
                 this.closeChatBox();
+                if(record.status == 'in_bidding') {
+                     this.strict = true;
+                     this.disabledChat = false;
+                }else if(record.status == 'cancelled' || record.status == 'archived' || record.status == 'completed'){
+                     this.strict = true;
+                     this.disabledChat = true;
+                }else {
+                    this.strict = false;
+                    this.disabledChat = false;
+                }
                 this.jobMessageData = {
                     text: '',
                     job_id: record.id,
@@ -147,8 +157,8 @@
                 };
                 this.showChat = false;
                 this.showChat = true;
-                this.strict = strictChat;
-                this.disabledChat = disabled;
+                /*this.strict = strictChat;
+                this.disabledChat = disabled;*/
             },
             AddCustomer() {
                 this.customer = true;
@@ -284,7 +294,16 @@
                     }
                     this.loadingCompleted = true;
                 }
-            }
+            },
+            checkStatus(bid) {
+                if(bid.status == 'in_bidding') {
+                    this.showChatBox(bid, true, false);
+                }else if(bid.status == 'cancelled' || bid.status == 'archived' || bid.status == 'completed'){
+                    this.showChatBox(bid, true, true);
+                }else {
+                    this.showChatBox(bid, false, false);
+                }
+            },
         },
         components: {
             StarRating

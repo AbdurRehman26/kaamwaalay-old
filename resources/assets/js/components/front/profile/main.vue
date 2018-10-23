@@ -134,8 +134,8 @@
 
     </div>
     <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-    <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 </div>
 </template>

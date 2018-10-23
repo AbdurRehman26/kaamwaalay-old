@@ -155,8 +155,6 @@ public function input($value='')
     }
 
 
-
-
     return $input;
 }
 
@@ -167,6 +165,15 @@ public function messages($value = '')
         'job_id.required' => 'Job field is required.',
     ];
     return $messages;
+}
+public function responseMessages($value = '')
+{
+    if(!empty($this->input('store')['is_invited'])){
+         $messages = [
+            'store' => 'Invitation has been sent successfully.',
+        ];
+    }
+    return !empty($messages[$value]) ? $messages[$value] : 'Success.';
 }
 
 

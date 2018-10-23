@@ -325,37 +325,41 @@ const title = document.title
 router.beforeEach((to, from, next) => {
 
     let user;
+    if(!router.app.$auth.isAuthenticated()){
+        router.app.$store.commit('setAuthAdminUser', '')
+        next();
+    }
     if(router.app.$store.getters.getAuthAdminUser != 'undefined'){
-      user = JSON.parse(router.app.$store.getters.getAuthAdminUser);
-  }
-  document.title = (title + ' | ' + to.meta.title)
-  if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
-    next({name: 'login'});
-} else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
-    if(user  && user.role_id == admin){
-      next({name: 'dashboard'});
-  } else if(user  && user.role_id == reviewer){
-      next({name: 'service.provider.review'});
-  }
-} else {
-    next();
-}
-if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
-    if(user  && user.role_id == admin){
-        next();
-    } 
-    else{
-        next({name: 'login'});
+        user = JSON.parse(router.app.$store.getters.getAuthAdminUser);
     }
-}
-if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
-    if(user  && (user.role_id == reviewer ||user.role_id == admin)){
-        next();
-    } 
-    else{
+    document.title = (title + ' | ' + to.meta.title)
+    if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isAuthenticated()) {
         next({name: 'login'});
+    } else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
+        if(user  && user.role_id == admin){
+            next({name: 'dashboard'});
+        } else if(user  && user.role_id == reviewer){
+            next({name: 'service.provider.review'});
+        }
+    } else {
+        next();
     }
-}
+    if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
+        if(user  && user.role_id == admin){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
+    if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
+        if(user  && (user.role_id == reviewer ||user.role_id == admin)){
+            next();
+        } 
+        else{
+            next({name: 'login'});
+        }
+    }
 })
 
 export default router

@@ -214,7 +214,12 @@
                     return;
                 }
                 localStorage.setItem('zip', this.zipCode);
-                this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+                if(this.searchValue.parent) {
+
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+                }else {
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});   
+                }
             },
             dispatchAction (actionName) {
                 this.searchValue = '';
