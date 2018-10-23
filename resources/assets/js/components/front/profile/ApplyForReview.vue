@@ -627,7 +627,7 @@
                     product: 'account_creation',
                 };
                 self.$http.get(url, {params: params}).then(response=>{
-                    self.plans = response.data.response.data
+                    self.plans = response.data.data
                     self.selectedPlan = self.plans[0].id
                     self.accountCreationAmount = self.plans[0].amount
                 }).catch(error=>{

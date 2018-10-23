@@ -53,11 +53,11 @@
                 this.user = JSON.parse(this.$store.getters.getAuthUser);
                 let supportUrl = 'api/support-question?role_id=' + this.user.role_id;
                 self.$http.get(supportUrl).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.supportQuestions = response.data;
                     self.$store.commit('setSupportQuestions' , response.data);
                 }).catch(error => {
-                    var response = error.response.data.response;
+                    var response = error.response.data;
                 });
             },
             showModal() {
@@ -109,7 +109,7 @@
 
               self.loading = true;
               self.$http.post(supportInquiryUrl, data).then(response => {
-                response = response.data.response;
+                response = response.data;
                 self.successMessage = "Your enquiry has been submitted successfully.";//response.message;
                 
                 setTimeout(function() {

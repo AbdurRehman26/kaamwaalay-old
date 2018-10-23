@@ -297,7 +297,7 @@ ServiceProviderPage() {
 			this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
-				response = response.data.response;
+				response = response.data;
 				self.options = response.data;
 				self.isLoading = false;
 
@@ -347,7 +347,7 @@ ServiceProviderPage() {
 			this.checkRoute();
 			this.btnLoading = true;
 			this.$http.get(this.url).then(response => {
-				response = response.data.response;
+				response = response.data;
 				if(!response.data.length) {
 					//this.$router.push({name: '404'});
 					return;
@@ -372,7 +372,7 @@ ServiceProviderPage() {
 			let self = this;
 			let url = 'api/service?filter_by_related_services=' + this.service.id;
 			self.$http.get(url).then(response => {
-				response = response.data.response;
+				response = response.data;
 				self.relatedServices = response.data;
 			}).catch(error=>{
 				self.pagination = false;

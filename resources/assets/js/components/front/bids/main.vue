@@ -246,7 +246,7 @@
 
                 self.$http.get(url).then(response=>{
 
-                    response = response.data.response;
+                    response = response.data;
 
                     let result = {
                         count : response.data,

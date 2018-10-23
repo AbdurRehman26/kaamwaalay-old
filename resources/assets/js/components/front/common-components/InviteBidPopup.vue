@@ -98,7 +98,7 @@
             this.errorMessage = '';
 
             urlRequest.then(response => {
-                response = response.data.response;
+                response = response.data;
 
                 self.successMessage = response.message;
 
@@ -166,7 +166,7 @@
             this.searchUrl  = 'api/job?filter_by_status=in_bidding&keyword=' + query + '&filter_by_me=true';
             this.isLoading = true;
             this.$http.get(this.searchUrl).then(response => {
-                response = response.data.response;
+                response = response.data;
                 self.options = response.data;
                 self.isLoading = false;
                 self.loading = false;

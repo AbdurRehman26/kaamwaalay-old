@@ -133,7 +133,7 @@
                 let self = this;
                 let url = 'api/service';
                 self.$http.get(url).then(response=>{
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAllServices' , response.data);
                     self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
@@ -298,7 +298,7 @@
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
                 this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
@@ -337,7 +337,7 @@
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
                 self.$http.put(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';

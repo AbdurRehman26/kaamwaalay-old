@@ -178,7 +178,7 @@
         let self = this;
         let serviceProviderUrl = 'api/service-provider-profile/' + this.id;
         this.$http.get(serviceProviderUrl).then(response => {
-           response = response.data.response;
+           response = response.data;
            self.record = response.data;
            self.userToSendInvite = self.record.user_detail;
            self.reviewUrl = 'api/user-rating?pagination=true&user_id=' + self.record.user_id;

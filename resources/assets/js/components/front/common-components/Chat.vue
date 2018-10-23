@@ -103,7 +103,7 @@
 
                  self.$http.get(url).then(response=>{
 
-                    response = response.data.response;
+                    response = response.data;
                     let result = {
                         data : response.data,
                         noRecordFound : false,
@@ -216,7 +216,7 @@
                         url = url + '?strict_chat=true';
                     }
                     this.$http.post(url, data).then(response => {
-                        response = response.data.response;
+                        response = response.data;
                         if(response.data == "error") {
                             self.errorMessage = true;
                             setTimeout((e) => {
@@ -287,7 +287,7 @@
                 let url = 'api/job-message?pagination=true&trigger_online_status=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = {};
                 this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -305,7 +305,7 @@
                     let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                     let data = {};
                     this.$http.post(url, data).then(response => {
-                        response = response.data.response;
+                        response = response.data;
                     }).catch(error => {
                         error = error.response.data;
                         let errors = error.errors;

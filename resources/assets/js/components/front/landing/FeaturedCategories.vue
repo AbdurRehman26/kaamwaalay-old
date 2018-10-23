@@ -59,7 +59,7 @@
                 let self = this;
                 let url = 'api/service?filter_by_parent=true';
                 self.$http.get(url).then(response=>{
-                    response = response.data.response;
+                    response = response.data;
                     self.categories = response.data;
                 }).catch(error=>{
                 });

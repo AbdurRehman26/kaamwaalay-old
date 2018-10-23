@@ -270,7 +270,7 @@
 
         self.$http.put(url , data).then(response=>{
          self.loading = false;
-         response = response.data.response;
+         response = response.data;
          self.records.status = response.data.status;
          self.records.approved_by_user = response.data.approved_by_user;
 

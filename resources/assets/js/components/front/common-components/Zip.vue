@@ -67,7 +67,7 @@
                 this.searchUrl  = 'api/zipcode?zip_code=' + query;
                 this.isLoading = true;
                 this.$http.get(this.searchUrl).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.options = response.data;
                     self.isLoading = false;
 

@@ -194,7 +194,7 @@
       }
 
       self.$http.get(url).then(response => {
-        response = response.data.response;
+        response = response.data;
         self.listing = response.data;
 
         if(!self.listing.length) {

@@ -240,7 +240,7 @@
                 let url = 'api/user/'+this.record.id;
 
                 self.$http.put(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     this.$store.commit('setAuthUser', response.data);
                     self.successMessage = response.message;

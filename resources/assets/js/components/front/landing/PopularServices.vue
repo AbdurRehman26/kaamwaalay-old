@@ -74,7 +74,7 @@
                 let url = 'api/service?filter_by_popular_services=' + zip;
                 self.$http.get(url).then(response=>{
                     self.initializeCarousel();
-                    response = response.data.response;
+                    response = response.data;
                     self.services = response.data;
                 }).catch(error=>{
                 });

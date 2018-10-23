@@ -405,7 +405,7 @@
                 }
 
                 urlRequest.then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     self.successMessage = response.message;
 
@@ -436,7 +436,7 @@
                     product: 'urgent_job',
                 };
                 self.$http.get(url, {params: params}).then(response=>{
-                    self.plans = response.data.response.data
+                    self.plans = response.data.data
                     self.selectedPlan = self.plans[0].id
                     self.urgentJobAmount = self.plans[0].amount
                 }).catch(error=>{

@@ -84,7 +84,7 @@
                 let urlRequest = self.$http.put(url , data)
 
                 urlRequest.then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     self.successMessage = response.message;
 
