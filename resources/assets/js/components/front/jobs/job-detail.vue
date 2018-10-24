@@ -436,7 +436,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){                    
-                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
