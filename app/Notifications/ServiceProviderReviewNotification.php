@@ -53,7 +53,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
-                    'link_text' => $this->data->link_route,
+                    'link_text' => $this->data->link_text,
                     'route' => $this->data->route,
                     ],
                 'created_at' => $this->date
