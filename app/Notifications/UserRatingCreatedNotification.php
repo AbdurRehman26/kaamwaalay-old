@@ -64,7 +64,7 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
                     'text' => $this->data->message,
                     'image' => $this->data->from->profile_image,
                     'link_text' => 'View Feedback',
-                    'route' => ($this->data->from->role_id == Role::SERVICE_PROVIDER)?'my.jobs':'provider_profile',
+                    'route' => 'job.details',
                     "id" => $this->data->id,
                     ],
                 'created_at' => $this->date
@@ -103,7 +103,7 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
             'text' => $this->data->message,
             'image' => $this->data->from->profile_image,
             'link_text' => 'View Feedback',
-            'route' => ($this->data->from->role_id == Role::SERVICE_PROVIDER)?'my.jobs':'provider_profile',
+            'route' => 'job.details',
             "id" => $this->data->id,
         ];
     }
@@ -115,7 +115,7 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
                 'text' => $this->data->message,
                 'image' => $this->data->from->profile_image,
                 'link_text' => 'View Feedback',
-                'route' => ($this->data->from->role_id == Role::SERVICE_PROVIDER)?'my.jobs':'provider_profile',
+                'route' => 'job.details',
                 "id" => $this->data->id,
             ],
             'created_at' => $this->date,
