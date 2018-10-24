@@ -239,7 +239,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
@@ -402,7 +402,9 @@
                 }
             },
             setCity(object){
-                this.record.state_id = object.state_id;
+                if(object.state_id){
+                  this.record.state_id = object.state_id;  
+                } 
                 this.currentCity = object.city_id;
                 this.onStateChange();
             },
@@ -533,9 +535,16 @@
                     
                 }
             },
-            onStateChange(){
-                this.record.city_id = null;
+            onStateChange(select){
+                var select = select|false;
+                if(select){
+                 this.record.city_id = null;
+                }
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             getFileUploadResponse(response){
                 let self = this;

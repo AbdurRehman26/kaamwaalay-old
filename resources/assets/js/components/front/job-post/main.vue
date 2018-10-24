@@ -147,7 +147,7 @@
                 <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="formData.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="formData.state_id">
                                     <option value="">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
@@ -367,11 +367,16 @@
                 }
             },
 
-            onStateChange(){
-                if(!this.$route.params.id){
+            onStateChange(select){
+                var select = select|false;
+                if(select){
                  this.formData.city_id = '';
                 }
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
+                if(this.currentCity){
+                   this.formData.city_id = this.currentCity;
+                   this.currentCity = '';
+                }
             },
             getResponse($event){
                 this.formData['images'][this.formData['images'].length] = {

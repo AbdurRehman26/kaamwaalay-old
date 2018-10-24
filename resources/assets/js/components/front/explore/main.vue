@@ -332,7 +332,7 @@ computed: {
 	},
 	getOtherServices () {
 		var result = _.map(this.allServices, function(value, key) {
-			  		if(!value.subservices.length) {
+			  		if(!value.subservices.length && !value.parent_id) {
 				  		return value;
 			  		}
 				});
