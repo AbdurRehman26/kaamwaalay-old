@@ -14,7 +14,7 @@ class AddCityColumnZipCodeTable extends Migration
     public function up()
     {
         Schema::table('zip_codes', function (Blueprint $table) {
-           $table->string('city', 50)->nullable();
+           //$table->string('city', 50)->nullable();
            $table->unique('zip_code');
         });
     }
