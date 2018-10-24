@@ -4,9 +4,9 @@
             <div class="notify-dropdown scrollbar" id="style-2">
                 <ul v-show="!noRecordFound">
                     <li class="notify-list" v-for='notification in notificationData'>
-                        <div v-if="notification.data.image" class="notify-image">
+                     <!--    <div v-if="notification.data.image" class="notify-image">
                             <img :src="notification.data.image" alt="">
-                        </div>
+                        </div> -->
                         <div class="right-notification">
                             <div class="notification-content">
                                 <p v-html="notification.data.text">
