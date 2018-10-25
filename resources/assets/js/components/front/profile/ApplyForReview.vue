@@ -56,7 +56,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input  v-validate="{ regex:/^([+])([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('contact number') ? 'is-invalid' : '']" type="text"
+                                    <input  v-validate="{ regex:/^([+]||\d)([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('contact number') ? 'is-invalid' : '']" type="text"
                                     name="contact number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                 <div class="form-group">
                                     <label for="" v-if="index == 0">Service</label>
                                     <label for="" v-if="index > 0"></label>
-                                    <select :disabled="service_detail.status == 'approved'" v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
+                                    <select :disabled="service_detail.status == 'approved'"  v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -378,7 +378,7 @@
                 return this.profileImage;
             },
             servicesList(){
-                return this.$store.getters.getAllServices;
+                return _.filter(this.$store.getters.getAllServices, ['status', 1]);
             },
             submitUrl(){
                 return 'api/user/' + this.record.id

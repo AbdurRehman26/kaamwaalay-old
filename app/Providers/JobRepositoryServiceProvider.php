@@ -42,6 +42,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
                         $event->link_text = 'Write Review';
                         $event->message =  'The <strong>'.$item->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong>. Please post a review.'; 
                     }else{
+                        $event->email_title = 'Job Awarded';
                         $event->message =  '<strong>'.$item->title.'</strong> job is awarded to you.'; 
                     }
                   $event->to->notify(new JobStatusChangeNotification($event));
