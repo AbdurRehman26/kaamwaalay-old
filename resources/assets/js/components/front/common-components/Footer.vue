@@ -9,16 +9,7 @@
 								<a href="/">
 									<img src="images/logo.png">
 								</a>
-							</div>
-							<div class="footer-location">
-								<div class="form-group">
-									<select class="form-control">
-										<option>Select Option</option>
-										<option>New York, NY</option>
-										<option>California, CA</option>
-									</select>
-								</div>
-							</div>
+							</div>		
 
 							<div class="social-icons">
 								<ul>

@@ -229,7 +229,7 @@
           return {
             selected: null,
             options: [
-            { value: null, text: 'Please select Status' },
+            { value: null, text: 'Please select status' },
             { value: 'rejected', text: 'Rejected' },
             { value: 'approved', text: 'Approved' }
             ],

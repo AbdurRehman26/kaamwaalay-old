@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input v-validate="{required: businessRequired, numeric: true, max : 2}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input v-validate="{required: businessRequired, numeric: true, max : 3}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,8 @@
                         <div v-for="(service_detail, index) in record.service_details" class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Service</label>
+                                    <label for="" v-if="index == 0">Service</label>
+                                    <label for="" v-if="index > 0"></label>
                                     <select :disabled="service_detail.status == 'approved'" v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">

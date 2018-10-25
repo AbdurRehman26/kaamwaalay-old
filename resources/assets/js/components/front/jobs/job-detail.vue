@@ -82,7 +82,7 @@
                             Location <strong>{{ record.city  }}, {{ record.state}}</strong>
                         </p>
                         <p class="member-since">										
-                            Member since: <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
+                            Date posted: <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
                         </p>
                     </div>
 
