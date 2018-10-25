@@ -131,29 +131,22 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : 1})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : servicesList[0].id})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
                             <a v-id="service_detail.status != 'approved'" v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-30">
+                    <div class="form-label-heading m-b-10">
                         <p>PROOF OF BUSINESS</p>
                     </div>                    
                     <div class="row">
                         <div class="col-md-12">
-                            <p>We can confirm your association to the business or organization with any of these documents:
-                                <ul>
-                                    <!-- <li>Certificate of Formation (for a partnership)</li> -->
-                                    <!-- <li>Articles of Incorporation (for a corporation)</li> -->
-                                    <!-- <li>Local Business License (issued by your city, county, state, etc.)</li> -->
-                                    <li>More documents to be decided.</li>
-                                </ul>
-                            </p>
+                            <p>Please attach document(s) for business verification.</p>
                         </div>
                     </div>
-                    <label>Proof of Business</label>
+                    <label>DOCUMENT(S)</label>
                     <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
 
                     </file-upload-component>
@@ -172,10 +165,15 @@
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
+                    <div class="form-label-heading m-b-10 m-t-20">
                         <p>Certificates</p>
                     </div>
-                    <label>Certificates</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Please attach any other certificates of your business that you would like to attach.</p>
+                        </div>
+                    </div>
+                    <label>DOCUMENT(S)</label>
                     <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
 
                     </file-upload-component>
@@ -193,10 +191,15 @@
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
+                    <div class="form-label-heading m-b-10 m-t-20">
                         <p>Registration</p>
                     </div>
-                    <label>Registration</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Please attach document(s) of your business’ registration.</p>
+                        </div>
+                    </div>
+                    <label>DOCUMENT(S)</label>
                     <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
 
                     </file-upload-component>

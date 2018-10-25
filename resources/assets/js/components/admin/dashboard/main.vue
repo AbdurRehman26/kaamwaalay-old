@@ -46,8 +46,8 @@
 <div class="col-6">
     <div class="widget-box">
       <div class="colmn">
-        <h3>Total Jobs Initiated</h3>
-        <h2>{{stats.total_job_initiated}}</h2>
+        <h3>Total Jobs Completed</h3>
+        <h2>{{stats.total_job_completed}}</h2>
     </div>
 </div>
 </div>

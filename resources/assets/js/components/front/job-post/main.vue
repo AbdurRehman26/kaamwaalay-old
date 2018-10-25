@@ -17,7 +17,7 @@
                                 <select v-validate="'required'" name="service" 
                                 :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" v-model="formData.service_id" class="form-control">
                                 <option value="">Select Service</option>
-                                <option v-for="service in servicesList" :value="service.id">
+                                <option v-for="service in servicesList" v-if="service.status == 1" :value="service.id">
                                     {{ service  | mainServiceOrChildService}}
                                 </option>
                             </select>

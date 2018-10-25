@@ -51,7 +51,7 @@ public function boot()
             $event->message = 'Your visit request for <strong>'.$job->title.'</strong> job has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
-        if(!$jobBid->is_awarded && !$jobBid->is_archived && $jobBid->status !=JobBid::CANCELLED && $jobBid->status !=JobBid::COMPLETED ){
+        if(!$jobBid->is_awarded && !$jobBid->is_archived && $jobBid->status !=JobBid::CANCELLED && $jobBid->status !=JobBid::COMPLETED && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED ){
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
