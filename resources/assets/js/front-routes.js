@@ -78,7 +78,7 @@
     },
     {
         name: 'Explore_Detail',
-        path: '/services/:serviceName/:zip?',
+        path: '/services/:serviceName/:childServiceName?/:zip?',
         props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
@@ -205,7 +205,7 @@
 
 
     {
-        name: 'Explore_Jobs',
+        name: 'explore-jobs',
         path: '/explore-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
@@ -367,13 +367,21 @@ if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isA
 }else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
         if(!to.matched.some(record => record.meta.forAll) && to.name != '404') {
-            next({name: "my.jobs"});
+            if(user.is_profile_completed == 0 ){
+                next({name: "customer_profile"});
+            }else{ 
+                next({name: "my.jobs"});
+            }
         }else {
             next();
         }
     }
     if(user  && user.role_id == serviceProvider && to.name != '404'){
-        next({name: 'my.bids'});
+        if(user.is_profile_completed == 0 ){
+            next({name: "provider_profile"});
+        }else{ 
+            next({name: "my.bids"});
+        }
     }else {
             next();
     }

@@ -119,7 +119,7 @@
 
                 
                 urlRequest.then(response => {
-                    self.$emit('form-submitted', response.data.response);
+                    self.$emit('form-submitted', response.data);
 
                 }).catch(error => {
 

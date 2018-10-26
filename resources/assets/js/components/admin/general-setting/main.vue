@@ -256,7 +256,7 @@ export default {
             	pagination: false,
             };
             self.$http.get(self.url, {params: params}).then(response=>{
-                response = response.data.response;
+                response = response.data;
                 //self.list = response.data;
                 if(response.data.length){
                 	_.forEach(response.data, function(value, key) {
@@ -336,7 +336,7 @@ export default {
                     } , 3000);
                     self.list[key].disabled = true
                     self.list[key].remove = false
-                    self.list[key].id = response.data.response.data.id
+                    self.list[key].id = response.data.data.id
                     self.account_creation_disable = true
                     self.urgent_job_disable = true
 

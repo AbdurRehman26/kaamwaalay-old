@@ -51,6 +51,9 @@ class DashboardRepository
         $criteria = ['status' => $this->jobRepo->model::INITIATED];
         $data['total_job_initiated'] = $this->jobRepo->getTotalCountByCriteria($criteria, $startDate, $endDate);
 
+        $criteria = ['status' => $this->jobRepo->model::COMPLETED];
+        $data['total_job_completed'] = $this->jobRepo->getTotalCountByCriteria($criteria, $startDate, $endDate);
+
         $criteria = [];
         $aggregate = 'sum';
         $field = 'amount';
@@ -244,8 +247,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderBy('job_completed', 'DESC')
-            ->orderBy('rating', 'DESC');    
+            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');    
         }
         
         $result = $result->get()
@@ -290,8 +292,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderBy('job_completed', 'DESC')
-            ->orderBy('rating', 'DESC');    
+            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');
         }
         $result = $result->get()
         ->toArray();

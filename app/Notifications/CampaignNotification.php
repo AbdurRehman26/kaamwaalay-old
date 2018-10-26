@@ -17,6 +17,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
+use Carbon\Carbon;
 
 
 class CampaignNotification extends Notification implements ShouldQueue
@@ -25,6 +26,7 @@ class CampaignNotification extends Notification implements ShouldQueue
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
     public $queue;
+    protected $date;
  
     /**
     * Create a new notification instance.
@@ -35,6 +37,7 @@ class CampaignNotification extends Notification implements ShouldQueue
     {
         $this->data = $event;
         $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -58,10 +61,10 @@ class CampaignNotification extends Notification implements ShouldQueue
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
-                    'link_text' => 'Featured Profile',
+                    'link_text' => 'View Campaign',
                     'route' => 'featured_profile',
                     ],
-                'created_at' => $notifiable->created_at->toDateTimeString()
+                'created_at' => $this->date
                  ];
       //\Log::info($notifiable);
        return OneSignalMessage::create()
@@ -95,7 +98,7 @@ class CampaignNotification extends Notification implements ShouldQueue
     {
         return [
             'text' => $this->data->message,
-            'link_text' => 'Featured Profile',
+            'link_text' => 'View Campaign',
             'route' => 'featured_profile',
         ];
     }
@@ -105,10 +108,10 @@ class CampaignNotification extends Notification implements ShouldQueue
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
-                'link_text' => 'Featured Profile',
+                'link_text' => 'View Campaign',
                 'route' => 'featured_profile',
             ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
+            'created_at' => $this->date,
         ]))->onQueue($this->queue);
     }
 }

@@ -66,7 +66,7 @@
             self.loading = true;
             let url = self.url+'/'+id;
             self.$http.delete(url).then(response => {
-                response = response.data.response;
+                response = response.data;
                 self.loading = false;
                 self.successMessage = response.message;
                 setTimeout(function() {

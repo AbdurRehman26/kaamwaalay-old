@@ -1,5 +1,11 @@
 <template>
     <div class="discussion-panel">
+        <div class="alert-indicator" v-show="errorMessage">
+            <div class="alert alert-danger">
+                <i class="icon-alert"></i>
+                <p>You are not allowed to send contact details and personal information.</p>
+            </div>
+        </div>         
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
@@ -20,12 +26,12 @@
                         </div>
                     </b-list-group-item>
                 </div>
-                <b-list-group-item v-show="errorMessage">
+<!--                 <b-list-group-item v-show="errorMessage">
                     <div class="alert alert-danger" style="font-size: 12px;">
                         <i class="icon-alert" style="font-size: 24px;"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
                     </div>
-                </b-list-group-item>
+                </b-list-group-item> -->               
             </b-list-group>
         </div>
         <div class="panel-footer">
@@ -97,7 +103,7 @@
 
                  self.$http.get(url).then(response=>{
 
-                    response = response.data.response;
+                    response = response.data;
                     let result = {
                         data : response.data,
                         noRecordFound : false,
@@ -210,7 +216,7 @@
                         url = url + '?strict_chat=true';
                     }
                     this.$http.post(url, data).then(response => {
-                        response = response.data.response;
+                        response = response.data;
                         if(response.data == "error") {
                             self.errorMessage = true;
                             setTimeout((e) => {
@@ -267,6 +273,7 @@
 
                     self.isOnline = true;
                     self.messages.push(e.discussion);
+                    self.scrollToEnd();
                 });
             },
             scrollToEnd() {
@@ -281,7 +288,7 @@
                 let url = 'api/job-message?pagination=true&trigger_online_status=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = {};
                 this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -299,7 +306,7 @@
                     let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                     let data = {};
                     this.$http.post(url, data).then(response => {
-                        response = response.data.response;
+                        response = response.data;
                     }).catch(error => {
                         error = error.response.data;
                         let errors = error.errors;

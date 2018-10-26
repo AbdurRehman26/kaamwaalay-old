@@ -88,7 +88,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $data->total_feedback_count = $totalFeedbackCount;      
             $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
-            $data->services_offered = $subServices;
+            $data->services_offered = (object) $subServices;
 
 
             $allServicesCriteria = ['user_id' => $data->user_id];

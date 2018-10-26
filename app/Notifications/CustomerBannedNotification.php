@@ -17,7 +17,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
-
+use Carbon\Carbon;
 
 class CustomerBannedNotification extends Notification implements ShouldQueue
 {
@@ -25,6 +25,8 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
     public $queue;
+    protected $date;
+
     /**
      * Create a new notification instance.
      *
@@ -34,6 +36,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         $this->data = $data;
         $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -57,8 +60,11 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         $data = ['data'=>[
                     'text' => $this->data->message,
+                    'link_text' => 'View Job',
+                    'route' => 'job.details',
+                    "id" => $this->data->id,
                     ],
-                'created_at' => $notifiable->created_at->toDateTimeString()
+                'created_at' => $this->date
                  ];
         return OneSignalMessage::create()
             ->subject("Customer Banned")
@@ -75,6 +81,9 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         return [
             'text' => $this->data->message,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id,
         ];
     }
     /**
@@ -88,8 +97,11 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id,
             ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
+            'created_at' => $this->date,
         ]))->onQueue($this->queue);
     }
 
@@ -103,7 +115,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         $url = route('front.login');
         return (new MailMessage)
-        ->subject(Lang::getFromJson('Job Mark Done'))
-        ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
+        ->subject(Lang::getFromJson('Customer Banned'))
+->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
     }
 }

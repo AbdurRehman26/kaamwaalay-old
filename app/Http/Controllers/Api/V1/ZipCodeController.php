@@ -30,7 +30,7 @@ class ZipCodeController extends ApiResourceController
 	public function input($value='')
 	{
         $input = request()->only(
-            'zip_code'
+            'zip_code', 'pagination'
         );
 
 	    $input['id'] = !empty(request()->user()->id) ? request()->user()->id : null;

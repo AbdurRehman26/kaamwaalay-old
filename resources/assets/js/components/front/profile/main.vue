@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Contact Number</label>
-                                <input v-validate="{ regex:/^([+])([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
+                                <input v-validate="{ regex:/^([+]||\d)([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
                                 name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                             </div>
                         </div>
@@ -87,35 +87,33 @@
                     </div>
 
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="zipcode-selectize">
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
+                   <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
                                 <label for="">City *</label>
                                 <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
-                            </div>
                         </div>
-
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                        </div>
-                    </div>
+                     </div>
+                    </div> 
                 </div>
 
 
@@ -158,6 +156,7 @@
                 file: null,
                 profileImage : '',
                 invalidZip: false,
+                currentCity: null,
             }
         },
         mounted(){
@@ -183,14 +182,29 @@
         methods: {
             setZipCode(val) {
                 this.record.zip_code = val.zip_code;
+                this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {
                     this.invalidZip = true;
                 }
             },
-            onStateChange(){
-                this.record.city_id = null;
+            setCity(object){
+                if(object.state_id){
+                  this.record.state_id = object.state_id;  
+                } 
+                this.currentCity = object.city_id;
+                this.onStateChange();
+            },
+            onStateChange(select){
+                var select = select|false;
+                if(select){
+                 this.record.city_id = null;
+                }
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             getResponse(response){
                 let self = this;
@@ -212,6 +226,10 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
@@ -240,7 +258,7 @@
                 let url = 'api/user/'+this.record.id;
 
                 self.$http.put(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     this.$store.commit('setAuthUser', response.data);
                     self.successMessage = response.message;

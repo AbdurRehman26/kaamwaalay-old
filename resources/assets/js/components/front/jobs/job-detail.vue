@@ -82,7 +82,7 @@
                             Location <strong>{{ record.city  }}, {{ record.state}}</strong>
                         </p>
                         <p class="member-since">										
-                            Member since: <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
+                            Date posted: <strong>{{record.created_at.date | formatDate}}</strong>
                         </p>
                     </div>
 
@@ -172,14 +172,14 @@
 
                                 <div class="provider-bidding-btn">
 
-                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
+                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-                                    <a v-if="(isMyJob || canChat) && !jobCancelled && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                    <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                    <a v-if="isMyJob  && !jobCancelled && record.status == 'completed'  && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
 
@@ -198,7 +198,7 @@
 
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
-                        <p>{{record.service_provider_count}} service providers available around you related to concrete flooring.</p>
+                        <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary" 
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
@@ -220,7 +220,7 @@
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
                     <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span><i class="icon-checkmark2"></i> Mark Job Done</span> <loader></loader>
+                        <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
                     <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
@@ -234,12 +234,13 @@
                         Modify Bid
                     </a>   
 
-                    <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                    <a v-if="showChatButton && !isMyJob && canChat" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                     
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
+                    <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
 
-                    <a v-canBid v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                    <a v-canBid v-if="!jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                         Write Review
                     </a>
 
@@ -336,7 +337,8 @@
                 xAxis : 37.090240,
                 yAxis : -95.712891,
                 forceUserValue : false,
-                requestUserUrl : ''
+                requestUserUrl : '',
+                showChatButton : true,
 
             }
         },
@@ -364,7 +366,7 @@
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'pending' && ( this.record.my_bid.id == this.record.awardedBid.id);
+                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
                 }
                 return false;
             },
@@ -434,7 +436,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){                    
-                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
@@ -581,6 +583,12 @@
                     this.jobBids.data.push(this.record.my_bid);                    
                 }
 
+                if(this.jobBids.data.length == 0 && user.role_id == 2){
+                    this.showChatButton = false
+                }else{
+                    this.showChatButton = true
+                }
+
             },
             getBidsResponse(response){
                 let self = this;
@@ -591,7 +599,7 @@
                     }
 
                     self.jobBids.pagination = response.pagination;
-
+ 
                     setTimeout(function () {
                         self.jobBids.showInvite = true;
                         self.$forceUpdate();

@@ -166,6 +166,9 @@
                             self.loading = false
                             self.successMessage='';
                             if(self.fromFeaturedProfile == 'true'){
+                                if(typeof self.$parent.onSubmit != 'undefined'){
+                                   self.$parent.onSubmit()
+                               }
                                 self.$parent.getCampaignList()
                             }else{
                                 self.saveUserStripeToken(data);
@@ -175,9 +178,6 @@
                                     }
                                 } 
                             }
-                            /*if(typeof self.$parent.onSubmit != 'undefined'){
-                             self.$parent.onSubmit()
-                            }*/
                             if(self.isPopup){
                              self.$refs.myModalRef.hideHeaderClose  = false   
                              self.hideModal()
@@ -242,7 +242,7 @@
                 };
                 let url = 'api/user/'+user.id;
                 self.$http.put(url, update).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAuthUser', response.data);
                     if(typeof self.$parent.onSubmit != 'undefined'){
                              self.$parent.onSubmit()

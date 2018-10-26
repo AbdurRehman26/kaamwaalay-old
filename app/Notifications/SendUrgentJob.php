@@ -11,13 +11,15 @@ use NotificationChannels\OneSignal\OneSignalMessage;
 use NotificationChannels\OneSignal\OneSignalWebButton;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-
+use Carbon\Carbon;
 
 class SendUrgentJob extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
     public $queue;
+    protected $date;
+
     /**
      * Create a new notification instance.
      *
@@ -27,6 +29,7 @@ class SendUrgentJob extends Notification implements ShouldQueue
     {
         $this->data = $data;
         $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -57,7 +60,7 @@ class SendUrgentJob extends Notification implements ShouldQueue
                     'route' => 'job.details',
                     "id" => $this->data->id
                     ],
-                'created_at' => $notifiable->created_at->toDateTimeString()
+                'created_at' => $this->date
                  ];
       //\Log::info($notifiable);
        return OneSignalMessage::create()
@@ -98,7 +101,7 @@ class SendUrgentJob extends Notification implements ShouldQueue
                 'route' => 'job.details',
                 "id" => $this->data->id
             ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
+            'created_at' => $this->date,
         ]))->onQueue($this->queue);
     }
 }

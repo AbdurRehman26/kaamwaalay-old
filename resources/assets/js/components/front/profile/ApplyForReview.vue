@@ -56,7 +56,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input  v-validate="{ regex:/^([+])([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('contact number') ? 'is-invalid' : '']" type="text"
+                                    <input  v-validate="{ regex:/^([+]||\d)([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('contact number') ? 'is-invalid' : '']" type="text"
                                     name="contact number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input v-validate="{required: businessRequired, numeric: true, max : 2}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input v-validate="{required: businessRequired, numeric: true, max : 3}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -120,8 +120,9 @@
                         <div v-for="(service_detail, index) in record.service_details" class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Service</label>
-                                    <select :disabled="service_detail.status == 'approved'" v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
+                                    <label for="" v-if="index == 0">Service</label>
+                                    <label for="" v-if="index > 0"></label>
+                                    <select :disabled="service_detail.status == 'approved'"  v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -130,30 +131,23 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : 1})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : servicesList[0].id})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
                             <a v-id="service_detail.status != 'approved'" v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-30">
+                    <div class="form-label-heading m-b-10">
                         <p>PROOF OF BUSINESS</p>
                     </div>                    
                     <div class="row">
                         <div class="col-md-12">
-                            <p>We can confirm your association to the business or organization with any of these documents:
-                                <ul>
-                                    <!-- <li>Certificate of Formation (for a partnership)</li> -->
-                                    <!-- <li>Articles of Incorporation (for a corporation)</li> -->
-                                    <!-- <li>Local Business License (issued by your city, county, state, etc.)</li> -->
-                                    <li>More documents to be decided.</li>
-                                </ul>
-                            </p>
+                            <p>Please attach document(s) for business verification.</p>
                         </div>
                     </div>
-                    <label>Proof of Business</label>
-                    <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
+                    <label>DOCUMENT(S)</label>
+                    <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
 
                     </file-upload-component>
 
@@ -171,11 +165,16 @@
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
+                    <div class="form-label-heading m-b-10 m-t-20">
                         <p>Certificates</p>
                     </div>
-                    <label>Certificates</label>
-                    <file-upload-component :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Please attach any other certificates of your business that you would like to attach.</p>
+                        </div>
+                    </div>
+                    <label>DOCUMENT(S)</label>
+                    <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
 
                     </file-upload-component>
 
@@ -192,11 +191,16 @@
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
+                    <div class="form-label-heading m-b-10 m-t-20">
                         <p>Registration</p>
                     </div>
-                    <label>Registration</label>
-                    <file-upload-component  :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Please attach document(s) of your business’ registration.</p>
+                        </div>
+                    </div>
+                    <label>DOCUMENT(S)</label>
+                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
 
                     </file-upload-component>
 
@@ -231,36 +235,32 @@
                     </div>
 
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="zipcode-selectize">
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
+                    </div>
+                   <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
                                 <label for="">City *</label>
                                 <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
-                            </div>
                         </div>
-
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-6 zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                        </div>
-                    </div>
+                     </div>
+                    </div> 
                 </div>
 
                 <div v-if="isPaymentDetailShow" class="account-fee">
@@ -363,6 +363,7 @@
                 plans : [],
                 accountCreationAmount: null,
                 selectedPlan :null,
+                currentCity: null,
 
             }
         },
@@ -377,7 +378,7 @@
                 return this.profileImage;
             },
             servicesList(){
-                return this.$store.getters.getAllServices;
+                return _.filter(this.$store.getters.getAllServices, ['status', 1]);
             },
             submitUrl(){
                 return 'api/user/' + this.record.id
@@ -398,10 +399,18 @@
         methods: {
             setZipCode(val) {
                 this.record.zip_code = val.zip_code;
+                this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {
                     this.invalidZip = true;
                 }
+            },
+            setCity(object){
+                if(object.state_id){
+                  this.record.state_id = object.state_id;  
+                } 
+                this.currentCity = object.city_id;
+                this.onStateChange();
             },
             removeFile(type, index){
                 this.record.business_details.attachments[type].splice(index , 1);
@@ -530,9 +539,16 @@
                     
                 }
             },
-            onStateChange(){
-                this.record.city_id = null;
+            onStateChange(select){
+                var select = select|false;
+                if(select){
+                 this.record.city_id = null;
+                }
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             getFileUploadResponse(response){
                 let self = this;
@@ -609,6 +625,10 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
@@ -627,7 +647,7 @@
                     product: 'account_creation',
                 };
                 self.$http.get(url, {params: params}).then(response=>{
-                    self.plans = response.data.response.data
+                    self.plans = response.data.data
                     self.selectedPlan = self.plans[0].id
                     self.accountCreationAmount = self.plans[0].amount
                 }).catch(error=>{

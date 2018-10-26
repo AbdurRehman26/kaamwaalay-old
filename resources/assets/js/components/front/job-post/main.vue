@@ -17,7 +17,7 @@
                                 <select v-validate="'required'" name="service" 
                                 :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" v-model="formData.service_id" class="form-control">
                                 <option value="">Select Service</option>
-                                <option v-for="service in servicesList" :value="service.id">
+                                <option v-for="service in servicesList" v-if="service.status == 1" :value="service.id">
                                     {{ service  | mainServiceOrChildService}}
                                 </option>
                             </select>
@@ -45,7 +45,7 @@
                 <div class="form-label-heading">
                     <p>Attach Photo</p>
                 </div>
-                <file-upload-component @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
+                <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
                 <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 
@@ -139,36 +139,34 @@
             </div>
 
             <div class="row">
-
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">State</label>
-                        <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="formData.state_id">
-                            <option value="">Select State</option>
-                            <option v-for="state in states" :value="state.id">{{state.name}}</option>
-                        </select>
+                    <div class="zipcode-selectize">
+                        <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="formData.zip_code"></zip>
                     </div>
                 </div>
-
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">City</label>
-                        <select :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" name="city" v-model="formData.city_id">
-                            <option value="">Select City</option>
-                            <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="">State *</label>
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="formData.state_id">
+                                    <option value="">Select State</option>
+                                    <option v-for="state in states" :value="state.id">{{state.name}}</option>
+                                </select>
+                            </div>
                 </div>
 
 
             </div>
-
-
             <div class="row">
-                <div class="col-md-6">
-                    <zip @onSelect="setZipCode" :initialValue="formData.zip_code" :showError="invalidZip"></zip>
-                </div>
-            </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="">City *</label>
+                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
+                                    <option value="">Select City</option>
+                                    <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                                </select>
+                        </div>
+                     </div>
+            </div> 
         </div>
         
         <div class="verify-account">
@@ -283,11 +281,12 @@
                 states : [],
                 isShowCardDetail : true,
                 isPaymentDetailShow : true,
+                invalidZip: false,
                 isSubmit : false,
                 isUrgentJob : false,
-                invalidZip: false,
                 forceUserValue : false,
-                requestUserUrl : ''
+                requestUserUrl : '',
+                currentCity: '',
 
             }
         },
@@ -314,10 +313,24 @@
         methods:{
             setZipCode(val) {
                 this.formData.zip_code = val.zip_code;
+                this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {
                     this.invalidZip = true;
                 }
+            },
+            setCity(object){
+                if(object.state_id){
+                  this.formData.state_id = object.state_id;    
+                }else{
+                  this.formData.state_id = ''  
+                }
+                if(object.city_id){
+                  this.currentCity = object.city_id;    
+                }else{
+                  this.currentCity = ''  
+                }
+                this.onStateChange();
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
@@ -348,10 +361,22 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.formData.city_id = this.currentCity;
+                   this.currentCity = '';
+                }
             },
 
-            onStateChange(){
+            onStateChange(select){
+                var select = select|false;
+                if(select){
+                 this.formData.city_id = '';
+                }
                 this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
+                if(this.currentCity){
+                   this.formData.city_id = this.currentCity;
+                   this.currentCity = '';
+                }
             },
             getResponse($event){
                 this.formData['images'][this.formData['images'].length] = {
@@ -405,7 +430,7 @@
                 }
 
                 urlRequest.then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     self.successMessage = response.message;
 
@@ -436,7 +461,7 @@
                     product: 'urgent_job',
                 };
                 self.$http.get(url, {params: params}).then(response=>{
-                    self.plans = response.data.response.data
+                    self.plans = response.data.data
                     self.selectedPlan = self.plans[0].id
                     self.urgentJobAmount = self.plans[0].amount
                 }).catch(error=>{

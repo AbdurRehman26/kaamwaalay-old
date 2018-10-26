@@ -75,7 +75,6 @@
                     status : 'on_the_way',
                     job_id : this.job.id,
                     visit_details : this.visit_details,
-                    status : 'pending'
                 };
 
                 self.loading = true;
@@ -85,7 +84,7 @@
                 let urlRequest = self.$http.put(url , data)
 
                 urlRequest.then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     self.successMessage = response.message;
 

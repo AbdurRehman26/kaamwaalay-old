@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Campaign;
 use App\Data\Models\User;
+use App\Data\Models\Plan;
 use App\Notifications\CampaignNotification;
 use Cache;
 class CampaignRepository extends AbstractRepository implements RepositoryContract
@@ -42,24 +43,14 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
 
     public function findById($id, $refresh = false, $details = false, $encode = true)
     {
-        $data = Cache::get($this->_cacheKey.$id);
-
-        if ($data == null || $refresh == true) {
-            $query = $this->model->with('plan')->find($id);
-            if ($query != null) {
-
-                $data = new \stdClass;
-                foreach ($query->getAttributes() as $column => $value) {
-                    $data->{$column} = $query->{$column};
-                }
-
-                $data->plan = $query->plan;
-                Cache::forever($this->_cacheKey.$id, $data);
-            } else {
-                return null;
+        $data = parent::findById($id, $refresh, $details, $encode);
+        if($data) {
+            $planQuery = Plan::where('id','=',$data->plan_id)->withTrashed()->first();
+            if ($planQuery) {
+                $data->plan = $planQuery;    
             }
+            return $data;
         }
-        return $data;
     }
 
     public function findByAll($pagination = false, $perPage = 10, array $data = [] )
@@ -100,7 +91,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             $getPlanViews = $this->findById($model->id);
             $consumptionPercent = round(($model->clicks/$model->views)*100);
             $consumption = (int) $consumptionPercent;
-            $intervals = [25,50,75,100];
+            $intervals = [25,50,75];
             if(in_array($consumption, $intervals)){
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
@@ -108,7 +99,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 $data->title = $getPlanViews->plan->quantity.' view(s)';
                 $data->consumption = $consumption.'%';
                 $user = User::find($data->user_id);
-                $data->message = $user->first_name.' '.$user->last_name.' , you have used '.$data->consumption.' of '.$data->title.'. Remaining '.$data->remaining_views; 
+                $data->message = '<strong>'.$user->first_name.' '.$user->last_name.'</strong> , you have used <strong>'.$data->consumption.'</strong> of <strong>'.$data->title.'</strong>. Remaining <strong>'.$data->remaining_views.'</strong>'; 
                 $this->sendNotification($data);
             }
             if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views == $getPlanViews->plan->quantity ) {
@@ -116,7 +107,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 $model->status = Campaign::EXPIRED;
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
-                $data->message = 'Your current subscription plan has ended. Your next subscription plan has begun.'; 
+                $data->message = 'Your current campaign plan has ended. Your next campaign has begun.'; 
                 $this->sendNotification($data);
             }
 
@@ -128,7 +119,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                     $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
                     $data = new \stdClass;
                     $data->user_id = $model->user_id;
-                    $data->message = 'Your featured profile subscription has ended. To restart this subscription, you must purchase the subscription again.'; 
+                    $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
                     $this->sendNotification($data);
                 }
                 return true;

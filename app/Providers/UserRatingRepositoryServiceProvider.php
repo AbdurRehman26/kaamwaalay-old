@@ -7,6 +7,7 @@ use App\Data\Models\UserRating;
 use App\Data\Models\User;
 use App\Data\Repositories\UserRatingRepository;
 use App\Data\Models\Job;
+use App\Data\Models\Role;
 use App\Notifications\UserRatingCreatedNotification;
 
 class UserRatingRepositoryServiceProvider extends ServiceProvider
@@ -27,8 +28,10 @@ class UserRatingRepositoryServiceProvider extends ServiceProvider
             if($userRating->status == UserRating::APPROVED){
                $event->from = User::find($userRating->rated_by);
                $event->to = User::find($userRating->user_id);   
-               $event->message = $event->from->first_name.' '.$event->from->last_name.' posted a review & rating on '.$job->title.'. Please Review'; 
-               $event->to->notify(new UserRatingCreatedNotification($event));
+               $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> posted a feedback & rating on <strong>'.$job->title.'</strong> job.'; 
+               if($event->to->role_id == Role::SERVICE_PROVIDER){
+                //$event->to->notify(new UserRatingCreatedNotification($event));
+               }
             }     
        });
     }
