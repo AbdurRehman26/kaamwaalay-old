@@ -69,7 +69,7 @@ public function findByCriteria($criteria, $refresh = false, $notCriteria = false
 
     if($whereIn) {
         $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
-
+        
     }
 
     if($count) {
@@ -114,7 +114,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
     if(!empty($input['filter_by_job_id'])) {
         $this->builder = $this->builder->where('job_id', '=', $input['filter_by_job_id']);
 
-        $this->builder->where('status' , '!=', 'invited');
+        $this->builder->where('status' , '!=', 'invited')->where('is_invited' ,'=', 0)->whereNull('amount');
 
     }  
     if(isset($input['filter_by_tbd'])) {
