@@ -162,8 +162,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $data->state = !empty($state->name)?$state->name:'';
                 $bidsCriteria = ['job_id' => $data->id];
 
-                $bidsWhereIn = ['status' => ['pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'amount' => 'null']; 
-                $notCriteria = ['status' => 'invited','is_invited' => 1];
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'deleted_at' => null]; 
+                $notCriteria = ['status' => 'invited'];
 
                 $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, $notCriteria, false, $bidsWhereIn, true);
                 
@@ -292,18 +292,19 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
             if ($model->save()) {
                 if(isset($data['status']) && $data['status'] == "cancelled") {
-                    $jobBids = JobBid::where('job_id', '=', $data['id'])->pluck('id')->toArray();
+                    $jobBids = JobBid::where('job_id', '=', $data['id'])->get(['id', 'status'])->toArray();
+
                     foreach ($jobBids as $key => $value) {
                         $tempData = [];
-                        $tempData['id'] = $value;
+                        $tempData['id'] = $value['id'];
                         $tempData['job_id'] = $data['id'];
                         $tempData['status'] = $data['status'];
                         $tempData['updateJob'] = false;
+                        $tempData['deleted_at'] =  $value['status'] == 'invited' ? Carbon::now()  : null;
                         $response = app('JobBidRepository')->update($tempData);
-                        if(!$response) {
-                            return false;
-                        }
+                        
                     }
+
                 }
                 return $this->findById($data['id'], true);
             }
