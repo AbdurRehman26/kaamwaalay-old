@@ -54,7 +54,7 @@
     </div>
     <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
         <div class="job-post-details">
-           <div class="job-image pointer" @click="servicedetail(record.id)" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
+           <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
            <div class="job-common-description">
               <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3> 
               <span v-if="record.is_verified"><i class="icon-checked"></i></span>
@@ -328,7 +328,9 @@ ServiceProviderPage() {
 		},
 		servicedetail(record){        	
 			window.scrollTo(0,0);
+      if(record.is_featured){
             this.updateCampaignClickCount(record.user_id);
+      }
 			this.$router.push({ name: 'service-provider-detail.view', params: { id: record.id }});
 		},
     updateCampaignClickCount(id){

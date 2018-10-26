@@ -173,6 +173,11 @@ public function responseMessages($value = '')
             'store' => 'Invitation has been sent successfully.',
         ];
     }
+    if(!empty($this->input('update')['is_archived'])){
+         $messages = [
+            'update' => 'Bid has been successfully updated.',
+        ];
+    }
     return !empty($messages[$value]) ? $messages[$value] : 'Success.';
 }
 

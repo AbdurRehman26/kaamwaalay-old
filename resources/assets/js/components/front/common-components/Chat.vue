@@ -273,6 +273,7 @@
 
                     self.isOnline = true;
                     self.messages.push(e.discussion);
+                    self.scrollToEnd();
                 });
             },
             scrollToEnd() {

@@ -51,6 +51,9 @@ class DashboardRepository
         $criteria = ['status' => $this->jobRepo->model::INITIATED];
         $data['total_job_initiated'] = $this->jobRepo->getTotalCountByCriteria($criteria, $startDate, $endDate);
 
+        $criteria = ['status' => $this->jobRepo->model::COMPLETED];
+        $data['total_job_completed'] = $this->jobRepo->getTotalCountByCriteria($criteria, $startDate, $endDate);
+
         $criteria = [];
         $aggregate = 'sum';
         $field = 'amount';

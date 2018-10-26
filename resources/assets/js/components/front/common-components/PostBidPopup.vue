@@ -267,7 +267,9 @@
             },
             watch:{
                 bid (value){
-                    this.setBidData();
+                    if(value){                
+                        this.setBidData();
+                    }
                 },
                 showModalProp(value){
 

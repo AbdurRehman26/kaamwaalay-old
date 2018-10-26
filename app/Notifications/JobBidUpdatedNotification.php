@@ -122,7 +122,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     {
         $url = route('front.login');
         return (new MailMessage)
-        ->subject(Lang::getFromJson('Job Mark Done'))
+        ->subject(Lang::getFromJson((!empty($this->data->email_title))?$this->data->email_title:'Job Mark Done'))
         ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
     }
 }

@@ -82,7 +82,7 @@
                             Location <strong>{{ record.city  }}, {{ record.state}}</strong>
                         </p>
                         <p class="member-since">										
-                            Member since: <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
+                            Date posted: <strong>{{record.created_at.date | formatDate}}</strong>
                         </p>
                     </div>
 
@@ -172,14 +172,14 @@
 
                                 <div class="provider-bidding-btn">
 
-                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
+                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
                                     <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="isMyJob && !jobArchived && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                    <a v-if="isMyJob  && !jobCancelled && record.status == 'completed'  && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
 
@@ -220,7 +220,7 @@
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
 
                     <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span><i class="icon-checkmark2"></i> Mark Job Done</span> <loader></loader>
+                        <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
                     <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
@@ -240,7 +240,7 @@
 
                     <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
 
-                    <a v-canBid v-if="!jobArchived && !jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                    <a v-canBid v-if="!jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                         Write Review
                     </a>
 
@@ -436,7 +436,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){                    
-                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || parseInt(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
             canChat(){
