@@ -81,7 +81,7 @@
                 window.Echo.private(channelName).notification((notification) => {
                     self.noRecordFound = false
                     self.notificationData.unshift(notification);
-                    self.notificationCount += 1;
+                    self.notificationCount = 1+self.notificationCount;
                     self.$parent.notificationCount = self.notificationCount;
                 });
             },

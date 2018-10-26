@@ -30,7 +30,7 @@ class UserRatingRepositoryServiceProvider extends ServiceProvider
                $event->to = User::find($userRating->user_id);   
                $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> posted a feedback & rating on <strong>'.$job->title.'</strong> job.'; 
                if($event->to->role_id == Role::SERVICE_PROVIDER){
-                $event->to->notify(new UserRatingCreatedNotification($event));
+                //$event->to->notify(new UserRatingCreatedNotification($event));
                }
             }     
        });

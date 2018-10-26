@@ -82,7 +82,7 @@
                             Location <strong>{{ record.city  }}, {{ record.state}}</strong>
                         </p>
                         <p class="member-since">										
-                            Date posted: <strong>{{ record.user ? record.user.formatted_created_at : '' }}</strong>
+                            Date posted: <strong>{{record.created_at.date | formatDate}}</strong>
                         </p>
                     </div>
 
@@ -172,14 +172,14 @@
 
                                 <div class="provider-bidding-btn">
 
-                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && parseInt(bid.amount)" href="javascript:void(0);" 
+                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);" 
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
                                     
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
                                     <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="isMyJob  && !jobCancelled && record.status == 'completed' && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                    <a v-if="isMyJob  && !jobCancelled && record.status == 'completed'  && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
                                         Write Review
                                     </a>
 

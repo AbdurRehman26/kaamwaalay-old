@@ -215,7 +215,7 @@ Vue.filter('childOrParentService', function (value) {
     if(value.parent){
      return value.parent.title;   
     }
-    return value.title;
+    return '-';
 });
 
 Vue.filter('adminStatus', function (value) {
