@@ -164,7 +164,7 @@
         watch: {
             'record.zip_code' (val) {
                 if(!val) {
-                    this.invalidZip = true;
+                    //this.invalidZip = true;
                 }
             },
         },
@@ -236,6 +236,8 @@
                     this.invalidZip = false;
                     if(!this.record.zip_code) {
                         this.invalidZip = true;
+                        this.errorMessage = 'Please enter zip code.';
+                        return false;
                     }
                     if (result && !this.invalidZip) {
                         this.onSubmit();

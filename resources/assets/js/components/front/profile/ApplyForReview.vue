@@ -391,8 +391,8 @@
         watch: {
             'record.zip_code' (val) {
                 if(!val) {
-                    this.invalidZip = true;
-                    this.record.zip_code = "";
+                  //  this.invalidZip = true;
+                  //  this.record.zip_code = "";
                 }
             },
         },
@@ -469,11 +469,12 @@
                 this.isSubmit = false
 
                 this.$validator.validateAll().then((result) => {
-                    if (result) {
-
-                        this.invalidZip = false;
-                        if(!this.record.zip_code) {
+                    this.invalidZip = false;
+                    if(!this.record.zip_code) {
                             this.invalidZip = true;
+                    }
+                    if (result) {
+                        if(!this.record.zip_code) {
                             this.errorMessage = 'Please enter zip code.';
                             return false;
                         }
