@@ -70,7 +70,7 @@ class UserRatingController extends ApiResourceController
     }
     public function responseMessages($value = '')
     {
-        if(!empty($this->input('store'))){
+        if(!empty($value == 'store')){
              $messages = [
                 'store' => 'Review posted successfully.',
             ];

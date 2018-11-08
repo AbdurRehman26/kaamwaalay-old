@@ -75,6 +75,7 @@ public function boot()
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
             $event->link_text = 'View Details';
+            $event->email_title = 'Time Confirmation';
             $event->message = 'Time has been confirmed by a <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }

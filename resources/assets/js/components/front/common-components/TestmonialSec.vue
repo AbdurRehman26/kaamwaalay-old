@@ -42,7 +42,8 @@
                 });
             },
 			getImage(img) {
-				return img? img : 'images/dummy/image-placeholder.jpg';
+                console.log(img , 'testinmonal image');
+				return img ? img : 'images/dummy/image-placeholder.jpg';
 			},
         },
         watch: {
