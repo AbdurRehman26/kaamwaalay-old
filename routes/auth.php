@@ -27,6 +27,7 @@ Route::group(['middleware' => ['scopes']], function () {
     ]);
 
     Route::get('job/stats', 'Api\V1\JobController@getJobStats')->name('job.stats');
+    Route::get('job-invite-to-bid', 'Api\V1\JobController@getInviteToBidJobs')->name('job.invite.to.bid');
     Route::resource('job', 'Api\V1\JobController')->except([
         'edit','create','destory'
     ]);
