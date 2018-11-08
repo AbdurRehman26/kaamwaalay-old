@@ -359,7 +359,10 @@
                 if(record.is_featured){
                     this.updateCampaignClickCount(record.user_id);
                 }
-                this.$router.push({ name: 'service-provider-detail.view', params: { id: record.id }});
+
+                let routeData = this.$router.resolve({ name: 'service-provider-detail.view', params: { id: record.id }});
+                window.open(routeData.href, '_blank');
+
             },
             updateCampaignClickCount(id){
                 let update = {
