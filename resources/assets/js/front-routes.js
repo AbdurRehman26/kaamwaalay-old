@@ -205,7 +205,7 @@
 
 
     {
-        name: 'Explore_Jobs',
+        name: 'explore-jobs',
         path: '/explore-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',

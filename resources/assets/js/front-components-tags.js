@@ -94,3 +94,4 @@ Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobLis
 Vue.component('job',require('./components/front/common-components/Job.vue')); 
 
 Vue.component('zip',require('./components/front/common-components/Zip.vue')); 
+Vue.component('city',require('./components/front/common-components/City.vue')); 

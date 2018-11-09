@@ -191,7 +191,7 @@ export default {
 			this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
-				response = response.data.response;
+				response = response.data;
 				self.options = response.data;
 				self.isLoading = false;
 
@@ -251,7 +251,7 @@ export default {
 		    	url += '&page='+page;   
 		    }
 		    self.$http.get(url).then(response => {
-		    	response = response.data.response;
+		    	response = response.data;
 		    	self.allServices = response.data;
 		    	if(!self.allServices.length) {
 		    		self.showNoRecordFound = true;
@@ -332,7 +332,7 @@ computed: {
 	},
 	getOtherServices () {
 		var result = _.map(this.allServices, function(value, key) {
-			  		if(!value.subservices.length) {
+			  		if(!value.subservices.length && !value.parent_id) {
 				  		return value;
 			  		}
 				});

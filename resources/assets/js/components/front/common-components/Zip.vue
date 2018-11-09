@@ -1,6 +1,6 @@
 <template>
     <div class="form-group">
-        <label>Zip Code</label>
+        <label>Zip Code *</label>
         <div class="custom-multi" :class="{ 'invalid': isInvalid }">
             <input name="search" type="text" style="display: none;">
             <multiselect  v-model="searchValue" :options="options"  placeholder="Enter your zip code" track-by="zip_code" label="zip_code" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
@@ -36,6 +36,10 @@
                     latitude: '',
                     longitude: '',
                 };
+
+                this.searchZipCode(this.initialValue, true);
+
+
             }else {
                 this.searchValue = "";
             }
@@ -64,16 +68,30 @@
                 if(!query || query.length < 3) {
                     return;
                 };
+
+                this.searchZipCode(query);
+
+            }, 1000),
+            searchZipCode(query, prefilledValue){
+                let self = this;
                 this.searchUrl  = 'api/zipcode?zip_code=' + query;
                 this.isLoading = true;
+
                 this.$http.get(this.searchUrl).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.options = response.data;
                     self.isLoading = false;
 
+                    if(prefilledValue){
+                        self.dispatchAction(self.options[0]);                        
+                    }
+
+
                 }).catch(error=>{
                 });
-            }, 1000),
+
+
+            }
         },
         watch:{
             initialValue(val) {
@@ -96,11 +114,11 @@
             searchValue(val) {
                 if(!val) {
                     this.$emit('onSelect', 
-                        {
-                            zip_code: "",
-                            latitude: '',
-                            longitude: '',
-                        }
+                    {
+                        zip_code: "",
+                        latitude: '',
+                        longitude: '',
+                    }
                     );
                     this.searchValue = "";
                     this.isTouched = true;

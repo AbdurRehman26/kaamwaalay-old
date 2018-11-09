@@ -22,10 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
-        $this->call(ZipCodesTableSeeder::class);
+        $this->call(UpdatedZipCodesTableSeeder::class);
         /**/
-
-        $this->call(RolesTableSeeder::class);
+        //$this->call(RolesTableSeeder::class);
         /** /
         $this->call(UsersTableSeeder::class);
         
@@ -45,14 +44,16 @@ class DatabaseSeeder extends Seeder
         // These seeders will be commented
         /** /
         $this->call(UserRatingTableSeeder::class);
+        $this->call(SupportInquiryTableSeeder::class);
         /**/
 
 
-        // $this->call(SupportInquiryTableSeeder::class);
 
 
-        /*\Artisan::call('passport:install');
-        \Artisan::call('cache:clear');
+          // \Artisan::call('passport:install');
+          // \Artisan::call('cache:clear');
         /**/
+
+        $this->call(ServiceProviderProfileSeeder::class);
     }
 }

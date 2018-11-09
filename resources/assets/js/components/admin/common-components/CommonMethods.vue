@@ -78,7 +78,6 @@
                         pagination : response.pagination
 
                     };
-
                     if(typeof response.unread_count != 'undefined'){
                       result.unread_count = response.unread_count
                     }
@@ -119,7 +118,7 @@
 
                 
                 urlRequest.then(response => {
-                    self.$emit('form-submitted', response.data.response);
+                    self.$emit('form-submitted', response.data);
 
                 }).catch(error => {
 

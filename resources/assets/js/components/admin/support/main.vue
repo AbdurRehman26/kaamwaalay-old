@@ -166,7 +166,7 @@
         url += '&page='+page;   
       }
       self.$http.get(url).then(response => {
-        response = response.data.response;
+        response = response.data;
         self.listing = response.data;
         
         self.pagination = response.pagination;
@@ -193,7 +193,7 @@
       url = url+query;
 
       self.$http.get(url).then(response => {
-        response = response.data.response;
+        response = response.data;
         self.roles = response.data;
         successCallback(true);
 

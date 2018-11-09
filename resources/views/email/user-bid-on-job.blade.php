@@ -1,6 +1,7 @@
 @component('mail::message')
-{{$message}}
-
+<?php
+echo strip_tags($message,'<strong>');
+?>
 
 <br>
 Please click on the button provided below:

@@ -135,7 +135,7 @@
                         product: 'featured_profile',
                     };
                     self.$http.get(url, {params: params}).then(response=>{
-                        self.plans = response.data.response.data;
+                        self.plans = response.data.data;
                         if (!self.plans.length) {
                             self.showPlanFound = true;
                         }
@@ -154,7 +154,7 @@
                         user_id: self.user.id,
                     };
                     self.$http.get(url, {params: params}).then(response=>{
-                        self.campaigns = response.data.response.data;
+                        self.campaigns = response.data.data;
                         if (!self.campaigns.length) {
                             self.showCampaignFound = true;
                         }

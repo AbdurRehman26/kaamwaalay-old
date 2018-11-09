@@ -172,7 +172,7 @@
                 this.searchUrl  = 'api/service?keyword='+query;
                 this.isLoading = true;
                 this.$http.get(this.searchUrl).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.servicesList = response.data;
                     self.isLoading = false;
 
@@ -188,7 +188,7 @@
                 let url  = 'api/city?keyword='+query+'&details=true';
                 this.isLoadingCity = true;
                 this.$http.get(url).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.citiesList = response.data;
                     self.isLoadingCity = false;
 

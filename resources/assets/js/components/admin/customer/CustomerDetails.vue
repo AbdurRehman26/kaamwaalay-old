@@ -191,7 +191,7 @@
             let _id = this.$route.params.id;
 
             self.$http.get(url+'/'+_id).then(response=>{
-                response = response.data.response;
+                response = response.data;
 
                 self.customerDetail = response.data;
 

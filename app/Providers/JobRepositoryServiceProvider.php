@@ -40,9 +40,10 @@ class JobRepositoryServiceProvider extends ServiceProvider
                     $event->to = User::find($job_bid->user_id);  
                     if($item->status == Job::COMPLETED){
                         $event->link_text = 'Write Review';
-                        $event->message =  'The '.$item->title.' job has been marked as completed by the '.$event->from->first_name.' '. $event->from->last_name.'. Please post a review.'; 
+                        $event->message =  'The <strong>'.$item->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong>. Please post a review.'; 
                     }else{
-                        $event->message =  $item->title.' job is awarded to you.'; 
+                        $event->email_title = 'Job Awarded';
+                        $event->message =  '<strong>'.$item->title.'</strong> job is awarded to you.'; 
                     }
                   $event->to->notify(new JobStatusChangeNotification($event));
                 }

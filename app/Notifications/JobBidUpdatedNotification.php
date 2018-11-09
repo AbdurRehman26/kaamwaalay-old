@@ -17,7 +17,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
-
+use Carbon\Carbon;
 
 class JobBidUpdatedNotification extends Notification implements ShouldQueue
 {
@@ -25,6 +25,8 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
     public $queue;
+    protected $date;
+
     /**
      * Create a new notification instance.
      *
@@ -34,6 +36,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     {
         $this->data = $data;
         $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -64,7 +67,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                     "object_id" => $this->data->object_id,
                     "object_name" => 'jobBidId',
                     ],
-                'created_at' => $notifiable->created_at->toDateTimeString()
+                'created_at' => $this->date
                  ];
         return OneSignalMessage::create()
             ->subject("Urgent Job")
@@ -105,7 +108,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                 "object_id" => $this->data->object_id,
                 "object_name" => 'jobBidId',
             ],
-            'created_at' => $notifiable->created_at->toDateTimeString(),
+            'created_at' => $this->date,
         ]))->onQueue($this->queue);
     }
 
@@ -119,7 +122,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     {
         $url = route('front.login');
         return (new MailMessage)
-        ->subject(Lang::getFromJson('Job Mark Done'))
+        ->subject(Lang::getFromJson((!empty($this->data->email_title))?$this->data->email_title:'Job Mark Done'))
         ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
     }
 }

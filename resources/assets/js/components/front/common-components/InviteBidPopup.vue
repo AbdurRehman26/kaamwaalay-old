@@ -1,5 +1,5 @@
 <template>
-   <div>
+ <div>
 
     <b-modal id="invite-bid" class="post-bid-form invite-job-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Invite to bid" hide-footer>
 
@@ -12,9 +12,10 @@
                         <div class="search-filter service-professional invite-bid-search">
                             <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                <multiselect :showNoResults="true" v-model="searchValue" :options="options" :placeholder="'Please enter job title'" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
-                                <span slot="noResult" >No job found.</span>
-                                </multiselect>
+                                <select class="form-control" v-model="searchValue">
+                                    <option :value="''">Select Job</option>
+                                    <option :key="index" v-for="(job, index) in jobs" :value="job.id">{{ job.title }}</option>
+                                </select>
                             </div>
                         </div>
                     </b-col>
@@ -42,7 +43,11 @@
 
     export default {
         components: { DatePicker, Datepicker },
-        props : ['showModalProp', 'user'],
+        props : [
+        'showModalProp',
+        'user',
+        'jobs'
+        ],
 
         data() {
             return {
@@ -77,13 +82,13 @@
             },
         },
         methods: {
-           onSubmit() {
+         onSubmit() {
 
             let self = this;
 
 
             let data = {
-                job_id : this.searchValue.id,
+                job_id : this.searchValue,
                 is_invited : 1,
                 user_id : this.user.id,
             }
@@ -98,7 +103,7 @@
             this.errorMessage = '';
 
             urlRequest.then(response => {
-                response = response.data.response;
+                response = response.data;
 
                 self.successMessage = response.message;
 
@@ -166,7 +171,7 @@
             this.searchUrl  = 'api/job?filter_by_status=in_bidding&keyword=' + query + '&filter_by_me=true';
             this.isLoading = true;
             this.$http.get(this.searchUrl).then(response => {
-                response = response.data.response;
+                response = response.data;
                 self.options = response.data;
                 self.isLoading = false;
                 self.loading = false;
@@ -185,12 +190,22 @@
         showModalProp(value){
 
             if(value){
+                
+                if(this.jobs.length == 1){
+                    this.searchValue = this.jobs[0].id;
+                }
+                
                 this.showModal();
             }
             if(!value){
                 this.hideModal();
             }
 
+        },
+        jobs(value){
+            if(value.length == 1){
+                this.searchValue = value[0].id;
+            }
         }
     },
 }

@@ -139,6 +139,7 @@ public function run()
                 "user.notification",
                 "user.notification.mark.read",
                 "zipcode.index",
+                "job.invite.to.bid"
             ]), 
             'created_at' => $date,
             'updated_at' => $date,

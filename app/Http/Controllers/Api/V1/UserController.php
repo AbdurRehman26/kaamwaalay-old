@@ -100,11 +100,14 @@ class UserController extends ApiResourceController
         $old_password = $request->get('old_password');
         if (\Hash::check($old_password, $request->user()->password)) {
             if (strlen($new_password) >= 8) {
-//change password of logged in user
+
                 $request->user()->password = bcrypt($new_password);
                 $request->user()->save();
-                $output = ['data' => [],'message'=>'Password has been updated successfully.'];
-// HTTP_OK = 200;
+                $output = [
+                    'data' => [],
+                    'message'=>'Password has been updated successfully.'
+                ];
+
                 return response()->json($output, 200);
             } else {
                 $errorResponse = ValidationException::withMessages(
@@ -310,12 +313,9 @@ public function getAuthUser(Request $request)
     );
 
     $output = [
-        'response' => [
             'data' => $data,
-        ]
     ];
     $code = 200;
-// HTTP_OK = 200;
 
     return response()->json($output, $code);
 
@@ -372,7 +372,7 @@ public function socialLoginCheck(Request $request)
         }
     return response()->json($output, $code);
 }
- public function getUserNotification(Request $request)
+public function getUserNotification(Request $request)
 {
     $input = $request->only('page');
     $notification = request()->user()->notifications();

@@ -96,11 +96,25 @@ class JobController extends ApiResourceController
 
         $data = ['completed' => $completed , 'active' => $active];
 
-        $output = ['response' => ['data' => $data]];
+        $output = [
+            'data' => $data
+        ];
 
         $code  = 200;
 
         return response()->json($output, $code);
+
+    }
+
+    public function getInviteToBidJobs(Request $request)
+    {
+        $input = ['filter_by_status' => 'in_bidding', 'filter_by_me' => true];
+
+        $data = $this->_repository->findByAll(false, 10, $input);
+        
+        $code  = 200;
+
+        return response()->json($data['data'], $code);
 
     }
 

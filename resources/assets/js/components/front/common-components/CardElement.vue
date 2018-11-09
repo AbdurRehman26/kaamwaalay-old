@@ -242,7 +242,7 @@
                 };
                 let url = 'api/user/'+user.id;
                 self.$http.put(url, update).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAuthUser', response.data);
                     if(typeof self.$parent.onSubmit != 'undefined'){
                              self.$parent.onSubmit()

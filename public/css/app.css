@@ -32585,6 +32585,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 51px;
 }
 
+.margin-bottom-10px {
+  margin-bottom: 10px;
+}
+
 .margin-bottom-20px {
   margin-bottom: 20px;
 }

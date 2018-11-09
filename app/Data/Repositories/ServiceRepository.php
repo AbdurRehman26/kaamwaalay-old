@@ -58,7 +58,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 
             }else{
 
-                $data->parent = '';
+                $data->parent = null;
             }
             $jobInitCriteria = ['status' => 'initiated', 'service_id' => $data->id];
             $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
@@ -242,11 +242,13 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         }
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
-                $services = $this->model->orderBy('created_at', 'desc')->where('status', '=', 1)->whereNull('parent_id')->get();
+                $serviceCriteria = ['status' => 1];
+                $services = $this->findByCriteria($serviceCriteria);
                 foreach ($services as $key => $value) {
-                     $subservice = $this->model->orderBy('created_at', 'desc')->where('parent_id', '=', $value->id)->where('status', '=', 1)->get();
+                     $criteria = ['parent_id' => $value->id,'status' => 1];
+                     $subservice = $this->findByCriteria($criteria);
                      foreach ($subservice as $key2 => $value2) {
-                        $subservice[$key2]->parent = $value->toArray();
+                        $subservice[$key2]->parent = (array) $value;
                      }
                     $services[$key]->subservices = $subservice;
                 }
@@ -376,5 +378,39 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         return  parent::findByAll($pagination, $perPage, $data);
     }
+
+    /**
+* This method will fetch single model by attribute
+* and will return output back to client as json
+*
+* @access public
+* @return mixed
+*
+* @author Usaama Effendi <usaamaeffendi@gmail.com>
+**/
+public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+{
+
+    $model = $this->model->newInstance()->orderBy('created_at','DESC')
+    ->where($criteria);
+
+    if($whereIn) {
+        $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
+
+    }
+
+    if($count) {
+        return $model->count();
+    }
+
+    $model = $model->get();
+    $data =[];
+    if ($model != null) {
+        foreach ($model as $key => $value) {
+          $data[] = $this->findById($value->id, $refresh, $details, $encode);
+        }
+    }
+    return $data;
+}
 }
 

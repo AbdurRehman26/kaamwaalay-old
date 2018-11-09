@@ -4,20 +4,19 @@
             <div class="notify-dropdown scrollbar" id="style-2">
                 <ul v-show="!noRecordFound">
                     <li class="notify-list" v-for='notification in notificationData'>
-                        <div v-if="notification.data.image" class="notify-image">
+                     <!--    <div v-if="notification.data.image" class="notify-image">
                             <img :src="notification.data.image" alt="">
-                        </div>
+                        </div> -->
                         <div class="right-notification">
                             <div class="notification-content">
-                                <p>
-                                    <strong>{{notification.data.text}}</strong>
+                                <p v-html="notification.data.text">
                                 </p>
                                 <p :class="{'notification-limit': notification.data.route}">
                                     <span v-show="notification.data.route">
-                                        <router-link v-show="!notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id }}">{{notification.data.link_text}}</router-link>
-                                        <router-link v-show="notification.data.object_id" :to="{name: notification.data.route , params : { id : notification.data.id ,jobBidId : notification.data.object_id}}">{{notification.data.link_text}}</router-link>
+                                        <a v-show="!notification.data.object_id" :href="$router.resolve({name: notification.data.route , params : { id : notification.data.id }}).href">{{notification.data.link_text}}</a>
+                                        <a v-show="notification.data.object_id" :href="$router.resolve({name: notification.data.route , params : { id : notification.data.id ,jobBidId : notification.data.object_id}}).href">{{notification.data.link_text}}</a>
                                     </span>
-                                    <span>{{notification.created_at | formatDateTime}}</span>
+                                    <span>{{notification.created_at | formatDateTimeUTC}}</span>
                                 </p>
                             </div>
                         </div>
@@ -82,7 +81,7 @@
                 window.Echo.private(channelName).notification((notification) => {
                     self.noRecordFound = false
                     self.notificationData.unshift(notification);
-                    self.notificationCount += 1;
+                    self.notificationCount = 1+self.notificationCount;
                     self.$parent.notificationCount = self.notificationCount;
                 });
             },
@@ -99,7 +98,7 @@
                 }).catch(error => {
 
                 });
-            }
+            },
         },
          watch:{
             isShowTab(val){
