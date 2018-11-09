@@ -19,7 +19,7 @@ use Illuminate\Validation\ValidationException;
 class UserController extends ApiResourceController
 {
     public $_repository;
-    const   PER_PAGE = 25;
+    const   PER_PAGE = 10;
     protected $model;
     public function __construct(UserRepository $repository)
     {

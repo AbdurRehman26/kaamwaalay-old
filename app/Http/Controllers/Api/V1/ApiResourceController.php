@@ -12,7 +12,7 @@ abstract class ApiResourceController extends Controller
 {
     public $_repository;
     
-    const PER_PAGE = 25;
+    const PER_PAGE = 10;
 
     public function __constructor($repository)
     {
