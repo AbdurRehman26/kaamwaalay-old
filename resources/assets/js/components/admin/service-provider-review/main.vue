@@ -72,35 +72,54 @@
                                 <tr v-for="record in records">
                                     <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
                                     <td><a @click.prevent="viewDetails(record.id)" class="basecolor">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a></td>
-                                    <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
+                                    
+
+
+                                    <td> <span v-if="index < 2" v-for="(service , index) in record.services">{{service.service.title }} 
                                         {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
-                                    </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
+                                    </span>
 
-                                    <td> {{ record.service_provider_profile && record.service_provider_profile.business_details &&  record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
-                                    <td>
-                                        <span class="tags" :class="[record.status]">
-                                            {{ record.status }}
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="action-icons">                    
-                                            <a @click.prevent="viewDetails(record.id)" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <no-record-found v-show="noRecordFound"></no-record-found>
-                    </div>
-                </div>
+                                    <a @click.prevent="" href="#" v-b-toggle.accordion1 variant="info">Accordion 1</a>
+                                    
+                                    <b-collapse id="accordion1" accordion="my-accordion" role="tabpanel">
+                                        <b-card-body>
+                                          <p class="card-text">
+                                            I start opened because <code>visible</code> is <code>true</code>
+                                        </p>
+                                        <p class="card-text">
+                                            {{ text }}
+                                        </p>
+                                    </b-card-body>
+                                </b-collapse>
+
+
+                            </td>
+
+                            <td> {{ record.service_provider_profile && record.service_provider_profile.business_details &&  record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
+                            <td>
+                                <span class="tags" :class="[record.status]">
+                                    {{ record.status }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="action-icons">                    
+                                    <a @click.prevent="viewDetails(record.id)" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <no-record-found v-show="noRecordFound"></no-record-found>
             </div>
-
-            <div class="clearfix"></div>
-
-            <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
-
         </div>
     </div>
+
+    <div class="clearfix"></div>
+
+    <vue-common-methods @start-loading="startLoading" :url="requestUrl" @get-records="getRecords"></vue-common-methods>
+
+</div>
+</div>
 </template>
 
 <script>

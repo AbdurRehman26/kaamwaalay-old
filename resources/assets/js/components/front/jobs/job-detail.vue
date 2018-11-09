@@ -119,10 +119,29 @@
                             <i class="icon-pin"></i>
                             <p>Address: 
                                 <strong>
-                                    {{record.address}}
+                                    {{record.address}} {{ record.city + ' ,'}} {{ record.state }}
                                 </strong>
                             </p>
                         </div>                        
+                        
+                        <div class="coustomer-info-line">
+                            <i class="icon-pin"></i>
+                            <p>City: 
+                                <strong>
+                                    {{ record.city}}
+                                </strong>
+                            </p>
+                        </div>                        
+                        
+                        <div class="coustomer-info-line">
+                            <i class="icon-pin"></i>
+                            <p>State: 
+                                <strong>
+                                    {{ record.state }}
+                                </strong>
+                            </p>
+                        </div>                        
+                        
                         <div class="coustomer-info-line">
                             <iframe :src="mapUrl" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>                
@@ -478,7 +497,10 @@
                 
                 let axisPoints = xAxis +','+  yAxis;
                 axisPoints = this.record.address;
-                return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints;
+
+                console.log('https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints);
+
+                return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints+'"';
             },
             onTheWay(){
                 if(Object.keys(this.record).length && this.record.my_bid){
@@ -706,7 +728,7 @@
                 if(response.data){
                     this.$store.commit('setAuthUser', response.data);
                 }
-            }    
+            }   
         },
         components: {
             StarRating,

@@ -12,6 +12,12 @@
         :class="['form-control','file-upload-input', 'form-group']">
     </b-form-file>
 
+
+
+    <div class="button-loader">
+        <div class="loader">Loading...</div>
+    </div>
+
 </div>
 
 
@@ -68,16 +74,16 @@
 
 
                     if(supportedType.includes(files[i].name.split('.').pop())) {
-                       this.errorBag.clear();
-                       this.isFileUpload = null;
-                       this.createImage(files[i]);
-                   }
+                     this.errorBag.clear();
+                     this.isFileUpload = null;
+                     this.createImage(files[i]);
+                 }
 
 
-               }
+             }
 
-           },
-           createImage(file) {
+         },
+         createImage(file) {
             var self = this;    
             var image = new Image();
             var reader = new FileReader();

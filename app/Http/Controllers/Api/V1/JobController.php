@@ -109,13 +109,13 @@ class JobController extends ApiResourceController
 
     public function getInviteToBidJobs(Request $request)
     {
-        $input = ['filter_by_status' => 'in_bidding', 'filter_by_me' => true];
+        $input = ['status' => 'in_bidding', 'user_id' => request()->user()->id];
 
-        $data = $this->_repository->findByAll(false, 10, $input);
+        $data = \App\Data\Models\Job::where($input)->get()->toArray();
         
         $code  = 200;
 
-        return response()->json($data['data'], $code);
+        return response()->json($data, $code);
 
     }
 
