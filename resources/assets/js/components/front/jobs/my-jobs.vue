@@ -73,8 +73,8 @@
                             <p class="bid">
                                 <i class="icon-flag"></i> 
                                 <strong>
-                                    {{ record.bids_count }} bids received -
-                                    <router-link :to="{name: 'job.details' , params : { id : record.id }}">View Bids</router-link></strong>
+                                    {{ record.bids_count  + ' bids received '}} 
+                                    <router-link v-if="record.bids_count" :to="{name: 'job.details' , params : { id : record.id }}">View Bids</router-link></strong>
                                 </p>
                                 <p class="awarded" v-if="record.awarded_to">
                                     <i class="icon-checkmark2"></i> 
