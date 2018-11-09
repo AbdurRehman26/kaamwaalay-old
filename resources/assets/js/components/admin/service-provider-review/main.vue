@@ -71,7 +71,7 @@
                             <tbody>
                                 <tr v-for="record in records">
                                     <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
-                                    <td><router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</router-link></td>
+                                    <td><a @click.prevent="viewDetails(record.id)" class="basecolor">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a></td>
                                     <td> <span v-for="(service , index) in record.services">{{service.service | mainServiceOrChildService }} 
                                         {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
                                     </span> <span :class="[record.sarrows]"></span> {{ record.sub_services}}</td>
@@ -84,7 +84,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-icons">                    
-                                            <router-link :to="{ name: 'service.detail.review', params: { id:record.id }}" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
+                                            <a @click.prevent="viewDetails(record.id)" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -148,6 +148,12 @@
 
         },
         methods: {
+            viewDetails(id){
+
+                let routeData = this.$router.resolve({ name: 'service.detail.review', params: { id: id }});
+                window.open(routeData.href, '_blank');
+
+            },
             ShowModalUser(){
                 this.changeProviderStatus = true;
             },

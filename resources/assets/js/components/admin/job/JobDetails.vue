@@ -141,7 +141,7 @@
                                 </b-col>
                                 <b-col class="calculated-value">
 
-                                    <router-link :to="{name: 'bidding.details', params : {jobId : record.id}}">See All</router-link>
+                                    <a @click.prevent="viewDetails(record.id)">See All</a>
 
                                 </b-col>
                             </b-row>                                                                                                 
@@ -202,6 +202,15 @@
             Lightbox
         },        
         methods:{
+            viewDetails(id){
+
+
+                let routeData = this.$router.resolve({name: 'bidding.details', params : {jobId : id}});
+                window.open(routeData.href, '_blank');
+
+                
+
+            },
             getRecords(response){
                 let self = this;
                 self.loading = false;

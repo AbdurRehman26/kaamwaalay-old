@@ -14,15 +14,15 @@
                       
                       <div class="col-xs-12 col-md-3 datepicker-field">
                           <div class="form-group">
-                             <label>By Business/Individual</label>
-                             <select v-model="search.filter_by_business_type" class="form-control">
-                               <option value="">Select All</option>
-                               <option value="business">Business</option>
-                               <option value="individual">Individual</option>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-xs-12 col-md-2">
+                           <label>By Business/Individual</label>
+                           <select v-model="search.filter_by_business_type" class="form-control">
+                             <option value="">Select All</option>
+                             <option value="business">Business</option>
+                             <option value="individual">Individual</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div class="col-xs-12 col-md-2">
                     <button @click.prevent="searchList(false)" :class="['btn btn-primary', 'filter-btn-top-space', loading ?'show-spinner' : '']">
                         <span>Apply</span>
                         <loader></loader>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="col-md-12">
-       <div class="table-area">
+     <div class="table-area">
         <div class="table-responsive">
             <table class="table service-provider-table first-last-col-fix">
               <thead>
@@ -58,9 +58,9 @@
                     </span>                
                 </td>            
                 <td>
-                    <router-link :to="{ name: 'service.provider.detail', params: { id:record.id }}">
+                    <a @click.prevent="viewDetails(record.id)">
                         {{ record.user_detail.first_name +' '+ record.user_detail.last_name }}
-                    </router-link>
+                    </a>
                 </td>
 
                 <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
@@ -70,9 +70,9 @@
                 <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#8200ff"></star-rating></td>
                 <td class="text-right">
                   <div class="action-icons">
-                    <router-link :to="{name: 'service.provider.detail' , params : {id : record.id }}">
+                    <a @click.prevent="viewDetails(record.id)">
                         <i v-b-tooltip.hover title="View Details" class="icon-eye basecolor"></i>
-                    </router-link>
+                    </a>
                     <i @click="changestatuspopup(record)"  
                     v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
                 </i>
@@ -174,68 +174,72 @@
     },
 
     methods: {
-        formUpdated(){
-            let newDate  = new Date().getMilliseconds();
+        viewDetails(id){
+           let routeData = this.$router.resolve({ name: 'service.provider.detail', params: { id:id }});
+           window.open(routeData.href, '_blank');
+       },
+       formUpdated(){
+        let newDate  = new Date().getMilliseconds();
 
-            this.url = 'api/service-provider-profile?pagination=true&time='+newDate;
-        },
-        startLoading(){
-            this.loading = true;
-        },
-        ShowModalUser(){
-            this.changeProviderStatus = true;
-        },
-        AddService(){
-            this.service = true;
-        },
-        ViewDetails() {
-            this.viewdetails = true;
-        },
-        changestatuspopup(record) {
-            this.statusData = record.user_detail;
-            this.changestatus = true;
-        },
-        ConfirmationPopup() {
-            this.confirmationpopup = true;
-        },
-        HideModal(){
-            this.service = false;
-            this.viewdetails = false;
-            this.changestatus = false;
-            this.providerdetailpopup = false;
-            this.confirmationpopup = false;
-        },
-        getRecords(response){
-            let self = this;
-            self.loading = false;
-            self.records = response.data;
-            self.noRecordFound = response.noRecordFound;
-            
-        },
-        searchList(){
-            let newDate  = new Date().getMilliseconds();
-
-            this.url = 'api/service-provider-profile?pagination=true&time='+newDate;
-
-            Reflect.ownKeys(this.search).forEach(key =>{
-
-                if(key !== '__ob__'){
-                    this.url += '&' + key + '=' + this.search[key];
-                }        
-            });
-
-        }
-
+        this.url = 'api/service-provider-profile?pagination=true&time='+newDate;
     },
-
-    components: {
-        StarRating
-    },
-    mounted(){
-
+    startLoading(){
         this.loading = true;
+    },
+    ShowModalUser(){
+        this.changeProviderStatus = true;
+    },
+    AddService(){
+        this.service = true;
+    },
+    ViewDetails() {
+        this.viewdetails = true;
+    },
+    changestatuspopup(record) {
+        this.statusData = record.user_detail;
+        this.changestatus = true;
+    },
+    ConfirmationPopup() {
+        this.confirmationpopup = true;
+    },
+    HideModal(){
+        this.service = false;
+        this.viewdetails = false;
+        this.changestatus = false;
+        this.providerdetailpopup = false;
+        this.confirmationpopup = false;
+    },
+    getRecords(response){
+        let self = this;
+        self.loading = false;
+        self.records = response.data;
+        self.noRecordFound = response.noRecordFound;
+
+    },
+    searchList(){
+        let newDate  = new Date().getMilliseconds();
+
+        this.url = 'api/service-provider-profile?pagination=true&time='+newDate;
+
+        Reflect.ownKeys(this.search).forEach(key =>{
+
+            if(key !== '__ob__'){
+                this.url += '&' + key + '=' + this.search[key];
+            }        
+        });
 
     }
+
+},
+
+components: {
+    StarRating
+},
+mounted(){
+
+    this.loading = true;
+
+}
 
 }
 </script>

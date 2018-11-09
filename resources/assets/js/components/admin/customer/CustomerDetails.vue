@@ -147,8 +147,8 @@
                                         <p><strong class="title-head">Job Details</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        
-                                        <router-link :to="{name: 'customer.job.detail',params: { id: customerDetail.id }}">View All Jobs</router-link>
+
+                                        <a @click.prevent="viewDetails(customerDetail.id)">View All Jobs</a>
                                         
                                     </b-col>
                                 </b-row>                                                                                                 
@@ -181,31 +181,34 @@
                 },
 
                 methods:{
+                    viewDetails(id){
+                        let routeData = this.$router.resolve({name: 'customer.job.detail',params: { id: id }});
+                        window.open(routeData.href, '_blank');
+                    },
                     getSingle(){
-            // alert('single')
-            let self = this;
-            self.showModalValue = false;
-            self.showNoRecordFound = false;
-            let url = self.userURL;
+                        let self = this;
+                        self.showModalValue = false;
+                        self.showNoRecordFound = false;
+                        let url = self.userURL;
 
-            let _id = this.$route.params.id;
+                        let _id = this.$route.params.id;
 
-            self.$http.get(url+'/'+_id).then(response=>{
-                response = response.data;
+                        self.$http.get(url+'/'+_id).then(response=>{
+                            response = response.data;
 
-                self.customerDetail = response.data;
-
-
-                if (!self.report.length) {
-                    self.showNoRecordFound = true;
-                }
-            }).catch(error=>{
-
-            });
-        },
-    },
+                            self.customerDetail = response.data;
 
 
-}
+                            if (!self.report.length) {
+                                self.showNoRecordFound = true;
+                            }
+                        }).catch(error=>{
 
-</script>
+                        });
+                    },
+                },
+
+
+            }
+
+        </script>

@@ -191,7 +191,7 @@
                             </b-col>
 
                             <b-col class="calculated-value">
-                                <router-link :to="{name: 'view.service.job.detail',params: { id: records.user_id }}">See All</router-link>
+                                <a  @click.prevent="viewDetails(records.user_id)">See All</a>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
@@ -217,6 +217,14 @@
         StarRating
     },    
     methods: {
+        viewDetails(id){
+
+            let routeData = this.$router.resolve({ name: 'view.service.job.detail', params: { id: id }});
+            window.open(routeData.href, '_blank');
+
+
+
+        },
         getRecords(response){
             let self = this;
             self.loading = false;

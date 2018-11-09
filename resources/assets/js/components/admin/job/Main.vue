@@ -60,7 +60,7 @@
                 <td> {{ record.title }} </td>
                 <td> 
 
-                    <router-link :to="{name: 'customer.detail' , params : {id : record.user.id}}">{{ record.user.first_name }}</router-link>
+                    <a @click.prevent="viewDetails(record.user.id)">{{ record.user.first_name }}</a>
 
                 </td>
                 <td> {{ record.service | mainService }} </td>
@@ -78,7 +78,7 @@
             <td class="text-center">
               <div class="action-icons">
 
-                <router-link class="basecolor" :to="{name: 'main.job.detail' , params : {id : record.id}}"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></router-link>
+                <a class="basecolor" @click.prevent="viewJobDetails(record.id)"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></a>
 
             </div>
         </td>
@@ -165,37 +165,48 @@
             }
         },
         methods: {
-            startLoading(){
-                this.loading = true;
-            },
-            getRecords(response){
-                let self = this;
-                self.loading = false;
-                self.records = response.data;
-                self.noRecordFound = response.noRecordFound;
-                
-            },
-            searchList(){
+            viewDetails(id){
 
-                let newDate  = new Date().getMilliseconds();
-
-                this.url = 'api/job?pagination=true&time='+newDate;
-
-                Reflect.ownKeys(this.search).forEach(key =>{
-
-                    if(key !== '__ob__'){
-                        this.url += '&' + key + '=' + this.search[key];
-                    }        
-                });
-            }, 
-            HideModal(){
-                this.changeProviderStatus = false;
-                this.customer = false;
+                let routeData = this.$router.resolve({ name: 'customer.detail', params: { id: id }});
+                window.open(routeData.href, '_blank');
             },
-            AddService(){
-                this.changeProviderStatus = true;
-            },
+            viewJobDetails(id){
+              let routeData = this.$router.resolve({name: 'main.job.detail' , params : {id : id}});
+              window.open(routeData.href, '_blank');
+
+
+          },
+          startLoading(){
+            this.loading = true;
+        },
+        getRecords(response){
+            let self = this;
+            self.loading = false;
+            self.records = response.data;
+            self.noRecordFound = response.noRecordFound;
 
         },
-    }
+        searchList(){
+
+            let newDate  = new Date().getMilliseconds();
+
+            this.url = 'api/job?pagination=true&time='+newDate;
+
+            Reflect.ownKeys(this.search).forEach(key =>{
+
+                if(key !== '__ob__'){
+                    this.url += '&' + key + '=' + this.search[key];
+                }        
+            });
+        }, 
+        HideModal(){
+            this.changeProviderStatus = false;
+            this.customer = false;
+        },
+        AddService(){
+            this.changeProviderStatus = true;
+        },
+
+    },
+}
 </script>

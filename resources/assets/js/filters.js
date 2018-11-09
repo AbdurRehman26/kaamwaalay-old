@@ -3,6 +3,10 @@ import moment from 'moment';
 
 const jobStatuses = [
 {
+    key : 'draft',
+    value : 'Draft'
+},
+{
     key : 'in_bidding',
     value : 'Bidding'
 },
