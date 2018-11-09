@@ -113,9 +113,13 @@ class JobController extends ApiResourceController
 
         $data = \App\Data\Models\Job::where($input)->get()->toArray();
         
+        $output = [
+            'data' => $data
+        ];
+
         $code  = 200;
 
-        return response()->json($data, $code);
+        return response()->json($output, $code);
 
     }
 
