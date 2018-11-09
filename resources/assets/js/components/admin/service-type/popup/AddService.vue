@@ -28,7 +28,14 @@
                   <label class="form-check-label" for="radioHomePageBannerNo">No</label>
                 </div>
               </div>
+                <div class="form-group">
+                    <label>Home Banner Icon</label>
+                    <b-form-file @change="onFileChange($event, 'icon')" ref="fileinput" v-model="icon" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
+                    <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ imageValue +')',}">
+                    </div>
+                </div>
             </div>
+
             <div class="col-xs-12 col-sm-6 col-md-12" v-if="showRadios">
                 <div class="form-group radio-group-row">
                     <label class="label-with-200">Explore Banner</label>
@@ -51,7 +58,7 @@
 
     <div class="form-group">
         <label>Upload Image</label>
-        <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
+        <b-form-file @change="onFileChange($event, 'image')" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
         <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ imageValue +')',}">
             <!-- <img :src="imageValue" /> -->
         </div>
@@ -121,6 +128,7 @@
                 },
                 image: 'images/dummy/image-placeholder.jpg',
                 file: null,
+                icon: null,
                 url: 'api/service',
                 loading: false,
                 url_prefix: '',
@@ -155,6 +163,7 @@
                 let self = this;
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
+                this.icom = null;
                 this.$refs.fileinput.reset();
                 this.showRadios = true;
                 this.formData = {
@@ -239,7 +248,7 @@
             onHidden() {
                 this.$emit('HideModalValue');
             },
-            onFileChange(e) {
+            onFileChange(e, type) {
                 var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
                 var files = e.target.files || e.dataTransfer.files;
                 this.errorMessage = "";
@@ -256,10 +265,10 @@
                 this.errorBag.clear();
                 if (!files.length)
                     return;
-                this.createImage(files[0]);
+                this.createImage(files[0], type);
                 
             },
-            createImage(file) {
+            createImage(file, type) {
                 var self = this;    
                 var image = new Image();
                 var reader = new FileReader();
@@ -267,7 +276,7 @@
                     self.image = e.target.result;
                 };
                 reader.readAsDataURL(file);
-                this.onUpload(file);
+                this.onUpload(file, type);
             },
             onUpload(file) {
                 var self = this;
@@ -279,8 +288,13 @@
 
                 this.$http.post(url, data).then(response => {
                     response = response.data;
-                    self.formData.images[0].name = response.name;
-                    self.formData.images[0].original_name = response.original_name;
+                    if(type == "icon") {
+
+                    }else {
+                        self.formData.images[0].name = response.name;
+                        self.formData.images[0].original_name = response.original_name;
+                    }
+                    
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -377,6 +391,9 @@
         },
 
         watch: {
+            'formData.is_display_banner'(val) {
+
+            },
         //     'formData.url_suffix' (val) {
         //         var regex = /^[0-9a-z\-]+$/;
         //         if(val.length == 0 || !regex.test(val)) {
