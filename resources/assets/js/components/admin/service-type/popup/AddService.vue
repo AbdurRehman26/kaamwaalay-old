@@ -28,10 +28,10 @@
                   <label class="form-check-label" for="radioHomePageBannerNo">No</label>
                 </div>
               </div>
-                <div class="form-group">
+                <div class="form-group" v-if="showBannerIcon">
                     <label>Home Banner Icon</label>
-                    <b-form-file @change="onFileChange($event, 'icon')" ref="fileinput" v-model="icon" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
-                    <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ imageValue +')',}">
+                    <b-form-file  @change="onFileChange($event, 'icon')" ref="fileinput2" v-model="icon" accept="image/jpeg, image/png, image/jpg" :placeholder="iconText" name="Home Banner Icon" v-validate="'required'" :class="['form-group' , errorBag.first('Home Banner Icon') ? 'is-invalid' : '']"></b-form-file>
+                    <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ iconValue +')',}">
                     </div>
                 </div>
             </div>
@@ -103,12 +103,14 @@
             return {
                 isInalidSuffix: false,
                 showRadios: true,
+                showBannerIcon: false,
                 errorMessage : '',
                 successMessage : '',
                 services: [],
                 errorMessage: '',
                 successMessage: '',
                 imageText: 'Click here to upload image',
+                iconText: 'Click here to upload image',
                 formData: {
                     parent_id: '',
                     title: '',
@@ -120,6 +122,10 @@
                         original_name: ''
                     }
                     ],
+                    icon: [{
+                        name: '', 
+                        original_name: ''
+                    }],
                     url_suffix: '',
                     status: 1,
                     is_display_banner: 0,
@@ -127,6 +133,7 @@
                     is_display_footer_nav: 0,
                 },
                 image: 'images/dummy/image-placeholder.jpg',
+                imageIcon: 'images/dummy/image-placeholder.jpg',
                 file: null,
                 icon: null,
                 url: 'api/service',
@@ -162,9 +169,11 @@
             resetFormFields() {
                 let self = this;
                 this.image = 'images/dummy/image-placeholder.jpg';
+                this.imageIcon = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
                 this.icom = null;
                 this.$refs.fileinput.reset();
+                this.$refs.fileinput2.reset();
                 this.showRadios = true;
                 this.formData = {
                     parent_id: '',
@@ -172,6 +181,12 @@
                     description: '',
                     is_featured: 0,
                     images: [
+                    {
+                        name: '', 
+                        original_name: ''
+                    }
+                    ],
+                    icon: [
                     {
                         name: '', 
                         original_name: ''
@@ -273,12 +288,16 @@
                 var image = new Image();
                 var reader = new FileReader();
                 reader.onload = (e) => {
-                    self.image = e.target.result;
+                    if(type == "icon") {
+                        self.imageIcon = e.target.result;
+                    }else {
+                        self.image = e.target.result;
+                    }
                 };
                 reader.readAsDataURL(file);
                 this.onUpload(file, type);
             },
-            onUpload(file) {
+            onUpload(file, type) {
                 var self = this;
                 let url = "api/file/upload";
 
@@ -289,7 +308,8 @@
                 this.$http.post(url, data).then(response => {
                     response = response.data;
                     if(type == "icon") {
-
+                        self.formData.icon[0].name = response.name;
+                        self.formData.icon[0].original_name = response.original_name;
                     }else {
                         self.formData.images[0].name = response.name;
                         self.formData.images[0].original_name = response.original_name;
@@ -392,7 +412,7 @@
 
         watch: {
             'formData.is_display_banner'(val) {
-
+                this.showBannerIcon = val == "1"? true: false;
             },
         //     'formData.url_suffix' (val) {
         //         var regex = /^[0-9a-z\-]+$/;
@@ -413,6 +433,7 @@
             isUpdate(value) {
                 this.isUpdate = value;
                 var img = this.list.images;
+                var icon = this.list.icon;
                 if(this.isUpdate) {
                     this.formData = {
                         parent_id: this.list.parent? this.list.parent : "",
@@ -423,6 +444,12 @@
                         {
                             name: img? img[0].name : '', 
                             original_name: img? img[0].original_name :''
+                        }
+                        ],
+                        icon: [
+                        {
+                            name: icon? icon[0].name : '', 
+                            original_name: icon? icon[0].original_name :''
                         }
                         ],
                         url_suffix: this.list.url_suffix,
@@ -436,6 +463,9 @@
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file? this.file : 'Click here to upload image.';
+                    this.imageIcon = icon? (icon[0].upload_url? icon[0].upload_url : this.imageIcon) : this.imageIcon;
+                    this.icon = icon? icon[0].original_name : '';
+                    this.iconText = this.icon? this.icon : 'Click here to upload image.';
                     if(this.formData.parent_id) {
                         this.url_prefix  = this.formData.parent_id.url + "/";
                     }else {
@@ -448,6 +478,9 @@
         computed : {
             imageValue(){
                 return this.image;
+            },
+            iconValue(){
+                return this.imageIcon;
             },
         }
     }

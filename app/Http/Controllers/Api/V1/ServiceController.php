@@ -101,6 +101,7 @@ public function input($value=''){
         'id',
         'title',
         'images',
+        'icon',
         'parent_id',
         'pagination',
         'description',
