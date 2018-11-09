@@ -52,6 +52,7 @@ class UserController extends ApiResourceController
             $rule['email'] = 'required|email|unique:users,email|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/';
             $rule['role_id'] = ['required', Rule::in(Role::ADMIN, Role::REVIEWER)];
             $rule['status'] = 'required|in:active,banned'; 
+            
 
         }
 
