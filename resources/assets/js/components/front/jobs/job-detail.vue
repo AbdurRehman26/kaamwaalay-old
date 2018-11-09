@@ -134,8 +134,8 @@
                             <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
                             <h3 v-if="myBidValue && !isMyJob">My Bid</h3>
 
-                            <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
-                            <p>Bid(s) Not Available</p>
+                            <div v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
+                                 <no-record-found></no-record-found>
                             </div>
 
                         </div>
@@ -604,7 +604,7 @@
                     }
 
                     self.jobBids.pagination = response.pagination;
- 
+
                     setTimeout(function () {
                         self.jobBids.showInvite = true;
                         self.$forceUpdate();
@@ -636,7 +636,10 @@
                 this.isShowing=true;
             },
             showProfile(id){
-                this.$router.push({ name : 'service-provider-detail.view' , params : { id : id}});
+
+                let routeData = this.$router.resolve({ name: 'service-provider-detail.view', params: { id: id }});
+                window.open(routeData.href, '_blank');
+
             },
             markCompletedByCustomer(){
                 this.loading = true;
