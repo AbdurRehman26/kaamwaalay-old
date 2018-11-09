@@ -329,7 +329,7 @@
                 if(!query || query.length < 3) {
                     return;
                 };
-                this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
+                this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1&order_by=title';
                 this.isLoading = true;
                 this.$http.get(this.searchUrl).then(response => {
                     response = response.data;
