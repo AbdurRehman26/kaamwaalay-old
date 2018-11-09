@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CitiesTableSeeder::class);
         $this->call(UpdatedZipCodesTableSeeder::class);
         /**/
-        //$this->call(RolesTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
         /** /
         $this->call(UsersTableSeeder::class);
         
@@ -53,7 +53,5 @@ class DatabaseSeeder extends Seeder
           // \Artisan::call('passport:install');
           // \Artisan::call('cache:clear');
         /**/
-
-        $this->call(ServiceProviderProfileSeeder::class);
     }
 }

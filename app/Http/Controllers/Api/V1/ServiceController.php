@@ -120,7 +120,8 @@ public function input($value=''){
         'filter_by_related_services',
         'filter_by_status',
         'filter_by_parent',
-        'filter_by_popular_services'
+        'filter_by_popular_services',
+        'order_by'
     );
 
     $input['user_id'] = !empty(request()->user()->id) ? request()->user()->id : null;
