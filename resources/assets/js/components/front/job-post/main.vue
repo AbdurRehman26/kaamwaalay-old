@@ -330,6 +330,11 @@
                     }
                 }
 
+                if(this.$route.query.service_provider_user_id){
+                    self.formData.service_provider_user_id = this.$route.query.service_provider_user_id;
+                }
+
+
             },
             setZipCode(val) {
                 if(val.zip_code){

@@ -132,7 +132,12 @@
 
                         <div class="text-notifer">
                             <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
-                            <h3 v-if="myBidValue && !isMyJob">My Bid</h3>	
+                            <h3 v-if="myBidValue && !isMyJob">My Bid</h3>
+
+                            <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
+                            <p>Bid(s) Not Available</p>
+                            </div>
+
                         </div>
 
                         <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">

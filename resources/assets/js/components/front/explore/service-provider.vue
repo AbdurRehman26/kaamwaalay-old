@@ -68,7 +68,7 @@
                                 <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
                             </div>	
                         </div>
-                        <a :href="postJobRoute" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+                        <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
 
                         <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary', 'post-bid'  ]">
                             Invite to Bid

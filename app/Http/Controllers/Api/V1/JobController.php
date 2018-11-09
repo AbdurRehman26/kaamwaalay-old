@@ -24,6 +24,7 @@ class JobController extends ApiResourceController
             $rules['state_id'] = 'required|exists:states,id';
             $rules['country_id'] = 'required|exists:countries,id';
             $rules['city_id'] = 'required|exists:cities,id';
+            $rules['service_provider_user_id'] = 'exists:users,id,role_id,'. 2;
         }
 
         if($value == 'update'){
@@ -48,7 +49,7 @@ class JobController extends ApiResourceController
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
             'details', 'is_archived', 'filter_by_city', 'subscription_id',
-            'address_latitude', 'address_longitude'
+            'address_latitude', 'address_longitude', 'service_provider_user_id'
         );
 
         $input['user_id'] = request()->user()->id;

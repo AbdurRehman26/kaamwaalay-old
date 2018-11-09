@@ -285,8 +285,8 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         if ($model != NULL) {
             foreach ($data as $column => $value) {
 
-                    $model->{$column} = $value;
- 
+                $model->{$column} = $value;
+                
             }
             $model->updated_at = Carbon::now();
 
@@ -313,4 +313,42 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         return NULL;
     }
 
-}
+        /**
+     *
+     * This method will create a new model
+     * and will return output back to client as json
+     *
+     * @access public
+     * @return mixed
+     *
+     * @author Usaama Effendi <usaamaeffendi@gmail.com>
+     *
+     **/
+
+        public function create(array $data = []) {
+
+            $user_id = !empty($data['service_provider_user_id']) ? (int)$data['service_provider_user_id'] : null;
+
+            unset($data['service_provider_user_id']);
+
+            if($user_id){
+                
+                $data = parent::create($data);
+                
+                $updateData = [
+                    'job_id' => $data->id,
+                    'user_id' => $user_id,
+                    'is_invited' => 1,
+                    'status' => 'invited'
+                ];
+
+
+                app('JobBidRepository')->create($updateData);
+            }
+
+
+            return $data;
+
+        }
+
+    }
