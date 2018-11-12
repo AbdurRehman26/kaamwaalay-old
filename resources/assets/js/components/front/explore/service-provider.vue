@@ -235,9 +235,8 @@
                 let self = this;
                 let url = 'api/job-invite-to-bid';
                 self.$http.get(url).then(response=>{
-
                     response = response.data;
-                    this.jobs = response;
+                    this.jobs = response.data;
 
                 }).catch(error=>{
 
