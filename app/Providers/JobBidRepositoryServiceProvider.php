@@ -59,7 +59,7 @@ public function boot()
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
             $event->link_text = 'View Bid';
-            $event->email_title = 'Job Bid Modified';
+            $event->email_title = 'Modified A Bid';
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> modified a bid on <strong>'.$job->title.'</strong> job.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
