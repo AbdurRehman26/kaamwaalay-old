@@ -18,7 +18,7 @@
                                 <div class="form-group">
                                     <label class="file-upload-label">Browse Photo</label>
 
-                                    <file-upload-component @get-response="getFileUploadResponse">
+                                    <file-upload-component :hideLoader="true" @get-response="getFileUploadResponse">
 
                                     </file-upload-component>
 

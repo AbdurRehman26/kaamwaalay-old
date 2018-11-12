@@ -20,6 +20,9 @@ Route::get('/clear', function () {
     \Cache::flush();
     dd( App\Data\Models\User::where('role_id' , 2)->first() ,  'cache cleared');
 });
+
+Route::get('youtube/validate/video', 'Api\V1\UserController@checkYoutubeVideo')->name('youtube.validate.video');
+
 Route::get('/password/reset/{token}/{email}', function(){
     return view('front-layout');
 })->where('id', '.*')->name('password.reset');

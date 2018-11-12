@@ -16177,6 +16177,24 @@ button.sl-close {
   top: 3px;
 }
 
+.small-loader-browser {
+  position: relative;
+}
+
+.small-loader-browser .loader-sm {
+  min-height: 30px;
+  position: absolute;
+  height: 20px;
+  width: 109px;
+  right: 6px;
+  top: 4px;
+  z-index: 9;
+}
+
+.small-loader-browser .loader-sm .button-loader {
+  padding-left: 54px;
+}
+
 .grey-bg {
   background-color: #F9F9F9;
 }

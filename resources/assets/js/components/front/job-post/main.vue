@@ -68,7 +68,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Youtube video ID</label>
-                            <input v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
+                            <input v-validate="'length:11'" @keyup="asyncFind" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
                         </div>
                     </div>
                     <div class="col-md-6 video-url">
@@ -157,7 +157,7 @@
 
             </div>
             <div class="row">
-             <div class="col-md-6">
+               <div class="col-md-6">
                 <div class="form-group">
                     <label for="">City *</label>
                     <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
@@ -311,6 +311,18 @@
             this.paymentDetailShow();
         },
         methods:{
+            asyncFind: _.debounce(function(query) {
+                let self = this;
+                if(!query) {
+                    this.loading = false;
+                }
+                if(!query || query.length != 11) {
+                    return;
+                };
+
+                console.log(1);
+
+            }, 1000),
             prefillValues(){
                 let self = this;
                 let zipCode = this.$route.query.zip;
@@ -390,23 +402,23 @@
             let self = this;
             self.cities = response.data;
             if(this.currentCity){
-               this.formData.city_id = this.currentCity;
-               this.currentCity = '';
-           }
-       },
+             this.formData.city_id = this.currentCity;
+             this.currentCity = '';
+         }
+     },
 
-       onStateChange(select){
+     onStateChange(select){
         var select = select|false;
         if(select){
-         this.formData.city_id = '';
+           this.formData.city_id = '';
+       }
+       this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
+       if(this.currentCity){
+         this.formData.city_id = this.currentCity;
+         this.currentCity = '';
      }
-     this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
-     if(this.currentCity){
-       this.formData.city_id = this.currentCity;
-       this.currentCity = '';
-   }
-},
-getResponse($event){
+ },
+ getResponse($event){
     this.formData['images'][this.formData['images'].length] = {
         name : $event.name,
         original_name : $event.original_name
@@ -424,7 +436,7 @@ validateBeforeSubmit() {
         }
         if (result) {
             setTimeout(function () {
-             if(!this.errorMessage){    
+               if(!this.errorMessage){    
                 self.isSubmit = true;
             }else{
                 self.isSubmit = false;

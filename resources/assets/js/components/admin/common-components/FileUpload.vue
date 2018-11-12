@@ -2,7 +2,7 @@
 
 
 
-    <div>
+    <div  :class="[isUploading ? 'small-loader-browser' : '' ]">
 
         <b-form-file @change="onFileChange" :state="isFileUpload" v-model="file" ref="fileinput" 
         :accept="acceptedFiles"
@@ -12,11 +12,7 @@
         :class="['form-control','file-upload-input', 'form-group']">
     </b-form-file>
 
-
-
-    <div class="button-loader">
-        <div class="loader">Loading...</div>
-    </div>
+    <block-spinner v-if="isUploading"></block-spinner>
 
 </div>
 
@@ -39,6 +35,7 @@
         'fileExtensions',
         'currentRecord',
         'multiple',
+        'hideLoader'
 
         ],
 
@@ -48,6 +45,7 @@
                 file : '',
                 isFileUpload : false,
                 fileUploadKey : 'user',
+                isUploading : false,
             }
         },
         methods : {
@@ -74,16 +72,16 @@
 
 
                     if(supportedType.includes(files[i].name.split('.').pop())) {
-                     this.errorBag.clear();
-                     this.isFileUpload = null;
-                     this.createImage(files[i]);
-                 }
+                       this.errorBag.clear();
+                       this.isFileUpload = null;
+                       this.createImage(files[i]);
+                   }
 
 
-             }
+               }
 
-         },
-         createImage(file) {
+           },
+           createImage(file) {
             var self = this;    
             var image = new Image();
             var reader = new FileReader();
@@ -105,9 +103,19 @@
             data.append('key', this.fileUploadKey);
             data.append('file', file);
 
+            if(!this.hideLoader){
+                this.isUploading = true;
+            }
+
+
             this.$http.post(url, data).then(response => {
+
                 response = response.data;
+                this.isUploading = false;
+
                 self.$emit('get-response', response);
+
+
             }).catch(error => {
                 error = error.response.data;
                 let errors = error.errors;
