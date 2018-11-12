@@ -140,34 +140,42 @@
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Certificates</strong></p>
                             </b-col>
-
-                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
-                                <a download v-for="(certificate, index) in records.provider_profile.attachments.certifications" class="underline" :href="certificate">
-                                    Certificate {{ index + 1 }}
-                                    <span v-if="typeof(records.provider_profile.attachments.certifications[index+1]) !== 'undefined'">,</span>
-                                </a>
+                            <b-col class="calculated-value">
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.certifications">     
+                                    <a target="_blank" download class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }}
+                                    </a>
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Registrations</strong></p>
                             </b-col>
-                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
-                                <a download v-for="(registration, index) in records.provider_profile.attachments.registrations"  class="underline" :href="registration">
-                                    Registration {{ index + 1 }}
-                                    <span v-if="typeof(records.provider_profile.attachments.registrations[index+1]) !== 'undefined'">,</span>
-                                </a>
+                            <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
+
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.registrations">
+                                    <a target="_blank" download   class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }}
+                                    </a>
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
                             <b-col  class="text-right fixed-label">
                                 <p><strong class="title-head">Proof of business</strong></p>
                             </b-col>
-                            <b-col v-if="records.provider_profile.attachments" class="calculated-value">
-                                <a download v-for="(business, index) in records.provider_profile.attachments.proof_of_business" class="underline" :href="business">
-                                    Proof {{ index + 1 }} 
-                                    <span v-if="typeof(records.provider_profile.attachments.proof_of_business[index+1]) !== 'undefined'">,</span>
-                                </a>
+                            <b-col v-if="records.provider_profile.attachmentsUrl" class="calculated-value">
+                                <span v-for="(attachment, index) in records.provider_profile.attachmentsUrl.proof_of_business">
+
+                                    <a target="_blank" download class="underline" :href="attachment.name">
+                                        {{ attachment.original_name }} 
+                                    </a>
+                                    
+                                    &nbsp;
+                                </span>
                             </b-col>
                         </b-row>
                         <b-row>
@@ -221,7 +229,7 @@
           return {
             selected: null,
             options: [
-            { value: null, text: 'Please select Status' },
+            { value: null, text: 'Please select status' },
             { value: 'rejected', text: 'Rejected' },
             { value: 'approved', text: 'Approved' }
             ],
@@ -262,7 +270,7 @@
 
         self.$http.put(url , data).then(response=>{
          self.loading = false;
-         response = response.data.response;
+         response = response.data;
          self.records.status = response.data.status;
          self.records.approved_by_user = response.data.approved_by_user;
 

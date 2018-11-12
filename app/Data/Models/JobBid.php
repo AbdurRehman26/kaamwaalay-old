@@ -14,7 +14,10 @@ class JobBid extends Model
     const CANCELLED 	= 'cancelled';
     const COMPLETED 	= 'completed';
     const PENDING 		= 'pending';
-    const INVITED 		= 'invited';
+    const INVITED       = 'invited';
+    const VISITALLOWED      = 'visit_allowed';
+    const ONTHEWAY      = 'on_the_way';
+    const INITIATED 		= 'initiated';
 
 
     public function setPreferredTimeAttribute($value='')

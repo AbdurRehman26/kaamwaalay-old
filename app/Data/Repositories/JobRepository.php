@@ -7,6 +7,10 @@ use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
 use App\Data\Models\Role;
 use App\Data\Models\User;
+use App\Data\Models\ServiceProviderService;
+use App\Data\Models\ServiceProviderProfileRequest;
+use App\Data\Models\JobBid;
+use App\Data\Models\ServiceProviderProfile;
 use Carbon\Carbon;
 use Storage;
 
@@ -132,10 +136,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             if(empty($details['job_details'])) {
 
                 $data->jobImages = [];
+                $data->jobThumbImages = [];
                 if(!empty($data->images)){
                     foreach ($data->images as $key => $image) {
-                        if(is_string($image)){   
-                            $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image);
+                        if(!empty($image['name']) && is_string($image['name'])){   
+                            $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image['name']);
+                            $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image['name']);
                         }
                     }
                 }
@@ -155,8 +161,12 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $state = app('StateRepository')->findById($data->state_id);                
                 $data->state = !empty($state->name)?$state->name:'';
                 $bidsCriteria = ['job_id' => $data->id];
-                $bidsWhereIn = ['status' => ['pending' , 'completed', 'invited']];
-                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false, false, $bidsWhereIn, true);
+
+                $bidsWhereIn = ['status' => ['pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'deleted_at' => null]; 
+                $notCriteria = ['status' => 'invited'];
+
+                $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, $notCriteria, false, $bidsWhereIn, true);
+                
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
@@ -183,7 +193,14 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                     $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
                     
                     if($data->status == 'completed') {
-                        $data->review_details = app('UserRatingRepository')->findByAttribute('job_id', $data->id);
+
+                        $criteria = ['job_id' => $data->id];
+
+                        $criteria['rated_by'] = $data->user_id; 
+
+                        $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
+
+
                     }
 
 
@@ -194,15 +211,42 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
                     if($currentUser->role_id == Role::SERVICE_PROVIDER){
                         $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
-                        $data->my_bid = app('JobBidRepository')->findByCriteria($criteria);
+                        $notCriteria = ['status' => 'invited'];
+
+                        $data->my_bid = app('JobBidRepository')->findByCriteria($criteria, false, $notCriteria);
+
+                        $criteria['user_id'] = $data->user_id; 
+                        $criteria['rated_by'] = $currentUser->id; 
+
+                        $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
+                        
                     }
 
                     $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
                     $data->can_message = app('JobMessageRepository')->findByCriteria($criteria);
                 }
-                
+                //$criteriaServiceProviderCount = ['zip_code' => $data->zip_code, 'role_id' => Role::SERVICE_PROVIDER];     
+                //$data->service_provider_count = app('UserRepository')->findByCriteria($criteriaServiceProviderCount,false,false,true,false,true);
+                $userModel = new User;
+                $userTable = $userModel->getTableName();
+                $serviceProviderServiceModel = new ServiceProviderService;
+                $serviceProviderProfileRequestModel = new ServiceProviderProfileRequest;
+                $serviceProviderServiceTable = $serviceProviderServiceModel->getTableName();
+                $serviceProviderProfileRequestTable = $serviceProviderProfileRequestModel->getTableName();
+                $service_provider_count = $userModel
+                ->join(
+                    $serviceProviderProfileRequestTable, function ($joins) use($data,$serviceProviderProfileRequestTable,$userTable) {
+                        $joins->on( $serviceProviderProfileRequestTable.'.user_id', '=', $userTable.'.id');
+                        $joins->where($serviceProviderProfileRequestTable.'.status','=',ServiceProviderProfile::APPROVED);
+                    })
+                ->join(
+                    $serviceProviderServiceTable, function ($joins) use ($data,$serviceProviderServiceTable,$serviceProviderProfileRequestTable) {
+                        $joins->on($serviceProviderServiceTable.'.service_provider_profile_request_id', '=', $serviceProviderProfileRequestTable.'.id');
+                        $joins->where($serviceProviderServiceTable.'.service_id','=',$data->service_id);
+                    })->where('zip_code',$data->zip_code)->where('role_id',Role::SERVICE_PROVIDER)->count();
+                $data->service_provider_count =$service_provider_count;
             }
-
+            
         }
 
         return $data;
@@ -235,4 +279,76 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         return  $this->builder->count();
     }
 
-}
+    public function update(array $data = []) 
+    {
+        $model = $this->model->find($data['id']);
+        if ($model != NULL) {
+            foreach ($data as $column => $value) {
+
+                $model->{$column} = $value;
+                
+            }
+            $model->updated_at = Carbon::now();
+
+            if ($model->save()) {
+                if(isset($data['status']) && $data['status'] == "cancelled") {
+                    $jobBids = JobBid::where('job_id', '=', $data['id'])->get(['id', 'status'])->toArray();
+
+                    foreach ($jobBids as $key => $value) {
+                        $tempData = [];
+                        $tempData['id'] = $value['id'];
+                        $tempData['job_id'] = $data['id'];
+                        $tempData['status'] = $data['status'];
+                        $tempData['updateJob'] = false;
+                        $tempData['deleted_at'] =  $value['status'] == 'invited' ? Carbon::now()  : null;
+                        $response = app('JobBidRepository')->update($tempData);
+                        
+                    }
+
+                }
+                return $this->findById($data['id'], true);
+            }
+            return false;
+        }
+        return NULL;
+    }
+
+        /**
+     *
+     * This method will create a new model
+     * and will return output back to client as json
+     *
+     * @access public
+     * @return mixed
+     *
+     * @author Usaama Effendi <usaamaeffendi@gmail.com>
+     *
+     **/
+
+        public function create(array $data = []) {
+
+            $user_id = !empty($data['service_provider_user_id']) ? (int)$data['service_provider_user_id'] : null;
+
+            unset($data['service_provider_user_id']);
+
+            if($user_id){
+                
+                $data = parent::create($data);
+                
+                $updateData = [
+                    'job_id' => $data->id,
+                    'user_id' => $user_id,
+                    'is_invited' => 1,
+                    'status' => 'invited'
+                ];
+
+
+                app('JobBidRepository')->create($updateData);
+            }
+
+
+            return $data;
+
+        }
+
+    }

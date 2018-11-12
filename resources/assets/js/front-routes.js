@@ -78,7 +78,7 @@
     },
     {
         name: 'Explore_Detail',
-        path: '/services/:serviceName/:zip?',
+        path: '/services/:serviceName/:childServiceName?/:zip?',
         props: true,
         meta: {
             title: 'Professional Service Marketplace | Category Detail',
@@ -125,6 +125,7 @@
             bodyClass: 'profile-page',
             navigation: 'customer-nav',
             requiresAuth: true,
+            forCustomer: true,
         },
         component: require('./components/front/profile/main.vue'),
     },
@@ -174,7 +175,7 @@
     // Featured Profile
 
     {
-        name: 'Featured Profile',
+        name: 'featured_profile',
         path: '/featured-profile',
         meta: {
             title: 'Professional Service Marketplace | Featured Profile',
@@ -204,7 +205,7 @@
 
 
     {
-        name: 'Explore_Jobs',
+        name: 'explore-jobs',
         path: '/explore-jobs',
         meta: {
             title: 'Professional Service Marketplace | My Jobs',
@@ -219,7 +220,7 @@
 
     {
         name: 'job.details',
-        path: '/job-details/:id',
+        path: '/job-details/:id/:jobBidId?',
         meta: {
             title: 'Professional Service Marketplace | Job Details',
             bodyClass: 'job-detail-page',
@@ -344,13 +345,17 @@ const serviceProvider = 2;
 const customer = 3;
 const title = document.title
 router.beforeEach((to, from, next) => {
-    let user;
-    if(to.name != 'login'){
+ let user;
+ if(to.name != 'login'){
      router.app.$store.commit('setRedirectUrl',to.name);
+ }
+ if(!router.app.$auth.isAuthenticated()){
+        router.app.$store.commit('setAuthUser', '')
+        next();
  }
  if(router.app.$store.getters.getAuthUser != 'undefined'){
     user = JSON.parse(router.app.$store.getters.getAuthUser);
-}
+ }
 
 if (to.matched.some(record => record.meta.forAll) && !router.app.$auth.isAuthenticated()) {
     next();
@@ -361,14 +366,24 @@ if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isA
     next({name: 'login'});
 }else if (!to.matched.some(record => record.meta.requiresAuth) && router.app.$auth.isAuthenticated()) {
     if(user  && user.role_id == customer){
-        if(!to.matched.some(record => record.meta.forAll)) {
-            next({name: "my.jobs"});
+        if(!to.matched.some(record => record.meta.forAll) && to.name != '404') {
+            if(user.is_profile_completed == 0 ){
+                next({name: "customer_profile"});
+            }else{ 
+                next({name: "my.jobs"});
+            }
         }else {
             next();
         }
     }
-    else if(user  && user.role_id == serviceProvider){
-        next({name: 'my.bids'});
+    if(user  && user.role_id == serviceProvider && to.name != '404'){
+        if(user.is_profile_completed == 0 ){
+            next({name: "provider_profile"});
+        }else{ 
+            next({name: "my.bids"});
+        }
+    }else {
+            next();
     }
 } else {
     next();

@@ -12,4 +12,30 @@ class ZipCodeController extends ApiResourceController
     {
         $this->_repository = $repository;
     }
+
+    public function rules($value='')
+    {
+        $rules = [];
+
+        if($value == 'index') {
+              $rules['pagination'] =  'nullable|boolean';
+              $rules['zip_code']    = 'nullable|string';
+        }
+
+        return $rules;
+
+    }
+
+
+	public function input($value='')
+	{
+        $input = request()->only(
+            'zip_code', 'pagination'
+        );
+
+	    $input['id'] = !empty(request()->user()->id) ? request()->user()->id : null;
+	    request()->request->add(['user_id' => !empty(request()->user()->id) ? request()->user()->id : null]);
+
+	        return $input;
+	}
 }

@@ -18,19 +18,67 @@ class JobBidRepositoryServiceProvider extends ServiceProvider
 */
 public function boot()
 {
-
     JobBid::updated(function($jobBid) {
-
         $event = new \StdClass();
-        $event->id = $jobBid->id;
-        $event->to = User::find($jobBid->user_id);
         $job = Job::find($jobBid->job_id);
+        $event->id = $job->id;
         $event->body =  $job;
-        $event->from = User::find($job->user_id);
-
-        $event->to->notify(new JobBidUpdatedNotification($event));
-        //$model->notify(new \App\Notifications\SendUrgentJob($event));
-
+        if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = $jobBid->id;
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if($jobBid->status == JobBid::COMPLETED && empty($jobBid->deleted_at)){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->email_title = 'Job Mark Completed';
+            $event->message = 'The awarded <strong>'.$job->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){
+            $event->to =  User::find($jobBid->user_id);
+            $event->from = User::find($job->user_id);
+            $event->object_id = '';
+            $event->email_title = 'Visit Request';
+            $event->message = 'Your visit request for <strong>'.$job->title.'</strong> job has been accepted';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if(!empty($jobBid->deleted_at)){
+            $event->to =  User::find($jobBid->user_id);
+            $event->from = User::find($job->user_id);
+            $event->object_id = '';
+            $event->email_title = 'Visit Request';
+            $event->message = 'Your visit request for <strong>'.$job->title.'</strong> job has been declined';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if(!$jobBid->is_awarded && !$jobBid->is_archived && $jobBid->status !=JobBid::CANCELLED && $jobBid->status !=JobBid::COMPLETED && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::ONTHEWAY ){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->link_text = 'View Bid';
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> modified a bid on <strong>'.$job->title.'</strong> job.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if($jobBid->status == JobBid::INITIATED && empty($jobBid->deleted_at)){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->email_title = 'Job Initiated';
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> initiated a <strong>'.$job->title.'</strong> job.';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
+        if(empty($jobBid->deleted_at) && $jobBid->status == JobBid::ONTHEWAY){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->link_text = 'View Details';
+            $event->email_title = 'Time Confirmation';
+            $event->message = 'Time has been confirmed by a <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
     });
 
 }

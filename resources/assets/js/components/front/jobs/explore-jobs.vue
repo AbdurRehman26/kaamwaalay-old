@@ -8,11 +8,13 @@
                             <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
                             <h3 class="labelheading">Select Service Category</h3>
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                <multiselect :showNoResults="false" v-model="searchValue" :options="servicesList"  placeholder="Enter the service name whose jobs you want to explore" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
+                                <multiselect select-label="'Press click to select'" deselect-label="'Press click to remove'" :showNoResults="true" v-model="searchValue" :options="servicesList"  placeholder="Enter the service name whose jobs you want to explore" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
+                                <span slot="noResult">No service found.</span>
                                 </multiselect>
                             </div>
                             <div class="container-zip-code">
-                                <multiselect :showNoResults="false" :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajaxCity" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
+                                <multiselect :showNoResults="true" :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajaxCity" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
+                                <span slot="noResult">No city found.</span>
                                 </multiselect>                                
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
@@ -32,83 +34,15 @@
             <div class="job-post-container section-padd sm">
                 <div class="container md">
 
-                    <div class="job-post-list" v-for="record in records">
-                        <div class="job-post-details">
-                            <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ record.user.profileImage +')'}"></div>
-
-                            <div class="job-common-description job-perform">
-                                <div class="col-md-6 p-l-0">
-                                    <div class="job-main-title">
-                                        <router-link :to="{name: 'job.details' , params : { id : record.id }}">
-                                            <h3 class="pointer">{{record.title}}</h3>
-                                        </router-link> 
-                                    </div>
-                                    <div class="job-notification">
-                                        <div class="jobs-done">
-                                            <span class="job-poster">Posted By {{ record.user | fullName }}</span>
-                                            <span class="job-category noborder">{{ record.service | mainServiceOrChildService('-') }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 job-bid-btn p-r-0">
-                                    <a href="javascript:void(0);" v-if="!record.my_bid && record.status != 'completed' &&  record.status != 'cancelled' && !record.awarded_to" @click="currentRecord = record; showBidPopup = true;" class="btn btn-primary post-bid m-r-10">Bid Now</a>
-
-                                    <a v-if="record.can_message && record.status !== 'cancelled'" @click="showchatpanel()" href="javascript:void(0);" v-else class="chat-message">
-                                        <i class="icon-message"></i>
-                                    </a>
-
-                                    <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
-                                </div>
-                            </div>
-
-                            <div class="member-details">
-                                <p class="location">
-                                    <i class="icon-location"></i>
-                                    Location <strong>{{ record.city  }}, {{ record.state}}</strong>
-                                </p>
-                                <p class="offer" v-if="record.my_bid">
-                                    <i class="icon-work-briefcase"></i>
-                                    Offer: <strong>
-                                        {{ record.my_bid.is_tbd ? 'TBD' : record.my_bid.amount }}
-                                    </strong> - <a v-if="!record.my_bid.is_awarded && !record.my_bid.is_visit_required" @click="showBidPopup = true; bidValue = record.my_bid; currentRecord = record;" href="javascript:void(0);">Change Bid</a>
-                                </p>
-
-                                <p class="member-since">
-                                    <i class="icon-calendar-daily"></i>
-                                    Post Date <strong>{{ record.formatted_created_at }}</strong>
-                                </p>
-                            </div>
-
-                            <div class="post-job-description">
-                                <p>{{ record.description }}</p>
-                            </div>
-
-
-                            <div class="job-details">
-                                <p class="customer-rating">
-                                    <strong>Customer rating:</strong>
-                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="record.user ? parseFloat(record.user.average_rating) : 0" active-color="#8200ff"></star-rating>
-                                </p>
-                                <p class="service-requirment">
-                                    <i class="icon-brightness-down"></i>
-                                    Service required
-                                    <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
-                                    <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
-                                    <strong v-else>{{ record.preference | jobPreference }}</strong>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
+                        <explore-jobs-list :records="records" @chatMessage="showChatBox" tabType="activebid"></explore-jobs-list>
+                    
                 </div>
                 <no-record-found v-show="noRecordFound"></no-record-found>
 
             </div>
 
-            <post-bid-popup :bid="bidValue" :job="currentRecord" @HideModalValue="showBidPopup = false; bidValue = '';" :showModalProp="showBidPopup"></post-bid-popup>
         </div>
-        <chat-panel v-show="isShowing" @CloseDiscussion='CloseDiscussion()'></chat-panel>
+        <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat" :strict="strict" :disabled="disabledChat"></chat-panel>
         <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
 
 
@@ -120,16 +54,12 @@
 </template>
 
 <script>
-    import StarRating from 'vue-star-rating';
 
     export default {
         data () {
             return {
-                bidValue : '',
-                currentRecord : '',
                 url : 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true',
                 bid_selection: 'activebid',
-                showBidPopup: false,
                 isShowing:false,
                 infoval:false,
                 records : [],
@@ -146,11 +76,33 @@
                 searchService : '',
                 noRecordFound : false,
                 cityValue : '',
-                citiesList : []
+                citiesList : [],
+                showChat : false,
+                jobMessageData: {},
+                strict: false,
+                disabledChat: false,  
             }
         },
 
         methods: {
+            showChatBox(record, strictChat = false, disabled = false) {
+                this.closeChatBox();
+                this.jobMessageData = {
+                    text: '',
+                    job_id: record.id,
+                    reciever_id: record.user_id,
+                    job_bid_id: record.my_bid.id,
+                    sender_detail: record.user,
+                    business_name: record.title,
+                };
+                this.showChat = false;
+                this.showChat = true;
+                this.strict = strictChat;
+                this.disabledChat = disabled;
+            },
+            closeChatBox() {
+                this.showChat = false;
+            },
             customLabel ({ name, state }) {
                 return `${name} → ${state.name}`
             },
@@ -168,7 +120,7 @@
                         this.records = [];
                         this.loading = true;
 
-                        this.url = 'api/job?pagination=true&status=in_bidding&details["profile_data"]=true&time='+dateNow;
+                        this.url = 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true&time='+dateNow;
 
                         if(this.searchValue){
                             this.url += '&filter_by_service='+this.searchValue.id;
@@ -197,7 +149,7 @@
                 for (var i = 0 ; i < response.data.length; i++) {
                     self.loading = false;
                     self.records.push( response.data[i]);
-                    this.searchService = this.searchValue.title;
+                    this.searchService = this.searchValue ? this.searchValue.title : "";
                 }
 
                 let cityId = this.cityValue;
@@ -220,7 +172,7 @@
                 this.searchUrl  = 'api/service?keyword='+query;
                 this.isLoading = true;
                 this.$http.get(this.searchUrl).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.servicesList = response.data;
                     self.isLoading = false;
 
@@ -236,7 +188,7 @@
                 let url  = 'api/city?keyword='+query+'&details=true';
                 this.isLoadingCity = true;
                 this.$http.get(url).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.citiesList = response.data;
                     self.isLoadingCity = false;
 
@@ -279,10 +231,7 @@
             },  
 
         },
-        components: {
-            StarRating
-        },
-
+       
         computed : {
             isInvalid () {
                 return this.isTouched && !this.searchValue

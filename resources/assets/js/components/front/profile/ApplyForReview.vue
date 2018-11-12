@@ -18,7 +18,7 @@
                                 <div class="form-group">
                                     <label class="file-upload-label">Browse Photo</label>
 
-                                    <file-upload-component @get-response="getFileUploadResponse">
+                                    <file-upload-component :hideLoader="true" @get-response="getFileUploadResponse">
 
                                     </file-upload-component>
 
@@ -49,15 +49,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Email Address</label>
+                                    <label for="">Email Address *</label>
                                     <input type="text" :disabled="true" class="form-control" name="email" v-model="record.email" placeholder="Enter your first email address">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Number</label>
-                                    <input  v-validate="{ regex:/^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
-                                    name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
+                                    <input  v-validate="{ regex:/^([+]||\d)([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('contact number') ? 'is-invalid' : '']" type="text"
+                                    name="contact number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" type="text" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" v-validate="'max:25'" type="number" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
                                 </div>
                             </div>
                         </div>
@@ -91,13 +91,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business_name') ? 'is-invalid' : '']" v-validate="'max:50'" type="text" name="business_name" v-model="record.business_details.business_name" placeholder="Enter your business name">
+                                    <input :class="['form-control', 'form-group' , errorBag.first('business name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business name" v-model="record.business_details.business_name" placeholder="Enter your business name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('working_since') ? 'is-invalid' : '']" v-validate="'numeric|max:2'" type="number" name="years_of_experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input v-validate="{required: businessRequired, numeric: true, max : 3}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea :class="['form-control', 'form-group' , errorBag.first('business_details') ? 'is-invalid' : '']" v-validate="'max:500'" name="business_details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -120,8 +120,9 @@
                         <div v-for="(service_detail, index) in record.service_details" class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Service</label>
-                                    <select v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
+                                    <label for="" v-if="index == 0">Service</label>
+                                    <label for="" v-if="index > 0"></label>
+                                    <select :disabled="service_detail.status == 'approved'"  v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -130,88 +131,88 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : ''})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
-                            <a v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
+                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : servicesList[0].id})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-id="service_detail.status != 'approved'" v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-30">
+                    <div class="form-label-heading m-b-10">
                         <p>PROOF OF BUSINESS</p>
                     </div>                    
                     <div class="row">
                         <div class="col-md-12">
-                            <p>We can confirm your association to the business or organization with any of these documents:
-                                <ul>
-                                    <!-- <li>Certificate of Formation (for a partnership)</li> -->
-                                    <!-- <li>Articles of Incorporation (for a corporation)</li> -->
-                                    <!-- <li>Local Business License (issued by your city, county, state, etc.)</li> -->
-                                    <li>More documents to be decided.</li>
-                                </ul>
-                            </p>
+                            <p>Please attach document(s) for business verification.</p>
                         </div>
                     </div>
-                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(proof_of_business, index) in record.business_details.attachments.proof_of_business">
+                    <label>DOCUMENT(S)</label>
+                    <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
+
+                    </file-upload-component>
+
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.proof_of_business">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Proof of Business</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business', index)">
-
-                                </file-upload-component>
+                                {{attachment.original_name}}
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.proof_of_business.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('proof_of_business', index)">+ Add more photos</a>
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos">Remove</a>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
-                        <p>Registrations</p>
-                    </div>
-                    <div class="row">    
-                    </div>
-                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(certification, index) in record.business_details.attachments.certifications">
-                        <div class="col-md-6">
-                            <div class="form-group custom-file">
-                                <label>Registrations</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications', index)">
-
-                                </file-upload-component>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.certifications.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('certifications', index)">+ Add more photos</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="business-proof">
-                    <div class="form-label-heading m-b-20 m-t-20">
+                    <div class="form-label-heading m-b-10 m-t-20">
                         <p>Certificates</p>
                     </div>
                     <div class="row">
+                        <div class="col-md-12">
+                            <p>Please attach any other certificates of your business that you would like to attach.</p>
+                        </div>
                     </div>
-                    <div v-if="record.business_details.attachments" class="row duplicate" v-for="(registration, index) in record.business_details.attachments.registrations">
+                    <label>DOCUMENT(S)</label>
+                    <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
+
+                    </file-upload-component>
+
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.certifications">
                         <div class="col-md-6">
                             <div class="form-group custom-file">
-                                <label>Certificates</label>
-                                <file-upload-component :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations', index)">
-
-                                </file-upload-component>
+                                {{attachment.original_name}}
                             </div>
                         </div>
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos">Remove</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="business-proof">
+                    <div class="form-label-heading m-b-10 m-t-20">
+                        <p>Registration</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Please attach document(s) of your business’ registration.</p>
+                        </div>
+                    </div>
+                    <label>DOCUMENT(S)</label>
+                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
+
+                    </file-upload-component>
+
+                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.registrations">
                         <div class="col-md-6">
-                            <label>&nbsp;</label>
-                            <a v-if="parseInt(index) < parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos filter-btn-top-space">Remove</a>
-                            <a v-if="parseInt(index) === parseInt(record.business_details.attachments.registrations.length-1)" href="javascript:;" class="add-photos filter-btn-top-space" @click="addMoreFiles('registrations', index)">+ Add more photos</a>
+                            <div class="form-group custom-file">
+                                {{attachment.original_name}}
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos">Remove</a>
                         </div>
                     </div>
                 </div>
@@ -234,58 +235,52 @@
                     </div>
 
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="zipcode-selectize">
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
+                    </div>
+                   <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
                                 <label for="">City *</label>
                                 <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
-                            </div>
                         </div>
-
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Zip Code *</label>
-                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="record.zip_code" placeholder="Enter your zip code">
-                            </div>
-                        </div>
-                    </div>
+                     </div>
+                    </div> 
                 </div>
 
-                <div class="account-fee">
+                <div v-if="isPaymentDetailShow" class="account-fee">
                     <div class="form-label-heading m-b-30 m-t-30">
                         <p>ACCOUNT FEE</p>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="verification-alert">
-                                <p>Enter your credit card details to pay service provider account creation fee of <span>$50</span>.</p>
+                                <p>Enter your credit card details to pay service provider account creation fee of <span>${{accountCreationAmount}}</span>.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <payment-component></payment-component>
+                    <card-element  :showCardInfo="true" :isPopup='false'  :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
+
                 </div>
 
                 <div v-if="!pendingProfile" class="submit-approval-btn">
-                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Apporoval
+                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Approval
                         <loader></loader>
                     </button>
                 </div>
@@ -362,6 +357,13 @@
                 },
                 submit : false,
                 pendingProfile : false,
+                invalidZip: false,
+                isSubmit : false,
+                isPaymentDetailShow : true,
+                plans : [],
+                accountCreationAmount: null,
+                selectedPlan :null,
+                currentCity: null,
 
             }
         },
@@ -376,28 +378,47 @@
                 return this.profileImage;
             },
             servicesList(){
-                return this.$store.getters.getAllServices;
+                return _.filter(this.$store.getters.getAllServices, ['status', 1]);
             },
             submitUrl(){
                 return 'api/user/' + this.record.id
+            },
+            businessRequired(){
+                return this.record.business_details.business_type == 'business';
             }
         },
+
+        watch: {
+            'record.zip_code' (val) {
+                if(!val) {
+                  //  this.invalidZip = true;
+                  //  this.record.zip_code = "";
+                }
+            },
+        },
         methods: {
+            setZipCode(val) {
+                this.record.zip_code = val.zip_code;
+                this.setCity(val)
+                this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
+            },
+            setCity(object){
+                if(object.state_id){
+                  this.record.state_id = object.state_id;  
+                } 
+                this.currentCity = object.city_id;
+                this.onStateChange();
+            },
             removeFile(type, index){
-                console.log(this.record.business_details.attachments[type] , type , index);
                 this.record.business_details.attachments[type].splice(index , 1);
                 this.$forceUpdate();
                 return false;
 
             },
-            addMoreFiles(type, index){
-                if(this.record.business_details.attachments[type][index]){
-                    this.record.business_details.attachments[type][index+1] = ''
-                }
-                this.$forceUpdate();
-            },
             findUniqueValues(){
-
                 let self = this;
                 let service_details = self.record.service_details;
 
@@ -414,7 +435,6 @@
                     }
                 });
 
-                console.log(result);
                 for (var i = result.length - 1; i >= 0; i--) {
                     if(typeof(result[i]) != 'undefined'){
                         return true;
@@ -424,19 +444,50 @@
                 return false;
 
             },
+            checkUploadedDocuments(){
 
-            validateBeforeSubmit() {
-                let self = this;
+                let attachments = this.record.business_details.attachments;
 
-                this.errorMessage = '';
-                
-                if(this.findUniqueValues()){
-                    this.errorMessage = 'Please remove duplicate services';
+                if(typeof(attachments['certifications']) == 'undefined' || !attachments['certifications'][0]){
                     return false;
                 }
 
+                if(typeof(attachments['registrations']) == 'undefined' || !attachments['registrations'][0]){
+                    return false;
+                }
+
+                if(typeof(attachments['proof_of_business']) == 'undefined' || !attachments['proof_of_business'][0]){
+                    return false;
+                }
+
+                return true;
+
+            },
+            validateBeforeSubmit() {
+                let self = this;
+                this.errorMessage = '';
+                this.isSubmit = false
+
                 this.$validator.validateAll().then((result) => {
+                    this.invalidZip = false;
+                    if(!this.record.zip_code) {
+                            this.invalidZip = true;
+                    }
                     if (result) {
+                        if(!this.record.zip_code) {
+                            this.errorMessage = 'Please enter zip code.';
+                            return false;
+                        }
+                        if(this.findUniqueValues()){
+                            this.errorMessage = 'Please remove duplicate services';
+                            return false;
+                        }
+
+                        if(!this.checkUploadedDocuments()){
+                            this.errorMessage = 'Please add at least one file for each document';
+                            return false;
+                        }
+
 
                         _.forEach(self.record, function(value, key) {
 
@@ -452,12 +503,24 @@
                             }else{
                                 self.submitFormData.user_details[key] = value;
                             }
-
+                            delete self.submitFormData.user_details.stripe_token; 
                             self.submitFormData.user_details['is_profile_completed'] = 1;
 
+
                         });
-                        this.loading = true;
-                        this.submit = true;
+                        if(!this.isPaymentDetailShow){
+                            this.submit = true;
+                            this.loading = true;
+                        }else{
+                            setTimeout(function () {
+                                if(!self.errorMessage){    
+                                    self.isSubmit = true
+                                }else{
+                                    self.isSubmit = false 
+                                }
+                            }, 500);
+                            
+                        }
                         this.errorMessage = ''
                         return;
                     }
@@ -469,19 +532,43 @@
                 this.submit = false;
             },
             formSubmitted(response){
-                this.$router.push({ name : 'my.bids'});
+
+                if(response.data){
+                    this.$store.commit('setAuthUser', response.data);
+                    
+                    this.$router.push({ name : 'my.bids'});
+                    
+                }
             },
-            onStateChange(){
-                this.record.city_id = null;
+            onStateChange(select){
+                var select = select|false;
+                if(select){
+                 this.record.city_id = null;
+                }
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             getFileUploadResponse(response){
                 let self = this;
                 self.record.profile_image = response.name;
                 self.profileImage = response.upload_url;
             },
-            getDocumentUploadResponse(response, type, index){
-                this.record.business_details.attachments[type][index] = response.name; 
+            getDocumentUploadResponse(response, type){
+                var lengthOfAttachmentTypes = this.record.business_details.attachments[type];
+
+                if(typeof(lengthOfAttachmentTypes) == 'undefined' || !lengthOfAttachmentTypes.length){
+                    this.record.business_details.attachments[type] = [];
+                }
+
+                this.record.business_details.attachments[type].push({
+                   name : response.name,
+                   original_name : response.original_name
+               }); 
+
+                this.$forceUpdate();
             },
             getResponse(response){
                 let self = this;
@@ -492,10 +579,8 @@
                     self.record = response.data;
 
                     if(self.record && self.record.business_details && !self.record.business_details.attachments){
+
                         self.record.business_details.attachments = {
-                            certifications : [''], 
-                            proof_of_business : [''],
-                            registrations : [''],
                         }
 
                     }
@@ -511,9 +596,18 @@
 
                     if(!self.record.service_details.length){
                         self.record.service_details = [{
-                            service_id : ''
+                            service_id : 1
                         }];
                     }
+
+                    if(self.record.business_details){
+
+                        if(!self.record.business_details.business_type){
+                            self.record.business_details.business_type = 'business';
+                        }
+                    }
+
+
 
 
                     if(self.record.state_id){  
@@ -532,8 +626,38 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
-
-        }
+            paymentDetailShow(){
+                let user = JSON.parse(this.$store.getters.getAuthUser)   
+                if(user.stripe_token){
+                    this.isPaymentDetailShow = false
+                }else{
+                    this.isPaymentDetailShow = true
+                }
+            },
+            getPlansList (){
+                let self = this;
+                let url = 'api/plan';
+                let params = {
+                    pagination: false,
+                    type: 'service',
+                    product: 'account_creation',
+                };
+                self.$http.get(url, {params: params}).then(response=>{
+                    self.plans = response.data.data
+                    self.selectedPlan = self.plans[0].id
+                    self.accountCreationAmount = self.plans[0].amount
+                }).catch(error=>{
+                });
+            },
+        },
+        mounted () {
+            this.getPlansList(),
+            this.paymentDetailShow()
+        },
     }
 </script>

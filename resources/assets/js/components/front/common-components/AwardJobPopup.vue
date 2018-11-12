@@ -29,7 +29,12 @@
 <script>
     export default {
 
-        props: ['showModalProp', 'bidder', 'job',],
+        props: [
+        'showModalProp',
+        'bidder',
+        'job'
+        ],
+        
         data(){
             return { 
                 successMessage : '',
@@ -53,7 +58,7 @@
                 let urlRequest = self.$http.put(url , data)
 
                 urlRequest.then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     self.successMessage = response.message;
 

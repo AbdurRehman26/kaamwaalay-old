@@ -20,7 +20,7 @@
 </template>
 <script>
     export default {
-        props: ['byRole'],
+        props: ['roleId'],
         data () {
             return {
                 url: 'api/testimonial',
@@ -33,23 +33,23 @@
         methods: {
             getTopTestimonials() {
                 let url = this.url;
-                url = url + '?filter_by_count=2&filter_by_role=' + this.byRole;
+                url = url + '?filter_by_count=2&filter_by_role=' + this.roleId;
                 this.$http.get(url).then( (response) =>{
-                    response = response.data.response;
+                    response = response.data;
                     this.records = response.data;
                     this.$emit('onExist', response.data.length);
                 }).catch(error=>{
                 });
             },
 			getImage(img) {
-				return img? img : 'images/dummy/image-placeholder.jpg';
+                console.log(img , 'testinmonal image');
+				return img ? img : 'images/dummy/image-placeholder.jpg';
 			},
         },
-
         watch: {
-            
-        },
-        computed : {
+            roleId(val) {
+                this.roleId  = val;
+            }
         }
     }
 </script>

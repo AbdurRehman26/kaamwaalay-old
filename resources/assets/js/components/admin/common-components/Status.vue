@@ -76,7 +76,7 @@
               self.$http.put(url,self.data).then(response => {
                 self.successMessage = response.data.message;
                 if(!response.data.message) {
-                    self.successMessage = response.data.response.message;
+                    self.successMessage = response.data.message;
                 }
                 self.$emit('form-updated');
                 setTimeout(function() {
@@ -88,7 +88,7 @@
                 }, 2000);
 
             }).catch(error => {
-                var response = error.response.data.response;
+                var response = error.response.data;
                 //self.errorMessage = response.message[0];
                 if(response.data.error) {
                     self.errorMessage = response.message + "There are " + (response.data.service_provider_count? response.data.service_provider_count + " service provider(s) & " : "") + (response.data.jobs_count? response.data.jobs_count + " job(s) associated with this service." : "");   

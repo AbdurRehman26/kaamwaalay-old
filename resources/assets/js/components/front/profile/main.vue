@@ -9,7 +9,7 @@
         <div class="profile-form-section">
 
             <div class="form-signup">
-                <form @submit.prevent="validateBeforeSubmit" novalidate="">
+                <form @submit.prevent="validateBeforeSubmit" novalidate="" autocomplete="nope">
                     <div class="personal-detail">
                         <div v-if="!imageValue" class="profile-image-placeholder onlyplaceholder">
                         </div>
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Contact Number</label>
-                                <input v-validate="'numeric|max:15'" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
+                                <input v-validate="{ regex:/^([+]||\d)([\d-]{10,15})$/ }" :class="['form-control', 'form-group' , errorBag.first('phone number') ? 'is-invalid' : '']" type="text"
                                 name="phone number" v-model="record.phone_number" placeholder="Enter your mobile or landline number">
                             </div>
                         </div>
@@ -87,39 +87,33 @@
                     </div>
 
                     <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="zipcode-selectize">
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange" name="state" v-model="record.state_id">
+                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
                                     <option :value="null">Select State</option>
                                     <option v-for="state in states" :value="state.id">{{state.name}}</option>
                                 </select>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
+                   <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
                                 <label for="">City *</label>
                                 <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
                                     <option :value="null">Select City</option>
                                     <option v-for="city in cities" :value="city.id">{{city.name}}</option>
                                 </select>
-                            </div>
                         </div>
-
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Zip Code *</label>
-                                <input :class="['form-control', 'form-group' , errorBag.first('zip code') ? 'is-invalid' : '']" v-validate="'required|numeric|max:5'" max="5" type="text" name="zip code" data-vv-name="zip code" v-model="record.zip_code" placeholder="Enter your zip code">
-                            </div>
-                        </div>
-                    </div>
+                     </div>
+                    </div> 
                 </div>
 
 
@@ -138,8 +132,8 @@
 
     </div>
     <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-    <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+    <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -160,10 +154,19 @@
                 cityUrl : '',
                 states : [],
                 file: null,
-                profileImage : ''
+                profileImage : '',
+                invalidZip: false,
+                currentCity: null,
             }
         },
         mounted(){
+        },
+        watch: {
+            'record.zip_code' (val) {
+                if(!val) {
+                    //this.invalidZip = true;
+                }
+            },
         },
         computed : {
             requestUrl(){
@@ -177,9 +180,31 @@
             }
         },
         methods: {
-            onStateChange(){
-                this.record.city_id = null;
+            setZipCode(val) {
+                this.record.zip_code = val.zip_code;
+                this.setCity(val)
+                this.invalidZip = false;
+                if(!val.zip_code) {
+                    this.invalidZip = true;
+                }
+            },
+            setCity(object){
+                if(object.state_id){
+                  this.record.state_id = object.state_id;  
+                } 
+                this.currentCity = object.city_id;
+                this.onStateChange();
+            },
+            onStateChange(select){
+                var select = select|false;
+                if(select){
+                 this.record.city_id = null;
+                }
                 this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             getResponse(response){
                 let self = this;
@@ -201,11 +226,20 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                if(this.currentCity){
+                   this.record.city_id = this.currentCity;
+                   this.currentCity = null;
+                }
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-
-                    if (result) {
+                    this.invalidZip = false;
+                    if(!this.record.zip_code) {
+                        this.invalidZip = true;
+                        this.errorMessage = 'Please enter zip code.';
+                        return false;
+                    }
+                    if (result && !this.invalidZip) {
                         this.onSubmit();
                         this.errorMessage = '';
                         return;
@@ -226,7 +260,7 @@
                 let url = 'api/user/'+this.record.id;
 
                 self.$http.put(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
 
                     this.$store.commit('setAuthUser', response.data);
                     self.successMessage = response.message;

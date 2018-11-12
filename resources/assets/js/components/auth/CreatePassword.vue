@@ -103,7 +103,7 @@ export default{
                 let self = this
                 this.$http.post('/api/auth/password/reset' , this.formData).then(response=>{
                     this.loading = false;
-                    self.successMessage = response.data.response.message;
+                    self.successMessage = response.data.message;
                     this.$store.commit('setForgotPassword' , false);
                     self.$router.push({ name:'login',params: { login: 'login' }})
                     location.reload();
@@ -115,7 +115,7 @@ export default{
                     this.loading = false;
                     this.errorMessage =  error;
                     this.loading = false
-                    self.errorMessage = error.response.data.response.message
+                    self.errorMessage = error.response.data.errors.email[0]
                     setTimeout(function() {
                         self.errorMessage = ''
                         this.loading = false

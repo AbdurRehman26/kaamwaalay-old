@@ -13,7 +13,8 @@
                                 <h5 class="banner-hd-sub">Get expert help to get done almost anything.</h5>
                                 <div class="search-filter">
                                     <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                        <multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+                                        <multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+                                            <span slot="noResult">No service found.</span>
                                         </multiselect>
                                     </div>
                                     <div class="container-zip-code">
@@ -110,7 +111,7 @@
                     <h2 class="btm-space">What our customers are saying</h2>
                     <p>Professional service marketplace has helped tens of thousands of people around US to get the job done.</p>
                 </div>
-                <testmonial-sec @onExist="onSuccessStoryExist" :byRole="3"></testmonial-sec>
+                <testmonial-sec :roleId="3" @onExist="onSuccessStoryExist"></testmonial-sec>
             </div>
         </div>
         <!-- -->
@@ -194,7 +195,7 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-                    if (result && !this.loading) {
+                    if (result && !this.loading && !this.isInvalid) {
                         this.ServiceProviderPage();
                         this.errorMessage = "";
                         return;
@@ -212,7 +213,12 @@
                     return;
                 }
                 localStorage.setItem('zip', this.zipCode);
-                this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+                if(this.searchValue.parent) {
+
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+                }else {
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});   
+                }
             },
             dispatchAction (actionName) {
                 this.searchValue = '';
@@ -236,7 +242,7 @@
                 this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
                 this.isLoading = true;
                 this.$http.get(this.searchUrl).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.options = response.data;
                     self.isLoading = false;
 

@@ -1,6 +1,6 @@
 <template>
 		<div class="not-found-container">
-				<not-found-panel></not-found-panel>
+				<not-found-panel :anchor="anchor"></not-found-panel>
 <!--         <button class="custin" @click="showModal = true">asdasdasd</button> -->
 				<data-approval :showModalProp="showModalValue" @HideModalValue="HideModal"></data-approval>
                 <discussion v-show="isShowing" @CloseDiscussion="isShowing = false"></discussion>
@@ -11,6 +11,7 @@
 
 <script>
     export default{
+      props: ['anchor'],
         data () {
           return {
               showModalValue : false,

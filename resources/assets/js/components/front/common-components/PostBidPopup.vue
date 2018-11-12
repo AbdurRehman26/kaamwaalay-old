@@ -1,11 +1,11 @@
-<template>  
++<template>  
     <div>
 
         <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" hide-footer>
             <form @submit.prevent="validateBeforeSubmit">
                 <div class="model-content">
                     <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
-                    <p>Post a bid on <strong>{{job.title}}</strong> job posted by <strong> {{ job.user | fullName }} </strong></a></p>
+                    <p>Post a bid on <strong>{{ job ? job.title : ''}}</strong> job posted by <strong> {{  job ? job.user : ''  | fullName }} </strong></a></p>
                     <b-row class="justify-content-md-center">
                         <b-col md="1">
                             <label>&nbsp;</label>
@@ -18,6 +18,7 @@
                             <div class="form-group">                                                            
                                 <label for="bid_amount">Bid Amount</label>
                                 <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Bid amount in $" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
+                                
                             </div>
                         </b-col> 
                         <b-col md="5">
@@ -49,13 +50,13 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label>Preferred date and time of visit</label>
-                                    <date-picker :not-before="Date.now()" v-validate="'required'" v-model="submitFormData.preferred_date" type="date" format="DD-MM-YYYY" lang="en" name="preferred date"></date-picker>
+                                    <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
                                 </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
@@ -82,9 +83,10 @@
 
     <script>
         import DatePicker from 'vue2-datepicker'
+        import Datepicker from 'vuejs-datepicker';
 
         export default {
-            components: { DatePicker },
+            components: { DatePicker, Datepicker },
             props : [
             'showModalProp',
             'job',
@@ -99,8 +101,12 @@
             },
             data() {
                 return {
+                    disabledDates: {
+                        to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                    },
                     updateForm : false,
                     bidType : 'amount_value',
+                    date:'',
                     amountTypes : [
                     {           
                         key : 'min',
@@ -203,7 +209,6 @@
                             this.errorMessage = ''
                             return;
                         }
-                        console.log(this.errorBag.all());
                         this.errorMessage = this.errorBag.all()[0];
                     });
                 },
@@ -249,7 +254,7 @@
                     this.submitFormData.preferred_date = '';
                     this.submitFormData.preferred_time = '';
                     this.submitFormData.is_visit_required = 0;                    
-                    this.bidType = 'visit_required';
+                    this.bidType = 'amount_value';
 
                     setTimeout(function () {
                         Vue.nextTick(() => {
@@ -262,7 +267,9 @@
             },
             watch:{
                 bid (value){
-                    this.setBidData();
+                    if(value){                
+                        this.setBidData();
+                    }
                 },
                 showModalProp(value){
 

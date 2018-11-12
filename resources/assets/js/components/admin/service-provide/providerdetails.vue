@@ -182,7 +182,7 @@
                                 <p><strong class="title-head">Related activites</strong></p>
                             </b-col>
                             <b-col v-show="records.services_offered" class="calculated-value">
-                                <span v-for="service in records.services_offered" class="tags">{{service}}</span>
+                                <span v-for="(service, index) in records.services_offered" class="tags margin-bottom-10px">{{index}}</span>
                             </b-col>
                         </b-row>                                 
                         <b-row>
@@ -191,7 +191,7 @@
                             </b-col>
 
                             <b-col class="calculated-value">
-                                <router-link :to="{name: 'view.service.job.detail',params: { id: records.user_id }}">See All</router-link>
+                                <a  @click.prevent="viewDetails(records.user_id)">See All</a>
                             </b-col>
                         </b-row>                                                                                                 
                     </div>
@@ -217,6 +217,14 @@
         StarRating
     },    
     methods: {
+        viewDetails(id){
+
+            let routeData = this.$router.resolve({ name: 'view.service.job.detail', params: { id: id }});
+            window.open(routeData.href, '_blank');
+
+
+
+        },
         getRecords(response){
             let self = this;
             self.loading = false;

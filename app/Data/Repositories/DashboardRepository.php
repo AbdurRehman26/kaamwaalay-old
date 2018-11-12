@@ -51,6 +51,9 @@ class DashboardRepository
         $criteria = ['status' => $this->jobRepo->model::INITIATED];
         $data['total_job_initiated'] = $this->jobRepo->getTotalCountByCriteria($criteria, $startDate, $endDate);
 
+        $criteria = ['status' => $this->jobRepo->model::COMPLETED];
+        $data['total_job_completed'] = $this->jobRepo->getTotalCountByCriteria($criteria, $startDate, $endDate);
+
         $criteria = [];
         $aggregate = 'sum';
         $field = 'amount';
@@ -143,11 +146,12 @@ class DashboardRepository
 
 
         $result = $this->paymentRepo->model
+            ->join('plans', 'subscriptions.stripe_plan', '=', 'plans.id')
             ->select(
-                DB::raw('SUM(amount) as value'),
-                DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date')
+                DB::raw('SUM(plans.amount) as value'),
+                DB::raw('DATE_FORMAT(subscriptions.created_at, "%Y-%m-%d") as date')
             )
-            ->whereBetween('created_at', [$startDate, $endDate])
+            ->whereBetween('subscriptions.created_at', [$startDate, $endDate])
             ->groupBy('date')
             ->get()
             ->toArray();
@@ -187,12 +191,13 @@ class DashboardRepository
 
 
         $result = $this->paymentRepo->model
+            ->join('plans', 'subscriptions.stripe_plan', '=', 'plans.id')
             ->select(
-                'type',
-                DB::raw('SUM(amount) as value')
+                DB::raw('REPLACE(plans.product,"_"," ") AS type'),
+                DB::raw('SUM(plans.amount) as value')
             )
-            ->whereBetween('created_at', [$startDate, $endDate])
-            ->groupBy('type')
+            ->whereBetween('subscriptions.created_at', [$startDate, $endDate])
+            ->groupBy('plans.product')
             ->get()
             ->toArray();
 
@@ -242,8 +247,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderBy('job_completed', 'DESC')
-            ->orderBy('rating', 'DESC');    
+            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');    
         }
         
         $result = $result->get()
@@ -288,8 +292,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderBy('job_completed', 'DESC')
-            ->orderBy('rating', 'DESC');    
+            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');
         }
         $result = $result->get()
         ->toArray();

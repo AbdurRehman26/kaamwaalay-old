@@ -94,10 +94,9 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
         return $data;
     }
 
-    public function getSubServices($crtieria)
+    public function getSubServices($criteria, $onlyIds = false)
     {
-
-        $model = $this->model->where($crtieria);
+        $model = $this->model->where($criteria);
         if ($model != null) {
             $model = $model->
             leftJoin(
@@ -110,10 +109,23 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                     $join->on('services.id', '=', 'service_provider_services.service_id');
                 }
             )
-            ->whereNotNull('services.parent_id')
-            ->pluck('services.id', 'services.title')
-            ->toArray();
+            ->whereNotNull('services.parent_id');
             
+
+            if(!$onlyIds){
+                $model = $model->where(function($query){
+                    $query->where('service_provider_services.deleted_at', '=', null)
+                        ->orWhere('service_provider_services.deleted_at' , '!=', null);  
+                });
+                $model =  $model->pluck('services.id', 'services.title');
+
+            }else{
+                $model = $model->whereNull('service_provider_services.deleted_at');
+                $model=  $model->pluck('services.id');
+            }
+
+            $model = $model->toArray();
+
             return $model;
         }
         return false;
@@ -186,7 +198,13 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
             }
 
             $data =  parent::update($data);
-            
+
+            if($data->status == 'rejected'){
+                $criteria = ['service_provider_profile_request_id'  => $data->id];
+                app('ServiceProviderServiceRepository')->bulkDeleteByCriteria($criteria);
+            }
+
+
             $user = app('UserRepository')->model->find($data->user_id);
             event(new ServiceProviderStatusEvent($user, $data->status, $data->reason));
             return $data;
@@ -205,12 +223,12 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
              *
              * @author Usaama Effendi <usaamaeffendi@gmail.com>
              **/
-            public function findByCriteria($crtieria, $refresh = false, $details = false, $encode = true, $whereIn = false)
+            public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false)
             {
 
 
                 $model = $this->model->newInstance()
-                ->where($crtieria);
+                ->where($criteria);
                 
                 if(!empty($details['orderBy'])){
                     $model = $model->orderBy('created_at' , $details['orderBy']);
@@ -235,6 +253,28 @@ class ServiceProviderProfileRequestRepository extends AbstractRepository impleme
                 ->where('service_provider_profile_requests.status', '!=' , 'rejected');
 
                 return $this->builder->select(['service_provider_profile_requests.status' ,'service_provider_services.*'])->get();
+            }
+            public function getAllServices($criteria)
+            {
+
+                $model = $this->model->where($criteria);
+                if ($model != null) {
+                    $model = $model->
+                    leftJoin(
+                        'service_provider_services', function ($join) {
+                            $join->on('service_provider_services.service_provider_profile_request_id', '=', 'service_provider_profile_requests.id');
+                        }
+                    )
+                    ->leftJoin(
+                        'services', function ($join) {
+                            $join->on('services.id', '=', 'service_provider_services.service_id');
+                        }
+                    )->where('service_provider_profile_requests.status', '=', 'approved')->get();
+                    
+                    
+                    return $model;
+                }
+                return false;
             }
 
         }

@@ -6,6 +6,7 @@ use App\Data\Repositories\PaymentRepository;
 use App\Data\Models\Role;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Validation\ValidationException;
 
 class PaymentController extends ApiResourceController
 {
@@ -24,7 +25,7 @@ class PaymentController extends ApiResourceController
             if($value == 'index') {
                 $rules['pagination']        =   'nullable|boolean';
                 $rules['filter_by_pay_by']  =   'nullable|in:'.Role::SERVICE_PROVIDER.','.Role::CUSTOMER;
-                $rules['filter_by_type']    =   'nullable|in:urgent,featured,account creation';
+                $rules['filter_by_type']    =   'nullable|in:urgent_job,featured_profile,account_creation';
                 $rules['keyword']           =   'nullable|string';
             }
 
@@ -41,42 +42,36 @@ class PaymentController extends ApiResourceController
         return $input;
     }
 
-      /**
-         * Store a newly created resource in storage.
-         *
-         * @param  \Illuminate\Http\Request $request
-         * @return \Illuminate\Http\Response
-         */
-      public function store(Request $request)
-      {
-        $data = $request->only('stripe_token','plan_id');
-        $data['user_id'] = request()->user()->id;
-        $rules = [
-            'stripe_token' => 'required',
-            'plan_id' => 'required|exists:plans,id',
-        ];
+/**
+* Store a newly created resource in storage.
+*
+* @param  \Illuminate\Http\Request $request
+* @return \Illuminate\Http\Response
+*/
+public function store(Request $request)
+{
+    $data = $request->only('stripe_token','plan_id');
+    $data['user_id'] = request()->user()->id;
+    $rules = [
+        'stripe_token' => 'required',
+        'plan_id' => 'required|exists:plans,id',
+    ];
 
-        $validator = Validator::make($data, $rules);
-        if ($validator->fails()) {
-            $code = 406;
-            $output = [
-               'message' => $validator->messages()->all(),
-           ];
-    }else{
-        $result = $this->_repository->create($data);
-        if(!empty($result['id'])) {
-          $code = 200;
-          $output = [
+    $this->validate($request, $rules);
+    $result = $this->_repository->create($data);
+    if(!empty($result['id'])) {
+        $code = 200;
+        $output = [
             'data' => $result,
             'message' => 'Payment has been made successfully',
         ];
     }else{
-      $code = 406;
-      $output = [
-        'message' => $result,
-    ];
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> $result ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
     }
-   }
-   return response()->json($output, $code);
- }
+    return response()->json($output, $code);
+}
 }

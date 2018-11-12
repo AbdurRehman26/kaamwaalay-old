@@ -9,11 +9,17 @@ use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\OneSignal\OneSignalChannel;
 use NotificationChannels\OneSignal\OneSignalMessage;
 use NotificationChannels\OneSignal\OneSignalWebButton;
+use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Carbon\Carbon;
 
-class SendUrgentJob extends Notification
+class SendUrgentJob extends Notification implements ShouldQueue
 {
     use Queueable;
     public $data;
+    public $queue;
+    protected $date;
+
     /**
      * Create a new notification instance.
      *
@@ -22,6 +28,8 @@ class SendUrgentJob extends Notification
     public function __construct($data)
     {
         $this->data = $data;
+        $this->queue = config('queue.pre_fix').'notifications';
+        $this->date = Carbon::now()->toDateTimeString();
     }
 
     /**
@@ -33,7 +41,7 @@ class SendUrgentJob extends Notification
     public function via($notifiable)
     {
         \Log::info('via');
-         return [OneSignalChannel::class, 'database'];
+         return ['database', OneSignalChannel::class ,'broadcast'];
     }
 
     /**
@@ -45,10 +53,20 @@ class SendUrgentJob extends Notification
      public function toOneSignal($notifiable)
     {
        \Log::info('toOneSignal');
+        $data = ['data'=>[
+                    'text' => $this->data->message,
+                    'image' => $this->data->from->profile_image,
+                    'link_text' => 'View Job',
+                    'route' => 'job.details',
+                    "id" => $this->data->id
+                    ],
+                'created_at' => $this->date
+                 ];
       //\Log::info($notifiable);
        return OneSignalMessage::create()
             ->subject("Urgent Job")
-            ->body($this->data->data);
+            ->body($this->data->message)
+            ->setData('data',$data);
     }
 
     /**
@@ -60,11 +78,30 @@ class SendUrgentJob extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'text' => $this->data->data,
-            'image' => $this->data->sendBy->profile_image,
+            'text' => $this->data->message,
+            'image' => $this->data->from->profile_image,
             'link_text' => 'View Job',
             'route' => 'job.details',
-            "id" => $this->data->jobId
+            "id" => $this->data->id
         ];
+    }
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return BroadcastMessage
+    */
+    public function toBroadcast($notifiable)
+    {
+        return (new BroadcastMessage([
+            'data'=>[
+                'text' => $this->data->message,
+                'image' => $this->data->from->profile_image,
+                'link_text' => 'View Job',
+                'route' => 'job.details',
+                "id" => $this->data->id
+            ],
+            'created_at' => $this->date,
+        ]))->onQueue($this->queue);
     }
 }

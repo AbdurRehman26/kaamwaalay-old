@@ -1,25 +1,24 @@
 <template> 
     <div class="popup categories-popup">
-        <b-modal id="visit-request" centered hide-footer @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Parent Service Detail">
+        <b-modal id="visit-request" centered hide-footer @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Visit Request Approval/Rejection">
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
             <div class="category-selected">
-                <i @click="onHidden" class="icon-close2"></i>
                 <div class="category-image-block" :style="'background-image:url('+jobImage+');'">
                 </div>
                 <div class="category-content-block">
 
-                    <h6 v-if="typeof(bid) !== 'undefined'">{{bid.service_provider.business_name}} Requested to visit your address to evaluate work before bidding.</h6>
+                    <h6 v-if="typeof(bid) !== 'undefined'">{{ bid ? bid.service_provider.business_name : ''}} Requested to visit your address to evaluate work before bidding.</h6>
 
                 </div>
             </div>
             <div class="category-search-field">
                 <h6>Are you sure you want to accept visit request?</h6>
                 <p>If you accept, your contact details and address will be shared with the service provider.</p>
-                <button @click.prevent="loadingAccept = true; submit = true; submitFormData.status='visit_allowed'" type="submit" :class="['btn', 'btn-primary',  loadingAccept ? 'show-spinner' : '']">
+                <button :disabled="disableButtons" @click.prevent="disableButtons = true; loadingAccept = true; submit = true; submitFormData.status='visit_allowed'" type="submit" :class="['btn', 'btn-primary',  loadingAccept ? 'show-spinner' : '']">
                     Yes, allow visit
                     <loader></loader>
                 </button>
-                <button @click.prevent="loadingReject = true; submit = true; submitFormData.status='rejected'" type="submit" :class="['btn', 'btn-primary',  loadingReject ? 'show-spinner' : '']">
+                <button :disabled="disableButtons" @click.prevent="disableButtons = true; loadingReject = true; submit = true; submitFormData.status='rejected'" type="submit" :class="['btn', 'btn-primary',  loadingReject ? 'show-spinner' : '']">
                     No, decline request
                     <loader></loader>
                 </button>
@@ -41,7 +40,8 @@
                 errorMessage : false,
                 successMessage : false,
                 url : '',
-                submitFormData : ''
+                submitFormData : '',
+                disableButtons : false
             }
         },
 
@@ -62,18 +62,16 @@
                 this.submit = false;
             },
             formSubmitted(response){
-                if(response.data){
+                this.disableButtons = false;
+                this.loadingAccept = false;
+                this.loadingReject = false;
+                this.submit = false;
 
-                    this.loadingAccept = false;
-                    this.loadingReject = false;
-                    this.submit = false;
+                this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
+                this.hideModal();
+                this.$emit('bid-updated');
 
-                    this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
-                    this.hideModal();
-                    this.$emit('bid-updated');
-
-                }
-
+                
             },
             showModal () {
                 this.$refs.myModalRef.show()

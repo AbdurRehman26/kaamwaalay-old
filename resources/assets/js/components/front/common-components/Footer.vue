@@ -9,16 +9,7 @@
 								<a href="/">
 									<img src="images/logo.png">
 								</a>
-							</div>
-							<div class="footer-location">
-								<div class="form-group">
-									<select class="form-control">
-										<option>Select Option</option>
-										<option>New York, NY</option>
-										<option>California, CA</option>
-									</select>
-								</div>
-							</div>
+							</div>		
 
 							<div class="social-icons">
 								<ul>
@@ -37,9 +28,9 @@
 								<ul>
 									<li><strong>Customers</strong></li>
 									<li><a href="/job-post">Post a job</a></li>
-									<li  v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a customers</router-link></li>
+									<li  v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'customer' }}">Sign up as a customers</router-link></li>
 									<li><a href="/explore">Explore Services</a></li>
-									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('customer')">Advice center</a></li>
+									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('customer')" v-if='userDetails.role_id==3'>Advice center</a></li>
 									<li v-if='userDetails.role_id==3'><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
 								</ul>
 							</div>
@@ -48,9 +39,9 @@
 							<div class="footer-links">
 								<ul>
 									<li><strong>Service Providers</strong></li>
-									<li v-if='userDetails == ""'><router-link to="/sign-up">Sign up as a service provider</router-link></li>
+									<li v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'provider' }}">Sign up as a service provider</router-link></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:;">Completed Jobs</a></li>
-									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('provider')">Advice center</a></li>
+									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('provider')" v-if='userDetails.role_id==2'>Advice center</a></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>
 								</ul>
 							</div>

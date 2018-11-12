@@ -1,5 +1,11 @@
 <template>
     <div class="discussion-panel">
+        <div class="alert-indicator" v-show="errorMessage">
+            <div class="alert alert-danger">
+                <i class="icon-alert"></i>
+                <p>You are not allowed to send contact details and personal information.</p>
+            </div>
+        </div>         
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
@@ -16,16 +22,16 @@
                         <span class="chat-profile-pic"  :style="{'background-image': 'url(' + getImage(message.user.profileImage) + ')'}"></span>
                         <div class="profile-message" :class="[checkCurrentUser(message)? 'bg-light-custom' : '']">
                             <p>{{message.text}}</p>
-                            <span class="chat-last-seen">{{message.formatted_created_at}}</span>
+                            <span class="chat-last-seen">{{getFormattedDateTime(message.updated_at.date)}}</span>
                         </div>
                     </b-list-group-item>
                 </div>
-                <b-list-group-item v-show="errorMessage">
+<!--                 <b-list-group-item v-show="errorMessage">
                     <div class="alert alert-danger" style="font-size: 12px;">
                         <i class="icon-alert" style="font-size: 24px;"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
                     </div>
-                </b-list-group-item>
+                </b-list-group-item> -->               
             </b-list-group>
         </div>
         <div class="panel-footer">
@@ -97,23 +103,21 @@
 
                  self.$http.get(url).then(response=>{
 
-                    response = response.data.response;
+                    response = response.data;
                     let result = {
                         data : response.data,
                         noRecordFound : false,
                         pagination : response.pagination
-
                     };
 
                     if(!response.data.length){
                         result.noRecordFound = true;
                     }
                     self.getMessages(result);
-
                     self.pagination = response.pagination;
 
                     self.loading = false;
-
+                    self.scrollToEnd();
                     if(typeof successCallback !== 'undefined'){
                         successCallback(true);
                     }
@@ -170,6 +174,7 @@
                 }
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
+                
             },
             validateBeforeSubmit() {
                 let message = this.text;
@@ -211,7 +216,7 @@
                         url = url + '?strict_chat=true';
                     }
                     this.$http.post(url, data).then(response => {
-                        response = response.data.response;
+                        response = response.data;
                         if(response.data == "error") {
                             self.errorMessage = true;
                             setTimeout((e) => {
@@ -220,7 +225,9 @@
                             self.text = tempText;
                             return;
                         }
+                        self.scrollToEnd();
                         self.successMessage = response.message;
+
                         self.messages.push(response.data);
                     }).catch(error => {
                         error = error.response.data;
@@ -235,7 +242,11 @@
                 let currentUser = JSON.parse(this.$store.getters.getAuthUser);
                 return currentUser.id == message.user.id;
             },
+            getFormattedDateTime(date) {
+                return moment.utc(date).local().format('MMM Do, YYYY, h:mm a');
+            },
             showChatBox() {
+                
                 this.url = 'api/job-message?pagination=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = this.jobMessageData;
                 data.pagination = true;
@@ -245,12 +256,15 @@
                 this.userIsOnline();
             },
             unSubscribeChannel() {
-                let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                window.Echo.leave(channelName);
+                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
+                    let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+                    window.Echo.leave(channelName);
+                }
             },
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     if(typeof(e.discussion.user_is_online) != "undefined")  {
                         self.isOnline = e.discussion.user_is_online;
@@ -259,7 +273,14 @@
 
                     self.isOnline = true;
                     self.messages.push(e.discussion);
+                    self.scrollToEnd();
                 });
+            },
+            scrollToEnd() {
+                let self = this;
+                setTimeout(function(){
+                    self.$refs.scrollWrapper.scrollTop = self.$refs.scrollWrapper.scrollHeight;
+                }, 500);
             },
             userIsOnline() {
                 var self = this;
@@ -267,7 +288,7 @@
                 let url = 'api/job-message?pagination=true&trigger_online_status=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = {};
                 this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                 }).catch(error => {
                     error = error.response.data;
                     let errors = error.errors;
@@ -275,31 +296,36 @@
             },
             userIsOffline() {
 
-                var self = this;
-                this.messages = [];
-                this.text = "";
-                this.isOnline = false;
-                this.$emit('closeChat');
-                this.loading = true;
-                let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
-                let data = {};
-                this.$http.post(url, data).then(response => {
-                    response = response.data.response;
-                }).catch(error => {
-                    error = error.response.data;
-                    let errors = error.errors;
-                });
+                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
+                    var self = this;
+                    this.messages = [];
+                    this.text = "";
+                    this.isOnline = false;
+                    this.$emit('closeChat');
+                    this.loading = true;
+                    let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
+                    let data = {};
+                    this.$http.post(url, data).then(response => {
+                        response = response.data;
+                    }).catch(error => {
+                        error = error.response.data;
+                        let errors = error.errors;
+                    });
+                }
             },
             hideChatBox() {
                 this.userIsOffline();
+                this.unSubscribeChannel();
             }
         },
         computed: {
             disabledChat() {
-                return typeof(this.disabled) == "undefined"? null : true;
+                return typeof(this.disabled) == "undefined"? false : this.disabled;
             },
             jobMessageData() {
-                return this.messageData;
+                if(typeof(this.messageData) != "undefined") {
+                    return this.messageData;
+                }
             },
             getSenderImage() {
                 if(this.senderImage) {
@@ -338,7 +364,7 @@
                     this.text = "";
                     this.showChatBox();
                 }
-            }
+            },
         }
     }
 </script>

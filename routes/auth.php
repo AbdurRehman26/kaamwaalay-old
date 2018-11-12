@@ -27,6 +27,7 @@ Route::group(['middleware' => ['scopes']], function () {
     ]);
 
     Route::get('job/stats', 'Api\V1\JobController@getJobStats')->name('job.stats');
+    Route::get('job-invite-to-bid', 'Api\V1\JobController@getInviteToBidJobs')->name('job.invite.to.bid');
     Route::resource('job', 'Api\V1\JobController')->except([
         'edit','create','destory'
     ]);
@@ -69,14 +70,22 @@ Route::group(['middleware' => ['scopes']], function () {
         'index',
     ]);
 
+
+    Route::resource('user-rating', 'Api\V1\UserRatingController')->only([
+        'update','store'
+    ]);
+
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
-    Route::get('user/get-notification', 'Api\V1\UserController@getUserNotification')->name('user.notification');
+    Route::get('user/notification', 'Api\V1\UserController@getUserNotification')->name('user.notification');
+    Route::post('user/mark-read-notification', 'Api\V1\UserController@markRead')->name('user.notification.mark.read');
     Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
+    
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'
     ]);
-    Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-        'edit','create','destory'
+    Route::resource('zipcode', 'Api\V1\ZipCodeController')->except([
+        'edit','destory','create'
     ]);
+
 });

@@ -12232,6 +12232,32 @@ body .form-control:focus {
   border-color: #80bdff;
 }
 
+body .vdp-datepicker__calendar {
+  width: 280px;
+}
+
+body .vdp-datepicker input {
+  height: 38px;
+  font-family: "AkzidenzGroteskBE-Regular";
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: 4px;
+  color: #000000;
+  width: 100%;
+  border: 1px solid #B2B2B2;
+}
+
+body .vdp-datepicker__calendar .cell.selected {
+  background: #8200FF !important;
+  color: #fff;
+}
+
+body .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover,
+body .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover,
+body .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
+  border: 1px solid #8200FF !important;
+}
+
 body .form-group .input-icon {
   position: absolute;
   right: 14px;
@@ -12267,6 +12293,10 @@ body .form-group.is-invalid .form-control {
   background-repeat: no-repeat;
   background-size: 21px auto;
   background-position: 98% 53%;
+}
+
+body .form-group.is-invalid input.mx-input {
+  border: 1px solid #d9534f;
 }
 
 body .form-group.is-valid .form-control {
@@ -12373,6 +12403,10 @@ textarea {
 .sorting-checkbox .custom-checkbox {
   margin-left: -18px;
   top: 5px;
+}
+
+.service-provider button.btn {
+  width: 100%;
 }
 
 .custom-file {
@@ -13898,6 +13932,9 @@ input[type=number]::-webkit-outer-spin-button {
   .navigation.main-navigation {
     /* top: 51px; */
     top: 65px;
+    position: fixed;
+    height: calc(100% - 63px);
+    top: 65px;
   }
 
   .navigation.main-navigation ul li {
@@ -14570,6 +14607,16 @@ button.sl-close {
   background-color: #8200FF !important;
 }
 
+.alert-indicator {
+  position: absolute;
+  left: 6px;
+  right: 0;
+  width: 89%;
+  margin: auto;
+  z-index: 9;
+  top: 90px;
+}
+
 .white-bg {
   background-color: #fff;
 }
@@ -14744,6 +14791,51 @@ button.sl-close {
   }
 }
 
+.no-notification-found {
+  text-align: center;
+  display: block;
+  padding-right: 25px;
+  color: #7d7d7d;
+}
+
+.p-r-align {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+}
+
+.bidding-navigation li {
+  position: relative;
+  padding: 0px 40px 7px 40px !important;
+}
+
+.bidding-navigation li.disabled {
+  background-color: transparent !important;
+}
+
+.bidding-navigation li p span {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 37px;
+}
+
+.vdp-datepicker__calendar .disabled {
+  color: #bdbdbd !important;
+}
+
+.invite-bid-search .custom-multi {
+  width: 100% !important;
+}
+
+.invite-bid-search .multiselect__tags span.multiselect__single {
+  width: 96% !important;
+}
+
+.invite-job-form .modal-body .model-content {
+  padding: 20px 33px 20px 33px !important;
+}
+
 .bg-light-custom {
   background-color: #f9f9f9 !important;
 }
@@ -14821,6 +14913,14 @@ button.sl-close {
 .how-it-work .list-description p {
   max-width: 320px;
   margin: 0 auto;
+}
+
+.imagegallery .image {
+  width: 110px;
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+  border-radius: 9px;
+  cursor: pointer;
 }
 
 .elementary-banner {
@@ -15517,9 +15617,24 @@ button.sl-close {
   padding: 0;
 }
 
+.featured-categories-home .list-description {
+  width: calc(100% - 60px);
+}
+
 .featured-categories-home .list-description p {
   font-family: "AkzidenzGroteskBE-Bold";
   margin-left: 12px;
+  width: 108px;
+  overflow: hidden;
+  max-height: 50px;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+  .featured-categories-home .list-description p {
+    width: 100%;
+    max-height: none;
+  }
 }
 
 .featured-categories-home .services-list a:hover {
@@ -15694,6 +15809,14 @@ button.sl-close {
   display: block;
 }
 
+.zipcode-selectize .multiselect__tags {
+  border-color: #B2B2B2;
+}
+
+.zipcode-selectize .multiselect__select {
+  opacity: 0;
+}
+
 .Popular-services-slides {
   margin: 0 0px;
   clear: both;
@@ -15720,6 +15843,9 @@ button.sl-close {
 
 .Popular-services-slides li .box-img {
   margin-bottom: 32px;
+  width: 270px;
+  height: 270px;
+  background-size: cover;
 }
 
 .Popular-services-slides li h6 {
@@ -16049,6 +16175,24 @@ button.sl-close {
 .expirychanges .stripe-element {
   position: relative;
   top: 3px;
+}
+
+.small-loader-browser {
+  position: relative;
+}
+
+.small-loader-browser .loader-sm {
+  min-height: 30px;
+  position: absolute;
+  height: 20px;
+  width: 109px;
+  right: 6px;
+  top: 4px;
+  z-index: 9;
+}
+
+.small-loader-browser .loader-sm .button-loader {
+  padding-left: 54px;
 }
 
 .grey-bg {
@@ -17989,6 +18133,24 @@ body .chat-feedback-message.white-msg:before {
 }
 
 /* service detail */
+
+.attachment-field {
+  background-color: #e9ecef;
+  border-radius: 6px;
+  margin: auto;
+  padding-top: 7px;
+  margin-top: 3px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.attachment-field .custom-file {
+  height: auto;
+}
+
+.attachment-field a {
+  color: #000000;
+}
 
 .provider-information {
   padding-right: 30px;

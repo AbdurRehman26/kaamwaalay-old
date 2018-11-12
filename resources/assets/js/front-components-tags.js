@@ -24,6 +24,7 @@ Vue.component('alert', require('./components/admin/common-components/Alert.vue')
 Vue.component('change-password-popup', require('./components/admin/common-components/ChangePassPopup.vue'));
 // Vue.component('info-popup', require('./components/front/common-components/InfoPopup.vue'));
 Vue.component('change-password-popup', require('./components/front/common-components/ChangePassPopup.vue'));
+Vue.component('invite-bid-popup', require('./components/front/common-components/InviteBidPopup.vue'));
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue'));
 Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue'));
 Vue.component('award-job-popup',require('./components/front/common-components/AwardJobPopup.vue'));
@@ -62,12 +63,6 @@ Vue.component('getstarted', require('./components/front/join-as-pro/GetStarted.v
 
 
 //my-bids
-Vue.component('bid-invitation', require('./components/front/bids/Invitations.vue'));
-Vue.component('bid-completed', require('./components/front/bids/Completed.vue'));
-Vue.component('bid-awarded', require('./components/front/bids/Awarded.vue'));
-Vue.component('bid-archived', require('./components/front/bids/Archived.vue'));
-Vue.component('bid-active', require('./components/front/bids/ActiveBids.vue'));
-Vue.component('bid-cancelled', require('./components/front/bids/Cancelled.vue'));
 Vue.component('profile-not-approved', require('./components/front/profile-rejection/not-approved.vue'));
 Vue.component('profile-not-completed', require('./components/front/profile-rejection/profile-yet.vue'));
 
@@ -93,3 +88,10 @@ Vue.component('card-element',require('./components/front/common-components/CardE
 Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));
 
 Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 
+
+Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue')); 
+Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue')); 
+Vue.component('job',require('./components/front/common-components/Job.vue')); 
+
+Vue.component('zip',require('./components/front/common-components/Zip.vue')); 
+Vue.component('city',require('./components/front/common-components/City.vue')); 

@@ -19,6 +19,16 @@ class Helper
 
     const ENCODE_PADDING = 10;
 
+    public static function getIp() {
+        $ip = request()->server('HTTP_X_REAL_IP');
+        if (empty($ip)) {
+            $ip = request()->server('HTTP_X_FORWARDED_FOR');
+            if (empty($ip)) {
+                $ip = request()->ip();
+            }
+        }
+        return $ip;
+    }
     public static function getRequestInfo(ServerRequest $request)
     {
         $ip_address = $request->server('HTTP_X_REAL_IP');
@@ -200,8 +210,7 @@ class Helper
         } else {
                 $data['pagination']['previous'] = $paginate->currentPage()-1;
                 $data['pagination']['prev'] = $paginate->currentPage()-1;
-
-                $data['pagination']['next'] =  -1;
+                $data['pagination']['next'] =  $paginate->currentPage();
         }
         if ($paginate->lastPage() > 1) {
                 $data['pagination']['pages'] = range(1, $paginate->lastPage());

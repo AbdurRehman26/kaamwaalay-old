@@ -63,7 +63,7 @@ import { directive as onClickaway } from 'vue-clickaway';
                 let self = this;
                 let url = 'api/service';
                 self.$http.get(url).then(response=>{
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAllServices' , response.data);
                     self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
@@ -102,15 +102,15 @@ import { directive as onClickaway } from 'vue-clickaway';
             setPaymentTypeList() {
                 let data = [
                 {
-                    id:'urgent',
+                    id:'urgent_job',
                     title:'Urgent'
                 },
                 {
-                    id:'featured',
+                    id:'featured_profile',
                     title:'Featured'
                 },
                 {
-                    id:'account creation',
+                    id:'account_creation',
                     title:'Account Creation'
                 }
                 ];

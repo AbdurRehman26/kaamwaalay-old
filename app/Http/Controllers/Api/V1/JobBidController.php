@@ -11,35 +11,61 @@ class JobBidController extends ApiResourceController
     public $_repository;
 
     public function __construct(JobBidRepository $repository){
-     $this->_repository = $repository;
- }
+       $this->_repository = $repository;
+   }
 
- public function rules($value=''){
+   public function rules($value=''){
     $rules = [];
 
     if($value == 'store'){
 
-        $rules['amount'] =  'required_without:is_tbd';    
-        $rules['is_tbd'] =  'required_without:amount';    
-        $rules['job_id'] = [
-            'required',
-            'exists:jobs,id',
-            Rule::unique('job_bids')->where(function ($query) {
-                $query->where('user_id', $this->input()['user_id']);
-            }),
-        ];
+        if(empty($this->input()['is_invited'])){
+            $rules['amount'] =  'required_without:is_tbd';    
+            $rules['is_tbd'] =  'required_without:amount';    
+
+
+            $rules['job_id'] = [
+                'required',
+                'exists:jobs,id',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('user_id', $this->input()['user_id'])
+                    ->whereNull('deleted_at')
+                    ->where('status' , '!=', 'invited');
+                }),
+            ];
+
+        }
+
+
+
+        if(!empty($this->input()['is_invited'])){
+
+            $rules['job_id'] = [
+                'required',
+                'exists:jobs,id',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('user_id', $this->input()['user_id'])
+                    ->whereNull('deleted_at');
+                }),
+            ];
+        }
+
 
 
     }
 
     if($value == 'update'){
 
-        $rules['job_id'] = [
-            'required',
-            Rule::unique('job_bids')->where(function ($query) {
-                $query->where('is_awarded' , '=', 1);
-            }),
-        ];
+        if(!empty($this->input('update')['is_awarded']) && $this->input('update')['is_awarded']){
+
+            $rules['job_id'] = [
+                'required',
+                Rule::unique('job_bids')->where(function ($query) {
+                    $query->where('is_awarded' , '=', 1);
+                }),
+            ];
+
+        }
 
     }
     
@@ -69,6 +95,7 @@ public function input($value='')
         'filter_by_active_bids',
         'filter_by_job_detail',
         'is_status',
+        'is_archived',
         'count_only',
         'is_awarded',
         'filter_by_tbd',
@@ -76,24 +103,27 @@ public function input($value='')
         'amount_type',
         'is_visit_required',
         'preferred_date',
-        'preferred_time'
+        'preferred_time',
+        'user_id',
+        'is_invited'
     );
 
 
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;
-
     }
 
     if(!empty($input['is_tbd'])){
         $input['amount'] = null;
         $input['is_visit_required'] = 0;
+        unset($input['preferred_date'] , $input['preferred_time']);
     }
 
     if(!empty($input['amount'])){
         $input['is_visit_required'] = 0;
         $input['is_tbd'] = 0;
+        unset($input['preferred_date'] , $input['preferred_time']);
     }
 
 
@@ -114,11 +144,16 @@ public function input($value='')
         unset($input['is_awarded']);
         
         $input['status'] = 'pending';
-
+        if(!empty($input['is_invited'])){
+            $input['status'] = 'invited';
+        }
     }
 
+    if(empty($input['user_id'])){
 
-    $input['user_id'] = request()->user()->id;
+        $input['user_id'] = request()->user()->id;
+    }
+
 
     return $input;
 }
@@ -127,8 +162,23 @@ public function messages($value = '')
 {
     $messages = [
         'job_id.unique' => 'A bid has already been placed.',
+        'job_id.required' => 'Job field is required.',
     ];
     return $messages;
+}
+public function responseMessages($value = '')
+{
+    if(!empty($this->input('store')['is_invited'])){
+         $messages = [
+            'store' => 'Invitation has been sent successfully.',
+        ];
+    }
+    if(!empty($this->input('update')['is_archived'])){
+         $messages = [
+            'update' => 'Bid has been successfully updated.',
+        ];
+    }
+    return !empty($messages[$value]) ? $messages[$value] : 'Success.';
 }
 
 

@@ -3,6 +3,10 @@ import moment from 'moment';
 
 const jobStatuses = [
 {
+    key : 'draft',
+    value : 'Draft'
+},
+{
     key : 'in_bidding',
     value : 'Bidding'
 },
@@ -108,6 +112,20 @@ const jobPreferences = [
 }
 ];
 
+const paymentType = [
+{
+    key : 'featured_profile',
+    value : 'Featured'
+},
+{
+    key : 'urgent_job',
+    value : 'Urgent'
+},
+{
+    key : 'account_creation',
+    value : 'Account Creation'
+}
+];
 
 Vue.filter('jobStatus', function (value) {
     if(typeof(value) == 'undefined'){
@@ -163,6 +181,11 @@ Vue.filter('formatDate', function(value) {
         return moment(String(value)).format('MMMM DD, YYYY')
     }
 });
+Vue.filter('formatDateTime', function(value) {
+    if (value) {
+        return moment(String(value)).format('MMMM DD, YYYY HH:mm:ss A')
+    }
+});
 
 Vue.filter('fullName', function (value) {
     if(value){
@@ -193,8 +216,10 @@ Vue.filter('childOrParentService', function (value) {
     if(value.parent_id){
         return value.title;
     }
-
-    return value.parent.title;
+    if(value.parent){
+     return value.parent.title;   
+    }
+    return '-';
 });
 
 Vue.filter('adminStatus', function (value) {
@@ -292,11 +317,41 @@ Vue.filter('bidStatus', function (bid) {
         return 'Visit allowed';
     }
 
+    if(bid.is_visit_required && bid.status =='on_the_way'){
+        return 'On the way';
+    }
+
     if(bid.is_tbd){
         return 'TBD';
     }
 
-    return bid.amount ? '$' + bid.amount : 0;
+    return bid.amount ? bid.formatted_amount : 0;
 
+});
+
+Vue.filter('roundOff', function(value) {
+    if (value) {
+        return Number((value).toFixed(2));
+    }
+});
+
+Vue.filter('paymentType', function (value) {
+
+    let obj = _.find(paymentType, item =>{
+        if(item.key == value){
+            return item; 
+        }
+    });
+
+    if(!obj){
+        return '';
+    }
+    return obj.value;
+});
+
+Vue.filter('formatDateTimeUTC', function(value) {
+    if (value) {
+        return moment.utc(value).local().format('MMM Do, YYYY, h:mm a')
+    }
 });
 

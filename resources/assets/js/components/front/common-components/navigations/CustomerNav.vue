@@ -24,8 +24,8 @@
             <li class="bell-li">
                 <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true">
                     <i v-bind:active="tab == true" class="icon-notification action-icon">
-                        <span class="badge-count">{{notificationCount}}</span></i>
-                        <notification v-show="isShowing" @ReviewWrite="WriteReviewModal()"  @ViewBid="ViewBid()"></notification>
+                        <span :class="{'badge-count': notificationCount != ''}">{{notificationCount}}</span></i>
+                        <notification v-show="isShowing" :isShowTab='isShowing'></notification>
                     </span>
                 </li>
                 <li>
@@ -53,7 +53,7 @@
                 first_name : '',
                 last_name : '',
                 user:{},
-                notificationCount:0,
+                notificationCount:'',
             }
         },
         directives: {
@@ -71,7 +71,7 @@
             },
             imageValue(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
-                return user.profileImage ? user.profileImage : '';
+                return user.profileImage ? user.profileImage : 'images/dummy/image-placeholder.jpg';
             }
         },
         methods: {
@@ -98,7 +98,7 @@
                 let self = this;
                 let url = 'api/service';
                 self.$http.get(url).then(response=>{
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAllServices' , response.data);
                     self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'PSM'),
 
     /*
     |--------------------------------------------------------------------------
@@ -183,6 +183,7 @@ return [
         App\Providers\ZipCodeRepositoryServiceProvider::class,
         App\Providers\SEOServiceProvider::class,
         NotificationChannels\OneSignal\OneSignalServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
         //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],  
@@ -233,7 +234,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
-   'app_name'=> env('APP_NAME'),
+   'app_name'=> env('APP_NAME')
 ];

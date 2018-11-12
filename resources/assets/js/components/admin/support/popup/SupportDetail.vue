@@ -103,7 +103,7 @@
                 data.append('is_replied', 1);
 
                 this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.successMessage = 'Replied Successfully!';
                     self.loading = false;
                     self.hideModal();

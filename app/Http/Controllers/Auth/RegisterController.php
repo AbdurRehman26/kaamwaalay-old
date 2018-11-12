@@ -98,7 +98,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
    
-        $output = ['response' => ['data' => $user,'message'=>trans('auth.registered')]];
+        $output = ['data' => app('UserRepository')->findById($user->id,false),'message'=>trans('auth.registered')];
 
         // HTTP_OK = 200;
         return response()->json($output, Response::HTTP_OK);

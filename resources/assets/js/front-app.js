@@ -20,6 +20,7 @@ import VueProgressBar from 'vue-progressbar';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 
+
 import fancyBox from 'vue-fancybox';
 import VueAxios from 'vue-axios'
 import VueAuthenticate from 'vue-authenticate'
@@ -31,6 +32,11 @@ import Vuex from 'vuex';
 import store from './store.js';
 import Lightbox from 'vue-simple-lightbox';
 import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
+
+window.mapKey = 'AIzaSyAq_eswaJReb7b5zM83qCbBE94muPMTIZ0';
+
+
+import VueGallerySlideshow from 'vue-gallery-slideshow';
 
 Vue.use(VueRouter);
 Vue.component('multiselect', Multiselect);
@@ -44,6 +50,7 @@ Vue.use(VueProgressBar, options);
 
 Vue.use(InfiniteLoading);
 Vue.use(Lightbox);
+Vue.use(VueGallerySlideshow);
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
     tokenName: 'access_token',
@@ -78,6 +85,7 @@ Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
 require('./filters')
+require('./directives')
 
 const options = {
     color: '#8200ff',
@@ -138,7 +146,6 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-
     mounted () {
         this.$Progress.finish();
         this.checkscroll();
@@ -199,24 +206,12 @@ const app = new Vue({
     watch:{
         '$route': function(from, to) {
             this.checkscroll();
+            window.scrollTo(0,0);
         }
     }
 });
 
-// Laravel Echo 
-import Echo from 'laravel-echo'
-window.io = require('socket.io-client');
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ':'+ window.socketPort,
-    auth: {
-        headers: {
-            Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
-        },
-    },
-});
 
 Vue.axios.interceptors.response.use((response) => { // intercept the global error
     return response
@@ -233,8 +228,22 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
    }
 })
 
+// Laravel Echo 
+import Echo from 'laravel-echo';
+window.io = require('socket.io-client');
+if(app.$auth.isAuthenticated()) {
 
+    let token = document.head.querySelector('meta[name="csrf-token"]');
+    window.Echo = new Echo({
+        broadcaster: 'socket.io',
+        host: window.location.hostname + ':'+ window.socketPort,
+        auth: {
+            headers: {
+                Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
+            },
+        },
+    });
+}
 /*const app = new Vue({
     router
 }).$mount('#app')*/
-

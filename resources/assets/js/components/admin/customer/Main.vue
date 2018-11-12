@@ -52,21 +52,24 @@
 
               <tr v-for="record in records">
                 <td>
-                    <span class="user-img radius-0">
-                        <img  v-if="record && record.profile_image" :src="record.profileImage" >
+                    <span v-if="record.profileImage" class="user-img radius-0" v-bind:style="{'background-image': 'url('+ record.profileImage +')'}">
+                        <!-- <img  v-if="record && record.profile_image" :src="record.profileImage" > -->
+                    </span>
+                    <span v-if="!record.profileImage" class="user-img radius-0">
+                        <!-- <img  v-if="record && record.profile_image" :src="record.profileImage" > -->
                     </span>
                 </td>
                 <td>
-                    <router-link :to="{ name: 'customer.detail', params: { id: record.id }}">{{record.first_name}} {{record.last_name}}</router-link>
+                    <a @click.prevent="viewDetails(record.id)">{{record.first_name}} {{record.last_name}}</a>
                 </td>
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
                 <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
-                    <router-link :to="{ name: 'customer.detail', params: { id: record.id }}">
+                    <a @click.prevent="viewDetails(record.id)">
                         <i v-b-tooltip.hover title="View Details" class="icon-eye basecolor"></i>
-                    </router-link>
+                    </a>
                     <i @click="changeStatusPopup(record)" :class="[record.status === 'pending'  ? 'disabled' : '']" v-b-tooltip.hover title="Change Status" class="icon-cog2"></i>
                 </div>
             </td>
@@ -144,6 +147,14 @@
         },
 
         methods: {
+            viewDetails(id){
+
+                let routeData = this.$router.resolve({ name: 'customer.detail', params: { id: id }});
+                window.open(routeData.href, '_blank');
+
+                
+
+            },
             startLoading(){
                 this.loading = true;
             },

@@ -9,31 +9,6 @@ use Validator;
 
 class FileController extends Controller
 {
-    private $uploaderConfig;
-
-    public function __construct()
-    {
-        $this->uploaderConfig = config('uploader');
-    }
-
-    public function remove(Request $request)
-    {
-        $validator = Validator::make($request->all(), [ 'file_name' => 'required' ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>'Required file_name is missing.']);
-        }else{
-            $orignalFileName = config('uploads.user-photos.folder').$request->get('file_name');
-            $thumbFileName = config('uploads.user-photos.thumb.folder').$request->get('file_name');
-            if(Storage::exists($orignalFileName)) {
-                Storage::delete($orignalFileName);
-            }
-            if(Storage::exists($thumbFileName)) {
-                Storage::delete($thumbFileName);
-            }
-            return response()->json(['status'=>true,'message'=>'Files has been removed successfully.']);
-        }
-    }
-
     public function upload(Request $request)
     {
         $key = $request->key;

@@ -31,7 +31,7 @@ return [
     'service_provider' => [
         'folder' => 'service_provider/orignal',
         'rules' => [
-            'mimes:jpeg,jpg,png',
+            'mimes:jpeg,jpg,png,xlsx,xls,doc,docx,pdf',
             // 'max:' . 10*1024*1024,
         ],
         
@@ -61,5 +61,12 @@ return [
         'rules' => [
             'mimes:jpeg,jpg,png',
         ],
+        'thumb' => [
+            'folder' => 'job/thumb/',
+            'height' => 400,
+            'width' => 400,
+            'method' => 'fit',
+        ],
+        
     ],
 ];

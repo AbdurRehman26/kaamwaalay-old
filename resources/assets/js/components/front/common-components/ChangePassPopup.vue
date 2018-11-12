@@ -1,9 +1,9 @@
 <template>	
 	<div>
 		<b-modal id="change-pass" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" hide-footer size="sm" title="Change Password" ok-only ok-title="Submit">
-            <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
             <form action="" method="" @submit.prevent="validateBeforeSubmit">
-		    <div class="form-block">
+            <div class="form-block">
+            <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                 <b-row class="justify-content-md-center">
                     <b-col md="12">
                         <div class="form-group">
@@ -99,7 +99,7 @@ data () {
                 self.loading = true
                 this.$http.put('api/auth/change/password/', this.userData)
                     .then(response => {
-                            self.successMessage= response.data.response.message;
+                            self.successMessage= response.data.message;
                             setTimeout(function(){
                                 self.loading = false;
                                 self.successMessage='';
@@ -108,7 +108,7 @@ data () {
                     })
                     .catch(error => {
                         self.loading = false
-                        self.errorMessage =error.response.data.message;
+                        self.errorMessage =error.response.data.errors.message[0];
                         setTimeout(function(){
                             self.errorMessage='';
                         }, 2000);

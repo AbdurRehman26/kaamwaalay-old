@@ -95,7 +95,7 @@
                 };
                 let url = 'api/user/'+user.id;
                 self.$http.put(url, update).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAuthUser', response.data);
                     self.$parent.onSubmit();
                     self.$parent.submit = true;
@@ -129,7 +129,6 @@ watch:{
     expiry () { this.update() },
     cvc () { this.update() },
     submit(value){
-        console.log('submitCard',value)
         this.pageLoad = true
         if(value){
            if(this.complete){

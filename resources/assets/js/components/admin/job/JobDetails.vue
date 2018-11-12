@@ -141,7 +141,7 @@
                                 </b-col>
                                 <b-col class="calculated-value">
 
-                                    <router-link :to="{name: 'bidding.details', params : {jobId : record.id}}">See All</router-link>
+                                    <a @click.prevent="viewDetails(record.id)">See All</a>
 
                                 </b-col>
                             </b-row>                                                                                                 
@@ -184,7 +184,6 @@
         },
         computed : {
             requestUrl(){
-                console.log(this.$route);
                 return this.url+this.$route.params.id+'?bid_data=true';
             },
             imageLists(){
@@ -203,6 +202,15 @@
             Lightbox
         },        
         methods:{
+            viewDetails(id){
+
+
+                let routeData = this.$router.resolve({name: 'bidding.details', params : {jobId : id}});
+                window.open(routeData.href, '_blank');
+
+                
+
+            },
             getRecords(response){
                 let self = this;
                 self.loading = false;
@@ -211,7 +219,6 @@
             },
             open (e) {
                 let jobImages = [];
-                console.log(this.record.jobImages);
                 for (var i = 0 ; i < this.record.jobImages.length; i++) {
                     let data = {
                         src : this.record.jobImages[i]

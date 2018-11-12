@@ -52,8 +52,8 @@
     <div class="form-group">
         <label>Upload Image</label>
         <b-form-file @change="onFileChange" ref="fileinput" v-model="file" accept="image/jpeg, image/png, image/jpg" :placeholder="imageText" name="upload image"></b-form-file>
-        <div class="uploded-picture">
-            <img :src="imageValue" />
+        <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ imageValue +')',}">
+            <!-- <img :src="imageValue" /> -->
         </div>
     </div>
 
@@ -66,7 +66,7 @@
                 <p>{{url_prefix}}</p>
             </div>
             <div class="url-area">
-                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="URL Suffix" v-validate="{ required: true, regex: /^[0-9a-z\-]+$/, max:50 }" :class="['form-control' , (errorBag.first('URL Suffix') || isInalidSuffix) ? 'is-invalid' : '']">
+                  <input type="text" placeholder="Enter url suffix" name="" v-model="formData.url_suffix" name="URL Suffix" v-validate="{ required: true, regex: /^[0-9a-z\-]+$/, max:50 }" :class="['form-control' , (errorBag.first('URL Suffix')) ? 'is-invalid' : '']">
             </div>
         </div>
 
@@ -133,7 +133,7 @@
                 let self = this;
                 let url = 'api/service';
                 self.$http.get(url).then(response=>{
-                    response = response.data.response;
+                    response = response.data;
                     self.$store.commit('setAllServices' , response.data);
                     self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
                 }).catch(error=>{
@@ -145,8 +145,10 @@
                     this.formData.is_display_service_nav = 0;
                     this.formData.is_display_footer_nav = 0;
                     this.showRadios = false;
+                    this.url_prefix  = this.formData.parent_id.url + "/";
                 }else {
                     this.showRadios = true;
+                    this.url_prefix  = this.$store.getters.getServiceUrlPrefix;
                 }
             },
             resetFormFields() {
@@ -223,11 +225,11 @@
             },  
             showModal () {
                 this.imageText = 'Click here to upload image';
-                this.$refs.myModalRef.show();
                 var allServices = this.$store.getters.getAllServices;
                 this.url_prefix =  this.$store.getters.getServiceUrlPrefix;
                 this.services = _.filter(allServices, { parent_id: null});
                 this.errorBag.clear();
+                this.$refs.myModalRef.show();
             },
             hideModal () {
                 var self = this;
@@ -296,7 +298,7 @@
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
                 this.$http.post(url, data).then(response => {
-                    response = response.data.response;
+                    response = response.data;
                     self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
@@ -317,7 +319,8 @@
                     error = error.response.data;
                     let errors = error.errors;
                     _.forEach(errors, function(value, key) {
-                        if(key == "title") {
+                        var reg = /marked 6 services/g;
+                        if(!reg.test(value[0])) {
                             self.errorMessage =  "The Service Name has alreary been taken.";    
                             return false;
                         }
@@ -333,8 +336,8 @@
                 let url = this.url+"/"+this.list.id;
                 var data = Object.assign({}, this.formData);
                 data.parent_id = this.formData.parent_id? this.formData.parent_id.id : "";
-                this.$http.put(url, data).then(response => {
-                    response = response.data.response;
+                self.$http.put(url, data).then(response => {
+                    response = response.data;
                     self.successMessage = response.message;
                     setTimeout(function () {
                         self.successMessage = '';
@@ -355,8 +358,11 @@
                     let errors = error.errors;
                     _.forEach(errors, function(value, key) {
                         if(key == "title") {
-                            self.errorMessage =  "The Service Name has alreary been taken.";    
-                            return false;
+                            var reg = /marked 6 services/g;
+                            if(!reg.test(value[0])) {
+                                self.errorMessage =  "The Service Name has alreary been taken.";    
+                                return false;
+                            }
                         }
                         if(key == "parent_id") {
                             self.errorMessage =  "This service is already a parent service.";    
@@ -371,14 +377,14 @@
         },
 
         watch: {
-            'formData.url_suffix' (val) {
-                var regex = /^[0-9a-z\-]+$/;
-                if(val.length == 0 || !regex.test(val)) {
-                    this.isInalidSuffix = true;
-                    return;
-                } 
-                this.isInalidSuffix = false;
-            },
+        //     'formData.url_suffix' (val) {
+        //         var regex = /^[0-9a-z\-]+$/;
+        //         if(val.length == 0 || !regex.test(val)) {
+        //             this.isInalidSuffix = true;
+        //             return;
+        //         } 
+        //         this.isInalidSuffix = false;
+        //     },
             showModalProp(value) {
                 if(value) {
                     this.showModal();
@@ -413,6 +419,12 @@
                     this.image = img? (img[0].upload_url? img[0].upload_url : this.image) : this.image;
                     this.file = img? img[0].original_name : '';
                     this.imageText = this.file? this.file : 'Click here to upload image.';
+                    if(this.formData.parent_id) {
+                        this.url_prefix  = this.formData.parent_id.url + "/";
+                    }else {
+                        this.url_prefix  = this.$store.getters.getServiceUrlPrefix;
+                    }
+                    this.errorBag.clear();
                 }
             }
         },

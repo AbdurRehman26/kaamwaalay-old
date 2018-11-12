@@ -24,6 +24,7 @@ class JobController extends ApiResourceController
             $rules['state_id'] = 'required|exists:states,id';
             $rules['country_id'] = 'required|exists:countries,id';
             $rules['city_id'] = 'required|exists:cities,id';
+            $rules['service_provider_user_id'] = 'exists:users,id,role_id,'. 2;
         }
 
         if($value == 'update'){
@@ -47,7 +48,8 @@ class JobController extends ApiResourceController
             'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
-            'details', 'is_archived', 'filter_by_city', 'subscription_id'
+            'details', 'is_archived', 'filter_by_city', 'subscription_id',
+            'address_latitude', 'address_longitude', 'service_provider_user_id'
         );
 
         $input['user_id'] = request()->user()->id;
@@ -62,7 +64,9 @@ class JobController extends ApiResourceController
             );
 
             if(empty($input['images'][0])){
-                $input['images'] = null;
+                if(isset($input['images'])){           
+                    $input['images'] = null;
+                }
             }
 
         }
@@ -93,7 +97,25 @@ class JobController extends ApiResourceController
 
         $data = ['completed' => $completed , 'active' => $active];
 
-        $output = ['response' => ['data' => $data]];
+        $output = [
+            'data' => $data
+        ];
+
+        $code  = 200;
+
+        return response()->json($output, $code);
+
+    }
+
+    public function getInviteToBidJobs(Request $request)
+    {
+        $input = ['status' => 'in_bidding', 'user_id' => request()->user()->id];
+
+        $data = \App\Data\Models\Job::where($input)->get()->toArray();
+        
+        $output = [
+            'data' => $data
+        ];
 
         $code  = 200;
 

@@ -12,7 +12,8 @@
 								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
-										<multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="false" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+										<multiselect  v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search" :internal-search="false" :showNoResults="true" @select="dispatchAction" @close="dispatchCloseAction" @keyup.enter="validateBeforeSubmit">
+											<span slot="noResult">No service found.</span>
 										</multiselect>
 									</div>
 									<div class="container-zip-code">
@@ -158,8 +159,12 @@ export default {
 		},
 		onSelectCategory(val) {
 			this.hideModal();
-			this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
 			localStorage.setItem("zip", val);
+			if(this.selectedService.parent) {
+   				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+			}else {
+				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});	
+			}
 		},
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
@@ -186,7 +191,7 @@ export default {
 			this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
 			this.isLoading = true;
 			this.$http.get(this.searchUrl).then(response => {
-				response = response.data.response;
+				response = response.data;
 				self.options = response.data;
 				self.isLoading = false;
 
@@ -214,7 +219,13 @@ export default {
 				return;
 			}
 			localStorage.setItem('zip', this.zipCode);
-			this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			if(this.searchValue.parent) {
+   				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+			}else {
+
+				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});	
+			}
+			
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -240,7 +251,7 @@ export default {
 		    	url += '&page='+page;   
 		    }
 		    self.$http.get(url).then(response => {
-		    	response = response.data.response;
+		    	response = response.data;
 		    	self.allServices = response.data;
 		    	if(!self.allServices.length) {
 		    		self.showNoRecordFound = true;
@@ -277,14 +288,13 @@ mounted(){
 	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
 	this.routeName = 'Explore_Detail';
 	if(this.authUser) {
-		this.zipCode = this.authUser.zip_code;
+		this.zipCode = this.authUser.zip_code? this.authUser.zip_code : null;
 		localStorage.setItem("zip", this.zipCode);
 	}else {
 		if(localStorage['zip']) {
 			this.zipCode = localStorage.getItem('zip');
 		}
 	}
-	
 	this.getList({service_category: 'All'},false);
 },
 watch: {
@@ -322,7 +332,7 @@ computed: {
 	},
 	getOtherServices () {
 		var result = _.map(this.allServices, function(value, key) {
-			  		if(!value.subservices.length) {
+			  		if(!value.subservices.length && !value.parent_id) {
 				  		return value;
 			  		}
 				});
