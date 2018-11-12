@@ -69,26 +69,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="record in records">
+                                <tr v-for="(record , recordIndex) in records">
                                     <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
                                     <td><a @click.prevent="viewDetails(record.id)" class="basecolor">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a></td>
                                     
 
 
                                     <td> <span v-if="index < 2" v-for="(service , index) in record.services">{{service.service.title }} 
-                                        {{ (record.services.length > 1 && index < record.services.length-1) ? ", " : '' }}
+                                        {{ (record.services.length > 1 && index < record.services.length-1) && index < 1 ? ", " : '' }}
                                     </span>
 
-                                    <a @click.prevent="" href="#" v-b-toggle.accordion1 variant="info">Accordion 1</a>
+                                    <a v-if="record.services.length > 2" v-b-toggle="''+recordIndex+''" :aria-controls="''+recordIndex+''" href="javascript:void(0);" variant="info">View More</a>
                                     
-                                    <b-collapse id="accordion1" accordion="my-accordion" role="tabpanel">
+                                    <b-collapse :id="''+recordIndex+''" accordion="my-accordion" role="tabpanel">
                                         <b-card-body>
-                                          <p class="card-text">
-                                            I start opened because <code>visible</code> is <code>true</code>
-                                        </p>
-                                        <p class="card-text">
-                                            {{ text }}
-                                        </p>
+                                          <ul>
+                                            <li v-for="(serviceList, serviceIndex) in record.services" v-if="serviceIndex > 1" class="card-text">
+                                                {{serviceList.service.title}}
+                                            </li>
+                                        </ul>
                                     </b-card-body>
                                 </b-collapse>
 
