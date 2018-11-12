@@ -68,7 +68,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Youtube video ID</label>
-                            <input v-validate="'length:11'" @keyup="asyncFind" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
+                            <input :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
                         </div>
                     </div>
                     <div class="col-md-6 video-url">
@@ -157,7 +157,7 @@
 
             </div>
             <div class="row">
-               <div class="col-md-6">
+             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">City *</label>
                     <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
@@ -287,6 +287,7 @@
                 forceUserValue : false,
                 requestUserUrl : '',
                 currentCity: '',
+                videoValid : true,
 
             }
         },
@@ -313,16 +314,39 @@
         methods:{
             asyncFind: _.debounce(function(query) {
                 let self = this;
+                this.videoValid = false;
+                console.log(query , query.length)
                 if(!query) {
+                    this.videoValid = true;
                     this.loading = false;
+                    return false;
                 }
-                if(!query || query.length != 11) {
+                if(query.length != 11) {
                     return;
                 };
-
-                console.log(1);
+                this.videoValid = true;
+                this.checkYouTubeVideo();
 
             }, 1000),
+
+            checkYouTubeVideo(){
+                let self = this;
+
+                self.loading = true;
+                let url = 'youtube/validate/video?id='+this.formData.videos;
+
+                this.$http.get(url).then(response => {
+
+                    self.successMessage = response.message;
+                    self.videoValid = true;
+                    self.loading = false;
+                }).catch(error => {
+                    self.videoValid = false;
+                    self.loading = false;
+                });
+            },
+
+
             prefillValues(){
                 let self = this;
                 let zipCode = this.$route.query.zip;
@@ -402,23 +426,23 @@
             let self = this;
             self.cities = response.data;
             if(this.currentCity){
-             this.formData.city_id = this.currentCity;
-             this.currentCity = '';
-         }
-     },
+               this.formData.city_id = this.currentCity;
+               this.currentCity = '';
+           }
+       },
 
-     onStateChange(select){
+       onStateChange(select){
         var select = select|false;
         if(select){
-           this.formData.city_id = '';
-       }
-       this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
-       if(this.currentCity){
-         this.formData.city_id = this.currentCity;
-         this.currentCity = '';
+         this.formData.city_id = '';
      }
- },
- getResponse($event){
+     this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
+     if(this.currentCity){
+       this.formData.city_id = this.currentCity;
+       this.currentCity = '';
+   }
+},
+getResponse($event){
     this.formData['images'][this.formData['images'].length] = {
         name : $event.name,
         original_name : $event.original_name
@@ -435,8 +459,14 @@ validateBeforeSubmit() {
             return;
         }
         if (result) {
+
+            if(!this.videoValid){
+                this.errorMessage = 'The youtube video ID is invalid';
+                return;
+            }
+
             setTimeout(function () {
-               if(!this.errorMessage){    
+             if(!this.errorMessage){    
                 self.isSubmit = true;
             }else{
                 self.isSubmit = false;

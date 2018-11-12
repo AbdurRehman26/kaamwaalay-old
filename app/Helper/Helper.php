@@ -190,36 +190,36 @@ class Helper
 
     public static function paginator($data, $paginate)
     {
-                $data['pagination'] = [];
-                $data['pagination']['to'] = ($paginate->total() > 0)?$paginate->firstItem():1;
-                $data['pagination']['from'] = ($paginate->total() > 0)?$paginate->lastItem():1;
-                $data['pagination']['total'] = $paginate->total();
-                $data['pagination']['current'] = $paginate->currentPage();
-                $data['pagination']['first'] = 1;
-                $data['pagination']['last'] = $paginate->lastPage();
+        $data['pagination'] = [];
+        $data['pagination']['to'] = ($paginate->total() > 0)?$paginate->firstItem():1;
+        $data['pagination']['from'] = ($paginate->total() > 0)?$paginate->lastItem():1;
+        $data['pagination']['total'] = $paginate->total();
+        $data['pagination']['current'] = $paginate->currentPage();
+        $data['pagination']['first'] = 1;
+        $data['pagination']['last'] = $paginate->lastPage();
 
         if ($paginate->hasMorePages()) {
             if ($paginate->currentPage() == 1) {
-                    $data['pagination']['previous'] = 0;
-                    $data['pagination']['prev'] = 0;
+                $data['pagination']['previous'] = 0;
+                $data['pagination']['prev'] = 0;
             } else {
-                    $data['pagination']['previous'] = $paginate->currentPage()-1;
-                    $data['pagination']['prev'] = $paginate->currentPage()-1;
-            }
-                $data['pagination']['next'] = $paginate->currentPage()+1;
-        } else {
                 $data['pagination']['previous'] = $paginate->currentPage()-1;
                 $data['pagination']['prev'] = $paginate->currentPage()-1;
-                $data['pagination']['next'] =  $paginate->currentPage();
+            }
+            $data['pagination']['next'] = $paginate->currentPage()+1;
+        } else {
+            $data['pagination']['previous'] = $paginate->currentPage()-1;
+            $data['pagination']['prev'] = $paginate->currentPage()-1;
+            $data['pagination']['next'] =  $paginate->currentPage();
         }
         if ($paginate->lastPage() > 1) {
-                $data['pagination']['pages'] = range(1, $paginate->lastPage());
+            $data['pagination']['pages'] = range(1, $paginate->lastPage());
         } else {
-                $data['pagination']['pages'] = [1];
+            $data['pagination']['pages'] = [1];
         }
 
                 // return data
-                return $data;
+        return $data;
     }
 
     /**
@@ -332,5 +332,18 @@ class Helper
         }
         return $array;
     }
+
+
+    public static function checkYoutubeVideoId($id)
+    {
+        $headers = get_headers('https://www.youtube.com/oembed?format=json&url=http://www.youtube.com/watch?v=' . $id);
+        $response = false;
+        if(is_array($headers) ? preg_match('/^HTTP\\/\\d+\\.\\d+\\s+2\\d\\d\\s+.*$/',$headers[0]) : false){
+         $response = true;
+     } else {
+         $response = false;
+     }
+     return $response;
+ }
 
 }
