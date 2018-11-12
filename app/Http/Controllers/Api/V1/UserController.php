@@ -174,48 +174,48 @@ public function socialLogin(Request $request)
     }
     $messages['email.unique'] = 'This email address is already taken. Please try another email address';
     $this->validate($request, $rules,$messages);
-         try{
-               $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
-               unset($data['access_token']);
-            if($user) {
-                unset($data['role_id']);
-                unset($data['from_sign_up']);
-                $userData['user_details'] = $data; 
-                $userData['id'] = $user->id; 
-                $result = $this->_repository->update($userData);
-                $userId = $user->id;
-            }else{
-                $data['status']  = 'active'; 
-                unset($data['from_sign_up']); 
-                $result = $this->_repository->create($data);
-                $userId = $result->id;
-            }
-            if($result) {
-                $user = User::find($userId);
-                $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
-                $token = $user->createToken('Token Name', $scopes)->accessToken;
-                $user = app('UserRepository')->findById($userId,false);
-                $user->access_token = $token;
-                $code = 200;
-                $output = [
-                    'data' => $user,
-                    'access_token' => $token,
-                    'message' => 'Success',
-                ];
-            }else{
-                $errorResponse = ValidationException::withMessages(
-                    ['message'=> 'An error occurred.' ]
-                );
-                $errorResponse->status = 406;
-                throw $errorResponse;
-            }
-        }catch(\Exception $e){
+    try{
+        $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
+        unset($data['access_token']);
+        if($user) {
+            unset($data['role_id']);
+            unset($data['from_sign_up']);
+            $userData['user_details'] = $data; 
+            $userData['id'] = $user->id; 
+            $result = $this->_repository->update($userData);
+            $userId = $user->id;
+        }else{
+            $data['status']  = 'active'; 
+            unset($data['from_sign_up']); 
+            $result = $this->_repository->create($data);
+            $userId = $result->id;
+        }
+        if($result) {
+            $user = User::find($userId);
+            $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+            $token = $user->createToken('Token Name', $scopes)->accessToken;
+            $user = app('UserRepository')->findById($userId,false);
+            $user->access_token = $token;
+            $code = 200;
+            $output = [
+                'data' => $user,
+                'access_token' => $token,
+                'message' => 'Success',
+            ];
+        }else{
             $errorResponse = ValidationException::withMessages(
-                ['message'=> 'Invalid User.' ]
+                ['message'=> 'An error occurred.' ]
             );
             $errorResponse->status = 406;
             throw $errorResponse;
         }
+    }catch(\Exception $e){
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> 'Invalid User.' ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
+    }
     return response()->json($output, $code);
 }
 
@@ -241,28 +241,28 @@ public function changeStatus(Request $request)
 
     $this->validate($request, $rules);
     $result = $this->_repository->updateField($data);
-        if($result) {
-            if($result->role_id == Role::CUSTOMER && $result->status  == User::BANNED){
-               CustomerBanned::dispatch($result)->onQueue(config('queue.pre_fix').'customer-banned');   
-            }
-            $userId = $data['id'];
-            $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
-            $sqlParameter = [];
-            $sqlParameter[] = $userId;
-            \DB::select($sql, $sqlParameter);
-            $code = 200;
-            $output = [
-                'data' => 'Status has been updated successfully.',
-                'message' => 'Status has been updated successfully.',
-            ];
-        }else{ 
-            $errorResponse = ValidationException::withMessages(
-                ['message'=> 'An error occurred.' ]
-            );
-            $errorResponse->status = 406;
-            throw $errorResponse;
-
+    if($result) {
+        if($result->role_id == Role::CUSTOMER && $result->status  == User::BANNED){
+            CustomerBanned::dispatch($result)->onQueue(config('queue.pre_fix').'customer-banned');   
         }
+        $userId = $data['id'];
+        $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
+        $sqlParameter = [];
+        $sqlParameter[] = $userId;
+        \DB::select($sql, $sqlParameter);
+        $code = 200;
+        $output = [
+            'data' => 'Status has been updated successfully.',
+            'message' => 'Status has been updated successfully.',
+        ];
+    }else{ 
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> 'An error occurred.' ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
+
+    }
 
     return response()->json($output, $code);
 
@@ -276,26 +276,26 @@ public function changeAccessLevel(Request $request)
         'role_id' => ['required', Rule::in(Role::ADMIN, Role::REVIEWER)],
         'id' => 'required|exists:users,id'
     ];
-        $this->validate($request, $rules);
-        $result = $this->_repository->updateField($data);
-        if($result) {
-            $userId = $data['id'];
-            $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
-            $sqlParameter = [];
-            $sqlParameter[] = $userId;
-            \DB::select($sql, $sqlParameter);
-            $code = 200;
-            $output = [
-                'data' => 'Access level has been updated successfully.',
-                'message' => 'Access level has been updated successfully.',
-            ];
-        }else{
-            $errorResponse = ValidationException::withMessages(
-                ['message'=> 'An error occurred.' ]
-            );
-            $errorResponse->status = 406;
-            throw $errorResponse;
-        }
+    $this->validate($request, $rules);
+    $result = $this->_repository->updateField($data);
+    if($result) {
+        $userId = $data['id'];
+        $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
+        $sqlParameter = [];
+        $sqlParameter[] = $userId;
+        \DB::select($sql, $sqlParameter);
+        $code = 200;
+        $output = [
+            'data' => 'Access level has been updated successfully.',
+            'message' => 'Access level has been updated successfully.',
+        ];
+    }else{
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> 'An error occurred.' ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
+    }
     return response()->json($output, $code);
 }
 
@@ -312,7 +312,7 @@ public function getAuthUser(Request $request)
     );
 
     $output = [
-            'data' => $data,
+        'data' => $data,
     ];
     $code = 200;
 
@@ -357,18 +357,18 @@ public function socialLoginCheck(Request $request)
     ];
     $userModel = $this->_repository->model;
     $result = $userModel->where('email','=',$request->email)->where('social_account_id','=',$request->social_account_id)->where('social_account_type','=',$request->social_account_type)->first();
-        if($result) {
-            $errorResponse = ValidationException::withMessages(
-                ['message'=> 'User Already Exists.' ]
-            );
-            $errorResponse->status = 406;
-            throw $errorResponse;
-        }else{
-            $code = 200;
-            $output = [
-                'message' => 'User not exsits',
-            ];
-        }
+    if($result) {
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> 'User Already Exists.' ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
+    }else{
+        $code = 200;
+        $output = [
+            'message' => 'User not exsits',
+        ];
+    }
     return response()->json($output, $code);
 }
 public function getUserNotification(Request $request)
@@ -382,24 +382,43 @@ public function getUserNotification(Request $request)
     $pagination =$response['pagination'];
     unset($response['pagination']); 
     if($data->isNotEmpty()){
-      $code = 200;
-      $output = [
+        $code = 200;
+        $output = [
             'data' => $response,
             'message' => 'success',
             'unread_count' => $count,
             'pagination' => $pagination,
-      ];  
+        ];  
     }else{
-      $code = 200;
-      $output = [
+        $code = 200;
+        $output = [
             'data' => [],
             'message' => 'no notifcation found',
-      ];
+        ];
     }
     return response()->json($output, $code);
 }
 public function markRead(Request $request)
 { 
-   return request()->user()->unreadNotifications->markAsRead();
+    return request()->user()->unreadNotifications->markAsRead();
+}
+
+public function checkYoutubeVideo(Request $request)
+{ 
+    $input = $request->only('id');
+    $result = Helper::checkYoutubeVideoId($input['id']);
+    if($result){
+        $code = 200;
+        $output = [
+            'message' => 'Valid id',
+        ]; 
+    }else{
+        $errorResponse = ValidationException::withMessages(
+            ['message'=> 'Invalid Id' ]
+        );
+        $errorResponse->status = 406;
+        throw $errorResponse;
+    }
+    return response()->json($output, $code);
 }
 }
