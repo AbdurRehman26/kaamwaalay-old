@@ -43,7 +43,7 @@
                         <b-col md="12">
                             <div class="form-group">
                                 <div class="custom-circle-radio">
-                                    <input  value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
+                                    <input :disabled="isVisitRequired" value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
                                     <label for="visit_required">Visit required to quote (request for visit)</label>  
                                 </div>                            </div>
                             </b-col>
@@ -153,11 +153,18 @@
                 },
                 valueRequired (){
                     return this.bidType == 'amount_value'; 
+                },
+
+                isVisitRequired() {
+                    if(typeof(this.job) != "undefined") {
+                        var isVisit = this.job.my_bid? this.job.my_bid.is_visit_required : false;
+                        return isVisit? (this.job.my_bid.is_visit_required == 1? true:false) : false;
+                    }
+                    return false;
                 }
             },
             methods: {
                 setBidData (){
-
                     this.updateForm = true;
 
                     this.submitFormData = JSON.parse(JSON.stringify(this.bid));
