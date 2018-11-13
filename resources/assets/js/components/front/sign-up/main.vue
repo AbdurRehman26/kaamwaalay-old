@@ -4,7 +4,7 @@
         <h1>Sign Up</h1>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-6">
-                <div class="custom-radio boxed m-b-30">
+                <div class="custom-radio boxed">
                     <input  v-model="type" value="customer" type="radio" name="accountType" id="type_hire_provider">
                     <label for="type_hire_provider" @click="signuptext = 'CUSTOMER SIGN UP'">
                         <div class="verticle-align">
@@ -33,7 +33,7 @@
             </div>
         </div>
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content m-t-30" v-if="val != 'facebook'">
             <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="sign-up-form service-provider-form">
                     <p class="custom-text">{{signuptext}}</p>
@@ -92,6 +92,13 @@
 
 </div>
 
+    <div class="m-b-30 text-center" v-if="val === 'facebook'">
+        <div class="create-account-btn">
+            <button class="btn btn-primary account-type-btn wth-190" :class="[loading  ? 'show-spinner' : '']"><span>Continue</span><loader></loader></button>
+        </div>
+    </div>
+
+
 
 </div>
 </template>
@@ -105,6 +112,7 @@
                 tabval: 'firstsec',
                 type:'customer',
                 mainNav:'true',
+                val: this.$route.params.isPro,
                 loading:false,
                 errorMessage: '',
                 successMessage: '',

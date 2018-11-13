@@ -207,6 +207,13 @@ const app = new Vue({
         '$route': function(from, to) {
             this.checkscroll();
             window.scrollTo(0,0);
+            var reviewId = this.$route.params.id;
+            if (reviewId.match("#viewBid")) {
+                var elmnt = document.getElementById("bid-review");
+                elmnt.scrollIntoView();        
+            }
+            // var elmnt = document.getElementById("bid-review");
+            // elmnt.scrollIntoView();                    
         }
     }
 });
