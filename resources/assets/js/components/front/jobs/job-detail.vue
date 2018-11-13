@@ -154,130 +154,130 @@
                             <h3 v-if="myBidValue && !isMyJob">My Bid</h3>
 
                             <div v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
-                                 <no-record-found></no-record-found>
-                            </div>
+                               <no-record-found></no-record-found>
+                           </div>
 
+                       </div>
+
+                       <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
+                        <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
+                        <div class="job-common-description">
+                            <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
+
+                            <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
+
+                            <div v-if="isMyJob" class="jobs-rating">
+                                <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
+                                <div class="jobs-done">
+                                    <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
+
+                                    <span class="review-job" v-if="!bid.user && !bid.user.total_finished_jobs">No Jobs performed</span>
+                                    <span class="review-job" v-else>{{ bid.user.total_finished_jobs }} Job(s) performed</span>
+                                </div>	
+                            </div>											
                         </div>
+                        <div class="job-proposal">
+                            <div class="bit-offered">
+                                <span><i class="icon-work-briefcase"></i> Offer: 
+                                    <strong>
+                                        {{ bid | bidStatus }}		
+                                    </strong>
 
-                        <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
-                            <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
-                            <div class="job-common-description">
-                                <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
-                                
-                                <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
-
-                                <div v-if="isMyJob" class="jobs-rating">
-                                    <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
-                                    <div class="jobs-done">
-                                        <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
-
-                                        <span class="review-job" v-if="!bid.user && !bid.user.total_finished_jobs">No Jobs performed</span>
-                                        <span class="review-job" v-else>{{ bid.user.total_finished_jobs }} Job(s) performed</span>
-                                    </div>	
-                                </div>											
+                                </span>
+                                <span class="pull-right"><i class="icon-calendar-daily"></i> Date:
+                                    <strong>
+                                        {{bid.formatted_created_at}}
+                                    </strong>
+                                </span>
                             </div>
-                            <div class="job-proposal">
-                                <div class="bit-offered">
-                                    <span><i class="icon-work-briefcase"></i> Offer: 
-                                        <strong>
-                                            {{ bid | bidStatus }}		
-                                        </strong>
+                            <div class="proposal-message">
+                                <p>{{bid.description}}</p>
+                            </div>
 
-                                    </span>
-                                    <span class="pull-right"><i class="icon-calendar-daily"></i> Date:
-                                        <strong>
-                                            {{bid.formatted_created_at}}
-                                        </strong>
-                                    </span>
-                                </div>
-                                <div class="proposal-message">
-                                    <p>{{bid.description}}</p>
-                                </div>
+                            <div class="provider-bidding-btn">
 
-                                <div class="provider-bidding-btn">
+                                <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);" 
+                                @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
-                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);" 
-                                    @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
-                                    
-                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
-                                    <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
-                                    <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
+                                <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+                                <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+                                <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 
-                                    <a v-if="isMyJob  && !jobCancelled && record.status == 'completed'  && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
-                                        Write Review
-                                    </a>
+                                <a v-if="isMyJob  && !jobCancelled && record.status == 'completed'  && !record.review_details && jobAwarded && (jobAwarded.id == bid.user_id)" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                                    Write Review
+                                </a>
 
-                                </div>
                             </div>
                         </div>
-
-                    </div>						
-
-                </div>
-            </div>
-
-            <div class="col-md-3 p-l-0 p-r-0">
-
-                <div class="service-provider">
-
-                    <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
-                        <h3>Find &amp; invite service providers to bid on your job.</h3>
-                        <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
-                        <router-link href="javascript:void(0);" class="btn btn-primary" 
-                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
                     </div>
 
-                    <a style="pointer-events: none;" v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px">
-                        <i class="icon-trophy"></i> Job Awarded
-                    </a>
-
-                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span>Mark Job Complete</span> <loader></loader>
-                    </button>
-
-                    <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
-                        <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
-                    </button>
-
-                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
-
-                    <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
-
-                    <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
-                    </button>
-
-                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
-                        <span>Initiate Job</span> <loader></loader>
-                    </button>
-
-                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
-
-                    <a v-canBid v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
-                        <i class="icon-edit-pencil"></i>
-                        Modify Bid
-                    </a>   
-
-                    <a v-if="showChatButton && !isMyJob && canChat" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
-                    
-                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
-
-                    <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
-
-                    <a v-canBid v-if="!jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
-                        Write Review
-                    </a>
-
-                    <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
-                        Archive
-                    </a>
-
-                </div>
+                </div>						
 
             </div>
         </div>
 
-    </div>			
+        <div class="col-md-3 p-l-0 p-r-0">
+
+            <div class="service-provider">
+
+                <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
+                    <h3>Find &amp; invite service providers to bid on your job.</h3>
+                    <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
+                    <router-link href="javascript:void(0);" class="btn btn-primary" 
+                    :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
+                </div>
+
+                <a style="pointer-events: none;" v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px">
+                    <i class="icon-trophy"></i> Job Awarded
+                </a>
+
+                <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <span>Mark Job Complete</span> <loader></loader>
+                </button>
+
+                <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
+                    <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
+                </button>
+
+                <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary"><i class="icon-edit-pencil"></i> Modify Details</a>					
+
+                <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" class="btn btn-cancel-job"><i class="icon-close2"></i> Cancel Job</a>
+
+                <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
+                </button>
+
+                <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <span>Initiate Job</span> <loader></loader>
+                </button>
+
+                <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary">Bid Now</a>                                                  
+
+                <a v-canBid v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary">
+                    <i class="icon-edit-pencil"></i>
+                    Modify Bid
+                </a>   
+
+                <a v-if="showChatButton && !isMyJob && canChat" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
+
+                <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
+
+                <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
+
+                <a v-canBid v-if="!jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary">
+                    Write Review
+                </a>
+
+                <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                    Archive
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>			
 </div>
 
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
@@ -488,8 +488,7 @@
                 return user ? user.zip_code : false;
             },
             mapUrl(){
-                if(this.record){
-                }
+
                 let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
                 let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
 
@@ -498,7 +497,9 @@
                 let axisPoints = xAxis +','+  yAxis;
                 axisPoints = this.record.address;
 
-                console.log('https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints);
+                if(this.record.city){
+                    axisPoints += this.record.city;
+                }
 
                 return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints+'"';
             },

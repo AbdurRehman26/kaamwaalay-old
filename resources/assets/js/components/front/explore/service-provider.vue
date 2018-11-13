@@ -354,7 +354,7 @@
                 this.categoryPopup = false;
             },
             servicedetail(record){        	
-                window.scrollTo(0,0);
+                
                 if(record.is_featured){
                     this.updateCampaignClickCount(record.user_id);
                 }
