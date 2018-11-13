@@ -12,6 +12,7 @@
 
             logout: function () {
               var this_ = this;
+              localStorage.clear();
               if(this.$auth.isAuthenticated()){
                 this.$auth.logout().then(function (Vue) {
                     this_.$store.commit('setAuthAdminUser', '');
