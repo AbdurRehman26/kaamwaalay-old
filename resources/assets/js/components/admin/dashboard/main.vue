@@ -521,7 +521,7 @@ initializeCharts(type){
     },
     "chartCursor": {
         "enabled": true,
-        "categoryBalloonDateFormat": "MMM YYYY"
+        "categoryBalloonDateFormat": "DD/MMM/YYYY"
     },
     "chartScrollbar": {
         "enabled": true,
@@ -533,15 +533,15 @@ initializeCharts(type){
     "trendLines": [],
     "graphs": [
     {
-        "balloonText": "[[title]]: [[date]]",
+        "balloonText": "[[title]]: [[value]]",
         "bullet": "round",
         "fillAlphas": 0.13,
         "id": "AmGraph-1",
-        "title": "Date",
+        "title": "Count",
         "valueField": "value",
-        "balloonFunction": function(item, graph) {
-          return item.dataContext.date.toString().split('-').reverse().join('/');
-        },
+        // "balloonFunction": function(item, graph) {
+        //   return item.dataContext.date.toString().split('-').reverse().join('/');
+        // },
       }
     ],
     "guides": [],
@@ -612,7 +612,7 @@ if(type=='service_provider_signup'){
     },
     "chartCursor": {
         "enabled": true,
-        "categoryBalloonDateFormat": "MMM YYYY"
+        "categoryBalloonDateFormat": "DD/MMM/YYYY"
     },
     "chartScrollbar": {
         "enabled": true,
@@ -624,15 +624,15 @@ if(type=='service_provider_signup'){
     "trendLines": [],
     "graphs": [
     {
-        "balloonText": "[[title]]: [[date]]",
+        "balloonText": "[[title]]: [[value]]",
         "bullet": "round",
         "fillAlphas": 0.13,
         "id": "AmGraph-1",
-        "title": "Date",
+        "title": "Count",
         "valueField": "value",
-        "balloonFunction": function(item, graph) {
-          return item.dataContext.date.toString().split('-').reverse().join('/');
-        },
+        // "balloonFunction": function(item, graph) {
+        //   return item.dataContext.date.toString().split('-').reverse().join('/');
+        // },
     }
     ],
     "guides": [],
