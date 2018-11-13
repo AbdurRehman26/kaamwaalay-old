@@ -135,14 +135,25 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
     $this->builder = $this->model->join('users' , 'users.id' , 'service_provider_profiles.user_id')
     ->where('users.role_id', '=', Role::SERVICE_PROVIDER);
-
     if (empty($data['filter_by_top_providers'])) {
         $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
         $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
     }
 
     if(!empty($data['zip'])) {
-        $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
+        if (!empty($data['filter_by_top_providers'])) {
+            $zipCodes = app('ZipCodeRepository')->findByAttribute('zip_code', $data['zip']);
+            if($zipCodes->city) {
+                $zipCodes = app('ZipCodeRepository')->findByAttributeAll('city', $zipCodes->city)->toArray();
+                $this->builder = $this->builder->whereIn('users.zip_code', $zipCodes)->groupBy('service_provider_profiles.user_id');  
+            }else {
+                $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
+            }
+        }else {
+            
+            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
+        }
+        
     }
 
     if (!empty($data['keyword'])) {

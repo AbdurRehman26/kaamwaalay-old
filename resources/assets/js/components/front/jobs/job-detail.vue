@@ -310,9 +310,6 @@
 <!--  Get Use response to update bidding jobs  -->
 <vue-common-methods :force="forceUserValue" :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
 
-<h1>
-    {{ bidReview }}
-</h1>
 
 
 
