@@ -18,15 +18,15 @@
                                 <div class="job-common-description job-perform">
                                     <div class="col-md-8 p-l-0">
 
-                                        <router-link :to="{name: 'job.details' , params : { id : record.id }}">
+                                        <li @click.prevent="viewDetails(record.id)">
                                             <h3 class="pointer">{{record.title}}</h3>
-                                        </router-link> 
+                                        </li> 
 
                                         <div class="job-notification">									
                                             <div class="jobs-done">
                                                 <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>		
                                                 <div class="job-status">
-                                                  
+
                                                     <span v-if="record.status != 'cancelled' && record.awardedBid && record.status != 'completed' && record.awardedBid.status == 'completed'" class="tags"
                                                     :class="['completed']">
                                                     Marked Done
@@ -46,8 +46,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4 job-bid-btn p-r-0">
-                                <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : record.id }}">View Details </router-link>
 
+                                <button class="btn btn-primary" @click.prevent="viewDetails(record.id)">View Details </button>
                                 <a href="javascript:void(0);" @click="WriteReview" class="btn btn-primary post-bid" v-if="record.job_bid == true">
                                 Write Review</a>
                             </div>
@@ -149,6 +149,13 @@
         },
 
         methods: {
+            viewDetails(id){
+
+                let routeData = this.$router.resolve({ name: 'job.details', params: { id: id }});
+                window.open(routeData.href, '_blank');
+
+            },
+
             getCurrentUser() {
                 let user = JSON.parse(this.$store.getters.getAuthUser);
                 return user;
