@@ -398,7 +398,7 @@
         },
         methods: {
             setZipCode(val) {
-                this.record.zip_code = val.zip_code;
+                this.record.zip_code = parseInt(val.zip_code);
                 this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {

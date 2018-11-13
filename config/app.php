@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'PSM'),
 
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -237,5 +238,6 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
-   'app_name'=> env('APP_NAME')
+   'app_name'=> env('APP_NAME'),
+    'start_date' => env('START_DATE', '9/01/2018'), // format: MM/DD/YYYY
 ];

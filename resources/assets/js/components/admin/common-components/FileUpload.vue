@@ -119,6 +119,8 @@
             }).catch(error => {
                 error = error.response.data;
                 let errors = error.errors;
+                console.log(errors  , 111);
+                self.isUploading = false;
                 self.isFileUpload = false;
                 _.forEach(errors, function(value, key) {
                     self.errorMessage =  errors[key][0];

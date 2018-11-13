@@ -331,9 +331,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
             unset($data['service_provider_user_id']);
 
+            $data = parent::create($data);
+                
             if($user_id){
                 
-                $data = parent::create($data);
                 
                 $updateData = [
                     'job_id' => $data->id,
@@ -345,7 +346,6 @@ class JobRepository extends AbstractRepository implements RepositoryContract
 
                 app('JobBidRepository')->create($updateData);
             }
-
 
             return $data;
 
