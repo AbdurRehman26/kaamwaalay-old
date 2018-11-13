@@ -147,7 +147,7 @@
                         </div>                
                     </div>
 
-                    <div class="chat-feedback">
+                    <div id="bid-review" class="chat-feedback">
 
                         <div class="text-notifer">
                             <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
@@ -310,6 +310,12 @@
 <!--  Get Use response to update bidding jobs  -->
 <vue-common-methods :force="forceUserValue" :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
 
+<h1>
+    {{ bidReview }}
+</h1>
+
+
+
 </div>
 </template>
 
@@ -353,6 +359,7 @@
                 disabledChat: false,
                 requestUrl : 'api/job/'+this.$route.params.id,
                 requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
+                bidReview: this.$route.params.id,
                 submit : false,
                 submitBidForm : false,
                 submitBidUrl : 'api/job-bid/',
@@ -733,6 +740,14 @@
                 if(response.data){
                     this.$store.commit('setAuthUser', response.data);
                 }
+            },
+            bidVal(){
+                if (this.bidReview.match("#viewBid")) {
+                    setTimeout(function(){
+                        var elmnt = document.getElementById("bid-review");
+                        elmnt.scrollIntoView();        
+                    }, 500);
+                }
             }   
         },
         components: {
@@ -741,6 +756,7 @@
             VueGallerySlideshow,
         },
         mounted(){
+            this.bidVal();
         },
 
     }
