@@ -567,6 +567,7 @@
                 this.loading = false;
                 this.submitBidForm = false;
 
+                this.requestUserUrl='api/user/me?time='+newDate;
                 this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
                 this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
             },
