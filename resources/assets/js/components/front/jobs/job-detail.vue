@@ -153,13 +153,16 @@
                             <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
                             <h3 v-if="myBidValue && !isMyJob">My Bid</h3>
 
-                            <div v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
-                               <no-record-found></no-record-found>
-                           </div>
+                            <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
+                                No bid(s) available 
+                             <router-link href="javascript:void(0);" class="pull-right" 
+                             :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Invite service providers</router-link>
 
-                       </div>
+                         </div>
 
-                       <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
+                     </div>
+
+                     <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
                         <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
                         <div class="job-common-description">
                             <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
