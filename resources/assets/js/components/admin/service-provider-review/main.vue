@@ -71,36 +71,36 @@
                             <tbody>
                                 <tr v-for="(record , recordIndex) in records">
                                     <!-- <td> <a href="javascript:void(0);" @click="detailreview(record.id)"></a> </td> -->
-                                    <td><a @click.prevent="viewDetails(record.id)" class="basecolor">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a></td>
+                                    <td class="fullName"><a @click.prevent="viewDetails(record.id)" class="basecolor">{{ record.service_provider_profile.first_name + ' ' + record.service_provider_profile.last_name }}</a></td>
                                     
 
 
-                                    <td> <span v-if="index < 2" v-for="(service , index) in record.services">{{service.service.title }} 
-                                        {{ (record.services.length > 1 && index < record.services.length-1) && index < 1 ? ", " : '' }}
-                                    </span>
+                                    <td class="services"> 
+                                        <span v-if="index < 2" v-for="(service , index) in record.services">{{service.service.title }} 
+                                            {{ (record.services.length > 1 && index < record.services.length-1) && index < 1 ? ", " : '' }}
+                                        </span>
 
                                     <a v-if="record.services.length > 2" v-b-toggle="''+recordIndex+''" :aria-controls="''+recordIndex+''" href="javascript:void(0);" variant="info">View More</a>
                                     
                                     <b-collapse :id="''+recordIndex+''" accordion="my-accordion" role="tabpanel">
                                         <b-card-body>
-                                          <ul>
-                                            <li v-for="(serviceList, serviceIndex) in record.services" v-if="serviceIndex > 1" class="card-text">
-                                                {{serviceList.service.title}}
-                                            </li>
-                                        </ul>
-                                    </b-card-body>
-                                </b-collapse>
+                                            <ul>
+                                                <li v-for="(serviceList, serviceIndex) in record.services" v-if="serviceIndex > 1" class="card-text">
+                                                    {{serviceList.service.title}}
+                                                </li>
+                                            </ul>
+                                        </b-card-body>
+                                    </b-collapse>
 
+                                    </td>
 
-                            </td>
-
-                            <td> {{ record.service_provider_profile && record.service_provider_profile.business_details &&  record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
-                            <td>
+                            <td class="type"> {{ record.service_provider_profile && record.service_provider_profile.business_details &&  record.service_provider_profile.business_details.business_type == 'individual' ? 'I' : 'B' }} </td>
+                            <td  class="status">
                                 <span class="tags" :class="[record.status]">
                                     {{ record.status }}
                                 </span>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center action">
                                 <div class="action-icons">                    
                                     <a @click.prevent="viewDetails(record.id)" class="basecolor"><i v-b-tooltip.hover title="View Details" class="icon-eye"></i></a>
                                 </div>

@@ -1254,6 +1254,25 @@ strong{
 
 }
 
+.table-area{
+    td{
+        &.fullName {
+            vertical-align: top;
+        }
+        &.services{
+            ul{
+                padding-left: 20px;
+                li{
+                    list-style: outside;
+                }
+            }
+        }
+        &.type, &.status, &.action{
+            vertical-align: top;
+        }
+    }    
+}
+
 .dragselector{
     .actions {
         position: absolute;
