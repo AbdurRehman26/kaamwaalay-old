@@ -236,7 +236,6 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                                {{record.zip_code}}
                             <div class="zipcode-selectize">
                             <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
                             </div>
@@ -399,7 +398,7 @@
         },
         methods: {
             setZipCode(val) {
-                this.record.zip_code = val.zip_code;
+                this.record.zip_code = parseInt(val.zip_code);
                 this.setCity(val)
                 this.invalidZip = false;
                 if(!val.zip_code) {

@@ -32,7 +32,7 @@
         mounted () {
             if(typeof(this.initialValue) != "undefined" && this.initialValue) {
                 this.searchValue = {
-                    zip_code: this.initialValue,
+                    zip_code: parseInt(this.initialValue),
                     latitude: '',
                     longitude: '',
                 };
@@ -76,7 +76,6 @@
                 let self = this;
                 this.searchUrl  = 'api/zipcode?zip_code=' + query;
                 this.isLoading = true;
-
                 this.$http.get(this.searchUrl).then(response => {
                     response = response.data;
                     self.options = response.data;
