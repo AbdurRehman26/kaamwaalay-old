@@ -68,4 +68,13 @@ class ZipCodeRepository extends AbstractRepository implements RepositoryContract
         }
         return $data;
     }
+    public function findByAttributeAll($attribute, $value) {
+        $model = $this->model->newInstance()
+                        ->where($attribute, '=', $value)->pluck('zip_code');
+
+        // if ($model != NULL) {
+        //     $model = $this->findById($model->id, $refresh, $details, $encode);
+        // }
+        return $model;
+    }
 }

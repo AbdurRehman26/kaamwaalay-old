@@ -220,6 +220,8 @@
                 let zipCode = this.$route.params.zip;
                 let serviceName = this.$route.params.childServiceName;
 
+                console.log(zipCode , serviceName , this.$route.params , 2222323);
+
                 if(!zipCode)
                 {
                     zipCode = this.$route.params.childServiceName;

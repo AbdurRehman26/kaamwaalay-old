@@ -88,7 +88,9 @@
             },
             viewDetails(id){
 
-                return (1);
+                let routeData = this.$router.resolve({ name: 'job.details', params: { id: id }});
+                window.open(routeData.href, '_blank');
+            
             }
         },
         computed: {
