@@ -299,13 +299,11 @@ components: {
 },
 
 created() {
-    this.start_date = moment().subtract(1, 'month').format('MM/DD/Y');
-    this.end_date   = moment().format('MM/DD/Y');
+  this.end_date   = moment().format('MM/DD/Y');
 },
 
 mounted() {
-    let self = this;
-    self.generateReport();
+  this.getStartDate();
 },
 
 methods: {
@@ -342,6 +340,19 @@ methods: {
                 //this.errorMessage = 'Please fill in the highlighted fields.';
                 return false;
             });
+  },
+  getStartDate() {
+     let self = this;
+      let params = {
+        get_start_date: true,
+      };
+      self.$http.get(self.url, {params: params}).then(response=>{
+          var response = response.data;
+          self.start_date = response.data? response.data : moment().subtract(1, 'month').format('MM/DD/Y');
+          self.generateReport();
+
+      }).catch(error=>{
+      });
   },
   generateReport(isApply){
       let self = this;

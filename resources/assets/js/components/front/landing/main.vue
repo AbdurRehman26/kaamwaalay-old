@@ -187,7 +187,6 @@
             }
         },
         methods: {
-
             onSuccessStoryExist(val) {
                 this.isSuccessStory = val;
             },

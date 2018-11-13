@@ -13296,6 +13296,10 @@ input[type=number]::-webkit-outer-spin-button {
   border-top: 1px solid #E0E0E0;
 }
 
+.footer-section .section-padd {
+  padding: 50px 0px 10px 0px;
+}
+
 .footer-logo {
   max-width: 204px;
   margin-bottom: 32px;
@@ -18080,6 +18084,11 @@ body .chat-feedback-message.white-msg:before {
     font-size: 13px;
     margin-bottom: 0 !important;
   }
+}
+
+.chat-feedback .chat-feedback-image {
+  border: 1px solid #E0E0E0;
+  border-radius: 7px;
 }
 
 .get-started-section h1 {

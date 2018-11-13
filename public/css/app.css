@@ -40194,6 +40194,24 @@ i[active="true"] {
   display: block;
 }
 
+.table-area td.fullName {
+  vertical-align: top;
+}
+
+.table-area td.services ul {
+  padding-left: 20px;
+}
+
+.table-area td.services ul li {
+  list-style: outside;
+}
+
+.table-area td.type,
+.table-area td.status,
+.table-area td.action {
+  vertical-align: top;
+}
+
 .dragselector .actions {
   position: absolute;
   top: 0;
