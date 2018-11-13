@@ -307,7 +307,7 @@ mounted() {
 },
 
 methods: {
-    showleftpanel(){
+  showleftpanel(){
       this.show = true;
       this.listingResponsive ^= true;
   },
@@ -533,13 +533,16 @@ initializeCharts(type){
     "trendLines": [],
     "graphs": [
     {
-        "balloonText": "[[title]]: [[value]]",
+        "balloonText": "[[title]]: [[date]]",
         "bullet": "round",
         "fillAlphas": 0.13,
         "id": "AmGraph-1",
-        "title": "Count",
-        "valueField": "value"
-    }
+        "title": "Date",
+        "valueField": "value",
+        "balloonFunction": function(item, graph) {
+          return item.dataContext.date.toString().split('-').reverse().join('/');
+        },
+      }
     ],
     "guides": [],
     "valueAxes": [
@@ -550,6 +553,10 @@ initializeCharts(type){
         "title": ""
     }
     ],
+    "categoryAxis": {
+     "parseDates": true,
+     "minorGridEnabled": true
+   },
     "allLabels": [],
     "balloon": {
         "horizontalPadding": 6,
@@ -617,12 +624,15 @@ if(type=='service_provider_signup'){
     "trendLines": [],
     "graphs": [
     {
-        "balloonText": "[[title]]: [[value]]",
+        "balloonText": "[[title]]: [[date]]",
         "bullet": "round",
         "fillAlphas": 0.13,
         "id": "AmGraph-1",
-        "title": "Count",
-        "valueField": "value"
+        "title": "Date",
+        "valueField": "value",
+        "balloonFunction": function(item, graph) {
+          return item.dataContext.date.toString().split('-').reverse().join('/');
+        },
     }
     ],
     "guides": [],
