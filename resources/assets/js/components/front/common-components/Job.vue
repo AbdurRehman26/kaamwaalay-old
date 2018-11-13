@@ -5,9 +5,9 @@
         <div class="job-common-description job-perform">
             <div class="col-md-6 p-l-0">
                 <div class="job-main-title">
-                    <router-link :to="{name: 'job.details' , params : { id : job.id }}">
+                    <li @click.prevent="viewDetails(job.id)">
                         <h3 class="pointer">{{job.title}}</h3>
-                    </router-link> 
+                    </li> 
                 </div>
                 <div class="job-notification">
                     <div class="jobs-done">
@@ -19,7 +19,7 @@
             <div class="col-md-6 job-bid-btn p-r-0">
                 <a v-canBid href="javascript:void(0);" v-if="!job.my_bid && job.status != 'completed' &&  job.status != 'cancelled' && !job.awarded_to" @click="showBidPopup('bidNow')" class="btn btn-primary post-bid m-r-10">Bid Now</a>
                 <a href="javascript:void(0);" v-else @click="$emit('chatMessage', job)" class="chat-message" :class="{disable: job.can_message == null? true : false}"><i class="icon-message"></i></a>
-                <router-link class="btn btn-primary" :to="{name: 'job.details' , params : { id : job.id }}">View Details </router-link>
+                <button class="btn btn-primary" @click.prevent="viewDetails(job.id)">View Details </button>
             </div>
         </div>
 
@@ -86,6 +86,10 @@
                     this.$emit('showBidPopup', this.job, val);
                 }
             },
+            viewDetails(id){
+
+                return (1);
+            }
         },
         computed: {
             getCountry() {
