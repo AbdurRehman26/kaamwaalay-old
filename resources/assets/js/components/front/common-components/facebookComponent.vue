@@ -66,21 +66,13 @@ export default {
         },
         socialLogin () {
                 let self = this;
-                let redirectUrl = self.$store.getters.getRedirectUrl
-                alert(redirectUrl);
                 this.$http.post('/login/social', self.facebookLoginData)
                 .then(response => {
                     self.$auth.setToken(response.data.data)
                     self.$store.commit('setAuthUser', response.data.data);
                     if(!self.$auth.isAuthenticated()){
+                      alert(response.data.data.role_id);
                         if(response.data.data.role_id == 3){
-                          if(localStorage['parentService'] && localStorage.getItem('parentService')) {
-                              self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
-                          }else if(localStorage['childService'] && localStorage.getItem('childService')){
-                              self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
-                          }else {    
-                              self.$router.push({ name: redirectUrl});
-                          }
                             self.$router.push({ name: 'customer_profile'});
                         }else{
                             self.$router.push({ name: 'provider_profile'});
@@ -89,7 +81,13 @@ export default {
                     setTimeout(function(){
                         self.loading = false
                         if(response.data.data.role_id == 3){
-                            self.$router.push({ name: 'customer_profile'});
+                            if(localStorage['parentService'] && localStorage.getItem('parentService')) {
+                                self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
+                            }else if(localStorage['childService'] && localStorage.getItem('childService')){
+                                self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
+                            }else {    
+                              self.$router.push({ name: 'customer_profile'});
+                            }
                         }else{
                             self.$router.push({ name: 'provider_profile'});
                         }
