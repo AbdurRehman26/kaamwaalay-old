@@ -309,15 +309,15 @@ Vue.filter('bidStatus', function (bid) {
         return ;
     }
     
-    if(bid.is_visit_required && bid.status =='pending'){
+    if(bid.is_visit_required && bid.status =='pending' || bid.is_visit_required && bid.status =='cancelled'){
         return 'Visit requested';
     }
 
-    if(bid.is_visit_required && bid.status =='visit_allowed'){
+    if(bid.is_visit_required && bid.status =='visit_allowed' || bid.is_visit_required && bid.status =='cancelled'){
         return 'Visit allowed';
     }
 
-    if(bid.is_visit_required && bid.status =='on_the_way'){
+    if(bid.is_visit_required && bid.status =='on_the_way' || bid.is_visit_required && bid.status =='cancelled'){
         return 'On the way';
     }
 

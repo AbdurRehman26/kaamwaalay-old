@@ -112,11 +112,15 @@
                     <div v-if="canViewMap" class="jobs-post-files">
                         <h3>Customer Information</h3>
                         <div class="coustomer-info-line">
-                            <i class="icon-phone_in_talk"></i>
+                            <div class="left-ico">
+                                <i class="icon-phone_in_talk"></i>
+                            </div>
                             <p>Phone number: <strong>{{record.user.phone_number}}</strong></p>
                         </div>
                         <div class="coustomer-info-line">
-                            <i class="icon-pin"></i>
+                            <div class="left-ico">
+                                <i class="icon-pin"></i>
+                            </div>
                             <p>Address: 
                                 <strong>
                                     {{record.address}} {{ record.city + ' ,'}} {{ record.state }}
@@ -125,7 +129,9 @@
                         </div>                        
                         
                         <div class="coustomer-info-line">
-                            <i class="icon-pin"></i>
+                            <div class="left-ico">
+                                <img class="icon-wth" src="/images/front/svg/capitol.svg">
+                            </div>
                             <p>City: 
                                 <strong>
                                     {{ record.city}}
@@ -134,7 +140,9 @@
                         </div>                        
                         
                         <div class="coustomer-info-line">
-                            <i class="icon-pin"></i>
+                            <div class="left-ico">
+                                <img class="icon-wth" src="/images/front/svg/state.svg">
+                            </div>
                             <p>State: 
                                 <strong>
                                     {{ record.state }}
@@ -142,7 +150,7 @@
                             </p>
                         </div>                        
                         
-                        <div class="coustomer-info-line">
+                        <div class="coustomer-info-line m-t-20">
                             <iframe :src="mapUrl" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>                
                     </div>
@@ -271,7 +279,7 @@
                     Write Review
                 </a>
 
-                <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled && !awardedToMe" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
                     Archive
                 </a>
 
@@ -309,9 +317,6 @@
 
 <!--  Get Use response to update bidding jobs  -->
 <vue-common-methods :force="forceUserValue" :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
-
-
-
 
 </div>
 </template>
@@ -402,8 +407,8 @@
                 return false;
             },
             canArchiveBid(){
-                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived && this.record.my_bid.status != 'initiated'){
-                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id) || ( this.record.my_bid.id == this.record.awardedBid.id &&  this.record.status != 'awarded');
+                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
+                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id);
                 }
                 return false;
             },
