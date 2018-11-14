@@ -170,6 +170,9 @@ class JobRepository extends AbstractRepository implements RepositoryContract
                 $bidsCriteria['is_awarded'] = 1;
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
+                $data->awarded_to = null;
+                $data->my_bid = null;
+
                 if($awardedBid) {
                     $data->awardedBid = $awardedBid;
                     $details = ['profile_data' => true];
