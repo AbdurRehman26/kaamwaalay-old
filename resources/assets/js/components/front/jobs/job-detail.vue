@@ -279,7 +279,7 @@
                     Write Review
                 </a>
 
-                <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled && !awardedToMe" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
                     Archive
                 </a>
 
@@ -407,8 +407,8 @@
                 return false;
             },
             canArchiveBid(){
-                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived && this.record.my_bid.status != 'initiated'){
-                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id) || ( this.record.my_bid.id == this.record.awardedBid.id &&  this.record.status != 'awarded');
+                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
+                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id);
                 }
                 return false;
             },

@@ -173,8 +173,12 @@ export default {
 			this.hideModal();
 			localStorage.setItem("zip", val);
 			if(this.selectedService.parent) {
+                localStorage.setItem("parentService", this.selectedService.parent.url_suffix);
+                localStorage.setItem("childService", this.selectedService.url_suffix);
    				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
 			}else {
+				localStorage.setItem("parentService", "");
+                localStorage.setItem("childService", this.selectedService.url_suffix);
 				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});	
 			}
 		},
@@ -232,9 +236,12 @@ export default {
 			}
 			localStorage.setItem('zip', this.zipCode);
 			if(this.searchValue.parent) {
+                localStorage.setItem("parentService", this.searchValue.parent.url_suffix);
+                localStorage.setItem("childService", this.searchValue.url_suffix);
    				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
 			}else {
-
+                localStorage.setItem("parentService", "");
+                localStorage.setItem("childService", this.searchValue.url_suffix);
 				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});	
 			}
 			
