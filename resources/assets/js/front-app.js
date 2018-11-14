@@ -35,7 +35,6 @@ import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-
 
 window.mapKey = 'AIzaSyAq_eswaJReb7b5zM83qCbBE94muPMTIZ0';
 
-
 import VueGallerySlideshow from 'vue-gallery-slideshow';
 
 Vue.use(VueRouter);
@@ -67,6 +66,15 @@ Vue.use(VueAuthenticate, {
         }
     }
 })
+
+import Geocoder from "@pderas/vue2-geocoder";
+
+Vue.use(Geocoder, {
+    googleMapsApiKey: window.mapKey
+});
+
+Vue.$geocoder.setDefaultMode('address');
+
 Vue.use(Vuex); 
 // base/global options
 // these options can be overridden 
