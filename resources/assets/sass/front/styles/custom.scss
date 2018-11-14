@@ -3237,6 +3237,24 @@ body{
     }
 }
 
+.coustomer-info-line{
+    .left-ico {
+        width: 46px;
+        display: inline-block;
+        float: left;
+    }
+    p{
+        width: calc(100% - 50px);
+    }
+}
+
+
+.icon-wth{
+    width: 25px;
+    display: inline-block;
+    vertical-align: text-bottom;
+}    
+
 .wth-190{
     width: 190px;
 }

@@ -37,7 +37,6 @@ class ServiceComposer
     {
         $currentRoute = Route::current();
         $params = $currentRoute->parameters();
-        dd($params);
         if(!empty($params['any'])) {
             $any = $params['any'];
             dd($any);
