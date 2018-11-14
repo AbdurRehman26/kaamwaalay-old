@@ -1601,7 +1601,7 @@ button.sl-close {
 }
 
 .no-photos {
-    background-color: #f1eded;
+    background-color: #f5f5f5;
     padding: 10px 20px;
     border-radius: 7px;
     color: #1a1a1a;
@@ -2748,6 +2748,7 @@ body{
                 content: '|';
                 position: absolute;
                 right: 0;
+                top: 0;
             }
             &.noborder{
                 &:after{
@@ -3234,6 +3235,12 @@ body{
             }
         }
 
+    }
+}
+
+.bg-transparent{
+     .button-loader {
+        background-color: transparent;
     }
 }
 

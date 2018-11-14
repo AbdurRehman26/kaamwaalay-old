@@ -39,6 +39,11 @@
 
 		<div class="featured-categories section">
 			<div class="container">
+
+				<!-- <div
+					class="block-loader bg-transparent">
+					<loader></loader>
+				</div> -->
 				<div class="category-section" v-for="service in getExploreServices">
 					<div class="category-title">
 						<h2>{{service.title}}</h2>
@@ -68,10 +73,17 @@
 
 					</div>
 				</div>
+
+
+
 			</div>
 		</div>
 		<div class="other-categories section-grey section elementary-banner">
 			<div class="container element-index">
+				<!-- <div
+					class="block-loader bg-transparent">
+					<loader></loader>
+				</div> -->					
 				<div class="category-section"  v-for="isnotexplorecategory in getRemainingWithServices">
 					<div class="category-title">
 						<h2>{{isnotexplorecategory.title}}</h2>
