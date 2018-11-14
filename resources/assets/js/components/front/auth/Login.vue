@@ -86,9 +86,10 @@
             login: function () {
                 let self = this;
                 this.loading = true
-                window.successMessage = ""
+                window.successMessage = "";
                 let redirectUrl = self.$store.getters.getRedirectUrl
                 if(!this.$auth.isAuthenticated()){
+
                     this.$auth.login(this.login_info).then(function (response) {
                         self.loading = false
                         self.$store.commit('setAuthUser', response.data.data);
@@ -110,7 +111,13 @@
                                     if(redirectUrl == "Explore_Detail") {
                                         self.$router.push({ name: 'Explore'});
                                     }else if(redirectUrl == "job.create"){
-                                        self.$router.push({ name: redirectUrl});
+                                        if(localStorage['parentService'] && localStorage.getItem('parentService')) {
+                                            self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
+                                        }else {
+
+                                            self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
+                                        }
+                                        //self.$router.push({ name: redirectUrl});
                                     }else {
                                         self.$router.push({ name: 'main-page'});
                                     } 

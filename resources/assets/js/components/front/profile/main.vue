@@ -258,15 +258,25 @@
 
                 self.loading = true;
                 let url = 'api/user/'+this.record.id;
-
                 self.$http.put(url, data).then(response => {
                     response = response.data;
 
                     this.$store.commit('setAuthUser', response.data);
                     self.successMessage = response.message;
+                    let redirectUrl = self.$store.getters.getRedirectUrl;
 
                     setTimeout(function () {
-                        self.$router.push({ name : 'my.jobs'});
+                        if(redirectUrl == "job.create"){
+                            if(localStorage['parentService'] && localStorage.getItem('parentService')) {
+                                self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
+                            }else {
+
+                                self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
+                            }
+                        }else {
+                            self.$router.push({ name : 'my.jobs'});
+                        }
+
                         self.successMessage = '';
                         self.loading = false;
                     }, 2000);
