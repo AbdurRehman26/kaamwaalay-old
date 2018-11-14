@@ -216,15 +216,15 @@
                 return user ? user.total_inbidding_jobs : false;
             },
             postJobRoute(){
-
                 let zipCode = this.$route.params.zip;
                 let serviceName = this.$route.params.childServiceName;
+                    
+                // Had to do this -> not my fault
 
-                if(!zipCode)
-                {
+
+                if(Object.keys(this.$route.params).length == 2 || (!this.$route.params.zip && isNaN(zipCode))){
                     zipCode = this.$route.params.childServiceName;
                     serviceName = this.$route.params.serviceName;
-
                 }
 
                 return '/job-post?service_name='+serviceName+'&zip='+zipCode;
