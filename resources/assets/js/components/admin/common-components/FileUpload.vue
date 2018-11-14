@@ -14,6 +14,8 @@
 
     <block-spinner v-if="isUploading"></block-spinner>
 
+    <alert v-if="errorMessage" :errorMessage="errorMessage"></alert>        
+
 </div>
 
 
@@ -41,6 +43,7 @@
 
         data(){
             return {
+                errorMessage : '',
                 acceptedFiles : '.png, .jpg, .jpeg',
                 file : '',
                 isFileUpload : false,
@@ -107,6 +110,10 @@
                 this.isUploading = true;
             }
 
+            // had to use JQUERY since couldnt find a solution for uploading the same file twice 
+            // :'(
+
+            $('input[type=file]').val('');
 
             this.$http.post(url, data).then(response => {
 
@@ -124,6 +131,10 @@
                 self.isFileUpload = false;
                 _.forEach(errors, function(value, key) {
                     self.errorMessage =  errors[key][0];
+                    setTimeout(function(){
+                        // self.errorMessage = '';
+                    }, 2000);
+
                     return false;
                 });
             });
