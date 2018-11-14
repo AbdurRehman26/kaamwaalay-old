@@ -92,7 +92,6 @@ class PlanController extends ApiResourceController
         $messages = $this->messages(__FUNCTION__);
         $this->validate($request, $rules);
 
-
         $output = ['errors' => 
         [
             'message' => ['There might be something wrong.']

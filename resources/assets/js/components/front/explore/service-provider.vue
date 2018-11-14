@@ -218,8 +218,9 @@
             postJobRoute(){
                 let zipCode = this.$route.params.zip;
                 let serviceName = this.$route.params.childServiceName;
-                    
+
                 // Had to do this -> not my fault
+                // Due to change in requirement i-e added parent service parameter in route url
 
                 if(Object.keys(this.$route.params).length == 2 || (!this.$route.params.zip && isNaN(zipCode))){
                     zipCode = this.$route.params.childServiceName;
