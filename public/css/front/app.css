@@ -16243,7 +16243,7 @@ button.sl-close {
 }
 
 .no-photos {
-  background-color: #f1eded;
+  background-color: #f5f5f5;
   padding: 10px 20px;
   border-radius: 7px;
   color: #1a1a1a;
@@ -17515,6 +17515,7 @@ body .chat-feedback-message.white-msg:before {
   content: '|';
   position: absolute;
   right: 0;
+  top: 0;
 }
 
 .job-notification .job-category.noborder:after {
