@@ -434,11 +434,14 @@ checkRoute() {
     this.zipCode = this.zip? this.zip : this.zipCode;
     if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
         this.zipCode =  this.childServiceName;
+        localStorage.setItem("zip", this.zipCode);
     }
     if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
         this.url  = 'api/service?service_name=' + this.childServiceName;
+        localStorage.setItem("childService", this.childServiceName);
     }else if(typeof(this.serviceName) != "undefined") {
         this.url  = 'api/service?service_name=' + this.serviceName;
+        localStorage.setItem("parentService", this.serviceName);
     }
     if(typeof(this.zipCode) != "undefined") {
         let val = this.zipCode;

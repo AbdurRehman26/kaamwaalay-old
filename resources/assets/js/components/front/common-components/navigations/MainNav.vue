@@ -5,7 +5,7 @@
                     <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/join-as-pro">Join as a Pro</router-link></li>
                     <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/login">Login</router-link></li>
                     <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/sign-up">Sign up</router-link></li>
-                    <li @click="$emit('clickmenu')"><a href="/job-post" class="btn btn-primary post-job-btn btn-md">Post a Job</a></li>
+                    <li @click="$emit('clickmenu')"><a href="javascript:void(0);" class="btn btn-primary post-job-btn btn-md" @click.prevent="onPostJob">Post a Job</a></li>
                 </ul>
             </div>
 </template>
@@ -18,6 +18,10 @@
             }
         },
         methods: {
+            onPostJob() {
+                localStorage.clear();
+                this.$router.push({name: 'job.create'});
+            },
             scrollToTop() {
                 window.scrollTo(0,0);
             },                       
