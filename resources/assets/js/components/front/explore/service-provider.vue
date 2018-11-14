@@ -219,7 +219,6 @@
 
                 let zipCode = this.$route.params.zip;
                 let serviceName = this.$route.params.childServiceName;
-
                 if(!zipCode)
                 {
                     zipCode = this.$route.params.childServiceName;

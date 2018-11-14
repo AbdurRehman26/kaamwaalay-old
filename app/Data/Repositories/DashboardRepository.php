@@ -235,6 +235,7 @@ class DashboardRepository
             DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
             DB::raw('AVG(rating) as rating'),
             DB::raw('COUNT(DISTINCT job_bids.id) as job_completed'),
+            DB::raw('(count(DISTINCT job_bids.id) * IFNULL(avg(rating) + 1, 1)) as bothColumn'),
             'duns_number',
             'business_type'
         )
@@ -247,7 +248,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');    
+            $result = $result->orderByRaw('CONVERT(bothColumn, DECIMAL) desc');    
         }
         
         $result = $result->get()
@@ -281,7 +282,8 @@ class DashboardRepository
             'users.email as email',
             DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
             DB::raw('AVG(rating) as rating'),
-            DB::raw('COUNT(jobs.id) as job_completed')
+            DB::raw('COUNT(jobs.id) as job_completed'),
+            DB::raw('(count(DISTINCT jobs.id) * IFNULL(avg(rating) + 1, 1)) as bothColumn')
         )
         ->groupBy('users.id')
         ->limit(5);
@@ -292,7 +294,7 @@ class DashboardRepository
                 $result = $result->orderBy('job_completed', 'DESC');    
             }
         }else{
-            $result = $result->orderByRaw('(count(job_completed) * IFNULL(avg(rating) + 1, 1)) desc');
+            $result = $result->orderByRaw('CONVERT(bothColumn, DECIMAL) desc');
         }
         $result = $result->get()
         ->toArray();
