@@ -163,7 +163,7 @@
 
                             <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
                                 No bid(s) available 
-                             <router-link href="javascript:void(0);" class="pull-right" 
+                             <router-link v-if="!jobCancelled && !jobArchived" href="javascript:void(0);" class="pull-right" 
                              :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Invite service providers</router-link>
 
                          </div>

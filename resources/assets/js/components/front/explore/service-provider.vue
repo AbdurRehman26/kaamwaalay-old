@@ -221,7 +221,6 @@
                     
                 // Had to do this -> not my fault
 
-
                 if(Object.keys(this.$route.params).length == 2 || (!this.$route.params.zip && isNaN(zipCode))){
                     zipCode = this.$route.params.childServiceName;
                     serviceName = this.$route.params.serviceName;
