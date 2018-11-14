@@ -220,8 +220,6 @@
                 let zipCode = this.$route.params.zip;
                 let serviceName = this.$route.params.childServiceName;
 
-                console.log(zipCode , serviceName , this.$route.params , 2222323);
-
                 if(!zipCode)
                 {
                     zipCode = this.$route.params.childServiceName;
@@ -249,8 +247,12 @@
                 this.hideZipModal();
                 localStorage.setItem("zip", val);
                 if(this.selectedService.parent) {
+                    localStorage.setItem("parentService", this.selectedService.parent.url_suffix);
+                    localStorage.setItem("childService", this.selectedService.url_suffix);
                     this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
                 }else {
+                    localStorage.setItem("parentService", this.selectedService.url_suffix);
+                    localStorage.setItem("childService", "");
                     this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});  
                 }
             },
@@ -303,8 +305,12 @@
                 this.serName = this.searchValue.url_suffix;
                 localStorage.setItem('zip', this.zipCode);
                 if(this.searchValue.parent) {
+                    localStorage.setItem("parentService", this.searchValue.parent.url_suffix);
+                    localStorage.setItem("childService", this.searchValue.url_suffix);
                     this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
                 }else {
+                    localStorage.setItem("parentService", this.searchValue.url_suffix);
+                    localStorage.setItem("childService", "");
                     this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, childServiceName: null, zip : this.zipCode }}); 
                 }
             },
