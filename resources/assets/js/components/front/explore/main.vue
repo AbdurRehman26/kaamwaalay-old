@@ -294,13 +294,11 @@ export default {
 mounted(){
 	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
 	this.routeName = 'Explore_Detail';
-	if(this.authUser) {
+	if(localStorage['zip']) {
+		this.zipCode = localStorage.getItem('zip');
+	}else if(this.authUser) {
 		this.zipCode = this.authUser.zip_code? this.authUser.zip_code : null;
 		localStorage.setItem("zip", this.zipCode);
-	}else {
-		if(localStorage['zip']) {
-			this.zipCode = localStorage.getItem('zip');
-		}
 	}
 	this.getList({service_category: 'All'},false);
 },
