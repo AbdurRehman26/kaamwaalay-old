@@ -7,7 +7,7 @@
                         <div class="col-xs-12 col-sm-4 col-md-2 item" v-for="category in categories">
                             <a href="javascript:void(0);" @click="changecategorypopup(category)">
                                 <div class="list-icon sm white">
-                                    <div class="inner"><img :src="getImage(category.images)"></div>
+                                    <div class="inner"><img :src="getImage(category.icon)"></div>
                                 </div>
                                 <div class="list-description">
                                     <p>{{category.title}}</p>

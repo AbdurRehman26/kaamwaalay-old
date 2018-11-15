@@ -139,11 +139,10 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
         $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
     }
-
     if(!empty($data['zip'])) {
         if (!empty($data['filter_by_top_providers'])) {
             $zipCodes = app('ZipCodeRepository')->findByAttribute('zip_code', $data['zip']);
-            if($zipCodes->city) {
+            if(!empty($zipCodes) && $zipCodes->city) {
                 $zipCodes = app('ZipCodeRepository')->findByAttributeAll('city', $zipCodes->city)->toArray();
                 $this->builder = $this->builder->whereIn('users.zip_code', $zipCodes)->groupBy('service_provider_profiles.user_id');  
             }else {

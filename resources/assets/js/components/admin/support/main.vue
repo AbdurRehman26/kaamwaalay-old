@@ -71,7 +71,7 @@
     </div>
 
     <div class="pagination-wrapper float-right" v-if="pagination.total">
-      <b-pagination size="md" :total-rows="pagination.total" v-model="currentPage" :per-page="25"></b-pagination>
+      <b-pagination size="md" :total-rows="pagination.total" v-model="currentPage" :per-page="10"></b-pagination>
     </div>
       <!--<div class="pagination-wrapper float-right">
           <b-pagination size="md" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>

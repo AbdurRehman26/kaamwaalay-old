@@ -18,6 +18,7 @@ class Service extends Model
      */
     protected $casts = [
         'images' => 'array',
+        'icon' => 'array',
     ];
 
     public function subServices()
@@ -29,6 +30,24 @@ class Service extends Model
     {
         $parseImage = json_decode($value);
 
+        if(!empty($parseImage[0]->name)) {
+
+            if(substr($parseImage[0]->name, 0, 8) == "https://") {
+                $parseImage[0]->upload_url = $parseImage[0]->name;
+                return  $parseImage;
+            }
+
+            $parseImage[0]->upload_url = Storage::url(config('uploads.service.folder').'/'.$parseImage[0]->name);
+
+        }
+        return $parseImage ? $parseImage : null;       
+    }
+    public function getIconAttribute($value)
+    {
+        if(!$value) {
+            return $value;
+        }
+        $parseImage = json_decode($value);
         if(!empty($parseImage[0]->name)) {
 
             if(substr($parseImage[0]->name, 0, 8) == "https://") {
