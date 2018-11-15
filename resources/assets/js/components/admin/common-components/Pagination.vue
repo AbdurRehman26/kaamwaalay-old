@@ -7,7 +7,7 @@
             <p><strong>Total records: <span>{{totalRecords}}</span></strong></p>
         </div>
         <div v-if="pagination && !infiniteLoad && !loadingStart" class="pagination-wrapper float-right">
-            <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="25"></b-pagination>
+            <b-pagination @input="changePage" size="md" :total-rows="totalRecords" v-model="currentPage" :per-page="10"></b-pagination>
         </div>
         <infinite-loading :distance="100" v-if="infiniteLoad" @infinite="infiniteHandler" required="false">
             <span slot="no-more">

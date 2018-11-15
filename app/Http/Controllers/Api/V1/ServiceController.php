@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class ServiceController extends ApiResourceController
 {
     public $_repository;
-    const   PER_PAGE = 25;
+    const   PER_PAGE = 10;
 
     public function __construct(ServiceRepository $repository)
     {
@@ -101,6 +101,7 @@ public function input($value=''){
         'id',
         'title',
         'images',
+        'icon',
         'parent_id',
         'pagination',
         'description',

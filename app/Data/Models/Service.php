@@ -18,6 +18,7 @@ class Service extends Model
      */
     protected $casts = [
         'images' => 'array',
+        'icon' => 'array',
     ];
 
     public function subServices()
@@ -43,8 +44,10 @@ class Service extends Model
     }
     public function getIconAttribute($value)
     {
+        if(!$value) {
+            return $value;
+        }
         $parseImage = json_decode($value);
-
         if(!empty($parseImage[0]->name)) {
 
             if(substr($parseImage[0]->name, 0, 8) == "https://") {
