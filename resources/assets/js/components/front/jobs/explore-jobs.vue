@@ -58,7 +58,7 @@
     export default {
         data () {
             return {
-                url : 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true',
+                url : 'api/job?explore_jobs=true&filter_by_status=in_bidding&pagination=true&details["profile_data"]=true',
                 bid_selection: 'activebid',
                 isShowing:false,
                 infoval:false,
@@ -120,7 +120,7 @@
                         this.records = [];
                         this.loading = true;
 
-                        this.url = 'api/job?filter_by_status=in_bidding&pagination=true&details["profile_data"]=true&time='+dateNow;
+                        this.url = 'api/job?explore_jobs=true&filter_by_status=in_bidding&pagination=true&details["profile_data"]=true&time='+dateNow;
 
                         if(this.searchValue){
                             this.url += '&filter_by_service='+this.searchValue.id;
