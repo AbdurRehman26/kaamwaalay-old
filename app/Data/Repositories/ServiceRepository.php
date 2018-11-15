@@ -141,8 +141,13 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
 
     public function findByAll($pagination = false,$perPage = 10, $data = [])
-    {       
+    {   
+
         $this->builder = $this->model->orderBy('updated_at', 'desc');
+        if (isset($data['order_by'])) {
+            $order_type = $data['order_by'] == "title"? 'ASC' : 'DESC';
+            $this->builder = $this->model->orderBy('parent_id', $order_type)->orderBy($data['order_by'], $order_type);
+        }
         if (!empty($data['zip_code'])) {
             $this->builder = $this->getServicesByZip(false, $data['zip_code']);
         }
@@ -243,10 +248,10 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         if (!empty($data['service_category'])) {
             if($data['service_category'] == 'All') {
                 $serviceCriteria = ['status' => 1];
-                $services = $this->findByCriteria($serviceCriteria);
+                $services = $this->findByCriteria($serviceCriteria, 'title');
                 foreach ($services as $key => $value) {
                      $criteria = ['parent_id' => $value->id,'status' => 1];
-                     $subservice = $this->findByCriteria($criteria);
+                     $subservice = $this->findByCriteria($criteria, 'title');
                      foreach ($subservice as $key2 => $value2) {
                         $subservice[$key2]->parent = (array) $value;
                      }
@@ -388,11 +393,16 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 *
 * @author Usaama Effendi <usaamaeffendi@gmail.com>
 **/
-public function findByCriteria($criteria, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
+public function findByCriteria($criteria, $orderBy = false, $refresh = false, $details = false, $encode = true, $whereIn = false, $count = false)
 {
 
     $model = $this->model->newInstance()->orderBy('created_at','DESC')
     ->where($criteria);
+
+    if($orderBy) {
+        $model = $this->model->newInstance()->orderBy($orderBy,'ASC')
+        ->where($criteria);
+    }
 
     if($whereIn) {
         $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);

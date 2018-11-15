@@ -61,7 +61,7 @@ import { directive as onClickaway } from 'vue-clickaway';
         methods: {
             getAllServices() {
                 let self = this;
-                let url = 'api/service';
+                let url = 'api/service?order_by=title';
                 self.$http.get(url).then(response=>{
                     response = response.data;
                     self.$store.commit('setAllServices' , response.data);

@@ -53,6 +53,7 @@ class UserController extends ApiResourceController
             $rule['role_id'] = ['required', Rule::in(Role::ADMIN, Role::REVIEWER)];
             $rule['status'] = 'required|in:active,banned'; 
 
+
         }
 
         return $rules;

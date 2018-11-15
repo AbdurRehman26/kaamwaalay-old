@@ -118,7 +118,13 @@
         </div>			
     </div>
 
-    <vue-common-methods :url="requestUrl" :infiniteLoad="true" @get-records="getProviderRecords"></vue-common-methods>
+    <vue-common-methods 
+    :url="requestUrl"
+    :infiniteLoad="true"
+    :force="forcePagination"
+    @get-records="getProviderRecords">
+    </vue-common-methods>
+
     <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
         <div class="container element-index">
 
@@ -174,6 +180,7 @@
         props: ['zip', 'serviceName', 'childServiceName'],
         data () {
             return {
+                forcePagination: false,
                 userToSendInvite : '',
                 max: 6,
                 noRecordFound: false,
@@ -349,7 +356,7 @@
                 if(!query || query.length < 3) {
                     return;
                 };
-                this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1';
+                this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1&order_by=title';
                 this.isLoading = true;
                 this.$http.get(this.searchUrl).then(response => {
                     response = response.data;
@@ -402,7 +409,6 @@
                 });
             },
             getService() {
-                window.scrollTo(0,0);
                 let self = this;
                 this.checkRoute();
                 this.btnLoading = true;
@@ -417,6 +423,8 @@
                     self.searchValue = self.service;
                     self.btnLoading = false;
                     if(self.zipCode) {
+                        this.forcePagination = true;
+
                         self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zipCode+'&from_explore=true';
                     }
 
@@ -444,7 +452,6 @@
 let len = response.data.length;
 for (var i = 0 ; i < len; i++) {
     self.records.push( response.data[i] ) ;
-
 }
 self.noRecordFound = response.noRecordFound;
 self.pagination = response.pagination;
@@ -497,7 +504,6 @@ childServiceName(val) {
 // 	this.$router.push({ name: 'Explore'})
 // }
 this.childServiceName = val;
-this.getService();
 },
 zip(val) {
     if(val.length > 5) {
@@ -522,7 +528,6 @@ searchValue(val) {
 mounted(){	
 
     this.getInBiddingJobs();
-
     if(!this.zip) {
         localStorage.removeItem('zip');
         this.isZipEmpty = true;

@@ -123,7 +123,7 @@
                             </div>
                             <p>Address: 
                                 <strong>
-                                    {{record.address}} {{ record.city + ' ,'}} {{ record.state }}
+                                    {{record.address + ' , '}} {{ record.apartment ? record.apartment + ' , ' : '' }} {{ record.city + ' ,'}} {{ record.state }}
                                 </strong>
                             </p>
                         </div>                        
