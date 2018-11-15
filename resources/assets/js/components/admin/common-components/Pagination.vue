@@ -61,7 +61,6 @@
             },
             infiniteHandler($state) {
                 let self = this;
-
                 if(self.loading) {
                     return false;
                 }

@@ -192,7 +192,7 @@
       if(typeof(page) !== 'undefined' && page){
         url += '&page='+page;   
       }
-
+      url = url + "&order_by=updated_at";
       self.$http.get(url).then(response => {
         response = response.data;
         self.listing = response.data;
