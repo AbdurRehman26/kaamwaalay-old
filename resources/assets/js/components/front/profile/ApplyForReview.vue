@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <label>DOCUMENT(S)</label>
-                    <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
+                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
 
                     </file-upload-component>
 
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                     <label>DOCUMENT(S)</label>
-                    <file-upload-component  :multiple="true":fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
+                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
 
                     </file-upload-component>
 

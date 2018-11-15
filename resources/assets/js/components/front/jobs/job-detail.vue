@@ -151,7 +151,7 @@
                         </div>                        
                         
                         <div class="coustomer-info-line m-t-20">
-                            <iframe :src="mapUrl" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe :src="mapUrl | googleMapEmbeded" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>                
                     </div>
 
@@ -379,6 +379,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 forceUserValue : false,
                 requestUserUrl : '',
                 showChatButton : true,
+                axisPoints : null,
 
             }
         },
@@ -504,20 +505,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return user ? user.zip_code : false;
             },
             mapUrl(){
-
-                let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
-                let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
-
-                this.mapKey = window.mapKey;
-                
-                let axisPoints = xAxis +','+  yAxis;
-                axisPoints = this.record.address;
-
-                if(this.record.city){
-                    axisPoints += this.record.city;
-                }
-
-                return 'https://www.google.com/maps/embed/v1/place?key='+this.mapKey+'&zoom='+this.mapZoom+'&q='+axisPoints+'"';
+                return this.axisPoints;
             },
             onTheWay(){
                 if(Object.keys(this.record).length && this.record.my_bid){
@@ -529,8 +517,22 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             }
         },
         methods: {
+            axistPointsValue(){
+                let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
+                let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
+
+                this.mapKey = window.mapKey;
+                
+                this.axisPoints = xAxis +','+  yAxis;
+                
+                this.axisPoints = this.record.address;
+                return this.axisPoints;
+
+            },
+            
             googleGetAddress(record){
-                                
+                    
+                let self = this;            
                 var addressObj = {
                     address_line_1: record.address,
                     address_line_2: '',
@@ -539,7 +541,11 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     zip_code:       '',            
                     country:        record.country
                 }
-                Vue.$geocoder.send(addressObj, response => { console.log(response) });
+                Vue.$geocoder.send(addressObj, response => { 
+                    console.log(response.results[0], 444);
+                    self.axisPoints = response;
+
+                });
 
             },
             getImage(img) {
@@ -634,7 +640,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.submitBidForm = false;
 
                 this.record = response.data;
-
+                this.axistPointsValue();
 
                 this.googleGetAddress(this.record);
 

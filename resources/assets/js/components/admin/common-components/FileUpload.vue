@@ -71,20 +71,21 @@
                     return;
                 }
 
+                console.log(files , 33);
                 for (var i = files.length - 1; i >= 0; i--) {
+                    if(files[i]){             
+                        if(supportedType.includes(files[i].name.split('.').pop())) {
+                         this.errorBag.clear();
+                         this.isFileUpload = null;
+                         this.createImage(files[i]);
+                     }
+                 }
 
 
-                    if(supportedType.includes(files[i].name.split('.').pop())) {
-                       this.errorBag.clear();
-                       this.isFileUpload = null;
-                       this.createImage(files[i]);
-                   }
+             }
 
-
-               }
-
-           },
-           createImage(file) {
+         },
+         createImage(file) {
             var self = this;    
             var image = new Image();
             var reader = new FileReader();
