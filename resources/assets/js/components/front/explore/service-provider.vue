@@ -201,7 +201,8 @@
                 isZipEmpty: false,
                 invitePopup : false,
                 serName: '',
-                jobs : ''
+                jobs : '',
+                service_url_suffix : ''
             }
         },
         computed : {
@@ -216,16 +217,35 @@
                 return user ? user.total_inbidding_jobs : false;
             },
             postJobRoute(){
-                let zipCode = this.$route.params.zip;
-                let serviceName = this.$route.params.childServiceName;
+                let zipCode = '';
+                let serviceName = '';
+                var params = Object.keys(this.$route.params);
 
                 // Had to do this -> not my fault
                 // Due to change in requirement i-e added parent service parameter in route url
+                console.log(params)
 
-                if(Object.keys(this.$route.params).length == 2 || (!this.$route.params.zip && isNaN(zipCode))){
+                if(params.length == 3 && !this.$route.params.zip){
+
                     zipCode = this.$route.params.childServiceName;
                     serviceName = this.$route.params.serviceName;
+
+                }else if(params.length == 2){
+                    
+                    zipCode = this.$route.params.zip;
+                    serviceName = this.$route.params.serviceName;
+
+                }else if(params.length == 3 && this.$route.params.zip){
+
+                    zipCode = this.$route.params.zip;
+                    serviceName = this.$route.params.childServiceName;
+
+                }else{
+                    
                 }
+
+
+                this.service_url_suffix = serviceName;
 
                 return '/job-post?service_name='+serviceName+'&zip='+zipCode;
             }
@@ -362,12 +382,12 @@
                 this.categoryPopup = false;
             },
             servicedetail(record){        	
-                
+
                 if(record.is_featured){
                     this.updateCampaignClickCount(record.user_id);
                 }
 
-                let routeData = this.$router.resolve({ name: 'service-provider-detail.view', params: { id: record.id }});
+                let routeData = this.$router.resolve({ name: 'service-provider-detail.view', params: { id: record.id }, query: { zip: this.zipCode , service_name : this.service_url_suffix }});
                 window.open(routeData.href, '_blank');
 
             },

@@ -16,7 +16,7 @@
                             </div>
                             <div class="service-detail">
 
-                                <a href="/job-post" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+                                <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
 
                                 <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
                                     Invite to Bid
@@ -141,6 +141,17 @@
             inBiddingJobs(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
                 return user ? user.total_inbidding_jobs : false;
+            },
+            postJobRoute(){
+                let zipCode = '';
+                let serviceName = '';
+                var query = Object.keys(this.$route.query);
+
+                zipCode = this.$route.query.zip;
+                serviceName = this.$route.query.service_name;
+
+
+                return '/job-post?service_name='+serviceName+'&zip='+zipCode;
             }
 
         },
