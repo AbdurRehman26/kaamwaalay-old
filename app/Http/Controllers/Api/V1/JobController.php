@@ -49,7 +49,8 @@ class JobController extends ApiResourceController
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
             'details', 'is_archived', 'filter_by_city', 'subscription_id',
-            'address_latitude', 'address_longitude', 'service_provider_user_id'
+            'address_latitude', 'address_longitude', 'service_provider_user_id',
+            'explore_jobs'
         );
 
         $input['user_id'] = request()->user()->id;
@@ -60,7 +61,7 @@ class JobController extends ApiResourceController
                 $input['filter_by_service'], $input['keyword'], $input['details'],
                 $input['filter_by_status'], $input['filter_by_status'], $input['filter_by_status'],
                 $input['filter_by_user'], $input['filter_by_service_provider'], $input['filter_by_me'],
-                $input['filter_by_city']
+                $input['filter_by_city'], $input['explore_jobs']
             );
 
             if(empty($input['images'][0])){

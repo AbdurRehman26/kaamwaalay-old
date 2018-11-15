@@ -7,6 +7,7 @@
                 <span slot="noResult">No zip code found.</span>
             </multiselect>
         </div>
+
     </div>
 </template>
 
@@ -36,7 +37,6 @@
                     latitude: '',
                     longitude: '',
                 };
-
                 this.searchZipCode(this.initialValue, true);
 
 
@@ -49,7 +49,6 @@
                 this.isTouched = true
             },
             dispatchAction (actionName) {
-                this.searchValue = '';
                 this.options = [];
                 this.$emit('onSelect', actionName);
             },

@@ -348,6 +348,13 @@
 
 
             prefillValues(){
+
+
+                let user = JSON.parse(this.$store.getters.getAuthUser)
+                this.formData.state_id = user.state_id ? user.state_id : '';
+                this.formData.zip_code = user.zip_code ? parseInt(user.zip_code) : '';
+                this.formData.city_id = user.city_id ? user.city_id : '';
+
                 let self = this;
                 let zipCode = this.$route.query.zip;
                 let serviceName = this.$route.query.service_name;
@@ -370,14 +377,12 @@
                     self.formData.service_provider_user_id = this.$route.query.service_provider_user_id;
                 }
 
-
             },
             setZipCode(val) {
                 if(val.zip_code){
                     this.formData.zip_code = parseInt(val.zip_code);
                     this.setCity(val)
                     this.invalidZip = false;
-                    console.log(this.formData.zip_code);
                 }
                 if(!val.zip_code) {
                     this.invalidZip = true;
@@ -389,6 +394,7 @@
               }else{
                   this.formData.state_id = ''  
               }
+
               if(object.city_id){
                   this.currentCity = object.city_id;    
               }else{

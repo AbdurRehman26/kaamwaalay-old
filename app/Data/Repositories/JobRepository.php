@@ -54,6 +54,10 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         ->select('jobs.id')
         ->orderBy('jobs.id', 'desc');
         
+        if(empty($input['filter_by_city']) && request()->user() && !empty($input['explore_jobs'])){
+            $input['filter_by_city'] = request()->user()->city_id ? request()->user()->city_id : null;
+        }
+
         if(!empty($input['filter_by_me'])) {
             $input['filter_by_user'] = request()->user()->id;            
         }
