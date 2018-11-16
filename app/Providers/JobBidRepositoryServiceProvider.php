@@ -29,7 +29,9 @@ public function boot()
             $event->object_id = $jobBid->id;
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding.';
             $event->to->notify(new JobBidUpdatedNotification($event));
-        }else if(!$jobBid->is_awarded && !$jobBid->is_archived && $jobBid->status !=JobBid::CANCELLED && $jobBid->status !=JobBid::COMPLETED && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::ONTHEWAY ){
+        }
+
+        if(!$jobBid->is_awarded && !$jobBid->is_archived && $jobBid->status !=JobBid::CANCELLED && $jobBid->status !=JobBid::COMPLETED && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::ONTHEWAY ){
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
