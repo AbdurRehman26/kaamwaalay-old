@@ -114,7 +114,6 @@
             // had to use JQUERY since couldnt find a solution for uploading the same file twice 
             // :'(
 
-            $('input[type=file]').val('');
 
             this.$http.post(url, data).then(response => {
 
