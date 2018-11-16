@@ -258,7 +258,7 @@
                         <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
-                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">
                         <span>Initiate Job</span> <loader></loader>
                     </button>
 
@@ -279,7 +279,7 @@
                         Write Review
                     </a>
 
-                    <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && !jobCancelled && !awardedToMe" @click.prevent="markArchiveBySp" class="btn btn-cancel-job"><i class="icon-folder"></i> 
+                    <a v-canBid href="#" v-if="!isMyJob && !jobCancelled" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
                         Archive
                     </a>
 
@@ -407,7 +407,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
+                    return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
                 }
                 return false;
             },
@@ -491,7 +491,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 }
             },
             jobCancelled(){
-                if(Object.keys(this.record).length){
+                if(Object.keys(this.record).length && this.record.my_bid){
                     return this.record.status == 'cancelled'
                 }
             },
@@ -514,7 +514,17 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             canViewMap(){
                 return this.isMyJob || this.visitAllowed || this.onTheWay || this.awardedToMe;
-            }
+            },
+            disableArchiveBid(){
+                return (this.record.status != 'completed' || this.record.my_bid.is_archived) && (this.record.status == 'cancelled' || this.awardedToMe);
+            },
+            disableInitiateBid(){
+                return this.record.status == 'initiated' || this.record.status == 'completed' || this.record.my_bid.is_archived;
+            },
+            disableMarkDoneBid(){
+                return this.record.status == 'completed' || this.record.my_bid.is_archived;
+            },
+              
         },
         methods: {
             axistPointsValue(){
@@ -522,16 +532,16 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
 
                 this.mapKey = window.mapKey;
-                
+
                 this.axisPoints = xAxis +','+  yAxis;
-                
+
                 this.axisPoints = this.record.address;
                 return this.axisPoints;
 
             },
-            
+
             googleGetAddress(record){
-                    
+
                 let self = this;            
                 var addressObj = {
                     address_line_1: record.address,
@@ -542,7 +552,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     country:        record.country
                 }
                 Vue.$geocoder.send(addressObj, response => {
-                 
+
                     self.axisPoints = response.results[0].formatted_address;
 
                 });
