@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Notifications\JobBidCreatedNotification;
 use App\Data\Models\User;
 use App\Data\Models\Job;
+use App\Data\Models\JobBid;
 
 class JobBidCreated implements ShouldQueue
 {
@@ -35,8 +36,14 @@ class JobBidCreated implements ShouldQueue
         $event = new \StdClass();
         $job = Job::find($this->data['job_id']);
         $event->id = $job->id;
-        $event->body =  $job; 
-        if(!empty($this->data['is_invited'])){
+        $event->body =  $job;
+        if(!empty($this->data['is_visit_required']) && $this->data['is_visit_required'] == 1 && empty($this->data['deleted_at']) && $this->data['status'] != JobBid::VISITALLOWED && $this->data['status'] != JobBid::COMPLETED){
+            $event->to = User::find($job->user_id);
+            $event->from = User::find($this->data['user_id']);
+            $event->email_title = 'Requested For A Visit';  
+            $event->object_id = $this->data['id'];
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding.';
+        }else if(!empty($this->data['is_invited'])){
             if($this->data['is_invited'] == 1){
                $event->from = User::find($job->user_id);
                $event->to = User::find($this->data['user_id']);
