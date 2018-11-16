@@ -279,7 +279,7 @@
                         Write Review
                     </a>
 
-                    <a v-canBid href="#" v-if="!isMyJob && !jobCancelled && myBidValue" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
+                    <a v-canBid href="#" v-if="!isMyJob && canArchiveBid && myBidValue" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
                         Archive
                     </a>
 
@@ -516,7 +516,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return this.isMyJob || this.visitAllowed || this.onTheWay || this.awardedToMe;
             },
             disableArchiveBid(){
-                return (this.record.status != 'completed' || this.record.my_bid.is_archived) && (this.record.status == 'cancelled' || this.awardedToMe);
+                return this.record.my_bid.is_archived || ( (this.record.status != 'completed') && (this.record.status == 'cancelled' || this.awardedToMe));
             },
             disableInitiateBid(){
                 return this.record.status == 'initiated' || this.record.status == 'completed' || this.record.my_bid.is_archived;
