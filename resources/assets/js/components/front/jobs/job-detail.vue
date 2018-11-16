@@ -242,11 +242,11 @@
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disabledMarkJobComplete ? 'disabled' : '' ]">
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
-                    <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' ]">
+                    <button v-if="isMyJob && canArchiveJob" @click.prevent="markJobArchive(); confirmPopupShow = true;" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-cancel-job', 'archiving' , jobArchived ? 'disabled' : '' ]">
                         <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
                     </button>
 
@@ -254,7 +254,7 @@
 
                     <a href="javascript:void(0);" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" :class="['btn', 'btn-cancel-job', disabledCancelJob ? 'disabled' : '']"><i class="icon-close2"></i> Cancel Job</a>
 
-                    <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]">
+                    <button v-canBid v-if="!isMyJob && canMarkJobDone" @click="markDoneBySp" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color', disabledMarkJobDone ? 'disabled' : '' ]">
                         <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
@@ -419,7 +419,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             canMarkJobComplete(){
                 if(Object.keys(this.record).length){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.status != 'completed' && this.record.awardedBid.status == 'completed';
+                    return this.record.status != 'cancelled' && this.record.awardedBid;
                 }
                 return false;
             },
@@ -442,7 +442,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return false;
             },
             canArchiveJob(){
-                return this.record.status != 'cancelled' && !this.record.is_archived && (this.record.status == 'completed' || this.record.status == 'cancelled');  
+                return this.record.status != 'cancelled' && (this.record.status == 'completed' || this.record.status == 'cancelled');  
             },
             canAwardJob(){
                 return !this.record.awarded_to && this.record.status != 'cancelled';
@@ -526,7 +526,18 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             disabledCancelJob(){
                 return this.record.status == 'cancelled';
-            }  
+            },
+            disabledMarkJobComplete(){
+                if(this.record){  
+                    return this.record.status == 'completed';
+                }
+            },
+            disabledMarkJobDone(){
+                if(this.record.my_bid){  
+                    return this.record.my_bid.status != 'initiated';
+                }
+            } 
+
 
         },
         methods: {
