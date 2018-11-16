@@ -541,7 +541,8 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     zip_code:       '',            
                     country:        record.country
                 }
-                Vue.$geocoder.send(addressObj, response => { 
+                Vue.$geocoder.send(addressObj, response => {
+                 
                     self.axisPoints = response.results[0].formatted_address;
 
                 });
@@ -639,7 +640,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.submitBidForm = false;
 
                 this.record = response.data;
-                this.axistPointsValue();
+                // this.axistPointsValue();
 
                 this.googleGetAddress(this.record);
 
