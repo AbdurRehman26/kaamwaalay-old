@@ -164,6 +164,12 @@ button.sl-close {
     max-width: 110px;
 }
 
+.invalid-file {
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #dc3545;
+}
+
 .rejected-textbox{
     max-width: 350px;
 }
