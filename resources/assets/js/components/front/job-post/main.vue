@@ -46,7 +46,7 @@
                     <p>Attach Photo</p>
                 </div>
                 <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
-                
+
                 <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 
                     <div class="col-md-6">
@@ -157,61 +157,61 @@
 
             </div>
             <div class="row">
-             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="">City *</label>
-                    <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
-                        <option value="">Select City</option>
-                        <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                    </select>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    <div class="verify-account">
-        <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
-            <p>VERIFY ACCOUNT</p>
-        </div> 
-        <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
-            <p>URGENT JOB</p>
-        </div>
-        <div class="row">
-            <div v-if="isShowCardDetail && isPaymentDetailShow" class="col-md-12">
-                <div class="verification-alert">
-                    <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
-                        <span>We won't charge your card</span>.</p>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">City *</label>
+                        <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
+                            <option value="">Select City</option>
+                            <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                        </select>
                     </div>
                 </div>
-                <div v-else-if="!isShowCardDetail" class="col-md-12">
+            </div> 
+        </div>
+
+        <div class="verify-account">
+            <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
+                <p>VERIFY ACCOUNT</p>
+            </div> 
+            <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
+                <p>URGENT JOB</p>
+            </div>
+            <div class="row">
+                <div v-if="isShowCardDetail && isPaymentDetailShow" class="col-md-12">
                     <div class="verification-alert">
-                        <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
+                        <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
+                            <span>We won't charge your card</span>.</p>
+                        </div>
+                    </div>
+                    <div v-else-if="!isShowCardDetail" class="col-md-12">
+                        <div class="verification-alert">
+                            <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
+                        </div>
                     </div>
                 </div>
+                <div>
+                    <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
+                </div>
             </div>
-            <div>
-                <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
+            <div class="job-form-submission">
+                <div class="">
+
+                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
+                        {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
+                        <loader></loader>
+                    </button>
+
+                </div>
+                <p>Please make sure all the information you entered is accurate before submitting.</p>
             </div>
-        </div>
-        <div class="job-form-submission">
-            <div class="">
 
-                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
-                    {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
-                    <loader></loader>
-                </button>
+        </form>
+    </div>
+    <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+    <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
 
-            </div>
-            <p>Please make sure all the information you entered is accurate before submitting.</p>
-        </div>
-
-    </form>
-</div>
-<vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-<vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
-
-<vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
-<vue-common-methods :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
+    <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+    <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -390,190 +390,200 @@
             },
             setCity(object){
                 if(object.state_id){
-                  this.formData.state_id = object.state_id;    
-              }else{
-                  this.formData.state_id = ''  
-              }
+                    this.formData.state_id = object.state_id;    
+                }else{
+                    this.formData.state_id = ''  
+                }
 
-              if(object.city_id){
-                  this.currentCity = object.city_id;    
-              }else{
-                  this.currentCity = ''  
-              }
-              this.onStateChange();
-          },
-          paymentDetailShow(){
-            let user = JSON.parse(this.$store.getters.getAuthUser)   
-            if(user.stripe_token){
-                this.isPaymentDetailShow = false
-            }else{
-                this.isPaymentDetailShow = true
+                if(object.city_id){
+                    this.currentCity = object.city_id;    
+                }else{
+                    this.currentCity = ''  
+                }
+
+
+
+                this.onStateChange();
+            },
+            paymentDetailShow(){
+                let user = JSON.parse(this.$store.getters.getAuthUser)   
+                if(user.stripe_token){
+                    this.isPaymentDetailShow = false
+                }else{
+                    this.isPaymentDetailShow = true
+                }
+            },
+            getJobResponse(response){
+                let self = this;
+                this.formData = response.data;
+                this.currentCity = this.formData.city_id;
+
+
+                this.onStateChange();
+                setTimeout(function () {
+                    Vue.nextTick(() => {
+                        self.errorBag.clear()
+                    })
+
+                }, 100);
+
+            },
+            getStateResponse(response){
+                let self = this;
+                self.loading = false;
+                self.states = response.data;
+
+            },
+            getCityResponse(response){
+                let self = this;
+                self.cities = response.data;
+                if(this.currentCity){
+                    this.formData.city_id = this.currentCity;
+                    this.currentCity = '';
+                }
+            },
+
+            onStateChange(select){
+                if(typeof(this.formData.state_id) == 'undefined'){
+                    return false;
+                }
+
+                var select = select|false;
+                if(select){
+                    this.formData.city_id = '';
+                }
+                this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
+                if(this.currentCity){
+                    this.formData.city_id = this.currentCity;
+                    this.currentCity = '';
+                }
+            },
+            getResponse($event){
+                this.formData['images'][this.formData['images'].length] = {
+                    name : $event.name,
+                    original_name : $event.original_name
+                };
+                this.$forceUpdate();
+            },
+            validateBeforeSubmit() {
+                self = this;
+                this.isSubmit = false
+                this.$validator.validateAll().then((result) => {
+                    this.invalidZip = null;
+                    if(!this.formData.zip_code) {
+                        this.invalidZip = true;
+                        return;
+                    }
+                    if (result) {
+
+                        if(!this.videoValid){
+                            this.errorMessage = 'The youtube video ID is invalid';
+                            return;
+                        }
+
+                        setTimeout(function () {
+                            if(!this.errorMessage){    
+                                self.isSubmit = true;
+                            }else{
+                                self.isSubmit = false;
+                            }
+                        }, 500);
+
+                        if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
+                            this.onSubmit();
+                        }
+                        this.errorMessage = '';
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            },
+            onSubmit() {
+                let self = this;
+
+                this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
+                let data = this.formData;
+
+                self.loading = true;
+                let url = self.url;
+                let urlRequest = '';
+
+                if(this.$route.params.id){
+                    url += '/' + this.$route.params.id;    
+                    urlRequest =  self.$http.put(url , data)
+                }else{
+                    urlRequest = self.$http.post(url, data);
+                }
+
+                urlRequest.then(response => {
+                    response = response.data;
+
+                    self.successMessage = response.message;
+
+                    self.requestUserUrl = 'api/user/me';
+
+
+                    setTimeout(function () {
+                        self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
+                        self.successMessage = '';
+                        self.loading = false;
+                    }, 2000);
+
+                }).catch(error => {
+                    self.loading = false;
+                });
+
+            },
+            job(){
+                window.scrollTo(0,0);
+                this.$router.push({name: 'My Jobs'});
+            },
+            getPlansList (){
+                let self = this;
+                let url = 'api/plan';
+                let params = {
+                    pagination: false,
+                    type: 'job',
+                    product: 'urgent_job',
+                };
+                self.$http.get(url, {params: params}).then(response=>{
+                    self.plans = response.data.data
+                    self.selectedPlan = self.plans[0].id
+                    self.urgentJobAmount = self.plans[0].amount
+                }).catch(error=>{
+                });
+            },
+            removeImage(imageIndex){
+                this.formData.images.splice(imageIndex , 1);
+                this.$forceUpdate();
+                return false;
+            },
+            addImages(){
+                this.formData.images[this.formData.images.length] = '';
+                this.$forceUpdate();
+            },
+            getUserResponse(response){
+                if(response.data){
+                    this.$store.commit('setAuthUser', response.data);
+                }
             }
-        },
-        getJobResponse(response){
-            let self = this;
-            this.formData = response.data;
-            this.onStateChange();
-            setTimeout(function () {
-                Vue.nextTick(() => {
-                    self.errorBag.clear()
-                })
-
-            }, 100);
 
         },
-        getStateResponse(response){
-            let self = this;
-            self.loading = false;
-            self.states = response.data;
-
-        },
-        getCityResponse(response){
-            let self = this;
-            self.cities = response.data;
-            if(this.currentCity){
-               this.formData.city_id = this.currentCity;
-               this.currentCity = '';
-           }
-       },
-
-       onStateChange(select){
-        var select = select|false;
-        if(select){
-         this.formData.city_id = '';
-     }
-     this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
-     if(this.currentCity){
-       this.formData.city_id = this.currentCity;
-       this.currentCity = '';
-   }
-},
-getResponse($event){
-    this.formData['images'][this.formData['images'].length] = {
-        name : $event.name,
-        original_name : $event.original_name
-    };
-    this.$forceUpdate();
-},
-validateBeforeSubmit() {
-    self = this;
-    this.isSubmit = false
-    this.$validator.validateAll().then((result) => {
-        this.invalidZip = null;
-        if(!this.formData.zip_code) {
-            this.invalidZip = true;
-            return;
+        watch:{
+            'formData.zip_code'(val) {
+                if(!val) {
+                    this.invalidZip = true;
+                }
+            },
+            jobType (value) {
+                if(value == 'urgent_job'){
+                    this.isShowCardDetail = false
+                    this.isUrgentJob = true
+                } else{
+                    this.isShowCardDetail = true
+                    this.isUrgentJob = false
+                }
+            },
         }
-        if (result) {
-
-            if(!this.videoValid){
-                this.errorMessage = 'The youtube video ID is invalid';
-                return;
-            }
-
-            setTimeout(function () {
-             if(!this.errorMessage){    
-                self.isSubmit = true;
-            }else{
-                self.isSubmit = false;
-            }
-        }, 500);
-
-            if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
-                this.onSubmit();
-            }
-            this.errorMessage = '';
-            return;
-        }
-        this.errorMessage = this.errorBag.all()[0];
-    });
-},
-onSubmit() {
-    let self = this;
-
-    this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
-    let data = this.formData;
-
-    self.loading = true;
-    let url = self.url;
-    let urlRequest = '';
-
-    if(this.$route.params.id){
-        url += '/' + this.$route.params.id;    
-        urlRequest =  self.$http.put(url , data)
-    }else{
-        urlRequest = self.$http.post(url, data);
     }
-
-    urlRequest.then(response => {
-        response = response.data;
-
-        self.successMessage = response.message;
-
-        self.requestUserUrl = 'api/user/me';
-
-
-        setTimeout(function () {
-            self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
-            self.successMessage = '';
-            self.loading = false;
-        }, 2000);
-
-    }).catch(error => {
-        self.loading = false;
-    });
-
-},
-job(){
-    window.scrollTo(0,0);
-    this.$router.push({name: 'My Jobs'});
-},
-getPlansList (){
-    let self = this;
-    let url = 'api/plan';
-    let params = {
-        pagination: false,
-        type: 'job',
-        product: 'urgent_job',
-    };
-    self.$http.get(url, {params: params}).then(response=>{
-        self.plans = response.data.data
-        self.selectedPlan = self.plans[0].id
-        self.urgentJobAmount = self.plans[0].amount
-    }).catch(error=>{
-    });
-},
-removeImage(imageIndex){
-    this.formData.images.splice(imageIndex , 1);
-    this.$forceUpdate();
-    return false;
-},
-addImages(){
-    this.formData.images[this.formData.images.length] = '';
-    this.$forceUpdate();
-},
-getUserResponse(response){
-    if(response.data){
-        this.$store.commit('setAuthUser', response.data);
-    }
-}
-
-},
-watch:{
-    'formData.zip_code'(val) {
-        if(!val) {
-            this.invalidZip = true;
-        }
-    },
-    jobType (value) {
-        if(value == 'urgent_job'){
-            this.isShowCardDetail = false
-            this.isUrgentJob = true
-        } else{
-            this.isShowCardDetail = true
-            this.isUrgentJob = false
-        }
-    },
-}
-}
 </script>
