@@ -191,7 +191,7 @@ export default {
     		this.isSuccessStory = val;
     	},
     	onSignup() {
-			this.$router.push({ name: 'sign-up', params: { isPro: 'join-as-pro' }});
+			this.$router.push({ name: 'sign-up', params: { isPro: 'provider' }});
     	}
     }
 }

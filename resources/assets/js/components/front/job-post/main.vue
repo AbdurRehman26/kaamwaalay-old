@@ -551,6 +551,9 @@
                     self.selectedPlan = self.plans[0].id
                     self.urgentJobAmount = self.plans[0].amount
                 }).catch(error=>{
+                    if(error.response.status == 401) {
+                        self.$router.push({name: 'login'});
+                    }
                 });
             },
             removeImage(imageIndex){
