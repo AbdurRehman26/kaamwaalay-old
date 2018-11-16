@@ -390,7 +390,7 @@ if (to.matched.some(record => record.meta.requiresAuth) && !router.app.$auth.isA
 }
 
 if (to.matched.some(record => record.meta.forCustomer) && router.app.$auth.isAuthenticated()) {
-    if(user  && user.role_id == customer){
+    if(user && user.role_id == customer){
         next();
     } 
     else{
