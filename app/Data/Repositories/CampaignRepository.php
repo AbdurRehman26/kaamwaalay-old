@@ -81,6 +81,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             ->where('is_completed', '=', 0)
             ->where('status', '!=', Campaign::EXPIRED)
             ->first();
+        $checkOtherCampaigns = false;
         if($model) {
             if($input['type'] == 'view') {
                 $model->views++;
@@ -89,39 +90,58 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             }
 
             $getPlanViews = $this->findById($model->id);
-            $consumptionPercent = round(($model->clicks/$model->views)*100);
-            $consumption = (int) $consumptionPercent;
-            $intervals = [25,50,75];
-            if(in_array($consumption, $intervals)){
+            $planViewsCount = $getPlanViews->plan->quantity;
+            $myView = $getPlanViews->views;
+            $intervals = [];
+            $intervals["25"] = (int)ceil((25/100) * $planViewsCount);
+            $intervals["50"] = (int)ceil((50/100) * $planViewsCount);
+            $intervals["75"] = (int)ceil((75/100) * $planViewsCount);
+
+            if(in_array($myView, $intervals)){
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
-                $data->remaining_views = ($getPlanViews->plan->quantity-$model->views).' view(s)';
+                $data->remaining_views = ($getPlanViews->plan->quantity-$myView).' view(s)';
                 $data->title = $getPlanViews->plan->quantity.' view(s)';
-                $data->consumption = $consumption.'%';
+                $data->consumption = array_search($myView, $intervals).'%';
                 $user = User::find($data->user_id);
-                $data->message = '<strong>'.$user->first_name.' '.$user->last_name.'</strong> , you have used <strong>'.$data->consumption.'</strong> of <strong>'.$data->title.'</strong>. Remaining <strong>'.$data->remaining_views.'</strong>'; 
+                $data->message = '<strong>'.$user->first_name.' '.$user->last_name.'</strong>, you have used <strong>'.$data->consumption.'</strong> of <strong>'.$data->title.'</strong>. Remaining <strong>'.$data->remaining_views.'</strong>'; 
                 $this->sendNotification($data);
             }
-            if($getPlanViews && !empty($getPlanViews->plan->quantity) && $model->views == $getPlanViews->plan->quantity ) {
+            
+            if($getPlanViews && !empty($planViewsCount) && $myView == $planViewsCount ) {
+
                 $model->is_completed = 1;
                 $model->status = Campaign::EXPIRED;
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
-                $data->message = 'Your current campaign plan has ended. Your next campaign has begun.'; 
-                $this->sendNotification($data);
+                $checkOtherCampaigns = true;
             }
-
             if($model->save()) {
+
                 Cache::forget($this->_cacheKey.$model->id);
-                $planCount = $this->model->where('user_id','=', $input['service_provider_user_id'])->where('status', '!=', Campaign::EXPIRED)->count();
-                if($planCount == 0){
-                    $serviceProviderProfile = $this->serviceProviderProfileRepo->findByAttribute('user_id',$input['service_provider_user_id']);
-                    $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
-                    $data = new \stdClass;
-                    $data->user_id = $model->user_id;
-                    $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
+
+                if($checkOtherCampaigns) {
+                    $myPlanCount = $this->model->where('user_id','=', $input['service_provider_user_id'])->where('status', '!=', Campaign::EXPIRED)->count();
+
+                    if($myPlanCount == 0){
+
+                        $serviceProviderProfile = $this->serviceProviderProfileRepo
+                            ->findByAttribute('user_id',$input['service_provider_user_id']);
+
+                        $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
+
+                        $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
+
+                        $this->sendNotification($data);
+
+                    }else {
+                        
+                        $data->message = 'Your current campaign plan has ended. Your next campaign has begun.'; 
+                    }
+
                     $this->sendNotification($data);
                 }
+                $checkOtherCampaigns = false;
                 return true;
             }
 
@@ -132,7 +152,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
     public function sendNotification($data){
            $event = new \StdClass();
            $event->body =  $data; 
-           $event->to = User::find($data->user_id);   
+           $event->to = User::find($data->user_id); 
            $event->message = $data->message;
            $event->to->notify(new CampaignNotification($event));
     }
