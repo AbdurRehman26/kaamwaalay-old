@@ -218,8 +218,8 @@ Vue.filter('childOrParentService', function (value) {
     }
     if(value.parent){
      return value.parent.title;   
-    }
-    return '-';
+ }
+ return '-';
 });
 
 Vue.filter('adminStatus', function (value) {
@@ -354,4 +354,13 @@ Vue.filter('formatDateTimeUTC', function(value) {
         return moment.utc(value).local().format('MMM Do, YYYY, h:mm a')
     }
 });
+
+
+Vue.filter('googleMapEmbeded', function(axisPoints) {
+    var mapZoom = 10;
+    var mapKey = window.mapKey;
+
+    return 'https://www.google.com/maps/embed/v1/place?key='+mapKey+'&zoom='+mapZoom+'&q='+axisPoints+'"';
+});
+
 
