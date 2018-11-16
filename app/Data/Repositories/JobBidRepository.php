@@ -8,6 +8,7 @@ use App\Data\Models\JobBid;
 use App\Data\Models\Job;
 use Carbon\Carbon;
 use App\Jobs\JobBidCreated;
+use DB;
 
 class JobBidRepository extends AbstractRepository implements RepositoryContract
 {
@@ -360,7 +361,6 @@ public function update(array $data = [])
             $data['is_archived'] = 0;
 
         }
-
         $data = parent::update($data);
         if($data){
 
@@ -397,7 +397,11 @@ public function create(array $data = [])
     $criteria = ['user_id' => $data['user_id'] , 'job_id' => $data['job_id']];
 
 
-    $this->model->insertOnDuplicateKey($data);
+    $this->model->InsertOnDuplicateKey($data);
+    $id = DB::getPdo()->lastInsertId();
+    $data['id'] = (int) $id;
+    // $data = parent::create($data);
+    // $data = (array) $data;
     JobBidCreated::dispatch($data)->onQueue(config('queue.pre_fix').'notifications'); 
     $this->findByCriteria($criteria, true);
 
@@ -405,4 +409,5 @@ public function create(array $data = [])
 }
 
 }
+
 
