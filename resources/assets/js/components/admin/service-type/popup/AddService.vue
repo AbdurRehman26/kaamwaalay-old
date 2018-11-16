@@ -30,7 +30,7 @@
               </div>
                 <div class="form-group" v-if="showBannerIcon">
                     <label>Home Banner Icon</label>
-                    <b-form-file  @change="onFileChange($event, 'icon')" ref="fileinput2" v-model="icon" accept="image/jpeg, image/png, image/jpg" :placeholder="iconText" name="Home Banner Icon" v-validate="'required'" :class="['form-group' , errorBag.first('Home Banner Icon') ? 'is-invalid' : '']"></b-form-file>
+                    <b-form-file  @change="onFileChange($event, 'icon')" ref="iconinput" v-model="icon" accept="image/jpeg, image/png, image/jpg" :placeholder="iconText" name="Home Banner Icon" v-validate="'required'" :class="['form-group' , errorBag.first('Home Banner Icon') ? 'invalid-file' : '']"></b-form-file>
                     <div class="uploded-picture" v-bind:style="{'background-image': 'url('+ iconValue +')',}">
                     </div>
                 </div>
@@ -171,9 +171,13 @@
                 this.image = 'images/dummy/image-placeholder.jpg';
                 this.imageIcon = 'images/dummy/image-placeholder.jpg';
                 this.file = null;
-                this.icom = null;
-                this.$refs.fileinput.reset();
-                this.$refs.fileinput2.reset();
+                this.icon = null;
+                if(typeof(self.$refs.iconinput) != "undefined") {
+                    self.$refs.iconinput.reset();
+                }
+                if(typeof(self.$refs.fileinput) != "undefined") {
+                    self.$refs.fileinput.reset();
+                }
                 this.showRadios = true;
                 this.formData = {
                     parent_id: '',
@@ -277,7 +281,7 @@
                     this.errorMessage = this.errorBag.all()[0];
                     return;
                 }
-                this.errorBag.clear();
+                //this.errorBag.clear();
                 if (!files.length)
                     return;
                 this.createImage(files[0], type);
