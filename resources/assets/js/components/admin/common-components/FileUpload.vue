@@ -14,7 +14,7 @@
 
     <block-spinner v-if="isUploading"></block-spinner>
 
-    <alert v-if="errorMessage" :errorMessage="errorMessage"></alert>        
+    <!-- <alert v-if="errorMessage" :errorMessage="errorMessage"></alert>         -->
 
 </div>
 

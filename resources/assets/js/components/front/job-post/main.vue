@@ -14,206 +14,208 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Select Service</label>
-                                <select v-validate="'required'" name="service" 
-                                :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" v-model="formData.service_id" class="form-control">
-                                <option value="">Select Service</option>
-                                <option v-for="service in servicesList" v-if="service.status == 1" :value="service.id">
-                                    {{ service  | mainServiceOrChildService}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Job Title</label>
-                            <input  :maxlength="100" v-validate="'required|max:150'" name="title" 
-                            :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
-                            v-model="formData.title" type="text" class="form-control" 
-                            placeholder="Enter job title">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <textarea :maxlength="500" v-validate="'required|max:500'" name="description" 
-                            :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                
 
-            <div class="attach-job-files">
-                <div class="form-label-heading">
-                    <p>Attach Photo</p>
-                </div>
-                <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
+                                <div class="custom-multi">
+                                    <multiselect  v-model="searchServiceValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title"  open-direction="bottom" :searchable="true" :options-limit="500" :limit="8" :max-height="700" name="search" :internal-search="true" :showNoResults="true">
+                                        <span slot="noResult">No service found.</span>
+                                    </multiselect>
+                                </div>
 
-                <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 
-                    <div class="col-md-6">
-                        <div class="form-group custom-file">
-                            {{image.original_name}}
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <a href="javascript:;" @click.prevent="removeImage(index);" class="add-photos">remove</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="attach-video-files">
-                <div class="form-label-heading">
-                    <p>ATTACH VIDEO</p>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Youtube video ID</label>
-                            <input :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
-                        </div>
-                    </div>
-                    <div class="col-md-6 video-url">
-                        <p>Video id available at the end of youtube video url. https://www.youtube.com/watch?v={VIDEO-ID}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-need">
-                <div class="form-label-heading m-b-25">
-                    <p>WHEN YOU NEED THIS SERVICE</p>
-                </div>
-                <div class="row ">
-                    <div class="col-md-12">
-                        <label>Do you need this service urgently?</label>
-                    </div>
-                    <div class="boxed">
-                        <div class="col-md-6">
-                            <input type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
-                            <label for="normal">No, Normal job</label>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
-                            <label for="urgent">Yes, Urgent job</label>
+                            <div class="form-group">
+                                <label>Job Title</label>
+                                <input  :maxlength="100" v-validate="'required|max:150'" name="title" 
+                                :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
+                                v-model="formData.title" type="text" class="form-control" 
+                                placeholder="Enter job title">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea :maxlength="500" v-validate="'required|max:500'" name="description" 
+                                :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Preference</label>
-                            <select v-validate="'required'" name="preference" 
-                            :class="['form-control' , errorBag.first('preference') ? 'is-invalid' : '']" v-model="formData.preference" class="form-control">
-                            <option value="choose_date" selected="">Choose Date</option>
-                            <option value="few_days">In a few days</option>
-                            <option value="with_in_a_week">Within this week</option>
-                            <option value="any_time">Any Time</option>
-                        </select>
-                    </div>
-                </div>
-                <div v-if="formData.preference == 'choose_date'" class="col-md-6">
-                    <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' ,'custom-datepicker','form-group']">
-                        <label>Select Date</label>
-                        <datepicker name="scheduled at" v-validate="'required'" v-model="formData.schedule_at"   :disabledDates="disabledDates" placeholder="Select Date"></datepicker>
-                    </div>
-                </div>
-            </div>				
-        </div>
-
-        <div class="service-location">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input v-validate="'required'" name="address" 
-                        :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Apartment, Suite, Unit</label>
-                        <input v-model="formData.apartment" type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="zipcode-selectize">
-                        <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="formData.zip_code"></zip>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">State *</label>
-                        <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="formData.state_id">
-                            <option value="">Select State</option>
-                            <option v-for="state in states" :value="state.id">{{state.name}}</option>
-                        </select>
-                    </div>
                 </div>
 
-
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">City *</label>
-                        <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
-                            <option value="">Select City</option>
-                            <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                        </select>
+                <div class="attach-job-files">
+                    <div class="form-label-heading">
+                        <p>Attach Photo</p>
                     </div>
-                </div>
-            </div> 
-        </div>
+                    <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
-        <div class="verify-account">
-            <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
-                <p>VERIFY ACCOUNT</p>
-            </div> 
-            <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
-                <p>URGENT JOB</p>
-            </div>
-            <div class="row">
-                <div v-if="isShowCardDetail && isPaymentDetailShow" class="col-md-12">
-                    <div class="verification-alert">
-                        <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
-                            <span>We won't charge your card</span>.</p>
+                    <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
+
+                        <div class="col-md-6">
+                            <div class="form-group custom-file">
+                                {{image.original_name}}
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="javascript:;" @click.prevent="removeImage(index);" class="add-photos">remove</a>
                         </div>
                     </div>
-                    <div v-else-if="!isShowCardDetail" class="col-md-12">
-                        <div class="verification-alert">
+                </div>
+
+                <div class="attach-video-files">
+                    <div class="form-label-heading">
+                        <p>ATTACH VIDEO</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Youtube video ID</label>
+                                <input :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
+                            </div>
+                        </div>
+                        <div class="col-md-6 video-url">
+                            <p>Video id available at the end of youtube video url. https://www.youtube.com/watch?v={VIDEO-ID}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-need">
+                    <div class="form-label-heading m-b-25">
+                        <p>WHEN YOU NEED THIS SERVICE</p>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <label>Do you need this service urgently?</label>
+                        </div>
+                        <div class="boxed">
+                            <div class="col-md-6">
+                                <input type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
+                                <label for="normal">No, Normal job</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
+                                <label for="urgent">Yes, Urgent job</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
                             <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
-                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Preference</label>
+                                <select v-validate="'required'" name="preference" 
+                                :class="['form-control' , errorBag.first('preference') ? 'is-invalid' : '']" v-model="formData.preference" class="form-control">
+                                <option value="choose_date" selected="">Choose Date</option>
+                                <option value="few_days">In a few days</option>
+                                <option value="with_in_a_week">Within this week</option>
+                                <option value="any_time">Any Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div v-if="formData.preference == 'choose_date'" class="col-md-6">
+                        <div :class="[errorBag.first('scheduled at') ? 'is-invalid' : '' ,'custom-datepicker','form-group']">
+                            <label>Select Date</label>
+                            <datepicker name="scheduled at" v-validate="'required'" v-model="formData.schedule_at"   :disabledDates="disabledDates" placeholder="Select Date"></datepicker>
+                        </div>
+                    </div>
+                </div>				
             </div>
-            <div class="job-form-submission">
-                <div class="">
 
-                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
-                        {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
-                        <loader></loader>
-                    </button>
+            <div class="service-location">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input v-validate="'required'" name="address" 
+                            :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Apartment, Suite, Unit</label>
+                            <input v-model="formData.apartment" type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="zipcode-selectize">
+                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="formData.zip_code"></zip>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">State *</label>
+                            <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="formData.state_id">
+                                <option value="">Select State</option>
+                                <option v-for="state in states" :value="state.id">{{state.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
 
                 </div>
-                <p>Please make sure all the information you entered is accurate before submitting.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">City *</label>
+                            <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="formData.city_id">
+                                <option value="">Select City</option>
+                                <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
             </div>
 
-        </form>
+            <div class="verify-account">
+                <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
+                    <p>VERIFY ACCOUNT</p>
+                </div> 
+                <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
+                    <p>URGENT JOB</p>
+                </div>
+                <div class="row">
+                    <div v-if="isShowCardDetail && isPaymentDetailShow" class="col-md-12">
+                        <div class="verification-alert">
+                            <p>To post your job, we need to verify your credit card to ensure that you are valid customer and at-least 18 years old.
+                                <span>We won't charge your card</span>.</p>
+                            </div>
+                        </div>
+                        <div v-else-if="!isShowCardDetail" class="col-md-12">
+                            <div class="verification-alert">
+                                <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
+                    </div>
+                </div>
+                <div class="job-form-submission">
+                    <div class="">
+
+                        <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
+                            {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
+                            <loader></loader>
+                        </button>
+
+                    </div>
+                    <p>Please make sure all the information you entered is accurate before submitting.</p>
+                </div>
+
+            </form>
+        </div>
+        <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+        <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
+
+        <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+        <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
+
     </div>
-    <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
-
-    <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
-    <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
-
-</div>
 </template>
 
 <script>
@@ -288,12 +290,21 @@
                 requestUserUrl : '',
                 currentCity: '',
                 videoValid : true,
+                searchServiceValue : ''
 
             }
         },
         computed : {
             servicesList(){
                 this.prefillValues();
+                let self = this;
+                this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
+                    console.log(service.id , self.formData.service_id , 3333);
+                    return self.formData.service_id == service.id;
+                });
+
+
+
                 return this.$store.getters.getAllServices;
             },
 
@@ -367,7 +378,7 @@
                     if(allServices){
                         _.find(allServices , function(service){
                             if(service.url_suffix == serviceName){
-                                self.formData.service_id = service.id;
+                                self.searchServiceValue = service;
                             }
                         });
                     }
@@ -417,7 +428,6 @@
                 let self = this;
                 this.formData = response.data;
                 this.currentCity = this.formData.city_id;
-
 
                 this.onStateChange();
                 setTimeout(function () {
@@ -503,7 +513,8 @@
 
                 this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
-
+                this.formData.service_id = this.searchServiceValue.id;
+                
                 self.loading = true;
                 let url = self.url;
                 let urlRequest = '';
