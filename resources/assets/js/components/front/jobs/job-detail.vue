@@ -542,8 +542,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     country:        record.country
                 }
                 Vue.$geocoder.send(addressObj, response => { 
-                    console.log(response.results[0], 444);
-                    self.axisPoints = response;
+                    self.axisPoints = response.results[0].formatted_address;
 
                 });
 
