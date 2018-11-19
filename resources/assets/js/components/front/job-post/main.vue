@@ -472,7 +472,7 @@
                 }
             },
             getResponse($event){
-                this.formData['images'][this.formData['images'].length] = {
+                this.formData['images'][this.formData['images'] ? this.formData['images'].length : 0] = {
                     name : $event.name,
                     original_name : $event.original_name
                 };
