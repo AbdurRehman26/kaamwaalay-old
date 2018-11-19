@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="service-need">
-                    
+
                     <div v-if="!$route.params.id" class="form-label-heading m-b-25">
                         <p>WHEN YOU NEED THIS SERVICE</p>
                     </div>
@@ -472,10 +472,17 @@
                 }
             },
             getResponse($event){
-                this.formData['images'][this.formData['images'] ? this.formData['images'].length : 0] = {
-                    name : $event.name,
-                    original_name : $event.original_name
-                };
+                if(this.formData['images']){
+                    this.formData['images'][this.formData['images'].length] = {
+                        name : $event.name,
+                        original_name : $event.original_name
+                    };
+                }else{
+                    this.formData['images'] = [{
+                        name : $event.name,
+                        original_name : $event.original_name
+                    }];   
+                }
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {
