@@ -46,16 +46,12 @@
 
     <h5 class="text-center enterzip" v-if="!zipCode">Please enter a zip code to view the list of service providers accordingly.</h5>
     <no-record-found v-else-if="noRecordFound"></no-record-found>
-    <div class="job-post-container section-padd sm" v-if="!noRecordFound" v-for="(provider, index) in groupByRecords">
+    <div class="job-post-container section-padd sm" v-if="!noRecordFound">
         <div class="container md">
-
-            <div class="text-notifer" v-if="pagination && index == zipCode">
-                <p>{{getServiceCount(index) + " " + service.title}} service professionals found near you.</p>
+            <div class="text-notifer" v-if="pagination && getNearestProviderCount(zipCode)">
+                <p>{{getNearestProviderCount(zipCode) + " " + service.title}} service professionals found closest to you.</p>
             </div>
-            <div class="text-notifer" v-else-if="pagination" >
-                <p>{{getServiceCount(index) + " " + service.title}} service professionals found in your city.</p>
-            </div>
-         <!--    <div class="job-post-list" v-for="record in provider" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
+            <div class="job-post-list" v-for="record in getNearestProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
                 <div class="job-post-details">
                     <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
                     <div class="job-common-description">
@@ -116,7 +112,74 @@
                     </div>						
 
                 </div>
-            </div> -->
+            </div>
+        </div>
+        <div class="container md">
+            <div class="text-notifer" v-if="pagination && getCityProviderCount(zipCode)">
+                <p>{{getCityProviderCount(zipCode) + " " + service.title}} service professionals found near you.</p>
+            </div>
+            <div class="job-post-list" v-for="record in getCityProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
+                <div class="job-post-details">
+                    <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
+                    <div class="job-common-description">
+                        <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3> 
+                        <span v-if="record.is_verified"><i class="icon-checked"></i></span>
+                        <div class="jobs-rating">
+                            <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
+                            <div class="jobs-done">
+                                <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>              
+
+                                <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
+                                <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
+                            </div>  
+                        </div>
+                        <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+
+                        <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary', 'post-bid'  ]">
+                            Invite to Bid
+                        </a>
+
+
+                    </div>
+
+                    <div class="member-details">
+                        <p class="location">
+                            <i class="icon-location"></i> 
+                            Location <strong>{{ record.user_detail.city }}</strong>
+                        </p>
+                        <p class="member-since">
+                            <i class="icon-calendar-daily"></i>
+                            Member since <strong>{{record.formatted_created_at }}</strong>
+                        </p>
+                    </div>
+
+                    <div class="post-job-description">
+                        <p>{{ record.business_details }}</p>
+                    </div>
+
+                    <div class="chat-feedback" v-if="record.reviewedBy">
+                        <div class="text-notifer">
+                            <p>Latest feedback & review</p> 
+                        </div>
+                        <div class="chat-feedback-column">
+                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profileImage) +')',}"></div>
+                            <div class="chat-feedback-message">
+                                <p>{{record.reviewedBy.review.message}}</p>
+                                <div class="feeback-detail">
+                                    <p class="feedback-personal-info">
+                                        <a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
+                                        posted on 
+                                        <strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
+                                    </p>
+                                    <i class="icon-quotes-right3"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>                      
+
+                </div>
+            </div>
         </div>			
     </div>
 
@@ -233,7 +296,6 @@
 
                 // Had to do this -> not my fault
                 // Due to change in requirement i-e added parent service parameter in route url
-                console.log(params)
 
                 if(params.length == 3 && !this.$route.params.zip){
 
@@ -261,10 +323,18 @@
             }
         },
         methods: {
-            getServiceCount(zip) {
+            getNearestProviderCount(zip) {
+                zip = parseInt(zip);
                 var record = this.groupByRecords;
-                consle.log(zip, 777777);
-                return (typeof(record[zip]) != "undefined"?record[1118].length: 0);
+                var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
+                return count;
+            },
+            getCityProviderCount(zip) {
+                zip = parseInt(zip);
+                var record = this.groupByRecords;
+                var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
+                count = (this.records.length - count);
+                return count;
             },
             getInBiddingJobs() {
                 let self = this;
@@ -453,6 +523,22 @@
                     self.pagination = false;
                 });
             },
+            getNearestProvider(zip) {
+                zip = parseInt(zip);
+                var record = this.groupByRecords;
+                record = (typeof(record[zip]) != "undefined"? record[zip]: []);
+                return record;
+            },
+            getCityProvider(zip) {
+                var record = this.records;
+                var record = _.map(record, function(value, key) {
+                     if(value.user_detail.zip_code != zip) {
+                         return value;
+                    };
+                });
+                record = _.without(record, undefined);
+                return record;
+            },
             getProviderRecords(response){
                 let self = this;
                 self.loading = false;
@@ -464,7 +550,6 @@
                 self.groupByRecords = _.groupBy(self.records, function(element) {
                     return element.user_detail.zip_code;
                 });
-                console.log(self.groupByRecords, 123);
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
             },
