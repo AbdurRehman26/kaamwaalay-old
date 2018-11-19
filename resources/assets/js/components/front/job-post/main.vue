@@ -80,10 +80,11 @@
                 </div>
 
                 <div class="service-need">
-                    <div class="form-label-heading m-b-25">
+
+                    <div v-if="!$route.params.id" class="form-label-heading m-b-25">
                         <p>WHEN YOU NEED THIS SERVICE</p>
                     </div>
-                    <div class="row ">
+                    <div v-if="!$route.params.id" class="row ">
                         <div class="col-md-12">
                             <label>Do you need this service urgently?</label>
                         </div>
@@ -101,6 +102,8 @@
                             <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
                         </div>
                     </div>
+                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -171,7 +174,7 @@
                 </div> 
             </div>
 
-            <div class="verify-account">
+            <div v-if="!$route.params.id" class="verify-account">
                 <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
                     <p>VERIFY ACCOUNT</p>
                 </div> 
@@ -299,7 +302,6 @@
                 this.prefillValues();
                 let self = this;
                 this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
-                    console.log(service.id , self.formData.service_id , 3333);
                     return self.formData.service_id == service.id;
                 });
 
@@ -326,7 +328,6 @@
             asyncFind: _.debounce(function(query) {
                 let self = this;
                 this.videoValid = false;
-                console.log(query , query.length)
                 if(!query) {
                     this.videoValid = true;
                     this.loading = false;
@@ -469,10 +470,17 @@
                 }
             },
             getResponse($event){
-                this.formData['images'][this.formData['images'].length] = {
-                    name : $event.name,
-                    original_name : $event.original_name
-                };
+                if(this.formData['images']){
+                    this.formData['images'][this.formData['images'].length] = {
+                        name : $event.name,
+                        original_name : $event.original_name
+                    };
+                }else{
+                    this.formData['images'] = [{
+                        name : $event.name,
+                        original_name : $event.original_name
+                    }];   
+                }
                 this.$forceUpdate();
             },
             validateBeforeSubmit() {

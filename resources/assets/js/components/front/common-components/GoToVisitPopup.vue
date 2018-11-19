@@ -8,7 +8,7 @@
                 <b-row class="justify-content-md-center">
                     <b-col cols="2" md="12">
                         <div class="form-group">
-                            <input v-model="visit_details" type="text" v-validate="'max:200'" name="" class="form-control" placeholder="For e.g. 20 minutes or 1 hour" />
+                            <input v-model="visit_details" type="text" v-validate="'required|max:200'" name="" class="form-control" placeholder="For e.g. 20 minutes or 1 hour" />
                         </div>
                     </b-col>
                 </b-row>

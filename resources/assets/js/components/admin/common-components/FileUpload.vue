@@ -71,7 +71,6 @@
                     return;
                 }
 
-                console.log(files , 33);
                 for (var i = files.length - 1; i >= 0; i--) {
                     if(files[i]){             
                         if(supportedType.includes(files[i].name.split('.').pop())) {
@@ -126,7 +125,6 @@
             }).catch(error => {
                 error = error.response.data;
                 let errors = error.errors;
-                console.log(errors  , 111);
                 self.isUploading = false;
                 self.isFileUpload = false;
                 _.forEach(errors, function(value, key) {

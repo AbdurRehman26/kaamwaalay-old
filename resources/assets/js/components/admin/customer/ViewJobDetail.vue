@@ -88,7 +88,6 @@
             },
             getRecords(response){
                 let self = this;
-                console.log(self.loading , 1111);
                 if(response.data){
                     self.records = response.data;
                     self.loading = false;
