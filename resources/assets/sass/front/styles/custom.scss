@@ -572,6 +572,13 @@ button.sl-close {
     }
 
 
+    .service-provider{
+         .disabled {
+            background-color: #7D7D7D !important;
+            border: 0;
+        }
+    }
+
 
     .multiselect__content-wrapper{
             &::-webkit-scrollbar-track

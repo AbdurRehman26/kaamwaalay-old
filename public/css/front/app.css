@@ -15162,6 +15162,11 @@ button.sl-close {
   background-color: transparent;
 }
 
+.service-provider .disabled {
+  background-color: #7D7D7D !important;
+  border: 0;
+}
+
 .multiselect__content-wrapper::-webkit-scrollbar-track {
   background-color: #fff;
   border-radius: 51px;
