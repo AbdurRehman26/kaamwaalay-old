@@ -152,7 +152,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
         }
-        
+        $this->builder = $this->builder->orderByRaw("users.zip_code = ".$data['zip']." DESC, users.zip_code ASC");
     }
 
     if (!empty($data['keyword'])) {
