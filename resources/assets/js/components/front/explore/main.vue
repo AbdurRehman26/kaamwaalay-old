@@ -39,7 +39,6 @@
 
 		<div class="featured-categories section">
 			<div class="container">
-
 				<div
 					class="block-loader bg-transparent" v-if="loadingService">
 					<loader></loader>
