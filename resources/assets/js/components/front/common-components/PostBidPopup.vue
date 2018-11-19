@@ -62,7 +62,7 @@
                             <b-col md="12">
                                 <label>Proposal Statement</label>
                                 <div class="form-group">
-                                    <textarea name="description" v-validate="'required|max:500'" :class="[errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" class="form-control" placeholder="Start typing your proposal statement"  rows="5"></textarea>
+                                    <textarea name="description" v-validate="'required|max:500'" :class="[errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" class="form-control disabled" placeholder="Start typing your proposal statement"  rows="5"></textarea>
                                 </div>           
                             </b-col>
                         </b-row>
