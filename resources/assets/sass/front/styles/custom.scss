@@ -181,6 +181,15 @@ button.sl-close {
 }
 
 
+.multiselect-z-index{
+    .multiselect__tags {
+        border-color: #B2B2B2;
+    }
+    .multiselect--active {
+        z-index: 9;
+    }
+}
+
 .services{
     .list-image{
         display: inline-block;
@@ -551,6 +560,28 @@ button.sl-close {
         }
     }
 
+
+
+    .multiselect__content-wrapper{
+            &::-webkit-scrollbar-track
+            {
+                background-color: $body-bg;
+                border-radius: 51px;
+            }
+
+            &::-webkit-scrollbar
+            {
+                width: 6px;
+                background-color: $body-bg;
+                border-radius: 51px;
+            }
+
+            &::-webkit-scrollbar-thumb
+            {
+                background-color: #cfd4d9;
+                border-radius: 51px;
+            }            
+    }
 
 .awarded.alignawd {
     display: flex;
