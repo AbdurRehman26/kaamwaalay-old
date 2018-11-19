@@ -302,7 +302,6 @@
                 this.prefillValues();
                 let self = this;
                 this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
-                    console.log(service.id , self.formData.service_id , 3333);
                     return self.formData.service_id == service.id;
                 });
 
@@ -329,7 +328,6 @@
             asyncFind: _.debounce(function(query) {
                 let self = this;
                 this.videoValid = false;
-                console.log(query , query.length)
                 if(!query) {
                     this.videoValid = true;
                     this.loading = false;

@@ -230,7 +230,6 @@
 
                 // Had to do this -> not my fault
                 // Due to change in requirement i-e added parent service parameter in route url
-                console.log(params)
 
                 if(params.length == 3 && !this.$route.params.zip){
 
