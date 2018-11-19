@@ -15,7 +15,7 @@
                                 <div class="jobs-done">
                                     <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
                                     <div class="job-status">
-                                        <span v-if="canMarkJobComplete" class="tags"
+                                        <span v-if="canMarkJobComplete && !jobCompleted && !jobArchived" class="tags"
                                         :class="['completed']">
                                         Marked Done
                                     </span>
@@ -417,9 +417,15 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 }
                 return false;
             },
+            jobCompleted(){
+                if(Object.keys(this.record).length){
+                    return this.record.status == 'completed' && this.record.awardedBid.status == 'completed' && !this.record.is_archived;
+                }
+                
+            },
             canMarkJobComplete(){
                 if(Object.keys(this.record).length){
-                    return this.record.status != 'cancelled' && this.record.awardedBid;
+                    return this.record.status != 'cancelled' && this.record.awardedBid && this.record.awardedBid.status == 'completed';
                 }
                 return false;
             },
