@@ -15153,6 +15153,20 @@ button.sl-close {
   margin-bottom: 0px !important;
 }
 
+.disabled input {
+  pointer-events: none;
+  background-color: #e6e3e3 !important;
+}
+
+.disabled span.mx-input-append {
+  background-color: transparent;
+}
+
+.service-provider .disabled {
+  background-color: #7D7D7D !important;
+  border: 0;
+}
+
 .multiselect__content-wrapper::-webkit-scrollbar-track {
   background-color: #fff;
   border-radius: 51px;

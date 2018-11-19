@@ -561,6 +561,24 @@ button.sl-close {
     }
 
 
+    .disabled{
+        input {
+            pointer-events: none;
+            background-color: #e6e3e3 !important;
+        }
+        span.mx-input-append {
+            background-color: transparent;
+        }    
+    }
+
+
+    .service-provider{
+         .disabled {
+            background-color: #7D7D7D !important;
+            border: 0;
+        }
+    }
+
 
     .multiselect__content-wrapper{
             &::-webkit-scrollbar-track
