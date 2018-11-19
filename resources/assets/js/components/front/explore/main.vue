@@ -40,10 +40,10 @@
 		<div class="featured-categories section">
 			<div class="container">
 
-				<!-- <div
-					class="block-loader bg-transparent">
+				<div
+					class="block-loader bg-transparent" v-if="loadingService">
 					<loader></loader>
-				</div> -->
+				</div>
 				<div class="category-section" v-for="service in getExploreServices">
 					<div class="category-title">
 						<h2>{{service.title}}</h2>
@@ -80,10 +80,10 @@
 		</div>
 		<div class="other-categories section-grey section elementary-banner">
 			<div class="container element-index">
-				<!-- <div
+				<div v-if="loadingService"
 					class="block-loader bg-transparent">
 					<loader></loader>
-				</div> -->					
+				</div>				
 				<div class="category-section"  v-for="isnotexplorecategory in getRemainingWithServices">
 					<div class="category-title">
 						<h2>{{isnotexplorecategory.title}}</h2>
@@ -136,6 +136,7 @@ export default {
 			allServices: [],
 			searchValue: '',
 			isLoading: false,
+			loadingService: true,
 			searchUrl: 'api/service',
 			options: [],
 			zipCode: '',
@@ -249,6 +250,7 @@ export default {
 		getList(data , page , successCallback) {
 			let self = this;
 			self.showNoRecordFound = false;
+			self.loadingService = true;
 			let url = 'api/service';
 
 			if(typeof(page) == 'undefined' || !page){                        
@@ -279,12 +281,14 @@ export default {
 
 		    	self.pagination = response.pagination;
 
+				self.loadingService = false;
 		    	successCallback(true);
 
 		    }).catch(error=>{
 		    	if(error.status == 403) {
 		    		self.pagination = false;
 		    	}
+				self.loadingService = false;
 
 		    });
 	},

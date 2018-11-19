@@ -43,7 +43,7 @@
         name: 'main-page',
         path: '/',
         meta: {
-            title: 'Professional Service Marketplace | Landing',
+            title: 'PSM | Home',
             bodyClass: 'home_body',
             navigation: 'main-nav',
         },
@@ -55,7 +55,7 @@
         name: 'Join As Pro',
         path: '/join-as-pro',
         meta: {
-            title: 'Professional Service Marketplace | Join As Pro',
+            title: 'PSM | Join As Pro',
             bodyClass: 'Join_pro',
             navigation: 'main-nav',
         },
@@ -69,7 +69,7 @@
         name: 'Explore',
         path: '/explore',
         meta: {
-            title: 'Professional Service Marketplace | Explore',
+            title: 'PSM | Explore',
             bodyClass: 'explore_page',
             navigation: 'main-nav',
             forAll: true,
@@ -81,7 +81,7 @@
         path: '/services/:serviceName/:childServiceName?/:zip?',
         props: true,
         meta: {
-            title: 'Professional Service Marketplace | Category Detail',
+            title: 'PSM | Category Detail',
             bodyClass: 'explore_detail_page',
             navigation: 'main-nav',
             forAll: true,
@@ -94,7 +94,7 @@
         path: '/explore/service-provider/service-provider_detail/:id',
         props: true,
         meta: {
-            title: 'Professional Service Marketplace | Service Provider Detail',
+            title: 'PSM | Service Provider Detail',
             bodyClass: 'service_provider_detail_page',
             navigation: 'main-nav',
             forAll: true,
@@ -109,7 +109,7 @@
         path: '/sign-up/:isPro?',
         props: true,
         meta: {
-            title: 'Professional Service Marketplace | Sign Up',
+            title: 'PSM | Sign Up',
             bodyClass: 'signup-page',
             navigation: 'main-nav',
         },
@@ -121,7 +121,7 @@
         name: 'customer_profile',
         path: '/profile',
         meta: {
-            title: 'Professional Service Marketplace | Profile',
+            title: 'PSM | Profile',
             bodyClass: 'profile-page',
             navigation: 'customer-nav',
             requiresAuth: true,
@@ -133,7 +133,7 @@
         name: 'provider_profile',
         path: '/apply-for-review',
         meta: {
-            title: 'Professional Service Marketplace | Apply for Review',
+            title: 'PSM | Apply for Review',
             bodyClass: 'apply-for-review-page',
             navigation: 'provider-nav',
             requiresAuth : true,
@@ -149,7 +149,7 @@
         name: 'job.create',
         path: '/job-post',
         meta: {
-            title: 'Professional Service Marketplace | Job Post',
+            title: 'PSM | Job Post',
             bodyClass: 'job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
@@ -164,7 +164,7 @@
         name: 'job.view',
         path: '/job-post/:id',
         meta: {
-            title: 'Professional Service Marketplace | Job Post',
+            title: 'PSM| Job Post',
             bodyClass: 'job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
@@ -178,7 +178,7 @@
         name: 'featured_profile',
         path: '/featured-profile',
         meta: {
-            title: 'Professional Service Marketplace | Featured Profile',
+            title: 'PSM | Featured Profile',
             bodyClass: 'featured-profile-page',  
             navigation: 'provider-nav',   
             requiresAuth: true,       
@@ -194,7 +194,7 @@
         name: 'my.jobs',
         path: '/my-jobs',
         meta: {
-            title: 'Professional Service Marketplace | My Jobs',
+            title: 'PSM | My Jobs',
             bodyClass: 'my-job-post-page',
             navigation: 'customer-nav',
             requiresAuth: true,
@@ -208,7 +208,7 @@
         name: 'explore-jobs',
         path: '/explore-jobs',
         meta: {
-            title: 'Professional Service Marketplace | My Jobs',
+            title: 'PSM | My Jobs',
             bodyClass: 'my-explore-job-page',
             navigation: 'provider-nav',
             requiresAuth: true,
@@ -222,7 +222,7 @@
         name: 'job.details',
         path: '/job-details/:id/:jobBidId?',
         meta: {
-            title: 'Professional Service Marketplace | Job Details',
+            title: 'PSM | Job Details',
             bodyClass: 'job-detail-page',
             navigation: 'customer-nav',
             requiresAuth: true,
@@ -237,7 +237,7 @@
         path: '/advice-center/:type?',
         props: true,
         meta: {
-            title: 'Professional Service Marketplace | Advice Center',
+            title: 'PSM | Advice Center',
             bodyClass: 'advice-center-page',
             navigation: 'provider-nav',
             requiresAuth: true,
@@ -251,7 +251,7 @@
         name: 'my.bids',
         path: '/my-bids',
         meta: {
-            title: 'Professional Service Marketplace | My Bids',
+            title: 'PSM | My Bids',
             bodyClass: 'my-bids-page',
             navigation: 'provider-nav',
             requiresAuth: true,
@@ -267,7 +267,7 @@
         name: 'profile-rejection',
         path: '/profile-rejected',
         meta: {
-            title: 'Professional Service Marketplace | Profile Rejected',
+            title: 'PSM | Profile Rejected',
             bodyClass: 'profile-rejection-page',
             navigation: 'provider-nav',
         },
@@ -278,7 +278,7 @@
         name: 'not-approved',
         path: '/not-approved',
         meta: {
-            title: 'Professional Service Marketplace | Profile Rejected',
+            title: 'PSM | Profile Rejected',
             bodyClass: 'profile-rejection-page',
             navigation: 'provider-nav',
         },
@@ -289,7 +289,7 @@
         name: 'not-review',
         path: '/not-review',
         meta: {
-            title: 'Professional Service Marketplace | Profile Rejected',
+            title: 'PSM | Profile Rejected',
             bodyClass: 'profile-rejection-page',
             navigation: 'provider-nav',
         },
@@ -302,7 +302,7 @@
         name: 'terms-condition',
         path: '/terms-condition',
         meta: {
-            title: 'Professional Service Marketplace | Terms Condition',
+            title: 'PSM | Terms Condition',
             bodyClass: 'terms-condition-page',
             navigation: 'main-nav',
         },
@@ -313,7 +313,7 @@
         name: 'privacy-policy',
         path: '/privacy-policy',
         meta: {
-            title: 'Professional Service Marketplace | Privacy Policy',
+            title: 'PSM | Privacy Policy',
             bodyClass: 'privacy-policy-page',
             navigation: 'main-nav',
         },
@@ -327,7 +327,7 @@
         path: '*',
         component: require('./components/404/Main.vue'),
         meta: {
-            title: '404 Not Found',
+            title: 'PSM | 404',
             noHeader: true,
             bodyClass: 'not-found-page',
         },
@@ -406,5 +406,11 @@ if (to.matched.some(record => record.meta.forServiceProvider) && router.app.$aut
     }
 }
 })
+
+router.beforeEach((to, from, next) => {
+    document.title = (to.meta.title)
+    next()
+})
+
 
 export default router

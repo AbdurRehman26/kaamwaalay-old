@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <base href="{{url('/')}}"> @yield('before-base-css')
         <link href="{{url(mix('css/app.css'))}}" rel="stylesheet">
-        <link rel="shortcut icon" type="image/png" href="{{asset('images/favicon.png')}}" /> @yield('before-base-js')
+        <link rel="shortcut icon" type="image/png" href="{{asset('images/favicon-32x32.png')}}" /> @yield('before-base-js')
         <script type="text/javascript">
             if (window.devicePixelRatio > 1) { document.cookie = 'HTTP_IS_RETINA=1;path=/'; }
              var successMessage = '<?php echo isset($success) ? $success : ''; ?>';

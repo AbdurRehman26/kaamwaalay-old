@@ -16,7 +16,7 @@
                                 <label>Select Service</label>
                                 
 
-                                <div class="custom-multi">
+                                <div class="custom-multi multiselect-z-index">
                                     <multiselect  v-model="searchServiceValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title"  open-direction="bottom" :searchable="true" :options-limit="500" :limit="8" :max-height="700" name="search" :internal-search="true" :showNoResults="true">
                                         <span slot="noResult">No service found.</span>
                                     </multiselect>
