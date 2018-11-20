@@ -271,7 +271,7 @@
                 var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
                 var files = e.target.files || e.dataTransfer.files;
                 this.errorMessage = "";
-                if(typeof(files[0].type) != "undefined") {
+                if(typeof(files[0]) != "undefined") {
                     if(!supportedType.includes(files[0].type)) {
                     this.errorBag.add({
                           field: 'upload image',
