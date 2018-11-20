@@ -415,6 +415,11 @@
         },
 
         watch: {
+            icon(val) {
+                if(!val) {
+                    this.iconText = "Click here to upload image";
+                }
+            },
             'formData.is_display_banner'(val) {
                 this.showBannerIcon = val == "1"? true: false;
             },

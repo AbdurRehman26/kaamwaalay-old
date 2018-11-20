@@ -216,7 +216,7 @@ const app = new Vue({
             this.checkscroll();
             window.scrollTo(0,0);
             var reviewId = this.$route.params.id;
-            if (reviewId.match("#viewBid")) {
+            if ((typeof(reviewId) != "undefined") && reviewId.match("#viewBid")) {
                 var elmnt = document.getElementById("bid-review");
                 elmnt.scrollIntoView();        
             }

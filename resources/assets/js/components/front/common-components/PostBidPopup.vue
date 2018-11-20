@@ -42,8 +42,8 @@
                         </b-col>
                         <b-col md="12">
                             <div class="form-group">
-                                <div class="custom-circle-radio">
-                                    <input :disabled="isVisitRequired" :class="[isVisitRequired? 'disabled' : '']" value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
+                                <div class="custom-circle-radio" :class="[isVisitRequired? 'disabled-radio' : '']">
+                                    <input :disabled="isVisitRequired" value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
                                     <label for="visit_required">Visit required to quote (request for visit)</label>  
                                 </div>                            </div>
                             </b-col>
@@ -62,7 +62,7 @@
                             <b-col md="12">
                                 <label>Proposal Statement</label>
                                 <div class="form-group">
-                                    <textarea name="description" v-validate="'required|max:500'" :class="[errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" class="form-control disabled" placeholder="Start typing your proposal statement"  rows="5"></textarea>
+                                    <textarea name="description" v-validate="'required|max:500'" :class="[errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" class="form-control" placeholder="Start typing your proposal statement"  rows="5"></textarea>
                                 </div>           
                             </b-col>
                         </b-row>

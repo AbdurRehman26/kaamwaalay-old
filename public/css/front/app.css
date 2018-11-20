@@ -14737,6 +14737,11 @@ button.sl-close {
   z-index: 9;
 }
 
+.disabled-radio {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .services .list-image {
   display: inline-block;
   width: 110px;

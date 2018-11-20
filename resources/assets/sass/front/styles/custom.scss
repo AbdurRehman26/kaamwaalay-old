@@ -190,6 +190,11 @@ button.sl-close {
     }
 }
 
+.disabled-radio {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .services{
     .list-image{
         display: inline-block;
