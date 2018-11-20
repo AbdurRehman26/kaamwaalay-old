@@ -156,7 +156,6 @@
                 },
 
                 isVisitRequired() {
-                    return true;
                     if(typeof(this.job) != "undefined") {
                         var isVisit = this.job.my_bid? this.job.my_bid.is_visit_required : false;
                         return isVisit? (this.job.my_bid.is_visit_required == 1? true:false) : false;

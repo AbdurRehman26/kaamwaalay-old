@@ -88,13 +88,13 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             $myView = $getPlanViews->views;
             if($input['type'] == 'view') {
                 $model->views++;
-                if($model->views > $planViewsCount) {
-                    $model->views = $planViewsCount;
-                }
             }else{
                 $model->clicks++;
             }
-
+            
+            if($model->views > $planViewsCount) {
+                $model->views = $planViewsCount;
+            }
             
             $intervals = [];
             $intervals["25"] = (int)ceil((25/100) * $planViewsCount);
