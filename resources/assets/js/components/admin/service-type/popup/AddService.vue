@@ -271,20 +271,23 @@
                 var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
                 var files = e.target.files || e.dataTransfer.files;
                 this.errorMessage = "";
-                if(!supportedType.includes(files[0].type)) {
+                if(typeof(files[0].type) != "undefined") {
+                    if(!supportedType.includes(files[0].type)) {
                     this.errorBag.add({
-                      field: 'upload image',
-                      msg: 'The file must be an image.',
-                      rule: 'image',
-                      id: 6,
-                  });
-                    this.errorMessage = this.errorBag.all()[0];
-                    return;
+                          field: 'upload image',
+                          msg: 'The file must be an image.',
+                          rule: 'image',
+                          id: 6,
+                      });
+                        this.errorMessage = this.errorBag.all()[0];
+                        return;
+                    }
+                    //this.errorBag.clear();
+                    if (!files.length)
+                        return;
+                    this.createImage(files[0], type);
                 }
-                //this.errorBag.clear();
-                if (!files.length)
-                    return;
-                this.createImage(files[0], type);
+                
                 
             },
             createImage(file, type) {
