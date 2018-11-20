@@ -112,6 +112,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
 
                 $model->is_completed = 1;
                 $model->status = Campaign::EXPIRED;
+                $model->views = $planViewsCount;
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
                 $checkOtherCampaigns = true;
@@ -131,8 +132,6 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                         $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
 
                         $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
-
-                        $this->sendNotification($data);
 
                     }else {
                         

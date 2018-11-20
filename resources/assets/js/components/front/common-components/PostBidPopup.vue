@@ -43,20 +43,20 @@
                         <b-col md="12">
                             <div class="form-group">
                                 <div class="custom-circle-radio">
-                                    <input :disabled="isVisitRequired" value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
+                                    <input :disabled="isVisitRequired" :class="[isVisitRequired? 'disabled' : '']" value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
                                     <label for="visit_required">Visit required to quote (request for visit)</label>  
                                 </div>                            </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label>Preferred date and time of visit</label>
-                                    <datepicker class="disabled" name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
+                                    <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
                                 </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker class="disabled" :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
@@ -156,6 +156,7 @@
                 },
 
                 isVisitRequired() {
+                    return true;
                     if(typeof(this.job) != "undefined") {
                         var isVisit = this.job.my_bid? this.job.my_bid.is_visit_required : false;
                         return isVisit? (this.job.my_bid.is_visit_required == 1? true:false) : false;
