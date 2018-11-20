@@ -81,10 +81,10 @@
 
                 <div class="service-need">
 
-                    <div v-if="!$route.params.id" class="form-label-heading m-b-25">
+                    <div :disabled="$route.params.id" class="form-label-heading m-b-25">
                         <p>WHEN YOU NEED THIS SERVICE</p>
                     </div>
-                    <div v-if="!$route.params.id" class="row ">
+                    <div :disabled="$route.params.id" class="row ">
                         <div class="col-md-12">
                             <label>Do you need this service urgently?</label>
                         </div>

@@ -50,19 +50,19 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label>Preferred date and time of visit</label>
-                                    <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
+                                    <datepicker class="disabled" name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
                                 </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker class="disabled" :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
                                 <label>Proposal Statement</label>
                                 <div class="form-group">
-                                    <textarea name="description" v-validate="'required|max:500'" :class="[errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" class="form-control" placeholder="Start typing your proposal statement"  rows="5"></textarea>
+                                    <textarea name="description" v-validate="'required|max:500'" :class="[errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" class="form-control disabled" placeholder="Start typing your proposal statement"  rows="5"></textarea>
                                 </div>           
                             </b-col>
                         </b-row>
