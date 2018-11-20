@@ -83,15 +83,19 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             ->first();
         $checkOtherCampaigns = false;
         if($model) {
+            $getPlanViews = $this->findById($model->id);
+            $planViewsCount = $getPlanViews->plan->quantity;
+            $myView = $getPlanViews->views;
             if($input['type'] == 'view') {
                 $model->views++;
+                if($model->views > $planViewsCount) {
+                    $model->views = $planViewsCount;
+                }
             }else{
                 $model->clicks++;
             }
 
-            $getPlanViews = $this->findById($model->id);
-            $planViewsCount = $getPlanViews->plan->quantity;
-            $myView = $getPlanViews->views;
+            
             $intervals = [];
             $intervals["25"] = (int)ceil((25/100) * $planViewsCount);
             $intervals["50"] = (int)ceil((50/100) * $planViewsCount);
