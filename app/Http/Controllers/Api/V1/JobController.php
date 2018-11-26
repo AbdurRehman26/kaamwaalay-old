@@ -112,7 +112,7 @@ class JobController extends ApiResourceController
     {
         $input = ['status' => 'in_bidding', 'user_id' => request()->user()->id];
 
-        $data = \App\Data\Models\Job::where($input)->get()->toArray();
+        $data = $this->_repository->getInviteToBidJobs($input);
         
         $output = [
             'data' => $data
