@@ -595,10 +595,9 @@
 
 },
 watch: {
-    // '$route' (to, from) {
-    //     let self = this;
-    //     self.getService();
-    // },
+    '$route' (to, from) {
+        window.scrollTo(0,0);
+    },
     'service.title' (val) {
         this.serviceTitle = val;
     },
