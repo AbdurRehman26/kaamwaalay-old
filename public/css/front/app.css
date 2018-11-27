@@ -16216,7 +16216,7 @@ button.sl-close {
 
 .expirychanges .stripe-element {
   position: relative;
-  top: 3px;
+  top: 0px;
 }
 
 .small-loader-browser {
