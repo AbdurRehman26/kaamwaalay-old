@@ -33,10 +33,13 @@ class JobBidCreated implements ShouldQueue
      */
     public function handle()
     {
+
+
         $event = new \StdClass();
         $job = Job::find($this->data['job_id']);
         $event->id = $job->id;
         $event->body =  $job;
+
         if(!empty($this->data['is_visit_required']) && $this->data['is_visit_required'] == 1 && empty($this->data['deleted_at']) && $this->data['status'] != JobBid::VISITALLOWED && $this->data['status'] != JobBid::COMPLETED){
             $event->to = User::find($job->user_id);
             $event->from = User::find($this->data['user_id']);
@@ -55,6 +58,8 @@ class JobBidCreated implements ShouldQueue
          $event->from = User::find($this->data['user_id']);   
          $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> posted a bid on <strong>'.$job->title.'</strong> job.'; 
         }
+        
+
         $event->to->notify(new JobBidCreatedNotification($event));
     }
 }
