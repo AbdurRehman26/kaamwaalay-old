@@ -419,7 +419,9 @@
                     localStorage.setItem("parentService", this.searchValue.parent.url_suffix);
                     localStorage.setItem("childService", this.searchValue.url_suffix);
                     this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
+                    this.serviceSuffix = this.searchValue.url_suffix;
                 }else {
+                    this.serviceSuffix = "";
                     localStorage.setItem("parentService", this.searchValue.url_suffix);
                     localStorage.setItem("childService", "");
                     this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, childServiceName: null, zip : this.zipCode }}); 
@@ -504,7 +506,6 @@
                     }
                     self.isService = response.data.length;
                     self.service = response.data[0];
-                    self.getRelatedServices();
                     self.searchValue = self.service;
                     self.btnLoading = false;
                     if(self.zipCode) {
@@ -514,6 +515,7 @@
                         this.forcePagination = true;
                         self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&zip='+self.zipCode+'&from_explore=true';
                     }
+                    self.getRelatedServices();
 
                     window.scrollTo(0,0);
 
@@ -568,6 +570,7 @@
                 if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
                     this.zipCode =  this.childServiceName;
                     localStorage.setItem("zip", this.zipCode);
+                    this.serviceSuffix = "";
                 }
                 if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
                     this.url  = 'api/service?service_name=' + this.childServiceName;
