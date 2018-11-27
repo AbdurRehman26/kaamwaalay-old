@@ -409,7 +409,6 @@
             },  
             ServiceProviderPage() {
                 this.isTouched = false;
-                window.scrollTo(0,0);
                 if(!this.searchValue) {
                     this.isTouched = true;
                     return;
@@ -518,7 +517,6 @@
                         }
                         self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&zip='+self.zipCode+'&from_explore=true';
                     }
-                    window.scrollTo(0,0);
 
                 }).catch(error=>{
                     self.isPagination = false;
@@ -566,6 +564,7 @@
                 self.isPagination = response.pagination;
             },
             checkRoute() {
+                window.scrollTo(0,0);
                 this.records = [];
                 this.zipCode = this.zip? this.zip : this.zipCode;
                 if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
@@ -596,7 +595,7 @@
 },
 watch: {
     '$route' (to, from) {
-        window.scrollTo(0,0);
+        this.getService();
     },
     'service.title' (val) {
         this.serviceTitle = val;
@@ -606,7 +605,7 @@ watch: {
 //   this.$router.push({ name: 'Explore'})
 // }
 this.serviceName = val;
-this.getService();
+//this.getService();
 },
 childServiceName(val) {
 
@@ -614,14 +613,13 @@ childServiceName(val) {
 // 	this.$router.push({ name: 'Explore'})
 // }
 this.childServiceName = val;
-this.getService();
+//this.getService();
 },
 zip(val) {
     if(val.length > 5) {
         val = val.substr(0, 5);
     }
     this.zip = val;
-    //this.getService();
 },
 zipCode(val) {
     this.isZipEmpty = false;
@@ -637,7 +635,6 @@ searchValue(val) {
 }
 },
 mounted(){	
-
     this.getInBiddingJobs();
     if(!this.zip) {
         localStorage.removeItem('zip');
