@@ -271,23 +271,20 @@
                 var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
                 var files = e.target.files || e.dataTransfer.files;
                 this.errorMessage = "";
-                if(typeof(files[0]) != "undefined") {
-                    if(!supportedType.includes(files[0].type)) {
+                if(!supportedType.includes(files[0].type)) {
                     this.errorBag.add({
-                          field: 'upload image',
-                          msg: 'The file must be an image.',
-                          rule: 'image',
-                          id: 6,
-                      });
-                        this.errorMessage = this.errorBag.all()[0];
-                        return;
-                    }
-                    //this.errorBag.clear();
-                    if (!files.length)
-                        return;
-                    this.createImage(files[0], type);
+                      field: 'upload image',
+                      msg: 'The file must be an image.',
+                      rule: 'image',
+                      id: 6,
+                  });
+                    this.errorMessage = this.errorBag.all()[0];
+                    return;
                 }
-                
+                //this.errorBag.clear();
+                if (!files.length)
+                    return;
+                this.createImage(files[0], type);
                 
             },
             createImage(file, type) {
@@ -418,11 +415,6 @@
         },
 
         watch: {
-            icon(val) {
-                if(!val) {
-                    this.iconText = "Click here to upload image";
-                }
-            },
             'formData.is_display_banner'(val) {
                 this.showBannerIcon = val == "1"? true: false;
             },

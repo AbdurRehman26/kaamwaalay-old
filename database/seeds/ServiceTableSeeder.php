@@ -22,18 +22,18 @@ class ServiceTableSeeder extends Seeder
         $now = Carbon::now()->toDateTimeString();
 
         $services = [
+            'Home Cleaning',
+            'Tv and Electronics',
             'Assembly',
-              'Electrical' ,
-              'General Handy Man',
-              'Home Cleaning',
-              'Moving',
-              'Outdoor',
-              'Painting',
-              'Plumbing',
-              'Smart Home',
-              'Storage'
-              'Tv and Electronics',
-              'Window Treatments',
+            'General Handy Man',
+            'Plumbing',
+            'Electrical' ,
+            'Painting',
+            'Moving',
+            'Smart Home',
+            'Window Treatments',
+            'Outdoor',
+            'Storage'
         ];
 
 

@@ -282,7 +282,7 @@ class DashboardRepository
             'users.email as email',
             DB::raw('CONCAT(users.first_name," ",users.last_name) AS "full_name" '),
             DB::raw('AVG(rating) as rating'),
-            DB::raw('COUNT(DISTINCT jobs.id) as job_completed'),
+            DB::raw('COUNT(jobs.id) as job_completed'),
             DB::raw('(count(DISTINCT jobs.id) * IFNULL(avg(rating) + 1, 1)) as bothColumn')
         )
         ->groupBy('users.id')

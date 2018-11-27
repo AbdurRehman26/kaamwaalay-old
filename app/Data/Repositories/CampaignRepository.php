@@ -83,19 +83,15 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             ->first();
         $checkOtherCampaigns = false;
         if($model) {
-            $getPlanViews = $this->findById($model->id);
-            $planViewsCount = $getPlanViews->plan->quantity;
-            $myView = $getPlanViews->views;
             if($input['type'] == 'view') {
                 $model->views++;
             }else{
                 $model->clicks++;
             }
-            
-            if($model->views > $planViewsCount) {
-                $model->views = $planViewsCount;
-            }
-            
+
+            $getPlanViews = $this->findById($model->id);
+            $planViewsCount = $getPlanViews->plan->quantity;
+            $myView = $getPlanViews->views;
             $intervals = [];
             $intervals["25"] = (int)ceil((25/100) * $planViewsCount);
             $intervals["50"] = (int)ceil((50/100) * $planViewsCount);
@@ -116,7 +112,6 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
 
                 $model->is_completed = 1;
                 $model->status = Campaign::EXPIRED;
-                $model->views = $planViewsCount;
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
                 $checkOtherCampaigns = true;
@@ -136,6 +131,8 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                         $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
 
                         $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
+
+                        $this->sendNotification($data);
 
                     }else {
                         

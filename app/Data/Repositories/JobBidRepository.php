@@ -393,6 +393,7 @@ public function create(array $data = [])
     $data['is_visit_required'] = !empty($data['is_visit_required']) ? $data['is_visit_required'] : 0;
 
     $data['updated_at'] = Carbon::now()->ToDateTimeString();
+    $data['created_at'] = Carbon::now()->ToDateTimeString();
 
     $criteria = ['user_id' => $data['user_id'] , 'job_id' => $data['job_id']];
 
