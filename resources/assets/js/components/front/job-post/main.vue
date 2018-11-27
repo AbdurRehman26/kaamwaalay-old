@@ -28,7 +28,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Job Title</label>
-                                <input  :maxlength="100" v-validate="'required|max:150'" name="title" 
+                                <input  v-validate="'required|max:250'" name="title" 
                                 :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
                                 v-model="formData.title" type="text" class="form-control" 
                                 placeholder="Enter job title">
@@ -130,7 +130,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Address</label>
+                            <label>Address *</label>
                             <input v-validate="'required'" name="address" 
                             :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
                         </div>
@@ -518,11 +518,10 @@
             },
             onSubmit() {
                 let self = this;
-
                 this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
                 let data = this.formData;
                 this.formData.service_id = this.searchServiceValue.id;
-                
+                    
                 self.loading = true;
                 let url = self.url;
                 let urlRequest = '';
@@ -540,8 +539,8 @@
                     self.successMessage = response.message;
 
                     self.requestUserUrl = 'api/user/me';
-
-
+                    console.log(11111);
+                    return false;
                     setTimeout(function () {
                         self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
                         self.successMessage = '';

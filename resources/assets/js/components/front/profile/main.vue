@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">First Name *</label>
-                                <input type="text" v-validate="'required'" class="form-control"
+                                <input type="text" v-validate="'required|max:50'" class="form-control"
                                 name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
                                 placeholder="Enter your first name">
                             </div>
@@ -47,7 +47,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Last Name *</label>
-                                <input type="text" v-validate="'required'" class="form-control"
+                                <input type="text" v-validate="'required|max:50'" class="form-control"
                                 name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
                                 placeholder="Enter your last name">
                             </div>
@@ -75,13 +75,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Address</label>
-                                <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
+                                <input type="text" v-validate="'max:250'"  :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" name="address" v-model="record.address" placeholder="Enter your street address">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Apartment, Suite, Unit</label>
-                                <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your apartment and suite number">
+                                <input type="text" v-validate="'max:250'" :class="['form-control' , errorBag.first('apartment') ? 'is-invalid' : '']" name="apartment" v-model="record.apartment" placeholder="Enter your apartment and suite number">
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
+                                <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -103,37 +103,37 @@
                         </div>
                     </div>
 
-                   <div class="row">
+                    <div class="row">
                      <div class="col-md-6">
                         <div class="form-group">
-                                <label for="">City *</label>
-                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
-                                    <option :value="null">Select City</option>
-                                    <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                                </select>
+                            <label for="">City *</label>
+                            <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
+                                <option :value="null">Select City</option>
+                                <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                            </select>
                         </div>
-                     </div>
-                    </div> 
-                </div>
+                    </div>
+                </div> 
+            </div>
 
 
-                <div class="create-account-btn">
-                    <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">Update Profile
-                        <loader></loader>
-                    </button>
+            <div class="create-account-btn">
+                <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">Update Profile
+                    <loader></loader>
+                </button>
 
-                </div>
+            </div>
 
-                <div class="form-detail">
-                    <p>Please make sure all the information you entered is accuate before submitting.</p>
-                </div>
-            </form>
-        </div>
-
+            <div class="form-detail">
+                <p>Please make sure all the information you entered is accuate before submitting.</p>
+            </div>
+        </form>
     </div>
-    <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-    <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-    <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+
+</div>
+<vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+<vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -181,6 +181,7 @@
         },
         methods: {
             setZipCode(val) {
+                let self = this;
                 this.record.zip_code = val.zip_code;
                 this.setCity(val)
                 this.invalidZip = false;
@@ -191,155 +192,171 @@
             setCity(object){
                 if(object.state_id){
                   this.record.state_id = object.state_id;  
-                } 
-                this.currentCity = object.city_id;
-                this.onStateChange();
-            },
-            onStateChange(select){
-                var select = select|false;
-                if(select){
-                 this.record.city_id = null;
-                }
-                this.cityUrl = 'api/city?state_id=' + this.record.state_id;
-                if(this.currentCity){
-                   this.record.city_id = this.currentCity;
-                   this.currentCity = null;
-                }
-            },
-            getResponse(response){
-                let self = this;
-                self.loading = false;
-                self.record = response.data;
+              } 
+              this.currentCity = object.city_id;
+              this.onStateChange();
+          },
+          onStateChange(select){
+            let self = this;
+            var select = select|false;
+            if(select){
+             this.record.city_id = null;
+         }
+         this.cityUrl = 'api/city?state_id=' + this.record.state_id;
+         if(this.currentCity){
+           this.record.city_id = this.currentCity;
+           this.currentCity = null;
 
-                if(self.record.state_id){  
-                    this.cityUrl = 'api/city?state_id=' + this.record.state_id;
-                }
-                self.profileImage = self.record.profileImage;
 
-            },
-            getStateResponse(response){
-                let self = this;
-                self.loading = false;
-                self.states = response.data;
+           setTimeout(function () {
+            Vue.nextTick(() => {
+                self.errorBag.clear()
+            })
+            console.log(112321);
+        }, 500);
 
-            },
-            getCityResponse(response){
-                let self = this;
-                self.cities = response.data;
-                if(this.currentCity){
-                   this.record.city_id = this.currentCity;
-                   this.currentCity = null;
-                }
-            },
-            validateBeforeSubmit() {
-                this.$validator.validateAll().then((result) => {
-                    this.invalidZip = false;
-                    if(!this.record.zip_code) {
-                        this.invalidZip = true;
-                        this.errorMessage = 'Please enter zip code.';
-                        return false;
-                    }
-                    if (result && !this.invalidZip) {
-                        this.onSubmit();
-                        this.errorMessage = '';
-                        return;
-                    }
-                    this.errorMessage = this.errorBag.all()[0];
-                });
-            },
-            onSubmit() {
-                let self = this;
-                
-                this.record.is_profile_completed = 1;
 
-                let data = {
-                    user_details : this.record
-                };
 
-                self.loading = true;
-                let url = 'api/user/'+this.record.id;
-                self.$http.put(url, data).then(response => {
-                    response = response.data;
+       }
 
-                    this.$store.commit('setAuthUser', response.data);
-                    self.successMessage = response.message;
-                    let redirectUrl = self.$store.getters.getRedirectUrl;
 
-                    setTimeout(function () {
-                        if(redirectUrl == "job.create"){
-                            if(localStorage['parentService'] && localStorage.getItem('parentService')) {
-                                self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
-                            }else {
 
-                                self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
-                            }
-                        }else {
-                            self.$router.push({ name : 'my.jobs'});
-                        }
 
-                        self.successMessage = '';
-                        self.loading = false;
-                    }, 2000);
+   },
+   getResponse(response){
+    let self = this;
+    self.loading = false;
+    self.record = response.data;
 
-                }).catch(error => {
-                    this.loading = false;
-                });
-
-            },
-            onFileChange(e) {
-                var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
-                var files = e.target.files || e.dataTransfer.files;
-                this.errorMessage = "";
-                if(!supportedType.includes(files[0].type)) {
-                    this.errorBag.add({
-                        field: 'upload image',
-                        msg: 'The file must be an image.',
-                        rule: 'image',
-                        id: 6,
-                    });
-                    this.errorMessage = this.errorBag.all()[0];
-                    self.isFileUpload = false;
-                    return;
-                }
-                this.errorBag.clear();
-                this.isFileUpload = null;
-                if (!files.length)
-                    return;
-                this.createImage(files[0]);
-
-            },
-            createImage(file) {
-                var self = this;    
-                var image = new Image();
-                var reader = new FileReader();
-                reader.onload = (e) => {
-                    self.image = e.target.result;
-                };
-                reader.readAsDataURL(file);
-                this.onUpload(file);
-            },
-            onUpload(file) {
-                var self = this;
-                let url = "api/file/upload";
-
-                var data = new FormData;
-                data.append('key', 'user');
-                data.append('file', file);
-
-                this.$http.post(url, data).then(response => {
-                    response = response.data;
-                    self.record.profile_image = response.name;
-                    self.profileImage = response.upload_url;
-                }).catch(error => {
-                    error = error.response.data;
-                    let errors = error.errors;
-                    self.isFileUpload = false;
-                    _.forEach(errors, function(value, key) {
-                        self.errorMessage =  errors[key][0];
-                        return false;
-                    });
-                });
-            },
-        }        
+    if(self.record.state_id){  
+        this.cityUrl = 'api/city?state_id=' + this.record.state_id;
     }
+    self.profileImage = self.record.profileImage;
+
+},
+getStateResponse(response){
+    let self = this;
+    self.loading = false;
+    self.states = response.data;
+
+},
+getCityResponse(response){
+    let self = this;
+    self.cities = response.data;
+    if(this.currentCity){
+       this.record.city_id = this.currentCity;
+       this.currentCity = null;
+   }
+},
+validateBeforeSubmit() {
+    this.$validator.validateAll().then((result) => {
+        this.invalidZip = false;
+        if(!this.record.zip_code) {
+            this.invalidZip = true;
+            this.errorMessage = 'Please enter zip code.';
+            return false;
+        }
+        if (result && !this.invalidZip) {
+            this.onSubmit();
+            this.errorMessage = '';
+            return;
+        }
+        this.errorMessage = this.errorBag.all()[0];
+    });
+},
+onSubmit() {
+    let self = this;
+
+    this.record.is_profile_completed = 1;
+
+    let data = {
+        user_details : this.record
+    };
+
+    self.loading = true;
+    let url = 'api/user/'+this.record.id;
+    self.$http.put(url, data).then(response => {
+        response = response.data;
+
+        this.$store.commit('setAuthUser', response.data);
+        self.successMessage = response.message;
+        let redirectUrl = self.$store.getters.getRedirectUrl;
+
+        setTimeout(function () {
+            if(redirectUrl == "job.create"){
+                if(localStorage['parentService'] && localStorage.getItem('parentService')) {
+                    self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
+                }else {
+
+                    self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
+                }
+            }else {
+                self.$router.push({ name : 'my.jobs'});
+            }
+
+            self.successMessage = '';
+            self.loading = false;
+        }, 2000);
+
+    }).catch(error => {
+        this.loading = false;
+    });
+
+},
+onFileChange(e) {
+    var supportedType = ['image/png', 'image/jpg', 'image/jpeg'];
+    var files = e.target.files || e.dataTransfer.files;
+    this.errorMessage = "";
+    if(!supportedType.includes(files[0].type)) {
+        this.errorBag.add({
+            field: 'upload image',
+            msg: 'The file must be an image.',
+            rule: 'image',
+            id: 6,
+        });
+        this.errorMessage = this.errorBag.all()[0];
+        self.isFileUpload = false;
+        return;
+    }
+    this.errorBag.clear();
+    this.isFileUpload = null;
+    if (!files.length)
+        return;
+    this.createImage(files[0]);
+
+},
+createImage(file) {
+    var self = this;    
+    var image = new Image();
+    var reader = new FileReader();
+    reader.onload = (e) => {
+        self.image = e.target.result;
+    };
+    reader.readAsDataURL(file);
+    this.onUpload(file);
+},
+onUpload(file) {
+    var self = this;
+    let url = "api/file/upload";
+
+    var data = new FormData;
+    data.append('key', 'user');
+    data.append('file', file);
+
+    this.$http.post(url, data).then(response => {
+        response = response.data;
+        self.record.profile_image = response.name;
+        self.profileImage = response.upload_url;
+    }).catch(error => {
+        error = error.response.data;
+        let errors = error.errors;
+        self.isFileUpload = false;
+        _.forEach(errors, function(value, key) {
+            self.errorMessage =  errors[key][0];
+            return false;
+        });
+    });
+},
+}        
+}
 </script>
