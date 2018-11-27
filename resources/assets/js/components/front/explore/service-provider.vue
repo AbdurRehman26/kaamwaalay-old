@@ -50,7 +50,7 @@
     <no-record-found v-else-if="noRecordFound"></no-record-found>
     <div class="job-post-container section-padd sm" v-if="!noRecordFound">
         <div class="container md">
-            <div class="text-notifer" v-if="pagination && getNearestProviderCount(zipCode)">
+            <div class="text-notifer" v-if="isPagination && getNearestProviderCount(zipCode)">
                 <p>{{getNearestProviderCount(zipCode) + " " + service.title}} service professionals found closest to you.</p>
             </div>
             <div class="job-post-list" v-for="record in getNearestProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
@@ -117,7 +117,7 @@
             </div>
         </div>
         <div class="container md">
-            <div class="text-notifer" v-if="pagination && getCityProviderCount(zipCode)">
+            <div class="text-notifer" v-if="isPagination && (getCityProviderCount(zipCode) > 0)">
                 <p>{{getCityProviderCount(zipCode) + " " + service.title}} service professionals found near you.</p>
             </div>
             <div class="job-post-list" v-for="record in getCityProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
@@ -245,9 +245,11 @@
 
     export default {
         props: ['zip', 'serviceName', 'childServiceName'],
+        components: {
+            StarRating
+        },
         data () {
             return {
-                serviceLoading: false,
                 forcePagination: false,
                 userToSendInvite : '',
                 max: 6,
@@ -259,7 +261,7 @@
                 searchValue: '',
                 isLoading: false,
                 loading : false,
-                pagination: '',
+                isPagination: '',
                 records : [],
                 groupByRecords : [],
                 url: '',
@@ -270,6 +272,7 @@
                 loading: false,
                 categoryPopup: false,
                 selectedService: '',
+                serviceSuffix: '',
                 isService: false,
                 showCollapse: true,
                 authUser: '',
@@ -278,7 +281,7 @@
                 invitePopup : false,
                 serName: '',
                 jobs : '',
-                service_url_suffix : ''
+                service_url_suffix : '',
             }
         },
         computed : {
@@ -493,11 +496,9 @@
                 let self = this;
                 this.checkRoute();
                 this.btnLoading = true;
-                this.serviceLoading = true;
                 self.isService = false;
                 this.$http.get(this.url).then(response => {
                     response = response.data;
-                    self.serviceLoading = false;
                     if(!response.data.length) {
                         return;
                     }
@@ -507,15 +508,17 @@
                     self.searchValue = self.service;
                     self.btnLoading = false;
                     if(self.zipCode) {
+                        if(!self.serviceSuffix) {
+                            self.serviceSuffix = self.serviceName;
+                        }
                         this.forcePagination = true;
-
-                        self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceName+'&zip='+self.zipCode+'&from_explore=true';
+                        self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&zip='+self.zipCode+'&from_explore=true';
                     }
 
                     window.scrollTo(0,0);
 
                 }).catch(error=>{
-                    self.pagination = false;
+                    self.isPagination = false;
                     self.btnLoading = false;
                 });
             },
@@ -526,7 +529,7 @@
                     response = response.data;
                     self.relatedServices = response.data;
                 }).catch(error=>{
-                    self.pagination = false;
+                    self.isPagination = false;
                 });
             },
             getNearestProvider(zip) {
@@ -557,7 +560,7 @@
                     return element.user_detail.zip_code;
                 });
                 self.noRecordFound = response.noRecordFound;
-                self.pagination = response.pagination;
+                self.isPagination = response.pagination;
             },
             checkRoute() {
                 this.records = [];
@@ -569,6 +572,7 @@
                 if(typeof(this.childServiceName) != "undefined" && isNaN(this.childServiceName) && this.childServiceName) {
                     this.url  = 'api/service?service_name=' + this.childServiceName;
                     localStorage.setItem("childService", this.childServiceName);
+                    this.serviceSuffix = this.childServiceName;
                 }else if(typeof(this.serviceName) != "undefined") {
                     this.url  = 'api/service?service_name=' + this.serviceName;
                     localStorage.setItem("parentService", this.serviceName);
@@ -586,13 +590,11 @@
             }
 
 },
-components: {
-    StarRating
-},
 watch: {
-    '$route' (to, from) {
-        this.getService();
-    },
+    // '$route' (to, from) {
+    //     let self = this;
+    //     self.getService();
+    // },
     'service.title' (val) {
         this.serviceTitle = val;
     },
@@ -601,6 +603,7 @@ watch: {
 //   this.$router.push({ name: 'Explore'})
 // }
 this.serviceName = val;
+this.getService();
 },
 childServiceName(val) {
 
@@ -608,7 +611,7 @@ childServiceName(val) {
 // 	this.$router.push({ name: 'Explore'})
 // }
 this.childServiceName = val;
-//this.getService();
+this.getService();
 },
 zip(val) {
     if(val.length > 5) {

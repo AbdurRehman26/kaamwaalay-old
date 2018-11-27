@@ -175,7 +175,6 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 if(!$this->builder->get()->toArray()) {
                     $this->builder = $this->getPopularServices((int)$data['filter_by_related_services'], 3);
                 }
-                
             }else {
                 $this->builder = $this->model->where('parent_id', '=', (int)$isParent[0])->where('id', '!=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
 
