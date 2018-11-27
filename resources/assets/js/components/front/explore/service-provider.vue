@@ -496,6 +496,7 @@
             },
             getService() {
                 let self = this;
+                window.scrollTo(0,0);
                 this.checkRoute();
                 this.btnLoading = true;
                 self.isService = false;
@@ -507,16 +508,15 @@
                     self.isService = response.data.length;
                     self.service = response.data[0];
                     self.searchValue = self.service;
+                    self.getRelatedServices();
                     self.btnLoading = false;
                     if(self.zipCode) {
+                        //this.forcePagination = true;
                         if(!self.serviceSuffix) {
                             self.serviceSuffix = self.serviceName;
                         }
-                        this.forcePagination = true;
                         self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&zip='+self.zipCode+'&from_explore=true';
                     }
-                    self.getRelatedServices();
-
                     window.scrollTo(0,0);
 
                 }).catch(error=>{
