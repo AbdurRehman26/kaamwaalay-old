@@ -409,6 +409,7 @@
             },  
             ServiceProviderPage() {
                 this.isTouched = false;
+                window.scrollTo(0,0);
                 if(!this.searchValue) {
                     this.isTouched = true;
                     return;
