@@ -1,6 +1,8 @@
 <template>
-    <div class="category-detail" v-if="isService">
-        <div class="next-project grey-bg elementary-banner section-padd md">
+
+    <div class="category-detail">
+        <block-spinner v-if="!isService"></block-spinner>
+        <div class="next-project grey-bg elementary-banner section-padd md" v-if="isService">
             <div class="container element-index text-center md">
                 <div class="content-sec">
                     <div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(service.images? service.images[0].upload_url : null) +')',}"></div>
@@ -245,6 +247,7 @@
         props: ['zip', 'serviceName', 'childServiceName'],
         data () {
             return {
+                serviceLoading: false,
                 forcePagination: false,
                 userToSendInvite : '',
                 max: 6,
@@ -490,8 +493,11 @@
                 let self = this;
                 this.checkRoute();
                 this.btnLoading = true;
+                this.serviceLoading = true;
+                self.isService = false;
                 this.$http.get(this.url).then(response => {
                     response = response.data;
+                    self.serviceLoading = false;
                     if(!response.data.length) {
                         return;
                     }
@@ -583,8 +589,10 @@
 components: {
     StarRating
 },
-
 watch: {
+    '$route' (to, from) {
+        this.getService();
+    },
     'service.title' (val) {
         this.serviceTitle = val;
     },
@@ -593,7 +601,6 @@ watch: {
 //   this.$router.push({ name: 'Explore'})
 // }
 this.serviceName = val;
-this.getService();
 },
 childServiceName(val) {
 
@@ -601,13 +608,14 @@ childServiceName(val) {
 // 	this.$router.push({ name: 'Explore'})
 // }
 this.childServiceName = val;
+//this.getService();
 },
 zip(val) {
     if(val.length > 5) {
         val = val.substr(0, 5);
     }
     this.zip = val;
-    this.getService();
+    //this.getService();
 },
 zipCode(val) {
     this.isZipEmpty = false;
