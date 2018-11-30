@@ -539,8 +539,7 @@
                     self.successMessage = response.message;
 
                     self.requestUserUrl = 'api/user/me';
-                    console.log(11111);
-                    return false;
+                    
                     setTimeout(function () {
                         self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
                         self.successMessage = '';

@@ -361,6 +361,11 @@ public function update(array $data = [])
             $data['is_archived'] = 0;
 
         }
+
+
+        \Log::info('Updating Job bid with Data : ');
+        \Log::info(json_encode($data));
+
         $data = parent::update($data);
         if($data){
 
