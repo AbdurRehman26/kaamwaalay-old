@@ -17451,6 +17451,7 @@ button.sl-close {
   /* top: 0; */
   top: -6px;
   left: 0;
+  background-position: 50%;
 }
 
 .job-post-list.featured {
