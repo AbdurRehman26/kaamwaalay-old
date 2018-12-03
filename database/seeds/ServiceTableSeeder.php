@@ -31,9 +31,9 @@ class ServiceTableSeeder extends Seeder
             'Painting',
             'Plumbing',
             'Smart Home',
-            'Storage'
+            'Storage',
             'Tv and Electronics',
-            'Window Treatments'
+            'Window Treatments',
         ];
 
 
