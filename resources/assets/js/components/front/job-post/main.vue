@@ -364,7 +364,7 @@
 
                 let user = JSON.parse(this.$store.getters.getAuthUser)
                 this.formData.state_id = user.state_id ? user.state_id : '';
-                this.formData.zip_code = user.zip_code ? parseInt(user.zip_code) : '';
+                this.formData.zip_code = user.zip_code ? user.zip_code : '';
                 this.formData.city_id = user.city_id ? user.city_id : '';
 
                 let self = this;
@@ -392,7 +392,7 @@
             },
             setZipCode(val) {
                 if(val.zip_code){
-                    this.formData.zip_code = parseInt(val.zip_code);
+                    this.formData.zip_code = val.zip_code;
                     this.setCity(val)
                     this.invalidZip = false;
                 }
