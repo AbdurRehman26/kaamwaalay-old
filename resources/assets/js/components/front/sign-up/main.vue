@@ -175,7 +175,16 @@
                     }, 5000);
                 }).catch(error => {
                     this.loading = false
-                    self.errorMessage = error.response.data.errors.email[0];
+
+
+                    console.log(error , error.response , error.data);
+                    let errors = error.response.data.errors;
+                    _.forEach(errors, function(value, key) {
+                        self.errorMessage =  errors[key][0];
+                        return false;
+                    });
+
+
                     setTimeout(function(){
                         self.errorMessage='';
                         this.loading = false
