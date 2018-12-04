@@ -85,7 +85,7 @@ public function getUserApprovedProfile()
 
 
     $output = [
-            'data' => $data,
+            'data' => $data ? $data : [],
     ];
 
         // HTTP_OK = 200;
