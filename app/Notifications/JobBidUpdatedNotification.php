@@ -59,7 +59,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
      public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
-                    'text' => $this->data->message,
+                    'text' => strip_tags($this->data->message),
                     'image' => $this->data->from->profile_image,
                     'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
                     'route' => 'job.details',
