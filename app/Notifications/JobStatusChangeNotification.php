@@ -57,12 +57,13 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
                     'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
                     'route' => 'job.details',
                     "id" => $this->data->id,
+                    "job_id" => $this->data->id
                     ],
                 'created_at' => $this->date
                  ];
         return OneSignalMessage::create()
             ->subject("Job Status Change")
-            ->body($this->data->message)
+            ->body(strip_tags($this->data->message))
             ->setData('data',$data);
     }
     /**

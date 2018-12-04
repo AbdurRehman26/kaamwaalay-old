@@ -58,14 +58,16 @@ class SendUrgentJob extends Notification implements ShouldQueue
                     'image' => $this->data->from->profile_image,
                     'link_text' => 'View Job',
                     'route' => 'job.details',
-                    "id" => $this->data->id
+                    "id" => $this->data->id,
+                    "job_id" => $this->data->id
+
                     ],
                 'created_at' => $this->date
                  ];
       //\Log::info($notifiable);
        return OneSignalMessage::create()
             ->subject("Urgent Job")
-            ->body($this->data->message)
+            ->body(strip_tags($this->data->message))
             ->setData('data',$data);
     }
 

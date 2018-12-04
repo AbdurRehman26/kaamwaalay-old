@@ -69,7 +69,7 @@ class CampaignNotification extends Notification implements ShouldQueue
       //\Log::info($notifiable);
        return OneSignalMessage::create()
             ->subject("Job bid")
-            ->body($this->data->message)
+            ->body(strip_tags($this->data->message))
             ->setData('data',$data);
 
     }

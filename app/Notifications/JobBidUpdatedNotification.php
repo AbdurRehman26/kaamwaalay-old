@@ -66,6 +66,8 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                     "id" => $this->data->id,
                     "object_id" => $this->data->object_id,
                     "object_name" => 'jobBidId',
+                    "job_id" => $this->data->id
+
                     ],
                 'created_at' => $this->date
                  ];

@@ -23,6 +23,7 @@ public function boot()
         $job = Job::find($jobBid->job_id);
         $event->id = $job->id;
         $event->body =  $job;
+
         if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED){
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);

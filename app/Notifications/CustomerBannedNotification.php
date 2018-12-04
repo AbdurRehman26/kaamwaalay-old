@@ -68,7 +68,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
                  ];
         return OneSignalMessage::create()
             ->subject("Customer Banned")
-            ->body($this->data->message)
+            ->body(strip_tags($this->data->message))
             ->setData('data',$data);
     }
     /**

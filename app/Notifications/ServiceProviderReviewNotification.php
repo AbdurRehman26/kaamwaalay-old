@@ -60,7 +60,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
                  ];
         return OneSignalMessage::create()
             ->subject("Urgent Job")
-            ->body($this->data->message)
+            ->body(strip_tags($this->data->message))
             ->setData('data',$data);
     }
     /**
