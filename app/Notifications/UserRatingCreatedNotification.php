@@ -28,7 +28,7 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
     public $data;
     public $queue;
     protected $date;
- 
+    
     /**
     * Create a new notification instance.
     *
@@ -50,7 +50,7 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
     public function via($notifiable)
     {
       return ['database', OneSignalChannel::class ,'broadcast','mail'];
-    }
+  }
 
     /**
     * Get the mail representation of the notification.
@@ -61,22 +61,23 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
     public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
-                    'text' => $this->data->message,
-                    'image' => $this->data->from->profile_image,
-                    'link_text' => 'View Feedback',
-                    'route' => 'job.details',
-                    "id" => $this->data->id,
-                    "job_id" => $this->data->id
-                    ],
-                'created_at' => $this->date
-                 ];
+            'text' => $this->data->message,
+            'image' => $this->data->from->profile_image,
+            'link_text' => 'View Feedback',
+            'route' => 'job.details',
+            "id" => $this->data->id,
+            "job_id" => $this->data->id,
+            "type" => $this->data->type
+        ],
+        'created_at' => $this->date
+    ];
       //\Log::info($notifiable);
-       return OneSignalMessage::create()
-            ->subject("Job bid")
-            ->body(strip_tags($this->data->message))
-            ->setData('data',$data);
+    return OneSignalMessage::create()
+    ->subject("Job bid")
+    ->body(strip_tags($this->data->message))
+    ->setData('data',$data);
 
-    }
+}
 
     /**
     * Get the mail representation of the notification.

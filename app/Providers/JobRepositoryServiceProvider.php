@@ -25,8 +25,8 @@ class JobRepositoryServiceProvider extends ServiceProvider
     public  function boot() {
 
         Job::created(function($item) {
-           UrgentJobCreate::dispatch($item)->onQueue(config('queue.pre_fix').'urgent-job');
-       }); 
+         UrgentJobCreate::dispatch($item)->onQueue(config('queue.pre_fix').'urgent-job');
+     }); 
         Job::updated(function($item) {
 
             if (!\App::runningInConsole()) {
@@ -41,11 +41,13 @@ class JobRepositoryServiceProvider extends ServiceProvider
                     if($item->status == Job::COMPLETED){
                         $event->link_text = 'Write Review';
                         $event->message =  'The <strong>'.$item->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong>. Please post a review.'; 
+                        $event->type = 'write_review';
                     }else{
+                        $event->type = 'job_awarded';
                         $event->email_title = 'Job Awarded';
                         $event->message =  '<strong>'.$item->title.'</strong> job is awarded to you.'; 
                     }
-                  $event->to->notify(new JobStatusChangeNotification($event));
+                    $event->to->notify(new JobStatusChangeNotification($event));
                 }
             }
 
