@@ -244,7 +244,7 @@
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" class="m-b-20 m-t-0" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disabledMarkJobComplete ? 'disabled' : '' ]">
+                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" class="m-b-20 m-t-0" :class="[markJobCompleteLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disabledMarkJobComplete ? 'disabled' : '' ]">
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
@@ -260,7 +260,7 @@
                         <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
-                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
+                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[initiateJobLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
                         <span><i class="icon-checkmark2" style="margin-left: -64px;margin-right: 36px;"></i>Initiate Job</span> <loader></loader>
                     </button>
 
@@ -382,6 +382,8 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 requestUserUrl : '',
                 showChatButton : true,
                 axisPoints : null,
+                initiateJobLoading : false,
+                markJobCompleteLoading : false,
 
             }
         },
@@ -409,13 +411,13 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
+                    return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way' || this.record.status == 'initiated'));
                 }
                 return false;
             },
             canArchiveBid(){
                 if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
-                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id);
+                    return this.record.awardedBid && (this.record.my_bid.id == this.record.awardedBid.id) || this.canMarkJobComplete;
                 }
                 return false;
             },
@@ -433,7 +435,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             canMarkJobDone(){
                 if(Object.keys(this.record).length){
-                    return this.record.awardedBid;
+                    return this.record.awardedBid && this.record.status == 'initiated' || this.record.status == 'completed';
                 }
                 return false;
             },
@@ -736,7 +738,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markCompletedByCustomer(){
-                this.loading = true;
+                this.markJobCompleteLoading = true;
                 let data = {
                     status : 'completed',
                     id : this.record ? this.record.id : ''
@@ -758,7 +760,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markInitiateJobByCustomer(){
-                this.loading = true;
+                this.initiateJobLoading = true;
                 this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
 
                 let data = {
