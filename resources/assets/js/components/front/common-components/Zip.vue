@@ -33,7 +33,7 @@
         mounted () {
             if(typeof(this.initialValue) != "undefined" && this.initialValue) {
                 this.searchValue = {
-                    zip_code: parseInt(this.initialValue),
+                    zip_code: this.initialValue,
                     latitude: '',
                     longitude: '',
                 };
