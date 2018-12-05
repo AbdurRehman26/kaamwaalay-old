@@ -26,11 +26,13 @@ class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProv
                 $event->to = User::find($item->user_id);   
                 if($item->status == ServiceProviderProfileRequest::APPROVED){
                     $event->message =  'Your Profile has been approved.'; 
+                    $event->type = 'profile_approved';
                     $event->link_text =  'Bid Now'; 
                     $event->route =  'explore-jobs'; 
                 }else{
                     $event->link_text =  'Re-submit your profile'; 
                     $event->route =  'my.bids'; 
+                    $event->type = 'profile_rejected';
                     $event->message =  'Your Profile has been rejected.'; 
                 }
                $event->to->notify(new ServiceProviderReviewNotification($event));

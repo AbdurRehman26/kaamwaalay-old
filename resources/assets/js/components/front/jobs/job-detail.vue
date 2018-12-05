@@ -417,7 +417,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return false;
             },
             canArchiveBid(){
-                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
+                if(Object.keys(this.record) && this.record.my_bid){
                     return this.record.awardedBid && (this.record.my_bid.id == this.record.awardedBid.id) || this.canMarkJobComplete;
                 }
                 return false;

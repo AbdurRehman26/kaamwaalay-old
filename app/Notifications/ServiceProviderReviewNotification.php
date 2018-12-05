@@ -52,8 +52,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
-            'unread_count' => $this->data->to->unreadNotifications()->count(),
-
+            'type' => $this->data->type,
             'text' => $this->data->message,
             'link_text' => $this->data->link_text,
             'route' => $this->data->route,
@@ -74,6 +73,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     public function toDatabase($notifiable)
     {
         return [
+            'type' => $this->data->type,
             'text' => $this->data->message,
             'link_text' => $this->data->link_text,
             'route' => $this->data->route,

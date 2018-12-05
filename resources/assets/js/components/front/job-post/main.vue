@@ -84,17 +84,17 @@
                     <div :disabled="$route.params.id" class="form-label-heading m-b-25">
                         <p>WHEN YOU NEED THIS SERVICE</p>
                     </div>
-                    <div :disabled="$route.params.id" class="row ">
+                    <div class="row ">
                         <div class="col-md-12">
                             <label>Do you need this service urgently?</label>
                         </div>
                         <div class="boxed">
                             <div class="col-md-6">
-                                <input type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
+                                <input :disabled="currentJob && currentJob.job_type == 'normal'" type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
                                 <label for="normal">No, Normal job</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
+                                <input :disabled="currentJob && currentJob.job_type == 'urgent'" type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
                                 <label for="urgent">Yes, Urgent job</label>
                             </div>
                         </div>
@@ -293,7 +293,8 @@
                 requestUserUrl : '',
                 currentCity: '',
                 videoValid : true,
-                searchServiceValue : ''
+                searchServiceValue : '',
+                currentJob : ''
 
             }
         },
@@ -427,6 +428,8 @@
             },
             getJobResponse(response){
                 let self = this;
+
+                this.currentJob = response.data;
                 this.formData = response.data;
                 this.currentCity = this.formData.city_id;
 
