@@ -99,8 +99,8 @@
                         <div class="imagegallery">
                             <img class="image" v-for="(image, i) in imageLists" :src="image" @click="onClick(i)">                        
                             <vue-gallery-slideshow 
-                                v-if="imageLists.length < 0"
-                                :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
+                            v-if="imageLists.length < 0"
+                            :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
 
 
@@ -634,6 +634,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.loading = false;
                 this.submitBidForm = false;
 
+                this.initiateJobLoading = false;
+                this.markJobCompleteLoading = false;
+
+
                 this.requestUserUrl='api/user/me?time='+newDate;
                 this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
                 this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
@@ -676,6 +680,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
                 this.record = response.data;
                 // this.axistPointsValue();
+                this.initiateJobLoading = false;
+                this.markJobCompleteLoading = false;
+
+
 
                 this.googleGetAddress(this.record);
 
@@ -694,6 +702,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             getBidsResponse(response){
                 let self = this;
+                this.initiateJobLoading = false;
+                this.markJobCompleteLoading = false;
+
+
 
                 if(response.data){
                     for (var i = 0; i < response.data.length; i++) {

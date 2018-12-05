@@ -106,6 +106,7 @@ class UrgentJobCreate implements ShouldQueue
                           app('JobBidRepository')->create($jobBidData);
                            $event->to = User::find($selectedUser->id); 
                            $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$data->title.'</strong> job';
+                           $event->type = 'urgent_job';
                            $event->to->notify(new SendUrgentJob($event));
                         }
                     }    
