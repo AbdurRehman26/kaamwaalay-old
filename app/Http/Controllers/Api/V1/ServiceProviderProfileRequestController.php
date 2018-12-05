@@ -83,9 +83,11 @@ public function getUserApprovedProfile()
 
     }
 
+    $data = $data ? $data : new \StdClass();
+
 
     $output = [
-            'data' => $data ? $data : false,
+            'data' => $data,
     ];
 
         // HTTP_OK = 200;
