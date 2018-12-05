@@ -59,6 +59,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
+            'unread_count' => $this->data->to->unreadNotifications()->count(),
             'text' => $this->data->message,
             'image' => $this->data->from->profile_image,
             'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
@@ -110,6 +111,8 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                 "id" => $this->data->id,
                 "object_id" => $this->data->object_id,
                 "object_name" => 'jobBidId',
+                "job_id" => $this->data->id,
+                "type" => $this->data->type,
             ],
             'created_at' => $this->date,
         ]))->onQueue($this->queue);

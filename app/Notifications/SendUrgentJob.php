@@ -54,6 +54,7 @@ class SendUrgentJob extends Notification implements ShouldQueue
     {
      \Log::info('toOneSignal');
      $data = ['data'=>[
+        'unread_count' => $this->data->to->unreadNotifications()->count(),
         'text' => $this->data->message,
         'image' => $this->data->from->profile_image,
         'link_text' => 'View Job',
@@ -83,6 +84,8 @@ return OneSignalMessage::create()
         return [
             'text' => $this->data->message,
             'image' => $this->data->from->profile_image,
+            "job_id" => $this->data->id,
+            "type" => $this->data->type,
             'link_text' => 'View Job',
             'route' => 'job.details',
             "id" => $this->data->id

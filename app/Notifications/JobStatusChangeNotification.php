@@ -53,6 +53,7 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
     public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
+            'unread_count' => $this->data->to->unreadNotifications()->count(),
             'text' => $this->data->message,
             'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
             'route' => 'job.details',
@@ -80,6 +81,8 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
             'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
             'route' => 'job.details',
             "id" => $this->data->id,
+            "job_id" => $this->data->id,
+            "type" => $this->data->type,
         ];
     }
     /**
