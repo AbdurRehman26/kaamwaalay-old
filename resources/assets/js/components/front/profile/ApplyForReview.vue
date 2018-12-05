@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <label>DOCUMENT(S)</label>
-                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
+                    <file-upload-component :class="[ record.business_details.attachments.proof_of_business && record.business_details.attachments.proof_of_business.length > 2 ? 'disabled' : '']"  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')">
 
                     </file-upload-component>
 
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                     <label>DOCUMENT(S)</label>
-                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
+                    <file-upload-component :class="[ record.business_details.attachments.certifications && record.business_details.attachments.certifications.length > 2 ? 'disabled' : '']"  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')">
 
                     </file-upload-component>
 
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <label>DOCUMENT(S)</label>
-                    <file-upload-component  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
+                    <file-upload-component :class="[ record.business_details.attachments.registrations && record.business_details.attachments.registrations.length > 2 ? 'disabled' : '']"  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')">
 
                     </file-upload-component>
 
