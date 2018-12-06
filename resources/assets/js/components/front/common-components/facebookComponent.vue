@@ -101,7 +101,6 @@ export default {
                   }
                 })
                 .catch(error => {
-                  alert(1);
                    self.loading = false
                    self.$parent.errorMessage = error.response.data.errors.email[0]
                    setTimeout(function(){
