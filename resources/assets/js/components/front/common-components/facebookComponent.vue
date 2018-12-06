@@ -106,7 +106,7 @@ export default {
                 let self = this;
                 this.$http.get('/login/social/status', {params: self.facebookLoginData})
                 .then(response => {
-                  self.$router.push({ name: 'sign-up'})
+                  self.$router.push({ name: 'sign-up', params: {isPro: "facebook"}})
                 })
                 .catch(error => {
                   self.socialLogin()
