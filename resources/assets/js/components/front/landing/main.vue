@@ -150,6 +150,7 @@
                 isLoading: false,
                 btnLoading: false,
                 loading: false,
+                isTouched: false,
                 options: [],
                 zipCode: '',
                 errorMessage: '',
@@ -183,7 +184,7 @@
         computed: {
             isInvalid () {
                 return this.isTouched && !this.searchValue
-            }
+            },
         },
         methods: {
             onSuccessStoryExist(val) {
@@ -194,7 +195,7 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-                    if (result && !this.loading && !this.isInvalid) {
+                    if (result && !this.loading) {
                         this.ServiceProviderPage();
                         this.errorMessage = "";
                         return;
