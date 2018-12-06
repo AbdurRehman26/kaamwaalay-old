@@ -9,6 +9,8 @@ use App\Data\Models\User;
 use App\Data\Models\Plan;
 use App\Notifications\CampaignNotification;
 use Cache;
+use Carbon\Carbon;
+
 class CampaignRepository extends AbstractRepository implements RepositoryContract
 {
     /**
@@ -47,7 +49,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
         if($data) {
             $planQuery = Plan::where('id','=',$data->plan_id)->withTrashed()->first();
             if ($planQuery) {
-                $data->plan = $planQuery;    
+                $data->plan = $planQuery;  
             }
             return $data;
         }
