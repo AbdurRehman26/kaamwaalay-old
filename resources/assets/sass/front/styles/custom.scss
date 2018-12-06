@@ -1840,6 +1840,20 @@ button.sl-close {
 }
 
 
+.custom-file{
+    &.disabled{
+        input[type="file"]{
+            pointer-events: none;
+        }
+        .custom-file-label{
+            &:after{
+                background-color: #e6e3e3 !important;
+                border-left: 0;
+            }
+        }
+    }
+}
+
 
 // Profile form sass start
 
