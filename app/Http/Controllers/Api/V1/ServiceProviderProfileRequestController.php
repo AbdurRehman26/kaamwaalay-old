@@ -83,6 +83,8 @@ public function getUserApprovedProfile()
 
     }
 
+    $data = $data ? $data : new \StdClass();
+
 
     $output = [
             'data' => $data,

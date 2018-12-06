@@ -49,20 +49,21 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
      * @param  mixed  $notifiable
      * @return \NotificationChannels\OneSignal\OneSignalMessage
      */
-     public function toOneSignal($notifiable)
+    public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
-                    'text' => $this->data->message,
-                    'link_text' => $this->data->link_text,
-                    'route' => $this->data->route,
-                    ],
-                'created_at' => $this->date
-                 ];
-        return OneSignalMessage::create()
-            ->subject("Urgent Job")
-            ->body($this->data->message)
-            ->setData('data',$data);
-    }
+            'type' => $this->data->type,
+            'text' => $this->data->message,
+            'link_text' => $this->data->link_text,
+            'route' => $this->data->route,
+        ],
+        'created_at' => $this->date
+    ];
+    return OneSignalMessage::create()
+    ->subject("Urgent Job")
+    ->body(strip_tags($this->data->message))
+    ->setData('data',$data);
+}
     /**
      * Get the array representation of the notification.
      *
@@ -72,6 +73,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
     public function toDatabase($notifiable)
     {
         return [
+            'type' => $this->data->type,
             'text' => $this->data->message,
             'link_text' => $this->data->link_text,
             'route' => $this->data->route,

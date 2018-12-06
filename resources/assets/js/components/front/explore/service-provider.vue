@@ -330,13 +330,11 @@
         },
         methods: {
             getNearestProviderCount(zip) {
-                zip = parseInt(zip);
                 var record = this.groupByRecords;
                 var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
                 return count;
             },
             getCityProviderCount(zip) {
-                zip = parseInt(zip);
                 var record = this.groupByRecords;
                 var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
                 count = (this.records.length - count);
@@ -534,7 +532,6 @@
                 });
             },
             getNearestProvider(zip) {
-                zip = parseInt(zip);
                 var record = this.groupByRecords;
                 record = (typeof(record[zip]) != "undefined"? record[zip]: []);
                 return record;

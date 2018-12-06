@@ -33,13 +33,17 @@ class JobBidCreated implements ShouldQueue
      */
     public function handle()
     {
+
+
         $event = new \StdClass();
         $job = Job::find($this->data['job_id']);
         $event->id = $job->id;
         $event->body =  $job;
+
         if(!empty($this->data['is_visit_required']) && $this->data['is_visit_required'] == 1 && empty($this->data['deleted_at']) && $this->data['status'] != JobBid::VISITALLOWED && $this->data['status'] != JobBid::COMPLETED){
             $event->to = User::find($job->user_id);
             $event->from = User::find($this->data['user_id']);
+            $event->type = 'visit_required';
             $event->email_title = 'Requested For A Visit';  
             $event->object_id = $this->data['id'];
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding.';
@@ -47,14 +51,18 @@ class JobBidCreated implements ShouldQueue
             if($this->data['is_invited'] == 1){
                $event->from = User::find($job->user_id);
                $event->to = User::find($this->data['user_id']);
-               $event->email_title = 'Job Invitation';   
+               $event->email_title = 'Job Invitation';
+               $event->type = 'invited';  
                $event->message = '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$job->title.'</strong> job.'; 
            }
        }else{ 
          $event->to = User::find($job->user_id);
-         $event->from = User::find($this->data['user_id']);   
+         $event->from = User::find($this->data['user_id']);
+         $event->type = 'bid_created';
          $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> posted a bid on <strong>'.$job->title.'</strong> job.'; 
         }
+        
+
         $event->to->notify(new JobBidCreatedNotification($event));
     }
 }

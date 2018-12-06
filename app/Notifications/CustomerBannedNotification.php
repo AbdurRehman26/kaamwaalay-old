@@ -56,21 +56,22 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return \NotificationChannels\OneSignal\OneSignalMessage
      */
-     public function toOneSignal($notifiable)
+    public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
-                    'text' => $this->data->message,
-                    'link_text' => 'View Job',
-                    'route' => 'job.details',
-                    "id" => $this->data->id,
-                    ],
-                'created_at' => $this->date
-                 ];
-        return OneSignalMessage::create()
-            ->subject("Customer Banned")
-            ->body($this->data->message)
-            ->setData('data',$data);
-    }
+            'type' => $this->data->type,
+            'text' => $this->data->message,
+            'link_text' => 'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id,
+        ],
+        'created_at' => $this->date
+    ];
+    return OneSignalMessage::create()
+    ->subject("Customer Banned")
+    ->body(strip_tags($this->data->message))
+    ->setData('data',$data);
+}
     /**
      * Get the array representation of the notification.
      *
@@ -80,6 +81,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
+            'type' => $this->data->type,
             'text' => $this->data->message,
             'link_text' => 'View Job',
             'route' => 'job.details',
@@ -116,6 +118,6 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
         $url = route('front.login');
         return (new MailMessage)
         ->subject(Lang::getFromJson('Customer Banned'))
-->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
+        ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
     }
 }

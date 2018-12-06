@@ -47,7 +47,7 @@
                     <div class="form-label-heading">
                         <p>Attach Photo</p>
                     </div>
-                    <file-upload-component :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
+                    <file-upload-component :class="[jobImages && jobImages.lenght > 9 ? 'disabled' : '']" :multiple="true" @get-response="getResponse($event)" :uploadKey="'job'"></file-upload-component>
 
                     <div class="margin-bottom-20px row duplicate attachment-field" v-for="(image, index) in jobImages">
 
@@ -84,17 +84,17 @@
                     <div :disabled="$route.params.id" class="form-label-heading m-b-25">
                         <p>WHEN YOU NEED THIS SERVICE</p>
                     </div>
-                    <div :disabled="$route.params.id" class="row ">
+                    <div class="row ">
                         <div class="col-md-12">
                             <label>Do you need this service urgently?</label>
                         </div>
                         <div class="boxed">
                             <div class="col-md-6">
-                                <input type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
+                                <input :disabled="(currentJob && currentJob.job_type == 'normal') ? true : false" type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
                                 <label for="normal">No, Normal job</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
+                                <input :disabled="(currentJob && currentJob.job_type == 'urgent') ? true : false" type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
                                 <label for="urgent">Yes, Urgent job</label>
                             </div>
                         </div>
@@ -293,7 +293,8 @@
                 requestUserUrl : '',
                 currentCity: '',
                 videoValid : true,
-                searchServiceValue : ''
+                searchServiceValue : '',
+                currentJob : ''
 
             }
         },
@@ -364,7 +365,7 @@
 
                 let user = JSON.parse(this.$store.getters.getAuthUser)
                 this.formData.state_id = user.state_id ? user.state_id : '';
-                this.formData.zip_code = user.zip_code ? parseInt(user.zip_code) : '';
+                this.formData.zip_code = user.zip_code ? user.zip_code : '';
                 this.formData.city_id = user.city_id ? user.city_id : '';
 
                 let self = this;
@@ -392,7 +393,7 @@
             },
             setZipCode(val) {
                 if(val.zip_code){
-                    this.formData.zip_code = parseInt(val.zip_code);
+                    this.formData.zip_code = val.zip_code;
                     this.setCity(val)
                     this.invalidZip = false;
                 }
@@ -427,6 +428,8 @@
             },
             getJobResponse(response){
                 let self = this;
+
+                this.currentJob = response.data;
                 this.formData = response.data;
                 this.currentCity = this.formData.city_id;
 
@@ -539,8 +542,7 @@
                     self.successMessage = response.message;
 
                     self.requestUserUrl = 'api/user/me';
-                    console.log(11111);
-                    return false;
+                    
                     setTimeout(function () {
                         self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
                         self.successMessage = '';

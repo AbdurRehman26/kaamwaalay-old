@@ -41,7 +41,7 @@ class SendUrgentJob extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         \Log::info('via');
-         return ['database', OneSignalChannel::class ,'broadcast'];
+        return ['database', OneSignalChannel::class ,'broadcast'];
     }
 
     /**
@@ -50,24 +50,28 @@ class SendUrgentJob extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-     public function toOneSignal($notifiable)
+    public function toOneSignal($notifiable)
     {
-       \Log::info('toOneSignal');
-        $data = ['data'=>[
-                    'text' => $this->data->message,
-                    'image' => $this->data->from->profile_image,
-                    'link_text' => 'View Job',
-                    'route' => 'job.details',
-                    "id" => $this->data->id
-                    ],
-                'created_at' => $this->date
-                 ];
+     \Log::info('toOneSignal');
+     $data = ['data'=>[
+        'unread_count' => $this->data->to->unreadNotifications()->count(),
+        'text' => $this->data->message,
+        'image' => $this->data->from->profile_image,
+        'link_text' => 'View Job',
+        'route' => 'job.details',
+        "id" => $this->data->id,
+        "job_id" => $this->data->id,
+        "type" => $this->data->type
+
+    ],
+    'created_at' => $this->date
+];
       //\Log::info($notifiable);
-       return OneSignalMessage::create()
-            ->subject("Urgent Job")
-            ->body($this->data->message)
-            ->setData('data',$data);
-    }
+return OneSignalMessage::create()
+->subject("Urgent Job")
+->body(strip_tags($this->data->message))
+->setData('data',$data);
+}
 
     /**
      * Get the array representation of the notification.
@@ -80,6 +84,8 @@ class SendUrgentJob extends Notification implements ShouldQueue
         return [
             'text' => $this->data->message,
             'image' => $this->data->from->profile_image,
+            "job_id" => $this->data->id,
+            "type" => $this->data->type,
             'link_text' => 'View Job',
             'route' => 'job.details',
             "id" => $this->data->id

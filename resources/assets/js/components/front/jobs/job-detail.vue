@@ -99,8 +99,8 @@
                         <div class="imagegallery">
                             <img class="image" v-for="(image, i) in imageLists" :src="image" @click="onClick(i)">                        
                             <vue-gallery-slideshow 
-                                v-if="imageLists.length < 0"
-                                :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
+                            v-if="imageLists.length < 0"
+                            :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
 
 
@@ -244,7 +244,7 @@
                         <i class="icon-trophy"></i> Job Awarded
                     </a>
 
-                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" class="m-b-20 m-t-0" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disabledMarkJobComplete ? 'disabled' : '' ]">
+                    <button v-if="isMyJob && canMarkJobComplete" @click="markCompletedByCustomer" class="m-b-20 m-t-0" :class="[markJobCompleteLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disabledMarkJobComplete ? 'disabled' : '' ]">
                         <span>Mark Job Complete</span> <loader></loader>
                     </button>
 
@@ -260,7 +260,7 @@
                         <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
-                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
+                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[initiateJobLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
                         <span><i class="icon-checkmark2" style="margin-left: -64px;margin-right: 36px;"></i>Initiate Job</span> <loader></loader>
                     </button>
 
@@ -277,13 +277,14 @@
 
                     <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
 
+                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="!isMyJob && canArchiveBid && myBidValue" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
+                        Archive
+                    </a>
+
                     <a v-canBid v-if="!jobCancelled && jobAwarded && canRateReviewSp" @click.prevent="showReviewForm = true" href="javascript:void(0);" class="btn btn-primary m-t-0">
                         Write Review
                     </a>
 
-                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="!isMyJob && canArchiveBid && myBidValue" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
-                        Archive
-                    </a>
 
                 </div>
 
@@ -382,6 +383,8 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 requestUserUrl : '',
                 showChatButton : true,
                 axisPoints : null,
+                initiateJobLoading : false,
+                markJobCompleteLoading : false,
 
             }
         },
@@ -409,13 +412,16 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way'));
+                    return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way' || this.record.status == 'initiated'));
                 }
                 return false;
             },
             canArchiveBid(){
-                if(Object.keys(this.record) && this.record.my_bid && !this.record.my_bid.is_archived){
-                    return !this.record.awardedBid || (this.record.my_bid.id != this.record.awardedBid.id);
+                if(Object.keys(this.record) && this.record.my_bid){
+                    return (this.record.awardedBid && (this.record.my_bid.id != this.record.awardedBid.id)) || 
+                    (
+                        !this.record.awardedBid && (Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd || (this.record.my_bid.is_visit_required && this.record.my_bid.status != 'pending' && this.record.my_bid.status !== 'visit_allowed'))
+                    );
                 }
                 return false;
             },
@@ -432,8 +438,9 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return false;
             },
             canMarkJobDone(){
-                if(Object.keys(this.record).length){
-                    return this.record.awardedBid;
+                if(Object.keys(this.record).length && this.record.my_bid){
+
+                    return this.record.awardedBid && (this.record.my_bid.id == this.record.awardedBid.id) && (this.record.status == 'initiated' || this.record.status == 'completed');
                 }
                 return false;
             },
@@ -631,6 +638,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.loading = false;
                 this.submitBidForm = false;
 
+                this.initiateJobLoading = false;
+                this.markJobCompleteLoading = false;
+
+
                 this.requestUserUrl='api/user/me?time='+newDate;
                 this.requestUrl = 'api/job/'+this.$route.params.id+'?time='+newDate;
                 this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
@@ -673,6 +684,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
                 this.record = response.data;
                 // this.axistPointsValue();
+                this.initiateJobLoading = false;
+                this.markJobCompleteLoading = false;
+
+
 
                 this.googleGetAddress(this.record);
 
@@ -691,6 +706,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             getBidsResponse(response){
                 let self = this;
+                this.initiateJobLoading = false;
+                this.markJobCompleteLoading = false;
+
+
 
                 if(response.data){
                     for (var i = 0; i < response.data.length; i++) {
@@ -736,7 +755,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markCompletedByCustomer(){
-                this.loading = true;
+                this.markJobCompleteLoading = true;
                 let data = {
                     status : 'completed',
                     id : this.record ? this.record.id : ''
@@ -758,7 +777,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markInitiateJobByCustomer(){
-                this.loading = true;
+                this.initiateJobLoading = true;
                 this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
 
                 let data = {

@@ -56,24 +56,28 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return \NotificationChannels\OneSignal\OneSignalMessage
      */
-     public function toOneSignal($notifiable)
+    public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
-                    'text' => $this->data->message,
-                    'image' => $this->data->from->profile_image,
-                    'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
-                    'route' => 'job.details',
-                    "id" => $this->data->id,
-                    "object_id" => $this->data->object_id,
-                    "object_name" => 'jobBidId',
-                    ],
-                'created_at' => $this->date
-                 ];
-        return OneSignalMessage::create()
-            ->subject("Urgent Job")
-            ->body($this->data->message)
-            ->setData('data',$data);
-    }
+            'unread_count' => $this->data->to->unreadNotifications()->count(),
+            'text' => $this->data->message,
+            'image' => $this->data->from->profile_image,
+            'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
+            'route' => 'job.details',
+            "id" => $this->data->id,
+            "object_id" => $this->data->object_id,
+            "object_name" => 'jobBidId',
+            "job_id" => $this->data->id,
+            "type" => $this->data->type
+
+        ],
+        'created_at' => $this->date
+    ];
+    return OneSignalMessage::create()
+    ->subject("Urgent Job")
+    ->body(strip_tags($this->data->message))
+    ->setData('data',$data);
+}
     /**
      * Get the array representation of the notification.
      *
@@ -89,6 +93,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
             "id" => $this->data->id,
             "object_id" => $this->data->object_id,
             "object_name" => 'jobBidId',
+            "job_id" => $this->data->id,
+            "type" => $this->data->type
+
         ];
     }
     /**
@@ -107,6 +114,8 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
                 "id" => $this->data->id,
                 "object_id" => $this->data->object_id,
                 "object_name" => 'jobBidId',
+                "job_id" => $this->data->id,
+                "type" => $this->data->type,
             ],
             'created_at' => $this->date,
         ]))->onQueue($this->queue);
