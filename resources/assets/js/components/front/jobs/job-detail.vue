@@ -418,7 +418,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             canArchiveBid(){
                 if(Object.keys(this.record) && this.record.my_bid){
-                    return (this.record.awardedBid && (this.record.my_bid.id != this.record.awardedBid.id) || !this.record.awardedBid);
+                    return (this.record.awardedBid && (this.record.my_bid.id != this.record.awardedBid.id)) || 
+                    (
+                        !this.record.awardedBid && (Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd || (this.record.my_bid.is_visit_required && this.record.my_bid.status != 'pending' && this.record.my_bid.status !== 'visit_allowed'))
+                    );
                 }
                 return false;
             },
