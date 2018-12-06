@@ -418,7 +418,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             canArchiveBid(){
                 if(Object.keys(this.record) && this.record.my_bid){
-                    return this.record.awardedBid && (this.record.my_bid.id == this.record.awardedBid.id) || this.canMarkJobComplete;
+                    return (this.record.awardedBid && (this.record.my_bid.id != this.record.awardedBid.id) || !this.record.awardedBid);
                 }
                 return false;
             },
@@ -435,8 +435,9 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return false;
             },
             canMarkJobDone(){
-                if(Object.keys(this.record).length){
-                    return this.record.awardedBid && this.record.status == 'initiated' || this.record.status == 'completed';
+                if(Object.keys(this.record).length && this.record.my_bid){
+
+                    return this.record.awardedBid && (this.record.my_bid.id == this.record.awardedBid.id) && (this.record.status == 'initiated' || this.record.status == 'completed');
                 }
                 return false;
             },

@@ -90,11 +90,11 @@
                         </div>
                         <div class="boxed">
                             <div class="col-md-6">
-                                <input :disabled="currentJob && currentJob.job_type == 'normal'" type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
+                                <input :disabled="(currentJob && currentJob.job_type == 'normal') ? true : false" type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
                                 <label for="normal">No, Normal job</label>
                             </div>
                             <div class="col-md-6">
-                                <input :disabled="currentJob && currentJob.job_type == 'urgent'" type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
+                                <input :disabled="(currentJob && currentJob.job_type == 'urgent') ? true : false" type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
                                 <label for="urgent">Yes, Urgent job</label>
                             </div>
                         </div>
