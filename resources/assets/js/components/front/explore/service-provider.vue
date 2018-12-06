@@ -494,7 +494,6 @@
             },
             getService() {
                 let self = this;
-                window.scrollTo(0,0);
                 this.checkRoute();
                 this.btnLoading = true;
                 self.isService = false;
@@ -561,7 +560,6 @@
                 self.isPagination = response.pagination;
             },
             checkRoute() {
-                window.scrollTo(0,0);
                 this.records = [];
                 this.zipCode = this.zip? this.zip : this.zipCode;
                 if(typeof(this.childServiceName) != "undefined" && !isNaN(this.childServiceName) && this.childServiceName){
@@ -589,6 +587,8 @@
                 }
             }
 
+},
+created() {
 },
 watch: {
     '$route' (to, from) {
