@@ -206,7 +206,6 @@
                     this.loading = true;
                     let url = 'api/job-message';//this.url;
                     let data = this.jobMessageData;
-
                     let tempQuery = this.text.replace(/\n/g, "\r\n");
                     data.text = this.text;
                     let tempText = self.text;
