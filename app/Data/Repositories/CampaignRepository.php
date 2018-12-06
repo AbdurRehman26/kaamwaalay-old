@@ -88,7 +88,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             }else{
                 $model->clicks++;
             }
-
+            
             $getPlanViews = $this->findById($model->id);
             $planViewsCount = $getPlanViews->plan->quantity;
             $myView = $getPlanViews->views;
