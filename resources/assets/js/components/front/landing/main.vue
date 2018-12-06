@@ -184,6 +184,7 @@
             isInvalid () {
                 return this.isTouched && !this.searchValue
             }
+            
         },
         methods: {
             onSuccessStoryExist(val) {
