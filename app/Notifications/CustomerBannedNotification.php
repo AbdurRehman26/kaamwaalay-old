@@ -64,6 +64,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
             'link_text' => 'View Job',
             'route' => 'job.details',
             "id" => $this->data->id,
+            "job_id" => $this->data->id,
         ],
         'created_at' => $this->date
     ];
@@ -86,6 +87,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
             'link_text' => 'View Job',
             'route' => 'job.details',
             "id" => $this->data->id,
+            "job_id" => $this->data->id,
         ];
     }
     /**

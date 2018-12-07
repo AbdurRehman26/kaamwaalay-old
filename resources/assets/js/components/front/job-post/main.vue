@@ -300,7 +300,9 @@
         },
         computed : {
             servicesList(){
-                this.prefillValues();
+                if(this.$route.params.id){       
+                    this.prefillValues();
+                }
                 let self = this;
                 this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
                     return self.formData.service_id == service.id;
@@ -493,8 +495,17 @@
                     this.invalidZip = null;
                     if(!this.formData.zip_code) {
                         this.invalidZip = true;
+                        result = false;
+                    }
+
+
+                    if(!this.searchServiceValue) {
+                        this.errorMessage = 'The service field is required';
                         return;
                     }
+
+
+
                     if (result) {
 
                         if(!this.videoValid){
@@ -521,10 +532,11 @@
             },
             onSubmit() {
                 let self = this;
-                this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
-                let data = this.formData;
-                this.formData.service_id = this.searchServiceValue.id;
-                    
+                let data = JSON.parse(JSON.stringify(this.formData));
+
+                data.service_id = this.searchServiceValue.id;
+                data.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
+
                 self.loading = true;
                 let url = self.url;
                 let urlRequest = '';
