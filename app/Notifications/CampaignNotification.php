@@ -63,6 +63,7 @@ class CampaignNotification extends Notification implements ShouldQueue
                     'text' => $this->data->message,
                     'link_text' => 'View Campaign',
                     'route' => 'featured_profile',
+                    'type' => $this->data->type,
                     ],
                 'created_at' => $this->date
                  ];

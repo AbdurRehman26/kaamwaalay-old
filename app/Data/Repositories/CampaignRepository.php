@@ -154,6 +154,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
            $event->body =  $data; 
            $event->to = User::find($data->user_id); 
            $event->message = $data->message;
+           $event->type = 'campaign_consumed';
            $event->to->notify(new CampaignNotification($event));
     }
 }
