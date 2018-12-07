@@ -10,7 +10,7 @@
     </template>
 <script>
 export default {
-     props : ['text','fromSignUp'],
+     props : ['text','fromSignUp', 'showDialog'],
   data () {
     remind: null;
     return {
@@ -19,6 +19,13 @@ export default {
         errorMessage: '',
         successMessage: '',
         }
+    },
+    watch: {
+      showDialog(val) {
+        if(val) {
+            this.openFbLoginDialog();   
+        }
+      }
     },
     methods:{
        openFbLoginDialog () {
@@ -71,7 +78,6 @@ export default {
                     self.$auth.setToken(response.data.data)
                     self.$store.commit('setAuthUser', response.data.data);
                     if(!self.$auth.isAuthenticated()){
-                      alert(response.data.data.role_id);
                         if(response.data.data.role_id == 3){
                             self.$router.push({ name: 'customer_profile'});
                         }else{
@@ -106,7 +112,7 @@ export default {
                 let self = this;
                 this.$http.get('/login/social/status', {params: self.facebookLoginData})
                 .then(response => {
-                  self.$router.push({ name: 'sign-up'})
+                  self.$router.push({ name: 'sign-up', params: {isPro: "facebook"}})
                 })
                 .catch(error => {
                   self.socialLogin()

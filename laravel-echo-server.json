@@ -1,5 +1,5 @@
 {
-	"authHost": "http://psm.test",
+	"authHost": "http://psm.qa",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",

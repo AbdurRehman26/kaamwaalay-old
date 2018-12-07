@@ -206,7 +206,6 @@
                     this.loading = true;
                     let url = 'api/job-message';//this.url;
                     let data = this.jobMessageData;
-
                     let tempQuery = this.text.replace(/\n/g, "\r\n");
                     data.text = this.text;
                     let tempText = self.text;
@@ -258,22 +257,28 @@
             unSubscribeChannel() {
                 if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
                     let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+                    let channelUserOnlineName = 'User-Is-Online.' + this.jobMessageData.job_bid_id;
                     window.Echo.leave(channelName);
+                    window.Echo.leave(channelUserOnlineName);
+
                 }
             },
             subscribeChannel() {
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
+                let channelUserOnlineName = 'User-Is-Online.' + this.jobMessageData.job_bid_id;
 
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
-                    if(typeof(e.discussion.user_is_online) != "undefined")  {
-                        self.isOnline = e.discussion.user_is_online;
-                        return;
-                    }
-
+                    
                     self.isOnline = true;
                     self.messages.push(e.discussion);
                     self.scrollToEnd();
+                });
+
+                window.Echo.private(channelUserOnlineName).listen('.App\\Events\\UserMessaged', (e) => {
+                    if(typeof(e.discussion.user_is_online) != "undefined")  {
+                        self.isOnline = e.discussion.user_is_online;
+                    }
                 });
             },
             scrollToEnd() {

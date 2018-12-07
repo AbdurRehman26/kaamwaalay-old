@@ -16508,6 +16508,15 @@ button.sl-close {
   }
 }
 
+.custom-file.disabled input[type="file"] {
+  pointer-events: none;
+}
+
+.custom-file.disabled .custom-file-label:after {
+  background-color: #e6e3e3 !important;
+  border-left: 0;
+}
+
 .profile-head {
   margin-top: 30px;
 }

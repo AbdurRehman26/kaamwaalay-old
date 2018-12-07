@@ -2,6 +2,7 @@
 
     <div class="section padding-sm sign-up-info wrapper-sm">
         <h1>Sign Up</h1>
+        <alert v-if="showFacebookAlert" :errorMessage="showFacebookAlertMessage"></alert>  
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-6">
                 <div class="custom-radio boxed">
@@ -33,11 +34,11 @@
             </div>
         </div>
         <!-- Tab panes -->
-        <div class="tab-content m-t-30" v-if="val != 'facebook'">
+        <div class="tab-content m-t-30" v-show="val != 'facebook'">
             <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="sign-up-form service-provider-form">
                     <p class="custom-text">{{signuptext}}</p>
-                    <facebook-component :text = "'Sign up with Facebook'" :fromSignUp="'true'"></facebook-component>
+                    <facebook-component :text = "'Sign up with Facebook'" :fromSignUp="'true'" :showDialog="showDialog"></facebook-component>
                     <div class="form-signup">
                         <form  @submit.prevent="validateBeforeSubmit"  novalidate="">
                             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
@@ -91,12 +92,12 @@
 </div>
 
 </div>
-
-    <div class="m-b-30 text-center" v-if="val === 'facebook'">
+    <signup-confirmation-popup :signupText="signupText" @hideModalValue="hideModal" :showModalProp="showModalValue" @onConfirm="onConfirm"></signup-confirmation-popup>
+    <!-- <div class="m-b-30 text-center" v-if="val === 'facebook'">
         <div class="create-account-btn">
             <button class="btn btn-primary account-type-btn wth-190" :class="[loading  ? 'show-spinner' : '']"><span>Continue</span><loader></loader></button>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -108,6 +109,11 @@
         data () {
             remind: null;
             return {
+                showFacebookAlert: false,
+                showFacebookAlertMessage: "Your email address is not registered. Please Sign Up.",
+                signupText: "",
+                showDialog: false,
+                showModalValue : false,
                 tabval: 'firstsec',
                 tabval: 'firstsec',
                 type:'customer',
@@ -132,17 +138,36 @@
         mounted() {
             this.$auth.options.loginUrl = '/api/auth/login';
             if(typeof(this.isPro) != "undefined") {
-                this.type = 'provider';
+                this.type = '';
             }
             if(this.isPro == 'customer'){
-                    this.type= this.isPro;
+                    this.type= 'customer';
                     this.signuptext = 'CUSTOMER SIGN UP';
             }else if(this.isPro  == 'provider'){
-                    this.type= this.isPro;
+                    this.type= 'provider';
                     this.signuptext = 'SERVICE PROVIDER SIGN UP';
             }
+            if(this.isPro == "facebook") {
+                    let self = this;
+                    this.showFacebookAlert = true;
+                    setTimeout(function() {
+                        self.showFacebookAlert = false;
+                    }, 3000);
+                }
         },
         methods:{
+            onConfirm() {
+                this.showModalValue = false;
+                this.showDialog = true;
+            },
+            showModal(val){
+                this.signupText = val
+                this.showModalValue = true;
+            },
+            hideModal(){
+                this.showModalValue = false;
+                this.showDialog = false;
+            },
             switchType: function(type) {
 
                 var result = [];
@@ -176,8 +201,6 @@
                 }).catch(error => {
                     this.loading = false
 
-
-                    console.log(error , error.response , error.data);
                     let errors = error.response.data.errors;
                     _.forEach(errors, function(value, key) {
                         self.errorMessage =  errors[key][0];
@@ -230,6 +253,12 @@
                     this.signuptext = 'SERVICE PROVIDER SIGN UP';
                 }
             },
+            type(val) {
+                if(this.isPro == "facebook" && val != "") {
+                    var text = val == "customer"? val : "service provider";
+                    this.showModal(text);
+                }
+            }
         }
     }
 </script>

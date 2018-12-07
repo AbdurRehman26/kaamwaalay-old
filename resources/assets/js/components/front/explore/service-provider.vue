@@ -50,10 +50,10 @@
     <no-record-found v-else-if="noRecordFound"></no-record-found>
     <div class="job-post-container section-padd sm" v-if="!noRecordFound">
         <div class="container md">
-            <div class="text-notifer" v-if="isPagination && getNearestProviderCount(zipCode)">
-                <p>{{getNearestProviderCount(zipCode) + " " + service.title}} service professionals found closest to you.</p>
+            <div class="text-notifer" v-if="isPagination && records.length">
+                <p>{{isPagination.total + " " + service.title}} service professionals found near to you.</p>
             </div>
-            <div class="job-post-list" v-for="record in getNearestProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
+            <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
                 <div class="job-post-details">
                     <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
                     <div class="job-common-description">
@@ -115,8 +115,9 @@
 
                 </div>
             </div>
+            <block-spinner v-if="isLoadProvider"></block-spinner>
         </div>
-        <div class="container md">
+        <!-- <div class="container md">
             <div class="text-notifer" v-if="isPagination && (getCityProviderCount(zipCode) > 0)">
                 <p>{{getCityProviderCount(zipCode) + " " + service.title}} service professionals found near you.</p>
             </div>
@@ -182,17 +183,21 @@
 
                 </div>
             </div>
-        </div>			
+        </div> -->			
     </div>
 
-    <vue-common-methods 
-    :url="requestUrl"
-    :infiniteLoad="true"
-    :force="forcePagination"
-    @get-records="getProviderRecords">
-</vue-common-methods>
 
 <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
+    <vue-common-methods 
+        :url="requestUrl"
+        :infiniteLoad="true"
+        :force="forcePagination"
+        :hideLoader="true"
+        @get-records="getProviderRecords"
+        @custom-start-loading="startLoading"
+        >
+    </vue-common-methods>
+    
     <div class="container element-index">
 
         <div class="category-section">  
@@ -270,6 +275,7 @@
                 serviceTitle: '',
                 relatedServices: '',
                 loading: false,
+                isLoadProvider: true,
                 categoryPopup: false,
                 selectedService: '',
                 serviceSuffix: '',
@@ -329,6 +335,9 @@
             }
         },
         methods: {
+            startLoading(isLoading) {
+                this.isLoadProvider = isLoading;
+            },
             getNearestProviderCount(zip) {
                 var record = this.groupByRecords;
                 var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
@@ -407,7 +416,6 @@
             },  
             ServiceProviderPage() {
                 this.isTouched = false;
-                window.scrollTo(0,0);
                 if(!this.searchValue) {
                     this.isTouched = true;
                     return;
@@ -495,7 +503,6 @@
             },
             getService() {
                 let self = this;
-                window.scrollTo(0,0);
                 this.checkRoute();
                 this.btnLoading = true;
                 self.isService = false;
@@ -516,7 +523,6 @@
                         }
                         self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&zip='+self.zipCode+'&from_explore=true';
                     }
-                    window.scrollTo(0,0);
 
                 }).catch(error=>{
                     self.isPagination = false;
@@ -556,9 +562,9 @@
                 for (var i = 0 ; i < len; i++) {
                     self.records.push( response.data[i] ) ;
                 }
-                self.groupByRecords = _.groupBy(self.records, function(element) {
-                    return element.user_detail.zip_code;
-                });
+                // self.groupByRecords = _.groupBy(self.records, function(element) {
+                //     return element.user_detail.zip_code;
+                // });
                 self.noRecordFound = response.noRecordFound;
                 self.isPagination = response.pagination;
             },
@@ -591,19 +597,22 @@
             }
 
 },
+created() {
+},
 watch: {
     '$route' (to, from) {
-        window.scrollTo(0,0);
+        this.getService();
     },
     'service.title' (val) {
         this.serviceTitle = val;
+        window.scrollTo(0,0);
     },
     serviceName(val) {
 // if(!val) {
 //   this.$router.push({ name: 'Explore'})
 // }
 this.serviceName = val;
-this.getService();
+//this.getService();
 },
 childServiceName(val) {
 
@@ -611,14 +620,13 @@ childServiceName(val) {
 // 	this.$router.push({ name: 'Explore'})
 // }
 this.childServiceName = val;
-this.getService();
+//this.getService();
 },
 zip(val) {
     if(val.length > 5) {
         val = val.substr(0, 5);
     }
     this.zip = val;
-    //this.getService();
 },
 zipCode(val) {
     this.isZipEmpty = false;
@@ -634,7 +642,6 @@ searchValue(val) {
 }
 },
 mounted(){	
-
     this.getInBiddingJobs();
     if(!this.zip) {
         localStorage.removeItem('zip');

@@ -6,6 +6,7 @@ use Cygnis\Data\Contracts\RepositoryContract;
 use Cygnis\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobMessage;
 use App\Events\UserMessaged;
+use App\Events\UserIsOnline;
 use Carbon\Carbon;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
@@ -48,7 +49,7 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         //$input['reciever_id'] = $job->user_id;
 
         if(isset($input['trigger_online_status'])) {
-            UserMessaged::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
+            UserIsOnline::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
             return ['user_is_online' => $input['trigger_online_status']];
         }
         if(isset($input['strict_chat'])) {
