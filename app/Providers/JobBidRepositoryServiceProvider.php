@@ -48,7 +48,8 @@ public function boot()
             $event->object_id = '';
             $event->type = 'job_marked_completed';
             $event->email_title = 'Job Mark Completed';
-            $event->message = 'The awarded <strong>'.$job->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>.';
+            $event->link_text = 'Write a Review';
+            $event->message = 'The awarded <strong>'.$job->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>. Please post a review.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){
