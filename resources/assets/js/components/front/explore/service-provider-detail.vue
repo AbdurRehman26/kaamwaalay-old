@@ -80,8 +80,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <vue-common-methods :url="reviewUrl" :infiniteLoad="true" @get-records="getReviewerRecords"></vue-common-methods>
                                     <no-record-found v-if="noRecordFound"></no-record-found>
+                                    
+                                    <vue-common-methods :url="reviewUrl" :infiniteLoad="true" @get-records="getReviewerRecords"></vue-common-methods>
                                 </div>						
 
                             </div>
@@ -218,9 +219,9 @@
         },
 
         mounted(){
-            window.scrollTo(0, 0);
             this.getServiceProvider();
             this.getInBiddingJobs();
+            window.scrollTo(0, 0);
         }
 
     }

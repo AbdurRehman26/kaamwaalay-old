@@ -28,7 +28,7 @@ class UserMessagedListener
     {
         if(!empty($event->discussion->user)){     
             $event->to = User::find($event->discussion->user->id);
-            //$event->to->notify(new UserMessagedNotification($event));
+            $event->to->notify(new UserMessagedNotification($event));
         }
     }
 }

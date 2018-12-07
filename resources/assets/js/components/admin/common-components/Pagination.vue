@@ -71,6 +71,7 @@
                     self.$parent.getList(false , function (response) {
                         setTimeout(function () {
                             self.loading = false;
+                            self.$emit('custom-loading-start', false);
                             $state.loaded();
                         } , 3000);
                     });
@@ -79,9 +80,9 @@
 
                     self.loading = true;
                     if(self.pagination && self.pagination.current != self.pagination.next){
-
+                        self.$emit('custom-loading-start', true);
                         self.$parent.getList(self.pagination.next , function (response) {
-
+                            self.$emit('custom-loading-start', false);
                             setTimeout(function () {
                                 $state.loaded();
                                 self.loading = false;
@@ -90,7 +91,7 @@
                         });
 
                     }else{
-
+                        self.$emit('custom-loading-start', false);
                         self.loading = false;
                         $state.complete();
                     }

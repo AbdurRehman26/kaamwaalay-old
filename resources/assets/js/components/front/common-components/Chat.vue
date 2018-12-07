@@ -125,7 +125,6 @@
 
                 }).catch(error=>{
                     self.loading = false;
-                    console.log(error , 'exceptional handling error in generalize CommonMethods.vue@getList');
                 });
 
             },

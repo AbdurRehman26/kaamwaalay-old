@@ -55,18 +55,17 @@ class UserMessagedNotification extends Notification implements ShouldQueue
     */
     public function toOneSignal($notifiable)
     {
+        $eventData = $this->data->discussion;
+        $recieverUser = app('UserRepository')->findById($eventData->reciever_id);
+
         $data = [
-            'data'=>[
-job_bid_id,
-job_id,
-reciever_id,
-reciever_name,
-reciever_online_status,
-reciever_image
-
-
-
-
+            'data'=> [
+                "job_bid_id" => $eventData->job_bid_id,
+                "job_id" => $eventData->job_id,
+                "reciever_id" => $eventData->reciever_id,
+                "reciever_name" => $recieverUser->first_name .' '. $recieverUser->last_name,
+                "reciever_online_status" => true,
+                "reciever_image" => $recieverUser->profileImage
             ],
             'created_at' => $this->date
         ];
