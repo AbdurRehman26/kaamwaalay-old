@@ -185,14 +185,15 @@
         </div>			
     </div>
 
-    <vue-common-methods 
-    :url="requestUrl"
-    :infiniteLoad="true"
-    :force="forcePagination"
-    @get-records="getProviderRecords">
-</vue-common-methods>
+    
 
 <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
+    <vue-common-methods 
+            :url="requestUrl"
+            :infiniteLoad="true"
+            :force="forcePagination"
+            @get-records="getProviderRecords">
+        </vue-common-methods>
     <div class="container element-index">
 
         <div class="category-section">  
