@@ -187,7 +187,7 @@
     </div>
 
 
-<div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
+<div class="featured-categories section-padd sm  elementary-banner p-t-130" v-show="relatedServices.length">
     <vue-common-methods 
         :url="requestUrl"
         :infiniteLoad="true"
@@ -197,7 +197,6 @@
         @custom-start-loading="startLoading"
         >
     </vue-common-methods>
-    
     <div class="container element-index">
 
         <div class="category-section">  
@@ -231,6 +230,7 @@
             </div>  	        	      		
         </div>
     </div>
+
     <div class="elements">
         <img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
         <img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
@@ -467,7 +467,7 @@
             },
             ViewCustomerDetail() {
                 this.$router.push({name: 'customerdetail'});
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
             },
             changestatuspopup() {
                 this.changestatus = true;
@@ -504,7 +504,7 @@
             getService() {
                 let self = this;
                 this.checkRoute();
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
                 this.btnLoading = true;
                 self.isService = false;
                 this.$http.get(this.url).then(response => {
@@ -599,13 +599,16 @@
 
 },
 created() {
+    window.scrollTo(0, 0);
 },
 watch: {
     '$route' (to, from) {
+        location.reload();
         this.getService();
     },
     'service.title' (val) {
         this.serviceTitle = val;
+        window.scrollTo(0, 0);
     },
     serviceName(val) {
 // if(!val) {
