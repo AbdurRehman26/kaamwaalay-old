@@ -51,9 +51,9 @@
     <div class="job-post-container section-padd sm" v-if="!noRecordFound">
         <div class="container md">
             <div class="text-notifer" v-if="isPagination && getNearestProviderCount(zipCode)">
-                <p>{{getNearestProviderCount(zipCode) + " " + service.title}} service professionals found closest to you.</p>
+                <p>{{isPagination.total + " " + service.title}} service professionals found near to you.</p>
             </div>
-            <div class="job-post-list" v-for="record in getNearestProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
+            <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
                 <div class="job-post-details">
                     <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
                     <div class="job-common-description">
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-        <div class="container md">
+        <!-- <div class="container md">
             <div class="text-notifer" v-if="isPagination && (getCityProviderCount(zipCode) > 0)">
                 <p>{{getCityProviderCount(zipCode) + " " + service.title}} service professionals found near you.</p>
             </div>
@@ -182,18 +182,18 @@
 
                 </div>
             </div>
-        </div>			
+        </div> -->			
     </div>
 
-    
 
 <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-if="relatedServices.length">
     <vue-common-methods 
-            :url="requestUrl"
-            :infiniteLoad="true"
-            :force="forcePagination"
-            @get-records="getProviderRecords">
-        </vue-common-methods>
+        :url="requestUrl"
+        :infiniteLoad="true"
+        :force="forcePagination"
+        @get-records="getProviderRecords">
+    </vue-common-methods>
+    
     <div class="container element-index">
 
         <div class="category-section">  
@@ -554,9 +554,9 @@
                 for (var i = 0 ; i < len; i++) {
                     self.records.push( response.data[i] ) ;
                 }
-                self.groupByRecords = _.groupBy(self.records, function(element) {
-                    return element.user_detail.zip_code;
-                });
+                // self.groupByRecords = _.groupBy(self.records, function(element) {
+                //     return element.user_detail.zip_code;
+                // });
                 self.noRecordFound = response.noRecordFound;
                 self.isPagination = response.pagination;
             },
