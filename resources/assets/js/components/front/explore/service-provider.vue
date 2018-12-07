@@ -50,7 +50,7 @@
     <no-record-found v-else-if="noRecordFound"></no-record-found>
     <div class="job-post-container section-padd sm" v-if="!noRecordFound">
         <div class="container md">
-            <div class="text-notifer" v-if="isPagination && getNearestProviderCount(zipCode)">
+            <div class="text-notifer" v-if="isPagination && records.length">
                 <p>{{isPagination.total + " " + service.title}} service professionals found near to you.</p>
             </div>
             <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
@@ -115,6 +115,7 @@
 
                 </div>
             </div>
+            <block-spinner v-if="isLoadProvider"></block-spinner>
         </div>
         <!-- <div class="container md">
             <div class="text-notifer" v-if="isPagination && (getCityProviderCount(zipCode) > 0)">
@@ -191,7 +192,10 @@
         :url="requestUrl"
         :infiniteLoad="true"
         :force="forcePagination"
-        @get-records="getProviderRecords">
+        :hideLoader="true"
+        @get-records="getProviderRecords"
+        @custom-start-loading="startLoading"
+        >
     </vue-common-methods>
     
     <div class="container element-index">
@@ -271,6 +275,7 @@
                 serviceTitle: '',
                 relatedServices: '',
                 loading: false,
+                isLoadProvider: true,
                 categoryPopup: false,
                 selectedService: '',
                 serviceSuffix: '',
@@ -330,6 +335,9 @@
             }
         },
         methods: {
+            startLoading(isLoading) {
+                this.isLoadProvider = isLoading;
+            },
             getNearestProviderCount(zip) {
                 var record = this.groupByRecords;
                 var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
@@ -496,6 +504,7 @@
             getService() {
                 let self = this;
                 this.checkRoute();
+                window.scrollTo(0,0);
                 this.btnLoading = true;
                 self.isService = false;
                 this.$http.get(this.url).then(response => {

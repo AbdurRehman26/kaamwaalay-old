@@ -1,5 +1,5 @@
 <template>
-    <vue-pagination :infiniteLoad="infiniteLoad" :loadingStart="loading" class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination"></vue-pagination>
+    <vue-pagination :infiniteLoad="infiniteLoad" :loadingStart="loading" class="col-xs-12 col-md-12" @page-changed="getList" :pagination="pagination" @custom-loading-start="startLoading"></vue-pagination>
 </template>
 
 
@@ -31,6 +31,9 @@
             }
         },
         methods: {
+            startLoading(isLoading) {
+                this.$emit('custom-start-loading', isLoading);
+            },
             getList(page, successCallback){
                 let self = this;
                 let url = self.url;
