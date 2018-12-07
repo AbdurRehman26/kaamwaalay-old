@@ -70,11 +70,19 @@ class CustomerBanned implements ShouldQueue
                 $event = new \StdClass();
                 $event->id = $job->id;
                 $event->to = User::find($jobBid->user_id);
-                if($jobBid->is_awarded == 1){
+                // if($jobBid->is_awarded == 1 || ($jobBid->status == 'pending' || $jobBid->status == 'on_the_way' || $jobBid->status == 'visit_allowed')){
+                //   $event->message =  'We apologize you may not perform this <strong>'.$job->title.'</strong> job as the user has been banned.';  
+                // }else {
+                //     $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
+                // }
+
+                if($jobBid->is_awarded == 1 || ($jobBid->status == 'pending' || $jobBid->status == 'on_the_way' || $jobBid->status == 'visit_allowed')){
                   $event->message =  'We apologize you may not perform this <strong>'.$job->title.'</strong> job as the user has been banned.';  
-              }else{
-                  $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
-              }
+                }else if($jobBid->status == 'invited' && $jobBid->is_invited == 1) {
+                    $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
+                }
+
+
               if($event->to){
                 $event->type = 'customer_banned';
                 $event->to->notify(new CustomerBannedNotification($event));
