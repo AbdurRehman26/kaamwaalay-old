@@ -76,9 +76,9 @@ class CustomerBanned implements ShouldQueue
                 //     $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
                 // }
 
-                if($jobBid->is_awarded == 1 || ($jobBid->status == 'pending' || $jobBid->status == 'on_the_way' || $jobBid->status == 'visit_allowed')){
+                if($jobBid->is_awarded == 1 || ($jobBid->status == JobBid::PENDING || $jobBid->status == JobBid::ONTHEWAY || $jobBid->status == JobBid::VISITALLOWED)){
                   $event->message =  'We apologize you may not perform this <strong>'.$job->title.'</strong> job as the user has been banned.';  
-                }else if($jobBid->status == 'invited' && $jobBid->is_invited == 1) {
+                }else if($jobBid->status == JobBid::INVITED && $jobBid->is_invited == 1) {
                     $event->message =  'We apologize you may not place a bid on this <strong>'.$job->title.'</strong> job as the user has been banned.';
                 }
 
