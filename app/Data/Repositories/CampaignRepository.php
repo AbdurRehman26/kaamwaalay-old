@@ -9,6 +9,8 @@ use App\Data\Models\User;
 use App\Data\Models\Plan;
 use App\Notifications\CampaignNotification;
 use Cache;
+use Carbon\Carbon;
+
 class CampaignRepository extends AbstractRepository implements RepositoryContract
 {
     /**
@@ -47,7 +49,7 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
         if($data) {
             $planQuery = Plan::where('id','=',$data->plan_id)->withTrashed()->first();
             if ($planQuery) {
-                $data->plan = $planQuery;    
+                $data->plan = $planQuery;  
             }
             return $data;
         }
@@ -88,15 +90,14 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
             }else{
                 $model->clicks++;
             }
-
+            
             $getPlanViews = $this->findById($model->id);
             $planViewsCount = $getPlanViews->plan->quantity;
-            $myView = $getPlanViews->views;
+            $myView = $model->views;//$getPlanViews->views;
             $intervals = [];
             $intervals["25"] = (int)ceil((25/100) * $planViewsCount);
             $intervals["50"] = (int)ceil((50/100) * $planViewsCount);
             $intervals["75"] = (int)ceil((75/100) * $planViewsCount);
-
             if(in_array($myView, $intervals)){
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
