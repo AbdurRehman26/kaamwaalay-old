@@ -296,11 +296,9 @@ public function update(array $data = [])
 
         }
         $model->updated_at = Carbon::now();
-
         if ($model->save()) {
             if(isset($data['status']) && $data['status'] == "cancelled") {
                 $jobBids = JobBid::where('job_id', '=', $data['id'])->get(['id', 'status'])->toArray();
-
                 foreach ($jobBids as $key => $value) {
                     $tempData = [];
                     $tempData['id'] = $value['id'];
