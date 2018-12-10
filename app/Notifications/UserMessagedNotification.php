@@ -70,10 +70,10 @@ class UserMessagedNotification extends Notification implements ShouldQueue
             ],
             'created_at' => $this->date
         ];
-      // \Log::info($data);
+       // \Log::info($data);
         return OneSignalMessage::create()
         ->subject("Message")
-        ->body('test')
+        ->body($eventData->text)
         ->setData('data', $data);
 
     }

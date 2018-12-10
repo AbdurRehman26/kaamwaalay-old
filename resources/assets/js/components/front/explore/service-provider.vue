@@ -610,7 +610,7 @@ watch: {
         this.serviceTitle = val;
         setTimeout(function(){
             window.scrollTo(0,0);
-        }, 2000);
+        }, 1000);
     },
     serviceName(val) {
 // if(!val) {
