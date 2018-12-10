@@ -266,7 +266,7 @@
                 let self = this;
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
                 let channelUserOnlineName = 'User-Is-Online.' + this.jobMessageData.job_bid_id;
-
+                console.log(channelName, 7777);
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
                     
                     self.isOnline = true;
