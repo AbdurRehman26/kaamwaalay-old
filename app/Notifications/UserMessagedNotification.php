@@ -60,6 +60,7 @@ class UserMessagedNotification extends Notification implements ShouldQueue
 
         $data = [
             'data'=> [
+                "type" => 'chat',
                 "job_bid_id" => $eventData->job_bid_id,
                 "job_id" => $eventData->job_id,
                 "reciever_id" => $eventData->reciever_id,
