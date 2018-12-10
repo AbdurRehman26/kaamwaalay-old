@@ -66,6 +66,8 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         }
         unset($input['strict_chat']);
         $message = parent::create($input);
+        $job = app('JobRepository')->findById($input['job_id']);
+        $message->job_status = $job->status;
         UserMessaged::dispatch($message);
         UserIsOnline::dispatch((object)['user_is_online' => true, 'job_bid_id' => $input['job_bid_id']]);
         return $message;
