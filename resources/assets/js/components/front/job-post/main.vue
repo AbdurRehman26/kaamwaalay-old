@@ -70,7 +70,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Youtube video ID</label>
-                                <input :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
+                                <input name="youtube video id" :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
                             </div>
                         </div>
                         <div class="col-md-6 video-url">
@@ -300,9 +300,10 @@
         },
         computed : {
             servicesList(){
-                if(this.$route.params.id){       
-                    this.prefillValues();
-                }
+                // if(this.$route.params.id){       
+                //     this.prefillValues();
+                // }
+                this.prefillValues();
                 let self = this;
                 this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
                     return self.formData.service_id == service.id;
@@ -365,7 +366,7 @@
             prefillValues(){
 
 
-                let user = JSON.parse(this.$store.getters.getAuthUser)
+                let user = JSON.parse(this.$store.getters.getAuthUser);
                 this.formData.state_id = user.state_id ? user.state_id : '';
                 this.formData.zip_code = user.zip_code ? user.zip_code : '';
                 this.formData.city_id = user.city_id ? user.city_id : '';
