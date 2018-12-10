@@ -599,12 +599,12 @@
 
 },
 created() {
-    window.scrollTo(0, 0);
 },
 watch: {
     '$route' (to, from) {
         location.reload();
         this.getService();
+        window.scrollTo(0,0);
     },
     'service.title' (val) {
         this.serviceTitle = val;
