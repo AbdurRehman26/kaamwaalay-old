@@ -233,7 +233,7 @@
 
                 <div class="service-provider">
 
-                    <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
+                    <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite mb-4" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" 
