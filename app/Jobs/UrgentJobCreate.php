@@ -44,7 +44,7 @@ class UrgentJobCreate implements ShouldQueue
             
              $zipCodeModel = new ZipCode;
              $currentZipCode = $zipCodeModel->where('zip_code','=',  $data->zip_code)->first();
-             $selectedUsers  =  $this->getUsersByRadius($currentZipCode,50,$data);
+             $selectedUsers  =  $this->getUsersByRadius($currentZipCode, 50,$data);
             $event = new \StdClass();
             $event->id = $data->id;
             $event->body = $data;
