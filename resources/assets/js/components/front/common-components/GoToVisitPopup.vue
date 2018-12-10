@@ -8,7 +8,7 @@
                 <b-row class="justify-content-md-center">
                     <b-col cols="2" md="12">
                         <div class="form-group">
-                            <input v-model="visit_details" type="text" v-validate="'required|max:200'" name="" class="form-control" placeholder="For e.g. 20 minutes or 1 hour" />
+                            <input v-model="visit_details" type="text" v-validate="'required|max:200'" name="highlighted" class="form-control" placeholder="For e.g. 20 minutes or 1 hour" :class="['form-control' , errorBag.first('highlighted') ? 'is-invalid' : '']"/>
                         </div>
                     </b-col>
                 </b-row>
@@ -51,10 +51,14 @@
                 this.$refs.myModalRef.show()
             },
             hideModal() {
-                this.$refs.myModalRef.hide()
+                this.$refs.myModalRef.hide();
+                this.errorBag.clear();
+                this.errorMessage = '';
             },
             onHidden(){
                 this.$emit('HideModalValue');
+                this.errorBag.clear();
+                this.errorMessage = '';
             },
             validateBeforeSubmit() {
                 let self = this;
