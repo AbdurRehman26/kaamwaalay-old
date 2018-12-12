@@ -71,7 +71,8 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         UserMessaged::dispatch($message);
         UserIsOnline::dispatch((object)['user_is_online' => true,
          'job_bid_id' => $input['job_bid_id'],
-         'sender_id' => $message->sender_id
+         'sender_id' => $message->sender_id,
+         'chat_id' => $message->id
      ]);
         return $message;
     }
