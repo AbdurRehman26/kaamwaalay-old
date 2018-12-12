@@ -56,6 +56,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
             'text' => $this->data->message,
             'link_text' => $this->data->link_text,
             'route' => $this->data->route,
+            'unread_count' => $this->data->to->unreadNotifications()->count(),
         ],
         'created_at' => $this->date
     ];

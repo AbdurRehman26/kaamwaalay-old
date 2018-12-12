@@ -24,7 +24,7 @@ public function boot()
         $event->id = $job->id;
         $event->body =  $job;
 
-        if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED){
+        if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED && $jobBid->status != JobBid::ONTHEWAY && $jobBid->status !=JobBid::CANCELLED) {
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = $jobBid->id;
@@ -47,9 +47,9 @@ public function boot()
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
             $event->type = 'job_marked_completed';
-            $event->email_title = 'Job Mark Completed';
+            $event->email_title = 'Job Mark Done';
             $event->link_text = 'Write a Review';
-            $event->message = 'The awarded <strong>'.$job->title.'</strong> job has been marked as completed by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>. Please post a review.';
+            $event->message = 'The awarded <strong>'.$job->title.'</strong> job has been marked as done by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>. Please post a review.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){

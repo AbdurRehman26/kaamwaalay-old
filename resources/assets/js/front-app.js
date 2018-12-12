@@ -247,7 +247,6 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
 import Echo from 'laravel-echo';
 window.io = require('socket.io-client');
 if(app.$auth.isAuthenticated()) {
-
     let token = document.head.querySelector('meta[name="csrf-token"]');
     window.Echo = new Echo({
         broadcaster: 'socket.io',

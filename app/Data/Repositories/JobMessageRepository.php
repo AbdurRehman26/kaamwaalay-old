@@ -48,10 +48,10 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
 
         //$input['reciever_id'] = $job->user_id;
 
-        if(isset($input['trigger_online_status'])) {
-            // UserIsOnline::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
-            // return ['user_is_online' => $input['trigger_online_status']];
-        }
+        // if(isset($input['trigger_online_status'])) {
+        //     // UserIsOnline::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
+        //     // return ['user_is_online' => $input['trigger_online_status']];
+        // }
         if(isset($input['strict_chat'])) {
             $message = $input['text'];
             $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
@@ -66,6 +66,8 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         }
         unset($input['strict_chat']);
         $message = parent::create($input);
+        $job = app('JobRepository')->findById($input['job_id']);
+        $message->job_status = $job->status;
         UserMessaged::dispatch($message);
         UserIsOnline::dispatch((object)['user_is_online' => true, 'job_bid_id' => $input['job_bid_id']]);
         return $message;

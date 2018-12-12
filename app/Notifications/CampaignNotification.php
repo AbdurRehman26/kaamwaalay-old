@@ -64,6 +64,7 @@ class CampaignNotification extends Notification implements ShouldQueue
                     'link_text' => 'View Campaign',
                     'route' => 'featured_profile',
                     'type' => $this->data->type,
+                    'unread_count' => $this->data->to->unreadNotifications()->count(),
                     ],
                 'created_at' => $this->date
                  ];

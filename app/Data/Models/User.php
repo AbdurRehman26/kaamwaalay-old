@@ -88,6 +88,7 @@ class User extends Authenticatable
 
     public function routeNotificationForOneSignal()
     {
+
         return [
             'tags' => [
                         'key' => 'user_id',

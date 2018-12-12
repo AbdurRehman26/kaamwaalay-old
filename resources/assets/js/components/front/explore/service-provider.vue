@@ -504,6 +504,7 @@
             getService() {
                 let self = this;
                 this.checkRoute();
+                window.scrollTo(0, 0);
                 this.btnLoading = true;
                 self.isService = false;
                 this.$http.get(this.url).then(response => {
@@ -603,10 +604,13 @@ watch: {
     '$route' (to, from) {
         location.reload();
         this.getService();
+        window.scrollTo(0,0);
     },
     'service.title' (val) {
         this.serviceTitle = val;
-        window.scrollTo(0,0);
+        setTimeout(function(){
+            window.scrollTo(0,0);
+        }, 1000);
     },
     serviceName(val) {
 // if(!val) {

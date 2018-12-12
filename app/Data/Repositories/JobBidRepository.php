@@ -353,6 +353,7 @@ public function update(array $data = [])
         if($status == 'awarded'){
 
             $data['is_archived'] = 0;
+            $data['status'] = "pending";
             $updateData['status'] = 'awarded';
 
         }
