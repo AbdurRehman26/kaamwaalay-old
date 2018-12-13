@@ -14,6 +14,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use App\Data\Models\Role;
 use Carbon\Carbon;
 
 class UserMessagedNotification extends Notification implements ShouldQueue
@@ -58,6 +59,13 @@ class UserMessagedNotification extends Notification implements ShouldQueue
         $eventData = $this->data->discussion;
         $recieverUser = app('UserRepository')->findById($eventData->reciever_id);
         $senderUser = app('UserRepository')->findById($eventData->sender_id);
+        $senderName = $senderUser->first_name .' '. $senderUser->last_name;
+        if($senderUser->role_id == Role::SERVICE_PROVIDER) {
+            $senderProfile = app('ServiceProviderProfileRepository')->model->where('user_id', '=', $senderUser->id)->first();
+            if($senderProfile) {
+                $senderName = $senderProfile->business_name;
+            }
+        }
         $data = [
             'data'=> [
                 "type" => 'chat',
@@ -69,7 +77,7 @@ class UserMessagedNotification extends Notification implements ShouldQueue
                 "reciever_image" => $recieverUser->profileImage,
                 "job_status" => $eventData->job_status,
                 "chat_id" => $eventData->id,
-                "sender_name" => $senderUser->first_name .' '. $senderUser->last_name,
+                "sender_name" => $senderName,
             ],
             'created_at' => $this->date
         ];
