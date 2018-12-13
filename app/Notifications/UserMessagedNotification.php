@@ -57,6 +57,7 @@ class UserMessagedNotification extends Notification implements ShouldQueue
     {
         $eventData = $this->data->discussion;
         $recieverUser = app('UserRepository')->findById($eventData->reciever_id);
+        $senderUser = app('UserRepository')->findById($eventData->sender_id);
         $data = [
             'data'=> [
                 "type" => 'chat',
@@ -67,6 +68,8 @@ class UserMessagedNotification extends Notification implements ShouldQueue
                 "reciever_online_status" => true,
                 "reciever_image" => $recieverUser->profileImage,
                 "job_status" => $eventData->job_status,
+                "chat_id" => $eventData->id,
+                "sender_name" => $senderUser->first_name .' '. $senderUser->last_name,
             ],
             'created_at' => $this->date
         ];
