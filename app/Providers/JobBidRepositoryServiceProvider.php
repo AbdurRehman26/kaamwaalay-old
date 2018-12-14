@@ -59,8 +59,8 @@ public function boot()
             $event->to =  User::find($jobBid->user_id);
             $event->from = User::find($job->user_id);
             $event->object_id = '';
-            $event->email_title = 'Visit Request';
-            $event->title = 'Visit Request';
+            $event->email_title = 'Visit Request Accepted';
+            $event->title = 'Visit Request Accepted';
             $event->type = 'visit_approved';
             $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been accepted';
             $event->to->notify(new JobBidUpdatedNotification($event));
@@ -69,8 +69,8 @@ public function boot()
             $event->to =  User::find($jobBid->user_id);
             $event->from = User::find($job->user_id);
             $event->object_id = '';
-            $event->email_title = 'Visit Request';
-            $event->title = 'Visit Request';
+            $event->email_title = 'Visit Request Rejected';
+            $event->title = 'Visit Request Rejected';
             $event->type = 'visit_declined';
             $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
