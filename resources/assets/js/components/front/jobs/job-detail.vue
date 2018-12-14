@@ -390,7 +390,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
         },
         computed : {
             jobImage(){
-                return this.record && this.record.user && this.record.user.profileImage ? this.record.user.profileImage : 'images/dummy/image-placeholder.jpg';
+                return this.record && this.record.service && this.record.service.images[0] ? this.record.service.images[0].upload_url : 'images/dummy/image-placeholder.jpg';
             },
             jobAwarded(){
                 return this.record.awarded_to;
