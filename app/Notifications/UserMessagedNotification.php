@@ -78,6 +78,7 @@ class UserMessagedNotification extends Notification implements ShouldQueue
                 "job_status" => $eventData->job_status,
                 "chat_id" => $eventData->id,
                 "sender_name" => $senderName,
+                "sender_image" => $senderUser->profileImage,
             ],
             'created_at' => $this->date
         ];
