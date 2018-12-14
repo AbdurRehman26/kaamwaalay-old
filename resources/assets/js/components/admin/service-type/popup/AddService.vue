@@ -359,7 +359,7 @@
                     _.forEach(errors, function(value, key) {
                         var reg = /marked 6 services/g;
                         if(!reg.test(value[0])) {
-                            self.errorMessage =  "The Service Name has alreary been taken.";    
+                            self.errorMessage =  "The Service Name has already been taken.";    
                             return false;
                         }
                         self.errorMessage =  errors[key][0];
