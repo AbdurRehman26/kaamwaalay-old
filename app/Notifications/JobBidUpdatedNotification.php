@@ -61,6 +61,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
         $data = ['data'=>[
             'unread_count' => $this->data->to->unreadNotifications()->count(),
             'text' => $this->data->message,
+            'title' => $this->data->title,
             'image' => $this->data->from->profile_image,
             'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
             'route' => 'job.details',
@@ -88,6 +89,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     {
         return [
             'text' => $this->data->message,
+            'title' => $this->data->title,
             'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
             'route' => 'job.details',
             "id" => $this->data->id,
@@ -109,6 +111,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
         return (new BroadcastMessage([
             'data'=>[
                 'text' => $this->data->message,
+                'title' => $this->data->title,
                 'link_text' => (!empty($this->data->link_text))?$this->data->link_text:'View Job',
                 'route' => 'job.details',
                 "id" => $this->data->id,
