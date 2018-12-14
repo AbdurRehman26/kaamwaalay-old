@@ -39,7 +39,7 @@ public function boot()
             $event->object_id = '';
             $event->link_text = 'View Bid';
             $event->type = 'bid_modified';
-            $event->email_title = 'Modified A Bid';
+            $event->email_title = 'Bid has been posted';
             $event->title = 'Modified A Bid';
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> modified a bid on the job: <strong>'.$job->title.'</strong>.';
             $event->to->notify(new JobBidUpdatedNotification($event));
@@ -59,7 +59,7 @@ public function boot()
             $event->to =  User::find($jobBid->user_id);
             $event->from = User::find($job->user_id);
             $event->object_id = '';
-            $event->email_title = 'Visit Request Accepted';
+            $event->email_title = 'Visit request has been accepted';
             $event->title = 'Visit Request Accepted';
             $event->type = 'visit_approved';
             $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been accepted';
@@ -69,7 +69,7 @@ public function boot()
             $event->to =  User::find($jobBid->user_id);
             $event->from = User::find($job->user_id);
             $event->object_id = '';
-            $event->email_title = 'Visit Request Rejected';
+            $event->email_title = 'Visit request has been rejected';
             $event->title = 'Visit Request Rejected';
             $event->type = 'visit_declined';
             $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
@@ -80,7 +80,7 @@ public function boot()
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->email_title = 'Job Initiated';
+            $event->email_title = 'Job has been initiated';
             $event->title = 'Job Initiated';
             $event->type = 'job_initiated';
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> initiated a job: <strong>'.$job->title.'</strong>.';
@@ -92,7 +92,7 @@ public function boot()
             $event->object_id = '';
             $event->link_text = 'View Details';
             $event->type = 'go_to_visit';
-            $event->email_title = 'Time Confirmation';
+            $event->email_title = 'Time has been confrimed';
             $event->title = 'Time Confirmation';
             $event->message = 'Time has been confirmed by a <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>';
             $event->to->notify(new JobBidUpdatedNotification($event));
