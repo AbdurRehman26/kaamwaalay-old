@@ -55,14 +55,14 @@ class JobBidCreated implements ShouldQueue
                $event->email_title = 'Job Invitation';
                $event->title = 'Job Invitation';
                $event->type = 'invited';  
-               $event->message = '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on <strong>'.$job->title.'</strong> job.'; 
+               $event->message = '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> has invited you to bid on the job: <strong>'.$job->title.'</strong>.'; 
            }
        }else{ 
          $event->to = User::find($job->user_id);
          $event->from = User::find($this->data['user_id']);
          $event->type = 'bid_created';
          $event->title = 'Bid Posted';
-         $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> posted a bid on <strong>'.$job->title.'</strong> job.'; 
+         $event->message =  '<strong>'.$event->from->first_name.' '. $event->from->last_name.'</strong> posted a bid on the job: <strong>'.$job->title.'</strong>.'; 
         }
         
 

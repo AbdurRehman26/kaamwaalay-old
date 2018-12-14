@@ -59,7 +59,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
     {
         $this->builder = $this->builder
             ->where('user_id', '=', $data['user_id'])
-            ->orderBy('rating', 'DESC');      
+            ->orderBy('created_at', 'DESC');      
         return  parent::findByAll($pagination, $perPage);
 
     }

@@ -41,7 +41,7 @@ public function boot()
             $event->type = 'bid_modified';
             $event->email_title = 'Modified A Bid';
             $event->title = 'Modified A Bid';
-            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> modified a bid on <strong>'.$job->title.'</strong> job.';
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> modified a bid on the job: <strong>'.$job->title.'</strong>.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::COMPLETED && empty($jobBid->deleted_at)){
@@ -52,7 +52,7 @@ public function boot()
             $event->email_title = 'Job Mark Done';
             $event->title = 'Job Mark Done';
             $event->link_text = 'Write a Review';
-            $event->message = 'The awarded <strong>'.$job->title.'</strong> job has been marked as done by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>. Please post a review.';
+            $event->message = 'The awarded job: <strong>'.$job->title.'</strong> has been marked as done by the <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>. Please post a review.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if($jobBid->status == JobBid::VISITALLOWED && empty($jobBid->deleted_at)){
@@ -62,7 +62,7 @@ public function boot()
             $event->email_title = 'Visit Request';
             $event->title = 'Visit Request';
             $event->type = 'visit_approved';
-            $event->message = 'Your visit request for <strong>'.$job->title.'</strong> job has been accepted';
+            $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been accepted';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if(!empty($jobBid->deleted_at)){
@@ -72,7 +72,7 @@ public function boot()
             $event->email_title = 'Visit Request';
             $event->title = 'Visit Request';
             $event->type = 'visit_declined';
-            $event->message = 'Your visit request for <strong>'.$job->title.'</strong> job has been declined';
+            $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         
@@ -83,7 +83,7 @@ public function boot()
             $event->email_title = 'Job Initiated';
             $event->title = 'Job Initiated';
             $event->type = 'job_initiated';
-            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> initiated a <strong>'.$job->title.'</strong> job.';
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> initiated a job: <strong>'.$job->title.'</strong>.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if(empty($jobBid->deleted_at) && $jobBid->status == JobBid::ONTHEWAY){
