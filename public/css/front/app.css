@@ -19510,6 +19510,10 @@ p.awarded_to {
   border: 2px solid green;
 }
 
+.form-group.is-invalid input {
+  border: 1px solid #d9534f !important;
+}
+
 @media (max-width: 992px) and (min-width: 768px) {
   .section {
     padding: 50px 0px !important;

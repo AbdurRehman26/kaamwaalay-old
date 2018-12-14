@@ -93,6 +93,7 @@
             'bid',
             ],
             mounted () {
+
                 if(this.bid){
 
                     this.setBidData();
@@ -152,6 +153,15 @@
                     return this.url;
                 },
                 valueRequired (){
+                    let self = this;
+                    self.errorMessage = '';
+                    setTimeout(function () {
+                        Vue.nextTick(() => {
+                            self.errorBag.clear()
+                        })
+
+                    }, 100);
+                    
                     return this.bidType == 'amount_value'; 
                 },
 

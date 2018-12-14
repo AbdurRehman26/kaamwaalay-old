@@ -42399,3 +42399,11 @@ body .infinite-loading-container i.loading-default {
   padding-right: 130px !important;
 }
 
+.form-group.is-invalid input {
+  border: 1px solid #d9534f !important;
+}
+
+.is-invalid.form-group.custom-datepicker .vdp-datepicker input {
+  border: 1px solid #d9534f !important;
+}
+
