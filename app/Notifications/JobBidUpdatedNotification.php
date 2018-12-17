@@ -58,6 +58,9 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
      */
     public function toOneSignal($notifiable)
     {
+        \Log::info('Unread count job bid');
+        \Log::info($this->data->to->unreadNotifications()->count());
+
         $data = ['data'=>[
             'unread_count' => $this->data->to->unreadNotifications()->count(),
             'text' => $this->data->message,
