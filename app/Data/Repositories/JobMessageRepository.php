@@ -60,7 +60,7 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
             $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
 
             if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
-                return "error";
+                return null;
             }
 
         }
