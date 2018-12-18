@@ -65,6 +65,9 @@ public function store(Request $request)
         'message' => $this->responseMessages(__FUNCTION__)
     ];
     
+    \Log::info('Response');
+    \Log::info(json_encode($output));
+
     if(!$data){
 
         return response()->json($output, 422);

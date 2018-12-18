@@ -59,6 +59,11 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
             $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
             $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
 
+            \Log::info(json_encode($message));
+            \Log::info(json_encode($containsGeneral));
+            \Log::info(json_encode($containsDigits));
+            \Log::info(json_encode($containsUrl));
+
             if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
                 return null;
             }
