@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobMessageRepository;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class JobMessageController extends ApiResourceController
 {
