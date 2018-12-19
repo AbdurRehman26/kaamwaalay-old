@@ -53,20 +53,20 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         //     // return ['user_is_online' => $input['trigger_online_status']];
         // }
         if(isset($input['strict_chat'])) {
-            $message = $input['text'];
-            $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
-            $containsEmail = preg_match_all("/\S+@\S+\.\S+/i", $message);
-            $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
-            $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
+            // $message = $input['text'];
+            // $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
+            // $containsEmail = preg_match_all("/\S+@\S+\.\S+/i", $message);
+            // $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
+            // $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
 
-            \Log::info(json_encode($message));
-            \Log::info(json_encode($containsGeneral));
-            \Log::info(json_encode($containsDigits));
-            \Log::info(json_encode($containsUrl));
+            // \Log::info(json_encode($message));
+            // \Log::info(json_encode($containsGeneral));
+            // \Log::info(json_encode($containsDigits));
+            // \Log::info(json_encode($containsUrl));
 
-            if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
-                return null;
-            }
+            // if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
+            //     return null;
+            // }
 
         }
         unset($input['strict_chat']);
