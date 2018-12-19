@@ -70,7 +70,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Youtube video ID</label>
-                                <input :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
+                                <input name="youtube video id" :class="['form-control' , !videoValid ? 'is-invalid' : '']"  v-validate="'length:11'" @keyup="asyncFind(formData.videos)" v-model="formData.videos" class="form-control" placeholder="e.g. BCFuE1tlqwU">
                             </div>
                         </div>
                         <div class="col-md-6 video-url">
@@ -300,6 +300,9 @@
         },
         computed : {
             servicesList(){
+                // if(this.$route.params.id){       
+                //     this.prefillValues();
+                // }
                 this.prefillValues();
                 let self = this;
                 this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
@@ -363,7 +366,7 @@
             prefillValues(){
 
 
-                let user = JSON.parse(this.$store.getters.getAuthUser)
+                let user = JSON.parse(this.$store.getters.getAuthUser);
                 this.formData.state_id = user.state_id ? user.state_id : '';
                 this.formData.zip_code = user.zip_code ? user.zip_code : '';
                 this.formData.city_id = user.city_id ? user.city_id : '';
@@ -493,8 +496,17 @@
                     this.invalidZip = null;
                     if(!this.formData.zip_code) {
                         this.invalidZip = true;
+                        result = false;
+                    }
+
+
+                    if(!this.searchServiceValue) {
+                        this.errorMessage = 'The service field is required';
                         return;
                     }
+
+
+
                     if (result) {
 
                         if(!this.videoValid){
@@ -521,10 +533,11 @@
             },
             onSubmit() {
                 let self = this;
-                this.formData.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
-                let data = this.formData;
-                this.formData.service_id = this.searchServiceValue.id;
-                    
+                let data = JSON.parse(JSON.stringify(this.formData));
+
+                data.service_id = this.searchServiceValue.id;
+                data.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
+
                 self.loading = true;
                 let url = self.url;
                 let urlRequest = '';

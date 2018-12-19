@@ -102,10 +102,11 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                 $data = new \stdClass;
                 $data->user_id = $model->user_id;
                 $data->remaining_views = ($getPlanViews->plan->quantity-$myView).' view(s)';
-                $data->title = $getPlanViews->plan->quantity.' view(s)';
+                $data->temp_title = $getPlanViews->plan->quantity.' view(s)';
+                $data->title = "Featured profile package details";
                 $data->consumption = array_search($myView, $intervals).'%';
                 $user = User::find($data->user_id);
-                $data->message = '<strong>'.$user->first_name.' '.$user->last_name.'</strong>, you have used <strong>'.$data->consumption.'</strong> of <strong>'.$data->title.'</strong>. Remaining <strong>'.$data->remaining_views.'</strong>'; 
+                $data->message = '<strong>'.$user->first_name.' '.$user->last_name.'</strong>, you have used <strong>'.$data->consumption.'</strong> of <strong>'.$data->temp_title.'</strong>. Remaining <strong>'.$data->remaining_views.'</strong>'; 
                 $this->sendNotification($data);
             }
             
@@ -130,13 +131,14 @@ class CampaignRepository extends AbstractRepository implements RepositoryContrac
                             ->findByAttribute('user_id',$input['service_provider_user_id']);
 
                         $this->serviceProviderProfileRepo->update(['id' => $serviceProviderProfile->id,'is_featured'=> 0 ]);
-
+                        $data->title = "Featured profile package details";
                         $data->message = 'Your featured profile campaign plan has ended. To restart this campaign, you must purchase the campaign plan again.'; 
 
                         $this->sendNotification($data);
 
                     }else {
                         
+                        $data->title = "Featured profile package details";
                         $data->message = 'Your current campaign plan has ended. Your next campaign has begun.'; 
                     }
 

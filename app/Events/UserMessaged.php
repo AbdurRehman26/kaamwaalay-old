@@ -24,6 +24,8 @@ class UserMessaged implements ShouldBroadcastNow
     public function __construct($discussion)
     {
         $this->discussion = $discussion;
+        \Log::info('Constructor User Messaged');
+        \Log::info(request()->bearerToken());
         $this->dontBroadcastToCurrentUser();
     }
 

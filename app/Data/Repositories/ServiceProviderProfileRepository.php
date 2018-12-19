@@ -102,6 +102,10 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             }
             $data->profile_request = $profile;
 
+            \Log::info("Attachments");
+            \Log::info(json_encode($data->attachments));
+            \Log::info("");
+
             if(!empty($data->attachments)){
                 foreach ($data->attachments as $key => $value) {
                     foreach ($data->attachments[$key] as $childKey => $childValue) {

@@ -60,10 +60,12 @@ class CampaignNotification extends Notification implements ShouldQueue
     public function toOneSignal($notifiable)
     {
         $data = ['data'=>[
+                    'title' => $this->data->title,
                     'text' => $this->data->message,
                     'link_text' => 'View Campaign',
                     'route' => 'featured_profile',
                     'type' => $this->data->type,
+                    'unread_count' => $this->data->to->unreadNotifications()->count(),
                     ],
                 'created_at' => $this->date
                  ];
@@ -98,9 +100,12 @@ class CampaignNotification extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
+            'title' => $this->data->title,
             'text' => $this->data->message,
             'link_text' => 'View Campaign',
             'route' => 'featured_profile',
+            'type' => $this->data->type,
+                    
         ];
     }
 
@@ -108,6 +113,7 @@ class CampaignNotification extends Notification implements ShouldQueue
     {   
         return (new BroadcastMessage([
             'data'=>[
+                'title' => $this->data->title,
                 'text' => $this->data->message,
                 'link_text' => 'View Campaign',
                 'route' => 'featured_profile',

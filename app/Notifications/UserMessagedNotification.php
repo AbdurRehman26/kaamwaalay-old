@@ -14,6 +14,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use App\Data\Models\Role;
 use Carbon\Carbon;
 
 class UserMessagedNotification extends Notification implements ShouldQueue
@@ -55,26 +56,37 @@ class UserMessagedNotification extends Notification implements ShouldQueue
     */
     public function toOneSignal($notifiable)
     {
+        $eventData = $this->data->discussion;
+        $recieverUser = app('UserRepository')->findById($eventData->reciever_id);
+        $senderUser = app('UserRepository')->findById($eventData->sender_id);
+        $senderName = $senderUser->first_name .' '. $senderUser->last_name;
+        if($senderUser->role_id == Role::SERVICE_PROVIDER) {
+            $senderProfile = app('ServiceProviderProfileRepository')->model->where('user_id', '=', $senderUser->id)->first();
+            if($senderProfile) {
+                $senderName = $senderProfile->business_name;
+            }
+        }
         $data = [
-            'data'=>[
-job_bid_id,
-job_id,
-reciever_id,
-reciever_name,
-reciever_online_status,
-reciever_image
-
-
-
-
+            'data'=> [
+                "type" => 'chat',
+                "job_bid_id" => $eventData->job_bid_id,
+                "job_id" => $eventData->job_id,
+                "reciever_id" => $eventData->reciever_id,
+                "reciever_name" => $recieverUser->first_name .' '. $recieverUser->last_name,
+                "reciever_online_status" => true,
+                "reciever_image" => $recieverUser->profileImage,
+                "job_status" => $eventData->job_status,
+                "chat_id" => $eventData->id,
+                "sender_name" => $senderName,
+                "sender_image" => $senderUser->profileImage,
             ],
             'created_at' => $this->date
         ];
-      //\Log::info($notifiable);
+       // \Log::info($data);
         return OneSignalMessage::create()
         ->subject("Message")
-        ->body('test')
-        ->setData('data',$data);
+        ->body($eventData->text)
+        ->setData('data', $data);
 
     }
     /**

@@ -48,10 +48,10 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
 
         //$input['reciever_id'] = $job->user_id;
 
-        if(isset($input['trigger_online_status'])) {
-            UserIsOnline::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
-            return ['user_is_online' => $input['trigger_online_status']];
-        }
+        // if(isset($input['trigger_online_status'])) {
+        //     // UserIsOnline::dispatch((object)['user_is_online' => $input['trigger_online_status'], 'job_bid_id' => $input['job_bid_id']]);
+        //     // return ['user_is_online' => $input['trigger_online_status']];
+        // }
         if(isset($input['strict_chat'])) {
             $message = $input['text'];
             $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
@@ -59,14 +59,28 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
             $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
             $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
 
+            \Log::info(json_encode($message));
+            \Log::info(json_encode($containsGeneral));
+            \Log::info(json_encode($containsDigits));
+            \Log::info(json_encode($containsUrl));
+
             if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
-                return "error";
+                return null;
             }
 
         }
         unset($input['strict_chat']);
         $message = parent::create($input);
+        $job = app('JobRepository')->findById($input['job_id']);
+        $message->job_status = $job->status;
+        $user = app('UserRepository')->findById($message->sender_id);
         UserMessaged::dispatch($message);
+     //    UserIsOnline::dispatch((object)['user_is_online' => true,
+     //     'job_bid_id' => $input['job_bid_id'],
+     //     'sender_id' => $message->sender_id,
+     //     'chat_id' => $message->id,
+     //     'sender_name' => $user->first_name .' '. $user->last_name
+     // ]);
         return $message;
     }
 

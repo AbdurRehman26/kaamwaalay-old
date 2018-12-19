@@ -27,8 +27,8 @@ class UserMessagedListener
     public function handle($event)
     {
         if(!empty($event->discussion->user)){     
-            $event->to = User::find($event->discussion->user->id);
-            //$event->to->notify(new UserMessagedNotification($event));
+            $event->to = User::find($event->discussion->reciever_id);
+            $event->to->notify(new UserMessagedNotification($event));
         }
     }
 }

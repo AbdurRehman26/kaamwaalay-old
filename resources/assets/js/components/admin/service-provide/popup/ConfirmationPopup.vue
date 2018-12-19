@@ -3,7 +3,7 @@
         <b-modal id="status-user-confirm" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Confirmation" ok-title="Yes" ok-only>
            <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>  
            <div>
-            <p>Are you sure you want to comfirm this action?</p>
+            <p>Are you sure you want to confirm this action?</p>
         </div>
         <div slot="modal-footer" class="w-100 frontfix">
             <button @click.prevent="submitForm" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit

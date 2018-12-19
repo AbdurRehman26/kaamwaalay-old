@@ -39093,7 +39093,8 @@ button.sl-close {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  max-width: 436px;
+  width: 65%;
+  max-width: 65%;
   padding: 0px 15px;
 }
 
@@ -39105,9 +39106,8 @@ button.sl-close {
 }
 
 .url-area {
-  padding: 0px 15px 0px 0px;
-  max-width: 46%;
-  width: 100%;
+  padding: 0px 9px 0px 0px;
+  width: 35%;
 }
 
 .pointer-event {

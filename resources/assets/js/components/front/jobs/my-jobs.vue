@@ -12,7 +12,10 @@
 
                         <div class="job-post-list" v-for="record in records">
                             <div class="job-post-details">
-                                <div style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImagePath(record.user) +')'}">
+                                <div v-if="record.service.images[0].upload_url" style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ record.service.images[0].upload_url +')'}">
+                                </div>
+
+                                <div v-if="!record.service.images[0].upload_url" style="pointer-events: none;" class="job-image pointer" v-bind:style="{'background-image': 'url('+ 'images/dummy/image-placeholder.jpg' +')'}">
                                 </div>
 
                                 <div class="job-common-description job-perform">
@@ -78,7 +81,7 @@
                                 </p>
                                 <p class="awarded" v-if="record.awarded_to">
                                     <i class="icon-checkmark2"></i> 
-                                    Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.business_details.profile_request.id}}">
+                                    Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.business_details.id}}">
                                         {{  record.awarded_to.business_details  ? record.awarded_to.business_details.business_name : '' }}
                                     </router-link>
                                 </p>								

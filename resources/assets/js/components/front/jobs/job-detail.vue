@@ -99,7 +99,7 @@
                         <div class="imagegallery">
                             <img class="image" v-for="(image, i) in imageLists" :src="image" @click="onClick(i)">                        
                             <vue-gallery-slideshow 
-                            v-if="imageLists.length < 0"
+                            v-if="imageLists.length"
                             :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
 
@@ -164,8 +164,8 @@
                             <h3 v-if="myBidValue && !isMyJob">My Bid</h3>
 
                             <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
-                                No bid(s) available 
-                                <router-link v-if="!jobCancelled && !jobArchived" href="javascript:void(0);" class="pull-right" 
+                                No bid(s) available
+                                <router-link v-if="record.status !== 'cancelled'" href="javascript:void(0);" class="pull-right" 
                                 :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Invite service providers</router-link>
 
                             </div>
@@ -233,11 +233,11 @@
 
                 <div class="service-provider">
 
-                    <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
+                    <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite mb-4" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" 
-                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Find &amp; Invite</router-link>				
+                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : record.zip_code }}">Find &amp; Invite</router-link>				
                     </div>
 
                     <a style="pointer-events: none;" v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px m-t-0">
@@ -390,7 +390,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
         },
         computed : {
             jobImage(){
-                return this.record && this.record.user && this.record.user.profileImage ? this.record.user.profileImage : 'images/dummy/image-placeholder.jpg';
+                return this.record && this.record.service && this.record.service.images[0] ? this.record.service.images[0].upload_url : 'images/dummy/image-placeholder.jpg';
             },
             jobAwarded(){
                 return this.record.awarded_to;
@@ -825,7 +825,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     setTimeout(function(){
                         var elmnt = document.getElementById("bid-review");
                         elmnt.scrollIntoView();        
-                    }, 500);
+                    }, 1000);
                 }
             }   
         },

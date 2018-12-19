@@ -394,7 +394,7 @@ public function getUserNotification(Request $request)
         $code = 200;
         $output = [
             'data' => [],
-            'message' => 'no notifcation found',
+            'message' => 'No notification found',
         ];
     }
     return response()->json($output, $code);
