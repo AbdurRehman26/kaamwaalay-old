@@ -58,7 +58,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
      */
     public function toOneSignal($notifiable)
     {
-        \Log::info(json_encode($this->data->to->unreadNotifications()->count());
+        \Log::info(json_encode($this->data->to->unreadNotifications()->count()));
         \Log::info('json_encode($this->data->to->unreadNotifications()->count()');
 
 
