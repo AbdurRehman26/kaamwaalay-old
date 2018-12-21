@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Data\Repositories\JobRepository;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use App\Data\Models\Job;
 
 class JobController extends ApiResourceController
 {
@@ -25,6 +26,76 @@ class JobController extends ApiResourceController
             $rules['country_id'] = 'required|exists:countries,id';
             $rules['city_id'] = 'required|exists:cities,id';
             $rules['service_provider_user_id'] = 'exists:users,id,role_id,'. 2;
+
+            $rules['title'] = [
+                'required',
+                'string',
+            ];
+            $rules['address'] = [
+                'required',
+                'string',
+            ];
+            $rules['apartment'] = [
+                'nullable',
+                'string',
+            ];
+            $rules['description'] = [
+                'required',
+                'string',
+            ];
+            $rules['images'] = [
+                'array',
+            ];
+            $rules['images.*.name'] = [
+                'required',
+                'string',
+            ];
+            $rules['images.*.original_name'] = [
+                'required',
+                'string',
+            ];
+            $rules['job_type'] = [
+                'required',
+                'string',
+                Rule::in([
+                    Job::NORMAL,
+                    Job::URGENT,
+                ]),
+            ];
+            $rules['preference'] = [
+                'required',
+                'string',
+                Rule::in([
+                    'choose_date',
+                    'few_days',
+                    'with_in_a_week',
+                    'any_time',
+                ]),
+            ];
+            $rules['schedule_at'] = [
+                'string',
+                Rule::requiredIf(function () {
+                    return request()->get('preference') === 'choose_date'
+                            || false;
+                }),
+            ];
+            $rules['videos'] = [
+                'nullable',
+                'string',
+            ];
+            $rules['zip_code'] = [
+                'required',
+                'string',
+            ];
+
+            $rules['stripe_token'] = [
+                Rule::requiredIf(function () {
+                    return request()->get('job_type') === Job::URGENT
+                            || !request()->user()->hasStripeId()
+                                || false;
+                }),
+            ];
+
         }
 
         if($value == 'update'){

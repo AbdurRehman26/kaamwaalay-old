@@ -9,6 +9,7 @@ use App\Data\Models\User;
 use App\Data\Models\Plan;
 use Carbon\Carbon;
 use DB;
+use Laravel\Cashier\Subscription;
 
 class PaymentRepository extends AbstractRepository implements RepositoryContract
 {
@@ -119,25 +120,45 @@ class PaymentRepository extends AbstractRepository implements RepositoryContract
 
     public function create(array $data = [])
     {
-        $user = User::find($data['user_id']);
-        $stripeToken = $data['stripe_token'];
-        $planId = $data['plan_id'];
-         try{
-             $payment =  $user->newSubscription('', $planId)->create($stripeToken);
-             $planRepo = app('PlanRepository')->findById($planId);
-             if($planRepo->product == 'featured_profile'){
-                $campaignModel = app('CampaignRepository')->model;
-                $campaignData = [];
-                $campaignData['plan_id'] = $planId;
-                $campaignData['user_id'] = $data['user_id'];
-                $campaignModel->create($campaignData);
-              }
-              $response =  $payment;
-          } catch (\Stripe\Error\InvalidRequest $e) {
-              $response =  $e->getMessage();
-          }catch (\Exception $e) {
-              $response =  $e->getMessage();
-          }
-               return $response;
+        \DB::beginTransaction();
+        $user = request()->user();
+
+        try {
+            if (!$user->hasStripeId()) {
+                $user->createAsStripeCustomer($data['stripe_token']);
+            } else {
+                $user->updateCard($data['stripe_token']);
+            }
+
+            $plan = app('PlanRepository')->findById($data['plan_id']);
+
+            $charge = $user->charge($plan->amount * 100, [
+                'description' => "{$user->first_name} {$user->last_name} purchased a Featured Plan.",
+                'metadata' => [
+                    'Plan ID' => $plan->id,
+                    'Purchased by' => "{$user->first_name} {$user->last_name}",
+                ],
+            ]);
+
+            $subscription = Subscription::create([
+                'user_id' => $user->id,
+                'stripe_id' => $charge->id,
+                'stripe_plan' => $plan->id,
+            ]);
+
+            app('CampaignRepository')->create([
+                'plan_id' => $plan->id,
+                'user_id' => $user->id,
+            ]);
+
+            \DB::commit();
+            return $subscription;
+
+        } catch (\Stripe\Error\InvalidRequest $e) {
+            $response =  $e->getMessage();
+        } catch (\Exception $e) {
+            $response =  $e->getMessage();
+        }
+        return $response;
     }
 }
