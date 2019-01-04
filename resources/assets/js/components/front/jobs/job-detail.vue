@@ -301,6 +301,7 @@
 <go-to-visit-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
+<mark-job-done-popup @HideModalValue="showMarkJobDonePopup = false;" :showModalProp="showMarkJobDonePopup"></mark-job-done-popup>
 <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
 
 </div>
@@ -358,6 +359,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 errorMessage: '',
                 successMessage: '',
                 showBidPopup : false,
+                showMarkJobDonePopup : false,
                 showChat : false,
                 confirmPopupShow : false,
                 invitepopupdata: false,
@@ -744,6 +746,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.bidpopup = false;
                 this.showReviewForm = false;
                 this.invitepopupdata = false;
+                this.showMarkJobDonePopup = false;
             },
             showchatpanel(){
                 this.isShowing=true;
@@ -790,6 +793,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markDoneBySp(){
+                // this.showMarkJobDonePopup = true;
                 this.loading = true;
                 this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
 
