@@ -397,7 +397,7 @@ public function create(array $data = [])
     $data['deleted_at'] = null;
     $data['is_archived'] = 0;
     $data['is_visit_required'] = !empty($data['is_visit_required']) ? $data['is_visit_required'] : 0;
-
+    $data['preferred_time'] = Carbon::parse($data['preferred_time'])->toTimeString();
     $data['updated_at'] = Carbon::now()->ToDateTimeString();
     $data['created_at'] = Carbon::now()->ToDateTimeString();
 
