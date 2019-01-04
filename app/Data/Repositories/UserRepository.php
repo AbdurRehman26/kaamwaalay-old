@@ -206,12 +206,12 @@ public function update(array $data = [])
                     'stripe_plan' => $plan->id,
                 ]);
             } catch (\Stripe\Error\InvalidRequest $e) {
-                $this->findById($input['id'], true);
+                $this->cache()->forget($this->_cacheKey.$input['id']);
                 throw ValidationException::withMessages([
                     'message' => $e->getMessage(),
                 ]);
             } catch (\Exception $e) {
-                $this->findById($input['id'], true);
+                $this->cache()->forget($this->_cacheKey.$input['id']);
                 throw ValidationException::withMessages([
                     'message' => $e->getMessage(),
                 ]);
