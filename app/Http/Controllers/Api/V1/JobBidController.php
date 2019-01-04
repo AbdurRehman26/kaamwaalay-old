@@ -105,7 +105,8 @@ public function input($value='')
         'preferred_date',
         'preferred_time',
         'user_id',
-        'is_invited'
+        'is_invited',
+        'job_done_images'
     );
 
 
