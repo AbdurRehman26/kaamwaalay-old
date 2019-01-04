@@ -423,7 +423,7 @@
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
-                if(user.stripe_token){
+                if(user.stripe_id){
                     this.isPaymentDetailShow = false
                 }else{
                     this.isPaymentDetailShow = true

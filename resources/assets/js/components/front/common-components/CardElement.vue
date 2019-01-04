@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div slot="modal-footer" class="w-100">
-                <button @click='pay' :disabled='!complete' :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'col-sm-4' ]">Submit
+                <button @click='createToken()' :disabled='!complete' :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'col-sm-4' ]">Submit
                     <loader></loader>
                 </button>
             </div>
@@ -128,7 +128,7 @@
             }
         },
         components: { 
-            Card,
+            // Card,
             CardNumber, 
             CardExpiry, 
             CardCvc
@@ -145,7 +145,7 @@
             onHidden(){
                 this.$emit('HideModalValue');
             },   
-            pay () {
+            createToken () {
                 self = this
                 this.loading = true
                 if(this.profileReview || !this.isPopup){
@@ -155,50 +155,39 @@
                    this.$refs.myModalRef.hideHeaderClose  = true
                 }
                 createToken().then(data => {
-                    let params =  {
-                        'stripe_token': data.token.id,
-                        'plan_id': this.planId
-                    }
-                    self.$http.post('/api/payment',params)
-                    .then(response => {
-                        self.successMessage =  response.data.message
-                        setTimeout(function(){
-                            self.loading = false
-                            self.successMessage='';
-                            if(self.fromFeaturedProfile == 'true'){
-                                if(typeof self.$parent.onSubmit != 'undefined'){
-                                   self.$parent.onSubmit()
-                               }
-                                self.$parent.getCampaignList()
-                            }else{
-                                self.saveUserStripeToken(data);
-                                if(typeof self.$parent.formData != 'undefined'){
-                                    if(typeof self.$parent.formData.subscription_id != 'undefined' ){
-                                      self.$parent.formData.subscription_id = response.data.data.id  
-                                    }
-                                } 
-                            }
-                            if(self.isPopup){
-                             self.$refs.myModalRef.hideHeaderClose  = false   
-                             self.hideModal()
-                            }
-                        }, 1000);
-                    })
-                    .catch(error => {
-                        self.loading = false
-                        self.$parent.loading = false
-                        self.errorMessage = error.response.data.errors.message[0]
-                        if(self.isPopup){
-                             self.$refs.myModalRef.hideHeaderClose  = false
-                             self.clearCard()
-                        }else{
-                             self.$parent.errorMessage = self.errorMessage 
+                    if (self.$parent.formData) {
+                        self.$parent.formData.stripe_token = data.token.id
+                        self.$parent.onSubmit()
+                    } else if (self.$parent.submitFormData) {
+                        self.$parent.submitFormData.stripe_token = data.token.id
+                        self.$parent.submit = true
+                    } else if (self.isPopup) {
+
+                        let params =  {
+                            'stripe_token': data.token.id,
+                            'plan_id': this.planId
                         }
-                        setTimeout(function(){
-                            self.errorMessage = ''
-                            self.$parent.errorMessage = ''
-                        }, 2000);
-                    })
+                        self.$http.post('/api/payment',params)
+                            .then(response => {
+                                self.successMessage = response.data.message
+                                setTimeout(function(){
+                                    self.loading = false
+                                    self.successMessage='';
+                                    self.$parent.getCampaignList()
+                                    self.$refs.myModalRef.hideHeaderClose = false
+                                    self.hideModal()
+                                }, 2000);
+                            })
+                            .catch(error => {
+                                self.loading = false
+                                self.errorMessage = error.response.data.errors.message[0]
+                                self.$refs.myModalRef.hideHeaderClose = false
+                                self.clearCard()
+                                setTimeout(function(){
+                                    self.errorMessage = ''
+                                }, 2000);
+                            })
+                    }
                 }).catch(error=>{
                     self.$parent.loading = false
                     self.errorMessage = error.response.data.error.message
@@ -212,45 +201,6 @@
                         self.errorMessage = ''
                         self.$parent.errorMessage = ''
                     }, 2000);
-                });
-            },
-            verifyCard () {
-                let self = this
-                this.$parent.loading = true   
-                createToken().then(data => {
-                    self.saveUserStripeToken(data);
-                }).catch(error=>{
-                    self.$parent.loading = false
-                    self.errorMessage = error.response.data.error.message
-                    self.$parent.errorMessage = self.errorMessage
-                    setTimeout(function(){
-                        self.errorMessage = ''
-                        self.$parent.errorMessage = ''
-                    }, 2000);
-                });
-            },
-            saveUserStripeToken(data){
-                let self = this
-                let record = {}
-                let user = JSON.parse(self.$store.getters.getAuthUser)
-                record.stripe_token = data.token.id
-                record.first_name = user.first_name
-                record.last_name = user.last_name
-                record.email = user.email
-                let update = {
-                    user_details : record
-                };
-                let url = 'api/user/'+user.id;
-                self.$http.put(url, update).then(response => {
-                    response = response.data;
-                    self.$store.commit('setAuthUser', response.data);
-                    if(typeof self.$parent.onSubmit != 'undefined'){
-                             self.$parent.onSubmit()
-                    }
-                    if(typeof self.$parent.submit != 'undefined'){
-                            self.$parent.submit = true;
-                    }      
-                }).catch(error => {
                 });
             },
             update () {
@@ -294,13 +244,14 @@
                 if(value){
                     if(this.complete){
                         this.$parent.errorMessage = ''
-                        if(this.profileReview){
-                            this.pay();
-                        }else if(this.urgentJob){
-                            this.pay();
-                        }else{
-                            this.verifyCard();
-                        }
+                        this.createToken()
+                        // if(this.profileReview){
+                        //     this.pay();
+                        // }else if(this.urgentJob){
+                        //     this.pay();
+                        // }else{
+                        //     this.verifyCard();
+                        // }
                     }else{
                         this.$parent.errorMessage = 'Please fill out credit card information'
                     }

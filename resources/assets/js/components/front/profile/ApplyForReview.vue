@@ -633,7 +633,7 @@
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)   
-                if(user.stripe_token){
+                if(user.is_profile_completed){
                     this.isPaymentDetailShow = false
                 }else{
                     this.isPaymentDetailShow = true

@@ -13,6 +13,9 @@ use App\Data\Models\JobBid;
 use App\Data\Models\ServiceProviderProfile;
 use Carbon\Carbon;
 use Storage;
+use App\Data\Models\Plan;
+use Laravel\Cashier\Subscription;
+use Illuminate\Validation\ValidationException;
 
 class JobRepository extends AbstractRepository implements RepositoryContract
 {
@@ -135,7 +138,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
         $currentUser = request()->user();
 
         $details = ['user_rating' => true];
-        $data->user = app('UserRepository')->findById($data->user_id, false, $details);
+        $data->user = app('UserRepository')->findById($data->user_id, $refresh, $details);
 
         if(empty($details['job_details'])) {
 
@@ -336,7 +339,61 @@ public function create(array $data = []) {
 
     unset($data['service_provider_user_id']);
 
+    \DB::beginTransaction();
     $data = parent::create($data);
+
+    if (request()->has('stripe_token')) {
+        $stripe_token = request()->get('stripe_token');
+        $user = request()->user();
+
+        try {
+            if (!$user->hasStripeId()) {
+                $user->createAsStripeCustomer($stripe_token);
+            } else {
+                $user->updateCard($stripe_token);
+            }
+
+            if ($data->job_type === Job::URGENT) {
+
+                $plan = Plan::where([
+                    'type' => 'job',
+                    'product' => 'urgent_job',
+                ])->first();
+
+                $charge = $user->charge($plan->amount * 100, [
+                    'description' => "{$user->first_name} {$user->last_name} created an Urgent Job.",
+                    'metadata' => [
+                        'Job ID' => $data->id,
+                        'Job Title' => $data->title,
+                        'Created by' => "{$user->first_name} {$user->last_name}",
+                    ],
+                ]);
+
+                $subscription = Subscription::create([
+                    'user_id' => $data->user_id,
+                    'stripe_id' => $charge->id,
+                    'stripe_plan' => $plan->id,
+                ]);
+
+                $data = $this->update([
+                    'id' => $data->id,
+                    'subscription_id' => $subscription->id,
+                ]);
+            } else {
+                $data = $this->findById($data->id, true);
+            }
+
+        } catch (\Stripe\Error\InvalidRequest $e) {
+            throw ValidationException::withMessages([
+                'message' => $e->getMessage(),
+            ]);
+        } catch (\Exception $e) {
+            throw ValidationException::withMessages([
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+    \DB::commit();
 
     if($user_id){
 

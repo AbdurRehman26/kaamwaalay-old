@@ -7,6 +7,8 @@ use App\Data\Models\Role;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rule;
+use App\Data\Models\Plan;
 
 class PaymentController extends ApiResourceController
 {
@@ -42,36 +44,46 @@ class PaymentController extends ApiResourceController
         return $input;
     }
 
-/**
-* Store a newly created resource in storage.
-*
-* @param  \Illuminate\Http\Request $request
-* @return \Illuminate\Http\Response
-*/
-public function store(Request $request)
-{
-    $data = $request->only('stripe_token','plan_id');
-    $data['user_id'] = request()->user()->id;
-    $rules = [
-        'stripe_token' => 'required',
-        'plan_id' => 'required|exists:plans,id',
-    ];
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(Request $request)
+    {
+        $data = $request->only('stripe_token','plan_id');
 
-    $this->validate($request, $rules);
-    $result = $this->_repository->create($data);
-    if(!empty($result['id'])) {
-        $code = 200;
-        $output = [
-            'data' => $result,
-            'message' => 'Payment has been made successfully',
+        $rules = [
+            'stripe_token' => [
+                'required',
+            ],
+            'plan_id' => [
+                'required',
+                Rule::notIn([
+                    Plan::URGENT,
+                    Plan::ACCOUNT_CREATION,
+                ]),
+                'exists:plans,id',
+            ],
         ];
-    }else{
-        $errorResponse = ValidationException::withMessages(
-            ['message'=> $result ]
-        );
-        $errorResponse->status = 406;
-        throw $errorResponse;
+
+        $this->validate($request, $rules);
+
+        $result = $this->_repository->create($data);
+        if(!empty($result['id'])) {
+            $code = 200;
+            $output = [
+                'data' => $result,
+                'message' => 'Payment has been made successfully',
+            ];
+        }else{
+            $errorResponse = ValidationException::withMessages(
+                ['message'=> $result ]
+            );
+            $errorResponse->status = 406;
+            throw $errorResponse;
+        }
+        return response()->json($output, $code);
     }
-    return response()->json($output, $code);
-}
 }

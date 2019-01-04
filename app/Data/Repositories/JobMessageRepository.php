@@ -59,8 +59,13 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
             // $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
             // $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
 
+            // \Log::info(json_encode($message));
+            // \Log::info(json_encode($containsGeneral));
+            // \Log::info(json_encode($containsDigits));
+            // \Log::info(json_encode($containsUrl));
+
             // if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
-            //     return "error";
+            //     return null;
             // }
 
         }
@@ -68,7 +73,7 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         $message = parent::create($input);
         $job = app('JobRepository')->findById($input['job_id']);
         $message->job_status = $job->status;
-        $user = app('UserRepository')->findById($message->sender_id);
+        //$user = app('UserRepository')->findById($message->sender_id);
         UserMessaged::dispatch($message);
      //    UserIsOnline::dispatch((object)['user_is_online' => true,
      //     'job_bid_id' => $input['job_bid_id'],

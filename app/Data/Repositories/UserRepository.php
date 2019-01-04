@@ -10,6 +10,9 @@ use DB;
 use Carbon\Carbon;
 use Storage;
 use App\Helper\Helper;
+use App\Data\Models\Plan;
+use Laravel\Cashier\Subscription;
+use Illuminate\Validation\ValidationException;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {
@@ -174,11 +177,52 @@ public function update(array $data = [])
 
     $input['id'] = $data['id'];
 
+    \DB::beginTransaction();
     if ($user = parent::update($input)) {
+
+        if (request()->has('stripe_token')) {
+            $stripe_token = request()->get('stripe_token');
+            $logged_in_user = request()->user();
+
+            try {
+                if (!$logged_in_user->hasStripeId()) {
+                    $logged_in_user->createAsStripeCustomer($stripe_token);
+                } else {
+                    $logged_in_user->updateCard($stripe_token);
+                }
+
+                $plan = Plan::where([
+                    'type' => 'service',
+                    'product' => 'account_creation',
+                ])->first();
+
+                $charge = $logged_in_user->charge($plan->amount * 100, [
+                    'description' => "{$user->first_name} {$user->last_name} created a Service Provider account.",
+                ]);
+
+                $subscription = Subscription::create([
+                    'user_id' => $user->id,
+                    'stripe_id' => $charge->id,
+                    'stripe_plan' => $plan->id,
+                ]);
+            } catch (\Stripe\Error\InvalidRequest $e) {
+                $this->cache()->forget($this->_cacheKey.$input['id']);
+                throw ValidationException::withMessages([
+                    'message' => $e->getMessage(),
+                ]);
+            } catch (\Exception $e) {
+                $this->cache()->forget($this->_cacheKey.$input['id']);
+                throw ValidationException::withMessages([
+                    'message' => $e->getMessage(),
+                ]);
+            }
+        }
+        \DB::commit();
 
         if($user->role_id == Role::SERVICE_PROVIDER) {
             if(!empty($data['business_details'])) {
                 $business_details = $data['business_details']; 
+                $business_details['id'] = $user->id;
                 $business_details['user_id'] = $user->id;
                 if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $user->id)) {
                     $business_details['id'] = $business->id;

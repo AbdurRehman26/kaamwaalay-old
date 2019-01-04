@@ -43,6 +43,17 @@ class UserController extends ApiResourceController
             $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
             $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
 
+            $rules['stripe_token'] = [
+                Rule::requiredIf(function () {
+                    return (
+                        request()->user()->role_id === Role::SERVICE_PROVIDER
+                            && !request()->user()->is_profile_completed
+                                && request()->has('user_details.is_profile_completed')
+                    )
+                    || false;
+                }),
+            ];
+
         }
 
         if($value == 'store') {
