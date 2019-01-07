@@ -113,6 +113,7 @@ public function input($value='')
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;
+        $data['preferred_time'] = Carbon::parse($input['preferred_time'])->toTimeString();
     }
 
     if(!empty($input['is_tbd'])){
