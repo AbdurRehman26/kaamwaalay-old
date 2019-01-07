@@ -11,6 +11,15 @@ class JobBid extends Model
 {
     use InsertOnDuplicateKey, softDeletes;
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'job_done_images' => 'array',
+    ];
+
     const CANCELLED 	= 'cancelled';
     const COMPLETED 	= 'completed';
     const PENDING 		= 'pending';
