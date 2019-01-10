@@ -22,8 +22,32 @@
                     No, decline request
                     <loader></loader>
                 </button>
+                <button :disabled="disableButtons" @click.prevent="showSuggestDateTime = !showSuggestDateTime;" type="submit" :class="['mt-2 btn', 'btn-primary btn-block',  loadingReject ? 'show-spinner' : '']">
+                    Suggest Another Time
+                    <loader></loader>
+                </button>
             </div>
-
+            <hr v-if="showSuggestDateTime">
+            <div class="row mt-3" v-if="showSuggestDateTime">
+                <div class="col-md-6">
+                    <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
+                        <label>Sugested date and time of visit</label>
+                        <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.suggested_date" placeholder="Select Date"></datepicker>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
+                        <label class="nolabel">&nbsp;</label>
+                        <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.suggested_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button @click.prevent="validateBeforeSubmit" type="button" :class="['btn', 'btn-primary',  loadSubmitDateTimeSuggestion ? 'show-spinner' : '']">
+                        Submit
+                        <loader></loader>
+                    </button>
+                </div>
+            </div>
         </b-modal>
         <vue-common-methods :updateForm="true" @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit">
         </vue-common-methods>
@@ -31,17 +55,27 @@
 </template>
 
 <script>
+
+    import DatePicker from 'vue2-datepicker'
+    import Datepicker from 'vuejs-datepicker';
+
     export default {
+        components: { DatePicker, Datepicker },
         data () {
             return {
+                disabledDates: {
+                    to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                },
                 submit : false,
                 loadingAccept : false,
                 loadingReject : false,
+                loadSubmitDateTimeSuggestion : false,
                 errorMessage : false,
                 successMessage : false,
                 url : '',
                 submitFormData : '',
-                disableButtons : false
+                disableButtons : false,
+                showSuggestDateTime: false,
             }
         },
 
@@ -55,16 +89,35 @@
 
         },
         methods: {
+            validateBeforeSubmit() {
+                let self = this;
+
+                this.errorMessage = '';
+
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.disableButtons = true;
+                        this.submitFormData.status = 'suggested_time';
+                        this.loadSubmitDateTimeSuggestion = true;
+                        this.submit = true;
+                        this.errorMessage = ''
+                        return;
+                    }
+                    this.errorMessage = this.errorBag.all()[0];
+                });
+            },
             formError(error){
                 this.errorMessage = 'You have already posted a bid for this job';
                 this.loadingAccept = false;
                 this.loadingReject = false;
+                this.loadSubmitDateTimeSuggestion = false;
                 this.submit = false;
             },
             formSubmitted(response){
                 this.disableButtons = false;
                 this.loadingAccept = false;
                 this.loadingReject = false;
+                this.loadSubmitDateTimeSuggestion = false;
                 this.submit = false;
 
                 this.$router.push({ name : 'job.details' , params : { id : this.job.id}});

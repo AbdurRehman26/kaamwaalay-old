@@ -8,6 +8,7 @@ use App\Data\Models\User;
 use App\Data\Models\Job;
 use App\Data\Repositories\JobBidRepository;
 use App\Notifications\JobBidUpdatedNotification;
+use Carbon\Carbon;
 
 class JobBidRepositoryServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,20 @@ public function boot()
         $job = Job::find($jobBid->job_id);
         $event->id = $job->id;
         $event->body =  $job;
-
+        if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status == JobBid::SUGGESTED) {
+            $time = Carbon::parse($jobBid->suggested_time)->format('h:i A');
+            $date = Carbon::parse($jobBid->suggested_date)->toFormattedDateString();
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = $jobBid->id;
+            $event->type = 'suggested_time';
+            $event->email_title = 'Suggested Date and Time For A Visit';
+            $event->link_text = 'View Job';
+            $event->title = 'Suggested date and time';
+            $event->message = '<strong>'.$event->to->first_name.' '.$event->to->last_name.'</strong> suggested Date, Time: '.$date.', '.$time.'. If you would like to suggest another date and/or time for the job: <strong>'.$job->title.'</strong>.';
+            $event->from->notify(new JobBidUpdatedNotification($event));
+            dd($event);
+        }
         if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED && $jobBid->status != JobBid::ONTHEWAY && $jobBid->status !=JobBid::CANCELLED) {
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);

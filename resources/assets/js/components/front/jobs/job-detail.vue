@@ -193,7 +193,7 @@
                                 <div class="bit-offered">
                                     <span><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
-                                            {{ bid | bidStatus }}		
+                                            {{ bid | bidStatus }}
                                         </strong>
 
                                     </span>
