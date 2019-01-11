@@ -193,7 +193,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
         $directory = config('uploads.job_done.folder');
         if (is_array($data->job_done_images)) {
             foreach ($data->job_done_images as $key => $value) {
-                if(isset($value['name'])) {
+                if(!empty($value['name'])) {
                     $data->job_done_images[$key]['url'] = \Storage::url("{$directory}{$value['name']}");
                 }
             }

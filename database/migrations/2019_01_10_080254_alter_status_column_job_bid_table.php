@@ -15,7 +15,7 @@ class AlterStatusColumnJobBidTable extends Migration
     {
         
         // used because laravel does't support change() in enum type
-        DB::statement("ALTER TABLE job_bids CHANGE COLUMN status status ENUM('cancelled','pending','completed','invited','on_the_way', 'suggested_time') NOT NULL DEFAULT 'pending'");
+        DB::statement("ALTER TABLE job_bids CHANGE COLUMN status status ENUM('cancelled','completed','initiated','invited','on_the_way','pending','visit_allowed', 'suggested_time') NOT NULL DEFAULT 'pending'");
     }
 
     /**
@@ -25,6 +25,6 @@ class AlterStatusColumnJobBidTable extends Migration
      */
     public function down()
     {
-        DB::statement("ALTER TABLE job_bids CHANGE COLUMN status status ENUM('cancelled','pending','completed','invited','on_the_way') NOT NULL DEFAULT 'pending'");
+        DB::statement("ALTER TABLE job_bids CHANGE COLUMN status status ENUM('cancelled','completed','initiated','invited','on_the_way','pending','visit_allowed') NOT NULL DEFAULT 'pending'");
     }
 }

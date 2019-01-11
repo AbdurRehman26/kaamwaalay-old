@@ -36,7 +36,6 @@ public function boot()
             $event->title = 'Suggested date and time';
             $event->message = '<strong>'.$event->to->first_name.' '.$event->to->last_name.'</strong> suggested Date, Time: '.$date.', '.$time.'. If you would like to suggest another date and/or time for the job: <strong>'.$job->title.'</strong>.';
             $event->from->notify(new JobBidUpdatedNotification($event));
-            dd($event);
         }
         if($jobBid->is_visit_required == 1 && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::COMPLETED && $jobBid->status != JobBid::ONTHEWAY && $jobBid->status !=JobBid::CANCELLED) {
             $event->to =  User::find($job->user_id);
