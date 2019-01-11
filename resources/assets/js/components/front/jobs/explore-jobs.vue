@@ -236,6 +236,10 @@
        mounted() {
         let currentUser = JSON.parse(this.$store.getters.getAuthUser);
         this.zipCode = currentUser.zip_code;
+        if(this.zipCode) {
+            this.url += '&filter_by_zip='+this.zipCode;
+        }
+        
        },
         computed : {
             isInvalid () {
