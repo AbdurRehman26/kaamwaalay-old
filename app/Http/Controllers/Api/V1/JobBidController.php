@@ -104,15 +104,21 @@ public function input($value='')
         'is_visit_required',
         'preferred_date',
         'preferred_time',
+        'suggested_date',
+        'suggested_time',
         'user_id',
         'is_invited',
+        'visit_details',
         'job_done_images'
     );
-
 
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;
+        $input['preferred_time'] = Carbon::parse($input['preferred_time'])->toTimeString();
+        if(!empty($input['suggested_time'])) {
+            $input['suggested_time'] = Carbon::parse($input['suggested_time'])->toTimeString(); 
+        }
     }
 
     if(!empty($input['is_tbd'])){

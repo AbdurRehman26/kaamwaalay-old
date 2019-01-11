@@ -141,6 +141,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
                 $query->where('status', '=', 'pending');
                 $query->orWhere('status', '=', 'on_the_way');
                 $query->orWhere('status', '=', 'visit_allowed');
+                $query->orWhere('status', '=', 'suggested_time');
             }
         );
     }            
@@ -158,7 +159,6 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         ->orderBy('job_bids.updated_at', 'desc');
         $input['details'] = $input['filter_by_job_detail'];
     }
-
     $data = parent::findByAll($pagination, $perPage, $input);
 
     if(!empty($input['count_only'])) {
@@ -174,7 +174,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $data = parent::findById($id, $refresh, $details, $encode);
     $job_details = $details;
     $details = ['user_rating' => true];
-
 
     if($data) {
         $data->user = app('UserRepository')->findById($data->user_id, false, $details);
@@ -192,6 +191,14 @@ public function findById($id, $refresh = false, $details = false, $encode = true
         $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
         $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
 
+        $directory = config('uploads.job_done.folder');
+        if (is_array($data->job_done_images)) {
+            foreach ($data->job_done_images as $key => $value) {
+                if(!empty($value['name'])) {
+                    $data->job_done_images[$key]['url'] = \Storage::url("{$directory}{$value['name']}");
+                }
+            }
+        }
     }
 
     return $data;
