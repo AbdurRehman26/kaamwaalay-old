@@ -12,10 +12,10 @@
                                 <span slot="noResult">No service found.</span>
                                 </multiselect>
                             </div>
-                            <div class="container-zip-code">
-                                <multiselect :showNoResults="true" :custom-label="customLabel" v-model="cityValue" :options="citiesList"  placeholder="Enter city" track-by="id" label="name" :loading="isLoadingCity"  id="ajaxCity" open-direction="bottom" :options-limit="300" :limit="3" :limit-text="limitTextCity" :max-height="600"  @search-change="asyncFindCity" name="search">
-                                <span slot="noResult">No city found.</span>
-                                </multiselect>                                
+                            <div class="container-zip-code ml-1" style="height: auto;">
+                                <i class="icon-location"></i>
+                                <input type="hidden" name="zip">
+                                <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit" style="padding-top: 13px; padding-bottom: 12px; height: auto;">
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
                                 <span>Search Jobs</span>
@@ -81,10 +81,12 @@
                 jobMessageData: {},
                 strict: false,
                 disabledChat: false,  
+                invalidZip: false,
             }
         },
 
         methods: {
+
             showChatBox(record, strictChat = false, disabled = false) {
                 this.closeChatBox();
                 this.jobMessageData = {
@@ -125,8 +127,8 @@
                         if(this.searchValue){
                             this.url += '&filter_by_service='+this.searchValue.id;
                         }
-                        if(this.cityValue){
-                            this.url += '&filter_by_city='+this.cityValue.id
+                        if(this.zipCode){
+                            this.url += '&filter_by_zip='+this.zipCode;
                         }
                         
                         this.searchService = '';
@@ -231,7 +233,10 @@
             },  
 
         },
-       
+       mounted() {
+        let currentUser = JSON.parse(this.$store.getters.getAuthUser);
+        this.zipCode = currentUser.zip_code;
+       },
         computed : {
             isInvalid () {
                 return this.isTouched && !this.searchValue

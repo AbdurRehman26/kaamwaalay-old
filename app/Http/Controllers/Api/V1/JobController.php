@@ -119,7 +119,7 @@ class JobController extends ApiResourceController
             'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
-            'details', 'is_archived', 'filter_by_city', 'subscription_id',
+            'details', 'is_archived', 'filter_by_city', 'subscription_id', 'filter_by_zip',
             'address_latitude', 'address_longitude', 'service_provider_user_id',
             'explore_jobs'
         );
