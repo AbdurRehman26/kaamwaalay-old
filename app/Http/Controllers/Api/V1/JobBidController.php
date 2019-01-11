@@ -108,6 +108,7 @@ public function input($value='')
         'suggested_time',
         'user_id',
         'is_invited',
+        'visit_details',
         'job_done_images'
     );
 

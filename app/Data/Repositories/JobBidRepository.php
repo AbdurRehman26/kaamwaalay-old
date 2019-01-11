@@ -141,6 +141,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
                 $query->where('status', '=', 'pending');
                 $query->orWhere('status', '=', 'on_the_way');
                 $query->orWhere('status', '=', 'visit_allowed');
+                $query->orWhere('status', '=', 'suggested_time');
             }
         );
     }            

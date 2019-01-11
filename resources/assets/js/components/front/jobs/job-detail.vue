@@ -191,7 +191,17 @@
                             </div>
                             <div class="job-proposal">
                                 <div class="bit-offered">
-                                    <span><i class="icon-work-briefcase"></i> Offer: 
+                                    <span v-if="bid.status == 'suggested_time'"><i class="icon-work-briefcase"></i> Offer: 
+                                        <strong>
+                                            {{ bid | bidStatus }} <a href="javascript:void(0);" @click.prevent="showVisitApprovalPopup = true;" v-if="user.role_id != 3">- View Details</a>
+                                        </strong>
+                                    </span>
+                                    <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
+                                        <strong>
+                                            {{ bid | bidStatus }} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">- Visit Details</a>
+                                        </strong>
+                                    </span>
+                                    <span v-else><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
                                             {{ bid | bidStatus }}
                                         </strong>
@@ -298,6 +308,10 @@
 
 <visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
 
+<visit-request-approval-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitApprovalPopup"></visit-request-approval-popup>
+
+<visit-request-detials-popup :bid="bVal" @HideModalValue="HideModal" :showModalProp="showVisitDetailsPopup"></visit-request-detials-popup>
+
 <go-to-visit-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
@@ -342,6 +356,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 bidValue : '',
                 forceValue : false,
                 bidder : '',
+                bVal : '',
                 record : [],
                 jobBids : {
                     pagination : false,
@@ -350,6 +365,8 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 },
                 showAwardJob : false,
                 showVisitJob: false,
+                showVisitApprovalPopup: false,
+                showVisitDetailsPopup: false,
                 visitpopup: false,
                 bidpopup: false,
                 isShowing:false,
@@ -387,7 +404,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 axisPoints : null,
                 initiateJobLoading : false,
                 markJobCompleteLoading : false,
-
+                user: ''
             }
         },
         computed : {
@@ -558,6 +575,9 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
         },
         methods: {
+            getDateTime(bid) {
+                return "("+moment(bid.suggested_date).format('MMM Do, YYYY') +" "+ moment(bid.suggested_time, 'HH:mm:ss').format('h:mm A') + ")";
+            },
             axistPointsValue(){
                 let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
                 let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
@@ -698,7 +718,6 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 if(this.record.user_id != user.id && this.record.my_bid){
                     this.jobBids.data.push(this.record.my_bid);                    
                 }
-
                 if(this.jobBids.data.length == 0 && user.role_id == 2){
                     this.showChatButton = false
                 }else{
@@ -742,6 +761,8 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             HideModal(){
                 this.awardJob = false;
                 this.showVisitJob = false;
+                this.showVisitApprovalPopup = false;
+                this.showVisitDetailsPopup = false;
                 this.visitpopup = false;
                 this.bidpopup = false;
                 this.showReviewForm = false;
@@ -825,6 +846,8 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 }
             },
             bidVal(){
+
+                this.user = JSON.parse(this.$store.getters.getAuthUser);
                 if (this.bidReview.match("#viewBid")) {
                     setTimeout(function(){
                         var elmnt = document.getElementById("bid-review");
