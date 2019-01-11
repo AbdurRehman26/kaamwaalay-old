@@ -117,8 +117,8 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         )->select('jobs.*');
     }
 
-    if(!empty($input['filter_by_city'])) {
-        $this->builder = $this->builder->where('jobs.city_id', '=', $input['filter_by_city']);            
+    if(!empty($input['filter_by_zip'])) {
+        $this->builder = $this->builder->where('jobs.zip_code', '=', $input['filter_by_zip']);            
     }
 
     $data = parent::findByAll($pagination, $perPage, $input);
