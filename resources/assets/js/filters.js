@@ -324,7 +324,9 @@ Vue.filter('bidStatus', function (bid) {
     if(bid.is_tbd){
         return 'TBD';
     }
-
+    if(bid.is_visit_required && bid.status =='suggested_time') {
+        return 'Suggested Time ('+ moment(bid.suggested_date).format('MMM Do, YYYY') +" "+ moment(bid.suggested_time, 'HH:mm:ss').format('h:mm A')+")";
+    }
     return bid.amount ? bid.formatted_amount + " " + bid.amount_type: 0 + " " + bid.amount_type;
 
 });
