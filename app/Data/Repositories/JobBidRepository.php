@@ -190,7 +190,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
         $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
-
+        $data->job_rating = $data->job_rating == NULL? 0 : $data->job_rating;
         $directory = config('uploads.job_done.folder');
         if (is_array($data->job_done_images)) {
             foreach ($data->job_done_images as $key => $value) {
