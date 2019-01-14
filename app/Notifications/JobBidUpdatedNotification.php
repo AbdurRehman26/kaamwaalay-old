@@ -61,7 +61,8 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
         \Log::info('Unread count job bid');
         \Log::info($this->data->to->unreadNotifications()->count());
 
-        $data = ['data'=>[
+        $data = [
+            'data'=>[
             'unread_count' => $this->data->to->unreadNotifications()->count(),
             'text' => $this->data->message,
             'title' => $this->data->title,
@@ -78,7 +79,7 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
         'created_at' => $this->date
     ];
     return OneSignalMessage::create()
-    ->subject("Urgent Job")
+    ->subject($this->data->title)
     ->body(strip_tags($this->data->message))
     ->setData('data',$data);
 }

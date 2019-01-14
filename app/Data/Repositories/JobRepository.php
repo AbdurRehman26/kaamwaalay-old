@@ -117,8 +117,8 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         )->select('jobs.*');
     }
 
-    if(!empty($input['filter_by_city'])) {
-        $this->builder = $this->builder->where('jobs.city_id', '=', $input['filter_by_city']);            
+    if(!empty($input['filter_by_zip'])) {
+        $this->builder = $this->builder->where('jobs.zip_code', '=', $input['filter_by_zip']);            
     }
 
     $data = parent::findByAll($pagination, $perPage, $input);
@@ -189,7 +189,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             $ratingCriteria = ['rated_by' => $data->user_id,'status'=>'approved','job_id'=>$data->id];
 
             $data->job_rating = app('UserRatingRepository')->getAvgRatingCriteria($ratingCriteria, false);
-
+            $data->job_rating = $data->job_rating == NULL? 0 : $data->job_rating;
 
             if ($data->status == 'awarded' || $data->status == 'initiated' || $data->status == 'completed') {
 
@@ -224,7 +224,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                     $notCriteria = ['status' => 'invited'];
 
                     $data->my_bid = app('JobBidRepository')->findByCriteria($criteria, false, $notCriteria);
-
                     $criteria['user_id'] = $data->user_id; 
                     $criteria['rated_by'] = $currentUser->id; 
 
