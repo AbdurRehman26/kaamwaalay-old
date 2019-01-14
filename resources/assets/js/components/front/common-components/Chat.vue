@@ -100,7 +100,8 @@
                 if(typeof(page) !== 'undefined' && page){
                     url += '&page='+page;   
                 }
-                url += '&offset=' + self.messages.length;   
+                var after = ((self.messages.length > 0)? self.messages[0].id : 0);
+                url += '&after=' + after;
                  self.$http.get(url).then(response=>{
 
                     response = response.data;

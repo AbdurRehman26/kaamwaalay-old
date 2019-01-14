@@ -31,7 +31,7 @@ public function rules($value='')
 
 public function input($value='')
 {
-    $input = request()->only('id', 'text', 'job_id', 'job_bid_id', 'reciever_id', 'pagination', 'trigger_online_status', 'strict_chat', 'temp_id', 'offset');
+    $input = request()->only('id', 'text', 'job_id', 'job_bid_id', 'reciever_id', 'pagination', 'trigger_online_status', 'strict_chat', 'temp_id', 'limit', 'before', 'after');
     
     $input['sender_id'] = request()->user()->id;
     

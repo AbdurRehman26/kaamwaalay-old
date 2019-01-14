@@ -97,7 +97,15 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
 
         //$data = parent::findByAll($pagination, $perPage, $input);
 
-        $this->builder = $this->builder->offset($input['offset'])->limit($perPage);
+        if(isset($input['before'])) {
+            $input['before'] = (int) $input['before'];
+            $perPage = isset($input['limit'])? (int)$input['limit'] : $perPage;
+            $this->builder = $this->builder->where('id', '<', $input['before'])->limit($perPage);
+        }else {
+            $input['after'] = (int) $input['after'];
+            $perPage = isset($input['limit'])? (int)$input['limit'] : $perPage;
+            $this->builder = $this->builder->where('id', ($input['after'] == 0? '>' : '<'), $input['after'])->limit($perPage);
+        }
         $ids = $this->builder;
         $sql = $ids->toSql();
         $binds = $ids->getBindings();
@@ -111,7 +119,6 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
                 }
             }
         }
-
         $ids = $ids->paginate($perPage);
         if ($pagination == true) {
             $data['pagination'] = [];
