@@ -58,20 +58,25 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
      */
     public function toOneSignal($notifiable)
     {
+        \Log::info(json_encode($this->data->to->unreadNotifications()->count()));
+        \Log::info('json_encode($this->data->to->unreadNotifications()->count()');
+
+
         $data = ['data'=>[
-            'type' => $this->data->type,
-            'text' => $this->data->message,
-            'link_text' => 'View Job',
-            'route' => 'job.details',
-            "id" => $this->data->id,
-            "job_id" => $this->data->id,
-        ],
-        'created_at' => $this->date
-    ];
-    return OneSignalMessage::create()
-    ->subject("Customer Banned")
-    ->body(strip_tags($this->data->message))
-    ->setData('data',$data);
+         'unread_count' => $this->data->to->unreadNotifications()->count(),
+         'type' => $this->data->type,
+         'text' => $this->data->message,
+         'link_text' => 'View Job',
+         'route' => 'job.details',
+         "id" => $this->data->id,
+         "job_id" => $this->data->id,
+     ],
+     'created_at' => $this->date
+ ];
+ return OneSignalMessage::create()
+ ->subject($this->data->title)
+ ->body(strip_tags($this->data->message))
+ ->setData('data',$data);
 }
     /**
      * Get the array representation of the notification.

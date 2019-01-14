@@ -141,6 +141,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
                 $query->where('status', '=', 'pending');
                 $query->orWhere('status', '=', 'on_the_way');
                 $query->orWhere('status', '=', 'visit_allowed');
+                $query->orWhere('status', '=', 'suggested_time');
             }
         );
     }            
@@ -158,7 +159,6 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         ->orderBy('job_bids.updated_at', 'desc');
         $input['details'] = $input['filter_by_job_detail'];
     }
-
     $data = parent::findByAll($pagination, $perPage, $input);
 
     if(!empty($input['count_only'])) {
@@ -175,7 +175,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $job_details = $details;
     $details = ['user_rating' => true];
 
-
     if($data) {
         $data->user = app('UserRepository')->findById($data->user_id, false, $details);
         $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
@@ -191,7 +190,15 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];
         $data->job_rating = app('UserRatingRepository')->findByCriteria($ratingCriteria);
-
+        $data->job_rating = $data->job_rating == NULL? 0 : $data->job_rating;
+        $directory = config('uploads.job_done.folder');
+        if (is_array($data->job_done_images)) {
+            foreach ($data->job_done_images as $key => $value) {
+                if(!empty($value['name'])) {
+                    $data->job_done_images[$key]['url'] = \Storage::url("{$directory}{$value['name']}");
+                }
+            }
+        }
     }
 
     return $data;
@@ -397,7 +404,8 @@ public function create(array $data = [])
     $data['deleted_at'] = null;
     $data['is_archived'] = 0;
     $data['is_visit_required'] = !empty($data['is_visit_required']) ? $data['is_visit_required'] : 0;
-
+    $data['preferred_time'] = Carbon::parse($data['preferred_time'])->toTimeString();
+    
     $data['updated_at'] = Carbon::now()->ToDateTimeString();
     $data['created_at'] = Carbon::now()->ToDateTimeString();
 

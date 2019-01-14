@@ -29,7 +29,10 @@ Vue.component('testmonial-sec',require('./components/front/common-components/Tes
 Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue'));
 Vue.component('award-job-popup',require('./components/front/common-components/AwardJobPopup.vue'));
 Vue.component('visit-request-popup',require('./components/front/common-components/VisitRequestPopup.vue'));
+Vue.component('visit-request-approval-popup',require('./components/front/common-components/VisitRequestApprovalPopup.vue'));
+Vue.component('visit-request-detials-popup',require('./components/front/common-components/VisitRequestDetailsPopup.vue'));
 Vue.component('post-bid-popup',require('./components/front/common-components/PostBidPopup.vue'));
+Vue.component('mark-job-done-popup',require('./components/front/common-components/MarkJobDonePopup.vue'));
 Vue.component('urgent-job',require('./components/front/common-components/UrgentJobPopup.vue'));
 Vue.component('feature-job',require('./components/front/common-components/FeatureJobPopup.vue'));
 Vue.component('customer-support-popup',require('./components/front/common-components/CustomerSupportPopup.vue'));

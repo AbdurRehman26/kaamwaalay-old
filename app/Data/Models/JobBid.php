@@ -11,13 +11,23 @@ class JobBid extends Model
 {
     use InsertOnDuplicateKey, softDeletes;
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'job_done_images' => 'array',
+    ];
+
     const CANCELLED 	= 'cancelled';
     const COMPLETED 	= 'completed';
     const PENDING 		= 'pending';
     const INVITED       = 'invited';
     const VISITALLOWED      = 'visit_allowed';
     const ONTHEWAY      = 'on_the_way';
-    const INITIATED 		= 'initiated';
+    const INITIATED         = 'initiated';
+    const SUGGESTED 		= 'suggested_time';
 
 
     public function setPreferredTimeAttribute($value='')

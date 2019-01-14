@@ -8,6 +8,7 @@ use App\Data\Models\JobMessage;
 use App\Events\UserMessaged;
 use App\Events\UserIsOnline;
 use Carbon\Carbon;
+use DB;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
 {
@@ -53,22 +54,27 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         //     // return ['user_is_online' => $input['trigger_online_status']];
         // }
         if(isset($input['strict_chat'])) {
-            $message = $input['text'];
-            $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
-            $containsEmail = preg_match_all("/\S+@\S+\.\S+/i", $message);
-            $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
-            $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
+            // $message = $input['text'];
+            // $containsDigits = preg_match_all("/(<!\d)?\d{5,}(!\d)?/", $message);
+            // $containsEmail = preg_match_all("/\S+@\S+\.\S+/i", $message);
+            // $containsUrl = preg_match_all("/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i", $message);
+            // $containsGeneral = preg_match_all("/((house)|(flat)|(society)|(appartment)|(block)|(road)|(home))/i", $message);
 
-            if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
-                return "error";
-            }
+            // \Log::info(json_encode($message));
+            // \Log::info(json_encode($containsGeneral));
+            // \Log::info(json_encode($containsDigits));
+            // \Log::info(json_encode($containsUrl));
+
+            // if($containsDigits || $containsUrl || $containsGeneral || $containsEmail) {
+            //     return null;
+            // }
 
         }
         unset($input['strict_chat']);
         $message = parent::create($input);
         $job = app('JobRepository')->findById($input['job_id']);
         $message->job_status = $job->status;
-        $user = app('UserRepository')->findById($message->sender_id);
+        //$user = app('UserRepository')->findById($message->sender_id);
         UserMessaged::dispatch($message);
      //    UserIsOnline::dispatch((object)['user_is_online' => true,
      //     'job_bid_id' => $input['job_bid_id'],
@@ -89,7 +95,56 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         }
         $this->builder = $this->builder->where('job_bid_id', '=', $input['job_bid_id']);            
 
-        $data = parent::findByAll($pagination, $perPage, $input);
+        //$data = parent::findByAll($pagination, $perPage, $input);
+
+        if(isset($input['before'])) {
+            $input['before'] = (int) $input['before'];
+            $perPage = isset($input['limit'])? (int)$input['limit'] : $perPage;
+            $this->builder = $this->builder->where('id', '<', $input['before'])->limit($perPage);
+        }else {
+            $input['after'] = (int) $input['after'];
+            $perPage = isset($input['limit'])? (int)$input['limit'] : $perPage;
+            $this->builder = $this->builder->where('id', ($input['after'] == 0? '>' : '<'), $input['after'])->limit($perPage);
+        }
+        $ids = $this->builder;
+        $sql = $ids->toSql();
+        $binds = $ids->getBindings();
+        $models = DB::select($sql, $binds);
+        $data = ['data'=>[]];    
+        if ($models) {
+            foreach ($models as &$model) {
+                $model = $this->findById($model->id, !empty($input['refresh']), !empty($input['details']));
+                if ($model) {
+                    $data['data'][] = $model;
+                }
+            }
+        }
+        $ids = $ids->paginate($perPage);
+        if ($pagination == true) {
+            $data['pagination'] = [];
+            $data['pagination']['total'] = $ids->total();
+            $data['pagination']['current'] = $ids->currentPage();
+            $data['pagination']['first'] = 1;
+            $data['pagination']['last'] = $ids->lastPage();
+            $data['pagination']['from'] = $ids->firstItem();
+            $data['pagination']['to'] = $ids->lastItem();
+            if($ids->hasMorePages()) {
+                if ( $ids->currentPage() == 1) {
+                    $data['pagination']['previous'] = -1;
+                } else {
+                    $data['pagination']['previous'] = $ids->currentPage()-1;
+                }
+                $data['pagination']['next'] = $ids->currentPage()+1;
+            } else {
+                $data['pagination']['previous'] = $ids->currentPage()-1;
+                $data['pagination']['next'] =  $ids->lastPage();
+            }
+            if ($ids->lastPage() > 1) {
+                $data['pagination']['pages'] = range(1,$ids->lastPage());
+            } else {
+                $data['pagination']['pages'] = [1];
+            }
+        }
 
         return $data;
 

@@ -26,4 +26,6 @@ class Job extends Model
 	const IN_BIDDING 	= 'in_bidding';
 	const INITIATED 	= 'initiated';
 
+    const NORMAL        = 'normal';
+    const URGENT        = 'urgent';
 }

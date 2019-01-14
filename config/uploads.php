@@ -28,6 +28,13 @@ return [
             'folder' => 'service'
         ]
     ],
+    'job_done' => [
+        'folder' => 'job-done/',
+        'rules' => [
+            'mimes:jpeg,jpg,png',
+            // 'max:' . 10*1024*1024,
+        ],
+    ],
     'service_provider' => [
         'folder' => 'service_provider/orignal',
         'rules' => [
