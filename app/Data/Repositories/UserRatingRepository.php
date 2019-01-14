@@ -95,7 +95,7 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
 
         if ($model != null) {
             $model = $model->avg('rating');
-            return $model;
+            return round($model);
         }
         return false;
     }
