@@ -62,7 +62,7 @@ class ServiceProviderReviewNotification extends Notification implements ShouldQu
         'created_at' => $this->date
     ];
     return OneSignalMessage::create()
-    ->subject("Urgent Job")
+    ->subject($this->data->title)
     ->body(strip_tags($this->data->message))
     ->setData('data',$data);
 }

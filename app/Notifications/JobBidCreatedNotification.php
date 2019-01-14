@@ -74,7 +74,7 @@ class JobBidCreatedNotification extends Notification implements ShouldQueue
     ];
       //\Log::info($notifiable);
     return OneSignalMessage::create()
-    ->subject("Job bid")
+    ->subject($this->data->title)
     ->body(strip_tags($this->data->message))
     ->setData('data',$data);
 
