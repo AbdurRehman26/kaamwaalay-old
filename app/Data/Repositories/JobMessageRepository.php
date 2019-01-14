@@ -8,6 +8,7 @@ use App\Data\Models\JobMessage;
 use App\Events\UserMessaged;
 use App\Events\UserIsOnline;
 use Carbon\Carbon;
+use DB;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
 {
@@ -94,7 +95,49 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
         }
         $this->builder = $this->builder->where('job_bid_id', '=', $input['job_bid_id']);            
 
-        $data = parent::findByAll($pagination, $perPage, $input);
+        //$data = parent::findByAll($pagination, $perPage, $input);
+
+        $this->builder = $this->builder->offset($input['offset'])->limit($perPage);
+        $ids = $this->builder;
+        $sql = $ids->toSql();
+        $binds = $ids->getBindings();
+        $models = DB::select($sql, $binds);
+        $data = ['data'=>[]];    
+        if ($models) {
+            foreach ($models as &$model) {
+                $model = $this->findById($model->id, !empty($input['refresh']), !empty($input['details']));
+                if ($model) {
+                    $data['data'][] = $model;
+                }
+            }
+        }
+
+        $ids = $ids->paginate($perPage);
+        if ($pagination == true) {
+            $data['pagination'] = [];
+            $data['pagination']['total'] = $ids->total();
+            $data['pagination']['current'] = $ids->currentPage();
+            $data['pagination']['first'] = 1;
+            $data['pagination']['last'] = $ids->lastPage();
+            $data['pagination']['from'] = $ids->firstItem();
+            $data['pagination']['to'] = $ids->lastItem();
+            if($ids->hasMorePages()) {
+                if ( $ids->currentPage() == 1) {
+                    $data['pagination']['previous'] = -1;
+                } else {
+                    $data['pagination']['previous'] = $ids->currentPage()-1;
+                }
+                $data['pagination']['next'] = $ids->currentPage()+1;
+            } else {
+                $data['pagination']['previous'] = $ids->currentPage()-1;
+                $data['pagination']['next'] =  $ids->lastPage();
+            }
+            if ($ids->lastPage() > 1) {
+                $data['pagination']['pages'] = range(1,$ids->lastPage());
+            } else {
+                $data['pagination']['pages'] = [1];
+            }
+        }
 
         return $data;
 
