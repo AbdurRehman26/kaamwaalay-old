@@ -82,7 +82,6 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
     ->subject($this->data->title)
     ->body(strip_tags($this->data->message))
     ->setData('data',$data);
-    ->
 }
     /**
      * Get the array representation of the notification.
