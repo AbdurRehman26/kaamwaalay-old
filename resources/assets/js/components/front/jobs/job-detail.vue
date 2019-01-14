@@ -286,8 +286,8 @@
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
                     <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
-
-                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="!isMyJob && canArchiveBid && myBidValue" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
+                    
+                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="(!isMyJob && canArchiveBid && myBidValue) || record.status == 'completed'" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
                         Archive
                     </a>
 
