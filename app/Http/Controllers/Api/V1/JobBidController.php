@@ -117,7 +117,7 @@ public function input($value='')
         $input['is_tbd'] = 0;
         $input['preferred_time'] = Carbon::parse($input['preferred_time'])->toTimeString();
         if(!empty($input['suggested_time'])) {
-            $input['suggested_time'] = Carbon::parse($input['suggested_time'])->toTimeString(); 
+            $input['suggested_time'] = Carbon::parse($input['suggested_time'])->format('H:i:s');
         }
     }
 

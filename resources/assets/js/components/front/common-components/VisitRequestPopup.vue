@@ -7,7 +7,9 @@
                 </div>
                 <div class="category-content-block">
 
-                    <h6 v-if="typeof(bid) !== 'undefined'">{{ bid ? bid.service_provider.business_name : ''}} Requested to visit your address to evaluate work before bidding.</h6>
+                    <h6 v-if="typeof(bid) !== 'undefined'">
+                        {{ bid ? bid.service_provider.business_name : ''}} Requested to visit your address to evaluate work before bidding on Date: {{getDate()}} on Time: {{getTime()}}
+                    </h6>
 
                 </div>
             </div>
@@ -38,7 +40,10 @@
                 <div class="col-md-6">
                     <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                         <label class="nolabel">&nbsp;</label>
-                        <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.suggested_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
+                        <select class="form-control" id="sel1" v-validate="'required'" v-model="submitFormData.suggested_time" name="preferred time">
+                            <option value="" disabled="">Select Time</option>
+                            <option v-for="h in timeHr" :value="h">{{h}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -76,6 +81,33 @@
                 submitFormData : '',
                 disableButtons : false,
                 showSuggestDateTime: false,
+                timeHr: [
+                '01:00 AM', '01:15 AM', '01:30 AM', '01:45 AM',
+                '02:00 AM', '02:15 AM', '02:30 AM', '02:45 AM',
+                '03:00 AM', '03:15 AM', '03:30 AM', '03:45 AM',
+                '04:00 AM', '04:15 AM', '04:30 AM', '04:45 AM',
+                '05:00 AM', '05:15 AM', '05:30 AM', '05:45 AM',
+                '06:00 AM', '06:15 AM', '06:30 AM', '06:45 AM',
+                '07:00 AM', '07:15 AM', '07:30 AM', '07:45 AM',
+                '08:00 AM', '08:15 AM', '08:30 AM', '08:45 AM',
+                '09:00 AM', '09:15 AM', '09:30 AM', '09:45 AM',
+                '10:00 AM', '10:15 AM', '10:30 AM', '10:45 AM',
+                '11:00 AM', '11:15 AM', '11:30 AM', '11:45 AM',
+                '12:00 AM', '12:15 AM', '12:30 AM', '12:45 AM', 
+
+                '01:00 PM', '01:15 PM', '01:30 PM', '01:45 PM',
+                '02:00 PM', '02:15 PM', '02:30 PM', '02:45 PM',
+                '03:00 PM', '03:15 PM', '03:30 PM', '03:45 PM',
+                '04:00 PM', '04:15 PM', '04:30 PM', '04:45 PM',
+                '05:00 PM', '05:15 PM', '05:30 PM', '05:45 PM',
+                '06:00 PM', '06:15 PM', '06:30 PM', '06:45 PM',
+                '07:00 PM', '07:15 PM', '07:30 PM', '07:45 PM',
+                '08:00 PM', '08:15 PM', '08:30 PM', '08:45 PM',
+                '09:00 PM', '09:15 PM', '09:30 PM', '09:45 PM',
+                '10:00 PM', '10:15 PM', '10:30 PM', '10:45 PM',
+                '11:00 PM', '11:15 PM', '11:30 PM', '11:45 PM',
+                '12:00 PM', '12:15 PM', '12:30 PM', '12:45 PM'
+                ],
             }
         },
 
@@ -89,6 +121,16 @@
 
         },
         methods: {
+            getDate() {
+                if(this.bid) {
+                    return moment(this.bid.preferred_date).format('MMM Do, YYYY');
+                }
+            },
+            getTime() {
+                if(this.bid) {
+                    return moment(this.bid.preferred_time, 'HH:mm:ss').format('h:mm A');
+                }
+            },
             validateBeforeSubmit() {
                 let self = this;
 
