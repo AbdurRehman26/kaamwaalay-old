@@ -31,7 +31,6 @@
                 </div>
             </div>            
         </div>
-        <a class="btn btn-primary" href="javascript:void();" @click="showJobProoffunc()">Click</a>
         <!--featured categories -->
         <featuredCategories></featuredCategories>
         <!--popular sevice-->
@@ -156,9 +155,7 @@
                 options: [],
                 zipCode: '',
                 errorMessage: '',
-                isSuccessStory: false,
-                showJobProof: false,
-                HideModal: false,
+                isSuccessStory: false,                
             }
         },
         mounted(){
@@ -191,9 +188,6 @@
             },
         },
         methods: {
-            showJobProoffunc(){
-                this.showJobProof = true;
-            },
             onSuccessStoryExist(val) {
                 this.isSuccessStory = val;
             },
