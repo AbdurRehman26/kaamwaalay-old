@@ -193,7 +193,7 @@
                                 <div class="bit-offered">
                                     <span v-if="bid.status == 'suggested_time'"><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
-                                            {{ bid | bidStatus }} <a href="javascript:void(0);" @click.prevent="showVisitApprovalPopup = true;" v-if="user.role_id != 3">- View Details</a>
+                                            {{ bid | bidStatus }} {{user.role_id != 3? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitApprovalPopup = true;" v-if="user.role_id != 3">View Details</a>
                                         </strong>
                                     </span>
                                     <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
