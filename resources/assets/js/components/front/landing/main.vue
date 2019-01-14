@@ -29,8 +29,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
+        <a class="btn btn-primary" href="javascript:void();" @click="showJobProoffunc()">Click</a>
         <!--featured categories -->
         <featuredCategories></featuredCategories>
         <!--popular sevice-->
@@ -136,6 +137,7 @@
         <div class="section section-grey get-started-section next-project  elementary-banner">
          <explorenow></explorenow>
      </div>
+     <job-proof-popup @HideModalValue="HideModal" :showModalProp="showJobProof"></job-proof-popup>
  </div>
 </template>
 
@@ -155,6 +157,8 @@
                 zipCode: '',
                 errorMessage: '',
                 isSuccessStory: false,
+                showJobProof: false,
+                HideModal: false,
             }
         },
         mounted(){
@@ -187,6 +191,9 @@
             },
         },
         methods: {
+            showJobProoffunc(){
+                this.showJobProof = true;
+            },
             onSuccessStoryExist(val) {
                 this.isSuccessStory = val;
             },

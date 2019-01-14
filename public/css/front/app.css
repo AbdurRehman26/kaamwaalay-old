@@ -14574,6 +14574,91 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.upload-image-icon {
+  background-image: url("/images/front/svg/upload.svg");
+}
+
+.capture-image-icon {
+  background-image: url("/images/front/svg/photo-camera-outline.svg");
+}
+
+.image-uploading-btn i {
+  background-size: cover;
+  width: 48px;
+  height: 46px;
+  display: block;
+  margin: auto;
+}
+
+.image-uploading-btn i.upload-image-icon {
+  width: 45px;
+  height: 46px;
+}
+
+.content-image-attached .imagegallery .image {
+  width: 103px;
+}
+
+.image-uploading-btn {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+
+.no-footer .modal-body {
+  padding: 28px 33px 28px 33px;
+}
+
+.note-label {
+  text-align: center;
+  padding-bottom: 9px;
+}
+
+.uploadattached {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.uploadattached .browse-btn {
+  margin: 0px 0px 4px 0px;
+  vertical-align: super;
+}
+
+.uploadattached .browse-btn .form-group {
+  margin-bottom: 0px;
+}
+
+.uploadattached .browse-btn .form-group input {
+  height: 100%;
+}
+
+.uploadattached .browse-btn .file-upload-label {
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+  height: auto;
+}
+
+.uploadattached .form-group {
+  margin-bottom: 0;
+}
+
+.image-uploading-btn ul {
+  padding: 0;
+}
+
+.image-uploading-btn ul li {
+  display: inline-block;
+  text-align: center;
+  max-width: 49%;
+  vertical-align: top;
+  padding: 22px 20px;
+  border: 1px solid #6004BA;
+  border-radius: 7px;
+  margin: 0px 15px;
+}
+
 .small-ico .list-icon {
   background-color: transparent;
   border-color: transparent;
