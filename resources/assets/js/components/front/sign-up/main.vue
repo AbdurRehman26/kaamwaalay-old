@@ -47,13 +47,13 @@
                                     <div class="col-xs-12 col-md-6" :class="[errorBag.first('first_name') ? 'is-invalid' : '']">
                                         <div class="form-group">
                                            <label for="register_first_name">First Name</label>
-                                           <input id="register_first_name" type="text" v-model="register_info.first_name" v-validate="'required'"  name="first_name" data-vv-name="first_name" data-vv-as="First Name" class="form-control" placeholder="Enter your First Name" :class="[errorBag.first('first_name') ? 'is-invalid' : '']">
+                                           <input id="register_first_name" type="text" v-model="register_info.first_name" v-validate="'required|max:25'"  name="first_name" data-vv-name="first_name" data-vv-as="First Name" class="form-control" placeholder="Enter your First Name" :class="[errorBag.first('first_name') ? 'is-invalid' : '']">
                                        </div> 
                                    </div> 
                                    <div class="col-xs-12 col-md-6" :class="[errorBag.first('last_name') ? 'is-invalid' : '']">
                                     <div class="form-group">
                                        <label for="register_last_name">Last Name</label>
-                                       <input id="register_last_name" type="text" v-model="register_info.last_name" v-validate="'required'"  name="last_name" data-vv-name="last_name" data-vv-as="Last Name" class="form-control" placeholder="Enter your Last Name" :class="[errorBag.first('last_name') ? 'is-invalid' : '']">
+                                       <input id="register_last_name" type="text" v-model="register_info.last_name" v-validate="'required|max:25'"  name="last_name" data-vv-name="last_name" data-vv-as="Last Name" class="form-control" placeholder="Enter your Last Name" :class="[errorBag.first('last_name') ? 'is-invalid' : '']">
                                    </div>
                                </div>
                            </div>
