@@ -80,7 +80,7 @@
                     <div class="member-details">
                         <p class="location">
                             <i class="icon-location"></i> 
-                            Location <strong>{{ record.user_detail.city }}</strong>
+                            Location <strong>{{record.user_detail.city + (record.user_detail.state? ', ' +record.user_detail.state : "")}}</strong>
                         </p>
                         <p class="member-since">
                             <i class="icon-calendar-daily"></i>

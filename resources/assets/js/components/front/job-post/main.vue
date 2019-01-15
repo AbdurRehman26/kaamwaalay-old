@@ -90,11 +90,11 @@
                         </div>
                         <div class="boxed">
                             <div class="col-md-6">
-                                <input :disabled="(currentJob && currentJob.job_type == 'normal') ? true : false" type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
+                                <input :disabled="(currentJob && currentJob.job_type == 'urgent') ? true : false" type="radio" id="normal" name="need" value="normal_job" checked="" v-model="jobType">
                                 <label for="normal">No, Normal job</label>
                             </div>
                             <div class="col-md-6">
-                                <input :disabled="(currentJob && currentJob.job_type == 'urgent') ? true : false" type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
+                                <input :disabled="(currentJob && currentJob.job_type == 'normal') ? true : false" type="radio" id="urgent" name="need" value="urgent_job"  v-model="jobType">
                                 <label for="urgent">Yes, Urgent job</label>
                             </div>
                         </div>
@@ -131,14 +131,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Address *</label>
-                            <input v-validate="'required'" name="address" 
+                            <input v-validate="'required|max:250'" name="address" 
                             :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Apartment, Suite, Unit</label>
-                            <input v-model="formData.apartment" type="text" class="form-control" placeholder="Enter apartment, suite, unit (optional)">
+                            <input v-model="formData.apartment" type="text" placeholder="Enter apartment, suite, unit (optional)"
+                            v-validate="'max:250'" 
+                            name="apartment" 
+                            :class="['form-control' , errorBag.first('apartment') ? 'is-invalid' : '']" >
                         </div>
                     </div>
                 </div>
@@ -491,7 +494,7 @@
             },
             validateBeforeSubmit() {
                 self = this;
-                this.isSubmit = false
+                this.isSubmit = false;
                 this.$validator.validateAll().then((result) => {
                     this.invalidZip = null;
                     if(!this.formData.zip_code) {
@@ -537,14 +540,12 @@
 
                 data.service_id = this.searchServiceValue.id;
                 data.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
-
                 self.loading = true;
                 let url = self.url;
                 let urlRequest = '';
-
                 if(this.$route.params.id){
                     url += '/' + this.$route.params.id;    
-                    urlRequest =  self.$http.put(url , data)
+                    urlRequest =  self.$http.put(url , data);
                 }else{
                     urlRequest = self.$http.post(url, data);
                 }
@@ -599,7 +600,8 @@
                 this.$forceUpdate();
             },
             getUserResponse(response){
-                if(response.data){
+                
+                if(response.data.length){
                     this.$store.commit('setAuthUser', response.data);
                 }
             }
