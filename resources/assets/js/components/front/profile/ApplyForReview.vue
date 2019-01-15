@@ -364,7 +364,7 @@
                 accountCreationAmount: null,
                 selectedPlan :null,
                 currentCity: null,
-
+                checkZip:false,
             }
         },
         computed : {
@@ -381,7 +381,7 @@
                 return _.filter(this.$store.getters.getAllServices, ['status', 1]);
             },
             submitUrl(){
-                return 'api/user/' + this.record.id
+                return 'api/user/' + this.record.id;
             },
             businessRequired(){
                 return this.record.business_details.business_type == 'business';
@@ -398,12 +398,16 @@
         },
         methods: {
             setZipCode(val) {
-                this.record.zip_code = val.zip_code;
-                this.setCity(val)
-                this.invalidZip = false;
-                if(!val.zip_code) {
-                    this.invalidZip = true;
+                if(this.checkZip) {
+                    this.record.zip_code = val.zip_code;
+                    this.setCity(val)
+                    this.invalidZip = false;
+                    if(!val.zip_code) {
+                        this.invalidZip = true;
+                    }
                 }
+                this.checkZip = true;
+
             },
             setCity(object){
                 if(object.state_id){
@@ -572,7 +576,7 @@
             },
             getResponse(response){
                 let self = this;
-
+                console.log(response, 123);
                 if(response.data.id){
 
                     self.loading = false;
@@ -626,6 +630,7 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
+                console.log(this.currentCity, 123);
                 if(this.currentCity){
                    this.record.city_id = this.currentCity;
                    this.currentCity = null;

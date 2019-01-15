@@ -84,7 +84,6 @@ class UserController extends ApiResourceController
             'business_details.years_of_experience', 'business_details.business_type',
             'service_details', 'keyword', 'pagination', 'filter_by_status', 'filter_by_role', 'filter_by_service', 'filter_by_roles','business_details.is_featured'
         );
-
         $input['user_id'] = request()->user()->id;
 
         if($value == 'store') {
