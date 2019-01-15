@@ -76,9 +76,7 @@
         },
         methods: {
             changePassword(){
-                if(this.socialAccountId == null){
-                    this.$emit('profilepopup')
-                }
+                this.$emit('profilepopup');
             },
             away: function(){
                 this.isShowing = false;
