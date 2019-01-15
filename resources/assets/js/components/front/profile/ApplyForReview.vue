@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 1000}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
