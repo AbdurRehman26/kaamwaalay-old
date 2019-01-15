@@ -33,7 +33,8 @@ import store from './store.js';
 import Lightbox from 'vue-simple-lightbox';
 import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
 
-window.mapKey = 'AIzaSyDF80XfOsBSZh-rU5uWBekmfqK-YVrpPds';
+// will be removed after validation
+window.mapKey = '123';//'AIzaSyDF80XfOsBSZh-rU5uWBekmfqK-YVrpPds';
 
 import VueGallerySlideshow from 'vue-gallery-slideshow';
 
