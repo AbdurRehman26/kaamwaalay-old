@@ -117,7 +117,7 @@ class JobStatusChangeNotification extends Notification implements ShouldQueue
     {
         $url = route('front.login');
         return (new MailMessage)
-        ->subject(Lang::getFromJson((!empty($this->data->email_title))?$this->data->email_title:'Change Job Status'))
+        ->subject(Lang::getFromJson((!empty($this->data->email_title))?$this->data->email_title:'Job Marked Completed'))
         ->markdown('email.job-status-change', ['url' => $url , 'message' => $this->data->message, 'user' => $notifiable]);
     }
 }

@@ -21,7 +21,7 @@
                                 <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
                                     Invite to Bid
                                 </a>
-                                <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a>
+                                <!-- <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a> -->
                             </div>	
                         </div>
                     </div>
