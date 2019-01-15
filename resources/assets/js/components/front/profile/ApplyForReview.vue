@@ -576,7 +576,6 @@
             },
             getResponse(response){
                 let self = this;
-                console.log(response, 123);
                 if(response.data.id){
 
                     self.loading = false;
@@ -630,7 +629,6 @@
             getCityResponse(response){
                 let self = this;
                 self.cities = response.data;
-                console.log(this.currentCity, 123);
                 if(this.currentCity){
                    this.record.city_id = this.currentCity;
                    this.currentCity = null;
