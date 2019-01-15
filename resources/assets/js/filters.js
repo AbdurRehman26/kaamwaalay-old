@@ -272,11 +272,11 @@ Vue.filter('mainServiceOrChildService', function (value, sign) {
 
         var signValue = typeof(sign) !== 'undefined' ? sign : '→';
         
-        serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title ;
+        serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title;
 
 
     }else{
-        serviceHtml = value.title;
+        serviceHtml = value.title + ' (Main Category)';
 
     }
 

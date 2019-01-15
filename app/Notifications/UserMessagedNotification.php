@@ -69,6 +69,7 @@ class UserMessagedNotification extends Notification implements ShouldQueue
         $data = [
             'data'=> [
                 "type" => 'chat',
+                'title' => 'New Message',
                 "job_bid_id" => $eventData->job_bid_id,
                 "job_id" => $eventData->job_id,
                 "reciever_id" => $eventData->reciever_id,
@@ -85,7 +86,7 @@ class UserMessagedNotification extends Notification implements ShouldQueue
         ];
        // \Log::info($data);
         return OneSignalMessage::create()
-        ->subject("Message")
+        ->subject("New Message")
         ->body($eventData->text)
         ->setData('data', $data);
 

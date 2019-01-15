@@ -312,9 +312,12 @@
                     return self.formData.service_id == service.id;
                 });
 
-
-
-                return this.$store.getters.getAllServices;
+                var services = _.forEach(this.$store.getters.getAllServices, function(service) {
+                    if(!service.parent_id) {
+                        service.title = service.title + " (Main Category)";
+                    }
+                });
+                return services;
             },
 
             requestCityUrl(){
