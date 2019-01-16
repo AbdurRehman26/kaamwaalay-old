@@ -297,7 +297,9 @@
                 currentCity: '',
                 videoValid : true,
                 searchServiceValue : '',
-                currentJob : ''
+                currentJob : '',
+                checkZip: false,
+                checkJob: false,
 
             }
         },
@@ -331,7 +333,6 @@
             }
         },
         mounted () {
-            console.log(this.$store.getters.getAllServices, 33);
             this.getPlansList();
             this.paymentDetailShow();
         },
@@ -402,14 +403,19 @@
 
             },
             setZipCode(val) {
-                if(val.zip_code){
-                    this.formData.zip_code = val.zip_code;
-                    this.setCity(val)
-                    this.invalidZip = false;
+                alert(1);
+                if(this.checkZip) {
+                    alert(11);
+                    if(val.zip_code){
+                        this.formData.zip_code = val.zip_code;
+                        this.setCity(val)
+                        this.invalidZip = false;
+                    }
+                    if(!val.zip_code) {
+                        this.invalidZip = true;
+                    }
                 }
-                if(!val.zip_code) {
-                    this.invalidZip = true;
-                }
+                this.checkZip = true;
             },
             setCity(object){
                 if(object.state_id){
@@ -424,8 +430,6 @@
                     this.currentCity = ''  
                 }
 
-
-
                 this.onStateChange();
             },
             paymentDetailShow(){
@@ -437,19 +441,25 @@
                 }
             },
             getJobResponse(response){
-                let self = this;
+                alert(33);
+                if(this.checkJob){
+                    alert(3);
 
-                this.currentJob = response.data;
-                this.formData = response.data;
-                this.currentCity = this.formData.city_id;
+                    let self = this;
 
-                this.onStateChange();
-                setTimeout(function () {
-                    Vue.nextTick(() => {
-                        self.errorBag.clear()
-                    })
+                    this.currentJob = response.data;
+                    this.formData = response.data;
+                    this.currentCity = this.formData.city_id;
 
-                }, 100);
+                    this.onStateChange();
+                    setTimeout(function () {
+                        Vue.nextTick(() => {
+                            self.errorBag.clear()
+                        })
+
+                    }, 100);
+                }
+                this.checkJob = true;
 
             },
             getStateResponse(response){
@@ -468,6 +478,8 @@
             },
 
             onStateChange(select){
+
+                alert(4);
                 if(typeof(this.formData.state_id) == 'undefined'){
                     return false;
                 }
