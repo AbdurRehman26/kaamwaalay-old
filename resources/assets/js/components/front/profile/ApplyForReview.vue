@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea v-validate="{required: businessRequired, max : 500}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 1000}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -364,7 +364,7 @@
                 accountCreationAmount: null,
                 selectedPlan :null,
                 currentCity: null,
-
+                checkZip:false,
             }
         },
         computed : {
@@ -381,7 +381,7 @@
                 return _.filter(this.$store.getters.getAllServices, ['status', 1]);
             },
             submitUrl(){
-                return 'api/user/' + this.record.id
+                return 'api/user/' + this.record.id;
             },
             businessRequired(){
                 return this.record.business_details.business_type == 'business';
@@ -398,12 +398,16 @@
         },
         methods: {
             setZipCode(val) {
-                this.record.zip_code = val.zip_code;
-                this.setCity(val)
-                this.invalidZip = false;
-                if(!val.zip_code) {
-                    this.invalidZip = true;
+                if(this.checkZip) {
+                    this.record.zip_code = val.zip_code;
+                    this.setCity(val)
+                    this.invalidZip = false;
+                    if(!val.zip_code) {
+                        this.invalidZip = true;
+                    }
                 }
+                this.checkZip = true;
+
             },
             setCity(object){
                 if(object.state_id){
@@ -572,7 +576,6 @@
             },
             getResponse(response){
                 let self = this;
-
                 if(response.data.id){
 
                     self.loading = false;

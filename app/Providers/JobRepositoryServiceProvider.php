@@ -38,6 +38,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
                     $event->body = $item;
                     $event->from = User::find($item->user_id);
                     $event->to = User::find($job_bid->user_id);  
+                    $event->email_title = 'Job Marked Completed';
                     if($item->status == Job::COMPLETED){
                         $event->link_text = 'Write Review';
                         $event->title = 'Job Completed';

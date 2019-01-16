@@ -32,7 +32,8 @@
         props: [
         'showModalProp',
         'bidder',
-        'job'
+        'job',
+        'record'
         ],
         
         data(){
@@ -107,9 +108,7 @@
         },
         computed : {
             jobImage(){
-                if(this.job){
-                    return this.job.jobImages.length ? this.job.jobImages[0] : 'images/dummy/image-placeholder.jpg'; 
-                }
+                return this.record && this.record.service && this.record.service.images[0] ? this.record.service.images[0].upload_url : 'images/dummy/image-placeholder.jpg';
             }
         }
     }

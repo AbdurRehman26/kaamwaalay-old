@@ -75,7 +75,7 @@ public function boot()
                 $event->object_id = '';
                 $event->email_title = 'Visit request has been accepted';
                 $event->title = 'Visit Request Accepted';
-                $event->type = 'visit_approved';
+                $event->type = 'visit_approved_sp';
                 $event->message = 'Your suggested time ('.$date.', '.$time.') has been accepted for the job: <strong>'.$job->title;
                 $event->to->notify(new JobBidUpdatedNotification($event));
             }else {
@@ -89,6 +89,16 @@ public function boot()
                 $event->to->notify(new JobBidUpdatedNotification($event));
             }
         }
+        if(!empty($jobBid->deleted_at) && $jobBid->user_id == request()->user()->id){
+            $event->to =  User::find($job->user_id);
+            $event->from = User::find($jobBid->user_id);
+            $event->object_id = '';
+            $event->email_title = 'Visit request has been rejected';
+            $event->title = 'Visit Request Rejected';
+            $event->type = 'visit_declined_sp';
+            $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
+            $event->to->notify(new JobBidUpdatedNotification($event));
+        }
         if(!empty($jobBid->deleted_at) && $jobBid->user_id != request()->user()->id){
             $event->to =  User::find($jobBid->user_id);
             $event->from = User::find($job->user_id);
@@ -99,7 +109,6 @@ public function boot()
             $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
-        
         if($jobBid->status == JobBid::INITIATED && empty($jobBid->deleted_at)){
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);

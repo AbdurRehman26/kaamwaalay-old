@@ -270,7 +270,7 @@
                         <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
-                    <button v-canBid v-if="!isMyJob && canInitiateJob" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[initiateJobLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
+                    <button v-canBid v-if="(record.status != 'completed') && (!isMyJob && canInitiateJob)" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[initiateJobLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
                         <span><i class="icon-checkmark2" style="margin-left: -64px;margin-right: 36px;"></i>Initiate Job</span> <loader></loader>
                     </button>
 
@@ -286,8 +286,9 @@
                     <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
 
                     <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
-
-                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="!isMyJob && canArchiveBid && myBidValue" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
+                    
+                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="(myBidValue && myBidValue.status != 'suggested_time') && ((!isMyJob && canArchiveBid && myBidValue) 
+                        || (record.status == 'completed'))" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
                         Archive
                     </a>
 
@@ -304,7 +305,8 @@
     </div>			
 </div>
 
-<award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
+<award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" 
+:record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
 <visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
 
@@ -645,7 +647,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                         reciever_id: record.user_id,
                         job_bid_id: record.my_bid.id,
                         sender_detail: record.user,
-                        business_name: record.title,
+                        business_name: record.user.first_name +" "+ record.user.last_name,
                     };
                 }
 

@@ -16,12 +16,12 @@
                             </div>
                             <div class="service-detail">
 
-                                <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+                                <a :href="postJobRoute+'&service_provider_user_id='+((record.user_detail && record.user_detail.id)? record.user_detail.id : '')" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
 
                                 <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
                                     Invite to Bid
                                 </a>
-                                <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a>
+                                <!-- <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a> -->
                             </div>	
                         </div>
                     </div>
@@ -137,7 +137,9 @@
         },
         computed: {
             getCity() {
-                return this.record.user_detail? this.record.user_detail.city : '';
+                var city = this.record.user_detail? this.record.user_detail.city : '';
+                city += (this.record.user_detail && this.record.user_detail.state)? ', ' + this.record.user_detail.state : "";
+                return city;
             },
             inBiddingJobs(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);

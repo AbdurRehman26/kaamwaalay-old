@@ -93,7 +93,6 @@
             'bid',
             ],
             mounted () {
-
                 if(this.bid){
 
                     this.setBidData();
@@ -102,8 +101,9 @@
             },
             data() {
                 return {
+
                     disabledDates: {
-                        to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                        to: this.getPrevDate(), 
                     },
                     updateForm : false,
                     bidType : 'amount_value',
@@ -149,6 +149,7 @@
                 }
             },
             computed : {
+                
                 submitUrl(){
                     return this.url;
                 },
@@ -174,6 +175,12 @@
                 }
             },
             methods: {
+                getPrevDate() {
+                    var h = new Date().getHours();
+                    h = (h+1) > 24? 24 : (h+1);
+                    var prevDate = (h * 60 * 60 * 1000);
+                    return new Date(new Date().getTime() - prevDate);
+                },
                 setBidData (){
                     this.updateForm = true;
 
@@ -289,7 +296,6 @@
                     }
                 },
                 showModalProp(value){
-
                     if(value){
                         this.showModal();
                     }

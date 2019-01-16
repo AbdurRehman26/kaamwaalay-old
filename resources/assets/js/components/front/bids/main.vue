@@ -147,13 +147,14 @@
                     this.strict = false;
                     this.disabledChat = false;
                 }
+                console.log(record, 7777);
                 this.jobMessageData = {
                     text: '',
                     job_id: record.id,
                     reciever_id: record.user_id,
                     job_bid_id: record.my_bid.id,
                     sender_detail: record.user,
-                    business_name: record.title,
+                    business_name: record.user.first_name +" "+ record.user.last_name,
                 };
                 this.showChat = false;
                 this.showChat = true;

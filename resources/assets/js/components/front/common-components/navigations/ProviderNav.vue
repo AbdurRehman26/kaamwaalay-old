@@ -79,9 +79,7 @@
         },
         methods: {
             changePassword(){
-                if(this.socialAccountId == null){
-                    this.$emit('profilepopup')
-                }
+                this.$emit('profilepopup');
             },
             ShowModal(){
                 this.showModalValue = true;
