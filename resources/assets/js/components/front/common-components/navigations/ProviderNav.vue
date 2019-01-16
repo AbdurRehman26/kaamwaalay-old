@@ -118,11 +118,13 @@
             },                          
             getResponse(response){
                 if(response.data){
+                    let user = JSON.parse(this.$store.getters.getAuthUser);
                     if(response.data.status == 'approved'){
-                        let user = JSON.parse(this.$store.getters.getAuthUser);
                         user.is_approved = 1;
-                        this.$store.commit('setAuthUser' , user);
+                    }else {
+                        user.is_approved = 0;
                     }
+                    this.$store.commit('setAuthUser' , user);
                 }
             }
 

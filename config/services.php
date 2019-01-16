@@ -45,4 +45,5 @@ return [
         'client_secret' => '',
         'redirect' => '',
     ],
+    'google_api_key'=> env('GOOGLE_API_KEY', 'AIzaSyAR40p-AIzaSyCgc4AbNtACxOR6xwPM4Z6cc7E9ipMEW88'),
 ];
