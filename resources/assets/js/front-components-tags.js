@@ -41,6 +41,7 @@ Vue.component('profile-rejection',require('./components/front/common-components/
 Vue.component('notification',require('./components/front/common-components/Notification.vue'));
 Vue.component('chat-panel', require('./components/front/common-components/Chat.vue'));
 Vue.component('write-review-popup', require('./components/front/common-components/WriteReviewPopup.vue'));
+Vue.component('job-proof-popup', require('./components/front/common-components/JobProofPopup.vue'));
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));

@@ -15,7 +15,7 @@
                             <div class="container-zip-code ml-1" style="height: auto;">
                                 <i class="icon-location"></i>
                                 <input type="hidden" name="zip">
-                                <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit" style="padding-top: 13px; padding-bottom: 12px; height: auto;">
+                                <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit" style="padding-top: 12px; padding-bottom: 13px; height: auto;">
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
                                 <span>Search Jobs</span>

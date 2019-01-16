@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
         <!--featured categories -->
         <featuredCategories></featuredCategories>
@@ -136,6 +136,7 @@
         <div class="section section-grey get-started-section next-project  elementary-banner">
          <explorenow></explorenow>
      </div>
+     <job-proof-popup @HideModalValue="HideModal" :showModalProp="showJobProof"></job-proof-popup>
  </div>
 </template>
 
@@ -154,7 +155,7 @@
                 options: [],
                 zipCode: '',
                 errorMessage: '',
-                isSuccessStory: false,
+                isSuccessStory: false,                
             }
         },
         mounted(){

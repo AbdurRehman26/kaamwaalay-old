@@ -68,7 +68,7 @@
                            <div class="col-xs-12 col-md-6" :class="[errorBag.first('password') ? 'is-invalid' : '']" novalidate="">
                             <div class="form-group">
                                <label>Password</label>
-                               <input type="password" v-model="register_info.password" v-validate="'required|min:8'" data-vv-as="Password" name="password" class="form-control"  data-vv-name="password" placeholder="Create your account password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
+                               <input type="password" v-model="register_info.password" v-validate="'required|min:8|max:25'" data-vv-as="Password" name="password" class="form-control"  data-vv-name="password" placeholder="Create your account password" :class="[errorBag.first('password') ? 'is-invalid' : '']">
                            </div>
                        </div>
                    </div>
