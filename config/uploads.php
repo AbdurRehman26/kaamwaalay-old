@@ -38,7 +38,7 @@ return [
     'service_provider' => [
         'folder' => 'service_provider/orignal',
         'rules' => [
-            'mimes:jpeg,jpg,png,xlsx,xls,doc,docx,pdf',
+            'mimes:jpeg,jpg,png,xlsx,xls,doc,docx,pdf,txt,csv',
             // 'max:' . 10*1024*1024,
         ],
         
