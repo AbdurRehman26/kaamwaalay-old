@@ -14595,6 +14595,12 @@ input[type=number]::-webkit-outer-spin-button {
   height: 46px;
 }
 
+.my-job-lising-content .search-fixture .search-filter input.lg.zip-code {
+  padding-top: 10px !important;
+  padding-bottom: 11px !important;
+  height: 47px;
+}
+
 .content-image-attached .imagegallery .image {
   width: 103px;
 }
@@ -14671,6 +14677,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 22px;
   width: auto;
   height: 92px;
+}
+
+.custom-file.is-invalid-file label {
+  border-color: #dc3545 !important;
 }
 
 .main-banner.elementary-banner .verticle-align {
