@@ -375,9 +375,10 @@
 
 
                 let user = JSON.parse(this.$store.getters.getAuthUser);
-                this.formData.state_id = user.state_id ? user.state_id : '';
-                this.formData.zip_code = user.zip_code ? user.zip_code : '';
-                this.formData.city_id = user.city_id ? user.city_id : '';
+                this.formData.state_id = this.formData.state_id ? this.formData.state_id : user.state_id;
+                this.formData.zip_code = this.formData.zip_code ? this.formData.zip_code : user.zip_code;
+                this.formData.city_id = this.formData.city_id ? this.formData.city_id : user.city_id;
+                this.onStateChange();
 
                 let self = this;
                 let zipCode = this.$route.query.zip;
@@ -403,9 +404,7 @@
 
             },
             setZipCode(val) {
-                alert(1);
                 if(this.checkZip) {
-                    alert(11);
                     if(val.zip_code){
                         this.formData.zip_code = val.zip_code;
                         this.setCity(val)
@@ -441,25 +440,23 @@
                 }
             },
             getJobResponse(response){
-                alert(33);
-                if(this.checkJob){
-                    alert(3);
+                
+                let self = this;
 
-                    let self = this;
-
-                    this.currentJob = response.data;
-                    this.formData = response.data;
-                    this.currentCity = this.formData.city_id;
-
+                this.currentJob = response.data;
+                this.formData = response.data;
+                this.currentCity = this.formData.city_id;
+                if(this.checkJob && response.data.length){
                     this.onStateChange();
-                    setTimeout(function () {
-                        Vue.nextTick(() => {
-                            self.errorBag.clear()
-                        })
-
-                    }, 100);
-                }
+                 }
                 this.checkJob = true;
+                setTimeout(function () {
+                    Vue.nextTick(() => {
+                        self.errorBag.clear()
+                    })
+
+                }, 100);
+
 
             },
             getStateResponse(response){
@@ -479,7 +476,6 @@
 
             onStateChange(select){
 
-                alert(4);
                 if(typeof(this.formData.state_id) == 'undefined'){
                     return false;
                 }
