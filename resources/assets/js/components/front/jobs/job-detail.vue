@@ -305,6 +305,8 @@
     </div>			
 </div>
 
+<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof"></job-proof-popup>
+
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" 
 :record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
@@ -406,6 +408,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 axisPoints : null,
                 initiateJobLoading : false,
                 markJobCompleteLoading : false,
+                showJobProof : false,
                 user: ''
             }
         },
@@ -770,6 +773,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.showReviewForm = false;
                 this.invitepopupdata = false;
                 this.showMarkJobDonePopup = false;
+                this.showVisitJob = false;
             },
             showchatpanel(){
                 this.isShowing=true;
@@ -816,7 +820,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markDoneBySp(){
-                // this.showMarkJobDonePopup = true;
+                //this.showJobProof = true;
                 this.loading = true;
                 this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
 
