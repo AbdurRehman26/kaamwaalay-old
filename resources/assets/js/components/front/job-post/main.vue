@@ -311,10 +311,10 @@
                 this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
                     return self.formData.service_id == service.id;
                 });
-
                 var services = _.forEach(this.$store.getters.getAllServices, function(service) {
                     if(!service.parent_id) {
-                        service.title = service.title + " (Main Category)";
+                        var tempStr = service.title.replace(/\(Main Category\)/ig, "");
+                        service.title = tempStr + " (Main Category)";
                     }
                 });
                 return services;
@@ -331,6 +331,7 @@
             }
         },
         mounted () {
+            console.log(this.$store.getters.getAllServices, 33);
             this.getPlansList();
             this.paymentDetailShow();
         },
