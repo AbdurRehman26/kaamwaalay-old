@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('auto:job-completed')
-                ->dailyAt('12:05');
+                ->dailyAt('00:05');
     }
 
     /**

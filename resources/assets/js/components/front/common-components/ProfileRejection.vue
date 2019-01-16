@@ -5,7 +5,7 @@
 			<img class="cross" src="images/front/svg/cancel.svg">
 		</div>
 		<h2 class="p-b-10">Your profile has been rejected.</h2>
-        <h5 class="m-b-20">{{formData.reason}} </h5>
+        <p class="m-b-20">{{formData.reason}} </p>
         <router-link to="/apply-for-review" class="btn btn-primary">Re-submit your profile </router-link>        
     </div>
 </template>

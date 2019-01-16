@@ -37,7 +37,9 @@
         'fileExtensions',
         'currentRecord',
         'multiple',
-        'hideLoader'
+        'hideLoader',
+        'limit',
+        'fixedLimit',
 
         ],
 
@@ -53,6 +55,7 @@
         },
         methods : {
             onFileChange(e) {
+
                 var supportedType = [
                 'png',
                 'jpg',
@@ -61,14 +64,23 @@
                 'xlsx',
                 'xls',
                 'doc',
-                'docx'
+                'docx',
+                'csv',
+                'txt',
                 ];
                 var files = e.target.files || e.dataTransfer.files;
+                let limit = this.limit || 0;
 
                 this.errorMessage = "";
 
                 if (!files.length){
                     return;
+                }
+
+                if(this.fixedLimit) {
+                    if(files.length > (this.fixedLimit - this.limit)  ) {
+                        return;
+                    }
                 }
 
                 for (var i = files.length - 1; i >= 0; i--) {

@@ -24,7 +24,7 @@
                             </div>
                             <no-record-found v-if="showPlanFound"></no-record-found>
                             <div v-if="!showPlanFound" class="col-md-3">
-                                <button  @click.prevent="validateBeforeSubmit();" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'payment-continue' ]">
+                                <button  @click.prevent="validateBeforeSubmit();" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'payment-continue' ]" :disabled="isContinueDisabled">
                                     Continue
                                     <loader></loader>
                                 </button>
@@ -111,6 +111,7 @@
                     showPlanFound: '',
                     user: {},
                     paymentSuccess: true,
+                    isContinueDisabled: true,
                 }
             },
             methods:{
@@ -147,6 +148,9 @@
                     let self = this;
                     self.showCampaignFound = false;
                     self.user = JSON.parse(self.$store.getters.getAuthUser)
+                    if(self.user.is_approved) {
+                        self.isContinueDisabled = false;
+                    }
                     self.loading = true;
                     let url = 'api/campaign';
                     let params = {
