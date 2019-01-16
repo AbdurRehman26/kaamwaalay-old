@@ -364,7 +364,7 @@
                 accountCreationAmount: null,
                 selectedPlan :null,
                 currentCity: null,
-                checkZip:false,
+                checkZip: false,
             }
         },
         computed : {
