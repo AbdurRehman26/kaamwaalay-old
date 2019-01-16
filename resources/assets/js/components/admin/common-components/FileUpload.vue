@@ -1,18 +1,16 @@
 <template>
 
 
-
-    <div  :class="[isUploading ? 'small-loader-browser' : '' ]">
+    <div  :class="[fileCount ? 'small-loader-browser' : '' ]">
 
         <b-form-file @change="onFileChange" :state="isFileUpload" v-model="file" ref="fileinput" 
         :accept="acceptedFiles"
         placeholder="Choose a file..."
         name="upload image" 
         :multiple="multiple"
-        :class="['form-control','file-upload-input', 'form-group']">
+        :class="['form-control','file-upload-input', 'form-group', isInvalidLength ? 'is-invalid-file' : '']">
     </b-form-file>
-
-    <block-spinner v-if="isUploading"></block-spinner>
+    <block-spinner v-if="fileCount"></block-spinner>
 
     <!-- <alert v-if="errorMessage" :errorMessage="errorMessage"></alert>         -->
 
@@ -51,6 +49,8 @@
                 isFileUpload : false,
                 fileUploadKey : 'user',
                 isUploading : false,
+                isInvalidLength : false,
+                fileCount : 0,
             }
         },
         methods : {
@@ -79,9 +79,12 @@
 
                 if(this.fixedLimit) {
                     if(files.length > (this.fixedLimit - this.limit)  ) {
+                        this.isInvalidLength = true;
                         return;
                     }
                 }
+                this.isInvalidLength = false;
+                this.fileCount = files.length;
 
                 for (var i = files.length - 1; i >= 0; i--) {
                     if(files[i]){             
@@ -130,11 +133,13 @@
 
                 response = response.data;
                 this.isUploading = false;
+                this.fileCount--;
 
                 self.$emit('get-response', response);
 
 
             }).catch(error => {
+                this.fileCount--;
                 error = error.response.data;
                 let errors = error.errors;
                 self.isUploading = false;

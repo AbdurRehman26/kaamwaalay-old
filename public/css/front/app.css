@@ -14574,6 +14574,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.my-job-lising-content .search-fixture .search-filter input.lg.zip-code {
+  padding-top: 10px !important;
+  padding-bottom: 11px !important;
+  height: 47px;
+}
+
 .small-ico .list-icon {
   background-color: transparent;
   border-color: transparent;
@@ -14586,6 +14592,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 22px;
   width: auto;
   height: 92px;
+}
+
+.custom-file.is-invalid-file label {
+  border-color: #dc3545 !important;
 }
 
 .main-banner.elementary-banner .verticle-align {
