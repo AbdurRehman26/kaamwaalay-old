@@ -29,7 +29,7 @@ import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 import Lightbox from 'vue-simple-lightbox';
-
+import VueWebcam from 'vue-webcam';
 
 let veeCustomMessage = {
     en: {
@@ -56,7 +56,7 @@ const config = {
 
 
 
-
+Vue.use(VueWebcam);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Datepicker);

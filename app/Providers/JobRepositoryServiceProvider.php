@@ -47,7 +47,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
                     }else{
                         $event->type = 'job_awarded';
                         $event->title = 'Job Awarded';
-                        $event->email_title = 'Job has been awarded';
+                        $event->email_title = 'Job Awarded';
                         $event->message =  'The Job: <strong>'.$item->title.'</strong> is awarded to you.'; 
                     }
                     $event->to->notify(new JobStatusChangeNotification($event));

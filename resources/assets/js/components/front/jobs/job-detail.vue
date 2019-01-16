@@ -305,6 +305,8 @@
     </div>			
 </div>
 
+<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof"></job-proof-popup>
+
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" 
 :record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
@@ -406,6 +408,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 axisPoints : null,
                 initiateJobLoading : false,
                 markJobCompleteLoading : false,
+                showJobProof : false,
                 user: ''
             }
         },
@@ -817,17 +820,17 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markDoneBySp(){
-                // this.showMarkJobDonePopup = true;
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
+                this.showJobProof = true;
+                // this.loading = true;
+                // this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
 
-                let data = {
-                    status : 'completed',
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.submitFormData = data;
-                this.submitBidForm = true;
+                // let data = {
+                //     status : 'completed',
+                //     id : this.myBidValue ? this.myBidValue.id : '',
+                //     job_id : this.myBidValue ? this.myBidValue.job_id : ''
+                // };
+                // this.submitFormData = data;
+                // this.submitBidForm = true;
 
             },
             markArchiveBySp(){

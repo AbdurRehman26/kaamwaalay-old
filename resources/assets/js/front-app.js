@@ -31,7 +31,7 @@ import InfiniteLoading from 'vue-infinite-loading'
 import Vuex from 'vuex';
 import store from './store.js';
 import Lightbox from 'vue-simple-lightbox';
-import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
+import { Card, createToken , CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus';
 
 // will be removed after validation
 window.mapKey = 'AIzaSyCgc4AbNtACxOR6xwPM4Z6cc7E9ipMEW88';//'AIzaSyDF80XfOsBSZh-rU5uWBekmfqK-YVrpPds';
