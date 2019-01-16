@@ -25,6 +25,7 @@
             var resetEmail = '<?php echo isset($email) ? $email : ''; ?>';
             var stripeKey = '<?php echo config('services.stripe.key'); ?>';
             var socketPort = '<?php echo config('broadcasting.connections.socket.port'); ?>';
+            var googleApiKey = '<?php echo config('services.google_api_key'); ?>';
         </script>
         @yield('after-base-js')
     </head>
