@@ -198,7 +198,7 @@
                         </div>
                     </div>
                     <div>
-                        <card-element :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
+                        <card-element v-if="(isPaymentDetailShow || isUrgentJob)" :showCardInfo="(isPaymentDetailShow || isUrgentJob)" :isPopup='false' :submit='isSubmit'  :planId='selectedPlan' :fromFeaturedProfile="'false'" :urgentJob='isUrgentJob'></card-element>
                     </div>
                 </div>
                 <div class="job-form-submission">
