@@ -96,7 +96,7 @@ public function boot()
             $event->email_title = 'Visit request has been rejected';
             $event->title = 'Visit Request Rejected';
             $event->type = 'visit_declined_sp';
-            $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
+            $event->message = 'Your suggested time for the job: <strong>'.$job->title.'</strong> has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if(!empty($jobBid->deleted_at) && $jobBid->user_id != request()->user()->id){
