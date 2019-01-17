@@ -233,7 +233,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
                 if(!empty($awardedBid)){
-
+                    $criteria['job_id'] = $data->id; 
                     $criteria['user_id'] = $data->user_id; 
                     $criteria['rated_by'] = $awardedBid->user_id; 
 
