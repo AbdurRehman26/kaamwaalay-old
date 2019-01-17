@@ -44,7 +44,7 @@ public function boot()
             $event->type = 'visit_requested';
             $event->email_title = 'Requested For A Visit';
             $event->title = 'Requested For A Visit';
-            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding.';
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding on the job: <strong>'.$job->title.'</strong>.';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }else if(!$jobBid->is_awarded && !$jobBid->is_archived && $jobBid->status !=JobBid::CANCELLED && $jobBid->status !=JobBid::COMPLETED && empty($jobBid->deleted_at) && $jobBid->status != JobBid::VISITALLOWED && $jobBid->status != JobBid::ONTHEWAY ){
             $event->to =  User::find($job->user_id);
@@ -52,7 +52,7 @@ public function boot()
             $event->object_id = '';
             $event->link_text = 'View Bid';
             $event->type = 'bid_modified';
-            $event->email_title = 'Bid has been posted';
+            $event->email_title = 'Bid Modified';
             $event->title = 'Modified A Bid';
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> modified a bid on the job: <strong>'.$job->title.'</strong>.';
             $event->to->notify(new JobBidUpdatedNotification($event));
@@ -96,7 +96,7 @@ public function boot()
             $event->email_title = 'Visit request has been rejected';
             $event->title = 'Visit Request Rejected';
             $event->type = 'visit_declined_sp';
-            $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
+            $event->message = 'Your suggested time for the job: <strong>'.$job->title.'</strong> has been declined';
             $event->to->notify(new JobBidUpdatedNotification($event));
         }
         if(!empty($jobBid->deleted_at) && $jobBid->user_id != request()->user()->id){
@@ -113,7 +113,7 @@ public function boot()
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->email_title = 'Job has been initiated';
+            $event->email_title = 'Job Initiated';
             $event->title = 'Job Initiated';
             $event->type = 'job_initiated';
             $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> initiated a job: <strong>'.$job->title.'</strong>.';

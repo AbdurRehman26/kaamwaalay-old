@@ -215,7 +215,7 @@
 
             </form>
         </div>
-        <vue-common-methods :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
+        <vue-common-methods :url="stateUrl" @get-records="getStateResponse" :hideLoader="true"></vue-common-methods>
         <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
 
         <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
