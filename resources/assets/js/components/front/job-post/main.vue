@@ -218,8 +218,8 @@
         <vue-common-methods :url="stateUrl" @get-records="getStateResponse" :hideLoader="true"></vue-common-methods>
         <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
 
-        <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
-        <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse"></vue-common-methods>
+        <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" :hideLoader="true" @get-records="getCityResponse"></vue-common-methods>
+        <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse" :hideLoader="true"></vue-common-methods>
 
     </div>
 </template>
@@ -404,6 +404,13 @@
 
             },
             setZipCode(val) {
+                //This is for select service unselected value start
+                let self = this;
+                var searchServiceValue = this.searchServiceValue;
+                setTimeout(function() {
+                    self.searchServiceValue = searchServiceValue;
+                }, 1000);
+                //This is for select service unselected value end
                 if(this.checkZip) {
                     if(val.zip_code){
                         this.formData.zip_code = val.zip_code;
