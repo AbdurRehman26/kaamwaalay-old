@@ -202,16 +202,16 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                 $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
                 $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
 
-                if($data->status == 'completed') {
+                // if($data->status == 'completed') {
 
-                    $criteria = ['job_id' => $data->id];
+                //     $criteria = ['job_id' => $data->id];
 
-                    $criteria['rated_by'] = $data->user_id; 
+                //     $criteria['rated_by'] = $data->user_id; 
 
-                    $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
+                //     $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
 
 
-                }
+                // }
 
 
             }
@@ -219,17 +219,35 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 // current service provider bid 
             if($currentUser){
 
+
                 if($currentUser->role_id == Role::SERVICE_PROVIDER){
                     $criteria = ['user_id' => $currentUser->id, 'job_id' => $data->id];
                     $notCriteria = ['status' => 'invited'];
 
                     $data->my_bid = app('JobBidRepository')->findByCriteria($criteria, false, $notCriteria);
+
+                }
+
+
+                $bidsCriteria['is_awarded'] = 1;
+                $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
+
+                if(!empty($awardedBid)){
+
                     $criteria['user_id'] = $data->user_id; 
-                    $criteria['rated_by'] = $currentUser->id; 
+                    $criteria['rated_by'] = $awardedBid->user_id; 
+
 
                     $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
 
+                    $criteria['user_id'] =  $awardedBid->user_id;
+                    $criteria['rated_by'] = $data->user_id; 
+
+
+                    $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
+
                 }
+
 
                 $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
                 $data->can_message = app('JobMessageRepository')->findByCriteria($criteria);
@@ -416,8 +434,8 @@ public function create(array $data = []) {
 public function getInviteToBidJobs($criteria)
 {
 
-        $data = $this->model->where($criteria)->select(['id' , 'title', 'user_id'])->get()->toArray();
-        return $data;
+    $data = $this->model->where($criteria)->select(['id' , 'title', 'user_id'])->get()->toArray();
+    return $data;
 
 }
 
