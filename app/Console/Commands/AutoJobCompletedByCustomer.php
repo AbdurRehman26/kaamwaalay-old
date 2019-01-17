@@ -51,7 +51,7 @@ class AutoJobCompletedByCustomer extends Command
                 )
                 ->where('job_bids.status', '=', 'completed')
                 ->where('job_bids.updated_at', '<=', $twoDaysAgo)
-                ->where('jobs.status', '=', Job::AWARDED)
+                ->where('jobs.status', '=', Job::INITIATED)
                 ->get(
                     [
                         'jobs.id as job_id',

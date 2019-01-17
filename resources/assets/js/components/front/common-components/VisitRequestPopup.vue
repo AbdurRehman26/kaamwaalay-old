@@ -164,6 +164,7 @@
 
                 this.$router.push({ name : 'job.details' , params : { id : this.job.id}});
                 this.hideModal();
+                this.onHidden();
                 this.$emit('bid-updated');
 
                 

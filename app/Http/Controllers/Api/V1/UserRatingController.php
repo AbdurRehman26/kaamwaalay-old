@@ -73,6 +73,7 @@ class UserRatingController extends ApiResourceController
         if(!empty($value == 'store')){
              $messages = [
                 'store' => 'Review posted successfully.',
+                'job_id.exists' => 'You have already provided the review.',
             ];
         }
         return !empty($messages[$value]) ? $messages[$value] : 'Success.';
