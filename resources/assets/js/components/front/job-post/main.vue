@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <textarea :maxlength="500" v-validate="'required|max:500'" name="description" 
+                                <textarea :maxlength="500" v-validate="'required|max:1000'" name="description" 
                                 :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
                             </div>
                         </div>
