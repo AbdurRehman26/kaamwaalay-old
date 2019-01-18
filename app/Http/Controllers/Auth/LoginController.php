@@ -156,6 +156,7 @@ class LoginController extends Controller
             $output = ['admin_access_token'=>$data->access_token, 'data' => $user,'message'=>'Success'];
         }else{
             $user->access_token =$data->access_token;
+            $user->unread_count = $request->user()->unreadNotifications->count();
             $output = ['access_token'=>$data->access_token,'data' => $user,'message'=>'Success'];
         }
         // HTTP_OK = 200;

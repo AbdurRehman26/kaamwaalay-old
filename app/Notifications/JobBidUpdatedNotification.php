@@ -79,6 +79,8 @@ class JobBidUpdatedNotification extends Notification implements ShouldQueue
         'created_at' => $this->date
     ];
     return OneSignalMessage::create()
+    ->setParameter('ios_badgeType', 'SetTo')
+    ->setParameter('ios_badgeCount', $this->data->to->unreadNotifications()->count())
     ->subject($this->data->title)
     ->body(strip_tags($this->data->message))
     ->setData('data',$data);

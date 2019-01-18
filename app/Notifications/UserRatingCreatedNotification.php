@@ -74,6 +74,8 @@ class UserRatingCreatedNotification extends Notification implements ShouldQueue
     ];
       //\Log::info($notifiable);
     return OneSignalMessage::create()
+    ->setParameter('ios_badgeType', 'SetTo')
+    ->setParameter('ios_badgeCount', $this->data->to->unreadNotifications()->count())
     ->subject("Job bid")
     ->body(strip_tags($this->data->message))
     ->setData('data',$data);
