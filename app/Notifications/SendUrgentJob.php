@@ -68,6 +68,8 @@ class SendUrgentJob extends Notification implements ShouldQueue
 ];
       //\Log::info($notifiable);
 return OneSignalMessage::create()
+    ->setParameter('ios_badgeType', 'SetTo')
+    ->setParameter('ios_badgeCount', $this->data->to->unreadNotifications()->count())
 ->subject("Urgent Job")
 ->body(strip_tags($this->data->message))
 ->setData('data',$data);
