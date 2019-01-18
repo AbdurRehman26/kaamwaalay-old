@@ -76,7 +76,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
  return OneSignalMessage::create()
     ->setParameter('ios_badgeType', 'SetTo')
     ->setParameter('ios_badgeCount', $this->data->to->unreadNotifications()->count())
- ->subject($this->data->title)
+ ->subject("Customer Banned")
  ->body(strip_tags($this->data->message))
  ->setData('data',$data);
 }
