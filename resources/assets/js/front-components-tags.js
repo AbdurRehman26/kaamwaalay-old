@@ -42,6 +42,9 @@ Vue.component('notification',require('./components/front/common-components/Notif
 Vue.component('chat-panel', require('./components/front/common-components/Chat.vue'));
 Vue.component('write-review-popup', require('./components/front/common-components/WriteReviewPopup.vue'));
 Vue.component('job-proof-popup', require('./components/front/common-components/JobProofPopup.vue'));
+Vue.component('front-confiramtion-popup', require('./components/front/common-components/ConfirmationPopup.vue'));
+
+
 
 //header
 Vue.component('front-header',require('./components/front/common-components/header.vue'));
