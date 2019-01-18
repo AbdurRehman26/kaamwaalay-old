@@ -14668,6 +14668,18 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 6px 27px;
 }
 
+.verification-prove-submittion button.mt-2.btn.btn-primary.btn-block {
+  width: 99%;
+}
+
+.mx-datepicker-popup .mx-calendar-header {
+  display: none;
+}
+
+#visit-request .category-search-field button.btn.btn-primary {
+  width: 49%;
+}
+
 .alert-line p {
   font-size: 14px !important;
   text-align: center !important;

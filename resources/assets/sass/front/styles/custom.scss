@@ -149,8 +149,24 @@ $section-padding-sm:20px 0px;
         line-height: normal;
         padding: 6px 27px;
     }
+    button.mt-2.btn.btn-primary.btn-block {
+        width: 99%;
+    }    
 }
 
+.mx-datepicker-popup{
+     .mx-calendar-header {
+        display: none;
+    }
+}
+
+#visit-request{
+     .category-search-field{
+        button.btn.btn-primary {
+            width: 49%;
+        }
+     }
+}
 
 .alert-line{
      p {
