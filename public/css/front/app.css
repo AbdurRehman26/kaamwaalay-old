@@ -14686,6 +14686,10 @@ input[type=number]::-webkit-outer-spin-button {
   color: #7D7D7D !important;
 }
 
+.categories-popup #visit-request .modal-body {
+  padding-top: 0;
+}
+
 .image-upload .image-uploading-btn .uploadattached .button-loader {
   padding-left: 0 !important;
 }

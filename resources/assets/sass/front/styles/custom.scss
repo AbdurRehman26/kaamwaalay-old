@@ -177,6 +177,14 @@ $section-padding-sm:20px 0px;
     }
 }
 
+.categories-popup{
+     #visit-request{
+         .modal-body {
+            padding-top: 0;
+        }
+     }
+}
+
 .image-upload .image-uploading-btn .uploadattached .button-loader {
     padding-left: 0 !important;
 }
