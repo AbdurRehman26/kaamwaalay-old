@@ -29,7 +29,7 @@ return [
         ]
     ],
     'job_done' => [
-        'folder' => 'job-done/',
+        'folder' => 'job-done/orignal',
         'rules' => [
             'mimes:jpeg,jpg,png',
             // 'max:' . 10*1024*1024,

@@ -1,5 +1,5 @@
 {
-	"authHost": "http://psm.qa",
+	"authHost": "http://psm-web.qa",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
@@ -11,7 +11,7 @@
 	},
 	"devMode": true,
 	"host": null,
-	"port": "6001",
+	"port": "6002",
 	"protocol": "http",
 	"socketio": {},
 	"sslCertPath": "",

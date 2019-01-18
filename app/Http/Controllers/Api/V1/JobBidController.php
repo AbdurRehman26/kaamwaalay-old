@@ -111,7 +111,7 @@ public function input($value='')
         'visit_details',
         'job_done_images'
     );
-
+    
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;

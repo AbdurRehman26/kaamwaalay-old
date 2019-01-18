@@ -14660,6 +14660,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .verification-prove-submittion .btn {
@@ -14786,6 +14787,18 @@ button.sl-close {
 
 .white-bg {
   background-color: #fff;
+}
+
+.image-uploading-btn .uploadattached .browse-btn .small-loader-browser {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.image-uploading-btn .uploadattached .browse-btn .small-loader-browser .button-loader {
+  height: 27px;
 }
 
 /*=========

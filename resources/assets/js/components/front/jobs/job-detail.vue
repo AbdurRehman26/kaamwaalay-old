@@ -326,7 +326,7 @@
     </div>			
 </div>
 
-<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof"></job-proof-popup>
+<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof" :myBidValue="myBidValue"></job-proof-popup>
 
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" 
 :record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
@@ -348,6 +348,8 @@
 
 <write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
+
+<!-- <confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed> -->
 
 <!--  Job list  -->
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
@@ -404,6 +406,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 showMarkJobDonePopup : false,
                 showChat : false,
                 confirmPopupShow : false,
+                confirmPopupShowMarkJobCompleted : false,
                 invitepopupdata: false,
                 jobMessageData: {},
                 formData : {
@@ -806,14 +809,15 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markCompletedByCustomer(){
-                this.markJobCompleteLoading = true;
-                let data = {
-                    status : 'completed',
-                    id : this.record ? this.record.id : ''
-                };
-                this.submitFormData = data;
+                return;
+                // this.markJobCompleteLoading = true;
+                // let data = {
+                //     status : 'completed',
+                //     id : this.record ? this.record.id : ''
+                // };
+                // this.submitFormData = data;
 
-                this.submit = true;
+                // this.submit = true;
             },
             markJobArchive(){
                 this.formData.is_archived = 1;
@@ -841,18 +845,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markDoneBySp(){
-                // this.showJobProof = true;
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
-
-                let data = {
-                    status : 'completed',
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.submitFormData = data;
-                this.submitBidForm = true;
-
+                this.showJobProof = true;
             },
             markArchiveBySp(){
 
