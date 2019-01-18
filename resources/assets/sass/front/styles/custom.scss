@@ -156,8 +156,25 @@ $section-padding-sm:20px 0px;
         line-height: normal;
         padding: 6px 27px;
     }
+    
 }
 
+.mx-datepicker-popup{
+     .mx-calendar-header {
+        display: none;
+    }
+}
+
+#visit-request{
+     .category-search-field{
+        button.btn.btn-primary {
+            width: 49%;
+        }
+        .btn-primary.btn-block {
+            width: 99% !important;
+        }            
+     }
+}
 
 .alert-line{
      p {
@@ -165,6 +182,14 @@ $section-padding-sm:20px 0px;
         text-align: center !important;
         color: #7D7D7D !important;
     }
+}
+
+.categories-popup{
+     #visit-request{
+         .modal-body {
+            padding-top: 0;
+        }
+     }
 }
 
 .image-upload .image-uploading-btn .uploadattached .button-loader {
