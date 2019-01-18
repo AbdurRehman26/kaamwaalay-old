@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Data\Models\Job;
+use Cache;
 
 class AutoJobCompletedByCustomer extends Command
 {
@@ -67,6 +68,7 @@ class AutoJobCompletedByCustomer extends Command
             $jobIds = array_column($jobsArr, 'job_id');
             $jobs = Job::whereIn('id',$jobIds)->update(['status' => Job::COMPLETED]);
             foreach ($jobsArr as $key => $jobDetail) {
+                Cache::forget('job'. $jobDetail['job_id']);
                 $this->userRating->model->insertOnDuplicateKey([
                     'job_id'    => $jobDetail['job_id'],
                     'user_id'   => $jobDetail['service_provider_id'],
