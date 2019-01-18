@@ -29,7 +29,6 @@ import fancyBox from 'vue-fancybox';
 import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 import Lightbox from 'vue-simple-lightbox';
-import VueWebcam from 'vue-webcam';
 
 let veeCustomMessage = {
     en: {
@@ -56,7 +55,6 @@ const config = {
 
 
 
-Vue.use(VueWebcam);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Datepicker);
@@ -193,8 +191,6 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
      return Promise.reject(error);
  }
 })
-
-
 /*const app = new Vue({
     router
 }).$mount('#app')*/

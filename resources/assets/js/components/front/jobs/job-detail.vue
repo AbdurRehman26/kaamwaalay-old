@@ -216,19 +216,20 @@
                                 <div class="proposal-message">
                                     <p>{{bid.description}}</p>
                                 </div>
-                                <div class="chat-feedback" v-if="bid.status == 'completed' && bid.service_provider && bid.service_provider.reviewedBy && bid.service_provider.reviewedBy.review">
+
+                                <div class="chat-feedback" v-if="record.status == 'completed' && record.review_details">
                                     <div class="text-notifer">
                                         <p>Customer Feedback & Review</p> 
                                     </div>
                                     <div class="chat-feedback-column">
-                                        <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(bid.service_provider.reviewedBy.user_detail.profileImage) +')',}"></div>
+                                        <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.review_details.user_detail.profileImage) +')',}"></div>
                                         <div class="chat-feedback-message">
-                                            <p>{{bid.service_provider.reviewedBy.review.message}}</p>
+                                            <p>{{record.review_details.message}}</p>
                                             <div class="feeback-detail">
                                                 <p class="feedback-personal-info">
-                                                    <a href="javascript:void(0);">{{bid.service_provider.reviewedBy.user_detail.first_name + " " + bid.service_provider.reviewedBy.user_detail.last_name}}</a>
+                                                    <a href="javascript:void(0);">{{record.review_details.user_detail.first_name + " " + record.review_details.user_detail.last_name}}</a>
                                                     posted on 
-                                                    <strong>{{bid.service_provider.reviewedBy.review.formatted_created_at}}</strong>
+                                                    <strong>{{record.review_details.formatted_created_at}}</strong>
                                                 </p>
                                                 <i class="icon-quotes-right3"></i>
                                             </div>
