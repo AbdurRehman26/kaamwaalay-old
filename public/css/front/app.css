@@ -14598,7 +14598,12 @@ input[type=number]::-webkit-outer-spin-button {
 .my-job-lising-content .search-fixture .search-filter input.lg.zip-code {
   padding-top: 10px !important;
   padding-bottom: 11px !important;
-  height: 47px;
+  height: 47px !important;
+}
+
+.my-job-lising-content .search-fixture .search-filter.service-professional .multiselect__tags input {
+  height: 47px !important;
+  border-right: 0px solid !important;
 }
 
 .content-image-attached .imagegallery .image {
@@ -14613,6 +14618,69 @@ input[type=number]::-webkit-outer-spin-button {
 
 .no-footer .modal-body {
   padding: 28px 33px 28px 33px;
+}
+
+.image-uploading-btn .uploadattached .browse-btn {
+  margin-bottom: 0px;
+}
+
+.image-uploading-btn .uploadattached .browse-btn label.file-upload-label {
+  color: #6004BA;
+  padding: 6px 12px;
+}
+
+.image-uploading-btn .uploadattached .browse-btn label.file-upload-label:hover,
+.image-uploading-btn .uploadattached .browse-btn label.file-upload-label:focus {
+  color: #FFF;
+}
+
+.image-uploading-btn .uploadattached .browse-btn .file-upload-input input {
+  cursor: pointer;
+  z-index: 9;
+  position: relative;
+}
+
+.imagegallery .image-upload-block {
+  position: relative;
+  width: 120px;
+  display: inline-block;
+}
+
+.imagegallery .image-upload-block i {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  color: #d9534f;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.verification-prove-submittion {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.verification-prove-submittion .btn {
+  height: auto;
+  line-height: normal;
+  padding: 6px 27px;
+}
+
+.alert-line p {
+  font-size: 14px !important;
+  text-align: center !important;
+  color: #7D7D7D !important;
+}
+
+.image-upload .image-uploading-btn .uploadattached .button-loader {
+  padding-left: 0 !important;
+}
+
+.content-image-attached {
+  float: left;
+  width: 100%;
 }
 
 .note-label {
@@ -14659,7 +14727,7 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
   max-width: 49%;
   vertical-align: top;
-  padding: 22px 20px;
+  padding: 0;
   border: 1px solid #6004BA;
   border-radius: 7px;
   margin: 0px 15px;

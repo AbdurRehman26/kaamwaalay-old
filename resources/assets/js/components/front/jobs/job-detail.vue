@@ -841,17 +841,17 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markDoneBySp(){
-                //this.showJobProof = true;
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
+                this.showJobProof = true;
+                // this.loading = true;
+                // this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
 
-                let data = {
-                    status : 'completed',
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.submitFormData = data;
-                this.submitBidForm = true;
+                // let data = {
+                //     status : 'completed',
+                //     id : this.myBidValue ? this.myBidValue.id : '',
+                //     job_id : this.myBidValue ? this.myBidValue.job_id : ''
+                // };
+                // this.submitFormData = data;
+                // this.submitBidForm = true;
 
             },
             markArchiveBySp(){

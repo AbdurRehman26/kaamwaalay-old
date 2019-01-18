@@ -11,16 +11,19 @@
                 <!-- <web-cam v-if="showModalProp"></web-cam> -->
                 <div class="image-uploading-btn">
                     <ul>
-                        <li>
+                        <!-- <li>
                             <a href="javascript:void(0);">
                                 <i class="capture-image-icon"></i>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <div class="uploadattached">
                                <div class="browse-btn">
                                     <div class="form-group">
-                                        <label class="file-upload-label"><i class="upload-image-icon"></i></label>
+                                        <label class="file-upload-label">
+                                            <!-- <i class="upload-image-icon"></i> -->
+                                            Upload Images
+                                        </label>
                                         <file-upload-component :class="[jobImages && jobImages.lenght > 3 ? 'disabled' : '']" :multiple="true" @get-response="getResponse($event)" :uploadKey="'job_done'" :limit="(jobImages) ? jobImages.length : 0" fixedLimit="3" ></file-upload-component>
                                     </div>
                                 </div>
@@ -32,15 +35,22 @@
                 <div class="content-image-attached">
                     <div class="images-added">
                         <div class="imagegallery">
-                            <div v-for="(image, i) in listJobImages">
+                            <div class="image-upload-block" v-for="(image, i) in listJobImages">
                                 <img class="image" :src="image.upload_url" :alt="image.name" @click="onClickImage(i)">
-                                <button type="button" class="btn btn-primary btn-xs" @click="onDeleteImage(i)">delete</button>
+                                <!-- <button type="button" class="btn btn-primary btn-xs">delete</button> -->
+                                <i class="icon-close2" @click="onDeleteImage(i)"></i>
                             </div>
 
                          </div>                            
                     </div>     
                 </div>
 
+                <div class="verification-prove-submittion" v-if="listJobImages.length">
+                    <button type="button" class="btn btn-primary btn-xs">Submit</button>
+                </div>
+                <div class="alert-line">
+                    <p><strong>Note: </strong>Please make sure the funds are transferred to you.</p>
+                </div>
 
                 
             </div>

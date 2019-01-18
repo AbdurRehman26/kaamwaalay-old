@@ -71,8 +71,14 @@ $section-padding-sm:20px 0px;
             input.lg.zip-code {
                padding-top: 10px !important;
                padding-bottom: 11px !important;
-               height: 47px;
+               height: 47px !important;
            }
+        }
+        .search-filter.service-professional{
+            .multiselect__tags input{
+                height: 47px !important;
+                border-right: 0px solid !important;
+            }
         }
     }
 }
@@ -93,6 +99,74 @@ $section-padding-sm:20px 0px;
 
 .no-footer .modal-body {
     padding: 28px 33px 28px 33px;
+}
+
+.image-uploading-btn{
+    .uploadattached{
+        .browse-btn{
+            margin-bottom: 0px;
+            label.file-upload-label {
+                color: #6004BA;
+                padding: 6px 12px;
+                &:hover, &:focus{
+                    color: #FFF;
+                }
+            }
+            .file-upload-input{
+                input{
+                    cursor: pointer;
+                    z-index: 9;
+                    position: relative;                    
+                }
+            }
+        }
+    }
+}
+
+.imagegallery{
+     .image-upload-block {
+        position: relative;
+        width: 120px;
+        display: inline-block;
+        i{
+            position: absolute;
+            top: 0;
+            right: 20px;
+            color: $danger-color;
+            font-size: 22px;
+            cursor: pointer;
+        }
+    }
+}
+
+.verification-prove-submittion {
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    .btn{
+        height: auto;
+        line-height: normal;
+        padding: 6px 27px;
+    }
+}
+
+
+.alert-line{
+     p {
+        font-size: 14px !important;
+        text-align: center !important;
+        color: #7D7D7D !important;
+    }
+}
+
+.image-upload .image-uploading-btn .uploadattached .button-loader {
+    padding-left: 0 !important;
+}
+
+.content-image-attached {
+    float: left;
+    width: 100%;
 }
 
 .note-label {
@@ -145,7 +219,8 @@ $section-padding-sm:20px 0px;
         text-align: center;
         max-width: 49%;
         vertical-align: top;        
-        padding: 22px 20px;
+        // padding: 22px 20px;
+        padding:0;
         border: 1px solid #6004BA;
         border-radius: 7px;
         margin: 0px 15px;
