@@ -31,6 +31,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
 
             if (!\App::runningInConsole()) {
               if($item->status == Job::COMPLETED || $item->status == Job::AWARDED){  
+                if (!$item->is_archived) {
                 $job_bid = JobBid::where('job_id','=',$item->id)->where('is_awarded','=','1')->first();
                 if($job_bid){
                     $event = new \StdClass();
@@ -51,6 +52,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
                         $event->message =  'The Job: <strong>'.$item->title.'</strong> is awarded to you.'; 
                     }
                     $event->to->notify(new JobStatusChangeNotification($event));
+                }
                 }
             }
 
