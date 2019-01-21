@@ -102,8 +102,20 @@
                             v-if="imageLists.length"
                             :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
+                    </div>
 
+                    <div v-if="record.awardedBid" class="jobs-post-files">
+                        <h3>Uploaded By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
+                        <div class="no-photos" v-if="!record.awardedBid.job_done_images.length"> 
+                            <p>Photo(s) Not Available</p>
+                        </div>
 
+                        <div class="imagegallery">
+                            <img class="image" v-for="(image, i) in uploadedImageList" :src="image" @click="onClick(i)">                        
+                            <vue-gallery-slideshow 
+                            v-if="uploadedImageList.length"
+                            :images="uploadedImageList" :index="index" @close="index = null"></vue-gallery-slideshow>
+                        </div>
                     </div>
 
                     <div class="jobs-post-files" v-if="record.videos">
@@ -457,6 +469,15 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             imageLists(){
                 return this.record.jobThumbImages;
+            },
+            uploadedImageList(){
+                let uploadedImageListArr = [];
+                if(this.record.awardedBid.job_done_images.length) {
+                    _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
+                        uploadedImageListArr.push(value.thumb_url);
+                    })
+                }
+                return uploadedImageListArr;
             },            
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){

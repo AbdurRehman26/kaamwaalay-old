@@ -196,6 +196,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             foreach ($data->job_done_images as $key => $value) {
                 if(!empty($value['name'])) {
                     $data->job_done_images[$key]['url'] = \Storage::url("{$directory}{$value['name']}");
+                    $data->job_done_images[$key]['thumb_url'] = \Storage::url(config('uploads.job_done.thumb.folder').'/'.$value['name']);
                 }
             }
         }

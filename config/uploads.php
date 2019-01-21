@@ -29,10 +29,16 @@ return [
         ]
     ],
     'job_done' => [
-        'folder' => 'job-done/orignal',
+        'folder' => 'job-done/orignal/',
         'rules' => [
             'mimes:jpeg,jpg,png',
             // 'max:' . 10*1024*1024,
+        ],
+        'thumb' => [
+            'folder' => 'job-done/thumb/',
+            'height' => 400,
+            'width' => 400,
+            'method' => 'fit',
         ],
     ],
     'service_provider' => [
