@@ -3,34 +3,34 @@ $header-background:#fff;
 $header-padding:13px 0px;
 
 .header{
-   position: relative;
-   height:$header-height;
-   background:$header-background;
-   padding:$header-padding;
+    position: relative;
+    height:$header-height;
+    background:$header-background;
+    padding:$header-padding;
 
     .inner{
-       position:fixed;
-       height:$header-height;
-       background:$header-background;
-       width: 100%;
-       top:0;
-       /* z-index: 9999; */
-       z-index: 999;
-       padding:$header-padding;
-       border-bottom:solid 1px $grey-lite;
+        position:fixed;
+        height:$header-height;
+        background:$header-background;
+        width: 100%;
+        top:0;
+        /* z-index: 9999; */
+        z-index: 999;
+        padding:$header-padding;
+        border-bottom:solid 1px $grey-lite;
     }
     .logo{
         display: inline-block;
-        max-width:204px;
+        max-width: 130px;
         position: relative;
-        top: 1px;
+        top: 0;
     }
     @include mobile{
         /* height: 51px; */
         height: 65px;
         .inner{
             height: 65px;
-            /* height: 51px; */
+            /* height: 51px; */ 
         }
         .logo{
             /* max-width: 144px; */
