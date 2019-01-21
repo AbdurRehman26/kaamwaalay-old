@@ -210,7 +210,7 @@
                                     </span>
                                     <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
-                                            {{ bid | bidStatus }} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">- Visit Details</a>
+                                            {{ bid | bidStatus }} - <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">Visit Details</a>
                                         </strong>
                                     </span>
                                     <span v-else><i class="icon-work-briefcase"></i> Offer: 

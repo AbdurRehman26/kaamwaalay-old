@@ -4,7 +4,7 @@
             <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
             <div class="category-search-field">
                 <h6>Are you sure you want to accept the suggested date & time: {{getDateTime()}} provided by the customer?</h6>
-                <p>If you accept, you may visit the location of the customer to understand about the {{job.title}} that has been posted.</p>
+                <p>If you accept, you may visit the location of the customer to understand about the <strong>{{job.title}}</strong> that has been posted.</p>
                 <button :disabled="disableButtons" @click.prevent="disableButtons = true; loadingAccept = true; submit = true; submitFormData.status='visit_allowed'" type="submit" :class="['btn', 'btn-primary',  loadingAccept ? 'show-spinner' : '']">
                     Accept
                     <loader></loader>
