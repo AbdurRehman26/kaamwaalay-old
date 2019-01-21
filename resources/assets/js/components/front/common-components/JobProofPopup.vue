@@ -132,6 +132,7 @@ export default {
                     //self.$parent.currentRecord.status = self.requestData.status
                     this.$parent.record.my_bid.status = data.status;
                     this.$parent.record.awardedBid.status = data.status;
+                    this.$parent.record.awardedBid.job_done_images = response.data.data.job_done_images;
                     setTimeout(function(){
                         self.successMessage=''
                         self.loading = false

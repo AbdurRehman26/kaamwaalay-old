@@ -474,7 +474,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 let uploadedImageListArr = [];
                 if(this.record.awardedBid.job_done_images.length) {
                     _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
-                        uploadedImageListArr.push(value.thumb_url);
+                        uploadedImageListArr.push(value.url);
                     })
                 }
                 return uploadedImageListArr;
