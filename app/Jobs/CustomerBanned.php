@@ -84,6 +84,7 @@ class CustomerBanned implements ShouldQueue
 
 
               if($event->to){
+                $event->title = "Customer Banned";
                 $event->type = 'customer_banned';
                 $event->to->notify(new CustomerBannedNotification($event));
             }

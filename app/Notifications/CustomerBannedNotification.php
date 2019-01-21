@@ -64,6 +64,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
 
         $data = ['data'=>[
          'unread_count' => $this->data->to->unreadNotifications()->count(),
+         'title' => $this->data->title,
          'type' => $this->data->type,
          'text' => $this->data->message,
          'link_text' => 'View Job',
@@ -76,7 +77,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
  return OneSignalMessage::create()
     ->setParameter('ios_badgeType', 'SetTo')
     ->setParameter('ios_badgeCount', $this->data->to->unreadNotifications()->count())
- ->subject("Customer Banned")
+ ->subject($this->data->title)
  ->body(strip_tags($this->data->message))
  ->setData('data',$data);
 }
