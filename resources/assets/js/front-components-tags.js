@@ -43,6 +43,7 @@ Vue.component('chat-panel', require('./components/front/common-components/Chat.v
 Vue.component('write-review-popup', require('./components/front/common-components/WriteReviewPopup.vue'));
 Vue.component('job-proof-popup', require('./components/front/common-components/JobProofPopup.vue'));
 Vue.component('front-confiramtion-popup', require('./components/front/common-components/ConfirmationPopup.vue'));
+Vue.component('confirmation-popup-mark-job-completed', require('./components/front/common-components/ConfirmationPopupMarkJobCompleted.vue'));
 
 
 

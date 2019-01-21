@@ -347,9 +347,9 @@
 
 
 <write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
-<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
+<!-- <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup> -->
 
-<!-- <confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed> -->
+<confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed>
 
 <!--  Job list  -->
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
@@ -809,6 +809,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markCompletedByCustomer(){
+                this.confirmPopupShowMarkJobCompleted = true;
                 return;
                 // this.markJobCompleteLoading = true;
                 // let data = {
