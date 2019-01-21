@@ -111,7 +111,7 @@
                         </div>
 
                         <div class="imagegallery">
-                            <img class="image" v-for="(image, i) in uploadedImageList" :src="image" @click="onClick(i)">                        
+                            <img class="image" v-for="(image, i) in uploadedImageThumbList" :src="image" @click="onClick(i)">                        
                             <vue-gallery-slideshow 
                             v-if="uploadedImageList.length"
                             :images="uploadedImageList" :index="index" @close="index = null"></vue-gallery-slideshow>
@@ -478,7 +478,16 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     })
                 }
                 return uploadedImageListArr;
-            },            
+            },          
+            uploadedImageThumbList(){
+                let uploadedImageThumbListArr = [];
+                if(this.record.awardedBid.job_done_images.length) {
+                    _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
+                        uploadedImageThumbListArr.push(value.thumb_url);
+                    })
+                }
+                return uploadedImageThumbListArr;
+            },
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
                     return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way' || this.record.status == 'initiated'));
