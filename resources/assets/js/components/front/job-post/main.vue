@@ -411,7 +411,7 @@
                     self.searchServiceValue = searchServiceValue;
                 }, 1000);
                 //This is for select service unselected value end
-                if(this.checkZip) {
+                //if(this.checkZip) {
                     if(val.zip_code){
                         this.formData.zip_code = val.zip_code;
                         this.setCity(val)
@@ -420,8 +420,8 @@
                     if(!val.zip_code) {
                         this.invalidZip = true;
                     }
-                }
-                this.checkZip = true;
+                //}
+                //this.checkZip = true;
             },
             setCity(object){
                 if(object.state_id){

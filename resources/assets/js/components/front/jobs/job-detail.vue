@@ -106,7 +106,7 @@
 
                     <div v-if="record.awardedBid" class="jobs-post-files">
                         <h3>Uploaded By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
-                        <div class="no-photos" v-if="!record.awardedBid.job_done_images.length"> 
+                        <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length"> 
                             <p>Photo(s) Not Available</p>
                         </div>
 
@@ -472,7 +472,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             uploadedImageList(){
                 let uploadedImageListArr = [];
-                if(this.record.awardedBid.job_done_images.length) {
+                if(this.record && this.record.awardedBid && this.record.awardedBid.job_done_images && this.record.awardedBid.job_done_images.length) {
                     _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
                         uploadedImageListArr.push(value.url);
                     })
@@ -481,7 +481,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },          
             uploadedImageThumbList(){
                 let uploadedImageThumbListArr = [];
-                if(this.record.awardedBid.job_done_images.length) {
+                if(this.record && this.record.awardedBid && this.record.awardedBid.job_done_images && this.record.awardedBid.job_done_images.length) {
                     _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
                         uploadedImageThumbListArr.push(value.thumb_url);
                     })
