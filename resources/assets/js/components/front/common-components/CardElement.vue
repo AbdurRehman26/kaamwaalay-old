@@ -37,7 +37,7 @@
                                 ref='cardCvc'
                                 :stripe='stripeKey'
                                 :options='options'
-                                placeholder="Enter your cvv number"
+                                placeholder="Enter your cvc number"
                                 @change='cvc = $event.complete'
                                 />
                             </div>
@@ -84,7 +84,7 @@
                             <card-cvc :class="['form-control' , (!cvc && pageLoad) ? 'is-invalid' : '']" class='stripe-element card-cvc form-control'
                             ref='cardCvc'
                             :stripe='stripeKey'
-                            placeholder="Enter your cvv number"
+                            placeholder="Enter your cvc number"
                             @change='cvc = $event.complete'
                             />
                         </div>

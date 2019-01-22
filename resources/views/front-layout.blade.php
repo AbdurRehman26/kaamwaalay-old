@@ -26,6 +26,7 @@
             var stripeKey = '<?php echo config('services.stripe.key'); ?>';
             var socketPort = '<?php echo config('broadcasting.connections.socket.port'); ?>';
             var googleApiKey = '<?php echo config('services.google_api_key'); ?>';
+            var facebookApiKey = '<?php echo config('services.facebook_api_key'); ?>';
         </script>
         @yield('after-base-js')
     </head>

@@ -127,7 +127,7 @@ class CustomerBannedNotification extends Notification implements ShouldQueue
     {
         $url = route('front.login');
         return (new MailMessage)
-        ->subject(Lang::getFromJson('Customer has been banned'))
+        ->subject(Lang::getFromJson('Customer Banned'))
         ->markdown('email.user-bid-on-job', ['url' => $url , 'message' => $this->data->message]);
     }
 }

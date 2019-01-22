@@ -47,7 +47,7 @@ class JobBidCreated implements ShouldQueue
             $event->email_title = 'Requested For A Visit'; 
             $event->title = 'Visit Requested'; 
             $event->object_id = $this->data['id'];
-            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding.';
+            $event->message = '<strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> requested to visit your address to evaluate work before bidding on the job: <strong>'.$job->title.'</strong>.';
         }else if(!empty($this->data['is_invited'])){
             if($this->data['is_invited'] == 1){
                $event->from = User::find($job->user_id);
