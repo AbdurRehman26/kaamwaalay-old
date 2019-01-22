@@ -56,7 +56,7 @@
                             <b-col v-if="bidType == 'visit_required'" md="6">
                                 <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                                     <label class="nolabel">&nbsp;</label>
-                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm" placeholder="Select Time" name="preferred time"></date-picker>
+                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm a" placeholder="Select Time" name="preferred time"></date-picker>
                                 </div>
                             </b-col>
                             <b-col md="12">
@@ -172,7 +172,7 @@
                         return isVisit? (this.job.my_bid.is_visit_required == 1? true:false) : false;
                     }
                     return false;
-                }
+                },
             },
             methods: {
                 getPrevDate() {
@@ -303,7 +303,13 @@
                         this.hideModal();
                     }
 
-                }
+                },
+                submitFormData: {
+                  handler: function(val, oldVal) {
+                    this.submitFormData.preferred_time =  moment(val.preferred_time).format();
+                },
+                deep: true
+            }
             },
         }
 
