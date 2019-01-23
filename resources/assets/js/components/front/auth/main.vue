@@ -1,11 +1,6 @@
 <template>
   <div class="wrapper-sm verticle-align auth-main-wrapper front-auth">
     <div class="inner">
-      <div class="auth-logo-wrapper">
-        <div class="container-fluid">
-          <logo></logo>
-        </div>
-      </div>
       <div class="container"></div>
       <div class="text-center">
           <h2 class="auth-title">Welcome Back
