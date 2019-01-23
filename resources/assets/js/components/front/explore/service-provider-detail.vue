@@ -16,9 +16,9 @@
                             </div>
                             <div class="service-detail">
 
-                                <a :href="postJobRoute+'&service_provider_user_id='+((record.user_detail && record.user_detail.id)? record.user_detail.id : '')" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+                                <a :href="postJobRoute+'&service_provider_user_id='+((record.user_detail && record.user_detail.id)? record.user_detail.id : '')" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
 
-                                <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
+                                <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
                                     Invite to Bid
                                 </a>
                                 <!-- <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a> -->
@@ -132,7 +132,8 @@
                 noRecordFound: false,
                 userToSendInvite : false,
                 invitePopup : false,
-                jobs : ''
+                jobs : '',
+                inBiddingJobsCount : 0,
             }
         },
         computed: {
@@ -209,6 +210,7 @@
 
                     response = response.data;
                     this.jobs = response.data;
+                    self.inBiddingJobsCount = response.data.length;
 
                 }).catch(error=>{
 
