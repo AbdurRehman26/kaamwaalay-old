@@ -105,7 +105,7 @@
                     </div>
 
                     <div v-if="record.awardedBid" class="jobs-post-files">
-                        <h3>Uploaded By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
+                        <h3>Images provided By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
                         <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length"> 
                             <p>Photo(s) Not Available</p>
                         </div>
@@ -210,7 +210,7 @@
                                     </span>
                                     <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
-                                            {{ bid | bidStatus }} - <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">Visit Details</a>
+                                            {{ bid | bidStatus }} {{!bid.amount &&  user.role_id != 2 ? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2 && !bid.amount">Visit Details</a>
                                         </strong>
                                     </span>
                                     <span v-else><i class="icon-work-briefcase"></i> Offer: 
