@@ -59,6 +59,25 @@
                 <strong v-else>{{ job.preference | jobPreference }}</strong>
             </p>
         </div>
+
+        <div class="chat-feedback" v-if="job.status == 'completed' && job.review_details">
+            <div class="chat-feedback-column">
+                <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(job.review_details.user_detail.profileImage) +')',}"></div>
+                <div class="chat-feedback-message">
+                    <p>{{job.review_details.message}}</p>
+                    <div class="feeback-detail">
+                        <p class="feedback-personal-info">
+                            <a href="javascript:void(0);">{{job.review_details.user_detail.first_name + " " + job.review_details.user_detail.last_name}}</a>
+                            posted on 
+                            <strong>{{job.review_details.formatted_created_at}}</strong>
+                        </p>
+                        <i class="icon-quotes-right3"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div> 
+
     </div>
 </template>
 <script>
@@ -91,7 +110,10 @@
                 let routeData = this.$router.resolve({ name: 'job.details', params: { id: id }});
                 window.open(routeData.href, '_blank');
             
-            }
+            },
+            getImage(img) {
+                return img ? img : 'images/dummy/image-placeholder.jpg'
+            },
         },
         computed: {
             getCountry() {

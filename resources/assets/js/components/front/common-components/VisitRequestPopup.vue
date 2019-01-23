@@ -208,7 +208,7 @@
             },
             submitFormData: {
                 handler: function(val, oldVal) {
-                    if(val.suggested_time) {
+                    if(val.suggested_time && this.showSuggestDateTime) {
                         this.submitFormData.suggested_time =  moment(val.suggested_time).format();
                     }
                 },

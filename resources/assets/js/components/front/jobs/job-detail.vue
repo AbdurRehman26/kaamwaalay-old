@@ -105,7 +105,7 @@
                     </div>
 
                     <div v-if="record.awardedBid" class="jobs-post-files">
-                        <h3>Uploaded By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
+                        <h3>Images provided By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
                         <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length"> 
                             <p>Photo(s) Not Available</p>
                         </div>
@@ -210,7 +210,7 @@
                                     </span>
                                     <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
-                                            {{ bid | bidStatus }} - <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">Visit Details</a>
+                                            {{ bid | bidStatus }} {{!bid.amount &&  user.role_id != 2 ? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2 && !bid.amount">Visit Details</a>
                                         </strong>
                                     </span>
                                     <span v-else><i class="icon-work-briefcase"></i> Offer: 
@@ -229,7 +229,7 @@
                                     <p>{{bid.description}}</p>
                                 </div>
 
-                                <div class="chat-feedback" v-if="record.status == 'completed' && record.review_details">
+                                <div class="chat-feedback" v-if="record.status == 'completed' && record.review_details && user.role_id == 2">
                                     <div class="text-notifer">
                                         <p>Customer Feedback & Review</p> 
                                     </div>
@@ -248,7 +248,27 @@
                                         </div>
                                     </div>
 
-                                </div>      
+                                </div>    
+                                <div class="chat-feedback" v-if="record.status == 'completed' && record.service_provider_review && user.role_id == 3">
+                                    <div class="text-notifer">
+                                        <p>Service Provider Feedback & Review</p> 
+                                    </div>
+                                    <div class="chat-feedback-column">
+                                        <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.service_provider_review.user_detail.profileImage) +')',}"></div>
+                                        <div class="chat-feedback-message">
+                                            <p>{{record.service_provider_review.message}}</p>
+                                            <div class="feeback-detail">
+                                                <p class="feedback-personal-info">
+                                                    <a href="javascript:void(0);">{{record.service_provider_review.user_detail.first_name + " " + record.service_provider_review.user_detail.last_name}}</a>
+                                                    posted on 
+                                                    <strong>{{record.service_provider_review.formatted_created_at}}</strong>
+                                                </p>
+                                                <i class="icon-quotes-right3"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>     
 
                                 <div class="provider-bidding-btn">
 
@@ -359,7 +379,7 @@
 
 
 <write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
-<!-- <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup> -->
+<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 
 <confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed>
 
@@ -854,12 +874,14 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.formData.is_archived = 1;
                 this.formData.id = this.record.id;
                 this.confirmPopupUrl = 'api/job/' +this.record.id;
+                this.confirmPopupShow = true;
             },
             markJobCancel(){
 
                 this.formData.status = 'cancelled';
                 this.formData.id = this.record.id;
                 this.confirmPopupUrl = 'api/job/' +this.record.id;
+                this.confirmPopupShow = true;
 
             },
             markInitiateJobByCustomer(){
