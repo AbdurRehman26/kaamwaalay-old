@@ -39026,6 +39026,11 @@ body .list-height .scrollbar .list-group-item {
   }
 }
 
+.index-nine {
+  z-index: 9;
+  position: relative;
+}
+
 .not-found-page .panel {
   width: 100%;
   min-height: 100%;

@@ -128,6 +128,12 @@ $section-padding-sm:20px 0px;
         position: relative;
         width: 120px;
         display: inline-block;
+        // position: relative;
+        // width: auto;
+        // display: inline-block;
+        // height: 90px;
+        // overflow: hidden;
+        // border-radius: 13px;     
         i{
             position: absolute;
             top: 0;
@@ -144,6 +150,7 @@ $section-padding-sm:20px 0px;
     width: 100%;
     text-align: center;
     padding-top: 20px;
+    padding-bottom: 20px;
     .btn{
         height: auto;
         line-height: normal;
@@ -305,6 +312,20 @@ button.sl-close {
 .white-bg{
     background-color: #fff;
 }
+
+.image-uploading-btn{
+     .uploadattached .browse-btn .small-loader-browser {
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        .button-loader{
+            height: 27px;
+        }
+    }
+}
+
 /*=========
     Splashes
 =====*/

@@ -86,6 +86,11 @@ body{
         }
     }
 }
+
+.index-nine{
+    z-index: 9;
+    position: relative;
+}
 .not-found-page{
     .panel {
         width: 100%;

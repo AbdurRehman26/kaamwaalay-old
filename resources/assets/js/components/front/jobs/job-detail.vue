@@ -102,8 +102,20 @@
                             v-if="imageLists.length"
                             :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
+                    </div>
 
+                    <div v-if="record.awardedBid" class="jobs-post-files">
+                        <h3>Uploaded By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
+                        <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length"> 
+                            <p>Photo(s) Not Available</p>
+                        </div>
 
+                        <div class="imagegallery">
+                            <img class="image" v-for="(image, i) in uploadedImageThumbList" :src="image" @click="onClick(i)">                        
+                            <vue-gallery-slideshow 
+                            v-if="uploadedImageList.length"
+                            :images="uploadedImageList" :index="index" @close="index = null"></vue-gallery-slideshow>
+                        </div>
                     </div>
 
                     <div class="jobs-post-files" v-if="record.videos">
@@ -198,7 +210,7 @@
                                     </span>
                                     <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
                                         <strong>
-                                            {{ bid | bidStatus }} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">- Visit Details</a>
+                                            {{ bid | bidStatus }} - <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2">Visit Details</a>
                                         </strong>
                                     </span>
                                     <span v-else><i class="icon-work-briefcase"></i> Offer: 
@@ -326,7 +338,7 @@
     </div>			
 </div>
 
-<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof"></job-proof-popup>
+<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof" :myBidValue="myBidValue"></job-proof-popup>
 
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" 
 :record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
@@ -347,7 +359,9 @@
 
 
 <write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
-<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
+<!-- <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup> -->
+
+<confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed>
 
 <!--  Job list  -->
 <vue-common-methods :updateForm="true" @form-submitted="formSubmitted" :submitUrl="requestUrl" :formData="submitFormData" :force="forceValue" :url="requestUrl" @get-records="getResponse" :submit="submit"></vue-common-methods>
@@ -404,6 +418,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 showMarkJobDonePopup : false,
                 showChat : false,
                 confirmPopupShow : false,
+                confirmPopupShowMarkJobCompleted : false,
                 invitepopupdata: false,
                 jobMessageData: {},
                 formData : {
@@ -454,7 +469,25 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             imageLists(){
                 return this.record.jobThumbImages;
-            },            
+            },
+            uploadedImageList(){
+                let uploadedImageListArr = [];
+                if(this.record && this.record.awardedBid && this.record.awardedBid.job_done_images && this.record.awardedBid.job_done_images.length) {
+                    _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
+                        uploadedImageListArr.push(value.url);
+                    })
+                }
+                return uploadedImageListArr;
+            },          
+            uploadedImageThumbList(){
+                let uploadedImageThumbListArr = [];
+                if(this.record && this.record.awardedBid && this.record.awardedBid.job_done_images && this.record.awardedBid.job_done_images.length) {
+                    _.forEach(this.record.awardedBid.job_done_images, function(value, key) {
+                        uploadedImageThumbListArr.push(value.thumb_url);
+                    })
+                }
+                return uploadedImageThumbListArr;
+            },
             canInitiateJob(){
                 if(Object.keys(this.record).length && this.record.my_bid){
                     return this.record.status != 'cancelled' && this.record.awardedBid && (( this.record.my_bid.id == this.record.awardedBid.id) && (this.record.awardedBid.status == 'completed' || this.record.awardedBid.status == 'pending'  || this.record.awardedBid.status == 'on_the_way' || this.record.status == 'initiated'));
@@ -806,14 +839,16 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markCompletedByCustomer(){
-                this.markJobCompleteLoading = true;
-                let data = {
-                    status : 'completed',
-                    id : this.record ? this.record.id : ''
-                };
-                this.submitFormData = data;
+                this.confirmPopupShowMarkJobCompleted = true;
+                return;
+                // this.markJobCompleteLoading = true;
+                // let data = {
+                //     status : 'completed',
+                //     id : this.record ? this.record.id : ''
+                // };
+                // this.submitFormData = data;
 
-                this.submit = true;
+                // this.submit = true;
             },
             markJobArchive(){
                 this.formData.is_archived = 1;
@@ -841,18 +876,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             },
             markDoneBySp(){
-                // this.showJobProof = true;
-                this.loading = true;
-                this.submitBidUrl = 'api/job-bid/'+ this.myBidValue.id;
-
-                let data = {
-                    status : 'completed',
-                    id : this.myBidValue ? this.myBidValue.id : '',
-                    job_id : this.myBidValue ? this.myBidValue.job_id : ''
-                };
-                this.submitFormData = data;
-                this.submitBidForm = true;
-
+                this.showJobProof = true;
             },
             markArchiveBySp(){
 

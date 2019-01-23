@@ -122,7 +122,7 @@ export default {
 }
 window.fbAsyncInit = function() {
       FB.init({
-        appId            : process.env.MIX_FACEBOOK_APP_ID,//todo dynamic 
+        appId            : window.facebookApiKey,//todo dynamic 
         autoLogAppEvents : true,
         xfbml            : true,
         version          : 'v3.1'

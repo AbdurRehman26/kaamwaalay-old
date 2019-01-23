@@ -77,7 +77,7 @@ public function boot()
                 $event->to =  User::find($job->user_id);
                 $event->from = User::find($jobBid->user_id);
                 $event->object_id = '';
-                $event->email_title = 'Visit request has been accepted';
+                $event->email_title = 'Visit Request Accepted';
                 $event->title = 'Visit Request Accepted';
                 $event->type = 'visit_approved_sp';
                 $event->message = 'Your suggested time ('.$date.', '.$time.') has been accepted for the job: <strong>'.$job->title;
@@ -87,7 +87,7 @@ public function boot()
                 $event->to =  User::find($jobBid->user_id);
                 $event->from = User::find($job->user_id);
                 $event->object_id = '';
-                $event->email_title = 'Visit request has been accepted';
+                $event->email_title = 'Visit Request Accepted';
                 $event->title = 'Visit Request Accepted';
                 $event->type = 'visit_approved';
                 $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been accepted';
@@ -99,7 +99,7 @@ public function boot()
             $event->to =  User::find($job->user_id);
             $event->from = User::find($jobBid->user_id);
             $event->object_id = '';
-            $event->email_title = 'Visit request has been rejected';
+            $event->email_title = 'Visit Request Rejected';
             $event->title = 'Visit Request Rejected';
             $event->type = 'visit_declined_sp';
             $event->message = 'Your suggested time for the job: <strong>'.$job->title.'</strong> has been declined';
@@ -110,7 +110,7 @@ public function boot()
             $event->to =  User::find($jobBid->user_id);
             $event->from = User::find($job->user_id);
             $event->object_id = '';
-            $event->email_title = 'Visit request has been rejected';
+            $event->email_title = 'Visit Request Rejected';
             $event->title = 'Visit Request Rejected';
             $event->type = 'visit_declined';
             $event->message = 'Your visit request for the job: <strong>'.$job->title.'</strong> has been declined';
@@ -134,9 +134,9 @@ public function boot()
             $event->object_id = '';
             $event->link_text = 'View Details';
             $event->type = 'go_to_visit';
-            $event->email_title = 'Time has been confrimed';
+            $event->email_title = 'Time Confirmation';
             $event->title = 'Time Confirmation';
-            $event->message = 'Time has been confirmed by a <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong>';
+            $event->message = 'Time has been confirmed by a <strong>'.$event->from->first_name.' '.$event->from->last_name.'</strong> on the job: <strong>'.$job->title.'</strong>';
             $event->to->notify(new JobBidUpdatedNotification($event));
             return;
         }

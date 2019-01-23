@@ -30,6 +30,14 @@ import Multiselect from 'vue-multiselect';
 import MaterialIcons  from 'material-icons';
 import Lightbox from 'vue-simple-lightbox';
 
+import Amxy from 'amcharts3/amcharts/xy.js';
+import AmExport from 'amcharts3/amcharts/plugins/export';
+import fabric from 'fabric'
+import AmPdfmake from 'amcharts3/amcharts/plugins/export/libs/pdfmake/pdfmake.js'
+window.saveAs = require('amcharts3/amcharts/plugins/export/libs/FileSaver.js/FileSaver').saveAs
+
+
+
 let veeCustomMessage = {
     en: {
         custom: {

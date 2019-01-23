@@ -1,7 +1,7 @@
 <template>	
 	<div>
 		<b-modal id="job-proof" class="no-footer" centered  hide-footer @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Attach Images" ok-only ok-title="Submit">
-        <alert style="display: none;"></alert>
+        <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert> 
 		    <div>
             <div class="note-label">
             <label>Please Attach images as a proof that the job has been completed</label>
@@ -46,7 +46,9 @@
                 </div>
 
                 <div class="verification-prove-submittion" v-if="listJobImages.length">
-                    <button type="button" class="btn btn-primary btn-xs">Submit</button>
+                    <button @click.prevent="submit" :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ,'col-sm-3' ]">Submit
+                        <loader></loader>
+                    </button>
                 </div>
                 <div class="alert-line">
                     <p><strong>Note: </strong>Please make sure the funds are transferred to you.</p>
@@ -63,7 +65,7 @@
 <script>
 export default {
 
-	props : ['showModalProp'],
+	props : ['showModalProp', 'myBidValue'],
         data() {
             return {
                 job_proof: 'capture_image',
@@ -78,7 +80,10 @@ export default {
                 img: null,
                 camera: null,
                 deviceId: null,
-                devices: []
+                devices: [],
+                loading: false,
+                errorMessage: '',
+                successMessage: '',
             }
         },    
 	    methods: {
@@ -110,6 +115,41 @@ export default {
             onHidden(){
                 this.$emit('HideModalValue');
             },        
+            submit(){
+
+                let self = this
+                let data = {
+                    status : 'completed',
+                    id : self.myBidValue ? self.myBidValue.id : '',
+                    job_id : self.myBidValue ? self.myBidValue.job_id : '',
+                    job_done_images : self.jobImages
+                };
+
+                self.loading = true
+                self.$http.put('api/job-bid/'+ data.id,data)
+                .then(response => {
+                    self.successMessage= response.data.message
+                    //self.$parent.currentRecord.status = self.requestData.status
+                    this.$parent.record.my_bid.status = data.status;
+                    this.$parent.record.awardedBid.status = data.status;
+                    this.$parent.record.awardedBid.job_done_images = response.data.data.job_done_images;
+                    setTimeout(function(){
+                        self.successMessage=''
+                        self.loading = false
+                        // self.$parent.currentRecord.status = self.requestData.status
+                        // self.$parent.actionConfirmation = false
+                        self.hideModal()
+                        //self.$router.push({name: 'job.details' , params : { id : data.job_id }});
+                    }, 2000);
+                })
+                .catch(error => {
+                    self.loading = false
+                    self.errorMessage =error.response.data.message[0];
+                    setTimeout(function(){
+                        self.errorMessage=''
+                    }, 2000);
+                })
+            },
         },
         computed: {
 

@@ -38,12 +38,9 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
+                    <div :class="[errorBag.first('suggested time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
                         <label class="nolabel">&nbsp;</label>
-                        <select class="form-control" id="sel1" v-validate="'required'" v-model="submitFormData.suggested_time" name="preferred time">
-                            <option value="" disabled="">Select Time</option>
-                            <option v-for="h in timeHr" :value="h">{{h}}</option>
-                        </select>
+                        <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.suggested_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm a" placeholder="Select Time" name="suggested time"></date-picker>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -198,6 +195,7 @@
         watch: {
             bid(value){
                 this.submitFormData = JSON.parse(JSON.stringify(value));
+                this.submitFormData.suggested_time = this.submitFormData.suggested_time ? this.submitFormData.suggested_time : ''
             },
 
             showModalProp(value) {
@@ -207,6 +205,14 @@
                 if(!value) {
                     this.hideModal();
                 }
+            },
+            submitFormData: {
+                handler: function(val, oldVal) {
+                    if(val.suggested_time) {
+                        this.submitFormData.suggested_time =  moment(val.suggested_time).format();
+                    }
+                },
+                deep: true
             }
         },
     }

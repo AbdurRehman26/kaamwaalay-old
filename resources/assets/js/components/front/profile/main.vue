@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">First Name *</label>
-                                <input type="text" v-validate="'required|max:50'" class="form-control"
+                                <input type="text" v-validate="'required|max:25'" class="form-control"
                                 name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
                                 placeholder="Enter your first name">
                             </div>
@@ -47,7 +47,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Last Name *</label>
-                                <input type="text" v-validate="'required|max:50'" class="form-control"
+                                <input type="text" v-validate="'required|max:25'" class="form-control"
                                 name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
                                 placeholder="Enter your last name">
                             </div>
