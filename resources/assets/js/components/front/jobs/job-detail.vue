@@ -359,7 +359,7 @@
 
 
 <write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
-<!-- <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup> -->
+<confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 
 <confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed>
 
@@ -854,12 +854,14 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.formData.is_archived = 1;
                 this.formData.id = this.record.id;
                 this.confirmPopupUrl = 'api/job/' +this.record.id;
+                this.confirmPopupShow = true;
             },
             markJobCancel(){
 
                 this.formData.status = 'cancelled';
                 this.formData.id = this.record.id;
                 this.confirmPopupUrl = 'api/job/' +this.record.id;
+                this.confirmPopupShow = true;
 
             },
             markInitiateJobByCustomer(){
