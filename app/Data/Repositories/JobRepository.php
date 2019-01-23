@@ -169,7 +169,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             $data->state = !empty($state->name)?$state->name:'';
             $bidsCriteria = ['job_id' => $data->id];
 
-            $bidsWhereIn = ['status' => ['pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'deleted_at' => null]; 
+            $bidsWhereIn = ['status' => ['initiated','pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'deleted_at' => null]; 
             $notCriteria = ['status' => 'invited'];
 
             $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, $notCriteria, false, $bidsWhereIn, true);
