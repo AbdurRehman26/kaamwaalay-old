@@ -208,7 +208,9 @@
             },
             submitFormData: {
                 handler: function(val, oldVal) {
-                    this.submitFormData.suggested_time =  moment(val.suggested_time).format();
+                    if(val.suggested_time) {
+                        this.submitFormData.suggested_time =  moment(val.suggested_time).format();
+                    }
                 },
                 deep: true
             }

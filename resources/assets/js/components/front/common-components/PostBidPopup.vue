@@ -306,7 +306,9 @@
                 },
                 submitFormData: {
                   handler: function(val, oldVal) {
-                    this.submitFormData.preferred_time =  moment(val.preferred_time).format();
+                    if(val.preferred_time) {
+                        this.submitFormData.preferred_time =  moment(val.preferred_time).format();
+                    }
                 },
                 deep: true
             }
