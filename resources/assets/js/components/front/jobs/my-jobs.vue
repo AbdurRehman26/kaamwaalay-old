@@ -94,22 +94,22 @@
                                 </p>
                             </div>
 
-                            <div class="chat-feedback" v-if="record.review_details">
+                            <div class="chat-feedback" v-if="record.service_provider_review">
                                 <div class="text-notifer">
-                                    <p>My feedback & review</p>	
+                                    <p>Service Provider feedback & review</p>	
                                 </div>
                                 <div class="chat-feedback-column">
                                     <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImagePath(getCurrentUser()) +')',}"></div>
                                     <div class="chat-feedback-message">
-                                        <p>{{record.review_details.message}}</p>
+                                        <p>{{record.service_provider_review.message}}</p>
                                         <div class="feeback-detail">
                                             <p class="feedback-personal-info">
-                                                <a href="javascript:void(0);">{{record.review_details.rated_by_name}}</a>
+                                                <a href="javascript:void(0);">{{record.service_provider_review.rated_by_name}}</a>
                                                 posted on 
                                                 <strong>{{record.formatted_created_at}}</strong>
                                             </p>
                                             <div class="ratings">
-                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="record.review_details.rating ? parseFloat(record.review_details.rating) : 0" active-color="#8200ff"></star-rating>
+                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="record.service_provider_review.rating ? parseFloat(record.service_provider_review.rating) : 0" active-color="#8200ff"></star-rating>
 
                                             </div>
                                         </div>

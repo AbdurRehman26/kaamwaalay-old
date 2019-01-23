@@ -229,7 +229,7 @@
                                     <p>{{bid.description}}</p>
                                 </div>
 
-                                <div class="chat-feedback" v-if="record.status == 'completed' && record.review_details">
+                                <div class="chat-feedback" v-if="record.status == 'completed' && record.review_details && user.role_id == 2">
                                     <div class="text-notifer">
                                         <p>Customer Feedback & Review</p> 
                                     </div>
@@ -248,7 +248,27 @@
                                         </div>
                                     </div>
 
-                                </div>      
+                                </div>    
+                                <div class="chat-feedback" v-if="record.status == 'completed' && record.service_provider_review && user.role_id == 3">
+                                    <div class="text-notifer">
+                                        <p>Service Provider Feedback & Review</p> 
+                                    </div>
+                                    <div class="chat-feedback-column">
+                                        <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.service_provider_review.user_detail.profileImage) +')',}"></div>
+                                        <div class="chat-feedback-message">
+                                            <p>{{record.service_provider_review.message}}</p>
+                                            <div class="feeback-detail">
+                                                <p class="feedback-personal-info">
+                                                    <a href="javascript:void(0);">{{record.service_provider_review.user_detail.first_name + " " + record.service_provider_review.user_detail.last_name}}</a>
+                                                    posted on 
+                                                    <strong>{{record.service_provider_review.formatted_created_at}}</strong>
+                                                </p>
+                                                <i class="icon-quotes-right3"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>     
 
                                 <div class="provider-bidding-btn">
 
