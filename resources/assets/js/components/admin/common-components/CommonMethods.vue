@@ -35,9 +35,16 @@
                 this.$emit('custom-start-loading', isLoading);
             },
             getList(page, successCallback){
+
+                console.group('Before Reuqest');
+                
+                
                 let self = this;
                 let url = self.url;
                 
+                console.log(this.callInProgress , 123112312321);
+
+
                 if(typeof(url) == 'undefined' || url == ''){
                     return false;
                 }
@@ -61,11 +68,17 @@
                     url += '&page='+page;   
                 }
 
+                
+
                 if(this.callInProgress){
                     return false;
                 }
 
                 this.callInProgress = true;
+
+                console.group('After Reuqest');
+                console.log(this.callInProgress , 123112312321);
+                console.groupEnd();
 
                 self.$http.get(url).then(response=>{
                     this.callInProgress = false;
