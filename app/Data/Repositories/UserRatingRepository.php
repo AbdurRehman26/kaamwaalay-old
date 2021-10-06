@@ -2,8 +2,8 @@
 
 namespace App\Data\Repositories;
 
-use Cygnis\Data\Contracts\RepositoryContract;
-use Cygnis\Data\Repositories\AbstractRepository;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 use App\Data\Models\UserRating;
 use Carbon\Carbon;
 
@@ -54,12 +54,12 @@ class UserRatingRepository extends AbstractRepository implements RepositoryContr
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
         return $data;
     }
-    
+
     public function findByAll($pagination = false, $perPage = 10, array $data = [] )
     {
         $this->builder = $this->builder
             ->where('user_id', '=', $data['user_id'])
-            ->orderBy('created_at', 'DESC');      
+            ->orderBy('created_at', 'DESC');
         return  parent::findByAll($pagination, $perPage);
 
     }

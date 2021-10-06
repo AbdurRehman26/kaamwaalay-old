@@ -10743,7 +10743,7 @@ a.text-dark:focus {
 @font-face {
   font-family: "AkzidenzGroteskBE-Regular";
   src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b);
-  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.svg?dd51ccf93caa7e0d772647aa186dea41) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Regular.eot?cdd98636222cf040538c66fd4ddf3c4b) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff"), url(/fonts/AkzidenzGroteskBE-Regular.ttf?1d7fd3b958580d95e7ce86eac3dbc0bf) format("truetype"), url(/fonts/AkzidenzGroteskBE-Regular.svg?0810fb60d605f32adb74d4a8e34a05b2) format("svg");
   src: url(/fonts/AkzidenzGroteskBE-Regular.woff?1d241f54a3395f020ffa947ad80f7dc9) format("woff");
   font-style: normal;
   font-weight: 400;
@@ -10753,7 +10753,7 @@ a.text-dark:focus {
 @font-face {
   font-family: "AkzidenzGroteskBE-Bold";
   src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526);
-  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.svg?94b941fa3892aaac12647ecdbd8e0915) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Bold.eot?460dd1d486d36f95454d6a0048084526?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff"), url(/fonts/AkzidenzGroteskBE-Bold.ttf?8bdcddc07cda1f0d5c5924275685b482) format("truetype"), url(/fonts/AkzidenzGroteskBE-Bold.svg?c05809266e20834e7361f789983f8f23) format("svg");
   src: url(/fonts/AkzidenzGroteskBE-Bold.woff?96048f4470586c10f66ad42555d06847) format("woff");
   font-style: normal;
   font-weight: 400;
@@ -10763,7 +10763,7 @@ a.text-dark:focus {
 @font-face {
   font-family: "AkzidenzGroteskBE-Md";
   src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f);
-  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.svg?cfbe407436551ac8f74cdf1faa296f1b) format("svg");
+  src: url(/fonts/AkzidenzGroteskBE-Md.eot?da60d5f1e9502025ea04c180594e9d6f?#iefix) format("embedded-opentype"), url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff"), url(/fonts/AkzidenzGroteskBE-Md.ttf?085cf2a37db00439bf2df0401632be80) format("truetype"), url(/fonts/AkzidenzGroteskBE-Md.svg?cac43acf6a0c694a2b585485fa9e50ee) format("svg");
   src: url(/fonts/AkzidenzGroteskBE-Md.woff?de1c7a845a47e9feb57a933aec140ef1) format("woff");
   font-style: normal;
   font-weight: 400;
@@ -10773,7 +10773,7 @@ a.text-dark:focus {
 @font-face {
   font-family: 'icomoon';
   src: url(/fonts/icomoon-front.eot?2a621f2c38f6b11ca3c596867369de71);
-  src: url(/fonts/icomoon-front.eot?2a621f2c38f6b11ca3c596867369de71#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?7f920f01c39f79826daa3f3259bf8e39) format("truetype"), url(/fonts/icomoon-front.woff?0e0f164c05fa0b9e0a5787f44f0867b8) format("woff"), url(/fonts/icomoon-front.svg?9b46ee979e5cdf0d38c74e3bd8923b21#icomoon) format("svg");
+  src: url(/fonts/icomoon-front.eot?2a621f2c38f6b11ca3c596867369de71#iefix) format("embedded-opentype"), url(/fonts/icomoon-front.ttf?7f920f01c39f79826daa3f3259bf8e39) format("truetype"), url(/fonts/icomoon-front.woff?0e0f164c05fa0b9e0a5787f44f0867b8) format("woff"), url(/fonts/icomoon-front.svg?ffb0fadd56c4c92fdd5cd83f83ecb86c#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -14859,28 +14859,28 @@ button.sl-close {
 }
 
 .splash-design.d-1 {
-  background-image: url(/images/d-1.svg?70fba90bbf2a711f0a151c3d05d27ba1);
+  background-image: url(/images/d-1.svg?6b3a33ba238f19fba508ec2186870c19);
 }
 
 .splash-design.d-2 {
-  background-image: url(/images/d-2.svg?3f1d902d1c5e342a8316cd0712e31957);
+  background-image: url(/images/d-2.svg?52de5b251c09d374ca17689135145ec1);
 }
 
 .splash-design.d-3 {
-  background-image: url(/images/d-3.svg?b20e532313a13757e2222aa177b55b1b);
+  background-image: url(/images/d-3.svg?a80a27fd7a273108414c8b6cd2eaa0b1);
 }
 
 .splash-design.d-4 {
-  background-image: url(/images/d-4.svg?ca5f85c33b09524fda77485280c33853);
+  background-image: url(/images/d-4.svg?fb20e7b862dafca44fdc36e9fc8e1f73);
 }
 
 .splash-design.d-5 {
-  background-image: url(/images/d-5.svg?acf2c8ccde5bb7f7767697d3a06f89d2);
+  background-image: url(/images/d-5.svg?ed24b9cfbc683cb64425c89ca809baf6);
   height: 122px !important;
 }
 
 .splash-design.d-6 {
-  background-image: url(/images/d-6.svg?7b3ce14c45730b89a9b8ba73ed07b794);
+  background-image: url(/images/d-6.svg?4dfc5cffd4a7604619a7ab9976e039ad);
 }
 
 .splash-design.top-left {
@@ -21321,7 +21321,7 @@ p.awarded_to {
   }
 
   .service-need .boxed {
-    padding: 10px 0;
+    padding: 10px 0;
   }
 
   .my-job-indication,
@@ -22403,7 +22403,7 @@ p.awarded_to {
   width: 170px;
   height: 110px;
   margin: 0 auto;
-  background-image: url(/images/no-record.svg?c2151495d84edca035a704225e4f077e);
+  background-image: url(/images/no-record.svg?dca3b2e984ffe78cb3146d98c8d97c7b);
   background-repeat: no-repeat;
   background-size: 100% auto;
   display: block;

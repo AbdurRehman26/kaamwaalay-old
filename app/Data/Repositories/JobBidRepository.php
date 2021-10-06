@@ -2,8 +2,8 @@
 
 namespace App\Data\Repositories;
 
-use Cygnis\Data\Contracts\RepositoryContract;
-use Cygnis\Data\Repositories\AbstractRepository;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 use App\Data\Models\JobBid;
 use App\Data\Models\Job;
 use Carbon\Carbon;
@@ -70,7 +70,7 @@ public function findByCriteria($criteria, $refresh = false, $notCriteria = false
 
     if($whereIn) {
         $model = $model->whereIn(key($whereIn), $whereIn[key($whereIn)]);
-        
+
     }
 
     if($count) {
@@ -96,18 +96,18 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
 
         if($input['filter_by_status'] == 'awarded') {
 
-            $this->builder = $this->builder->where('is_awarded', '=', 1);            
+            $this->builder = $this->builder->where('is_awarded', '=', 1);
 
         }elseif($input['filter_by_status'] == 'invited') {
 
-            $this->builder = $this->builder->where('is_invited', '=', 1);            
+            $this->builder = $this->builder->where('is_invited', '=', 1);
 
         }elseif($input['filter_by_status'] == 'archived') {
 
-            $this->builder = $this->builder->where('is_archived', '=', 1);            
+            $this->builder = $this->builder->where('is_archived', '=', 1);
 
         }else{
-            $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);            
+            $this->builder = $this->builder->where('status', '=', $input['filter_by_status']);
         }
 
     }
@@ -117,23 +117,23 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
 
         $this->builder->where('status' , '!=', 'invited');
 
-    }  
+    }
     if(isset($input['filter_by_tbd'])) {
-        $this->builder = $this->builder->where('is_tbd', '=', (int)$input['filter_by_tbd']);            
-    }             
+        $this->builder = $this->builder->where('is_tbd', '=', (int)$input['filter_by_tbd']);
+    }
     if(!empty($input['filter_by_invitation'])) {
-        $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);            
+        $this->builder = $this->builder->where('is_invited', '=', $input['filter_by_invitation']);
 
-    }   
+    }
     if(!empty($input['filter_by_archived']) || isset($input['filter_by_archived'])) {
-        $this->builder = $this->builder->where('is_archived', '=', $input['filter_by_archived']);            
-    }                  
+        $this->builder = $this->builder->where('is_archived', '=', $input['filter_by_archived']);
+    }
     if(!empty($input['filter_by_awarded']) || isset($input['filter_by_awarded'])) {
-        $this->builder = $this->builder->where('is_awarded', '=', $input['filter_by_awarded']);            
-    }                 
+        $this->builder = $this->builder->where('is_awarded', '=', $input['filter_by_awarded']);
+    }
     if(!empty($input['is_status'])) {
-        $this->builder = $this->builder->where('status', '=', $input['is_status']);            
-    }               
+        $this->builder = $this->builder->where('status', '=', $input['is_status']);
+    }
     if(!empty($input['filter_by_active_bids'])) {
 
         $this->builder = $this->builder->where(
@@ -144,7 +144,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
                 $query->orWhere('status', '=', 'suggested_time');
             }
         );
-    }            
+    }
     if(!empty($input['filter_by_awarded_status'])) {
 
         $this->builder = $this->builder->where(
@@ -153,7 +153,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
                 $query->orWhere('status', '=', 'initiated');
             }
         );
-    }            
+    }
     if(!empty($input['filter_by_job_detail'])) {
         $this->builder = $this->builder->where('user_id', '=', $input['user_id'])
         ->orderBy('job_bids.updated_at', 'desc');
@@ -333,7 +333,7 @@ public function getJobServiceProvider($criteria)
             'users', function ($join) {
                 $join->on('users.id', '=', 'job_bids.user_id');
             }
-        )                    
+        )
         ->select('first_name', 'last_name')->first();
 
         return $model;
@@ -384,14 +384,14 @@ public function update(array $data = [])
 
                 if (!\App::runningInConsole()) {
                     $this->model->where($criteria)->delete();
-                }        
+                }
             }
         }
 
     }
 
-    
-    if(!empty($updateData) && $updateJob){  
+
+    if(!empty($updateData) && $updateJob){
         app('JobRepository')->update($updateData);
     }
 
@@ -406,7 +406,7 @@ public function create(array $data = [])
     $data['is_archived'] = 0;
     $data['is_visit_required'] = !empty($data['is_visit_required']) ? $data['is_visit_required'] : 0;
     // $data['preferred_time'] = Carbon::parse($data['preferred_time'])->toTimeString();
-    
+
     $data['updated_at'] = Carbon::now()->ToDateTimeString();
     $data['created_at'] = Carbon::now()->ToDateTimeString();
 
@@ -416,10 +416,8 @@ public function create(array $data = [])
     $this->model->InsertOnDuplicateKey($data);
     $id = DB::getPdo()->lastInsertId();
     $data['id'] = (int) $id;
-    JobBidCreated::dispatch($data)->onQueue(config('queue.pre_fix').'notifications'); 
+    JobBidCreated::dispatch($data)->onQueue(config('queue.pre_fix').'notifications');
     return $this->findByCriteria($criteria, true);
 }
 
 }
-
-

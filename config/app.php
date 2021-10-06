@@ -187,7 +187,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
-    ],  
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -236,6 +236,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Str' => Illuminate\Support\Str::class,
 
     ],
     'app_name'=> env('APP_NAME'),

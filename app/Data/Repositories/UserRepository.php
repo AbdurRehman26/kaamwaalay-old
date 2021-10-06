@@ -2,8 +2,8 @@
 
 namespace App\Data\Repositories;
 
-use Cygnis\Data\Contracts\RepositoryContract;
-use Cygnis\Data\Repositories\AbstractRepository;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 use App\Data\Models\User;
 use App\Data\Models\Role;
 use DB;
@@ -54,7 +54,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     if($data) {
         $data->profile_image = str_replace('(NULL)', '', $data->profile_image);
         $data->profileImage = $data->profile_image;
-        
+
         if($data->profile_image && substr($data->profile_image, 0, 8) != "https://"){
             $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
         }
@@ -65,13 +65,13 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
             if($data->role_id == Role::SERVICE_PROVIDER) {
 // Todo
-                $data->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);                
+                $data->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);
                 if (!empty($details['provider_request_data'])) {
                     $serviceDetailsCriteria = ['user_id' => $id];
-                    $data->service_details = app('ServiceProviderProfileRequestRepository')->getUserServices($serviceDetailsCriteria);                
+                    $data->service_details = app('ServiceProviderProfileRequestRepository')->getUserServices($serviceDetailsCriteria);
                 }
 
-            }   
+            }
         }
 
         if (!empty($details['user_rating'])) {
@@ -111,11 +111,11 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
 
         }
-        $country = app('CountryRepository')->findById($data->country_id);             
+        $country = app('CountryRepository')->findById($data->country_id);
         $data->country = !empty($country->name) ? $country->name : '';
-        $City = app('CityRepository')->findById($data->city_id);                
+        $City = app('CityRepository')->findById($data->city_id);
         $data->city = !empty($City->name)?$City->name:'';
-        $state = app('StateRepository')->findById($data->state_id);                
+        $state = app('StateRepository')->findById($data->state_id);
         $data->state = !empty($state->name)?$state->name:'';
 
         $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
@@ -132,7 +132,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
 
 public function findByAll($pagination = false,$perPage = 10, $data = [])
-{       
+{
 
     $this->builder = $this->model->orderBy('users.created_at', 'desc');
 
@@ -221,7 +221,7 @@ public function update(array $data = [])
 
         if($user->role_id == Role::SERVICE_PROVIDER) {
             if(!empty($data['business_details'])) {
-                $business_details = $data['business_details']; 
+                $business_details = $data['business_details'];
                 $business_details['id'] = $user->id;
                 $business_details['user_id'] = $user->id;
                 if($business = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $user->id)) {
@@ -241,7 +241,7 @@ public function update(array $data = [])
                 $profileRequest = app('ServiceProviderProfileRequestRepository')->findByCriteria($criteria);
 
 // Checking if a profile request is already in a pending state or not.
-// if yes no new request will be generate 
+// if yes no new request will be generate
 
                 if(!$profileRequest) {
 
@@ -301,7 +301,7 @@ public function updateServices($data, $user)
             ->where('service_provider_services.service_id' , $service['service_id'])
             ->where('service_provider_profile_requests.user_id', $user->id)
             ->first();
-            if(empty($serviceExists)){      
+            if(empty($serviceExists)){
                 $newServices[] = $service;
             }
         }
@@ -333,7 +333,7 @@ public function updateServices($data, $user)
                 }
 
                 $criteria = ['user_id' => $user->id];
-                
+
                 $existingSavedServices = $serviceProfileRequestRepository->getSubServices($criteria, true);
                 $similarIds =  array_intersect($childServiceIds , $existingSavedServices);
 
@@ -345,7 +345,7 @@ public function updateServices($data, $user)
                     $toBeAddedServices[] = [
                         'service_id' => $childServiceId,
                         'service_provider_profile_request_id' => $serviceProfileRequest->id
-                    ];                     
+                    ];
                 }
 
             }
@@ -354,7 +354,7 @@ public function updateServices($data, $user)
             $toBeAddedServices[] = [
                 'service_id' => $newService['service_id'],
                 'service_provider_profile_request_id' => $serviceProfileRequest->id
-            ]; 
+            ];
         }
         \Log::info('8');
         app('ServiceProviderServiceRepository')->model->insert($toBeAddedServices);

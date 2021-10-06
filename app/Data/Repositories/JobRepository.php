@@ -2,8 +2,8 @@
 
 namespace App\Data\Repositories;
 
-use Cygnis\Data\Contracts\RepositoryContract;
-use Cygnis\Data\Repositories\AbstractRepository;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 use App\Data\Models\Job;
 use App\Data\Models\Role;
 use App\Data\Models\User;
