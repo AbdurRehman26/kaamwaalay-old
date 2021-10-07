@@ -80,7 +80,7 @@
     {
         name: 'customer',
         path: '/admin/customer',
-        component: require('./components/admin/customer/main.vue'),
+        component: require('./components/admin/customer/Main.vue'),
         meta: {
             title: 'Customer Panel' ,
             pagetitle:'Customers',
@@ -121,7 +121,7 @@
     {
         name: 'service.provider',
         path: '/admin/service-provider',
-        component: require('./components/admin/service-provide/main.vue'),
+        component: require('./components/admin/service-provide/Main.vue'),
         meta: {
             title: 'Service Provider',
             pagetitle:'Service Providers',
@@ -347,7 +347,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.forAdmin) && router.app.$auth.isAuthenticated()) {
         if(user  && user.role_id == admin){
             next();
-        } 
+        }
         else{
             next({name: 'login'});
         }
@@ -355,7 +355,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.forReviewer) && router.app.$auth.isAuthenticated()) {
         if(user  && (user.role_id == reviewer ||user.role_id == admin)){
             next();
-        } 
+        }
         else{
             next({name: 'login'});
         }

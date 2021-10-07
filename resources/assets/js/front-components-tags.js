@@ -54,7 +54,7 @@ Vue.component('customer-nav',require('./components/front/common-components/navig
 Vue.component('provider-nav',require('./components/front/common-components/navigations/ProviderNav.vue'));
 
 // Footer
-Vue.component('front-footer',require('./components/front/common-components/footer.vue'));
+Vue.component('front-footer',require('./components/front/common-components/Footer.vue'));
 
 // landing
 Vue.component('featuredCategories', require('./components/front/landing/FeaturedCategories.vue'));
@@ -78,7 +78,7 @@ Vue.component('profile-not-completed', require('./components/front/profile-rejec
 Vue.component('customer', require('./components/front/advice-center/Customer.vue'));
 Vue.component('service-provider', require('./components/front/advice-center/ServiceProvider.vue'));
 
-// facebook 
+// facebook
 Vue.component('facebook-component',require('./components/front/common-components/facebookComponent.vue'));
 /*logout*/
 Vue.component('logout-component',require('./components/front/auth/LogoutComponent.vue'));
@@ -95,12 +95,12 @@ Vue.component('file-upload-component', require('./components/admin/common-compon
 Vue.component('card-element',require('./components/front/common-components/CardElement.vue'));
 Vue.component('payment-component',require('./components/front/common-components/PaymentComponent.vue'));
 
-Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue')); 
-Vue.component('signup-confirmation-popup',require('./components/admin/popup/SignupConfirmationPopup.vue')); 
+Vue.component('confirmation-popup',require('./components/admin/service-provide/popup/ConfirmationPopup.vue'));
+Vue.component('signup-confirmation-popup',require('./components/admin/popup/SignupConfirmationPopup.vue'));
 
-Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue')); 
-Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue')); 
-Vue.component('job',require('./components/front/common-components/Job.vue')); 
+Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue'));
+Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue'));
+Vue.component('job',require('./components/front/common-components/Job.vue'));
 
-Vue.component('zip',require('./components/front/common-components/Zip.vue')); 
-Vue.component('city',require('./components/front/common-components/City.vue')); 
+Vue.component('zip',require('./components/front/common-components/Zip.vue'));
+Vue.component('city',require('./components/front/common-components/City.vue'));

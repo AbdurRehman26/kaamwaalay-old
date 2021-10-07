@@ -11,11 +11,15 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
+mix.js('resources/assets/js/app.js', 'public/js').vue()
+   .sass('resources/assets/sass/app.scss', 'public/css').options({
+    processCssUrls: false
+});
 
 mix.js('resources/assets/js/front-app.js', 'public/js')
-   .sass('resources/assets/sass/front/app.scss', 'public/css/front/') //front sass file
+   .sass('resources/assets/sass/front/app.scss', 'public/css/front/').options({
+    processCssUrls: false
+}); //front sass file
 
 mix.copyDirectory('resources/assets/images', 'public/images');
 mix.copyDirectory('resources/assets/fonts', 'public/fonts');
