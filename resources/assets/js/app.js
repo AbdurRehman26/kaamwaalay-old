@@ -1,11 +1,12 @@
 /*Main vue js*/
 
-require('./bootstrap');
+import Vue from 'vue';
 
-window.Vue = require('vue');
+
+window.Vue = Vue;
 window.moment = require('moment');
 
-import Vue from 'vue';
+require('./bootstrap');
 import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
 import BootstrapVue from 'bootstrap-vue';
@@ -58,7 +59,7 @@ let veeCustomMessage = {
 const config = {
     errorBagName: 'errorBag', // change if property conflicts.
     dictionary:  veeCustomMessage,
-    events: 'input' 
+    events: 'input'
 };
 
 
@@ -195,11 +196,10 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
         router.push({ name: 'login'})
     })
  }
- if(error.response.status === 406 || error.response.status === 422){  
+ if(error.response.status === 406 || error.response.status === 422){
      return Promise.reject(error);
  }
 })
 /*const app = new Vue({
     router
 }).$mount('#app')*/
-

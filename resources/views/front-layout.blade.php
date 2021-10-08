@@ -32,7 +32,7 @@
     </head>
     <body>
         <div id="app" class="frontlayout">
-            
+
             @if(isset($page_not_found) && $page_not_found)
                 <page-not-found anchor="true"></page-not-found>
             @else
@@ -41,7 +41,7 @@
                 <front-footer></front-footer>
             @endif
         </div>
-        <script src="https://js.stripe.com/v3/"></script>
+        <!-- <script src="https://js.stripe.com/v3/"></script> -->
         <script src="{{ mix('js/front-app.js') }}"></script>
     </body>
 </html>

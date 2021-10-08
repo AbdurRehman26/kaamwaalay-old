@@ -1,11 +1,10 @@
 /*Main vue js*/
-
 require('./bootstrap');
+import Vue from 'vue';
 
-window.Vue = require('vue');
+window.Vue = Vue;
 window.moment = require('moment');
 
-import Vue from 'vue';
 import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
 import BootstrapVue from 'bootstrap-vue';
@@ -75,10 +74,10 @@ Vue.use(Geocoder, {
 
 Vue.$geocoder.setDefaultMode('address');
 
-Vue.use(Vuex); 
+Vue.use(Vuex);
 // base/global options
-// these options can be overridden 
-// by the options in the .open(options) 
+// these options can be overridden
+// by the options in the .open(options)
 // function.
 /*const stripeOptions = {
   key: 'pk_test_ix9VLy3CYcuwWxz1UkMipKun',
@@ -144,7 +143,7 @@ let veeCustomMessage = {
 const config = {
     errorBagName: 'errorBag', // change if property conflicts.
     dictionary:  veeCustomMessage,
-    events: 'input' 
+    events: 'input'
 };
 Vue.use(VeeValidate,config);
 //require('./echo.js');
@@ -218,10 +217,10 @@ const app = new Vue({
             var reviewId = this.$route.params.id;
             if (reviewId && reviewId.match("#viewBid")) {
                 var elmnt = document.getElementById("bid-review");
-                elmnt.scrollIntoView();        
+                elmnt.scrollIntoView();
             }
             // var elmnt = document.getElementById("bid-review");
-            // elmnt.scrollIntoView();                    
+            // elmnt.scrollIntoView();
         }
     }
 });
@@ -238,12 +237,12 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
         router.push({ name: 'login'})
     })
    }
-   if(error.response.status === 406 || error.response.status === 422){  
+   if(error.response.status === 406 || error.response.status === 422){
        return Promise.reject(error);
    }
 })
 
-// Laravel Echo 
+// Laravel Echo
 import Echo from 'laravel-echo';
 window.io = require('socket.io-client');
 if(app.$auth.isAuthenticated()) {
