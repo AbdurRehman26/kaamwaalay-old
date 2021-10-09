@@ -22,18 +22,7 @@ class ServiceTableSeeder extends Seeder
         $now = Carbon::now()->toDateTimeString();
 
         $services = [
-            'Assembly',
-            'Electrical' ,
-            'General Handy Man',
             'Home Cleaning',
-            'Moving',
-            'Outdoor',
-            'Painting',
-            'Plumbing',
-            'Smart Home',
-            'Storage',
-            'Tv and Electronics',
-            'Window Treatments',
         ];
 
 
@@ -48,122 +37,16 @@ class ServiceTableSeeder extends Seeder
              'Office Cleaning',
              'Move in Cleaning',
              'Room Cleaning'
-         ],
-         'Tv and Electronics' => [
-             'Hiding TV Wires',
-             'Home Theater AV Setup',
-             'SoundBar Installation',
-             'TV Mounting'
-         ],
-         'Assembly' => [
-             'Bed Assembly',
-             'Exercise Equipment Assembly',
-             'Outdoor Furniture Assembly',
-             'Desk Assembly',
-               //'Furniture Assembly',
-             'Dresser Assembly',
-             'Office Furniture Assembly',
-         ],
-         'General Handy Man' => [
-             'Air Conditioner Installation',
-             'Handy Helper',
-             'Interior Painting',
-             //  'TV Mounting',
-             'Air Conditioner Uninstall',
-             'Handy Service',
-               //'Knobs Installation',
-             'Furniture Assembly',
-             'Hanging Pictures & Shelves',
-             'Locks Installation',
-         ],
-         'Plumbing' => [
-             'Drain Repair',
-             'Faucet Replacement',
-             'Toilet Trouble',
-             'Faucet Installation',
-             'Plumbing Service',
-             'Unclog Toilet',
-             'Faucet Repair',
-             'Toilet Repair',
-         ],
-         'Electrical'  => [
-             'Ceiling & Bath Fans',
-               //'Light Fixtures',
-             'Smart Security Cam Installation',
-             'Electric Service',
-             'Light Switch Installation',
-             //  'Smart Thermostat Installation',
-             'Garbage Disposal',
-             'Outlet Installation',
-         ],
-         'Painting' => [
-             'Accent Wall Painting',
-             'Crown Molding Painting',
-              // 'Interior Painting',
-             'BaseBoard Painting',
-             'Door Painting',
-             'Bed Room Painting',
-             'DoorFrame Painting',
-         ],
-         'Moving' => [
-              // 'Hanging Pictures & Shelves',
-             'Light Fixtures',
-             'Moving Help',
-             'Window Treatments',
-               //'Interior Painting',
-              // 'Move in Cleaning',
-             'Knobs Installation',
-               //'Move Out Cleaning',
-               //'TV Mounting',
-         ],
-         'Smart Home' => [
-             'Smart Device Installation',
-              // 'Smart Security Cam Installation',
-             'Wi-fi Router Setup',
-             'Smart Home Hub Setup',
-              // 'Smart Thermostat Installation',
-             'Smart Lock Installation',
-             'Video Doorbell Installation',
-         ],
-         'Window Treatments' => [
-             'Window Blind Treatment',
-             'Window Shade Installation',
-             'Windwo Curtain Installation',
-             'Windows Treatment ',
-             'Window Drapery Installation',
-         ],
-         'Outdoor' => [
-             'Lawn Mowing and Trimming',
-              //    co99 'Outdoor Furniture Assembly',
-             'Yard Cleanup',
-         ],
-         'Storage'   => [
-             'Long Term Storage',
-             'Moving and Storage',
-             'Short Term Storage',
-         ],
+         ]
      ];
 
      $isFeatured = [0, 0, 1];
         // reduce the probabiltiy of 1 occuring
 
      $serviceRandomImages = [
-        'images/dummy/carpenter1.jpg',
-        'images/dummy/carpenter2.jpg',
-        'images/dummy/carpenter3.jpg',
         'images/dummy/cleaning1.jpg',
         'images/dummy/cleaning2.jpg',
-        'images/dummy/cleaning3.jpg',
-        'images/dummy/concret.png',
-        'images/dummy/electrician1.jpg',
-        'images/dummy/electrician2.jpg',
-        'images/dummy/electrician3.jpg',
-        'images/dummy/mover1.jpg',
-        'images/dummy/mover2.jpg',
-        'images/dummy/mover3.jpg',
-        'images/dummy/painter1.jpg',
-        'images/dummy/painter2.jpg',
-        'images/dummy/painter3.jpg',
+        'images/dummy/cleaning3.jpg'
     ];
 
     foreach ($services as $key => $service) {

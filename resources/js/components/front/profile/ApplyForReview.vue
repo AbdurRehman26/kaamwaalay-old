@@ -1,4 +1,4 @@
-<template>	
+<template>
     <div class="section padding-sm profile-form wrapper-sm">
         <div class="profile-head">
             <h1>Complete your profile &amp; apply for Review</h1>
@@ -12,7 +12,7 @@
                     <div class="personal-provider-detail">
                         <div v-if="!imageValue" class="profile-image-placeholder onlyplaceholder">
                         </div>
-                        <div class="profile-image-placeholder" v-if="imageValue" v-bind:style="{'background-image':'url('+imageValue+')'}"></div>						
+                        <div class="profile-image-placeholder" v-if="imageValue" v-bind:style="{'background-image':'url('+imageValue+')'}"></div>
                         <div class="row">
                             <div class="browse-btn">
                                 <div class="form-group">
@@ -26,13 +26,13 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">First Name *</label>
                                     <input type="text" class="form-control"
-                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-validate="'required|max:25'" v-model="record.first_name" 
+                                    name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-validate="'required|max:25'" v-model="record.first_name"
                                     placeholder="Enter your first name">
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label for="">Last Name *</label>
                                     <input type="text" class="form-control"
-                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-validate="'required|max:25'" v-model="record.last_name" 
+                                    name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-validate="'required|max:25'" v-model="record.last_name"
                                     placeholder="Enter your last name">
                                 </div>
                             </div>
@@ -65,35 +65,10 @@
 
                     <div class="business-detail">
                         <div class="form-label-heading m-b-30">
-                            <p>BUSINESS DETAILS</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Are you an individual or a business?</label>
-
-                                    <select :class="['form-control', 'form-group' , errorBag.first('business_type') ? 'is-invalid' : '']" v-validate="'required'" name="business_type" v-model="record.business_details.business_type">
-                                        <option value="business">Business</option>
-                                        <option value="individual">Individual</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">DUNS Number <span v-b-tooltip.hover title="This is required for business verification" class="duns-help-icon"><i class="icon-help"></i></span></label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('duns') ? 'is-invalid' : '']" v-validate="'max:25'" type="number" name="duns" v-model="record.business_details.duns_number" placeholder="Enter your duns number">
-                                </div>
-                            </div>
+                            <p>ABOUT YOU</p>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Business Name</label>
-                                    <input :class="['form-control', 'form-group' , errorBag.first('business name') ? 'is-invalid' : '']"  v-validate="'required|max:50'" type="text" name="business name" v-model="record.business_details.business_name" placeholder="Enter your business name">
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
@@ -122,7 +97,7 @@
                                 <div class="form-group">
                                     <label for="" v-if="index == 0">Service</label>
                                     <label for="" v-if="index > 0"></label>
-                                    <select :disabled="service_detail.status == 'approved'"  v-model="record.service_details[index].service_id" v-validate="'required'" name="service" 
+                                    <select :disabled="service_detail.status == 'approved'"  v-model="record.service_details[index].service_id" v-validate="'required'" name="service"
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -136,87 +111,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="business-proof">
-                    <div class="form-label-heading m-b-10">
-                        <p>PROOF OF BUSINESS</p>
-                    </div>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Please attach document(s) for business verification.</p>
-                        </div>
-                    </div>
-                    <label>DOCUMENT(S)</label>
-                    <file-upload-component :class="[ record.business_details.attachments.proof_of_business && record.business_details.attachments.proof_of_business.length > 2 ? 'disabled' : '']"  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx, csv'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'proof_of_business')" :limit="(record.business_details.attachments.proof_of_business) ? record.business_details.attachments.proof_of_business.length : 0" fixedLimit="3">
-
-                    </file-upload-component>
-
-                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.proof_of_business">
-                        <div class="col-md-6">
-                            <div class="form-group custom-file">
-                                {{attachment.original_name}}
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <a href="javascript:;" @click.prevent="removeFile('proof_of_business',index);" class="add-photos">Remove</a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="business-proof">
-                    <div class="form-label-heading m-b-10 m-t-20">
-                        <p>Certificates</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Please attach any other certificates of your business that you would like to attach.</p>
-                        </div>
-                    </div>
-                    <label>DOCUMENT(S)</label>
-                    <file-upload-component :class="[ record.business_details.attachments.certifications && record.business_details.attachments.certifications.length > 2 ? 'disabled' : '']"  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx, csv'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'certifications')" :limit="(record.business_details.attachments.certifications) ? record.business_details.attachments.certifications.length : 0" fixedLimit="3">
-
-                    </file-upload-component>
-
-                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.certifications">
-                        <div class="col-md-6">
-                            <div class="form-group custom-file">
-                                {{attachment.original_name}}
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <a href="javascript:;" @click.prevent="removeFile('certifications',index);" class="add-photos">Remove</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="business-proof">
-                    <div class="form-label-heading m-b-10 m-t-20">
-                        <p>Registration</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>Please attach document(s) of your business’ registration.</p>
-                        </div>
-                    </div>
-                    <label>DOCUMENT(S)</label>
-                    <file-upload-component :class="[ record.business_details.attachments.registrations && record.business_details.attachments.registrations.length > 2 ? 'disabled' : '']"  :multiple="true" :fileExtensions="'.jpg, .png, .gif, .pdf, .doc, .docx, .xls, .xlsx, csv'" :uploadKey="'service_provider'" @get-response="getDocumentUploadResponse($event, 'registrations')" :limit="(record.business_details.attachments.registrations) ? record.business_details.attachments.registrations.length : 0" fixedLimit="3">
-
-                    </file-upload-component>
-
-                    <div v-if="record.business_details.attachments" class="row duplicate attachment-field" v-for="(attachment, index) in record.business_details.attachments.registrations">
-                        <div class="col-md-6">
-                            <div class="form-group custom-file">
-                                {{attachment.original_name}}
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6 text-right">
-                            <a href="javascript:;" @click.prevent="removeFile('registrations',index);" class="add-photos">Remove</a>
-                        </div>
-                    </div>
-                </div>
-
 
                 <div class="home-detail">
                     <div class="row">
@@ -236,11 +130,6 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
                                 <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
@@ -249,34 +138,16 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                   <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="">City *</label>
-                                <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
-                                    <option :value="null">Select City</option>
-                                    <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                                </select>
-                        </div>
-                     </div>
-                    </div> 
-                </div>
-
-                <div v-if="isPaymentDetailShow" class="account-fee">
-                    <div class="form-label-heading m-b-30 m-t-30">
-                        <p>ACCOUNT FEE</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="verification-alert">
-                                <p>Enter your credit card details to pay service provider account creation fee of <span>${{accountCreationAmount}}</span>.</p>
-                            </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                                   <label for="">City *</label>
+                                   <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
+                                       <option :value="null">Select City</option>
+                                       <option v-for="city in cities" :value="city.id">{{city.name}}</option>
+                                   </select>
+                           </div>
                         </div>
                     </div>
-                    
-                    <card-element  :showCardInfo="true" :isPopup='false'  :submit='isSubmit' :planId='selectedPlan' :fromFeaturedProfile="'false'" :profileReview='true'></card-element>
-
                 </div>
 
                 <div v-if="!pendingProfile" class="submit-approval-btn">
@@ -290,7 +161,7 @@
                 </div>
 
                 <!-- Alert Tag -->
-                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                 <!-- Alert Tag -->
 
                 <b-alert v-if="pendingProfile" variant="info" show>
@@ -411,8 +282,8 @@
             },
             setCity(object){
                 if(object.state_id){
-                  this.record.state_id = object.state_id;  
-                } 
+                  this.record.state_id = object.state_id;
+                }
                 this.currentCity = object.city_id;
                 this.onStateChange();
             },
@@ -507,7 +378,7 @@
                             }else{
                                 self.submitFormData.user_details[key] = value;
                             }
-                            delete self.submitFormData.user_details.stripe_token; 
+                            delete self.submitFormData.user_details.stripe_token;
                             self.submitFormData.user_details['is_profile_completed'] = 1;
 
 
@@ -517,13 +388,13 @@
                             this.loading = true;
                         }else{
                             setTimeout(function () {
-                                if(!self.errorMessage){    
+                                if(!self.errorMessage){
                                     self.isSubmit = true
                                 }else{
-                                    self.isSubmit = false 
+                                    self.isSubmit = false
                                 }
                             }, 500);
-                            
+
                         }
                         this.errorMessage = ''
                         return;
@@ -539,9 +410,9 @@
 
                 if(response.data){
                     this.$store.commit('setAuthUser', response.data);
-                    
+
                     this.$router.push({ name : 'my.bids'});
-                    
+
                 }
             },
             onStateChange(select){
@@ -570,7 +441,7 @@
                 this.record.business_details.attachments[type].push({
                    name : response.name,
                    original_name : response.original_name
-               }); 
+               });
 
                 this.$forceUpdate();
             },
@@ -613,7 +484,7 @@
 
 
 
-                    if(self.record.state_id){  
+                    if(self.record.state_id){
                         self.cityUrl = 'api/city?state_id=' + self.record.state_id;
                     }
                     self.profileImage = self.record.profileImage;
@@ -635,7 +506,7 @@
                 }
             },
             paymentDetailShow(){
-                let user = JSON.parse(this.$store.getters.getAuthUser)   
+                let user = JSON.parse(this.$store.getters.getAuthUser)
                 if(user.is_profile_completed){
                     this.isPaymentDetailShow = false
                 }else{
