@@ -83,7 +83,7 @@
 				<div v-if="loadingService"
 					class="block-loader bg-transparent">
 					<loader></loader>
-				</div>				
+				</div>
 				<div class="category-section"  v-for="isnotexplorecategory in getRemainingWithServices">
 					<div class="category-title">
 						<h2>{{isnotexplorecategory.title}}</h2>
@@ -165,7 +165,7 @@ export default {
 		},
         getImage(img) {
         	return img? (img[0].upload_url? img[0].upload_url: 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
-        	
+
         },
 		onTouch () {
 			this.isTouched = true
@@ -180,7 +180,7 @@ export default {
 			}else {
 				localStorage.setItem("parentService", "");
                 localStorage.setItem("childService", this.selectedService.url_suffix);
-				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});	
+				this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});
 			}
 		},
 		validateBeforeSubmit() {
@@ -192,7 +192,7 @@ export default {
 				}
 				this.errorMessage = this.errorBag.all()[0];
 			});
-		},  
+		},
 		limitText (count) {
 			return `and ${count} other services`
 		},
@@ -220,7 +220,7 @@ export default {
 			if(localStorage['zip']) {
 				this.onSelectCategory(localStorage['zip']);
 			}else {
-				this.categoryPopup = true;	
+				this.categoryPopup = true;
 			}
 		},
 		hideModal(){
@@ -243,9 +243,9 @@ export default {
 			}else {
                 localStorage.setItem("parentService", "");
                 localStorage.setItem("childService", this.searchValue.url_suffix);
-				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});	
+				this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, zip : this.zipCode }});
 			}
-			
+
 		},
 		getList(data , page , successCallback) {
 			let self = this;
@@ -253,7 +253,7 @@ export default {
 			self.loadingService = true;
 			let url = 'api/service';
 
-			if(typeof(page) == 'undefined' || !page){                        
+			if(typeof(page) == 'undefined' || !page){
 				self.records = [];
 			}
 
@@ -269,7 +269,7 @@ export default {
 		    }
 
 		    if(typeof(page) !== 'undefined' && page){
-		    	url += '&page='+page;   
+		    	url += '&page='+page;
 		    }
 		    self.$http.get(url).then(response => {
 		    	response = response.data;
@@ -323,7 +323,7 @@ watch: {
 		if(val.length > 5) {
 			val = val.substr(0, 5);
 		}
-		this.zipCode = val; 
+		this.zipCode = val;
 	},
 	searchValue(val) {
 		if(val == null) {

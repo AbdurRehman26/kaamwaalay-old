@@ -18,14 +18,11 @@ class CreateJobsTable extends Migration
                 $table->increments('id');
                 $table->integer('user_id')->unsigned()->index();
                 $table->integer('service_id')->unsigned()->index();
-                $table->integer('country_id')->unsigned()->nullable()->index();
-                $table->integer('state_id')->unsigned()->nullable()->index();
                 $table->integer('city_id')->unsigned()->nullable()->index();
                 $table->string('title');
                 $table->text('description');
                 $table->string('address')->nullable();
                 $table->string('apartment')->nullable();
-                $table->string('zip_code');
                 $table->json('images', 65535)->nullable();
                 $table->json('videos', 65535)->nullable();
                 $table->dateTime('schedule_at')->nullable();

@@ -120,33 +120,6 @@
                                 <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Apartment, Suite, Unit</label>
-                                <input type="text" class="form-control" name="apartment" v-model="record.apartment" placeholder="Enter your apartment and suite number">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
-                                    <option :value="null">Select State</option>
-                                    <option v-for="state in states" :value="state.id">{{state.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                                   <label for="">City *</label>
-                                   <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
-                                       <option :value="null">Select City</option>
-                                       <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                                   </select>
-                           </div>
-                        </div>
                     </div>
                 </div>
 
@@ -175,9 +148,6 @@
   </div>
 
   <vue-common-methods :updateForm="true" @form-error="formError" @form-submitted="formSubmitted" :submitUrl="submitUrl" :formData="submitFormData" :submit="submit" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-  <vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-  <vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
-
 
 </div>
 </template>
@@ -201,10 +171,6 @@
                 search : '',
                 loading : false,
                 isFileUpload : false,
-                cities : [],
-                stateUrl : 'api/state',
-                cityUrl : '',
-                states : [],
                 file: null,
                 profileImage : '',
                 value: '',
@@ -228,14 +194,12 @@
                 },
                 submit : false,
                 pendingProfile : false,
-                invalidZip: false,
                 isSubmit : false,
                 isPaymentDetailShow : true,
                 plans : [],
                 accountCreationAmount: null,
                 selectedPlan :null,
                 currentCity: null,
-                checkZip: false,
             }
         },
         computed : {
@@ -260,33 +224,8 @@
         },
 
         watch: {
-            'record.zip_code' (val) {
-                if(!val) {
-                  //  this.invalidZip = true;
-                  //  this.record.zip_code = "";
-                }
-            },
         },
         methods: {
-            setZipCode(val) {
-                if(this.checkZip) {
-                    this.record.zip_code = val.zip_code;
-                    this.setCity(val)
-                    this.invalidZip = false;
-                    if(!val.zip_code) {
-                        this.invalidZip = true;
-                    }
-                }
-                this.checkZip = true;
-
-            },
-            setCity(object){
-                if(object.state_id){
-                  this.record.state_id = object.state_id;
-                }
-                this.currentCity = object.city_id;
-                this.onStateChange();
-            },
             removeFile(type, index){
                 this.record.business_details.attachments[type].splice(index , 1);
                 this.$forceUpdate();
@@ -344,15 +283,7 @@
                 this.isSubmit = false
 
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = false;
-                    if(!this.record.zip_code) {
-                            this.invalidZip = true;
-                    }
                     if (result) {
-                        if(!this.record.zip_code) {
-                            this.errorMessage = 'Please enter zip code.';
-                            return false;
-                        }
                         if(this.findUniqueValues()){
                             this.errorMessage = 'Please remove duplicate services';
                             return false;
@@ -415,17 +346,6 @@
 
                 }
             },
-            onStateChange(select){
-                var select = select|false;
-                if(select){
-                 this.record.city_id = null;
-                }
-                this.cityUrl = 'api/city?state_id=' + this.record.state_id;
-                if(this.currentCity){
-                   this.record.city_id = this.currentCity;
-                   this.currentCity = null;
-                }
-            },
             getFileUploadResponse(response){
                 let self = this;
                 self.record.profile_image = response.name;
@@ -481,29 +401,9 @@
                         }
                     }
 
-
-
-
-                    if(self.record.state_id){
-                        self.cityUrl = 'api/city?state_id=' + self.record.state_id;
-                    }
                     self.profileImage = self.record.profileImage;
                 }
 
-            },
-            getStateResponse(response){
-                let self = this;
-                self.loading = false;
-                self.states = response.data;
-
-            },
-            getCityResponse(response){
-                let self = this;
-                self.cities = response.data;
-                if(this.currentCity){
-                   this.record.city_id = this.currentCity;
-                   this.currentCity = null;
-                }
             },
             paymentDetailShow(){
                 let user = JSON.parse(this.$store.getters.getAuthUser)

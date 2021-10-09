@@ -18,10 +18,7 @@ class DatabaseSeeder extends Seeder
         // commenting all seeders
 
         /**/
-        $this->call(CountriesTableSeeder::class);
-        $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
-        $this->call(UpdatedZipCodesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         /**/
         $this->call(UsersTableSeeder::class);

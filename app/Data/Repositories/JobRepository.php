@@ -62,7 +62,7 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
     }
 
     if(!empty($input['filter_by_me'])) {
-        $input['filter_by_user'] = request()->user()->id;            
+        $input['filter_by_user'] = request()->user()->id;
     }
 
 
@@ -79,11 +79,11 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
 
         if($input['filter_by_status'] == 'archived'){
 
-            $this->builder->where('is_archived' , '=' ,1);            
+            $this->builder->where('is_archived' , '=' ,1);
 
         }else{
             $this->builder = $this->builder->where('jobs.status', '=', $input['filter_by_status'])
-            ->where('is_archived' , '!=' ,1);            
+            ->where('is_archived' , '!=' ,1);
 
         }
 
@@ -96,11 +96,11 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
         ->orWhere('parent_id', $input['filter_by_service'])
         ->pluck('id')->toArray();
 
-        $this->builder = $this->builder->whereIn('jobs.service_id', $ids);            
+        $this->builder = $this->builder->whereIn('jobs.service_id', $ids);
     }
 
     if(!empty($input['filter_by_user'])) {
-        $this->builder = $this->builder->where('jobs.user_id', '=', $input['filter_by_user']);            
+        $this->builder = $this->builder->where('jobs.user_id', '=', $input['filter_by_user']);
     }
 
     if(!empty($input['filter_by_service_provider'])) {
@@ -118,12 +118,12 @@ public function findByAll($pagination = false, $perPage = 10, array $input = [] 
     }
 
     if(!empty($input['filter_by_zip'])) {
-        $this->builder = $this->builder->where('jobs.zip_code', '=', $input['filter_by_zip']);            
+        $this->builder = $this->builder->where('jobs.zip_code', '=', $input['filter_by_zip']);
     }
 
     $data = parent::findByAll($pagination, $perPage, $input);
 
-    return $data;   
+    return $data;
 }
 
 
@@ -146,7 +146,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             $data->jobThumbImages = [];
             if(!empty($data->images)){
                 foreach ($data->images as $key => $image) {
-                    if(!empty($image['name']) && is_string($image['name'])){   
+                    if(!empty($image['name']) && is_string($image['name'])){
                         $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image['name']);
                         $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image['name']);
                     }
@@ -160,16 +160,9 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                 $data->formatted_schedule_at = Carbon::parse($data->schedule_at)->format('F j, Y');
             }
 
-// Copied from user
-            $country = app('CountryRepository')->findById($data->country_id);             
-            $data->country = !empty($country->name) ? $country->name : '';
-            $City = app('CityRepository')->findById($data->city_id);                
-            $data->city = !empty($City->name)?$City->name:'';
-            $state = app('StateRepository')->findById($data->state_id);                
-            $data->state = !empty($state->name)?$state->name:'';
             $bidsCriteria = ['job_id' => $data->id];
 
-            $bidsWhereIn = ['status' => ['initiated','pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'deleted_at' => null]; 
+            $bidsWhereIn = ['status' => ['initiated','pending' , 'completed', 'visit_allowed', 'visit_requested', 'on_the_way','cancelled'],'deleted_at' => null];
             $notCriteria = ['status' => 'invited'];
 
             $data->bids_count = app('JobBidRepository')->findByCriteria($bidsCriteria, false, $notCriteria, false, $bidsWhereIn, true);
@@ -199,24 +192,12 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
                 $bidsCriteria = ['job_bids.job_id' => $data->id,'job_bids.is_awarded'=>1];
                 $servicerProvider = app('JobBidRepository')->getJobServiceProvider($bidsCriteria);
-                $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ? 
+                $data->service_provider = (!empty($servicerProvider['first_name']) && !empty($servicerProvider['last_name'])) ?
                 $servicerProvider['first_name'] .' '.$servicerProvider['last_name'] : '-';
-
-                // if($data->status == 'completed') {
-
-                //     $criteria = ['job_id' => $data->id];
-
-                //     $criteria['rated_by'] = $data->user_id; 
-
-                //     $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
-
-
-                // }
-
 
             }
 
-// current service provider bid 
+// current service provider bid
             if($currentUser){
 
 
@@ -233,15 +214,15 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                 $awardedBid = app('JobBidRepository')->findByCriteria($bidsCriteria, false, false);
 
                 if(!empty($awardedBid)){
-                    $criteria['job_id'] = $data->id; 
-                    $criteria['user_id'] = $data->user_id; 
-                    $criteria['rated_by'] = $awardedBid->user_id; 
+                    $criteria['job_id'] = $data->id;
+                    $criteria['user_id'] = $data->user_id;
+                    $criteria['rated_by'] = $awardedBid->user_id;
 
 
                     $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
 
                     $criteria['user_id'] =  $awardedBid->user_id;
-                    $criteria['rated_by'] = $data->user_id; 
+                    $criteria['rated_by'] = $data->user_id;
 
 
                     $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
@@ -252,7 +233,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                 $criteria = ['sender_id' => $data->user_id, 'job_id' => $data->id , 'reciever_id' => $currentUser->id,];
                 $data->can_message = app('JobMessageRepository')->findByCriteria($criteria);
             }
-//$criteriaServiceProviderCount = ['zip_code' => $data->zip_code, 'role_id' => Role::SERVICE_PROVIDER];     
+//$criteriaServiceProviderCount = ['zip_code' => $data->zip_code, 'role_id' => Role::SERVICE_PROVIDER];
 //$data->service_provider_count = app('UserRepository')->findByCriteria($criteriaServiceProviderCount,false,false,true,false,true);
             $userModel = new User;
             $userTable = $userModel->getTableName();
@@ -270,7 +251,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                 $serviceProviderServiceTable, function ($joins) use ($data,$serviceProviderServiceTable,$serviceProviderProfileRequestTable) {
                     $joins->on($serviceProviderServiceTable.'.service_provider_profile_request_id', '=', $serviceProviderProfileRequestTable.'.id');
                     $joins->where($serviceProviderServiceTable.'.service_id','=',$data->service_id);
-                })->where('zip_code',$data->zip_code)->where('role_id',Role::SERVICE_PROVIDER)->count();
+                })->where('role_id',Role::SERVICE_PROVIDER)->count();
             $data->service_provider_count =$service_provider_count;
         }
 
@@ -289,7 +270,7 @@ public function getTotalCountByCriteria($criteria = [], $startDate = null, $endD
         $this->builder = $this->builder->where($criteria);
     }
 
-// or Criteria must be an array 
+// or Criteria must be an array
     if($criteria && $orCrtieria) {
         foreach ($orCrtieria as $key => $where) {
             $this->builder  = $this->builder->orWhere(function ($query) use ($where) {
@@ -306,7 +287,7 @@ public function getTotalCountByCriteria($criteria = [], $startDate = null, $endD
     return  $this->builder->count();
 }
 
-public function update(array $data = []) 
+public function update(array $data = [])
 {
     $model = $this->model->find($data['id']);
     if ($model != NULL) {

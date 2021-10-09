@@ -14,16 +14,16 @@
                         <div v-if="!imageValue" class="profile-image-placeholder onlyplaceholder">
                         </div>
 
-                        <div class="profile-image-placeholder" v-if="imageValue" v-bind:style="{'background-image':'url('+imageValue+')'}">                            
+                        <div class="profile-image-placeholder" v-if="imageValue" v-bind:style="{'background-image':'url('+imageValue+')'}">
                         </div>
                         <div class="row">
                             <div class="browse-btn">
                                 <div class="form-group">
                                     <label class="file-upload-label">Browse Photo</label>
 
-                                    <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput" 
-                                    v-model="file" accept="image/jpeg, image/png, image/jpg" 
-                                    name="upload image" 
+                                    <b-form-file @change="onFileChange" :state="isFileUpload" ref="fileinput"
+                                    v-model="file" accept="image/jpeg, image/png, image/jpg"
+                                    name="upload image"
                                     :class="['form-control','file-upload-input', 'form-group' , errorBag.first('upload image') ? 'is-invalid' : '']">
                                 </b-form-file>
 
@@ -32,7 +32,7 @@
                     </div>
 
                     <!-- Alert Tag -->
-                    <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                    <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                     <!-- Alert Tag -->
 
                     <div class="row">
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="">First Name *</label>
                                 <input type="text" v-validate="'required|max:25'" class="form-control"
-                                name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name" 
+                                name="first name" :class="['form-control' , errorBag.first('first name') ? 'is-invalid' : '']" v-model="record.first_name"
                                 placeholder="Enter your first name">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label for="">Last Name *</label>
                                 <input type="text" v-validate="'required|max:25'" class="form-control"
-                                name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name" 
+                                name="last name" :class="['form-control' , errorBag.first('last name') ? 'is-invalid' : '']" v-model="record.last_name"
                                 placeholder="Enter your last name">
                             </div>
                         </div>
@@ -78,42 +78,8 @@
                                 <input type="text" v-validate="'max:250'"  :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" name="address" v-model="record.address" placeholder="Enter your street address">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Apartment, Suite, Unit</label>
-                                <input type="text" v-validate="'max:250'" :class="['form-control' , errorBag.first('apartment') ? 'is-invalid' : '']" name="apartment" v-model="record.apartment" placeholder="Enter your apartment and suite number">
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="zipcode-selectize">
-                                <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">State *</label>
-                                <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
-                                    <option :value="null">Select State</option>
-                                    <option v-for="state in states" :value="state.id">{{state.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">City *</label>
-                            <select name="city" :class="['form-control', 'form-group' , errorBag.first('city') ? 'is-invalid' : '']"  v-validate="'required'" v-model="record.city_id">
-                                <option :value="null">Select City</option>
-                                <option v-for="city in cities" :value="city.id">{{city.name}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div> 
             </div>
 
 
@@ -191,8 +157,8 @@
             },
             setCity(object){
                 if(object.state_id){
-                  this.record.state_id = object.state_id;  
-              } 
+                  this.record.state_id = object.state_id;
+              }
               this.currentCity = object.city_id;
               this.onStateChange();
           },
@@ -228,7 +194,7 @@
     self.loading = false;
     self.record = response.data;
 
-    if(self.record.state_id){  
+    if(self.record.state_id){
         this.cityUrl = 'api/city?state_id=' + this.record.state_id;
     }
     self.profileImage = self.record.profileImage;
@@ -288,7 +254,7 @@ onSubmit() {
                     self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('parentService'), childServiceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
                 }else {
 
-                    self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});   
+                    self.$router.push({ name: 'Explore_Detail', params: { serviceName: localStorage.getItem('childService'), zip : localStorage.getItem('zip') }});
                 }
             }else {
                 self.$router.push({ name : 'my.jobs'});
@@ -326,7 +292,7 @@ onFileChange(e) {
 
 },
 createImage(file) {
-    var self = this;    
+    var self = this;
     var image = new Image();
     var reader = new FileReader();
     reader.onload = (e) => {
@@ -357,6 +323,6 @@ onUpload(file) {
         });
     });
 },
-}        
+}
 }
 </script>

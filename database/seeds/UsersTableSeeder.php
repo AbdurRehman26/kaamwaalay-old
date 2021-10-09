@@ -21,20 +21,6 @@ class UsersTableSeeder extends Seeder
         $faker = Faker::create();
         $date = Carbon::now();
 
-        $country_id = 237;
-
-        $numOfStates = 2;
-
-        $zipCodes = app('ZipCodeRepository')->model->inRandomOrder()->pluck('zip_code')->toArray();
-        
-        $states = app('StateRepository')->model->inRandomOrder()->limit($numOfStates)->pluck('id')->toArray();
-        
-        $cities = app('CityRepository')->model->whereIn('state_id' , $states)->get()->toArray();
-        
-        $state_id = $states[array_rand($states)];
-
-        $city_id = !empty($cities[self::getCityId($cities , 'state_id', $state_id)]) ? $cities[self::getCityId($cities , 'state_id', $state_id)]['id'] : null;
-
         $data[] =[
             'id' => 1,
             'first_name' => 'Admin',
@@ -44,12 +30,9 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('cygnismedia'),
             'role_id' => Role::ADMIN,
             'access_level' => 'full',
-            'country_id' => $country_id,
             'phone_number' => $faker->PhoneNumber,
-            'state_id' => $state_id,
-            'city_id' => $city_id,
+            'city_id' => 1,
             'status' => 'active',
-            'zip_code' => $zipCodes[array_rand($zipCodes)],
             'activation_key' => bcrypt('cygnismedia'),
             'activated_at' => $date,
             'remember_token' => bcrypt('cygnismedia'),
@@ -79,10 +62,6 @@ class UsersTableSeeder extends Seeder
 
         foreach (range(1, 20) as $index) {
 
-            $state_id = $states[array_rand($states)];
-
-            $city_id = $cities[self::getCityId($cities , 'state_id', $state_id)]['id'];
-
             $data[] = [
 
                 'id' => $i,
@@ -93,12 +72,9 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('cygnismedia'),
                 'role_id' => $roles[array_rand($roles)],
                 'access_level' => 'full',
-                'country_id' => $country_id,
                 'phone_number' => $faker->PhoneNumber,
-                'state_id' => $state_id,
-                'city_id' => $city_id,
+                'city_id' => 1,
                 'status' => 'active',
-                'zip_code' => $zipCodes[array_rand($zipCodes)],
                 'activation_key' => bcrypt('cygnismedia'),
                 'activated_at' => $date,
                 'remember_token' => bcrypt('cygnismedia'),
@@ -108,7 +84,7 @@ class UsersTableSeeder extends Seeder
                 'profile_image' => $imagesArray[array_rand($imagesArray)],
             ];
             $i++;
-        } 
+        }
 
         User::insertOnDuplicateKey($data, ['first_name', 'last_name', 'updated_at']);
 

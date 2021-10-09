@@ -18,7 +18,7 @@ class JobBidTableSeeder extends Seeder
 
         $now = Carbon::now()->toDateTimeString();
 
-        echo "\nThis Seeder requires Jobs to be present in data base.\n"; 
+        echo "\nThis Seeder requires Jobs to be present in data base.\n";
 
         $faker = Faker\Factory::create();
 
@@ -44,7 +44,7 @@ class JobBidTableSeeder extends Seeder
         foreach ($jobs as $key => $job) {
 
             $breakLoop = false;
-            
+
             $randomValues = [0, 0, 0, 0, 0, 0, 0, 1];
 
             for ($i = 0 ; $i < $totalBids; $i++) {
@@ -60,22 +60,22 @@ class JobBidTableSeeder extends Seeder
                 $isInvited = $randomValues[array_rand($randomValues)];
 
                 $status = 'pending';
-                
+
                 if($isAwarded){
 
                     // unsetting the last value so it wont make any other bid awared ( Boom )
 
                     unset($randomValues[sizeof($randomValues)-1]);
                     // updating the job to be awarded  ( there is a small hitch . each time seeder runs it will reset jobs' status)
-                    
+
                     $status = $jobBidStatuses[array_rand($jobBidStatuses)];
 
-                    $jobStatus = $status  == 'pending' ? 'awarded' : $status;                    
+                    $jobStatus = $status  == 'pending' ? 'awarded' : $status;
 
                     $updateData = ['id' => $job->id, 'status'=> $jobStatus, 'updated_at' => $now];
 
                     app('JobRepository')->update($updateData);
-                    
+
                 }
 
 
@@ -106,7 +106,7 @@ class JobBidTableSeeder extends Seeder
                     if($jobStatus == 'completed' || $jobStatus == 'initiated'){
                         $breakLoop = true;
                         continue;
-                    }            
+                    }
                 }
 
 
@@ -118,7 +118,7 @@ class JobBidTableSeeder extends Seeder
 
         if(!empty($jobs)){
 
-            // safe side remarking jobs statuses 
+            // safe side remarking jobs statuses
 
 
             $criteria = ['filter_by_status' => 'initiated'];
@@ -147,7 +147,7 @@ class JobBidTableSeeder extends Seeder
                             if($jobBid){
                             $updateData = ['id' => $jobBid['id'], 'status' => 'initiated', 'is_awarded' => 1, 'job_id' => $initiatedJob->id];
                             $jobBid = app('JobBidRepository')->update($updateData);
-                                
+
                             }else{
                                 app('JobRepository')->update(['id' => $criteria['job_id'], 'status' => 'in_bidding']);
                             }
@@ -204,7 +204,6 @@ class JobBidTableSeeder extends Seeder
                             $criteria = ['job_id' => $completedJob->id];
                             $jobBid = app('JobBidRepository')->model->where('is_tbd', '=' , 0)
                                         ->where($criteria)->first();
-                            
                             $updateData = ['id' => $jobBid['id'], 'status' => 'completed', 'is_awarded' => 1, 'job_id' => $completedJob->id];
                             $jobBid = app('JobBidRepository')->update($updateData);
 
@@ -242,10 +241,10 @@ class JobBidTableSeeder extends Seeder
 
             }
 
-            echo "\nJob Bids added successfully.\n"; 
+            echo "\nJob Bids added successfully.\n";
 
         }
 
 
-    }   
+    }
 }

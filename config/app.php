@@ -163,6 +163,7 @@ return [
         // Kazmi\Resource\ResourceCommandServiceProvider::class,
         App\Providers\CampaignRepositoryServiceProvider::class,
         App\Providers\CityRepositoryServiceProvider::class,
+        App\Providers\CityAreaRepositoryServiceProvider::class,
         App\Providers\CountryRepositoryServiceProvider::class,
         App\Providers\JobBidRepositoryServiceProvider::class,
         App\Providers\JobRepositoryServiceProvider::class,
