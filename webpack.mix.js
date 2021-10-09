@@ -11,19 +11,19 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js').vue()
-   .sass('resources/assets/sass/app.scss', 'public/css').options({
+mix.js('resources/js/app.js', 'public/js').vue()
+   .sass('resources/sass/app.scss', 'public/css').options({
     processCssUrls: false
 });
 
-mix.js('resources/assets/js/front-app.js', 'public/js')
-   .sass('resources/assets/sass/front/app.scss', 'public/css/front/').options({
+mix.js('resources/js/front-app.js', 'public/js')
+   .sass('resources/sass/front/app.scss', 'public/css/front/').options({
     processCssUrls: false
 }); //front sass file
 
-mix.copyDirectory('resources/assets/images', 'public/images');
-mix.copyDirectory('resources/assets/fonts', 'public/fonts');
-mix.copyDirectory('resources/assets/images/dummy', 'public/images');
+mix.copyDirectory('resources/images', 'public/images');
+mix.copyDirectory('resources/fonts', 'public/fonts');
+mix.copyDirectory('resources/images/dummy', 'public/images');
 // Front
-mix.copyDirectory('resources/assets/images/front', 'public/images/front');
+mix.copyDirectory('resources/images/front', 'public/images/front');
 mix.version();

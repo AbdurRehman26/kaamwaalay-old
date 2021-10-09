@@ -294,14 +294,13 @@ public function getTotalRevenueCriteria($criteria)
 public function getCompletedJobs($criteria)
 {
 
-    $model = $this->model->where($criteria);
-
+    $model = JobBid::where($criteria);
+    
     if ($model != null) {
         $model = $model->
         leftJoin('jobs', 'jobs.id', '=', 'job_bids.job_id')
         ->where('jobs.status', '=', 'completed')
         ->count();
-        dd($model->toSql());
         return $model;
     }
     return false;

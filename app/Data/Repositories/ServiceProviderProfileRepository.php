@@ -52,7 +52,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
             $data->initiated_jobs = $awardedJobs;
 
-            $bidsCriteria = ['job_bids.user_id' => $data->user_id,'.job_bids.status'=>'completed'];
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id, 'job_bids.status'=>'completed'];
             $finishedJobs = app('JobBidRepository')->getCompletedJobs($bidsCriteria, false);
             $data->finished_jobs = $finishedJobs;
 
@@ -85,7 +85,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
             $totalFeedbackCount = app('UserRatingRepository')->getTotalFeedbackCriteria($avgCriteria, false);
-            $data->total_feedback_count = $totalFeedbackCount;      
+            $data->total_feedback_count = $totalFeedbackCount;
             $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
             $data->services_offered = (object) $subServices;
@@ -109,10 +109,10 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             if(!empty($data->attachments)){
                 foreach ($data->attachments as $key => $value) {
                     foreach ($data->attachments[$key] as $childKey => $childValue) {
-                        if($childValue){         
-                            if(!empty($childValue['name'])){                 
+                        if($childValue){
+                            if(!empty($childValue['name'])){
                                 $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
-                                $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name']; 
+                                $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name'];
                             }
                         }
                     }
@@ -127,7 +127,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                   'type' => 'view',
               ];
               app('CampaignRepository')->updateCampaign($campaignData);
-          }  
+          }
       }
 
       return $data;
@@ -148,12 +148,12 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $zipCodes = app('ZipCodeRepository')->findByAttribute('zip_code', $data['zip']);
             if(!empty($zipCodes) && $zipCodes->city) {
                 $zipCodes = app('ZipCodeRepository')->findByAttributeAll('city', $zipCodes->city)->toArray();
-                $this->builder = $this->builder->whereIn('users.zip_code', $zipCodes)->groupBy('service_provider_profiles.user_id');  
+                $this->builder = $this->builder->whereIn('users.zip_code', $zipCodes)->groupBy('service_provider_profiles.user_id');
             }else {
                 $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
             }
         }else {
-            
+
             $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
         }
         $this->builder = $this->builder->orderByRaw("users.zip_code = ".$data['zip']." DESC, users.zip_code ASC");
@@ -181,7 +181,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
             $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
         })->join('service_provider_services', function($join) use ($data){
-            $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');    
+            $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
         })->whereIn('service_provider_services.service_id', $ids)
         ->select('service_provider_profiles.*')
         ->groupBy('service_provider_profiles.user_id');

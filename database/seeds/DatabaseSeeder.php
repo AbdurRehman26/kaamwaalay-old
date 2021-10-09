@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
         // Guest User Calls
 
         // commenting all seeders
-        $this->call(JobTableSeeder::class);
-        $this->call(JobBidTableSeeder::class);
-        dd(1);
+
         /**/
         $this->call(CountriesTableSeeder::class);
         $this->call(StatesTableSeeder::class);
