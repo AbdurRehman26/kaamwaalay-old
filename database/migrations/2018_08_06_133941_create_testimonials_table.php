@@ -19,6 +19,8 @@ class CreateTestimonialsTable extends Migration
                 $table->text('message', 65535);
                 $table->string('author');
                 $table->string('image')->nullable();
+                $table->integer('user_id')->unsigned()->index();
+                $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('NO ACTION');
                 $table->timestamps();
                 $table->softDeletes();
             }

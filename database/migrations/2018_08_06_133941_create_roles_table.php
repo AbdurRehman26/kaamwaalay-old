@@ -17,6 +17,8 @@ class CreateRolesTable extends Migration
             'roles', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('title');
+                $table->boolean('can_register')->nullable()->default(0);
+                $table->json('scope')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
             }

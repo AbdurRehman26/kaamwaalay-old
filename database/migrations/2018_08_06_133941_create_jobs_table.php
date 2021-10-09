@@ -22,7 +22,7 @@ class CreateJobsTable extends Migration
                 $table->integer('state_id')->unsigned()->nullable()->index();
                 $table->integer('city_id')->unsigned()->nullable()->index();
                 $table->string('title');
-                $table->string('description');
+                $table->text('description');
                 $table->string('address')->nullable();
                 $table->string('apartment')->nullable();
                 $table->string('zip_code');
@@ -34,6 +34,9 @@ class CreateJobsTable extends Migration
                 $table->enum('job_type', array('normal','urgent'))->default('normal');
                 $table->decimal('min_amount', 10, 2)->nullable();
                 $table->decimal('max_amount', 10, 2)->nullable();
+                $table->decimal('address_latitude', 10, 8);
+                $table->decimal('address_longitude', 10, 8);
+                $table->integer('is_archived')->nullable()->default(0);
                 $table->timestamps();
                 $table->softDeletes();
             }

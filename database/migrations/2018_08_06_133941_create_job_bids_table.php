@@ -24,14 +24,22 @@ class CreateJobBidsTable extends Migration
                 $table->boolean('is_invited')->default(0);
                 $table->integer('user_id')->unsigned()->index();
                 $table->boolean('is_archived')->default(0);
-                $table->enum('status', array('cancelled','pending','completed','invited','on_the_way'))->default('pending');
+                $table->enum('status', array('cancelled','completed', 'initiated', 'invited', 'on_the_way', 'pending', 'visit_allowed', 'suggested_time'))->default('pending');
                 $table->date('preferred_date')->nullable();
                 $table->time('preferred_time')->nullable();
+                $table->date('suggested_date')->nullable();
+                $table->time('suggested_time')->nullable();
+                $table->text('visit_details')->nullable();
+                $table->json('job_done_images', 65535)->nullable();
+                $table->boolean('is_visit_required')->nullable()->default(false);
+                $table->enum('amount_type', array('max','min', 'fixed'))->default('min');
 
                 $table->timestamps();
                 $table->softDeletes();
             }
         );
+        DB::statement("ALTER TABLE `job_bids` ADD CONSTRAINT job_id_user_id_unique UNIQUE KEY(`job_id`,`user_id`)");
+
     }
 
 

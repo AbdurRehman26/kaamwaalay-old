@@ -15,7 +15,7 @@ class ServiceTableSeeder extends Seeder
     {
 
         $faker = Faker\Factory::create();
-        
+
         $data = [];
 
 
@@ -145,7 +145,7 @@ class ServiceTableSeeder extends Seeder
      ];
 
      $isFeatured = [0, 0, 1];
-        // reduce the probabiltiy of 1 occuring 
+        // reduce the probabiltiy of 1 occuring
 
      $serviceRandomImages = [
         'images/dummy/carpenter1.jpg',

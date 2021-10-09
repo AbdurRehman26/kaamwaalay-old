@@ -36,6 +36,9 @@ class CreateUsersTable extends Migration
                 $table->string('social_account_id')->nullable();
                 $table->enum('status', array('pending','active','banned','deactived'))->nullable();
                 $table->enum('social_account_type', array('facebook','google'))->nullable();
+                $table->boolean('is_profile_completed')->default(0);
+                $table->string('stripe_token')->nullable();
+
                 $table->timestamps();
                 $table->softDeletes();
             }

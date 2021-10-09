@@ -298,14 +298,10 @@ public function getCompletedJobs($criteria)
 
     if ($model != null) {
         $model = $model->
-        leftJoin(
-            'jobs', function ($join) {
-                $join->on('jobs.id', '=', 'job_bids.job_id');
-            }
-        )
+        leftJoin('jobs', 'jobs.id', '=', 'job_bids.job_id')
         ->where('jobs.status', '=', 'completed')
         ->count();
-
+        dd($model->toSql());
         return $model;
     }
     return false;

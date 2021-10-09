@@ -21,6 +21,7 @@ class CreateCampaignsTable extends Migration
                 $table->integer('views')->default(0);
                 $table->integer('user_id')->unsigned()->nullable()->index();
                 $table->boolean('is_completed')->default(0);
+                $table->enum('status', array('pending','completed','expired'))->default('pending');
                 $table->timestamps();
             }
         );

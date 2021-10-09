@@ -16,7 +16,9 @@ class CreatePlansTable extends Migration
         Schema::create(
             'plans', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name', 50)->nullable();
+
+                $table->enum('product', array('featured_profile','urgent_job','account_creation'));
+
                 $table->decimal('amount', 10, 2)->nullable();
                 $table->integer('quantity')->nullable();
                 $table->enum('type', array('service','job'));

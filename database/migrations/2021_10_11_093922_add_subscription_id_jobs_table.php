@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsProfileCompletedColumnUsersTable extends Migration
+class AddSubscriptionIdJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsProfileCompletedColumnUsersTable extends Migration
      */
     public function up()
     {
-         Schema::table('users', function ($table) {
-            $table->boolean('is_profile_completed')->default(0);
+        Schema::table('jobs', function (Blueprint $table) {
+             $table->unsignedBigInteger('subscription_id')->nullable()->index();
         });
     }
 
@@ -25,8 +25,8 @@ class AddIsProfileCompletedColumnUsersTable extends Migration
      */
     public function down()
     {
-         Schema::table('users', function ($table) {
-            $table->dropColumn('is_profile_completed');
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropColumn('subscription_id');
         });
     }
 }

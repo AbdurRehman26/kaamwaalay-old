@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "filp/whoops": "^2.0",
-        "fzaninotto/faker": "^1.4",
+        "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.6",
         "pestphp/pest": "^1.18",
