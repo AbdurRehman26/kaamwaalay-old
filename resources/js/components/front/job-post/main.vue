@@ -7,14 +7,14 @@
         <div class="post-job-form">
             <form @submit.prevent="validateBeforeSubmit" autocomplete="off">
 
-                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
 
                 <div class="job-details">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Select Service</label>
-                                
+
                                 <div class="custom-multi multiselect-z-index">
                                     <multiselect  v-model="searchServiceValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title"  open-direction="bottom" :searchable="true" :options-limit="500" :limit="8" :max-height="700" name="search" :internal-search="true" :showNoResults="true">
                                         <span slot="noResult">No service found.</span>
@@ -27,15 +27,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Job Title</label>
-                                <input  v-validate="'required|max:250'" name="title" 
-                                :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']" 
-                                v-model="formData.title" type="text" class="form-control" 
+                                <input  v-validate="'required|max:250'" name="title"
+                                :class="['form-control' , errorBag.first('title') ? 'is-invalid' : '']"
+                                v-model="formData.title" type="text" class="form-control"
                                 placeholder="Enter job title">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <textarea :maxlength="500" v-validate="'required|max:1000'" name="description" 
+                                <textarea :maxlength="500" v-validate="'required|max:1000'" name="description"
                                 :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="formData.description" class="form-control" rows="4" placeholder="Start typing job details"></textarea>
                             </div>
                         </div>
@@ -101,13 +101,13 @@
                             <p>In case of urgent job, we will send push notifications to all the service providers around you. You need to pay <strong>${{urgentJobAmount}}</strong> fee for urgent job.</p>
                         </div>
                     </div>
-                    
+
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Preference</label>
-                                <select v-validate="'required'" name="preference" 
+                                <select v-validate="'required'" name="preference"
                                 :class="['form-control' , errorBag.first('preference') ? 'is-invalid' : '']" v-model="formData.preference" class="form-control">
                                 <option value="choose_date" selected="">Choose Date</option>
                                 <option value="few_days">In a few days</option>
@@ -122,7 +122,7 @@
                             <datepicker name="scheduled at" v-validate="'required'" v-model="formData.schedule_at"   :disabledDates="disabledDates" placeholder="Select Date"></datepicker>
                         </div>
                     </div>
-                </div>				
+                </div>
             </div>
 
             <div class="service-location">
@@ -130,7 +130,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Address *</label>
-                            <input v-validate="'required|max:250'" name="address" 
+                            <input v-validate="'required|max:250'" name="address"
                             :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
                         </div>
                     </div>
@@ -138,8 +138,8 @@
                         <div class="form-group">
                             <label>Apartment, Suite, Unit</label>
                             <input v-model="formData.apartment" type="text" placeholder="Enter apartment, suite, unit (optional)"
-                            v-validate="'max:250'" 
-                            name="apartment" 
+                            v-validate="'max:250'"
+                            name="apartment"
                             :class="['form-control' , errorBag.first('apartment') ? 'is-invalid' : '']" >
                         </div>
                     </div>
@@ -173,13 +173,13 @@
                             </select>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div v-if="!$route.params.id" class="verify-account">
                 <div v-if="isShowCardDetail && isPaymentDetailShow && !$route.params.id" class="form-label-heading m-b-25">
                     <p>VERIFY ACCOUNT</p>
-                </div> 
+                </div>
                 <div v-else-if="!isShowCardDetail" class="form-label-heading m-b-25">
                     <p>URGENT JOB</p>
                 </div>
@@ -204,7 +204,7 @@
                     <div class="">
 
                         <button :class="[loading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' ]">
-                            {{ $route.params.id ? 'Update Job' : 'Create Job' }} 
+                            {{ $route.params.id ? 'Update Job' : 'Create Job' }}
                             <loader></loader>
                         </button>
 
@@ -232,7 +232,7 @@
         data() {
             return {
                 disabledDates: {
-                    to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)), 
+                    to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)),
                 },
                 plans : [],
                 urgentJobAmount: null,
@@ -304,7 +304,7 @@
         },
         computed : {
             servicesList(){
-                // if(this.$route.params.id){       
+                // if(this.$route.params.id){
                 //     this.prefillValues();
                 // }
                 this.prefillValues();
@@ -424,21 +424,21 @@
             },
             setCity(object){
                 if(object.state_id){
-                    this.formData.state_id = object.state_id;    
+                    this.formData.state_id = object.state_id;
                 }else{
-                    this.formData.state_id = ''  
+                    this.formData.state_id = ''
                 }
 
                 if(object.city_id){
-                    this.currentCity = object.city_id;    
+                    this.currentCity = object.city_id;
                 }else{
-                    this.currentCity = ''  
+                    this.currentCity = ''
                 }
 
                 this.onStateChange();
             },
             paymentDetailShow(){
-                let user = JSON.parse(this.$store.getters.getAuthUser)   
+                let user = JSON.parse(this.$store.getters.getAuthUser)
                 if(user.stripe_id){
                     this.isPaymentDetailShow = false
                 }else{
@@ -446,7 +446,7 @@
                 }
             },
             getJobResponse(response){
-                
+
                 let self = this;
 
                 this.currentJob = response.data;
@@ -506,7 +506,7 @@
                     this.formData['images'] = [{
                         name : $event.name,
                         original_name : $event.original_name
-                    }];   
+                    }];
                 }
                 this.$forceUpdate();
             },
@@ -536,7 +536,7 @@
                         }
 
                         setTimeout(function () {
-                            if(!this.errorMessage){    
+                            if(!this.errorMessage){
                                 self.isSubmit = true;
                             }else{
                                 self.isSubmit = false;
@@ -562,7 +562,7 @@
                 let url = self.url;
                 let urlRequest = '';
                 if(this.$route.params.id){
-                    url += '/' + this.$route.params.id;    
+                    url += '/' + this.$route.params.id;
                     urlRequest =  self.$http.put(url , data);
                 }else{
                     urlRequest = self.$http.post(url, data);
@@ -574,7 +574,7 @@
                     self.successMessage = response.message;
 
                     self.requestUserUrl = 'api/user/me';
-                    
+
                     setTimeout(function () {
                         self.$router.push({ name : 'job.details' , params : { id : response.data.id}});
                         self.successMessage = '';
@@ -618,7 +618,7 @@
                 this.$forceUpdate();
             },
             getUserResponse(response){
-                
+
                 if(response.data.length){
                     this.$store.commit('setAuthUser', response.data);
                 }
