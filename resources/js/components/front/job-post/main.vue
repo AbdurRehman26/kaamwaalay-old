@@ -211,8 +211,6 @@
             }
         },
         mounted () {
-            this.getPlansList();
-            this.paymentDetailShow();
         },
         methods:{
             asyncFind: _.debounce(function(query) {
@@ -231,30 +229,10 @@
 
             }, 1000),
 
-            checkYouTubeVideo(){
-                let self = this;
-
-                self.loading = true;
-                let url = 'youtube/validate/video?id='+this.formData.videos;
-
-                this.$http.get(url).then(response => {
-
-                    self.successMessage = response.message;
-                    self.videoValid = true;
-                    self.loading = false;
-                }).catch(error => {
-                    self.videoValid = false;
-                    self.loading = false;
-                });
-            },
-
-
             prefillValues(){
 
 
                 let user = JSON.parse(this.$store.getters.getAuthUser);
-                this.formData.state_id = this.formData.state_id ? this.formData.state_id : user.state_id;
-                this.formData.zip_code = this.formData.zip_code ? this.formData.zip_code : user.zip_code;
                 this.formData.city_id = this.formData.city_id ? this.formData.city_id : user.city_id;
                 this.onStateChange();
 

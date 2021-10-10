@@ -32,7 +32,7 @@ class CityAreaRepository extends AbstractRepository implements RepositoryContrac
 
     CONST AMERICA = 231;
 
-    public function __construct(City $model)
+    public function __construct(CityArea $model)
     {
         $this->model = $model;
         $this->builder = $model;

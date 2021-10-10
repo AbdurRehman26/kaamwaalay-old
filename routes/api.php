@@ -34,7 +34,11 @@ Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileContro
 ]);
 
 Route::resource('service', 'Api\V1\ServiceController')->except([
-    'edit', 'create', 'store', 'update' 
+    'edit', 'create', 'store', 'update'
+]);
+
+Route::resource('city-area', 'Api\V1\CityAreaController')->except([
+    'edit', 'create', 'store', 'update'
 ]);
 
 Route::resource('city', 'Api\V1\CityController')->only([

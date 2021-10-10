@@ -4,10 +4,10 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-   
+
 export default new Vuex.Store({
 
-    
+
     // You can use it as state property
     state: {
         step2StatsData: [],
@@ -27,6 +27,7 @@ export default new Vuex.Store({
         tabularQueryArr : {},
         scatterQueryArr : {},
         servicesList : [],
+        areasList: [],
         roles : [],
         paymentTypes : [],
         urlPrefix: '',
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     getters: {
         getServicesList(state){
                 return state.servicesList;
+        },
+        getAreasList(state){
+                return state.areasList;
         },
         getSupportQuestions(state){
                 return state.supportQuestions;
@@ -65,7 +69,7 @@ export default new Vuex.Store({
         },
         getMetricId(state){
             return state.metric_id;
-        },   
+        },
         getLoginTab(state){
             return     state.loginTab;
         },
@@ -117,6 +121,9 @@ export default new Vuex.Store({
         },
         setServicesList(state , data){
             state.servicesList = data;
+        },
+        setAreasList(state , data){
+            state.areasList = data;
         },
         setStep2StatsData(state , data){
             state.step2StatsData = data;
