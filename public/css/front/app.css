@@ -13677,7 +13677,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .my-job-lising-content .search-fixture .search-filter.service-professional .multiselect__tags input {
   height: 47px !important;
-  border-right: 0px solid !important;
 }
 
 .content-image-attached .imagegallery .image {
@@ -14266,10 +14265,8 @@ button.sl-close {
   width: 80%;
 }
 .search-filter .multiselect__tags {
-  padding: 13px 41px 12px 12px !important;
   border-radius: 0px;
   border-color: #B2B2B2 !important;
-  border-right: 0px solid !important;
 }
 .search-filter .multiselect__content-wrapper {
   z-index: 999;
@@ -14366,7 +14363,6 @@ button.sl-close {
   border-radius: 0px;
   border: 0px !important;
   border-color: #B2B2B2 !important;
-  border-right: 0px solid !important;
 }
 .service-professional .multiselect__tags input {
   background-color: #fff;
@@ -14374,7 +14370,6 @@ button.sl-close {
   padding: 13px 41px 12px 12px !important;
   border-radius: 0px;
   border-color: #B2B2B2 !important;
-  border-right: 0px solid !important;
   border-radius: 5px 0px 0px 5px;
   display: block !important;
   width: 100% !important;
@@ -14593,7 +14588,7 @@ button.sl-close {
          @include mobile{
              left: 0;
              right: 0;
-             margin: auto;            
+             margin: auto;
          }
      } */
 }
@@ -15735,7 +15730,7 @@ button.sl-close {
               left: 0;
               right: 0;
               margin: auto;
-          }        
+          }
       } */
 }
 .business-detail .duns-help-icon .icon-help {
@@ -15767,7 +15762,7 @@ button.sl-close {
               left: 0;
               right: 0;
               margin: auto;
-          }                
+          }
       } */
 }
 @media (max-width: 767px) {
@@ -15801,7 +15796,7 @@ button.sl-close {
               left: 0;
               right: 0;
               margin: auto;
-          }                
+          }
       } */
 }
 .business-proof p {
@@ -15865,7 +15860,7 @@ button.sl-close {
           left: 0;
           right: 0;
           margin: auto;
-      }                
+      }
   } */
 }
 .account-fee .verification-alert p {
@@ -15928,7 +15923,7 @@ button.sl-close {
               right: 0;
               top: -11px;
               left: 0;
-              margin: auto;            
+              margin: auto;
           }
       } */
 }
@@ -15955,7 +15950,7 @@ button.sl-close {
           right: 0;
           top: -11px;
           left: 0;
-          margin: auto;            
+          margin: auto;
       }
   } */
 }
@@ -15988,7 +15983,7 @@ button.sl-close {
               right: 0;
               top: -11px;
               left: 0;
-              margin: auto;            
+              margin: auto;
           }
       } */
 }
@@ -16059,8 +16054,8 @@ button.sl-close {
               right: 0;
               top: -11px;
               left: 0;
-              margin: auto;            
-          }        
+              margin: auto;
+          }
       } */
 }
 .verify-account .verification-alert p {

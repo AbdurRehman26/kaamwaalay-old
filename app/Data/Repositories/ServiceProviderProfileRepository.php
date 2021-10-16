@@ -143,21 +143,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         $this->builder = $this->builder->orderBy('service_provider_profiles.created_at','desc');
         $this->builder = $this->builder->orderBy('service_provider_profiles.id','desc');
     }
-    if(!empty($data['zip'])) {
-        if (!empty($data['filter_by_top_providers'])) {
-            $zipCodes = app('ZipCodeRepository')->findByAttribute('zip_code', $data['zip']);
-            if(!empty($zipCodes) && $zipCodes->city) {
-                $zipCodes = app('ZipCodeRepository')->findByAttributeAll('city', $zipCodes->city)->toArray();
-                $this->builder = $this->builder->whereIn('users.zip_code', $zipCodes)->groupBy('service_provider_profiles.user_id');
-            }else {
-                $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
-            }
-        }else {
-
-            $this->builder = $this->builder->where('users.zip_code', '=', $data['zip'])->groupBy('service_provider_profiles.user_id');
-        }
-        $this->builder = $this->builder->orderByRaw("users.zip_code = ".$data['zip']." DESC, users.zip_code ASC");
-    }
 
     if (!empty($data['keyword'])) {
 
@@ -175,14 +160,11 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
     if(!empty($data['filter_by_service'])){
 
-        $ids = app('ServiceRepository')->model->where('url_suffix', '=' , $data['filter_by_service'])
-                //->orWhere('parent_id', $data['filter_by_service'])
-        ->pluck('id')->toArray();
-        $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data, $ids){
+        $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join)  use($data){
             $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
         })->join('service_provider_services', function($join) use ($data){
             $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
-        })->whereIn('service_provider_services.service_id', $ids)
+        })
         ->select('service_provider_profiles.*')
         ->groupBy('service_provider_profiles.user_id');
 
@@ -217,6 +199,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
 
     }
+
     $this->builder = $this->builder->select('service_provider_profiles.*');
     $record = parent::findByAll($pagination, $perPage, $data);
     return $record;

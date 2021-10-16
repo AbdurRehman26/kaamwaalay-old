@@ -43,17 +43,6 @@ class UserController extends ApiResourceController
             $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
             $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
 
-            $rules['stripe_token'] = [
-                Rule::requiredIf(function () {
-                    return (
-                        request()->user()->role_id === Role::SERVICE_PROVIDER
-                            && !request()->user()->is_profile_completed
-                                && request()->has('user_details.is_profile_completed')
-                    )
-                    || false;
-                }),
-            ];
-
         }
 
         if($value == 'store') {
@@ -62,7 +51,7 @@ class UserController extends ApiResourceController
             $rule['last_name'] = 'required';
             $rule['email'] = 'required|email|unique:users,email|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/';
             $rule['role_id'] = ['required', Rule::in(Role::ADMIN, Role::REVIEWER)];
-            $rule['status'] = 'required|in:active,banned'; 
+            $rule['status'] = 'required|in:active,banned';
 
 
         }
@@ -95,7 +84,7 @@ class UserController extends ApiResourceController
         if($value == 'update') {
 
             unset(
-                $input['user_details']['email'], $input['pagination'], $input['filter_by_role'], 
+                $input['user_details']['email'], $input['pagination'], $input['filter_by_role'],
                 $input['filter_by_service'], $input['filter_by_roles'], $input['keyword']
             );
 
@@ -191,13 +180,13 @@ public function socialLogin(Request $request)
         if($user) {
             unset($data['role_id']);
             unset($data['from_sign_up']);
-            $userData['user_details'] = $data; 
-            $userData['id'] = $user->id; 
+            $userData['user_details'] = $data;
+            $userData['id'] = $user->id;
             $result = $this->_repository->update($userData);
             $userId = $user->id;
         }else{
-            $data['status']  = 'active'; 
-            unset($data['from_sign_up']); 
+            $data['status']  = 'active';
+            unset($data['from_sign_up']);
             $result = $this->_repository->create($data);
             $userId = $result->id;
         }
@@ -254,7 +243,7 @@ public function changeStatus(Request $request)
     $result = $this->_repository->updateField($data);
     if($result) {
         if($result->role_id == Role::CUSTOMER && $result->status  == User::BANNED){
-            CustomerBanned::dispatch($result)->onQueue(config('queue.pre_fix').'customer-banned');   
+            CustomerBanned::dispatch($result)->onQueue(config('queue.pre_fix').'customer-banned');
         }
         $userId = $data['id'];
         $sql = 'UPDATE `oauth_access_tokens` SET `revoked` = 1 WHERE `user_id` =  ?';
@@ -266,7 +255,7 @@ public function changeStatus(Request $request)
             'data' => 'Status has been updated successfully.',
             'message' => 'Status has been updated successfully.',
         ];
-    }else{ 
+    }else{
         $errorResponse = ValidationException::withMessages(
             ['message'=> 'An error occurred.' ]
         );
@@ -389,9 +378,9 @@ public function getUserNotification(Request $request)
     $count = request()->user()->unreadNotifications()->count();
     $data =  $notification->paginate(10);
     $models = $data->items();
-    $response = Helper::paginator($models, $data); 
+    $response = Helper::paginator($models, $data);
     $pagination =$response['pagination'];
-    unset($response['pagination']); 
+    unset($response['pagination']);
     if($data->isNotEmpty()){
         $code = 200;
         $output = [
@@ -399,7 +388,7 @@ public function getUserNotification(Request $request)
             'message' => 'success',
             'unread_count' => $count,
             'pagination' => $pagination,
-        ];  
+        ];
     }else{
         $code = 200;
         $output = [
@@ -410,19 +399,19 @@ public function getUserNotification(Request $request)
     return response()->json($output, $code);
 }
 public function markRead(Request $request)
-{ 
+{
     return request()->user()->unreadNotifications->markAsRead();
 }
 
 public function checkYoutubeVideo(Request $request)
-{ 
+{
     $input = $request->only('id');
     $result = Helper::checkYoutubeVideoId($input['id']);
     if($result){
         $code = 200;
         $output = [
             'message' => 'Valid id',
-        ]; 
+        ];
     }else{
         $errorResponse = ValidationException::withMessages(
             ['message'=> 'Invalid Id' ]

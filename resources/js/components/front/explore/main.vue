@@ -94,16 +94,45 @@ export default {
 				this.isTouched = true;
 				return;
 			}
+
 			if(this.searchServiceValue.parent) {
                 localStorage.setItem("parentService", this.searchServiceValue.parent.url_suffix);
                 localStorage.setItem("childService", this.searchServiceValue.url_suffix);
-   				this.$router.push({ name: this.routeName, params: { serviceName: this.searchServiceValue.parent.url_suffix, childServiceName: this.searchServiceValue.url_suffix, zip : this.zipCode }});
+   							this.$router.push({ name: this.routeName, params: { serviceName: this.searchServiceValue.parent.url_suffix, childServiceName: this.searchServiceValue.url_suffix, cityArea : this.searchAreaValue?.slug }});
 			}else {
                 localStorage.setItem("parentService", "");
                 localStorage.setItem("childService", this.searchServiceValue.url_suffix);
-				this.$router.push({ name: this.routeName, params: { serviceName: this.searchServiceValue.url_suffix, zip : this.zipCode }});
+								this.$router.push({ name: this.routeName, params: { serviceName: this.searchServiceValue.url_suffix, cityArea : this.searchAreaValue?.slug }});
 			}
 
+		},
+
+		getList(data , page , successCallback) {
+			let self = this;
+			self.loadingService = true;
+			let url = 'api/service';
+
+			if(typeof(page) == 'undefined' || !page){
+				self.allServices = [];
+			}
+
+				self.$http.get(url).then(response => {
+					response = response.data;
+					self.allServices = response.data;
+					if(!self.allServices.length) {
+						self.showNoRecordFound = true;
+					}
+
+				self.loadingService = false;
+					successCallback(true);
+
+				}).catch(error=>{
+					if(error.status == 403) {
+						self.pagination = false;
+					}
+				self.loadingService = false;
+
+				});
 		},
 
 		getCityAreaList(data , page , successCallback) {
@@ -138,6 +167,7 @@ mounted(){
 	this.authUser = JSON.parse(this.$store.getters.getAuthUser);
 	this.routeName = 'Explore_Detail';
 	this.getCityAreaList({},false);
+	this.getList({}, false);
 },
 watch: {
 	searchServiceValue(val) {
@@ -149,13 +179,7 @@ watch: {
 
 computed: {
 	servicesList(){
-			var services = _.forEach(this.$store.getters.getAllServices, function(service) {
-					if(!service.parent_id) {
-							var tempStr = service.title.replace(/\(Main Category\)/ig, "");
-							service.title = tempStr + " (Main Category)";
-					}
-			});
-			return services;
+			return this.allServices;
 	},
 	areasList(){
 		return this.allCityAreas;
@@ -177,4 +201,3 @@ computed: {
 },
 }
 </script>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

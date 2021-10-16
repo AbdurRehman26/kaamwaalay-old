@@ -78,7 +78,7 @@
     },
     {
         name: 'Explore_Detail',
-        path: '/services/:serviceName/:childServiceName?/:zip?',
+        path: '/services/:serviceName/:childServiceName?/:cityArea?',
         props: true,
         meta: {
             title: 'PSM | Category Detail',
@@ -171,22 +171,6 @@
         },
         component: require('./components/front/job-post/main.vue').default,
     },
-
-    // Featured Profile
-
-    {
-        name: 'featured_profile',
-        path: '/featured-profile',
-        meta: {
-            title: 'PSM | Featured Profile',
-            bodyClass: 'featured-profile-page',
-            navigation: 'provider-nav',
-            requiresAuth: true,
-            forServiceProvider: true,
-        },
-        component: require('./components/front/featured-profile/main.vue').default,
-    },
-
 
     //jobs pages
 

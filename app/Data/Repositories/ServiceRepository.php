@@ -36,7 +36,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
      * @access protected
      **/
     protected $cacheTag = true;
-    
+
     protected $_cacheKey = 'service';
     protected $_cacheTotalKey = 'total-service';
 
@@ -55,7 +55,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $zip = request()->get('filter_by_popular_services');
             if($data->parent_id != null) {
                 $data->parent = $this->findById($data->parent_id);
-                
+
             }else{
 
                 $data->parent = null;
@@ -64,7 +64,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $data->job_init_count = $this->jobRepo->getTotalCountByCriteria($jobInitCriteria);
             $jobFinishedCriteria = ['status' => 'completed', 'service_id' => $data->id];
             $data->job_finished_count = $this->jobRepo->getTotalCountByCriteria($jobFinishedCriteria);
-            
+
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
             $data->url_suffix;
@@ -84,7 +84,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             //             $data->images[$key] = $image;
             //         }
             //     }
-            
+
             // }
         }
         return $data;
@@ -131,7 +131,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 $record['service_provider_count'] = $this->serviceProviderRepo->getTotalCountByCriteria($criteria);
                 if($record['jobs_count'] || $record['service_provider_count']) {
                     return (object)$record;
-                }   
+                }
             }
             return parent::update($data);
         }
@@ -141,7 +141,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
 
     public function findByAll($pagination = false,$perPage = 10, $data = [])
-    {   
+    {
 
         $this->builder = $this->model->orderBy('updated_at', 'desc');
         if (isset($data['order_by'])) {
@@ -153,18 +153,18 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
         }
 
         if(isset($data['filter_by_featured'])) {
-                        
+
             $this->builder = $this->builder->where('is_featured', '=', (int)$data['filter_by_featured']);
 
         }
         if(isset($data['filter_by_status'])) {
-                        
+
             $this->builder = $this->builder->where('status', '=', (int)$data['filter_by_status']);
 
         }
         if(isset($data['service_name'])) {
             $this->builder = $this->builder->where('url_suffix', '=', $data['service_name'])->where('status', '=', 1);
-            
+
         }
         if(isset($data['filter_by_related_services'])) {
             $this->builder = $this->builder->where('id', '=', (int)$data['filter_by_related_services'])->where('status', '=', 1);
@@ -208,7 +208,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 $this->builder = $this->builder->whereIn('services.id', $ids)->whereIn('services.parent_id', $ids, 'or');
 
                 if(isset($data['filter_by_featured'])) {
-                                
+
                     $this->builder = $this->builder->where('is_featured','=',(int)$data['filter_by_featured']);
 
                 }
@@ -217,7 +217,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             //     $query->whereIn('services.id', $ids);
             //     $query->whereIn('services.parent_id', $ids, 'or');
             // });
-                        
+
         }
         $modelData['data'] = [];
 
@@ -269,11 +269,11 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
     }
 
     public function getServicesByZip($fromBuilder = false, $zip = false)
-    {   
+    {
 
         $tempbuilder = $this->model;
         if($fromBuilder) {
-            $tempbuilder = $this->builder;    
+            $tempbuilder = $this->builder;
         }
         $tempbuilder = $tempbuilder
             ->leftJoin(
@@ -300,11 +300,11 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $tempbuilder = $tempbuilder->where('users.zip_code', $zip);
         }
         return $tempbuilder->select(['services.id']);
-            
+
     }
 
      public function getServicesProvderCountByZip($service_id = false, $zip = false)
-    {   
+    {
 
         $tempbuilder = $this->model;
         $tempbuilder = ServiceProviderService::where('service_provider_services.service_id', '=', $service_id)
@@ -331,7 +331,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
         return $tempbuilder->get()->count();
 
-            
+
     }
 
     public function getPopularServices($currentServiceId = fasle, $limit = false) {
@@ -340,7 +340,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                     $join->on('jobs.service_id', '=', 'services.id');
                 })
                 ->select('services.id')
-                ->groupby('service_id')   
+                ->groupby('service_id')
                 ->orderBy(DB::raw('COUNT(service_id)'), 'desc');
         if($currentServiceId) {
             $tempModel = $tempModel->where('service_id', '<>', $currentServiceId);
@@ -422,4 +422,3 @@ public function findByCriteria($criteria, $orderBy = false, $refresh = false, $d
     return $data;
 }
 }
-

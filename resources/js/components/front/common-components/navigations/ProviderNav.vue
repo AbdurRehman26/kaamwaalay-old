@@ -4,16 +4,15 @@
         <ul class="float-left">
             <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/explore-jobs">Explore Jobs </router-link></li>
             <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-bids">My Bids</router-link></li>
-            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/featured-profile">Featured Profile</router-link></li>
             <li>
 
                 <div class="user-login-detail float-left pointer"  @click="changePassword">
 <!-- <span class="user-img" @click="ShowModal">
 <img src="" alt="">
 </span> -->
-<span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">                        
+<span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">
 </span>
-<span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">                        
+<span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">
 </span>
 <p class="username">{{fullName}}</p>
 </div>
@@ -31,7 +30,7 @@
         </span>
     </li>
     <li>
-        <logout-component></logout-component> 
+        <logout-component></logout-component>
     </li>
 
 </ul>
@@ -96,13 +95,13 @@
                 this.isShowing = false;
                 this.tab = false;
             },
-            WriteReviewModal(){                
+            WriteReviewModal(){
                 this.$emit('WriteReviewModal');
-            },         
+            },
             ViewBid(){
                 /*this.$router.push({name: 'job-details'})*/
                 this.$emit('ViewBid');
-            },              
+            },
             scrollToTop() {
                 window.scrollTo(0,0);
             },
@@ -117,7 +116,7 @@
 
 
                 });
-            },                          
+            },
             getResponse(response){
                 if(response.data){
                     let user = JSON.parse(this.$store.getters.getAuthUser);

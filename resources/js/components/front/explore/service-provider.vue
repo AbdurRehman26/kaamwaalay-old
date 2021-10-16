@@ -5,16 +5,16 @@
         <div class="next-project grey-bg elementary-banner section-padd md" v-if="isService">
             <div class="container element-index text-center md">
                 <div class="content-sec">
-                    <div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(service.images? service.images[0].upload_url : null) +')',}"></div>
+                    <div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(service.images? service.images[0].name : null) +')',}"></div>
                     <div class="category-content">
                         <h2>{{service.title}}</h2>
                         <p>{{service.description}}</p>
                         <p><strong>Are you looking to find a {{service.title}} for hire?</strong> Then, we can help. When you post a job you will receive custom bids from local {{service.title}}!</p>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="elements">
-                <img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
+                <img src="/images/front/banner-bg/bg-5.png" class="top-left">
                 <img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
             </div>
         </div>
@@ -25,16 +25,18 @@
                     <div class="col-md-10 p-r-0">
                         <div class="search-filter m-b-0">
                             <div class="custom-multi category-detail" :class="{'invalid': isInvalid }">
-                                <multiselect v-model="searchValue" :options="options"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" @search-change="asyncFind" name="search" @close="onTouch" :internal-search="false" :showNoResults="true" 
-                                @select="dispatchAction" @keyup.enter="validateBeforeSubmit">
+                                <multiselect v-model="searchServiceValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title" :loading="isLoading"  class="ajax" open-direction="bottom" :options-limit="300" :limit="8" :limit-text="limitText" :max-height="600" name="search" @close="onTouch" :internal-search="true">
                                 <span slot="noResult">No service found.</span>
                             </multiselect>
                         </div>
                         <div class="container-zip-code">
-                            <i class="icon-location"></i>
-                            <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[(errorBag.first('zip') || isZipEmpty) ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit">
+
+        										<multiselect  v-model="searchAreaValue" :options="areasList"  placeholder="Where do you need?" track-by="id" label="name"  open-direction="bottom" :searchable="true" :options-limit="500" :limit="8" :max-height="700" name="search" :internal-search="true" :showNoResults="true">
+        												<span slot="noResult">No service found.</span>
+        										</multiselect>
+
                         </div>
-                    </div>			
+                    </div>
                 </div>
                 <div class="col-md-2 p-r-0">
                     <button class="btn btn-primary" @click.prevent="validateBeforeSubmit" :class="[btnLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' ]" :disabled="loading">
@@ -46,8 +48,7 @@
         </div>
     </div>
 
-    <h5 class="text-center enterzip" v-if="!zipCode">Please enter a zip code to view the list of service providers accordingly.</h5>
-    <no-record-found v-else-if="noRecordFound"></no-record-found>
+    <no-record-found v-if="noRecordFound"></no-record-found>
     <div class="job-post-container section-padd sm" v-if="!noRecordFound">
         <div class="container md">
             <div class="text-notifer" v-if="isPagination && records.length">
@@ -57,21 +58,21 @@
                 <div class="job-post-details">
                     <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
                     <div class="job-common-description">
-                        <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3> 
+                        <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3>
                         <span v-if="record.is_verified"><i class="icon-checked"></i></span>
                         <div class="jobs-rating">
                             <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
                             <div class="jobs-done">
-                                <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>				
+                                <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>
 
                                 <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
                                 <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
-                            </div>	
+                            </div>
                         </div>
-                        <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+                        <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
 
                         <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary', 'post-bid'  ]">
-                            Invite to Bid
+                            Invite
                         </a>
 
 
@@ -79,7 +80,7 @@
 
                     <div class="member-details">
                         <p class="location">
-                            <i class="icon-location"></i> 
+                            <i class="icon-location"></i>
                             Location <strong>{{record.user_detail.city + (record.user_detail.state? ', ' +record.user_detail.state : "")}}</strong>
                         </p>
                         <p class="member-since">
@@ -94,7 +95,7 @@
 
                     <div class="chat-feedback" v-if="record.reviewedBy">
                         <div class="text-notifer">
-                            <p>Latest feedback & review</p>	
+                            <p>Latest feedback & review</p>
                         </div>
                         <div class="chat-feedback-column">
                             <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profileImage) +')',}"></div>
@@ -103,7 +104,7 @@
                                 <div class="feeback-detail">
                                     <p class="feedback-personal-info">
                                         <a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
-                                        posted on 
+                                        posted on
                                         <strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
                                     </p>
                                     <i class="icon-quotes-right3"></i>
@@ -111,84 +112,16 @@
                             </div>
                         </div>
 
-                    </div>						
+                    </div>
 
                 </div>
             </div>
             <block-spinner v-if="isLoadProvider"></block-spinner>
         </div>
-        <!-- <div class="container md">
-            <div class="text-notifer" v-if="isPagination && (getCityProviderCount(zipCode) > 0)">
-                <p>{{getCityProviderCount(zipCode) + " " + service.title}} service professionals found near you.</p>
-            </div>
-            <div class="job-post-list" v-for="record in getCityProvider(zipCode)" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
-                <div class="job-post-details">
-                    <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
-                    <div class="job-common-description">
-                        <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3> 
-                        <span v-if="record.is_verified"><i class="icon-checked"></i></span>
-                        <div class="jobs-rating">
-                            <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
-                            <div class="jobs-done">
-                                <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>              
-
-                                <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
-                                <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
-                            </div>  
-                        </div>
-                        <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobs" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
-
-                        <a href="#" v-if="inBiddingJobs" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary', 'post-bid'  ]">
-                            Invite to Bid
-                        </a>
-
-
-                    </div>
-
-                    <div class="member-details">
-                        <p class="location">
-                            <i class="icon-location"></i> 
-                            Location <strong>{{ record.user_detail.city }}</strong>
-                        </p>
-                        <p class="member-since">
-                            <i class="icon-calendar-daily"></i>
-                            Member since <strong>{{record.formatted_created_at }}</strong>
-                        </p>
-                    </div>
-
-                    <div class="post-job-description">
-                        <p>{{ record.business_details }}</p>
-                    </div>
-
-                    <div class="chat-feedback" v-if="record.reviewedBy">
-                        <div class="text-notifer">
-                            <p>Latest feedback & review</p> 
-                        </div>
-                        <div class="chat-feedback-column">
-                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profileImage) +')',}"></div>
-                            <div class="chat-feedback-message">
-                                <p>{{record.reviewedBy.review.message}}</p>
-                                <div class="feeback-detail">
-                                    <p class="feedback-personal-info">
-                                        <a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
-                                        posted on 
-                                        <strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
-                                    </p>
-                                    <i class="icon-quotes-right3"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>                      
-
-                </div>
-            </div>
-        </div> -->			
     </div>
 
-
 <div class="featured-categories section-padd sm  elementary-banner p-t-130" v-show="relatedServices.length">
-    <vue-common-methods 
+    <vue-common-methods
         :url="requestUrl"
         :infiniteLoad="true"
         :force="forcePagination"
@@ -199,14 +132,14 @@
     </vue-common-methods>
     <div class="container element-index">
 
-        <div class="category-section">  
+        <div class="category-section">
             <div class="category-title">
                 <h2>Related Services</h2>
-            </div>  		
+            </div>
             <div class="category-items">
                 <div class="items" v-for="subservice in filterRelatedServices(relatedServices)">
                     <a @click="changecategorypopup(subservice)" href="javascript:void(0);">
-                        <div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images? subservice.images[0].upload_url : null) +')',}"></div>
+                        <div class="item-image" v-bind:style="{'background-image': 'url('+ getImage(subservice.images? subservice.images[0].name : null) +')',}"></div>
                         <h4>{{subservice.title}}</h4>
                     </a>
                 </div>
@@ -227,14 +160,14 @@
                     </div>
                 </div>
 
-            </div>  	        	      		
+            </div>
         </div>
     </div>
 
     <div class="elements">
         <img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
         <img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
-    </div>        	
+    </div>
 </div>
 
 <invite-bid-popup :type="'job'" :user="userToSendInvite" :showModalProp="invitePopup" @HideModalValue="invitePopup = false;" :jobs="jobs" ></invite-bid-popup>
@@ -255,6 +188,9 @@
         },
         data () {
             return {
+                allServices: [],
+                allCityAreas: [],
+                searchAreaValue: '',
                 forcePagination: false,
                 userToSendInvite : '',
                 max: 6,
@@ -263,7 +199,7 @@
                 options: [],
                 zipCode: '',
                 isTouched: false,
-                searchValue: '',
+                searchServiceValue: '',
                 isLoading: false,
                 loading : false,
                 isPagination: '',
@@ -292,11 +228,18 @@
             }
         },
         computed : {
+            servicesList(){
+              return this.allServices;
+            },
+
+            areasList(){
+              return this.$store.getters.getAreasList;
+            },
             requestUrl(){
                 return this.serviceProviderUrl;
             },
             isInvalid () {
-                return this.isTouched && !this.searchValue
+                return this.isTouched && !this.searchServiceValue
             },
             inBiddingJobs(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
@@ -329,26 +272,72 @@
 
                 }
 
-
                 this.service_url_suffix = serviceName;
 
                 return '/job-post?service_name='+serviceName+'&zip='+zipCode;
             }
         },
         methods: {
+            getList(data , page , successCallback) {
+              let self = this;
+              self.loadingService = true;
+              let url = 'api/service';
+
+              if(typeof(page) == 'undefined' || !page){
+                self.allServices = [];
+              }
+
+                self.$http.get(url).then(response => {
+                  response = response.data;
+                  self.allServices = response.data;
+                  if(!self.allServices.length) {
+                    self.showNoRecordFound = true;
+                  }
+
+                self.loadingService = false;
+                  successCallback(true);
+
+                }).catch(error=>{
+                  if(error.status == 403) {
+                    self.pagination = false;
+                  }
+                self.loadingService = false;
+
+                });
+            },
+
+            getCityAreaList(data , page , successCallback) {
+              let self = this;
+              self.loadingAreas = true;
+              let url = 'api/city-area';
+
+                if(typeof(page) == 'undefined' || !page){
+                  self.records = [];
+                }
+
+                self.$http.get(url).then(response => {
+                  response = response.data;
+                  self.allCityAreas = response.data;
+                  self.$store.commit('setAreasList', self.allCityAreas)
+                  if(!self.allCityAreas.length) {
+                    self.showNoRecordFound = true;
+                  }
+
+                  self.loadingAreas = false;
+                  self.getCityArea();
+                  successCallback(true);
+
+                }).catch(error=>{
+                  if(error.status == 403) {
+                    self.pagination = false;
+                  }
+                self.loadingAreas = false;
+
+                });
+            },
+
             startLoading(isLoading) {
                 this.isLoadProvider = isLoading;
-            },
-            getNearestProviderCount(zip) {
-                var record = this.groupByRecords;
-                var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
-                return count;
-            },
-            getCityProviderCount(zip) {
-                var record = this.groupByRecords;
-                var count = (typeof(record[zip]) != "undefined"? record[zip].length: 0);
-                count = (this.records.length - count);
-                return count;
             },
             getInBiddingJobs() {
                 let self = this;
@@ -363,27 +352,21 @@
 
                 });
             },
-            onSelectCategory(val) {
+            onSelectCategory(cityArea) {
                 this.hideZipModal();
-                localStorage.setItem("zip", val);
                 if(this.selectedService.parent) {
                     localStorage.setItem("parentService", this.selectedService.parent.url_suffix);
                     localStorage.setItem("childService", this.selectedService.url_suffix);
-                    this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, zip : val }});
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.parent.url_suffix, childServiceName: this.selectedService.url_suffix, cityArea : cityArea.slug }});
                 }else {
                     localStorage.setItem("parentService", this.selectedService.url_suffix);
                     localStorage.setItem("childService", "");
-                    this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, zip : val }});  
+                    this.$router.push({ name: this.routeName, params: { serviceName: this.selectedService.url_suffix, cityArea : cityArea.slug }});
                 }
             },
             changecategorypopup(service) {
                 this.selectedService = service;
-
-                if(localStorage['zip']) {
-                    this.onSelectCategory(localStorage['zip']);
-                }else {
-                    this.categoryPopup = true;	
-                }
+                this.categoryPopup = true;
             },
             filterRelatedServices (subservices) {
                 if(subservices.length > 3) {
@@ -399,8 +382,7 @@
                 return [];
             },
             dispatchAction (actionName) {
-                this.searchValue = '';
-                this.options = [];
+                this.searchServiceValue = '';
                 this.loading = false;
             },
             limitText (count) {
@@ -415,52 +397,30 @@
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
-            },  
-            ServiceProviderPage() {
-                this.isTouched = false;
-                if(!this.searchValue) {
-                    this.isTouched = true;
-                    return;
-                }
-                this.serName = this.searchValue.url_suffix;
-                localStorage.setItem('zip', this.zipCode);
-                if(this.searchValue.parent) {
-                    localStorage.setItem("parentService", this.searchValue.parent.url_suffix);
-                    localStorage.setItem("childService", this.searchValue.url_suffix);
-                    this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.parent.url_suffix, childServiceName: this.searchValue.url_suffix, zip : this.zipCode }});
-                    this.serviceSuffix = this.searchValue.url_suffix;
-                }else {
-                    this.serviceSuffix = "";
-                    localStorage.setItem("parentService", this.searchValue.url_suffix);
-                    localStorage.setItem("childService", "");
-                    this.$router.push({ name: this.routeName, params: { serviceName: this.searchValue.url_suffix, childServiceName: null, zip : this.zipCode }}); 
-                }
             },
+            ServiceProviderPage() {
+        			this.btnLoading = true;
+        			this.isTouched = false;
+        			if(!this.searchServiceValue) {
+        				this.btnLoading = false;
+        				this.isTouched = true;
+        				return;
+        			}
+        			if(this.searchServiceValue.parent) {
+                        localStorage.setItem("parentService", this.searchServiceValue.parent.url_suffix);
+                        localStorage.setItem("childService", this.searchServiceValue.url_suffix);
+           							this.$router.push({ name: this.routeName, params: { serviceName: this.searchServiceValue.parent.url_suffix, childServiceName: this.searchServiceValue.url_suffix, cityArea : this.searchAreaValue?.slug }});
+        			}else {
+                        localStorage.setItem("parentService", "");
+                        localStorage.setItem("childService", this.searchServiceValue.url_suffix);
+        								this.$router.push({ name: this.routeName, params: { serviceName: this.searchServiceValue.url_suffix, cityArea : this.searchAreaValue?.slug }});
+        			}
+
+        		},
             onTouch () {
-                this.options = [];
                 this.loading = false;
                 this.isTouched = true;
             },
-            asyncFind: _.debounce(function(query) {
-                let self = this;
-
-                this.loading = true;
-                if(!query) {
-                    this.loading = false;
-                }
-                if(!query || query.length < 3) {
-                    return;
-                };
-                this.searchUrl  = 'api/service?keyword=' + query + '&filter_by_status=1&order_by=title';
-                this.isLoading = true;
-                this.$http.get(this.searchUrl).then(response => {
-                    response = response.data;
-                    self.options = response.data;
-                    self.isLoading = false;
-
-                }).catch(error=>{
-                });
-            }, 1000),
             getImage(img) {
                 return img? img : 'images/dummy/image-placeholder.jpg';
             },
@@ -483,7 +443,7 @@
             hideZipModal(){
                 this.categoryPopup = false;
             },
-            servicedetail(record){        	
+            servicedetail(record){
 
                 if(record.is_featured){
                     this.updateCampaignClickCount(record.user_id);
@@ -503,6 +463,18 @@
                 }).catch(error => {
                 });
             },
+            getCityArea(){
+              let self = this;
+
+
+              _.forEach(self.areasList, function(cityArea, key) {
+                  if(self.$route.params.cityArea == cityArea.slug){
+                    self.searchAreaValue = cityArea;
+                  }
+              });
+
+
+            },
             getService() {
                 let self = this;
                 this.checkRoute();
@@ -516,16 +488,15 @@
                     }
                     self.isService = response.data.length;
                     self.service = response.data[0];
-                    self.searchValue = self.service;
+                    self.searchServiceValue = self.service;
                     self.getRelatedServices();
                     self.btnLoading = false;
-                    if(self.zipCode) {
-                        //this.forcePagination = true;
-                        if(!self.serviceSuffix) {
-                            self.serviceSuffix = self.serviceName;
-                        }
-                        self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&zip='+self.zipCode+'&from_explore=true';
+
+                    if(!self.serviceSuffix) {
+                        self.serviceSuffix = self.serviceName;
                     }
+                    self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&city_area='+self.$route.params.cityArea+'&from_explore=true';
+
 
                 }).catch(error=>{
                     self.isPagination = false;
@@ -541,21 +512,6 @@
                 }).catch(error=>{
                     self.isPagination = false;
                 });
-            },
-            getNearestProvider(zip) {
-                var record = this.groupByRecords;
-                record = (typeof(record[zip]) != "undefined"? record[zip]: []);
-                return record;
-            },
-            getCityProvider(zip) {
-                var record = this.records;
-                var record = _.map(record, function(value, key) {
-                     if(value.user_detail.zip_code != zip) {
-                         return value;
-                    };
-                });
-                record = _.without(record, undefined);
-                return record;
             },
             getProviderRecords(response){
                 let self = this;
@@ -587,20 +543,11 @@
                     this.url  = 'api/service?service_name=' + this.serviceName;
                     localStorage.setItem("parentService", this.serviceName);
                 }
-                if(typeof(this.zipCode) != "undefined") {
-                    let val = this.zipCode;
-                    if(val.length > 5) {
-                        val = val.substr(0, 5);
-                    }
-                    this.url += '&zip=' + val;
-                }
-                if(!this.zipCode) {
-                    this.validateBeforeSubmit();
-                }
-            }
+            },
 
 },
 created() {
+  this.getList();
 },
 watch: {
     '$route' (to, from) {
@@ -629,34 +576,19 @@ childServiceName(val) {
 this.childServiceName = val;
 //this.getService();
 },
-zip(val) {
-    if(val.length > 5) {
-        val = val.substr(0, 5);
-    }
-    this.zip = val;
-},
-zipCode(val) {
-    this.isZipEmpty = false;
-    if(val.length > 5) {
-        val = val.substr(0, 5);
-    }
-    this.zipCode = val; 
-},
-searchValue(val) {
+searchServiceValue(val) {
     if(val == null) {
         this.loading = false;
     }
 }
 },
-mounted(){	
+mounted(){
     this.getInBiddingJobs();
-    if(!this.zip) {
-        localStorage.removeItem('zip');
-        this.isZipEmpty = true;
-    }
     this.authUser = JSON.parse(this.$store.getters.getAuthUser);
     this.routeName = 'Explore_Detail';
     this.getService();
+    this.getCityAreaList({},false);
+
 },
 
 }

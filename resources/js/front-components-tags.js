@@ -26,7 +26,7 @@ Vue.component('change-password-popup', require('./components/admin/common-compon
 Vue.component('change-password-popup', require('./components/front/common-components/ChangePassPopup.vue').default);
 Vue.component('invite-bid-popup', require('./components/front/common-components/InviteBidPopup.vue').default);
 Vue.component('testmonial-sec',require('./components/front/common-components/TestmonialSec.vue').default);
-Vue.component('category-popup',require('./components/front/common-components/CateogyPopup.vue').default);
+Vue.component('category-popup',require('./components/front/common-components/CategoryPopup.vue').default);
 Vue.component('award-job-popup',require('./components/front/common-components/AwardJobPopup.vue').default);
 Vue.component('visit-request-popup',require('./components/front/common-components/VisitRequestPopup.vue').default);
 Vue.component('visit-request-approval-popup',require('./components/front/common-components/VisitRequestApprovalPopup.vue').default);

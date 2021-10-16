@@ -45,14 +45,6 @@ Route::resource('city', 'Api\V1\CityController')->only([
     'index', 'show',
 ]);
 
-Route::resource('country', 'Api\V1\CountryController')->only([
-    'index', 'show',
-]);
-
-Route::resource('state', 'Api\V1\StateController')->only([
-    'index', 'show',
-]);
-
 Route::resource('testimonial', 'Api\V1\TestimonialController')->only([
     'index', 'show',
 ]);

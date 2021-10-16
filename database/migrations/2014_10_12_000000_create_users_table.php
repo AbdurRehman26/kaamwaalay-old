@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
                 $table->integer('role_id')->unsigned()->index();
                 $table->enum('access_level', array('full','reviewOnly'))->nullable();
                 $table->integer('city_id')->unsigned()->nullable()->index();
+                $table->integer('city_area_id')->unsigned()->nullable()->index();
                 $table->string('activation_key')->nullable();
                 $table->dateTime('activated_at')->nullable();
                 $table->string('remember_token', 100)->nullable();

@@ -78,6 +78,22 @@
                                 <input type="text" v-validate="'max:250'"  :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" name="address" v-model="record.address" placeholder="Enter your street address">
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label>Area</label>
+
+                            <div class="custom-multi multiselect-z-index">
+                                <multiselect  v-model="record.city_area" :options="cityAreas"  placeholder="Select area" track-by="id" label="name"  open-direction="bottom" :options-limit="500" :limit="8" :max-height="700" name="search" :internal-search="true">
+                                </multiselect>
+                            </div>
+
+
+                            </div>
+                        </div>
+
+
+
                     </div>
 
             </div>
@@ -98,8 +114,7 @@
 
 </div>
 <vue-common-methods :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-<vue-common-methods :hideLoader="true" :url="stateUrl" @get-records="getStateResponse"></vue-common-methods>
-<vue-common-methods :hideLoader="true" v-if="record.state_id" :url="requestCityUrl" @get-records="getCityResponse"></vue-common-methods>
+<vue-common-methods :hideLoader="true" :url="requestCityAreaUrl" @get-records="getCityAreaResponse"></vue-common-methods>
 
 </div>
 </template>
@@ -115,119 +130,45 @@
                 search : '',
                 loading : false,
                 isFileUpload : false,
-                cities : [],
-                stateUrl : 'api/state',
-                cityUrl : '',
-                states : [],
+                cityAreas : [],
+                cityAreaUrl : 'api/city-area',
                 file: null,
                 profileImage : '',
-                invalidZip: false,
-                currentCity: null,
             }
-        },
-        mounted(){
-        },
-        watch: {
-            'record.zip_code' (val) {
-                if(!val) {
-                    //this.invalidZip = true;
-                }
-            },
         },
         computed : {
             requestUrl(){
                 return this.url;
             },
-            requestCityUrl(){
-                return this.cityUrl;
+            requestCityAreaUrl(){
+                return this.cityAreaUrl;
             },
             imageValue(){
                 return this.profileImage;
             }
         },
         methods: {
-            setZipCode(val) {
-                let self = this;
-                this.record.zip_code = val.zip_code;
-                this.setCity(val)
-                this.invalidZip = false;
-                if(!val.zip_code) {
-                    this.invalidZip = true;
-                }
-            },
             setCity(object){
-                if(object.state_id){
-                  this.record.state_id = object.state_id;
-              }
               this.currentCity = object.city_id;
               this.onStateChange();
           },
-          onStateChange(select){
-            let self = this;
-            var select = select|false;
-            if(select){
-             this.record.city_id = null;
-         }
-         this.cityUrl = 'api/city?state_id=' + this.record.state_id;
-         if(this.currentCity){
-           this.record.city_id = this.currentCity;
-           this.currentCity = null;
-
-
-           setTimeout(function () {
-            Vue.nextTick(() => {
-                self.errorBag.clear()
-            })
-            console.log(112321);
-        }, 500);
-
-
-
-       }
-
-
-
-
-   },
    getResponse(response){
     let self = this;
     self.loading = false;
     self.record = response.data;
 
-    if(self.record.state_id){
-        this.cityUrl = 'api/city?state_id=' + this.record.state_id;
-    }
     self.profileImage = self.record.profileImage;
 
 },
-getStateResponse(response){
-    let self = this;
-    self.loading = false;
-    self.states = response.data;
+getCityAreaResponse(response){
 
-},
-getCityResponse(response){
-    let self = this;
-    self.cities = response.data;
-    if(this.currentCity){
-       this.record.city_id = this.currentCity;
-       this.currentCity = null;
-   }
+    this.cityAreas = response.data;
+    console.log(this.cityAreas);
 },
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
-        this.invalidZip = false;
-        if(!this.record.zip_code) {
-            this.invalidZip = true;
-            this.errorMessage = 'Please enter zip code.';
-            return false;
-        }
-        if (result && !this.invalidZip) {
-            this.onSubmit();
-            this.errorMessage = '';
-            return;
-        }
         this.errorMessage = this.errorBag.all()[0];
+        this.onSubmit();
     });
 },
 onSubmit() {

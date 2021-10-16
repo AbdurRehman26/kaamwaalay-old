@@ -96,7 +96,6 @@ class CityAreaTableSeeder extends Seeder
         "Civic Centre",
         "Civil Lines",
         "Clifton",
-        "Clifton",
         "Club Road",
         "Comissioner Coop Housing Society",
         "Cosmopolitan Society",
@@ -457,6 +456,7 @@ class CityAreaTableSeeder extends Seeder
         CityArea::insertOnDuplicateKey(array (
             array (
                 'name' => $value,
+                'slug' => str_replace(" ", "-", strtolower($value)),
                 'city_id' => 1
             )
         ));

@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label for="" v-if="index == 0">Service</label>
                                     <label for="" v-if="index > 0"></label>
-                                    <select :disabled="service_detail.status == 'approved'"  v-model="record.service_details[index].service_id" v-validate="'required'" name="service"
+                                    <select v-model="record.service_details[index].service_id" v-validate="'required'" name="service"
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -107,7 +107,7 @@
                         </div>
                         <div class="col-md-6">
                             <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : servicesList[0].id})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
-                            <a v-id="service_detail.status != 'approved'" v-if="service_detail.status != 'approved' && !pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
+                            <a v-id="service_detail.status != 'approved'" v-if="!pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -226,12 +226,6 @@
         watch: {
         },
         methods: {
-            removeFile(type, index){
-                this.record.business_details.attachments[type].splice(index , 1);
-                this.$forceUpdate();
-                return false;
-
-            },
             findUniqueValues(){
                 let self = this;
                 let service_details = self.record.service_details;
@@ -258,25 +252,6 @@
                 return false;
 
             },
-            checkUploadedDocuments(){
-
-                let attachments = this.record.business_details.attachments;
-
-                if(typeof(attachments['certifications']) == 'undefined' || !attachments['certifications'][0]){
-                    return false;
-                }
-
-                if(typeof(attachments['registrations']) == 'undefined' || !attachments['registrations'][0]){
-                    return false;
-                }
-
-                if(typeof(attachments['proof_of_business']) == 'undefined' || !attachments['proof_of_business'][0]){
-                    return false;
-                }
-
-                return true;
-
-            },
             validateBeforeSubmit() {
                 let self = this;
                 this.errorMessage = '';
@@ -288,12 +263,6 @@
                             this.errorMessage = 'Please remove duplicate services';
                             return false;
                         }
-
-                        if(!this.checkUploadedDocuments()){
-                            this.errorMessage = 'Please add at least one file for each document';
-                            return false;
-                        }
-
 
                         _.forEach(self.record, function(value, key) {
 
@@ -314,19 +283,10 @@
 
 
                         });
-                        if(!this.isPaymentDetailShow){
-                            this.submit = true;
-                            this.loading = true;
-                        }else{
-                            setTimeout(function () {
-                                if(!self.errorMessage){
-                                    self.isSubmit = true
-                                }else{
-                                    self.isSubmit = false
-                                }
-                            }, 500);
 
-                        }
+                        this.submit = true;
+                        this.loading = true;
+
                         this.errorMessage = ''
                         return;
                     }
@@ -350,20 +310,6 @@
                 let self = this;
                 self.record.profile_image = response.name;
                 self.profileImage = response.upload_url;
-            },
-            getDocumentUploadResponse(response, type){
-                var lengthOfAttachmentTypes = this.record.business_details.attachments[type];
-
-                if(typeof(lengthOfAttachmentTypes) == 'undefined' || !lengthOfAttachmentTypes.length){
-                    this.record.business_details.attachments[type] = [];
-                }
-
-                this.record.business_details.attachments[type].push({
-                   name : response.name,
-                   original_name : response.original_name
-               });
-
-                this.$forceUpdate();
             },
             getResponse(response){
                 let self = this;
@@ -405,33 +351,8 @@
                 }
 
             },
-            paymentDetailShow(){
-                let user = JSON.parse(this.$store.getters.getAuthUser)
-                if(user.is_profile_completed){
-                    this.isPaymentDetailShow = false
-                }else{
-                    this.isPaymentDetailShow = true
-                }
-            },
-            getPlansList (){
-                let self = this;
-                let url = 'api/plan';
-                let params = {
-                    pagination: false,
-                    type: 'service',
-                    product: 'account_creation',
-                };
-                self.$http.get(url, {params: params}).then(response=>{
-                    self.plans = response.data.data
-                    self.selectedPlan = self.plans[0].id
-                    self.accountCreationAmount = self.plans[0].amount
-                }).catch(error=>{
-                });
-            },
         },
         mounted () {
-            this.getPlansList(),
-            this.paymentDetailShow()
         },
     }
 </script>
