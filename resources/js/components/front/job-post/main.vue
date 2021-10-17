@@ -64,6 +64,22 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <multiselect  v-model="searchAreaValue" :options="areasList"  placeholder="Where do you need?" track-by="id" label="name"  open-direction="bottom" :max-height="700" name="search" :internal-search="true" >
+                              <span slot="noResult">No service found.</span>
+                          </multiselect>
+                    </div>
+                </div>
+
+            </div>
+
+
+
             </div>
 
             <div class="service-location">
@@ -110,6 +126,7 @@
         components: { Datepicker },
         data() {
             return {
+                searchAreaValue: '',
                 disabledDates: {
                     to: new Date(new Date().getTime() - (1 * 24 * 60 * 60 * 1000)),
                 },
@@ -182,6 +199,9 @@
             }
         },
         computed : {
+            areasList() {
+              return this.$store.getters.getAreasList
+            },
             servicesList(){
                 // if(this.$route.params.id){
                 //     this.prefillValues();

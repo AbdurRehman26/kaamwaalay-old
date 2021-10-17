@@ -4,16 +4,16 @@
             <div class="job-main-heading grey-bg elementary-banner section-padd xs border-bottom">
                 <div class="container element-index text-center md">
                     <div class="content-sec">
-                        <div class="job-image" 
+                        <div class="job-image"
                         v-bind:style="{'background-image': 'url('+ jobImage +')'}">
                     </div>
 
                     <div class="job-content">
                         <h2>{{record.title}}</h2>
-                        <div class="job-notification flexable direction-column">	
+                        <div class="job-notification flexable direction-column">
                             <div class="col-md-12 p-l-0 p-r-0">
                                 <div class="jobs-done">
-                                    <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>		
+                                    <span class="job-category">{{ record.service | mainServiceOrChildService('-')  }}</span>
                                     <div class="job-status">
                                         <span v-if="canMarkJobComplete && !jobCompleted && !jobArchived" class="tags"
                                         :class="['completed']">
@@ -27,37 +27,37 @@
                                 <span v-else class="tags"
                                 :class="[ record.status ?  record.status.replace(/\s/g, '').replace('_', '').replace('cancelled' , 'rejected').toLowerCase().trim() : '']">
                                 {{ record | jobStatus }}
-                            </span>	
-                        </div>											
-                    </div>	
-                </div>		
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 p-r-0 p-l-0">
 
                     <div class="job-details">
                         <div class="awarded alignawd">
                             <p class="awarded_to">
-                                <i class="icon-checkmark2"></i> 
+                                <i class="icon-checkmark2"></i>
                                 {{ jobAwarded ? 'job awarded to : ' : 'job not awarded yet'}}
                                 <strong>
                                 {{ jobAwarded && jobAwarded.business_details ? jobAwarded.business_details.business_name : ''}}</strong>
                             </p>
                             <p class="service_required">
                                 <i class="icon-brightness-down"></i>
-                                Service required 
+                                Service required
                                 <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
                                 <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
                                 <strong v-else>{{ record.preference | jobPreference }}</strong>
                             </p>
                         </div>
-                    </div>																				
-                </div>					
+                    </div>
+                </div>
 
-            </div>	
+            </div>
         </div>
     </div>
-</div> 
+</div>
 <div class="elements">
-    <img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
+    <img src="/images/front/banner-bg/bg-5.png" class="top-left">
     <img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
 </div>
 </div>
@@ -78,10 +78,10 @@
 
                     <div class="member-details">
                         <p class="location">
-                            <i class="icon-location"></i> 
-                            Location <strong>{{ record.city  }}, {{ record.state}}</strong>
+                            <i class="icon-location"></i>
+                            Location <strong>{{ record.city_id  }}</strong>
                         </p>
-                        <p class="member-since">										
+                        <p class="member-since">
                             Date posted: <strong>{{record.created_at.date | formatDate}}</strong>
                         </p>
                     </div>
@@ -92,13 +92,13 @@
 
                     <div v-if="record.jobImages" class="jobs-post-files">
                         <h3>Related Photos</h3>
-                        <div class="no-photos" v-if="!record.jobImages.length"> 
+                        <div class="no-photos" v-if="!record.jobImages.length">
                             <p>Photo(s) Not Available</p>
                         </div>
 
                         <div class="imagegallery">
-                            <img class="image" v-for="(image, i) in imageLists" :src="image" @click="onClick(i)">                        
-                            <vue-gallery-slideshow 
+                            <img class="image" v-for="(image, i) in imageLists" :src="image" @click="onClick(i)">
+                            <vue-gallery-slideshow
                             v-if="imageLists.length"
                             :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
@@ -106,13 +106,13 @@
 
                     <div v-if="record.awardedBid" class="jobs-post-files">
                         <h3>Images provided By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
-                        <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length"> 
+                        <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length">
                             <p>Photo(s) Not Available</p>
                         </div>
 
                         <div class="imagegallery">
-                            <img class="image" v-for="(image, i) in uploadedImageThumbList" :src="image" @click="onClick(i)">                        
-                            <vue-gallery-slideshow 
+                            <img class="image" v-for="(image, i) in uploadedImageThumbList" :src="image" @click="onClick(i)">
+                            <vue-gallery-slideshow
                             v-if="uploadedImageList.length"
                             :images="uploadedImageList" :index="index" @close="index = null"></vue-gallery-slideshow>
                         </div>
@@ -135,49 +135,38 @@
                             <div class="left-ico">
                                 <i class="icon-pin"></i>
                             </div>
-                            <p>Address: 
+                            <p>Address:
                                 <strong>
                                     {{record.address + ' , '}} {{ record.apartment ? record.apartment + ' , ' : '' }} {{ record.city + ' ,'}} {{ record.state }}
                                 </strong>
                             </p>
-                        </div>                        
-                        
+                        </div>
+
                         <div class="coustomer-info-line">
                             <div class="left-ico">
                                 <img class="icon-wth" src="/images/front/svg/capitol.svg">
                             </div>
-                            <p>City: 
+                            <p>City:
                                 <strong>
-                                    {{ record.city}}
+                                    {{ record.city }}
                                 </strong>
                             </p>
-                        </div>                        
-                        
-                        <div class="coustomer-info-line">
-                            <div class="left-ico">
-                                <img class="icon-wth" src="/images/front/svg/state.svg">
-                            </div>
-                            <p>State: 
-                                <strong>
-                                    {{ record.state }}
-                                </strong>
-                            </p>
-                        </div>                        
-                        
+                        </div>
+
                         <div class="coustomer-info-line m-t-20">
                             <iframe :src="mapUrl | googleMapEmbeded" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>                
+                        </div>
                     </div>
 
                     <div id="bid-review" class="chat-feedback">
 
                         <div class="text-notifer">
-                            <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>    
-                            <h3 v-if="myBidValue && !isMyJob">My Bid</h3>
+                            <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>
+                            <h3 v-if="myBidValue && !isMyJob">My Application</h3>
 
-                            <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total"> 
+                            <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total">
                                 No bid(s) available
-                                <router-link v-if="record.status !== 'cancelled'" href="javascript:void(0);" class="pull-right" 
+                                <router-link v-if="record.status !== 'cancelled'" href="javascript:void(0);" class="pull-right"
                                 :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Invite service providers</router-link>
 
                             </div>
@@ -194,26 +183,26 @@
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#8200ff"></star-rating>
                                     <div class="jobs-done">
-                                        <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>				
+                                        <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>
 
                                         <span class="review-job" v-if="!bid.user && !bid.user.total_finished_jobs">No Jobs performed</span>
                                         <span class="review-job" v-else>{{ bid.user.total_finished_jobs }} Job(s) performed</span>
-                                    </div>	
-                                </div>											
+                                    </div>
+                                </div>
                             </div>
                             <div class="job-proposal">
                                 <div class="bit-offered">
-                                    <span v-if="bid.status == 'suggested_time'"><i class="icon-work-briefcase"></i> Offer: 
+                                    <span v-if="bid.status == 'suggested_time'"><i class="icon-work-briefcase"></i> Offer:
                                         <strong>
                                             {{ bid | bidStatus }} {{user.role_id != 3? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitApprovalPopup = true;" v-if="user.role_id != 3">View Details</a>
                                         </strong>
                                     </span>
-                                    <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer: 
+                                    <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer:
                                         <strong>
                                             {{ bid | bidStatus }} {{!bid.amount &&  user.role_id != 2 ? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2 && !bid.amount">Visit Details</a>
                                         </strong>
                                     </span>
-                                    <span v-else><i class="icon-work-briefcase"></i> Offer: 
+                                    <span v-else><i class="icon-work-briefcase"></i> Offer:
                                         <strong>
                                             {{ bid | bidStatus }}
                                         </strong>
@@ -231,7 +220,7 @@
 
                                 <div class="chat-feedback" v-if="record.status == 'completed' && record.review_details && user.role_id == 2">
                                     <div class="text-notifer">
-                                        <p>Customer Feedback & Review</p> 
+                                        <p>Customer Feedback & Review</p>
                                     </div>
                                     <div class="chat-feedback-column">
                                         <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.review_details.user_detail.profileImage) +')',}"></div>
@@ -240,7 +229,7 @@
                                             <div class="feeback-detail">
                                                 <p class="feedback-personal-info">
                                                     <a href="javascript:void(0);">{{record.review_details.user_detail.first_name + " " + record.review_details.user_detail.last_name}}</a>
-                                                    posted on 
+                                                    posted on
                                                     <strong>{{record.review_details.formatted_created_at}}</strong>
                                                 </p>
                                                 <i class="icon-quotes-right3"></i>
@@ -248,10 +237,10 @@
                                         </div>
                                     </div>
 
-                                </div>    
+                                </div>
                                 <div class="chat-feedback" v-if="record.status == 'completed' && record.service_provider_review && user.role_id == 3">
                                     <div class="text-notifer">
-                                        <p>Service Provider Feedback & Review</p> 
+                                        <p>Service Provider Feedback & Review</p>
                                     </div>
                                     <div class="chat-feedback-column">
                                         <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.service_provider_review.user_detail.profileImage) +')',}"></div>
@@ -260,7 +249,7 @@
                                             <div class="feeback-detail">
                                                 <p class="feedback-personal-info">
                                                     <a href="javascript:void(0);">{{record.service_provider_review.user_detail.first_name + " " + record.service_provider_review.user_detail.last_name}}</a>
-                                                    posted on 
+                                                    posted on
                                                     <strong>{{record.service_provider_review.formatted_created_at}}</strong>
                                                 </p>
                                                 <i class="icon-quotes-right3"></i>
@@ -268,11 +257,11 @@
                                         </div>
                                     </div>
 
-                                </div>     
+                                </div>
 
                                 <div class="provider-bidding-btn">
 
-                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);" 
+                                    <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);"
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
                                     <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
@@ -287,7 +276,7 @@
                             </div>
                         </div>
 
-                    </div>						
+                    </div>
 
                 </div>
             </div>
@@ -299,8 +288,8 @@
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite mb-4" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to bid on your job.</h3>
                         <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
-                        <router-link href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" 
-                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : record.zip_code }}">Find &amp; Invite</router-link>				
+                        <router-link href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0"
+                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : record.zip_code }}">Find &amp; Invite</router-link>
                     </div>
 
                     <a style="pointer-events: none;" v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px m-t-0">
@@ -315,7 +304,7 @@
                         <i class="icon-folder"></i><span>Mark Job Archive</span> <loader></loader>
                     </button>
 
-                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary m-b-20 m-t-0"><i class="icon-edit-pencil"></i> Modify Details</a>					
+                    <a href="javascript:void(0);" v-if="isMyJob && canModifyJob && !jobArchived" @click="Modify" class="btn btn-primary m-b-20 m-t-0"><i class="icon-edit-pencil"></i> Modify Details</a>
 
                     <a href="javascript:void(0);" class="m-b-20 m-t-0" v-if="isMyJob && canCancelJob && !jobArchived" @click.prevent="markJobCancel(); confirmPopupShow = true" :class="['btn', 'btn-cancel-job', disabledCancelJob ? 'disabled' : '']"><i class="icon-close2"></i> Cancel Job</a>
 
@@ -323,25 +312,25 @@
                         <span><i class="icon-checkmark2" style="margin-left: -40px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Job Done</span> <loader></loader>
                     </button>
 
-                    <button v-canBid v-if="(record.status != 'completed') && (!isMyJob && canInitiateJob)" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[initiateJobLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">                        
+                    <button v-canBid v-if="(record.status != 'completed') && (!isMyJob && canInitiateJob)" @click="markInitiateJobByCustomer" class="m-b-20 m-t-0" :class="[initiateJobLoading  ? 'show-spinner' : '' , 'btn' , 'btn-primary' , 'apply-primary-color' , disableInitiateBid ? 'disabled' : '']">
                         <span><i class="icon-checkmark2" style="margin-left: -64px;margin-right: 36px;"></i>Initiate Job</span> <loader></loader>
                     </button>
 
-                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Bid Now</a>                                                  
+                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Bid Now</a>
 
                     <a v-canBid v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">
                         <i class="icon-edit-pencil"></i>
                         Modify Bid
-                    </a>   
+                    </a>
 
                     <a v-if="showChatButton && !isMyJob && canChat" @click.prevent="checkStatus(record)" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Chat</a>
 
-                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>    
+                    <a v-if="!jobAwarded && myBidValue && !jobArchived &&  visitAllowed" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0" @click.prevent="bidder = record.my_bid; VisitPopup();"><i class="icon-front-car"></i> Go to visit</a>
 
                     <!-- <a v-if="!isMyJob && canChat && !jobCancelled && !jobArchived && (jobAwarded && jobAwarded.user_id == $store.getters.getAuthUser.id)" @click.prevent="showChat = true;" href="javascript:void(0);" class="btn btn-primary">Chat</a> -->
-                    
-                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="(myBidValue && myBidValue.status != 'suggested_time') && ((!isMyJob && canArchiveBid && myBidValue) 
-                        || (record.status == 'completed'))" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i> 
+
+                    <a v-canBid href="#" class="m-t-0 m-b-20" v-if="(myBidValue && myBidValue.status != 'suggested_time') && ((!isMyJob && canArchiveBid && myBidValue)
+                        || (record.status == 'completed'))" @click.prevent="markArchiveBySp" :class="['btn', 'btn-cancel-job', disableArchiveBid ? 'disabled' : '']"><i class="icon-folder"></i>
                         Archive
                     </a>
 
@@ -355,12 +344,12 @@
             </div>
         </div>
 
-    </div>			
+    </div>
 </div>
 
 <job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof" :myBidValue="myBidValue"></job-proof-popup>
 
-<award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder" 
+<award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder"
 :record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
 
 <visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
@@ -373,7 +362,7 @@
 
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <mark-job-done-popup @HideModalValue="showMarkJobDonePopup = false;" :showModalProp="showMarkJobDonePopup"></mark-job-done-popup>
-<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>           
+<chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat"  :strict="strict" :disabled="disabledChat"></chat-panel>
 
 </div>
 
@@ -442,7 +431,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 invitepopupdata: false,
                 jobMessageData: {},
                 formData : {
-                },                  
+                },
                 strict: false,
                 disabledChat: false,
                 requestUrl : 'api/job/'+this.$route.params.id,
@@ -498,7 +487,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                     })
                 }
                 return uploadedImageListArr;
-            },          
+            },
             uploadedImageThumbList(){
                 let uploadedImageThumbListArr = [];
                 if(this.record && this.record.awardedBid && this.record.awardedBid.job_done_images && this.record.awardedBid.job_done_images.length) {
@@ -516,7 +505,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             canArchiveBid(){
                 if(Object.keys(this.record) && this.record.my_bid){
-                    return (this.record.awardedBid && (this.record.my_bid.id != this.record.awardedBid.id)) || 
+                    return (this.record.awardedBid && (this.record.my_bid.id != this.record.awardedBid.id)) ||
                     (
                         !this.record.awardedBid && (Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd || (this.record.my_bid.is_visit_required && this.record.my_bid.status != 'pending' && this.record.my_bid.status !== 'visit_allowed'))
                     );
@@ -527,7 +516,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 if(Object.keys(this.record).length){
                     return this.record.status == 'completed' && this.record.awardedBid.status == 'completed' && !this.record.is_archived;
                 }
-                
+
             },
             canMarkJobComplete(){
                 if(Object.keys(this.record).length){
@@ -555,7 +544,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return false;
             },
             canArchiveJob(){
-                return this.record.status != 'cancelled' && (this.record.status == 'completed' || this.record.status == 'cancelled');  
+                return this.record.status != 'cancelled' && (this.record.status == 'completed' || this.record.status == 'cancelled');
             },
             canAwardJob(){
                 return !this.record.awarded_to && this.record.status != 'cancelled';
@@ -563,7 +552,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             isMyJob(){
                 if(Object.keys(this.record).length){
                     let user = JSON.parse(this.$store.getters.getAuthUser);
-                    if(this.record.user_id != user.id){                  
+                    if(this.record.user_id != user.id){
                         this.reviewType = 'review';
                     }
 
@@ -589,7 +578,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 }
             },
             canModifyBid(){
-                if(Object.keys(this.record).length && this.record.my_bid){                    
+                if(Object.keys(this.record).length && this.record.my_bid){
                     return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
                 }
             },
@@ -599,7 +588,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 }
             },
             submitUrl(){
-                if(this.record){  
+                if(this.record){
                     return this.confirmPopupUrl;
                 }
             },
@@ -641,15 +630,15 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 return this.record.status == 'cancelled';
             },
             disabledMarkJobComplete(){
-                if(this.record){  
+                if(this.record){
                     return this.record.status == 'completed';
                 }
             },
             disabledMarkJobDone(){
-                if(this.record.my_bid){  
+                if(this.record.my_bid){
                     return this.record.my_bid.status != 'initiated';
                 }
-            } 
+            }
 
 
         },
@@ -672,13 +661,13 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
             googleGetAddress(record){
 
-                let self = this;            
+                let self = this;
                 var addressObj = {
                     address_line_1: record.address,
                     address_line_2: '',
                     city:           record.city,
-                    state:          record.state,               
-                    zip_code:       '',            
+                    state:          record.state,
+                    zip_code:       '',
                     country:        record.country
                 }
                 Vue.$geocoder.send(addressObj, response => {
@@ -748,7 +737,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 this.requestBidUrl = 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id;
             },
             formSubmitted(response){
-                this.reSendCall();         
+                this.reSendCall();
                 if(!response.data.is_archived && response.data.status == 'completed')
                 {
                     this.showReviewForm = true;
@@ -757,7 +746,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             onClick(i) {
                 this.index = i;
-            },        
+            },
             reSendCall(){
 
                 let self = this;
@@ -795,7 +784,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 let user = JSON.parse(this.$store.getters.getAuthUser);
 
                 if(this.record.user_id != user.id && this.record.my_bid){
-                    this.jobBids.data.push(this.record.my_bid);                    
+                    this.jobBids.data.push(this.record.my_bid);
                 }
                 if(this.jobBids.data.length == 0 && user.role_id == 2){
                     this.showChatButton = false
@@ -813,7 +802,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
 
                 if(response.data){
                     for (var i = 0; i < response.data.length; i++) {
-                        self.jobBids.data.push(response.data[i]);    
+                        self.jobBids.data.push(response.data[i]);
                     }
 
                     self.jobBids.pagination = response.pagination;
@@ -827,7 +816,7 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
             },
             Modify(){
                 this.$router.push({name: 'job.view' , params : { id : this.record.id }});
-            },        
+            },
             VisitPopup(){
                 this.visitpopup = true;
             },
@@ -924,10 +913,10 @@ src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
                 if (this.bidReview.match("#viewBid")) {
                     setTimeout(function(){
                         var elmnt = document.getElementById("bid-review");
-                        elmnt.scrollIntoView();        
+                        elmnt.scrollIntoView();
                     }, 1000);
                 }
-            }   
+            }
         },
         components: {
             StarRating,

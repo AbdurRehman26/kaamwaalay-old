@@ -52,6 +52,7 @@ Vue.component('front-header',require('./components/front/common-components/heade
 Vue.component('main-nav',require('./components/front/common-components/navigations/MainNav.vue').default);
 Vue.component('customer-nav',require('./components/front/common-components/navigations/CustomerNav.vue').default);
 Vue.component('provider-nav',require('./components/front/common-components/navigations/ProviderNav.vue').default);
+Vue.component('common-nav', require('./components/front/common-components/navigations/CommonNav.vue').default);
 
 // Footer
 Vue.component('front-footer',require('./components/front/common-components/Footer.vue').default);
@@ -102,5 +103,4 @@ Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue').defaul
 Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue').default);
 Vue.component('job',require('./components/front/common-components/Job.vue').default);
 
-Vue.component('zip',require('./components/front/common-components/Zip.vue').default);
 Vue.component('city',require('./components/front/common-components/City.vue').default);

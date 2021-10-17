@@ -7,7 +7,7 @@
                 <div class="job-main-title">
                     <li @click.prevent="viewDetails(job.id)">
                         <h3 class="pointer">{{job.title}}</h3>
-                    </li> 
+                    </li>
                 </div>
                 <div class="job-notification">
                     <div class="jobs-done">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-md-6 job-bid-btn p-r-0">
-                <a v-canBid href="javascript:void(0);" v-if="!job.my_bid && job.status != 'completed' &&  job.status != 'cancelled' && !job.awarded_to" @click="showBidPopup('bidNow')" class="btn btn-primary post-bid m-r-10">Bid Now</a>
+                <a v-canBid href="javascript:void(0);" v-if="!job.my_bid && job.status != 'completed' &&  job.status != 'cancelled' && !job.awarded_to" @click="showBidPopup('bidNow')" class="btn btn-primary post-bid m-r-10">Apply Now</a>
                 <a href="javascript:void(0);" v-else @click="$emit('chatMessage', job)" class="chat-message" :class="{disable: job.can_message == null? true : false}"><i class="icon-message"></i></a>
                 <button class="btn btn-primary" @click.prevent="viewDetails(job.id)">View Details </button>
             </div>
@@ -68,7 +68,7 @@
                     <div class="feeback-detail">
                         <p class="feedback-personal-info">
                             <a href="javascript:void(0);">{{job.review_details.user_detail.first_name + " " + job.review_details.user_detail.last_name}}</a>
-                            posted on 
+                            posted on
                             <strong>{{job.review_details.formatted_created_at}}</strong>
                         </p>
                         <i class="icon-quotes-right3"></i>
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-        </div> 
+        </div>
 
     </div>
 </template>
@@ -89,7 +89,7 @@
             StarRating
         },
         data(){
-            return { 
+            return {
                 bidValue : '',
                 currentrecord : '',
             }
@@ -109,7 +109,7 @@
 
                 let routeData = this.$router.resolve({ name: 'job.details', params: { id: id }});
                 window.open(routeData.href, '_blank');
-            
+
             },
             getImage(img) {
                 return img ? img : 'images/dummy/image-placeholder.jpg'

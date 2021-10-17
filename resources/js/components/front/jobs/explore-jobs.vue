@@ -3,19 +3,19 @@
         <div class="search-fixture">
             <div class="grey-bg section-padd xs border-top-bottom search-fix">
                 <div class="container element-index">
-                    <div class="content-inner md">                        
+                    <div class="content-inner md">
                         <div class="search-filter service-professional">
                             <!-- <h1 class="heading-large">Find best skilled service professionals near you.</h1> -->
                             <h3 class="labelheading">Select Service Category</h3>
                             <div class="custom-multi" :class="{ 'invalid': isInvalid }">
-                                <multiselect select-label="'Press click to select'" deselect-label="'Press click to remove'" :showNoResults="true" v-model="searchValue" :options="servicesList"  placeholder="Enter the service name whose jobs you want to explore" track-by="id" label="title" :loading="isLoading"  id="ajax" open-direction="bottom" :searchable="true" :options-limit="300" :limit="3" :limit-text="limitText" :max-height="600"  @search-change="asyncFind" name="search">
-                                <span slot="noResult">No service found.</span>
-                                </multiselect>
+                              <multiselect  v-model="searchServiceValue" :options="servicesList"  placeholder="What service do you need?" track-by="id" label="title"  open-direction="bottom" :max-height="700" name="search">
+            											<span slot="noResult">No service found.</span>
+            									</multiselect>
                             </div>
                             <div class="container-zip-code ml-1" style="height: auto;">
-                                <i class="icon-location"></i>
-                                <input type="hidden" name="zip">
-                                <input type="number" placeholder="Zip code" class="form-control lg zip-code" v-model="zipCode" name="zip" :class="[errorBag.first('zip') ? 'is-invalid' : '']" v-validate="'required|numeric'" @keyup.enter="validateBeforeSubmit" style="padding-top: 12px; padding-bottom: 13px; height: auto;">
+                              <multiselect  v-model="searchAreaValue" :options="areasList"  placeholder="Where do you need?" track-by="id" label="name"  open-direction="bottom" :max-height="700" name="search" :internal-search="true" >
+                                  <span slot="noResult">No service found.</span>
+                              </multiselect>
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">
                                 <span>Search Jobs</span>
@@ -35,7 +35,7 @@
                 <div class="container md">
 
                         <explore-jobs-list :records="records" @chatMessage="showChatBox" tabType="activebid"></explore-jobs-list>
-                    
+
                 </div>
                 <no-record-found v-show="noRecordFound"></no-record-found>
 
@@ -47,7 +47,6 @@
 
 
         <vue-common-methods :infiniteLoad="true" :url="requestUrl" @get-records="getResponse"></vue-common-methods>
-        <vue-common-methods :url="requestCityUrl" @get-records="getCityResponse" :hideLoader="true"></vue-common-methods>
 
 
     </div>
@@ -58,6 +57,8 @@
     export default {
         data () {
             return {
+                searchServiceValue: '',
+                searchAreaValue: '',
                 url : 'api/job?explore_jobs=true&filter_by_status=in_bidding&pagination=true&details["profile_data"]=true',
                 bid_selection: 'activebid',
                 isShowing:false,
@@ -67,9 +68,6 @@
                 isLoading : false,
                 isLoadingCity : false,
                 isTouched: false,
-                zipCode : '',
-                servicesList : [],
-                cityUrl : 'api/city',
                 cities : [],
                 loading : false,
                 searchPlace : '',
@@ -80,7 +78,7 @@
                 showChat : false,
                 jobMessageData: {},
                 strict: false,
-                disabledChat: false,  
+                disabledChat: false,
                 invalidZip: false,
             }
         },
@@ -108,15 +106,9 @@
             customLabel ({ name, state }) {
                 return `${name} → ${state.name}`
             },
-            getCityResponse(response){
-                if(response.data){
-                    let self = this;
-                    self.cities = response.data;
-                }
-            },
             validateBeforeSubmit() {
                 let dateNow = new Date().getMilliseconds();
-                
+
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         this.records = [];
@@ -130,7 +122,7 @@
                         if(this.zipCode){
                             this.url += '&filter_by_zip='+this.zipCode;
                         }
-                        
+
                         this.searchService = '';
                         this.searchPlace = '';
 
@@ -139,7 +131,7 @@
                     }
                     this.errorMessage = this.errorBag.all()[0];
                 });
-            }, 
+            },
             getResponse(response){
                 let self = this;
 
@@ -154,49 +146,9 @@
                     this.searchService = this.searchValue ? this.searchValue.title : "";
                 }
 
-                let cityId = this.cityValue;
-                let obj = _.find(this.cities, item =>{
-                    if(item.id == cityId){
-                        return item; 
-                    }
-                });
                 self.noRecordFound = response.noRecordFound;
 
-                this.searchPlace = obj ? obj.name : '';
-
             },
-            limitText (count) {
-                return `and ${count} other services`
-            },
-            asyncFind: _.debounce(function(query) {
-                let self = this;
-                if(!query || query.length < 3) return;
-                this.searchUrl  = 'api/service?keyword='+query;
-                this.isLoading = true;
-                this.$http.get(this.searchUrl).then(response => {
-                    response = response.data;
-                    self.servicesList = response.data;
-                    self.isLoading = false;
-
-                }).catch(error=>{
-                });
-            }, 1000),
-            limitTextCity (count) {
-                return `and ${count} other services`
-            },
-            asyncFindCity: _.debounce(function(query) {
-                let self = this;
-                if(!query || query.length < 3) return;
-                let url  = 'api/city?keyword='+query+'&details=true';
-                this.isLoadingCity = true;
-                this.$http.get(url).then(response => {
-                    response = response.data;
-                    self.citiesList = response.data;
-                    self.isLoadingCity = false;
-
-                }).catch(error=>{
-                });
-            }, 1000),
             AddCustomer() {
                 this.customer = true;
             },
@@ -212,7 +164,7 @@
             },
             showinfo() {
                 this.infoval = true;
-            },        
+            },
             HideModal(){
                 this.showBidPopup = false;
                 this.infoval = false;
@@ -230,26 +182,24 @@
             showProfile(){
                 window.scrollTo(0,0);
                 this.$router.push({name: 'Explore_Detail'});
-            },  
+            },
 
         },
        mounted() {
-        let currentUser = JSON.parse(this.$store.getters.getAuthUser);
-        this.zipCode = currentUser.zip_code;
-        if(this.zipCode) {
-            this.url += '&filter_by_zip='+this.zipCode;
-        }
-        
        },
         computed : {
+            servicesList() {
+              console.log(this.$store);
+              return this.$store.getters.getAllServices
+            },
+            areasList() {
+              return this.$store.getters.getAreasList
+            },
             isInvalid () {
                 return this.isTouched && !this.searchValue
             },
             requestUrl(){
                 return this.url;
-            },
-            requestCityUrl(){
-                return this.cityUrl;
             },
         },
         watch:{

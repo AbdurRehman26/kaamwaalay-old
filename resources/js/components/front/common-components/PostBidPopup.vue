@@ -1,26 +1,26 @@
-+<template>  
++<template>
     <div>
 
         <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" hide-footer>
             <form @submit.prevent="validateBeforeSubmit">
                 <div class="model-content">
-                    <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                    <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                     <p>Post a bid on <strong>{{ job ? job.title : ''}}</strong> job posted by <strong> {{  job ? job.user : ''  | fullName }} </strong></a></p>
                     <b-row class="justify-content-md-center">
                         <b-col md="1">
                             <label>&nbsp;</label>
                             <div class="custom-circle-radio">
                                 <input  value="amount_value" v-model="bidType" type="radio" id="bid_amount" name="radio-group">
-                                <label for="bid_amount" class="m-t-5 m-b-5">&nbsp;</label>                                    
+                                <label for="bid_amount" class="m-t-5 m-b-5">&nbsp;</label>
                             </div>
                         </b-col>
                         <b-col md="6">
-                            <div class="form-group">                                                            
-                                <label for="bid_amount">Bid Amount</label>
-                                <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Bid amount in $" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
-                                
+                            <div class="form-group">
+                                <label for="bid_amount">Amount (Estimation)</label>
+                                <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Amount in PKR" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
+
                             </div>
-                        </b-col> 
+                        </b-col>
                         <b-col md="5">
                             <div class="form-group">
                                 <label class="nolabel">&nbsp;</label>
@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <div class="custom-circle-radio">
                                     <input value="is_tbd" v-model="bidType" type="radio" id="further_discussion" name="radio-group" checked>
-                                    <label for="further_discussion">Further discussion (chat) required to quote</label>   
+                                    <label for="further_discussion">Further discussion (chat) required to quote</label>
                                 </div>
                             </div>
                         </b-col>
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <div class="custom-circle-radio">
                                     <input value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
-                                    <label for="visit_required">Visit required to quote (request for visit)</label>  
+                                    <label for="visit_required">Visit required to quote (request for visit)</label>
                                 </div>                            </div>
                             </b-col>
                             <b-col v-if="bidType == 'visit_required'" md="6">
@@ -63,7 +63,7 @@
                                 <label>Proposal Statement</label>
                                 <div class="form-group">
                                     <textarea name="description" v-validate="'required|max:500'" :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" placeholder="Start typing your proposal statement"  rows="5"></textarea>
-                                </div>           
+                                </div>
                             </b-col>
                         </b-row>
 
@@ -103,17 +103,17 @@
                 return {
 
                     disabledDates: {
-                        to: this.getPrevDate(), 
+                        to: this.getPrevDate(),
                     },
                     updateForm : false,
                     bidType : 'amount_value',
                     date:'',
                     amountTypes : [
-                    {           
+                    {
                         key : 'min',
                         value : 'Minimum'
                     },
-                    {           
+                    {
                         key : 'max',
                         value : 'Maximum'
                     }
@@ -149,7 +149,7 @@
                 }
             },
             computed : {
-                
+
                 submitUrl(){
                     return this.url;
                 },
@@ -162,8 +162,8 @@
                         })
 
                     }, 100);
-                    
-                    return this.bidType == 'amount_value'; 
+
+                    return this.bidType == 'amount_value';
                 },
 
                 isVisitRequired() {
@@ -209,7 +209,7 @@
                         if (result) {
                             this.submitFormData.is_tbd = 0;
                             this.submitFormData.is_visit_required = 0;
-                            
+
                             this.submitFormData.job_id = this.job.id;
 
                             if(this.bidType == 'is_tbd'){
@@ -277,7 +277,7 @@
                     this.submitFormData.job_id = '';
                     this.submitFormData.preferred_date = '';
                     this.submitFormData.preferred_time = '';
-                    this.submitFormData.is_visit_required = 0;                    
+                    this.submitFormData.is_visit_required = 0;
                     this.bidType = 'amount_value';
 
                     setTimeout(function () {
@@ -291,7 +291,7 @@
             },
             watch:{
                 bid (value){
-                    if(value){                
+                    if(value){
                         this.setBidData();
                     }
                 },

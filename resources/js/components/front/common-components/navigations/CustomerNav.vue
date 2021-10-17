@@ -8,9 +8,9 @@
             <li>
 
                 <div class="user-login-detail float-left pointer" @click="changePassword">
-                    <span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">                        
+                    <span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">
                     </span>
-                    <span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">                        
+                    <span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">
                     </span>
                     <p class="username">{{fullName}}</p>
                 </div>
@@ -35,6 +35,9 @@
             </ul>
         </li>
     </ul>
+
+    <common-nav/>
+
 </div>
 </template>
 
@@ -42,7 +45,6 @@
     import { directive as onClickaway } from 'vue-clickaway';
     export default{
         mounted (){
-            this.getAllServices();
         },
         data () {
             return {
@@ -84,16 +86,16 @@
                 this.isShowing = false;
                 this.tab = false;
             },
-            WriteReviewModal(){                
+            WriteReviewModal(){
                 this.$emit('WriteReviewModal');
-            },         
+            },
             ViewBid(){
                 /*this.$router.push({name: 'job-details'})*/
                 this.$emit('ViewBid');
-            },           
+            },
             scrollToTop() {
                 window.scrollTo(0,0);
-            },                       
+            },
             getAllServices() {
                 let self = this;
                 let url = 'api/service?order_by=title';

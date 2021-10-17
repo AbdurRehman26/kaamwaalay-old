@@ -3,7 +3,7 @@
     <div class="navigation main-navigation provider-navigation">
         <ul class="float-left">
             <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/explore-jobs">Explore Jobs </router-link></li>
-            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-bids">My Bids</router-link></li>
+            <li @click="$emit('clickmenu')"><router-link @click.native="scrollToTop()" to="/my-bids">My Applications</router-link></li>
             <li>
 
                 <div class="user-login-detail float-left pointer"  @click="changePassword">
@@ -36,6 +36,7 @@
 </ul>
 <!--  Get Service provider profile  -->
 <vue-common-methods :url="url" :hideLoader='true' @get-records="getResponse"></vue-common-methods>
+<common-nav/>
 
 
 </div>
@@ -44,7 +45,6 @@
     import { directive as onClickaway } from 'vue-clickaway';
     export default{
         mounted(){
-            this.getAllServices();
         },
         data () {
             return {
@@ -74,7 +74,10 @@
             },
             imageValue(){
                 return this.userDetails ? this.userDetails.profileImage : ''
-            }
+            },
+            requestCityUrl(){
+                return this.cityUrl;
+            },
         },
         methods: {
             changePassword(){
@@ -104,18 +107,6 @@
             },
             scrollToTop() {
                 window.scrollTo(0,0);
-            },
-            getAllServices() {
-                let self = this;
-                let url = 'api/service?order_by=title';
-                self.$http.get(url).then(response=>{
-                    response = response.data;
-                    self.$store.commit('setAllServices' , response.data);
-                    self.$store.commit('setServiceUrlPrefix' , response.url_prefix);
-                }).catch(error=>{
-
-
-                });
             },
             getResponse(response){
                 if(response.data){
