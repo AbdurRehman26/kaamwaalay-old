@@ -117,6 +117,7 @@
         },
         computed: {
             getCountry() {
+                console.log(132131231231);
                 return this.job.city? this.job.city + ", "+ this.job.state : this.job.state;
             },
             hideChangeBid() {

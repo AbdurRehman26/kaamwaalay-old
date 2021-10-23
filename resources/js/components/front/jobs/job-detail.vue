@@ -120,7 +120,7 @@
                             <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total">
                                 No Application(s) recieved
                                 <router-link v-if="record.status !== 'cancelled'" href="javascript:void(0);" class="pull-right"
-                                :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Invite service providers</router-link>
+                                :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , cityArea : cityArea }}">Invite service providers</router-link>
 
                             </div>
 
@@ -239,7 +239,7 @@
                 <div class="service-provider">
 
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite mb-4" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
-                        <h3>Find &amp; invite service providers to bid on your job.</h3>
+                        <h3>Find &amp; invite service providers to apply on your job.</h3>
                         <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0"
                         :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : record.zip_code }}">Find &amp; Invite</router-link>
@@ -550,9 +550,8 @@
                     return !this.record.service_provider_review && this.record.my_bid.status == 'completed' && this.record.status == 'completed';
                 }
             },
-            zipCode(){
-                let user = JSON.parse(this.$store.getters.getAuthUser);
-                return user ? user.zip_code : false;
+            cityArea(){
+              return this.record && this.record.cityArea ? this.record.cityArea.slug : '';
             },
             mapUrl(){
                 return this.axisPoints;

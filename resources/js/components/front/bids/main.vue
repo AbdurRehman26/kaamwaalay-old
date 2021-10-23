@@ -2,26 +2,26 @@
     <div class="my-job-lising-content">
         <div v-if="profileApproved && loadingCompleted" class="container">
             <div  class="bidding-sec">
-                <h2>My Bids</h2>
+                <h2>My Applications</h2>
                 <div class="bidding-navigation">
                     <ul>
                         <li @click.prevent="onChangeTab('invitebid')" :class="{ active: bid_selection === 'invitebid', disabled: disableList }">
-                            <p>INVITATIONS <span>{{invitationCount? "(" + invitationCount + ")" : ""}}</span></p>						
+                            <p>INVITATIONS <span>{{invitationCount? "(" + invitationCount + ")" : ""}}</span></p>
                         </li>
                         <li @click.prevent="onChangeTab('activebid')" :class="{ active: bid_selection === 'activebid', disabled: disableList }">
-                            <p>ACTIVE BIDS <span>{{activeBidCount? "(" + activeBidCount + ")" : ""}}</span></p>							
+                            <p>ACTIVE APPLICATIONS <span>{{activeBidCount? "(" + activeBidCount + ")" : ""}}</span></p>
                         </li>
                         <li @click.prevent="onChangeTab('awardedbid')" :class="{ active: bid_selection === 'awardedbid', disabled: disableList }">
-                            <p>AWARDED <span>{{awardedCount? "(" + awardedCount + ")" : ""}}</span></p>						
+                            <p>AWARDED <span>{{awardedCount? "(" + awardedCount + ")" : ""}}</span></p>
                         </li>
                         <li @click.prevent="onChangeTab('completedbid')" :class="{ active: bid_selection === 'completedbid', disabled: disableList }">
-                            <p>COMPLETED <span>{{completedCount? "(" + completedCount + ")" : ""}}</span></p>                           
+                            <p>COMPLETED <span>{{completedCount? "(" + completedCount + ")" : ""}}</span></p>
                         </li>
                         <li @click.prevent="onChangeTab('cancelled')" :class="{ active: bid_selection === 'cancelled', disabled: disableList }">
-                            <p>CANCELLED <span>{{cancelledCount? "(" + cancelledCount + ")" : ""}}</span></p>							
+                            <p>CANCELLED <span>{{cancelledCount? "(" + cancelledCount + ")" : ""}}</span></p>
                         </li>
                         <li @click.prevent="onChangeTab('archivedbid')" :class="{ active: bid_selection === 'archivedbid', disabled: disableList }">
-                            <p>ARCHIVED <span>{{archivedCount? "(" + archivedCount + ")" : ""}}</span></p>					
+                            <p>ARCHIVED <span>{{archivedCount? "(" + archivedCount + ")" : ""}}</span></p>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
 
             <post-bid-popup @HideModalValue="hideModal" :showModalProp="bidpopup"></post-bid-popup>
             <!-- <info-popup @HideModalValue="HideModal" :showModalProp="infoval"></info-popup> -->
-            <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat" :strict="strict" :disabled="disabledChat"></chat-panel>  
+            <chat-panel v-show="showChat" @closeChat="closeChatBox" :messageData="jobMessageData" :show="showChat" :strict="strict" :disabled="disabledChat"></chat-panel>
 
         </div>
         <profile-not-approved v-if="!profileRejected && !profileInComplete && !profileApproved && loadingCompleted"></profile-not-approved>
@@ -61,16 +61,16 @@
                 bidUrl: null,
                 records : [],
                 chat_message: true,
-                noRecordFound: false,   
+                noRecordFound: false,
                 bid_selection: '',
                 bidpopup: false,
                 isShowing:false,
                 infoval:false,
-                invitationCount: 0,    
-                activeBidCount: 0,    
-                archivedCount: 0,    
-                awardedCount: 0,    
-                completedCount: 0,    
+                invitationCount: 0,
+                activeBidCount: 0,
+                archivedCount: 0,
+                awardedCount: 0,
+                completedCount: 0,
                 cancelledCount: 0,
                 url : 'api/service-provider-profile-request/approved-profile',
                 profileApproved : false,
@@ -81,7 +81,7 @@
                 showChat : false,
                 jobMessageData: {},
                 strict: false,
-                disabledChat: false,  
+                disabledChat: false,
             }
         },
 
@@ -130,7 +130,7 @@
                 }
                 for (var i = 0 ; i < len; i++) {
                     this.records.push( response.data[i] ) ;
-                    
+
                 }
                 this.noRecordFound = response.noRecordFound;
                 this.pagination = response.pagination;
@@ -177,7 +177,7 @@
             },
             showinfo() {
                 this.infoval = true;
-            },    
+            },
             hideModal(){
                 this.bidpopup = false;
                 this.infoval = false;
@@ -242,7 +242,7 @@
 
 
                 if(typeof(page) !== 'undefined' && page){
-                    url += '&page='+page;   
+                    url += '&page='+page;
                 }
 
                 self.$http.get(url).then(response=>{
@@ -278,7 +278,7 @@
 
                 if(response.noRecordFound){
                     this.profileInComplete = true;
-                    this.loadingCompleted = true;     
+                    this.loadingCompleted = true;
                 }
 
                 if(Object.keys(response.data).length){

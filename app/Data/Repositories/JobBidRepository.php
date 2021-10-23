@@ -295,7 +295,7 @@ public function getCompletedJobs($criteria)
 {
 
     $model = JobBid::where($criteria);
-    
+
     if ($model != null) {
         $model = $model->
         leftJoin('jobs', 'jobs.id', '=', 'job_bids.job_id')

@@ -19,7 +19,7 @@
             StarRating
         },
         data(){
-            return { 
+            return {
                 bidValue : '',
                 currentRecord : '',
                 showBidPopup: false,
