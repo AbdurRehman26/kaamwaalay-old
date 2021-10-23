@@ -63,9 +63,6 @@ class JobController extends ApiResourceController
         if($value == 'update'){
             $rules['id'] =  'required|exists:jobs,id,user_id,'.$this->input()['user_id'];
             $rules['service_id'] = 'exists:services,id';
-            $rules['state_id'] = 'exists:states,id';
-            $rules['country_id'] = 'exists:countries,id';
-            $rules['city_id'] = 'exists:cities,id';
         }
         return $rules;
 

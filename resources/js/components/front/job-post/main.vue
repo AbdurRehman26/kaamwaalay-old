@@ -224,11 +224,13 @@
         methods:{
             getJobResponse(response){
 
+                if(Object.keys(response.data).length){
                 let self = this;
-
                 this.currentJob = response.data;
                 this.formData = response.data;
-                this.currentCity = this.formData.city_id;
+                this.searchAreaValue = response.data.cityArea;
+                this.searchServiceValue = response.data.service;
+
                 if(this.checkJob && response.data.length){
                     this.onStateChange();
                  }
@@ -239,7 +241,7 @@
                     })
 
                 }, 100);
-
+              }
 
             },
 
@@ -278,8 +280,6 @@
             onSubmit() {
                 let self = this;
                 let data = JSON.parse(JSON.stringify(this.formData));
-                console.log(this.formData);
-                data.service_id = this.searchServiceValue.id;
                 data.city_area_id = self.searchAreaValue.id;
                 data.service_id = this.searchServiceValue.id;
                 self.loading = true;
@@ -314,11 +314,6 @@
                 window.scrollTo(0,0);
                 this.$router.push({name: 'My Jobs'});
             },
-            removeImage(imageIndex){
-                this.formData.images.splice(imageIndex , 1);
-                this.$forceUpdate();
-                return false;
-            },
             getUserResponse(response){
 
                 if(response.data.length){
@@ -327,16 +322,6 @@
             }
 
         },
-        watch:{
-            jobType (value) {
-                if(value == 'urgent_job'){
-                    this.isShowCardDetail = false
-                    this.isUrgentJob = true
-                } else{
-                    this.isShowCardDetail = true
-                    this.isUrgentJob = false
-                }
-            },
-        }
+        watch:{}
     }
 </script>
