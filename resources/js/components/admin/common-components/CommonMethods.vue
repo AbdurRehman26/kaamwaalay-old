@@ -23,7 +23,7 @@
                 loading : false,
                 noRecordFound : false,
                 callInProgress : false,
-            }  
+            }
         },
         mounted(){
             if(!this.infiniteLoad){
@@ -36,14 +36,8 @@
             },
             getList(page, successCallback){
 
-                console.group('Before Reuqest');
-                
-                
                 let self = this;
                 let url = self.url;
-                
-                console.log(this.callInProgress , 123112312321);
-
 
                 if(typeof(url) == 'undefined' || url == ''){
                     return false;
@@ -55,7 +49,7 @@
                 };
 
                 self.$emit('get-records', result);
-                
+
                 if(!this.hideLoader){
                     self.loading = true;
                 }
@@ -65,20 +59,14 @@
                 self.$emit('start-loading');
 
                 if(typeof(page) !== 'undefined' && page){
-                    url += '&page='+page;   
+                    url += '&page='+page;
                 }
-
-                
 
                 if(this.callInProgress){
                     return false;
                 }
 
                 this.callInProgress = true;
-
-                console.group('After Reuqest');
-                console.log(this.callInProgress , 123112312321);
-                console.groupEnd();
 
                 self.$http.get(url).then(response=>{
                     this.callInProgress = false;
@@ -87,7 +75,7 @@
                     }else{
                       response = response.data;
                     }
-                    
+
                     let result = {
                         data : response.data,
                         noRecordFound : false,
@@ -120,7 +108,7 @@
             },
             submitForm(successCallback) {
                 let self = this;
-                
+
                 let url = self.submitUrl;
                 let data = this.formData;
 
@@ -132,7 +120,7 @@
                     urlRequest = self.$http.post(url , data);
                 }
 
-                
+
                 urlRequest.then(response => {
                     self.$emit('form-submitted', response.data);
 
@@ -140,7 +128,7 @@
 
                     console.log(error , 'exceptional handling error in generalize CommonMethods.vue@submitForm');
                     self.$emit('form-error', error);
-                    
+
                     if(typeof(successCallback) !== 'undefined'){
                         return successCallback(true);
                     }

@@ -66,19 +66,19 @@
                 </div>
 
 
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                          <multiselect  v-model="searchAreaValue" :options="areasList"  placeholder="Where do you need?" track-by="id" label="name"  open-direction="bottom" :max-height="700" name="search" :internal-search="true" >
-                              <span slot="noResult">No service found.</span>
-                          </multiselect>
+                            <label>Required Gender</label>
+                            <select v-validate="'required'" name="required_gender"
+                            :class="['form-control' , errorBag.first('required_gender') ? 'is-invalid' : '']" v-model="formData.required_gender" class="form-control">
+                            <option value="any" selected="">Any</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                     </div>
                 </div>
-
             </div>
-
-
 
             </div>
 
@@ -91,6 +91,16 @@
                             :class="['form-control' , errorBag.first('address') ? 'is-invalid' : '']" v-model="formData.address" type="text" class="form-control" placeholder="Enter your address">
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Where do you want the service?</label>
+                          <multiselect  v-model="searchAreaValue" :options="areasList"  placeholder="Where do you need?" track-by="id" label="name"  open-direction="bottom" :max-height="700" name="search" :internal-search="true" >
+                              <span slot="noResult">No service found.</span>
+                          </multiselect>
+                    </div>
+                </div>
+
                 </div>
 
             </div>
@@ -109,10 +119,8 @@
 
             </form>
         </div>
-        <vue-common-methods :url="stateUrl" @get-records="getStateResponse" :hideLoader="true"></vue-common-methods>
         <vue-common-methods v-if="$route.params.id" :url="requestJobUrl" @get-records="getJobResponse"></vue-common-methods>
 
-        <vue-common-methods v-if="formData.state_id" :url="requestCityUrl" :hideLoader="true" @get-records="getCityResponse"></vue-common-methods>
         <vue-common-methods :url="requestUserUrl" @get-records="getUserResponse" :hideLoader="true"></vue-common-methods>
 
     </div>
@@ -161,18 +169,14 @@
                 },
                 choosedate: 'choosedate',
                 formData : {
+                    required_gender: 'any',
                     service_id : '',
                     title : '',
                     description : '',
                     preference : 'choose_date',
                     schedule_at :  new Date(),
                     address : '',
-                    apartment : '',
-                    city_id : '',
-                    country_id : 231,
-                    state_id : '',
-                    zip_code : '',
-                    videos : '',
+                    city_area_id : '',
                     images : [],
                     subscription_id : null
                 },
@@ -203,23 +207,8 @@
               return this.$store.getters.getAreasList
             },
             servicesList(){
-                // if(this.$route.params.id){
-                //     this.prefillValues();
-                // }
-                this.prefillValues();
-                let self = this;
-                this.searchServiceValue =  _.find(this.$store.getters.getAllServices , function(service){
-                    return self.formData.service_id == service.id;
-                });
-                var services = _.forEach(this.$store.getters.getAllServices, function(service) {
-                    if(!service.parent_id) {
-                        var tempStr = service.title.replace(/\(Main Category\)/ig, "");
-                        service.title = tempStr + " (Main Category)";
-                    }
-                });
-                return services;
+                return this.$store.getters.getAllServices;
             },
-
             requestCityUrl(){
                 return this.cityUrl;
             },
@@ -233,95 +222,6 @@
         mounted () {
         },
         methods:{
-            asyncFind: _.debounce(function(query) {
-                let self = this;
-                this.videoValid = false;
-                if(!query) {
-                    this.videoValid = true;
-                    this.loading = false;
-                    return false;
-                }
-                if(query.length != 11) {
-                    return;
-                };
-                this.videoValid = true;
-                this.checkYouTubeVideo();
-
-            }, 1000),
-
-            prefillValues(){
-
-
-                let user = JSON.parse(this.$store.getters.getAuthUser);
-                this.formData.city_id = this.formData.city_id ? this.formData.city_id : user.city_id;
-                this.onStateChange();
-
-                let self = this;
-                let zipCode = this.$route.query.zip;
-                let serviceName = this.$route.query.service_name;
-                if(zipCode){
-                    this.formData.zip_code = zipCode;
-                }
-
-                if(serviceName){
-                    let allServices = this.$store.getters.getAllServices;
-                    if(allServices){
-                        _.find(allServices , function(service){
-                            if(service.url_suffix == serviceName){
-                                self.searchServiceValue = service;
-                            }
-                        });
-                    }
-                }
-
-                if(this.$route.query.service_provider_user_id){
-                    self.formData.service_provider_user_id = this.$route.query.service_provider_user_id;
-                }
-
-            },
-            setZipCode(val) {
-                //This is for select service unselected value start
-                let self = this;
-                // var searchServiceValue = this.searchServiceValue;
-                // setTimeout(function() {
-                //     self.searchServiceValue = searchServiceValue;
-                // }, 2000);
-                //This is for select service unselected value end
-                //if(this.checkZip) {
-                    if(val.zip_code){
-                        this.formData.zip_code = val.zip_code;
-                        this.setCity(val)
-                        this.invalidZip = false;
-                    }
-                    if(!val.zip_code) {
-                        this.invalidZip = true;
-                    }
-                //}
-                //this.checkZip = true;
-            },
-            setCity(object){
-                if(object.state_id){
-                    this.formData.state_id = object.state_id;
-                }else{
-                    this.formData.state_id = ''
-                }
-
-                if(object.city_id){
-                    this.currentCity = object.city_id;
-                }else{
-                    this.currentCity = ''
-                }
-
-                this.onStateChange();
-            },
-            paymentDetailShow(){
-                let user = JSON.parse(this.$store.getters.getAuthUser)
-                if(user.stripe_id){
-                    this.isPaymentDetailShow = false
-                }else{
-                    this.isPaymentDetailShow = true
-                }
-            },
             getJobResponse(response){
 
                 let self = this;
@@ -342,75 +242,23 @@
 
 
             },
-            getStateResponse(response){
-                let self = this;
-                self.loading = false;
-                self.states = response.data;
 
-            },
-            getCityResponse(response){
-                let self = this;
-                self.cities = response.data;
-                if(this.currentCity){
-                    this.formData.city_id = this.currentCity;
-                    this.currentCity = '';
-                }
-            },
-
-            onStateChange(select){
-
-                if(typeof(this.formData.state_id) == 'undefined'){
-                    return false;
-                }
-
-                var select = select|false;
-                if(select){
-                    this.formData.city_id = '';
-                }
-                this.cityUrl = 'api/city?state_id=' + this.formData.state_id;
-                if(this.currentCity){
-                    this.formData.city_id = this.currentCity;
-                    this.currentCity = '';
-                }
-            },
-            getResponse($event){
-                if(this.formData['images']){
-                    this.formData['images'][this.formData['images'].length] = {
-                        name : $event.name,
-                        original_name : $event.original_name
-                    };
-                }else{
-                    this.formData['images'] = [{
-                        name : $event.name,
-                        original_name : $event.original_name
-                    }];
-                }
-                this.$forceUpdate();
-            },
             validateBeforeSubmit() {
                 self = this;
                 this.isSubmit = false;
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = null;
-                    if(!this.formData.zip_code) {
-                        this.invalidZip = true;
-                        result = false;
-                    }
-
 
                     if(!this.searchServiceValue) {
                         this.errorMessage = 'The service field is required';
                         return;
                     }
 
-
+                    if(!this.searchAreaValue) {
+                        this.errorMessage = 'The area field is required';
+                        return;
+                    }
 
                     if (result) {
-
-                        if(!this.videoValid){
-                            this.errorMessage = 'The youtube video ID is invalid';
-                            return;
-                        }
 
                         setTimeout(function () {
                             if(!this.errorMessage){
@@ -420,9 +268,7 @@
                             }
                         }, 500);
 
-                        if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
-                            this.onSubmit();
-                        }
+                        this.onSubmit();
                         this.errorMessage = '';
                         return;
                     }
@@ -432,9 +278,10 @@
             onSubmit() {
                 let self = this;
                 let data = JSON.parse(JSON.stringify(this.formData));
-
+                console.log(this.formData);
                 data.service_id = this.searchServiceValue.id;
-                data.job_type = (this.jobType == 'urgent_job')?'urgent':'normal';
+                data.city_area_id = self.searchAreaValue.id;
+                data.service_id = this.searchServiceValue.id;
                 self.loading = true;
                 let url = self.url;
                 let urlRequest = '';
@@ -467,32 +314,10 @@
                 window.scrollTo(0,0);
                 this.$router.push({name: 'My Jobs'});
             },
-            getPlansList (){
-                let self = this;
-                let url = 'api/plan';
-                let params = {
-                    pagination: false,
-                    type: 'job',
-                    product: 'urgent_job',
-                };
-                self.$http.get(url, {params: params}).then(response=>{
-                    self.plans = response.data.data
-                    self.selectedPlan = self.plans[0].id
-                    self.urgentJobAmount = self.plans[0].amount
-                }).catch(error=>{
-                    if(error.response.status == 401) {
-                        self.$router.push({name: 'login'});
-                    }
-                });
-            },
             removeImage(imageIndex){
                 this.formData.images.splice(imageIndex , 1);
                 this.$forceUpdate();
                 return false;
-            },
-            addImages(){
-                this.formData.images[this.formData.images.length] = '';
-                this.$forceUpdate();
             },
             getUserResponse(response){
 
@@ -503,11 +328,6 @@
 
         },
         watch:{
-            'formData.zip_code'(val) {
-                if(!val) {
-                    this.invalidZip = true;
-                }
-            },
             jobType (value) {
                 if(value == 'urgent_job'){
                     this.isShowCardDetail = false

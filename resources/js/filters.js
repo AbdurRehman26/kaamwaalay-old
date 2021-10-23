@@ -142,7 +142,7 @@ Vue.filter('jobStatus', function (value) {
 
     let obj = _.find(jobStatuses, item =>{
         if(item.key == value.status){
-            return item; 
+            return item;
         }
     });
     return obj.value.replace(/\s/g, '').trim();
@@ -156,7 +156,7 @@ Vue.filter('jobType', function (value) {
 
     let obj = _.find(jobTypes, item =>{
         if(item.key == value.job_type){
-            return item; 
+            return item;
         }
     });
     return obj.value;
@@ -170,7 +170,7 @@ Vue.filter('userStatus', function (value) {
 
     let obj = _.find(providerStatuses, item =>{
         if(item.key == value.status){
-            return item; 
+            return item;
         }
     });
     return typeof(obj) == 'undefined' ? '' : obj.value.replace(/\s/g, '').toLowerCase().trim();
@@ -217,7 +217,7 @@ Vue.filter('childOrParentService', function (value) {
         return value.title;
     }
     if(value.parent){
-     return value.parent.title;   
+     return value.parent.title;
  }
  return '-';
 });
@@ -226,7 +226,7 @@ Vue.filter('adminStatus', function (value) {
 
     let obj = _.find(adminStatuses, item =>{
         if(item.key == value.status){
-            return item; 
+            return item;
         }
     });
 
@@ -236,7 +236,7 @@ Vue.filter('adminStatus', function (value) {
 Vue.filter('accessLevel', function (value) {
     let obj = _.find(accessLevelField, item =>{
         if(item.key == value.role_id){
-            return item; 
+            return item;
         }
     });
     return typeof(obj) == 'undefined' ? '' :obj.value.charAt(0).toUpperCase() + obj.value.substr(1).toLowerCase();
@@ -271,7 +271,7 @@ Vue.filter('mainServiceOrChildService', function (value, sign) {
     if(value.parent_id){
 
         var signValue = typeof(sign) !== 'undefined' ? sign : '→';
-        
+
         serviceHtml =   value.parent.title + ' '+signValue+' '  + value.title;
 
 
@@ -287,7 +287,7 @@ Vue.filter('jobPreference', function (value) {
 
     let obj = _.find(jobPreferences, item =>{
         if(item.key == value){
-            return item; 
+            return item;
         }
     });
 
@@ -308,7 +308,7 @@ Vue.filter('bidStatus', function (bid) {
     if(typeof(bid) == 'undefined'){
         return ;
     }
-    
+
     if(bid.is_visit_required && bid.status =='pending' || bid.is_visit_required && bid.status =='cancelled'){
         return 'Visit requested';
     }
@@ -341,7 +341,7 @@ Vue.filter('paymentType', function (value) {
 
     let obj = _.find(paymentType, item =>{
         if(item.key == value){
-            return item; 
+            return item;
         }
     });
 
@@ -364,5 +364,3 @@ Vue.filter('googleMapEmbeded', function(axisPoints) {
 
     return 'https://www.google.com/maps/embed/v1/place?key='+mapKey+'&zoom='+mapZoom+'&q='+axisPoints+'"';
 });
-
-

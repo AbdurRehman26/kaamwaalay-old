@@ -22,9 +22,6 @@ class JobController extends ApiResourceController
 
         if($value == 'store') {
             $rules['service_id'] = 'required|exists:services,id';
-            $rules['state_id'] = 'required|exists:states,id';
-            $rules['country_id'] = 'required|exists:countries,id';
-            $rules['city_id'] = 'required|exists:cities,id';
             $rules['service_provider_user_id'] = 'exists:users,id,role_id,'. 2;
 
             $rules['title'] = [
@@ -43,25 +40,6 @@ class JobController extends ApiResourceController
                 'required',
                 'string',
             ];
-            $rules['images'] = [
-                'array',
-            ];
-            $rules['images.*.name'] = [
-                'required',
-                'string',
-            ];
-            $rules['images.*.original_name'] = [
-                'required',
-                'string',
-            ];
-            $rules['job_type'] = [
-                'required',
-                'string',
-                Rule::in([
-                    Job::NORMAL,
-                    Job::URGENT,
-                ]),
-            ];
             $rules['preference'] = [
                 'required',
                 'string',
@@ -77,22 +55,6 @@ class JobController extends ApiResourceController
                 Rule::requiredIf(function () {
                     return request()->get('preference') === 'choose_date'
                             || false;
-                }),
-            ];
-            $rules['videos'] = [
-                'nullable',
-                'string',
-            ];
-            $rules['zip_code'] = [
-                'required',
-                'string',
-            ];
-
-            $rules['stripe_token'] = [
-                Rule::requiredIf(function () {
-                    return request()->get('job_type') === Job::URGENT
-                            || !request()->user()->hasStripeId()
-                                || false;
                 }),
             ];
 
@@ -114,9 +76,9 @@ class JobController extends ApiResourceController
     {
         $input = request()->only(
 
-            'id', 'title', 'service_id', 'country_id', 'state_id', 
-            'city_id', 'title', 'description', 'address', 'apartment', 'zip_code', 
-            'images', 'videos', 'schedule_at', 'preference', 'status', 'job_type', 
+            'id', 'title', 'service_id', 'country_id', 'city_area_id',
+            'city_id', 'title', 'description', 'address', 'apartment', 'preferred_gender',
+            'schedule_at', 'preference', 'status',
             'filter_by_status', 'filter_by_service', 'keyword','pagination',
             'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
             'details', 'is_archived', 'filter_by_city', 'subscription_id', 'filter_by_zip',
@@ -136,7 +98,7 @@ class JobController extends ApiResourceController
             );
 
             if(empty($input['images'][0])){
-                if(isset($input['images'])){           
+                if(isset($input['images'])){
                     $input['images'] = null;
                 }
             }
@@ -184,7 +146,7 @@ class JobController extends ApiResourceController
         $input = ['status' => 'in_bidding', 'user_id' => request()->user()->id];
 
         $data = $this->_repository->getInviteToBidJobs($input);
-        
+
         $output = [
             'data' => $data
         ];
@@ -208,4 +170,3 @@ class JobController extends ApiResourceController
         return !empty($messages[$value]) ? $messages[$value] : 'Success.';
     }
 }
-

@@ -14,6 +14,7 @@ use App\Data\Models\ServiceProviderProfile;
 use Carbon\Carbon;
 use Storage;
 use App\Data\Models\Plan;
+use App\Data\Models\CityArea;
 use Laravel\Cashier\Subscription;
 use Illuminate\Validation\ValidationException;
 
@@ -135,23 +136,14 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
     if($data) {
 
+        $data->cityArea = CityArea::find($data->city_area_id);
+
         $currentUser = request()->user();
 
         $details = ['user_rating' => true];
         $data->user = app('UserRepository')->findById($data->user_id, $refresh, $details);
 
         if(empty($details['job_details'])) {
-
-            $data->jobImages = [];
-            $data->jobThumbImages = [];
-            if(!empty($data->images)){
-                foreach ($data->images as $key => $image) {
-                    if(!empty($image['name']) && is_string($image['name'])){
-                        $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image['name']);
-                        $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image['name']);
-                    }
-                }
-            }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->service = app('ServiceRepository')->findById($data->service_id);

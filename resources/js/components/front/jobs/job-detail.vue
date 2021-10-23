@@ -79,48 +79,15 @@
                     <div class="member-details">
                         <p class="location">
                             <i class="icon-location"></i>
-                            Location <strong>{{ record.city_id  }}</strong>
+                            Location <strong>{{ record.cityArea ? record.cityArea.name : 'N/A'  }}</strong>
                         </p>
                         <p class="member-since">
-                            Date posted: <strong>{{record.created_at.date | formatDate}}</strong>
+                            Date posted: <strong>{{ record.created_at | formatDate}}</strong>
                         </p>
                     </div>
 
                     <div class="post-job-description">
                         <p>{{ record.description }}</p>
-                    </div>
-
-                    <div v-if="record.jobImages" class="jobs-post-files">
-                        <h3>Related Photos</h3>
-                        <div class="no-photos" v-if="!record.jobImages.length">
-                            <p>Photo(s) Not Available</p>
-                        </div>
-
-                        <div class="imagegallery">
-                            <img class="image" v-for="(image, i) in imageLists" :src="image" @click="onClick(i)">
-                            <vue-gallery-slideshow
-                            v-if="imageLists.length"
-                            :images="record.jobImages" :index="index" @close="index = null"></vue-gallery-slideshow>
-                        </div>
-                    </div>
-
-                    <div v-if="record.awardedBid" class="jobs-post-files">
-                        <h3>Images provided By {{user.role_id == 2 ? "You" : "Service Provider"}}</h3>
-                        <div class="no-photos" v-if="record.awardedBid.job_done_images && !record.awardedBid.job_done_images.length">
-                            <p>Photo(s) Not Available</p>
-                        </div>
-
-                        <div class="imagegallery">
-                            <img class="image" v-for="(image, i) in uploadedImageThumbList" :src="image" @click="onClick(i)">
-                            <vue-gallery-slideshow
-                            v-if="uploadedImageList.length"
-                            :images="uploadedImageList" :index="index" @close="index = null"></vue-gallery-slideshow>
-                        </div>
-                    </div>
-
-                    <div class="jobs-post-files" v-if="record.videos">
-                        <h3>Related Videos</h3>
-                        <iframe width="1280" height="365" :src="record.videos | appendYoutubeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
                     <div v-if="canViewMap" class="jobs-post-files">
@@ -137,35 +104,21 @@
                             </div>
                             <p>Address:
                                 <strong>
-                                    {{record.address + ' , '}} {{ record.apartment ? record.apartment + ' , ' : '' }} {{ record.city + ' ,'}} {{ record.state }}
+                                    {{record.address + ' , '}} {{ record.cityArea ? record.cityArea.name : 'N/A' }}
                                 </strong>
                             </p>
                         </div>
 
-                        <div class="coustomer-info-line">
-                            <div class="left-ico">
-                                <img class="icon-wth" src="/images/front/svg/capitol.svg">
-                            </div>
-                            <p>City:
-                                <strong>
-                                    {{ record.city }}
-                                </strong>
-                            </p>
-                        </div>
-
-                        <div class="coustomer-info-line m-t-20">
-                            <iframe :src="mapUrl | googleMapEmbeded" width="600" height="130" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
                     </div>
 
                     <div id="bid-review" class="chat-feedback">
 
                         <div class="text-notifer">
-                            <h3 v-if="isMyJob && jobBids.pagination">Bids Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>
+                            <h3 v-if="isMyJob && jobBids.pagination">Applications Received ({{ jobBids.pagination ? jobBids.pagination.total : '' }})</h3>
                             <h3 v-if="myBidValue && !isMyJob">My Application</h3>
 
                             <div class="no-photos" v-if="isMyJob && jobBids.pagination && !jobBids.pagination.total">
-                                No bid(s) available
+                                No Application(s) recieved
                                 <router-link v-if="record.status !== 'cancelled'" href="javascript:void(0);" class="pull-right"
                                 :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : zipCode }}">Invite service providers</router-link>
 
@@ -386,11 +339,6 @@
 
 </div>
 </template>
-
-
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key="+window.mapKey>
-</script>
 
 <script>
     import StarRating from 'vue-star-rating';
