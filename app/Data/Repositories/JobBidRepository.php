@@ -174,7 +174,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $data = parent::findById($id, $refresh, $details, $encode);
     $job_details = $details;
     $details = ['user_rating' => true];
-
     if($data) {
         $data->user = app('UserRepository')->findById($data->user_id, false, $details);
         $data->service_provider = app('ServiceProviderProfileRepository')->findByAttribute('user_id', $data->user_id);
@@ -185,7 +184,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         if($job_details) {
             $data->job = app('JobRepository')->findById($data->job_id, false, ['job_details' => true]);
-
         }
 
         $ratingCriteria = ['user_id' => $data->user_id, 'job_id' => $data->id];

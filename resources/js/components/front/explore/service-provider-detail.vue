@@ -9,25 +9,25 @@
                         <div class="category-content">
                             <h2>{{record.business_name}}</h2>
                             <div class="jobs-completed">
-                                <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>	
-                                <span class="review-job">{{record.total_feedback_count}} Feedback reviews</span>	
+                                <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
+                                <span class="review-job">{{record.total_feedback_count}} Feedback reviews</span>
                                 <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
-                                <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>	
+                                <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
                             </div>
                             <div class="service-detail">
 
-                                <a :href="postJobRoute+'&service_provider_user_id='+((record.user_detail && record.user_detail.id)? record.user_detail.id : '')" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite to Bid</a>
+                                <a :href="postJobRoute+'&service_provider_user_id='+((record.user_detail && record.user_detail.id)? record.user_detail.id : '')" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
 
                                 <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
-                                    Invite to Bid
+                                    Invite
                                 </a>
                                 <!-- <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a> -->
-                            </div>	
+                            </div>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="elements">
-                    <img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
+                    <img src="/images/front/banner-bg/bg-5.png" class="top-left">
                     <img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
                 </div>
             </div>
@@ -48,10 +48,10 @@
 
                                 <div class="member-details">
                                     <p class="location">
-                                        <i class="icon-location"></i> 
-                                        Location <strong>{{ getCity }}</strong>
+                                        <i class="icon-location"></i>
+                                        Location <strong>{{ getCityArea }}</strong>
                                     </p>
-                                    <p class="member-since">										
+                                    <p class="member-since">
                                         Member since <strong>{{ record.formatted_created_at }}</strong>
                                     </p>
                                 </div>
@@ -62,7 +62,7 @@
 
                                 <div class="chat-feedback">
                                     <div class="text-notifer">
-                                        <h3>Feedback & Reviews</h3>	
+                                        <h3>Feedback & Reviews</h3>
                                     </div>
                                     <div class="chat-feedback-column" v-for="reviewer in reviewerRecords" v-if="!noRecordFound">
                                         <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getUserImage(reviewer.user_detail) +')',}"></div>
@@ -71,7 +71,7 @@
                                             <div class="feeback-detail">
                                                 <p class="feedback-personal-info">
                                                     <a href="javascript:void(0);">{{reviewer.user_detail.first_name + " " +reviewer.user_detail.last_name}}</a>
-                                                    posted on 
+                                                    posted on
                                                     <strong>{{reviewer.formatted_created_at}}</strong>
                                                 </p>
                                                 <div class="ratings">
@@ -81,9 +81,9 @@
                                         </div>
                                     </div>
                                     <no-record-found v-if="noRecordFound"></no-record-found>
-                                    
+
                                     <vue-common-methods :url="reviewUrl" :infiniteLoad="true" @get-records="getReviewerRecords"></vue-common-methods>
-                                </div>						
+                                </div>
 
                             </div>
                         </div>
@@ -100,11 +100,11 @@
                                         {{ service.title }}
                                     </li>
                                 </ul>
-                            </div>						
+                            </div>
 
                         </div>
                     </div>
-                </div>			
+                </div>
             </div>
 
         </div>
@@ -137,10 +137,8 @@
             }
         },
         computed: {
-            getCity() {
-                var city = this.record.user_detail? this.record.user_detail.city : '';
-                city += (this.record.user_detail && this.record.user_detail.state)? ', ' + this.record.user_detail.state : "";
-                return city;
+            getCityArea() {
+                return this.record.user_detail && this.record.user_detail.cityArea ? this.record.user_detail.cityArea.name : 'N/A';
             },
             inBiddingJobs(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
@@ -187,7 +185,7 @@
             },
             categorylisting(){
                 window.scrollTo(0,0);
-                this.$router.push({name: 'Explore'});	
+                this.$router.push({name: 'Explore'});
             },
             getServiceProvider() {
                 window.scrollTo(0,0);

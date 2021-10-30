@@ -1,11 +1,11 @@
 <template>
  <div>
 
-    <b-modal id="invite-bid" class="post-bid-form invite-job-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Invite to bid" hide-footer>
+    <b-modal id="invite-bid" class="post-bid-form invite-job-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Invite" hide-footer>
 
         <form @submit.prevent="validateBeforeSubmit">
             <div class="model-content">
-                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>        
+                <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                 <b-row class="justify-content-md-center">
 
                     <b-col md="12">
@@ -31,7 +31,7 @@
             </footer>
         </form>
 
-    </b-modal>            
+    </b-modal>
 </div>
 </template>
 
@@ -57,7 +57,7 @@
                 noRecordFound: false,
                 btnLoading: false,
                 isLoading : false,
-                options: [],				
+                options: [],
                 zipCode: '',
                 isTouched: false,
                 searchValue: '',
@@ -73,7 +73,7 @@
                 showCollapse: true,
                 authUser: '',
                 routeName: '',
-                isZipEmpty: false,                	
+                isZipEmpty: false,
             }
         },
         computed : {
@@ -117,13 +117,13 @@
             }).catch(error => {
                 let errors = error.response.data.errors;
                 self.loading = false;
-                
+
                 _.forEach(errors, function(value, key) {
                     self.errorMessage =  errors[key][0];
                     return false;
                 });
 
-                
+
             });
 
         },
@@ -190,11 +190,11 @@
         showModalProp(value){
 
             if(value){
-                
+
                 if(this.jobs.length == 1){
                     this.searchValue = this.jobs[0].id;
                 }
-                
+
                 this.showModal();
             }
             if(!value){

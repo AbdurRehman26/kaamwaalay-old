@@ -26,7 +26,7 @@
         <div class="member-details">
             <p class="location">
                 <i class="icon-location"></i>
-                Location <strong>{{ getCountry}}</strong>
+                Location <strong>{{  job.cityArea ? job.cityArea.name : 'N/A' }}</strong>
             </p>
             <p class="offer" v-if="job.my_bid">
                 <i class="icon-work-briefcase"></i>

@@ -163,7 +163,6 @@
 getCityAreaResponse(response){
 
     this.cityAreas = response.data;
-    console.log(this.cityAreas);
 },
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
@@ -179,6 +178,8 @@ onSubmit() {
     let data = {
         user_details : this.record
     };
+
+    data.user_details.city_area_id = this.record.city_area.id;
 
     self.loading = true;
     let url = 'api/user/'+this.record.id;

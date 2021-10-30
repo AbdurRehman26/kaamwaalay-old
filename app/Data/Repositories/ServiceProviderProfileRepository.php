@@ -47,7 +47,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if ($data) {
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             $data->user_detail = app('UserRepository')->findById($data->user_id, false, $details);
-
             $bidsCriteria = ['user_id' => $data->user_id,'is_awarded'=>1];
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
             $data->initiated_jobs = $awardedJobs;
@@ -102,23 +101,23 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             }
             $data->profile_request = $profile;
 
-            \Log::info("Attachments");
-            \Log::info(json_encode($data->attachments));
-            \Log::info("");
-
-            if(!empty($data->attachments)){
-                foreach ($data->attachments as $key => $value) {
-                    foreach ($data->attachments[$key] as $childKey => $childValue) {
-                        if($childValue){
-                            if(!empty($childValue['name'])){
-                                $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
-                                $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name'];
-                            }
-                        }
-                    }
-
-                }
-            }
+            // \Log::info("Attachments");
+            // \Log::info(json_encode($data->attachments));
+            // \Log::info("");
+            //
+            // if(!empty($data->attachments)){
+            //     foreach ($data->attachments as $key => $value) {
+            //         foreach ($data->attachments[$key] as $childKey => $childValue) {
+            //             if($childValue){
+            //                 if(!empty($childValue['name'])){
+            //                     $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
+            //                     $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name'];
+            //                 }
+            //             }
+            //         }
+            //
+            //     }
+            // }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
             if(request()->get('from_explore')){

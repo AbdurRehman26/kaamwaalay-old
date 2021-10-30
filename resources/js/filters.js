@@ -8,7 +8,7 @@ const jobStatuses = [
 },
 {
     key : 'in_bidding',
-    value : 'Bidding'
+    value : 'Can Apply'
 },
 {
     key : 'cancelled',
@@ -145,7 +145,7 @@ Vue.filter('jobStatus', function (value) {
             return item;
         }
     });
-    return obj.value.replace(/\s/g, '').trim();
+    return obj.value;
 });
 
 Vue.filter('jobType', function (value) {

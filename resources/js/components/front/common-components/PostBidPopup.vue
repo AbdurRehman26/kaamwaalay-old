@@ -1,11 +1,11 @@
 +<template>
     <div>
 
-        <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Bid on job" hide-footer>
+        <b-modal id="post-bid" class="post-bid-form" centered @hidden="onHidden" title-tag="h4" ok-variant="primary" ref="myModalRef" size="sm" title="Apply on job" hide-footer>
             <form @submit.prevent="validateBeforeSubmit">
                 <div class="model-content">
                     <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
-                    <p>Post a bid on <strong>{{ job ? job.title : ''}}</strong> job posted by <strong> {{  job ? job.user : ''  | fullName }} </strong></a></p>
+                    <p>Apply on <strong>{{ job ? job.title : ''}}</strong> job posted by <strong> {{  job ? job.user : ''  | fullName }} </strong></a></p>
                     <b-row class="justify-content-md-center">
                         <b-col md="1">
                             <label>&nbsp;</label>

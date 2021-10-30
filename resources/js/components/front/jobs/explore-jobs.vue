@@ -210,3 +210,9 @@
 
     }
 </script>
+
+<style>
+  .multiselect__placeholder{
+    display: none;
+  }
+</style>

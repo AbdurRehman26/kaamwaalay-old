@@ -91,7 +91,7 @@
                     </div>
 
                     <div v-if="canViewMap" class="jobs-post-files">
-                        <h3>Customer Information</h3>
+                        <h3>Customer Information (Only visible to applicants if you have awarded them the job)</h3>
                         <div class="coustomer-info-line">
                             <div class="left-ico">
                                 <i class="icon-phone_in_talk"></i>
@@ -129,7 +129,7 @@
                         <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
                             <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
                             <div class="job-common-description">
-                                <h3 class="pointer">{{bid.service_provider ? bid.service_provider.business_name : ''}}</h3>
+                                <h3 class="pointer">{{bid.user | fullName }}</h3>
 
                                 <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
 
@@ -235,14 +235,13 @@
             </div>
 
             <div class="col-md-3 p-l-0 p-r-0">
-
                 <div class="service-provider">
 
                     <div v-if="isMyJob && canInvite && jobBids.showInvite" class="service-providers-invite mb-4" v-bind:style="{'background-image': 'url('+ jobImage +')',}">
                         <h3>Find &amp; invite service providers to apply on your job.</h3>
                         <p>{{record.service_provider_count}} service providers available around you related to {{record.service.title}}.</p>
                         <router-link href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0"
-                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , zip : record.zip_code }}">Find &amp; Invite</router-link>
+                        :to="{name: 'Explore_Detail' ,  params : { serviceName: record.service.url_suffix , cityArea : cityArea }}">Find &amp; Invite</router-link>
                     </div>
 
                     <a style="pointer-events: none;" v-if="awardedToMe" class="btn btn-primary btn-outline margin-bottom-20px m-t-0">
@@ -269,7 +268,7 @@
                         <span><i class="icon-checkmark2" style="margin-left: -64px;margin-right: 36px;"></i>Initiate Job</span> <loader></loader>
                     </button>
 
-                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Bid Now</a>
+                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Apply Now</a>
 
                     <a v-canBid v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">
                         <i class="icon-edit-pencil"></i>

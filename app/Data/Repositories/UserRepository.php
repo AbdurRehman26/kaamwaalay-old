@@ -52,6 +52,11 @@ public function findById($id, $refresh = false, $details = false, $encode = true
     $data = parent::findById($id, $refresh, $details, $encode);
 
     if($data) {
+
+        if(!empty($data->city_area_id)){
+            $data->city_area = app('CityAreaRepository')->findById($data->city_area_id);
+        }
+
         $data->profile_image = str_replace('(NULL)', '', $data->profile_image);
         $data->profileImage = $data->profile_image;
 

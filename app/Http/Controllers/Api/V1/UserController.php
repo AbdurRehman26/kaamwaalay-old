@@ -35,6 +35,7 @@ class UserController extends ApiResourceController
             $rules['id'] =  'required|exists:users,id';
             $rules['user_details.first_name']    = 'required';
             $rules['user_details.last_name']     = 'required';
+            $rules['user_details.city_area_id']     = 'required|exists:city_areas,id';
             $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
             $rules['user_details.profile_image']     = 'nullable|string';
             $rules['business_details.business_type']     = 'nullable|in:business,individual';
@@ -66,7 +67,7 @@ class UserController extends ApiResourceController
         $input = request()->only(
             'id',
             'user_details.first_name', 'user_details.last_name', 'user_details.email', 'user_details.phone_number',
-            'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
+            'user_details.city_area_id', 'user_details.profile_image', 'user_details.address', 'user_details.apartment', 'user_details.zip_code',
             'user_details.role_id', 'user_details.city_id', 'user_details.country_id', 'user_details.social_account_id', 'business_details.attachments',
             'user_details.status', 'user_details.state_id',  'user_details.profle_image', 'user_details.is_profile_completed', 'user_details.stripe_token',
             'business_details.business_name', 'business_details.business_details', 'business_details.duns_number',

@@ -120,6 +120,20 @@
                                 <input type="text" class="form-control" name="address" v-model="record.address" placeholder="Enter your street address">
                             </div>
                         </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label>Area</label>
+
+                            <div class="custom-multi multiselect-z-index">
+                                <multiselect  v-model="record.city_area" :options="cityAreas"  placeholder="Select area" track-by="id" label="name"  open-direction="bottom" :options-limit="500" :limit="8" :max-height="700" name="search" :internal-search="true">
+                                </multiselect>
+                            </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -203,6 +217,9 @@
             }
         },
         computed : {
+            cityAreas(){
+              return this.$store.getters.getAreasList;
+            },
             requestUrl(){
                 return this.url;
             },
@@ -284,6 +301,13 @@
 
                         });
 
+                        if (! self.record.city_area ){
+                          this.errorMessage = 'Please select an area.';
+                          return false;
+                        }
+
+                        self.submitFormData.user_details.city_area_id = self.record.city_area.id;
+
                         this.submit = true;
                         this.loading = true;
 
@@ -318,13 +342,6 @@
                     self.loading = false;
                     self.record = response.data;
 
-                    if(self.record && self.record.business_details && !self.record.business_details.attachments){
-
-                        self.record.business_details.attachments = {
-                        }
-
-                    }
-
                     if(self.record.service_details.length){
 
                         for (var i = self.record.service_details.length-1; i >= 0; i--) {
@@ -349,7 +366,6 @@
 
                     self.profileImage = self.record.profileImage;
                 }
-
             },
         },
         mounted () {
