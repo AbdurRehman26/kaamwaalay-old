@@ -27,7 +27,7 @@
                         <p><strong class="title-head">Rating</strong></p>
                     </b-col>
                     <b-col cols="7">
-                        <p><star-rating :star-size="20" read-only :rating="currentItem.user ? currentItem.user.average_rating : 0" active-color="#8200ff"></star-rating></p>
+                        <p><star-rating :star-size="20" read-only :rating="currentItem.user ? currentItem.user.average_rating : 0" active-color="#326497"></star-rating></p>
                     </b-col>
                 </b-row>
 

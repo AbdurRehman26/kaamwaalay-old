@@ -64,7 +64,7 @@
                 </td>
                 <td>{{record.phone_number}} </td>
                 <td ><span class="tags" :class="[record.status != null ?record.status.replace(/\s/g, '').toLowerCase().trim():'']">{{record.status}}</span></td>
-                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating></td>
+                <td><star-rating :star-size="20" read-only :increment="0.02" :rating="parseInt(record.avg_rating)" active-color="#326497"></star-rating></td>
                 <td class="text-center">
                   <div class="action-icons">
                     <a @click.prevent="viewDetails(record.id)">

@@ -9,7 +9,7 @@
                         <div class="category-content">
                             <h2>{{record.business_name}}</h2>
                             <div class="jobs-completed">
-                                <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
+                                <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#326497"></star-rating>
                                 <span class="review-job">{{record.total_feedback_count}} Feedback reviews</span>
                                 <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
                                 <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
@@ -75,7 +75,7 @@
                                                     <strong>{{reviewer.formatted_created_at}}</strong>
                                                 </p>
                                                 <div class="ratings">
-                                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(reviewer.rating)" active-color="#8200ff"></star-rating>
+                                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(reviewer.rating)" active-color="#326497"></star-rating>
                                                 </div>
                                             </div>
                                         </div>

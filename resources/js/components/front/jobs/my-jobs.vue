@@ -109,7 +109,7 @@
                                                 <strong>{{record.formatted_created_at}}</strong>
                                             </p>
                                             <div class="ratings">
-                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="record.service_provider_review.rating ? parseFloat(record.service_provider_review.rating) : 0" active-color="#8200ff"></star-rating>
+                                                <star-rating :star-size="20" :increment="0.5" read-only :rating="record.service_provider_review.rating ? parseFloat(record.service_provider_review.rating) : 0" active-color="#326497"></star-rating>
 
                                             </div>
                                         </div>

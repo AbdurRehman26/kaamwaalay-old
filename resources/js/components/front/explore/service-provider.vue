@@ -61,7 +61,7 @@
                         <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3>
                         <span v-if="record.is_verified"><i class="icon-checked"></i></span>
                         <div class="jobs-rating">
-                            <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#8200ff"></star-rating>
+                            <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#326497"></star-rating>
                             <div class="jobs-done">
                                 <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>
 

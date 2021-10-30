@@ -49,7 +49,7 @@
         <div class="job-details">
             <p class="customer-rating">
                 <strong>Customer rating:</strong>
-                <star-rating :increment="0.5" :star-size="20" read-only :rating="job.user ? parseFloat(job.user.average_rating) : 0" active-color="#8200ff"></star-rating>
+                <star-rating :increment="0.5" :star-size="20" read-only :rating="job.user ? parseFloat(job.user.average_rating) : 0" active-color="#326497"></star-rating>
             </p>
             <p class="service-requirment">
                 <i class="icon-brightness-down"></i>

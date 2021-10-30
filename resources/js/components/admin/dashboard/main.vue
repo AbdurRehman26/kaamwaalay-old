@@ -174,7 +174,7 @@
                                                 <td><a >{{list.email}}</a></td>
                                                 <td>{{list.duns_number}}</td>
                                                 <td>{{list.business_type}}</td>
-                                                <td ><star-rating :increment="0.5" :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
+                                                <td ><star-rating :increment="0.5" :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#326497"></star-rating></td>
                                                 <td class="text-center">{{list.job_completed}}</td>
                                             </tr>
                                         </tbody>
@@ -216,7 +216,7 @@
                                             <tr v-for="list in topCustomer">
                                                 <td><a >{{list.full_name}}</a></th>
                                                     <td><a >{{list.email}}</a></td>
-                                                    <td ><star-rating :increment="0.5" :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#8200ff"></star-rating></td>
+                                                    <td ><star-rating :increment="0.5" :star-size="20" read-only :rating="list.rating ? parseInt(list.rating) : 0" active-color="#326497"></star-rating></td>
                                                     <td class="text-center">{{list.job_completed}}</td>
                                                 </tr>
                                             </tbody>
@@ -497,7 +497,7 @@
                             "categoryField": "date",
                             "dataDateFormat": "YYYY-MM-DD",
                             "colors": [
-                            "#8200ff",
+                            "#326497",
                             "#ff7217",
                             "#B0DE09",
                             "#0D8ECF",
@@ -590,7 +590,7 @@
                             "categoryField": "date",
                             "dataDateFormat": "YYYY-MM-DD",
                             "colors": [
-                            "#8200ff",
+                            "#326497",
                             "#ff7217",
                             "#B0DE09",
                             "#0D8ECF",
@@ -683,7 +683,7 @@
                                 "gridPosition": "start"
                             },
                             "colors": [
-                            "#8200ff",
+                            "#326497",
                             "#CD0D74",
                             "#ff7217",
                             "#B0DE09",
@@ -747,7 +747,7 @@
                             "categoryField": "date",
                             "dataDateFormat": "YYYY-MM-DD",
                             "colors": [
-                            "#8200ff",
+                            "#326497",
                             "#ff7217",
                             "#B0DE09",
                             "#0D8ECF",
@@ -834,7 +834,7 @@
                             "balloonText": "[[title]]<br><span style='font-size:14px'><b>$[[value]]</b> ([[percents]]%)</span>",
                             "colors": [
                             "#cf9dff",
-                            "#8200ff",
+                            "#326497",
                             ],
                             "gradientRatio": [],
                             "labelColorField": "#1A1A1A",

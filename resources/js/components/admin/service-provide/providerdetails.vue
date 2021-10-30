@@ -96,7 +96,7 @@
                                 <p><strong class="title-head">Rating</strong></p>
                             </b-col>
                             <b-col class="calculated-value">
-                                <star-rating :star-size="20" :increment="0.02" read-only :rating="records.user_detail ? parseInt(records.user_detail.average_rating) : 0" active-color="#8200ff"></star-rating>
+                                <star-rating :star-size="20" :increment="0.02" read-only :rating="records.user_detail ? parseInt(records.user_detail.average_rating) : 0" active-color="#326497"></star-rating>
                             </b-col>
                         </b-row>                                                                   
                         <b-row>

@@ -36,7 +36,7 @@
 
                         <td class="text-center"><router-link tag="a" :to="{name: 'service.provider.detail' , params : {id  : record.service_provider ? record.service_provider.id : 1}}">{{ record.user | fullName }}</router-link></td>
                         <td class="text-center"> {{record.amount ? '$' : '-'}} {{ record.amount }}</td>                           
-                        <td><star-rating :increment="0.5" :star-size="20" read-only :rating="[record.user ? parseFloat(record.user.average_rating) : 0]" active-color="#8200ff"></star-rating></td>
+                        <td><star-rating :increment="0.5" :star-size="20" read-only :rating="[record.user ? parseFloat(record.user.average_rating) : 0]" active-color="#326497"></star-rating></td>
                         <td class="text-center"> {{ record.is_awarded ? 'Yes' : 'No' }}</td>                           
                         <td class="text-right">
                             <div class="action-icons">

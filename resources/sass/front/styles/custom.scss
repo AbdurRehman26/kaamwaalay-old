@@ -105,7 +105,7 @@ $section-padding-sm:20px 0px;
         .browse-btn{
             margin-bottom: 0px;
             label.file-upload-label {
-                color: #6004BA;
+                color: #5673a9;
                 padding: 6px 12px;
                 &:hover, &:focus{
                     color: #FFF;
@@ -226,8 +226,8 @@ $section-padding-sm:20px 0px;
             height: auto;
             // cursor: pointer;
             // background: transparent;
-            // border: 1px solid #8200FF;
-            // color: #8200FF;
+            // border: 1px solid #326497;
+            // color: #326497;
             // font-size: 10px;
             // text-align: center;
             // min-height: 102px;
@@ -252,7 +252,7 @@ $section-padding-sm:20px 0px;
         vertical-align: top;
         // padding: 22px 20px;
         padding:0;
-        border: 1px solid #6004BA;
+        border: 1px solid #5673a9;
         border-radius: 7px;
         margin: 0px 15px;
     }
@@ -1234,14 +1234,14 @@ button.sl-close {
 //     border-color: #fff;
 // }
 // li.nav-item.active {
-//     border: 1px solid #8200FF;
+//     border: 1px solid #326497;
 //     background-color: #f7f3fb;
 // }
 // .nav-tabs {
 //     .nav-item {
 //         position: relative;
 //         margin-bottom: -1px;
-//         border: 1px solid #6004BA;
+//         border: 1px solid #5673a9;
 //         border-radius: 8px;
 //         margin-right: 60px;
 //         border: 1px solid #E0E0E0;
@@ -2750,7 +2750,7 @@ button.sl-close {
         border-radius: 4px;
         font-size: 14px;
         &:after {
-            background-color: #8200FF !important;
+            background-color: #326497 !important;
             color: #fff !important;
             border-radius: 5px;
             padding: 4px 19px;
@@ -2784,8 +2784,8 @@ button.sl-close {
 }
 
 .boxed input[type="radio"]:checked + label {
-    border: 1px solid #8200FF;
-    color: #8200ff;
+    border: 1px solid #326497;
+    color: #326497;
     background-color: rgba(221,198,244,0.1);
 }
 .boxed {
@@ -3596,7 +3596,7 @@ body{
     .review-job{
         padding: 0px 5px;
         font-size: 14px;
-        color: #8200FF;
+        color: #326497;
         &:first-child{
             padding-left: 0px;
             border-right: 1px solid #ccc;
@@ -3787,7 +3787,7 @@ body{
         .view-status {
             display: inline-block;
             float: left;
-            border: 1px solid #8200FF;
+            border: 1px solid #326497;
             border-radius: 12px;
             position: absolute;
             width: 62px;
@@ -3795,7 +3795,7 @@ body{
             background-color: rgba(221,198,244,0.1);
             span {
                 font-family:$font_medium;
-                color: #8200FF;
+                color: #326497;
                 font-size: 13px;
                 position: absolute;
                 left: 11px;
@@ -3925,8 +3925,8 @@ body{
 
             &.active {
                 border-color: #fff;
-                border-bottom: 4px solid #8200FF;
-                color: #8200FF;
+                border-bottom: 4px solid #326497;
+                color: #326497;
                 &:hover {
                     // border-color: transparent;
                 }
