@@ -13894,25 +13894,6 @@ button.sl-close {
   max-width: 179px;
   height: 78px;
 }
-.splash-design.d-1 {
-  background-image: url("../../images/front/splash/d-1.svg");
-}
-.splash-design.d-2 {
-  background-image: url("../../images/front/splash/d-2.svg");
-}
-.splash-design.d-3 {
-  background-image: url("../../images/front/splash/d-3.svg");
-}
-.splash-design.d-4 {
-  background-image: url("../../images/front/splash/d-4.svg");
-}
-.splash-design.d-5 {
-  background-image: url("../../images/front/splash/d-5.svg");
-  height: 122px !important;
-}
-.splash-design.d-6 {
-  background-image: url("../../images/front/splash/d-6.svg");
-}
 .splash-design.top-left {
   top: -3px;
   left: -3px;

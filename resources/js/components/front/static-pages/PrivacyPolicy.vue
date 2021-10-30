@@ -5,13 +5,9 @@
 				<div class="container element-index text-center md">
 					<div class="content-sec">
 						<div class="category-content text-center">
-							<h2>Privacy Policy</h2>								
+							<h2>Privacy Policy</h2>
 						</div>
 					</div>
-				</div> 
-				<div class="elements">
-					<img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
-					<img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
 				</div>
 			</div>
 
@@ -23,7 +19,7 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<div class="provider-information">						
+							<div class="provider-information">
 
 									<div class="post-job-description" v-for="description in listing.job_description.split('\n')">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -32,7 +28,7 @@
 										consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-									</div>					
+									</div>
 
 							</div>
 						</div>
@@ -41,7 +37,7 @@
 
 
 
-				</div>			
+				</div>
 			</div>
 
 	</div>
@@ -75,10 +71,10 @@ export default {
 
 	    	},
 
-	    		    	    		    	
+
 
     	],
- 	
+
     	}
   	},
 
@@ -97,7 +93,7 @@ export default {
             this.changestatus = false;
         },
         categorylisting(){
-        	this.$router.push({name: 'Explore_Detail'});	
+        	this.$router.push({name: 'Explore_Detail'});
         }
 
     },

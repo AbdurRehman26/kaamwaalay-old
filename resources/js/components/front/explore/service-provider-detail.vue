@@ -26,10 +26,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="elements">
-                    <img src="/images/front/banner-bg/bg-5.png" class="top-left">
-                    <img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
-                </div>
             </div>
 
 

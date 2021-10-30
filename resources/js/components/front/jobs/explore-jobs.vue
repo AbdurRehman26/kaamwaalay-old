@@ -211,7 +211,7 @@
     }
 </script>
 
-<style>
+<style scoped>
   .multiselect__placeholder{
     display: none;
   }

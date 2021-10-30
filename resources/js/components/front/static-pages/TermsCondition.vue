@@ -5,13 +5,9 @@
 				<div class="container element-index text-center md">
 					<div class="content-sec">
 						<div class="category-content text-center">
-							<h2>Terms &amp; Conditions</h2>								
+							<h2>Terms &amp; Conditions</h2>
 						</div>
 					</div>
-				</div> 
-				<div class="elements">
-					<img src="/images/front/banner-bg/bg-5.png" class="top-left"> 
-					<img src="/images/front/banner-bg/bg-2.png" class="bottom-right">
 				</div>
 			</div>
 
@@ -33,7 +29,7 @@
 										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 										proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 									</div>
-					
+
 
 							</div>
 						</div>
@@ -41,7 +37,7 @@
 
 
 
-				</div>			
+				</div>
 			</div>
 
 	</div>
@@ -72,10 +68,10 @@ export default {
 	    		job_description: "Hi I'm Matt, I am a time served Joiner with over 15 years experience. I have NVQ 2 & 3 in Carpentry & Joinery. I hold a CSCS Gold card. I have a vast experience in installation of Timber, UPVC & Aluminium Windows & Doors. Also experienced in Secondary Glazing Installation.\n-  I offer a friendly, honest and punctual service \n-  Installation of timber and UPVC Windows & Doors. \n-  UPVC door/window Lock repairs & replacements. \n-  Also repair/replacing broken and misted double/single glazing. \n-  Made to measure Gates, Fencing and Decking. \n-  General Maintenance repairs etc. \n-  My work is carried out to high standards and resonably priced! \n-  No job too small. \n-  Get in touch for a quote.",
 
 	    	},
-		    	    		    	
+
 
     	],
- 	
+
     	}
   	},
 
@@ -94,7 +90,7 @@ export default {
             this.changestatus = false;
         },
         categorylisting(){
-        	this.$router.push({name: 'Explore_Detail'});	
+        	this.$router.push({name: 'Explore_Detail'});
         }
 
     },
