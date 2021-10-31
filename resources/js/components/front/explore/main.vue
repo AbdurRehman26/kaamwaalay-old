@@ -65,7 +65,7 @@ export default {
 			isTouched: false,
 			invalidSearch: true,
 			bannerimage: '/images/front/explore/banner-bg/banner.jpg',
-			contentimage: '/images/front/explore/banner-bg/explore-banner.png',
+			contentimage: '/images/front/explore/banner-bg/maid-banner.png',
 			categoryPopup: false,
 			loading: false,
 			showCollapse: true,

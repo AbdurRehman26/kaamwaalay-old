@@ -3,7 +3,7 @@
         <div class="container">
             <div class="my-job-indication">
                 <h2>My Jobs</h2>
-                <p>You have total <span class="primary-color text-bold">{{jobStats.active}} active</span> 
+                <p>You have total <span class="primary-color text-bold">{{jobStats.active}} active</span>
                     job and <span class="primary-color text-bold">{{jobStats.completed}} completed</span> jobs.</p>
                 </div>
 
@@ -23,29 +23,29 @@
 
                                         <li @click.prevent="viewDetails(record.id)">
                                             <h3 class="pointer">{{record.title}}</h3>
-                                        </li> 
+                                        </li>
 
-                                        <div class="job-notification">									
+                                        <div class="job-notification">
                                             <div class="jobs-done">
-                                                <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>		
+                                                <span class="job-category">{{ record.service | mainServiceOrChildService('-') }}</span>
                                                 <div class="job-status">
 
                                                     <span v-if="record.status != 'cancelled' && record.awardedBid && record.status != 'completed' && record.awardedBid.status == 'completed'" class="tags"
                                                     :class="['completed']">
                                                     Marked Done
                                                 </span>
-                                                
-                                                <span v-else-if="!record.is_archived" class="tags" 
+
+                                                <span v-else-if="!record.is_archived" class="tags"
                                                 :class="[record.status.replace(/\s\_/g, '').replace('_' , '').replace('cancelled' , 'canceled')]">
                                                 {{ record | jobStatus }}
-                                            </span> 
+                                            </span>
 
                                             <span v-else class="tags" :class="['archived']">
                                                 {{ record | jobStatus }}
-                                            </span>	
+                                            </span>
 
                                         </div>
-                                    </div>	
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4 job-bid-btn p-r-0">
@@ -58,7 +58,7 @@
 
                         <div class="member-details">
                             <p class="location">
-                                <i class="icon-location"></i> 
+                                <i class="icon-location"></i>
                                 Location <strong>{{ record.city  }}, {{ record.state}}</strong>
                             </p>
                             <p class="member-since">
@@ -74,20 +74,19 @@
 
                         <div class="job-details">
                             <p class="bid">
-                                <i class="icon-flag"></i> 
                                 <strong>
-                                    {{ record.bids_count  + ' bids received '}} 
-                                    <router-link v-if="record.bids_count" :to="{name: 'job.details' , params : { id : record.id+'#viewBid' }}">View Bids</router-link></strong>
+                                    {{ record.bids_count  + ' applications'}}
+                                    <router-link v-if="record.bids_count" :to="{name: 'job.details' , params : { id : record.id+'#viewBid' }}">View</router-link></strong>
                                 </p>
                                 <p class="awarded" v-if="record.awarded_to">
-                                    <i class="icon-checkmark2"></i> 
+                                    <i class="icon-checkmark2"></i>
                                     Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.business_details.id}}">
                                         {{  record.awarded_to.business_details  ? record.awarded_to.business_details.business_name : '' }}
                                     </router-link>
-                                </p>								
+                                </p>
                                 <p class="service-requirment">
                                     <i class="icon-brightness-down"></i>
-                                    Service required 
+                                    Service needed
                                     <strong v-if="record.job_type == 'urgent'" class="urgent">{{ record.job_type }}</strong>
                                     <strong v-else-if="record.preference == 'choose_date'">{{ record.formatted_schedule_at }}</strong>
                                     <strong v-else>{{ record.preference | jobPreference }}</strong>
@@ -96,7 +95,7 @@
 
                             <div class="chat-feedback" v-if="record.service_provider_review">
                                 <div class="text-notifer">
-                                    <p>Service Provider feedback & review</p>	
+                                    <p>Service Provider feedback & review</p>
                                 </div>
                                 <div class="chat-feedback-column">
                                     <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImagePath(getCurrentUser()) +')',}"></div>
@@ -105,7 +104,7 @@
                                         <div class="feeback-detail">
                                             <p class="feedback-personal-info">
                                                 <a href="javascript:void(0);">{{record.service_provider_review.rated_by_name}}</a>
-                                                posted on 
+                                                posted on
                                                 <strong>{{record.formatted_created_at}}</strong>
                                             </p>
                                             <div class="ratings">
@@ -115,12 +114,12 @@
                                         </div>
                                     </div>
 
-                                </div>						
+                                </div>
 
                             </div>
                         </div>
 
-                    </div>			
+                    </div>
                 </div>
             </div>
         </div>

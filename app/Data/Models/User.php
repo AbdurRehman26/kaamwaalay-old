@@ -77,7 +77,7 @@ class User extends Authenticatable
     }
     public static function generatePassword()
     {
-         // Generate random string and encrypt it. 
+         // Generate random string and encrypt it.
         return bcrypt(str_random(35));
     }
 

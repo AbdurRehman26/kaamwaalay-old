@@ -9,8 +9,9 @@
 								<a href="/">
 									<img src="images/logo.png">
 								</a>
-							</div>		
+							</div>
 
+<!--
 							<div class="social-icons">
 								<ul>
 									<li><a href="javascript:;"><i class="icon-facebook"></i></a></li>
@@ -20,7 +21,7 @@
 									<li><a href="javascript:;"><i class="icon-pinterest"></i></a></li>
 								</ul>
 							</div>
-
+ -->
 
 						</div>
 						<div class="col-md-3" v-if='userDetails.role_id!=2 || userDetails == ""'>
@@ -46,7 +47,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-md-3">
+						<!-- <div class="col-md-3">
 							<div class="footer-links">
 								<ul>
 									<li><strong>Company</strong></li>
@@ -71,7 +72,7 @@
 									</li>
 								</ul>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="footer-copyrights">
@@ -101,7 +102,7 @@
             userDetails(){
                 return JSON.parse(this.$store.getters.getAuthUser);
             },
-          
+
         },
     	mounted() {
     	},
@@ -121,7 +122,7 @@
 	    	}
 
         },
-        
+
         data(){
             return{
                 supportPopup: false,

@@ -47,21 +47,8 @@
             bodyClass: 'home_body',
             navigation: 'main-nav',
         },
-        component: require('./components/front/landing/main.vue').default,
+        component: require('./components/front/explore/main.vue').default,
     },
-
-    // Join As Pro
-    {
-        name: 'Join As Pro',
-        path: '/join-as-pro',
-        meta: {
-            title: 'PSM | Join As Pro',
-            bodyClass: 'Join_pro',
-            navigation: 'main-nav',
-        },
-        component: require('./components/front/join-as-pro/main.vue').default,
-    },
-
 
     // Explore
 

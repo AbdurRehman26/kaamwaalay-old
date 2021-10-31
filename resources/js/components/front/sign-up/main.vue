@@ -2,7 +2,7 @@
 
     <div class="section padding-sm sign-up-info wrapper-sm">
         <h1>Sign Up</h1>
-        <alert v-if="showFacebookAlert" :errorMessage="showFacebookAlertMessage"></alert>  
+        <alert v-if="showFacebookAlert" :errorMessage="showFacebookAlertMessage"></alert>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-sm-6">
                 <div class="custom-radio boxed">
@@ -10,8 +10,8 @@
                     <label for="type_hire_provider" @click="signuptext = 'CUSTOMER SIGN UP'">
                         <div class="verticle-align">
                             <div class="inner">
-                                I want to hire a service provider
-                                <span>Get introduced to the right professional for your jobs</span>
+                                I want to hire a house help
+                                <span>Hire a maid, home cleaning, driver etc</span>
                                 <i class="icon-checkmark2"></i>
                             </div>
                         </div>
@@ -21,11 +21,11 @@
             <div class="col-xs-12 col-sm-6 col-sm-6">
                 <div class="custom-radio boxed">
                     <input  v-model="type" value="provider" type="radio" name="accountType" id="type_service_provider" >
-                    <label for="type_service_provider" @click="signuptext = 'SERVICE PROVIDER SIGN UP'">
+                    <label for="type_service_provider" @click="signuptext = 'HOUSE HELP SIGN UP'">
                         <div class="verticle-align">
                             <div class="inner">
-                                I want to grow my business
-                                <span>Respond to customer requests and get hired</span>
+                                I want to work as a house help
+                                <span>Work as a maid, home cleaning, driver etc</span>
                                 <i class="icon-checkmark2"></i>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                                         <div class="form-group">
                                            <label for="register_first_name">First Name</label>
                                            <input id="register_first_name" type="text" v-model="register_info.first_name" v-validate="'required|max:25'"  name="first_name" data-vv-name="first_name" data-vv-as="First Name" class="form-control" placeholder="Enter your First Name" :class="[errorBag.first('first_name') ? 'is-invalid' : '']">
-                                       </div> 
-                                   </div> 
+                                       </div>
+                                   </div>
                                    <div class="col-xs-12 col-md-6" :class="[errorBag.first('last_name') ? 'is-invalid' : '']">
                                     <div class="form-group">
                                        <label for="register_last_name">Last Name</label>
@@ -75,7 +75,7 @@
                    <div class="form-detail form-group">
                     <div class="custcheckbox custom-control custom-checkbox custom-control-inline">
                         <input  type="checkbox" value="accepted" unchecked-value="not_accepted" class="custom-control-input" v-validate="'required'" data-vv-name="agree"  name="agree" v-model="agree">
-                        <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>								
+                        <label for="checkbox1" class="custom-control-label"> <p>I agree to the <router-link to="/terms-condition">Terms of Use</router-link> and <router-link to="/privacy-policy">Privacy Policy</router-link>.</p>	</label>
                     </div>
                 </div>
                 <div class="create-account-btn">
@@ -178,7 +178,7 @@
                 }
                 if ((this.type) === 'provider') {
                     this.signuptext = 'Service Provider Signup';
-                    window.scrollTo(0,0);					
+                    window.scrollTo(0,0);
                     this.$router.push('apply-for-review');
                 }
                 return result;
