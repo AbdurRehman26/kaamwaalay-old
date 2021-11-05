@@ -16635,9 +16635,6 @@ body .chat-feedback-message.white-msg:before {
 .member-details p.bid, .job-details p.bid {
   padding-right: 20px;
 }
-.member-details p.offer, .job-details p.offer {
-  padding-left: 60px;
-}
 .member-details p.service-requirment, .job-details p.service-requirment {
   padding-top: 3px;
   position: relative;
@@ -18093,10 +18090,6 @@ p.awarded_to {
   }
   .search-filter .container-zip-code {
     width: 30%;
-  }
-
-  .member-details p.offer, .job-details p.offer {
-    padding-left: 37px;
   }
 
   .bidding-navigation ul {

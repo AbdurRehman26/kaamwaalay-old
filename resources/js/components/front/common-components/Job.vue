@@ -28,17 +28,15 @@
                 <i class="icon-location"></i>
                 Location <strong>{{  job.cityArea ? job.cityArea.name : 'N/A' }}</strong>
             </p>
-            <p class="offer" v-if="job.my_bid">
-                <i class="icon-work-briefcase"></i>
-                Offer: <strong>
-                    {{ job.my_bid | bidStatus}}
-               </strong><span v-canBid v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !hideChangeBid && (job.my_bid.status == 'on_the_way' || (job.my_bid.status == 'pending' && !job.my_bid.is_visit_required))">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
+
+            <p class="service-requirment">
+                <i class="icon-brightness-down"></i>
+                Service required
+                <strong v-if="job.job_type == 'urgent'" class="urgent">{{ job.job_type }}</strong>
+                <strong v-else-if="job.preference == 'choose_date'">{{ job.formatted_schedule_at }}</strong>
+                <strong v-else>{{ job.preference | jobPreference }}</strong>
             </p>
 
-            <p class="member-since">
-                <i class="icon-calendar-daily"></i>
-                Post Date <strong>{{ job.formatted_created_at }}</strong>
-            </p>
         </div>
 
         <div class="post-job-description">
@@ -47,17 +45,18 @@
 
 
         <div class="job-details">
-            <p class="customer-rating">
-                <strong>Customer rating:</strong>
-                <star-rating :increment="0.5" :star-size="20" read-only :rating="job.user ? parseFloat(job.user.average_rating) : 0" active-color="#326497"></star-rating>
-            </p>
-            <p class="service-requirment">
-                <i class="icon-brightness-down"></i>
-                Service required
-                <strong v-if="job.job_type == 'urgent'" class="urgent">{{ job.job_type }}</strong>
-                <strong v-else-if="job.preference == 'choose_date'">{{ job.formatted_schedule_at }}</strong>
-                <strong v-else>{{ job.preference | jobPreference }}</strong>
-            </p>
+          <p class="offer" v-if="job.my_bid">
+              <i class="icon-work-briefcase"></i>
+              Offer: <strong>
+                  {{ job.my_bid | bidStatus}}
+             </strong><span v-canBid v-if="job.my_bid.status != 'cancelled' && !job.my_bid.is_awarded && !hideChangeBid && (job.my_bid.status == 'on_the_way' || (job.my_bid.status == 'pending' && !job.my_bid.is_visit_required))">- <a @click="showBidPopup('changeBid')" href="javascript:void(0);">Change Bid</a></span>
+          </p>
+
+          <p class="member-since">
+              <i class="icon-calendar-daily"></i>
+              Post Date <strong>{{ job.formatted_created_at }}</strong>
+          </p>
+
         </div>
 
         <div class="chat-feedback" v-if="job.status == 'completed' && job.review_details">

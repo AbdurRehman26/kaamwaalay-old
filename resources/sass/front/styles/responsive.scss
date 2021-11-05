@@ -126,7 +126,7 @@
     .member-details,.job-details{
         p{
             &.offer{
-                padding-left: 37px;
+                // padding-left: 37px;
             }
         }
     }
@@ -1173,7 +1173,7 @@ ul.profilesession {
         // max-width: 183px;
         // top: 3px;
         max-width: 135px;
-        top: -7px;       
+        top: -7px;
     }
     .how-it-work .list-description p{
         max-width: 320px !important;
@@ -1896,4 +1896,3 @@ ul.profilesession {
         padding: 9px 11px !important;
     }
 }
-
