@@ -81,9 +81,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         if (!empty($details['user_rating'])) {
             $criteria = ['user_id' => $id];
-            $data->average_rating = app('UserRatingRepository')->getAvgRatingCriteria($criteria);
-
-            $data->total_feedback_count = app('UserRatingRepository')->getTotalFeedbackCriteria($criteria);
 
             $criteria['status'] = 'completed';
             $data->total_finished_jobs = app('JobBidRepository')->getCountByCriteria($criteria);
@@ -91,10 +88,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
 
         if($data->role_id == Role::CUSTOMER) {
 // Todo
-            $avgCriteria = ['user_id' => $data->id,'status'=>'approved'];
-            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-            $data->avg_rating = $avgRating;
-
             $totalInitiatedJobsCriteria = ['user_id' => $data->id,'status'=>'initiated'];
             $totalInitiatedJobs = app('JobRepository')->getTotalCountByCriteria($totalInitiatedJobsCriteria);
             $data->total_initiated_jobs = $totalInitiatedJobs;

@@ -14,7 +14,6 @@
                             </div>
                             <div class="container-zip-code ml-1" style="height: auto;">
                               <multiselect  v-model="searchAreaValue" :options="areasList"  placeholder="Where do you need?" track-by="id" label="name"  open-direction="bottom" :max-height="700" name="search" :internal-search="true" >
-                                  <span slot="noResult">No service found.</span>
                               </multiselect>
                             </div>
                             <button class="job-search-btn" :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']" @click="validateBeforeSubmit">

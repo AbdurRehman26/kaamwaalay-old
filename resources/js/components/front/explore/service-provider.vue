@@ -127,7 +127,7 @@
 
         <div class="category-section">
             <div class="category-title">
-                <h2>Related Services</h2>
+                <h2>More Services</h2>
             </div>
             <div class="category-items">
                 <div class="items" v-for="subservice in filterRelatedServices(relatedServices)">
@@ -136,31 +136,10 @@
                         <h4>{{subservice.title}}</h4>
                     </a>
                 </div>
-                <div class="showmore showmore-link clearfix" v-if="getRemainingSubServices(relatedServices).length">
-                    <div>
-                        <!-- element to collapse -->
-                        <a v-b-toggle="serviceTitle" :aria-controls="serviceTitle" href="javascript:void(0);" >View all related services<i class="icon-angle-right"></i></a>
-                        <b-collapse :id="serviceTitle">
-                            <b-card>
-                                <div class="items service-remain-category" v-for="remainingSubServices in getRemainingSubServices(relatedServices)">
-                                    <a @click="changecategorypopup(remainingSubServices)" href="javascript:void(0);">
-                                        <!--<div class="item-image" v-bind:style="{'background-image': 'url('+ remainingSubServices.images[0].upload_url +')',}"></div>-->
-                                        <p>{{remainingSubServices.title}}</p>
-                                    </a>
-                                </div>
-                            </b-card>
-                        </b-collapse>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
 
-    <div class="elements">
-        <img class="top-left" src="/images/front/banner-bg/bg-3-top.png">
-        <img class="bottom-right width-max" src="/images/front/banner-bg/bg-8.png">
-    </div>
 </div>
 
 <invite-bid-popup :type="'job'" :user="userToSendInvite" :showModalProp="invitePopup" @HideModalValue="invitePopup = false;" :jobs="jobs" ></invite-bid-popup>
@@ -170,6 +149,11 @@
 </div>
 </template>
 
+<style scoped>
+  .multiselect__placeholder{
+    display: none;
+  }
+</style>
 
 <script>
     import StarRating from 'vue-star-rating';
