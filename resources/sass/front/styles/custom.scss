@@ -642,6 +642,7 @@ button.sl-close {
         }
     }
     .element-index{
+        left: 20%;
         position: relative;
         z-index: 99;
     }
@@ -1832,7 +1833,7 @@ button.sl-close {
 .element-column-image {
     position: absolute;
     top: 0;
-    right: 5%;
+    left: 5%;
     z-index: 9;
     height: 100%;
     img{
@@ -3113,7 +3114,6 @@ body{
         .jobs-done{
             display: inline-block;
             vertical-align: middle;
-            padding-left: 13px;
         .review-job{
             padding: 0px 10px;
             float: left;
@@ -3121,7 +3121,6 @@ body{
             color: $primary-color-md;
         &:first-child{
             padding-left: 0px;
-            border-right: 1px solid #ccc;
         }
             &:last-child{
                 padding-right: 0px;
@@ -3201,9 +3200,6 @@ body{
                 padding: 0px 0px;
                 float: left;
                 font-size: 13px;
-                &:first-child{
-                    border-right: 0px solid;
-                }
             }
         }
         .post-bid{
@@ -3578,7 +3574,6 @@ body{
         color: #326497;
         &:first-child{
             padding-left: 0px;
-            border-right: 1px solid #ccc;
         }
         &:last-child{
             padding-right: 0px;

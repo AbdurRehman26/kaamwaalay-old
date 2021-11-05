@@ -7,9 +7,13 @@
 			<div class="content">
 				<div class="verticle-align">
 					<div class="inner">
+						<div class="element-column-image">
+							<img :src="contentimage">
+						</div>
+
 						<div class="container element-index">
 							<div class="content-inner md">
-								<h1 class="heading-large">Find best skilled service professionals near you.</h1>
+								<h1 class="heading-large">Find best skilled House Help.</h1>
 								<div class="search-filter">
 									<div class="custom-multi" :class="{ 'invalid': isInvalid }">
 
@@ -29,9 +33,8 @@
 								</button>
 							</div>
 						</div>
-						<div class="element-column-image">
-							<img :src="contentimage">
-						</div>
+
+
 						<span class="splash-design md d-1 top-left"></span>
 						<span class="splash-design d-4 bottom-right lg"></span>
 						<span class="splash-design d-6 bottom-left sm"></span>

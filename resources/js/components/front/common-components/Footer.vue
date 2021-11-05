@@ -39,8 +39,8 @@
 						<div class="col-md-3" v-if='userDetails.role_id!=3 || userDetails == ""'>
 							<div class="footer-links">
 								<ul>
-									<li><strong>Service Providers</strong></li>
-									<li v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'provider' }}">Sign up as a service provider</router-link></li>
+									<li><strong>House Helps</strong></li>
+									<li v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'provider' }}">Sign up as a House Help</router-link></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:;">Completed Jobs</a></li>
 									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('provider')" v-if='userDetails.role_id==2'>Advice center</a></li>
 									<li v-if='userDetails.role_id==2'><a href="javascript:void(0);" @click="showSupportPopup">Service provider support</a></li>

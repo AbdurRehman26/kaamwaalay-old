@@ -3,7 +3,7 @@
     <div class="category-detail">
         <block-spinner v-if="!isService"></block-spinner>
         <div class="next-project grey-bg elementary-banner section-padd md" v-if="isService">
-            <div class="container element-index text-center md">
+            <div class="container element-index text-center md" style="left: 0">
                 <div class="content-sec">
                     <div class="category-image" v-bind:style="{'background-image': 'url('+ getImage(service.images? service.images[0].name : null) +')',}"></div>
                     <div class="category-content">
@@ -57,10 +57,7 @@
                         <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3>
                         <span v-if="record.is_verified"><i class="icon-checked"></i></span>
                         <div class="jobs-rating">
-                            <star-rating :increment="0.5":star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#326497"></star-rating>
                             <div class="jobs-done">
-                                <span class="review-job">{{ record.total_feedback_count }} Feedback reviews</span>
-
                                 <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
                                 <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
                             </div>
@@ -126,7 +123,7 @@
         @custom-start-loading="startLoading"
         >
     </vue-common-methods>
-    <div class="container element-index">
+    <div class="container element-index" style="left: 0;">
 
         <div class="category-section">
             <div class="category-title">

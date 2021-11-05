@@ -14153,6 +14153,7 @@ button.sl-close {
   width: 400px;
 }
 .elementary-banner .element-index {
+  left: 20%;
   position: relative;
   z-index: 99;
 }
@@ -15208,7 +15209,7 @@ button.sl-close {
 .element-column-image {
   position: absolute;
   top: 0;
-  right: 5%;
+  left: 5%;
   z-index: 9;
   height: 100%;
 }
@@ -16450,7 +16451,6 @@ body .chat-feedback-message.white-msg:before {
 .job-common-description .jobs-done {
   display: inline-block;
   vertical-align: middle;
-  padding-left: 13px;
 }
 .job-common-description .jobs-done .review-job {
   padding: 0px 10px;
@@ -16460,7 +16460,6 @@ body .chat-feedback-message.white-msg:before {
 }
 .job-common-description .jobs-done .review-job:first-child {
   padding-left: 0px;
-  border-right: 1px solid #ccc;
 }
 .job-common-description .jobs-done .review-job:last-child {
   padding-right: 0px;
@@ -16540,9 +16539,6 @@ body .chat-feedback-message.white-msg:before {
     padding: 0px 0px;
     float: left;
     font-size: 13px;
-  }
-  .job-common-description .jobs-done .review-job:first-child {
-    border-right: 0px solid;
   }
   .job-common-description .post-bid {
     position: relative;
@@ -16884,7 +16880,6 @@ body .chat-feedback-message.white-msg:before {
 }
 .jobs-completed .review-job:first-child {
   padding-left: 0px;
-  border-right: 1px solid #ccc;
 }
 .jobs-completed .review-job:last-child {
   padding-right: 0px;

@@ -32,7 +32,6 @@ class AutoJobCompletedByCustomer extends Command
     {
         parent::__construct();
         $this->jobBidRepo = app('JobBidRepository');
-        $this->userRating = app('UserRatingRepository');
     }
 
     /**
@@ -69,14 +68,6 @@ class AutoJobCompletedByCustomer extends Command
             $jobs = Job::whereIn('id',$jobIds)->update(['status' => Job::COMPLETED]);
             foreach ($jobsArr as $key => $jobDetail) {
                 Cache::forget('job'. $jobDetail['job_id']);
-                $this->userRating->model->insertOnDuplicateKey([
-                    'job_id'    => $jobDetail['job_id'],
-                    'user_id'   => $jobDetail['service_provider_id'],
-                    'rated_by'  => $jobDetail['customer_id'],
-                    'rating'    => 3,
-                    'status'    => 'approved',
-                    'message'    => 'Customer rated service provider.',
-                ]);
             }
         }
     }

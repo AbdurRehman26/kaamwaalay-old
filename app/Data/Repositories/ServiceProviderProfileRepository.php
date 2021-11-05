@@ -68,23 +68,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $data->total_revenue = number_format($totalRevenue, 2, '.', '');
 
-            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
-            $avgRating = app('UserRatingRepository')->getAvgRatingCriteria($avgCriteria, false);
-            $data->avg_rating = $avgRating;
-
-            $reviewCriteria = ['user_id' => $data->user_id];
-            $review = app('UserRatingRepository')->findByCriteria($reviewCriteria, false, false, false, false, false);
-            $data->reviewedBy = null;
-            if($review) {
-                $review->formatted_created_at = Carbon::parse($review->created_at)->format('F j, Y');
-                $data->reviewedBy['review'] = $review;
-                $reviewedUser = app('UserRepository')->findById($review->rated_by);
-                $data->reviewedBy['user_detail'] = $reviewedUser;
-            }
-
-            $avgCriteria = ['user_id' => $data->user_id,'status'=>'approved'];
-            $totalFeedbackCount = app('UserRatingRepository')->getTotalFeedbackCriteria($avgCriteria, false);
-            $data->total_feedback_count = $totalFeedbackCount;
             $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status'=>'approved'];
             $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
             $data->services_offered = (object) $subServices;
@@ -120,13 +103,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             // }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
-            if(request()->get('from_explore')){
-               $campaignData =[
-                  'service_provider_user_id' => $data->user_id,
-                  'type' => 'view',
-              ];
-              app('CampaignRepository')->updateCampaign($campaignData);
-          }
       }
 
       return $data;
