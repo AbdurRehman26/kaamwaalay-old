@@ -205,15 +205,6 @@ public function findById($id, $refresh = false, $details = false, $encode = true
                     $criteria['user_id'] = $data->user_id;
                     $criteria['rated_by'] = $awardedBid->user_id;
 
-
-                    $data->service_provider_review = app('UserRatingRepository')->findByCriteria($criteria);
-
-                    $criteria['user_id'] =  $awardedBid->user_id;
-                    $criteria['rated_by'] = $data->user_id;
-
-
-                    $data->review_details = app('UserRatingRepository')->findByCriteria($criteria);
-
                 }
 
 
