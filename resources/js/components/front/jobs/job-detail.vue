@@ -141,17 +141,7 @@
                             </div>
                             <div class="job-proposal">
                                 <div class="bit-offered">
-                                    <span v-if="bid.status == 'suggested_time'"><i class="icon-work-briefcase"></i> Offer:
-                                        <strong>
-                                            {{ bid | bidStatus }} {{user.role_id != 3? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitApprovalPopup = true;" v-if="user.role_id != 3">View Details</a>
-                                        </strong>
-                                    </span>
-                                    <span v-else-if="bid.status == 'on_the_way'"><i class="icon-work-briefcase"></i> Offer:
-                                        <strong>
-                                            {{ bid | bidStatus }} {{!bid.amount &&  user.role_id != 2 ? "-" : ""}} <a href="javascript:void(0);" @click.prevent="showVisitDetailsPopup = true; bVal = bid;" v-if="user.role_id != 2 && !bid.amount">Visit Details</a>
-                                        </strong>
-                                    </span>
-                                    <span v-else><i class="icon-work-briefcase"></i> Offer:
+                                    <span><i class="icon-work-briefcase"></i> Status:
                                         <strong>
                                             {{ bid | bidStatus }}
                                         </strong>

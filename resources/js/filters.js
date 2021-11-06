@@ -309,6 +309,10 @@ Vue.filter('bidStatus', function (bid) {
         return ;
     }
 
+    if(!bid.is_awarded){
+      return 'Application Pending';
+    }
+
     if(bid.is_visit_required && bid.status =='pending' || bid.is_visit_required && bid.status =='cancelled'){
         return 'Visit requested';
     }

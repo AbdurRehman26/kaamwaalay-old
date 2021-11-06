@@ -7,62 +7,10 @@
                     <alert v-if="errorMessage || successMessage" :errorMessage="errorMessage" :successMessage="successMessage"></alert>
                     <p>Apply on <strong>{{ job ? job.title : ''}}</strong> job posted by <strong> {{  job ? job.user : ''  | fullName }} </strong></a></p>
                     <b-row class="justify-content-md-center">
-                        <b-col md="1">
-                            <label>&nbsp;</label>
-                            <div class="custom-circle-radio">
-                                <input  value="amount_value" v-model="bidType" type="radio" id="bid_amount" name="radio-group">
-                                <label for="bid_amount" class="m-t-5 m-b-5">&nbsp;</label>
-                            </div>
-                        </b-col>
-                        <b-col md="6">
-                            <div class="form-group">
-                                <label for="bid_amount">Amount (Estimation)</label>
-                                <input  v-validate="{ min_value : 0.1 ,  required: valueRequired , regex: /^([1-9]\d{0,6}|[0-9])(\.\d{1,2})?$/ }" v-model="submitFormData.amount" placeholder="Amount in PKR" :class="['form-control', 'form-group' , errorBag.first('amount') ? 'is-invalid' : '']" name="amount"  for="bid_amount"/>
-
-                            </div>
-                        </b-col>
-                        <b-col md="5">
-                            <div class="form-group">
-                                <label class="nolabel">&nbsp;</label>
-                                <select v-model="submitFormData.amount_type" class="form-control">
-                                    <option :value="amountType.key" v-for="amountType in amountTypes">
-                                        {{amountType.value}}
-                                    </option>
-                                </select>
-                            </div>
-                        </b-col>
-
-                        <b-col md="12">
-                            <div class="form-group">
-                                <div class="custom-circle-radio">
-                                    <input value="is_tbd" v-model="bidType" type="radio" id="further_discussion" name="radio-group" checked>
-                                    <label for="further_discussion">Further discussion (chat) required to quote</label>
-                                </div>
-                            </div>
-                        </b-col>
-                        <b-col md="12">
-                            <div class="form-group">
-                                <div class="custom-circle-radio">
-                                    <input value="visit_required" v-model="bidType" type="radio" id="visit_required" name="radio-group">
-                                    <label for="visit_required">Visit required to quote (request for visit)</label>
-                                </div>                            </div>
-                            </b-col>
-                            <b-col v-if="bidType == 'visit_required'" md="6">
-                                <div :class="[errorBag.first('preferred date') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
-                                    <label>Preferred date and time of visit</label>
-                                    <datepicker name="preferred date" :disabledDates="disabledDates" v-validate="'required'" v-model="submitFormData.preferred_date" placeholder="Select Date"></datepicker>
-                                </div>
-                            </b-col>
-                            <b-col v-if="bidType == 'visit_required'" md="6">
-                                <div :class="[errorBag.first('preferred time') ? 'is-invalid' : '' , 'form-group', 'custom-datepicker']">
-                                    <label class="nolabel">&nbsp;</label>
-                                    <date-picker :editable="false" v-validate="'required'" v-model="submitFormData.preferred_time" lang="en" type="time" :time-picker-options="{ start: '00:00', step: '00:15', end: '23:30' }" format="hh:mm a" placeholder="Select Time" name="preferred time"></date-picker>
-                                </div>
-                            </b-col>
                             <b-col md="12">
-                                <label>Proposal Statement</label>
+                                <label>Short introduction of yourself</label>
                                 <div class="form-group">
-                                    <textarea name="description" v-validate="'required|max:500'" :class="['form-control' , errorBag.first('description') ? 'is-invalid' : '']" v-model="submitFormData.description" placeholder="Start typing your proposal statement"  rows="5"></textarea>
+                                    <textarea name="introduction" v-validate="'required|max:500'" :class="['form-control' , errorBag.first('introduction') ? 'is-invalid' : '']" v-model="submitFormData.description" placeholder="Start typing your proposal statement"  rows="5"></textarea>
                                 </div>
                             </b-col>
                         </b-row>
@@ -70,7 +18,7 @@
                     </div>
                     <footer id="post-bid___BV_modal_footer_" class="modal-footer">
                         <button type="submit" :class="['btn', 'btn-primary',  loading ? 'show-spinner' : '']">
-                            Submit
+                            Confirm
                             <loader></loader>
                         </button>
                     </footer>

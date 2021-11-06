@@ -20,7 +20,6 @@ class JobBidController extends ApiResourceController
     if($value == 'store'){
 
         if(empty($this->input()['is_invited'])){
-            $rules['amount'] =  'required_without:is_tbd';    
             $rules['is_tbd'] =  'required_without:amount';    
 
 
@@ -68,7 +67,7 @@ class JobBidController extends ApiResourceController
         }
 
     }
-    
+
     return $rules;
 
 }
@@ -111,7 +110,7 @@ public function input($value='')
         'visit_details',
         'job_done_images'
     );
-    
+
     if(!empty($input['is_visit_required'])){
         $input['amount'] = null;
         $input['is_tbd'] = 0;
@@ -149,7 +148,7 @@ public function input($value='')
 
     if($value == 'store'){
         unset($input['is_awarded']);
-        
+
         $input['status'] = 'pending';
         if(!empty($input['is_invited'])){
             $input['status'] = 'invited';
@@ -186,7 +185,7 @@ public function responseMessages($value = '')
             'update' => 'Bid has been successfully updated.',
         ];
     }
-    
+
     if($value == 'store' &&   empty($this->input('store')['is_invited'])){
          $messages = [
             'store' => 'Bid has been placed successfully.',
