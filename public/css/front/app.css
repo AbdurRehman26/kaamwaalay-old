@@ -10609,12 +10609,12 @@ td a:hover, td a:focus {
 }
 
 a {
-  color: #326497;
+  color: #00B389;
   cursor: pointer;
   text-decoration: none;
 }
 a:hover, a:focus {
-  color: #5673a9 !important;
+  color: #00B388 !important;
 }
 
 p {
@@ -10730,7 +10730,7 @@ h6 {
 }
 
 .primary-color-bg {
-  background-color: #5673a9;
+  background-color: #00B388;
 }
 
 .secondary-color-bg {
@@ -10738,7 +10738,7 @@ h6 {
 }
 
 .primary-color {
-  color: #5673a9;
+  color: #00B388;
 }
 
 .secondary-color {
@@ -11575,7 +11575,7 @@ h2.auth-title {
 
 .forgot-password-text {
   float: right;
-  color: #326497;
+  color: #00B389;
   cursor: pointer;
   font-size: 14px;
   text-decoration: underline;
@@ -11594,7 +11594,7 @@ h2.auth-title {
   position: absolute;
   top: 0;
   right: 0;
-  color: #326497;
+  color: #00B389;
   font-size: 14px;
   cursor: pointer;
   font-family: "AkzidenzGroteskBE-Regular";
@@ -11602,7 +11602,7 @@ h2.auth-title {
 
 .forgot-form .back-to-login {
   float: right;
-  color: #5673a9;
+  color: #00B388;
   cursor: pointer;
   text-decoration: underline;
   padding-top: 6px;
@@ -11680,11 +11680,11 @@ body .vdp-datepicker input {
   border: 1px solid #B2B2B2;
 }
 body .vdp-datepicker__calendar .cell.selected {
-  background: #326497 !important;
+  background: #00B389 !important;
   color: #fff;
 }
 body .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover, body .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover, body .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
-  border: 1px solid #326497 !important;
+  border: 1px solid #00B389 !important;
 }
 body .form-group .input-icon {
   position: absolute;
@@ -11899,7 +11899,7 @@ textarea {
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #326497 !important;
+  background-color: #00B389 !important;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -11992,7 +11992,7 @@ input[type=number]::-webkit-outer-spin-button {
   content: "";
   width: 12px;
   height: 12px;
-  background: #326497;
+  background: #00B389;
   position: absolute;
   top: 6px;
   left: 6px;
@@ -12179,7 +12179,7 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
   top: 12px;
   font-size: 24px;
-  color: #5673a9;
+  color: #00B388;
 }
 
 .container-zip-code ul {
@@ -12298,21 +12298,21 @@ input[type=number]::-webkit-outer-spin-button {
   outline: none;
 }
 .btn.btn-primary {
-  background: #326497;
-  border-color: #326497;
+  background: #00B389;
+  border-color: #00B389;
 }
 .btn.btn-primary:focus, .btn.btn-primary:visited, .btn.btn-primary:active {
-  background: #326497 !important;
-  border-color: #326497 !important;
+  background: #00B389 !important;
+  border-color: #00B389 !important;
   box-shadow: none !important;
 }
 .btn.btn-outline {
   background-color: transparent !important;
-  color: #326497 !important;
+  color: #00B389 !important;
 }
 .btn.btn-outline:hover, .btn.btn-outline:focus {
   background-color: transparent !important;
-  color: #326497 !important;
+  color: #00B389 !important;
 }
 .btn.btn.disable {
   opacity: 0.4;
@@ -12342,13 +12342,13 @@ input[type=number]::-webkit-outer-spin-button {
   box-shadow: none !important;
 }
 .btn.btn-link {
-  color: #5673a9;
+  color: #00B388;
   font-family: "AkzidenzGroteskBE-Bold";
   text-decoration: underline;
 }
 .btn.btn-link:focus, .btn.btn-link:visited, .btn.btn-link:active, .btn.btn-link:hover {
   box-shadow: none !important;
-  color: #326497 !important;
+  color: #00B389 !important;
   text-decoration: underline;
 }
 .btn.btn-grey {
@@ -12400,7 +12400,7 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
   padding: 8px 8px;
   color: #fff !important;
-  background-color: #5673a9;
+  background-color: #00B388;
   border-radius: 50px;
 }
 
@@ -12520,14 +12520,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .mx-calendar-content .cell.actived {
-  background-color: #326497 !important;
+  background-color: #00B389 !important;
 }
 .mx-calendar-content .cell:hover {
   background-color: #eee5f7 !important;
 }
 
 .mx-panel-date td.today {
-  color: #326497 !important;
+  color: #00B389 !important;
 }
 
 .header {
@@ -12617,7 +12617,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .social-icons a:hover, .social-icons a:focus {
   text-decoration: none;
-  color: #326497 !important;
+  color: #00B389 !important;
   transition: ease 0.5s;
 }
 .social-icons i.icon-facebook {
@@ -12838,7 +12838,7 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: 99999;
 }
 .page-loader .inner {
-  background: #5673a9;
+  background: #00B388;
   position: absolute;
   left: 0;
   top: 0;
@@ -13033,7 +13033,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .navigation ul li a.router-link-active:after {
   content: "";
-  background-color: #5673a9;
+  background-color: #00B388;
   position: absolute;
   height: 4px;
   width: 100%;
@@ -13101,7 +13101,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding-right: 0px;
   }
   .navigation.main-navigation ul li a.router-link-exact-active {
-    color: #326497;
+    color: #00B389;
   }
   .navigation.main-navigation ul li a.router-link-exact-active:after {
     display: none;
@@ -13155,7 +13155,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 14px;
   }
   .navigation ul li a.router-link-active {
-    background-color: #326497;
+    background-color: #00B389;
     color: #fff !important;
   }
   .navigation ul li a.router-link-active:after {
@@ -13371,7 +13371,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background: #5673a9;
+  background: #00B388;
   display: block;
   position: absolute;
   top: 2px;
@@ -13697,7 +13697,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 0px;
 }
 .image-uploading-btn .uploadattached .browse-btn label.file-upload-label {
-  color: #5673a9;
+  color: #00B388;
   padding: 6px 12px;
 }
 .image-uploading-btn .uploadattached .browse-btn label.file-upload-label:hover, .image-uploading-btn .uploadattached .browse-btn label.file-upload-label:focus {
@@ -13803,7 +13803,7 @@ input[type=number]::-webkit-outer-spin-button {
   max-width: 49%;
   vertical-align: top;
   padding: 0;
-  border: 1px solid #5673a9;
+  border: 1px solid #00B388;
   border-radius: 7px;
   margin: 0px 15px;
 }
@@ -13839,10 +13839,10 @@ button.sl-close {
 }
 
 .multiselect__option--highlight {
-  background-color: #326497 !important;
+  background-color: #00B389 !important;
 }
 .multiselect__option--highlight:after {
-  background-color: #326497 !important;
+  background-color: #00B389 !important;
 }
 
 .alert-indicator {
@@ -14420,11 +14420,11 @@ button.sl-close {
   font-size: 16px;
 }
 .service-professional .multiselect__content-wrapper li span:hover, .service-professional .multiselect__content-wrapper li span:focus {
-  background-color: #326497;
+  background-color: #00B389;
   color: #fff;
 }
 .service-professional .multiselect__content-wrapper li span.multiselect__option--highlight {
-  background-color: #326497;
+  background-color: #00B389;
   color: #fff;
 }
 .service-professional .container-zip-code {
@@ -14613,7 +14613,7 @@ button.sl-close {
     content: "\f105";
     font-family: icomoon;
     visibility: visible;
-    color: #326497;
+    color: #00B389;
   }
   .featurecategory .owl-nav button.owl-next span {
     display: none;
@@ -14628,7 +14628,7 @@ button.sl-close {
     content: "\f104";
     font-family: icomoon;
     visibility: visible;
-    color: #326497;
+    color: #00B389;
   }
   .featurecategory .owl-nav button.owl-prev span {
     display: none;
@@ -14674,7 +14674,7 @@ button.sl-close {
   text-align: center;
 }
 .already-signup a {
-  color: #326497;
+  color: #00B389;
   text-decoration: none;
 }
 .already-signup p {
@@ -14905,7 +14905,7 @@ button.sl-close {
 }
 .Popular-services-slides li p i {
   display: inline-block;
-  color: #326497;
+  color: #00B389;
   vertical-align: middle;
   margin-right: 10px;
   position: relative;
@@ -15111,7 +15111,7 @@ button.sl-close {
   border-radius: 12px;
 }
 .testmonial-block i {
-  color: #5673a9;
+  color: #00B388;
   font-size: 24px;
   padding-bottom: 20px;
   display: block;
@@ -15632,14 +15632,14 @@ button.sl-close {
   display: block;
   padding: 6px 22px;
   color: #fff;
-  background: #326497;
+  background: #00B389;
   border-radius: 4px;
   transition: background 0.3s;
   font-size: 14px;
 }
 .browse-btn .file-upload-label:hover {
   cursor: pointer;
-  background: #5673a9;
+  background: #00B388;
 }
 .browse-btn .file-upload-input {
   position: absolute;
@@ -15653,7 +15653,7 @@ button.sl-close {
 }
 .browse-btn .file-upload-input:hover {
   cursor: pointer;
-  background: #5673a9;
+  background: #00B388;
 }
 
 /* Apply For Review sass*/
@@ -15850,7 +15850,7 @@ button.sl-close {
   font-size: 14px;
 }
 .account-fee .verification-alert p span {
-  color: #5673a9;
+  color: #00B388;
   font-family: "AkzidenzGroteskBE-Md";
 }
 
@@ -15876,7 +15876,7 @@ button.sl-close {
   display: block;
   font-size: 14px;
   margin-left: 4px;
-  color: #326497;
+  color: #00B389;
 }
 
 .job-details {
@@ -16047,7 +16047,7 @@ button.sl-close {
 }
 .verify-account .verification-alert span {
   font-family: "AkzidenzGroteskBE-Md";
-  color: #326497;
+  color: #00B389;
 }
 .verify-account.nobar {
   border-top: 0px solid #E0E0E0;
@@ -16094,7 +16094,7 @@ button.sl-close {
   font-size: 14px;
 }
 .custom-file-label:after {
-  background-color: #326497 !important;
+  background-color: #00B389 !important;
   color: #fff !important;
   border-radius: 5px;
   padding: 4px 19px;
@@ -16128,8 +16128,8 @@ button.sl-close {
 }
 
 .boxed input[type=radio]:checked + label {
-  border: 1px solid #326497;
-  color: #326497;
+  border: 1px solid #00B389;
+  color: #00B389;
   background-color: rgba(221, 198, 244, 0.1);
 }
 
@@ -16436,7 +16436,7 @@ body .chat-feedback-message.white-msg:before {
   top: -2px;
 }
 .job-common-description i {
-  color: #5673a9;
+  color: #00B388;
 }
 .job-common-description i.icon-info {
   margin-left: 10px;
@@ -16456,7 +16456,7 @@ body .chat-feedback-message.white-msg:before {
   padding: 0px 10px;
   float: left;
   font-size: 14px;
-  color: #326497;
+  color: #00B389;
 }
 .job-common-description .jobs-done .review-job:first-child {
   padding-left: 0px;
@@ -16657,7 +16657,7 @@ body .chat-feedback-message.white-msg:before {
   padding-left: 3px;
 }
 .member-details i, .job-details i {
-  color: #326497;
+  color: #00B389;
 }
 @media (max-width: 767px) {
   .member-details p, .job-details p {
@@ -16762,11 +16762,11 @@ body .chat-feedback-message.white-msg:before {
   padding-right: 130px;
 }
 .chat-feedback .feeback-detail p a, .chat-feedback .provider-bidding-btn p a {
-  color: #326497;
+  color: #00B389;
   font-family: "AkzidenzGroteskBE-Bold";
 }
 .chat-feedback .feeback-detail i, .chat-feedback .provider-bidding-btn i {
-  color: #326497;
+  color: #00B389;
   position: absolute;
   right: 0;
   top: 0;
@@ -16873,7 +16873,7 @@ body .chat-feedback-message.white-msg:before {
 .jobs-completed .review-job {
   padding: 0px 5px;
   font-size: 14px;
-  color: #326497;
+  color: #00B389;
 }
 .jobs-completed .review-job:first-child {
   padding-left: 0px;
@@ -16947,7 +16947,7 @@ body .chat-feedback-message.white-msg:before {
   bottom: auto;
   display: flex;
   left: -6px;
-  background-color: #326497;
+  background-color: #00B389;
 }
 
 /* == Featured Profile sass start == */
@@ -16990,7 +16990,7 @@ body .chat-feedback-message.white-msg:before {
 .featured-profile h3 {
   font-family: "AkzidenzGroteskBE-Md";
   font-size: 20px;
-  color: #326497;
+  color: #00B389;
   margin-left: 20px;
 }
 
@@ -17050,7 +17050,7 @@ body .chat-feedback-message.white-msg:before {
 .campaigns .camp-views .view-status {
   display: inline-block;
   float: left;
-  border: 1px solid #326497;
+  border: 1px solid #00B389;
   border-radius: 12px;
   position: absolute;
   width: 62px;
@@ -17059,7 +17059,7 @@ body .chat-feedback-message.white-msg:before {
 }
 .campaigns .camp-views .view-status span {
   font-family: "AkzidenzGroteskBE-Md";
-  color: #326497;
+  color: #00B389;
   font-size: 13px;
   position: absolute;
   left: 11px;
@@ -17080,7 +17080,7 @@ body .chat-feedback-message.white-msg:before {
   font-size: 14px;
 }
 .campaigns .camp-views .view-status-detail .calender-date i {
-  color: #5673a9;
+  color: #00B388;
 }
 .campaigns .camp-views .view-status-detail span {
   font-family: "AkzidenzGroteskBE-Md";
@@ -17179,8 +17179,8 @@ body .chat-feedback-message.white-msg:before {
 }
 .advice-tabs .nav-tabs .nav-link.active {
   border-color: #fff;
-  border-bottom: 4px solid #326497;
-  color: #326497;
+  border-bottom: 4px solid #00B389;
+  color: #00B389;
 }
 .advice-tabs .nav-tabs .nav-item a {
   font-family: "AkzidenzGroteskBE-Md";
@@ -17256,7 +17256,7 @@ body .chat-feedback-message.white-msg:before {
   padding-top: 52px;
 }
 .my-job-indication span, .bidding-sec span {
-  color: #326497 !important;
+  color: #00B389 !important;
 }
 
 .category-section-search {
@@ -17265,7 +17265,7 @@ body .chat-feedback-message.white-msg:before {
   padding-bottom: 0px;
 }
 .category-section-search span {
-  color: #326497 !important;
+  color: #00B389 !important;
 }
 .text-bold {
   font-family: "AkzidenzGroteskBE-Bold";
@@ -17365,7 +17365,7 @@ p.awarded_to {
   padding-top: 21px;
 }
 .job-bidding .bit-offered i {
-  color: #326497;
+  color: #00B389;
 }
 .job-bidding .proposal-message {
   padding-top: 24px;
@@ -17533,13 +17533,13 @@ p.awarded_to {
   margin-right: 0px;
 }
 .bidding-navigation li.active {
-  border-color: #326497;
+  border-color: #00B389;
 }
 .bidding-navigation li.active p {
-  color: #326497;
+  color: #00B389;
 }
 .bidding-navigation li.active p span {
-  color: #326497 !important;
+  color: #00B389 !important;
 }
 @media (max-width: 767px) {
   .bidding-navigation ul {
@@ -17690,13 +17690,13 @@ p.awarded_to {
 }
 .notify-dropdown .right-notification .notification-limit span a {
   display: inline-block;
-  color: #326497 !important;
+  color: #00B389 !important;
   min-width: auto !important;
   font-size: 14px;
   padding-left: 0;
 }
 .notify-dropdown .right-notification .notification-limit span a:hover {
-  color: #326497 !important;
+  color: #00B389 !important;
   text-decoration: underline !important;
 }
 .notify-dropdown .right-notification .notification-limit span + span:before {
@@ -17716,7 +17716,7 @@ p.awarded_to {
 
 .coustomer-info-line i {
   display: inline-block;
-  color: #326497;
+  color: #00B389;
   font-size: 26px;
   padding-right: 20px;
 }
@@ -17780,7 +17780,7 @@ p.awarded_to {
     right: 10px;
     top: 28%;
     font-size: 31px;
-    color: #326497;
+    color: #00B389;
   }
 }
 @media (max-width: 767px) {
@@ -17938,7 +17938,7 @@ p.awarded_to {
   color: #1A1A1A;
 }
 .card .card-body .items.service-remain-category a:hover, .card .card-body .items.service-remain-category a:focus {
-  color: #326497;
+  color: #00B389;
 }
 .card .card-body .items.service-remain-category a p {
   margin-bottom: 8px;
@@ -19237,7 +19237,7 @@ p.awarded_to {
 
   .navigation ul li a.router-link-active {
     background-color: transparent !important;
-    color: #326497 !important;
+    color: #00B389 !important;
   }
 
   .categories-popup {
@@ -19940,7 +19940,7 @@ p.awarded_to {
 }
 .performance-charts span.number-chart-counts {
   font-size: 24px;
-  color: #5673a9;
+  color: #00B388;
   font-family: "AkzidenzGroteskBE-Bold";
 }
 @media (max-width: 767px) {
@@ -20246,7 +20246,7 @@ p.awarded_to {
   pointer-events: none;
 }
 .modal-body ul.nav-pills li.completed a {
-  color: #5673a9 !important;
+  color: #00B388 !important;
 }
 .modal-body ul.nav-pills li.completed:after {
   content: "\e926";
@@ -20254,7 +20254,7 @@ p.awarded_to {
   position: absolute;
   right: 16px;
   top: 10px;
-  color: #5673a9;
+  color: #00B388;
   font-size: 15px;
 }
 

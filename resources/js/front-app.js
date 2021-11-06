@@ -95,8 +95,8 @@ require('./filters')
 require('./directives')
 
 const options = {
-    color: '#326497',
-    failedColor: '#326497',
+    color: '#00B389',
+    failedColor: '#00B389',
     thickness: '3px',
     transition: {
         speed: '2s',

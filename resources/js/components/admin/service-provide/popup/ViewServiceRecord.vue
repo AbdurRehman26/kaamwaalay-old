@@ -36,7 +36,7 @@
                     <p><strong class="title-head">Customer  Rating</strong></p>
                 </b-col>
                 <b-col cols="7">
-                    <p><star-rating :increment="0.5" :star-size="20" read-only :rating="currentItem.user ?  currentItem.user.average_rating  : 0" active-color="#326497"></star-rating></p>
+                    <p><star-rating :increment="0.5" :star-size="20" read-only :rating="currentItem.user ?  currentItem.user.average_rating  : 0" active-color="#00B389"></star-rating></p>
                 </b-col>
             </b-row>
 

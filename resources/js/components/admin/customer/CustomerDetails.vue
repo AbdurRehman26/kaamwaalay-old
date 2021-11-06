@@ -87,7 +87,7 @@
                                         <p><strong class="title-head">Avg. Rating</strong></p>
                                     </b-col>
                                     <b-col class="calculated-value">
-                                        <star-rating :star-size="20" :increment="0.02" read-only :rating="customerDetail.avg_rating" active-color="#326497"></star-rating>
+                                        <star-rating :star-size="20" :increment="0.02" read-only :rating="customerDetail.avg_rating" active-color="#00B389"></star-rating>
                                     </b-col>
                                 </b-row>                                                                                                 
                                 <b-row>

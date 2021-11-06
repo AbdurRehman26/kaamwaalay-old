@@ -67,7 +67,7 @@
                 <td> {{ record.business_name }} </td>
                 <td> {{ record.user_detail.phone_number }} </td>
                 <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
-                <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#326497"></star-rating></td>
+                <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#00B389"></star-rating></td>
                 <td class="text-right">
                   <div class="action-icons">
                     <a @click.prevent="viewDetails(record.id)">

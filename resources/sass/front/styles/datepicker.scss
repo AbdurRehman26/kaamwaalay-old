@@ -29,7 +29,7 @@
 .mx-calendar-content {
 	.cell {
 		&.actived {
-			background-color: #326497 !important;
+			background-color: #00B389 !important;
 		} 
 		&:hover {
 			background-color: #eee5f7 !important;
@@ -39,7 +39,7 @@
 .mx-panel-date {
 	td {
 		&.today {
-			color:#326497 !important;
+			color:#00B389 !important;
 		}
 	}
 }
