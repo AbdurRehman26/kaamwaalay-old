@@ -1,7 +1,7 @@
  <template>
 	<div>
 		<b-modal id="view-bidding-detail" hide-footer title-tag="h4" centered ref="myModalRef" size="md" title=" Bidding Detail" @hidden="onHidden">
-            
+
             <div class="view-details-list">
 
                 <b-row>

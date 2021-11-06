@@ -155,10 +155,6 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
     if(!empty($data['filter_by_top_providers'])) {
         $this->builder = $this->builder
-        ->leftJoin('user_ratings', function ($join){
-            $join->on('service_provider_profiles.user_id', '=', 'user_ratings.user_id');
-            $join->where('user_ratings.status', '=', 'approved');
-        })
         ->leftJoin('job_bids', function ($join){
             $join->on('service_provider_profiles.user_id', '=', 'job_bids.user_id');
             $join->where('job_bids.status', '=', 'completed');
@@ -169,9 +165,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         })
         ->groupBy('service_provider_profiles.user_id')
         ->orderBy('service_provider_profiles.is_featured', 'desc')
-        ->orderBy('service_provider_profiles.is_verified', 'desc')
-        ->orderByRaw('(count(jobs.user_id) * IFNULL(avg(user_ratings.rating) + 1, 1)) desc');
-
+        ->orderBy('service_provider_profiles.is_verified', 'desc');
 
     }
 

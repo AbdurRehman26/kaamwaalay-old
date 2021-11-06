@@ -21,7 +21,6 @@
             <i class="icon-menu2 menuiconbutton" @click="responsivemenu ^= true"></i>
         </div>
         <change-password-popup @HideModalValue="HideModal" :showModalProp="changepopup"></change-password-popup>
-        <write-review-popup @HideModalValue="HideModal" :showModalProp="writereview"></write-review-popup>    
     </div>
 </template>
 
@@ -43,7 +42,7 @@
         },
         computed : {
             userDetails(){
-                
+
                 return JSON.parse(this.$store.getters.getAuthUser);
             },
         },
@@ -52,7 +51,7 @@
                 this.changepopup = true;
             },
             HideModal(){
-                this.changepopup = false;   
+                this.changepopup = false;
                 this.writereview = false;
             },
             responsivebutton(){
@@ -60,7 +59,7 @@
             },
             WriteReviewModal(){
                 this.writereview = true;
-            },         
+            },
             ViewBid(){
                 window.scrollTo(0,0);
                 this.$router.push({name: 'job-details'})
@@ -74,7 +73,7 @@
                 this.responsivemenu = false;
             }
         },
-        watch : { 
+        watch : {
         }
     }
 </script>

@@ -5,7 +5,7 @@
                 <i class="icon-alert"></i>
                 <p>You are not allowed to send contact details and personal information.</p>
             </div>
-        </div>         
+        </div>
         <div class="panel-heading">
             <span class="chat-profile-pic" v-bind:style="{'background-image': 'url('+ getImage(getSenderImage) +')',}"></span>
             <span class="chat-head-heading">{{getSenderName}}
@@ -31,7 +31,7 @@
                         <i class="icon-alert" style="font-size: 24px;"></i>
                         <p>You are not allowed to send contact details and personal information.</p>
                     </div>
-                </b-list-group-item> -->               
+                </b-list-group-item> -->
             </b-list-group>
         </div>
         <div class="panel-footer">
@@ -61,7 +61,7 @@
         components : {
             InfiniteLoading
         },
-        props: ['messageData', 'show', 'strict', 'disabled'],
+        props: ['messageData', 'show', 'disabled'],
         data () {
             return{
                 url: null,
@@ -98,7 +98,7 @@
 
                 url = self.url;
                 if(typeof(page) !== 'undefined' && page){
-                    url += '&page='+page;   
+                    url += '&page='+page;
                 }
                 var after = ((self.messages.length > 0)? self.messages[0].id : 0);
                 url += '&after=' + after;
@@ -174,7 +174,7 @@
                 }
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
-                
+
             },
             validateBeforeSubmit() {
                 let message = this.text;
@@ -235,7 +235,7 @@
                 }else {
                     this.text = "";
                 }
-                
+
             },
             checkCurrentUser(message) {
                 let currentUser = JSON.parse(this.$store.getters.getAuthUser);
@@ -245,7 +245,7 @@
                 return moment.utc(date).local().format('MMM Do, YYYY, h:mm a');
             },
             showChatBox() {
-                
+
                 this.url = 'api/job-message?pagination=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
                 let data = this.jobMessageData;
                 data.pagination = true;
@@ -268,7 +268,7 @@
                 let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
                 //let channelUserOnlineName = 'User-Is-Online.' + this.jobMessageData.job_bid_id;
                 window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
-                    
+
                     self.isOnline = true;
                     self.messages.push(e.discussion);
                     self.scrollToEnd();
@@ -346,7 +346,7 @@
                 }
                 return null;
             }
-        },  
+        },
         watch: {
             show(value) {
                 if(value) {

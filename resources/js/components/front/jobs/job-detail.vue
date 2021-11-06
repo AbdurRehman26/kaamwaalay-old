@@ -2,7 +2,7 @@
     <div class="job-main-details detail-page">
         <div class="content" v-if="Object.keys(record).length">
             <div class="job-main-heading grey-bg elementary-banner section-padd xs border-bottom">
-                <div class="container element-index text-center md">
+                <div class="container element-index text-center md" style="left:0;">
                     <div class="content-sec">
                         <div class="job-image"
                         v-bind:style="{'background-image': 'url('+ jobImage +')'}">
@@ -62,7 +62,6 @@
 
 <div class="job-post-container section-padd sm">
     <div class="container md">
-
 
         <div class="row">
             <div class="col-md-9">
@@ -130,10 +129,7 @@
                                 <strong v-if="record.awarded_to && record.awarded_to.id == bid.user_id">{{'( Job Awarded )'}}<i class="icon-trophy"></i></strong>
 
                                 <div v-if="isMyJob" class="jobs-rating">
-                                    <star-rating :star-size="20" read-only  :increment="0.5" :rating="bid.user ? bid.user.average_rating : 0" active-color="#326497"></star-rating>
                                     <div class="jobs-done">
-                                        <span class="review-job">{{ bid.user && bid.user.total_feedback_count ? bid.user.total_feedback_count : 0 }} Feedback review(s)</span>
-
                                         <span class="review-job" v-if="!bid.user && !bid.user.total_finished_jobs">No Jobs performed</span>
                                         <span class="review-job" v-else>{{ bid.user.total_finished_jobs }} Job(s) performed</span>
                                     </div>
@@ -285,18 +281,8 @@
     </div>
 </div>
 
-<job-proof-popup @HideModalValue="showJobProof  = false" :showModalProp="showJobProof" :myBidValue="myBidValue"></job-proof-popup>
-
 <award-job-popup @bid-updated="reSendCall(); requestUserUrl='api/user/me'" :job="record" :bidder="bidder"
 :record="record" @HideModalValue="showAwardJob  = false" :showModalProp="showAwardJob "></award-job-popup>
-
-<visit-request-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitJob"></visit-request-popup>
-
-<visit-request-approval-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="showVisitApprovalPopup"></visit-request-approval-popup>
-
-<visit-request-detials-popup :bid="bVal" @HideModalValue="HideModal" :showModalProp="showVisitDetailsPopup"></visit-request-detials-popup>
-
-<go-to-visit-popup @bid-updated="reSendCall();" :bid="bidValue" :job="record" @HideModalValue="HideModal" :showModalProp="visitpopup"></go-to-visit-popup>
 
 <post-bid-popup :bid="bidValue" @bid-created="reSendCall" :job="record" @HideModalValue="showBidPopup = false; bidValue = ''" :showModalProp="showBidPopup"></post-bid-popup>
 <mark-job-done-popup @HideModalValue="showMarkJobDonePopup = false;" :showModalProp="showMarkJobDonePopup"></mark-job-done-popup>
@@ -304,8 +290,6 @@
 
 </div>
 
-
-<write-review-popup :type="reviewType" @review-sent="reSendCall" :job="record" @HideModalValue="HideModal" :showModalProp="showReviewForm"></write-review-popup>
 <confirmation-popup @form-submitted="formUpdated" :submitFormData="formData" :requestUrl="submitUrl" @HideModalValue="confirmPopupShow = false;" :showModalProp="confirmPopupShow"></confirmation-popup>
 
 <confirmation-popup-mark-job-completed  @HideModalValue="confirmPopupShowMarkJobCompleted = false;" :showModalProp="confirmPopupShowMarkJobCompleted"></confirmation-popup-mark-job-completed>
@@ -392,7 +376,8 @@
         },
         computed : {
             jobImage(){
-                return this.record && this.record.service && this.record.service.images[0] ? this.record.service.images[0].upload_url : 'images/dummy/image-placeholder.jpg';
+              console.log(this.record);
+                return this.record && this.record.service && this.record.service.images[0] ? this.record.service.images[0].name : 'images/dummy/image-placeholder.jpg';
             },
             jobAwarded(){
                 return this.record.awarded_to;
@@ -578,37 +563,7 @@
             getDateTime(bid) {
                 return "("+moment(bid.suggested_date).format('MMM Do, YYYY') +" "+ moment(bid.suggested_time, 'HH:mm:ss').format('h:mm A') + ")";
             },
-            axistPointsValue(){
-                let xAxis = parseInt(this.record.address_latitude) ? this.record.address_latitude : this.xAxis;
-                let yAxis = parseInt(this.record.address_longitude) ? this.record.address_longitude : this.yAxis;
 
-                this.mapKey = window.mapKey;
-
-                this.axisPoints = xAxis +','+  yAxis;
-
-                this.axisPoints = this.record.address;
-                return this.axisPoints;
-
-            },
-
-            googleGetAddress(record){
-
-                let self = this;
-                var addressObj = {
-                    address_line_1: record.address,
-                    address_line_2: '',
-                    city:           record.city,
-                    state:          record.state,
-                    zip_code:       '',
-                    country:        record.country
-                }
-                Vue.$geocoder.send(addressObj, response => {
-
-                    self.axisPoints = response.results[0].formatted_address;
-
-                });
-
-            },
             getImage(img) {
                 return img ? img : 'images/dummy/image-placeholder.jpg'
             },
@@ -705,13 +660,8 @@
                 this.submitBidForm = false;
 
                 this.record = response.data;
-                // this.axistPointsValue();
                 this.initiateJobLoading = false;
                 this.markJobCompleteLoading = false;
-
-
-
-                this.googleGetAddress(this.record);
 
                 let user = JSON.parse(this.$store.getters.getAuthUser);
 

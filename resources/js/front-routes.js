@@ -231,43 +231,6 @@
         component: require('./components/front/bids/main.vue').default,
     },
 
-
-
-    // Profile Rejection
-    {
-        name: 'profile-rejection',
-        path: '/profile-rejected',
-        meta: {
-            title: 'PSM | Profile Rejected',
-            bodyClass: 'profile-rejection-page',
-            navigation: 'provider-nav',
-        },
-        component: require('./components/front/profile-rejection/main.vue').default,
-    },
-
-    {
-        name: 'not-approved',
-        path: '/not-approved',
-        meta: {
-            title: 'PSM | Profile Rejected',
-            bodyClass: 'profile-rejection-page',
-            navigation: 'provider-nav',
-        },
-        component: require('./components/front/profile-rejection/not-approved.vue').default,
-    },
-
-    {
-        name: 'not-review',
-        path: '/not-review',
-        meta: {
-            title: 'PSM | Profile Rejected',
-            bodyClass: 'profile-rejection-page',
-            navigation: 'provider-nav',
-        },
-        component: require('./components/front/profile-rejection/profile-yet.vue').default,
-    },
-
-
     // Static Pages
     {
         name: 'terms-condition',
