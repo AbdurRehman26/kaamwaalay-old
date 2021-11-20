@@ -44,9 +44,9 @@ class ServiceTableSeeder extends Seeder
         // reduce the probabiltiy of 1 occuring
 
      $serviceRandomImages = [
-        'images/dummy/cleaning1.jpg',
-        'images/dummy/cleaning2.jpg',
-        'images/dummy/cleaning3.jpg'
+        'images/cleaning1.jpg',
+        'images/cleaning2.jpg',
+        'images/cleaning3.jpg'
     ];
 
     foreach ($services as $key => $service) {
