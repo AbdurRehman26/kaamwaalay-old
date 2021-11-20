@@ -39,12 +39,12 @@ return [
     'onesignal' => [
         'app_id' => env('ONESIGNAL_APP_ID'),
         'rest_api_key' => env('ONESIGNAL_REST_API_KEY')
-    ],  
+    ],
     'facebook' => [
-        'client_id' => '',         
+        'client_id' => '',
         'client_secret' => '',
         'redirect' => '',
     ],
     'google_api_key'=> env('GOOGLE_API_KEY', 'AIzaSyAR40p-AIzaSyCgc4AbNtACxOR6xwPM4Z6cc7E9ipMEW88'),
-    'facebook_api_key'=> env('FACEBOOK_APP_ID', '212566316088719'),
+    'facebook_api_key'=> env('FACEBOOK_APP_ID', '1335325916922005'),
 ];
