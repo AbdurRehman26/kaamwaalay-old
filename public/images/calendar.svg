@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>@1xconnection-indicator</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="field/field-date-range" transform="translate(-202.000000, -37.000000)" fill="#838383" fill-rule="nonzero">
+            <g id="field-date-range">
+                <g id="form-control" transform="translate(0.000000, 26.000000)">
+                    <g id="connection-indicator" transform="translate(202.000000, 11.000000)">
+                        <path d="M12.8156863,1.6 L12.0156863,1.6 L12.0156863,0 L10.4156863,0 L10.4156863,1.6 L4.01568627,1.6 L4.01568627,0 L2.41568627,0 L2.41568627,1.6 L1.61568627,1.6 C0.735686275,1.6 0.0156862745,2.32 0.0156862745,3.2 L0.0156862745,14.4 C0.0156862745,15.28 0.735686275,16 1.61568627,16 L12.8156863,16 C13.6956863,16 14.4156863,15.28 14.4156863,14.4 L14.4156863,3.2 C14.4156863,2.32 13.6956863,1.6 12.8156863,1.6 Z M12.8156863,14.4 L1.61568627,14.4 L1.61568627,5.6 L12.8156863,5.6 L12.8156863,14.4 Z" id="Shape"></path>
+                        <rect id="Rectangle-path" x="3.21568627" y="7.2" width="4" height="4"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
