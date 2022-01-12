@@ -169,6 +169,11 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
     }
 
+    if(!empty($data['city_area'])) {
+        $this->builder = $this->builder->where('service_provider_profiles.city_area_id', $data['city_area']);
+
+    }
+
     $this->builder = $this->builder->select('service_provider_profiles.*');
     $record = parent::findByAll($pagination, $perPage, $data);
     return $record;

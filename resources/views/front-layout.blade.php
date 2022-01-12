@@ -44,4 +44,55 @@
         <!-- <script src="https://js.stripe.com/v3/"></script> -->
         <script src="{{ url('/js/front-app.js') }}"></script>
     </body>
+
+    <script src="//www.refersion.com/tracker/v3/pub_abc12300000000000000.js"></script>
+
+    <script>
+        console.log(2222);
+        _refersion(function(){
+            console.log(23456);
+            _rfsn._addTrans({
+                'order_id': '12345',
+                'shipping': '11.90',
+                'tax': '5.23',
+                'discount': '2.32',
+                'discount_code': 'TESTCOUPON',
+                'currency_code': 'USD'
+            });
+
+            _rfsn._addCustomer({
+                'first_name': 'Nancy',
+                'last_name': 'Parker',
+                'email': 'parker.nancy@refersion.com',
+                'ip_address': '808.53.77.22'
+            });
+
+            _rfsn._addItem({
+                'sku': 'DD23444',
+                'quantity': '2',
+                'price': '100'
+            });
+
+            _rfsn._addItem({
+                'sku': 'XJ66778',
+                'quantity': '3',
+                'price': '50'
+            });
+
+            _rfsn._addItem({
+                'sku': 'MP39592',
+                'quantity': '2',
+                'price': '1000'
+            });
+
+            _rfsn._sendConversion();
+
+        });
+
+
+
+    </script>
+
+
+
 </html>
