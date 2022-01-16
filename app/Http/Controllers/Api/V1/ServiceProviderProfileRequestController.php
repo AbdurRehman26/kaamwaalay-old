@@ -83,17 +83,14 @@ public function getUserApprovedProfile()
 
     }
 
-    $data = $data ? $data : new \StdClass();
+    $data = $data ?: new \StdClass();
 
-
-    $output = [
-            'data' => $data,
-    ];
-
-        // HTTP_OK = 200;
+     // HTTP_OK = 200;
     $code = 200;
 
-    return response()->json($output, $code);
+    return response()->json([
+        'data' => $data
+    ], $code);
 }
 
 }

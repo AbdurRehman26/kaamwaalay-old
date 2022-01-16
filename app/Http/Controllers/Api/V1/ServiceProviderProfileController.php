@@ -50,7 +50,6 @@ class ServiceProviderProfileController extends ApiResourceController
             unset($input['user_id']);
         }
 
-
         return $input;
     }
 

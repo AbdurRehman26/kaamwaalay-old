@@ -68,8 +68,6 @@ class DashboardController
                     $output = $this->_repository->topCustomer($input);                
                 } 
             }
-            
-            
         }
 
         return response()->json($output, $code);
