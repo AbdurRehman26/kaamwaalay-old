@@ -3,14 +3,13 @@
 //Route::apiResource('users', 'Api\UserController');
 
 Route::group([
-    'prefix' => 'auth'
-], function () {  
+    'prefix' => 'auth',
+], function () {
     Route::put('change/password', 'Api\V1\UserController@changePassword');
     Route::post('logout', 'Auth\LoginController@logout');
 });
 
 Route::group(['middleware' => ['scopes']], function () {
-
     Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
     Route::resource('campaign', 'Api\V1\CampaignController')->only([
         'index', 'store', 'show',
@@ -23,26 +22,26 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 
     Route::resource('job-bid', 'Api\V1\JobBidController')->except([
-        'edit','create','destory'
+        'edit','create','destory',
     ]);
 
     Route::get('job/stats', 'Api\V1\JobController@getJobStats')->name('job.stats');
     Route::get('job-invite-to-bid', 'Api\V1\JobController@getInviteToBidJobs')->name('job.invite.to.bid');
     Route::resource('job', 'Api\V1\JobController')->except([
-        'edit','create','destory'
+        'edit','create','destory',
     ]);
 
     Route::resource('job-message', 'Api\V1\JobMessageController')->except([
-        'edit','create','destory'
+        'edit','create','destory',
     ]);
 
     Route::resource('payment', 'Api\V1\PaymentController')->except([
-     'edit','create','destory'
+     'edit','create','destory',
  ]);
 
     Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
     Route::resource('plan', 'Api\V1\PlanController')->except([
-        'edit','create'
+        'edit','create',
     ]);
 
     Route::resource('role', 'Api\V1\RoleController')->only([
@@ -50,16 +49,16 @@ Route::group(['middleware' => ['scopes']], function () {
     ]);
 
     Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->only([
-        'update'
+        'update',
     ]);
 
     Route::get('service-provider-profile-request/approved-profile', 'Api\V1\ServiceProviderProfileRequestController@getUserApprovedProfile')->name("service-provider.approved-profile");
     Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
-        'edit','create','destory','store'
+        'edit','create','destory','store',
     ]);
 
     Route::resource('service', 'Api\V1\ServiceController')->only([
-        'store', 'update' 
+        'store', 'update',
     ]);
 
     Route::resource('support-inquiry', 'Api\V1\SupportInquiryController')->only([
@@ -72,7 +71,7 @@ Route::group(['middleware' => ['scopes']], function () {
 
 
     Route::resource('user-rating', 'Api\V1\UserRatingController')->only([
-        'update','store'
+        'update','store',
     ]);
 
     Route::put('user/change-access-level', 'Api\V1\UserController@changeAccessLevel')->name('change.access_level');
@@ -82,10 +81,9 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
     
     Route::resource('user', 'Api\V1\UserController')->except([
-        'edit','destory','create'
+        'edit','destory','create',
     ]);
     Route::resource('zipcode', 'Api\V1\ZipCodeController')->except([
-        'edit','destory','create'
+        'edit','destory','create',
     ]);
-
 });

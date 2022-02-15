@@ -68,7 +68,35 @@
                             <p>ABOUT YOU</p>
                         </div>
 
+
+                      <div class="service-offered">
+                        <div class="form-label-heading m-b-30">
+                          <p>SERVICES OFFERED</p>
+                        </div>
                         <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Are you a Business or Individual</label>
+                              <select v-model="record.business_details.business_type" v-validate="'required'" name="service"
+                                      :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
+                                <option v-for="businessType in [{id: 1, name: 'individual'}, {id: 1, name: 'business'}]" :value="businessType.name">
+                                  {{ businessType.name.charAt(0).toUpperCase() + businessType.name.substr(1).toLowerCase() }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div v-if="record.business_details.business_type === 'business'" class="col-md-6">
+                            <div class="form-group">
+                              <label>Business Name</label>
+                              <input placeholder="Enter business name.service-professional .multiselect__tags span" v-model="record.business_details.business_name" v-validate="'required'" name="business_name"
+                                      :class="['form-control' , errorBag.first('business_name') ? 'is-invalid' : '']" class="form-control"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
@@ -341,6 +369,10 @@
 
                     self.loading = false;
                     self.record = response.data;
+                    console.log(self.record);
+                    if(!self.record.business_details.business_type){
+                      self.record.business_details.business_type = 'individual'
+                    }
 
                     if(self.record.service_details.length){
 

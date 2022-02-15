@@ -14357,7 +14357,6 @@ button.sl-close {
   width: 100% !important;
 }
 .service-professional .multiselect__tags span {
-  position: absolute;
   width: 100%;
 }
 .service-professional .multiselect__tags span > span.multiselect__single {
