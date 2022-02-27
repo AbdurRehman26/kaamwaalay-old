@@ -166,7 +166,7 @@ class UserController extends ApiResourceController
     }
     public function socialLogin(Request $request)
     {
-        $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'social_account_id', 'social_account_type', 'profile_pic', 'from_sign_up', 'access_token');
+        $data = $request->only('first_name', 'last_name', 'email', 'role_id', 'social_account_id', 'social_account_type', 'profile_pic', 'profile_image', 'from_sign_up', 'access_token');
         $rules = [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',

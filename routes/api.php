@@ -29,7 +29,7 @@ Route::group([
 });
 
 Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-    'edit','create','destory','store','update',
+    'edit','create','destroy','store','update',
 ]);
 
 Route::resource('service', 'Api\V1\ServiceController')->except([
@@ -45,5 +45,5 @@ Route::resource('city', 'Api\V1\CityController')->only([
 ]);
 
 Route::resource('user-rating', 'Api\V1\UserRatingController')->except([
-    'edit','store','destory',
+    'edit','store','destroy',
 ]);
