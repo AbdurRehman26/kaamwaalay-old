@@ -169,10 +169,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         }
 
         if (! empty($data['city_area']) && $data['city_area'] !== 'undefined') {
-            $this->builder = $this->builder->where(function ($query){
-                $query->where('users.city_area_id', $data['city_area'])
-                    ->orWhere('users.city_area_id', (int)$data['city_area']);
-            });
+            $this->builder = $this->builder->where('users.city_area_id', $data['city_area']);
         }
 
         $this->builder = $this->builder->select('service_provider_profiles.*');
