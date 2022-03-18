@@ -73,6 +73,7 @@ class UsersTableSeeder extends Seeder
                 'access_level' => 'full',
                 'phone_number' => $faker->PhoneNumber,
                 'city_id' => 1,
+                'city_area_id' => 1,
                 'status' => 'active',
                 'activation_key' => bcrypt('cygnismedia'),
                 'activated_at' => $date,
