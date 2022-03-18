@@ -40,6 +40,7 @@ class User extends Authenticatable
         'role_id',
         'state_id',
         'city_id',
+        'city_area_id',
         'status',
         'profile_image',
         'access_level',
