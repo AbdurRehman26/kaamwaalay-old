@@ -79,7 +79,7 @@
                     let result = {
                         data : response.data,
                         noRecordFound : false,
-                        pagination : response.pagination
+                        pagination : response.meta
 
                     };
                     if(typeof response.unread_count != 'undefined'){
@@ -91,7 +91,7 @@
 
                     self.$emit('get-records', result);
 
-                    self.pagination = response.pagination;
+                    self.pagination = response.meta;
 
                     self.loading = false;
 

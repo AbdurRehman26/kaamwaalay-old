@@ -14,15 +14,15 @@ class CreateServiceProviderServicesTable extends Migration
     public function up()
     {
         Schema::create(
-            'service_provider_services', function (Blueprint $table) {
+            'service_provider_services',
+            function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('service_provider_profile_request_id')->unsigned()->index('sppri');
+                $table->integer('service_provider_profile_id')->unsigned()->index('sppi');
                 $table->integer('service_id')->unsigned()->nullable()->index();
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->unique(['service_provider_profile_request_id' , 'service_id'])->index('sppui');
-
+                $table->unique(['service_provider_profile_id' , 'service_id'])->index('sppui');
             }
         );
     }
@@ -37,5 +37,4 @@ class CreateServiceProviderServicesTable extends Migration
     {
         Schema::drop('service_provider_services');
     }
-
 }

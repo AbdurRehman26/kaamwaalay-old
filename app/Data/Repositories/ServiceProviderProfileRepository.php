@@ -4,11 +4,11 @@ namespace App\Data\Repositories;
 
 use App\Data\Models\Role;
 use App\Data\Models\ServiceProviderProfile;
+use App\Data\Models\ServiceProviderService;
 use Carbon\Carbon;
 use DB;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use Storage;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract
 {
@@ -67,39 +67,10 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
             $data->total_revenue = number_format($totalRevenue, 2, '.', '');
 
-            $servicesCriteria = ['service_provider_profile_requests.user_id' => $data->user_id,'service_provider_profile_requests.status' => 'approved'];
-            $subServices = app('ServiceProviderProfileRequestRepository')->getSubServices($servicesCriteria, false);
-            $data->services_offered = (object) $subServices;
+            $data->services_offered = [];
 
-
-            $allServicesCriteria = ['user_id' => $data->user_id];
-            $allServices = app('ServiceProviderProfileRequestRepository')->getAllServices($allServicesCriteria, false);
+            $allServices = [];
             $data->all_services_offered = $allServices;
-
-            $crtieria = ['user_id' => $data->user_id, 'status' => 'approved'];
-            $profile = app('ServiceProviderProfileRequestRepository')->findByCriteria($crtieria, false);
-            if ($profile) {
-                $profile->formatted_created_at = Carbon::parse($profile->approved_at)->format('F j, Y');
-            }
-            $data->profile_request = $profile;
-
-            // \Log::info("Attachments");
-            // \Log::info(json_encode($data->attachments));
-            // \Log::info("");
-            //
-            // if(!empty($data->attachments)){
-            //     foreach ($data->attachments as $key => $value) {
-            //         foreach ($data->attachments[$key] as $childKey => $childValue) {
-            //             if($childValue){
-            //                 if(!empty($childValue['name'])){
-            //                     $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
-            //                     $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name'];
-            //                 }
-            //             }
-            //         }
-            //
-            //     }
-            // }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
         }
@@ -121,8 +92,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         if (! empty($data['keyword'])) {
             $this->builder = $this->builder->where(
                 function ($query) use ($data) {
-                $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
-            }
+                    $query->where(DB::raw('concat(users.first_name," ",users.last_name)'), 'LIKE', "%{$data['keyword']}%");
+                }
             )->groupBy('service_provider_profiles.user_id');
         }
 
@@ -136,7 +107,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                 $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
             })->join('service_provider_services', function ($join) use ($data) {
                 $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id')
-                ->where(function($query) use($data){
+                ->where(function ($query) use ($data) {
                     $query->where('service_provider_services.service_id', $data['filter_by_service']);
                 });
             })

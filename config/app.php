@@ -167,7 +167,6 @@ return [
         App\Providers\JobRepositoryServiceProvider::class,
         App\Providers\JobMessageRepositoryServiceProvider::class,
         App\Providers\RoleRepositoryServiceProvider::class,
-        App\Providers\ServiceProviderProfileRequestRepositoryServiceProvider::class,
         App\Providers\ServiceProviderProfileRepositoryServiceProvider::class,
         App\Providers\ServiceProviderServiceRepositoryServiceProvider::class,
         App\Providers\ServiceRepositoryServiceProvider::class,
@@ -176,7 +175,6 @@ return [
         App\Providers\SEOServiceProvider::class,
         NotificationChannels\OneSignal\OneSignalServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],
 

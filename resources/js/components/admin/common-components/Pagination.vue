@@ -41,7 +41,7 @@
             },
             currentPage : {
                 get: function() {
-                    return this.pagination ? this.pagination.current : 1;    
+                    return this.pagination ? this.pagination.current_page : 1;
 
                 },
                 set: function() {
@@ -64,8 +64,6 @@
                 if(self.loading) {
                     return false;
                 }
-
-
                 if(!self.pagination){
                     self.loading = true;
                     self.$parent.getList(false , function (response) {
@@ -79,9 +77,9 @@
                 }else{
 
                     self.loading = true;
-                    if(self.pagination && self.pagination.current != self.pagination.next){
+                    if(self.pagination && self.pagination.current_page != self.pagination.last_page){
                         self.$emit('custom-loading-start', true);
-                        self.$parent.getList(self.pagination.next , function (response) {
+                        self.$parent.getList(self.pagination.current+1 , function (response) {
                             self.$emit('custom-loading-start', false);
                             setTimeout(function () {
                                 $state.loaded();

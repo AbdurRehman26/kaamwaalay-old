@@ -12455,12 +12455,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .fb-btn {
   position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
 }
 .fb-btn a.btn {
   width: 100%;
   font-size: 16px;
   background-color: #3B579D;
   border-color: #3B579D;
+  margin-bottom: 20px;
   font-family: "AkzidenzGroteskBE-Md";
 }
 .fb-btn a span {

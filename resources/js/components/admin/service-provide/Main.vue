@@ -50,23 +50,23 @@
           <tbody>
               <tr v-for="record in records">
                 <td>
-                    <span v-if="record.user_detail.profileImage" class="user-img radius-0" v-bind:style="{'background-image': 'url('+ record.user_detail.profileImage +')'}">
+                    <span v-if="record.user.profileImage" class="user-img radius-0" v-bind:style="{'background-image': 'url('+ record.user_detail.profileImage +')'}">
                         <!-- <img v-if="record.user_detail && record.user_detail.profile_image" :src="record.user_detail ? record.user_detail.profileImage : ''" > -->
                     </span>
-                    <span v-if="!record.user_detail.profileImage" class="user-img radius-0">
+                    <span v-if="!record.user.profileImage" class="user-img radius-0">
                         <!-- <img v-if="record.user_detail && record.user_detail.profile_image" :src="record.user_detail ? record.user_detail.profileImage : ''" > -->
                     </span>                
                 </td>            
                 <td>
                     <a @click.prevent="viewDetails(record.id)">
-                        {{ record.user_detail.first_name +' '+ record.user_detail.last_name }}
+                        {{ record.user.first_name +' '+ record.user.last_name }}
                     </a>
                 </td>
 
                 <td> {{ record.business_type == 'individual' ? 'I' : 'B' }} </td>
                 <td> {{ record.business_name }} </td>
-                <td> {{ record.user_detail.phone_number }} </td>
-                <td ><span class="tags" :class="[record.user_detail.status]">{{record.user_detail.status}}</span></td>
+                <td> {{ record.user.phone_number }} </td>
+                <td ><span class="tags" :class="[record.user.status]">{{record.user.status}}</span></td>
                 <td><star-rating :increment="0.5" :star-size="20" read-only :rating="record.avg_rating ? parseInt(record.avg_rating) : 0" active-color="#00B389"></star-rating></td>
                 <td class="text-right">
                   <div class="action-icons">
@@ -74,10 +74,10 @@
                         <i v-b-tooltip.hover title="View Details" class="icon-eye basecolor"></i>
                     </a>
                     <i @click="changestatuspopup(record)"  
-                    v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user_detail.id && record.user_detail.status == 'pending') ? 'disabled' : '']">
+                    v-b-tooltip.hover title="Change Status" :class="['icon-cog2', ($store.getters.getAuthUser.id != record.user.id && record.user.status == 'pending') ? 'disabled' : '']">
                 </i>
                 <i v-b-tooltip.hover @click.prevent="currentRecord = record; confirmPopupShow = true;" 
-                v-if="!record.is_verified" title="" :class="['icon-check' , record.user_detail.status == 'banned' ? 'disabled' : '']" title="Confirm Verification"></i>
+                v-if="!record.is_verified" title="" :class="['icon-check' , record.user.status == 'banned' ? 'disabled' : '']" title="Confirm Verification"></i>
                 <i v-b-tooltip.hover @click.prevent="currentRecord = record; confirmPopupShow = true;" 
                 v-if="record.is_verified" title="" class="icon-cancel" title="Cancel Verification"></i>
             </div>
@@ -114,7 +114,7 @@
                 filter_by_business_type : '',
                 filter_by_service : ''
             },
-            url : 'api/service-provider-profile?pagination=true&user_detail=true',
+            url : 'api/service-provider-profile?pagination=true&user=true',
             loading : true,
             statuses : [
             {
@@ -196,7 +196,7 @@
         this.viewdetails = true;
     },
     changestatuspopup(record) {
-        this.statusData = record.user_detail;
+        this.statusData = record.user;
         this.changestatus = true;
     },
     ConfirmationPopup() {

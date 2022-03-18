@@ -2,10 +2,10 @@
 
 namespace App\Data\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Yadakhov\InsertOnDuplicateKey;
-use Carbon\Carbon;
 
 class JobBid extends Model
 {
@@ -20,28 +20,23 @@ class JobBid extends Model
         'job_done_images' => 'array',
     ];
 
-    const CANCELLED 	= 'cancelled';
-    const COMPLETED 	= 'completed';
-    const PENDING 		= 'pending';
-    const INVITED       = 'invited';
-    const VISITALLOWED      = 'visit_allowed';
-    const ONTHEWAY      = 'on_the_way';
-    const INITIATED         = 'initiated';
-    const SUGGESTED 		= 'suggested_time';
+    const CANCELLED = 'cancelled';
+    const COMPLETED = 'completed';
+    const PENDING = 'pending';
+    const INVITED = 'invited';
+    const VISITALLOWED = 'visit_allowed';
+    const ONTHEWAY = 'on_the_way';
+    const INITIATED = 'initiated';
+    const SUGGESTED = 'suggested_time';
 
 
-    public function setPreferredTimeAttribute($value='')
+    public function setPreferredTimeAttribute($value = '')
     {
         $this->attributes['preferred_time'] = Carbon::parse($value)->toTimeString();
     }
 
-    public function setPreferredDateAttribute($value='')
+    public function setPreferredDateAttribute($value = '')
     {
-
         $this->attributes['preferred_date'] = Carbon::parse($value)->toDateTimeString();
     }
-
-    
-
 }
-

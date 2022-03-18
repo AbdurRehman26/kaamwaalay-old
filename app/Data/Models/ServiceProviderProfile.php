@@ -3,18 +3,23 @@
 namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Yadakhov\InsertOnDuplicateKey;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ServiceProviderProfile extends Model
 {
-    use InsertOnDuplicateKey;
-    const APPROVED = 'approved';
-    const IN_REVIEW = 'in-review';
-    const REJECTED = 'rejected';
-    const PENDING = 'pending';
-
     protected $casts = [
-        'attachments' => 'array'
+        'attachments' => 'array',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function totalFinishedJobs(): int
+    {
+        return $this->hasMany(JobBid::class, 'user_id', 'user_id')->where('status', JobBid::COMPLETED)
+            ->where('user_id', $this->user_id)->count();
+    }
 }

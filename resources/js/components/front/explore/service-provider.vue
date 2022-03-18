@@ -52,19 +52,18 @@
             </div>
             <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
                 <div class="job-post-details">
-                    <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user_detail.profileImage) +')',}"></div>
+                    <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user.profile_image) +')',}"></div>
                     <div class="job-common-description">
                         <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3>
-                        <span v-if="record.is_verified"><i class="icon-checked"></i></span>
                         <div class="jobs-rating">
                             <div class="jobs-done">
                                 <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
                                 <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
                             </div>
                         </div>
-                        <a :href="postJobRoute+'&service_provider_user_id='+record.user_detail.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
+                        <a :href="postJobRoute+'&service_provider_user_id='+record.user.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
 
-                        <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary', 'post-bid'  ]">
+                        <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user" :class="['btn' , 'btn-primary', 'post-bid'  ]">
                             Invite
                         </a>
 
@@ -74,11 +73,11 @@
                     <div class="member-details">
                         <p class="location">
                             <i class="icon-location"></i>
-                            Location <strong>{{record.user_detail.city + (record.user_detail.state? ', ' +record.user_detail.state : "")}}</strong>
+                            Location <strong>{{record.user.city_area.name}}</strong>
                         </p>
                         <p class="member-since">
                             <i class="icon-calendar-daily"></i>
-                            Member since <strong>{{record.formatted_created_at }}</strong>
+                            Member since <strong>{{record.created_at }}</strong>
                         </p>
                     </div>
 
@@ -91,12 +90,12 @@
                             <p>Latest feedback & review</p>
                         </div>
                         <div class="chat-feedback-column">
-                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user_detail.profileImage) +')',}"></div>
+                            <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getImage(record.reviewedBy.user.profile_image) +')',}"></div>
                             <div class="chat-feedback-message">
                                 <p>{{record.reviewedBy.review.message}}</p>
                                 <div class="feeback-detail">
                                     <p class="feedback-personal-info">
-                                        <a href="javascript:void(0);">{{record.reviewedBy.user_detail.first_name + " " + record.reviewedBy.user_detail.last_name}}</a>
+                                        <a href="javascript:void(0);">{{record.reviewedBy.user.first_name + " " + record.reviewedBy.user.last_name}}</a>
                                         posted on
                                         <strong>{{record.reviewedBy.review.formatted_created_at}}</strong>
                                     </p>
@@ -146,7 +145,6 @@
 
 <category-popup @HideModalValue="hideZipModal" :showModalProp="categoryPopup" :selectedValue="selectedService" @onSubmit="onSelectCategory"></category-popup>
 </div>
-</div>
 </template>
 
 <style scoped>
@@ -178,7 +176,6 @@
                 isTouched: false,
                 searchServiceValue: '',
                 isLoading: false,
-                loading : false,
                 isPagination: '',
                 records : [],
                 groupByRecords : [],
@@ -470,9 +467,9 @@
                     self.btnLoading = false;
 
                     if(!self.serviceSuffix) {
-                        self.serviceSuffix = self.serviceName;
+                        self.serviceSuffix = self.service.id;
                     }
-                    self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user_detail=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&city_area='+self.$route.params.cityArea+'&from_explore=true';
+                    self.serviceProviderUrl = 'api/service-provider-profile?pagination=true&user=true&is_approved=approved&filter_by_top_providers=true&filter_by_service='+self.serviceSuffix+'&city_area='+self.$route.params.cityArea+'&from_explore=true';
 
 
                 }).catch(error=>{
@@ -498,11 +495,8 @@
                 for (var i = 0 ; i < len; i++) {
                     self.records.push( response.data[i] ) ;
                 }
-                // self.groupByRecords = _.groupBy(self.records, function(element) {
-                //     return element.user_detail.zip_code;
-                // });
                 self.noRecordFound = response.noRecordFound;
-                self.isPagination = response.pagination;
+                self.isPagination = response.meta;
             },
             checkRoute() {
                 this.records = [];

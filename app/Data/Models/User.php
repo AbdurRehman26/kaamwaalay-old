@@ -2,17 +2,16 @@
 
 namespace App\Data\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Yadakhov\InsertOnDuplicateKey;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
 use App\Notifications\ActivationNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
 use App\Notifications\SendServiceProviderStatusNotification;
-use Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Laravel\Passport\HasApiTokens;
+use Yadakhov\InsertOnDuplicateKey;
 
 class User extends Authenticatable
 {
@@ -77,7 +76,7 @@ class User extends Authenticatable
     }
     public static function generatePassword()
     {
-         // Generate random string and encrypt it.
+        // Generate random string and encrypt it.
         return bcrypt(str_random(35));
     }
 
@@ -86,16 +85,19 @@ class User extends Authenticatable
         $this->notify(new  SendServiceProviderStatusNotification($status, $reason));
     }
 
+    public function cityArea(): BelongsTo
+    {
+        return $this->belongsTo(CityArea::class);
+    }
+
     public function routeNotificationForOneSignal()
     {
-
         return [
             'tags' => [
                         'key' => 'user_id',
                         'relation' => '=',
                         'value' => $this->id,
-                      ]
+                      ],
             ];
     }
-
 }

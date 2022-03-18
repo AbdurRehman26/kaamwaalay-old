@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Data\Models\Role;
-use Faker\Factory;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class JobTableSeeder extends Seeder
 {
@@ -14,7 +13,6 @@ class JobTableSeeder extends Seeder
      */
     public function run()
     {
-
         $now = Carbon::now()->toDateTimeString();
 
         $faker = Faker\Factory::create();
@@ -30,20 +28,17 @@ class JobTableSeeder extends Seeder
         $jobBiddingStatuses = ['in_bidding', 'in_bidding', 'in_bidding', 'in_bidding', 'in_bidding', 'cancelled'];
 
 
-        for ($i=1; $i < $numberOfJobs; $i++) {
-
-
+        for ($i = 1; $i < $numberOfJobs; $i++) {
             $isArchived = $randomValues[array_rand($randomValues)];
 
-            $user = app('UserRepository')->model->where('role_id' , Role::CUSTOMER)->inRandomOrder()->first();
+            $user = app('UserRepository')->model->where('role_id', Role::CUSTOMER)->inRandomOrder()->first();
             $service = app('ServiceRepository')->model->inRandomOrder()->first();
 
             $city = app('CityRepository')->findById(1);
 
             $preferences = ['choose_date', 'any_time', 'few_days', 'with_in_a_week'];
 
-            if($user && $service){
-
+            if ($user && $service) {
                 $preference = $preferences[array_rand($preferences)];
 
                 $scheduled_at = $preference == 'choose_date' ? Carbon::now()->toDateString() : null;
@@ -62,15 +57,12 @@ class JobTableSeeder extends Seeder
                     'status' => $jobBiddingStatuses[array_rand($jobBiddingStatuses)],
                     'is_archived' => $isArchived,
                     'created_at' => $now,
-                    'updated_at' => $now
+                    'updated_at' => $now,
 
                 ];
-
             }
-
         }
 
         app("JobRepository")->model->insertOnDuplicateKey($data);
-
     }
 }

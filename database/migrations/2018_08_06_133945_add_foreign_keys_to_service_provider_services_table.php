@@ -14,8 +14,9 @@ class AddForeignKeysToServiceProviderServicesTable extends Migration
     public function up()
     {
         Schema::table(
-            'service_provider_services', function (Blueprint $table) {
-                $table->foreign('service_provider_profile_request_id')->references('id')->on('service_provider_profile_requests')->onUpdate('CASCADE')->onDelete('NO ACTION')->index('FK_sps_sppr_id');
+            'service_provider_services',
+            function (Blueprint $table) {
+                $table->foreign('service_provider_profile_id')->references('id')->on('service_provider_profiles')->onUpdate('CASCADE')->onDelete('NO ACTION')->index('FK_sps_spp_id');
                 $table->foreign('service_id')->references('id')->on('services')->onUpdate('CASCADE')->onDelete('NO ACTION');
             }
         );
@@ -30,11 +31,11 @@ class AddForeignKeysToServiceProviderServicesTable extends Migration
     public function down()
     {
         Schema::table(
-            'service_provider_services', function (Blueprint $table) {
+            'service_provider_services',
+            function (Blueprint $table) {
                 $table->dropForeign('FK_sps_sppr_id');
                 $table->dropForeign('service_provider_services_service_id_foreign');
             }
         );
     }
-
 }
