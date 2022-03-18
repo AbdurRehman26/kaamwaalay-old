@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Data\Models\CityArea;
 use Illuminate\Database\Seeder;
 
-class CityAreaTableSeeder extends Seeder
+class CityAreasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
