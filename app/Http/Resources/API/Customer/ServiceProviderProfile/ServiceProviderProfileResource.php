@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources\API\Customer\ServiceProviderProfile;
 
+use App\Http\Resources\API\Customer\User\UserResource;
+use App\Http\Resources\API\Shared\Service\ServiceCollectionResource;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\API\Customer\User\UserResource;
 
 class ServiceProviderProfileResource extends JsonResource
 {
@@ -16,6 +17,7 @@ class ServiceProviderProfileResource extends JsonResource
             'user' => new UserResource($this->user),
             'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
             'finished_jobs' => $this->totalFinishedJobs(),
+            'all_services_offered' => new ServiceCollectionResource($this->servicesOffered),
         ];
     }
 }
