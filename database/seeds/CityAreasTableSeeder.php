@@ -1,7 +1,5 @@
 <?php
 
-namespace Database\Seeders;
-
 use App\Data\Models\CityArea;
 use Illuminate\Database\Seeder;
 

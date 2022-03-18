@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Data\Models\City;
+use Illuminate\Database\Seeder;
 
 class CitiesTableSeeder extends Seeder
 {
@@ -12,12 +12,11 @@ class CitiesTableSeeder extends Seeder
      */
     public function run()
     {
-
-        City::insertOnDuplicateKey(array (
-            array (
+        City::insertOnDuplicateKey([
+            [
                 'id' => 1,
-                'name' => 'Karachi'
-            )
-        ));
+                'name' => 'Karachi',
+            ],
+        ]);
     }
 }
