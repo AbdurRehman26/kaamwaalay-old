@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Data\Models\CityArea;
+use Illuminate\Database\Seeder;
 
 class CityAreaTableSeeder extends Seeder
 {
@@ -14,8 +14,7 @@ class CityAreaTableSeeder extends Seeder
      */
     public function run()
     {
-
-      $inputArray = [
+        $inputArray = [
         "100 Quarters",
         "Abdullah Ahmed Road",
         "Abdullah Haroon Road",
@@ -449,19 +448,17 @@ class CityAreaTableSeeder extends Seeder
         "Yaseenabad",
         "Yousuf Goth",
         "Zaman Town",
-        "Zamzama"
+        "Zamzama",
       ];
 
-      foreach ($inputArray as $value) {
-        CityArea::insertOnDuplicateKey(array (
-            array (
+        foreach ($inputArray as $value) {
+            CityArea::insertOnDuplicateKey([
+            [
                 'name' => $value,
                 'slug' => str_replace(" ", "-", strtolower($value)),
-                'city_id' => 1
-            )
-        ));
-
-      }
-
+                'city_id' => 1,
+            ],
+        ]);
+        }
     }
 }

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         /**/
         $this->call(CitiesTableSeeder::class);
+        $this->call(CityAreaTableSeeder::class);
         // $this->call(CityAreaTableSeeder::class);
 
         // $this->call(CityAreaTableSeeder::class);
@@ -36,8 +37,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JobTableSeeder::class);
         $this->call(JobBidTableSeeder::class);
 
-          \Artisan::call('passport:install');
-          \Artisan::call('cache:clear');
+        \Artisan::call('passport:install');
+        \Artisan::call('cache:clear');
         /**/
     }
 }
