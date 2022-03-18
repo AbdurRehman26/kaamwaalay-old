@@ -135,11 +135,15 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $this->builder = $this->builder->leftJoin('service_provider_profile_requests', function ($join) use ($data) {
                 $join->on('service_provider_profiles.user_id', '=', 'service_provider_profile_requests.user_id');
             })->join('service_provider_services', function ($join) use ($data) {
-                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id');
+                $join->on('service_provider_profile_requests.id', '=', 'service_provider_services.service_provider_profile_request_id')
+                ->where(function($query) use($data){
+                    $query->where('service_provider_services.service_id', $data['filter_by_service']);
+                });
             })
         ->select('service_provider_profiles.*')
         ->groupBy('service_provider_profiles.user_id');
         }
+
         if (! empty($data['is_approved'])) {
             //$is_approved = $data['is_approved']? $data['is_approved'] : 'rejected';
             $this->builder = $this->builder->where('service_provider_profile_requests.status', '=', $data['is_approved']);
@@ -165,7 +169,10 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
         }
 
         if (! empty($data['city_area']) && $data['city_area'] !== 'undefined') {
-            $this->builder = $this->builder->where('users.city_area_id', $data['city_area']);
+            $this->builder = $this->builder->where(function ($query){
+                $query->where('users.city_area_id', $data['city_area'])
+                    ->orWhere('users.city_area_id', (int)$data['city_area']);
+            });
         }
 
         $this->builder = $this->builder->select('service_provider_profiles.*');

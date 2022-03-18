@@ -4,39 +4,30 @@
 			<div class="container">
 				<div class="top-footer">
 					<div class="row">
-						<div class="col-md-3">
+
+            <div class="col-md-4" v-if='userDetails.role_id!=2 || userDetails == ""'>
+              <div class="footer-links">
+                <ul>
+                  <li><strong>Customers</strong></li>
+                  <li><a href="/job-post">Post a job</a></li>
+                  <li  v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'customer' }}">Sign up as a customers</router-link></li>
+                  <li><a href="/explore">Explore Services</a></li>
+                  <li><a href="javascript:void(0);" @click="onAdviceCenterClick('customer')" v-if='userDetails.role_id==3'>Advice center</a></li>
+                  <li v-if='userDetails.role_id==3'><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-4">
 							<div class="footer-logo">
 								<a href="/">
 									<img src="images/logo.png">
 								</a>
 							</div>
-
-<!--
-							<div class="social-icons">
-								<ul>
-									<li><a href="javascript:;"><i class="icon-facebook"></i></a></li>
-									<li><a href="javascript:;"><i class="icon-twitter"></i></a></li>
-									<li><a href="javascript:;"><i class="icon-instagram"></i></a></li>
-									<li><a href="javascript:;"><i class="icon-google-plus"></i></a></li>
-									<li><a href="javascript:;"><i class="icon-pinterest"></i></a></li>
-								</ul>
-							</div>
- -->
-
 						</div>
-						<div class="col-md-3" v-if='userDetails.role_id!=2 || userDetails == ""'>
-							<div class="footer-links">
-								<ul>
-									<li><strong>Customers</strong></li>
-									<li><a href="/job-post">Post a job</a></li>
-									<li  v-if='userDetails == ""'><router-link :to="{name: 'sign-up' , params : { isPro : 'customer' }}">Sign up as a customers</router-link></li>
-									<li><a href="/explore">Explore Services</a></li>
-									<li><a href="javascript:void(0);" @click="onAdviceCenterClick('customer')" v-if='userDetails.role_id==3'>Advice center</a></li>
-									<li v-if='userDetails.role_id==3'><a href="javascript:void(0);" @click="showSupportPopup">Customer support</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-3" v-if='userDetails.role_id!=3 || userDetails == ""'>
+
+
+            <div class="col-md-4" v-if='userDetails.role_id!=3 || userDetails == ""'>
 							<div class="footer-links">
 								<ul>
 									<li><strong>House Helps</strong></li>
@@ -47,32 +38,7 @@
 								</ul>
 							</div>
 						</div>
-						<!-- <div class="col-md-3">
-							<div class="footer-links">
-								<ul>
-									<li><strong>Company</strong></li>
-									<li><a href="javascript:;">About us</a></li>
-									<li><a href="javascript:;">Blog</a></li>
-									<li><a href="javascript:;"></a></li>
-									<li><strong>Download</strong></li>
 
-									<li  class="app-images">
-										<ul>
-											<li>
-												<a href="javascript:;">
-												<img src="images/front/common-images/app-store.jpg">
-												</a>
-											</li>
-											<li>
-												<a href="javascript:;">
-													<img src="images/front/common-images/google-play.jpg">
-												</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div> -->
 					</div>
 				</div>
 				<div class="footer-copyrights">

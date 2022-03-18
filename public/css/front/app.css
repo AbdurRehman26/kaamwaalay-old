@@ -12455,42 +12455,18 @@ input[type=number]::-webkit-outer-spin-button {
 
 .fb-btn {
   position: relative;
-  border-bottom: 1px solid #E0E0E0;
-  padding-bottom: 20px;
-  margin-bottom: 30px;
 }
 .fb-btn a.btn {
   width: 100%;
   font-size: 16px;
   background-color: #3B579D;
   border-color: #3B579D;
-  margin-bottom: 20px;
   font-family: "AkzidenzGroteskBE-Md";
 }
 .fb-btn a span {
   position: absolute;
   font-size: 21px;
   margin-left: -30px;
-}
-.fb-btn:after {
-  content: "OR";
-  color: #494949;
-  position: absolute;
-  font-size: 14px;
-  background: #fff;
-  left: 46%;
-  font-family: "AkzidenzGroteskBE-Md";
-  top: 74px;
-  width: 46px;
-  text-align: center;
-}
-@media (max-width: 767px) {
-  .fb-btn:after {
-    left: 0;
-    right: 0;
-    margin: auto;
-    margin-top: -4px;
-  }
 }
 
 .mac-browser .btn {
@@ -12576,7 +12552,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .footer-logo {
-  max-width: 204px;
   margin-bottom: 32px;
 }
 
@@ -12632,6 +12607,9 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.footer-links {
+  text-align: center;
+}
 .footer-links ul li {
   margin-bottom: 16px;
   margin-right: 10px;
