@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobRepository;
 use App\Http\Requests\API\Customer\Job\StoreJobRequest;
+use App\Http\Resources\API\Customer\Job\JobCollectionResource;
 use App\Http\Resources\API\Customer\Job\JobResource;
 use App\Services\Customer\JobService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Data\Models\Job;
 
 class JobController
 {
@@ -71,6 +73,15 @@ class JobController
         return $rules;
     }
 
+    public function show(Request $request, Job $job)
+    {
+        return new JobResource($job);
+    }
+
+    public function index(Request $request): JobCollectionResource
+    {
+        return new JobCollectionResource($this->jobService->getJobs());
+    }
 
     public function store(StoreJobRequest $request)
     {

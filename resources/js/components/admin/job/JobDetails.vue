@@ -2,26 +2,17 @@
     <div class="panel-inner">
         <div v-if="Object.keys(record).length" class="view-job-details main-detail-content">
 
-                <!-- <div class="provider-image user-img">
-                    <img src="">
-                </div> -->
-
-
                 <div class="provider-detail">
 
                     <div class="col-xs-12">
                         <div class="customer-detail-title">
                             <h2 class="page-title">{{record.title}}</h2>
-                            <!-- <h4 class="page-title float-right">Category: Plumber</h4> -->
                         </div>
                     </div>
 
                     <!-- Basic Detail -->
 
                     <div class="col-xs-12 block-area">
-<!--                             <div class="customer-detail-title">
-                                <h4 class="page-title">Basic Detail</h4>
-                            </div> -->
                             <div class="view-details-list">
                                 <b-row>
                                     <b-col class="text-right fixed-label">
@@ -51,14 +42,6 @@
                                         <p>{{record.address}}</p>
                                     </b-col>
                                 </b-row>
-                                <b-row>
-                                    <b-col class="text-right fixed-label">
-                                        <p><strong class="title-head">Zip Code</strong></p>
-                                    </b-col>
-                                    <b-col class="calculated-value">
-                                        <p>{{record.zip_code}}</p>
-                                    </b-col>
-                                </b-row>                                                                                                                                   
                             </div>
                         </div>
 
@@ -66,9 +49,6 @@
                         <!-- Project Detail -->
 
                         <div class="col-xs-12 block-area">
-<!--                             <div class="customer-detail-title">
-                                <h4 class="page-title">Profile Detail</h4>
-                            </div> -->
                             <div class="view-details-list">
                                 <b-row>
                                     <b-col class="text-right fixed-label">

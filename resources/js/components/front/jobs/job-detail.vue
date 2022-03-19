@@ -77,7 +77,7 @@
                             Location <strong>{{ record.cityArea ? record.cityArea.name : 'N/A'  }}</strong>
                         </p>
                         <p class="member-since">
-                            Date posted: <strong>{{ record.created_at | formatDate}}</strong>
+                            Date posted: <strong>{{ record.created_at }}</strong>
                         </p>
                     </div>
 
@@ -470,11 +470,11 @@
             isMyJob(){
                 if(Object.keys(this.record).length){
                     let user = JSON.parse(this.$store.getters.getAuthUser);
-                    if(this.record.user_id != user.id){
+                    if(this.record.user.id != user.id){
                         this.reviewType = 'review';
                     }
 
-                    return this.record.user_id == user.id;
+                    return this.record.user.id == user.id;
                 }
                 this.reviewType = false;
                 return false;

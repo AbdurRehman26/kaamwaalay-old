@@ -3,6 +3,8 @@
 namespace App\Data\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Yadakhov\InsertOnDuplicateKey;
 
@@ -42,4 +44,29 @@ class Job extends Model
 
     const NORMAL = 'normal';
     const URGENT = 'urgent';
+
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    public function cityArea(): BelongsTo
+    {
+        return $this->belongsTo(CityArea::class);
+    }
+
+    public function totalBids(): int
+    {
+        return $this->hasMany(JobBid::class)->count();
+    }
+
+    public function awardedBid(): HasOne
+    {
+        return $this->hasOne(JobBid::class)->where('is_awarded', 1);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
