@@ -26,7 +26,7 @@
         <div class="member-details">
             <p class="location">
                 <i class="icon-location"></i>
-                Location <strong>{{  job.cityArea ? job.cityArea.name : 'N/A' }}</strong>
+                Location <strong>{{  job.city_area ? job.city_area.name : 'N/A' }}</strong>
             </p>
 
             <p class="service-requirment">
