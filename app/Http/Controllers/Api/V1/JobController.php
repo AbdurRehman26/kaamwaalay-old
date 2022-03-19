@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobRepository;
+use App\Http\Requests\API\Customer\Job\StoreJobRequest;
+use App\Http\Resources\API\Customer\Job\JobResource;
+use App\Services\Customer\JobService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class JobController extends ApiResourceController
+class JobController
 {
     public $_repository;
+    public $jobService;
 
-    public function __construct(JobRepository $repository)
+    public function __construct(JobRepository $repository, JobService $jobService)
     {
+        $this->jobService = $jobService;
         $this->_repository = $repository;
     }
 
@@ -67,22 +72,30 @@ class JobController extends ApiResourceController
     }
 
 
-    public function input($value = '')
+    public function store(StoreJobRequest $request)
     {
-        $input = request()->only(
-            'id',
+        return new JobResource($this->jobService->storeJob($request->safe(
+            [
             'title',
             'service_id',
-            'country_id',
             'city_area_id',
             'city_id',
             'title',
             'description',
             'address',
-            'apartment',
             'preferred_gender',
             'schedule_at',
             'preference',
+            ]
+        )));
+    }
+
+    public function input($value = '')
+    {
+        $input = request()->only(
+            'id',
+            'country_id',
+            'apartment',
             'status',
             'filter_by_status',
             'filter_by_service',
