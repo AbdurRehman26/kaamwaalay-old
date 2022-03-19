@@ -7,6 +7,7 @@ use App\Http\Resources\API\Customer\ServiceProviderProfile\ServiceProviderProfil
 use App\Services\Customer\ServiceProviderProfileService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Resources\API\Customer\User\UserCollectionResource;
 
 class ServiceProviderProfileController
 {
@@ -67,8 +68,8 @@ class ServiceProviderProfileController
         return $input;
     }
 
-    public function index(Request $request): JsonResponse| ServiceProviderProfileCollectionResource
+    public function index(Request $request): UserCollectionResource
     {
-        return new ServiceProviderProfileCollectionResource($this->serviceProviderProfileService->getServiceProviderProfiles());
+        return new  UserCollectionResource($this->serviceProviderProfileService->getServiceProviderProfiles());
     }
 }

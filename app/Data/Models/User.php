@@ -6,6 +6,7 @@ use App\Notifications\ActivationNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
 use App\Notifications\SendServiceProviderStatusNotification;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -106,5 +107,10 @@ class User extends Authenticatable
     public function serviceProviderProfile(): HasOne
     {
         return $this->hasOne(ServiceProviderProfile::class);
+    }
+
+    public function scopeServiceProvider(Builder $builder)
+    {
+        return $builder->where('role_id', Role::SERVICE_PROVIDER);
     }
 }

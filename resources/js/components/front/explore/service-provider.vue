@@ -50,20 +50,20 @@
             <div class="text-notifer" v-if="isPagination && records.length">
                 <p>{{isPagination.total + " " + service.title}} service professionals found near to you.</p>
             </div>
-            <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.is_featured? 'featured' : '']">
+            <div class="job-post-list" v-for="record in records" v-if="records.length" :class="[record.service_provider_profile.is_featured? 'featured' : '']">
                 <div class="job-post-details">
-                    <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.user.profile_image) +')',}"></div>
+                    <div class="job-image pointer" v-bind:style="{'background-image': 'url('+ getImage(record.profile_image) +')',}"></div>
                     <div class="job-common-description">
-                        <h3 class="pointer" @click="servicedetail(record)">{{record.business_name}}</h3>
+                        <h3 class="pointer" @click="servicedetail(record.service_provider_profile)">{{record.service_provider_profile.business_name}}</h3>
                         <div class="jobs-rating">
                             <div class="jobs-done">
-                                <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
-                                <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
+                                <span class="review-job" v-if="!record.service_provider_profile.finished_jobs">No Jobs performed</span>
+                                <span class="review-job" v-else>{{ record.service_provider_profile.finished_jobs }} Jobs performed</span>
                             </div>
                         </div>
-                        <a :href="postJobRoute+'&service_provider_user_id='+record.user.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
+                        <a :href="postJobRoute+'&service_provider_user_id='+record.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
 
-                        <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user" :class="['btn' , 'btn-primary', 'post-bid'  ]">
+                        <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record" :class="['btn' , 'btn-primary', 'post-bid'  ]">
                             Invite
                         </a>
 
@@ -73,7 +73,7 @@
                     <div class="member-details">
                         <p class="location">
                             <i class="icon-location"></i>
-                            Location <strong>{{record.user.city_area.name}}</strong>
+                            Location <strong>{{record.city_area.name}}</strong>
                         </p>
                         <p class="member-since">
                             <i class="icon-calendar-daily"></i>
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="post-job-description">
-                        <p>{{ record.business_details }}</p>
+                        <p>{{ record.service_provider_profile.business_details }}</p>
                     </div>
 
                     <div class="chat-feedback" v-if="record.reviewedBy">
