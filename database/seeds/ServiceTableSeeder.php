@@ -35,18 +35,17 @@ class ServiceTableSeeder extends Seeder
      ];
 
         $isFeatured = [0, 0, 1];
-        // reduce the probabiltiy of 1 occuring
 
         $serviceRandomImages = [
-        'images/cleaning1.jpg',
-        'images/cleaning2.jpg',
-        'images/cleaning3.jpg',
+        'cleaning1.jpg',
+        'cleaning2.jpg',
+        'cleaning3.jpg',
     ];
 
         foreach ($services as $key => $service) {
             $imageObject = [];
 
-            $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
+            $imageObject[]['name'] = $serviceRandomImages[array_rand($serviceRandomImages)];
 
             $data [] = [
             'id' => (int) $key + 1,
@@ -77,7 +76,7 @@ class ServiceTableSeeder extends Seeder
             foreach ($subService as $value) {
                 $imageObject = [];
 
-                $imageObject[]['name'] = url($serviceRandomImages[array_rand($serviceRandomImages)]);
+                $imageObject[]['name'] = $serviceRandomImages[array_rand($serviceRandomImages)];
 
 
                 $data [] = [

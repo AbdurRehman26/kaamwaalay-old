@@ -69,4 +69,10 @@ class Job extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function myBid(): HasOne
+    {
+        return $this->hasOne(JobBid::class)->where('user_id', request()->user()->id);
+    }
+
 }

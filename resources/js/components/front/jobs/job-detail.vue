@@ -99,7 +99,7 @@
                             </div>
                             <p>Address:
                                 <strong>
-                                    {{record.address + ' , '}} {{ record.cityArea ? record.cityArea.name : 'N/A' }}
+                                    {{record.address + ' , '}} {{ record.city_area ? record.city_area.name : 'N/A' }}
                                 </strong>
                             </p>
                         </div>
@@ -122,7 +122,7 @@
                         </div>
 
                         <div class="chat-feedback-column job-bidding" v-for="bid in jobBids.data">
-                            <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profileImage) +')',}" ></div>
+                            <div class="chat-feedback-image"  v-bind:style="{'background-image': 'url('+ getImage(bid.user.profile_image) +')',}" ></div>
                             <div class="job-common-description">
                                 <h3 class="pointer">{{bid.user | fullName }}</h3>
 
@@ -130,8 +130,8 @@
 
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <div class="jobs-done">
-                                        <span class="review-job" v-if="!bid.user && !bid.user.total_finished_jobs">No Jobs performed</span>
-                                        <span class="review-job" v-else>{{ bid.user.total_finished_jobs }} Job(s) performed</span>
+                                        <span class="review-job" v-if="!bid.user && !bid.user.service_provider_profile.total_finished_jobs">No Jobs performed</span>
+                                        <span class="review-job" v-else>{{ bid.user.service_provider_profile.total_finished_jobs }} Job(s) performed</span>
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                                     </span>
                                     <span class="pull-right"><i class="icon-calendar-daily"></i> Date:
                                         <strong>
-                                            {{bid.formatted_created_at}}
+                                            {{bid.created_at}}
                                         </strong>
                                     </span>
                                 </div>
@@ -250,9 +250,8 @@
                         <span><i class="icon-checkmark2" style="margin-left: -64px;margin-right: 36px;"></i>Initiate Job</span> <loader></loader>
                     </button>
 
-                    <a v-canBid v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Apply Now</a>
-
-                    <a v-canBid v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">
+                    <a v-if="!isMyJob && !myBidValue && !jobAwarded && !jobArchived" @click.prevent="showBidPopup = true;" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">Apply Now</a>
+                    <a v-if="!isMyJob && myBidValue && !jobAwarded && canModifyBid && !jobArchived" @HideModalValue="showBidPopup = false;" @click.prevent="showBidPopup = true; bidValue = myBidValue" href="javascript:void(0);" class="btn btn-primary m-b-20 m-t-0">
                         <i class="icon-edit-pencil"></i>
                         Modify Bid
                     </a>
@@ -497,7 +496,7 @@
             },
             canModifyBid(){
                 if(Object.keys(this.record).length && this.record.my_bid){
-                    return this.record.status != 'cancelled' && (this.record.my_bid.status == "on_the_way" || Math.ceil(this.record.my_bid.amount) || this.record.my_bid.is_tbd);
+                    return this.record.status != 'cancelled';
                 }
             },
             canChat(){

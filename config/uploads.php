@@ -9,24 +9,13 @@ return [
     |
     */
     'service' => [
-        'folder' => 'service/orignal',
+        'folder' => 'storage/public/',
         'rules' => [
             'mimes:jpeg,jpg,png',
-            // 'max:' . 10*1024*1024,
         ],
-        
-        /*'thumb' => [
-            'folder' => 'service/thumb/',
-            'height' => 400,
-            'width' => 400,
-            'method' => 'fit',
-        ],*/
-        /*'zip' => [
-            'folder' => 'service/zip/',
-        ],*/
         'url' => [
-            'folder' => 'service'
-        ]
+            'folder' => 'service',
+        ],
     ],
     'job_done' => [
         'folder' => 'job-done/orignal/',
@@ -58,8 +47,8 @@ return [
             'folder' => 'service/zip/',
         ],*/
         'url' => [
-            'folder' => 'service_provider'
-        ]
+            'folder' => 'service_provider',
+        ],
     ],
     
     'user' => [

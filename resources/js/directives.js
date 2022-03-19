@@ -46,12 +46,12 @@ update: function (el, binding, vnode) {
 
 Vue.directive('canBid', {
   bind: function (el, binding, vnode) {
-    if(app.$store && app.$store.getters.getAuthUser && !JSON.parse(app.$store.getters.getAuthUser).is_approved){
+    if(app.$store && JSON.parse(app.$store.getters.getAuthUser).id){
         commentNode(el, vnode);
     }
 },
 update: function (el, binding, vnode) {
-    if(app.$store && app.$store.getters.getAuthUser && !JSON.parse(app.$store.getters.getAuthUser).is_approved){
+    if(app.$store && JSON.parse(app.$store.getters.getAuthUser).id){
         commentNode(el, vnode);
     }
 }

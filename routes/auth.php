@@ -52,11 +52,6 @@ Route::group(['middleware' => ['scopes']], function () {
         'update',
     ]);
 
-    Route::get('service-provider-profile-request/approved-profile', 'Api\V1\ServiceProviderProfileRequestController@getUserApprovedProfile')->name("service-provider.approved-profile");
-    Route::resource('service-provider-profile-request', 'Api\V1\ServiceProviderProfileRequestController')->except([
-        'edit','create','destory','store',
-    ]);
-
     Route::resource('service', 'Api\V1\ServiceController')->only([
         'store', 'update',
     ]);

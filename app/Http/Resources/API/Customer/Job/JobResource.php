@@ -5,6 +5,7 @@ namespace App\Http\Resources\API\Customer\Job;
 use App\Http\Resources\API\Customer\User\UserResource;
 use App\Http\Resources\API\Shared\CityArea\CityAreaResource;
 use App\Http\Resources\API\Shared\Service\ServiceResource;
+use App\Http\Resources\API\Customer\JobBid\JobBidResource;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,6 +29,7 @@ class JobResource extends JsonResource
             'awarded_to' => null,
             'bids_count' => $this->totalBids(),
             'awarded_bid' => $this->awardedBid,
+            'my_bid' => new JobBidResource($this->myBid),
             'user' => new UserResource($this->user),
         ];
     }

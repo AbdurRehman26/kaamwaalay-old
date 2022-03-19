@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Data\Models\Role;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
 {
@@ -12,11 +12,11 @@ class RolesTableSeeder extends Seeder
 *
 * @return void
 */
-public function run()
-{
-    $date = Carbon::now();        
-    Role::insertOnDuplicateKey(array ( 
-        array (
+    public function run()
+    {
+        $date = Carbon::now();
+        Role::insertOnDuplicateKey([
+        [
             'id' => 1,
             'title' => 'Full',
             'can_register' => 0,
@@ -70,13 +70,13 @@ public function run()
             ]),
             'created_at' => $date,
             'updated_at' => $date,
-            'deleted_at' => NULL,
-        ),
-        array (
+            'deleted_at' => null,
+        ],
+        [
             'id' => 2,
             'title' => 'Service Provider',
             'can_register' => 1,
-            'scope' =>json_encode([
+            'scope' => json_encode([
                 "campaign.index",
                 "campaign.store",
                 "campaign.show",
@@ -93,7 +93,6 @@ public function run()
                 "job-message.index",
                 "job-message.store",
                 "user.me",
-                "service-provider.approved-profile",
                 "user.update",
                 "job-bid.store",
                 "job-bid.update",
@@ -102,16 +101,16 @@ public function run()
                 "user.notification",
                 "user.notification.mark.read",
                 "zipcode.index",
-            ]), 
+            ]),
             'created_at' => $date,
             'updated_at' => $date,
-            'deleted_at' => NULL,
-        ),
-        array (
+            'deleted_at' => null,
+        ],
+        [
             'id' => 3,
             'title' => 'Customer',
             'can_register' => 1,
-            'scope' =>json_encode([
+            'scope' => json_encode([
                 "user.me",
                 "user.store",
                 "user.update",
@@ -139,13 +138,13 @@ public function run()
                 "user.notification",
                 "user.notification.mark.read",
                 "zipcode.index",
-                "job.invite.to.bid"
-            ]), 
+                "job.invite.to.bid",
+            ]),
             'created_at' => $date,
             'updated_at' => $date,
-            'deleted_at' => NULL,
-        ),
-        array (
+            'deleted_at' => null,
+        ],
+        [
             'id' => 4,
             'title' => 'Service Provider Review',
             'can_register' => 0,
@@ -156,8 +155,8 @@ public function run()
             ]),
             'created_at' => $date,
             'updated_at' => $date,
-            'deleted_at' => NULL,
-        ),
-    ));
-}
+            'deleted_at' => null,
+        ],
+    ]);
+    }
 }

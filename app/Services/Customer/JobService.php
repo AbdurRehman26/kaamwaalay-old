@@ -8,7 +8,7 @@ class JobService
 {
     public function getJobs()
     {
-        return Job::where('user_id', request()->user()->id)->get();
+        return Job::paginate();
     }
 
     public function storeJob($array)

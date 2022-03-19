@@ -44,8 +44,6 @@
         <profile-not-completed v-if="!profileRejected && profileInComplete && loadingCompleted"></profile-not-completed>
         <profile-rejection :formData="profileValue" v-if="profileRejected"></profile-rejection>
 
-        <vue-common-methods :url="url" @get-records="getRecords"></vue-common-methods>
-
     </div>
 </template>
 
@@ -72,7 +70,6 @@
                 awardedCount: 0,
                 completedCount: 0,
                 cancelledCount: 0,
-                url : 'api/service-provider-profile-request/approved-profile',
                 profileApproved : false,
                 profileInComplete : false,
                 loadingCompleted : false,
