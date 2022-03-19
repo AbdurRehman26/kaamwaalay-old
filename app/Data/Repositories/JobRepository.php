@@ -289,55 +289,6 @@ class JobRepository extends AbstractRepository implements RepositoryContract
         \DB::beginTransaction();
         $data = parent::create($data);
 
-        if (request()->has('stripe_token')) {
-            $stripe_token = request()->get('stripe_token');
-            $user = request()->user();
-
-            try {
-                if (! $user->hasStripeId()) {
-                    $user->createAsStripeCustomer($stripe_token);
-                } else {
-                    $user->updateCard($stripe_token);
-                }
-
-                if ($data->job_type === Job::URGENT) {
-                    $plan = Plan::where([
-                    'type' => 'job',
-                    'product' => 'urgent_job',
-                ])->first();
-
-                    $charge = $user->charge($plan->amount * 100, [
-                    'description' => "{$user->first_name} {$user->last_name} created an Urgent Job.",
-                    'metadata' => [
-                        'Job ID' => $data->id,
-                        'Job Title' => $data->title,
-                        'Created by' => "{$user->first_name} {$user->last_name}",
-                    ],
-                ]);
-
-                    $subscription = Subscription::create([
-                    'user_id' => $data->user_id,
-                    'stripe_id' => $charge->id,
-                    'stripe_plan' => $plan->id,
-                ]);
-
-                    $data = $this->update([
-                    'id' => $data->id,
-                    'subscription_id' => $subscription->id,
-                ]);
-                } else {
-                    $data = $this->findById($data->id, true);
-                }
-            } catch (\Stripe\Error\InvalidRequest $e) {
-                throw ValidationException::withMessages([
-                'message' => $e->getMessage(),
-            ]);
-            } catch (\Exception $e) {
-                throw ValidationException::withMessages([
-                'message' => $e->getMessage(),
-            ]);
-            }
-        }
         \DB::commit();
 
         if ($user_id) {
@@ -347,7 +298,6 @@ class JobRepository extends AbstractRepository implements RepositoryContract
             'is_invited' => 1,
             'status' => 'invited',
         ];
-
 
             app('JobBidRepository')->create($updateData);
         }

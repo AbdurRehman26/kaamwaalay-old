@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Laravel\Passport\Http\Middleware\CheckForAnyScope as BaseMiddleware;
 use Illuminate\Auth\AuthenticationException;
+use Laravel\Passport\Http\Middleware\CheckForAnyScope as BaseMiddleware;
+use function Pest\Laravel\json;
 
 class CheckScopes extends BaseMiddleware
 {
@@ -17,19 +17,27 @@ class CheckScopes extends BaseMiddleware
      */
     public function handle($request, $next, ...$scopes)
     {
-     $scope = $request->route()->getName();
-     if($scope){
-        if (! $request->user() || ! $request->user()->token()) {
-            throw new AuthenticationException;
-        }
-        if (! $request->user()->tokenCan($scope)) {
-            $code = 422;
-            $output = [
+        $scope = $request->route()->getName();
+        \Log::info('scope');
+        \Log::info($scope);
+
+        \Log::info('for user');
+        \Log::info(json_encode($request->user()));
+
+        if ($scope) {
+            if (! $request->user() || ! $request->user()->token()) {
+                throw new AuthenticationException;
+            }
+            if (! $request->user()->tokenCan($scope)) {
+                $code = 422;
+                $output = [
                 'message' => 'Invalid scope(s) provided.',
             ];
-         return response()->json($output, $code);
+
+                return response()->json($output, $code);
+            }
         }
+
+        return $next($request);
     }
-    return $next($request);
-}
 }

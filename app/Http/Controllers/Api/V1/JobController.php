@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobRepository;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use App\Data\Models\Job;
+use Illuminate\Validation\Rule;
 
 class JobController extends ApiResourceController
 {
@@ -16,11 +15,11 @@ class JobController extends ApiResourceController
         $this->_repository = $repository;
     }
 
-    public function rules($value='')
+    public function rules($value = '')
     {
         $rules = [];
 
-        if($value == 'store') {
+        if ($value == 'store') {
             $rules['service_id'] = 'required|exists:services,id';
             $rules['service_provider_user_id'] = 'exists:users,id,role_id,'. 2;
 
@@ -57,36 +56,54 @@ class JobController extends ApiResourceController
                             || false;
                 }),
             ];
-
         }
 
-        if($value == 'update'){
-            $rules['id'] =  'required|exists:jobs,id,user_id,'.$this->input()['user_id'];
+        if ($value == 'update') {
+            $rules['id'] = 'required|exists:jobs,id,user_id,'.$this->input()['user_id'];
             $rules['service_id'] = 'exists:services,id';
         }
-        return $rules;
 
+        return $rules;
     }
 
 
-    public function input($value='')
+    public function input($value = '')
     {
         $input = request()->only(
-
-            'id', 'title', 'service_id', 'country_id', 'city_area_id',
-            'city_id', 'title', 'description', 'address', 'apartment', 'preferred_gender',
-            'schedule_at', 'preference', 'status',
-            'filter_by_status', 'filter_by_service', 'keyword','pagination',
-            'filter_by_user', 'filter_by_service_provider', 'filter_by_me',
-            'details', 'is_archived', 'filter_by_city', 'filter_by_zip',
-            'address_latitude', 'address_longitude', 'service_provider_user_id',
+            'id',
+            'title',
+            'service_id',
+            'country_id',
+            'city_area_id',
+            'city_id',
+            'title',
+            'description',
+            'address',
+            'apartment',
+            'preferred_gender',
+            'schedule_at',
+            'preference',
+            'status',
+            'filter_by_status',
+            'filter_by_service',
+            'keyword',
+            'pagination',
+            'filter_by_user',
+            'filter_by_service_provider',
+            'filter_by_me',
+            'details',
+            'is_archived',
+            'filter_by_city',
+            'filter_by_zip',
+            'address_latitude',
+            'address_longitude',
+            'service_provider_user_id',
             'explore_jobs'
         );
 
         $input['user_id'] = request()->user()->id;
 
-        if($value == 'store' || $value == 'update'){
-
+        if ($value == 'store' || $value == 'update') {
             unset(
                 $input['filter_by_service'], $input['keyword'], $input['details'],
                 $input['filter_by_status'], $input['filter_by_status'], $input['filter_by_status'],
@@ -94,15 +111,14 @@ class JobController extends ApiResourceController
                 $input['filter_by_city'], $input['explore_jobs']
             );
 
-            if(empty($input['images'][0])){
-                if(isset($input['images'])){
+            if (empty($input['images'][0])) {
+                if (isset($input['images'])) {
                     $input['images'] = null;
                 }
             }
-
         }
 
-        if($value == 'store'){
+        if ($value == 'store') {
             unset($input['status'], $input['is_archived']);
         }
 
@@ -121,7 +137,7 @@ class JobController extends ApiResourceController
 
         $orCriteria = [
             ['user_id' => request()->user()->id , 'status' => 'initiated'],
-            ['user_id' => request()->user()->id , 'status' => 'awarded']
+            ['user_id' => request()->user()->id , 'status' => 'awarded'],
         ];
 
         $active = $this->_repository->getTotalCountByCriteria($criteria, null, null, $orCriteria);
@@ -129,13 +145,12 @@ class JobController extends ApiResourceController
         $data = ['completed' => $completed , 'active' => $active];
 
         $output = [
-            'data' => $data
+            'data' => $data,
         ];
 
-        $code  = 200;
+        $code = 200;
 
         return response()->json($output, $code);
-
     }
 
     public function getInviteToBidJobs(Request $request)
@@ -145,25 +160,23 @@ class JobController extends ApiResourceController
         $data = $this->_repository->getInviteToBidJobs($input);
 
         $output = [
-            'data' => $data
+            'data' => $data,
         ];
 
-        $code  = 200;
+        $code = 200;
 
         return response()->json($output, $code);
-
     }
 
 
     public function responseMessages($value = '')
     {
-
         $messages = [
             'store' => 'Job created successfully.',
             'update' => 'Job updated successfully.',
             'destroy' => 'Job deleted successfully.',
         ];
 
-        return !empty($messages[$value]) ? $messages[$value] : 'Success.';
+        return ! empty($messages[$value]) ? $messages[$value] : 'Success.';
     }
 }
