@@ -6,9 +6,15 @@ use App\Data\Models\Job;
 
 class JobService
 {
-    public function getJobs()
+    public function getJobs($filters)
     {
-        return Job::paginate();
+        $jobQuery = Job::query();
+
+        if (! empty($filters['user_id'])) {
+            $jobQuery->customerJobs();
+        }
+
+        return $jobQuery->paginate();
     }
 
     public function storeJob($array)

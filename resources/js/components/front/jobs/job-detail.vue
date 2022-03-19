@@ -130,8 +130,8 @@
 
                                 <div v-if="isMyJob" class="jobs-rating">
                                     <div class="jobs-done">
-                                        <span class="review-job" v-if="!bid.user && !bid.user.service_provider_profile.total_finished_jobs">No Jobs performed</span>
-                                        <span class="review-job" v-else>{{ bid.user.service_provider_profile.total_finished_jobs }} Job(s) performed</span>
+                                        <span class="review-job" v-if="!bid.user && !bid.user.service_provider_profile.finished_jobs">No Jobs performed</span>
+                                        <span class="review-job" v-else>{{ bid.user.service_provider_profile.finished_jobs }} Job(s) performed</span>
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +351,7 @@
                 strict: false,
                 disabledChat: false,
                 requestUrl : 'api/job/'+this.$route.params.id,
-                requestBidUrl : 'api/job-bid?pagination=true&filter_by_job_id='+this.$route.params.id,
+                requestBidUrl : 'api/job-bid?filter[job_id]='+this.$route.params.id,
                 bidReview: this.$route.params.id,
                 submit : false,
                 submitBidForm : false,

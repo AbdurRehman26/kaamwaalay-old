@@ -22,21 +22,21 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::post('file/remove', 'Api\V1\FileController@remove')->name("file.remove");
 
     Route::resource('job-bid', 'Api\V1\JobBidController')->except([
-        'edit','create','destory',
+        'edit','create','destroy',
     ]);
 
     Route::get('job/stats', 'Api\V1\JobController@getJobStats')->name('job.stats');
     Route::get('job-invite-to-bid', 'Api\V1\JobController@getInviteToBidJobs')->name('job.invite.to.bid');
     Route::resource('job', 'Api\V1\JobController')->except([
-        'edit','create','destory',
+        'edit','create','destroy',
     ]);
 
     Route::resource('job-message', 'Api\V1\JobMessageController')->except([
-        'edit','create','destory',
+        'edit','create','destroy',
     ]);
 
     Route::resource('payment', 'Api\V1\PaymentController')->except([
-     'edit','create','destory',
+     'edit','create','destroy',
  ]);
 
     Route::post('plan/update-or-add-plans', 'Api\V1\PlanController@updateOrAddPlans');
@@ -76,9 +76,9 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
     
     Route::resource('user', 'Api\V1\UserController')->except([
-        'edit','destory','create',
+        'edit','destroy','create',
     ]);
     Route::resource('zipcode', 'Api\V1\ZipCodeController')->except([
-        'edit','destory','create',
+        'edit','destroy','create',
     ]);
 });

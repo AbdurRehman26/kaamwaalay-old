@@ -2,9 +2,11 @@
 
 namespace App\Data\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Yadakhov\InsertOnDuplicateKey;
 
@@ -75,4 +77,8 @@ class Job extends Model
         return $this->hasOne(JobBid::class)->where('user_id', request()->user()->id);
     }
 
+    public function scopeCustomerJobs(Builder $query)
+    {
+        return $query->where('user_id', request()->user()->id);
+    }
 }

@@ -50,6 +50,7 @@ class JobTableSeeder extends Seeder
                     'title' => $faker->Company,
                     'description' => $faker->Text,
                     'address' => $faker->Address,
+                    'city_area_id' => rand(1, 70),
                     'city_id' => $city ? $city->id : null,
                     'schedule_at' => $scheduled_at,
                     'preference' => $preference,

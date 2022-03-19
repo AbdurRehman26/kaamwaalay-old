@@ -80,7 +80,7 @@ class JobController
 
     public function index(Request $request): JobCollectionResource
     {
-        return new JobCollectionResource($this->jobService->getJobs());
+        return new JobCollectionResource($this->jobService->getJobs($request->filter));
     }
 
     public function store(StoreJobRequest $request)
