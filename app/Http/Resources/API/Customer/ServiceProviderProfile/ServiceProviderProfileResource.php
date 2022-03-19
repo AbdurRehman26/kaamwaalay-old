@@ -12,12 +12,13 @@ class ServiceProviderProfileResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'years_of_experience' => $this->years_of_experience,
+            'business_type' => $this->business_type,
             'business_name' => $this->business_name,
             'business_details' => $this->business_details,
-            'user' => new UserResource($this->user),
             'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
             'finished_jobs' => $this->totalFinishedJobs(),
-            'all_services_offered' => new ServiceCollectionResource($this->servicesOffered),
+            'services_offered' => new ServiceCollectionResource($this->servicesOffered),
         ];
     }
 }

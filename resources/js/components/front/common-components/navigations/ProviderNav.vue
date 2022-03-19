@@ -7,9 +7,6 @@
             <li>
 
                 <div class="user-login-detail float-left pointer"  @click="changePassword">
-<!-- <span class="user-img" @click="ShowModal">
-<img src="" alt="">
-</span> -->
 <span class="user-img" v-if="imageValue" @click="ShowModalValue = true;" v-bind:style="{'background-image':'url('+imageValue+')'}">
 </span>
 <span class="user-img no-image" v-if="!imageValue" @click="ShowModalValue = true;">
@@ -34,8 +31,6 @@
     </li>
 
 </ul>
-<!--  Get Service provider profile  -->
-<vue-common-methods :url="url" :hideLoader='true' @get-records="getResponse"></vue-common-methods>
 <common-nav/>
 
 
@@ -56,7 +51,6 @@
                 last_name : '',
                 user:{},
                 notificationCount:'',
-                url : 'api/service-provider-profile-request/approved-profile'
             }
         },
         directives: {
@@ -108,23 +102,10 @@
             scrollToTop() {
                 window.scrollTo(0,0);
             },
-            getResponse(response){
-                if(response.data){
-                    let user = JSON.parse(this.$store.getters.getAuthUser);
-                    if(response.data.status == 'approved'){
-                        user.is_approved = 1;
-                    }else {
-                        user.is_approved = 0;
-                    }
-                    this.$store.commit('setAuthUser' , user);
-                }
-            }
 
         },
         watch :{
          $route(to, from) {
-            let dateTime = new Date();
-            this.url = 'api/service-provider-profile-request/approved-profile?tiem='+dateTime;
          }
      }
  }

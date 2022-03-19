@@ -7,6 +7,7 @@ use App\Data\Models\User;
 use App\Data\Repositories\UserRepository;
 use App\Events\NewPasswordSet;
 use App\Helper\Helper;
+use App\Http\Resources\API\Customer\User\UserResource;
 use App\Jobs\CustomerBanned;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -314,23 +315,9 @@ class UserController extends ApiResourceController
     }
 
 
-    public function getAuthUser(Request $request)
+    public function getAuthUser(Request $request): UserResource
     {
-        $user_id = $request->user()->id;
-        $details = $request->only('details');
-
-        $data = $this->_repository->findById(
-            $user_id,
-            false,
-            ! empty($details['details']) ? $details['details'] : false
-        );
-
-        $output = [
-        'data' => $data,
-    ];
-        $code = 200;
-
-        return response()->json($output, $code);
+        return new UserResource($request->user());
     }
 
 

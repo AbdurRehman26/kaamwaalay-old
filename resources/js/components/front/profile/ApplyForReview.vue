@@ -5,7 +5,7 @@
             <p>To build safety on PSM, we review and approve service provider profiles. All information provided below will be kept secure.</p>
         </div>
 
-        <div v-if="Object.keys(record).length && record.business_details &&  Object.keys(record.business_details).length" class="profile-form-section apply-review-sec">
+        <div v-if="Object.keys(record).length && record.service_provider_profile &&  Object.keys(record.service_provider_profile).length" class="profile-form-section apply-review-sec">
 
             <div class="form-signup">
                 <form @submit.prevent="validateBeforeSubmit">
@@ -70,14 +70,11 @@
 
 
                       <div class="service-offered">
-                        <div class="form-label-heading m-b-30">
-                          <p>SERVICES OFFERED</p>
-                        </div>
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Are you a Business or Individual</label>
-                              <select v-model="record.business_details.business_type" v-validate="'required'" name="service"
+                              <select v-model="record.service_provider_profile.business_type" v-validate="'required'" name="service"
                                       :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                 <option v-for="businessType in [{id: 1, name: 'individual'}, {id: 1, name: 'business'}]" :value="businessType.name">
                                   {{ businessType.name.charAt(0).toUpperCase() + businessType.name.substr(1).toLowerCase() }}
@@ -85,10 +82,10 @@
                               </select>
                             </div>
                           </div>
-                          <div v-if="record.business_details.business_type === 'business'" class="col-md-6">
+                          <div v-if="record.service_provider_profile.business_type === 'business'" class="col-md-6">
                             <div class="form-group">
                               <label>Business Name</label>
-                              <input placeholder="Enter business name.service-professional .multiselect__tags span" v-model="record.business_details.business_name" v-validate="'required'" name="business_name"
+                              <input placeholder="Enter business name.service-professional .multiselect__tags span" v-model="record.service_provider_profile.business_name" v-validate="'required'" name="business_name"
                                       :class="['form-control' , errorBag.first('business_name') ? 'is-invalid' : '']" class="form-control"/>
                             </div>
                           </div>
@@ -100,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Years of Experience</label>
-                                    <input v-validate="{required: businessRequired, numeric: true, max : 3}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.business_details.years_of_experience" placeholder="Enter your years of experience">
+                                    <input v-validate="{required: businessRequired, numeric: true, max : 3}" :class="['form-control', 'form-group' , errorBag.first('years of experience') ? 'is-invalid' : '']" type="number" name="years of experience" v-model="record.service_provider_profile.years_of_experience" placeholder="Enter your years of experience">
                                 </div>
                             </div>
                         </div>
@@ -110,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">About </label>
-                                    <textarea v-validate="{required: businessRequired, max : 1000}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.business_details.business_details" placeholder="Enter your business details"></textarea>
+                                    <textarea v-validate="{required: businessRequired, max : 1000}" :class="['form-control', 'form-group' , errorBag.first('business details') ? 'is-invalid' : '']" name="business details" v-model="record.service_provider_profile.business_details" placeholder="Enter your business details"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -120,12 +117,12 @@
                         <div class="form-label-heading m-b-30">
                             <p>SERVICES OFFERED</p>
                         </div>
-                        <div v-for="(service_detail, index) in record.service_details" class="row">
+                        <div v-for="(service_detail, index) in record.service_provider_profile.services_offered" class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" v-if="index == 0">Service</label>
                                     <label for="" v-if="index > 0"></label>
-                                    <select v-model="record.service_details[index].service_id" v-validate="'required'" name="service"
+                                    <select v-model="record.service_provider_profile.services_offered[index].id" v-validate="'required'" name="service"
                                     :class="['form-control' , errorBag.first('service') ? 'is-invalid' : '']" class="form-control">
                                     <option v-for="service in servicesList" :value="service.id">
                                         {{ service  | mainServiceOrChildService}}
@@ -134,8 +131,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a v-if="!pendingProfile && index == record.service_details.length-1" @click.prevent="record.service_details.push({ service_id : servicesList[0].id})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
-                            <a v-id="service_detail.status != 'approved'" v-if="!pendingProfile && index < record.service_details.length-1" @click.prevent="record.service_details.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
+                            <a v-if="!pendingProfile && index == record.service_provider_profile.services_offered.length-1" @click.prevent="record.service_provider_profile.services_offered.push({ service_id : servicesList[0].id})" href="javascript:;" :class="['add-photos', 'mt-35']">+ Add more services</a>
+                            <a v-id="service_detail.status != 'approved'" v-if="!pendingProfile && index < record.service_provider_profile.services_offered.length-1" @click.prevent="record.service_provider_profile.services_offered.splice(index, 1)" href="javascript:;" :class="['add-photos', 'mt-35']"><strong>X</strong></a>
                         </div>
                     </div>
                 </div>
@@ -166,7 +163,7 @@
                 </div>
 
                 <div v-if="!pendingProfile" class="submit-approval-btn">
-                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Submit for Approval
+                    <button :class="['btn', 'btn-primary', loading ? 'show-spinner' : '']">Complete Profile
                         <loader></loader>
                     </button>
                 </div>
@@ -264,7 +261,7 @@
                 return 'api/user/' + this.record.id;
             },
             businessRequired(){
-                return this.record.business_details.business_type == 'business';
+                return this.record.service_provider_profile.business_type == 'business';
             }
         },
 
@@ -273,10 +270,10 @@
         methods: {
             findUniqueValues(){
                 let self = this;
-                let service_details = self.record.service_details;
+                let services_offered = self.record.service_provider_profile.services_offered;
 
-                var result = _.map(service_details, function(serviceDetail, serviceDetailIndex) {
-                    var eq = _.find(service_details, function(findServiceDetail, findIndex) {
+                var result = _.map(services_offered, function(serviceDetail, serviceDetailIndex) {
+                    var eq = _.find(services_offered, function(findServiceDetail, findIndex) {
                         if (serviceDetailIndex != findIndex) {
                             if(findServiceDetail.service_id ==  serviceDetail.service_id){
                                 return findServiceDetail;
@@ -311,8 +308,8 @@
 
                         _.forEach(self.record, function(value, key) {
 
-                            if(key == 'business_details' || key == 'service_details'){
-                                if(key == 'service_details'){
+                            if(key == 'business_details' || key == 'services_offered'){
+                                if(key == 'services_offered'){
                                     for (var i = value.length - 1; i >= 0; i--) {
                                         value[i].id = value.service_provider_profile_request_id;
                                     }
@@ -370,31 +367,19 @@
                     self.loading = false;
                     self.record = response.data;
                     console.log(self.record);
-                    if(!self.record.business_details.business_type){
-                      self.record.business_details.business_type = 'individual'
+                    if(!self.record.service_provider_profile.business_type){
+                      self.record.service_provider_profile.business_type = 'individual'
                     }
 
-                    if(self.record.service_details.length){
-
-                        for (var i = self.record.service_details.length-1; i >= 0; i--) {
-                            if(self.record.service_details[i].status == 'pending'){
-                                self.pendingProfile = true;
-                            }
-                        }
-                    }
-
-                    if(!self.record.service_details.length){
-                        self.record.service_details = [{
+                    if(!self.record.service_provider_profile.services_offered.length){
+                        self.record.service_provider_profile.services_offered = [{
                             service_id : 1
                         }];
                     }
 
-                    if(self.record.business_details){
-
-                        if(!self.record.business_details.business_type){
-                            self.record.business_details.business_type = 'business';
-                        }
-                    }
+                  if(!self.record.service_provider_profile.business_type){
+                    self.record.service_provider_profile.business_type = 'business';
+                  }
 
                     self.profileImage = self.record.profileImage;
                 }

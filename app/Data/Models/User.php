@@ -7,6 +7,7 @@ use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
 use App\Notifications\SendServiceProviderStatusNotification;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
@@ -100,5 +101,10 @@ class User extends Authenticatable
                         'value' => $this->id,
                       ],
             ];
+    }
+
+    public function serviceProviderProfile(): HasOne
+    {
+        return $this->hasOne(ServiceProviderProfile::class);
     }
 }
