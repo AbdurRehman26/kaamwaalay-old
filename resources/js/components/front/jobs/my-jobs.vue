@@ -80,8 +80,8 @@
                                 </p>
                                 <p class="awarded" v-if="record.awarded_to">
                                     <i class="icon-checkmark2"></i>
-                                    Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.business_details.id}}">
-                                        {{  record.awarded_to.business_details  ? record.awarded_to.business_details.business_name : '' }}
+                                    Awarded to <router-link :to="{name: 'service-provider-detail.view' , params : { id : record.awarded_to.service_provider_profile.id}}">
+                                        {{  record.awarded_to.service_provider_profile.business_name }}
                                     </router-link>
                                 </p>
                                 <p class="service-requirment">

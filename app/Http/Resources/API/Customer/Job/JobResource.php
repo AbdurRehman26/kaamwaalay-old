@@ -26,7 +26,7 @@ class JobResource extends JsonResource
             'city_area' => new CityAreaResource($this->cityArea),
             'service' => new ServiceResource($this->service),
             'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
-            'awarded_to' => $this->awardedBid?->user,
+            'awarded_to' => new UserResource($this->awardedBid?->user),
             'bids_count' => $this->totalBids(),
             'awarded_bid' => $this->awardedBid,
             'my_bid' => new JobBidResource($this->myBid),
