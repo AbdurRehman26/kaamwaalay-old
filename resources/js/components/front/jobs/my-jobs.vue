@@ -117,7 +117,7 @@
                 writereview: false,
                 jobimage: '/images/front/profile-images/logoimage1.png',
                 reviewerimage: '/images/front/profile-images/personimage1.png',
-                requestUrl : 'api/job?filter[user_id]=true',
+                requestUrl : 'api/job?filter[user_id]=true&pagination=true',
                 requestJobUrl : 'api/job/stats',
                 records : [],
                 jobStats : [],

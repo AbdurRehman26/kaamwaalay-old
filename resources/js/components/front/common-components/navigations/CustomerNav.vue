@@ -21,21 +21,11 @@
                     <i class="icon-cog2 action-icon"></i>
                 </router-link>
             </li>
-            <li class="bell-li">
-                <span class="notify-block" v-on-clickaway="away" @click="isShowing ^= true">
-                    <i v-bind:active="tab == true" class="icon-notification action-icon">
-                        <span :class="{'badge-count': notificationCount != ''}">{{notificationCount}}</span></i>
-                        <notification v-show="isShowing" :isShowTab='isShowing'></notification>
-                    </span>
-                </li>
-                <li>
-                    <logout-component></logout-component>
-                </li>
+            <li>
+                <logout-component></logout-component>
+            </li>
 
             </ul>
-        </li>
-    </ul>
-
     <common-nav/>
 
 </div>
